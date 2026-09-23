@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 2f6e7f4cf33574676ca94046104d496581199e1e28d60e00ff9f9b4278dd5d33
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6d7e5a920420586385511f3987a0483dfe0d19c345ffe9e5a8cd558a8cf057bb
 ---
 
 ---
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.63.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.63.0")
+        implementation("com.anthropic:anthropic-java:2.65.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.65.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         ```
       </Tab>
@@ -162,7 +162,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
       -H "content-type: application/json" \
       -H "anthropic-version: 2023-06-01" \
       -d '{
-        "model": "anthropic.claude-opus-5",
+        "model": "anthropic.claude-opus-5-5",
         "max_tokens": 1024,
         "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -182,7 +182,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
     client = AnthropicBedrockMantle(aws_region="us-east-1")
 
     message = client.messages.create(
-        model="anthropic.claude-opus-5",
+        model="anthropic.claude-opus-5-5",
         max_tokens=1024,
         messages=[{"role": "user", "content": "Hello, Claude"}],
     )
@@ -200,7 +200,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
     });
 
     const message = await client.messages.create({
-      model: "anthropic.claude-opus-5",
+      model: "anthropic.claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     });
@@ -221,7 +221,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 
     var message = await client.Messages.Create(new()
     {
-        Model = "anthropic.claude-opus-5",
+        Model = "anthropic.claude-opus-5-5",
         MaxTokens = 1024,
         Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
     });
@@ -247,7 +247,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
     }
 
     message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    	Model:     "anthropic.claude-opus-5",
+    	Model:     "anthropic.claude-opus-5-5",
     	MaxTokens: 1024,
     	Messages: []anthropic.MessageParam{
     		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -282,7 +282,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 
         Message message = client.messages().create(
             MessageCreateParams.builder()
-                .model("anthropic.claude-opus-5")
+                .model("anthropic.claude-opus-5-5")
                 .maxTokens(1024)
                 .addUserMessage("Hello, Claude")
                 .build()
@@ -303,7 +303,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
     $client = new MantleClient(awsRegion: 'us-east-1');
 
     $message = $client->messages->create(
-        model: 'anthropic.claude-opus-5',
+        model: 'anthropic.claude-opus-5-5',
         maxTokens: 1024,
         messages: [
             ['role' => 'user', 'content' => 'Hello, Claude'],
@@ -321,7 +321,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
     client = Anthropic::BedrockMantleClient.new(aws_region: "us-east-1")
 
     message = client.messages.create(
-      model: "anthropic.claude-opus-5",
+      model: "anthropic.claude-opus-5-5",
       max_tokens: 1024,
       messages: [{role: "user", content: "Hello, Claude"}]
     )
@@ -343,6 +343,7 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 | --------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Claude Fable 5.1      | anthropic.claude-fable-5-1      | Terbuka                                                                                              |
 | Claude Fable 5        | anthropic.claude-fable-5        | Terbuka                                                                                              |
+| Claude Opus 5.5       | anthropic.claude-opus-5-5       | Lihat [Akses](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Opus 5         | anthropic.claude-opus-5         | Lihat [Akses](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Opus 4.8       | anthropic.claude-opus-4-8       | Terbuka                                                                                              |
 | Claude Opus 4.7       | anthropic.claude-opus-4-7       | Terbuka                                                                                              |
@@ -350,7 +351,7 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 | Claude Haiku 4.5      | anthropic.claude-haiku-4-5      | Terbuka                                                                                              |
 | Claude Mythos Preview | anthropic.claude-mythos-preview | Hanya dengan undangan ([Project Glasswing](https://anthropic.com/glasswing))                         |
 
-Gunakan Claude Code 2.1.255 atau yang lebih baru dengan Claude Fable 5.1 di Amazon Bedrock; jalankan `claude update` untuk memperbarui.
+Gunakan Claude Code 2.1.255 atau yang lebih baru dengan Claude Fable 5.1 di Amazon Bedrock, dan 2.1.280 atau yang lebih baru dengan Claude Opus 5.5; jalankan `claude update` untuk memperbarui.
 
 <Tip>
   Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
@@ -386,37 +387,37 @@ Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawark
 * **Global:** perutean dinamis ke seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
 * **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung satu region tanpa inference profile.
 
-Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya bersifat regional dan tersedia di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya tersedia sebagai endpoint regional di `us-east-1`.
 
-| Region AWS       | Lokasi                      | Jenis endpoint             |
-| ---------------- | --------------------------- | -------------------------- |
-| `af-south-1`     | Afrika (Cape Town)          | Global                     |
-| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, In-region only |
-| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                     |
-| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                 |
-| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                     |
-| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                     |
-| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                     |
-| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                 |
-| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                     |
-| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, In-region only |
-| `ca-central-1`   | Kanada (Tengah)             | Global, US                 |
-| `ca-west-1`      | Kanada Barat (Calgary)      | Global                     |
-| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                 |
-| `eu-central-2`   | Eropa (Zurich)              | Global, EU                 |
-| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, In-region only |
-| `eu-south-1`     | Eropa (Milan)               | Global, EU                 |
-| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                 |
-| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, In-region only |
-| `eu-west-2`      | Eropa (London)              | Global, EU                 |
-| `eu-west-3`      | Eropa (Paris)               | Global, EU                 |
-| `il-central-1`   | Israel (Tel Aviv)           | Global                     |
-| `me-central-1`   | Timur Tengah (UEA)          | Global                     |
-| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                     |
-| `us-east-1`      | AS Timur (N. Virginia)      | Global, US, In-region only |
-| `us-east-2`      | AS Timur (Ohio)             | Global, US, In-region only |
-| `us-west-1`      | AS Barat (N. California)    | Global, US                 |
-| `us-west-2`      | AS Barat (Oregon)           | Global, US, In-region only |
+| Region AWS       | Lokasi                      | Jenis endpoint                 |
+| ---------------- | --------------------------- | ------------------------------ |
+| `af-south-1`     | Afrika (Cape Town)          | Global                         |
+| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, Hanya dalam region |
+| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                         |
+| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                     |
+| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                         |
+| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                         |
+| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                         |
+| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                     |
+| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                         |
+| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, Hanya dalam region |
+| `ca-central-1`   | Kanada (Tengah)             | Global, US                     |
+| `ca-west-1`      | Kanada Barat (Calgary)      | Global                         |
+| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                     |
+| `eu-central-2`   | Eropa (Zurich)              | Global, EU                     |
+| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, Hanya dalam region |
+| `eu-south-1`     | Eropa (Milan)               | Global, EU                     |
+| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                     |
+| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, Hanya dalam region |
+| `eu-west-2`      | Eropa (London)              | Global, EU                     |
+| `eu-west-3`      | Eropa (Paris)               | Global, EU                     |
+| `il-central-1`   | Israel (Tel Aviv)           | Global                         |
+| `me-central-1`   | Timur Tengah (UEA)          | Global                         |
+| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                         |
+| `us-east-1`      | AS Timur (N. Virginia)      | Global, US, Hanya dalam region |
+| `us-east-2`      | AS Timur (Ohio)             | Global, US, Hanya dalam region |
+| `us-west-1`      | AS Barat (N. California)    | Global, US                     |
+| `us-west-2`      | AS Barat (Oregon)           | Global, US, Hanya dalam region |
 
 ## Kuota
 

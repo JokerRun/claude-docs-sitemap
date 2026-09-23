@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 183c682705be1a5d87662e51eca151179a90d7ef13d457a97773514c79779f7f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ccbc13bf5350885155387dd1fb387fcaa67f1ffbb992c3b76ba3e96949934bcb
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Penyiapan environment cloud
 url: https://platform.claude.com/docs/id/managed-agents/environments
 description: Sesuaikan sandbox cloud untuk sesi Anda.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -45,6 +48,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: python-dev
       config:
         type: cloud
@@ -138,6 +142,10 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
 
   puts "Environment ID: #{environment.id}"
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat lingkungan dari `environment.yaml`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui lingkungan ini alih-alih mencoba membuatnya lagi.
+  </ForLanguage>
 </CodeGroup>
 
 Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu dengan lainnya.
@@ -386,7 +394,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
 
 Package manager yang didukung:
 
-| Field   | Package manager        | Contoh                                      |
+| Field   | Manajer paket          | Contoh                                      |
 | ------- | ---------------------- | ------------------------------------------- |
 | `apt`   | Paket sistem (apt-get) | `"graphviz"`                                |
 | `cargo` | Rust (cargo)           | `"hyperfine@1.18.0"`                        |

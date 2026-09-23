@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: c13a83177fde7067db1dae8220a664632d6707a685140ab84b882f9e74745b84
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d06edb7477e37d0df992ab13ed300c7d756d7c0e6d456cd60baa6b08dcaf8cb6
 ---
 
 ---
@@ -29,10 +29,10 @@ Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat
 
 API ini menyediakan delapan endpoint pada dua sumber daya:
 
-| Sumber daya                       | Endpoint                                                                                                                                                                                                                                              | Digunakan untuk                                                                                                                                                      |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Spend limits**                  | `GET /v1/organizations/spend_limits/effective` `GET /v1/organizations/spend_limits/{spend_limit_id}` `POST /v1/organizations/spend_limits` `DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna.                                  |
-| **Spend limit increase requests** | `GET /v1/organizations/spend_limit_increase_requests` `GET /v1/organizations/spend_limit_increase_requests/{id}` `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` `POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | Mendaftar permintaan anggota untuk batas pengeluaran yang lebih tinggi, beserta konteks yang diperlukan untuk memutuskan; menyetujui atau menolak setiap permintaan. |
+| Sumber daya                               | Endpoint                                                                                                                                                                                                                                              | Digunakan untuk                                                                                                                                                      |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Batas pengeluaran**                     | `GET /v1/organizations/spend_limits/effective` `GET /v1/organizations/spend_limits/{spend_limit_id}` `POST /v1/organizations/spend_limits` `DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna.                                  |
+| **Permintaan kenaikan batas pengeluaran** | `GET /v1/organizations/spend_limit_increase_requests` `GET /v1/organizations/spend_limit_increase_requests/{id}` `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` `POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | Mendaftar permintaan anggota untuk batas pengeluaran yang lebih tinggi, beserta konteks yang diperlukan untuk memutuskan; menyetujui atau menolak setiap permintaan. |
 
 Gunakan endpoint **spend limits** untuk menjawab "batas pengeluaran apa yang berlaku untuk setiap anggota, dari mana asalnya, dan seberapa dekat mereka dengan batas tersebut?" serta untuk menetapkan override per pengguna. Gunakan endpoint **spend limit increase requests** untuk memproses antrean permintaan yang diajukan anggota.
 
@@ -115,7 +115,7 @@ user_ids[]=user_01AbCdEfGh&user_ids[]=user_01JkLmNoPq
 
 Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](https://platform.claude.com/docs/id/api/errors). Kutip `request_id` dari body respons saat menghubungi dukungan.
 
-## Spend limits
+## Batas pengeluaran
 
 ### Mendaftar batas pengeluaran efektif setiap anggota
 
@@ -204,7 +204,7 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/s
   --header "anthropic-version: 2023-06-01"
 ```
 
-## Spend limit increase requests
+## Permintaan kenaikan batas pengeluaran
 
 ### Mendaftar permintaan kenaikan
 
@@ -374,7 +374,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
 
    Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management#groups) untuk endpoint grup.
 
-4. Ketika sistem insiden Anda menandai insiden ditutup, kembalikan kedua perubahan: pulihkan batas pengeluaran yang Anda catat di langkah 1 (atau hapus override dengan `DELETE /v1/organizations/spend_limits/{spend_limit_id}` jika anggota sebelumnya tidak memilikinya), dan hapus anggota dari grup dengan `DELETE /v1/organizations/rbac_groups/{group_id}/members/{user_id}`.
+4. Ketika sistem insiden Anda menandai insiden sebagai ditutup, kembalikan kedua perubahan: pulihkan batas pengeluaran yang Anda catat pada langkah 1 (atau hapus override dengan `DELETE /v1/organizations/spend_limits/{spend_limit_id}` jika anggota sebelumnya tidak memilikinya), dan hapus anggota dari grup dengan `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`.
 
 ## Pertanyaan yang sering diajukan
 

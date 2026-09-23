@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 148599e1f22015f3792b17c69dff02c484a998d0f5eb8c43973d7cada261383d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d2c8941bc2256cc03b31c2ffb3ac371be1b5bc8d2674834eb7d241b9ec0dfc32
 ---
 
 ---
@@ -20,7 +20,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 <CodeGroup>
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello"}' \
     | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
@@ -32,7 +32,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   with client.messages.stream(
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello"}],
-      model="claude-opus-5",
+      model="claude-opus-5-5",
   ) as stream:
       for text in stream.text_stream:
           print(text, end="", flush=True)
@@ -44,7 +44,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   await client.messages
     .stream({
       messages: [{ role: "user", content: "Hello" }],
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024
     })
     .on("text", (text) => {
@@ -57,7 +57,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -72,7 +72,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -98,7 +98,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Hello")
       .build();
@@ -122,7 +122,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   foreach ($stream as $message) {
@@ -134,7 +134,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }]
   )
@@ -149,11 +149,11 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
 <CodeGroup>
   ```bash CLI
-  # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
-  # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, stream
-  # event mentahnya:
+  # Flag --stream pada CLI ant memancarkan satu event per baris dan tidak
+  # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, lakukan streaming
+  # event mentah:
   ant messages create --stream --format jsonl <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 128000
   messages:
     - role: user
@@ -167,7 +167,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   with client.messages.stream(
       max_tokens=128000,
       messages=[{"role": "user", "content": "Write a detailed analysis..."}],
-      model="claude-opus-5",
+      model="claude-opus-5-5",
   ) as stream:
       message = stream.get_final_message()
 
@@ -182,7 +182,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   const stream = client.messages.stream({
     max_tokens: 128000,
     messages: [{ role: "user", content: "Write a detailed analysis..." }],
-    model: "claude-opus-5"
+    model: "claude-opus-5-5"
   });
 
   const message = await stream.finalMessage();
@@ -197,7 +197,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 128000,
       Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
   };
@@ -215,7 +215,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 128000,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Write a detailed analysis...")),
@@ -244,7 +244,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(128000L)
       .addUserMessage("Write a detailed analysis...")
       .build();
@@ -268,7 +268,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
       messages: [
           ['role' => 'user', 'content' => 'Write a detailed analysis...']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   $fullText = '';
@@ -285,7 +285,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   client = Anthropic::Client.new
 
   message = client.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 128000,
     messages: [{ role: "user", content: "Write a detailed analysis..." }]
   ).accumulated_message
@@ -409,7 +409,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 256,
       "stream": true
@@ -418,7 +418,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 256 \
     --message '{role: user, content: Hello}'
   ```
@@ -427,7 +427,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       messages=[{"role": "user", "content": "Hello"}],
       max_tokens=256,
   ) as stream:
@@ -439,7 +439,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [{ role: "user", content: "Hello" }],
     max_tokens: 256
   });
@@ -456,7 +456,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 256,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -471,7 +471,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 256,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -497,7 +497,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(256L)
       .addUserMessage("Hello")
       .build();
@@ -521,7 +521,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   foreach ($stream as $message) {
@@ -533,7 +533,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [{ role: "user", content: "Hello" }],
     max_tokens: 256
   )
@@ -544,7 +544,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
 
 ```sse Response
 event: message_start
-data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
+data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5-5", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}
@@ -980,7 +980,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 20000,
       "stream": true,
       "thinking": {
@@ -998,7 +998,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 20000 \
     --thinking '{type: adaptive, display: summarized}' \
     --message '{role: user, content: What is the greatest common divisor of 1071 and 462?}'
@@ -1008,7 +1008,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=20000,
       thinking={"type": "adaptive", "display": "summarized"},
       messages=[
@@ -1032,7 +1032,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 20000,
     thinking: { type: "adaptive", display: "summarized" },
     messages: [
@@ -1065,7 +1065,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 20000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
       Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
@@ -1081,7 +1081,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 20000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{
@@ -1114,7 +1114,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(20000L)
       .thinking(ThinkingConfigAdaptive.builder()
           .display(ThinkingConfigAdaptive.Display.SUMMARIZED)
@@ -1144,7 +1144,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
       messages: [
           ['role' => 'user', 'content' => 'What is the greatest common divisor of 1071 and 462?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       thinking: ['type' => 'adaptive', 'display' => 'summarized'],
   );
 
@@ -1157,7 +1157,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 20000,
     thinking: { type: "adaptive", display: "summarized" },
     messages: [
@@ -1181,7 +1181,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
 
 ```sse Response
 event: message_start
-data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5", "stop_reason": null, "stop_sequence": null}}
+data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5-5", "stop_reason": null, "stop_sequence": null}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "thinking", "thinking": "", "signature": ""}}
@@ -1231,7 +1231,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "stream": true,
       "tools": [
@@ -1252,7 +1252,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
 
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: web_search_20250305, name: web_search, max_uses: 5}' \
     --message '{role: user, content: What is the weather like in New York City today?}'
@@ -1262,7 +1262,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
       messages=[
@@ -1277,7 +1277,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 5 }],
     messages: [{ role: "user", content: "What is the weather like in New York City today?" }]
@@ -1298,7 +1298,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })],
       Messages = [new() { Role = Role.User, Content = "What is the weather like in New York City today?" }]
@@ -1314,7 +1314,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{
@@ -1347,7 +1347,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(WebSearchTool20250305.builder()
           .maxUses(5L)
@@ -1374,7 +1374,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
       messages: [
           ['role' => 'user', 'content' => 'What is the weather like in New York City today?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           ['type' => 'web_search_20250305', 'name' => 'web_search', 'max_uses' => 5]
       ],
@@ -1389,7 +1389,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: :"claude-opus-5",
+    model: :"claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -1412,7 +1412,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
 
 ```sse Response
 event: message_start
-data: {"type":"message_start","message":{"id":"msg_01G...","type":"message","role":"assistant","model":"claude-opus-5","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":2679,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":3}}}
+data: {"type":"message_start","message":{"id":"msg_01G...","type":"message","role":"assistant","model":"claude-opus-5-5","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":2679,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":3}}}
 
 event: content_block_start
 data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 9cbfd6f6555502a53f063e1bf49905a39e217875f93df1428b263a56814e43af
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 95ae554296665853ca6936c3eed915e47a8ec787747ca74518ea7c27fb561c47
 ---
 
 ---
@@ -11,7 +11,11 @@ url: https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5
 description: Ikhtisar fitur baru dan perubahan perilaku di Claude Opus 5.
 ---
 
-Claude Opus 5 adalah peningkatan lompatan besar dibandingkan Claude Opus 4.8, dengan kemajuan terbesar dalam penalaran mendalam, tugas agentik dan berjangka panjang, serta penskalaan komputasi saat pengujian (test-time compute scaling). Halaman ini merangkum semua yang baru di Claude Opus 5, termasuk perubahan alat di tengah percakapan dan dua perubahan yang merusak kompatibilitas (breaking changes) untuk kode yang berjalan di Claude Opus 4.8: thinking aktif secara default, dan thinking hanya dapat dinonaktifkan pada effort `high` atau lebih rendah.
+<Note>
+  Claude Opus 5.5 adalah model Opus saat ini. Lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5).
+</Note>
+
+Claude Opus 5 merupakan lompatan besar dibandingkan Claude Opus 4.8, dengan kemajuan terbesar dalam penalaran mendalam, tugas agentik dan berjangka panjang, serta penskalaan komputasi saat pengujian (test-time compute scaling). Halaman ini merangkum semua yang baru di Claude Opus 5, termasuk perubahan alat di tengah percakapan dan dua perubahan yang merusak kompatibilitas (breaking changes) untuk kode yang berjalan di Claude Opus 4.8: thinking aktif secara default, dan thinking hanya dapat dinonaktifkan pada effort `high` atau lebih rendah.
 
 ## Model baru
 
@@ -37,7 +41,7 @@ Parameter `fallbacks` mendukung mode `"default"` baru, yang menerapkan model fal
 
 Panjang prompt minimum yang dapat di-cache di Claude Opus 5 adalah 512 token, turun dari 1.024 token di Claude Opus 4.8. Prompt yang terlalu pendek untuk di-cache di Claude Opus 4.8 kini dapat membuat entri cache tanpa perubahan kode. Lihat ["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations) untuk batas minimum per model.
 
-### Fast mode
+### Mode cepat
 
 [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (pratinjau riset) tersedia untuk Claude Opus 5 hanya di Claude API; saat ini tidak tersedia di Amazon Bedrock, Claude Platform on AWS, Google Cloud, atau Microsoft Foundry. Fast mode untuk Claude Opus 5 dihargai $10 USD per juta token input dan $50 USD per juta token output. Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk akses, model yang didukung, dan harga.
 
@@ -243,9 +247,14 @@ Thinking [aktif secara default](https://platform.claude.com/docs/id/models/opus-
 
 ### Menonaktifkan thinking memerlukan effort `high` atau lebih rendah
 
-Di Claude Opus 5, `thinking: {"type": "disabled"}` hanya diterima ketika tingkat effort adalah `high` atau lebih rendah. Menetapkan `thinking: {"type": "disabled"}` dengan effort `xhigh` atau `max` mengembalikan error 400. Aturan ini diberlakukan pada setiap permintaan ke Claude Opus 5 dan model yang lebih baru. Ini adalah breaking change dari Claude Opus 4.8, di mana menonaktifkan thinking tidak bergantung pada tingkat effort. Jika permintaan Claude Opus 4.8 Anda menonaktifkan thinking pada effort `xhigh` atau `max`, pertahankan thinking nonaktif dan tetapkan effort ke `high` atau lebih rendah, atau pertahankan tingkat effort dan hapus field `thinking`.
+Di Claude Opus 5, `thinking: {"type": "disabled"}` hanya diterima jika tingkat effort adalah `high` atau lebih rendah. Menetapkan `thinking: {"type": "disabled"}` dengan effort `xhigh` atau `max` mengembalikan error 400. Aturan ini diberlakukan pada setiap permintaan ke Claude Opus 5.
 
-Dengan thinking dinonaktifkan, Claude Opus 5 sesekali dapat menulis pemanggilan alat ke dalam output teksnya alih-alih mengeluarkan blok `tool_use`, atau menyertakan tag XML internal dalam respons yang terlihat. Jika memungkinkan, biarkan thinking tetap aktif dan kendalikan biaya token dengan tingkat effort yang lebih rendah; untuk integrasi yang harus tetap menonaktifkan thinking, lihat [Menjalankan dengan thinking dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#running-with-thinking-disabled) untuk mitigasi prompting.
+Ini merupakan perubahan yang merusak kompatibilitas dari Claude Opus 4.8, yang memungkinkan thinking dinonaktifkan terlepas dari tingkat effort. Jika permintaan Claude Opus 4.8 Anda menonaktifkan thinking pada effort `xhigh` atau `max`, pilih salah satu opsi berikut:
+
+* Tetap nonaktifkan thinking dan atur effort ke `high` atau lebih rendah.
+* Pertahankan tingkat effort dan hapus field `thinking`.
+
+Saat thinking dinonaktifkan, Claude Opus 5 sesekali dapat menuliskan pemanggilan alat ke dalam output teksnya alih-alih menghasilkan blok `tool_use`. Model juga dapat menyertakan tag XML internal dalam respons yang terlihat. Jika memungkinkan, biarkan thinking tetap aktif dan kendalikan biaya token dengan tingkat effort yang lebih rendah. Untuk integrasi yang harus tetap menonaktifkan thinking, lihat [Menjalankan dengan thinking dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#running-with-thinking-disabled) untuk mitigasi melalui prompting.
 
 ### Perbedaan perilaku model
 

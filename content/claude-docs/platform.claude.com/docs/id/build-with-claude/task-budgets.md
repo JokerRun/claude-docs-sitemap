@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 10c818f35a12137b3e0e61c8f722c3325367e977d48865547f3721d2efb7d8fa
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 46a7cc6beced36dcd6877c40c5665538dc4e3203fb535e02241000a5f1e4e945
 ---
 
 ---
 title: Anggaran tugas
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-description: Berikan Claude anggaran token yang bersifat saran untuk seluruh loop agentik guna membantu model mengatur dirinya sendiri pada tugas agentik yang panjang.
+description: Berikan Claude anggaran token yang bersifat anjuran untuk seluruh loop agentik guna membantu model mengatur dirinya sendiri pada tugas agentik yang panjang.
 featureMetadata:
   status: beta
   betaHeader: task-budgets-2026-03-13
@@ -17,6 +17,7 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
     - claude-opus-4-7
@@ -47,7 +48,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
     -H "anthropic-beta: task-budgets-2026-03-13" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 128000,
       "stream": true,
       "messages": [{
@@ -64,7 +65,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   ```bash CLI
   ant beta:messages create --beta task-budgets-2026-03-13 \
     --stream --format jsonl <<'YAML' | jq 'select(.type == "message_delta").usage'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 128000
   messages:
     - role: user
@@ -81,7 +82,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   client = anthropic.Anthropic()
 
   with client.beta.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=128000,
       output_config={
           "effort": "high",
@@ -101,7 +102,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   const client = new Anthropic();
 
   const stream = client.beta.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 128000,
     output_config: {
       effort: "high",
@@ -121,7 +122,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
 
   var responseUpdates = client.Beta.Messages.CreateStreaming(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 128000,
       Messages = [new() { Role = Role.User, Content = "Review the codebase and propose a refactor plan." }],
       OutputConfig = new BetaOutputConfig
@@ -140,7 +141,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   client := anthropic.NewClient()
 
   stream := client.Beta.Messages.NewStreaming(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 128000,
   	Betas:     []anthropic.AnthropicBeta{"task-budgets-2026-03-13"},
   	Messages: []anthropic.BetaMessageParam{{
@@ -175,7 +176,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(128000L)
       .addUserMessage("Review the codebase and propose a refactor plan.")
       .outputConfig(BetaOutputConfig.builder()
@@ -201,7 +202,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   $client = new Client();
 
   $stream = $client->beta->messages->createStream(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 128000,
       messages: [
           ['role' => 'user', 'content' => 'Review the codebase and propose a refactor plan.'],
@@ -213,7 +214,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
       betas: ['task-budgets-2026-03-13'],
   );
 
-  // Event message_delta terakhir membawa penggunaan token kumulatif untuk permintaan tersebut.
+  // Event message_delta terakhir membawa total penggunaan token kumulatif untuk permintaan tersebut.
   $usage = null;
   foreach ($stream as $event) {
       if ($event instanceof BetaRawMessageDeltaEvent) {
@@ -228,7 +229,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   client = Anthropic::Client.new
 
   stream = client.beta.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 128_000,
     messages: [
       { role: "user", content: "Review the codebase and propose a refactor plan." }
@@ -297,7 +298,7 @@ Hal itu tetap berlaku bahkan ketika pesan tersebut menambahkan konten baru di sa
 }
 ```
 
-["Compaction" (pemadatan)](https://platform.claude.com/docs/id/build-with-claude/compaction) di sisi server selama satu giliran tidak mengatur ulang anggaran: token yang digunakan giliran tersebut sebelum compaction tetap dihitung terhadap anggaran. Token dari sebelum giliran dimulai tidak dihitung, bahkan ketika compaction di awal giliran merangkumnya. Saat ini, pengecualian tersebut hanya berlaku untuk anggaran yang dibawa melintasi compaction di sisi server; riwayat giliran sebelumnya tetap dihitung selama masih ada dalam konteks.
+["Compaction" (pemadatan)](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) di sisi server selama satu giliran tidak mengatur ulang anggaran: token yang digunakan giliran tersebut sebelum compaction tetap dihitung terhadap anggaran. Token dari sebelum giliran dimulai tidak dihitung, bahkan ketika compaction di awal giliran merangkumnya. Saat ini, pengecualian tersebut hanya berlaku untuk anggaran yang dibawa melintasi compaction di sisi server; riwayat giliran sebelumnya tetap dihitung selama masih berada dalam konteks.
 
 ### Contoh lengkap: penghitungan anggaran di seluruh permintaan
 
@@ -521,7 +522,7 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
 <CodeGroup>
   ```bash CLI
   ant messages create --transform 'usage.output_tokens' <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -533,14 +534,14 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {"role": "user", "content": "Review the codebase and propose a refactor plan."}
       ],
   )
 
-  # Jumlahkan output_tokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  # Jumlahkan output_tokens (teks + thinking + panggilan alat) dari setiap permintaan dalam loop Anda.
   print(response.usage.output_tokens)
   ```
 
@@ -548,12 +549,12 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [{ role: "user", content: "Review the codebase and propose a refactor plan." }]
   });
 
-  // Jumlahkan output_tokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan output_tokens (teks + thinking + panggilan alat) dari setiap permintaan dalam loop Anda.
   console.log(response.usage.output_tokens);
   ```
 
@@ -563,12 +564,12 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Review the codebase and propose a refactor plan." }],
   });
 
-  // Jumlahkan OutputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan OutputTokens (teks + thinking + panggilan alat) di seluruh permintaan dalam loop Anda.
   Console.WriteLine(response.Usage.OutputTokens);
   ```
 
@@ -576,7 +577,7 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Review the codebase and propose a refactor plan.")),
@@ -586,7 +587,7 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   	log.Fatal(err)
   }
 
-  // Jumlahkan OutputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan OutputTokens (teks + thinking + panggilan alat) di seluruh permintaan dalam loop Anda.
   fmt.Println(response.Usage.OutputTokens)
   ```
 
@@ -594,13 +595,13 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .addUserMessage("Review the codebase and propose a refactor plan.")
       .build();
 
   Message response = client.messages().create(params);
-  // Jumlahkan outputTokens (teks + thinking + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan outputTokens (teks + thinking + panggilan alat) dari setiap permintaan dalam loop Anda.
   IO.println(response.usage().outputTokens());
   ```
 
@@ -608,14 +609,14 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 4096,
       messages: [
           ['role' => 'user', 'content' => 'Review the codebase and propose a refactor plan.'],
       ],
   );
 
-  // Jumlahkan outputTokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  // Jumlahkan outputTokens (teks + thinking + panggilan alat) di semua permintaan dalam loop Anda.
   echo $response->usage->outputTokens . "\n";
   ```
 
@@ -623,14 +624,14 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Review the codebase and propose a refactor plan." }
     ]
   )
 
-  # Jumlahkan output_tokens (teks + pemikiran + pemanggilan alat) di setiap permintaan dalam loop Anda.
+  # Jumlahkan output_tokens (teks + thinking + panggilan alat) dari setiap permintaan dalam loop Anda.
   puts response.usage.output_tokens
   ```
 </CodeGroup>
@@ -652,6 +653,7 @@ Nilai minimum `task_budget.total` yang diterima adalah **20.000 token** pada set
 | ----------------- | ------------------------------------------------ |
 | Claude Fable 5.1  | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Mythos 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 5.5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Opus 5     | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Fable 5    | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Mythos 5   | Beta (tetapkan header `task-budgets-2026-03-13`) |

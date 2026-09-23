@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: eb5b3c66e735fac2b82fc048687cca06946f887527cd19c3516199151c65cbea
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 0d54ab12442d92338161652b89ef7e1287aa8b3707bc72dd8454600e451ccc89
 ---
 
 ---
@@ -17,6 +17,7 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
     - claude-opus-4-7
@@ -78,7 +79,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [
         {
@@ -97,7 +98,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 4096 \
     --message '{
       role: user,
@@ -111,7 +112,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -129,7 +130,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -149,7 +150,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -162,7 +163,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")),
@@ -181,7 +182,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .addUserMessage("Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -202,7 +203,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
               'content' => 'Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]',
           ],
       ],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -213,7 +214,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {
@@ -293,7 +294,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
 <CodeGroup>
   ```bash cURL
-  # Pertama, unggah file dan ambil ID file-nya (menggunakan jq)
+  # Pertama, unggah file dan simpan ID file-nya (menggunakan jq)
   FILE_ID=$(curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -305,7 +306,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -327,7 +328,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   # Lalu gunakan file_id dengan eksekusi kode
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -350,7 +351,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   # Gunakan file_id dengan eksekusi kode
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -379,7 +380,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   // Gunakan file_id dengan eksekusi kode
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -413,7 +414,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
   // Gunakan file_id dengan eksekusi kode
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
           new()
@@ -452,7 +453,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   // Gunakan file_id dengan eksekusi kode
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -484,7 +485,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
   // Gunakan file_id dengan eksekusi kode
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessageOfBlockParams(List.of(
               ContentBlockParam.ofText(TextBlockParam.builder()
@@ -511,7 +512,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   // Gunakan file_id dengan eksekusi kode
   $response = $client->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 4096,
       messages: [
           [
@@ -538,7 +539,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   # Gunakan file_id dengan eksekusi kode
   response = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {
@@ -565,8 +566,8 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
 <CodeGroup>
   ```bash cURL
   # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file di hasil
-  # alat, yang tidak bisa dijadikan satu perintah shell sekali jalan. Sebagai gantinya,
-  # gunakan salah satu contoh SDK.
+  # alat, yang tidak bisa diterjemahkan menjadi satu perintah shell sekali jalan. Gunakan salah satu
+  # contoh SDK sebagai gantinya.
   ```
 
   ```bash CLI
@@ -580,7 +581,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
 
   # Minta eksekusi kode yang membuat file
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -619,7 +620,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
 
   // Minta eksekusi kode yang membuat file
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -658,7 +659,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Create a matplotlib visualization and save it as output.png" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -697,7 +698,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
   	ctx := context.Background()
 
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 4096,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Create a matplotlib visualization and save it as output.png")),
@@ -761,7 +762,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Create a matplotlib visualization and save it as output.png")
           .addTool(CodeExecutionTool20250825.builder().build())
@@ -813,7 +814,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
               'content' => 'Create a matplotlib visualization and save it as output.png',
           ],
       ],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -854,7 +855,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {
@@ -874,7 +875,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
     file_ids = []
     response.content.each do |item|
       if item.type == :bash_code_execution_tool_result
-        # SOLUSI SEMENTARA untuk bug koersi union di anthropic-sdk-ruby (SDK-636): item.content adalah
+        # SOLUSI SEMENTARA untuk bug koersi union anthropic-sdk-ruby (SDK-636): item.content adalah
         # union konten bersarang, sehingga accessor bertipe pada `item.content` tidak dapat diandalkan.
         # Sebagai gantinya, baca data respons mentah melalui API publik `BaseModel#[]`.
         content_item = item.content
@@ -1153,7 +1154,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -1172,7 +1173,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
     -H "content-type: application/json" \
     -d '{
       "container": "'"$CONTAINER_ID"'",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [{
         "role": "user",
@@ -1188,7 +1189,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   ```bash CLI
   # Permintaan pertama: Buat file berisi angka acak
   CONTAINER_ID=$(ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Write a file with a random number and save it to "/tmp/number.txt"}' \
     --tool '{type: code_execution_20250825, name: code_execution}' \
@@ -1197,7 +1198,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   # Permintaan kedua: Gunakan kembali container untuk membaca file
   ant messages create \
     --container "$CONTAINER_ID" \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Read the number from "/tmp/number.txt" and calculate its square}' \
     --tool '{type: code_execution_20250825, name: code_execution}'
@@ -1208,7 +1209,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   # Permintaan pertama: buat file berisi angka acak di container baru
   response1 = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -1222,7 +1223,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   # Permintaan kedua: kirim kembali ID container agar Claude memakai ulang container yang sama
   response2 = client.messages.create(
       container=response1.container.id,
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -1241,7 +1242,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   const response1 = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -1260,7 +1261,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   // Permintaan kedua: kirim kembali ID container agar container yang sama digunakan ulang
   const response2 = await client.messages.create({
     container: response1.container.id,
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Read the number from /tmp/number.txt and calculate its square" }
@@ -1277,7 +1278,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   // Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   var response1 = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Write a file with a random number and save it to '/tmp/number.txt'" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -1287,7 +1288,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   var response2 = await client.Messages.Create(new()
   {
       Container = response1.Container!.ID,
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Read the number from '/tmp/number.txt' and calculate its square" }],
       Tools = [new CodeExecutionTool20250825()]
@@ -1306,7 +1307,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: buat file berisi angka acak di container baru
   response1, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Write a file with a random number and save it to '/tmp/number.txt'")),
@@ -1322,7 +1323,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfString: anthropic.String(response1.Container.ID),
   	},
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Read the number from '/tmp/number.txt' and calculate its square")),
@@ -1341,7 +1342,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   // Permintaan pertama: buat file berisi angka acak di container baru
   MessageCreateParams params1 = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .addUserMessage("Write a file with a random number and save it to '/tmp/number.txt'")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -1349,10 +1350,10 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   Message response1 = client.messages().create(params1);
 
-  // Permintaan kedua: kirim kembali ID container agar container yang sama digunakan lagi
+  // Permintaan kedua: kirim kembali ID container agar container yang sama digunakan ulang
   MessageCreateParams params2 = MessageCreateParams.builder()
       .container(response1.container().orElseThrow().id())
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .addUserMessage("Read the number from '/tmp/number.txt' and calculate its square")
       .addTool(CodeExecutionTool20250825.builder().build())
@@ -1374,7 +1375,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
               'content' => "Write a file with a random number and save it to '/tmp/number.txt'",
           ],
       ],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -1388,7 +1389,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
               'content' => "Read the number from '/tmp/number.txt' and calculate its square",
           ],
       ],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [new CodeExecutionTool20250825()],
   );
 
@@ -1400,7 +1401,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   # Permintaan pertama: Claude membuat file di dalam container eksekusi kode yang baru
   response1 = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {
@@ -1411,10 +1412,10 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
     tools: [Anthropic::CodeExecutionTool20250825.new]
   )
 
-  # Permintaan kedua: kirim kembali ID container agar Claude menggunakan ulang container yang sama
+  # Permintaan kedua: kirim kembali ID container agar Claude memakai ulang container yang sama
   response2 = client.messages.create(
     container: response1.container.id,
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {

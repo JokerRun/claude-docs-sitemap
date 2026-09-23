@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: e030ccbd074627bc9d6a91a01bca1b22c94237956a83f28d42fe86dc542cf408
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: cf6cb15b84fdd3daf712e69a246f6239a9f97a043d1385c2ea4ab511e82ecabb
 ---
 
 ---
@@ -67,22 +67,22 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 <CodeGroup>
   ```bash cURL
-  # Lakukan streaming permintaan dan periksa penolakan
+  # Lakukan request streaming dan periksa apakah ada penolakan
   response=$(curl -N https://api.anthropic.com/v1/messages \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 1024,
       "stream": true
     }')
 
-  # Periksa penolakan dalam stream
+  # Periksa apakah ada penolakan dalam stream
   if echo "$response" | grep -q '"stop_reason":"refusal"'; then
     echo "Response refused - resetting conversation context"
-    # Atur ulang status percakapan Anda di sini
+    # Reset status percakapan Anda di sini
   fi
   ```
 
@@ -102,10 +102,10 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       with client.messages.stream(
           max_tokens=1024,
           messages=messages + [{"role": "user", "content": "Hello"}],
-          model="claude-opus-5",
+          model="claude-opus-5-5",
       ) as stream:
           for event in stream:
-              # Periksa penolakan dalam delta pesan
+              # Periksa penolakan dalam message delta
               if event.type == "message_delta":
                   if event.delta.stop_reason == "refusal":
                       reset_conversation()
@@ -119,7 +119,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   let messages: Anthropic.MessageParam[] = [];
 
   function resetConversation() {
-    // Reset konteks percakapan setelah penolakan
+    // Atur ulang konteks percakapan setelah penolakan
     messages = [];
     console.log("Conversation reset due to refusal");
   }
@@ -127,7 +127,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   try {
     const stream = await client.messages.stream({
       messages: [...messages, { role: "user", content: "Hello" }],
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024
     });
 
@@ -149,7 +149,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello" }]
   };
@@ -191,7 +191,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   	client := anthropic.NewClient()
 
   	stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello")),
@@ -227,7 +227,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Hello")
           .build();
@@ -268,7 +268,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
           messages: [
               ['role' => 'user', 'content' => 'Hello']
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       foreach ($stream as $event) {
@@ -293,7 +293,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
   begin
     stream = client.messages.stream(
-      model: :"claude-opus-5",
+      model: :"claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello" }]
     )

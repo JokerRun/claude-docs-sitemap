@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 061bc41e30a8121784ba9b9715178bfbcdad6c664cb0d619faa59b4beef35552
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 300197a0ef84bcb2a6b248fdcbaf98eb4349086d5adf89efdd7ddd06cd47913b
 ---
 
 ---
 title: Berlangganan webhook
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-description: Dapatkan notifikasi saat peristiwa penting terjadi tanpa perlu polling.
+description: Dapatkan notifikasi saat peristiwa penting terjadi tanpa perlu melakukan polling.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

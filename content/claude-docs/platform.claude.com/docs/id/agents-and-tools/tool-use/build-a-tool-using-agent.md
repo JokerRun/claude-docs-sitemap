@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: cdcff7b1b150afd98953e4fbee92cf32030a5a468f857341b4337572787112a8
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c80eb0378d259935a11dbd447ec4442ae75dd91154c6344de0a95ba12899b19e
 ---
 
 ---
@@ -74,7 +74,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       --argjson tools "$TOOLS" \
       --arg msg "$USER_MSG" \
       '{
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         tools: $tools,
         tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -111,7 +111,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       --arg tool_use_id "$TOOL_USE_ID" \
       --arg result "$RESULT" \
       '{
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         tools: $tools,
         tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -151,7 +151,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
     # JSON, yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tool_choice: {type: auto, disable_parallel_tool_use: true}
   tools:
@@ -262,7 +262,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
   # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -292,7 +292,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
   # asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   followup = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -365,7 +365,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
   // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -398,7 +398,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
   // assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   const followup = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -494,7 +494,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -537,7 +537,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
 
   var followup = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -622,7 +622,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   	// Kirim permintaan pengguna bersama dengan definisi alat. Claude memutuskan
   	// apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:      anthropic.ModelClaudeOpus5,
+  		Model:      anthropic.ModelClaudeOpus5_5,
   		MaxTokens:  1024,
   		Tools:      tools,
   		ToolChoice: toolChoice,
@@ -661,7 +661,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   	}
 
   	followup, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:      anthropic.ModelClaudeOpus5,
+  		Model:      anthropic.ModelClaudeOpus5_5,
   		MaxTokens:  1024,
   		Tools:      tools,
   		ToolChoice: toolChoice,
@@ -748,7 +748,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
       // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(calendarTool)
           .toolChoice(toolChoice)
@@ -776,7 +776,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
       // asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
       Message followup = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(calendarTool)
           .toolChoice(toolChoice)
@@ -852,7 +852,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
   // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -883,7 +883,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
   // assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   $followup = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -964,7 +964,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
   # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -989,7 +989,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
   # assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   followup = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -1085,7 +1085,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5", max_tokens: 1024, tools: $tools, tool_choice: {type: "auto", disable_parallel_tool_use: true}, messages: $messages}')"
+        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, tool_choice: {type: "auto", disable_parallel_tool_use: true}, messages: $messages}')"
   }
 
   RESPONSE=$(call_api)
@@ -1143,7 +1143,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     # JSON, yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tool_choice: {type: auto, disable_parallel_tool_use: true}
   tools:
@@ -1250,7 +1250,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ]
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -1278,7 +1278,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       )
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           tools=tools,
           tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -1341,7 +1341,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ];
 
   let response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -1369,7 +1369,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     });
 
     response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools,
       tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -1455,7 +1455,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -1493,7 +1493,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
       response = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = tools,
           ToolChoice = toolChoice,
@@ -1574,7 +1574,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   	}
 
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:      anthropic.ModelClaudeOpus5,
+  		Model:      anthropic.ModelClaudeOpus5_5,
   		MaxTokens:  1024,
   		Tools:      tools,
   		ToolChoice: toolChoice,
@@ -1611,7 +1611,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   		))
 
   		response, err = client.Messages.New(ctx, anthropic.MessageNewParams{
-  			Model:      anthropic.ModelClaudeOpus5,
+  			Model:      anthropic.ModelClaudeOpus5_5,
   			MaxTokens:  1024,
   			Tools:      tools,
   			ToolChoice: toolChoice,
@@ -1700,7 +1700,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(calendarTool)
           .toolChoice(toolChoice)
@@ -1728,7 +1728,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
               .build());
 
           response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addTool(calendarTool)
               .toolChoice(toolChoice)
@@ -1803,7 +1803,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ];
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -1836,7 +1836,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       ];
 
       $response = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           tools: $tools,
           toolChoice: $toolChoice,
@@ -1905,7 +1905,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -1931,7 +1931,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     }
 
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: tools,
       tool_choice: tool_choice,
@@ -2016,7 +2016,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
+        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
   }
 
   RESPONSE=$(call_api)
@@ -2073,7 +2073,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     # yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: create_calendar_event
@@ -2199,7 +2199,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ]
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       messages=messages,
@@ -2224,7 +2224,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       messages.append({"role": "user", "content": tool_results})
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           tools=tools,
           messages=messages,
@@ -2301,7 +2301,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ];
 
   let response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     messages,
@@ -2326,7 +2326,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools,
       messages,
@@ -2424,7 +2424,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       Messages = messages,
@@ -2456,7 +2456,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
       response = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = tools,
           Messages = messages,
@@ -2544,7 +2544,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   	}
 
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Tools:     tools,
   		Messages:  messages,
@@ -2576,7 +2576,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   		messages = append(messages, anthropic.NewUserMessage(toolResults...))
 
   		response, err = client.Messages.New(ctx, anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Tools:     tools,
   			Messages:  messages,
@@ -2673,7 +2673,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(calendarTool)
           .addTool(listTool)
@@ -2703,7 +2703,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
               .build());
 
           response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addTool(calendarTool)
               .addTool(listTool)
@@ -2790,7 +2790,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ];
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       messages: $messages,
@@ -2814,7 +2814,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       $messages[] = ['role' => 'user', 'content' => $toolResults];
 
       $response = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           tools: $tools,
           messages: $messages,
@@ -2892,7 +2892,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -2913,7 +2913,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -3002,7 +3002,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \
       -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
+        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
   }
 
   RESPONSE=$(call_api)
@@ -3071,7 +3071,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     # yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: create_calendar_event
@@ -3203,7 +3203,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ]
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       messages=messages,
@@ -3233,7 +3233,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       messages.append({"role": "user", "content": tool_results})
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           tools=tools,
           messages=messages,
@@ -3314,7 +3314,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ];
 
   let response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     messages,
@@ -3347,7 +3347,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools,
       messages,
@@ -3448,7 +3448,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       Messages = messages,
@@ -3489,7 +3489,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 
       response = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = tools,
           Messages = messages,
@@ -3586,7 +3586,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   	}
 
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Tools:     tools,
   		Messages:  messages,
@@ -3621,7 +3621,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   		messages = append(messages, anthropic.NewUserMessage(toolResults...))
 
   		response, err = client.Messages.New(ctx, anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Tools:     tools,
   			Messages:  messages,
@@ -3731,7 +3731,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(calendarTool)
           .addTool(listTool)
@@ -3763,7 +3763,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
               .build());
 
           response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addTool(calendarTool)
               .addTool(listTool)
@@ -3856,7 +3856,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ];
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       messages: $messages,
@@ -3888,7 +3888,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       $messages[] = ['role' => 'user', 'content' => $toolResults];
 
       $response = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           tools: $tools,
           messages: $messages,
@@ -3970,7 +3970,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -3999,7 +3999,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -4096,7 +4096,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 
 
   final_message = client.beta.messages.tool_runner(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[create_calendar_event, list_calendar_events],
       messages=[
@@ -4163,7 +4163,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   });
 
   const finalMessage = await client.beta.messages.toolRunner({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [createCalendarEvent, listCalendarEvents],
     messages: [
@@ -4274,7 +4274,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   var runner = client.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -4381,7 +4381,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   		[]anthropic.BetaTool{createCalendarEvent, listCalendarEvents},
   		anthropic.BetaToolRunnerParams{
   			BetaMessageNewParams: anthropic.BetaMessageNewParams{
-  				Model:     anthropic.ModelClaudeOpus5,
+  				Model:     anthropic.ModelClaudeOpus5_5,
   				MaxTokens: 1024,
   				Messages: []anthropic.BetaMessageParam{
   					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
@@ -4467,7 +4467,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       BetaToolRunner runner = client.beta()
               .messages()
               .toolRunner(MessageCreateParams.builder()
-                      .model(Model.CLAUDE_OPUS_5)
+                      .model(Model.CLAUDE_OPUS_5_5)
                       .maxTokens(1024)
                       .addBeta("structured-outputs-2025-11-13")
                       .addUserMessage("Check what I have next Monday, then schedule a planning session that avoids any conflicts.")
@@ -4566,7 +4566,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
               'content' => 'Check what I have next Monday, then schedule a planning session that avoids any conflicts.',
           ],
       ],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [$createCalendarEvent, $listCalendarEvents],
   );
 
@@ -4632,7 +4632,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   # Runner memanggil API, menjalankan alat yang diminta, dan mengembalikan hasilnya
   # hingga Claude menghasilkan jawaban akhir.
   runner = client.beta.messages.tool_runner(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [CreateCalendarEvent.new, ListCalendarEvents.new],
     messages: [

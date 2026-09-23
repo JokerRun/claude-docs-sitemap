@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: a16b31d9d25404e4ab1637472cbc925b08eae7afa8e5759dfc6cf71c1e7acf2c
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: dc533e4d4c5d34ecbcb8720d97d0a7f6cfe3c408b0ed782e6805894594369caf
 ---
 
 ---
@@ -15,36 +15,36 @@ description: Ubah instruksi sistem atau ketersediaan alat di tengah percakapan t
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi itu sangat baik untuk "prompt caching" ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): "system prompt" (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran-giliran berikutnya mengenai cache. Namun, posisi itu kurang cocok untuk instruksi yang baru Anda sadari diperlukan di tengah sesi. Mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
+Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi tersebut sangat baik untuk "prompt caching" ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): "system prompt" (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran berikutnya mengenai cache. Namun, posisi itu kurang tepat untuk instruksi yang baru Anda sadari diperlukan di tengah sesi. Mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
 
-"Mid-conversation system messages" (pesan sistem di tengah percakapan) menutup celah tersebut. Alih-alih mengedit field `system` tingkat atas, Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan ketika instruksi baru menjadi relevan. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya masih membacanya dari cache. Instruksi baru tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
+Pesan sistem di tengah percakapan menutup celah tersebut. Alih-alih mengedit field `system` tingkat atas, Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan tempat instruksi baru menjadi relevan. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya masih membacanya dari cache. Instruksi baru juga tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
 
 <Note>
   Pesan sistem di tengah percakapan tersedia di Claude API, [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai).
 
-  Fitur ini tersedia di Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5. Pesan sistem di tengah percakapan tidak memerlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Di model tersebut, gunakan field `system` tingkat atas sebagai gantinya.
+  Fitur ini tersedia di Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, dan Claude Opus 5. Pesan sistem di tengah percakapan tidak memerlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Di model tersebut, gunakan field `system` tingkat atas sebagai gantinya.
 
-  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) masih dalam beta dan memerlukan header beta `mid-conversation-tool-changes-2026-07-01`. Fitur ini tersedia di model yang sama, di Claude API, Amazon Bedrock, dan Google Cloud.
+  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) masih dalam beta dan memerlukan header beta `mid-conversation-tool-changes-2026-07-01`. Fitur ini tersedia di model yang sama, di Claude API, Amazon Bedrock, dan Google Cloud. [Mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) menggunakan header beta `inline-tools-2026-09-15` sebagai pengganti header tersebut, dan tersedia di Claude API. [Menambahkan server MCP dengan cara itu](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`.
 
   [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) masih dalam beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`. Fitur ini tersedia di model dan platform yang sama dengan pesan sistem di tengah percakapan.
 </Note>
 
 ## Perubahan alat di tengah percakapan
 
-Array `tools` berada lebih awal lagi dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas. Karena itu, mengeditnya membatalkan [cache untuk prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) di seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan pesan sistem di tengah percakapan untuk alat. Daftar alat tidak lagi harus tetap sepanjang percakapan. Anda dapat mengubah alat mana yang ditawarkan kepada model di antara giliran: deklarasikan seluruh set alat di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya, mulai dari titik tertentu dalam percakapan. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
+Dalam prefiks permintaan yang di-hash, array `tools` berada lebih awal lagi daripada field `system` tingkat atas. Karena itu, mengedit array ini membatalkan [cache untuk prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan pesan sistem di tengah percakapan untuk alat. Anda tidak perlu menetapkan daftar alat untuk sepanjang percakapan. Sebaliknya, Anda dapat mengubah alat mana yang ditawarkan kepada model di antara giliran. Deklarasikan set alat lengkap di `tools` sejak awal. Lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya kembali, mulai dari titik tertentu dalam percakapan. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
 
-`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan yang sama dengan pesan sistem di tengah percakapan lainnya, ditambah satu batasan setelah giliran yang dijeda (lihat [Batasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Perubahan berlaku mulai dari titik tersebut dalam percakapan.
+`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`. Keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan yang sama dengan pesan sistem di tengah percakapan lainnya, ditambah satu batasan setelah giliran yang dijeda (lihat [Batasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Perubahan berlaku mulai dari titik tersebut dalam percakapan.
 
 Field `tool` pada setiap blok mereferensikan alat, bukan mendefinisikannya:
 
 * `{"type": "tool_reference", "name": "..."}` menyebut nama alat yang dideklarasikan dalam array `tools` permintaan.
 * Alat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) dapat direferensikan satu per satu dengan `mcp_tool_reference` (`server_name` dan `name`), atau sebagai satu toolset utuh dengan `mcp_toolset_reference` (`server_name`).
 
-Mereferensikan nama yang tidak dideklarasikan di `tools` mengembalikan error 400. Di Claude API, `error.details.error_code` diatur ke `tool_reference_unresolved`.
+Mereferensikan nama yang tidak dideklarasikan di `tools` mengembalikan error 400. Di Claude API, `error.details.error_code` pada error tersebut diatur ke `tool_reference_unresolved`. Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) sebagai gantinya.
 
-Setiap alat yang dideklarasikan di `tools` ditawarkan kepada model sejak awal percakapan, kecuali jika dideklarasikan dengan `defer_loading: true`. Alat seperti itu ditahan hingga blok `tool_addition` memunculkannya. `tool_addition` juga menawarkan kembali alat yang sebelumnya ditarik oleh `tool_removal`.
+Setiap alat yang dideklarasikan di `tools` ditawarkan kepada model sejak awal percakapan. Pengecualiannya adalah alat yang dideklarasikan dengan `defer_loading: true`: alat tersebut ditahan hingga blok `tool_addition` memunculkannya. `tool_addition` juga dapat menawarkan kembali alat yang sebelumnya ditarik oleh `tool_removal`.
 
-Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya setelah giliran pengguna pertama dengan blok `tool_removal`. Karena perubahan alat di tengah percakapan masih dalam beta, permintaan ini mengirimkan header beta `mid-conversation-tool-changes-2026-07-01`.
+Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya dengan blok `tool_removal` setelah giliran pengguna pertama. Karena perubahan alat di tengah percakapan masih dalam beta, permintaan ini mengirimkan header beta `mid-conversation-tool-changes-2026-07-01`.
 
 <CodeGroup>
   ```bash cURL
@@ -54,7 +54,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mid-conversation-tool-changes-2026-07-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -90,7 +90,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```bash CLI
   ant beta:messages create --beta mid-conversation-tool-changes-2026-07-01 \
     --transform 'content.#(type=="text").text' --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -119,7 +119,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       betas=["mid-conversation-tool-changes-2026-07-01"],
       # Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -166,7 +166,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     betas: ["mid-conversation-tool-changes-2026-07-01"],
     // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -189,9 +189,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
     ],
     messages: [
       { role: "user", content: "Say OK." },
-      // Tarik get_weather mulai titik ini. Blok ini merujuk
+      // Tarik get_weather mulai dari titik ini. Blok ini merujuk
       // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-      // identik per byte dan cache tetap hit.
+      // identik per byte dan cache tetap terkena (hit).
       {
         role: "system",
         content: [
@@ -219,7 +219,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Betas = ["mid-conversation-tool-changes-2026-07-01"],
       // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -245,7 +245,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           new() { Role = Role.User, Content = "Say OK." },
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `Tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap hit.
+          // identik per byte dan cache tetap terkena (hit).
           new()
           {
               Role = Role.System,
@@ -273,7 +273,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Betas:     []anthropic.AnthropicBeta{"mid-conversation-tool-changes-2026-07-01"},
   	// Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -295,7 +295,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   	},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Say OK.")),
-  		// Tarik get_weather mulai dari titik ini dan seterusnya. Blok ini merujuk
+  		// Tarik get_weather mulai titik ini. Blok ini merujuk
   		// alat berdasarkan nama alih-alih mengedit Tools, sehingga giliran sebelumnya tetap
   		// identik per byte dan cache tetap hit.
   		{
@@ -329,7 +329,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Set alat lengkap dideklarasikan di awal dan tidak pernah berubah, sehingga
+      // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
       // prefiks yang di-cache tetap utuh.
       BetaTool weatherTool = BetaTool.builder()
           .name("get_weather")
@@ -345,12 +345,12 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addBeta("mid-conversation-tool-changes-2026-07-01")
           .addTool(weatherTool)
           .addUserMessage("Say OK.")
-          // Tarik get_weather mulai dari titik ini. Blok ini merujuk
+          // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
           // identik per byte dan cache tetap hit.
           .addMessage(BetaMessageParam.builder()
@@ -372,7 +372,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       betas: ['mid-conversation-tool-changes-2026-07-01'],
       // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -395,9 +395,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       ],
       messages: [
           ['role' => 'user', 'content' => 'Say OK.'],
-          // Tarik get_weather mulai titik ini. Blok ini merujuk
+          // Tarik get_weather mulai dari titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap terkena (hit).
+          // identik per byte dan cache tetap hit.
           [
               'role' => 'system',
               'content' => [
@@ -421,7 +421,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     betas: ["mid-conversation-tool-changes-2026-07-01"],
     # Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
@@ -462,6 +462,1176 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 </CodeGroup>
 
+### Mendefinisikan alat dalam pesan (beta)
+
+Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, yaitu dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Dengan begitu, Anda dapat memperkenalkan alat yang belum diketahui di awal percakapan, atau yang skemanya berubah kemudian, cukup dengan menambahkan pesan `role: "system"`. Array `tools` dan setiap pesan sebelumnya tetap persis seperti yang dikirim. Akibatnya, cache tetap mengalami hit dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Ada satu pengecualian, yaitu array `tools` yang tidak berisi alat yang tidak ditangguhkan; kasus ini dibahas dalam aturan di bawah. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
+
+Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools` beserta konfigurasi biasanya, termasuk `cache_control` dan `defer_loading`. Entri ini dapat berupa alat kustom, atau alat klien maupun alat server yang didefinisikan Anthropic. Selama beta, beberapa tipe alat (termasuk alat computer use) belum dapat didefinisikan dalam pesan. Tipe alat tersebut mengembalikan error 400 yang menyatakan hal itu. Deklarasikan alat-alat tersebut di `tools`, lalu tambahkan berdasarkan referensi. Misalnya, untuk mendefinisikan alat kustom di tengah percakapan:
+
+```json
+{
+  "role": "system",
+  "content": [
+    {
+      "type": "tool_addition",
+      "tool": {
+        "type": "tool_definition",
+        "definition": {
+          "name": "db_query",
+          "description": "Run a read-only SQL query against the analytics database.",
+          "input_schema": {
+            "type": "object",
+            "properties": { "sql": { "type": "string" } },
+            "required": ["sql"]
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+Mulai dari posisi tersebut, model dapat memanggil alat itu dengan cara yang sama seperti alat yang dideklarasikan di `tools`. Mengirim definisi yang identik sekali lagi tidak mengubah apa pun. Karena itu, klien dapat mengirimkannya ulang dengan aman, misalnya saat mencoba ulang.
+
+Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `db_query` setelah giliran pengguna pertama:
+
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: inline-tools-2026-09-15" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather for a location.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "How many orders shipped yesterday?"
+        },
+        {
+          "role": "system",
+          "content": [
+            {
+              "type": "tool_addition",
+              "tool": {
+                "type": "tool_definition",
+                "definition": {
+                  "name": "db_query",
+                  "description": "Run a read-only SQL query against the analytics database.",
+                  "input_schema": {
+                    "type": "object",
+                    "properties": {"sql": {"type": "string"}},
+                    "required": ["sql"]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }'
+  ```
+
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant beta:messages create --beta inline-tools-2026-09-15 < request.yaml
+    ```
+
+    <File filename="request.yaml">
+      ```yaml
+      model: claude-opus-5-5
+      max_tokens: 1024
+      # Keep at least one non-deferred tool in `tools`, so a tool defined
+      # later doesn't change the start of the rendered prompt.
+      tools:
+        - name: get_weather
+          description: Get the current weather for a location.
+          input_schema:
+            type: object
+            properties:
+              location:
+                type: string
+                description: City name
+            required:
+              - location
+      messages:
+        - role: user
+          content: How many orders shipped yesterday?
+        # Define db_query by value from this point onward. `tools` and the
+        # earlier messages stay exactly as sent, so the cache still hits.
+        - role: system
+          content:
+            - type: tool_addition
+              tool:
+                type: tool_definition
+                definition:
+                  name: db_query
+                  description: Run a read-only SQL query against the analytics database.
+                  input_schema:
+                    type: object
+                    properties:
+                      sql:
+                        type: string
+                    required:
+                      - sql
+      ```
+    </File>
+  </MultiFileExample>
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  response = client.beta.messages.create(
+      model="claude-opus-5-5",
+      max_tokens=1024,
+      betas=["inline-tools-2026-09-15"],
+      # Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+      # belakangan tidak mengubah awal prompt yang dirender.
+      tools=[
+          {
+              "name": "get_weather",
+              "description": "Get the current weather for a location.",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "location": {"type": "string", "description": "City name"},
+                  },
+                  "required": ["location"],
+              },
+          },
+      ],
+      messages=[
+          {"role": "user", "content": "How many orders shipped yesterday?"},
+          # Definisikan db_query secara langsung mulai titik ini. `tools` dan
+          # pesan sebelumnya tetap persis seperti yang dikirim, jadi cache tetap hit.
+          {
+              "role": "system",
+              "content": [
+                  {
+                      "type": "tool_addition",
+                      "tool": {
+                          "type": "tool_definition",
+                          "definition": {
+                              "name": "db_query",
+                              "description": "Run a read-only SQL query against the analytics database.",
+                              "input_schema": {
+                                  "type": "object",
+                                  "properties": {"sql": {"type": "string"}},
+                                  "required": ["sql"],
+                              },
+                          },
+                      },
+                  },
+              ],
+          },
+      ],
+  )
+
+  for block in response.content:
+      if block.type == "tool_use":
+          print(block.name, block.input)
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const response = await client.beta.messages.create({
+    model: "claude-opus-5-5",
+    max_tokens: 1024,
+    betas: ["inline-tools-2026-09-15"],
+    // Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+    // belakangan tidak mengubah bagian awal prompt yang dirender.
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather for a location.",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: { type: "string", description: "City name" }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    messages: [
+      { role: "user", content: "How many orders shipped yesterday?" },
+      // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
+      // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+      {
+        role: "system",
+        content: [
+          {
+            type: "tool_addition",
+            tool: {
+              type: "tool_definition",
+              definition: {
+                name: "db_query",
+                description: "Run a read-only SQL query against the analytics database.",
+                input_schema: {
+                  type: "object",
+                  properties: { sql: { type: "string" } },
+                  required: ["sql"]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  });
+
+  for (const block of response.content) {
+    if (block.type === "tool_use") {
+      console.log(block.name, JSON.stringify(block.input));
+    }
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  AnthropicClient client = new();
+
+  var response = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Betas = [AnthropicBeta.InlineTools2026_09_15],
+      // Pertahankan setidaknya satu alat non-deferred di `Tools`, agar alat yang didefinisikan
+      // belakangan tidak mengubah bagian awal prompt yang dirender.
+      Tools =
+      [
+          new BetaTool
+          {
+              Name = "get_weather",
+              Description = "Get the current weather for a location.",
+              InputSchema = new InputSchema
+              {
+                  Properties = new Dictionary<string, JsonElement>
+                  {
+                      ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "City name" }),
+                  },
+                  Required = ["location"],
+              },
+          },
+      ],
+      Messages =
+      [
+          new() { Role = Role.User, Content = "How many orders shipped yesterday?" },
+          // Definisikan db_query berdasarkan nilai mulai titik ini. `Tools` dan
+          // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          new()
+          {
+              Role = Role.System,
+              Content = new(
+              [
+                  new BetaRequestToolAdditionBlock
+                  {
+                      Tool = new BetaToolChangeToolDefinitionParam
+                      {
+                          Definition = new BetaTool
+                          {
+                              Name = "db_query",
+                              Description = "Run a read-only SQL query against the analytics database.",
+                              InputSchema = new InputSchema
+                              {
+                                  Properties = new Dictionary<string, JsonElement>
+                                  {
+                                      ["sql"] = JsonSerializer.SerializeToElement(new { type = "string" }),
+                                  },
+                                  Required = ["sql"],
+                              },
+                          },
+                      },
+                  },
+              ]),
+          },
+      ],
+  });
+
+  foreach (var block in response.Content)
+  {
+      if (block.TryPickToolUse(out var toolUse))
+      {
+          Console.WriteLine($"{toolUse.Name} {JsonSerializer.Serialize(toolUse.Input)}");
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus5_5,
+  	MaxTokens: 1024,
+  	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaInlineTools2026_09_15},
+  	// Pertahankan setidaknya satu alat non-deferred di Tools, agar alat yang didefinisikan
+  	// belakangan tidak mengubah awal prompt yang dirender.
+  	Tools: []anthropic.BetaToolUnionParam{
+  		{OfTool: &anthropic.BetaToolParam{
+  			Name:        "get_weather",
+  			Description: anthropic.String("Get the current weather for a location."),
+  			InputSchema: anthropic.BetaToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"location": map[string]any{
+  						"type":        "string",
+  						"description": "City name",
+  					},
+  				},
+  				Required: []string{"location"},
+  			},
+  		}},
+  	},
+  	Messages: []anthropic.BetaMessageParam{
+  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("How many orders shipped yesterday?")),
+  		// Definisikan db_query secara langsung mulai titik ini. Tools dan
+  		// pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+  		{
+  			Role: anthropic.BetaMessageParamRoleSystem,
+  			Content: []anthropic.BetaContentBlockParamUnion{
+  				anthropic.NewBetaToolAdditionBlock(anthropic.BetaToolChangeToolDefinitionParam{
+  					Definition: anthropic.BetaToolUnionParam{OfTool: &anthropic.BetaToolParam{
+  						Name:        "db_query",
+  						Description: anthropic.String("Run a read-only SQL query against the analytics database."),
+  						InputSchema: anthropic.BetaToolInputSchemaParam{
+  							Properties: map[string]any{
+  								"sql": map[string]any{"type": "string"},
+  							},
+  							Required: []string{"sql"},
+  						},
+  					}},
+  				}),
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  for _, block := range response.Content {
+  	if toolUse, ok := block.AsAny().(anthropic.BetaToolUseBlock); ok {
+  		fmt.Println(toolUse.Name, toolUse.Input)
+  	}
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
+  import com.anthropic.models.beta.messages.BetaContentBlockParam;
+  import com.anthropic.models.beta.messages.BetaMessage;
+  import com.anthropic.models.beta.messages.BetaRequestToolAdditionBlock;
+  import com.anthropic.models.beta.messages.BetaTool;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+  // ...
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      BetaTool weatherTool = BetaTool.builder()
+          .name("get_weather")
+          .description("Get the current weather for a location.")
+          .inputSchema(BetaTool.InputSchema.builder()
+              .properties(BetaTool.InputSchema.Properties.builder()
+                  .putAdditionalProperty("location", JsonValue.from(Map.of(
+                      "type", "string",
+                      "description", "City name")))
+                  .build())
+              .addRequired("location")
+              .build())
+          .build();
+
+      BetaTool dbQueryTool = BetaTool.builder()
+          .name("db_query")
+          .description("Run a read-only SQL query against the analytics database.")
+          .inputSchema(BetaTool.InputSchema.builder()
+              .properties(BetaTool.InputSchema.Properties.builder()
+                  .putAdditionalProperty("sql", JsonValue.from(Map.of("type", "string")))
+                  .build())
+              .addRequired("sql")
+              .build())
+          .build();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addBeta(AnthropicBeta.INLINE_TOOLS_2026_09_15)
+          // Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+          // belakangan tidak mengubah bagian awal prompt yang dirender.
+          .addTool(weatherTool)
+          .addUserMessage("How many orders shipped yesterday?")
+          // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
+          // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          .addSystemMessageOfBetaContentBlockParams(List.of(
+              BetaContentBlockParam.ofToolAddition(BetaRequestToolAdditionBlock.builder()
+                  .definitionTool(dbQueryTool)
+                  .build())))
+          .build();
+
+      BetaMessage response = client.beta().messages().create(params);
+      response.content().stream()
+          .flatMap(block -> block.toolUse().stream())
+          .forEach(toolUse -> IO.println(toolUse.name() + " " + toolUse._input()));
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  use Anthropic\Beta\Messages\BetaToolUseBlock;
+  // ...
+
+  $client = new Client();
+
+  $response = $client->beta->messages->create(
+      model: Model::CLAUDE_OPUS_5_5,
+      maxTokens: 1024,
+      betas: [AnthropicBeta::INLINE_TOOLS_2026_09_15],
+      // Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+      // belakangan tidak mengubah awal prompt yang dirender.
+      tools: [
+          [
+              'name' => 'get_weather',
+              'description' => 'Get the current weather for a location.',
+              'input_schema' => [
+                  'type' => 'object',
+                  'properties' => [
+                      'location' => [
+                          'type' => 'string',
+                          'description' => 'City name',
+                      ],
+                  ],
+                  'required' => ['location'],
+              ],
+          ],
+      ],
+      messages: [
+          ['role' => 'user', 'content' => 'How many orders shipped yesterday?'],
+          // Definisikan db_query secara langsung mulai titik ini. `tools` dan
+          // pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          [
+              'role' => 'system',
+              'content' => [
+                  [
+                      'type' => 'tool_addition',
+                      'tool' => [
+                          'type' => 'tool_definition',
+                          'definition' => [
+                              'name' => 'db_query',
+                              'description' => 'Run a read-only SQL query against the analytics database.',
+                              'input_schema' => [
+                                  'type' => 'object',
+                                  'properties' => ['sql' => ['type' => 'string']],
+                                  'required' => ['sql'],
+                              ],
+                          ],
+                      ],
+                  ],
+              ],
+          ],
+      ],
+  );
+
+  foreach ($response->content as $block) {
+      if ($block instanceof BetaToolUseBlock) {
+          echo $block->name, ' ', json_encode($block->input), PHP_EOL;
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  response = client.beta.messages.create(
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
+    max_tokens: 1024,
+    betas: [Anthropic::AnthropicBeta::INLINE_TOOLS_2026_09_15],
+    # Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+    # belakangan tidak mengubah awal prompt yang dirender.
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather for a location.",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: { type: "string", description: "City name" }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    messages: [
+      { role: "user", content: "How many orders shipped yesterday?" },
+      # Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
+      # pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+      {
+        role: "system",
+        content: [
+          {
+            type: "tool_addition",
+            tool: {
+              type: "tool_definition",
+              definition: {
+                name: "db_query",
+                description: "Run a read-only SQL query against the analytics database.",
+                input_schema: {
+                  type: "object",
+                  properties: { sql: { type: "string" } },
+                  required: ["sql"]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  )
+
+  response.content.each do |block|
+    puts "#{block.name} #{block.input}" if block.is_a?(Anthropic::Beta::BetaToolUseBlock)
+  end
+  ```
+</CodeGroup>
+
+`content` pada respons menyertakan blok `tool_use` untuk alat baru tersebut, misalnya:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01A09q90qw90lq917835lq9",
+  "name": "db_query",
+  "input": {
+    "sql": "SELECT COUNT(*) FROM orders WHERE shipped_at::date = CURRENT_DATE - 1"
+  }
+}
+```
+
+Untuk mengubah skema alat, atau memindahkan alat server ke versi yang lebih baru, kirim definisi yang berbeda dengan nama yang sama. Definisi baru menggantikan definisi sebelumnya mulai dari posisi tersebut. Jika sebuah definisi memakai nama yang sudah digunakan oleh alat bertipe lain, permintaan mengembalikan error 400 dengan `error.details.error_code` diatur ke `tool_name_conflict`. Versi yang lebih baru dari alat yang sama tidak dianggap sebagai tipe yang berbeda. `tool_removal` tetap menggunakan referensi. Alat yang telah dihapus dapat didefinisikan atau ditawarkan kembali nanti.
+
+Karena posisi tempat definisi dirender, berlaku beberapa aturan berikut:
+
+* **Deklarasikan alat yang sudah Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama sebaiknya ditempatkan di `tools`. Jika model belum boleh melihatnya, gunakan `defer_loading: true` dan tambahkan referensi `tool_addition` di kemudian hari. Definisikan berdasarkan nilai hanya alat yang belum diketahui pada permintaan pertama atau yang berubah kemudian.
+* **Pertahankan setidaknya satu alat yang tidak ditangguhkan di `tools`.** Percakapan yang array `tools`-nya tidak berisi alat yang tidak ditangguhkan tetap diterima. Namun, alat pertama yang didefinisikan berdasarkan nilai dalam percakapan tersebut akan mengubah awal prompt yang dirender. Akibatnya, permintaan itu mengalami satu cache miss penuh. [Alat tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat yang tidak ditangguhkan.
+* **Tipe alat bertanggal tetap memerlukan header beta-nya sendiri.** Jika alat server yang Anda definisikan berdasarkan nilai memerlukan header beta tersendiri, kirim header tersebut pada setiap permintaan berikutnya dalam percakapan.
+* **Tempatkan `cache_control` pada blok atau di dalam definisi, bukan di keduanya.** `cache_control` juga dihitung terhadap batas breakpoint permintaan. Definisi yang ditangguhkan tidak dapat membawa `cache_control`.
+
+Permintaan mengembalikan error 400 dengan `error.details.error_code` diatur ke `available_tools_limit_exceeded` jika salah satu batas berikut terlampaui:
+
+* Lebih dari 10.000 alat yang ditangguhkan tersedia setelah pesan mana pun.
+* Lebih dari 10.000 alat yang didefinisikan setelah pesan pengguna pertama tersedia setelah pesan mana pun.
+* Total ukuran definisi alat yang dikirim setelah pesan pengguna pertama, dan masih tersedia setelah pesan mana pun, melebihi 4 MB (4.194.304 byte).
+* Teks alat yang dirender lebih besar dari 4 MB (4.194.304 byte).
+
+### Menambahkan server MCP di tengah percakapan (beta)
+
+Untuk menambahkan server [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) di tengah percakapan, kirim header beta `mcp-client-2026-09-15` bersama dengan `inline-tools-2026-09-15`. Dengan kedua header ini, `definition` dalam blok `tool_addition` dapat berupa `mcp_toolset`. Alat-alat server pun menjadi tersedia tanpa perlu mengedit `tools`. Cantumkan detail koneksi server di `mcp_servers` seperti biasa. Lalu tambahkan toolset pada titik ketika server menjadi tersedia:
+
+```json
+{
+  "role": "system",
+  "content": [
+    {
+      "type": "tool_addition",
+      "tool": {
+        "type": "tool_definition",
+        "definition": { "type": "mcp_toolset", "mcp_server_name": "calendar" }
+      }
+    }
+  ]
+}
+```
+
+Objek `mcp_toolset` ini sama dengan yang akan Anda letakkan di `tools`, termasuk `default_config` dan `configs`. Blok `tool_addition` tidak pernah berisi URL server atau token. Keduanya tetap berada di `mcp_servers`.
+
+Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server kalender di `mcp_servers`, dan menambahkan toolset server tersebut setelah giliran pengguna pertama:
+
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: inline-tools-2026-09-15,mcp-client-2026-09-15" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "mcp_servers": [
+        {
+          "type": "url",
+          "url": "https://mcp.example.com/calendar",
+          "name": "calendar",
+          "authorization_token": "YOUR_TOKEN"
+        }
+      ],
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather for a location.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "What'\''s on my calendar tomorrow?"
+        },
+        {
+          "role": "system",
+          "content": [
+            {
+              "type": "tool_addition",
+              "tool": {
+                "type": "tool_definition",
+                "definition": {
+                  "type": "mcp_toolset",
+                  "mcp_server_name": "calendar"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  ant beta:messages create \
+    --beta inline-tools-2026-09-15,mcp-client-2026-09-15 <<'YAML'
+  model: claude-opus-5-5
+  max_tokens: 1024
+  mcp_servers:
+    - type: url
+      url: https://mcp.example.com/calendar
+      name: calendar
+      authorization_token: YOUR_TOKEN
+  tools:
+    - name: get_weather
+      description: Get the current weather for a location.
+      input_schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: City name
+        required:
+          - location
+  messages:
+    - role: user
+      content: What's on my calendar tomorrow?
+    # Jadikan alat dari server kalender tersedia mulai titik ini dan seterusnya.
+    # Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
+    - role: system
+      content:
+        - type: tool_addition
+          tool:
+            type: tool_definition
+            definition:
+              type: mcp_toolset
+              mcp_server_name: calendar
+  YAML
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  response = client.beta.messages.create(
+      model="claude-opus-5-5",
+      max_tokens=1024,
+      betas=["inline-tools-2026-09-15", "mcp-client-2026-09-15"],
+      mcp_servers=[
+          {
+              "type": "url",
+              "url": "https://mcp.example.com/calendar",
+              "name": "calendar",
+              "authorization_token": "YOUR_TOKEN",
+          },
+      ],
+      tools=[
+          {
+              "name": "get_weather",
+              "description": "Get the current weather for a location.",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "location": {"type": "string", "description": "City name"},
+                  },
+                  "required": ["location"],
+              },
+          },
+      ],
+      messages=[
+          {"role": "user", "content": "What's on my calendar tomorrow?"},
+          # Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+          # Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          {
+              "role": "system",
+              "content": [
+                  {
+                      "type": "tool_addition",
+                      "tool": {
+                          "type": "tool_definition",
+                          "definition": {
+                              "type": "mcp_toolset",
+                              "mcp_server_name": "calendar",
+                          },
+                      },
+                  },
+              ],
+          },
+      ],
+  )
+
+  # Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  # jadi periksa tipe setiap blok alih-alih membaca content[0].
+  for block in response.content:
+      match block.type:
+          case "mcp_tool_listing":
+              print(block.mcp_server_name, [tool.name for tool in block.tools])
+          case "text":
+              print(block.text)
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const response = await client.beta.messages.create({
+    model: "claude-opus-5-5",
+    max_tokens: 1024,
+    betas: ["inline-tools-2026-09-15", "mcp-client-2026-09-15"],
+    mcp_servers: [
+      {
+        type: "url",
+        url: "https://mcp.example.com/calendar",
+        name: "calendar",
+        authorization_token: "YOUR_TOKEN"
+      }
+    ],
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather for a location.",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: { type: "string", description: "City name" }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    messages: [
+      { role: "user", content: "What's on my calendar tomorrow?" },
+      // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+      // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+      {
+        role: "system",
+        content: [
+          {
+            type: "tool_addition",
+            tool: {
+              type: "tool_definition",
+              definition: { type: "mcp_toolset", mcp_server_name: "calendar" }
+            }
+          }
+        ]
+      }
+    ]
+  });
+
+  // Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  // jadi periksa tipe setiap blok alih-alih membaca content[0].
+  for (const block of response.content) {
+    switch (block.type) {
+      case "mcp_tool_listing":
+        console.log(
+          block.mcp_server_name,
+          block.tools.map((tool) => tool.name)
+        );
+        break;
+      case "text":
+        console.log(block.text);
+        break;
+    }
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  AnthropicClient client = new();
+
+  var response = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Betas = [AnthropicBeta.InlineTools2026_09_15, AnthropicBeta.McpClient2026_09_15],
+      McpServers =
+      [
+          new BetaRequestMcpServerUrlDefinition
+          {
+              Url = "https://mcp.example.com/calendar",
+              Name = "calendar",
+              AuthorizationToken = "YOUR_TOKEN",
+          },
+      ],
+      Tools =
+      [
+          new BetaTool
+          {
+              Name = "get_weather",
+              Description = "Get the current weather for a location.",
+              InputSchema = new InputSchema
+              {
+                  Properties = new Dictionary<string, JsonElement>
+                  {
+                      ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "City name" }),
+                  },
+                  Required = ["location"],
+              },
+          },
+      ],
+      Messages =
+      [
+          new() { Role = Role.User, Content = "What's on my calendar tomorrow?" },
+          // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah menyimpan URL atau token.
+          new()
+          {
+              Role = Role.System,
+              Content = new(
+              [
+                  new BetaRequestToolAdditionBlock
+                  {
+                      Tool = new BetaToolChangeToolDefinitionParam
+                      {
+                          Definition = new BetaMcpToolset("calendar"),
+                      },
+                  },
+              ]),
+          },
+      ],
+  });
+
+  // Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  // jadi periksa tipe setiap blok alih-alih membaca Content[0].
+  foreach (var block in response.Content)
+  {
+      if (block.TryPickMcpToolListing(out var listing))
+      {
+          Console.WriteLine($"{listing.McpServerName} {JsonSerializer.Serialize(listing.Tools.Select(tool => tool.Name))}");
+      }
+      else if (block.TryPickText(out var text))
+      {
+          Console.WriteLine(text.Text);
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus5_5,
+  	MaxTokens: 1024,
+  	Betas: []anthropic.AnthropicBeta{
+  		anthropic.AnthropicBetaInlineTools2026_09_15,
+  		anthropic.AnthropicBetaMCPClient2026_09_15,
+  	},
+  	MCPServers: []anthropic.BetaRequestMCPServerURLDefinitionParam{
+  		{
+  			URL:                "https://mcp.example.com/calendar",
+  			Name:               "calendar",
+  			AuthorizationToken: anthropic.String("YOUR_TOKEN"),
+  		},
+  	},
+  	Tools: []anthropic.BetaToolUnionParam{
+  		{OfTool: &anthropic.BetaToolParam{
+  			Name:        "get_weather",
+  			Description: anthropic.String("Get the current weather for a location."),
+  			InputSchema: anthropic.BetaToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"location": map[string]any{
+  						"type":        "string",
+  						"description": "City name",
+  					},
+  				},
+  				Required: []string{"location"},
+  			},
+  		}},
+  	},
+  	Messages: []anthropic.BetaMessageParam{
+  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What's on my calendar tomorrow?")),
+  		// Jadikan alat dari server kalender tersedia mulai titik ini dan seterusnya.
+  		// Blok ini menyebutkan nama server; blok ini tidak pernah menyimpan URL atau token.
+  		{
+  			Role: anthropic.BetaMessageParamRoleSystem,
+  			Content: []anthropic.BetaContentBlockParamUnion{
+  				anthropic.NewBetaToolAdditionBlock(anthropic.BetaToolChangeToolDefinitionParam{
+  					Definition: anthropic.BetaToolUnionParam{OfMCPToolset: &anthropic.BetaMCPToolsetParam{
+  						MCPServerName: "calendar",
+  					}},
+  				}),
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  // Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  // jadi periksa tipe setiap blok alih-alih membaca Content[0].
+  for _, block := range response.Content {
+  	switch variant := block.AsAny().(type) {
+  	case anthropic.BetaMCPToolListingBlock:
+  		var toolNames []string
+  		for _, tool := range variant.Tools {
+  			toolNames = append(toolNames, tool.Name)
+  		}
+  		fmt.Println(variant.MCPServerName, toolNames)
+  	case anthropic.BetaTextBlock:
+  		fmt.Println(variant.Text)
+  	}
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
+  import com.anthropic.models.beta.messages.BetaContentBlockParam;
+  import com.anthropic.models.beta.messages.BetaMcpTool;
+  import com.anthropic.models.beta.messages.BetaMcpToolset;
+  import com.anthropic.models.beta.messages.BetaMessage;
+  import com.anthropic.models.beta.messages.BetaRequestMcpServerUrlDefinition;
+  import com.anthropic.models.beta.messages.BetaRequestToolAdditionBlock;
+  import com.anthropic.models.beta.messages.BetaTool;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+  // ...
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      BetaTool weatherTool = BetaTool.builder()
+          .name("get_weather")
+          .description("Get the current weather for a location.")
+          .inputSchema(BetaTool.InputSchema.builder()
+              .properties(BetaTool.InputSchema.Properties.builder()
+                  .putAdditionalProperty("location", JsonValue.from(Map.of(
+                      "type", "string",
+                      "description", "City name")))
+                  .build())
+              .addRequired("location")
+              .build())
+          .build();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addBeta(AnthropicBeta.INLINE_TOOLS_2026_09_15)
+          .addBeta(AnthropicBeta.MCP_CLIENT_2026_09_15)
+          .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
+              .url("https://mcp.example.com/calendar")
+              .name("calendar")
+              .authorizationToken("YOUR_TOKEN")
+              .build())
+          .addTool(weatherTool)
+          .addUserMessage("What's on my calendar tomorrow?")
+          // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          .addSystemMessageOfBetaContentBlockParams(List.of(
+              BetaContentBlockParam.ofToolAddition(BetaRequestToolAdditionBlock.builder()
+                  .definitionTool(BetaMcpToolset.builder()
+                      .mcpServerName("calendar")
+                      .build())
+                  .build())))
+          .build();
+
+      BetaMessage response = client.beta().messages().create(params);
+
+      // Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+      // jadi periksa tipe setiap blok alih-alih membaca blok pertama.
+      for (var block : response.content()) {
+          switch (block.type().value()) {
+              case MCP_TOOL_LISTING -> {
+                  var listing = block.asMcpToolListing();
+                  IO.println(listing.mcpServerName() + " "
+                      + listing.tools().stream().map(BetaMcpTool::name).toList());
+              }
+              case TEXT -> IO.println(block.asText().text());
+          }
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  use Anthropic\Beta\Messages\BetaMCPTool;
+  use Anthropic\Beta\Messages\BetaMCPToolListingBlock;
+  use Anthropic\Beta\Messages\BetaTextBlock;
+  // ...
+
+  $client = new Client();
+
+  $response = $client->beta->messages->create(
+      model: Model::CLAUDE_OPUS_5_5,
+      maxTokens: 1024,
+      betas: [
+          AnthropicBeta::INLINE_TOOLS_2026_09_15,
+          AnthropicBeta::MCP_CLIENT_2026_09_15,
+      ],
+      mcpServers: [
+          [
+              'type' => 'url',
+              'url' => 'https://mcp.example.com/calendar',
+              'name' => 'calendar',
+              'authorization_token' => 'YOUR_TOKEN',
+          ],
+      ],
+      tools: [
+          [
+              'name' => 'get_weather',
+              'description' => 'Get the current weather for a location.',
+              'input_schema' => [
+                  'type' => 'object',
+                  'properties' => [
+                      'location' => [
+                          'type' => 'string',
+                          'description' => 'City name',
+                      ],
+                  ],
+                  'required' => ['location'],
+              ],
+          ],
+      ],
+      messages: [
+          ['role' => 'user', 'content' => "What's on my calendar tomorrow?"],
+          // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          [
+              'role' => 'system',
+              'content' => [
+                  [
+                      'type' => 'tool_addition',
+                      'tool' => [
+                          'type' => 'tool_definition',
+                          'definition' => [
+                              'type' => 'mcp_toolset',
+                              'mcp_server_name' => 'calendar',
+                          ],
+                      ],
+                  ],
+              ],
+          ],
+      ],
+  );
+
+  // Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  // jadi periksa tipe setiap blok alih-alih membaca content[0].
+  foreach ($response->content as $block) {
+      switch (true) {
+          case $block instanceof BetaMCPToolListingBlock:
+              $toolNames = array_map(fn (BetaMCPTool $tool) => $tool->name, $block->tools);
+              echo $block->mcpServerName, ' ', json_encode($toolNames), PHP_EOL;
+              break;
+          case $block instanceof BetaTextBlock:
+              echo $block->text, PHP_EOL;
+              break;
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  response = client.beta.messages.create(
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
+    max_tokens: 1024,
+    betas: [
+      Anthropic::AnthropicBeta::INLINE_TOOLS_2026_09_15,
+      Anthropic::AnthropicBeta::MCP_CLIENT_2026_09_15
+    ],
+    mcp_servers: [
+      {
+        type: "url",
+        url: "https://mcp.example.com/calendar",
+        name: "calendar",
+        authorization_token: "YOUR_TOKEN"
+      }
+    ],
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather for a location.",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: { type: "string", description: "City name" }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    messages: [
+      { role: "user", content: "What's on my calendar tomorrow?" },
+      # Sediakan alat dari server kalender mulai titik ini dan seterusnya.
+      # Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+      {
+        role: "system",
+        content: [
+          {
+            type: "tool_addition",
+            tool: {
+              type: "tool_definition",
+              definition: { type: "mcp_toolset", mcp_server_name: "calendar" }
+            }
+          }
+        ]
+      }
+    ]
+  )
+
+  # Respons diawali dengan blok mcp_tool_listing untuk server kalender,
+  # jadi periksa tipe setiap blok alih-alih membaca content[0].
+  response.content.each do |block|
+    case block
+    when Anthropic::Beta::BetaMCPToolListingBlock
+      puts "#{block.mcp_server_name} #{block.tools.map(&:name)}"
+    when Anthropic::Beta::BetaTextBlock
+      puts block.text
+    end
+  end
+  ```
+</CodeGroup>
+
+Dengan `mcp-client-2026-09-15`, jika API mengambil daftar alat dari server untuk sebuah respons, respons tersebut diawali dengan blok `mcp_tool_listing`. Ada satu blok untuk setiap server yang daftarnya diambil. Jika kode Anda membaca `content[0]`, lewati blok-blok ini. Kirim kembali pesan asisten tanpa perubahan, termasuk blok ini. Terus kirim `mcp-client-2026-09-15` pada setiap permintaan yang membawa pesan tersebut. Dengan begitu, permintaan berikutnya menggunakan daftar yang sudah tercatat alih-alih menanyakan server lagi. Untuk menyematkan toolset sendiri, salin daftar tersebut ke field `tools` milik `mcp_toolset`, seperti yang dijelaskan dalam [Menyematkan daftar alat server MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#pin-mcp-tool-list).
+
+`mcp-client-2026-09-15` mencakup semua yang dicakup `mcp-client-2025-11-20`, sehingga Anda tidak perlu mengirim keduanya. Fitur-fitur ini tersedia di Claude API. Permintaan yang menggunakan konektor MCP tetap tunduk pada ketentuan [retensi data](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#data-retention) konektor MCP.
+
 ## Kapan menggunakan pesan sistem di tengah percakapan
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) melakukan hash pada prefiks permintaan secara berurutan: `tools`, lalu `system`, lalu `messages`. Agar terjadi cache hit, prefiks harus sama persis dengan permintaan terbaru, byte demi byte, hingga breakpoint cache.
@@ -485,9 +1655,9 @@ Dalam semua kasus ini, Anda sebenarnya dapat menempatkan instruksi dalam pesan `
 
 Tambahkan pesan dengan `"role": "system"` ke array `messages`. Untuk `content`, gunakan string biasa atau blok konten, sama seperti giliran `user` atau `assistant`. Instruksi berlaku mulai dari titik tersebut dalam percakapan. Jika instruksi saling bertentangan, pesan sistem yang lebih baru lebih diutamakan daripada yang lebih awal. Pesan sistem di tengah percakapan juga lebih diutamakan daripada field `system` tingkat atas untuk giliran-giliran setelahnya.
 
-Anda tetap dapat mengatur field `system` tingkat atas untuk instruksi yang berlaku di seluruh percakapan. Gunakan pesan sistem di tengah percakapan khusus untuk instruksi yang baru relevan kemudian, atau yang ingin Anda tambahkan tanpa membatalkan prefiks yang di-cache.
+Anda tetap dapat mengatur field `system` tingkat atas untuk instruksi yang harus berlaku di seluruh percakapan. Gunakan pesan sistem di tengah percakapan untuk instruksi yang baru relevan kemudian, atau yang ingin Anda tambahkan tanpa membatalkan prefiks yang di-cache.
 
-Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) mulai dari giliran `user` berikutnya. Fitur ini masih dalam beta di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5 di Claude API dan Google Cloud, serta memerlukan header beta `mid-conversation-output-config-2026-07-01`. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
+Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) mulai dari giliran `user` berikutnya. Kemampuan ini masih dalam beta di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, dan Claude Opus 5 di Claude API dan Google Cloud. Kemampuan ini memerlukan header beta `mid-conversation-output-config-2026-07-01`. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
 
 <CodeGroup>
   ```bash cURL
@@ -496,7 +1666,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "cache_control": {"type": "ephemeral"},
       "system": "You are a code review assistant. Be concise.",
@@ -523,7 +1693,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
 
   ```bash CLI
   ant messages create --transform 'content.#(type=="text").text' --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
     type: ephemeral
@@ -546,7 +1716,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       # Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
       # dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
@@ -565,8 +1735,8 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
               "role": "user",
               "content": "Now review the calling code that invokes process().",
           },
-          # Di tengah sesi, peninjau menyadari bahwa semua saran harus
-          # juga lolos kebijakan typing ketat milik tim. Menambahkan
+          # Di tengah sesi, peninjau menyadari bahwa semua saran juga harus
+          # lolos kebijakan typing ketat milik tim. Menambahkan
           # instruksi di sini menjaga giliran sebelumnya tetap identik per byte, sehingga
           # prefiks yang di-cache oleh permintaan sebelumnya tetap dibaca dari cache.
           {
@@ -585,9 +1755,9 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
-    // Automatic prompt caching (caching prompt otomatis): setiap permintaan menyimpan percakapan sejauh ini ke cache,
+    // Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
     // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
     cache_control: { type: "ephemeral" },
     system: "You are a code review assistant. Be concise.",
@@ -605,10 +1775,10 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
         role: "user",
         content: "Now review the calling code that invokes process()."
       },
-      // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
+      // Peninjau menyadari di tengah sesi bahwa semua saran juga harus lolos
       // kebijakan typing ketat milik tim. Menambahkan instruksi di sini menjaga
-      // giliran sebelumnya tetap identik byte demi byte, sehingga prefiks yang di-cache oleh permintaan
-      // sebelumnya masih dibaca dari cache.
+      // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
+      // permintaan sebelumnya tetap dibaca dari cache.
       {
         role: "system",
         content: "From now on, every suggestion must include explicit type annotations."
@@ -627,9 +1797,9 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      // "Automatic prompt caching" (caching prompt otomatis): setiap permintaan menyimpan percakapan sejauh ini ke cache,
+      // Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
       // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
       CacheControl = new CacheControlEphemeral(),
       System = "You are a code review assistant. Be concise.",
@@ -650,7 +1820,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
               Role = Role.User,
               Content = "Now review the calling code that invokes process()."
           },
-          // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
+          // Peninjau menyadari di tengah sesi bahwa semua saran juga harus lolos
           // kebijakan typing ketat milik tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
@@ -670,10 +1840,10 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
-  	// Caching prompt otomatis (automatic prompt caching): setiap request meng-cache percakapan sejauh ini,
-  	// dan request berikutnya membaca prefiks yang tidak berubah dari cache.
+  	// Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
+  	// dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
   	CacheControl: anthropic.NewCacheControlEphemeralParam(),
   	System: []anthropic.TextBlockParam{
   		{Text: "You are a code review assistant. Be concise."},
@@ -685,7 +1855,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   		// Di tengah sesi, peninjau menyadari bahwa semua saran juga harus
   		// lolos kebijakan typing ketat milik tim. Menambahkan instruksi
   		// di sini menjaga giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
-  		// request sebelumnya tetap dibaca dari cache.
+  		// permintaan sebelumnya tetap dibaca dari cache.
   		{
   			Role: anthropic.MessageParamRoleSystem,
   			Content: []anthropic.ContentBlockParamUnion{
@@ -712,7 +1882,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           // Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
           // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
@@ -721,7 +1891,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
           .addUserMessage("Review process() in utils.py for performance issues.")
           .addAssistantMessage("The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list.")
           .addUserMessage("Now review the calling code that invokes process().")
-          // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
+          // Peninjau menyadari di tengah sesi bahwa semua saran juga harus lolos
           // kebijakan typing ketat milik tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
@@ -754,8 +1924,8 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
           // permintaan sebelumnya tetap dibaca dari cache.
           ['role' => 'system', 'content' => 'From now on, every suggestion must include explicit type annotations.']
       ],
-      model: 'claude-opus-5',
-      // "Prompt caching" (caching prompt) otomatis: tiap permintaan meng-cache percakapan sejauh ini,
+      model: 'claude-opus-5-5',
+      // Caching prompt otomatis: setiap permintaan meng-cache percakapan sejauh ini,
       // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
       cacheControl: CacheControlEphemeral::with(),
       system: 'You are a code review assistant. Be concise.',
@@ -772,9 +1942,9 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
-    # Caching prompt otomatis ("prompt caching"): setiap permintaan meng-cache percakapan sejauh ini,
+    # Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
     # dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
     cache_control: { type: "ephemeral" },
     system: "You are a code review assistant. Be concise.",
@@ -783,7 +1953,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
       { role: "assistant", content: "The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list." },
       { role: "user", content: "Now review the calling code that invokes process()." },
       # Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
-      # kebijakan strict typing milik tim. Menambahkan instruksi di sini menjaga
+      # kebijakan typing ketat tim. Menambahkan instruksi di sini menjaga
       # giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
       # permintaan sebelumnya tetap dibaca dari cache.
       { role: "system", content: "From now on, every suggestion must include explicit type annotations." }
@@ -796,9 +1966,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   ```
 </CodeGroup>
 
-Contoh ini mengaktifkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) dengan field `cache_control` tingkat atas. Caching prompt bersifat opt-in. Jika permintaan tidak memiliki `cache_control` (baik otomatis maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)), tidak ada yang di-cache dan setiap permintaan dikenai harga token input reguler untuk seluruh percakapan.
-
-Jika caching diaktifkan, menambahkan pesan sistem tidak mengubah giliran yang sudah di-cache. Permintaan yang membawa instruksi baru tetap membaca giliran tersebut dari cache alih-alih memprosesnya lagi. Caching juga mengharuskan percakapan memenuhi [panjang prompt minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations). Contoh sesingkat ini belum mencapai batas tersebut, sehingga `cache_creation_input_tokens` dan `cache_read_input_tokens` tetap bernilai 0 hingga percakapan bertambah panjang.
+Contoh ini mengaktifkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) dengan field `cache_control` tingkat atas. Caching prompt bersifat opt-in. Jika permintaan tidak memiliki field `cache_control` (baik otomatis maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)), tidak ada yang di-cache. Setiap permintaan pun dikenai harga token input reguler untuk seluruh percakapan. Jika caching diaktifkan, menambahkan pesan sistem tidak mengubah giliran yang sudah di-cache. Dengan begitu, permintaan yang membawa instruksi baru tetap membaca giliran tersebut dari cache alih-alih memprosesnya lagi. Caching juga mengharuskan percakapan memenuhi [panjang prompt minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations). Contoh sesingkat ini belum memenuhi batas tersebut, sehingga `cache_creation_input_tokens` dan `cache_read_input_tokens` tetap bernilai 0 hingga percakapan bertambah panjang.
 
 Pesan sistem di tengah percakapan harus langsung mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server). Pesan tersebut juga harus menjadi entri terakhir di `messages` atau langsung diikuti oleh giliran `assistant`. Pesan `user` yang membawa blok `tool_result` juga termasuk giliran `user`. Jadi, dalam loop agentik, Anda dapat menempatkan pesan sistem tepat setelah hasil alat, sebelum giliran Claude berikutnya. Posisi lain mana pun mengembalikan error 400, termasuk posisi di antara blok `tool_use` milik `assistant` dan `tool_result` yang menjawabnya.
 
@@ -832,12 +2000,12 @@ Pola ini ditujukan untuk meneruskan input dari pengguna akhir percakapan itu sen
 
 ### Pesan sistem berlingkup giliran
 
-Untuk membatasi pesan `role: "system"` hanya pada giliran saat ini, atur field `clear_at`-nya. Field ini menerima salah satu dari dua nilai:
+Untuk membatasi lingkup pesan `role: "system"` pada giliran saat ini, atur field `clear_at` pada pesan tersebut. Field ini menerima salah satu dari dua nilai:
 
 * `"never"` (default): pesan dirender pada posisinya di setiap permintaan yang menyertakannya. Menghilangkan field ini memberikan hasil yang sama.
-* `"next_user_message"`: pesan bersifat **turn-scoped** (berlingkup giliran). Teksnya hanya dirender selama belum ada pesan `role: "user"` setelahnya di `messages`. Dalam hal ini, pesan pengguna yang hanya membawa blok `tool_result` juga dihitung sebagai pesan pengguna. Begitu ada pesan pengguna yang lebih baru, pesan tersebut **cleared** (dibersihkan). Pesan itu tetap berada di array, tetapi tidak merender apa pun dan tidak memakan token input, baik pada permintaan tersebut maupun pada setiap permintaan berikutnya.
+* `"next_user_message"`: pesan bersifat **turn-scoped** (berlingkup giliran). Teksnya hanya dirender selama belum ada pesan `role: "user"` setelahnya di `messages`. Dalam hal ini, pesan pengguna yang hanya membawa blok `tool_result` juga dihitung sebagai pesan pengguna. Begitu ada pesan pengguna yang lebih baru, pesan tersebut **cleared** (dibersihkan). Pesan tetap berada di array, tetapi tidak merender apa pun dan tidak memakan token input, baik pada permintaan tersebut maupun pada setiap permintaan berikutnya.
 
-Pesan sistem berlingkup giliran masih dalam beta. Sertakan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-system-clear-at-2026-08-21`. Tanpa header ini, `clear_at` ditolak sebagai field yang tidak dikenal.
+Pesan sistem berlingkup giliran masih dalam beta. Sertakan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-system-clear-at-2026-08-21`. Tanpa header tersebut, `clear_at` ditolak sebagai field yang tidak dikenal.
 
 ```json
 {
@@ -847,15 +2015,9 @@ Pesan sistem berlingkup giliran masih dalam beta. Sertakan [header beta](https:/
 }
 ```
 
-Kegunaan utamanya adalah pengingat per giliran dalam loop alat. Tambahkan pengingat setelah pesan `tool_result` setiap kali Anda ingin model melihatnya, dan biarkan setiap salinan sebelumnya tetap di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Karena tidak ada bagian awal `messages` yang berubah, [cache untuk prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok.
+Kegunaan utamanya adalah pengingat per giliran dalam loop alat. Tambahkan pengingat setelah pesan `tool_result` setiap kali Anda ingin model melihatnya, dan biarkan setiap salinan sebelumnya tetap di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Tidak ada bagian awal `messages` yang berubah, sehingga [cache untuk prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok. Pada Claude Fable 5.1 dan Claude Opus 5.5, cara ini juga menjaga [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut, sehingga pemeriksaan percakapan gagal. Sebaliknya, pesan yang dibersihkan tetap berada di array dan tidak mengubah percakapan tersebut.
 
-Di Claude Fable 5.1, cara ini juga menjaga [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut, sehingga pemeriksaan percakapan gagal. Sebaliknya, pesan yang dibersihkan tetap berada di array dan tidak mengubah percakapan tersebut.
-
-Permintaan berikut adalah langkah lanjutan dari sebuah loop agen:
-
-* `messages[3]` dirender pada permintaan sebelumnya, ketika pesan itu masih menjadi pesan terakhir dalam array.
-* Begitu `messages[5]` (pesan pengguna yang lebih baru) ada, `messages[3]` dibersihkan. Pesan itu tetap berada di array, sehingga percakapan sebelum blok thinking di `messages[4]` tidak berubah, tetapi model tidak lagi melihat teksnya.
-* `messages[6]` dan `messages[7]` sama-sama dirender, sesuai urutannya.
+Permintaan berikut adalah langkah lanjutan dari sebuah loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika pesan itu masih menjadi pesan terakhir di array. Begitu `messages[5]` (pesan pengguna yang lebih baru) ada, `messages[3]` dibersihkan. Pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok thinking di `messages[4]` tidak berubah. Namun, model tidak lagi melihat teksnya. `messages[6]` dan `messages[7]` sama-sama dirender, sesuai urutannya.
 
 ```json
 {
@@ -930,13 +2092,13 @@ Permintaan berikut adalah langkah lanjutan dari sebuah loop agen:
 
 Aturan untuk pesan berlingkup giliran:
 
-* **Kirim ulang pesan yang dibersihkan apa adanya.** Pesan yang dibersihkan tetap merupakan bagian dari riwayat percakapan. Tindakan berikut dianggap sebagai pengeditan pesan sebelumnya: membangunnya ulang dari status saat ini (jumlah token terbaru, timestamp), membuangnya karena dianggap tidak diperlukan, atau mengubah nilai `clear_at`-nya. Akibatnya, cache untuk prompt meleset (miss) mulai dari titik tersebut. Di Claude Fable 5.1, setiap blok thinking yang dihasilkan setelahnya juga gagal dalam [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
-* **Hanya teks.** `content` berupa satu atau lebih blok `text` (atau string). Blok `tool_addition` dan `tool_removal` mengembalikan error 400 pada pesan berlingkup giliran, begitu pula `output_config`. Untuk hal-hal tersebut, gunakan pesan `role: "system"` terpisah tanpa `clear_at`.
-* **Jangan tempatkan `cache_control` pada blok-bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint pada pesan itu tidak akan pernah cocok. Tempatkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti dalam contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang membersihkan sebuah pesan, prefiks cache yang dapat digunakan ulang berakhir pada giliran pengguna sebelum pesan tersebut. Jadi, yang diproses ulang hanyalah satu giliran asisten di antara pesan tersebut dan pesan pengguna yang baru.
-* **Aturan penempatan tetap berlaku**, baik pesan sudah dibersihkan maupun belum. Seperti pesan sistem di tengah percakapan lainnya, pesan berlingkup giliran harus mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server). Pesan itu juga harus mendahului giliran `assistant` atau menjadi akhir array. Pesan yang menjadi akhir array selalu dirender. Pesan yang langsung diikuti oleh pesan `user` lain menghasilkan error 400, bukan dianggap sebagai pesan yang dibersihkan. Karena itu, tempatkan semua hasil dari satu putaran alat dalam satu pesan pengguna, lalu tempatkan pengingat setelahnya.
-* **Giliran asisten tidak membersihkannya.** Giliran asisten yang di-prefill atau [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) setelah pesan tersebut tidak menambahkan pesan pengguna, begitu pula loop alat sisi server. Karena itu, pesan tetap dirender pada kelanjutan tersebut. Agar pengingat tetap terlihat sepanjang loop alat sisi klien, tambahkan lagi pengingat itu setelah setiap pesan `tool_result`.
+* **Kirim ulang pesan yang dibersihkan apa adanya.** Pesan yang dibersihkan tetap merupakan bagian dari riwayat percakapan. Tindakan berikut dianggap sebagai pengeditan terhadap pesan sebelumnya: membangun ulang pesan dari status saat ini (jumlah token terbaru, stempel waktu), menghapusnya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya. Caching prompt akan mengalami miss mulai dari titik tersebut. Pada Claude Fable 5.1 dan Claude Opus 5.5, setiap blok thinking yang dihasilkan setelahnya juga gagal dalam [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
+* **Hanya teks.** `content` berupa satu atau lebih blok `text` (atau string). Blok `tool_addition` dan `tool_removal` mengembalikan error 400 pada pesan berlingkup giliran, begitu pula `output_config`. Untuk keperluan tersebut, gunakan pesan `role: "system"` terpisah tanpa `clear_at`.
+* **Jangan gunakan `cache_control` pada blok-bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint pada pesan tersebut tidak akan pernah cocok. Letakkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti dalam contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang membersihkan sebuah pesan, prefiks cache yang dapat digunakan kembali berakhir pada giliran pengguna sebelum pesan tersebut. Akibatnya, hanya satu giliran asisten yang diproses ulang, yaitu giliran di antara pesan tersebut dan pesan pengguna baru.
+* **Aturan penempatan tetap berlaku**, baik pesan sudah dibersihkan maupun belum. Seperti pesan sistem di tengah percakapan lainnya, pesan berlingkup giliran harus mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server). Pesan tersebut juga harus mendahului giliran `assistant` atau menjadi akhir array. Pesan yang menjadi akhir array selalu dirender. Pesan yang langsung diikuti oleh pesan `user` lain menghasilkan error 400, bukan dianggap sebagai pesan yang dibersihkan. Karena itu, letakkan semua hasil dari satu putaran alat dalam satu pesan pengguna, lalu tempatkan pengingat setelahnya.
+* **Giliran asisten tidak membersihkan pesan.** Giliran asisten yang di-prefill atau [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) setelah pesan tidak menambahkan pesan pengguna, begitu pula loop alat sisi server. Karena itu, pesan tetap dirender pada kelanjutan tersebut. Agar pengingat tetap terlihat sepanjang loop alat sisi klien, tambahkan pengingat itu lagi setelah setiap pesan `tool_result`.
 * **Penghitungan token mengikuti apa yang dirender.** Pesan yang dibersihkan tidak menambah apa pun ke `usage.input_tokens` maupun ke [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
-* **Riwayat yang diimpor.** Anda mungkin menyusun transkrip sekaligus dalam satu langkah, misalnya contoh few-shot atau percakapan yang dimigrasikan. Dalam transkrip seperti itu, pesan berlingkup giliran yang sudah diikuti giliran asisten dan pesan pengguna langsung dibersihkan sejak permintaan pertama dan tidak pernah dirender. Status ini memang tepat untuk pengingat per giliran yang Anda bawa dari riwayat lama. Biarkan `clear_at` tidak diatur hanya pada pesan yang harus dilihat model di setiap permintaan.
+* **Riwayat yang diimpor.** Anda mungkin menyusun transkrip dalam satu langkah, misalnya contoh few-shot atau percakapan yang dimigrasikan. Dalam transkrip seperti itu, pesan berlingkup giliran yang sudah diikuti giliran asisten dan pesan pengguna akan dibersihkan sejak permintaan pertama dan tidak pernah dirender. Status ini memang tepat untuk pengingat per giliran yang Anda bawa dari riwayat lama. Biarkan `clear_at` tidak diatur hanya pada pesan yang harus dilihat model di setiap permintaan.
 
 Error validasinya adalah sebagai berikut:
 
@@ -949,7 +2111,7 @@ messages.3: output_config is not permitted on a turn-scoped system message (clea
 messages.3.content.0: cache_control is not permitted on a turn-scoped system message (clear_at: 'next_user_message')
 ```
 
-Error pertama dikembalikan jika header beta tidak disertakan. Di Amazon Bedrock dan Google Cloud, teruskan nilai beta seperti yang dijelaskan dalam [Header beta](https://platform.claude.com/docs/id/api/beta-headers).
+Error pertama dikembalikan jika permintaan tidak menyertakan header beta. Di Amazon Bedrock dan Google Cloud, teruskan nilai beta seperti yang dijelaskan dalam [Header beta](https://platform.claude.com/docs/id/api/beta-headers).
 
 Melalui SDK, atur `clear_at` pada entri `role: "system"` di `messages` dan kirim header beta. Contoh berikut menambahkan pengingat berlingkup giliran setelah giliran pengguna. Pada permintaan berikutnya, begitu ada pesan pengguna yang lebih baru, pengingat tetap berada di array tetapi tidak lagi dirender:
 
@@ -1182,14 +2344,12 @@ Melalui SDK, atur `clear_at` pada entri `role: "system"` di `messages` dan kirim
 
 Pesan sistem di tengah percakapan dan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dirancang untuk digunakan bersama:
 
-* **Aktifkan caching secara eksplisit.** Caching hanya terjadi jika permintaan menyertakan `cache_control`, baik berupa field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) pada blok konten. Pesan sistem di tengah percakapan tidak membuat entri cache dengan sendirinya. Tanpa caching, tidak ada penghematan yang perlu dipertahankan.
-* **Cache prefiks yang stabil seperti biasa.** Tempatkan `cache_control` pada blok terakhir yang tetap sama di seluruh permintaan. Blok itu bisa berupa akhir field `system` tingkat atas, akhir definisi alat Anda, atau titik stabil dalam riwayat pesan.
-* **Tambahkan pesan sistem setelah breakpoint.** Karena berada setelah prefiks yang di-cache, pesan tersebut tidak mengubah hash prefiks, sehingga cache tetap hit.
-* **Pesan sistem di tengah percakapan juga dapat di-cache.** Setelah masuk ke percakapan, pesan tersebut menjadi bagian dari riwayat yang stabil. Pada giliran berikutnya, Anda dapat memindahkan breakpoint cache melewatinya (atau mengandalkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) untuk melakukannya). Pesan sistem itu kemudian dibaca dari cache seperti giliran lainnya.
+* **Aktifkan caching secara eksplisit.** Caching hanya terjadi ketika permintaan menyertakan `cache_control`, baik berupa field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) di tingkat atas maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) pada sebuah blok konten. Pesan sistem di tengah percakapan tidak membuat entri cache dengan sendirinya, dan tanpa caching yang diaktifkan, tidak ada penghematan yang perlu dipertahankan.
+* **Cache prefiks yang stabil seperti biasa.** Tempatkan `cache_control` pada blok terakhir yang tetap sama di seluruh permintaan, baik itu akhir dari field `system` tingkat atas, akhir dari definisi alat Anda, atau titik yang stabil dalam riwayat pesan.
+* **Tambahkan pesan sistem setelah breakpoint.** Karena pesan tersebut berada setelah prefiks yang di-cache, pesan itu tidak mengubah hash prefiks dan cache tetap mengalami hit.
+* **Pesan sistem di tengah percakapan itu sendiri dapat di-cache.** Setelah berada dalam percakapan, pesan tersebut menjadi bagian dari riwayat yang stabil. Pada giliran berikutnya, Anda dapat memindahkan breakpoint cache Anda melewatinya (atau mengandalkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) untuk melakukannya) dan pesan sistem dibaca dari cache seperti giliran lainnya.
 
-Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dikirim. Seperti perubahan lain pada pesan sebelumnya, tindakan itu membatalkan cache mulai dari titik tersebut. Di Claude Fable 5.1, tindakan itu juga membatalkan [blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap giliran asisten berikutnya.
-
-Untuk panduan yang hanya berlaku pada satu giliran, gunakan [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan pesan itu tetap di tempatnya. Jika instruksi perlu diperbarui, tambahkan pesan sistem baru alih-alih menulis ulang yang lama. Pesan sistem yang berurutan diterima dan diperlakukan sebagai satu bagian sistem. Bagian ini secara keseluruhan mengikuti aturan penempatan yang sama.
+Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dikirim. Seperti perubahan lain pada pesan sebelumnya, hal itu membatalkan cache mulai dari titik tersebut dan seterusnya. Pada Claude Fable 5.1 dan Claude Opus 5.5, hal itu juga membatalkan [blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap giliran asisten berikutnya. Untuk panduan yang seharusnya hanya berlaku untuk satu giliran, gunakan [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan tetap di tempatnya. Jika instruksi perlu berkembang, tambahkan pesan sistem baru alih-alih menulis ulang yang lama. Pesan sistem yang berurutan diterima dan diperlakukan sebagai satu bagian sistem, yang secara keseluruhan mengikuti aturan penempatan yang sama.
 
 ## Batasan
 

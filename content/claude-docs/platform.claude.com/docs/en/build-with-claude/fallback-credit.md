@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7477fc0404a38105c8684c2bc73ff2625ca5835262eefb4521e9f345445e6aa3
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 5fa3e3530b203fe87cfaa3ce7d674b388ec288edf0dfbe7b126ec8b5cc6d473c
 ---
 
 ---
@@ -629,7 +629,7 @@ The following sections cover edge cases and the complete redemption rules. Most 
   * **`fallback-credit-*`:** keep this header on both requests. The retry needs it to redeem the token.
 
   <Note>
-    On models that include the 1M token context window by default, such as Claude Fable 5.1, Claude Fable 5, Claude Opus 5, and Claude Opus 4.8, the `context-1m-2025-08-07` beta header has no effect. To keep the two requests identical, omit that header on both rather than sending it on one and not the other.
+    On models that include the 1M token context window by default, such as Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, and Claude Opus 4.8, the `context-1m-2025-08-07` beta header has no effect. To keep the two requests identical, omit that header on both rather than sending it on one and not the other.
   </Note>
 </Accordion>
 

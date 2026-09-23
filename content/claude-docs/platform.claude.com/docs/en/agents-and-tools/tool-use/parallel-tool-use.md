@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f6cca6d88c2849e411ba2f7792830bd251317279e4ed00845f6a35ae589bb2fb
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 1321c02d7999680a777cb31f0f969ec420e7ca3dfe845b609c1ef6c24d251cf3
 ---
 
 ---
@@ -98,7 +98,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   # Make initial request
   print("Requesting parallel tool calls...")
   response = client.messages.create(
-      model="claude-opus-5", max_tokens=1024, messages=messages, tools=tools
+      model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
   )
 
   # Check for parallel tool calls
@@ -141,7 +141,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   # Get final response
   print("\nGetting final response...")
   final_response = client.messages.create(
-      model="claude-opus-5", max_tokens=1024, messages=messages, tools=tools
+      model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
   )
 
   final_text = next(
@@ -194,7 +194,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   // Make initial request
   console.log("Requesting parallel tool calls...");
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -244,7 +244,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   // Get final response with correct formatting
   console.log("\nGetting final response...");
   const finalResponse = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -306,7 +306,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   Console.WriteLine("Requesting parallel tool calls...");
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" }],
       Tools = tools
@@ -364,7 +364,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   Console.WriteLine("\nGetting final response...");
   var finalParameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
           new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" },
@@ -418,7 +418,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   fmt.Println("Requesting parallel tool calls...")
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -483,7 +483,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   fmt.Println("\nGetting final response...")
   finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -544,7 +544,7 @@ The following script sends a request that should trigger parallel tool calls, ve
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(weatherTool)
       .addTool(timeTool)
@@ -596,7 +596,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   IO.println("\nGetting final response...");
   MessageCreateParams finalParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(weatherTool)
       .addTool(timeTool)
@@ -656,7 +656,7 @@ The following script sends a request that should trigger parallel tool calls, ve
       messages: [
           ['role' => 'user', 'content' => "What's the weather in SF and NYC, and what time is it there?"]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
@@ -699,7 +699,7 @@ The following script sends a request that should trigger parallel tool calls, ve
           ['role' => 'assistant', 'content' => $response->content],
           ['role' => 'user', 'content' => $toolResults]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
@@ -748,7 +748,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   puts "Requesting parallel tool calls..."
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" }
@@ -786,7 +786,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   puts "\nGetting final response..."
   final_response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
@@ -866,7 +866,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [{
         "name": "get_weather",
@@ -891,7 +891,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -916,7 +916,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
   client = Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {
@@ -949,7 +949,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -978,7 +978,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -1007,7 +1007,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -1057,7 +1057,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(
           Tool.builder()
@@ -1082,7 +1082,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       toolChoice: ['type' => 'auto', 'disableParallelToolUse' => true],
       tools: [
           [
@@ -1109,7 +1109,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -1138,7 +1138,7 @@ When `tool_choice` type is `auto` (the default), setting `disable_parallel_tool_
 
 ### Exactly one tool call
 
-When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: true` means Claude calls exactly one tool. Claude Fable 5.1 and Claude Mythos 5.1 don't support these `tool_choice` types (see [Forcing tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use)). The following example uses `any`. The same field works with `tool`:
+When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: true` means Claude calls exactly one tool. Claude Opus 5.5, Claude Fable 5.1, and Claude Mythos 5.1 don't support these `tool_choice` types (see [Forcing tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use)). The following example uses `any`. The same field works with `tool`:
 
 <CodeGroup>
   ```bash cURL

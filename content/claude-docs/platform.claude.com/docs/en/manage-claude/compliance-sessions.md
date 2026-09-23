@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-sessions
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1c59f870e0240d06a237ffde0b88685ad9b36c53a133ac0ffa949c2d5859d794
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9fdf6a6b9417d65fdde3975512f75e6d1e42fffdee32cbb25b2036d736105380
 ---
 
 ---
@@ -208,7 +208,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBd",
       "role": "assistant",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "created_at": "2026-07-09T14:02:11Z",
       "provenance": null,
       "content": [
@@ -253,7 +253,7 @@ curl --fail-with-body -sS \
       "type": "compliance_local_session_message",
       "id": "clsm_01J4KpLmNoPqRsTuVwXyZaBf",
       "role": "assistant",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "created_at": "2026-07-09T14:02:38Z",
       "provenance": null,
       "content": [

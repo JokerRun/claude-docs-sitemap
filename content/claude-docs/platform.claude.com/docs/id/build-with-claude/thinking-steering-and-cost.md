@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 5f0d3cd88c4ffc5b455995de270d6ba95f37fcb93a442ea84c45c776c9d462d9
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: cbdd62417efbbdadfbb3abc1f86643823f4e8131cd1d02e0cbe786df282e23a7
 ---
 
 ---
@@ -50,13 +50,15 @@ Untuk panduan prompting yang lebih luas dengan pemikiran, lihat [memanfaatkan ke
 
 Effort adalah tuas pengarah utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering Claude berpikir dan seberapa dalam:
 
-| Tingkat effort   | Perilaku pemikiran                                                                                          |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| `max`            | Claude selalu berpikir tanpa batasan pada kedalaman pemikiran.                                              |
-| `xhigh`          | Claude selalu berpikir secara mendalam dengan eksplorasi yang diperluas.                                    |
-| `high` (default) | Claude hampir selalu berpikir. Memberikan penalaran mendalam pada tugas kompleks.                           |
-| `medium`         | Claude menggunakan pemikiran moderat. Mungkin melewatkan pemikiran untuk kueri sederhana.                   |
-| `low`            | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting. |
+| Tingkat effort   | Perilaku pemikiran                                                                                                                       |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `max`            | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
+| `xhigh`          | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
+| `high` (default) | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
+| `medium`         | Claude menggunakan pemikiran sedang. Dapat melewatkan pemikiran untuk kueri sederhana.                                                   |
+| `low`            | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
+
+Pada setiap tingkat, Claude memutuskan per permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
 Tabel ini menjelaskan bagaimana setiap tingkat mengubah perilaku pemikiran. Untuk panduan tentang tingkat mana yang harus dipilih untuk beban kerja tertentu, termasuk rekomendasi per model, lihat [Kapan menyesuaikan parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort#when-to-adjust-the-effort-parameter) di halaman effort.
 
@@ -64,7 +66,7 @@ Effort ditetapkan di `output_config.effort`, bukan di dalam objek `thinking`; un
 
 ```json
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "max_tokens": 4096,
   "output_config": { "effort": "medium" },
   "messages": [{ "role": "user", "content": "..." }]
@@ -162,7 +164,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       # Gunakan teks secukupnya untuk caching (beberapa bab pertama)
       LARGE_TEXT = book_content[:10000]
 
-      # Tanpa prompt sistem - caching dilakukan di pesan
+      # Tanpa prompt sistem - caching dilakukan di messages
       MESSAGES = [
           {
               "role": "user",
@@ -177,10 +179,10 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           }
       ]
 
-      # Permintaan pertama - membuat cache
+      # Permintaan pertama - buat cache
       print("First request - establishing cache")
       response1 = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           messages=MESSAGES,
@@ -194,7 +196,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       # Permintaan kedua - konfigurasi sama (diharapkan cache hit)
       print("\nSecond request - same configuration (cache hit expected)")
       response2 = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           messages=MESSAGES,
@@ -208,7 +210,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       # Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
       print("\nThird request - different effort level (cache miss expected)")
       response3 = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           output_config={"effort": "medium"},
@@ -256,7 +258,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan pertama - membuat cache
       console.log("First request - establishing cache");
       const response1 = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         messages
@@ -272,7 +274,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
       console.log("\nSecond request - same configuration (cache hit expected)");
       const response2 = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         messages
@@ -288,7 +290,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
       console.log("\nThird request - different effort level (cache miss expected)");
       const response3 = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
         output_config: { effort: "medium" },
@@ -310,7 +312,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       Console.WriteLine("First request - establishing cache");
       var parameters1 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
@@ -340,7 +342,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       Console.WriteLine("\nSecond request - same configuration (cache hit expected)");
       var parameters2 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
@@ -380,7 +382,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       Console.WriteLine("\nThird request - different effort level (cache miss expected)");
       var parameters3 = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           OutputConfig = new OutputConfig
@@ -469,7 +471,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan pertama - membuat cache
       fmt.Println("First request - establishing cache")
       response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -487,7 +489,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
       fmt.Println("\nSecond request - same configuration (cache hit expected)")
       response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -505,7 +507,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
       fmt.Println("\nThird request - different effort level (cache miss expected)")
       response3, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -533,10 +535,10 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           String bookContent = fetchArticleContent(bookUrl);
           String largeText = bookContent.substring(0, Math.min(10000, bookContent.length()));
 
-          // Permintaan pertama - membuat cache
+          // Permintaan pertama - membangun cache
           IO.println("First request - establishing cache");
           MessageCreateParams params1 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addUserMessageOfBlockParams(List.of(
@@ -556,7 +558,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
           IO.println("\nSecond request - same configuration (cache hit expected)");
           MessageCreateParams params2 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addUserMessageOfBlockParams(List.of(
@@ -580,7 +582,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
           IO.println("\nThird request - different effort level (cache miss expected)");
           MessageCreateParams params3 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .outputConfig(OutputConfig.builder()
@@ -652,7 +654,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                   ]
               ]
           ]],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
       );
 
@@ -685,7 +687,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                   'content' => 'Analyze the characters in this passage.'
               ]
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
       );
 
@@ -726,7 +728,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                   'content' => 'Analyze the setting in this passage.'
               ]
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
           outputConfig: ['effort' => 'medium'],
       );
@@ -757,7 +759,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
 
       puts "First request - establishing cache"
       response1 = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -782,7 +784,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
 
       puts "\nSecond request - same configuration (cache hit expected)"
       response2 = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -817,7 +819,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
 
       puts "\nThird request - different effort level (cache miss expected)"
       response3 = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"

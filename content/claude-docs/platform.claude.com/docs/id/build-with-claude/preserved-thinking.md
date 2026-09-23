@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ff06d36f48da4e1b9b17a41eb08517243497dd3bd29092f424366ec9bafa9104
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e3b283d3fd6839e1d4dc091bbd2a038e50de94883c6351dcb23fa7a90c218216
 ---
 
 ---
@@ -13,10 +13,10 @@ description: Pemikiran yang dipertahankan memungkinkan model menggunakan blok pe
 
 "Preserved thinking" (pemikiran yang dipertahankan) adalah properti model Claude yang lebih baru yang melindungi dari "distillation" (distilasi). Properti ini menentukan apakah model dapat menggunakan "thinking block" (blok pemikiran) yang Anda kirim kembali dari giliran sebelumnya. Mulai dari Claude Fable 5.1, ketika blok `thinking` atau `redacted_thinking` dikirim kembali dalam sebuah permintaan, API memeriksa `signature` blok tersebut untuk dua hal:
 
-* **Model adalah model yang menghasilkan blok tersebut, atau model yang lebih baru.** Sebuah model membaca blok pemikirannya sendiri dan blok pemikiran dari model-model sebelumnya. Claude Fable 5.1 membaca blok dari Claude Opus 5, tetapi Claude Opus 5 tidak dapat membaca blok dari Claude Fable 5.1. Jika model saat ini tidak dapat membaca sebuah blok, API membuangnya dari permintaan tersebut tanpa error. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
-* **Tidak ada yang berubah sebelum blok pemikiran.** "System prompt" (prompt sistem) `system` tingkat atas, `tools`, dan `messages` sebelum blok tersebut adalah "prefix" (prefiks)-nya. Jika prefiks berbeda dari yang Anda kirim saat blok tersebut dihasilkan, blok tersebut dan setiap blok pemikiran setelahnya menjadi tidak valid, dan API menolak permintaan dengan error 400 atau membuang blok yang tidak valid, sesuai pilihan Anda. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+* **Model dapat membaca blok tersebut.** Setiap model membaca blok pemikiran miliknya sendiri dan blok dari sekumpulan model lain yang sudah ditetapkan. Claude Fable 5.1 membaca blok dari Claude Opus 5 dan, di Claude API, dari Claude Opus 5.5; baik Claude Opus 5 maupun Claude Opus 5.5 tidak membaca blok dari Claude Fable 5.1. Jika model saat ini tidak dapat membaca sebuah blok, API membuang blok tersebut dari permintaan itu tanpa error. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+* **Tidak ada yang berubah sebelum blok pemikiran.** Prompt `system` tingkat atas, `tools`, dan `messages` sebelum blok tersebut adalah "prefix" (prefiks) blok itu. Jika prefiks berbeda dari yang Anda kirim saat blok tersebut dihasilkan, blok tersebut dan setiap blok pemikiran setelahnya menjadi tidak valid, dan API akan menolak permintaan dengan error 400 atau membuang blok yang tidak valid, sesuai pilihan Anda. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
-Pemeriksaan model berlaku untuk setiap akun. API memberlakukan pemeriksaan prefiks secara default untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Pada akun yang lebih lama, API memberlakukan pemeriksaan prefiks hanya pada permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. **Model-model berikutnya akan memberlakukan pemeriksaan prefiks untuk semua akun**, jadi jadikan integrasi Anda "append-only" (hanya-tambah) sekarang.
+Pemeriksaan model berlaku untuk setiap akun. API memberlakukan pemeriksaan prefiks secara default untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Pada akun yang lebih lama, API memberlakukan pemeriksaan prefiks hanya pada permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. **Buat integrasi Anda bersifat "append-only" (hanya-tambah) terlepas dari usia akun Anda**, sehingga kode yang sama berfungsi di setiap akun, termasuk akun yang lebih baru yang diberlakukan secara default.
 
 ## Siapa yang perlu mengubah sesuatu
 
@@ -33,14 +33,16 @@ Periksa integrasi Anda jika, di antara dua permintaan dalam satu percakapan, int
 * [Membuang beberapa blok `thinking` dan mempertahankan blok yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned), atau menghapusnya lalu [mengembalikannya nanti](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check)
 * [Menyusun ulang sesi tersimpan dari template](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#faq) alih-alih memutar ulang apa yang telah dikirimnya
 
-Pada akun yang lebih lama, tidak satu pun dari hal ini menghasilkan error kecuali permintaan menetapkan `prefix_mismatch_behavior`, sehingga eksekusi tanpa error dengan kunci Anda sendiri tidak menunjukkan apakah kode Anda terdampak. Jika orang menjalankan alat Anda dengan "API key" (kunci API) mereka sendiri, mereka yang memiliki akun lebih baru akan mendapatkan error 400 sebelum Anda. [Tetapkan `prefix_mismatch_behavior` dalam pengujian Anda](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted) untuk melihat apa yang mereka lihat.
+Pada akun yang lebih lama, tidak satu pun dari hal ini menghasilkan error kecuali permintaan menetapkan `prefix_mismatch_behavior`, sehingga proses yang berjalan tanpa error dengan kunci Anda sendiri tidak menunjukkan apakah kode Anda terdampak. Jika orang lain menjalankan alat Anda dengan kunci API mereka sendiri, mereka yang menggunakan akun lebih baru akan mendapatkan error 400 lebih dulu daripada Anda. Untuk melihat apa yang mereka lihat tanpa mengubah perilaku permintaan Anda, kirim header beta `thinking-binding-controls-2026-08-01`. Pada akun yang lebih lama, setiap respons kemudian menandai blok yang gagal dalam pemeriksaan, dan model tetap membacanya (lihat [Tetapkan perilaku ketidakcocokan dan baca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls)).
 
 ## Beralih model di tengah percakapan
 
 Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran yang dihasilkan oleh satu sama lain dan oleh model Claude sebelumnya. Tidak ada model sebelumnya yang membaca blok pemikiran dari Claude Fable 5.1 atau Claude Mythos 5.1.
 
-* **Percakapan yang naik ke Claude Fable 5.1 mempertahankan penalarannya.** Blok pemikiran model sebelumnya tetap dapat dibaca, sehingga model berpikir seperti biasa sejak giliran pertama setelah peralihan.
-* **Percakapan yang turun ke model sebelumnya kehilangan penalaran Claude Fable 5.1 untuk permintaan tersebut.** Ini terjadi ketika router mengirim giliran ke model yang lebih murah, setelah [fallback penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), atau selama [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca sebelum prompt mencapai model. Blok tersebut tidak ditagih dan tidak dihitung dalam `input_tokens`.
+Claude Opus 5.5 membaca blok pemikiran dari Claude Opus 5 dan model Opus, Sonnet, serta Haiku sebelumnya, tetapi tidak dari model Claude Fable atau Claude Mythos. Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran dari Claude Opus 5.5; tidak ada model lain yang melakukannya. Jadi, percakapan yang berpindah dari Claude Opus 5 ke Claude Opus 5.5 tetap mempertahankan penalarannya, begitu pula percakapan yang berpindah dari Claude Opus 5.5 naik ke Claude Fable 5.1 atau Claude Mythos 5.1 di Claude API. Percakapan yang berpindah dari Claude Fable 5.1 atau Claude Mythos 5.1 ke Claude Opus 5.5, atau dari Claude Opus 5.5 ke model apa pun selain kedua model tersebut, menjalankan giliran setelah peralihan tanpa penalaran model sebelumnya. Blok-blok tersebut dibuang, bukan ditolak, seperti yang dijelaskan di bawah.
+
+* **Percakapan yang berpindah ke Claude Fable 5.1 dari model sebelumnya, atau dari Claude Opus 5.5 di Claude API, tetap mempertahankan penalarannya.** Blok pemikiran dari model sebelumnya tetap dapat dibaca, sehingga model berpikir seperti biasa sejak giliran pertama setelah peralihan.
+* **Percakapan yang berpindah turun ke model sebelumnya kehilangan penalaran Claude Fable 5.1 untuk permintaan tersebut.** Hal ini terjadi ketika router mengirim sebuah giliran ke model yang lebih murah, setelah [fallback penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), atau selama [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca sebelum prompt mencapai model. Blok tersebut tidak ditagih dan tidak dihitung dalam `input_tokens`.
 
 Tetap kirim riwayat lengkap pada setiap permintaan, termasuk blok pemikiran, dan biarkan API membuang apa yang tidak dapat dibaca oleh model saat ini. API tidak pernah mengedit array `messages` Anda, sehingga blok yang dibuang tetap ada dalam riwayat Anda. Ketika riwayat yang sama kembali ke Claude Fable 5.1, bloknya dapat dibaca lagi, bersama dengan pemikiran model sebelumnya. Penalaran hilang selamanya hanya jika klien Anda sendiri yang menghapus blok tersebut, misalnya harness yang menghapus pemikiran saat peralihan model atau menyusun ulang riwayat dari apa yang digunakan setiap model.
 
@@ -64,7 +66,7 @@ Tanpa header tersebut, pembuangan terjadi secara diam-diam. Entri ini bukan bug 
 
 ## Menjaga prefiks tetap tidak berubah
 
-Pada Claude Fable 5.1, blok pemikiran tetap valid hanya selama semua yang Anda kirim sebelumnya tidak berubah pada permintaan berikutnya. Prefiks yang diperiksa memiliki tiga bagian:
+Pada Claude Fable 5.1 dan Claude Opus 5.5, sebuah blok pemikiran tetap valid hanya selama semua yang Anda kirim sebelumnya tidak berubah pada permintaan berikutnya. Prefiks yang diperiksa memiliki tiga bagian:
 
 * Prompt `system` tingkat atas
 * Kumpulan `tools`
@@ -85,7 +87,7 @@ Anda memilihnya dengan `thinking.block_binding.prefix_mismatch_behavior`:
 * **`"error"` (default):** API menolak permintaan dengan 400 `invalid_request_error` yang menyebutkan blok pertama yang gagal.
 * **`"drop_block"`:** API membuang setiap blok yang gagal dan setiap blok pemikiran setelahnya, dan permintaan berhasil. Blok yang dibuang tidak ditagih. Model menjawab giliran tersebut tanpa menggunakan penalaran dari blok yang dibuang, dan cache prompt dimulai ulang pada titik edit. Respons mencantumkan setiap blok yang dibuang dalam `input_transformations` (pada event `message_start` saat streaming) dengan `reason: "prefix_binding_mismatch"`.
 
-`"drop_block"` menjaga permintaan tetap berhasil tetapi tidak memperbaiki edit tersebut. Hitung respons di setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, dan buat peringatan untuknya. Di Message Batches API, item yang tidak menetapkan field tersebut akan membuang blok yang gagal alih-alih menghasilkan error, jadi tetapkan `"error"` secara eksplisit di sana jika Anda ingin item batch gagal.
+`"drop_block"` membuat permintaan tetap berhasil tetapi tidak memperbaiki edit tersebut. Hitung respons dalam setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, dan buat peringatan untuknya. Di Message Batches API, item yang tidak menetapkan field ini tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Tetapkan `"error"` secara eksplisit di sana jika Anda ingin item batch gagal.
 
 Field tersebut dan array `input_transformations` sama-sama memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. [Tetapkan perilaku ketidakcocokan dan baca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls) menunjukkan permintaan tersebut di setiap "software development kit" (kit pengembangan perangkat lunak), atau SDK.
 
@@ -372,44 +374,48 @@ The greatest common divisor of 1071 and 462 is 21.
 Input transformations: 0
 ```
 
-Dengan header beta, setiap respons dari model yang mendukung pemikiran membawa `input_transformations`. Array ini kosong ketika tidak ada yang dibuang. Setiap entri memiliki `type: "thinking_dropped"`, `path` dari blok yang dibuang (misalnya `messages.1.content.0`), dan `reason` berupa `prefix_binding_mismatch` atau `model_binding_mismatch` (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). Abaikan entri yang `type` atau `reason`-nya tidak Anda kenali, karena pemeriksaan di masa mendatang akan menambahkan nilai baru.
+Dengan header beta, setiap respons dari model yang mendukung pemikiran membawa `input_transformations`. Setiap entri menyebutkan satu blok pemikiran berdasarkan `path`-nya (misalnya `messages.1.content.0`) dan memberikan `reason`. Ada dua jenis entri:
 
-Saat [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), array tersebut tiba pada objek `message` dalam event `message_start`. Setelah fallback sisi server di tengah stream, event `message_delta` terakhir membawanya lagi dengan entri dari model yang melayani. Dalam [message batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), item yang bloknya gagal dalam pemeriksaan prefiks dengan `"error"` eksplisit diselesaikan sebagai `errored`, sedangkan item yang tidak menetapkan field tersebut akan membuang blok yang gagal. Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) menjalankan pemeriksaan prefiks yang sama dan mengembalikan 400 yang sama.
+* **`thinking_dropped`:** API membuang blok sebelum model membacanya, dan blok tersebut tidak ditagih. `reason`-nya adalah `prefix_binding_mismatch` atau `model_binding_mismatch` (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)).
+* **`thinking_mismatch_allowed`:** blok gagal dalam pemeriksaan prefiks, tetapi API tidak memberlakukan pemeriksaan tersebut untuk permintaan ini, sehingga blok mencapai model tanpa perubahan dan ditagih. `reason`-nya selalu `prefix_binding_mismatch`. Entri ini hanya muncul pada permintaan di mana API tidak memberlakukan pemeriksaan secara default, seperti permintaan dari akun yang lebih lama (lihat [Kapan API memberlakukan pemeriksaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement)). Menetapkan `prefix_mismatch_behavior` ke salah satu nilai akan mengikutsertakan permintaan dalam pemberlakuan, sehingga permintaan yang menetapkannya tidak pernah mendapatkan entri ini.
+
+Array kosong ketika tidak ada blok yang dibuang dan tidak ada yang gagal dalam pemeriksaan prefiks. Abaikan entri yang `type` atau `reason`-nya tidak Anda kenali, karena pemeriksaan di masa mendatang akan menambahkan nilai baru.
+
+Saat [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), array tiba pada objek `message` dalam event `message_start`. Setelah fallback sisi server di tengah stream, event `message_delta` terakhir membawanya lagi dengan entri dari model yang melayani. Dalam [message batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), item yang bloknya gagal dalam pemeriksaan prefiks dengan `"error"` eksplisit akan berstatus `errored`. Item yang tidak menetapkan field ini tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) menjalankan pemeriksaan prefiks yang sama dan mengembalikan 400 yang sama.
 
 ### Kapan API memberlakukan pemeriksaan
 
-Pemeriksaan prefiks berjalan pada Claude Fable 5.1 untuk akun baru.
+API memberlakukan pemeriksaan prefiks pada Claude Fable 5.1 dan Claude Opus 5.5 untuk akun baru.
 
-* **Akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC:** API memeriksa permintaan Claude Fable 5.1 dan menerapkan `"error"` kecuali Anda menetapkan `"drop_block"`. Definisi akun baru yang sama berlaku untuk Claude API dan platform cloud.
-* **Akun yang lebih lama:** API memeriksa permintaan yang menetapkan `prefix_mismatch_behavior`. Parameter ini mengikutsertakan permintaan, sehingga Anda dapat melihat apa yang dilihat akun baru tanpa membuatnya.
-* **Model-model berikutnya:** setiap akun, pada setiap permintaan.
+* **Akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC:** API memeriksa permintaan Claude Fable 5.1 dan Claude Opus 5.5 dan menerapkan `"error"` kecuali Anda menetapkan `"drop_block"`. Definisi akun baru yang sama berlaku untuk Claude API dan platform cloud.
+* **Akun yang lebih lama:** API memberlakukan pemeriksaan hanya pada permintaan yang menetapkan `prefix_mismatch_behavior`. Menetapkan field tersebut mengikutsertakan permintaan, sehingga Anda dapat melihat apa yang dilihat akun baru tanpa membuatnya. Pada permintaan yang tidak menetapkannya, API tetap menjalankan pemeriksaan tetapi meneruskan blok yang gagal ke model. Dengan header beta, respons mencantumkan masing-masing blok tersebut dalam `input_transformations` sebagai `thinking_mismatch_allowed`, sehingga Anda dapat menemukan edit prefiks tanpa mengubah apa yang diterima model.
 
-Untuk mengetahui di grup mana akun Anda berada, ambil percakapan Claude Fable 5.1 yang berisi blok pemikiran, ubah sesuatu sebelum blok tersebut, dan kirimkan ke Claude Fable 5.1 tanpa header beta atau field `block_binding`. Respons 400 yang menyebutkan header tersebut berarti pemeriksaan diberlakukan secara default pada akun Anda.
+Untuk mengetahui kelompok mana akun Anda berada, ambil percakapan Claude Fable 5.1 yang berisi blok pemikiran, ubah sesuatu sebelum blok tersebut, lalu kirimkan ke Claude Fable 5.1 tanpa header beta atau field `block_binding`. Respons 400 yang menyebutkan header tersebut berarti akun Anda diberlakukan secara default. Respons 200 berarti tidak. Untuk memastikan, kirim permintaan yang sama lagi dengan header beta, tetap tanpa `block_binding`: respons mencantumkan setiap blok pemikiran setelah edit Anda dalam `input_transformations` sebagai `thinking_mismatch_allowed`.
 
 ### Apa yang dihitung sebagai edit
 
 Setiap baris membandingkan dua permintaan yang berurutan:
 
-| Perubahan di antara permintaan                                                                                                                                                                             | Blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Menambahkan pesan di akhir                                                                                                                                                                                 | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Menambahkan alat dengan `defer_loading: true` yang belum direferensikan oleh apa pun                                                                                                                       | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Menghapus blok `thinking` dari awal riwayat, dari akhir, atau semuanya                                                                                                                                     | Valid (model kehilangan penalaran tersebut)                                                                                                                                                                                                                                                                                                                                                                          |
-| Mengubah parameter permintaan apa pun di luar `system`, `tools`, dan `messages` (`effort`, `max_tokens`, `output_config`, `tool_choice`, `metadata`, `thinking.display`, dan seterusnya)                   | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Menambahkan, memindahkan, atau menghapus penanda `cache_control`                                                                                                                                           | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| URL bertanda tangan yang berotasi dan mengembalikan byte yang sama                                                                                                                                         | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Compaction atau "context editing" (pengeditan konteks) sisi server menghapus atau mengganti konten                                                                                                         | Valid (pemeriksaan membandingkan apa yang Anda kirim, bukan salinan yang diedit server)                                                                                                                                                                                                                                                                                                                              |
-| [Turn-scoped system message](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders) (pesan sistem cakupan giliran) yang sudah dibersihkan dan dibiarkan di tempatnya | Valid                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Mengedit, mengurutkan ulang, atau menghapus pesan `user`, `assistant`, atau `system` sebelumnya                                                                                                            | Tidak valid, kecuali ketika blok bertanda tangan dari [on-demand compaction](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) (compaction sesuai permintaan) menggantikan pesan yang diringkasnya, dengan ketentuan dalam [Compaction yang mempertahankan bagian akhir](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#keep-tail-compaction) |
-| Merender ulang konteks yang Anda taruh di pesan pengguna pertama dengan nilai yang berubah                                                                                                                 | Tidak valid untuk setiap blok pemikiran                                                                                                                                                                                                                                                                                                                                                                              |
-| Menghapus atau memperpendek `tool_result` sebelumnya, meng-encode ulang gambar sebelumnya, atau mengubah input `tool_use` sebelumnya                                                                       | Tidak valid untuk setiap blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                                                   |
-| Menambahkan blok teks ke giliran pengguna sebelumnya, atau menghapus blok yang Anda tambahkan terakhir kali                                                                                                | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Mengubah string atau blok `system` tingkat atas                                                                                                                                                            | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Menambahkan, menghapus, mengganti nama, atau mengedit alat di `tools`                                                                                                                                      | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Menghapus blok `thinking` dari tengah riwayat dan mempertahankan blok yang lebih baru                                                                                                                      | Tidak valid untuk setiap blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                                                   |
-| Mengembalikan blok `thinking` yang Anda hapus pada permintaan sebelumnya                                                                                                                                   | Tidak valid untuk blok pemikiran yang dihasilkan selama blok itu tidak ada                                                                                                                                                                                                                                                                                                                                           |
-| URL gambar atau dokumen yang mengembalikan byte berbeda pada permintaan berikutnya                                                                                                                         | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Pesan cakupan giliran yang sama dihapus atau diubah kata-katanya pada permintaan berikutnya                                                                                                                | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Perubahan di antara permintaan                                                                                                                                                           | Blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Menambahkan pesan di akhir                                                                                                                                                               | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| Menambahkan alat dengan `defer_loading: true` yang belum direferensikan oleh apa pun                                                                                                     | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| Menghapus blok `thinking` dari awal riwayat, dari akhir, atau semuanya                                                                                                                   | Valid (model kehilangan penalaran tersebut)                                                                                                                                                                                                                                                                                                                                                  |
+| Mengubah parameter permintaan apa pun di luar `system`, `tools`, dan `messages` (`effort`, `max_tokens`, `output_config`, `tool_choice`, `metadata`, `thinking.display`, dan sebagainya) | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| Menambahkan, memindahkan, atau menghapus penanda `cache_control`                                                                                                                         | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| URL bertanda tangan yang berotasi dan mengembalikan byte yang sama                                                                                                                       | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| Compaction atau "context editing" (pengeditan konteks) sisi server menghapus atau mengganti konten                                                                                       | Valid (pemeriksaan membandingkan apa yang Anda kirim, bukan salinan yang diedit server)                                                                                                                                                                                                                                                                                                      |
+| [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders) yang sudah dibersihkan dan dibiarkan di tempatnya         | Valid                                                                                                                                                                                                                                                                                                                                                                                        |
+| Mengedit, mengurutkan ulang, atau menghapus pesan `user`, `assistant`, atau `system` sebelumnya                                                                                          | Tidak valid, kecuali ketika blok bertanda tangan dari [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) menggantikan pesan yang diringkasnya, dengan [syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) |
+| Merender ulang konteks yang Anda masukkan dalam pesan pengguna pertama dengan nilai yang berubah                                                                                         | Tidak valid untuk setiap blok pemikiran                                                                                                                                                                                                                                                                                                                                                      |
+| Menghapus atau memperpendek `tool_result` sebelumnya, meng-encode ulang gambar sebelumnya, atau mengubah input `tool_use` sebelumnya                                                     | Tidak valid untuk setiap blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                           |
+| Menambahkan blok teks ke giliran pengguna sebelumnya, atau menghapus blok yang Anda tambahkan sebelumnya                                                                                 | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                  |
+| Mengubah string atau blok `system` tingkat atas                                                                                                                                          | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                  |
+| Menambahkan, menghapus, mengganti nama, atau mengedit alat di `tools`                                                                                                                    | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                  |
+| Menghapus blok `thinking` dari tengah riwayat dan mempertahankan blok setelahnya                                                                                                         | Tidak valid untuk setiap blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                           |
+| Memasukkan kembali blok `thinking` yang Anda hapus pada permintaan sebelumnya                                                                                                            | Tidak valid untuk blok pemikiran yang dihasilkan selama blok itu tidak ada                                                                                                                                                                                                                                                                                                                   |
+| URL gambar atau dokumen yang mengembalikan byte berbeda pada permintaan berikutnya                                                                                                       | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                  |
+| Pesan berlingkup giliran yang sama dihapus atau diubah kata-katanya pada permintaan berikutnya                                                                                           | Tidak valid                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Periksa apakah kode Anda mengedit prefiks
 
@@ -788,27 +794,441 @@ Dua giliran biasa jarang menunjukkan masalah. Jalankan sesi melalui setiap skena
 * Peralihan ke model lain dan kembali lagi
 * Penyimpanan, restart, dan melanjutkan sesi pada tanggal berikutnya
 
+Pada akun yang lebih lama, Anda juga dapat memantau lalu lintas produksi tanpa ikut serta dalam pemberlakuan: kirim header beta, jangan sertakan `block_binding`, dan catat `input_transformations`. Mengirim header saja tidak mengubah apa yang diterima model. Setiap blok pemikiran yang muncul setelah konten yang Anda edit gagal dalam pemeriksaan dan mendapatkan entri `thinking_mismatch_allowed` sendiri, dengan field `path` dan `reason` yang sama seperti entri `thinking_dropped`. Blok sebelum edit tetap lolos. Edit pada `system` atau `tools` berada sebelum setiap blok, sehingga menggagalkan setiap blok pemikiran dalam permintaan. Satu entri terlihat seperti ini:
+
+```json
+{
+  "input_transformations": [
+    {
+      "type": "thinking_mismatch_allowed",
+      "path": "messages.1.content.0",
+      "reason": "prefix_binding_mismatch"
+    }
+  ]
+}
+```
+
+Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), karena akun yang lebih baru akan menolak permintaan ketiganya dengan 400. Contoh ini mengirim header tanpa `block_binding` dan memperluas sesi sebelumnya dengan permintaan ketiga yang menambahkan prompt sistem, yang secara sengaja mengubah prefiks. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dan blok yang ditandai:
+
+<CodeGroup>
+  ```bash cURL
+  # Menghitung blok thinking dalam respons dan blok yang gagal dalam pemeriksaan prefiks
+  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
+    "flagged: \([.input_transformations[] |
+      select(.type == "thinking_mismatch_allowed")] | length)"'
+
+  FIRST=$(curl -s https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
+    -d '{
+      "model": "claude-fable-5-1",
+      "max_tokens": 16000,
+      "thinking": { "type": "adaptive" },
+      "messages": [
+        {
+          "role": "user",
+          "content": "How many positive integers below 500 have exactly 6 positive divisors?"
+        }
+      ]
+    }')
+  echo "$FIRST" | jq -r "$COUNTS"
+
+  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
+  MESSAGES=$(jq -n --argjson first "$FIRST" '[
+    {
+      role: "user",
+      content: "How many positive integers below 500 have exactly 6 positive divisors?"
+    },
+    { role: "assistant", content: $first.content },
+    { role: "user", content: "How many of those are odd?" }
+  ]')
+
+  SECOND=$(jq -n --argjson messages "$MESSAGES" '{
+    model: "claude-fable-5-1",
+    max_tokens: 16000,
+    thinking: { type: "adaptive" },
+    messages: $messages
+  }' | curl -s https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
+    -d @-)
+  echo "$SECOND" | jq -r "$COUNTS"
+
+  # Giliran 3: hanya permintaan ini yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+  jq -n --argjson messages "$MESSAGES" --argjson second "$SECOND" '{
+    model: "claude-fable-5-1",
+    max_tokens: 16000,
+    thinking: { type: "adaptive" },
+    system: "Answer briefly.",
+    messages: ($messages + [
+      { role: "assistant", content: $second.content },
+      { role: "user", content: "And how many of the odd ones are below 100?" }
+    ])
+  }' | curl -s https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
+    -d @- | jq -r "$COUNTS"
+  ```
+
+  ```bash CLI
+  # Menghitung blok thinking dalam respons dan blok yang gagal dalam pemeriksaan prefiks
+  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
+    "flagged: \([.input_transformations[] |
+      select(.type == "thinking_mismatch_allowed")] | length)"'
+
+  FIRST=$(ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
+    --format json <<'YAML'
+  model: claude-fable-5-1
+  max_tokens: 16000
+  thinking:
+    type: adaptive
+  messages:
+    - role: user
+      content: How many positive integers below 500 have exactly 6 positive divisors?
+  YAML
+  )
+  echo "$FIRST" | jq -r "$COUNTS"
+
+  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
+  SECOND=$(ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
+    --format json <<YAML
+  model: claude-fable-5-1
+  max_tokens: 16000
+  thinking:
+    type: adaptive
+  messages:
+    - role: user
+      content: How many positive integers below 500 have exactly 6 positive divisors?
+    - role: assistant
+      content: $(echo "$FIRST" | jq -c .content)
+    - role: user
+      content: How many of those are odd?
+  YAML
+  )
+  echo "$SECOND" | jq -r "$COUNTS"
+
+  # Giliran 3: hanya permintaan ini yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+  ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
+    --format json <<YAML | jq -r "$COUNTS"
+  model: claude-fable-5-1
+  max_tokens: 16000
+  thinking:
+    type: adaptive
+  system: Answer briefly.
+  messages:
+    - role: user
+      content: How many positive integers below 500 have exactly 6 positive divisors?
+    - role: assistant
+      content: $(echo "$FIRST" | jq -c .content)
+    - role: user
+      content: How many of those are odd?
+    - role: assistant
+      content: $(echo "$SECOND" | jq -c .content)
+    - role: user
+      content: And how many of the odd ones are below 100?
+  YAML
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  user_turns = [
+      "How many positive integers below 500 have exactly 6 positive divisors?",
+      "How many of those are odd?",
+      "And how many of the odd ones are below 100?",
+  ]
+
+  # messages bertambah di setiap giliran: tiap giliran assistant dikirim kembali persis seperti yang dikembalikan
+  messages = []
+  for turn, user_turn in enumerate(user_turns, start=1):
+      messages.append({"role": "user", "content": user_turn})
+      response = client.beta.messages.create(
+          model="claude-fable-5-1",
+          max_tokens=16000,
+          thinking={"type": "adaptive"},
+          # Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+          system="Answer briefly." if turn == len(user_turns) else anthropic.omit,
+          messages=messages,
+          betas=["thinking-binding-controls-2026-08-01"],
+      )
+      messages.append({"role": "assistant", "content": response.content})
+      thinking_blocks = sum(block.type == "thinking" for block in response.content)
+      flagged = sum(
+          transformation.type == "thinking_mismatch_allowed"
+          for transformation in response.input_transformations or []
+      )
+      print(f"thinking blocks: {thinking_blocks}, flagged: {flagged}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const userTurns = [
+    "How many positive integers below 500 have exactly 6 positive divisors?",
+    "How many of those are odd?",
+    "And how many of the odd ones are below 100?"
+  ];
+
+  // messages bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
+  const messages: Anthropic.Beta.BetaMessageParam[] = [];
+  for (const [turnIndex, userTurn] of userTurns.entries()) {
+    messages.push({ role: "user", content: userTurn });
+    const response = await client.beta.messages.create({
+      model: "claude-fable-5-1",
+      max_tokens: 16000,
+      thinking: { type: "adaptive" },
+      // Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+      system: turnIndex === userTurns.length - 1 ? "Answer briefly." : undefined,
+      messages,
+      betas: ["thinking-binding-controls-2026-08-01"]
+    });
+    messages.push({ role: "assistant", content: response.content });
+    const thinkingBlocks = response.content.filter((block) => block.type === "thinking");
+    const flagged = (response.input_transformations ?? []).filter(
+      (transformation) => transformation.type === "thinking_mismatch_allowed"
+    );
+    console.log(`thinking blocks: ${thinkingBlocks.length}, flagged: ${flagged.length}`);
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  string[] userTurns =
+  [
+      "How many positive integers below 500 have exactly 6 positive divisors?",
+      "How many of those are odd?",
+      "And how many of the odd ones are below 100?",
+  ];
+
+  // messages bertambah di setiap giliran: tiap giliran assistant dikirim kembali persis seperti yang dikembalikan
+  List<BetaMessageParam> messages = [];
+  for (var turnIndex = 0; turnIndex < userTurns.Length; turnIndex++)
+  {
+      messages.Add(new() { Role = Role.User, Content = userTurns[turnIndex] });
+      var response = await client.Beta.Messages.Create(
+          new()
+          {
+              Model = "claude-fable-5-1",
+              MaxTokens = 16000,
+              Thinking = new BetaThinkingConfigAdaptive(),
+              // Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+              System = turnIndex == userTurns.Length - 1 ? new("Answer briefly.") : null,
+              Messages = messages,
+              Betas = [AnthropicBeta.ThinkingBindingControls2026_08_01],
+          }
+      );
+      messages.Add(new()
+      {
+          Role = Role.Assistant,
+          Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
+      });
+      var thinkingBlocks = response.Content.Count(block => block.TryPickThinking(out _));
+      var flagged = response.InputTransformations?.Count(transformation =>
+          transformation.TryPickThinkingMismatchAllowed(out _)
+      ) ?? 0;
+      Console.WriteLine($"thinking blocks: {thinkingBlocks}, flagged: {flagged}");
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  userTurns := []string{
+  	"How many positive integers below 500 have exactly 6 positive divisors?",
+  	"How many of those are odd?",
+  	"And how many of the odd ones are below 100?",
+  }
+
+  // messages bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
+  messages := []anthropic.BetaMessageParam{}
+  for i, userTurn := range userTurns {
+  	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(userTurn)))
+  	// Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+  	var system []anthropic.BetaTextBlockParam
+  	if i == len(userTurns)-1 {
+  		system = []anthropic.BetaTextBlockParam{{Text: "Answer briefly."}}
+  	}
+  	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  		Model:     "claude-fable-5-1",
+  		MaxTokens: 16000,
+  		Thinking: anthropic.BetaThinkingConfigParamUnion{
+  			OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{},
+  		},
+  		System:   system,
+  		Messages: messages,
+  		Betas:    []anthropic.AnthropicBeta{anthropic.AnthropicBetaThinkingBindingControls2026_08_01},
+  	})
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+  	messages = append(messages, response.ToParam())
+  	thinkingBlocks := 0
+  	for _, block := range response.Content {
+  		if block.Type == "thinking" {
+  			thinkingBlocks++
+  		}
+  	}
+  	flagged := 0
+  	for _, transformation := range response.InputTransformations {
+  		if transformation.Type == "thinking_mismatch_allowed" {
+  			flagged++
+  		}
+  	}
+  	fmt.Printf("thinking blocks: %d, flagged: %d\n", thinkingBlocks, flagged)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
+  import com.anthropic.models.beta.messages.BetaContentBlock;
+  import com.anthropic.models.beta.messages.BetaInputTransformation;
+  import com.anthropic.models.beta.messages.BetaMessage;
+  import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      List<String> userTurns = List.of(
+          "How many positive integers below 500 have exactly 6 positive divisors?",
+          "How many of those are odd?",
+          "And how many of the odd ones are below 100?");
+
+      // Daftar pesan builder bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
+      MessageCreateParams.Builder conversation = MessageCreateParams.builder()
+          .model("claude-fable-5-1")
+          .maxTokens(16000L)
+          .thinking(BetaThinkingConfigAdaptive.builder().build())
+          .addBeta(AnthropicBeta.THINKING_BINDING_CONTROLS_2026_08_01);
+
+      for (int turnIndex = 0; turnIndex < userTurns.size(); turnIndex++) {
+          if (turnIndex == userTurns.size() - 1) {
+              // Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+              conversation.system("Answer briefly.");
+          }
+          conversation.addUserMessage(userTurns.get(turnIndex));
+          BetaMessage response = client.beta().messages().create(conversation.build());
+          conversation.addMessage(response);
+          long thinkingBlocks = response.content().stream()
+              .filter(BetaContentBlock::isThinking)
+              .count();
+          long flagged = response.inputTransformations().stream()
+              .flatMap(List::stream)
+              .filter(BetaInputTransformation::isThinkingMismatchAllowed)
+              .count();
+          IO.println("thinking blocks: " + thinkingBlocks + ", flagged: " + flagged);
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  use Anthropic\Beta\Messages\BetaThinkingConfigAdaptive;
+  use Anthropic\Beta\Messages\BetaThinkingMismatchAllowedInputTransformation;
+  use Anthropic\Client;
+
+  $client = new Client();
+
+  $userTurns = [
+      'How many positive integers below 500 have exactly 6 positive divisors?',
+      'How many of those are odd?',
+      'And how many of the odd ones are below 100?',
+  ];
+
+  // $messages bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
+  $messages = [];
+  foreach ($userTurns as $turnIndex => $userTurn) {
+      $messages[] = ['role' => 'user', 'content' => $userTurn];
+      $response = $client->beta->messages->create(
+          model: 'claude-fable-5-1',
+          maxTokens: 16000,
+          thinking: BetaThinkingConfigAdaptive::with(),
+          // Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+          system: $turnIndex === array_key_last($userTurns) ? 'Answer briefly.' : null,
+          messages: $messages,
+          betas: [AnthropicBeta::THINKING_BINDING_CONTROLS_2026_08_01],
+      );
+      $messages[] = ['role' => 'assistant', 'content' => $response->content];
+      $thinkingBlocks = array_filter($response->content, fn ($block) => $block->type === 'thinking');
+      $flagged = array_filter(
+          $response->inputTransformations ?? [],
+          fn ($transformation) => $transformation instanceof BetaThinkingMismatchAllowedInputTransformation,
+      );
+      echo 'thinking blocks: ', count($thinkingBlocks), ', flagged: ', count($flagged), PHP_EOL;
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  user_turns = [
+    "How many positive integers below 500 have exactly 6 positive divisors?",
+    "How many of those are odd?",
+    "And how many of the odd ones are below 100?"
+  ]
+
+  # messages bertambah di setiap giliran: tiap giliran assistant dikirim kembali persis seperti yang dikembalikan
+  messages = []
+  user_turns.each_with_index do |user_turn, turn_index|
+    messages << {role: "user", content: user_turn}
+    # Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
+    system_param = (turn_index == user_turns.length - 1) ? {system_: "Answer briefly."} : {}
+    response = client.beta.messages.create(
+      model: "claude-fable-5-1",
+      max_tokens: 16_000,
+      thinking: {type: "adaptive"},
+      messages: messages,
+      betas: [Anthropic::AnthropicBeta::THINKING_BINDING_CONTROLS_2026_08_01],
+      **system_param
+    )
+    messages << {role: "assistant", content: response.content}
+    thinking_blocks = response.content.count { |block| block.type == :thinking }
+    flagged = (response.input_transformations || []).count do |transformation|
+      transformation.type == :thinking_mismatch_allowed
+    end
+    puts "thinking blocks: #{thinking_blocks}, flagged: #{flagged}"
+  end
+  ```
+</CodeGroup>
+
+```text Output wrap
+thinking blocks: 1, flagged: 0
+thinking blocks: 1, flagged: 0
+thinking blocks: 1, flagged: 2
+```
+
+Respons ketiga menandai setiap blok pemikiran dari giliran sebelumnya, satu per giliran dalam proses ini, karena prompt sistem yang baru berada sebelum semuanya. Model tetap membacanya.
+
+Tangani entri ini seperti Anda menangani pembuangan `prefix_binding_mismatch`. Edit berada sebelum blok pertama yang tercantum: bandingkan `system`, `tools`, dan `messages` hingga `path` blok tersebut dengan permintaan sebelumnya untuk menemukannya, lalu ganti dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Pada akun baru, atau pada permintaan apa pun yang menetapkan `prefix_mismatch_behavior`, API justru menolak permintaan atau membuang blok yang gagal. Entri-entri ini adalah batas bawah dari apa yang akan dihapus oleh pemberlakuan: dengan `"drop_block"`, blok yang gagal juga ikut membuang sisa blok pemikiran pada giliran tersebut, dan menghapus satu blok dapat membuat blok berikutnya ikut gagal. Ketika API hanya mencatat pemeriksaan, API menilai setiap blok secara terpisah dan hanya mencantumkan blok yang memang gagal.
+
 ## Melakukan perubahan tanpa mengedit prefiks
 
 Setiap edit prefiks yang umum memiliki pengganti yang memberikan informasi yang sama kepada model dan membiarkan byte sebelumnya tidak berubah, sehingga pemikiran berikutnya tetap valid. Temukan edit yang dilakukan kode Anda saat ini di kolom pertama:
 
-| Alih-alih                                                                                                                       | Gunakan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Header beta                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Menyusun ulang prompt `system` tingkat atas                                                                                     | [Mid-conversation system message](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions) (pesan sistem di tengah percakapan)                                                                                                                                                                                                                                                                                                                                                                   | Tidak ada                                                                 |
-| Merender ulang konteks dalam pesan pengguna pertama Anda (lingkungan, tanggal, memori, instruksi proyek) pada setiap permintaan | Render sekali dan kirim ulang tanpa perubahan. Ketika sesuatu berubah, [taruh versi baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context)                                                                                                                                                                                                                                                                                                                            | Tidak ada                                                                 |
-| Menghapus atau memperpendek konten `tool_result` lama, atau meng-encode ulang gambar lama, secara langsung di tempatnya         | Perpendek hasil alat atau perkecil resolusi gambar sebelum pertama kali Anda mengirimkannya, bukan setelahnya. Untuk menghapus hasil lama nanti, [pangkas konteks di server](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) dengan `clear_tool_uses_20250919`                                                                                                                                                                                                                      | `context-management-2025-06-27`                                           |
-| Menyisipkan pengingat dan menghapusnya pada permintaan berikutnya                                                               | [Pesan sistem cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders) (`clear_at: "next_user_message"`)                                                                                                                                                                                                                                                                                                                                                                      | `mid-conversation-system-clear-at-2026-08-21`                             |
-| Menambahkan atau menghapus entri di `tools`                                                                                     | [Blok `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes)                                                                                                                                                                                                                                                                                                                                                                                                   | `mid-conversation-tool-changes-2026-07-01`                                |
-| Mengubah `output_config.effort` tingkat atas (memulai ulang cache, tidak memengaruhi pemikiran)                                 | [`output_config` per pesan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#effort-changes)                                                                                                                                                                                                                                                                                                                                                                                                               | `mid-conversation-output-config-2026-07-01`                               |
-| Membuang atau meringkas giliran lama di klien                                                                                   | [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) untuk mempertahankan giliran terbaru beserta pemikirannya, [compaction atau pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) sisi server lainnya, atau [compaction sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client) yang tidak mempertahankan pemikiran usang | `compact-2026-09-04` (tidak tersedia di Amazon Bedrock atau Google Cloud) |
-| URL gambar atau dokumen yang byte-nya berubah di antara permintaan                                                              | [`file_id` dari Files API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#files-by-id), atau base64                                                                                                                                                                                                                                                                                                                                                                                                      | Tidak ada                                                                 |
+| Alih-alih                                                                                                                       | Gunakan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Header beta                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Menyusun ulang prompt `system` tingkat atas                                                                                     | [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions)                                                                                                                                                                                                                                                                                                                                                                                  | Tidak ada                                                                                                                                                                                                                                                              |
+| Merender ulang konteks dalam pesan pengguna pertama Anda (lingkungan, tanggal, memori, instruksi proyek) pada setiap permintaan | Render sekali dan kirim ulang tanpa perubahan. Ketika sesuatu berubah, [masukkan versi baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context)                                                                                                                                                                                                                                                                                                      | Tidak ada                                                                                                                                                                                                                                                              |
+| Menghapus atau memperpendek konten `tool_result` lama, atau meng-encode ulang gambar lama, di tempatnya                         | Perpendek hasil alat atau perkecil resolusi gambar sebelum pertama kali Anda mengirimkannya, bukan setelahnya. Untuk menghapus hasil lama nanti, [pangkas konteks di server](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) dengan `clear_tool_uses_20250919`                                                                                                                                                                                                   | `context-management-2025-06-27`                                                                                                                                                                                                                                        |
+| Menyisipkan pengingat dan menghapusnya pada permintaan berikutnya                                                               | [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders) (`clear_at: "next_user_message"`)                                                                                                                                                                                                                                                                                                                                                | `mid-conversation-system-clear-at-2026-08-21`                                                                                                                                                                                                                          |
+| Menambahkan atau menghapus entri di `tools`                                                                                     | [Blok `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes)                                                                                                                                                                                                                                                                                                                                                                                | `inline-tools-2026-09-15` (tambahkan `mcp-client-2026-09-15` ketika alat berasal dari server MCP yang terhubung melalui konektor MCP), atau `mid-conversation-tool-changes-2026-07-01` yang lebih lama, yang berfungsi di Claude API, Amazon Bedrock, dan Google Cloud |
+| Mengubah `output_config.effort` tingkat atas (memulai ulang cache, tidak memengaruhi pemikiran)                                 | [`output_config` per pesan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#effort-changes)                                                                                                                                                                                                                                                                                                                                                                                            | `mid-conversation-output-config-2026-07-01`                                                                                                                                                                                                                            |
+| Membuang atau meringkas giliran lama di sisi klien                                                                              | [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) untuk mempertahankan giliran terbaru beserta pemikirannya, [compaction atau pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) sisi server lainnya, atau [compaction sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client) yang tidak mempertahankan pemikiran usang | `compact-2026-09-04`                                                                                                                                                                                                                                                   |
+| URL gambar atau dokumen yang byte-nya berubah di antara permintaan                                                              | [`file_id` dari Files API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#files-by-id), atau base64                                                                                                                                                                                                                                                                                                                                                                                   | Tidak ada                                                                                                                                                                                                                                                              |
 
 Semua ini mengasumsikan Anda [mengirim kembali giliran asisten persis seperti yang dikembalikan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned). Pesan sistem di tengah percakapan, pesan sistem cakupan giliran, dan perubahan alat tidak tersedia di setiap model: [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) mencantumkan model yang menerimanya. Jika kode Anda melayani beberapa model, tetap edit prompt `system` tingkat atas untuk model yang tidak menerimanya.
 
 Untuk menggunakan beberapa beta dalam satu permintaan, gabungkan nilainya dalam satu header `anthropic-beta`. Nama beta sama di Amazon Bedrock dan Google Cloud di mana pun beta tersebut tersedia di sana (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)):
 
 ```text wrap
-anthropic-beta: thinking-binding-controls-2026-08-01,mid-conversation-system-clear-at-2026-08-21,mid-conversation-tool-changes-2026-07-01
+anthropic-beta: thinking-binding-controls-2026-08-01,mid-conversation-system-clear-at-2026-08-21,inline-tools-2026-09-15
 ```
 
 ### Kirim kembali giliran asisten persis seperti yang dikembalikan
@@ -905,7 +1325,16 @@ Pesan pengguna yang hanya berisi blok `tool_result` dihitung sebagai "next user 
 
 ### Menambahkan atau menghapus alat dengan `tool_addition` dan `tool_removal`
 
-Mengedit array `tools` di tengah sesi membuat blok pemikiran yang dipertahankan menjadi tidak valid. Sebagai gantinya, deklarasikan setiap alat yang mungkin dibutuhkan sesi di `tools` pada permintaan pertama dan jangan pernah mengubah array tersebut. Untuk mengubah alat mana yang dapat digunakan model mulai dari titik tertentu, tambahkan pesan `role: "system"` yang membawa blok `tool_removal` atau `tool_addition`. Ini adalah [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) dan memerlukan header beta `mid-conversation-tool-changes-2026-07-01`. Misalnya, untuk menarik alat berbahaya setelah peralihan mode:
+Mengedit array `tools` di tengah sesi membuat blok pemikiran yang dipertahankan menjadi tidak valid. Biarkan array tersebut seperti saat pertama kali Anda mengirimkannya. Untuk mengubah alat yang dapat digunakan model, tambahkan pesan `role: "system"` yang membawa blok `tool_addition` atau `tool_removal`. Ini adalah [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) dan memerlukan header beta `inline-tools-2026-09-15`, yang tersedia di Claude API. Header lama `mid-conversation-tool-changes-2026-07-01` masih berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Google Cloud.
+
+Anda memiliki dua cara untuk menggunakan blok-blok ini:
+
+* **Deklarasikan setiap alat di awal.** Taruh setiap alat yang mungkin dibutuhkan sesi di `tools` pada permintaan pertama, dengan `defer_loading: true` pada alat yang belum boleh dilihat model. Kemudian aktifkan dan nonaktifkan alat dengan blok `tool_addition` dan `tool_removal` yang menyebutkan namanya.
+* **Mulai dengan snapshot dan tambahkan alat seiring berjalannya sesi.** Taruh alat yang Anda ketahui di `tools` pada permintaan pertama. Ketika alat baru muncul, definisikan alat tersebut di dalam blok `tool_addition` alih-alih mengedit `tools`.
+
+Dengan cara mana pun, `tools` tidak pernah berubah, sehingga pemikiran sebelumnya tetap valid dan cache prompt tetap hit, dengan satu pengecualian yang dicatat di bawah.
+
+Misalnya, untuk menarik alat berbahaya setelah peralihan mode:
 
 ```json
 {
@@ -917,7 +1346,7 @@ Mengedit array `tools` di tengah sesi membuat blok pemikiran yang dipertahankan 
 }
 ```
 
-Untuk menawarkan alat di kemudian hari, deklarasikan alat tersebut di `tools` dengan `defer_loading: true` agar model tidak melihatnya pada awalnya. Ketika alat tersebut tersedia, tambahkan blok `tool_addition`:
+Untuk mengaktifkan alat yang Anda deklarasikan dengan `defer_loading: true`, tambahkan blok `tool_addition` yang menyebutkan namanya:
 
 ```json
 {
@@ -929,7 +1358,36 @@ Untuk menawarkan alat di kemudian hari, deklarasikan alat tersebut di `tools` de
 }
 ```
 
-Terkadang Anda tidak dapat mendeklarasikan alat di awal karena Anda belum mengetahui skemanya. Server MCP yang ditemukan saat runtime adalah kasus yang umum. Tambahkan alat tersebut ke `tools` dengan `defer_loading: true`, lalu tawarkan dengan blok `tool_addition`. Menambahkan alat yang ditangguhkan itu aman: pemeriksaan prefiks mengabaikan alat yang ditangguhkan hingga blok `tool_addition` mereferensikannya, sehingga pemikiran sebelumnya tetap valid. Menambahkan alat tanpa `defer_loading: true` mengubah prefiks dan membuat pemikiran sebelumnya tidak valid.
+Terkadang Anda tidak dapat mendeklarasikan alat di awal karena Anda belum mengetahui skemanya: alat yang ditemukan aplikasi Anda saat runtime, atau server MCP yang terhubung setelah giliran pertama. Definisikan alat tersebut di dalam blok `tool_addition` alih-alih menyentuh `tools`. Dengan `inline-tools-2026-09-15`, `tool` pada blok dapat berupa `{"type": "tool_definition", "definition": {...}}`, yang membawa entri yang sama dengan yang akan Anda taruh di `tools`:
+
+```json
+{
+  "role": "system",
+  "content": [
+    {
+      "type": "tool_addition",
+      "tool": {
+        "type": "tool_definition",
+        "definition": {
+          "name": "db_query",
+          "description": "Run a read-only SQL query against the analytics database.",
+          "input_schema": {
+            "type": "object",
+            "properties": { "sql": { "type": "string" } },
+            "required": ["sql"]
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+Alat baru tiba di `messages`, `tools` tidak pernah berubah, dan pemikiran sebelumnya tetap valid. Pertahankan setidaknya satu alat tanpa `defer_loading: true` di `tools`: jika setiap alat di sana ditangguhkan, alat pertama yang Anda definisikan dengan cara ini akan menyebabkan satu cache miss prompt penuh.
+
+Jika API terhubung ke server MCP untuk Anda melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), kirim juga `mcp-client-2026-09-15`. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. `definition` pada blok kemudian dapat berupa `mcp_toolset` untuk server yang tercantum di `mcp_servers`. Ketika API harus mengambil daftar alat sebuah server, respons dimulai dengan blok `mcp_tool_listing` untuk server tersebut. Kirim kembali blok itu tanpa perubahan bersama sisa giliran asisten, dan tetap kirim `mcp-client-2026-09-15` pada setiap permintaan berikutnya yang membawanya. Blok tersebut mengunci toolset ke daftar itu, sehingga API tidak menghubungi server lagi untuk toolset tersebut. Fitur konektor MCP ini tersedia di Claude API.
+
+Dengan hanya header yang lebih lama, Anda masih dapat menambahkan alat yang Anda ketahui di tengah sesi ke `tools` dengan `defer_loading: true`, lalu menawarkannya dengan blok `tool_addition`. Itu aman karena pemeriksaan prefiks mengabaikan alat yang ditangguhkan hingga blok `tool_addition` mereferensikannya. Menambahkan alat tanpa `defer_loading: true` mengubah prefiks dan membuat pemikiran sebelumnya tidak valid.
 
 Pesan `role: "system"` yang membawa blok-blok ini menjadi bagian dari prefiks untuk pemikiran berikutnya. Biarkan pesan tersebut di tempatnya pada permintaan berikutnya.
 
@@ -947,12 +1405,13 @@ Level baru berlaku mulai giliran `user` berikutnya. Setelah dikirim, pesan terse
 
 Edit prefiks umum lainnya adalah pemangkasan sisi klien: membuang atau meringkas giliran terlama dan mempertahankan giliran terbaru secara verbatim. Blok pemikiran dari giliran yang dipertahankan dihasilkan saat riwayat yang dihapus masih ada, sehingga blok tersebut gagal dalam pemeriksaan. Padanan sisi server tidak dihitung sebagai edit, karena pemeriksaan membandingkan percakapan sebagaimana yang Anda kirim:
 
-* [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) meringkas giliran lama menjadi blok compaction ketika konteks mendekati ambang batas yang Anda tetapkan, dan prefiks yang diperiksa dimulai ulang dari blok tersebut. [Parameter `instructions`](https://platform.claude.com/docs/id/build-with-claude/compaction#custom-summarization-instructions)-nya menerima prompt peringkasan Anda sendiri, seperti "pertahankan setiap ticker, ukuran posisi, dan asumsi yang dinyatakan". [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter) (beta) mengembalikan ringkasan dari permintaan terpisah, yang dapat [berjalan di latar belakang](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#background-compaction). Kirim `"compaction": {"type": "summarize"}` dalam body permintaan, dan respons akan membawa satu blok `compaction`, yang berisi ringkasan dan signature, alih-alih balasan. Compaction sesuai permintaan tersedia di Claude API tetapi tidak di Amazon Bedrock atau Google Cloud, dan memerlukan header beta `compact-2026-09-04` pada permintaan ringkasan dan pada setiap permintaan berikutnya yang membawa blok tersebut. Anda mengirim blok tersebut sebagai pengganti pesan yang diringkasnya. Pemeriksaan menerima pertukaran tersebut, sehingga giliran yang Anda pertahankan dapat tetap valid beserta pemikirannya, dengan ketentuan dalam [Compaction yang mempertahankan bagian akhir](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#keep-tail-compaction).
-* [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) menghapus hasil alat lama atau blok pemikiran lama berdasarkan aturan, yang terlama terlebih dahulu. Strateginya adalah `clear_tool_uses_20250919` dan `clear_thinking_20251015`.
+* [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) (beta) mengembalikan ringkasan dari permintaan terpisah, yang dapat [berjalan di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background). Anda lalu mengirim blok yang dikembalikan sebagai pengganti pesan-pesan yang diringkasnya. Pemeriksaan menerima penggantian tersebut, sehingga giliran yang Anda pertahankan dapat tetap valid beserta pemikirannya, selama memenuhi [syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid). [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) menunjukkan permintaannya dan menyebutkan header beta yang diperlukan.
+* [Compaction pada ambang batas token](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) meringkas giliran lama menjadi blok compaction saat konteks mendekati ambang yang Anda tetapkan. Prefiks yang diperiksa kemudian dimulai ulang dari blok tersebut. [Parameter `instructions`](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#custom-summarization-instructions) miliknya menerima prompt peringkasan Anda sendiri, seperti "pertahankan setiap ticker, ukuran posisi, dan asumsi yang dinyatakan".
+* [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) menghapus hasil alat lama atau blok pemikiran lama berdasarkan aturan, dimulai dari yang paling lama. Strateginya adalah `clear_tool_uses_20250919` dan `clear_thinking_20251015`.
 
 ### Lakukan compaction di sisi klien
 
-Anda tetap dapat melakukan "compaction" (pemadatan) di sisi klien. Jika Anda menulis ringkasannya sendiri, jangan kirim kembali blok thinking yang dihasilkan sebelum penulisan ulang. Jika API yang menulisnya dengan compaction sesuai permintaan, [Compaction keep-tail](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#keep-tail-compaction) menjelaskan kapan thinking yang dipertahankan tetap valid.
+Anda tetap dapat melakukan compaction di klien. Jika Anda menulis ringkasannya sendiri, jangan kirim kembali blok thinking yang dihasilkan sebelum penulisan ulang. Jika API yang menulisnya dengan compaction sesuai permintaan, [Syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) menjelaskan kapan thinking yang dipertahankan tetap valid.
 
 #### Compaction sederhana (direkomendasikan)
 
@@ -975,13 +1434,7 @@ Model Claude dilatih pada tugas jangka panjang dengan skema ini, dan untuk sebag
 
 Compaction keep-tail meringkas giliran-giliran lama dan mempertahankan giliran terbaru secara verbatim, sehingga model tetap melihat beberapa pertukaran terakhir kata demi kata. Jika Anda menulis ringkasannya sendiri, cara ini melanggar aturan: giliran asisten yang dipertahankan masih membawa blok thinking yang dihasilkan ketika yang mendahuluinya adalah giliran asli, bukan ringkasan. Blok-blok tersebut gagal.
 
-Untuk mempertahankan thinking tersebut, minta API menulis ringkasan dengan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming). Kirim hanya giliran-giliran lama dalam permintaan dengan parameter `compaction` dan header beta `compact-2026-09-04`. Kemudian kirim blok bertanda tangan yang dikembalikannya sebagai pengganti giliran-giliran tersebut, diikuti oleh giliran yang dipertahankan persis seperti yang dikembalikan. Thinking yang dipertahankan tetap valid selama semua kondisi berikut terpenuhi:
-
-* Permintaan compaction berjalan pada model dengan "preserved thinking" (pemikiran yang dipertahankan). Model yang digunakan percakapan itu sendiri adalah pilihan yang paling sederhana.
-* Giliran yang dipertahankan langsung mengikuti pesan yang diringkas, dan pesan pertama yang dipertahankan bukan pesan yang akan digabungkan API ke pesan terakhir yang diringkas: pesan dengan peran yang sama, atau pesan `role: "system"`.
-* `system` dan `tools` non-deferred Anda cocok dengan permintaan compaction.
-
-Cara paling sederhana untuk memenuhi kondisi kedua adalah melakukan compaction tepat pada `messages` dari permintaan yang sudah Anda buat. Pesan sistem di tengah percakapan yang berada di dalam giliran yang diringkas juga ikut diringkas, sehingga instruksi dan perubahan alatnya berhenti berlaku setelah penukaran. Agar salah satunya tetap berlaku, nyatakan kembali dalam pesan `role: "system"` tepat setelah giliran `user` baru pertama yang mengikuti giliran yang dipertahankan. Pesan sistem yang ditempatkan di antara blok dan giliran yang dipertahankan akan merusak thinking pada giliran tersebut.
+Untuk mempertahankan thinking tersebut, biarkan API menulis ringkasannya dengan compaction sesuai permintaan. [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns) menunjukkan caranya. [Syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) menjelaskan kapan thinking yang dipertahankan tetap valid.
 
 Sisa bagian ini membahas ringkasan yang Anda tulis sendiri.
 
@@ -1202,13 +1655,7 @@ Terus kirim `"drop_block"` pada permintaan berikutnya selama kedua giliran terse
 
 #### Compaction latar belakang (async)
 
-Compaction latar belakang membangun ringkasan di luar jalur kritis sementara percakapan terus berlanjut, lalu menukarnya beberapa permintaan kemudian. Minta API menulis ringkasan dengan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming):
-
-1. Kirim percakapan sejauh ini dalam permintaan terpisah dengan parameter `compaction` dan header beta `compact-2026-09-04`.
-2. Terus bekerja pada riwayat lengkap selama permintaan tersebut berjalan.
-3. Pada permintaan pertama setelah blok tiba, kirim blok tersebut sebagai pengganti pesan-pesan yang dimuat dalam permintaan compaction, diikuti oleh setiap giliran yang ditambahkan sejak saat itu.
-
-Thinking yang dihasilkan selama ringkasan sedang dibangun tetap valid dengan kondisi yang sama seperti pada [Compaction keep-tail](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#keep-tail-compaction).
+Compaction latar belakang menyusun ringkasan di luar jalur kritis selagi percakapan berlanjut, lalu menggantikannya beberapa permintaan kemudian. Untuk mempertahankan thinking yang dihasilkan selama itu, biarkan API menulis ringkasannya dengan compaction sesuai permintaan. [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background) berisi langkah-langkahnya. Thinking tersebut tetap valid dengan [syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) yang sama seperti giliran terbaru yang dipertahankan.
 
 Ringkasan yang Anda bangun sendiri melanggar aturan dengan cara yang sama seperti keep-tail, hanya saja tertunda: setiap giliran asisten yang dihasilkan selama ringkasan sedang dibangun membawa thinking yang mendahului penukaran, dan semuanya gagal begitu ringkasan diterapkan. Jika Anda menggunakannya, perlakukan penukaran seperti keep-tail dan kirim `"drop_block"` sejak penukaran dan seterusnya, atau lakukan compaction secara sinkron.
 
@@ -1234,7 +1681,7 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
 
 <AccordionGroup>
   <Accordion title="Apakah saya memerlukan akun baru untuk menguji preserved thinking?">
-    Tidak. Kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior`. Mengatur field tersebut membuat permintaan itu ikut dalam penegakan aturan, terlepas dari usia akun. `"error"` menolak riwayat yang diedit dengan error 400 yang sama seperti yang diterima akun baru, dan `"drop_block"` meloloskan permintaan serta mencantumkan apa yang dibuang di `input_transformations`. Lihat [Periksa apakah kode Anda mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
+    Tidak. Kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior`. Mengatur field ini membuat permintaan tersebut ikut dalam penegakan pemeriksaan, berapa pun usia akun Anda. `"error"` menolak riwayat yang diedit dengan error 400 yang sama seperti yang diterima akun baru. `"drop_block"` meloloskan permintaan dan mencantumkan apa yang dibuang di `input_transformations`. Untuk menemukan edit prefiks dari akun lama tanpa menegakkan pemeriksaan, kirim header tersebut dan biarkan field tidak diatur. Blok yang gagal tetap sampai ke model, dan `input_transformations` mencantumkannya sebagai `thinking_mismatch_allowed`. Lihat [Periksa apakah kode Anda mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
   </Accordion>
 
   <Accordion title="Jika ada yang berubah sebelum blok thinking, bahkan satu deskripsi alat, apakah percakapan menjadi tidak dapat digunakan?">
@@ -1246,11 +1693,11 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
   </Accordion>
 
   <Accordion title="Daftar alat saya berubah di tengah sesi. Bagaimana cara menghindari percakapan menjadi tidak valid?">
-    Jangan edit `tools`. Deklarasikan set lengkap di awal sesi, tandai alat yang belum tersedia dengan `defer_loading: true`, lalu tawarkan atau tarik kembali alat tersebut dengan blok `tool_addition` dan `tool_removal`. Jika Anda baru mengetahui skema suatu alat di tengah sesi, misalnya dari server MCP yang ditemukan saat runtime, Anda tetap dapat menambahkannya ke `tools` dengan `defer_loading: true` dan menawarkannya dengan cara yang sama. Hal itu aman karena alat deferred yang tidak direferensikan bukan bagian dari prefiks. Pesan `role: "system"` yang membawa blok-blok ini menjadi bagian dari prefiks untuk thinking berikutnya, jadi jangan pindahkan, ubah kata-katanya, atau hapus pesan tersebut setelahnya. Lihat [Menambah atau menghapus alat dengan `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes).
+    Jangan edit `tools`. Deklarasikan set lengkap di awal sesi, tandai alat yang belum tersedia dengan `defer_loading: true`, lalu tawarkan atau tarik kembali alat tersebut dengan blok `tool_addition` dan `tool_removal`. Jika Anda baru mengetahui skema suatu alat di tengah sesi, definisikan alat tersebut di dalam blok `tool_addition` (`inline-tools-2026-09-15`, ditambah `mcp-client-2026-09-15` untuk server yang dijangkau konektor MCP milik API) dan biarkan `tools` tidak berubah. Pesan `role: "system"` yang membawa blok-blok ini menjadi bagian dari prefiks untuk thinking berikutnya, jadi jangan pindahkan, ubah kata-katanya, atau hapus pesan tersebut setelahnya. Lihat [Menambah atau menghapus alat dengan `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes).
   </Accordion>
 
   <Accordion title="Saya melakukan compaction dengan meringkas giliran lama dan mempertahankan giliran terbaru secara verbatim. Apakah itu masih berfungsi?">
-    Ya, jika API yang menulis ringkasannya. [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#server-side-trimming) (header beta `compact-2026-09-04`) meringkas giliran-giliran lama menjadi blok bertanda tangan yang Anda kirim sebagai penggantinya. Giliran terbaru mempertahankan thinking-nya dengan kondisi yang dijelaskan di [Compaction keep-tail](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#keep-tail-compaction).
+    Ya, jika API yang menulis ringkasannya. [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) (header beta `compact-2026-09-04`) meringkas giliran lama menjadi blok bertanda tangan yang Anda kirim sebagai penggantinya. Giliran terbaru mempertahankan thinking-nya selama memenuhi [syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid).
 
     Jika Anda menulis ringkasannya sendiri, thinking pada giliran yang dipertahankan gagal dalam pemeriksaan, karena blok-blok tersebut dihasilkan berdasarkan riwayat yang Anda ganti. Hapus blok `thinking` dan `redacted_thinking` dari giliran yang Anda bawa dan pertahankan blok `text` dan `tool_use`-nya, atau kirim `prefix_mismatch_behavior: "drop_block"` dan biarkan API membuangnya. Compaction sederhana tidak meninggalkan thinking yang dapat gagal dan merupakan pendekatan yang direkomendasikan: satu pesan ringkasan ditambah giliran pengguna berikutnya, tanpa memutar ulang giliran sebelumnya. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) di sisi server tidak dihitung sebagai edit. Lihat [Lakukan compaction di sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client).
   </Accordion>

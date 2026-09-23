@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: db01a9effad13b64fd6f99e617390ef24a54fc189465d3d5869a55be07f0dd16
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 136c7ce5fc74137d25a948f833adfeb9f64bf9bc56718f0b7eb81a59059ad261
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-f
 description: Access Claude models through Microsoft Foundry with Azure-native endpoints and authentication.
 ---
 
-This guide shows you how to set up and make API calls to Claude in Microsoft Foundry using one of Anthropic's client SDKs or direct HTTP requests. When you access Claude in Microsoft Foundry, you are billed for Claude usage in the Azure Marketplace. You can use Claude models including Claude Fable 5.1, Claude Opus 5, Claude Opus 4.8, and Claude Sonnet 5, and features such as the [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows), while managing costs through your Azure subscription.
+This guide shows you how to set up and make API calls to Claude in Microsoft Foundry using one of Anthropic's client SDKs or direct HTTP requests. When you access Claude in Microsoft Foundry, you are billed for Claude usage in the Azure Marketplace. You can use Claude models including Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, and Claude Sonnet 5, and features such as the [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows), while managing costs through your Azure subscription.
 
 Claude is available in Global Standard and US Data Zone Standard deployment types in Foundry resources, billed in Claude Consumption Units through the Azure Marketplace. Visit [Claude in Microsoft Foundry pricing](https://platform.claude.com/docs/en/about-claude/pricing#claude-in-microsoft-foundry-pricing) for details.
 
@@ -84,8 +84,8 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.63.0")
-        implementation("com.anthropic:anthropic-java-foundry:2.63.0")
+        implementation("com.anthropic:anthropic-java:2.65.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.65.0")
 
         // For Entra ID authentication, also add the Azure Identity library
         implementation("com.azure:azure-identity:1.18.3")
@@ -97,12 +97,12 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -207,7 +207,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
     -H "api-key: YOUR_AZURE_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello!"}
@@ -221,7 +221,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
 
   ant messages create \
     --base-url https://example-resource.services.ai.azure.com/anthropic \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello!"}' \
     --transform content
@@ -237,7 +237,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   )
@@ -253,7 +253,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   });
@@ -273,7 +273,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }],
   });
@@ -312,7 +312,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5",
+  		Model:     "claude-opus-5-5",
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -338,7 +338,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-opus-5")
+          .model("claude-opus-5-5")
           .maxTokens(1024)
           .addUserMessage("Hello!")
           .build();
@@ -362,7 +362,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
       messages: [
           ['role' => 'user', 'content' => 'Hello!']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   echo array_find($message->content, fn ($block) => $block->type === 'text')->text;
   ```
@@ -383,7 +383,7 @@ The Foundry SDKs require an API key and either a resource name or base URL. The 
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello!"}]
   )
@@ -417,7 +417,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
     -H "Authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello!"}
@@ -450,7 +450,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
 
   # Make request
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   )
@@ -473,7 +473,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
 
   // Make request
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   });
@@ -494,7 +494,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }],
   });
@@ -537,7 +537,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5",
+  		Model:     "claude-opus-5-5",
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -573,7 +573,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-opus-5")
+          .model("claude-opus-5-5")
           .maxTokens(1024)
           .addUserMessage("Hello!")
           .build();
@@ -602,7 +602,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
       messages: [
           ['role' => 'user', 'content' => 'Hello!']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   echo array_find($message->content, fn ($block) => $block->type === 'text')->text;
   ```
@@ -626,7 +626,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello!"}]
   )
@@ -645,7 +645,7 @@ Claude in Microsoft Foundry supports most Claude features. You can find all the 
 
 ### Context window
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
 
 ### Claude features not supported for Claude in Microsoft Foundry
 
@@ -686,6 +686,7 @@ The following Claude models are available through Foundry:
 | :---------------- | :---------------------- | :-------------: | :-----------------: |
 | Claude Fable 5.1  | `claude-fable-5-1`      |                 |          ✓          |
 | Claude Fable 5    | `claude-fable-5`        |                 |          ✓          |
+| Claude Opus 5.5   | `claude-opus-5-5`       |        ✓        |          ✓          |
 | Claude Opus 5     | `claude-opus-5`         |        ✓        |          ✓          |
 | Claude Opus 4.8   | `claude-opus-4-8`       |        ✓        |          ✓          |
 | Claude Opus 4.7   | `claude-opus-4-7`       |                 |          ✓          |

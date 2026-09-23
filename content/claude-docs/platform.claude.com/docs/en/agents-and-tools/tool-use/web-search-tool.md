@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 7d08c20b678941598bed89523990b3b6b2143ed1bf4a4aeb901daef84fa1c4cd
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ec44afd3c9e6d1695c86c1c6ef1b68bbf147e9c5d7b1b683d89f45d504bd2395
 ---
 
 ---
@@ -82,7 +82,7 @@ The following examples use `web_search_20260318`:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [
         {
@@ -99,7 +99,7 @@ The following examples use `web_search_20260318`:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -116,7 +116,7 @@ The following examples use `web_search_20260318`:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -133,7 +133,7 @@ The following examples use `web_search_20260318`:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -153,7 +153,7 @@ The following examples use `web_search_20260318`:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
       Tools = [new ToolUnion(new WebSearchTool20260318())]
@@ -167,7 +167,7 @@ The following examples use `web_search_20260318`:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
@@ -189,7 +189,7 @@ The following examples use `web_search_20260318`:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
           .addTool(WebSearchTool20260318.builder().build())
@@ -208,7 +208,7 @@ The following examples use `web_search_20260318`:
       messages: [
           ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20260318',
@@ -224,7 +224,7 @@ The following examples use `web_search_20260318`:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
@@ -255,7 +255,7 @@ Provide the web search tool in your API request:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -273,7 +273,7 @@ Provide the web search tool in your API request:
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: What is the weather in NYC?}' \
     --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
@@ -283,7 +283,7 @@ Provide the web search tool in your API request:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "What's the weather in NYC?"}],
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
@@ -295,7 +295,7 @@ Provide the web search tool in your API request:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -320,7 +320,7 @@ Provide the web search tool in your API request:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
@@ -334,7 +334,7 @@ Provide the web search tool in your API request:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
@@ -358,7 +358,7 @@ Provide the web search tool in your API request:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("What's the weather in NYC?")
           .addTool(WebSearchTool20250305.builder()
@@ -379,7 +379,7 @@ Provide the web search tool in your API request:
       messages: [
           ['role' => 'user', 'content' => "What's the weather in NYC?"],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -396,7 +396,7 @@ Provide the web search tool in your API request:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in NYC?" }

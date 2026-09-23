@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 3a2df47b1dd8818789c13f72c5e81c2cd58b539087ee855d52e9e47527075a07
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 0aea782ebe470e375d4e2a4e1b0e12b6e7fcab84dd621750a0a338a118c4e763
 ---
 
 ---
@@ -84,6 +84,7 @@ Current and recently retired models are listed in the following table with their
 | claude-fable-5             | Active        | N/A               | Not sooner than June 9, 2027       |
 | claude-mythos-5            | Active        | N/A               | Not sooner than June 9, 2027       |
 | claude-mythos-preview      | Deprecated    | June 9, 2026      | To be announced                    |
+| claude-opus-5-5            | Active        | N/A               | Not sooner than September 22, 2027 |
 | claude-opus-5              | Active        | N/A               | Not sooner than July 24, 2027      |
 | claude-opus-4-8            | Active        | N/A               | Not sooner than May 28, 2027       |
 | claude-opus-4-7            | Active        | N/A               | Not sooner than April 16, 2027     |

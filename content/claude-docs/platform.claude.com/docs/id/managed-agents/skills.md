@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1b7548e07a343b6fdd34accbe4daf63ab2c31e0f6899732c12038d771691ffd8
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 01b3f0aafc953de846b8e855ef3fed3db7740d39940698322a5287438bef4008
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Skills
 url: https://platform.claude.com/docs/id/managed-agents/skills
 description: Lampirkan skill bawaan atau kustom ke agen di Claude Managed Agents untuk memberinya keahlian berbasis filesystem yang dapat digunakan kembali untuk alur kerja khusus domain.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -231,7 +234,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
     --json @- <<'EOF'
   {
     "name": "Financial Analyst",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "system": "You are a financial analysis agent.",
     "skills": [
       {"type": "anthropic", "skill_id": "xlsx"},
@@ -251,7 +254,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
       ```markdown
       ---
       name: Financial Analyst
-      model: claude-opus-5
+      model: claude-opus-5-5
       skills:
         - type: anthropic
           skill_id: xlsx
@@ -268,7 +271,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```python Python
   agent = client.beta.agents.create(
       name="Financial Analyst",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system="You are a financial analysis agent.",
       skills=[
           {
@@ -287,7 +290,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Financial Analyst",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a financial analysis agent.",
     skills: [
       {
@@ -309,7 +312,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Financial Analyst",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a financial analysis agent.",
       Skills =
       [
@@ -323,7 +326,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Financial Analyst",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	System: anthropic.String("You are a financial analysis agent."),
   	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
@@ -350,7 +353,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Financial Analyst")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You are a financial analysis agent.")
           .addSkill(
               BetaManagedAgentsAnthropicSkillParams.builder()
@@ -372,7 +375,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Financial Analyst',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a financial analysis agent.',
       skills: [
           ['type' => 'anthropic', 'skillID' => 'xlsx'],
@@ -384,7 +387,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Financial Analyst",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system_: "You are a financial analysis agent.",
     skills: [
       {type: "anthropic", skill_id: "xlsx"},

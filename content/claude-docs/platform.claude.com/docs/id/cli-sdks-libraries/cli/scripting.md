@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8e4cfde0baffb14a7581b5d8ce9fabd5004c59d85835e9e1f63c9f5636942e9b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9d5ff17a5e5a638097cd645a82606ace5123c0e6d5825cd53222c45fbe806ada
 ---
 
 ---
@@ -125,7 +125,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 256,
     "messages": [{"role": "user", "content": "hi"}]
   }'

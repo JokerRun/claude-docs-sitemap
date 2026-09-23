@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8b8ee44a067c8d9b39a04a7c95c1be595865f8b1798fcbb2b1124f10f4390e15
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 32fe40f1206f1317d4f93273fb3b12881c5ddb04c1934f3ce9d593316b6fc46e
 ---
 
 ---
@@ -356,14 +356,14 @@ Sebagian besar perilaku pemikiran bersifat netral-mode dan didokumentasikan seka
 
 ## Migrasi ke pemikiran adaptif
 
-Jika model Anda hanya mendukung pemikiran diperpanjang (Claude Sonnet 4.5, Claude Opus 4.5, Claude Haiku 4.5, dan model Claude 4 sebelumnya), tidak ada tindakan yang diperlukan sekarang: pemikiran adaptif tidak tersedia di sana, dan `type: "adaptive"` [mengembalikan error 400](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive). Pertahankan `budget_tokens` sampai Anda beralih ke model yang mendukung pemikiran adaptif, lalu terapkan pemetaan berikut.
+Jika model Anda hanya mendukung pemikiran diperpanjang (Claude Sonnet 4.5, Claude Opus 4.5, Claude Haiku 4.5, dan model Claude 4 yang lebih lama), Anda tidak perlu melakukan apa pun sekarang. Pemikiran adaptif tidak tersedia pada model tersebut, dan `type: "adaptive"` [mengembalikan error 400](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive). Tetap gunakan `budget_tokens` sampai Anda beralih ke model yang mendukung pemikiran adaptif, lalu terapkan pemetaan berikut.
 
 Anda perlu bermigrasi dari `type: "enabled"` jika:
 
-* Anda menggunakan Claude Opus 4.6 atau Claude Sonnet 4.6, di mana `budget_tokens` sudah deprecated.
-* Anda beralih ke Claude Opus 4.7, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, atau Claude Mythos 5, di mana `type: "enabled"` mengembalikan error 400.
+* Anda menggunakan Claude Opus 4.6 atau Claude Sonnet 4.6, karena `budget_tokens` sudah deprecated pada model tersebut.
+* Anda beralih ke Claude Opus 4.7, Claude Opus 4.8, Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, atau Claude Mythos 5, karena `type: "enabled"` mengembalikan error 400 pada model tersebut.
 
-Pemetaannya kecil: hapus `budget_tokens`, atur `thinking: {type: "adaptive"}`, dan kendalikan kedalaman penalaran dengan `output_config: {effort: ...}` alih-alih anggaran token.
+Pemetaannya sederhana: hapus `budget_tokens`, tetapkan `thinking: {type: "adaptive"}`, dan kendalikan kedalaman penalaran dengan `output_config: {effort: ...}` sebagai pengganti anggaran token.
 
 ```json
 {
@@ -391,11 +391,15 @@ menjadi:
 }
 ```
 
-`effort: "high"` sesuai dengan default API; ini muncul di sini hanya untuk menunjukkan di mana kendali kedalaman sekarang berada, dan menghilangkannya menghasilkan perilaku yang identik.
+`effort: "high"` sama dengan nilai default API. Nilai ini dicantumkan di sini hanya untuk menunjukkan letak kontrol kedalaman yang baru. Jika dihilangkan, perilakunya tetap sama.
 
-Harapkan perbedaan perilaku, bukan hanya perubahan sintaks. Dengan anggaran tetap, Claude berpikir pada setiap permintaan. Dengan pemikiran adaptif, Claude memutuskan apakah dan seberapa banyak berpikir pada setiap permintaan, dan pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah Claude mungkin melewatkan pemikiran sepenuhnya pada input yang mudah. Anda juga dapat menghapus header beta `interleaved-thinking-2025-05-14` setelah bermigrasi: pemikiran adaptif berselang-seling secara otomatis, dan Claude API mengabaikan header tersebut pada model-model ini. Pelestarian blok pemikiran juga berubah: Claude Opus 4.5 dan model bernomor 4.6 ke atas mempertahankan blok pemikiran giliran sebelumnya dalam konteks dan menagihnya sebagai input, sedangkan Claude Sonnet 4.5, Claude Haiku 4.5, dan model sebelumnya menghapusnya; lihat [pelestarian blok pemikiran per model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
+Perubahan ini bukan sekadar perubahan sintaks, karena perilakunya juga berbeda. Dengan anggaran tetap, Claude berpikir pada setiap permintaan. Dengan pemikiran adaptif, Claude memutuskan apakah perlu berpikir dan seberapa banyak pada setiap permintaan. Pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah, Claude mungkin sama sekali tidak berpikir untuk input yang mudah.
 
-Beralih mode adalah perubahan konfigurasi pemikiran, sehingga permintaan pertama setelah peralihan membatalkan breakpoint cache, seperti dijelaskan dalam [Caching prompt dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching).
+Setelah bermigrasi, Anda juga dapat menghapus header beta `interleaved-thinking-2025-05-14`. Pemikiran adaptif berselang-seling secara otomatis, dan Claude API mengabaikan header tersebut pada model-model ini.
+
+Pelestarian blok pemikiran juga berubah. Claude Opus 4.5 dan model bernomor 4.6 ke atas menyimpan blok pemikiran dari giliran sebelumnya dalam konteks dan menagihnya sebagai input. Sebaliknya, Claude Sonnet 4.5, Claude Haiku 4.5, dan model yang lebih lama menghapusnya. Lihat [pelestarian blok pemikiran per model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
+
+Beralih mode termasuk perubahan konfigurasi pemikiran. Karena itu, permintaan pertama setelah peralihan membatalkan breakpoint cache, sebagaimana dijelaskan dalam [Caching prompt dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching).
 
 Untuk panduan lengkap, lihat [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), [effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan [panduan migrasi model](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 96c194bd86edd797565ccae98b5e6e848220fb5ed59277a1d7127dc6a3ac809f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 33ef528f376e611d0b32863f4b450e2b05c45662a8d751619ed3fe4b93ffede1
 ---
 
 ---
 title: Alat penggunaan browser
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-description: Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri dengan alat penggunaan browser.
+description: Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri menggunakan alat penggunaan browser.
 featureMetadata:
   status: ga
   zdr:
@@ -19,6 +19,7 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5
     - claude-opus-4-8
@@ -49,7 +50,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 2048,
       "tools": [
         {
@@ -67,7 +68,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 2048
   tools:
     - type: browser_toolset_20260801
@@ -81,7 +82,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=2048,
       tools=[{"type": "browser_toolset_20260801"}],
       messages=[
@@ -98,7 +99,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 2048,
     tools: [{ type: "browser_toolset_20260801" }],
     messages: [
@@ -117,7 +118,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 2048,
       Tools = [new BrowserToolset20260801()],
       Messages =
@@ -138,7 +139,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 2048,
   	Tools: []anthropic.ToolUnionParam{
   		{OfBrowserToolset20260801: &anthropic.BrowserToolset20260801Param{}},
@@ -161,7 +162,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(2048L)
           .addTool(BrowserToolset20260801.builder().build())
           .addUserMessage("Open example.com/docs and tell me how to get started.")
@@ -180,7 +181,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
       messages: [
           ['role' => 'user', 'content' => 'Open example.com/docs and tell me how to get started.'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           ['type' => 'browser_toolset_20260801'],
       ],
@@ -193,7 +194,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 2048,
     tools: [
       { type: "browser_toolset_20260801" }
@@ -217,7 +218,7 @@ Respons pertama Claude berakhir dengan `stop_reason: "tool_use"` dan membawa sat
   "id": "msg_01HCDu4XSTLzTAcodEQ58vDo",
   "type": "message",
   "role": "assistant",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "content": [
     {
       "type": "text",
@@ -243,7 +244,7 @@ Respons pertama Claude berakhir dengan `stop_reason: "tool_use"` dan membawa sat
 }
 ```
 
-"Executor" (pelaksana) Anda (bagian dari aplikasi Anda yang mengendalikan browser dan menghasilkan hasil alat) menjalankan `navigate`, lalu `read_page`. Aplikasi Anda mengembalikan satu `tool_result` per blok dalam permintaan berikutnya, dengan menyertakan kembali `toolset_name` pada masing-masing. Hasil `navigate` melaporkan tab yang dimuatnya dalam blok `browser_state`; hasil `read_page` berupa teks di mana setiap elemen membawa sebuah referensi:
+"Executor" (eksekutor) Anda, yaitu bagian dari aplikasi Anda yang mengendalikan browser dan menghasilkan hasil alat, menjalankan `navigate`, lalu `read_page`. Aplikasi Anda mengembalikan satu `tool_result` per blok dalam permintaan berikutnya, dengan menyertakan kembali `toolset_name` pada masing-masing. Hasil `navigate` melaporkan tab tempat halaman dimuat dalam blok `browser_state`; hasil `read_page` berupa teks di mana setiap elemen membawa sebuah referensi:
 
 ```json
 {
@@ -283,7 +284,7 @@ Respons pertama Claude berakhir dengan `stop_reason: "tool_use"` dan membawa sat
 }
 ```
 
-Claude kini memegang referensi yang dapat ditindaklanjutinya, sehingga giliran berikutnya dapat mengklik `ref_2` untuk membuka halaman memulai, tanpa perlu menemukan tautan tersebut dalam tangkapan layar terlebih dahulu.
+Claude kini memegang referensi yang dapat ditindaklanjutinya, sehingga pada giliran berikutnya Claude dapat mengklik `ref_2` untuk membuka halaman getting-started, tanpa perlu menemukan tautan tersebut di screenshot terlebih dahulu.
 
 ## Cara kerja penggunaan browser
 

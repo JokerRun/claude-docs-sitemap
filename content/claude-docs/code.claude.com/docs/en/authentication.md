@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 9505ac4d159739837c481d3e9bed18cd7a4ca7332f626264f5dd067a633e66ee
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: f7cd13d3a488bba04a52cdac53a5e640aac56a7bcf59dba870179ded9589ef17
 ---
 
 > ## Documentation Index
@@ -54,8 +54,8 @@ For teams and organizations, you can configure Claude Code access in one of thes
 
 [Claude for Teams](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=authentication_teams#team-&-enterprise) and [Claude for Enterprise](https://anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=authentication_enterprise) provide the best experience for organizations using Claude Code. Team members get access to both Claude Code and Claude on the web with centralized billing and team management.
 
-* **Claude for Teams**: self-service plan with collaboration features, admin tools, and billing management. Best for smaller teams.
-* **Claude for Enterprise**: adds SSO, domain capture, role-based permissions, compliance API, and managed policy settings for organization-wide Claude Code configurations. Best for larger organizations with security and compliance requirements.
+* **Claude for Teams**: self-service plan with collaboration features, admin tools, SSO, billing management, and [server-managed settings](/docs/en/server-managed-settings) for organization-wide Claude Code configuration. Best for smaller teams.
+* **Claude for Enterprise**: adds domain capture, role-based permissions, and the compliance API. Best for larger organizations with security and compliance requirements.
 
 <Steps>
   <Step title="Subscribe">

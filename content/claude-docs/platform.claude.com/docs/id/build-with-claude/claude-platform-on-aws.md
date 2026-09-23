@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 818c6d5c43c2f5be6182b5ccd26da0e81ab3101da4fca8bf4e2739e2331c052f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 216b76a57ae2a32ac2f912509b8b9713afff6720f32e9f302a8ccf2564e5af17
 ---
 
 ---
@@ -29,20 +29,20 @@ Claude Platform on AWS mengikuti kebijakan retensi data yang sama dengan Claude 
 
 Kedua penawaran memungkinkan Anda menggunakan Claude melalui AWS, tetapi keduanya berbeda dalam arsitektur, permukaan API, dan ketersediaan fitur.
 
-| Aspek                               | Claude Platform di AWS                                                                                                                                                         | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Siapa yang mengoperasikan stack** | Anthropic                                                                                                                                                                      | AWS                                                                                                        | AWS                                                                                                                               |
-| **Permukaan API**                   | Claude API (`/v1/{endpoint}`)                                                                                                                                                  | Messages API di `/anthropic/v1/messages`                                                                   | Bedrock Converse / InvokeModel                                                                                                    |
-| **Ketersediaan fitur**              | Biasanya di hari yang sama dengan Claude API (lihat [keterbatasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported)) | Sesuai jadwal rilis Amazon Bedrock                                                                         | Sesuai jadwal rilis Amazon Bedrock                                                                                                |
-| **Agent Skills**                    | Tersedia (beta)                                                                                                                                                                | Tidak tersedia (memerlukan eksekusi kode)                                                                  | Tidak tersedia                                                                                                                    |
-| **Fitur beta**                      | Diteruskan dengan header `anthropic-beta` (lihat [keterbatasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported))    | Header `anthropic-beta` tidak didukung                                                                     | Header `anthropic-beta` tidak didukung                                                                                            |
-| **Autentikasi**                     | AWS IAM / SigV4 atau kunci API                                                                                                                                                 | AWS IAM / SigV4                                                                                            | AWS IAM / SigV4 atau bearer token                                                                                                 |
-| **Penagihan**                       | AWS Marketplace                                                                                                                                                                | AWS (layanan native)                                                                                       | AWS (layanan native)                                                                                                              |
-| **Base URL**                        | `aws-external-anthropic.{region}.api.aws`                                                                                                                                      | `bedrock-mantle.{region}.api.aws`                                                                          | `bedrock-runtime.{region}.amazonaws.com`                                                                                          |
-| **Klien SDK**                       | Kelas klien khusus platform (misalnya, `AnthropicAWS` di Python), dalam beta                                                                                                   | `AnthropicBedrockMantle`                                                                                   | `AnthropicBedrock` / Bedrock SDK                                                                                                  |
-| **Konsol**                          | Claude Console (`platform.claude.com`, akses melalui AWS Console)                                                                                                              | Bedrock Console                                                                                            | Bedrock Console                                                                                                                   |
-| **Batas laju dan kuota**            | Dikelola oleh Anthropic                                                                                                                                                        | Dikelola oleh AWS                                                                                          | Dikelola oleh AWS                                                                                                                 |
-| **Pemroses data inferensi**         | Anthropic                                                                                                                                                                      | AWS                                                                                                        | AWS                                                                                                                               |
+| Aspek                               | Claude Platform di AWS                                                                                                                                                    | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Siapa yang mengoperasikan stack** | Anthropic                                                                                                                                                                 | AWS                                                                                                        | AWS                                                                                                                               |
+| **Permukaan API**                   | Claude API (`/v1/{endpoint}`)                                                                                                                                             | Messages API di `/anthropic/v1/messages`                                                                   | Bedrock Converse / InvokeModel                                                                                                    |
+| **Ketersediaan fitur**              | Biasanya di hari yang sama dengan Claude API (lihat [batasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported)) | Sesuai jadwal rilis Amazon Bedrock                                                                         | Sesuai jadwal rilis Amazon Bedrock                                                                                                |
+| **Agent Skills**                    | Tersedia dalam beta (tidak memerlukan header beta, perilaku sama seperti di Claude API)                                                                                   | Tidak tersedia (memerlukan eksekusi kode)                                                                  | Tidak tersedia                                                                                                                    |
+| **Fitur beta**                      | Diteruskan dengan header `anthropic-beta` (lihat [batasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported))    | Header `anthropic-beta` tidak didukung                                                                     | Header `anthropic-beta` tidak didukung                                                                                            |
+| **Autentikasi**                     | AWS IAM / SigV4 atau kunci API                                                                                                                                            | AWS IAM / SigV4                                                                                            | AWS IAM / SigV4 atau bearer token                                                                                                 |
+| **Penagihan**                       | AWS Marketplace                                                                                                                                                           | AWS (layanan native)                                                                                       | AWS (layanan native)                                                                                                              |
+| **Base URL**                        | `aws-external-anthropic.{region}.api.aws`                                                                                                                                 | `bedrock-mantle.{region}.api.aws`                                                                          | `bedrock-runtime.{region}.amazonaws.com`                                                                                          |
+| **Klien SDK**                       | Kelas klien khusus platform (misalnya, `AnthropicAWS` di Python), dalam beta                                                                                              | `AnthropicBedrockMantle`                                                                                   | `AnthropicBedrock` / Bedrock SDK                                                                                                  |
+| **Konsol**                          | Claude Console (`platform.claude.com`, diakses melalui AWS Console)                                                                                                       | Bedrock Console                                                                                            | Bedrock Console                                                                                                                   |
+| **Batas laju dan kuota**            | Dikelola oleh Anthropic                                                                                                                                                   | Dikelola oleh AWS                                                                                          | Dikelola oleh AWS                                                                                                                 |
+| **Pemroses data inferensi**         | Anthropic                                                                                                                                                                 | AWS                                                                                                        | AWS                                                                                                                               |
 
 Jika Anda memerlukan Claude yang dioperasikan AWS, lihat [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Claude Platform di AWS menggunakan pool kapasitas yang terpisah dari Claude API pihak pertama maupun Amazon Bedrock. Anda dapat menjalankan beban kerja di lebih dari satu platform dan melakukan failover di antaranya.
 
@@ -312,20 +312,20 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:2.63.0")
-    implementation("com.anthropic:anthropic-java-aws:2.63.0")
+    implementation("com.anthropic:anthropic-java:2.65.0")
+    implementation("com.anthropic:anthropic-java-aws:2.65.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.63.0</version>
+      <version>2.65.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.63.0</version>
+      <version>2.65.0</version>
     </dependency>
     ```
   </Tab>
@@ -355,6 +355,7 @@ Model berikut tersedia di Claude Platform on AWS:
 | :---------------- | :------------------ |
 | Claude Fable 5.1  | `claude-fable-5-1`  |
 | Claude Fable 5    | `claude-fable-5`    |
+| Claude Opus 5.5   | `claude-opus-5-5`   |
 | Claude Opus 5     | `claude-opus-5`     |
 | Claude Opus 4.8   | `claude-opus-4-8`   |
 | Claude Opus 4.7   | `claude-opus-4-7`   |

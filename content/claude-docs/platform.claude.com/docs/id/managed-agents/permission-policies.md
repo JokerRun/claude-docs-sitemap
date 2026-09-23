@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ba48b5728d15ca86ec8bcd5b983c4abb80cb7fb073978a761b7d8304af40f907
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 3260d25bc93925a1e488b5f2a3e5c96d2a090e06e2cfaab4c2e3554a639f480c
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Kebijakan izin
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
 description: Kontrol kapan alat agen dan MCP dieksekusi.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -45,7 +48,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
     -H "content-type: application/json" \
     -d '{
       "name": "Coding Assistant",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "tools": [
         {
           "type": "agent_toolset_20260401",
@@ -66,7 +69,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
       ```markdown
       ---
       name: Coding Assistant
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
           default_config:
@@ -80,7 +83,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   ```python Python
   agent = client.beta.agents.create(
       name="Coding Assistant",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -95,7 +98,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: "agent_toolset_20260401",
@@ -113,7 +116,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -132,7 +135,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: "claude-opus-5-5",
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -159,7 +162,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Coding Assistant")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addTool(
               BetaManagedAgentsAgentToolset20260401Params.builder()
                   .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -185,7 +188,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
 
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -200,7 +203,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: "agent_toolset_20260401",
@@ -232,7 +235,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
     -H "content-type: application/json" \
     -d '{
       "name": "Dev Assistant",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "mcp_servers": [
         {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
       ],
@@ -258,7 +261,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
       ```markdown
       ---
       name: Dev Assistant
-      model: claude-opus-5
+      model: claude-opus-5-5
       mcp_servers:
         - type: url
           name: github
@@ -278,7 +281,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   ```python Python
   agent = client.beta.agents.create(
       name="Dev Assistant",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       mcp_servers=[
           {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
       ],
@@ -298,7 +301,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Dev Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
     tools: [
       { type: "agent_toolset_20260401" },
@@ -319,7 +322,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Dev Assistant",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       McpServers =
       [
           new()
@@ -352,7 +355,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Dev Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: "claude-opus-5-5",
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
@@ -392,7 +395,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Dev Assistant")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
                   .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -433,7 +436,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
   $agent = $client->beta->agents->create(
       name: 'Dev Assistant',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
               type: 'url',
@@ -459,7 +462,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Dev Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [
       {type: "url", name: "github", url: "https://mcp.example.com/github"}
     ],
@@ -481,7 +484,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
 Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `name` untuk toolset agen tercantum di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   tools='[
     {
@@ -499,21 +502,29 @@ Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `na
   ]'
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      default_config:
-        permission_policy:
-          type: always_allow
-      configs:
-        - name: bash
-          permission_policy:
-            type: always_ask
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Coding Assistant
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+          default_config:
+            permission_policy:
+              type: always_allow
+          configs:
+            - name: bash
+              permission_policy:
+                type: always_ask
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   tools = [
@@ -692,7 +703,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
     -H "content-type: application/json" \
     -d '{
       "name": "Ops Agent",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "mcp_servers": [
         {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
       ],
@@ -726,7 +737,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
       ```markdown
       ---
       name: Ops Agent
-      model: claude-opus-5
+      model: claude-opus-5-5
       mcp_servers:
         - type: url
           name: github
@@ -753,7 +764,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   ```python Python
   agent = client.beta.agents.create(
       name="Ops Agent",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       mcp_servers=[
           {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
       ],
@@ -781,7 +792,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Ops Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
     tools: [
       {
@@ -808,7 +819,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Ops Agent",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       McpServers =
       [
           new()
@@ -852,7 +863,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Ops Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: "claude-opus-5-5",
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
@@ -904,7 +915,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Ops Agent")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
                   .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -958,7 +969,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
 
   $agent = $client->beta->agents->create(
       name: 'Ops Agent',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
               type: 'url',
@@ -992,7 +1003,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Ops Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [
       {type: "url", name: "github", url: "https://mcp.example.com/github"}
     ],

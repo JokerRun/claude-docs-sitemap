@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: d872a8aded51160476e935bad371f10a06e31d244f23f3f4f28f057c0f0ca36e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 3ad30f98fcddaf0dd1197529f159f47e7de44a94f2d94182455836e607343a4a
 ---
 
 > ## Documentation Index
@@ -1427,7 +1427,9 @@ Add clear, descriptive server instructions that explain:
 * When Claude should search for your tools
 * Key capabilities your server provides
 
-Claude Code truncates tool descriptions and server instructions at 2KB each. Keep them concise to avoid truncation, and put critical details near the start.
+Claude Code truncates each tool description and each server's instructions at 2,048 characters by default. Keep them concise, and put critical details near the start.
+
+To change the limit for every MCP server in your session, set [`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`](/docs/en/env-vars#variables) to a number of characters. This variable requires Claude Code v2.1.280 or later.
 
 ### Configure tool search
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 552494e549c8fe17d386d06b1e8cb7ff6f045468f41cc2c023f13a1c020a6f41
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d67186f873480358a8f19978069a59370c663c66293dcd874b65591a8416092b
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Model keamanan
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
 description: Model tanggung jawab bersama untuk lingkungan sandbox yang di-hosting sendiri.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

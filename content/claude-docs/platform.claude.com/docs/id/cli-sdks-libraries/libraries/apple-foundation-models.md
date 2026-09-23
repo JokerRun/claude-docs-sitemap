@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: c94b012afaf65c7b2247633ba4100a25c3e94da409b8782dedde90e616e0a229
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 2491e871bb36f7c7ca30c958665725dabd089fe916ab623df760ae69457491c9
 ---
 
 ---
@@ -75,7 +75,7 @@ Untuk program lengkap yang berfungsi, repositori menyertakan [`Examples/ClaudeEx
 Pengidentifikasi model adalah nilai dari `ClaudeModel`. Gunakan konstanta yang sudah dikompilasi, atau buat satu dengan kapabilitas eksplisit untuk ID yang belum dikompilasi (lihat [Kapabilitas](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models#capabilities)):
 
 ```swift
-ClaudeLanguageModel(name: .opus5, auth: auth)
+ClaudeLanguageModel(name: .opus5_5, auth: auth)
 ```
 
 Konstanta mencerminkan ID model API (`.opus5` adalah `claude-opus-5`) dan membawa kapabilitas masing-masing model. Model baru dirilis sebagai konstanta baru dalam rilis paket; periksa `ClaudeModel` di Xcode untuk daftar terkini, dan [Ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk membandingkan model.
@@ -97,7 +97,7 @@ ClaudeLanguageModel(name: model, auth: auth)
 Tetapkan [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per permintaan milik framework. Tingkat reasoning bernama milik framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, teruskan tingkat reasoning kustom yang menyebutkan effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. API menggunakan default `high` ketika tidak ada effort yang dikirim:
 
 ```swift
-ClaudeLanguageModel(name: .opus5, auth: auth, fixedEffort: .xhigh)
+ClaudeLanguageModel(name: .opus5_5, auth: auth, fixedEffort: .xhigh)
 ```
 
 Tingkat tersebut harus merupakan tingkat yang diterima model. Setiap `ClaudeModel` mendeklarasikan mana dari lima tingkat (`low`, `medium`, `high`, `xhigh`, `max`) yang diterima modelnya, jika ada: beberapa model tidak menerima effort sama sekali.

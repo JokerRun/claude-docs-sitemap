@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: e3a04b3289bd579f2248555dfc51c34734dd6ee1a1fb2fea55c0eca1aeeeedca
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 3e8d7ebe1bbda37b1577e3c21b0923b2797aa400a47e76d427226fa4d86b3380
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Definisikan agen Anda
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
 description: Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -49,7 +52,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
     -H "content-type: application/json" \
     -d '{
       "name": "Coding Assistant",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "system": "You are a helpful coding agent.",
       "tools": [{"type": "agent_toolset_20260401"}]
     }')
@@ -67,7 +70,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       ```markdown
       ---
       name: Coding Assistant
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
       ---
@@ -80,7 +83,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```python Python
   agent = client.beta.agents.create(
       name="Coding Assistant",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system="You are a helpful coding agent.",
       tools=[
           {"type": "agent_toolset_20260401"},
@@ -91,7 +94,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a helpful coding agent.",
     tools: [{ type: "agent_toolset_20260401" }],
   });
@@ -101,7 +104,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a helpful coding agent.",
       Tools =
       [
@@ -117,7 +120,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	System: anthropic.String("You are a helpful coding agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -135,7 +138,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Coding Assistant")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You are a helpful coding agent.")
           .addTool(
               BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -149,7 +152,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a helpful coding agent.',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
@@ -162,11 +165,15 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system_: "You are a helpful coding agent.",
     tools: [{type: "agent_toolset_20260401"}]
   )
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dari `coding-assistant.md`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui agen ini alih-alih membuat yang kedua.
+  </ForLanguage>
 </CodeGroup>
 
 Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `version`, `created_at`, `updated_at`, dan `archived_at`, serta mengisi field `model` yang Anda hilangkan, seperti `effort`, dengan nilai defaultnya. `version` dimulai dari 1 dan bertambah setiap kali pembaruan mengubah agen.
@@ -177,7 +184,7 @@ Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `versio
   "type": "agent",
   "name": "Coding Assistant",
   "model": {
-    "id": "claude-opus-5",
+    "id": "claude-opus-5-5",
     "effort": { "type": "high" },
     "speed": "standard"
   },
@@ -205,7 +212,7 @@ Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `versio
 `default_config` pada toolset menunjukkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) defaultnya, `always_allow`, yang berlaku kecuali Anda mengonfigurasinya.
 
 <Tip>
-  Untuk menggunakan Claude Opus 5 atau Claude Opus 4.8 dengan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode), teruskan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "speed": "fast"}`. Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) di halaman fast mode.
+  Untuk menggunakan Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8 dengan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode), berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "speed": "fast"}`. Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) pada halaman mode cepat.
 </Tip>
 
 <Tip>
@@ -227,7 +234,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
     -H "content-type: application/json" \
     -d '{
       "name": "Geo-pinned assistant",
-      "model": {"id": "claude-opus-5", "inference_geo": "us"},
+      "model": {"id": "claude-opus-5-5", "inference_geo": "us"},
       "system": "You are a helpful assistant."
     }')
 
@@ -244,7 +251,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
       ---
       name: Geo-pinned assistant
       model:
-        id: claude-opus-5
+        id: claude-opus-5-5
         inference_geo: us
       ---
 
@@ -257,7 +264,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   agent = client.beta.agents.create(
       name="Geo-pinned assistant",
       model={
-          "id": "claude-opus-5",
+          "id": "claude-opus-5-5",
           "inference_geo": "us",
       },
       system="You are a helpful assistant.",
@@ -269,7 +276,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Geo-pinned assistant",
-    model: { id: "claude-opus-5", inference_geo: "us" },
+    model: { id: "claude-opus-5-5", inference_geo: "us" },
     system: "You are a helpful assistant.",
   });
 
@@ -282,7 +289,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
       Name = "Geo-pinned assistant",
       Model = new BetaManagedAgentsModelConfigParams
       {
-          ID = BetaManagedAgentsModel.ClaudeOpus5,
+          ID = BetaManagedAgentsModel.ClaudeOpus5_5,
           InferenceGeo = "us",
       },
       System = "You are a helpful assistant.",
@@ -295,7 +302,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Geo-pinned assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID:           anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID:           anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   		InferenceGeo: anthropic.String("us"),
   	},
   	System: anthropic.String("You are a helpful assistant."),
@@ -313,7 +320,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
           .name("Geo-pinned assistant")
           .model(
               BetaManagedAgentsModelConfigParams.builder()
-                  .id(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+                  .id(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
                   .inferenceGeo("us")
                   .build()
           )
@@ -328,7 +335,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   $agent = $client->beta->agents->create(
       name: 'Geo-pinned assistant',
       model: BetaManagedAgentsModelConfigParams::with(
-          id: 'claude-opus-5',
+          id: 'claude-opus-5-5',
           inferenceGeo: 'us',
       ),
       system: 'You are a helpful assistant.',
@@ -340,7 +347,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Geo-pinned assistant",
-    model: {id: "claude-opus-5", inference_geo: "us"},
+    model: {id: "claude-opus-5-5", inference_geo: "us"},
     system_: "You are a helpful assistant."
   )
 
@@ -385,7 +392,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
       ```markdown
       ---
       name: Coding Assistant
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
       ---

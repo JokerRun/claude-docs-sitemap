@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 2e52c3d33da54fb757d8b27e0ed5ed68f274878397e6812e4004c87b146a9960
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 322d78823a8463412427ea485ff35bb82dda73003e2aaea89cf082637f88b0ab
 ---
 
 ---
 title: Membangun di Console
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-description: Buat, uji, dan iterasi agen secara visual di Console, lalu jalankan dari kode Anda dengan API.
+description: Buat, uji, dan lakukan iterasi pada agen secara visual di Console, lalu jalankan agen tersebut dari kode Anda dengan API.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

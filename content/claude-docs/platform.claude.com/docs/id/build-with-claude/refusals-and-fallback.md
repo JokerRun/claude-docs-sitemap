@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 2a82f36ed81520c87ee802ce8b19559b39c13e92c3e8f3efb12704e19060c3de
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 4090ece98c26ac492fbbde6a1350e01470301dc8dd6afa8784ce728dc7abd2b0
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
 description: Bagaimana model Claude Fable dan Claude Opus mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
 ---
 
-Claude Fable 5.1, Claude Fable 5, dan Claude Opus 5 menyertakan "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. `stop_details.category`-nya menyebutkan area kebijakan (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Anda biasanya masih bisa mendapatkan jawaban dengan mengirim permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali penolakan dan cara menyiapkan percobaan ulang tersebut.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Opus 5 dilengkapi "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak permintaan. Jika itu terjadi, Anda tetap menerima respons normal dengan `stop_reason: "refusal"`, bukan error. Field `stop_details.category` pada respons tersebut menyebutkan area kebijakan yang terkait (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Biasanya Anda masih bisa mendapatkan jawaban dengan mengirim permintaan yang sama ke model Claude lain. Halaman ini menjelaskan cara mengenali "refusal" (penolakan) dan cara menyiapkan percobaan ulang tersebut.
 
 Baca halaman ini ketika Anda membangun di atas salah satu model ini dan ingin permintaan yang ditolak diteruskan ke model lain secara otomatis. Halaman ini juga berlaku ketika Anda telah melihat `"refusal"` dalam sebuah respons dan ingin tahu apa yang harus dilakukan selanjutnya.
 

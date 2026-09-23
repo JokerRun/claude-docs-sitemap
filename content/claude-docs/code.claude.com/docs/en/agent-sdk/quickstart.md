@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 75f235188206df4dd1866a9913bb032e45bf5c315d56cc24aa33f6f4e1cb582a
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b89a7b4c31340c7432ca9c27b6e13b29d6b1ea4b5cd219106de3025d5c492352
 ---
 
 > ## Documentation Index
@@ -232,7 +232,7 @@ The `async for` loop keeps running as Claude thinks, calls tools, observes resul
 The message handling inside the loop filters for human-readable output. Without filtering, you'd see raw message objects including system initialization and internal state, which is useful for debugging but noisy otherwise.
 
 <Note>
-  This example uses streaming to show progress in real-time. If you don't need live output (e.g., for background jobs or CI pipelines), you can collect all messages at once. See [Streaming vs. single-turn mode](/docs/en/agent-sdk/streaming-vs-single-mode) for details.
+  This example uses streaming to show progress in real-time. If you don't need live output (for example, for background jobs or CI pipelines), you can collect all messages at once. See [Streaming vs. single-turn mode](/docs/en/agent-sdk/streaming-vs-single-mode) for details.
 </Note>
 
 ### Run your agent

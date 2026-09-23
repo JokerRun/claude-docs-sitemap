@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: cc0ed7dca697ccfcb3227dfdd1a0c50c88051c8df7d7e2edc9b8349697b10a82
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 63956add832c566a384d6a2e77bc2c7d900ee4bb032081e8f60726d0fe07d7b3
 ---
 
 > ## Documentation Index
@@ -219,9 +219,9 @@ In fullscreen rendering, [`/diff`](/docs/en/interactive-mode#review-changes-with
 
 Run `/clear` to start a new conversation.
 
-To clear the screen and keep the conversation, press `Ctrl+L`. The earlier messages scroll up out of view, and you can scroll back with `PgUp` or the mouse wheel to read them again. Before v2.1.260, `Ctrl+L` redrew the screen without clearing it. Before v2.1.238, pressing it twice within two seconds ran `/clear`.
+If the display looks garbled or partially blank, press `Ctrl+L` to redraw the screen. The redraw keeps the conversation and your input in place.
 
-`Cmd+K` does the same as `Ctrl+L` when your terminal passes it through to Claude Code. iTerm2 and Terminal.app handle `Cmd+K` themselves, and Claude Code redraws the conversation instead of clearing it, so press `Ctrl+L` on those terminals.
+`Cmd+K` does the same as `Ctrl+L` when your terminal passes it through to Claude Code. iTerm2 and Terminal.app handle `Cmd+K` themselves and clear their own screen, and Claude Code detects the cleared screen and repaints the conversation. Before v2.1.280, starting with v2.1.260, pressing `Ctrl+L`, or `Cmd+K` where it reaches Claude Code, cleared the screen in fullscreen rendering. Before v2.1.238, pressing `Ctrl+L` twice within two seconds ran `/clear`.
 
 ## Use with tmux
 

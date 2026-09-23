@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: f1c94b565d354625a3129f1a0c02d7bf7d39da6d6928235494845823eac49a4b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 72801cc1d2fed25f27cc853fe6d232cb8d12f73ce97183e34799c1f54501d399
 ---
 
 ---
@@ -399,7 +399,7 @@ Add the model name, the tool definition, and a stub implementation to `config.py
 ```python
 import time
 
-MODEL = "claude-opus-5"
+MODEL = "claude-opus-5-5"
 
 TOOLS = [
     {

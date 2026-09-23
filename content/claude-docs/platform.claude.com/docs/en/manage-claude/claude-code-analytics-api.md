@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: c935b5ca0f1e0f60a0b4e82b554367afe3a833ba445ae3b1e9a32aaf24a77bb3
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 8622f7df75bec97e76112222f7bf54c06d45ba9cff764b63b2a57b189dcaec7e
 ---
 
 ---
@@ -195,7 +195,7 @@ The API returns data in the following format:
       },
       "model_breakdown": [
         {
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "tokens": {
             "input": 100000,
             "output": 35000,
@@ -204,7 +204,7 @@ The API returns data in the following format:
           },
           "estimated_cost": {
             "currency": "USD",
-            "amount": 141
+            "amount": 113
           }
         }
       ]

@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2df2d38cc7bde8a696b999ae782a98557e8d009f6c456dbf6638a6adbd2be861
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 70c26d10a651e0c63d410eaa56bd6fe816050887163cd9f7f0b74cbfac86b253
 ---
 
 ---
-title: Memory tool
+title: Alat memori
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
 description: Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file dari memory tool di aplikasi Anda.
 ---
@@ -125,7 +125,7 @@ Menggunakan memory tool memerlukan dua langkah:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 2048,
       "messages": [
         {
@@ -142,7 +142,7 @@ Menggunakan memory tool memerlukan dua langkah:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 2048
   tools:
     - type: memory_20250818
@@ -157,7 +157,7 @@ Menggunakan memory tool memerlukan dua langkah:
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=2048,
       messages=[
           {
@@ -175,7 +175,7 @@ Menggunakan memory tool memerlukan dua langkah:
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 2048,
     messages: [
       {
@@ -195,7 +195,7 @@ Menggunakan memory tool memerlukan dua langkah:
   var message = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 2048,
           Messages =
           [
@@ -216,7 +216,7 @@ Menggunakan memory tool memerlukan dua langkah:
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 2048,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Help me respond to this customer service ticket.")),
@@ -237,7 +237,7 @@ Menggunakan memory tool memerlukan dua langkah:
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(2048L)
       .addTool(MemoryTool20250818.builder().build())
       .addUserMessage("Help me respond to this customer service ticket.")
@@ -251,7 +251,7 @@ Menggunakan memory tool memerlukan dua langkah:
   $client = new Client();
 
   $message = $client->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 2048,
       messages: [
           [
@@ -269,7 +269,7 @@ Menggunakan memory tool memerlukan dua langkah:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 2048,
     messages: [
       {
@@ -303,7 +303,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   memory = BetaLocalFilesystemMemoryTool(base_path="./memory")
 
   runner = client.beta.messages.tool_runner(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -329,7 +329,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   const memory = betaMemoryTool(backend); // or pass your own handlers object
 
   const runner = client.beta.messages.toolRunner({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -352,13 +352,13 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
 
   var client = new AnthropicClient();
 
-  // Subkelas Anda dari BetaAbstractMemoryTool
+  // Subclass BetaAbstractMemoryTool milik Anda
   var memory = new FilesystemMemoryTool("./memories");
 
   var runner = client.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Anthropic.Models.Messages.Model.ClaudeOpus5,
+          Model = Anthropic.Models.Messages.Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -392,8 +392,8 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   	"github.com/anthropics/anthropic-sdk-go"
   )
 
-  // Penyimpanan dalam memori yang memetakan jalur file memori ke isinya.
-  // Gunakan penyimpanan Anda sendiri di produksi.
+  // Penyimpanan dalam memori yang memetakan path file memori ke isinya.
+  // Gunakan penyimpanan Anda sendiri di lingkungan produksi.
   var store = map[string]string{}
 
   type memoryCommand struct {
@@ -483,7 +483,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
 
   	for {
   		message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Messages:  messages,
   			Tools:     tools,
@@ -525,11 +525,11 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    // Implementasi BetaMemoryToolHandler Anda untuk keenam perintah memori
+    // Implementasi BetaMemoryToolHandler Anda untuk enam perintah memori
     BetaMemoryToolHandler handler = new FileSystemMemoryToolHandler(Path.of("memories"));
 
     MessageCreateParams createParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(BetaMemoryTool20250818.builder().build())
       .addUserMessage("Remember that customer Acme Corp prefers email follow-ups.")
@@ -559,7 +559,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   $client = new Client();
 
   // Penyimpanan dalam memori yang memetakan path file memori ke isinya.
-  // Gunakan penyimpanan Anda sendiri di produksi.
+  // Gunakan penyimpanan Anda sendiri di lingkungan produksi.
   $store = [];
 
   $memory = new BetaRunnableTool(
@@ -629,7 +629,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   $runner = $client->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Remember that customer Acme Corp prefers email follow-ups.']],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [$memory],
       maxIterations: 10,
   );
@@ -644,8 +644,8 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   client = Anthropic::Client.new
   TOOLS = [{type: "memory_20250818", name: "memory"}].freeze
 
-  # Penyimpanan dalam memori yang memetakan jalur file memori ke kontennya.
-  # Gunakan penyimpanan Anda sendiri di produksi.
+  # Penyimpanan dalam memori yang memetakan path file memori ke isinya.
+  # Gunakan penyimpanan Anda sendiri di lingkungan produksi.
   STORE = {}
 
   def execute_memory(input)
@@ -699,7 +699,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop.
   messages = [{role: "user", content: "Remember that customer Acme Corp prefers email follow-ups."}]
   loop do
     message = client.messages.create(
-      model: Anthropic::Model::CLAUDE_OPUS_5,
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       messages: messages,
       tools: TOOLS
@@ -936,7 +936,7 @@ Deskripsi alat Claude sudah memberitahunya untuk menjaga direktori memori tetap 
 Note: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.
 ```
 
-Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: "Only write down information relevant to \<topic> in your memory system."
+Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: "Hanya tuliskan informasi yang relevan dengan \<topic> di sistem memori Anda."
 
 ## Pertimbangan keamanan
 

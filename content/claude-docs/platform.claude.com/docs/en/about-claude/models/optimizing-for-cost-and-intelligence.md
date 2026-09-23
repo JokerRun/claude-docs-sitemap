@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 801adca1f41ef7e5f12a6e9198121350114bceb898403c3e9cfa28440dcd2db5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d2ae8b7284fa0bc71983493b6fabf57803d2613ef16ca38e1d7c05dcae48bffa
 ---
 
 ---
@@ -37,7 +37,7 @@ Match your situation to a row.
 | You are choosing or switching models             | Compare on cost per completed task, not per token                                                                                                                                                                                                                         | [Compare models](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#compare-models-on-cost-per-task)                                                                                                                                            |
 | Quality isn't good enough                        | If you lowered effort, restore it; otherwise try the next tier up at `low` effort                                                                                                                                                                                         | [Tune effort](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort) · [Compare models](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#compare-models-on-cost-per-task)                  |
 | Attempts end with `stop_reason: max_tokens`      | Raise `max_tokens`; 64,000 covered all but 2 of 14,000 turns measured at the default effort, and 128,000 cost nothing extra per solved task                                                                                                                               | [Set budgets](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#set-budgets-and-output-caps)                                                                                                                                                   |
-| You can check outputs (tests, a verifier)        | Run everything at low effort and re-run failures at the default (`high`); on the coding benchmark measured, the pass rate held at about half the cost                                                                                                                     | [Re-run failures](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#re-run-failures-at-higher-effort)                                                                                                                                          |
+| You can check outputs (tests, a verifier)        | Run everything at low effort and re-run failures at `high`; on the coding benchmark measured, the pass rate held at about half the cost                                                                                                                                   | [Re-run failures](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#re-run-failures-at-higher-effort)                                                                                                                                          |
 | Agent loops with a few very costly runs          | Set a task budget (beta; check the support table for which models), a Claude Managed Agents session budget, and a workspace spend limit                                                                                                                                   | [Set budgets](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#set-budgets-and-output-caps)                                                                                                                                                   |
 | A lower-cost model stalls only on hard decisions | Add a frontier advisor. It pays off when priced well above the executor and actually consulted, so first price the advisor's model alone at low effort and measure the consult rate                                                                                       | [Advisor strategy](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#advisor-strategy-escalate-hard-decisions)                                                                                                                                 |
 | The work exceeds one context window              | Delegate partitions to cheaper workers                                                                                                                                                                                                                                    | [Orchestrator strategy](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#orchestrator-strategy-delegate-bulk-work)                                                                                                                            |
@@ -72,7 +72,7 @@ To decide, count the gaps between consecutive requests in a conversation:
 * Turns arrive seconds apart: stay on the 5-minute default. When nothing paused, it cost 15% less than the 1-hour setting on Claude Sonnet 5 and 11% less on Claude Opus 5.
 * Gaps over an hour are common: stay on the default. A gap over an hour expires both durations, and the 1-hour setting then re-writes the prefix at its higher write price, so it loses on each of those gaps. Of your pauses longer than 5 minutes, if about 60% or more also run past an hour, stay on the default; the 1-hour duration pays only when at least about 40% of long pauses end within the hour.
 
-Anthropic measured the triage job from [Trim input and context tokens](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#trim-input-and-context-tokens) with pauses inserted before some turns to simulate a person's delay[16](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs). On both models measured, the 1-hour cache became the cheaper setting once about 1 turn in 30 followed a pause, so the 1-in-20 rule leaves a margin, and the gap widens quickly past the crossover because every paused turn on the 5-minute setting re-writes the whole prefix. Every current model uses the same cache-write multipliers, and every model but Claude Fable 5.1 and Claude Mythos 5.1 the same read price, so the crossover is in the same range on the other models; Fable 5.1 is the case covered next. Accuracy stayed within run-to-run noise in every cell. The turn after a pause kept its warm-cache latency on the 1-hour setting. The following chart plots cost per session against the share of paused turns on Claude Sonnet 5:
+Anthropic measured the triage job from [Trim input and context tokens](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#trim-input-and-context-tokens) with pauses inserted before some turns to simulate a person's delay[16](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs). On both models measured, the 1-hour cache became the cheaper setting once about 1 turn in 30 followed a pause, so the 1-in-20 rule leaves a margin, and the gap widens quickly past the crossover because every paused turn on the 5-minute setting re-writes the whole prefix. Every current model uses the same cache-write multipliers, and every model but Claude Fable 5.1, Claude Mythos 5.1, and Claude Opus 5.5 the same read price, so the crossover is in the same range on the other models; Fable 5.1 is the case covered next. Accuracy stayed within run-to-run noise in every cell. The turn after a pause kept its warm-cache latency on the 1-hour setting (measured on Claude Sonnet 5 and Claude Opus 5, not on Claude Opus 5.5). The following chart plots cost per session against the share of paused turns on Claude Sonnet 5:
 
 ![Line chart: cost per triage session by share of turns after a pause; the 1-hour cache is cheaper past about 1 turn in 30](https://platform.claude.com/docs/images/cost-intel-cache-ttl.png)
 
@@ -248,7 +248,7 @@ The same patterns tend to appear in tool descriptions and skills, which are wort
 
 ## Trade cost against intelligence
 
-These levers set where a single model sits between cost and intelligence: model choice, effort, re-running failures at a higher setting, and the budgets and caps it works within. Start with an effort sweep on your current model ([Tune effort](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort)). From lowest to highest cost and capability, the current models are Claude Haiku 4.5, Claude Sonnet 5, Claude Opus 5, and Claude Fable 5.1 (the frontier model); [Models overview](https://platform.claude.com/docs/en/models/overview) has the full lineup and prices.
+These levers set where a single model sits between cost and intelligence: model choice, effort, re-running failures at a higher setting, and the budgets and caps it works within. Start with an effort sweep on your current model ([Tune effort](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort)). From lowest to highest cost and capability, the current models are Claude Haiku 4.5, Claude Sonnet 5, Claude Opus 5.5, and Claude Fable 5.1 (the frontier model); [Models overview](https://platform.claude.com/docs/en/models/overview) has the full lineup and prices.
 
 ### Compare models on cost per task
 
@@ -276,7 +276,7 @@ If you are a model or two behind, the cheapest lever is the model string. Anthro
 
 ![Two charts of cost per solved task against tasks solved: on SWE-bench Pro every model solves most tasks and the upgrade steps are small; on Terminal-Bench 3 the Opus ladder falls from $183 to $63 to $28 per solved task](https://platform.claude.com/docs/images/cost-intel-upgrade-ladder.png)
 
-Anthropic prices the Opus line identically per token across versions, so any difference comes from how much work each model does per task: priced as a customer is billed, Claude Opus 4.8 solves the same share of tasks as Claude Opus 4.7 for 14% less per solved task, and Claude Opus 5 then solves 12 more points of tasks at 21% more per solved task. Claude Opus 5 at `low` effort beats Opus 4.8's default on this benchmark for about 30% of its cost per solved task, so the cheapest upgrade is the new model at a lower setting. Sonnet 5's saving comes from its lower per-token price, which more than offsets the extra tokens it uses per task compared with Sonnet 4.6: 15% less per solved task for 5 more points. The frontier tier gained the same way: Claude Fable 5.1 matches Claude Fable 5's score for 43% less per solved task, most of it the lower cache-read price. That direction is not guaranteed: on DeepResearch Bench II[7](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs) the same upgrade costs 41% more per task at `high` (79% more at `low`) for its 2 to 3 extra points on the tasks clean in every arm (reference 7), because the new model does more work per task there. The input and output prices are the same and the cache read is 4x cheaper, so measure the upgrade on your own workload before assuming it saves.
+Anthropic prices Claude Opus 4.7, Opus 4.8, and Opus 5 identically per token, so any difference among them comes from how much work each model does per task: priced as a customer is billed, Claude Opus 4.8 solves the same share of tasks as Claude Opus 4.7 for 14% less per solved task, and Claude Opus 5 then solves 12 more points of tasks at 21% more per solved task. Claude Opus 5 at `low` effort beats Opus 4.8's default on this benchmark for about 30% of its cost per solved task, so the cheapest upgrade is the new model at a lower setting. Sonnet 5's saving comes from its lower per-token price, which more than offsets the extra tokens it uses per task compared with Sonnet 4.6: 15% less per solved task for 5 more points. The frontier tier gained the same way: Claude Fable 5.1 matches Claude Fable 5's score for 43% less per solved task, most of it the lower cache-read price. That direction is not guaranteed: on DeepResearch Bench II[7](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs) the same upgrade costs 41% more per task at `high` (79% more at `low`) for its 2 to 3 extra points on the tasks clean in every arm (reference 7), because the new model does more work per task there. The input and output prices are the same and the cache read is 4x cheaper, so measure the upgrade on your own workload before assuming it saves.
 
 On harder work the gap widens. On Terminal-Bench 3[20](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs), where the tasks are hard enough that pass rate rather than tokens sets the bill, Claude Opus 4.7, Opus 4.8, and Opus 5 each spend $8 to $15 per task but solve 7%, 15%, and 41% of tasks, so cost per solved task falls from $183 to $63 to $28 up the ladder. The 21% premium Claude Opus 5 carries over Opus 4.8 on the saturated coding subset becomes a 56% saving on Terminal-Bench 3, where the older model mostly fails: the more your workload defeats the old model, the more the upgrade saves per result.
 
@@ -284,7 +284,7 @@ Compare on cost per solved task, not per token: the same text costs about 30% mo
 
 ### Tune effort
 
-Effort is the most direct way to tune a model to your task. The `effort` parameter governs how much thinking, tool calling, and self-verification the model does, and the default (`high`) suits demanding tasks. Cost scales with all that activity; accuracy scales only with the part your task needs. Below the model's ceiling, the highest effort levels pay for depth the task never uses.
+Effort is the most direct way to tune a model to your task. The `effort` parameter governs how much thinking, tool calling, and self-verification the model does, and `high`, the default on most models, suits demanding tasks; Claude Opus 5.5 defaults to `medium`. Cost scales with all that activity; accuracy scales only with the part your task needs. Below the model's ceiling, the highest effort levels pay for depth the task never uses.
 
 On the research and knowledge-work benchmarks (WideSearch[1](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs), DeepWideSearch[6](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs), BrowseComp[4](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs), and GDPval[2](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence#refs), all with Claude Fable 5), the curve of accuracy against cost is nearly flat: `low` gave up 1 to 3 points for a third to a half off the cost per task, `medium` matched the default's accuracy at about 70% to 87% of its cost, and the default bought nothing measurable over `medium` on any of the four. On DeepWideSearch, `low` also matched an orchestrator with a Claude Sonnet 5 worker at 29% lower cost: lowering effort beat an architecture change.
 
@@ -468,7 +468,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```bash cURL
   # Per-million-token prices from the pricing page; change these three for another model.
   INPUT_PER_MTOK=5.00 # Claude Opus 5
-  CACHE_READ_PER_MTOK=0.50 # 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  CACHE_READ_PER_MTOK=0.50 # 0.1x the input price on Claude Opus 5; some models use a different multiplier
   OUTPUT_PER_MTOK=25.00
 
   response=$(curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
@@ -495,7 +495,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```bash CLI
   # Per-million-token prices from the pricing page; change these three for another model.
   INPUT_PER_MTOK=5.00 # Claude Opus 5
-  CACHE_READ_PER_MTOK=0.50 # 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  CACHE_READ_PER_MTOK=0.50 # 0.1x the input price on Claude Opus 5; some models use a different multiplier
   OUTPUT_PER_MTOK=25.00
 
   USAGE=$(ant messages create \
@@ -517,7 +517,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```python Python
   # Per-million-token prices from the pricing page; change these three for another model.
   INPUT_PER_MTOK = 5.00  # Claude Opus 5
-  # 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  # 0.1x the input price on Claude Opus 5; some models use a different multiplier
   CACHE_READ_PER_MTOK = 0.50
   OUTPUT_PER_MTOK = 25.00
 
@@ -545,7 +545,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```typescript TypeScript
   // Per-million-token prices from the pricing page; change these three for another model.
   const INPUT_PER_MTOK = 5.0; // Claude Opus 5
-  const CACHE_READ_PER_MTOK = 0.5; // 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  const CACHE_READ_PER_MTOK = 0.5; // 0.1x the input price on Claude Opus 5; some models use a different multiplier
   const OUTPUT_PER_MTOK = 25.0;
 
   const client = new Anthropic();
@@ -568,7 +568,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```csharp C#
   // Per-million-token prices from the pricing page; change these three for another model.
   const double InputPerMtok = 5.00; // Claude Opus 5
-  const double CacheReadPerMtok = 0.50; // 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  const double CacheReadPerMtok = 0.50; // 0.1x the input price on Claude Opus 5; some models use a different multiplier
   const double OutputPerMtok = 25.00;
 
   AnthropicClient client = new();
@@ -596,7 +596,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   // Per-million-token prices from the pricing page; change these three for another model.
   const (
   	inputPerMTok     = 5.00 // Claude Opus 5
-  	cacheReadPerMTok = 0.50 // 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  	cacheReadPerMTok = 0.50 // 0.1x the input price on Claude Opus 5; some models use a different multiplier
   	outputPerMTok    = 25.00
   )
 
@@ -626,7 +626,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```java Java
   // Per-million-token prices from the pricing page; change these three for another model.
   static final double INPUT_PER_MTOK = 5.00; // Claude Opus 5
-  static final double CACHE_READ_PER_MTOK = 0.50; // 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  static final double CACHE_READ_PER_MTOK = 0.50; // 0.1x the input price on Claude Opus 5; some models use a different multiplier
   static final double OUTPUT_PER_MTOK = 25.00;
 
   void main() {
@@ -653,7 +653,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```php PHP
   // Per-million-token prices from the pricing page; change these three for another model.
   const INPUT_PER_MTOK = 5.00; // Claude Opus 5
-  const CACHE_READ_PER_MTOK = 0.50; // 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  const CACHE_READ_PER_MTOK = 0.50; // 0.1x the input price on Claude Opus 5; some models use a different multiplier
   const OUTPUT_PER_MTOK = 25.00;
 
   $client = new Client();
@@ -676,7 +676,7 @@ The following example computes one request's step 1 cost at Claude Opus 5's list
   ```ruby Ruby
   # Per-million-token prices from the pricing page; change these three for another model.
   INPUT_PER_MTOK = 5.00 # Claude Opus 5
-  CACHE_READ_PER_MTOK = 0.50 # 0.1x the input price; 0.025x on Claude Fable 5.1 and Claude Mythos 5.1
+  CACHE_READ_PER_MTOK = 0.50 # 0.1x the input price on Claude Opus 5; some models use a different multiplier
   OUTPUT_PER_MTOK = 25.00
 
   client = Anthropic::Client.new

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b973fc1b77ef405d7e44815df11b691ed7a74ae55a0d463b6257fac2dcb10564
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9d1af2955283b81ca5f06312971eeb7f6779abdee7d728666fe067b939ab6216
 ---
 
 ---
@@ -85,7 +85,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
 
 <CodeGroup>
   ```bash cURL
-  # 1. Minta access token dari Okta (client_credentials dengan private_key_jwt).
+  # 1. Minta token akses dari Okta (client_credentials dengan private_key_jwt).
   OKTA_JWT=$(curl -sS "https://acme.okta.com/oauth2/aus1a2b3c4d5e6f7g8h9/v1/token" \
     -d grant_type=client_credentials \
     -d scope=anthropic.access \
@@ -93,7 +93,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
     --data-urlencode client_assertion="$SIGNED_CLIENT_ASSERTION" \
     | jq -r .access_token)
 
-  # 2. Tukarkan JWT Okta dengan access token Anthropic.
+  # 2. Tukarkan JWT Okta dengan token akses Anthropic.
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
     -d @- <<JSON | jq -r .access_token
@@ -113,7 +113,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d '{"model": "claude-opus-5", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
+    -d '{"model": "claude-opus-5-5", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
     | jq -r '.content[] | select(.type == "text") | .text'
   ```
 
@@ -150,7 +150,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -190,7 +190,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -255,7 +255,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   		}),
   	)
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -305,7 +305,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Hello, Claude")
           .build());
@@ -329,7 +329,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
   });
@@ -366,7 +366,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 
   ```bash CLI
-  # 1. Minta access token dari Okta dan tulis ke file sementara.
+  # 1. Minta token akses dari Okta dan tulis ke file sementara.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS "$OKTA_ISSUER/v1/token" \
     -d grant_type=client_credentials \
@@ -378,9 +378,9 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
 
   # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan
-  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran.
+  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran token.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -418,7 +418,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   );
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
   );
@@ -454,7 +454,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}]
   )

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8b3c33d6a7545066848157ba6971c8a1cb40d649a34d720ab4a716247839ecbd
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 0aff0a003c10c2d013630ab556a87debbf4c8707e2f06adadfd76d2a9b570079
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Konektor MCP
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
 description: Hubungkan server MCP ke agen Anda untuk mengakses alat dan sumber data eksternal.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -39,7 +42,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
     -d @- <<'EOF'
   {
     "name": "GitHub Assistant",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "mcp_servers": [
       {
         "type": "url",
@@ -66,7 +69,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
       ```markdown
       ---
       name: GitHub Assistant
-      model: claude-opus-5
+      model: claude-opus-5-5
       mcp_servers:
         - type: url
           name: github
@@ -83,7 +86,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   ```python Python
   agent = client.beta.agents.create(
       name="GitHub Assistant",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       mcp_servers=[
           {
               "type": "url",
@@ -101,7 +104,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "GitHub Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [
       {
         type: "url",
@@ -120,7 +123,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "GitHub Assistant",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       McpServers =
       [
           new() { Type = "url", Name = "github", Url = "https://api.githubcopilot.com/mcp/" },
@@ -140,7 +143,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "GitHub Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
@@ -170,7 +173,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   var agent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("GitHub Assistant")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
                   .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -196,7 +199,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'GitHub Assistant',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
               type: 'url',
@@ -219,7 +222,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "GitHub Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     mcp_servers: [
       {
         type: "url",

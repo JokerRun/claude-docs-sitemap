@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 84a4f7ee04baaf8eaa896036980ecd24c2d4c0ed97fdc0bb518e1595f1d0ef94
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b1a2ac29d76182a29e536f004e8c8a2309cdee37d39f469c41bee36a1a74b7ce
 ---
 
 ---
@@ -31,7 +31,7 @@ Endpoint di halaman ini menggunakan dua cara "pagination" (paginasi). Lihat [Pag
 
 Gunakan [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk menelusuri metadata chat halaman demi halaman, lalu [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mengambil konten pesan lengkap dari satu chat.
 
-Secara default, endpoint daftar chat mencakup seluruh organisasi: hilangkan `user_ids[]` untuk menyertakan setiap chat di bawah organisasi induk Anda. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap mutakhir. Dengan satu loop paginasi, Anda mendapatkan chat baru, chat yang diubah, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa perlu mendata pengguna terlebih dahulu. Permintaan berikut mencantumkan chat yang diperbarui sejak tanggal tertentu.
+Secara default, endpoint daftar chat mencakup seluruh organisasi: jangan sertakan `user_ids[]` agar setiap chat di bawah organisasi induk Anda ikut tercantum. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap terkini. Dengan satu loop berpaginasi, Anda mendapatkan chat baru, chat yang dimodifikasi, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa perlu mendata pengguna terlebih dahulu. Permintaan berikut mencantumkan chat yang diperbarui sejak tanggal tertentu.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
@@ -53,7 +53,7 @@ curl --fail-with-body -sS -G \
       "updated_at": "2026-04-10T09:10:11Z",
       "deleted_at": null,
       "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
       "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
       "user": {
@@ -68,21 +68,13 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Hasil diurutkan secara menaik berdasarkan field `order_by`, dari yang terlama. Jika nilainya sama, urutan ditentukan oleh `id`. Paginasi menggunakan field kursor standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju ke chat yang lebih baru, kirimkan `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
+Hasil diurutkan secara menaik berdasarkan field `order_by`, dimulai dari yang terlama. Jika ada nilai yang sama, urutannya ditentukan oleh `id`. Paginasi menggunakan field "cursor" (kursor) standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju ke chat yang lebih baru, kirimkan `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
 
-Penelusuran maju ini juga merupakan cara menjaga ekspor tetap mutakhir dari satu eksekusi ke eksekusi berikutnya. Simpan `last_id` dari halaman terakhir, lalu lanjutkan darinya sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, chat yang berubah setelah kursor tersimpan akan muncul kembali di depannya. Dengan demikian, setiap eksekusi inkremental mengembalikan chat yang benar-benar baru sekaligus chat lama yang sejak itu diubah atau dihapus di claude.ai. Proses hasil secara idempoten dengan `id` chat sebagai kunci agar kemunculan ulang tersebut tertangani. Chat yang kembali dengan `deleted_at` terisi tidak lagi memiliki konten untuk diambil, jadi perlakukan sebagai chat yang dihapus, bukan yang diperbarui.
+Penelusuran maju ini juga merupakan cara menjaga ekspor tetap terkini dari satu eksekusi ke eksekusi berikutnya: simpan `last_id` dari halaman terakhir, lalu gunakan sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, chat yang berubah setelah kursor yang Anda simpan akan muncul kembali setelah posisi kursor tersebut. Dengan demikian, setiap eksekusi inkremental mengembalikan chat yang benar-benar baru sekaligus chat lama yang telah dimodifikasi atau dihapus di claude.ai sejak eksekusi sebelumnya. Proses hasil secara "idempotent" (idempoten) dengan `id` chat sebagai kunci untuk menangani kemunculan ulang tersebut. Chat yang muncul kembali dengan `deleted_at` terisi tidak lagi memiliki konten untuk diambil, jadi perlakukan chat tersebut sebagai terhapus, bukan diperbarui.
 
-Beberapa batasan berlaku untuk kueri di seluruh organisasi ini:
+Beberapa batasan berlaku untuk kueri seluruh organisasi ini. Kursor bersifat opaque dan terikat pada kunci pengurutan. Artinya, `after_id` yang diterbitkan dengan satu nilai `order_by` akan ditolak dengan error 400 jika digunakan dengan nilai lainnya. Batas filter waktu juga harus sesuai dengan kunci pengurutan: pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default. Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia. Lihat [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
 
-* Kursor bersifat opaque dan terikat pada kunci pengurutan. `after_id` yang diterbitkan dengan satu nilai `order_by` akan ditolak dengan error 400 jika digunakan dengan nilai lainnya.
-* Batas filter waktu juga harus sesuai dengan kunci pengurutan. Pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default.
-* Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia.
-
-Lihat [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
-
-Untuk membatasi daftar ke pengguna tertentu (misalnya, legal hold pada kustodian yang disebutkan namanya), kirimkan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (mengirimkan `order_by=updated_at` akan mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Filter `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini.
-
-Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah deprecated dan akan ditolak dengan error 400 setelah 2026-09-22. Untuk menjaga kumpulan kustodian tetap mutakhir berdasarkan waktu pembaruan, jalankan penelusuran `order_by=updated_at` di seluruh organisasi tanpa `user_ids[]`, lalu pilih chat milik para kustodian dari hasilnya. Gunakan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
+Untuk membatasi daftar ke pengguna tertentu (misalnya, untuk "legal hold" (penahanan hukum) terhadap kustodian yang disebutkan namanya), kirimkan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (mengirimkan `order_by=updated_at` akan mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Filter `project_ids[]` hanya tersedia dalam bentuk kueri yang difilter berdasarkan pengguna ini. Penggunaan `user_ids[]` bersama batas `updated_at.*` apa pun sudah "deprecated" (tidak digunakan lagi) dan akan ditolak dengan error 400 setelah 2026-09-22. Untuk menjaga data sekelompok kustodian tetap terkini berdasarkan waktu pembaruan, jalankan penelusuran `order_by=updated_at` di seluruh organisasi tanpa `user_ids[]`, lalu pilih chat milik kustodian dari hasilnya. Gunakan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
@@ -94,7 +86,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "limit=100"
 ```
 
-Respons daftar hanya berisi metadata chat. Untuk mengambil konten chat yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan memanggil endpoint pesan untuk setiap ID chat:
+Respons daftar hanya memuat metadata chat. Untuk mengambil konten chat yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), panggil endpoint pesan untuk setiap ID chat:
 
 ```bash cURL
 chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
@@ -105,13 +97,7 @@ curl --fail-with-body -sS \
   --header "anthropic-version: 2023-06-01"
 ```
 
-Endpoint pesan mengembalikan metadata chat beserta array `chat_messages` yang diurutkan berdasarkan `created_at`. Jika `limit` dihilangkan, seluruh pesan dikembalikan dalam satu respons. Kirimkan `limit`, `after_id`, atau `before_id` untuk menelusuri chat yang sangat panjang halaman demi halaman. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap.
-
-Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim. Untuk pesan asisten, `created_at` adalah waktu Claude selesai menghasilkan pesan. Setiap pesan berisi konten teksnya dan, jika ada:
-
-* file yang diunggah (biasanya pada pesan pengguna)
-* file yang dihasilkan alat
-* artifact yang dibuat atau diperbarui oleh asisten (biasanya pada pesan asisten)
+Endpoint pesan mengembalikan metadata chat beserta array `chat_messages` yang diurutkan berdasarkan `created_at`. Jika `limit` tidak disertakan, seluruh pesan dikembalikan dalam satu respons. Untuk chat yang sangat panjang, kirimkan `limit`, `after_id`, atau `before_id` agar hasilnya dipaginasi. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim. Untuk pesan asisten, `created_at` adalah waktu Claude selesai menghasilkan pesan. Setiap pesan memuat konten teksnya dan, jika ada, file yang diunggah (biasanya pada pesan pengguna), file yang dihasilkan alat, serta artifact yang dihasilkan atau diperbarui oleh asisten (biasanya pada pesan asisten):
 
 ```json Response
 {
@@ -121,7 +107,7 @@ Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim. Untuk pesan asist
   "updated_at": "2026-04-10T09:10:11Z",
   "deleted_at": null,
   "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
   "user": {
@@ -185,13 +171,7 @@ Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim. Untuk pesan asist
 }
 ```
 
-Masing-masing `files`, `generated_files`, dan `artifacts` dapat bernilai `null` pada pesan tertentu:
-
-* `files` adalah file dan lampiran teks (misalnya, PDF, gambar, spreadsheet, dokumen, dan teks yang ditempel) yang dilampirkan pengguna ke pesan, sebagaimana disimpan oleh claude.ai.
-* `generated_files` adalah file biner yang dibuat asisten selama percakapan melalui "tool use" (penggunaan alat), misalnya PDF, spreadsheet, atau slide presentasi.
-* `artifacts` adalah dokumen berversi (misalnya, kode atau markdown) yang dibuat atau diperbarui asisten dalam responsnya. Sebuah artifact dapat direvisi di beberapa giliran asisten dalam chat yang sama, dan setiap revisi muncul sebagai `version_id` baru di bawah `id` artifact yang sama.
-
-Untuk mengunduh setiap entri, kirimkan `id`-nya (atau `version_id` untuk artifact) ke endpoint konten yang sesuai di [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts).
+`files`, `generated_files`, dan `artifacts` masing-masing dapat bernilai `null` pada suatu pesan. `files` adalah file dan lampiran teks (misalnya, PDF, gambar, spreadsheet, dokumen, dan teks yang ditempel) yang dilampirkan pengguna ke pesan, dalam bentuk yang disimpan oleh claude.ai. `generated_files` adalah file biner yang dibuat asisten selama percakapan melalui "tool use" (penggunaan alat), misalnya PDF, spreadsheet, atau slide presentasi. `artifacts` adalah dokumen berversi (misalnya, kode atau markdown) yang dihasilkan atau diperbarui asisten dalam responsnya. Sebuah artifact dapat direvisi di beberapa giliran asisten dalam chat yang sama, dan setiap revisi muncul sebagai `version_id` baru di bawah `id` artifact yang sama. Untuk mengunduh setiap entri, kirimkan `id`-nya (atau `version_id` untuk artifact) ke endpoint konten yang sesuai di [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts).
 
 ## Mengambil file dan artifact
 

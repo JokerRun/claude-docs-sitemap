@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 60ab6fd5b8d499c80d00ac8a829c6b5ba4daa1ecaccdcddfe6e9482e400d0cd6
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b316eee680973afc624a03d924bdd460c4b78f9d6b512784e40f3cc2e4a2f200
 ---
 
 ---
@@ -25,6 +25,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude:
 | Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok    |
 | Claude Fable 5                                                                                                                        | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
 | Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
+| Claude Opus 5.5                                                                                                                       | $4 / MTok         | $5 / MTok       | $8 / MTok       | $0.20 / MTok<sup>2</sup> | $20 / MTok    |
 | Claude Opus 5                                                                                                                         | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
 | Claude Opus 4.8                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
 | Claude Opus 4.7                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
@@ -39,7 +40,11 @@ Tabel berikut menunjukkan harga untuk semua model Claude:
 | Claude Haiku 4.5                                                                                                                      | $1 / MTok         | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok     |
 | Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $0.80 / MTok      | $1 / MTok       | $1.60 / MTok    | $0.08 / MTok             | $4 / MTok     |
 
-*<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price. All other models use the standard 0.1x multiplier.</sup>*
+*<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
+
+*<sup>2 Cache hits and refreshes on Claude Opus 5.5 are priced at 0.05x the base input price.</sup>*
+
+*<sup>All other models use the standard 0.1x multiplier.</sup>*
 
 <Note id="claude-sonnet-5-introductory-pricing">
   Harga $2/$10 per juta token input/output untuk Claude Sonnet 5, yang diumumkan saat peluncuran sebagai harga perkenalan hingga 31 Agustus 2026, kini menjadi harga standar. Kenaikan yang sebelumnya dijadwalkan menjadi $3/$15 per juta token input/output pada 1 September 2026 tidak akan terjadi.
@@ -140,24 +145,31 @@ Deployment yang dihosting di Azure dapat menggunakan jenis deployment US Data Zo
 
 ### Caching prompt
 
-"Prompt caching" (caching prompt) mengurangi biaya dan latensi dengan menggunakan kembali bagian prompt Anda yang telah diproses sebelumnya di seluruh panggilan API. Alih-alih memproses ulang prompt sistem, dokumen, atau riwayat percakapan besar yang sama pada setiap permintaan, API membaca dari cache dengan sebagian kecil dari harga input standar.
+"Prompt caching" (caching prompt) mengurangi biaya dan "latency" (latensi) dengan menggunakan kembali bagian prompt Anda yang sudah diproses sebelumnya di berbagai panggilan API. API tidak perlu memproses ulang prompt sistem, dokumen, atau riwayat percakapan besar yang sama pada setiap permintaan. Sebagai gantinya, API membaca dari cache dengan biaya yang jauh lebih rendah daripada harga input standar.
 
 Ada dua cara untuk mengaktifkan caching prompt:
 
-* **Caching otomatis:** Tambahkan satu field `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis mengelola breakpoint cache seiring berkembangnya percakapan. Ini adalah titik awal yang direkomendasikan untuk sebagian besar kasus penggunaan.
-* **Breakpoint cache eksplisit:** Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol terperinci atas apa saja yang di-cache.
+* **Caching otomatis:** Tambahkan satu field `cache_control` di tingkat teratas permintaan Anda. Sistem akan mengelola breakpoint cache secara otomatis seiring bertambahnya percakapan. Ini adalah titik awal yang direkomendasikan untuk sebagian besar kasus penggunaan.
+* **Breakpoint cache eksplisit:** Tempatkan `cache_control` langsung pada blok konten individual. Cara ini memberi Anda kontrol terperinci atas bagian yang di-cache.
 
-Caching prompt menggunakan pengali harga berikut relatif terhadap tarif token input dasar:
+Caching prompt menggunakan pengali harga berikut, relatif terhadap tarif token input dasar:
 
-| Operasi cache           | Pengali                                                                     | Durasi                                  |
-| ----------------------- | --------------------------------------------------------------------------- | --------------------------------------- |
-| Penulisan cache 5 menit | 1,25x harga input dasar                                                     | Cache berlaku selama 5 menit            |
-| Penulisan cache 1 jam   | 2x harga input dasar                                                        | Cache berlaku selama 1 jam              |
-| Pembacaan cache (hit)   | 0,1x harga input dasar (0,025x pada Claude Fable 5.1 dan Claude Mythos 5.1) | Durasi sama dengan penulisan sebelumnya |
+| Operasi cache           | Pengali                                                                                                 | Durasi                                  |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Penulisan cache 5 menit | 1,25x harga input dasar                                                                                 | Cache berlaku selama 5 menit            |
+| Penulisan cache 1 jam   | 2x harga input dasar                                                                                    | Cache berlaku selama 1 jam              |
+| Pembacaan cache (hit)   | 0,1x harga input dasar (0,025x pada Claude Fable 5.1 dan Claude Mythos 5.1; 0,05x pada Claude Opus 5.5) | Durasi sama dengan penulisan sebelumnya |
 
-Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache. Cache hit berbiaya 10% dari harga input standar, yang berarti caching sudah menguntungkan setelah satu kali pembacaan cache untuk durasi 5 menit (penulisan 1,25x), atau setelah dua kali pembacaan cache untuk durasi 1 jam (penulisan 2x). Pada Claude Fable 5.1 dan Claude Mythos 5.1, cache hit berbiaya 2,5% dari harga input standar ($0,25 USD per juta token).
+Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache.
 
-Pengali ini bertumpuk dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
+Cache hit berbiaya 10% dari harga input standar. Artinya, caching sudah menguntungkan setelah:
+
+* satu kali pembacaan cache untuk durasi 5 menit (penulisan 1,25x)
+* dua kali pembacaan cache untuk durasi 1 jam (penulisan 2x)
+
+Pada Claude Fable 5.1 dan Claude Mythos 5.1, cache hit berbiaya 2,5% dari harga input standar ($0,25 USD per juta token). Pada Claude Opus 5.5, cache hit berbiaya 5% dari harga input standar ($0,20 USD per juta token).
+
+Pengali ini dapat digabungkan dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
 
 Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
@@ -171,18 +183,24 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 
 ### Harga fast mode
 
-[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode), dalam pratinjau riset, menyediakan output yang jauh lebih cepat untuk Claude Opus 5 dan Claude Opus 4.8 dengan harga premium. Harga fast mode berlaku di seluruh jendela konteks, termasuk permintaan dengan lebih dari 200 ribu token input. Fast mode hanya tersedia di Claude API (pihak pertama); tidak tersedia di Claude Platform on AWS atau platform cloud yang dioperasikan mitra.
+[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) saat ini tersedia dalam pratinjau riset. Fitur ini menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Harga fast mode berlaku di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200 ribu token input. Fast mode hanya tersedia di Claude API (pihak pertama). Fitur ini tidak tersedia di Claude Platform on AWS atau platform cloud yang dioperasikan mitra.
 
 | Model                           | Input      | Output     |
 | ------------------------------- | ---------- | ---------- |
+| Claude Opus 5.5                 | $8 / MTok  | $40 / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 / MTok | $50 / MTok |
 
-Fast mode tidak tersedia pada Claude Opus 4.7 (permintaan dengan `speed: "fast"` mengembalikan error) atau Claude Opus 4.6 (permintaan berjalan pada kecepatan standar dan ditagih dengan tarif standar). Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+Fast mode tidak tersedia di model berikut:
 
-Harga fast mode bertumpuk dengan pengubah harga lainnya:
+* Claude Opus 4.7: permintaan dengan `speed: "fast"` mengembalikan error.
+* Claude Opus 4.6: permintaan dijalankan dengan kecepatan standar dan ditagih dengan tarif standar.
 
-* [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga fast mode
-* Pengali [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) berlaku di atas harga fast mode
+Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+
+Harga fast mode dapat digabungkan dengan pengubah harga lainnya:
+
+* [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) diterapkan di atas harga fast mode
+* Pengali [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) diterapkan di atas harga fast mode
 
 Fast mode tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing).
 
@@ -198,6 +216,7 @@ Batch API memungkinkan pemrosesan asinkron permintaan dalam volume besar dengan 
 | Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $5 / MTok    | $25 / MTok    |
+| Claude Opus 5.5                                                                                                                       | $2 / MTok    | $10 / MTok    |
 | Claude Opus 5                                                                                                                         | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.8                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.7                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
@@ -238,6 +257,7 @@ Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prom
 
 | Model                                                                                                                                       | Pilihan alat                   | Jumlah token prompt sistem penggunaan alat |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ |
+| Claude Opus 5.5                                                                                                                             | `auto`, `none`                 | 286 token                                  |
 | Claude Opus 5                                                                                                                               | `auto`, `none`***`any`, `tool` | 286 token***406 token                      |
 | Claude Opus 4.8                                                                                                                             | `auto`, `none`***`any`, `tool` | 290 token***410 token                      |
 | Claude Opus 4.7                                                                                                                             | `auto`, `none`***`any`, `tool` | 675 token***804 token                      |

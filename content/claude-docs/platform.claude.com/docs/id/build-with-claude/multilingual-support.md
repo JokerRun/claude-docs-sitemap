@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0035d593abf98886c72357632c697f9d5859c8462da1bde20e9de25d1cc309de
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 4397e6ca3d58cb60b87f573ea9bb987381f9abc4be6b38a4a574479bd08c2cb1
 ---
 
 ---
@@ -58,7 +58,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "system": "Always respond in French, regardless of the language the user writes in.",
       "messages": [
@@ -69,7 +69,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --system "Always respond in French, regardless of the language the user writes in." \
     --message '{role: user, content: "How do I reset my password?"}'
@@ -79,7 +79,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       system="Always respond in French, regardless of the language the user writes in.",
       messages=[{"role": "user", "content": "How do I reset my password?"}],
@@ -92,7 +92,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   const client = new Anthropic();
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     system: "Always respond in French, regardless of the language the user writes in.",
     messages: [{ role: "user", content: "How do I reset my password?" }]
@@ -106,7 +106,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       System = "Always respond in French, regardless of the language the user writes in.",
       Messages =
@@ -123,7 +123,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	System: []anthropic.TextBlockParam{
   		{Text: "Always respond in French, regardless of the language the user writes in."},
@@ -142,7 +142,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .system("Always respond in French, regardless of the language the user writes in.")
       .addUserMessage("How do I reset my password?")
@@ -160,7 +160,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
       messages: [
           ['role' => 'user', 'content' => 'How do I reset my password?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'Always respond in French, regardless of the language the user writes in.',
   );
 
@@ -171,7 +171,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     system: "Always respond in French, regardless of the language the user writes in.",
     messages: [

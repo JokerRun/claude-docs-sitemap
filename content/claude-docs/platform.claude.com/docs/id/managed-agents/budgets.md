@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 36d2b1679b408da45ab4e2064125b41d795aeb2c44f5a35f4b26043a64111b8e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 66576de24d78a91c8fb8d99660624d0340825e5fee735325ee0692a44275c24d
 ---
 
 ---
 title: Anggaran sesi
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-description: Batasi pengeluaran sesi dengan anggaran dolar yang ketat, diberlakukan berdasarkan tarif daftar publik.
+description: Batasi pengeluaran sesi dengan anggaran dolar yang ketat dan diberlakukan berdasarkan tarif daftar publik.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

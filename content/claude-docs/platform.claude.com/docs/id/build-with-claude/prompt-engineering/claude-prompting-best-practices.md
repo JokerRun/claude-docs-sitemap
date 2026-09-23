@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0ddcf1127318b75e87f99992b7432d005f70fbde76984d2ac2c194eca51267ad
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: a716b588b9b9b5a78db8228e7ca71494a65fe065680bd49c44093eaa6cb747a5
 ---
 
 ---
@@ -11,27 +11,28 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/cl
 description: Panduan komprehensif tentang teknik prompt engineering untuk model-model terbaru Claude, mencakup kejelasan, contoh, penstrukturan XML, thinking, dan sistem agentic.
 ---
 
-Ini adalah referensi untuk prompt engineering dengan model Claude saat ini, termasuk Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 4.5. Halaman ini disusun dalam tiga bagian:
+Halaman ini adalah referensi "prompt engineering" (rekayasa prompt) untuk model Claude saat ini, termasuk Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 4.5. Halaman ini terbagi menjadi tiga bagian:
 
 * **[Panduan khusus model](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#model-specific-guidance)** terlebih dahulu: di mana satu model berperilaku berbeda dan apa yang perlu diubah dalam prompt Anda.
 * **Teknik untuk semua model saat ini** setelah itu: prinsip umum, output dan pemformatan, penggunaan alat, thinking, dan sistem agentic.
 * **Pertimbangan migrasi** terakhir, untuk prompt yang berpindah dari generasi sebelumnya.
 
 <Tip>
-  Untuk gambaran umum kemampuan model, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview). Untuk kemampuan Claude Fable 5.1 dan perubahan API, lihat [Apa yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1). Untuk kemampuan Claude Fable 5 dan perubahan API, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5). Untuk detail tentang apa yang baru di Claude Sonnet 5, lihat [Apa yang baru di Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5). Untuk detail tentang apa yang baru di Claude Opus 5, lihat [Apa yang baru di Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5). Untuk panduan migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
+  Untuk ikhtisar kemampuan model, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview). Untuk kemampuan dan perubahan API Claude Fable 5.1, lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1). Untuk kemampuan dan perubahan API Claude Fable 5, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5). Untuk detail tentang hal baru di Claude Sonnet 5, lihat [Apa yang baru di Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5). Untuk detail tentang hal baru di Claude Opus 5, lihat [Apa yang baru di Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5). Untuk panduan migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk Claude Opus 5.5, lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5).
 </Tip>
 
 ## Panduan khusus model
 
 Masing-masing model ini memiliki halaman prompting sendiri. Baca halaman untuk model Anda terlebih dahulu, lalu teknik-teknik yang mengikutinya.
 
-| Model                                  | Panduan                                                                                                                           | Apa yang berbeda                                                                                                                                                                                                                                                                                    |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.1 dan Claude Mythos 5.1 | [Prompting Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1) | Perbedaan dari Claude Fable 5: tingkat effort, menyelesaikan tugas panjang, pembaruan progres yang ditujukan kepada pengguna, mengembalikan blok thinking tanpa perubahan, pengelompokan panggilan alat dalam loop agen, pemicuan pencarian pada effort rendah, pemformatan, dan kepadatan tulisan. |
-| Claude Fable 5 dan Claude Mythos 5     | [Prompting Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5)     | Perbedaan dari Claude Opus 4.8: tingkat effort, kepatuhan instruksi, klaim progres pada tugas panjang, sistem memori, dan kategori penolakan `reasoning_extraction`.                                                                                                                                |
-| Claude Sonnet 5                        | [Prompting Claude Sonnet 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5)   | Perbedaan dari Claude Sonnet 4.6: panjang respons, kalibrasi effort dan kedalaman thinking, pemicuan penggunaan alat, kepatuhan instruksi secara literal, serta default desain dan frontend.                                                                                                        |
-| Claude Opus 5                          | [Prompting Claude Opus 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5)       | Perbedaan dari model Opus sebelumnya: panjang respons dan verbositas, pembaruan progres yang ditujukan kepada pengguna, panjang hasil tertulis, cakupan tugas dan verifikasi berlebihan, kontrol subagen, dan koreksi diri.                                                                         |
-| Claude Opus 4.8                        | [Prompting Claude Opus 4.8](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8)   | Panjang respons, kalibrasi effort dan kedalaman thinking, pemicuan penggunaan alat, kepatuhan instruksi secara literal, kontrol subagen, serta default desain dan frontend.                                                                                                                         |
+| Model                                  | Panduan                                                                                                                           | Apa yang berbeda                                                                                                                                                                                                                                                                  |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5.1 dan Claude Mythos 5.1 | [Prompting Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1) | Perbedaan dari Claude Fable 5: tingkat effort, penyelesaian tugas panjang, pembaruan progres untuk pengguna, pengembalian blok thinking tanpa perubahan, pengelompokan panggilan alat dalam loop agen, pemicuan pencarian pada effort rendah, pemformatan, dan kepadatan tulisan. |
+| Claude Fable 5 dan Claude Mythos 5     | [Prompting Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5)     | Perbedaan dari Claude Opus 4.8: tingkat effort, kepatuhan terhadap instruksi, klaim progres pada tugas berdurasi panjang, sistem memori, dan kategori penolakan `reasoning_extraction`.                                                                                           |
+| Claude Sonnet 5                        | [Prompting Claude Sonnet 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5)   | Perbedaan dari Claude Sonnet 4.6: panjang respons, kalibrasi effort dan kedalaman pemikiran, pemicuan penggunaan alat, kepatuhan literal terhadap instruksi, serta default desain dan frontend.                                                                                   |
+| Claude Opus 5.5                        | [Prompting Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)   | Perbedaan dari Claude Opus 5: kalibrasi effort, prompt yang ditulis untuk kondisi thinking dinonaktifkan, pembaruan progres untuk pengguna, positif palsu pada safeguard, dan alat untuk input visual yang kompleks.                                                              |
+| Claude Opus 5                          | [Prompting Claude Opus 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5)       | Perbedaan dari model Opus sebelumnya: panjang respons dan verbositas, pembaruan progres untuk pengguna, panjang hasil kerja tertulis, cakupan tugas dan verifikasi berlebihan, kontrol subagen, dan koreksi diri.                                                                 |
+| Claude Opus 4.8                        | [Prompting Claude Opus 4.8](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8)   | Panjang respons, kalibrasi effort dan kedalaman pemikiran, pemicuan penggunaan alat, kepatuhan literal terhadap instruksi, kontrol subagen, serta default desain dan frontend.                                                                                                    |
 
 ## Prinsip umum
 
@@ -116,7 +117,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "system": "You are a helpful coding assistant specializing in Python.",
       "messages": [
@@ -127,7 +128,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --system "You are a helpful coding assistant specializing in Python." \
     --message '{role: user, content: "How do I sort a list of dictionaries by key?"}'
@@ -137,7 +138,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       system="You are a helpful coding assistant specializing in Python.",
       messages=[
@@ -152,7 +153,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
   const client = new Anthropic();
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     system: "You are a helpful coding assistant specializing in Python.",
     messages: [{ role: "user", content: "How do I sort a list of dictionaries by key?" }]
@@ -166,7 +167,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       System = "You are a helpful coding assistant specializing in Python.",
       Messages =
@@ -183,7 +184,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	System: []anthropic.TextBlockParam{
   		{Text: "You are a helpful coding assistant specializing in Python."},
@@ -202,7 +203,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .system("You are a helpful coding assistant specializing in Python.")
       .addUserMessage("How do I sort a list of dictionaries by key?")
@@ -220,7 +221,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
       messages: [
           ['role' => 'user', 'content' => 'How do I sort a list of dictionaries by key?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a helpful coding assistant specializing in Python.',
   );
 
@@ -231,7 +232,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     system: "You are a helpful coding assistant specializing in Python.",
     messages: [
@@ -312,14 +313,14 @@ Saat bekerja dengan dokumen besar atau input yang kaya data (20 ribu+ token), st
 Jika Anda ingin Claude mengidentifikasi dirinya dengan benar dalam aplikasi Anda atau menggunakan string API tertentu:
 
 ```text Sample prompt for model identity wrap
-The assistant is Claude, created by Anthropic. The current model is Claude Opus 5.
+The assistant is Claude, created by Anthropic. The current model is Claude Opus 5.5.
 ```
 
 Untuk aplikasi berbasis LLM yang perlu menentukan string model:
 
 ```text Sample prompt for model string wrap
-When an LLM is needed, please default to Claude Opus 5 unless the user requests
-otherwise. The exact model string for Claude Opus 5 is claude-opus-5.
+When an LLM is needed, please default to Claude Opus 5.5 unless the user requests
+otherwise. The exact model string for Claude Opus 5.5 is claude-opus-5-5.
 ```
 
 ## Output dan pemformatan
@@ -549,7 +550,7 @@ Jika Anda memerlukan batas atas yang tegas untuk biaya thinking, "extended think
 
 Model-model terbaru Claude menawarkan kemampuan thinking yang dapat sangat membantu untuk tugas yang melibatkan refleksi setelah penggunaan alat atau penalaran multilangkah yang kompleks. Anda dapat memandu thinking awal atau interleaved-nya untuk hasil yang lebih baik.
 
-Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview menggunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), di mana Claude secara dinamis memutuskan kapan dan seberapa banyak berpikir. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5, thinking selalu aktif dan adaptive thinking adalah satu-satunya mode. Claude mengkalibrasi thinking-nya berdasarkan dua faktor: parameter `effort` dan kompleksitas kueri. Effort yang lebih tinggi memunculkan lebih banyak thinking, dan kueri yang lebih kompleks melakukan hal yang sama. Pada kueri yang lebih mudah yang tidak memerlukan thinking, model merespons secara langsung. Dalam evaluasi internal, adaptive thinking secara andal menghasilkan kinerja yang lebih baik daripada pemikiran diperpanjang. Pertimbangkan untuk beralih ke adaptive thinking.
+Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), di mana Claude secara dinamis memutuskan kapan dan seberapa banyak berpikir. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5.5, thinking selalu aktif dan pemikiran adaptif adalah satu-satunya mode. Claude mengkalibrasi pemikirannya berdasarkan dua faktor: parameter `effort` dan kompleksitas kueri. Effort yang lebih tinggi memicu lebih banyak pemikiran, begitu pula kueri yang lebih kompleks. Pada kueri yang lebih mudah dan tidak memerlukan pemikiran, model merespons secara langsung. Dalam evaluasi internal, pemikiran adaptif secara andal menghasilkan kinerja yang lebih baik daripada pemikiran diperpanjang. Pertimbangkan untuk beralih ke pemikiran adaptif.
 
 Gunakan adaptive thinking untuk beban kerja yang memerlukan perilaku agentic seperti penggunaan alat multilangkah, tugas coding yang kompleks, dan loop agen jangka panjang. Model-model lama menggunakan [pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual dengan `budget_tokens`; lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models) untuk mengetahui konfigurasi mana yang diterima setiap model.
 
@@ -778,7 +779,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 </CodeGroup>
 
-Jika Anda tidak menggunakan pemikiran diperpanjang, tidak ada perubahan yang diperlukan. Pada Claude Opus 4.6 hingga Claude Opus 4.8 dan Claude Sonnet 4.6, thinking nonaktif ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5 dan Claude Sonnet 5, thinking aktif secara default ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5, Anda hanya dapat menonaktifkannya pada effort `high` atau lebih rendah. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5, thinking selalu aktif, terlepas dari apakah Anda menetapkan parameter `thinking`.
+Jika Anda tidak menggunakan pemikiran diperpanjang, tidak ada perubahan yang diperlukan. Pada Claude Opus 4.6 hingga Claude Opus 4.8 dan Claude Sonnet 4.6, thinking nonaktif ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5 dan Claude Sonnet 5, thinking aktif secara default ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5, Anda hanya dapat menonaktifkannya pada effort `high` atau lebih rendah. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5.5, thinking selalu aktif, terlepas dari apakah Anda menetapkan parameter `thinking` atau tidak.
 
 * **Utamakan instruksi umum daripada langkah-langkah preskriptif.** Prompt seperti "pikirkan secara menyeluruh" sering menghasilkan penalaran yang lebih baik daripada rencana langkah demi langkah yang ditulis tangan. Penalaran Claude sering kali melampaui apa yang akan ditentukan oleh manusia.
 * **Contoh multishot bekerja dengan thinking.** Gunakan tag `<thinking>` di dalam contoh few-shot Anda untuk menunjukkan pola penalaran kepada Claude. Claude akan menggeneralisasi gaya tersebut ke blok pemikiran diperpanjangnya sendiri.
@@ -1087,7 +1088,7 @@ Saat bermigrasi ke model Claude saat ini dari generasi sebelumnya:
 
 6. **Sesuaikan prompting anti-kemalasan:** Jika prompt Anda sebelumnya mendorong model untuk lebih teliti atau menggunakan alat secara lebih agresif, kurangi panduan tersebut. Model Claude 4.6 lebih proaktif dan mungkin terpicu berlebihan oleh instruksi yang diperlukan untuk model sebelumnya.
 
-7. **Kembalikan blok thinking tanpa perubahan dan jaga riwayat agar hanya-tambah (append-only):** Tambahkan setiap giliran asisten persis seperti yang dikembalikan API, termasuk blok thinking. Pada Claude Fable 5.1, [memodifikasi percakapan sebelum blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) menghasilkan error, atau blok tersebut dibuang jika Anda memilih opsi itu: mengedit pesan sebelumnya, membangun ulang `system` atau `tools`, atau merangkum giliran lama di tempat di antara permintaan akan membatalkan setiap blok thinking berikutnya, jadi pindahkan perubahan tersebut ke pesan sistem di tengah percakapan dan manajemen konteks sisi server. Lihat [Jaga riwayat percakapan agar hanya-tambah](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only).
+7. **Kirim kembali blok thinking tanpa perubahan dan pertahankan riwayat hanya-tambah (append-only):** Tambahkan setiap giliran asisten persis seperti yang dikembalikan API, termasuk blok thinking. Pada Claude Fable 5.1 dan Claude Opus 5.5, [memodifikasi percakapan sebelum blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) menghasilkan error, atau blok tersebut dibuang jika Anda memilih opsi itu: mengedit pesan sebelumnya, membangun ulang `system` atau `tools`, atau meringkas giliran lama di tempat di antara permintaan akan membatalkan setiap blok thinking berikutnya, jadi pindahkan perubahan tersebut ke pesan sistem di tengah percakapan dan manajemen konteks sisi server. Lihat [Jaga riwayat percakapan agar hanya ditambahkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only).
 
 Untuk langkah-langkah migrasi terperinci, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 
@@ -1103,11 +1104,15 @@ Lihat [Bermigrasi ke Claude Sonnet 5 dari Claude Sonnet 4.5 atau sebelumnya](htt
   </Card>
 
   <Card title="Prompting Claude Fable 5" icon="terminal" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5">
-    Perbedaan perilaku dan pola prompting untuk Claude Fable 5 dan Claude Mythos 5, mencakup effort, kepatuhan instruksi, eksekusi panjang, memori, dan perubahan scaffolding.
+    Perbedaan perilaku dan pola prompting untuk Claude Fable 5 dan Claude Mythos 5, mencakup effort, kepatuhan terhadap instruksi, eksekusi panjang, memori, dan perubahan scaffolding.
   </Card>
 
   <Card title="Prompting Claude Sonnet 5" icon="terminal" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5">
     Perbedaan perilaku dan pola prompting untuk Claude Sonnet 5, mencakup effort, default adaptive thinking, penggunaan alat, dan migrasi dari Claude Sonnet 4.6.
+  </Card>
+
+  <Card title="Prompting Claude Opus 5.5" icon="terminal" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5">
+    Perbedaan perilaku dan pola prompting untuk Claude Opus 5.5, mencakup kalibrasi effort, thinking yang selalu aktif, pembaruan progres, positif palsu safeguard, dan input visual.
   </Card>
 
   <Card title="Prompting Claude Opus 5" icon="terminal" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5">

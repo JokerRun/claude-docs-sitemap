@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 94f7ca0029a266ef72bb067fb6a948fd42b0c13d856705f7c0590eaa2d62297d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 54185eb4c63743b5150e24b4fd7fd76aecc567c91dda39f5e843f0f142a9ec6f
 ---
 
 > ## Documentation Index
@@ -148,6 +148,12 @@ A review typically takes 5 to 10 minutes. The review runs as a background task, 
 
 Use `/tasks` to see running and completed reviews, open the detail view for a review, or stop a review that is in progress. If you stop a review, Claude Code archives the cloud session and doesn't return partial findings.
 
+Claude can also tell you that a review was stopped or that its session wasn't found:
+
+* If the review's cloud session is stopped or [archived](/docs/en/claude-code-on-the-web#archive-sessions) on claude.ai before the review finishes, Claude tells you it was stopped.
+* If the review's cloud session was deleted, or you've signed in to a different Claude account or organization since launching it, Claude tells you the session wasn't found.
+* If you switched accounts, the review may still finish under the account that started it. If the review is still running, sign back in as that account and resume the conversation with `claude --resume` to re-attach it.
+
 When the review finishes, Claude Code shows the verified findings as a notification in your session. Each finding includes the file location and an explanation of the issue so you can ask Claude to fix it directly.
 
 ## Run ultrareview non-interactively
@@ -180,14 +186,14 @@ Running `claude ultrareview` requires the same authentication and usage-credits 
 The subcommand exits with one of three codes:
 
 * **0**: the review completed, with or without findings
-* **1**: the review failed to launch, the cloud session errored, or the timeout elapsed
+* **1**: the review failed to launch or was stopped before it finished, the cloud session errored, or the timeout elapsed
 * **130**: you interrupted the subcommand with Ctrl-C
 
 If you interrupt the subcommand, the remote review keeps running; follow the session URL printed to stderr to watch it in the browser.
 
 With `--post`, the subcommand starts the post right after printing the findings, and prints the link to stderr.
 
-* If the run fails, times out, or you interrupt it, the subcommand posts nothing.
+* If the run fails, is stopped, or times out, or if you interrupt it, the subcommand posts nothing.
 * If the review completes but the comment isn't posted, Claude Code prints the reason to stderr, and the findings stay on stdout so you can post them by hand.
 
 For automatic reviews on GitHub pull requests, [Code Review](/docs/en/code-review) integrates with your repository directly and posts findings as inline PR comments without a CLI step.

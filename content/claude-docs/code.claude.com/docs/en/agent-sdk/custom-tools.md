@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: d512ca722c2f9b8242f05d6c0d69a9b4bd08971a68a8e220ec0d72fde966fc32
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b3046d32bc13e736f2e6a5ac6f795219013019b6a085a3e1372f472269edfed4
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ Custom tools extend the Agent SDK by letting you define your own functions that 
 
 ## Quick reference
 
-| If you want to...                            | Do this                                                                                                                                                                                                       |
+| What you want to do                          | Do this                                                                                                                                                                                                       |
 | :------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Define a tool                                | Use [`@tool`](/docs/en/agent-sdk/python#tool) (Python) or [`tool()`](/docs/en/agent-sdk/typescript#tool) (TypeScript) with a name, description, schema, and handler. See [Create a custom tool](#create-a-custom-tool). |
 | Register a tool with Claude                  | Wrap in `create_sdk_mcp_server` / `createSdkMcpServer` and pass to `mcpServers` in `query()`. See [Call a custom tool](#call-a-custom-tool).                                                                  |

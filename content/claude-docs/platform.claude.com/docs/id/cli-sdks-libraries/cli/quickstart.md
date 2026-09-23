@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ca1765aec407b679a1219f1e5ea67ced01502a23a3188d2e19e3556b10ce32c6
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6b557c5d408e1d3542fb6688c8b46d61432cad2db0609ec4552541cba329869c
 ---
 
 ---
@@ -36,7 +36,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.33.0
+    VERSION=1.35.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -88,14 +88,14 @@ Setelah binary terinstal dan terautentikasi, panggil [Messages API](https://plat
 
 ```bash
 ant messages create \
-  --model claude-opus-5 \
+  --model claude-opus-5-5 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
 
 ```text Output wrap
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "id": "msg_01YMmR5XodC5nTqMxLZMKaq6",
   "type": "message",
   "role": "assistant",

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: a91b8196a7347d39deb8c16ed66c5452556068d5c5b0c257ff7755323f10113d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 03c5670feeb945d8dd87508e6e15a581e4f9250d0c648799a4e655c99faffbd9
 ---
 
 > ## Documentation Index
@@ -302,7 +302,7 @@ Add a remote `marketplace.json` file via URL:
 
 In terminal sessions where [plugins sync from your claude.ai account](/docs/en/plugins-reference#synced-plugins), claude.ai can also list marketplaces for you, such as your organization's plugin library and your own claude.ai uploads. `claude plugin marketplace list` prints them in a `From claude.ai:` section, and the `/plugin` **Marketplaces** tab lists them. Select one there to add it. Adding a marketplace from claude.ai requires Claude Code v2.1.273 or later.
 
-To add one from your shell, run `claude plugin marketplace add` with the `--claudeai` flag and the name shown in the list:
+To add a marketplace from that list in your shell instead, run `claude plugin marketplace add` with the `--claudeai` flag and the name the list shows:
 
 ```bash theme={null}
 claude plugin marketplace add --claudeai claudeai-organization-library
@@ -337,7 +337,7 @@ You may also see plugins with **managed** scope. These are installed by administ
 Claude Code looks the plugin up in its local copy of the marketplace catalog. How you name the plugin controls whether Claude Code refreshes that copy first:
 
 * **With a marketplace name**: when you install `plugin-name@marketplace-name`, in a session or with `claude plugin install`, Claude Code refreshes that marketplace before the lookup. Claude Code runs the refresh even if you turned off [auto-update](#configure-auto-updates) for the marketplace or set `DISABLE_AUTOUPDATER`. Before v2.1.232, Claude Code didn't refresh the marketplace before the lookup. Claude Code skips this refresh when:
-  * The marketplace wasn't [added from GitHub, another Git host, or a remote URL](#add-marketplaces).
+  * The marketplace wasn't [added from GitHub, another Git host, a remote URL](#add-marketplaces), or [claude.ai](#add-from-claude-ai).
   * A [seed directory](/docs/en/plugin-marketplaces#pre-populate-plugins-for-containers) supplies the marketplace.
   * Claude Code refreshed the marketplace within the last 30 seconds.
   * You set [`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`](/docs/en/env-vars).
@@ -370,7 +370,7 @@ To install a plugin from a marketplace you haven't added yet, name the marketpla
 
 The source takes [the same forms as `/plugin marketplace add`](#add-marketplaces), such as GitHub `owner/repo`, a git URL, or a local path, except that it can't contain spaces. Give the plugin name bare, without an `@marketplace` suffix.
 
-If you haven't added that marketplace yet, Claude Code shows the source it resolved and asks you to confirm before adding it. Declining cancels the install and adds nothing. Once the marketplace is added, the plugin's details open and you choose an [installation scope](/docs/en/settings#where-settings-live).
+Claude Code shows the source it resolved and asks you to confirm before adding the marketplace. Declining cancels the install and adds nothing. Once the marketplace is added, the plugin's details open and you choose an [installation scope](/docs/en/settings#where-settings-live). If the source matches a marketplace you've already added, Claude Code skips the confirmation and opens the plugin's details in that marketplace.
 
 ## Manage installed plugins
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 89697fa3ff9a7fe9dfaf2966edaddb426d8ec58687b8f537e1867bb640a6cb39
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e891666e88e2349506a291f1a9879dbcf0abaa9c0f55c85e9e75ef3d64a5094c
 ---
 
 ---
@@ -51,6 +51,7 @@ Give the store a `name` and a `description`. The description is passed to the ag
 
     <File filename="memory_store.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
       name: User Preferences
       description: Per-user preferences and project context.
       ```

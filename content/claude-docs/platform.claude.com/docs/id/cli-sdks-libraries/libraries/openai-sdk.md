@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 70fca95680998ddf4dafa42a90584b9993ef1b1f518f6ed7d0a6d498e9c59c33
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 99e4f151f98a1984b375d50191a367de005c6d1a88fcaf4b6edfa7a21dc57e82
 ---
 
 ---
@@ -52,7 +52,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   )
 
   response = client.chat.completions.create(
-      model="claude-opus-5",  # Claude model name
+      model="claude-opus-5-5",  # Claude model name
       messages=[
           {"role": "system", "content": "You are a helpful assistant."},
           {"role": "user", "content": "Who are you?"},
@@ -75,7 +75,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
       { role: "system", content: "You are a helpful assistant." },
       { role: "user", content: "Who are you?" }
     ],
-    model: "claude-opus-5" // Claude model name
+    model: "claude-opus-5-5" // Claude model name
   });
 
   console.log(response.choices[0].message.content);
@@ -87,7 +87,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   using OpenAI.Chat;
 
   ChatClient chatClient = new(
-      model: "claude-opus-5", // Claude model name
+      model: "claude-opus-5-5", // Claude model name
       credential: new ApiKeyCredential(
           Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")), // Your Claude API key
       options: new OpenAIClientOptions()
@@ -121,7 +121,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   	)
 
   	response, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-  		Model: "claude-opus-5", // Claude model name
+  		Model: "claude-opus-5-5", // Claude model name
   		Messages: []openai.ChatCompletionMessageParamUnion{
   			openai.SystemMessage("You are a helpful assistant."),
   			openai.UserMessage("Who are you?"),
@@ -149,7 +149,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
                   .build();
 
           ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-                  .model("claude-opus-5") // Claude model name
+                  .model("claude-opus-5-5") // Claude model name
                   .addSystemMessage("You are a helpful assistant.")
                   .addUserMessage("Who are you?")
                   .build();
@@ -176,7 +176,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   )
 
   response = openai.chat.completions.create(
-    model: "claude-opus-5", # Claude model name
+    model: "claude-opus-5-5", # Claude model name
     messages: [
       {role: "system", content: "You are a helpful assistant."},
       {role: "user", content: "Who are you?"}

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 59344352b8bfa44cdd62c4fdaf7cb8209d7fbaf9c74429ff20ae3e95a69c7a5d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d16ee6ec098f9c2f5d6d1eea1e4c779a92f42b95fd86a6c9908ba04ebb2366f8
 ---
 
 ---
@@ -42,13 +42,13 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
 <CodeGroup>
   ```bash cURL
-  # Alur pengujian end-to-end ini tidak cocok dijadikan perintah shell sekali jalan.
-  # Lihat tab SDK untuk alur lengkapnya. Permintaan HTTP yang mendasarinya adalah
-  # permintaan penggunaan alat standar dengan beberapa alat yang didefinisikan.
+  # Alur pengujian end-to-end ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
+  # Lihat tab SDK untuk alur lengkapnya. Permintaan HTTP yang mendasarinya adalah permintaan
+  # penggunaan alat standar dengan beberapa alat yang didefinisikan.
   ```
 
   ```bash CLI
-  # Alur pengujian end-to-end ini tidak cocok dijadikan satu perintah shell sekali jalan.
+  # Alur pengujian end-to-end ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
   # Lihat tab SDK untuk alur lengkapnya.
   ```
 
@@ -98,7 +98,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   # Buat permintaan awal
   print("Requesting parallel tool calls...")
   response = client.messages.create(
-      model="claude-opus-5", max_tokens=1024, messages=messages, tools=tools
+      model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
   )
 
   # Periksa pemanggilan alat paralel
@@ -141,7 +141,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   # Dapatkan respons akhir
   print("\nGetting final response...")
   final_response = client.messages.create(
-      model="claude-opus-5", max_tokens=1024, messages=messages, tools=tools
+      model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
   )
 
   final_text = next(
@@ -149,7 +149,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   )
   print(f"\nClaude's response:\n{final_text}")
 
-  # Verifikasi pemformatan
+  # Verifikasi format
   print("\n--- Verification ---")
   print(f"✓ Tool results sent in single user message: {len(tool_results)} results")
   print("✓ No text before tool results in content array")
@@ -191,10 +191,10 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
     }
   ];
 
-  // Buat permintaan awal
+  // Kirim permintaan awal
   console.log("Requesting parallel tool calls...");
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -244,7 +244,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   // Dapatkan respons akhir dengan format yang benar
   console.log("\nGetting final response...");
   const finalResponse = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -306,7 +306,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   Console.WriteLine("Requesting parallel tool calls...");
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" }],
       Tools = tools
@@ -364,7 +364,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   Console.WriteLine("\nGetting final response...");
   var finalParameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
           new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" },
@@ -418,7 +418,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   fmt.Println("Requesting parallel tool calls...")
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -483,7 +483,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   fmt.Println("\nGetting final response...")
   finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -544,7 +544,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(weatherTool)
       .addTool(timeTool)
@@ -596,7 +596,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   IO.println("\nGetting final response...");
   MessageCreateParams finalParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(weatherTool)
       .addTool(timeTool)
@@ -656,7 +656,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
       messages: [
           ['role' => 'user', 'content' => "What's the weather in SF and NYC, and what time is it there?"]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
@@ -699,7 +699,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
           ['role' => 'assistant', 'content' => $response->content],
           ['role' => 'user', 'content' => $toolResults]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
@@ -748,7 +748,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   puts "Requesting parallel tool calls..."
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" }
@@ -786,7 +786,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   puts "\nGetting final response..."
   final_response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
@@ -866,7 +866,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [{
         "name": "get_weather",
@@ -891,7 +891,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -916,7 +916,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
   client = Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {
@@ -949,7 +949,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -978,7 +978,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -1007,7 +1007,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -1057,7 +1057,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(
           Tool.builder()
@@ -1082,7 +1082,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       toolChoice: ['type' => 'auto', 'disableParallelToolUse' => true],
       tools: [
           [
@@ -1109,7 +1109,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -1138,7 +1138,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
 ### Tepat satu panggilan alat
 
-Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Fable 5.1 dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
+Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Opus 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
 
 <CodeGroup>
   ```bash cURL
@@ -1582,7 +1582,7 @@ Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
 **4. Panggilan dalam satu batch tampak saling bergantung**
 
-Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
+Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: "Hanya kelompokkan panggilan alat yang tidak saling bergantung dalam satu batch."
 
 ## Langkah selanjutnya
 

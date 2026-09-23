@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 44974f21146ab23145826074c2befc997aed4da8f601da4629c5927ba2cd56b5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 04a824ac5219ca0088a1c908209dbd1bc984cbbec501f02bdf62c9a0b77012ac
 ---
 
 ---
@@ -86,7 +86,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -110,7 +110,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -130,7 +130,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
@@ -146,7 +146,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -177,7 +177,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -203,7 +203,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -238,7 +238,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .addSkill(SkillParams.builder()
@@ -264,7 +264,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
       messages: [
           ['role' => 'user', 'content' => 'Create a presentation about renewable energy']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               [
@@ -286,7 +286,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -331,7 +331,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -371,7 +371,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   FILE_ID=$(ant messages create \
     --transform 'content.#.content.content.#.file_id|@flatten|0' \
     --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -404,7 +404,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   # Langkah 1: Gunakan Skill untuk membuat file
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
@@ -449,7 +449,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   // Langkah 1: Gunakan Skill untuk membuat file
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -492,7 +492,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   // Langkah 1: Gunakan Skill untuk membuat file
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -544,7 +544,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   	// Langkah 1: Gunakan Skill untuk membuat file
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5",
+  		Model:     "claude-opus-5-5",
   		MaxTokens: 4096,
   		Container: anthropic.MessageCreateParamsContainerUnion{
   			OfContainers: &anthropic.ContainerParams{
@@ -626,7 +626,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
       // Langkah 1: Gunakan Skill untuk membuat file
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .addSkill(SkillParams.builder()
@@ -678,7 +678,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
       messages: [
           ['role' => 'user', 'content' => 'Create an Excel file with a simple budget spreadsheet']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest']
@@ -721,7 +721,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   # Langkah 1: Gunakan Skill untuk membuat file
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -945,10 +945,10 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
 <CodeGroup>
   ```bash cURL
-  # Penggunaan ulang container multi-giliran tidak cocok untuk perintah shell
+  # Penggunaan ulang container multi-turn kurang cocok untuk perintah shell
   # sekali jalan; salah satu opsi SDK akan lebih sesuai. Ambil
   # container.id dari respons pertama, lalu teruskan di permintaan berikutnya sebagai
-  # "container": {"id": "...", "skills": [...]} bersama riwayat percakapan.
+  # "container": {"id": "...", "skills": [...]} beserta riwayat percakapan.
   ```
 
   ```bash CLI
@@ -956,7 +956,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   CONTAINER_ID=$(ant messages create \
     --transform container.id \
     --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -971,7 +971,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
   # Lanjutkan percakapan dengan container yang sama
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     id: $CONTAINER_ID  # Reuse container
@@ -994,7 +994,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
   # Permintaan pertama membuat container
   response1 = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
@@ -1019,7 +1019,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   ]
 
   response2 = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "id": response1.container.id,  # Reuse container
@@ -1035,7 +1035,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
   // Permintaan pertama membuat container
   const response1 = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -1059,7 +1059,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   ];
 
   const response2 = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       id: response1.container!.id, // Reuse container
@@ -1076,7 +1076,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   // Permintaan pertama dengan Skill
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -1105,7 +1105,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -1137,7 +1137,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   client := anthropic.NewClient()
 
   response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1171,7 +1171,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   assistantText := strings.Join(textParts, "\n")
 
   response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1214,7 +1214,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params1 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .addSkill(SkillParams.builder()
@@ -1230,7 +1230,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
       Message response1 = client.messages().create(params1);
 
       MessageCreateParams params2 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .id(response1.container().get().id())
@@ -1263,7 +1263,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
       messages: [
           ['role' => 'user', 'content' => 'Create a sample sales dataset and analyze it']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest']
@@ -1287,7 +1287,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   $response2 = $client->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'id' => $response1->container->id,
           'skills' => [
@@ -1306,7 +1306,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   client = Anthropic::Client.new
 
   response1 = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -1330,7 +1330,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   ]
 
   response2 = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       id: response1.container.id,
@@ -1360,7 +1360,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -1383,7 +1383,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
   # Jika stop_reason adalah "pause_turn", lanjutkan di container yang sama, dengan menambahkan
   # array content dari respons sebelumnya ke messages sebagai giliran assistant.
-  # Ulangi permintaan lanjutan ini hingga stop_reason tidak lagi "pause_turn".
+  # Ulangi permintaan lanjutan ini hingga stop_reason bukan lagi "pause_turn".
   STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
   CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
 
@@ -1392,7 +1392,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-opus-5\",
+      \"model\": \"claude-opus-5-5\",
       \"max_tokens\": 4096,
       \"container\": {
         \"id\": \"$CONTAINER_ID\",
@@ -1415,7 +1415,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
   # Permintaan awal: simpan respons JSON lengkap ke file sementara
   ant messages create > "$RESP" <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -1436,7 +1436,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   CONTAINER_ID=$(jq -r '.container.id' "$RESP")
 
   ant messages create > "$RESP" <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     id: $CONTAINER_ID
@@ -1458,7 +1458,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   max_retries = 10
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
@@ -1480,7 +1480,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
       messages.append({"role": "assistant", "content": response.content})
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=4096,
           container={
               "id": response.container.id,
@@ -1505,7 +1505,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   const maxRetries = 10;
 
   let response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "custom", skill_id: "skill_01AbCdEfGhIjKlMnOpQrStUv", version: "latest" }]
@@ -1525,7 +1525,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
       content: response.content as Anthropic.ContentBlockParam[]
     });
     response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       container: {
         id: response.container!.id,
@@ -1557,7 +1557,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-5",
+          Model = "claude-opus-5-5",
           MaxTokens = 4096,
           Container = containerId is null
               ? new ContainerParams
@@ -1597,7 +1597,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
           break;
       }
 
-      // Tambahkan konten giliran yang dijeda dan lanjutkan
+      // Tambahkan konten giliran yang dijeda, lalu lanjutkan
       var assistantContent = JsonSerializer.SerializeToElement(
           response.Content.Select(block => block.Json).ToArray()
       );
@@ -1614,7 +1614,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   maxRetries := 10
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1644,7 +1644,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   	messages = append(messages, response.ToParam())
 
   	response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5",
+  		Model:     "claude-opus-5-5",
   		MaxTokens: 4096,
   		Container: anthropic.MessageCreateParamsContainerUnion{
   			OfContainers: &anthropic.ContainerParams{
@@ -1691,7 +1691,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
       Message response = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .container(ContainerParams.builder()
                   .addSkill(SkillParams.builder()
@@ -1714,7 +1714,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
           response = client.messages().create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .container(ContainerParams.builder()
                       .id(response.container().get().id())
@@ -1742,7 +1742,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   $response = $client->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               [
@@ -1765,7 +1765,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
       $response = $client->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           container: [
               'id' => $response->container->id,
               'skills' => [
@@ -1790,7 +1790,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   max_retries = 10
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -1811,7 +1811,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
     messages << { role: "assistant", content: response.content }
 
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       container: {
         id: response.container.id,
@@ -1845,7 +1845,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -1879,7 +1879,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -1905,7 +1905,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
@@ -1929,7 +1929,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -1970,7 +1970,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -2008,7 +2008,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -2053,7 +2053,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .skills(List.of(
@@ -2091,7 +2091,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
       messages: [
           ['role' => 'user', 'content' => 'Analyze sales data and create a presentation']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               [
@@ -2123,7 +2123,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -2169,11 +2169,11 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
 Bundle Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Memulai dengan Agent Skills di API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk menulisnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
 
-Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual. Python SDK juga menyediakan helper `files_from_dir` yang menerima path direktori.
+Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual. Python SDK juga menyediakan helper `files_from_dir` yang menerima path direktori, dan `ant apply` pada CLI mengunggah direktori itu sendiri.
 
 File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename=` dalam contoh cURL dan argumen nama file dalam contoh SDK). Untuk skill dalam panduan ini, buat zip dengan `zip -r financial_skill.zip financial_skill/` dan gunakan sebagai pengganti placeholder `example_skill.zip` dalam opsi unggah zip.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -2184,8 +2184,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename
 
   <MultiFileExample language="cli" label="CLI">
     ```bash CLI
-    zip -r financial_skill.zip financial_skill/
-    ant skills create --file financial_skill.zip
+    ant apply financial_skill
     ```
 
     <File filename="financial_skill/SKILL.md">
@@ -2819,7 +2818,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "{
-      \"model\": \"claude-opus-5\",
+      \"model\": \"claude-opus-5-5\",
       \"max_tokens\": 4096,
       \"container\": {
         \"skills\": [{
@@ -2838,7 +2837,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [{
@@ -2862,7 +2861,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi tertentu
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -2879,7 +2878,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi terbaru
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -2909,7 +2908,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi tertentu
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
@@ -2926,7 +2925,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi terbaru
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
@@ -2947,14 +2946,14 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   const client = new Anthropic();
 
-  // Buat versi baru dari zip bundel financial_skill/ lengkap
+  // Buat versi baru dari zip berisi seluruh bundel financial_skill/
   const newVersion = await client.skills.versions.create("skill_01AbCdEfGhIjKlMnOpQrStUv", {
     files: [fs.createReadStream("financial_skill.zip")]
   });
 
   // Gunakan versi tertentu
   const specificVersionResponse = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -2971,7 +2970,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi terbaru
   const latestVersionResponse = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -3016,7 +3015,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   // Gunakan versi tertentu
   var specificVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3040,7 +3039,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   // Gunakan versi terbaru
   var latestVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3093,7 +3092,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi tertentu
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3120,7 +3119,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi terbaru
   latestResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3162,7 +3161,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Buat versi baru dari zip bundel financial_skill/ lengkap
+  // Buat versi baru dari zip berisi seluruh bundel financial_skill/
   VersionCreateParams versionParams = VersionCreateParams.builder()
       .addFile(MultipartField.<InputStream>builder()
           .value(Files.newInputStream(Path.of("financial_skill.zip")))
@@ -3176,7 +3175,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi tertentu
   MessageCreateParams specificVersionParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .container(ContainerParams.builder()
           .addSkill(SkillParams.builder()
@@ -3194,7 +3193,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi terbaru
   MessageCreateParams latestVersionParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(4096L)
       .container(ContainerParams.builder()
           .addSkill(SkillParams.builder()
@@ -3238,7 +3237,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   $response = $client->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Use updated Skill']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [[
               'type' => 'custom',
@@ -3254,7 +3253,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   $latestResponse = $client->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Use latest Skill version']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [[
               'type' => 'custom',
@@ -3289,7 +3288,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi tertentu
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{
@@ -3305,7 +3304,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   # Gunakan versi terbaru
   latest_response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{
@@ -3344,61 +3343,175 @@ Skills cocok untuk pekerjaan organisasi maupun pribadi. Organisasi menggunakanny
 
 ### Contoh: pemodelan keuangan
 
-Gabungkan Skill Excel dan Skill analisis DCF kustom:
+Gabungkan Skill Excel dan Skill analisis DCF kustom. Pertama, buat Skill analisis DCF kustom:
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  curl -X POST "https://api.anthropic.com/v1/skills" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -F "files[]=@dcf_skill/SKILL.md;filename=dcf_skill/SKILL.md"
+  ```
+
+  ```bash CLI
+  ant apply dcf_skill
+  ```
+
+  ```python Python
+  from anthropic.lib import files_from_dir
+
+  client = anthropic.Anthropic()
+
+  dcf_skill = client.skills.create(
+      files=files_from_dir("/path/to/dcf_skill"),
+  )
+  print(dcf_skill.id)
+  ```
+
+  ```typescript TypeScript
+  import Anthropic, { toFile } from "@anthropic-ai/sdk";
+  import fs from "node:fs";
+
+  const client = new Anthropic();
+
+  const dcfSkill = await client.skills.create({
+    files: [await toFile(fs.createReadStream("dcf_skill.zip"), "dcf_skill.zip")]
+  });
+  console.log(dcfSkill.id);
+  ```
+
+  ```csharp C#
+  using Anthropic.Core;
+  // ...
+  AnthropicClient client = new();
+
+  var dcfSkill = await client.Skills.Create(new SkillCreateParams
+  {
+      Files =
+      [
+          new BinaryContent
+          {
+              Stream = File.OpenRead("dcf_skill/SKILL.md"),
+              FileName = "dcf_skill/SKILL.md",
+          },
+      ],
+  });
+  Console.WriteLine(dcfSkill.ID);
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  skillMd, err := os.Open("dcf_skill/SKILL.md")
+  if err != nil {
+  	log.Fatal(err)
+  }
+  defer skillMd.Close()
+
+  dcfSkill, err := client.Skills.New(context.TODO(), anthropic.SkillNewParams{
+  	Files: []io.Reader{
+  		anthropic.File(skillMd, "dcf_skill/SKILL.md", "text/markdown"),
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println(dcfSkill.ID)
+  ```
+
+  ```java Java
+  import com.anthropic.core.MultipartField;
+  import com.anthropic.models.skills.SkillCreateParams;
+  import com.anthropic.models.skills.Skill;
+  // ...
+  void main() throws Exception {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      SkillCreateParams params = SkillCreateParams.builder()
+          .addFile(MultipartField.<InputStream>builder()
+              .value(Files.newInputStream(Path.of("dcf_skill/SKILL.md")))
+              .filename("dcf_skill/SKILL.md")
+              .contentType("text/markdown")
+              .build())
+          .build();
+
+      Skill dcfSkill = client.skills().create(params);
+      System.out.println(dcfSkill.id());
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Core\FileParam;
+
+  $client = new Client();
+
+  $dcfSkill = $client->skills->create(
+      files: [
+          FileParam::fromResource(
+              fopen('dcf_skill/SKILL.md', 'r'),
+              filename: 'dcf_skill/SKILL.md',
+              contentType: 'text/markdown',
+          ),
+      ],
+  );
+  echo "{$dcfSkill->id}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  dcf_skill = client.skills.create(
+    files: [
+      Anthropic::FilePart.new(
+        Pathname("dcf_skill/SKILL.md"),
+        filename: "dcf_skill/SKILL.md",
+        content_type: "text/markdown"
+      )
+    ]
+  )
+  puts dcf_skill.id
+  ```
+</CodeGroup>
+
+Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Skill yang Anda buat sebagai `skill_id` untuk Skill kustom:
 
 <CodeGroup>
   ```bash cURL
-  # Buat Skill analisis DCF kustom
-  DCF_SKILL=$(curl -X POST "https://api.anthropic.com/v1/skills" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -F "files[]=@dcf_skill/SKILL.md;filename=dcf_skill/SKILL.md")
-
-  DCF_SKILL_ID=$(echo "$DCF_SKILL" | jq -r '.id')
-
-  # Gunakan bersama Excel untuk membuat model keuangan
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d "{
-      \"model\": \"claude-opus-5\",
-      \"max_tokens\": 4096,
-      \"container\": {
-        \"skills\": [
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 4096,
+      "container": {
+        "skills": [
           {
-            \"type\": \"anthropic\",
-            \"skill_id\": \"xlsx\",
-            \"version\": \"latest\"
+            "type": "anthropic",
+            "skill_id": "xlsx",
+            "version": "latest"
           },
           {
-            \"type\": \"custom\",
-            \"skill_id\": \"$DCF_SKILL_ID\",
-            \"version\": \"latest\"
+            "type": "custom",
+            "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
+            "version": "latest"
           }
         ]
       },
-      \"messages\": [{
-        \"role\": \"user\",
-        \"content\": \"Build a DCF valuation model for a SaaS company\"
+      "messages": [{
+        "role": "user",
+        "content": "Build a DCF valuation model for a SaaS company"
       }],
-      \"tools\": [{
-        \"type\": \"code_execution_20250825\",
-        \"name\": \"code_execution\"
+      "tools": [{
+        "type": "code_execution_20250825",
+        "name": "code_execution"
       }]
-    }"
+    }'
   ```
 
   ```bash CLI
-  # Buat Skill analisis DCF kustom
-  DCF_SKILL_ID=$(ant skills create \
-    --file dcf_skill.zip \
-    --transform id \
-    --raw-output)
-
-  # Gunakan bersama Excel untuk membuat model keuangan
-  ant messages create <<YAML
-  model: claude-opus-5
+  ant messages create <<'YAML'
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -3406,7 +3519,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
         skill_id: xlsx
         version: latest
       - type: custom
-        skill_id: $DCF_SKILL_ID
+        skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
         version: latest
   messages:
     - role: user
@@ -3418,24 +3531,19 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
   ```
 
   ```python Python
-  from anthropic.lib import files_from_dir
-
   client = anthropic.Anthropic()
 
-  # Buat Skill analisis DCF kustom
-
-  dcf_skill = client.skills.create(
-      files=files_from_dir("/path/to/dcf_skill"),
-  )
+  # Skill analisis DCF kustom (ID diperoleh dari respons create Skills API)
+  dcf_skill_id = "skill_01AbCdEfGhIjKlMnOpQrStUv"
 
   # Gunakan bersama Excel untuk membuat model keuangan
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
               {"type": "anthropic", "skill_id": "xlsx", "version": "latest"},
-              {"type": "custom", "skill_id": dcf_skill.id, "version": "latest"},
+              {"type": "custom", "skill_id": dcf_skill_id, "version": "latest"},
           ]
       },
       messages=[
@@ -3450,24 +3558,19 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
   ```
 
   ```typescript TypeScript
-  import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import fs from "node:fs";
-
   const client = new Anthropic();
 
-  // Buat Skill analisis DCF kustom
-  const dcfSkill = await client.skills.create({
-    files: [await toFile(fs.createReadStream("dcf_skill.zip"), "dcf_skill.zip")]
-  });
+  // Skill analisis DCF kustom (ID diperoleh dari respons create Skills API)
+  const dcfSkillId = "skill_01AbCdEfGhIjKlMnOpQrStUv";
 
   // Gunakan bersama Excel untuk membuat model keuangan
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
         { type: "anthropic", skill_id: "xlsx", version: "latest" },
-        { type: "custom", skill_id: dcfSkill.id, version: "latest" }
+        { type: "custom", skill_id: dcfSkillId, version: "latest" }
       ]
     },
     messages: [
@@ -3482,27 +3585,15 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
   ```
 
   ```csharp C#
-  using Anthropic.Core;
-  // ...
   AnthropicClient client = new();
 
-  // Buat Skill analisis DCF kustom
-  var dcfSkill = await client.Skills.Create(new SkillCreateParams
-  {
-      Files =
-      [
-          new BinaryContent
-          {
-              Stream = File.OpenRead("dcf_skill/SKILL.md"),
-              FileName = "dcf_skill/SKILL.md",
-          },
-      ],
-  });
+  // Skill analisis DCF kustom (ID diperoleh dari respons pembuatan Skills API)
+  var dcfSkillId = "skill_01AbCdEfGhIjKlMnOpQrStUv";
 
   // Gunakan bersama Excel untuk membuat model keuangan
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3517,7 +3608,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
               new SkillParams
               {
                   Type = SkillParamsType.Custom,
-                  SkillID = dcfSkill.ID,
+                  SkillID = dcfSkillId,
                   Version = "latest",
               },
           ],
@@ -3538,7 +3629,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
 
   // Gunakan bersama Excel untuk membuat model keuangan
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3582,7 +3673,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
 
       // Gunakan bersama Skill Excel untuk membuat model keuangan
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .skills(List.of(
@@ -3619,7 +3710,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
       messages: [
           ['role' => 'user', 'content' => 'Build a DCF valuation model for a SaaS company']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest'],
@@ -3636,25 +3727,17 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Buat Skill analisis DCF kustom
-  dcf_skill = client.skills.create(
-    files: [
-      Anthropic::FilePart.new(
-        Pathname("dcf_skill/SKILL.md"),
-        filename: "dcf_skill/SKILL.md",
-        content_type: "text/markdown"
-      )
-    ]
-  )
+  # Skill analisis DCF kustom (ID diperoleh dari respons create Skills API)
+  dcf_skill_id = "skill_01AbCdEfGhIjKlMnOpQrStUv"
 
   # Gunakan bersama Excel untuk membuat model keuangan
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
         { type: "anthropic", skill_id: "xlsx", version: "latest" },
-        { type: "custom", skill_id: dcf_skill.id, version: "latest" }
+        { type: "custom", skill_id: dcf_skill_id, version: "latest" }
       ]
     },
     messages: [
@@ -3723,7 +3806,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [{
@@ -3740,7 +3823,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   ```bash CLI
   # Sematkan ke versi tertentu demi stabilitas
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -3785,7 +3868,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   ```csharp C#
   using Anthropic.Models.Messages;
 
-  // Kunci ke versi tertentu demi stabilitas
+  // Sematkan ke versi tertentu demi stabilitas
   var container = new ContainerParams
   {
       Skills =
@@ -3843,7 +3926,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   ```
 
   ```ruby Ruby
-  # Sematkan ke versi tertentu untuk stabilitas
+  # Sematkan ke versi tertentu demi stabilitas
   container = {
     skills: [{
       type: "custom",
@@ -3864,7 +3947,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [{
@@ -3881,7 +3964,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   ```bash CLI
   # Gunakan latest untuk pengembangan aktif
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -4001,13 +4084,13 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
 <CodeGroup>
   ```bash cURL
-  # Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  # Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -4024,7 +4107,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "container": {
         "skills": [
@@ -4038,9 +4121,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```
 
   ```bash CLI
-  # Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  # Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -4057,7 +4140,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   # Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -4079,9 +4162,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```python Python
   client = anthropic.Anthropic()
 
-  # Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  # Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   response1 = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
@@ -4092,7 +4175,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   # Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
   response2 = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container={
           "skills": [
@@ -4112,9 +4195,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   const response1 = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -4123,9 +4206,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
     tools: [{ type: "code_execution_20250825", name: "code_execution" }]
   });
 
-  // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
+  // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks sehingga terjadi cache miss, sedangkan daftar yang identik menghasilkan cache hit
   const response2 = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -4141,10 +4224,10 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```csharp C#
   AnthropicClient client = new();
 
-  // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
+  // Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -4165,10 +4248,10 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   var response1 = await client.Messages.Create(parameters1);
   Console.WriteLine(response1);
 
-  // Set Skill berbeda ([xlsx] vs [xlsx, pptx]) = prefiks berbeda: cache miss (set identik menghasilkan cache hit)
+  // Set Skill berbeda ([xlsx] vs [xlsx, pptx]) = prefiks berbeda: cache miss (set yang identik menghasilkan cache hit)
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -4199,9 +4282,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```go Go
   client := anthropic.NewClient()
 
-  // Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4228,7 +4311,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
   response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4267,9 +4350,9 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+      // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
       MessageCreateParams params1 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .skills(List.of(
@@ -4289,7 +4372,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
       // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
       MessageCreateParams params2 = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container(ContainerParams.builder()
               .skills(List.of(
@@ -4317,13 +4400,13 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   ```php PHP
   $client = new Client();
 
-  // Skills dirender ke dalam prompt sistem dalam urutan tetap yang ramah cache
+  // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   $response1 = $client->messages->create(
       maxTokens: 4096,
       messages: [
           ['role' => 'user', 'content' => 'Analyze sales data']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest']
@@ -4341,7 +4424,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
       messages: [
           ['role' => 'user', 'content' => 'Create a presentation']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest'],
@@ -4360,7 +4443,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   # Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   response1 = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
@@ -4372,7 +4455,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   # Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
   response2 = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: {
       skills: [
@@ -4395,17 +4478,17 @@ Tangani error terkait Skill dengan baik:
 
 <CodeGroup>
   ```bash cURL
-  # Alur penanganan error ini tidak cocok diterjemahkan ke perintah shell
-  # sekali pakai; salah satu opsi SDK akan lebih sesuai. Permintaan yang gagal
+  # Alur penanganan error ini kurang cocok untuk perintah shell
+  # sekali jalan; salah satu opsi SDK akan lebih sesuai. Permintaan yang gagal
   # mengembalikan HTTP 400 dengan JSON error yang .error.message-nya menyebutkan
-  # masalah Skill tersebut.
+  # masalah pada Skill.
   ```
 
   ```bash CLI
   if ! RESULT=$(ant messages create \
     --transform-error error.message \
     --format-error yaml 2>&1 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container:
     skills:
@@ -4438,7 +4521,7 @@ Tangani error terkait Skill dengan baik:
 
   try:
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=4096,
           container={
               "skills": [
@@ -4465,7 +4548,7 @@ Tangani error terkait Skill dengan baik:
 
   try {
     const response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       container: {
         skills: [
@@ -4495,7 +4578,7 @@ Tangani error terkait Skill dengan baik:
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-5",
+          Model = "claude-opus-5-5",
           MaxTokens = 4096,
           Container = new ContainerParams
           {
@@ -4526,7 +4609,7 @@ Tangani error terkait Skill dengan baik:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5",
+  	Model:     "claude-opus-5-5",
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4571,7 +4654,7 @@ Tangani error terkait Skill dengan baik:
 
       try {
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .container(ContainerParams.builder()
                   .addSkill(SkillParams.builder()
@@ -4607,7 +4690,7 @@ Tangani error terkait Skill dengan baik:
           messages: [
               ['role' => 'user', 'content' => 'Process data']
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           container: [
               'skills' => [
                   [
@@ -4636,7 +4719,7 @@ Tangani error terkait Skill dengan baik:
 
   begin
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       container: {
         skills: [

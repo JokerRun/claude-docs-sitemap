@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 1da09bf85fa94b46d84be390a9eec3f6efb7d8092cc0bea62fbd723728bf7ecc
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9cc954c40b2d080d9503a8c4d68eb0845985c2f5e94e03e5ba098b8ab9750c00
 ---
 
 ---
@@ -47,7 +47,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -77,7 +77,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
     https://platform.claude.com/docs/images/vision-example.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -98,7 +98,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -124,7 +124,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -161,7 +161,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -192,7 +192,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   imageData := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -230,7 +230,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -262,7 +262,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -274,7 +274,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   image_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -307,7 +307,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -332,7 +332,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -349,7 +349,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```python Python
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -374,7 +374,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -408,7 +408,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -436,7 +436,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -473,7 +473,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -501,7 +501,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -511,7 +511,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -550,14 +550,14 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     -H "anthropic-version: 2023-06-01" \
     -F "file=@vision-example.jpg" | jq -r '.id')
 
-  # Kemudian gunakan file_id yang dikembalikan dalam pesan Anda
+  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -590,10 +590,10 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     --file ./vision-example.jpg \
     --transform id --raw-output)
 
-  # Kemudian gunakan file_id yang dikembalikan dalam pesan Anda
+  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
   ant messages create \
     --transform content --format yaml <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -614,9 +614,9 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   with open("vision-example.jpg", "rb") as f:
       file_upload = client.files.upload(file=("vision-example.jpg", f, "image/jpeg"))
 
-  # Gunakan file yang diunggah dalam pesan
+  # Gunakan file yang telah diunggah dalam pesan
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -650,7 +650,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 
   // Gunakan file yang diunggah dalam pesan
   const response = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -695,10 +695,10 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
       },
   });
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang telah diunggah dalam pesan
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -737,10 +737,10 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   	log.Fatal(err)
   }
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang telah diunggah dalam pesan
   message, err := client.Messages.New(context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -778,11 +778,11 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
           .build()
       );
 
-      // Gunakan file yang diunggah dalam pesan
+      // Gunakan file yang telah diunggah dalam pesan
       ImageBlockParam imageParam = ImageBlockParam.builder().fileSource(file.id()).build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(
           List.of(
@@ -808,7 +808,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
       file: FileParam::fromResource(fopen('vision-example.jpg', 'rb'), contentType: 'image/jpeg'),
   );
 
-  // Gunakan file yang diunggah dalam pesan
+  // Gunakan file yang telah diunggah dalam pesan
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -823,7 +823,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -842,7 +842,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 
   # Gunakan file yang diunggah dalam pesan
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -875,7 +875,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -917,7 +917,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -947,7 +947,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -988,7 +988,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC";
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1038,7 +1038,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1079,7 +1079,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   image2Data := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1136,7 +1136,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
       .messages()
       .create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addUserMessageOfBlockParams(contentBlockParams)
               .build()
@@ -1179,7 +1179,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $message;
@@ -1192,7 +1192,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   image2_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {

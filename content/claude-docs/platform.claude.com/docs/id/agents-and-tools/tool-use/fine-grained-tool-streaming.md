@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: b384e2f75e93f4d0df50e8846213f2045493f1007b9194c24bf285eee3b70d7b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: bd75068b864009b94a4092a9fceb403f18b532ac21cbd7b025cb5966a727c2da
 ---
 
 ---
@@ -36,7 +36,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 65536,
       "tools": [
         {
@@ -71,7 +71,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
 
   ```bash CLI
   ant messages create --stream --format jsonl <<'YAML' |
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 65536
   tools:
     - name: make_file
@@ -101,7 +101,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
 
   with client.messages.stream(
       max_tokens=65536,
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "name": "make_file",
@@ -145,7 +145,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 65536,
     tools: [
       {
@@ -194,7 +194,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 65536,
       Tools =
       [
@@ -228,7 +228,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
       ],
   };
 
-  // Contoh C# menyusun input sendiri: indeks blok konten -> JSON yang terakumulasi
+  // Contoh C# merakit input sendiri: indeks blok konten -> JSON yang terakumulasi
   var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
@@ -280,7 +280,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   }
 
   stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 65536,
   	Tools:     []anthropic.ToolUnionParam{{OfTool: &makeFileTool}},
   	Messages: []anthropic.MessageParam{
@@ -336,7 +336,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(65536L)
       .addTool(makeFileTool)
       .addUserMessage("Can you write a long poem and make a file called poem.txt?")
@@ -375,7 +375,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
 
   $stream = $client->messages->createStream(
       maxTokens: 65536,
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'name' => 'make_file',
@@ -434,7 +434,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_5_5,
     max_tokens: 65_536,
     tools: [
       {
@@ -505,13 +505,13 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
 <CodeGroup>
   ```bash cURL
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
-  # pada contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI contoh
+  # pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```bash CLI
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI pada
-  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI contoh
+  # pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
   ```
 
   ```python Python
@@ -520,7 +520,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   tool_inputs: dict[int, str] = {}  # index -> accumulated JSON string
 
   with client.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {
@@ -547,8 +547,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                   try:
                       parsed = json.loads(raw_input)
                   except json.JSONDecodeError:
-                      # String yang terakumulasi tidak dijamin berupa JSON yang valid.
-                      # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+                      # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                      # Lihat "Handling invalid JSON in tool responses" di halaman ini.
                       print(f"Invalid tool input: {raw_input}")
                   else:
                       print(f"Tool input: {parsed}")
@@ -560,7 +560,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   const toolInputs = new Map<number, string>();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -599,7 +599,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
             console.log("Tool input:", JSON.parse(rawInput));
           } catch {
             // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-            // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+            // Lihat "Handling invalid JSON in tool responses" di halaman ini.
             console.log("Invalid tool input:", rawInput);
           }
         }
@@ -613,7 +613,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools =
       [
@@ -636,7 +636,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   };
 
   // Indeks blok -> fragmen JSON yang terakumulasi
-  // Contoh ini mengakumulasi delta secara manual untuk menampilkan stream mentah;
+  // Contoh ini mengakumulasi delta secara manual untuk menunjukkan stream mentah;
   // MessageContentAggregator milik SDK juga dapat mengakumulasi input alat secara otomatis.
   var toolInputs = new Dictionary<long, StringBuilder>();
 
@@ -668,7 +668,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           }
           catch (JsonException)
           {
-              // String yang terakumulasi tidak dijamin berupa JSON yang valid.
+              // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
               // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
               Console.WriteLine($"Invalid tool input: {accumulated}");
           }
@@ -682,7 +682,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   toolInputs := map[int64]string{} // content block index -> accumulated JSON
 
   stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{{
   		OfTool: &anthropic.ToolParam{
@@ -716,8 +716,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   		if accumulated, ok := toolInputs[event.Index]; ok {
   			var parsed map[string]any
   			if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
-  				// String yang terakumulasi tidak dijamin berupa JSON yang valid.
-  				// Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
+  				// String yang terakumulasi belum tentu merupakan JSON yang valid.
+  				// Lihat "Handling invalid JSON in tool responses" di halaman ini.
   				fmt.Println("Invalid tool input:", accumulated)
   			} else {
   				fmt.Println("Tool input:", parsed)
@@ -747,7 +747,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           .build();
 
   MessageCreateParams createParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addTool(weatherTool)
           .addUserMessage("Weather in Paris?")
@@ -802,13 +802,13 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   $client = new Client();
 
-  // PHP SDK tidak menyediakan akumulator stream untuk input alat;
+  // SDK PHP tidak menyediakan akumulator stream untuk input alat;
   // pola manual yang ditunjukkan di sini adalah pendekatan yang didukung.
   $toolInputs = []; // index => accumulated JSON string
 
   $stream = $client->messages->createStream(
       maxTokens: 1024,
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'name' => 'get_weather',
@@ -859,7 +859,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   tool_inputs = {} # index -> accumulated JSON string
 
   stream = client.messages.stream_raw(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [
       {
@@ -891,8 +891,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           parsed = JSON.parse(accumulated)
           puts "Tool input: #{parsed}"
         rescue JSON::ParserError
-          # String yang terakumulasi tidak dijamin berupa JSON yang valid.
-          # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+          # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+          # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
           puts "Invalid tool input: #{accumulated}"
         end
       end

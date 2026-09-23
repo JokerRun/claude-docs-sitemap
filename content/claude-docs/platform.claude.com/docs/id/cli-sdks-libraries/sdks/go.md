@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4ed3d796dcde069164cefb10559e376922d9a371aa667bb32334cf7ae88647ee
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 781fce3cf81ba54bb5c08a3630a2ca9542a8a927bcae4b02874118c9cd7427e1
 ---
 
 ---
@@ -57,7 +57,7 @@ func main() {
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("What is a quaternion?")),
 		},
-		Model: anthropic.ModelClaudeOpus5,
+		Model: anthropic.ModelClaudeOpus5_5,
 	})
 	if err != nil {
 		panic(err.Error())
@@ -80,7 +80,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
     }
 
     message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    	Model:     anthropic.ModelClaudeOpus5,
+    	Model:     anthropic.ModelClaudeOpus5_5,
     	Messages:  messages,
     	MaxTokens: 1024,
     })
@@ -96,7 +96,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
     ))
 
     message, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    	Model:     anthropic.ModelClaudeOpus5,
+    	Model:     anthropic.ModelClaudeOpus5_5,
     	Messages:  messages,
     	MaxTokens: 1024,
     })
@@ -111,7 +111,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
   <Accordion title="Prompt sistem">
     ```go
     message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    	Model:     anthropic.ModelClaudeOpus5,
+    	Model:     anthropic.ModelClaudeOpus5_5,
     	MaxTokens: 1024,
     	System: []anthropic.TextBlockParam{
     		{Text: "Be very serious at all times."},
@@ -130,7 +130,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
     content := "What is a quaternion?"
 
     stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-    	Model:     anthropic.ModelClaudeOpus5,
+    	Model:     anthropic.ModelClaudeOpus5_5,
     	MaxTokens: 1024,
     	Messages: []anthropic.MessageParam{
     		anthropic.NewUserMessage(anthropic.NewTextBlock(content)),
@@ -181,7 +181,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
     for {
     	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    		Model:     anthropic.ModelClaudeOpus5,
+    		Model:     anthropic.ModelClaudeOpus5_5,
     		MaxTokens: 1024,
     		Messages:  messages,
     		Tools:     tools,
@@ -473,7 +473,7 @@ _, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
 		}},
 		Role: anthropic.MessageParamRoleUser,
 	}},
-	Model: anthropic.ModelClaudeOpus5,
+	Model: anthropic.ModelClaudeOpus5_5,
 })
 if err != nil {
 	var apierr *anthropic.Error
@@ -514,7 +514,7 @@ client := anthropic.NewClient(
 				}},
 				Role: anthropic.MessageParamRoleUser,
 			}},
-			Model: anthropic.ModelClaudeOpus5,
+			Model: anthropic.ModelClaudeOpus5_5,
 		},
 		option.WithMaxRetries(5),
 	)
@@ -527,7 +527,7 @@ Permintaan Messages non-streaming timeout setelah 10 menit secara default; permi
 Perhatikan bahwa jika permintaan [dicoba ulang](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#retries), timeout konteks tidak dimulai ulang. Untuk mengatur timeout per percobaan ulang, gunakan `option.WithRequestTimeout()`.
 
 ```go
-// Ini mengatur timeout untuk permintaan, termasuk semua percobaan ulang.
+// Ini mengatur batas waktu untuk permintaan, termasuk semua percobaan ulang.
 ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 defer cancel()
 // ...
@@ -543,9 +543,9 @@ defer cancel()
 				}},
 				Role: anthropic.MessageParamRoleUser,
 			}},
-			Model: anthropic.ModelClaudeOpus5,
+			Model: anthropic.ModelClaudeOpus5_5,
 		},
-		// Ini mengatur timeout per percobaan ulang
+		// Ini mengatur batas waktu per percobaan ulang
 		option.WithRequestTimeout(20*time.Second),
 	)
 ```
@@ -683,7 +683,7 @@ message, err := client.Messages.New(
 			}},
 			Role: anthropic.MessageParamRoleUser,
 		}},
-		Model: anthropic.ModelClaudeOpus5,
+		Model: anthropic.ModelClaudeOpus5_5,
 	},
 	option.WithResponseInto(&response),
 )

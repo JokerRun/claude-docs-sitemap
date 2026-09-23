@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 671fd4893a0b7eb8485918293a4544cda0dc3c88028154ae4faf8a8c546103c9
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 5c758d91d89a86ce1a82f3eae79d8199bf8d9312c848794ccf0f722f9dcbb6d3
 ---
 
 ---
@@ -39,7 +39,7 @@ anthropic = Anthropic::Client.new(
 message = anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 
 message.content.each do |block|
@@ -58,7 +58,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 
 stream.each do |message|
@@ -75,7 +75,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 
 stream.text.each do |text|
@@ -105,9 +105,9 @@ class Calculator < Anthropic::BaseTool
   end
 end
 
-# Secara otomatis menangani loop eksekusi alat
+# Menangani loop eksekusi alat secara otomatis
 anthropic.beta.messages.tool_runner(
-  model: "claude-opus-5",
+  model: "claude-opus-5-5",
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
   tools: [Calculator.new]
@@ -128,7 +128,7 @@ begin
   message = anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-5"
+    model: :"claude-opus-5-5"
   )
 rescue Anthropic::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -175,7 +175,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5",
+  model: :"claude-opus-5-5",
   request_options: {max_retries: 5}
 )
 ```
@@ -194,7 +194,7 @@ anthropic = Anthropic::Client.new(
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5",
+  model: :"claude-opus-5-5",
   request_options: {timeout: 5}
 )
 ```
@@ -269,7 +269,7 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 ```
 
@@ -277,18 +277,18 @@ Atau, secara ekuivalen:
 
 ```ruby
 anthropic = Anthropic::Client.new
-# Hash dapat digunakan, tetapi tidak typesafe:
+# Hash bisa digunakan, tetapi tidak typesafe:
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 
-# Anda juga dapat melakukan splat pada kelas Params lengkap:
+# Anda juga dapat melakukan splat pada seluruh kelas Params:
 params = Anthropic::MessageCreateParams.new(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5"
+  model: :"claude-opus-5-5"
 )
 anthropic.messages.create(**params)
 ```
@@ -360,7 +360,7 @@ message =
   anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-5",
+    model: :"claude-opus-5-5",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 84206ad9be94484f5f8abb4b35136fec35fb5f1b315bd5a55fe2edbe5de0b821
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 145ecb5e3861d821ac9d116f9e3e145192615a8f7c75d7165324383b7216c04b
 ---
 
 ---
@@ -125,7 +125,7 @@ Using the memory tool takes two steps:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 2048,
       "messages": [
         {
@@ -142,7 +142,7 @@ Using the memory tool takes two steps:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 2048
   tools:
     - type: memory_20250818
@@ -157,7 +157,7 @@ Using the memory tool takes two steps:
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=2048,
       messages=[
           {
@@ -175,7 +175,7 @@ Using the memory tool takes two steps:
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 2048,
     messages: [
       {
@@ -195,7 +195,7 @@ Using the memory tool takes two steps:
   var message = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 2048,
           Messages =
           [
@@ -216,7 +216,7 @@ Using the memory tool takes two steps:
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 2048,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Help me respond to this customer service ticket.")),
@@ -237,7 +237,7 @@ Using the memory tool takes two steps:
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(2048L)
       .addTool(MemoryTool20250818.builder().build())
       .addUserMessage("Help me respond to this customer service ticket.")
@@ -251,7 +251,7 @@ Using the memory tool takes two steps:
   $client = new Client();
 
   $message = $client->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 2048,
       messages: [
           [
@@ -269,7 +269,7 @@ Using the memory tool takes two steps:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 2048,
     messages: [
       {
@@ -303,7 +303,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   memory = BetaLocalFilesystemMemoryTool(base_path="./memory")
 
   runner = client.beta.messages.tool_runner(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -329,7 +329,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   const memory = betaMemoryTool(backend); // or pass your own handlers object
 
   const runner = client.beta.messages.toolRunner({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -358,7 +358,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   var runner = client.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Anthropic.Models.Messages.Model.ClaudeOpus5,
+          Model = Anthropic.Models.Messages.Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -483,7 +483,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
 
   	for {
   		message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Messages:  messages,
   			Tools:     tools,
@@ -529,7 +529,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
     BetaMemoryToolHandler handler = new FileSystemMemoryToolHandler(Path.of("memories"));
 
     MessageCreateParams createParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addTool(BetaMemoryTool20250818.builder().build())
       .addUserMessage("Remember that customer Acme Corp prefers email follow-ups.")
@@ -629,7 +629,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   $runner = $client->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Remember that customer Acme Corp prefers email follow-ups.']],
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [$memory],
       maxIterations: 10,
   );
@@ -699,7 +699,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   messages = [{role: "user", content: "Remember that customer Acme Corp prefers email follow-ups."}]
   loop do
     message = client.messages.create(
-      model: Anthropic::Model::CLAUDE_OPUS_5,
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       messages: messages,
       tools: TOOLS

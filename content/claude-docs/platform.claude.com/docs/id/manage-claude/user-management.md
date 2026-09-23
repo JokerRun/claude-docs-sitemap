@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4d4af04824ca2c1bdb4ee4b7fc7ad15a30069aa0da01ab039b6ff32f749bcfa1
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 63433ebaab057554ed5b2ac9ae097014285aec71e1dc4c0cdacf2e358d4d3d7a
 ---
 
 ---
@@ -21,13 +21,14 @@ Halaman ini membahas pengelolaan orang-orang di organisasi **Claude Enterprise**
 
 Admin API adalah satu set endpoint di bawah `https://api.anthropic.com/v1/organizations/`. Organisasi Claude Console dan Claude Enterprise melakukan autentikasi dengan [kunci yang berbeda](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) dan masing-masing memiliki akses ke subset endpoint yang berbeda:
 
-| Endpoint                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Claude Console (Claude Platform)                                                                 | Claude Enterprise (claude.ai)      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ---------------------------------- |
-| [Anggota](https://platform.claude.com/docs/id/manage-claude/user-management#members) dan [undangan](https://platform.claude.com/docs/id/manage-claude/user-management#invites)                                                                                                                                                                                                                                                                               | Tersedia; lihat [panduan Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) | Tersedia (halaman ini)             |
-| [Grup](https://platform.claude.com/docs/id/manage-claude/user-management#groups)                                                                                                                                                                                                                                                                                                                                                                             | Tidak tersedia                                                                                   | Tersedia (halaman ini)             |
-| [Peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles)                                                                                                                                                                                                                                                                                                                                                               | Tidak tersedia                                                                                   | Tersedia, hanya-baca (halaman ini) |
-| [Batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api)                                                                                                                                                                                                                                                                                                                                                                      | Tidak tersedia                                                                                   | Tersedia                           |
-| [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces), [kunci API](https://platform.claude.com/docs/id/manage-claude/admin-api#api-keys), [laporan penggunaan dan biaya](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), [batas laju](https://platform.claude.com/docs/id/manage-claude/rate-limits-api), dan endpoint lainnya dalam [panduan Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) | Tersedia                                                                                         | Tidak tersedia                     |
+| Endpoint                                                                                                                                                                                                                                                                                                                                                   | Claude Console (Claude Platform)                                                                       | Claude Enterprise (claude.ai)                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Anggota](https://platform.claude.com/docs/id/manage-claude/user-management#members) dan [undangan](https://platform.claude.com/docs/id/manage-claude/user-management#invites)                                                                                                                                                                             | Tersedia; lihat [panduan Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)       | Tersedia (halaman ini)                                                                                                                                                |
+| [Grup](https://platform.claude.com/docs/id/manage-claude/user-management#groups)                                                                                                                                                                                                                                                                           | Tidak tersedia                                                                                         | Tersedia (halaman ini)                                                                                                                                                |
+| [Peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles)                                                                                                                                                                                                                                                             | Tidak tersedia                                                                                         | Tersedia, hanya-baca (halaman ini)                                                                                                                                    |
+| [Batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api)                                                                                                                                                                                                                                                                    | Tidak tersedia                                                                                         | Tersedia                                                                                                                                                              |
+| Laporan penggunaan dan biaya                                                                                                                                                                                                                                                                                                                               | Tersedia; lihat [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) | Tersedia melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api#get-access-to-the-claude-enterprise-analytics-api) |
+| [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces), [kunci API](https://platform.claude.com/docs/id/manage-claude/admin-api#api-keys), [batas laju](https://platform.claude.com/docs/id/manage-claude/rate-limits-api), dan endpoint lainnya dalam [panduan Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) | Tersedia                                                                                               | Tidak tersedia                                                                                                                                                        |
 
 Anggota dan undangan adalah endpoint yang sama untuk kedua jenis organisasi; halaman ini mendokumentasikan perilakunya pada Claude Enterprise, termasuk [peran organisasi](https://platform.claude.com/docs/id/manage-claude/user-management#organization-roles) Claude Enterprise. Endpoint grup dan peran kustom hanya ada untuk Claude Enterprise.
 
@@ -41,13 +42,13 @@ Anggota dan undangan adalah endpoint yang sama untuk kedua jenis organisasi; hal
 
 Halaman ini membahas lima sumber daya:
 
-| Sumber daya      | Endpoint                                                                                                                                                                                                                  | Digunakan untuk                                                                                                               |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Anggota**      | `GET /v1/organizations/users` `GET /v1/organizations/users/{user_id}` `POST /v1/organizations/users/{user_id}` `DELETE /v1/organizations/users/{user_id}`                                                                 | Mendaftarkan anggota organisasi atau mencari satu anggota berdasarkan email; mengubah peran anggota; menghapus anggota.       |
-| **Undangan**     | `POST /v1/organizations/invites` `GET /v1/organizations/invites` `GET /v1/organizations/invites/{invite_id}` `DELETE /v1/organizations/invites/{invite_id}`                                                               | Mengundang seseorang ke organisasi, melacak status undangan, dan menariknya sebelum diterima.                                 |
-| **Grup**         | `GET /v1/organizations/rbac_groups` `GET /v1/organizations/rbac_groups/{group_id}` `POST /v1/organizations/rbac_groups` `POST /v1/organizations/rbac_groups/{group_id}` `DELETE /v1/organizations/rbac_groups/{group_id}` | Membaca grup enterprise Anda dan peran kustom yang terlampir pada masing-masing; membuat, mengganti nama, dan menghapus grup. |
-| **Anggota grup** | `GET /v1/organizations/rbac_groups/{group_id}/members` `POST /v1/organizations/rbac_groups/{group_id}/members` `DELETE /v1/organizations/rbac_groups/{group_id}/members/{user_id}`                                        | Membaca anggota grup; menambah dan menghapus anggota.                                                                         |
-| **Peran kustom** | `GET /v1/organizations/rbac_roles` `GET /v1/organizations/rbac_roles/{role_id}` `GET /v1/organizations/rbac_roles/{role_id}/permissions`                                                                                  | Membaca peran kustom organisasi Anda dan izin yang diberikan oleh setiap peran.                                               |
+| Sumber daya      | Endpoint                                                                                                                                                                                                                                 | Digunakan untuk                                                                                                                    |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Anggota**      | `GET /v1/organizations/users` `GET /v1/organizations/users/{user_id}` `POST /v1/organizations/users/{user_id}` `DELETE /v1/organizations/users/{user_id}`                                                                                | Menampilkan daftar anggota organisasi atau mencari satu anggota berdasarkan email; mengubah peran anggota; menghapus anggota.      |
+| **Undangan**     | `POST /v1/organizations/invites` `GET /v1/organizations/invites` `GET /v1/organizations/invites/{invite_id}` `DELETE /v1/organizations/invites/{invite_id}`                                                                              | Mengundang seseorang ke organisasi, melacak status undangan, dan menariknya sebelum diterima.                                      |
+| **Grup**         | `GET /v1/organizations/rbac_groups` `GET /v1/organizations/rbac_groups/{rbac_group_id}` `POST /v1/organizations/rbac_groups` `POST /v1/organizations/rbac_groups/{rbac_group_id}` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}` | Membaca grup enterprise Anda dan peran kustom yang terlampir pada masing-masing grup; membuat, mengganti nama, dan menghapus grup. |
+| **Anggota grup** | `GET /v1/organizations/rbac_groups/{rbac_group_id}/members` `POST /v1/organizations/rbac_groups/{rbac_group_id}/members` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`                                        | Membaca anggota grup; menambahkan dan menghapus anggota.                                                                           |
+| **Peran kustom** | `GET /v1/organizations/rbac_roles` `GET /v1/organizations/rbac_roles/{rbac_role_id}` `GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions`                                                                                       | Membaca peran kustom organisasi Anda dan izin yang diberikan oleh setiap peran.                                                    |
 
 Peran kustom dan pelampirannya ke grup dikelola di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings); API membacanya tetapi tidak dapat mengubahnya.
 
@@ -103,7 +104,7 @@ Jika paket organisasi Anda mengambil anggota dari kumpulan seat yang dibeli dala
 
 ### Grup dan peran
 
-Grup menghubungkan anggota dengan peran kustom ("role-based access control" (kontrol akses berbasis peran), atau `rbac` dalam path endpoint dan nama cakupan). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk bersama setiap organisasi di bawahnya), bukan oleh satu organisasi, sehingga cakupan grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi tertaut. Setiap grup membawa `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang diprovisikan oleh penyedia identitas Anda. Field `roles` pada grup mencantumkan ID peran kustom yang terlampir padanya; uraikan menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles), dengan catatan bahwa katalog peran bersifat per-organisasi sementara grup berlaku di seluruh enterprise, sehingga mengambil peran yang dimiliki organisasi lain dalam enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field ini bernilai `null` (bukan `[]`) ketika data peran sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup yang tidak memiliki peran.
+Grup menghubungkan anggota dengan peran kustom ("role-based access control" (kontrol akses berbasis peran), yaitu `rbac` dalam path endpoint dan nama cakupan). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk beserta setiap organisasi di bawahnya), bukan oleh satu organisasi saja, sehingga cakupan grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi yang tertaut. Setiap grup memiliki `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang disediakan oleh penyedia identitas Anda. Field `role_ids` pada grup mencantumkan ID peran kustom yang terlampir padanya; uraikan ID tersebut menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles), dengan catatan bahwa katalog peran bersifat per organisasi sedangkan grup berlaku di seluruh enterprise, sehingga mengambil peran yang dimiliki organisasi lain di enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field ini bernilai `null` (bukan `[]`) ketika data peran untuk sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup yang tidak memiliki peran. Dua field yang sudah usang masih dikembalikan: `roles` pada grup, yang selalu sama dengan `role_ids`, dan `group_id` pada anggota grup, yang selalu sama dengan `rbac_group_id`.
 
 ## Pembuatan versi
 
@@ -278,6 +279,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
       "id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
       "name": "Engineering",
       "source_type": "direct",
+      "role_ids": ["rbac_role_01CdEfGhIjKlMnOpQrStUv"],
       "roles": ["rbac_role_01CdEfGhIjKlMnOpQrStUv"],
       "created_at": "2026-03-18T10:01:42Z",
       "updated_at": "2026-05-02T08:55:09Z"
@@ -290,7 +292,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
 
 ### Mendapatkan grup
 
-`GET /v1/organizations/rbac_groups/{group_id}` mengembalikan satu grup berdasarkan ID. Memerlukan cakupan `read:rbac_groups`.
+`GET /v1/organizations/rbac_groups/{rbac_group_id}` mengembalikan satu grup berdasarkan ID. Memerlukan cakupan `read:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Get group](https://platform.claude.com/docs/id/api/admin/rbac_groups/retrieve) di referensi API.
 
@@ -320,6 +322,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
   "id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "name": "Engineering",
   "source_type": "direct",
+  "role_ids": [],
   "roles": [],
   "created_at": "2026-07-09T18:00:00Z",
   "updated_at": "2026-07-09T18:00:00Z"
@@ -328,7 +331,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
 
 ### Mengganti nama grup
 
-`POST /v1/organizations/rbac_groups/{group_id}` memperbarui grup. `name` adalah satu-satunya field yang dapat diubah oleh endpoint ini. Memerlukan cakupan `write:rbac_groups`.
+`POST /v1/organizations/rbac_groups/{rbac_group_id}` memperbarui grup. `name` adalah satu-satunya field yang dapat diubah oleh endpoint ini. Memerlukan cakupan `write:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Update group](https://platform.claude.com/docs/id/api/admin/rbac_groups/update) di referensi API.
 
@@ -342,7 +345,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 
 ### Menghapus grup
 
-`DELETE /v1/organizations/rbac_groups/{group_id}` menghapus grup. Anggotanya tetap menjadi anggota organisasi mereka, tetapi mereka kehilangan izin dari peran yang terlampir pada grup tersebut, dan [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api) grup, jika ada, berhenti berlaku bagi mereka. Memerlukan cakupan `write:rbac_groups`.
+`DELETE /v1/organizations/rbac_groups/{rbac_group_id}` menghapus grup. Anggotanya tetap menjadi anggota organisasi mereka, tetapi mereka kehilangan izin dari peran yang terlampir pada grup tersebut, dan [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api) grup, jika ada, tidak lagi berlaku bagi mereka. Memerlukan cakupan `write:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Delete group](https://platform.claude.com/docs/id/api/admin/rbac_groups/delete) di referensi API.
 
@@ -361,7 +364,7 @@ curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_grou
 
 ### Mendaftarkan anggota grup
 
-`GET /v1/organizations/rbac_groups/{group_id}/members` mengembalikan anggota grup (masing-masing dengan `user_id` dan email mereka), yang terlama terlebih dahulu. Hanya anggota aktif dari organisasi enterprise Anda yang dikembalikan, sehingga satu halaman mungkin berisi kurang dari `limit` entri sementara `has_more` bernilai `true`. Memerlukan cakupan `read:rbac_groups`.
+`GET /v1/organizations/rbac_groups/{rbac_group_id}/members` mengembalikan anggota grup (masing-masing dengan `user_id` dan email-nya), dimulai dari yang terlama. Hanya anggota saat ini dari organisasi-organisasi enterprise Anda yang dikembalikan, sehingga satu halaman mungkin berisi lebih sedikit entri daripada `limit` meskipun `has_more` bernilai `true`. Memerlukan cakupan `read:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [List group members](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/list) di referensi API.
 
@@ -376,6 +379,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYz
   "data": [
     {
       "type": "rbac_group_member",
+      "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
       "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
       "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
       "email": "jane@example.com",
@@ -389,7 +393,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYz
 
 ### Menambahkan anggota ke grup
 
-`POST /v1/organizations/rbac_groups/{group_id}/members` menambahkan anggota organisasi ke grup berdasarkan `user_id`. Pengguna tersebut harus sudah menjadi anggota salah satu organisasi enterprise Anda (jika tidak, permintaan mengembalikan 404), dan menambahkan seseorang yang sudah ada di grup mengembalikan 400. Untuk grup `scim`, keanggotaan dikelola di penyedia identitas Anda dan permintaan ini mengembalikan 400. Untuk menetapkan grup kepada seseorang yang belum bergabung, gunakan `rbac_group_ids` pada [pembuatan undangan](https://platform.claude.com/docs/id/manage-claude/user-management#create-an-invite) sebagai gantinya. Memerlukan cakupan `write:rbac_groups`.
+`POST /v1/organizations/rbac_groups/{rbac_group_id}/members` menambahkan anggota organisasi ke grup berdasarkan `user_id`. Pengguna harus sudah menjadi anggota salah satu organisasi enterprise Anda (jika tidak, permintaan akan mengembalikan 404), dan menambahkan seseorang yang sudah ada di grup akan mengembalikan 400. Untuk grup `scim`, keanggotaan dikelola di penyedia identitas Anda dan permintaan ini akan mengembalikan 400. Untuk menetapkan grup kepada seseorang yang belum bergabung, gunakan `rbac_group_ids` saat [pembuatan undangan](https://platform.claude.com/docs/id/manage-claude/user-management#create-an-invite) sebagai gantinya. Memerlukan cakupan `write:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/create) di referensi API.
 
@@ -404,6 +408,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 ```json
 {
   "type": "rbac_group_member",
+  "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
   "email": "jane@example.com",
@@ -413,7 +418,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 
 ### Menghapus anggota dari grup
 
-`DELETE /v1/organizations/rbac_groups/{group_id}/members/{user_id}` menghapus anggota dari grup; mereka tetap menjadi anggota organisasi mereka. Permintaan mengembalikan 404 jika pengguna bukan anggota grup, dan 400 untuk grup `scim`, yang keanggotaannya dikelola di penyedia identitas Anda. Memerlukan cakupan `write:rbac_groups`.
+`DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}` menghapus anggota dari grup; mereka tetap menjadi anggota organisasinya. Permintaan akan mengembalikan 404 jika pengguna bukan anggota grup, dan 400 untuk grup `scim`, yang keanggotaannya dikelola di penyedia identitas Anda. Memerlukan cakupan `write:rbac_groups`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/delete) di referensi API.
 
@@ -425,6 +430,7 @@ curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_grou
 
 ```json
 {
+  "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
   "type": "rbac_group_member_deleted"
@@ -465,7 +471,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
 
 ### Mendapatkan peran
 
-`GET /v1/organizations/rbac_roles/{role_id}` mengembalikan satu peran berdasarkan ID. Memerlukan cakupan `read:members`.
+`GET /v1/organizations/rbac_roles/{rbac_role_id}` mengembalikan satu peran berdasarkan ID. Memerlukan cakupan `read:members`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Get role](https://platform.claude.com/docs/id/api/admin/rbac_roles/retrieve) di referensi API.
 
@@ -477,7 +483,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIj
 
 ### Mendaftarkan izin peran
 
-`GET /v1/organizations/rbac_roles/{role_id}/permissions` mengembalikan izin peran tersebut. Setiap izin memasangkan `resource` (apa yang menjadi sasarannya: fitur produk organisasi, alat konektor, cakupan OAuth konektor, satu konektor, atau setiap konektor) dengan `action` (apa yang diberikannya pada sumber daya tersebut). Baris untuk fitur yang tidak diaktifkan bagi organisasi Anda dihilangkan, sehingga satu halaman mungkin berisi kurang dari `limit` baris sementara `has_more` bernilai `true`. Memerlukan cakupan `read:members`.
+`GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions` mengembalikan izin peran. Setiap izin memasangkan sebuah `resource` (objek yang dikenai izin: fitur produk organisasi, alat konektor, cakupan OAuth konektor, satu konektor, atau setiap konektor) dengan sebuah `action` (apa yang diberikan pada sumber daya tersebut). Baris untuk fitur yang tidak diaktifkan untuk organisasi Anda dihilangkan, sehingga satu halaman mungkin berisi lebih sedikit baris daripada `limit` meskipun `has_more` bernilai `true`. Memerlukan cakupan `read:members`.
 
 Dua nilai `action` memerlukan perhatian khusus: izin `organization` yang action-nya adalah `capability_access_all` (setiap fitur produk) atau `capability_access_all_ga` (setiap fitur produk stabil, yaitu setiap fitur yang tidak berlabel beta atau research preview) merupakan pemberian menyeluruh (yang tidak mencakup akses model maupun izin panel admin berawalan `permission_`) dan dicantumkan sebagai satu baris tersebut, bukan diperluas. Ketika Anda menghitung apa yang diberikan oleh suatu peran, perlakukan baris menyeluruh sebagai mencakup semua yang dijelaskan oleh variannya, bukan hanya fitur yang disebutkan di baris lain.
 
@@ -533,11 +539,11 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIj
 
 ### Mengaudit keanggotaan grup
 
-1. Daftarkan grup dan catat `id`, `name`, dan `roles` setiap grup.
+1. Tampilkan daftar grup dan catat `id`, `name`, dan `role_ids` setiap grup.
 
-2. Untuk setiap grup yang membawa peran sensitif, lakukan paginasi melalui `GET /v1/organizations/rbac_groups/{group_id}/members` dan bandingkan email anggota dengan daftar di penyedia identitas Anda.
+2. Untuk setiap grup yang memiliki peran sensitif, lakukan paginasi melalui `GET /v1/organizations/rbac_groups/{rbac_group_id}/members` dan bandingkan email anggota dengan daftar di penyedia identitas Anda.
 
-3. Hapus anggota yang seharusnya tidak lagi berada di grup dengan `DELETE /v1/organizations/rbac_groups/{group_id}/members/{user_id}`. Untuk grup `scim`, lakukan perubahan di penyedia identitas Anda sebagai gantinya.
+3. Hapus anggota yang seharusnya tidak lagi berada di grup dengan `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`. Untuk grup `scim`, lakukan perubahan di penyedia identitas Anda sebagai gantinya.
 
 Untuk alur kerja yang menggabungkan keanggotaan grup dengan kenaikan batas pengeluaran sementara, lihat [Menaikkan batas pengeluaran anggota untuk sementara selama insiden](https://platform.claude.com/docs/id/manage-claude/spend-limits-api#temporarily-raise-a-members-spend-limit-during-an-incident) di halaman Spend Limits API.
 

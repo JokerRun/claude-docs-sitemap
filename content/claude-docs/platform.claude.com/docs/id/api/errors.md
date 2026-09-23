@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5a5f58c3fa99fb1048cba02bce23015e52a8b6d077b31bee7ae13d8c8f9f90b1
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 432a2fe9c5415a2f2d47f6b7be190cffe2131461e97aa36068fb08328490e12a
 ---
 
 ---
@@ -482,7 +482,7 @@ Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini
 
 ### Thinking tidak dapat dinonaktifkan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -498,7 +498,7 @@ Hilangkan parameter `thinking`, dan permintaan akan berjalan dengan adaptive thi
 
 ### Penggunaan alat paksa tidak didukung
 
-Claude Fable 5.1 dan [Claude Mythos 5.1](https://anthropic.com/glasswing) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu dari kedua model tersebut, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
+Claude Opus 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://anthropic.com/glasswing) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu model ini, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 tool_choice: type "tool" and "any" are not supported for this model.
@@ -506,9 +506,19 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 `tool_choice: {"type": "auto"}` (default) dan `{"type": "none"}` diterima. Gunakan `auto` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjaga input alat tetap valid terhadap skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda memerlukan respons itu sendiri dalam bentuk JSON yang tetap. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
 
+### Versi alat computer use tidak didukung
+
+Di Claude API dan Google Cloud, Claude Opus 5.5 hanya mendukung ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` dengan jenis `computer_20251124` yang lebih lama (beserta header beta alat tersebut) akan mengembalikan 400 `invalid_request_error`. Pesan tersebut menyebutkan jenis yang ditolak, lalu mencantumkan jenis alat yang diterima model setelah `Did you mean one of`. Pesannya diawali dengan:
+
+```text wrap
+'claude-opus-5-5' does not support tool types: computer_20251124.
+```
+
+API mengembalikan pesan yang sama untuk jenis alat apa pun yang didefinisikan Anthropic tetapi tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta, lalu perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Model lama yang mendukung toolset tersebut tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5 di Amazon Bedrock.
+
 ### Blok thinking tidak lagi cocok dengan percakapan
 
-Pada Claude Fable 5.1, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk permintaan apa pun yang menetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"error"`, blok yang diputar ulang yang riwayat sebelumnya telah berubah akan ditolak dengan 400 `invalid_request_error` (dengan `"drop_block"`, API membuang blok tersebut dan permintaan berhasil). Pesan dimulai dengan posisi blok pertama yang gagal:
+Pada Claude Fable 5.1 dan Claude Opus 5.5, API hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan sebelumnya tidak berubah. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, serta untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"error"`, blok yang diputar ulang dengan riwayat sebelumnya yang telah berubah akan ditolak dengan 400 `invalid_request_error`. Dengan `"drop_block"`, API membuang blok tersebut dan permintaan berhasil. Pesan kesalahan diawali dengan posisi blok pertama yang gagal:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".

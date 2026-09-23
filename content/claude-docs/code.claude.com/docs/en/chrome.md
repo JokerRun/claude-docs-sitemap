@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-09-14T02:24:16.718825Z
-sha256: 300bad3a55706242fc5ffc4826be0d02b9b140456c44c637512bd9a4b4e79ce8
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6fe46b67f25d8f6c5f9164962435d4af13c01ed40a1696129d3f946250bf723a
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ With Chrome connected, you can chain browser actions with coding tasks in a sing
 Before using Claude Code with Chrome, you need:
 
 * [Google Chrome](https://www.google.com/chrome/), [Microsoft Edge](https://www.microsoft.com/edge), or another Chromium-based browser such as Brave, Arc, Vivaldi, or Opera
-* [Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) version 1.0.36 or higher, available in the Chrome Web Store
+* [Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) version 1.0.36 or later, available in the Chrome Web Store
 * [Claude Code](/docs/en/quickstart#step-1-install-claude-code)
 * A direct Anthropic plan (Pro, Max, Team, or Enterprise)
 

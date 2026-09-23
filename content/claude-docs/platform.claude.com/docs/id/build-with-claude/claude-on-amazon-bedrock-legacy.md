@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1517415b8e4613029054fc559b88dc2aebb33b9ab30175e4892771c01eb55076
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 44c9cca061b84e3b5a666d0c591634c67b3f64c8e169e736f9bb69ebd976346c
 ---
 
 ---
@@ -61,20 +61,20 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.63.0")
-      implementation("com.anthropic:anthropic-java-bedrock:2.63.0")
+      implementation("com.anthropic:anthropic-java:2.65.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.65.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.63.0</version>
+          <version>2.65.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.63.0</version>
+          <version>2.65.0</version>
       </dependency>
       ```
 
@@ -138,7 +138,7 @@ Buka [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedro
 #### ID model API
 
 <Note>
-  Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, dan Claude Opus 4.7 dapat dijangkau melalui `InvokeModel` di `bedrock-runtime`. Permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Untuk bentuk permintaan Messages API native dan paritas fitur penuh, gunakan halaman tersebut. Model-model ini tidak dicantumkan dalam tabel model di halaman ini karena tidak memiliki ID model berversi ARN.
+  Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, dan Claude Opus 4.7 dapat dijangkau melalui `InvokeModel` di `bedrock-runtime`. Permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Untuk bentuk permintaan Messages API native dan paritas fitur penuh, gunakan halaman tersebut. Model-model ini tidak dicantumkan dalam tabel model di halaman ini karena tidak memiliki ID model berversi ARN.
 </Note>
 
 Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
@@ -151,18 +151,18 @@ Invocation of model ID anthropic.claude-sonnet-4-5-20250929-v1:0 with on-demand 
 
 Untuk memanggil model-model ini, teruskan inference profile alih-alih ID model dasar. ID inference profile adalah ID model dasar dengan prefiks dari kolom yang ditandai "Ya" pada tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN inference profile lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS mengenai inference profile yang tersedia, lihat [Region dan model yang didukung untuk inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana prefiks memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
 
-| Model                        | ID model Bedrock dasar                    | `global` | `us`  | `eu`  | `jp`  | `apac` |
-| ---------------------------- | ----------------------------------------- | -------- | ----- | ----- | ----- | ------ |
-| Claude Opus 4.6              | anthropic.claude-opus-4-6-v1              | Ya       | Ya    | Ya    | Ya    | Ya     |
-| Claude Sonnet 4.6            | anthropic.claude-sonnet-4-6               | Ya       | Ya    | Ya    | Ya    | Tidak  |
-| Claude Sonnet 4.5            | anthropic.claude-sonnet-4-5-20250929-v1:0 | Ya       | Ya    | Ya    | Ya    | Tidak  |
-| Claude Sonnet 4 Deprecated.  | anthropic.claude-sonnet-4-20250514-v1:0   | Ya       | Ya    | Ya    | Tidak | Ya     |
-| Claude Sonnet 3.7 Retired.   | anthropic.claude-3-7-sonnet-20250219-v1:0 | Tidak    | Tidak | Tidak | Tidak | Tidak  |
-| Claude Opus 4.5              | anthropic.claude-opus-4-5-20251101-v1:0   | Ya       | Ya    | Ya    | Tidak | Tidak  |
-| Claude Opus 4.1 Deprecated.  | anthropic.claude-opus-4-1-20250805-v1:0   | Tidak    | Ya    | Tidak | Tidak | Tidak  |
-| Claude Opus 4 Retired.       | anthropic.claude-opus-4-20250514-v1:0     | Tidak    | Tidak | Tidak | Tidak | Tidak  |
-| Claude Haiku 4.5             | anthropic.claude-haiku-4-5-20251001-v1:0  | Ya       | Ya    | Ya    | Tidak | Tidak  |
-| Claude Haiku 3.5 Deprecated. | anthropic.claude-3-5-haiku-20241022-v1:0  | Tidak    | Ya    | Tidak | Tidak | Tidak  |
+| Model                           | ID model Bedrock dasar                    | `global` | `us`  | `eu`  | `jp`  | `apac` |
+| ------------------------------- | ----------------------------------------- | -------- | ----- | ----- | ----- | ------ |
+| Claude Opus 4.6                 | anthropic.claude-opus-4-6-v1              | Ya       | Ya    | Ya    | Ya    | Ya     |
+| Claude Sonnet 4.6               | anthropic.claude-sonnet-4-6               | Ya       | Ya    | Ya    | Ya    | Tidak  |
+| Claude Sonnet 4.5               | anthropic.claude-sonnet-4-5-20250929-v1:0 | Ya       | Ya    | Ya    | Ya    | Tidak  |
+| Claude Sonnet 4 Dihentikan.     | anthropic.claude-sonnet-4-20250514-v1:0   | Ya       | Ya    | Ya    | Tidak | Ya     |
+| Claude Sonnet 3.7 Dipensiunkan. | anthropic.claude-3-7-sonnet-20250219-v1:0 | Tidak    | Tidak | Tidak | Tidak | Tidak  |
+| Claude Opus 4.5                 | anthropic.claude-opus-4-5-20251101-v1:0   | Ya       | Ya    | Ya    | Tidak | Tidak  |
+| Claude Opus 4.1 Dihentikan.     | anthropic.claude-opus-4-1-20250805-v1:0   | Tidak    | Ya    | Tidak | Tidak | Tidak  |
+| Claude Opus 4 Dipensiunkan.     | anthropic.claude-opus-4-20250514-v1:0     | Tidak    | Tidak | Tidak | Tidak | Tidak  |
+| Claude Haiku 4.5                | anthropic.claude-haiku-4-5-20251001-v1:0  | Ya       | Ya    | Ya    | Tidak | Tidak  |
+| Claude Haiku 3.5 Dihentikan.    | anthropic.claude-3-5-haiku-20241022-v1:0  | Tidak    | Ya    | Tidak | Tidak | Tidak  |
 
 ### Daftar model yang tersedia
 
@@ -765,13 +765,13 @@ Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk
 
 ### Pesan sistem di tengah percakapan di Bedrock
 
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5, dan Claude Opus 4.8. Seperti dijelaskan dalam catatan di bawah [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Tidak diperlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model berversi ARN dalam tabel model di halaman ini.
+[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Seperti dijelaskan dalam catatan di bawah [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Tidak diperlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model berversi ARN dalam tabel model di halaman ini.
 
 **Bagi pengguna Converse API:** Converse API menerima instruksi sistem melalui [parameter `system`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) tingkat atasnya. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan InvokeModel API.
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Amazon Bedrock. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Amazon Bedrock. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (tidak digunakan lagi), memiliki jendela konteks 200 ribu token.
 
 Bedrock membatasi payload permintaan hingga 20 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 

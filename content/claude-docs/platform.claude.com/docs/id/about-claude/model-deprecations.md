@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 3e2c7cee5c7f7f8ee2b9dd4d47a0e5d439959df28cf054b5eadd3c76e917440b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 12fdf028a76206c6ebe0057787d0b3aec6127df23835738e6bf0210c0fe58bf2
 ---
 
 ---
@@ -84,6 +84,7 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 | claude-fable-5             | Active        | N/A               | Not sooner than June 9, 2027       |
 | claude-mythos-5            | Active        | N/A               | Not sooner than June 9, 2027       |
 | claude-mythos-preview      | Deprecated    | June 9, 2026      | To be announced                    |
+| claude-opus-5-5            | Active        | N/A               | Not sooner than September 22, 2027 |
 | claude-opus-5              | Active        | N/A               | Not sooner than July 24, 2027      |
 | claude-opus-4-8            | Active        | N/A               | Not sooner than May 28, 2027       |
 | claude-opus-4-7            | Active        | N/A               | Not sooner than April 16, 2027     |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9c831c0cf1c6905d13e1ec50abffa68df9f011b365c6e18cc7d29b39b7ee0f50
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 3850ff3591dcaaeef329533ca2146dbf4e846e86b64feea0f1e38a4e5ac56a6b
 ---
 
 ---
@@ -69,7 +69,7 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
-Pada Claude Fable 5.1, manajemen konteks sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+Pada Claude Fable 5.1 dan Claude Opus 5.5, manajemen konteks sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
 ### Pengeditan konteks dan caching prompt
 
@@ -95,7 +95,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "messages": [
               {
@@ -119,7 +119,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -135,7 +135,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[{"role": "user", "content": "Search for recent developments in AI"}],
       tools=[{"type": "web_search_20250305", "name": "web_search"}],
@@ -150,7 +150,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -181,7 +181,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
           new() { Role = Role.User, Content = "Search for recent developments in AI" }
@@ -204,7 +204,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Search for recent developments in AI")),
@@ -237,7 +237,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Search for recent developments in AI")
           .addTool(BetaWebSearchTool20250305.builder().build())
@@ -260,7 +260,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
       messages: [
           ['role' => 'user', 'content' => 'Search for recent developments in AI']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       tools: [
           ['type' => 'web_search_20250305', 'name' => 'web_search']
@@ -279,7 +279,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Search for recent developments in AI" }
@@ -310,7 +310,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "messages": [
               {
@@ -355,7 +355,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -386,7 +386,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -411,7 +411,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
                   "trigger": {"type": "input_tokens", "value": 30000},
                   # Jumlah penggunaan alat yang dipertahankan setelah pembersihan
                   "keep": {"type": "tool_uses", "value": 3},
-                  # Opsional: Bersihkan setidaknya sejumlah token ini
+                  # Opsional: Bersihkan setidaknya sebanyak token ini
                   "clear_at_least": {"type": "input_tokens", "value": 5000},
                   # Kecualikan alat-alat ini dari pembersihan
                   "exclude_tools": ["web_search"],
@@ -427,7 +427,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -462,7 +462,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
             type: "tool_uses",
             value: 3
           },
-          // Opsional: Bersihkan setidaknya sejumlah token ini
+          // Opsional: Bersihkan setidaknya sebanyak token ini
           clear_at_least: {
             type: "input_tokens",
             value: 5000
@@ -485,7 +485,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
           new() { Role = Role.User, Content = "Create a simple command line calculator app using Python" }
@@ -517,7 +517,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Create a simple command line calculator app using Python")),
@@ -570,7 +570,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Create a simple command line calculator app using Python")
           .addTool(BetaToolTextEditor20250728.builder()
@@ -612,7 +612,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
               'content' => 'Create a simple command line calculator app using Python'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       tools: [
           [
@@ -655,7 +655,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -713,7 +713,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 16000,
           "messages": [{"role": "user", "content": "Hello"}],
           "context_management": {
@@ -732,7 +732,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   messages:
     - role: user
@@ -748,7 +748,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       messages=[{"role": "user", "content": "Hello"}],
       betas=["context-management-2025-06-27"],
@@ -769,7 +769,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -797,7 +797,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Messages = [
           new() { Role = Role.User, Content = "Hello" }
@@ -822,7 +822,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -856,7 +856,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(16000L)
           .addUserMessage("Hello")
           .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
@@ -882,7 +882,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -904,7 +904,7 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -944,7 +944,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 16000,
           "messages": [{"role": "user", "content": "Hello"}],
           "context_management": {
@@ -963,7 +963,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   messages:
     - role: user
@@ -979,7 +979,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       messages=[{"role": "user", "content": "Hello"}],
       betas=["context-management-2025-06-27"],
@@ -1000,7 +1000,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -1028,7 +1028,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Messages = [
           new() { Role = Role.User, Content = "Hello" }
@@ -1053,7 +1053,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -1081,7 +1081,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(16000L)
       .addUserMessage("Hello")
       .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
@@ -1106,7 +1106,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -1128,7 +1128,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -1158,7 +1158,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 16000,
           "messages": [{"role": "user", "content": "Hello"}],
           "context_management": {
@@ -1174,7 +1174,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   messages:
     - role: user
@@ -1188,7 +1188,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       messages=[{"role": "user", "content": "Hello"}],
       betas=["context-management-2025-06-27"],
@@ -1209,7 +1209,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -1234,7 +1234,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Messages = [
           new() { Role = Role.User, Content = "Hello" }
@@ -1259,7 +1259,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -1285,7 +1285,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(16000L)
       .addUserMessage("Hello")
       .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
@@ -1308,7 +1308,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -1327,7 +1327,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["context-management-2025-06-27"],
@@ -1360,7 +1360,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 16000,
           "messages": [
               {
@@ -1402,7 +1402,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   messages:
     - role: user
@@ -1429,7 +1429,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       messages=[
           {
@@ -1469,7 +1469,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [
       {
@@ -1523,7 +1523,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Messages = [
           new() { Role = Role.User, Content = "Search for the latest developments in quantum error correction and summarize the key breakthroughs." }
@@ -1556,7 +1556,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Search for the latest developments in quantum error correction and summarize the key breakthroughs.")),
@@ -1611,7 +1611,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(16000L)
           .addUserMessage("Search for the latest developments in quantum error correction and summarize the key breakthroughs.")
           .addTool(BetaWebSearchTool20250305.builder()
@@ -1651,7 +1651,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
               'content' => 'Search for the latest developments in quantum error correction and summarize the key breakthroughs.'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       tools: [
           [
@@ -1691,7 +1691,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     messages: [
       {
@@ -1810,7 +1810,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "messages": [
               {
                   "role": "user",
@@ -1837,7 +1837,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
 
   ```bash CLI
   cat > request.yaml <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   messages:
     - role: user
       content: Continue our conversation...
@@ -1868,7 +1868,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
 
   ```python Python
   response = client.beta.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       messages=[{"role": "user", "content": "Continue our conversation..."}],
       betas=["context-management-2025-06-27"],
       context_management={
@@ -1895,7 +1895,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   });
 
   const response = await anthropic.beta.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       {
         role: "user",
@@ -1939,7 +1939,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       Messages = [new() { Role = Role.User, Content = "Continue our conversation..." }],
       Betas = [AnthropicBeta.ContextManagement2025_06_27],
       ContextManagement = new BetaContextManagementConfig
@@ -1965,7 +1965,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.CountTokens(context.TODO(), anthropic.BetaMessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Continue our conversation...")),
   	},
@@ -2009,7 +2009,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .addUserMessage("Continue our conversation...")
           .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
           .contextManagement(BetaContextManagementConfig.builder()
@@ -2039,7 +2039,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
       messages: [
           ['role' => 'user', 'content' => 'Continue our conversation...']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -2067,7 +2067,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   client = Anthropic::Client.new
 
   response = client.beta.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       { role: "user", content: "Continue our conversation..." }
     ],
@@ -2128,7 +2128,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
       --header "content-type: application/json" \
       --header "anthropic-beta: context-management-2025-06-27" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "messages": [
               {
@@ -2152,7 +2152,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
 
   ```bash CLI
   ant beta:messages create --beta context-management-2025-06-27 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -2168,7 +2168,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
 
   ```python Python
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[{"role": "user", "content": "Hello"}],
       tools=[{"type": "memory_20250818", "name": "memory"}],
@@ -2183,7 +2183,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
   });
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [{ role: "user", content: "Hello" }],
     tools: [
@@ -2209,7 +2209,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
           new() { Role = Role.User, Content = "Hello" }
@@ -2232,7 +2232,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -2263,7 +2263,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Hello")
           .addTool(BetaMemoryTool20250818.builder().build())
@@ -2286,7 +2286,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
       tools: [
           [
@@ -2308,7 +2308,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [{ role: "user", content: "Hello" }],
     tools: [
@@ -2372,7 +2372,7 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2381,7 +2381,7 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
     const client = new Anthropic();
 
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2396,25 +2396,25 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2423,7 +2423,7 @@ Tambahkan `compaction_control` ke panggilan `tool_runner` Anda untuk mengaktifka
     client = Anthropic::Client.new
 
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2504,7 +2504,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Pada v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2513,11 +2513,11 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
     const client = new Anthropic();
 
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      // Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+      // Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh konteks lebih banyak
       compactionControl: { enabled: true, contextTokenThreshold: 50000 }
     });
 
@@ -2529,25 +2529,25 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2556,11 +2556,11 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
     client = Anthropic::Client.new
 
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      # Nilai lebih rendah memadatkan lebih sering; naikkan ke 150000 jika tugas memerlukan lebih banyak konteks
+      # Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh konteks lebih banyak
       compaction_control: { enabled: true, context_token_threshold: 50000 }
     )
 
@@ -2590,7 +2590,7 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Pada v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2599,7 +2599,7 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
     const client = new Anthropic();
 
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2618,25 +2618,25 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2645,7 +2645,7 @@ Anda dapat menggunakan model yang lebih cepat atau lebih murah untuk menghasilka
     client = Anthropic::Client.new
 
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2682,7 +2682,7 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
 
   <Tab title="Python">
     <Note>
-      Di v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      Pada v1.0 dan yang lebih baru, tool runner SDK Python tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2691,7 +2691,7 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
     const client = new Anthropic();
 
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2715,25 +2715,25 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
 
   <Tab title="C#">
     <Note>
-      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK C# menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Go">
     <Note>
-      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Go menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="Java">
     <Note>
-      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK Java menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
   <Tab title="PHP">
     <Note>
-      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Gunakan [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) sebagai gantinya: fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` permintaan.
+      SDK PHP menyertakan tool runner, tetapi tidak mendukung `compaction_control` sisi klien. Sebagai gantinya, gunakan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold): fitur ini bekerja dengan tool runner dengan meneruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
     </Note>
   </Tab>
 
@@ -2742,7 +2742,7 @@ Anda dapat menyediakan prompt kustom untuk kebutuhan spesifik domain. Prompt And
     client = Anthropic::Client.new
 
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
@@ -2918,7 +2918,7 @@ Memahami kapan kompaksi dipicu membantu Anda menyetel ambang batas dan memverifi
     client = Anthropic::Client.new
 
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],

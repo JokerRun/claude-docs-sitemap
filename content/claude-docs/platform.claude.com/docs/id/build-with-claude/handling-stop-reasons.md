@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 6f449fc092c12e53536f61649398ab78b278f2b6762366c3edfe2bef621b740e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 0cecc477595c0536aa34c1ef46aa075e737071fef481d96544859895699704e3
 ---
 
 ---
@@ -65,7 +65,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello!"}]
     }' | jq 'if .stop_reason == "end_turn" then (.content[] | select(.type == "text") | .text) else . end'
@@ -73,7 +73,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello!"}' \
     --format json | jq 'if .stop_reason == "end_turn" then (.content[] | select(.type == "text") | .text) else . end'
@@ -83,7 +83,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   )
@@ -98,7 +98,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   });
@@ -117,7 +117,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }]
   });
@@ -139,7 +139,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -164,7 +164,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Hello!")
           .build()
@@ -184,7 +184,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello!']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   if ($response->stopReason === 'end_turn') {
@@ -201,7 +201,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   )
@@ -551,19 +551,19 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     ```python Python
     def handle_empty_response(client, messages):
         response = client.messages.create(
-            model="claude-opus-5", max_tokens=1024, messages=messages
+            model="claude-opus-5-5", max_tokens=1024, messages=messages
         )
 
         # Periksa apakah respons kosong
         if response.stop_reason == "end_turn" and not response.content:
             # SALAH: Jangan hanya mencoba ulang dengan respons kosong
-            # Ini tidak akan berhasil karena Claude sudah memutuskan bahwa ia telah selesai
+            # Ini tidak akan berhasil karena Claude sudah memutuskan bahwa ia selesai
 
             # BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
             messages.append({"role": "user", "content": "Please continue"})
 
             response = client.messages.create(
-                model="claude-opus-5", max_tokens=1024, messages=messages
+                model="claude-opus-5-5", max_tokens=1024, messages=messages
             )
 
         return response
@@ -575,21 +575,21 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
       messages: Anthropic.MessageParam[]
     ): Promise<Anthropic.Message> {
       let response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages
       });
 
       // Periksa apakah respons kosong
       if (response.stop_reason === "end_turn" && response.content.length === 0) {
-        // SALAH: Jangan hanya mencoba ulang dengan respons kosong
-        // Ini tidak akan berhasil karena Claude sudah memutuskan bahwa tugasnya selesai
+        // SALAH: Jangan hanya mencoba ulang dengan respons yang kosong
+        // Ini tidak akan berhasil karena Claude sudah memutuskan bahwa ia selesai
 
         // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
         messages.push({ role: "user", content: "Please continue" });
 
         response = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages
         });
@@ -604,7 +604,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     {
         var response = await client.Messages.Create(new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages = messages
         });
@@ -617,7 +617,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
             response = await client.Messages.Create(new MessageCreateParams
             {
-                Model = Model.ClaudeOpus5,
+                Model = Model.ClaudeOpus5_5,
                 MaxTokens = 1024,
                 Messages = messages
             });
@@ -630,7 +630,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     ```go Go
     func handleEmptyResponse(client anthropic.Client, messages []anthropic.MessageParam) (*anthropic.Message, error) {
     	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    		Model:     anthropic.ModelClaudeOpus5,
+    		Model:     anthropic.ModelClaudeOpus5_5,
     		MaxTokens: 1024,
     		Messages:  messages,
     	})
@@ -644,7 +644,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     		messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Please continue")))
 
     		response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 1024,
     			Messages:  messages,
     		})
@@ -661,7 +661,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     static Message handleEmptyResponse(AnthropicClient client, List<MessageParam> messages) {
         Message response = client.messages().create(
             MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_5)
+                .model(Model.CLAUDE_OPUS_5_5)
                 .maxTokens(1024L)
                 .messages(messages)
                 .build()
@@ -670,7 +670,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         // Periksa apakah respons kosong
         boolean isEndTurn = response.stopReason().map(StopReason.END_TURN::equals).orElse(false);
         if (isEndTurn && response.content().isEmpty()) {
-            // BENAR: Tambahkan prompt lanjutan dalam pesan user BARU
+            // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
             List<MessageParam> extended = new ArrayList<>(messages);
             extended.add(MessageParam.builder()
                 .role(MessageParam.Role.USER)
@@ -679,7 +679,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
             response = client.messages().create(
                 MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_5)
+                    .model(Model.CLAUDE_OPUS_5_5)
                     .maxTokens(1024L)
                     .messages(extended)
                     .build()
@@ -696,18 +696,18 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         $response = $client->messages->create(
             maxTokens: 1024,
             messages: $messages,
-            model: 'claude-opus-5',
+            model: 'claude-opus-5-5',
         );
 
         // Periksa apakah respons kosong
         if ($response->stopReason === 'end_turn' && count($response->content) === 0) {
-            // BENAR: Tambahkan prompt lanjutan dalam pesan user BARU
+            // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
             $messages[] = ['role' => 'user', 'content' => 'Please continue'];
 
             $response = $client->messages->create(
                 maxTokens: 1024,
                 messages: $messages,
-                model: 'claude-opus-5',
+                model: 'claude-opus-5-5',
             );
         }
 
@@ -718,7 +718,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     ```ruby Ruby
     def handle_empty_response(client, messages)
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: messages
       )
@@ -729,7 +729,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         messages << { role: "user", content: "Please continue" }
 
         response = client.messages.create(
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: messages
         )
@@ -758,7 +758,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 10,
       "messages": [{"role": "user", "content": "Explain quantum physics"}]
     }' | jq '.stop_reason'
@@ -766,7 +766,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 10 \
     --message '{role: user, content: "Explain quantum physics"}' \
     --format json | jq '.stop_reason'
@@ -776,7 +776,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   client = anthropic.Anthropic()
   # Permintaan dengan token terbatas
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=10,
       messages=[{"role": "user", "content": "Explain quantum physics"}],
   )
@@ -784,7 +784,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   if response.stop_reason == "max_tokens":
       # Respons terpotong
       print("Response was cut off at token limit")
-      # Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+      # Pertimbangkan untuk membuat permintaan lain agar dapat melanjutkan
   ```
 
   ```typescript TypeScript
@@ -792,7 +792,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
   // Permintaan dengan token terbatas
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 10,
     messages: [{ role: "user", content: "Explain quantum physics" }]
   });
@@ -800,7 +800,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   if (response.stop_reason === "max_tokens") {
     // Respons terpotong
     console.log("Response was cut off at token limit");
-    // Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+    // Pertimbangkan untuk membuat permintaan lain guna melanjutkan
   }
   ```
 
@@ -810,7 +810,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   // Permintaan dengan token terbatas
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 10,
       Messages = [new() { Role = Role.User, Content = "Explain quantum physics" }]
   });
@@ -819,7 +819,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   {
       // Respons terpotong
       Console.WriteLine("Response was cut off at token limit");
-      // Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+      // Pertimbangkan untuk membuat permintaan lain guna melanjutkan
   }
   ```
 
@@ -828,7 +828,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
   // Permintaan dengan token terbatas
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 10,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Explain quantum physics")),
@@ -841,7 +841,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   if response.StopReason == "max_tokens" {
   	// Respons terpotong
   	fmt.Println("Response was cut off at token limit")
-  	// Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+  	// Pertimbangkan untuk membuat permintaan lain guna melanjutkan
   }
   ```
 
@@ -851,7 +851,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   // Permintaan dengan token terbatas
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(10L)
           .addUserMessage("Explain quantum physics")
           .build()
@@ -860,7 +860,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   if (response.stopReason().map(StopReason.MAX_TOKENS::equals).orElse(false)) {
       // Respons terpotong
       IO.println("Response was cut off at token limit");
-      // Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+      // Pertimbangkan untuk membuat permintaan lain guna melanjutkan
   }
   ```
 
@@ -871,22 +871,22 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   $response = $client->messages->create(
       maxTokens: 10,
       messages: [['role' => 'user', 'content' => 'Explain quantum physics']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   if ($response->stopReason === 'max_tokens') {
       // Respons terpotong
       echo 'Response was cut off at token limit', PHP_EOL;
-      // Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+      // Pertimbangkan untuk membuat permintaan lain guna melanjutkan
   }
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Permintaan dengan token terbatas
+  # Permintaan dengan jumlah token terbatas
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 10,
     messages: [{ role: "user", content: "Explain quantum physics" }]
   )
@@ -894,7 +894,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   if response.stop_reason == :max_tokens
     # Respons terpotong
     puts "Response was cut off at token limit"
-    # Pertimbangkan untuk membuat permintaan lain untuk melanjutkan
+    # Pertimbangkan untuk mengirim permintaan lain guna melanjutkan
   end
   ```
 </CodeGroup>
@@ -916,14 +916,14 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
     ```
 
     ```python Python
-    # Periksa apakah respons terpotong selama penggunaan alat
+    # Periksa apakah respons terpotong saat penggunaan alat
     if response.stop_reason == "max_tokens":
         # Periksa apakah blok konten terakhir adalah tool_use yang tidak lengkap
         last_block = response.content[-1]
         if last_block.type == "tool_use":
             # Kirim permintaan dengan max_tokens yang lebih tinggi
             response = client.messages.create(
-                model="claude-opus-5",
+                model="claude-opus-5-5",
                 max_tokens=4096,  # Increased limit
                 messages=messages,
                 tools=tools,
@@ -938,7 +938,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
       if (lastBlock.type === "tool_use") {
         // Kirim permintaan dengan max_tokens yang lebih tinggi
         response = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 4096, // Increased limit
           messages: messages,
           tools: tools
@@ -956,7 +956,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
     var parameters = new MessageCreateParams
     {
-        Model = Model.ClaudeOpus5,
+        Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
         Messages = messages,
         Tools = tools
@@ -976,7 +976,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
     ```go Go
     response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    	Model:     anthropic.ModelClaudeOpus5,
+    	Model:     anthropic.ModelClaudeOpus5_5,
     	MaxTokens: 1024,
     	Messages:  messages,
     	Tools:     tools,
@@ -990,7 +990,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
     	switch lastBlock.AsAny().(type) {
     	case anthropic.ToolUseBlock:
     		response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 4096,
     			Messages:  messages,
     			Tools:     tools,
@@ -1010,7 +1010,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
             // Kirim permintaan dengan max_tokens yang lebih tinggi
             response = client.messages().create(
                 MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_5)
+                    .model(Model.CLAUDE_OPUS_5_5)
                     .maxTokens(4096L) // Increased limit
                     .messages(messages)
                     .tools(tools)
@@ -1024,7 +1024,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
     $response = $client->messages->create(
         maxTokens: 1024,
         messages: $messages,
-        model: 'claude-opus-5',
+        model: 'claude-opus-5-5',
         tools: $tools,
     );
 
@@ -1034,7 +1034,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
             $response = $client->messages->create(
                 maxTokens: 4096,
                 messages: $messages,
-                model: 'claude-opus-5',
+                model: 'claude-opus-5-5',
                 tools: $tools,
             );
         }
@@ -1043,7 +1043,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
     ```ruby Ruby
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: messages,
       tools: tools
@@ -1053,7 +1053,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
       last_block = response.content.last
       if last_block.type == :tool_use
         response = client.messages.create(
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 4096,
           messages: messages,
           tools: tools
@@ -1075,7 +1075,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "stop_sequences": ["END", "STOP"],
       "messages": [{"role": "user", "content": "Generate text until you say END"}]
@@ -1084,7 +1084,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --stop-sequence END --stop-sequence STOP \
     --message '{role: user, content: "Generate text until you say END"}' \
@@ -1094,7 +1094,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   ```python Python
   client = anthropic.Anthropic()
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       stop_sequences=["END", "STOP"],
       messages=[{"role": "user", "content": "Generate text until you say END"}],
@@ -1108,7 +1108,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     stop_sequences: ["END", "STOP"],
     messages: [{ role: "user", content: "Generate text until you say END" }]
@@ -1124,7 +1124,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       StopSequences = ["END", "STOP"],
       Messages = [new() { Role = Role.User, Content = "Generate text until you say END" }]
@@ -1140,7 +1140,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:         anthropic.ModelClaudeOpus5,
+  	Model:         anthropic.ModelClaudeOpus5_5,
   	MaxTokens:     1024,
   	StopSequences: []string{"END", "STOP"},
   	Messages: []anthropic.MessageParam{
@@ -1161,7 +1161,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addStopSequence("END")
           .addStopSequence("STOP")
@@ -1180,7 +1180,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Generate text until you say END']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       stopSequences: ['END', 'STOP'],
   );
 
@@ -1193,7 +1193,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     stop_sequences: ["END", "STOP"],
     messages: [{ role: "user", content: "Generate text until you say END" }]
@@ -1220,7 +1220,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [{
         "name": "get_weather",
@@ -1237,7 +1237,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
 
   ```bash CLI
   ant messages create --format json <<'YAML' | jq '.stop_reason, (.content[] | select(.type == "tool_use"))'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -1274,7 +1274,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
 
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[weather_tool],
       messages=[{"role": "user", "content": "What is the weather in San Francisco?"}],
@@ -1307,7 +1307,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
   }
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [weatherTool],
     messages: [{ role: "user", content: "What is the weather in San Francisco?" }]
@@ -1345,7 +1345,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [weatherTool],
       Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco?" }]
@@ -1379,7 +1379,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools:     []anthropic.ToolUnionParam{{OfTool: &weatherTool}},
   	Messages: []anthropic.MessageParam{
@@ -1418,7 +1418,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
 
       Message response = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addTool(weatherTool)
               .addUserMessage("What is the weather in San Francisco?")
@@ -1429,7 +1429,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
           // Ekstrak dan jalankan alat
           for (ContentBlock block : response.content()) {
               block.toolUse().ifPresent(toolUse -> {
-                  // Jalankan toolUse.name() dengan toolUse.input() dan kembalikan hasilnya ke Claude
+                  // Jalankan toolUse.name() dengan toolUse.input() lalu kembalikan hasilnya ke Claude
               });
           }
       }
@@ -1453,7 +1453,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'What is the weather in San Francisco?']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [$weatherTool],
   );
 
@@ -1483,7 +1483,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
   }
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [weather_tool],
     messages: [{ role: "user", content: "What is the weather in San Francisco?" }]
@@ -1557,13 +1557,13 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 <CodeGroup>
   ```bash cURL
   # SDK menangani kelanjutan secara langsung. Dengan cURL, periksa stop_reason
-  # pada respons dan POST ulang dengan konten asisten ditambahkan.
+  # pada respons lalu kirim ulang POST dengan konten assistant ditambahkan.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "tools": [{"type": "web_search_20250305", "name": "web_search"}],
       "messages": [{"role": "user", "content": "Search for latest AI news"}]
@@ -1574,7 +1574,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   # Periksa stop_reason; jika nilainya pause_turn, jalankan ulang dengan respons
   # asisten ditambahkan ke --message.
   ant messages create --format json <<'YAML' | jq '{stop_reason, content}'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   tools:
     - {type: web_search_20250305, name: web_search}
@@ -1585,20 +1585,20 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       tools=[{"type": "web_search_20250305", "name": "web_search"}],
       messages=[{"role": "user", "content": "Search for latest AI news"}],
   )
 
   if response.stop_reason == "pause_turn":
-      # Lanjutkan percakapan dengan mengirim kembali respons tersebut
+      # Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
       messages = [
           {"role": "user", "content": "Search for latest AI news"},
           {"role": "assistant", "content": response.content},
       ]
       continuation = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=4096,
           messages=messages,
           tools=[{"type": "web_search_20250305", "name": "web_search"}],
@@ -1607,16 +1607,16 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     tools: [{ type: "web_search_20250305", name: "web_search" }],
     messages: [{ role: "user", content: "Search for latest AI news" }]
   });
 
   if (response.stop_reason === "pause_turn") {
-    // Lanjutkan percakapan dengan mengirimkan respons kembali
+    // Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
     const continuation = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       tools: [{ type: "web_search_20250305", name: "web_search" }],
       messages: [
@@ -1633,7 +1633,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Tools = tools,
       Messages = [userMessage]
@@ -1641,10 +1641,10 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 
   if (response.StopReason == "pause_turn")
   {
-      // Lanjutkan percakapan dengan mengirimkan respons kembali
+      // Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
       var continuation = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Tools = tools,
           Messages =
@@ -1667,7 +1667,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   userMessage := anthropic.NewUserMessage(anthropic.NewTextBlock("Search for latest AI news"))
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Tools:     tools,
   	Messages:  []anthropic.MessageParam{userMessage},
@@ -1683,7 +1683,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   		contentParams = append(contentParams, block.ToParam())
   	}
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 4096,
   		Tools:     tools,
   		Messages:  []anthropic.MessageParam{userMessage, anthropic.NewAssistantMessage(contentParams...)},
@@ -1698,7 +1698,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   ```java Java
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addTool(WebSearchTool20250305.builder().build())
           .addUserMessage("Search for latest AI news")
@@ -1706,10 +1706,10 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   );
 
   if (response.stopReason().map(StopReason.PAUSE_TURN::equals).orElse(false)) {
-      // Lanjutkan percakapan dengan mengirimkan respons kembali
+      // Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
       Message continuation = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addTool(WebSearchTool20250305.builder().build())
               .addUserMessage("Search for latest AI news")
@@ -1726,19 +1726,19 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   $response = $client->messages->create(
       maxTokens: 4096,
       messages: [$userMessage],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
   if ($response->stopReason === 'pause_turn') {
-      // Lanjutkan percakapan dengan mengirimkan respons kembali
+      // Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
       $continuation = $client->messages->create(
           maxTokens: 4096,
           messages: [
               $userMessage,
               ['role' => 'assistant', 'content' => $response->content],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           tools: $tools,
       );
   }
@@ -1749,16 +1749,16 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
   user_message = { role: "user", content: "Search for latest AI news" }
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     tools: tools,
     messages: [user_message]
   )
 
   if response.stop_reason == :pause_turn
-    # Lanjutkan percakapan dengan mengirimkan respons kembali
+    # Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
     continuation = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 4096,
       tools: tools,
       messages: [user_message, { role: "assistant", content: response.content }]
@@ -1782,7 +1782,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "[Unsafe request]"}]
     }' | jq '{stop_reason, stop_details}'
@@ -1790,7 +1790,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "[Unsafe request]"}' \
     --format json | jq '{stop_reason, stop_details}'
@@ -1799,7 +1799,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   ```python Python
   client = anthropic.Anthropic()
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "[Unsafe request]"}],
   )
@@ -1807,14 +1807,14 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   if response.stop_reason == "refusal":
       # Claude menolak untuk merespons
       print("Claude was unable to process this request")
-      # Pertimbangkan untuk menyusun ulang atau memodifikasi permintaan
+      # Pertimbangkan untuk menyusun ulang atau mengubah permintaan
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "[Unsafe request]" }]
   });
@@ -1822,7 +1822,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   if (response.stop_reason === "refusal") {
     // Claude menolak untuk merespons
     console.log("Claude was unable to process this request");
-    // Pertimbangkan untuk menyusun ulang atau memodifikasi permintaan
+    // Pertimbangkan untuk menyusun ulang atau mengubah permintaan
   }
   ```
 
@@ -1831,7 +1831,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "[Unsafe request]" }]
   });
@@ -1848,7 +1848,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("[Unsafe request]")),
@@ -1861,7 +1861,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   if response.StopReason == "refusal" {
   	// Claude menolak untuk merespons
   	fmt.Println("Claude was unable to process this request")
-  	// Pertimbangkan untuk menyusun ulang atau memodifikasi permintaan
+  	// Pertimbangkan untuk menyusun ulang atau mengubah permintaan
   }
   ```
 
@@ -1870,7 +1870,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 
   Message response = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("[Unsafe request]")
           .build()
@@ -1879,7 +1879,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   if (response.stopReason().map(StopReason.REFUSAL::equals).orElse(false)) {
       // Claude menolak untuk merespons
       IO.println("Claude was unable to process this request");
-      // Pertimbangkan untuk menyusun ulang atau memodifikasi permintaan
+      // Pertimbangkan untuk menyusun ulang atau mengubah permintaan
   }
   ```
 
@@ -1889,7 +1889,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => '[Unsafe request]']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   if ($response->stopReason === 'refusal') {
@@ -1903,7 +1903,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "[Unsafe request]" }]
   )
@@ -1922,7 +1922,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 
 Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
-Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, atau Claude Opus 5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Jika Anda membangun percobaan ulang sendiri dari Claude Fable 5.1, Claude Fable 5, atau Claude Opus 5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) membahas cara menghindari membayar biaya prompt-cache dua kali.
+Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, atau Claude Opus 5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, baik di sisi server maupun di klien Anda. Jika Anda membangun sendiri percobaan ulang dari Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, atau Claude Opus 5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
 
 ### model\_context\_window\_exceeded
 
@@ -1939,7 +1939,7 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 20000,
       "messages": [{"role": "user", "content": "Large input that uses most of context window..."}]
     }' | jq '.stop_reason'
@@ -1947,16 +1947,16 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 20000 \
     --message '{role: user, content: "Large input that uses most of context window..."}' \
     --format json | jq '.stop_reason'
   ```
 
   ```python Python
-  # Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  # Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=20000,  # Python SDK requires streaming for max_tokens above ~21k
       messages=[
           {"role": "user", "content": "Large input that uses most of context window..."}
@@ -1970,9 +1970,9 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   ```
 
   ```typescript TypeScript
-  // Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   const response = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 20000,
     messages: [{ role: "user", content: "Large input that uses most of context window..." }]
   });
@@ -1988,10 +1988,10 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   using Anthropic.Models.Beta.Messages;
   using Model = Anthropic.Models.Messages.Model;
 
-  // Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 20000,
       Messages = [new() { Role = Role.User, Content = "Large input that uses most of context window..." }]
   });
@@ -2000,14 +2000,14 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   {
       // Respons mencapai batas jendela konteks sebelum max_tokens
       Console.WriteLine("Response reached model's context window limit");
-      // Respons masih valid tetapi dibatasi oleh jendela konteks
+      // Respons tetap valid tetapi dibatasi oleh jendela konteks
   }
   ```
 
   ```go Go
-  // Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 20000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Large input that uses most of context window...")),
@@ -2029,10 +2029,10 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   import com.anthropic.models.beta.messages.BetaStopReason;
   import com.anthropic.models.beta.messages.MessageCreateParams;
 
-  // Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(20000L)
           .addUserMessage("Large input that uses most of context window...")
           .build()
@@ -2046,11 +2046,11 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   ```
 
   ```php PHP
-  // Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   $response = $client->beta->messages->create(
       maxTokens: 20000,
       messages: [['role' => 'user', 'content' => 'Large input that uses most of context window...']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   if ($response->stopReason === 'model_context_window_exceeded') {
@@ -2061,9 +2061,9 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   ```
 
   ```ruby Ruby
-  # Permintaan dengan token maksimum untuk mendapatkan sebanyak mungkin
+  # Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 20000,
     messages: [{ role: "user", content: "Large input that uses most of context window..." }]
   )
@@ -2370,14 +2370,14 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
       for _ in range(max_continuations):
           response = client.messages.create(
-              model="claude-opus-5", max_tokens=4096, messages=messages, tools=tools
+              model="claude-opus-5-5", max_tokens=4096, messages=messages, tools=tools
           )
 
           if response.stop_reason != "pause_turn":
               # Claude selesai memproses - kembalikan respons akhir
               return response
 
-          # pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang bergantian
+          # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
           messages = [
               {"role": "user", "content": user_query},
               {"role": "assistant", "content": response.content},
@@ -2399,7 +2399,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
     for (let i = 0; i < maxContinuations; i++) {
       response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         messages,
         tools
@@ -2410,7 +2410,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
         return response;
       }
 
-      // pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang bergantian
+      // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
       messages = [
         { role: "user", content: userQuery },
         { role: "assistant", content: response.content }
@@ -2436,7 +2436,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       {
           response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 4096,
               Messages = messages,
               Tools = tools
@@ -2448,7 +2448,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
               return response;
           }
 
-          // pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang bergantian
+          // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
           messages =
           [
               new() { Role = Role.User, Content = userQuery },
@@ -2460,7 +2460,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           ];
       }
 
-      // Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
+      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
       return response;
   }
   ```
@@ -2478,7 +2478,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
   	for range maxContinuations {
   		response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 4096,
   			Messages:  messages,
   			Tools:     tools,
@@ -2492,7 +2492,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
   			return response, nil
   		}
 
-  		// pause_turn: ganti seluruh daftar pesan untuk menjaga peran yang bergantian
+  		// pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
   		var contentParams []anthropic.ContentBlockParamUnion
   		for _, block := range response.Content {
   			contentParams = append(contentParams, block.ToParam())
@@ -2518,9 +2518,9 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       Message response = null;
 
       for (int i = 0; i < maxContinuations; i++) {
-          // Bangun ulang params di setiap iterasi agar pesan tidak terakumulasi
+          // Bangun ulang params di setiap iterasi agar pesan tidak menumpuk
           MessageCreateParams.Builder params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addUserMessage(userQuery);
           tools.forEach(params::addTool);
@@ -2537,7 +2537,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           // pause_turn: ulangi loop dan kirim kembali responsnya
       }
 
-      // Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
+      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
       return response;
   }
   ```
@@ -2556,7 +2556,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           $response = $client->messages->create(
               maxTokens: 4096,
               messages: $messages,
-              model: 'claude-opus-5',
+              model: 'claude-opus-5-5',
               tools: $tools,
           );
 
@@ -2565,14 +2565,14 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
               return $response;
           }
 
-          // pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang bergantian
+          // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
           $messages = [
               ['role' => 'user', 'content' => $userQuery],
               ['role' => 'assistant', 'content' => $response->content],
           ];
       }
 
-      // Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
+      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
       return $response;
   }
   ```
@@ -2584,7 +2584,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
     max_continuations.times do
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         messages: messages,
         tools: tools
@@ -2593,14 +2593,14 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       # Claude selesai memproses - kembalikan respons akhir
       return response unless response.stop_reason == :pause_turn
 
-      # pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang bergantian
+      # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
       messages = [
         { role: "user", content: user_query },
         { role: "assistant", content: response.content }
       ]
     end
 
-    # Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
+    # Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
     response
   end
   ```
@@ -2624,23 +2624,23 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
 <CodeGroup>
   ```bash cURL
-  # cURL keluar dengan kode non-nol pada error HTTP dengan --fail-with-body; periksa
+  # cURL keluar dengan kode non-nol pada error HTTP jika memakai --fail-with-body; periksa
   # $? untuk error dan stop_reason untuk respons yang berhasil.
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello!"}]
     }' | jq '.stop_reason'
   ```
 
   ```bash CLI
-  # CLI keluar dengan kode non-nol pada error API; stop_reason muncul saat berhasil.
+  # CLI keluar dengan kode non-nol saat terjadi error API; stop_reason muncul jika berhasil.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello!"}' \
     --format json | jq '.stop_reason'
@@ -2651,7 +2651,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
   try:
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[{"role": "user", "content": "Hello!"}],
       )
@@ -2674,7 +2674,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
   try {
     const response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello!" }]
     });
@@ -2707,7 +2707,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   {
       var response = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello!" }]
       });
@@ -2733,7 +2733,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -2753,7 +2753,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   	log.Fatal(err)
   }
 
-  // Tangani respons yang berhasil dengan stop_reason
+  // Tangani respons sukses dengan stop_reason
   if response.StopReason == "max_tokens" {
   	fmt.Println("Response was truncated")
   }
@@ -2765,7 +2765,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   try {
       Message response = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage("Hello!")
               .build()
@@ -2792,7 +2792,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
       $response = $client->messages->create(
           maxTokens: 1024,
           messages: [['role' => 'user', 'content' => 'Hello!']],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       // Tangani respons yang berhasil dengan stop_reason
@@ -2812,7 +2812,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
   begin
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello!" }]
     )
@@ -2846,7 +2846,7 @@ Saat menggunakan streaming, `stop_reason`:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "stream": true,
       "messages": [{"role": "user", "content": "Hello!"}]
@@ -2854,9 +2854,9 @@ Saat menggunakan streaming, `stop_reason`:
   ```
 
   ```bash CLI
-  # stop_reason muncul dalam event message_delta.
+  # stop_reason muncul di event message_delta.
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello!"}' |
     jq -c 'select(.type == "message_delta") | .delta.stop_reason'
@@ -2866,7 +2866,7 @@ Saat menggunakan streaming, `stop_reason`:
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   ) as stream:
@@ -2881,7 +2881,7 @@ Saat menggunakan streaming, `stop_reason`:
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   });
@@ -2898,7 +2898,7 @@ Saat menggunakan streaming, `stop_reason`:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }]
   };
@@ -2918,14 +2918,14 @@ Saat menggunakan streaming, `stop_reason`:
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
   	},
   })
 
-  // Akumulasikan event menjadi Message akhir, yang memuat stop_reason.
+  // Akumulasikan event ke dalam Message akhir, yang membawa stop_reason.
   message := anthropic.Message{}
   for stream.Next() {
   	if err := message.Accumulate(stream.Current()); err != nil {
@@ -2945,12 +2945,12 @@ Saat menggunakan streaming, `stop_reason`:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Hello!")
       .build();
 
-  // Akumulasikan event menjadi Message akhir, yang membawa stop_reason.
+  // Kumpulkan event ke dalam Message akhir, yang memuat stop_reason.
   MessageAccumulator accumulator = MessageAccumulator.create();
   try (StreamResponse<RawMessageStreamEvent> streamResponse =
           client.messages().createStreaming(params)) {
@@ -2968,7 +2968,7 @@ Saat menggunakan streaming, `stop_reason`:
   $stream = $client->messages->createStream(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello!']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   foreach ($stream as $event) {
@@ -2982,7 +2982,7 @@ Saat menggunakan streaming, `stop_reason`:
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   )
@@ -3010,7 +3010,7 @@ Saat menggunakan streaming, `stop_reason`:
 
       while True:
           response = client.messages.create(
-              model="claude-opus-5", max_tokens=1024, messages=messages, tools=tools
+              model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
           )
 
           if response.stop_reason == "tool_use":
@@ -3033,7 +3033,7 @@ Saat menggunakan streaming, `stop_reason`:
 
     while (true) {
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages,
         tools
@@ -3064,7 +3064,7 @@ Saat menggunakan streaming, `stop_reason`:
       {
           var response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages = messages,
               Tools = tools
@@ -3100,7 +3100,7 @@ Saat menggunakan streaming, `stop_reason`:
 
   	for {
   		response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Messages:  messages,
   			Tools:     tools,
@@ -3137,7 +3137,7 @@ Saat menggunakan streaming, `stop_reason`:
 
       while (true) {
           MessageCreateParams.Builder params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .messages(messages);
           tools.forEach(params::addTool);
@@ -3169,7 +3169,7 @@ Saat menggunakan streaming, `stop_reason`:
           $response = $client->messages->create(
               maxTokens: 1024,
               messages: $messages,
-              model: 'claude-opus-5',
+              model: 'claude-opus-5-5',
               tools: $tools,
           );
 
@@ -3192,7 +3192,7 @@ Saat menggunakan streaming, `stop_reason`:
 
     loop do
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: messages,
         tools: tools
@@ -3220,7 +3220,7 @@ Saat menggunakan streaming, `stop_reason`:
 
       for _ in range(max_attempts):
           response = client.messages.create(
-              model="claude-opus-5", messages=messages, max_tokens=4096
+              model="claude-opus-5-5", messages=messages, max_tokens=4096
           )
 
           full_response += next(
@@ -3230,7 +3230,7 @@ Saat menggunakan streaming, `stop_reason`:
           if response.stop_reason != "max_tokens":
               break
 
-          # Lanjutkan dari titik terakhir
+          # Lanjutkan dari titik terakhir berhenti
           messages = [
               {"role": "user", "content": prompt},
               {"role": "assistant", "content": full_response},
@@ -3251,7 +3251,7 @@ Saat menggunakan streaming, `stop_reason`:
 
     for (let i = 0; i < maxAttempts; i++) {
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         messages
       });
@@ -3265,7 +3265,7 @@ Saat menggunakan streaming, `stop_reason`:
         break;
       }
 
-      // Lanjutkan dari titik terakhir
+      // Lanjutkan dari titik terakhir yang ditinggalkan
       messages = [
         { role: "user", content: prompt },
         { role: "assistant", content: fullResponse },
@@ -3287,7 +3287,7 @@ Saat menggunakan streaming, `stop_reason`:
       {
           var response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 4096,
               Messages = messages
           });
@@ -3306,7 +3306,7 @@ Saat menggunakan streaming, `stop_reason`:
               break;
           }
 
-          // Lanjutkan dari titik terakhir berhenti
+          // Lanjutkan dari titik terakhir yang ditinggalkan
           messages =
           [
               new() { Role = Role.User, Content = prompt },
@@ -3326,7 +3326,7 @@ Saat menggunakan streaming, `stop_reason`:
 
   	for range maxAttempts {
   		response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 4096,
   			Messages:  messages,
   		})
@@ -3345,7 +3345,7 @@ Saat menggunakan streaming, `stop_reason`:
   			break
   		}
 
-  		// Lanjutkan dari titik terakhir
+  		// Lanjutkan dari titik terakhir yang ditinggalkan
   		messages = []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
   			anthropic.NewAssistantMessage(anthropic.NewTextBlock(fullResponse)),
@@ -3367,7 +3367,7 @@ Saat menggunakan streaming, `stop_reason`:
       for (int i = 0; i < maxAttempts; i++) {
           Message response = client.messages().create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .messages(messages)
                   .build()
@@ -3382,7 +3382,7 @@ Saat menggunakan streaming, `stop_reason`:
               break;
           }
 
-          // Lanjutkan dari titik terakhir berhenti
+          // Lanjutkan dari titik terakhir yang ditinggalkan
           messages = List.of(
               MessageParam.builder().role(MessageParam.Role.USER).content(prompt).build(),
               MessageParam.builder().role(MessageParam.Role.ASSISTANT).content(fullResponse.toString()).build(),
@@ -3404,7 +3404,7 @@ Saat menggunakan streaming, `stop_reason`:
           $response = $client->messages->create(
               maxTokens: 4096,
               messages: $messages,
-              model: 'claude-opus-5',
+              model: 'claude-opus-5-5',
           );
 
           $fullResponse .= array_find($response->content, static fn ($block): bool => $block->type === 'text')?->text ?? '';
@@ -3413,7 +3413,7 @@ Saat menggunakan streaming, `stop_reason`:
               break;
           }
 
-          // Lanjutkan dari titik terakhir berhenti
+          // Lanjutkan dari titik terakhir yang ditinggalkan
           $messages = [
               ['role' => 'user', 'content' => $prompt],
               ['role' => 'assistant', 'content' => $fullResponse],
@@ -3432,7 +3432,7 @@ Saat menggunakan streaming, `stop_reason`:
 
     max_attempts.times do
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         messages: messages
       )
@@ -3441,7 +3441,7 @@ Saat menggunakan streaming, `stop_reason`:
 
       break unless response.stop_reason == :max_tokens
 
-      # Lanjutkan dari titik terakhir
+      # Lanjutkan dari titik terakhir berhenti
       messages = [
         { role: "user", content: prompt },
         { role: "assistant", content: full_response },
@@ -3466,19 +3466,19 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
       without needing to calculate input token count
       """
       response = client.beta.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           messages=[{"role": "user", "content": prompt}],
           max_tokens=20000,  # Python SDK requires streaming for max_tokens above ~21k
       )
 
       match response.stop_reason:
           case "model_context_window_exceeded":
-              # Mendapatkan jumlah token maksimum yang dimungkinkan berdasarkan ukuran input
+              # Mendapat token maksimum yang dimungkinkan sesuai ukuran input
               print(
                   f"Generated {response.usage.output_tokens} tokens (context limit reached)"
               )
           case "max_tokens":
-              # Mendapatkan jumlah token persis seperti yang diminta
+              # Mendapat token tepat sebanyak yang diminta
               print(
                   f"Generated {response.usage.output_tokens} tokens (max_tokens reached)"
               )
@@ -3494,7 +3494,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   ```typescript TypeScript
   async function getMaxPossibleTokens(client: Anthropic, prompt: string): Promise<string> {
     const response = await client.beta.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 20000,
       messages: [{ role: "user", content: prompt }]
     });
@@ -3506,7 +3506,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
         console.log(`Generated ${tokens} tokens (context limit reached)`);
         break;
       case "max_tokens":
-        // Mendapatkan token persis sesuai yang diminta
+        // Mendapatkan token tepat sebanyak yang diminta
         console.log(`Generated ${tokens} tokens (max_tokens reached)`);
         break;
       default:
@@ -3529,7 +3529,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   {
       var response = await client.Beta.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 20000,
           Messages = [new() { Role = Role.User, Content = prompt }]
       });
@@ -3538,12 +3538,12 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
       var reason = response.StopReason?.Value();
       if (reason == BetaStopReason.ModelContextWindowExceeded)
       {
-          // Mendapat token maksimum yang mungkin berdasarkan ukuran input
+          // Mendapatkan jumlah token maksimum yang dimungkinkan berdasarkan ukuran input
           Console.WriteLine($"Generated {tokens} tokens (context limit reached)");
       }
       else if (reason == BetaStopReason.MaxTokens)
       {
-          // Mendapat token persis sesuai yang diminta
+          // Mendapatkan jumlah token persis seperti yang diminta
           Console.WriteLine($"Generated {tokens} tokens (max_tokens reached)");
       }
       else
@@ -3559,7 +3559,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   ```go Go
   func getMaxPossibleTokens(client anthropic.Client, prompt string) (string, error) {
   	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 20000,
   		Messages: []anthropic.BetaMessageParam{
   			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(prompt)),
@@ -3572,10 +3572,10 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   	tokens := response.Usage.OutputTokens
   	switch response.StopReason {
   	case anthropic.BetaStopReasonModelContextWindowExceeded:
-  		// Mendapat token maksimum yang mungkin berdasarkan ukuran input
+  		// Mendapat token maksimum yang dimungkinkan berdasarkan ukuran input
   		fmt.Printf("Generated %d tokens (context limit reached)\n", tokens)
   	case anthropic.BetaStopReasonMaxTokens:
-  		// Mendapat token persis sesuai yang diminta
+  		// Mendapat token tepat sebanyak yang diminta
   		fmt.Printf("Generated %d tokens (max_tokens reached)\n", tokens)
   	default:
   		// Penyelesaian alami
@@ -3600,7 +3600,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   static String getMaxPossibleTokens(AnthropicClient client, String prompt) {
       BetaMessage response = client.beta().messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(20000L)
               .addUserMessage(prompt)
               .build()
@@ -3609,10 +3609,10 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
       long tokens = response.usage().outputTokens();
       BetaStopReason reason = response.stopReason().orElse(BetaStopReason.END_TURN);
       if (reason.equals(BetaStopReason.MODEL_CONTEXT_WINDOW_EXCEEDED)) {
-          // Mendapat token maksimum yang mungkin berdasarkan ukuran input
+          // Mendapatkan token maksimum yang dimungkinkan berdasarkan ukuran input
           IO.println("Generated " + tokens + " tokens (context limit reached)");
       } else if (reason.equals(BetaStopReason.MAX_TOKENS)) {
-          // Mendapat token persis sesuai yang diminta
+          // Mendapatkan token tepat sebanyak yang diminta
           IO.println("Generated " + tokens + " tokens (max_tokens reached)");
       } else {
           // Penyelesaian alami
@@ -3633,14 +3633,14 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
       $response = $client->beta->messages->create(
           maxTokens: 20000,
           messages: [['role' => 'user', 'content' => $prompt]],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       $tokens = $response->usage->outputTokens;
       echo match ($response->stopReason) {
-          // Mendapat token maksimum yang mungkin berdasarkan ukuran input
+          // Mendapat token maksimum yang dimungkinkan sesuai ukuran input
           'model_context_window_exceeded' => "Generated {$tokens} tokens (context limit reached)",
-          // Mendapat token persis sesuai yang diminta
+          // Mendapat token tepat sesuai jumlah yang diminta
           'max_tokens' => "Generated {$tokens} tokens (max_tokens reached)",
           // Penyelesaian alami
           default => "Generated {$tokens} tokens (natural completion)",
@@ -3653,7 +3653,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
   ```ruby Ruby
   def get_max_possible_tokens(client, prompt)
     response = client.beta.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 20000,
       messages: [{ role: "user", content: prompt }]
     )
@@ -3661,10 +3661,10 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
     tokens = response.usage.output_tokens
     case response.stop_reason
     when :model_context_window_exceeded
-      # Mendapat token maksimum yang mungkin sesuai ukuran input
+      # Mendapat token maksimum yang dimungkinkan sesuai ukuran input
       puts "Generated #{tokens} tokens (context limit reached)"
     when :max_tokens
-      # Mendapat token persis sesuai yang diminta
+      # Mendapat token tepat sebanyak yang diminta
       puts "Generated #{tokens} tokens (max_tokens reached)"
     else
       # Penyelesaian alami

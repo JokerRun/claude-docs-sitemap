@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8b097538314a14b2b92c7d3b9cf89cde9b6b2342cde35a192b25ea39e31d6022
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: f5bfa9ab8e8cee75da949712afd375932b006a438afe5ca20c92d2a209ce8209
 ---
 
 ---
@@ -40,7 +40,7 @@ Semua yang ada dalam permintaan diperhitungkan terhadap jendela konteks: prompt 
 
 ## Ukuran jendela konteks berdasarkan model
 
-Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke model mana pun di antaranya dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5, memiliki jendela konteks 200k token.
+Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5, memiliki jendela konteks 200k token.
 
 Untuk setiap model dengan jendela konteks 1M token, 1M adalah default: Anda tidak memerlukan header beta, dan permintaan konteks panjang ditagih dengan [harga standar](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing).
 

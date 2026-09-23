@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: acd874ce173c6b60da537dae4889ead60532400e60bebd03314b53fe5a8280dc
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c34fee7d6aec9cbc0a7dd88676e3381026ef662f83b75d16ed3df50ae8e7dc70
 ---
 
 ---
 title: Migrasi
 url: https://platform.claude.com/docs/id/managed-agents/migration
-description: Pindahkan agen yang sudah ada yang dibangun di atas Messages API atau Claude Agent SDK ke Claude Managed Agents.
+description: Pindahkan agen yang sudah ada, yang dibangun di atas Messages API atau Claude Agent SDK, ke Claude Managed Agents.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -38,7 +41,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   messages = [{"role": "user", "content": task}]
   while True:
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=messages,
           tools=tools,
@@ -67,7 +70,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   const messages: Anthropic.MessageParam[] = [{ role: "user", content: task }];
   while (true) {
     const response = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages,
       tools
@@ -100,7 +103,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   {
       var response = await client.Messages.Create(new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = messages,
           Tools = tools,
@@ -135,7 +138,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   }
   for {
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages:  messages,
   		Tools:     tools,
@@ -166,7 +169,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
       .build());
   while (true) {
       var response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .messages(messages)
           .tools(tools)
@@ -195,7 +198,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   $messages = [['role' => 'user', 'content' => $task]];
   while (true) {
       $response = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           messages: $messages,
           tools: $tools,
@@ -226,7 +229,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   messages = [{ role: "user", content: task }]
   loop do
     response = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: messages,
       tools: tools
@@ -262,7 +265,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
       -H "anthropic-beta: managed-agents-2026-04-01" \
       --json '{
         "name": "Task Runner",
-        "model": "claude-opus-5",
+        "model": "claude-opus-5-5",
         "tools": [{"type": "agent_toolset_20260401"}]
       }'
   )
@@ -298,7 +301,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
     > /dev/null
 
   # Tunggu hingga sesi menjadi idle. grep keluar pada kecocokan pertama, dan
-  # membaca lewat process substitution berarti shell tidak menunggu
+  # membaca via process substitution berarti shell tidak menunggu
   # tail (pipeline latar depan `tail -f | grep -m1` akan macet: tail
   # baru berhenti pada penulisan berikutnya, yang tak pernah terjadi saat stream idle).
   grep -m1 '"session.status_idle"' <(tail -f -n +1 "${stream_log}") > /dev/null
@@ -334,7 +337,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
       ```markdown
       ---
       name: Task Runner
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
       ---
@@ -345,7 +348,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   ```python Python
   agent = client.beta.agents.create(
       name="Task Runner",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[{"type": "agent_toolset_20260401"}],
   )
 
@@ -367,7 +370,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Task Runner",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [{ type: "agent_toolset_20260401" }]
   });
 
@@ -398,7 +401,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Task Runner",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -446,7 +449,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   		Name: "Task Runner",
   		Model: anthropic.BetaManagedAgentsModelConfigParams{
-  			ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  			ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   		},
   		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -507,7 +510,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
       var agent = client.beta().agents().create(
           AgentCreateParams.builder()
               .name("Task Runner")
-              .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+              .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
               .addTool(
                   BetaManagedAgentsAgentToolset20260401Params.builder()
                       .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -550,7 +553,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Task Runner',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -589,7 +592,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Task Runner",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [{type: "agent_toolset_20260401"}]
   )
 
@@ -653,7 +656,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
 
   options = ClaudeAgentOptions(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system_prompt="You are a concise weather assistant.",
       mcp_servers={
           "weather": create_sdk_mcp_server("weather", "1.0", tools=[get_weather])
@@ -682,7 +685,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   for await (const message of query({
     prompt: "What's the weather in Tokyo?",
     options: {
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       systemPrompt: "You are a concise weather assistant.",
       mcpServers: {
         weather: createSdkMcpServer({ name: "weather", version: "1.0", tools: [getWeather] })
@@ -704,7 +707,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   agent = client.beta.agents.create(
       name="weather-agent",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system="You are a concise weather assistant.",
       tools=[
           {
@@ -776,7 +779,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   const agent = await client.beta.agents.create({
     name: "weather-agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a concise weather assistant.",
     tools: [
       {
@@ -860,7 +863,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "weather-agent",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a concise weather assistant.",
       Tools =
       [
@@ -962,7 +965,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "weather-agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	System: anthropic.String("You are a concise weather assistant."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -1097,7 +1100,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("weather-agent")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .system("You are a concise weather assistant.")
       .addTool(BetaManagedAgentsCustomToolParams.builder()
           .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
@@ -1186,7 +1189,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   $agent = $client->beta->agents->create(
       name: 'weather-agent',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a concise weather assistant.',
       tools: [
           BetaManagedAgentsCustomToolParams::with(
@@ -1270,7 +1273,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   agent = client.beta.agents.create(
     name: "weather-agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system_: "You are a concise weather assistant.",
     tools: [
       {
@@ -1362,7 +1365,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5"}')"
+    --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5-5"}')"
   ```
 
   <MultiFileExample language="cli" label="CLI">
@@ -1374,7 +1377,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
       ```markdown
       ---
       name: Task Runner
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
       ---
@@ -1388,14 +1391,14 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   client.beta.agents.update(
       agent.id,
       version=agent.version,
-      model="claude-opus-5",
+      model="claude-opus-5-5",
   )
   ```
 
   ```typescript TypeScript
   await client.beta.agents.update(agent.id, {
     version: agent.version,
-    model: "claude-opus-5"
+    model: "claude-opus-5-5"
   });
   ```
 
@@ -1403,7 +1406,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   await client.Beta.Agents.Update(agent.ID, new()
   {
       Version = agent.Version,
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
   });
   ```
 
@@ -1411,7 +1414,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   _, err = client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
   	Version: agent.Version,
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   })
   if err != nil {
@@ -1424,7 +1427,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
       agent.id(),
       AgentUpdateParams.builder()
           .version(agent.version())
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .build()
   );
   ```
@@ -1433,7 +1436,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   $client->beta->agents->update(
       $agent->id,
       version: $agent->version,
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   ```
 
@@ -1441,7 +1444,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
   client.beta.agents.update(
     agent.id,
     version: agent.version,
-    model: "claude-opus-5"
+    model: "claude-opus-5-5"
   )
   ```
 </CodeGroup>

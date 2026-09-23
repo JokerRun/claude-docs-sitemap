@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: b3f86e15b9e8be81399e0fd7a404f2bb6609108f671dee951d24f051cf49b9cf
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 719334cd619813a240cee306bdc905b1d932b25e8b896b4a96a36e63d75c5420
 ---
 
 ---
@@ -38,7 +38,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
           -H "x-api-key: $ANTHROPIC_API_KEY" \
           -H "anthropic-version: 2023-06-01" \
           -d '{
-            "model": "claude-opus-5",
+            "model": "claude-opus-5-5",
             "max_tokens": 1000,
             "messages": [
               {
@@ -53,7 +53,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
         ```json Output
         {
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "id": "msg_013mHbppMPd2PrVJzGMZPt2D",
           "type": "message",
           "role": "assistant",
@@ -109,7 +109,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
         ```bash CLI
         ant messages create \
-          --model claude-opus-5 \
+          --model claude-opus-5-5 \
           --max-tokens 1000 \
           --message '{
             role: user,
@@ -121,7 +121,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
         ```json Output
         {
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "id": "msg_01N1ycuCkM5Mzd7WhTU4fwST",
           "type": "message",
           "role": "assistant",
@@ -168,7 +168,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         client = anthropic.Anthropic()
 
         message = client.messages.create(
-            model="claude-opus-5",
+            model="claude-opus-5-5",
             max_tokens=1000,
             messages=[
                 {
@@ -228,7 +228,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         const client = new Anthropic();
 
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1000,
           messages: [
             {
@@ -293,7 +293,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
         var message = await client.Messages.Create(new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1000,
             Messages =
             [
@@ -369,7 +369,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         	client := anthropic.NewClient()
 
         	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-        		Model:     anthropic.ModelClaudeOpus5,
+        		Model:     anthropic.ModelClaudeOpus5_5,
         		MaxTokens: 1000,
         		Messages: []anthropic.MessageParam{
         			anthropic.NewUserMessage(anthropic.NewTextBlock("What should I search for to find the latest developments in renewable energy?")),
@@ -443,7 +443,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.63.0")
+                implementation("com.anthropic:anthropic-java:2.65.0")
             }
 
             application {
@@ -469,7 +469,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.63.0</version>
+                  <version>2.65.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -491,7 +491,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             var client = AnthropicOkHttpClient.fromEnv();
 
             var params = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_5)
+                .model(Model.CLAUDE_OPUS_5_5)
                 .maxTokens(1000)
                 .addUserMessage(
                     "What should I search for to find the latest developments in renewable energy?"
@@ -563,7 +563,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         $client = new Client();
 
         $message = $client->messages->create(
-            model: Model::CLAUDE_OPUS_5,
+            model: Model::CLAUDE_OPUS_5_5,
             maxTokens: 1000,
             messages: [
                 [
@@ -624,7 +624,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         client = Anthropic::Client.new
 
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1000,
           messages: [
             {

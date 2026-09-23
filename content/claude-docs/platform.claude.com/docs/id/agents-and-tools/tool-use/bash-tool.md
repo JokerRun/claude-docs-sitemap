@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ce40117f501343e0c5e408786e07ef751c18e56f5ed553214e93b173e7f60289
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ded9062aa23dfb201c569fa0ca6f6946973e5b611ae0e838251868b27360e754
 ---
 
 ---
@@ -37,7 +37,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -56,7 +56,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: bash_20250124, name: bash}' \
     --message '{role: user, content: List all Python files in the current directory.}'
@@ -66,7 +66,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "bash_20250124", "name": "bash"}],
       messages=[
@@ -81,7 +81,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{ type: "bash_20250124", name: "bash" }],
     messages: [
@@ -101,7 +101,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = [new ToolBash20250124()],
           Messages =
@@ -122,7 +122,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfBashTool20250124: &anthropic.ToolBash20250124Param{}},
@@ -145,7 +145,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
 
       Message response = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addTool(ToolBash20250124.builder().build())
               .addUserMessage("List all Python files in the current directory.")
@@ -162,7 +162,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [new ToolBash20250124()],
       messages: [
@@ -177,7 +177,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{type: "bash_20250124", name: "bash"}],
     messages: [
@@ -194,7 +194,7 @@ Claude merespons dengan `stop_reason: "tool_use"` dan blok `tool_use` yang beris
 ```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -848,7 +848,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "tools": [
             {
@@ -890,7 +890,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       tools:
         - type: bash_20250124
@@ -919,7 +919,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       client = anthropic.Anthropic()
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           tools=[{"type": "bash_20250124", "name": "bash"}],
           messages=[
@@ -955,7 +955,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       const client = new Anthropic();
 
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         tools: [{ type: "bash_20250124", name: "bash" }],
         messages: [
@@ -996,7 +996,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Tools = [new ToolBash20250124()],
               Messages =
@@ -1045,7 +1045,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Tools: []anthropic.ToolUnionParam{
       		{OfBashTool20250124: &anthropic.ToolBash20250124Param{}},
@@ -1086,7 +1086,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addTool(ToolBash20250124.builder().build())
               .addUserMessage("List all Python files in the current directory.")
@@ -1128,7 +1128,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       $client = new Client();
 
       $response = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           tools: [new ToolBash20250124()],
           messages: [
@@ -1164,7 +1164,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         tools: [{type: "bash_20250124", name: "bash"}],
         messages: [
@@ -1200,8 +1200,8 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
     Ulangi siklus jalankan-dan-kembalikan selama `stop_reason` bernilai `tool_use`. Untuk loop lengkapnya, lihat [Menangani hasil dari alat klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-results-from-client-tools).
   </Step>
 
-  <Step title="Implementasikan langkah-langkah keamanan">
-    Tambahkan validasi dan pembatasan. Gunakan allowlist, bukan blocklist: blocklist melewatkan perintah apa pun yang tidak diantisipasinya. Contoh ini juga menolak operator shell yang muncul sebagai kata terpisah:
+  <Step title="Mengimplementasikan langkah-langkah keamanan">
+    Tambahkan validasi dan pembatasan. Gunakan allowlist alih-alih blocklist: blocklist akan melewatkan perintah apa pun yang tidak diantisipasinya. Contoh ini juga menolak operator shell yang muncul sebagai kata terpisah:
 
     <CodeGroup exclude="shell">
       ```python Python

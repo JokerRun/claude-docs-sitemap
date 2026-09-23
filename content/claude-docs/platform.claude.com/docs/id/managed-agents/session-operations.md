@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 05e4d10047337210aed71c052a4bd6d7a92f307636671b5b676b7c1d18f2f067
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 74cdd2740771f5f437be01cab81cfdefacf07f2a141a08bd5d6a87d1793cbed0
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Operasi sesi
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
 description: Mengambil, mendaftar, memperbarui, mengarsipkan, dan menghapus sesi Claude Managed Agents.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

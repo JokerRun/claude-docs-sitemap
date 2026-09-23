@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-library
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 985ba3bd07863a741e2e5f137e14bc8fb173fa547242ad52de426929d3e9ecba
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 269f72f373591c655b5be922a87303e08244aeeaa033fb001d19876a8e021003
 ---
 
 > ## Documentation Index
@@ -1387,7 +1387,7 @@ These prompts are based on patterns from published Anthropic resources. Each car
 * [How Anthropic teams use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code): real workflows from engineering, product, design, and data teams, with deep dives on [legal](https://claude.com/blog/how-anthropic-uses-claude-legal), [marketing](https://claude.com/blog/how-anthropic-uses-claude-marketing), and [cybersecurity](https://claude.com/blog/how-anthropic-uses-claude-cybersecurity)
 * [Scaling agentic coding guide](https://resources.anthropic.com/hubfs/Scaling%20agentic%20coding%20across%20your%20organization.pdf): the enterprise adoption guide
 
-For video walkthroughs of these patterns, see the free [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action) course on Anthropic Academy.
+For video walkthroughs of these patterns, see the free [Claude Code in Action](https://academy.claude.com/courses/claude-code-in-action) course on [Claude Academy](https://academy.claude.com/).
 
 ## Related resources
 

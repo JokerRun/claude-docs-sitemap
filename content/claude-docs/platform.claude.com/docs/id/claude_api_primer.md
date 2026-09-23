@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 93d9a8a0e200f636a29e542aac683c878eee2939e9f88223893bae636e1b5853
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 589e7ab48c6f9ac34e1e295ce1b8f91ab14d3f0d6aedc761419db29a2871cb4a
 ---
 
 ---
@@ -18,9 +18,9 @@ description: Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaa
 ## Model
 
 ```text wrap
-Recommended default for most work, including complex agentic coding: Claude Opus 5: claude-opus-5
-Step up for the hardest long-running agentic and research tasks, at 2x Claude Opus 5 pricing: Claude Fable 5.1: claude-fable-5-1
-Previous Opus model: Claude Opus 4.8: claude-opus-4-8
+Recommended default for most work, including complex agentic coding: Claude Opus 5.5: claude-opus-5-5
+Step up for the hardest long-running agentic and research tasks, at 2.5x Claude Opus 5.5 pricing: Claude Fable 5.1: claude-fable-5-1
+Previous Opus model: Claude Opus 5: claude-opus-5
 Smart model: Claude Sonnet 5: claude-sonnet-5
 For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ```
@@ -32,7 +32,7 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{"role": "user", "content": "Hello, Claude"}'
   ```
@@ -41,7 +41,7 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -60,7 +60,7 @@ For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
       "text": "Hello!"
     }
   ],
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -77,7 +77,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -93,7 +93,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {"role": "user", "content": "Hello, Claude"},
@@ -152,11 +152,11 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
   ```bash CLI
   IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
 
-  # Opsi 1: Gambar berenkode base64 (prefiks @ otomatis mengenkode file biner sebagai base64)
+  # Opsi 1: Gambar yang di-encode Base64 (prefiks @ otomatis meng-encode file biner sebagai base64)
   curl -sSo vision-example.jpg "$IMAGE_URL"
 
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -172,7 +172,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
   # Opsi 2: Gambar yang dirujuk melalui URL
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -197,7 +197,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
   image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -220,7 +220,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
   # Opsi 2: Gambar yang dirujuk melalui URL
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -271,7 +271,7 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create --transform content --format yaml <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   thinking:
     type: adaptive
@@ -288,7 +288,7 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive", "display": "summarized"},
       messages=[
@@ -299,7 +299,7 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
       ],
   )
 
-  # Respons berisi blok pemikiran yang diringkas dan blok teks
+  # Respons berisi blok thinking yang diringkas dan blok teks
   for block in response.content:
       match block.type:
           case "thinking":
@@ -324,11 +324,11 @@ Batasan penting:
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  # Permintaan pertama: tangkap array konten asisten (blok thinking + tool_use,
-  # signature tetap utuh) sebagai JSON ringkas.
+  # Permintaan pertama: tangkap array konten assistant (blok thinking + tool_use,
+  # dengan signature utuh) sebagai JSON ringkas.
   ASSISTANT_CONTENT=$(ant messages create \
     --transform content --format jsonl <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   thinking:
     type: adaptive
@@ -352,10 +352,10 @@ Batasan penting:
   TOOL_USE_ID=$(printf '%s' "$ASSISTANT_CONTENT" \
     | jq -r '.[] | select(.type == "tool_use") | .id')
 
-  # Permintaan kedua: kirim kembali blok yang ditangkap tanpa perubahan sebagai pesan
-  # asisten. Blok thinking harus menyertai blok tool_use.
+  # Permintaan kedua: kirim kembali blok yang ditangkap tanpa diubah sebagai pesan
+  # assistant. Blok thinking harus menyertai blok tool_use.
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 16000
   thinking:
     type: adaptive
@@ -402,7 +402,7 @@ Batasan penting:
 
   # Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive", "display": "summarized"},
       tools=[weather_tool],
@@ -419,13 +419,13 @@ Batasan penting:
 
   # Permintaan kedua - Sertakan blok pemikiran dan hasil alat
   continuation = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive", "display": "summarized"},
       tools=[weather_tool],
       messages=[
           {"role": "user", "content": "What's the weather in Paris?"},
-          # Perhatikan bahwa thinking_block juga diteruskan bersama tool_use_block
+          # Perhatikan bahwa thinking_block diteruskan bersama dengan tool_use_block
           {"role": "assistant", "content": [thinking_block, tool_use_block]},
           {
               "role": "user",
@@ -631,7 +631,7 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun.
 
-Pada Claude Fable 5.1 dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude cocok dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Pada Claude Opus 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap panggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 ### Output JSON
 
@@ -733,7 +733,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
   ant messages create --stream --format jsonl \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello"}' \
     | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
@@ -747,7 +747,7 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
   with client.messages.stream(
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello"}],
-      model="claude-opus-5",
+      model="claude-opus-5-5",
   ) as stream:
       for text in stream.text_stream:
           print(text, end="", flush=True)
@@ -804,7 +804,7 @@ Saat menggunakan thinking dengan streaming:
 
 ```sse
 event: message_start
-data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
+data: {"type": "message_start", "message": {"id": "msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5-5", "stop_reason": null, "stop_sequence": null, "usage": {"input_tokens": 25, "output_tokens": 1}}}
 
 event: content_block_start
 data: {"type": "content_block_start", "index": 0, "content_block": {"type": "text", "text": ""}}

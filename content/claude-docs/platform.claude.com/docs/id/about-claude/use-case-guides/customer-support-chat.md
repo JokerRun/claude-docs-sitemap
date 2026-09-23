@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7749181625f1d44cb7335b8082abd969759289547ee6f1a8e7dcbec9e1b7c832
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d5ec8abfe48adb622e546c412a8cc1f2a180d466747dec9a404dd832b19832dc
 ---
 
 ---
@@ -399,7 +399,7 @@ Tambahkan nama model, definisi alat, dan implementasi stub ke `config.py`:
 ```python
 import time
 
-MODEL = "claude-opus-5"
+MODEL = "claude-opus-5-5"
 
 TOOLS = [
     {
@@ -431,8 +431,8 @@ TOOLS = [
 
 def get_quote(make, model, year, mileage, driver_age):
     """Returns the premium per month in USD"""
-    # Anda dapat memanggil endpoint http atau database untuk mendapatkan kutipan harga.
-    # Di sini, kita menyimulasikan penundaan 1 detik dan mengembalikan kutipan harga tetap sebesar 100.
+    # Anda dapat memanggil endpoint http atau database untuk mendapatkan kuotasi.
+    # Di sini, kita menyimulasikan jeda 1 detik dan mengembalikan kuotasi tetap sebesar 100.
     time.sleep(1)
     return 100
 ```

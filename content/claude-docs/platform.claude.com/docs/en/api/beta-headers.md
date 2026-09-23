@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 0bbcb58acf1b62e0237f75213f1f79011c8dd6a37fecc0865f809ee4dedb2c67
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 44094f268301da1e56373449a37b44812bb03aac6f849d3d6f7afb8a3a72a4f2
 ---
 
 ---
@@ -41,7 +41,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
     -H "anthropic-beta: context-management-2025-06-27" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello, Claude"}
@@ -52,7 +52,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   ```bash CLI
   ant beta:messages create \
     --beta context-management-2025-06-27 \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -61,7 +61,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   client = Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
       betas=["context-management-2025-06-27"],
@@ -74,7 +74,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   const client = new Anthropic();
 
   const msg = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
     betas: ["context-management-2025-06-27"]
@@ -89,7 +89,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   var message = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = "claude-opus-5",
+          Model = "claude-opus-5-5",
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
           Betas = ["context-management-2025-06-27"],
@@ -103,7 +103,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   client := anthropic.NewClient()
 
   message, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude")),
@@ -121,7 +121,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5)
+    .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
     .addUserMessage("Hello, Claude")
     .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
@@ -137,7 +137,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   $message = $client->beta->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       betas: ['context-management-2025-06-27'],
   );
 
@@ -148,7 +148,7 @@ The following examples show the same request with cURL, the `ant` CLI, and the S
   client = Anthropic::Client.new
 
   message = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
     betas: ["context-management-2025-06-27"]

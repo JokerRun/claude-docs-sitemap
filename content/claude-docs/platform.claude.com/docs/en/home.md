@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 12ac2c8bf9eb625d537889cbf64a6af6966243e60aba3c2b6c5b8130c2b14ebe
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 11efe7d54610db4d7798fbd9c45f84959bc08be69705d5c63e4aea7dfb85e146
 ---
 
 ---
@@ -249,7 +249,7 @@ with Claude"
     <HomeSectionHeader label="Models" title="The Claude model family" description="Choose the right model for your use case." />
 
     * [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
-    * [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview) (`claude-opus-5`) — *For complex agentic coding and enterprise work* — Complex projects · Agents · Coding
+    * [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) (`claude-opus-5-5`) — New — *For long-running agentic coding and knowledge work* — Complex projects · Agents · Coding
     * [Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview) (`claude-sonnet-5`) — *The best combination of speed and intelligence* — Everyday tasks · Writing · Cost-efficient
     * [Claude Haiku 4.5](https://platform.claude.com/docs/en/models/haiku-4-5/overview) (`claude-haiku-4-5`) — *The fastest model with near-frontier intelligence* — Fastest · Lowest cost · High volume
   </HomeSection>

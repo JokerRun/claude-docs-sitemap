@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: d84a8971b33100f6ea46ccf7db494179eba5f34a0c2fad7ab37fe1fd07f6542f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: f68cd3aee827c65194a46fdd186c164577d078eea00fdc76018dc071b7cf9c1b
 ---
 
 ---
@@ -43,7 +43,7 @@ Here's how to handle the `pause_turn` stop reason:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -59,7 +59,7 @@ Here's how to handle the `pause_turn` stop reason:
   # Initial request. If "stop_reason" in the output is "pause_turn", re-run with
   # the assistant content appended to messages (see the SDK tabs).
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - {type: web_search_20250305, name: web_search, max_uses: 10}
@@ -73,7 +73,7 @@ Here's how to handle the `pause_turn` stop reason:
 
   # Initial request with web search
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -97,7 +97,7 @@ Here's how to handle the `pause_turn` stop reason:
 
       # Send the continuation request
       continuation = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=messages,
           tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
@@ -113,7 +113,7 @@ Here's how to handle the `pause_turn` stop reason:
 
   // Initial request with web search
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -145,7 +145,7 @@ Here's how to handle the `pause_turn` stop reason:
 
     // Send the continuation request
     const continuation = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages,
       tools: [
@@ -168,7 +168,7 @@ Here's how to handle the `pause_turn` stop reason:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
           new() {
@@ -186,7 +186,7 @@ Here's how to handle the `pause_turn` stop reason:
       // Continue the conversation with the paused content
       var continuationParams = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [
               new() {
@@ -220,7 +220,7 @@ Here's how to handle the `pause_turn` stop reason:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -234,7 +234,7 @@ Here's how to handle the `pause_turn` stop reason:
   if response.StopReason == anthropic.StopReasonPauseTurn {
   	// Pass the paused response back as-is so Claude can continue the turn
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -259,7 +259,7 @@ Here's how to handle the `pause_turn` stop reason:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
           .addTool(WebSearchTool20250305.builder()
@@ -272,7 +272,7 @@ Here's how to handle the `pause_turn` stop reason:
       if (response.stopReason().isPresent()
               && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
           MessageCreateParams continuationParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
               .addMessage(response)
@@ -300,7 +300,7 @@ Here's how to handle the `pause_turn` stop reason:
               'content' => 'Search for comprehensive information about quantum computing breakthroughs in 2025'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -325,7 +325,7 @@ Here's how to handle the `pause_turn` stop reason:
       $continuation = $client->messages->create(
           maxTokens: 1024,
           messages: $messages,
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           tools: [
               [
                   'type' => 'web_search_20250305',
@@ -345,7 +345,7 @@ Here's how to handle the `pause_turn` stop reason:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -376,7 +376,7 @@ Here's how to handle the `pause_turn` stop reason:
     ]
 
     continuation = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: messages,
       tools: [

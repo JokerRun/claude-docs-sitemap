@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 244588e70389a0fbb755100cc7776753832848f6907048470bfc55df30b01569
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c3f575d80481139190661060691107a1f6691fefb980290c9a68adc677f9671b
 ---
 
 ---
@@ -69,14 +69,14 @@ Apa yang dicakup CMEK bergantung pada produk mana yang Anda gunakan.
 
 **Claude Enterprise**
 
-* Konten chat, termasuk skill, plugin, dan artifact.
+* Konten chat, termasuk skill dan plugin.
 * Lampiran chat dan lampiran proyek.
 * Claude Code di CLI, termasuk konten pesan.
 * Cowork di Claude Desktop.
 * [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) Compliance API yang diambil dari sesi di mesin pengguna. Jika kunci Anda tidak dapat digunakan, endpoint messages mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable) alih-alih konten transkrip. Metadata sesi tetap dicantumkan.
 * Office agents.
 * Claude in Chrome.
-* Claude Science. Data yang dikirim pengguna dari aplikasi ke sumber daya komputasi mereka sendiri, seperti host SSH atau akun komputasi cloud, disimpan di sistem tersebut, bukan oleh Anthropic, dan tidak tercakup.
+* Claude Science. Data yang dikirim pengguna dari aplikasi ke komputasi milik mereka sendiri, seperti host SSH atau akun komputasi cloud, disimpan di sistem tersebut, bukan oleh Anthropic, dan tidak tercakup.
 
 Pada kedua produk, cadangan dan snapshot mewarisi kunci.
 
@@ -93,8 +93,9 @@ Beberapa fitur dimatikan atau dimodifikasi secara substansial saat CMEK diaktifk
 **Claude Enterprise**
 
 * Pencarian chat dinonaktifkan karena judul dan konten chat dienkripsi dengan kunci Anda. Anggota tidak dapat mencari chat sebelumnya, dan toggle **Search and reference chats** tetap nonaktif, sehingga Claude juga tidak dapat mencarinya.
-* [Pencarian pengetahuan proyek](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) ("retrieval-augmented generation" (generasi yang diperkaya pengambilan), atau RAG) dinonaktifkan. Pengetahuan proyek dimuat langsung ke dalam konteks setiap percakapan alih-alih diindeks dan dicari. Akibatnya, sebuah proyek dapat menggunakan pengetahuan yang jauh lebih sedikit dibandingkan tanpa CMEK. Pengetahuan yang melebihi batas yang dapat dimuat tidak disertakan dalam percakapan.
+* [Pencarian pengetahuan proyek](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) ("retrieval-augmented generation" (generasi yang diperkaya pengambilan), atau RAG) dinonaktifkan. Pengetahuan proyek dimuat langsung ke dalam konteks setiap percakapan alih-alih diindeks dan dicari. Akibatnya, sebuah proyek dapat menggunakan pengetahuan yang jauh lebih sedikit dibandingkan tanpa CMEK. Pengetahuan yang melebihi batas yang dapat dimuat akan dikecualikan dari percakapan.
 * Claude Code di web (termasuk routine) dan Claude in Slack tidak tersedia: sesi baru tidak dapat dimulai dan Claude in Slack menolak permintaan, bahkan jika admin mengaktifkan produk-produk ini. Claude Code Desktop tetap tersedia untuk sesi lokal tetapi nonaktif kecuali admin mengaktifkannya di [claude.ai > Organization settings > Claude Code](https://claude.ai/admin-settings/claude-code).
+* Dalam percakapan dan tab **Artifacts**, Claude Design, Claude Slides, dan Claude Docs tidak tersedia, dan admin tidak dapat mengaktifkannya. Claude Code tidak dapat [memublikasikan artifact](https://code.claude.com/docs/en/artifacts#availability).
 * Analitik tertentu mengalami penurunan fungsi: analitik admin untuk skill dan konektor claude.ai (di claude.ai/analytics/usage dan melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api)), Claude smart reports (di claude.ai/analytics/insights), dan metrik kontribusi Claude Code (di claude.ai/analytics/claude-code).
 * Ekspor data organisasi dan ekspor log audit, keduanya di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), dinonaktifkan.
 * Penilaian respons (jempol ke atas dan jempol ke bawah pada respons Claude) dinonaktifkan.
@@ -112,8 +113,8 @@ Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci And
 
 **Claude Enterprise**
 
-* Fitur beta dan research preview mungkin tidak tercakup oleh CMEK dan dapat tidak berfungsi di organisasi CMEK, misalnya Claude Security dan Claude Design.
-* [Personal preferences - bagian Instructions for Claude](https://claude.ai/new#settings/account) dan Cowork Global instructions. Pengaturan ini ditetapkan di tingkat akun dan dibagikan ke semua organisasi milik pengguna.
+* Fitur beta dan research preview mungkin tidak tercakup oleh CMEK dan dapat tidak berfungsi di organisasi CMEK, misalnya, Claude Security dan aplikasi Claude Design di claude.ai/design.
+* [Personal preferences - bagian Instructions for Claude](https://claude.ai/new#settings/account) dan Cowork Global instructions. Keduanya diatur di tingkat akun dan dibagikan ke semua organisasi milik pengguna.
 
 Pada kedua produk, data akun untuk pengguna di organisasi Anda (seperti nama, alamat email, dan gambar profil) tidak dienkripsi dengan kunci Anda.
 
@@ -123,9 +124,9 @@ API dan alat Claude Platform berikut menyimpan data saat istirahat di bawah kunc
 
 | API                   | Alat dan fitur                                                                                     |
 | --------------------- | -------------------------------------------------------------------------------------------------- |
-| Messages              | Web search                                                                                         |
+| Messages              | Pencarian web                                                                                      |
 | Models                | Web fetch                                                                                          |
-| Files                 | Code execution                                                                                     |
+| Files                 | Eksekusi kode                                                                                      |
 | Batch                 | Alat Bash                                                                                          |
 | Skills                | Alat text editor                                                                                   |
 | Claude Managed Agents | Konektor MCP                                                                                       |
@@ -133,7 +134,7 @@ API dan alat Claude Platform berikut menyimpan data saat istirahat di bawah kunc
 | Dreams                | Alat advisor                                                                                       |
 |                       | Computer use                                                                                       |
 |                       | Browser use                                                                                        |
-|                       | Context management                                                                                 |
+|                       | Manajemen konteks                                                                                  |
 
 ## Pelestarian terbatas di luar kunci Anda
 

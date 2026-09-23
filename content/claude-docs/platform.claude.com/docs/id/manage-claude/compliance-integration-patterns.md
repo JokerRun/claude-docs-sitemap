@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 71ad527507e244ebf412e2ed6973b72e513e19524d1927208c78c22d50b882c7
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 20b71f435d8a94d17156129a6bcb328aaca53a26f254c2090d74deb2a0fcf7d5
 ---
 
 ---
@@ -155,12 +155,12 @@ Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal
 * Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API.
 * Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca oleh Claude.
 * Penggunaan Claude Code yang diautentikasi dengan kunci API Claude Console, dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), atau dijalankan dalam [sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna.
-* Sesi lokal dari organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), dan sesi lokal yang menerapkan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) (retensi data nol).
-* Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya membawa prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
-* File asli untuk lampiran chat yang disimpan claude.ai sebagai teks yang diekstrak, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks yang diekstrak; lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).
-* Prompt sistem dari sesi lokal (sebuah pesan penanda menggantikannya).
+* Sesi lokal dari organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), serta sesi lokal yang menerapkan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) (retensi data nol).
+* Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya memuat prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
+* File asli untuk lampiran chat yang disimpan claude.ai sebagai teks hasil ekstraksi, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks hasil ekstraksi; lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).
+* Prompt sistem dari sesi lokal (pesan penanda menggantikannya).
 * Definisi alat dan konfigurasi server "Model Context Protocol", atau MCP, dalam transkrip sesi (lokal atau jarak jauh), serta metadata sitasi pada blok `text` dalam transkrip sesi lokal.
-* Konten transkrip sesi lokal dalam organisasi yang ["customer-managed encryption key" (kunci enkripsi yang dikelola pelanggan)](https://platform.claude.com/docs/id/manage-claude/cmek)-nya saat ini tidak dapat digunakan. Permintaan tersebut mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable), dan metadata sesi tetap dicantumkan.
+* Konten transkrip sesi lokal di organisasi yang [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek)-nya saat ini tidak dapat digunakan. Permintaan tersebut mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable), dan metadata sesi tetap dicantumkan.
 * Konten yang dihapus oleh kebijakan retensi organisasi Anda.
 * Konten chat yang dihapus pengguna di claude.ai (chat tersebut tetap dicantumkan, dengan `deleted_at` terisi).
 * Sesi jarak jauh yang dihapus pengguna (sesi yang dihapus tidak lagi dicantumkan, dan endpoint pesan mengembalikan 404 untuk sesi tersebut).

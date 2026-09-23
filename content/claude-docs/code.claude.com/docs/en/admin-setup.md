@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: faa448c3f4c5d6cfbb6474c07054d08724bdce8cf8281166a3405b7e49936763
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: bf7b4ae059af9f43b452f403fd51f2d66063846a3261db3358ad9477d01af235
 ---
 
 > ## Documentation Index
@@ -160,7 +160,7 @@ Share these resources to help developers get started:
 
 * [Quickstart](/docs/en/quickstart): first-session walkthrough from install to working with a project
 * [Common workflows](/docs/en/common-workflows): patterns for everyday tasks like code review, refactoring, and debugging
-* [Claude 101](https://anthropic.skilljar.com/claude-101) and [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action): self-paced Anthropic Academy courses
+* [Claude Code 101](https://academy.claude.com/courses/claude-code-101) and [Claude Code in Action](https://academy.claude.com/courses/claude-code-in-action): free self-paced courses on [Claude Academy](https://academy.claude.com/)
 
 For login issues, point developers to [authentication troubleshooting](/docs/en/troubleshoot-install#login-and-authentication). The most common fixes are:
 

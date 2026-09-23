@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 8232992e56c56c5bc8c8001c475d8d6b65cf328cbecddf68e0dd608496807bd1
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c43b89a79d59982156e97d5ad2f7a8e0a9121d586cbcd1f42beab60ffb26869c
 ---
 
 ---
@@ -154,7 +154,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1000,
       "messages": [{"role": "user", "content": "Use the hello tool to greet tunnel."}],
       "mcp_servers": [
@@ -170,7 +170,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
 
   ```bash CLI
   ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1000
   messages:
     - role: user
@@ -189,7 +189,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1000,
       messages=[{"role": "user", "content": "Use the hello tool to greet tunnel."}],
       mcp_servers=[
@@ -210,7 +210,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
   const anthropic = new Anthropic();
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       {
@@ -242,7 +242,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
@@ -271,7 +271,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Use the hello tool to greet tunnel.")),
@@ -307,7 +307,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1000L)
           .addUserMessage("Use the hello tool to greet tunnel.")
           .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -333,7 +333,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
       messages: [
           ['role' => 'user', 'content' => 'Use the hello tool to greet tunnel.']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           [
               'type' => 'url',
@@ -357,7 +357,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       { role: "user", content: "Use the hello tool to greet tunnel." }

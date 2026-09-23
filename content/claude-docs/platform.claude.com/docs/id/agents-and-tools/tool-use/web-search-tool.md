@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a0db756e4b4ec55baa28a4789d4edb17f877d79f96390a2dd93913d7cb7001ee
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 5aa5e0bb53ee41be92b1fc8d09597eafb3aec26de53caf07e52bf22767d0d7ac
 ---
 
 ---
@@ -82,7 +82,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [
         {
@@ -99,7 +99,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -116,7 +116,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -133,7 +133,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -153,7 +153,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
       Tools = [new ToolUnion(new WebSearchTool20260318())]
@@ -167,7 +167,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
@@ -189,7 +189,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
           .addTool(WebSearchTool20260318.builder().build())
@@ -208,7 +208,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
       messages: [
           ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20260318',
@@ -224,7 +224,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
@@ -255,7 +255,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -273,7 +273,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: What is the weather in NYC?}' \
     --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
@@ -283,7 +283,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "What's the weather in NYC?"}],
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
@@ -295,7 +295,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -320,7 +320,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
@@ -334,7 +334,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
@@ -358,7 +358,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("What's the weather in NYC?")
           .addTool(WebSearchTool20250305.builder()
@@ -379,7 +379,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
       messages: [
           ['role' => 'user', 'content' => "What's the weather in NYC?"],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -396,7 +396,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in NYC?" }

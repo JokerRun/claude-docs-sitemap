@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 19df121533f568e44f079561a15ca6ecadc02b00a7848500dcd27c16bb077ca9
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 573a93185f992a2d01373600f69d582e9b687c80da6e4a363ae3d0d94af26117
 ---
 
 ---
@@ -80,25 +80,40 @@ Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi 
   <Step title="Buat kunci RSA di vault Anda">
     Azure Key Vault tidak mendukung symmetric key wrapping, sehingga kunci harus berupa RSA (3072-bit atau lebih besar) dengan `wrapKey` dan `unwrapKey` dalam operasi yang diizinkan.
 
+    Opsi `--tags` menambahkan tag organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Tag ini diperlukan agar Anthropic dapat memvalidasi kunci.
+
+    <Note>
+      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID yang berawalan `org_`.
+    </Note>
+
     ```bash
     az keyvault key create \
-      --vault-name <your-vault-name> \
-      --name <your-key-name> \
+      --vault-name <VAULT_NAME> \
+      --name <KEY_NAME> \
       --kty RSA --size 3072 \
-      --ops wrapKey unwrapKey
+      --ops wrapKey unwrapKey \
+      --tags anthropic-org-<ORGANIZATION_UUID>=true
     ```
 
     Untuk kunci yang didukung HSM, gunakan `--kty RSA-HSM` (memerlukan vault dengan SKU Premium). Kunci RSA yang dilindungi perangkat lunak dapat diterima untuk integrasi ini.
 
     Dari Portal, buka Key Vault Anda, pilih **Keys**, lalu **Generate/Import**. Atur tipe kunci ke RSA dan ukurannya ke 3072 atau lebih besar. Untuk membatasi kunci hanya untuk wrap dan unwrap, buka versi kunci, gulir ke **Permitted operations**, dan hapus centang semuanya kecuali **Wrap Key** dan **Unwrap Key**.
 
-    <Frame caption="Buat kunci RSA berukuran 3072 atau lebih besar.">
-      ![Halaman Create a key di Azure Key Vault dengan opsi Generate, tipe kunci RSA, dan ukuran kunci RSA 3072 dipilih.](https://platform.claude.com/docs/images/cmek/azure-create-key.png)
+    Pada halaman **Create a key**, tambahkan juga tag organisasi di bawah **Tags**.
+
+    <Frame caption="Buat kunci RSA berukuran 3072 atau lebih besar, dengan tag anthropic-org-<ORGANIZATION_UUID> diatur ke true.">
+      ![Halaman Create a key di Azure Key Vault dengan RSA, ukuran kunci 3072, dan tag anthropic-org diatur ke true.](https://platform.claude.com/docs/images/cmek/azure-create-key-tag.png)
     </Frame>
 
-    <Frame caption="Batasi Permitted operations (operasi yang diizinkan) ke Wrap Key dan Unwrap Key.">
-      ![Versi kunci Azure Key Vault dengan Permitted operations yang dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations.png)
+    <Frame caption="Batasi Permitted operations (operasi yang diizinkan) ke Wrap Key dan Unwrap Key. Versi kunci menampilkan tag organisasi.">
+      ![Versi kunci Azure Key Vault dengan 1 tag dan Permitted operations yang dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations-tag.png)
     </Frame>
+
+    Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu tag seperti itu untuk setiap organisasi. Satu versi kunci dapat memiliki paling banyak 15 tag, termasuk tag Anda sendiri.
+
+    <Note>
+      Untuk menambahkan tag ke kunci yang sudah Anda miliki, buka versi kunci saat ini di Portal, pilih tautan di sebelah **Tags**, tambahkan tag, lalu klik **Save**. Dengan Azure CLI, jalankan `az keyvault key set-attributes --vault-name <VAULT_NAME> --name <KEY_NAME> --tags anthropic-org-<ORGANIZATION_UUID>=true`. Opsi `--tags`-nya menggantikan tag pada versi tersebut, jadi masukkan juga setiap tag yang sudah dimiliki versi tersebut ke dalam `--tags`, dalam format `name=value`. Untuk kunci di Managed HSM, gunakan `--hsm-name <HSM_NAME>` alih-alih `--vault-name`.
+    </Note>
   </Step>
 
   <Step title="Berikan akses ke kunci Anda kepada service principal Anthropic">
@@ -157,6 +172,8 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
         <Steps>
           <Step title="Daftarkan kunci ke Anthropic">
             Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Azure Key Vault**, lalu klik **Continue**. Isi **Vault URI**, **Key name**, dan **Tenant ID**, lalu klik **Add**.
+
+            Langkah detail kunci menampilkan tag organisasi. Tambahkan tag tersebut ke kunci, seperti yang dijelaskan pada [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#organization-tag), sebelum Anda mengklik **Add**.
           </Step>
 
           <Step title="Validasi kunci">

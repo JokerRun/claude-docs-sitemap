@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: c3804125ad6b60927e9b29801064cb2ad7ea2b0a32123486b4b71e811e28c212
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9afc8cb7cec227fc2ee3136e7ff84613bc0a860f1920567d2ae5734d9775340e
 ---
 
 ---
@@ -159,8 +159,8 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 <CodeGroup>
   ```bash cURL
   # 1. Ambil token yang diterbitkan Entra (managed identity).
-  #    Di VM atau VM Scale Set, gunakan IMDS. Dengan beberapa identitas
-  #    user-assigned, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  #    Di VM atau VM Scale Set, gunakan IMDS. Jika ada beberapa identitas
+  #    yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   ENTRA_TOKEN=$(curl -sS -H "Metadata: true" \
     "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=api://<APP_ID>" \
     | jq -r .access_token)
@@ -171,10 +171,10 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   #   "$IDENTITY_ENDPOINT?api-version=2019-08-01&resource=api://<APP_ID>" \
   #   | jq -r .access_token)
 
-  #    Untuk AKS dengan Entra Workload Identity, gunakan pertukaran dua langkah di
+  #    Untuk AKS dengan Entra Workload Identity, gunakan pertukaran dua tahap di
   #    bagian "Use Entra Workload Identity on AKS" sebagai gantinya.
 
-  # 2. Tukarkan dengan token akses Anthropic.
+  # 2. Tukarkan token tersebut dengan token akses Anthropic.
   RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -191,13 +191,13 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 
   ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
 
-  # 3. Panggil Claude API dengan bearer token.
+  # 3. Panggil Claude API dengan bearer token tersebut.
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Azure"}]
     }' | jq -r '.content[] | select(.type == "text") | .text'
@@ -210,13 +210,13 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   import requests
   from anthropic import WorkloadIdentityCredentials
 
-  # URI pengenal pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  # URI pengenal dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
   AUDIENCE = "api://<APP_ID>"
 
 
   def fetch_entra_token() -> str:
       """Fetch a managed identity token from the platform's token endpoint."""
-      # Dengan beberapa identitas yang ditetapkan pengguna, tambahkan client_id=<IDENTITY_CLIENT_ID>
+      # Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan client_id=<IDENTITY_CLIENT_ID>
       # ke parameter permintaan untuk memilih salah satunya.
       if endpoint := os.environ.get("IDENTITY_ENDPOINT"):
           # App Service, Functions, Container Apps
@@ -249,7 +249,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from Azure"}],
   )
@@ -260,13 +260,13 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   import Anthropic from "@anthropic-ai/sdk";
   import { oidcFederationProvider } from "@anthropic-ai/sdk/lib/credentials/oidc-federation";
 
-  // URI pengenal pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  // URI pengidentifikasi dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
   const AUDIENCE = "api://<APP_ID>";
 
   async function fetchEntraToken(): Promise<string> {
     // App Service, Functions, dan Container Apps menyuntikkan IDENTITY_ENDPOINT;
     // VM dan VM Scale Sets menggunakan IMDS.
-    // Dengan beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+    // Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
     const identityEndpoint = process.env.IDENTITY_ENDPOINT;
     const url = identityEndpoint
       ? `${identityEndpoint}?api-version=2019-08-01&resource=${AUDIENCE}`
@@ -292,7 +292,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from Azure" }]
   });
@@ -317,14 +317,14 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   	"github.com/anthropics/anthropic-sdk-go/option"
   )
 
-  // URI pengenal pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  // URI pengenal dari registrasi aplikasi audiens (lihat Register the token audience).
   const audience = "api://<APP_ID>"
 
-  // fetchEntraToken mengambil token managed identity dari endpoint token
+  // fetchEntraToken mengambil token managed identity dari endpoint token milik
   // platform: IMDS pada VM dan VM Scale Sets, atau layanan IDENTITY_ENDPOINT
   // pada App Service, Functions, dan Container Apps.
   func fetchEntraToken(ctx context.Context) (string, error) {
-  	// Dengan beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  	// Jika ada beberapa identitas user-assigned, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   	tokenURL := "http://169.254.169.254/metadata/identity/oauth2/token" +
   		"?api-version=2018-02-01&resource=" + audience
   	header, value := "Metadata", "true"
@@ -362,7 +362,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   	)
 
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from Azure")),
@@ -382,11 +382,11 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 
   ```java Java
   HttpClient http = HttpClient.newHttpClient();
-  // URI pengenal pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  // URI pengenal dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
   String audience = "api://<APP_ID>";
   // App Service, Functions, dan Container Apps menyuntikkan IDENTITY_ENDPOINT;
   // VM dan VM Scale Sets menggunakan IMDS.
-  // Dengan beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  // Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   String identityEndpoint = System.getenv("IDENTITY_ENDPOINT");
   HttpRequest tokenRequest = identityEndpoint != null
           ? HttpRequest.newBuilder(URI.create(identityEndpoint + "?api-version=2019-08-01&resource=" + audience))
@@ -415,7 +415,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Hello from Azure")
           .build());
@@ -439,7 +439,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from Azure" }],
   });
@@ -488,14 +488,14 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   use Anthropic\Client;
   use Anthropic\Credentials\WorkloadIdentityCredentials;
 
-  // URI pengidentifikasi pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  // URI pengenal dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
   const AUDIENCE = 'api://<APP_ID>';
 
   function fetchEntraToken(): string
   {
       // App Service, Functions, dan Container Apps menyuntikkan IDENTITY_ENDPOINT;
       // VM dan VM Scale Sets menggunakan IMDS.
-      // Dengan beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+      // Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
       $identityEndpoint = getenv('IDENTITY_ENDPOINT');
       if ($identityEndpoint !== false) {
           $url = $identityEndpoint . '?api-version=2019-08-01&resource=' . AUDIENCE;
@@ -521,7 +521,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   $client = new Client(credentials: $credentials);
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from Azure']],
   );
@@ -534,13 +534,13 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   require "json"
   require "net/http"
 
-  # URI pengenal pendaftaran aplikasi audience (lihat Mendaftarkan audience token).
+  # URI pengenal dari registrasi aplikasi audiens (lihat Register the token audience).
   AUDIENCE = "api://<APP_ID>"
 
   def fetch_entra_token
     # App Service, Functions, dan Container Apps menyuntikkan IDENTITY_ENDPOINT;
     # VM dan VM Scale Sets menggunakan IMDS.
-    # Dengan beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+    # Jika ada beberapa identitas yang ditetapkan pengguna, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
     if (endpoint = ENV["IDENTITY_ENDPOINT"])
       url = "#{endpoint}?api-version=2019-08-01&resource=#{AUDIENCE}"
       headers = {"X-IDENTITY-HEADER" => ENV.fetch("IDENTITY_HEADER")}
@@ -562,7 +562,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   client = Anthropic::Client.new(credentials: credentials)
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from Azure"}]
   )
@@ -571,10 +571,10 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
 
   ```bash CLI
   # Tulis access token yang diterbitkan Entra ke file yang dapat dibaca CLI.
-  # Ditampilkan untuk VM atau VM Scale Set (IMDS). Pada App Service, Functions, atau
+  # Ditampilkan untuk VM atau VM Scale Set (IMDS). Di App Service, Functions, atau
   # Container Apps, ambil dari "$IDENTITY_ENDPOINT?api-version=2019-08-01&resource=api://<APP_ID>"
   # dengan -H "X-IDENTITY-HEADER: $IDENTITY_HEADER" sebagai gantinya.
-  # Dengan beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  # Jika ada beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS -H "Metadata: true" \
@@ -585,7 +585,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from Azure"}'
   ```
@@ -809,7 +809,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Azure"}]
     }' | jq -r '.content[] | select(.type == "text") | .text'
@@ -852,7 +852,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from Azure"}],
   )
@@ -897,7 +897,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from Azure" }]
   });
@@ -966,7 +966,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   		}),
   	)
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from Azure")),
@@ -1018,7 +1018,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Hello from Azure")
           .build());
@@ -1042,7 +1042,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from Azure" }],
   });
@@ -1114,7 +1114,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   );
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from Azure']],
   );
@@ -1152,7 +1152,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from Azure"}]
   )
@@ -1161,7 +1161,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
 
   ```bash CLI
   # 1. Tukarkan token yang diproyeksikan Kubernetes dengan token akses yang diterbitkan Entra
-  # lalu tulis ke file sementara yang dapat dibaca oleh CLI.
+  # lalu tulis ke file sementara yang dapat dibaca CLI.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS "https://login.microsoftonline.com/$AZURE_TENANT_ID/oauth2/v2.0/token" \
@@ -1177,7 +1177,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca
   # dari environment.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from Azure"}'
   ```

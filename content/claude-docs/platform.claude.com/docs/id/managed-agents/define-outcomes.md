@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: dcb4ca6cd398b9e9ac42fe719cee7e9e32ab7abe317f3da11b83ec14fd34341a
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c147102be9fe835fc331f6b9cd297eae9a39591536a71d3be9e1b4eee22c1674
 ---
 
 ---
 title: Mendefinisikan outcome
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-description: Beri tahu agen seperti apa 'selesai' itu, dan biarkan agen beriterasi hingga mencapainya.
+description: Beri tahu agen seperti apa kondisi 'selesai', dan biarkan agen beriterasi hingga mencapainya.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

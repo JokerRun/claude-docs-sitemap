@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-09-15T02:21:43.636809Z
-sha256: 3bb3ca85d21c902d4bb0dd1b2dcc74db91ec241bca8c2ea952c1d6f7213d7a4b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b8b48042f1118bfd5b320ca4ccde4cc5f90145ce8195ea2cb212152572e626ef
 ---
 
 > ## Documentation Index
@@ -314,7 +314,7 @@ Suppose you need to work with images in your codebase, and you want Claude's hel
 
     1. Drag and drop an image into the Claude Code window
     2. Copy an image and paste it into the CLI with `Ctrl+V`, or with [`Alt+V` on Windows and WSL](/docs/en/interactive-mode#general-controls)
-    3. Provide an image path to Claude. E.g., "Analyze this image: /path/to/your/image.png"
+    3. Provide an image path to Claude, for example "Analyze this image: /path/to/your/image.png"
   </Step>
 
   <Step title="Ask Claude to analyze the image">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cb8fc704d1a57468171b9fd636fc2b3b5f892592b5794992f6ae0c7ca8dc82aa
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: bfbf1129196ba6c318fe18b6a4dc1847dda9bc84b90bf80c184e73cc9d26d888
 ---
 
 ---
@@ -137,11 +137,11 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
 
 <CodeGroup>
   ```bash cURL
-  # Ambil token identitas bertanda tangan Google dari server metadata
+  # Ambil token identitas yang ditandatangani Google dari server metadata
   JWT=$(curl -sS -H "Metadata-Flavor: Google" \
     "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full")
 
-  # Tukarkan dengan token akses Anthropic
+  # Tukarkan token tersebut dengan token akses Anthropic
   RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
     --data @- <<JSON
@@ -157,13 +157,13 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   )
   ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
 
-  # Panggil Claude API
+  # Panggil API Claude
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Cloud Run"}]
     }' | jq -r '.content[] | select(.type == "text") | .text'
@@ -195,7 +195,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from Cloud Run"}],
   )
@@ -229,7 +229,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from Cloud Run" }]
   });
@@ -265,7 +265,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   )
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from Cloud Run")),
@@ -306,7 +306,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Hello from Cloud Run")
           .build());
@@ -330,7 +330,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from Cloud Run" }],
   });
@@ -360,17 +360,17 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   ```
 
   ```bash CLI
-  # Tulis token identitas bertanda tangan Google ke file yang dapat dibaca CLI
+  # Tulis token identitas yang ditandatangani Google ke file yang dapat dibaca CLI
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS -H "Metadata-Flavor: Google" \
     "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full" \
     > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
   export ANTHROPIC_IDENTITY_TOKEN_FILE
 
-  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
+  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from Cloud Run"}'
   ```
@@ -395,7 +395,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   $client = new Client(credentials: $credentials);
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from Cloud Run']],
   );
@@ -419,7 +419,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   client = Anthropic::Client.new(credentials: credentials)
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from Cloud Run"}]
   )

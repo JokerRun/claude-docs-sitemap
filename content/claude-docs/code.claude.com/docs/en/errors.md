@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 6e9fc3562d08087f694491df1e6c04f293222df3f8a1ae3f1066db1b573bdf8b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 644b1312175920297723bef5dddb7f2fd8931982c9a3ed19f6a3b137a8b7e5af
 ---
 
 > ## Documentation Index
@@ -76,6 +76,7 @@ Match the message you see to a section below.
 | `API Error: 401 Invalid authentication credentials`                                                                                                                                                                                                                  | [Authentication](#api-error-401-invalid-authentication-credentials)                                                           |
 | `Login expired · Please run /login`                                                                                                                                                                                                                                  | [Authentication](#login-expired)                                                                                              |
 | `Claude login not accepted · Run /login, then try again`                                                                                                                                                                                                             | [Authentication](#claude-login-not-accepted)                                                                                  |
+| `Artifacts need a claude.ai login`                                                                                                                                                                                                                                   | [Authentication](#artifacts-need-a-claude-ai-login)                                                                           |
 | `Not signed in to the Cloud gateway — run /login.`                                                                                                                                                                                                                   | [Authentication](#administrator-policy-requires-a-cloud-gateway-sign-in)                                                      |
 | `Administrator policy requires a Cloud gateway sign-in on this machine`                                                                                                                                                                                              | [Authentication](#administrator-policy-requires-a-cloud-gateway-sign-in)                                                      |
 | `Failed to authenticate: OAuth session expired and could not be refreshed`                                                                                                                                                                                           | [Authentication](#login-expired)                                                                                              |
@@ -92,6 +93,7 @@ Match the message you see to a section below.
 | `Issuer mismatch in authorization response (RFC 9207)`                                                                                                                                                                                                               | [Authentication](#issuer-mismatch-in-authorization-response)                                                                  |
 | `Cloud gateway session expired — run /login to reconnect.`                                                                                                                                                                                                           | [Authentication](#cloud-gateway-session-expired)                                                                              |
 | `Cloud gateway <url> no longer accepts this session`                                                                                                                                                                                                                 | [Authentication](#cloud-gateway-session-expired)                                                                              |
+| `Sign-in timed out while waiting for you to continue. Try again.`                                                                                                                                                                                                    | [Authentication](#sign-in-timed-out-while-waiting-for-you-to-continue)                                                        |
 | `AWS credentials expired or invalid`                                                                                                                                                                                                                                 | [Authentication](#aws-credentials-expired-or-invalid)                                                                         |
 | `AWS authentication failed`                                                                                                                                                                                                                                          | [Authentication](#aws-authentication-failed)                                                                                  |
 | `Google Cloud credentials expired or invalid`                                                                                                                                                                                                                        | [Authentication](#google-cloud-credentials-expired-or-invalid)                                                                |
@@ -154,11 +156,14 @@ Match the message you see to a section below.
 | `effort '<level>' is not supported when thinking is disabled`                                                                                                                                                                                                        | [Request errors](#effort-isnt-available-with-thinking-turned-off)                                                             |
 | `max_tokens must be greater than thinking.budget_tokens`                                                                                                                                                                                                             | [Request errors](#thinking-budget-exceeds-output-limit)                                                                       |
 | `API Error: 400 due to tool use concurrency issues`                                                                                                                                                                                                                  | [Request errors](#tool-use-or-thinking-block-mismatch)                                                                        |
+| `API Error: 400 orphaned tool_result in conversation history`                                                                                                                                                                                                        | [Request errors](#tool-use-or-thinking-block-mismatch)                                                                        |
+| `API Error: 400 duplicate tool_use ID in conversation history`                                                                                                                                                                                                       | [Request errors](#tool-use-or-thinking-block-mismatch)                                                                        |
 | `[Unsupported tool content removed]`                                                                                                                                                                                                                                 | [Request errors](#unsupported-tool-content-removed)                                                                           |
 | `server_tool_use.name: Input should be` on every turn of a resumed session                                                                                                                                                                                           | [Request errors](#unsupported-tool-content-removed)                                                                           |
 | `<model> can't help with this. Start a new session to continue`                                                                                                                                                                                                      | [Request errors](#usage-policy-refusal)                                                                                       |
 | `Claude Code is unable to respond to this request, which appears to violate our Usage Policy`                                                                                                                                                                        | [Request errors](#usage-policy-refusal)                                                                                       |
 | `<model>'s safeguards flagged this message`                                                                                                                                                                                                                          | [Request errors](#safety-measures-flagged-a-cybersecurity-topic)                                                              |
+| `Opus 5.5's safeguards flagged this session`                                                                                                                                                                                                                         | [Request errors](#safety-measures-flagged-a-cybersecurity-topic)                                                              |
 | `<model> has safety measures that flagged this message for a cybersecurity topic`                                                                                                                                                                                    | [Request errors](#safety-measures-flagged-a-cybersecurity-topic)                                                              |
 | `Installation was killed before it could finish (exit code 137)`                                                                                                                                                                                                     | [Installation errors](#installation-was-killed-before-it-could-finish)                                                        |
 | `The connection dropped while downloading the update`                                                                                                                                                                                                                | [Installation errors](#the-connection-dropped-while-downloading-the-update)                                                   |
@@ -204,6 +209,8 @@ Match the message you see to a section below.
 | `No conversation found with session ID: <session-id>`                                                                                                                                                                                                                | [Command-line errors](#no-conversation-found-with-the-session-id)                                                             |
 | `Cannot switch renderers in this session`                                                                                                                                                                                                                            | [Command-line errors](#cannot-switch-renderers-in-this-session)                                                               |
 | `Cannot switch renderers while work is running in the background`                                                                                                                                                                                                    | [Command-line errors](#cannot-switch-renderers-in-this-session)                                                               |
+| `Couldn't open Claude Desktop`                                                                                                                                                                                                                                       | [Command-line errors](#couldnt-open-claude-desktop)                                                                           |
+| `Failed to open Claude Desktop. Please try opening it manually.`                                                                                                                                                                                                     | [Command-line errors](#couldnt-open-claude-desktop)                                                                           |
 | `Couldn't read your Zed keymap` / `Couldn't back up your Zed keymap` / `Couldn't update your Zed keymap`                                                                                                                                                             | [Command-line errors](#terminal-setup-left-your-zed-keymap-unchanged)                                                         |
 | `Your Zed keymap isn't a readable list of keybindings`                                                                                                                                                                                                               | [Command-line errors](#terminal-setup-left-your-zed-keymap-unchanged)                                                         |
 | `Skill usage reports are not available on this connection.`                                                                                                                                                                                                          | [Command-line errors](#skill-usage-reports-are-not-available-on-this-connection)                                              |
@@ -211,6 +218,7 @@ Match the message you see to a section below.
 | `Output styles are saved to local settings (.claude/settings.local.json), which this session doesn't load`                                                                                                                                                           | [Command-line errors](#output-styles-are-saved-to-local-settings-which-this-session-doesnt-load)                              |
 | `` `plugin eval` is currently in early access `` / `` `plugin eval` is currently unavailable ``                                                                                                                                                                      | [Plugin errors](#plugin-eval-is-currently-in-early-access)                                                                    |
 | `Marketplace "<name>" is registered from an untrusted source`                                                                                                                                                                                                        | [Plugin errors](#marketplace-is-registered-from-an-untrusted-source)                                                          |
+| `Marketplace "<name>" is already added from a different source`                                                                                                                                                                                                      | [Plugin errors](#marketplace-is-already-added-from-a-different-source)                                                        |
 | `references ${user_config.*} in a shell-form command`                                                                                                                                                                                                                | [Plugin errors](#plugin-command-references-user-config)                                                                       |
 | `Monitor "<name>" from plugin <plugin> references ${user_config.*} in its command`                                                                                                                                                                                   | [Plugin errors](#plugin-command-references-user-config)                                                                       |
 | `headersHelper for MCP server '<name>' references ${user_config.*}`                                                                                                                                                                                                  | [Plugin errors](#plugin-command-references-user-config)                                                                       |
@@ -221,6 +229,7 @@ Match the message you see to a section below.
 | `Plugin source path refused`                                                                                                                                                                                                                                         | [Plugin errors](#marketplace-entry-path-does-not-stay-inside-the-marketplace-directory)                                       |
 | `Failed to load marketplace configuration`                                                                                                                                                                                                                           | [Plugin errors](#failed-to-load-marketplace-configuration)                                                                    |
 | `Marketplace configuration file is corrupted`                                                                                                                                                                                                                        | [Plugin errors](#failed-to-load-marketplace-configuration)                                                                    |
+| `Plugin "<name>@synced" is required by your organization and can't be disabled here`                                                                                                                                                                                 | [Plugin errors](#plugin-is-required-by-your-organization)                                                                     |
 | `would be spawned with zero tools — refusing`                                                                                                                                                                                                                        | [Tool errors](#agent-would-be-spawned-with-zero-tools)                                                                        |
 | `File is covered by a Read deny rule in your permission settings`                                                                                                                                                                                                    | [Tool errors](#file-is-covered-by-a-read-deny-rule)                                                                           |
 | `subagent_type is required: the general-purpose agent is not available in this session`                                                                                                                                                                              | [Tool errors](#subagent-type-is-required)                                                                                     |
@@ -251,6 +260,8 @@ Match the message you see to a section below.
 | `Can't open MCP settings in a background session`                                                                                                                                                                                                                    | [Background session errors](#commands-refused-in-a-background-session)                                                        |
 | `blocked because the path is spelled in a form that cannot be safely resolved`                                                                                                                                                                                       | [Background session errors](#write-or-command-blocked-because-the-path-cannot-be-safely-resolved)                             |
 | `blocked because the path is network-shaped`                                                                                                                                                                                                                         | [Background session errors](#write-or-command-blocked-because-the-path-names-a-network-location)                              |
+| `is isolated in the worktree <path>, but this command <reason>. Refusing to run it`                                                                                                                                                                                  | [Background session errors](#command-blocked-by-the-worktree-isolation-checks)                                                |
+| `too complex to verify that it stays inside the worktree`                                                                                                                                                                                                            | [Background session errors](#command-blocked-by-the-worktree-isolation-checks)                                                |
 | `This session has no saved transcript`                                                                                                                                                                                                                               | [Background session errors](#this-session-has-no-saved-transcript)                                                            |
 | `Can't open — this session is running in another terminal`                                                                                                                                                                                                           | [Background session errors](#this-session-is-running-in-another-terminal)                                                     |
 | `This conversation is already open in another running Claude session`                                                                                                                                                                                                | [Background session errors](#this-session-is-running-in-another-terminal)                                                     |
@@ -286,6 +297,7 @@ Match the message you see to a section below.
 | `MCP server <name> is blocked by enterprise managed policy`                                                                                                                                                                                                          | [Configuration warnings](#mcp-server-is-blocked-by-enterprise-managed-policy)                                                 |
 | `Managed settings document could not be parsed as a JSON object; none of its settings are in effect. Fix or remove it.`                                                                                                                                              | [Configuration warnings](#managed-settings-document-could-not-be-parsed)                                                      |
 | `Managed settings drop-in directory could not be read`                                                                                                                                                                                                               | [Configuration warnings](#managed-settings-document-could-not-be-parsed)                                                      |
+| `otelHeadersHelper failed; telemetry is not being exported. See /status: ...`                                                                                                                                                                                        | [Configuration warnings](#otelheadershelper-failed)                                                                           |
 | `"crossSessionInbound" must be one of "accept", "hold", "refuse"`                                                                                                                                                                                                    | [Configuration warnings](#crosssessioninbound-must-be-one-of-accept-hold-refuse)                                              |
 | `headersHelper not run — this workspace has no persisted trust`                                                                                                                                                                                                      | [Configuration warnings](#headershelper-not-run)                                                                              |
 | `Invalid permission rule "..." was skipped: Malformed Tool(content) rule`                                                                                                                                                                                            | [Configuration warnings](#malformed-tool-content-rule)                                                                        |
@@ -603,7 +615,7 @@ When this error appears mid-conversation because the context grew past 200K toke
 **What to do:**
 
 * Run `/model` and select the variant without the `[1m]` suffix to fall back to the standard context window
-* Where the message names `/usage-credits`, run it to turn on metered billing for the 1M variant on Pro and Max, or to request usage credits from your admin on Team and Enterprise. Restart Claude Code once usage credits are on. Until you restart, the session stays at the standard context limit.
+* Where the message names `/usage-credits`, run it to turn on metered billing for the 1M variant on Pro and Max, or to request usage credits from your admin on Team and Enterprise. Once usage credits are on, restart Claude Code or start a new session, whichever the message says. Until then, the session stays at the standard context limit.
 * If the error persists after `/model`, a 1M model ID may be set elsewhere. See [Setting your model](/docs/en/model-config#setting-your-model) for the configuration locations to check in priority order.
 * To remove 1M variants from the model picker entirely, set [`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`](/docs/en/env-vars)
 
@@ -820,7 +832,8 @@ Running `/login` doesn't help here: the helper's output [takes precedence](/docs
 * Run the command configured in `apiKeyHelper` directly in your shell to reproduce the failure
 * If the command reports an expired session, re-authenticate with your credential provider, for example by signing in to your SSO or secrets vault again
 * Fix the command so it prints only the key to stdout, as a single token of printable ASCII up to 16,384 characters, and exits with code 0. See [rotate credentials with apiKeyHelper](/docs/en/llm-gateway-connect#rotate-credentials-with-apikeyhelper) for a working setup.
-* Run `/status` to confirm `apiKeyHelper` is the active credential source. Each time the command fails, its exit code and error output appear in an `Authentication` panel in the terminal. Before v2.1.212, the panel was titled `Cloud authentication`.
+* Run `/status` to see the failure and confirm `apiKeyHelper` is the active credential source. The `apiKeyHelper` row shows `Failing` with the last failure's detail, such as the exit code and the command's error output, and disappears after the next successful run. Before v2.1.274, `/status` showed only the credential source, not the failure.
+* Each time the command fails, its exit code and error output also appear in an `Authentication` panel in the terminal. Before v2.1.212, the panel was titled `Cloud authentication`.
 
 ### Invalid request header value
 
@@ -1107,6 +1120,26 @@ Claude login not accepted · Run /login, then try again
 **What to do:**
 
 * Run `/login`, complete the sign-in, then start the session again
+
+<h3 id="artifacts-need-a-claude-ai-login">
+  Artifacts need a claude.ai login
+</h3>
+
+Claude Code refused an [artifact](/docs/en/artifacts) publish or read because the session has no claude.ai login it can use for artifacts.
+
+Every form of the message starts with the same words, followed by a remedy that depends on how your session authenticates. With no competing credential it reads:
+
+```text theme={null}
+Artifacts need a claude.ai login. Run /login and select "Claude account with subscription", then retry — the "Anthropic Console account" option does not provide claude.ai credentials.
+```
+
+**What to do:**
+
+* Run `/login` and select **Claude account with subscription**. The **Anthropic Console account** option doesn't provide claude.ai credentials.
+* When the message names a credential that takes precedence, such as `ANTHROPIC_API_KEY`, an `apiKeyHelper` setting, or a Console key saved by a previous `/login`, remove it the way the message says, then run `/login`
+* When the message says this remote session authenticates through the machine that launched it, sign in to claude.ai on that machine, then reconnect the session
+* When the message says the credential is injected by the session's host environment, you can't change it in that session; start a session that is signed in to claude.ai
+* See [Availability](/docs/en/artifacts#availability) for the other requirements artifacts have, such as plan, model provider, and organization policy
 
 <h3 id="administrator-policy-requires-a-cloud-gateway-sign-in">
   Administrator policy requires a Cloud gateway sign-in
@@ -1445,6 +1478,18 @@ Cloud gateway <url> no longer accepts this session. Start `claude` and sign in a
 
 * Run `/login` in the session and complete the browser sign-in
 * For a non-interactive launch, start `claude` in the same environment, run `/login`, then rerun your command
+
+### Sign-in timed out while waiting for you to continue
+
+During a [Claude apps gateway](/docs/en/claude-apps-gateway) sign-in, the gateway named the account that signed in, and Claude Code asked you to confirm it before saving the credential. You left the confirmation open past the sign-in's own expiry, and the gateway issued no refresh token that could renew it, so Claude Code stored nothing when you continued:
+
+```text theme={null}
+Sign-in timed out while waiting for you to continue. Try again.
+```
+
+**What to do:**
+
+* Run `/login` again and confirm the account before the sign-in expires
 
 ### Gateway refused the request
 
@@ -2127,9 +2172,9 @@ API Error: 400 ... "thinking.type.enabled" is not supported for this model. Use 
 
 **What to do:**
 
-* Run `claude update` and restart Claude Code. Opus 4.7 needs v2.1.111 or later. Opus 4.8 needs v2.1.154 or later. Sonnet 5 needs v2.1.197 or later. Opus 5 needs v2.1.219 or later
+* Run `claude update` and restart Claude Code. Opus 4.7 needs v2.1.111 or later. Opus 4.8 needs v2.1.154 or later. Sonnet 5 needs v2.1.197 or later. Opus 5 needs v2.1.219 or later. Opus 5.5 needs v2.1.280 or later
 * If you can't upgrade, run `/model` and select Opus 4.6 or Sonnet 4.6 instead
-* If you hit this in the [Agent SDK](/docs/en/agent-sdk/overview), upgrade the SDK package instead. Opus 4.8 needs TypeScript SDK v0.3.154 or later and Python SDK v0.2.88 or later. Sonnet 5 needs TypeScript SDK v0.3.197 or later. Opus 5 needs TypeScript SDK v0.3.219 or later
+* If you hit this in the [Agent SDK](/docs/en/agent-sdk/overview), upgrade the SDK package instead. Opus 4.8 needs TypeScript SDK v0.3.154 or later and Python SDK v0.2.88 or later. Sonnet 5 needs TypeScript SDK v0.3.197 or later. Opus 5 needs TypeScript SDK v0.3.219 or later. Opus 5.5 needs TypeScript SDK v0.3.280 or later
 
 <h3 id="effort-isnt-available-with-thinking-turned-off">
   Effort isn't available with thinking turned off
@@ -2169,11 +2214,13 @@ The conversation history reached the API in an inconsistent state, usually after
 
 ```text theme={null}
 API Error: 400 due to tool use concurrency issues. Run /rewind to recover the conversation.
+API Error: 400 orphaned tool_result in conversation history. Run /rewind to recover the conversation.
+API Error: 400 duplicate tool_use ID in conversation history. Run /rewind to recover the conversation.
 API Error: 400 ... unexpected `tool_use_id` found in `tool_result` blocks
 API Error: 400 ... thinking blocks ... cannot be modified
 ```
 
-All three variants mean the same thing: the sequence of `tool_use`, `tool_result`, and `thinking` blocks in history no longer matches what the API expects.
+All variants mean the same thing: the sequence of `tool_use`, `tool_result`, and `thinking` blocks in history no longer matches what the API expects.
 
 **What to do:**
 
@@ -2225,7 +2272,7 @@ The model's safety measures flagged content in the conversation as a cybersecuri
 API Error: Opus 4.8's safeguards flagged this message. Our intentionally broad safeguards allow us to deliver more capabilities faster, but can sometimes flag legitimate cybersecurity work. Apply to the Cyber Verification Program to reduce these interruptions. Send feedback with /feedback or learn more: https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude
 ```
 
-The message links to the [Cyber Verification Program](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude), which grants access for legitimate cybersecurity work.
+The message links to the [Cyber Verification Program](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude), which grants access for legitimate cybersecurity work. On Opus 5.5, which requires v2.1.280 or later, the message opens with `Opus 5.5's safeguards flagged this session` instead. When the flagged category has a fallback model available, Claude Code [switches models](/docs/en/model-config#automatic-model-fallback) rather than showing this error.
 
 On [Amazon Bedrock](/docs/en/amazon-bedrock), [Google Cloud's Agent Platform](/docs/en/google-vertex-ai), and [Microsoft Foundry](/docs/en/microsoft-foundry), a cybersecurity flag produces the [Usage Policy refusal](#usage-policy-refusal) message instead.
 
@@ -2892,6 +2939,7 @@ Claude Code exits with code 1 after showing the message. The `/resume` picker in
 **What to do:**
 
 * Run `claude --resume <session-id>` with the session ID from the message to retry
+* If every retry fails the same way, run `claude update` and resume again. Versions before v2.1.275 fail the resume when the saved transcript contains an entry they can't read.
 * If the retry fails again, run `claude` to start a new session
 
 ### No conversation found with the session ID
@@ -2939,6 +2987,23 @@ Each reason the message can show in parentheses:
 **What to do:**
 
 * In a session started without those restrictions, run `/tui fullscreen`, or `/tui default` to switch back. Claude Code saves the [`tui` setting](/docs/en/settings-reference#tui) there
+
+<h3 id="couldnt-open-claude-desktop">
+  Couldn't open Claude Desktop
+</h3>
+
+You ran [`/desktop`](/docs/en/desktop#coming-from-the-cli), or its alias `/app`, and the system command Claude Code uses to open Claude Desktop failed. The session stays in the terminal.
+
+```text theme={null}
+Error: Couldn't open Claude Desktop (`open` exited 1: LSOpenURLsWithRole() failed for the URL claude://resume?session=<session-id> with error -10814). Open Claude Desktop and run /desktop again.
+```
+
+**What to do:**
+
+* Open Claude Desktop yourself, then run `/desktop` again
+* To read that command's full error output, turn on debug logging with `/debug`, run `/desktop` again, and check the debug log
+
+Before v2.1.275, the message was `Failed to open Claude Desktop. Please try opening it manually.` and didn't say what failed.
 
 <h3 id="terminal-setup-left-your-zed-keymap-unchanged">
   /terminal-setup left your Zed keymap unchanged
@@ -3050,6 +3115,19 @@ For a marketplace whose source isn't a GitHub repository or a Git URL, such as a
 * If the marketplace is already registered, run `claude plugin marketplace remove <name>`, then add it again from the official `github.com/anthropics` repository
 * If you publish a third-party marketplace that used the name before it became reserved, rename it and ask users to re-add it from your source
 * See the reserved name list under [Marketplace schema](/docs/en/plugin-marketplaces#marketplace-schema)
+
+### Marketplace is already added from a different source
+
+You confirmed adding a marketplace through [`/plugin install <plugin> --marketplace <source>`](/docs/en/discover-plugins#add-a-marketplace-and-install-in-one-command), and the catalog Claude Code fetched from that source names itself the same as a marketplace you already added from a different source. Claude Code keeps the existing marketplace instead of replacing it, and the plugin isn't installed.
+
+```text theme={null}
+Marketplace "acme-tools" is already added from a different source (github:acme/plugins). To use this source instead, remove that marketplace first with /plugin marketplace remove acme-tools.
+```
+
+**What to do:**
+
+* If the marketplace you already added is the one you want, install from it by name: `/plugin install <plugin>@<name>`
+* To switch to the new source, run `/plugin marketplace remove <name>`, then retry the install
 
 <h3 id="plugin-command-references-user-config">
   Plugin command references user\_config in a shell command
@@ -3167,6 +3245,7 @@ Before v2.1.265, Claude Code treated a default component folder it couldn't chec
 The plugin's [marketplace entry](/docs/en/plugin-marketplaces#plugin-entries) declares a source path that Claude Code can't resolve to a location inside the marketplace's own directory, so the plugin doesn't install or load. The refusal covers:
 
 * An entry path that is absolute, climbs out of the marketplace with `..`, or is spelled like a network path
+* On macOS and Linux, an entry path that contains a backslash anywhere after the leading `./`
 * An entry in a marketplace fetched from a remote source, such as git or a URL, that reaches its target through a symlink resolving outside the marketplace directory
 * A relative entry in a marketplace added from a direct URL to its `marketplace.json`: Claude Code downloads only that file, so no local plugin files exist for the path to name. See [Plugins with relative paths fail in URL-based marketplaces](/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces)
 
@@ -3184,7 +3263,7 @@ Plugin source path refused: ./my-plugin does not stay inside its marketplace dir
 
 **What to do:**
 
-* If you maintain the marketplace, write the entry's `source` as a plain relative path such as `./plugins/my-plugin`, and keep any symlink it crosses pointed inside the marketplace directory
+* If you maintain the marketplace, write the entry's `source` as a plain relative path with forward slashes, such as `./plugins/my-plugin`, and keep any symlink it crosses pointed inside the marketplace directory
 * If you added the marketplace from a direct URL, relative entries can't resolve. Ask the marketplace author to use [another plugin source](/docs/en/plugin-marketplaces#plugin-sources), or add the marketplace from its git repository instead
 
 ### Failed to load marketplace configuration
@@ -3208,6 +3287,24 @@ Before v2.1.246, `claude plugin install` didn't report this failure.
 
 * Open `~/.claude/plugins/known_marketplaces.json` and repair the JSON, or fix the entries the message names as not matching the registry schema
 * If you can't repair it, delete the file or replace its contents with `{}`, then re-add each marketplace with `claude plugin marketplace add <source>`. Claude Code re-registers the marketplaces your user or managed settings declare in [`extraKnownMarketplaces`](/docs/en/settings-reference#extraknownmarketplaces) the next time you start it in a folder you've trusted.
+
+<h3 id="plugin-is-required-by-your-organization">
+  Plugin is required by your organization
+</h3>
+
+You ran `claude plugin disable`, or used the `/plugin` **Installed** tab, to turn off a [plugin synced from claude.ai](/docs/en/plugins-reference#synced-plugins) that your organization marks as required:
+
+```text theme={null}
+Plugin "<name>@synced" is required by your organization and can't be disabled here. Contact your admin to change it.
+```
+
+Claude Code saves nothing and the plugin stays enabled.
+
+When you try to disable a plugin that a required plugin depends on, Claude Code refuses the same way, with a message naming the required plugin that needs it.
+
+**What to do:**
+
+* Ask an admin of your claude.ai organization to change the plugin's required status on claude.ai
 
 ## Tool errors
 
@@ -3233,7 +3330,7 @@ Agent 'code-reviewer' would be spawned with zero tools — refusing. Its tools l
 
 * Correct each entry the error names against the [tools available to subagents](/docs/en/sub-agents#available-tools)
 * Remove entries for tools the session doesn't have, such as MCP tools from a server that isn't connected
-* For a tool that [background subagents drop](/docs/en/sub-agents#available-tools), such as `LSP`, remove the entry. To keep the tool, [turn fork mode off](/docs/en/sub-agents#turn-fork-mode-on-or-off) and ask Claude to run the subagent in the foreground
+* For a tool that [background subagents drop](/docs/en/sub-agents#available-tools), such as `CronCreate`, remove the entry. To keep the tool, [turn fork mode off](/docs/en/sub-agents#turn-fork-mode-on-or-off) and ask Claude to run the subagent in the foreground
 * Delete the `tools` field instead of listing tools to give the subagent every [tool available to subagents](/docs/en/sub-agents#available-tools)
 * For a `tools` list that contains only `Agent`, raise the [depth limit](/docs/en/sub-agents#let-subagents-spawn-their-own-subagents) or give the agent at least one other tool: Claude Code withholds `Agent` at that limit, so a list with nothing else in it resolves to no tools
 
@@ -3572,6 +3669,25 @@ A blocked command reports the same cause for its working directory and ends with
 
 * Usually nothing: Claude retries with the local spelling the message asks for
 * If the file is on a network share rather than a local file spelled with a network path, it's outside the session's local workspace; edit it from a regular interactive session instead
+
+### Command blocked by the worktree isolation checks
+
+Claude ran a Bash or Monitor command in a [session isolated in a worktree](/docs/en/worktrees#how-claude-code-enforces-isolation), and Claude Code refused it for one of two reasons:
+
+* The command points git at the main checkout.
+* Claude Code can't verify from the command text that any git the command runs stays inside the worktree. A command that never names git can still be refused for this reason, because expanding a variable indirection such as `${!name}` or running a Bash function substitution such as `${ command; }` produces a value at runtime that can itself be a command.
+
+The middle of the message names what couldn't be verified:
+
+```text wrap theme={null}
+This session is isolated in the worktree /path/to/worktree, but this command evaluates ${!x@P} arithmetically inside a construct too complex to verify, which can run a command hidden in a variable's value. Refusing to run it — a worktree-isolated session's git operations must target its own worktree. Split it into plain, separate commands and run them from /path/to/worktree.
+```
+
+**What to do:**
+
+* Usually nothing: Claude reads the message and rewrites the command the way its final sentence asks
+* If a command you asked for keeps being refused, spell the flagged value literally: replace the indirection or substitution with its value, and run git as its own plain command from inside the worktree
+* To act on the main checkout on purpose, run the command yourself in a terminal outside the session
 
 ### This session has no saved transcript
 
@@ -3940,6 +4056,8 @@ No files were restored: 1 file failed (backup missing, or the file could not be 
 
 Claude Code deletes a session's backups in the [retention sweep](/docs/en/claude-directory#cleaned-up-automatically), by default about 30 days after the session last saved one. If you resume a session after that, `/rewind` still lists its checkpoints, but rewinding to one of them can fail with this error. If the message also says `N paths were skipped for link safety`, see [Restored the code, but skipped files](#restored-the-code-but-skipped-files) for those paths.
 
+When you fork a session, for example with [`--fork-session`](/docs/en/cli-reference#cli-flags) or [`/branch`](/docs/en/sessions#branch-a-session), Claude Code copies the original session's backups into the fork. When Claude Code can't copy a backup, for example because the disk is full, that backup is missing in the fork. Rewinding to a checkpoint that needs it can fail with this error.
+
 **What to do:**
 
 * Undo the changes another way: ask Claude to reverse its edits, or restore the files from version control. When the backups are gone, running `/rewind` again fails the same way.
@@ -4187,6 +4305,28 @@ When a `managed-settings.d/` directory exists but can't be listed, Claude Code r
 * If you administer the machine, fix the named document so it parses as a JSON object, or remove the file, profile, or registry value. An empty `managed-settings.json` counts as `{}` and doesn't block launch.
 * If you don't, ask your administrator to fix the deployed document. Nothing in your own settings files causes or clears this error.
 
+<h3 id="otelheadershelper-failed">
+  otelHeadersHelper failed
+</h3>
+
+Claude Code shows this warning as a notification in the terminal interface, once per interactive session, when the [`otelHeadersHelper`](/docs/en/settings-reference#otelheadershelper) script fails or prints output that doesn't meet the [script requirements](/docs/en/monitoring-usage#script-requirements).
+
+While the script keeps failing, exports fail and your telemetry backend receives nothing from the session.
+
+The text after `See /status:` says what failed, such as the script's exit code followed by its error output:
+
+```text theme={null}
+otelHeadersHelper failed; telemetry is not being exported. See /status: exited 1: token service unreachable
+```
+
+**What to do:**
+
+* Run `/status` to read the failure detail.
+* Fix the script so it exits 0 within 30 seconds and prints a JSON object of string header values on stdout. See [script requirements](/docs/en/monitoring-usage#script-requirements).
+* If your organization deploys the script through [managed settings](/docs/en/managed-settings), ask whoever maintains them to fix it.
+
+In [non-interactive mode](/docs/en/headless) with `-p`, the same failure appears on stderr as `otelHeadersHelper failed (OpenTelemetry export headers unavailable): <error>` instead.
+
 ### headersHelper not run
 
 Claude Code connected an MCP server with its static `headers` alone and skipped the server's [`headersHelper`](/docs/en/mcp#use-dynamic-headers-for-custom-authentication), because the helper is a shell command and the folder has no saved trust. A folder gets saved trust when you set its entry in `~/.claude.json` by hand or, outside your home directory, when you accept the trust dialog for it in an interactive session. See [Trust a folder before its headersHelper runs](/docs/en/mcp#trust-a-folder-before-its-headershelper-runs) for which servers this check applies to.
@@ -4371,7 +4511,7 @@ If Claude's answers seem less capable than you expect but no error is shown, the
 
 * A configured [`--fallback-model`](/docs/en/cli-reference#cli-flags) takes over after an availability error, for that turn only, with a notice in the transcript
 * An Amazon Bedrock or Google Cloud's Agent Platform startup check finds your default model unavailable
-* [Automatic model fallback](/docs/en/model-config#automatic-model-fallback) on Fable 5.1, Fable 5, and Opus 5 moves the session to the flagged category's fallback model, when that category has one, and shows a notice in the transcript
+* [Automatic model fallback](/docs/en/model-config#automatic-model-fallback) on Fable 5.1, Fable 5, Opus 5.5, and Opus 5 moves the session to the flagged category's fallback model, when that category has one, and shows a notice in the transcript
 
 The Model selection check below catches the second and third cases; the first appears as a transcript notice rather than a `/model` change. [Model configuration](/docs/en/model-config) explains when each fallback applies.
 

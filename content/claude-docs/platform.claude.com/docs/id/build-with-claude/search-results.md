@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f56e89c150202f933a8154c27d30f4975ac039f8f2b4a7c52eebd0e066fd130f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 4e6f54e547beab20a1773ca6cf7a8890aa7faa86d677be45ad45be2032f56233
 ---
 
 ---
@@ -804,7 +804,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -850,7 +850,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -889,9 +889,9 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
 
   client = Anthropic()
 
-  # Berikan hasil pencarian langsung di dalam pesan pengguna
+  # Berikan hasil pencarian langsung di pesan pengguna
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           MessageParam(
@@ -936,9 +936,9 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Sediakan hasil pencarian langsung di dalam pesan pengguna
+  // Berikan hasil pencarian langsung di pesan pengguna
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -983,10 +983,10 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   ```csharp C#
   AnthropicClient client = new();
 
-  // Sediakan hasil pencarian langsung di dalam pesan pengguna
+  // Berikan hasil pencarian langsung di pesan pengguna
   var response = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1022,7 +1022,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1064,7 +1064,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(List.of(
               ContentBlockParam.ofSearchResult(
@@ -1144,7 +1144,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT);
@@ -1154,7 +1154,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1317,7 +1317,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -1398,7 +1398,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: search_knowledge_base
@@ -1473,10 +1473,10 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
       },
   }
 
-  # Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
+  # Putar ulang percakapan yang memberikan hasil pencarian dengan dua cara: pesan
   # pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[knowledge_base_tool],
       messages=[
@@ -1560,9 +1560,9 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
   };
 
   // Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
-  // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
+  // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan hasil lain
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [knowledgeBaseTool],
     messages: [
@@ -1632,10 +1632,10 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
   AnthropicClient client = new();
 
   // Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
-  // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
+  // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan hasil lain
   var response = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools =
       [
@@ -1733,7 +1733,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
   // Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
   // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools:     []anthropic.ToolUnionParam{knowledgeBaseTool},
   	Messages: []anthropic.MessageParam{
@@ -1808,7 +1808,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
       // Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
       // pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(knowledgeBaseTool)
           .addUserMessageOfBlockParams(List.of(
@@ -1934,7 +1934,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1955,10 +1955,10 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
     }
   }
 
-  # Putar ulang percakapan yang menyediakan hasil pencarian dengan dua cara: pesan
+  # Putar ulang percakapan yang memberikan hasil pencarian dengan dua cara: pesan
   # pengguna pertama membawa hasil yang sudah diambil, hasil alat mengembalikan yang lain
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [knowledge_base_tool],
     messages: [

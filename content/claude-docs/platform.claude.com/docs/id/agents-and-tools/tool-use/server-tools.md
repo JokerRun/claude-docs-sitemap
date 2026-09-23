@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 9181077d121a23012d347f50dce0da48cafd75d2c66d12237bb18ca0f7d5a031
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 384a1a182dd2d4e1c38349c7b8eac22a03ca933ca57c6672ec7b7c4a2e8770b0
 ---
 
 ---
@@ -37,13 +37,13 @@ Berikut cara menangani stop reason `pause_turn`:
 <CodeGroup>
   ```bash cURL
   # Permintaan awal. Jika "stop_reason" dalam respons adalah "pause_turn", lanjutkan
-  # giliran dengan mengirim ulang permintaan dengan konten asisten ditambahkan ke messages.
+  # giliran dengan mengirim ulang permintaan beserta konten asisten yang ditambahkan ke messages.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -56,10 +56,10 @@ Berikut cara menangani stop reason `pause_turn`:
   ```
 
   ```bash CLI
-  # Permintaan awal. Jika "stop_reason" pada output adalah "pause_turn", jalankan ulang dengan
+  # Permintaan awal. Jika "stop_reason" pada output bernilai "pause_turn", jalankan ulang dengan
   # konten asisten ditambahkan ke messages (lihat tab SDK).
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - {type: web_search_20250305, name: web_search, max_uses: 10}
@@ -73,7 +73,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
   # Permintaan awal dengan pencarian web
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -84,7 +84,7 @@ Berikut cara menangani stop reason `pause_turn`:
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
   )
 
-  # Periksa apakah respons memiliki stop_reason pause_turn
+  # Periksa apakah respons memiliki stop reason pause_turn
   if response.stop_reason == "pause_turn":
       # Lanjutkan percakapan dengan konten yang dijeda
       messages = [
@@ -97,7 +97,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
       # Kirim permintaan lanjutan
       continuation = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=messages,
           tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
@@ -113,7 +113,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
   // Permintaan awal dengan pencarian web
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -145,7 +145,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
     // Kirim permintaan lanjutan
     const continuation = await client.messages.create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages,
       tools: [
@@ -168,7 +168,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
           new() {
@@ -186,7 +186,7 @@ Berikut cara menangani stop reason `pause_turn`:
       // Lanjutkan percakapan dengan konten yang dijeda
       var continuationParams = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [
               new() {
@@ -220,7 +220,7 @@ Berikut cara menangani stop reason `pause_turn`:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -234,7 +234,7 @@ Berikut cara menangani stop reason `pause_turn`:
   if response.StopReason == anthropic.StopReasonPauseTurn {
   	// Kirim kembali respons yang dijeda apa adanya agar Claude dapat melanjutkan giliran
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -259,7 +259,7 @@ Berikut cara menangani stop reason `pause_turn`:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
           .addTool(WebSearchTool20250305.builder()
@@ -272,7 +272,7 @@ Berikut cara menangani stop reason `pause_turn`:
       if (response.stopReason().isPresent()
               && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
           MessageCreateParams continuationParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
               .addMessage(response)
@@ -300,7 +300,7 @@ Berikut cara menangani stop reason `pause_turn`:
               'content' => 'Search for comprehensive information about quantum computing breakthroughs in 2025'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -325,7 +325,7 @@ Berikut cara menangani stop reason `pause_turn`:
       $continuation = $client->messages->create(
           maxTokens: 1024,
           messages: $messages,
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           tools: [
               [
                   'type' => 'web_search_20250305',
@@ -345,7 +345,7 @@ Berikut cara menangani stop reason `pause_turn`:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -376,7 +376,7 @@ Berikut cara menangani stop reason `pause_turn`:
     ]
 
     continuation = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: messages,
       tools: [

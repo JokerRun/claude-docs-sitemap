@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 7e8821d26a2cfb3f5094900bca00820f159f3a0867a2bc75b14c767068f0d229
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 0c5162aa9850ad928c0232e4fd0930f832578602e9cfd52f6fea39ad6d5271b3
 ---
 
 > ## Documentation Index
@@ -465,7 +465,7 @@ Some of what you commit waits until each teammate [trusts the folder](/docs/en/p
 
 ### Keep personal settings out of a repository
 
-To change a setting for yourself in one project without changing it for your teammates, save it in `.claude/settings.local.json` inside the project. Claude Code applies that file over the committed `.claude/settings.json`, so if your team's file sets `"model": "claude-sonnet-5"` and you want Opus, put `"model": "claude-opus-4-8"` in your local file and only your sessions change.
+To change a setting for yourself in one project without changing it for your teammates, save it in `.claude/settings.local.json` inside the project. Claude Code applies that file over the committed `.claude/settings.json`, so if your team's file sets `"model": "claude-sonnet-5"` and you want Opus, put `"model": "claude-opus-5-5"` in your local file and only your sessions change.
 
 Claude Code also writes to this file, keeps it out of your commits, and applies its allow rules without the trust step:
 
@@ -583,7 +583,7 @@ If you press `s` in the `/model` picker, Claude Code switches the model without 
 For example, to start one session on Opus without changing your default:
 
 ```bash theme={null}
-claude --settings '{"model": "claude-opus-4-8"}'
+claude --settings '{"model": "claude-opus-5-5"}'
 ```
 
 ### When edits take effect

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2ca7026b6776d71751562a2911c25e58f803b3f43c5e8622e1782f7eb58a29bd
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: aef06da86118525ddbc63d10380899541aad76680be73a71e6b6cea2b801c5dc
 ---
 
 ---
@@ -28,7 +28,7 @@ Tulis agen sebagai berkas Markdown di bawah `agents/`, lalu terapkan:
     ```markdown
     ---
     name: Summarizer
-    model: claude-opus-5
+    model: claude-opus-5-5
     tools:
       - type: agent_toolset_20260401
     ---
@@ -118,7 +118,7 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
     ```markdown
     ---
     name: Code reviewer
-    model: claude-opus-5
+    model: claude-opus-5-5
     tools:
       - type: agent_toolset_20260401
     skills:
@@ -133,7 +133,7 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
     ```markdown
     ---
     name: Engineering lead
-    model: claude-opus-5
+    model: claude-opus-5-5
     multiagent:
       type: coordinator
       agents:

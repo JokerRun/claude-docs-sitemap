@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 25fb41e695eb1be982445b24363aac34b0e11d05c1800f7db5b216a24d65b097
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 754df8cbb4da2702f165d61813e682d2fe30f8dc8bff000a74465ac3db4395c7
 ---
 
 > ## Documentation Index
@@ -79,7 +79,7 @@ The optional `hideVimModeIndicator` field suppresses the built-in `-- INSERT --`
 
 ### Disable the status line
 
-Run `/statusline` and ask it to remove or clear your status line (e.g., `/statusline delete`, `/statusline clear`, `/statusline remove it`). You can also manually delete the `statusLine` field from your settings.json.
+Run `/statusline` and ask it to remove or clear your status line (for example, `/statusline delete`, `/statusline clear`, `/statusline remove it`). You can also manually delete the `statusLine` field from your settings.json.
 
 ## Build a status line step by step
 
@@ -229,7 +229,7 @@ Claude Code sends the following JSON fields to your script via stdin:
     "prompt_id": "550e8400-e29b-41d4-a716-446655440000",
     "transcript_path": "/path/to/transcript.jsonl",
     "model": {
-      "id": "claude-opus-5",
+      "id": "claude-opus-5-5",
       "display_name": "Opus"
     },
     "workspace": {

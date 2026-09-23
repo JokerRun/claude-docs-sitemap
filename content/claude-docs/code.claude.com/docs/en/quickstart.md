@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: c68c8537c767e88dc4cddfdb6d5e9a2aa85ed3118f3c9d0e2a4539c82222e06f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: da9ce9f25fa205a6e26c438c1dd05a8d1b407aa7cb1e3d34e82a2a4cebe5a97a
 ---
 
 > ## Documentation Index
@@ -358,6 +358,7 @@ Now that you've learned the basics, explore more advanced features:
 
 ## Getting help
 
-* **In Claude Code**: Type `/help` or ask "how do I..."
+* **In Claude Code**: Type `/help` or ask a "how do I" question
 * **Documentation**: You're here! Browse other guides
+* **Courses**: Take [Claude Code 101](https://academy.claude.com/courses/claude-code-101) and other free self-paced courses on [Claude Academy](https://academy.claude.com/)
 * **Community**: Join our [Discord](https://www.anthropic.com/discord) for tips and support

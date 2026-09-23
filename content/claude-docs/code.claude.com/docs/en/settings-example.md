@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-example
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: c8360a9cb51a997ae1f19e5aecfba584b7141f358a84a768f1003c001f329483
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: a99c045e3d9c2ae3833de4f8b684d8f947af339caa78dc7c3222891227aae7fd
 ---
 
 > ## Documentation Index
@@ -34,7 +34,9 @@ One developer's personal settings. It picks a model and effort, adjusts the term
     ```json ~/.claude/settings.json theme={null}
     {
       "model": "claude-sonnet-5",
-      "effortLevel": "xhigh",
+      "modelSettings": {
+        "claude-sonnet-5": { "effortLevel": "xhigh" }
+      },
       "editorMode": "vim",
       "theme": "light-daltonized",
       "statusLine": {
@@ -63,8 +65,10 @@ One developer's personal settings. It picks a model and effort, adjusts the term
     {
       // Start every session on Sonnet 5
       "model": "claude-sonnet-5",
-      // Reason more deeply than the default high level on models without a saved level; /effort saves a level per model, and --effort sets one for a single session
-      "effortLevel": "xhigh",
+      // Run Sonnet 5 above its default high level; /effort saves a level per model, and --effort sets one for a single session
+      "modelSettings": {
+        "claude-sonnet-5": { "effortLevel": "xhigh" }
+      },
       // Vim keybindings in the prompt
       "editorMode": "vim",
       // The colorblind-friendly light theme

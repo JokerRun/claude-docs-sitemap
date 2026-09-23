@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: d777b8f7e3f4cffc4cd23f7078f5391ea7b0e51273dabe213f04edbba3c606a2
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d27f8ceb304bdd0dff15c7adc176f9e24a0e7814f9d03a3736ca5b268b708030
 ---
 
 ---
@@ -68,7 +68,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1000,
       "messages": [{"role": "user", "content": "What tools do you have available?"}],
       "mcp_servers": [
@@ -90,7 +90,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
 
   ```bash CLI
   ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1000
   messages:
     - role: user
@@ -110,7 +110,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1000,
       messages=[{"role": "user", "content": "What tools do you have available?"}],
       mcp_servers=[
@@ -132,7 +132,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   const anthropic = new Anthropic();
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       {
@@ -165,7 +165,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
@@ -195,7 +195,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -232,7 +232,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1000L)
           .addUserMessage("What tools do you have available?")
           .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -259,7 +259,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
       messages: [
           ['role' => 'user', 'content' => 'What tools do you have available?']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           [
               'type' => 'url',
@@ -284,7 +284,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       { role: "user", content: "What tools do you have available?" }
@@ -357,13 +357,15 @@ MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server M
 
 ### Deskripsi field
 
-| Properti          | Tipe   | Wajib | Deskripsi                                                                                                                                                 |
-| ----------------- | ------ | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`            | string | Ya    | Harus "mcp\_toolset".                                                                                                                                     |
-| `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                                              |
-| `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` menimpa default ini.                         |
-| `configs`         | object | Tidak | Penimpaan konfigurasi per alat. Key adalah nama alat, value adalah objek konfigurasi.                                                                     |
-| `cache_control`   | object | Tidak | Konfigurasi breakpoint cache ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk toolset ini. |
+| Properti          | Tipe   | Wajib | Deskripsi                                                                                                                              |
+| ----------------- | ------ | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`            | string | Ya    | Harus berupa "mcp\_toolset".                                                                                                           |
+| `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                           |
+| `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` akan menimpa default ini. |
+| `configs`         | object | Tidak | Penimpaan konfigurasi per alat. Key berupa nama alat, value berupa objek konfigurasi.                                                  |
+| `cache_control`   | object | Tidak | Konfigurasi cache breakpoint [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk toolset ini. |
+
+Dengan header beta `mcp-client-2026-09-15`, MCPToolset juga menerima `tools`, yaitu salinan daftar alat server yang disematkan (pinned). Lihat [Menyematkan daftar alat server MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#pin-mcp-tool-list).
 
 ### Opsi konfigurasi alat
 
@@ -531,13 +533,578 @@ Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten bar
 }
 ```
 
+## Menyematkan daftar alat server MCP (beta)
+
+Server MCP dapat mengubah alatnya kapan saja. Header beta `mcp-client-2026-09-15` mencatat daftar alat yang dikembalikan setiap server dan memungkinkan Anda menyematkannya, sehingga server yang mengubah alatnya tidak mengubah apa yang dilihat Claude di tengah percakapan. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. Fitur ini tersedia di Claude API.
+
+Ketika API meminta daftar alat dari server MCP saat menghasilkan respons, respons diawali dengan blok `mcp_tool_listing` untuk server tersebut, satu blok untuk setiap server yang dimintai:
+
+```json
+{
+  "type": "mcp_tool_listing",
+  "mcp_server_name": "example-mcp",
+  "tools": [
+    {
+      "name": "echo",
+      "description": "Returns the text it receives.",
+      "input_schema": {
+        "type": "object",
+        "properties": { "text": { "type": "string" } },
+        "required": ["text"]
+      }
+    }
+  ]
+}
+```
+
+Jika kode Anda membaca `content[0]`, lewati blok-blok ini. Kirimkan kembali pesan asisten tanpa perubahan, termasuk blok `mcp_tool_listing`, dan tetap kirimkan `mcp-client-2026-09-15` pada setiap permintaan yang membawa blok tersebut. Permintaan berikutnya kemudian menggunakan daftar yang tercatat untuk server tersebut alih-alih memintanya lagi.
+
+Untuk menyematkan daftar sendiri, salin `tools` dari sebuah blok ke field `tools` pada MCPToolset server tersebut. API kemudian tidak meminta daftar alat dari server, dan alat dalam toolset tersebut persis berupa entri-entri itu, dengan `default_config` dan `configs` diterapkan:
+
+```json
+{
+  "type": "mcp_toolset",
+  "mcp_server_name": "example-mcp",
+  "tools": [
+    {
+      "name": "echo",
+      "description": "Returns the text it receives.",
+      "input_schema": {
+        "type": "object",
+        "properties": { "text": { "type": "string" } },
+        "required": ["text"]
+      }
+    }
+  ]
+}
+```
+
+Setiap entri dalam `tools` memuat `name` alat sebagaimana dicantumkan oleh server (tanpa nama server), `description`-nya, dan `input_schema`-nya.
+
+Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan, menyalin daftar yang dikembalikan ke field `tools` pada toolset, lalu mengirimkan permintaan tersebut lagi. Respons kedua tidak memiliki blok `mcp_tool_listing`, karena API tidak meminta daftar dari server:
+
+<CodeGroup>
+  ```bash cURL
+  BODY='{
+    "model": "claude-opus-5-5",
+    "max_tokens": 1024,
+    "mcp_servers": [
+      {
+        "type": "url",
+        "url": "https://example-server.modelcontextprotocol.io/sse",
+        "name": "example-mcp",
+        "authorization_token": "YOUR_TOKEN"
+      }
+    ],
+    "tools": [
+      {
+        "type": "mcp_toolset",
+        "mcp_server_name": "example-mcp"
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "What tools do you have available?"
+      }
+    ]
+  }'
+
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  # daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  FIRST=$(curl -sS https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: mcp-client-2026-09-15" \
+    -d "$BODY")
+
+  # Sematkan daftar: salin tools dari blok tersebut ke toolset. API memakai
+  # persis entri-entri ini dan tidak meminta ke server lagi.
+  TOOLS=$(jq '.content[] | select(.type == "mcp_tool_listing") | .tools' \
+    <<<"$FIRST")
+  PINNED=$(jq --argjson tools "$TOOLS" '.tools[0].tools = $tools' <<<"$BODY")
+
+  # Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: mcp-client-2026-09-15" \
+    -d "$PINNED"
+  ```
+
+  ```bash CLI
+  request=$(cat <<'YAML'
+  model: claude-opus-5-5
+  max_tokens: 1024
+  mcp_servers:
+    - type: url
+      url: https://example-server.modelcontextprotocol.io/sse
+      name: example-mcp
+      authorization_token: YOUR_TOKEN
+  tools:
+    - type: mcp_toolset
+      mcp_server_name: example-mcp
+  messages:
+    - role: user
+      content: What tools do you have available?
+  YAML
+  )
+
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  # mengirim daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  first=$(ant beta:messages create --beta mcp-client-2026-09-15 --format json \
+    <<<"$request")
+  tools=$(jq -c '.content[] | select(.type == "mcp_tool_listing") | .tools' \
+    <<<"$first")
+
+  # Sematkan daftarnya: salin tools dari blok tersebut ke toolset. Flag --tool
+  # menggantikan array tools di body. API memakai persis entri-entri ini dan
+  # tidak meminta ke server lagi, jadi respons tidak memiliki blok mcp_tool_listing.
+  ant beta:messages create --beta mcp-client-2026-09-15 \
+    --tool "{type: mcp_toolset, mcp_server_name: example-mcp, tools: $tools}" \
+    <<<"$request"
+  ```
+
+  ```python Python
+  from anthropic.types.beta import (
+      BetaMessageParam,
+      BetaRequestMCPServerURLDefinitionParam,
+  )
+
+  client = anthropic.Anthropic()
+
+  mcp_servers: list[BetaRequestMCPServerURLDefinitionParam] = [
+      {
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse",
+          "name": "example-mcp",
+          "authorization_token": "YOUR_TOKEN",
+      },
+  ]
+  messages: list[BetaMessageParam] = [
+      {"role": "user", "content": "What tools do you have available?"},
+  ]
+
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  # mengirim daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  first = client.beta.messages.create(
+      model="claude-opus-5-5",
+      max_tokens=1024,
+      betas=["mcp-client-2026-09-15"],
+      mcp_servers=mcp_servers,
+      tools=[{"type": "mcp_toolset", "mcp_server_name": "example-mcp"}],
+      messages=messages,
+  )
+
+  listing = next(block for block in first.content if block.type == "mcp_tool_listing")
+  print([tool.name for tool in listing.tools])
+
+  # Sematkan daftarnya: salin tools dari blok tersebut ke toolset. API memakai
+  # persis entri-entri ini dan tidak meminta ke server lagi.
+  second = client.beta.messages.create(
+      model="claude-opus-5-5",
+      max_tokens=1024,
+      betas=["mcp-client-2026-09-15"],
+      mcp_servers=mcp_servers,
+      tools=[
+          {
+              "type": "mcp_toolset",
+              "mcp_server_name": "example-mcp",
+              "tools": [
+                  {
+                      "name": tool.name,
+                      "description": tool.description,
+                      "input_schema": tool.input_schema,
+                  }
+                  for tool in listing.tools
+              ],
+          },
+      ],
+      messages=messages,
+  )
+
+  # Dengan toolset yang disematkan, respons tidak berisi blok mcp_tool_listing.
+  print([block.type for block in second.content])
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const mcpServers: Anthropic.Beta.BetaRequestMCPServerURLDefinition[] = [
+    {
+      type: "url",
+      url: "https://example-server.modelcontextprotocol.io/sse",
+      name: "example-mcp",
+      authorization_token: "YOUR_TOKEN"
+    }
+  ];
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    { role: "user", content: "What tools do you have available?" }
+  ];
+
+  // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  // daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  const first = await client.beta.messages.create({
+    model: "claude-opus-5-5",
+    max_tokens: 1024,
+    betas: ["mcp-client-2026-09-15"],
+    mcp_servers: mcpServers,
+    tools: [{ type: "mcp_toolset", mcp_server_name: "example-mcp" }],
+    messages
+  });
+
+  const listing = first.content.find((block) => block.type === "mcp_tool_listing");
+  if (!listing) {
+    throw new Error("The response has no mcp_tool_listing block.");
+  }
+  console.log(listing.tools.map((tool) => tool.name));
+
+  // Sematkan daftar: salin tools dari blok tersebut ke toolset. API menggunakan
+  // persis entri-entri ini dan tidak meminta ke server lagi.
+  const second = await client.beta.messages.create({
+    model: "claude-opus-5-5",
+    max_tokens: 1024,
+    betas: ["mcp-client-2026-09-15"],
+    mcp_servers: mcpServers,
+    tools: [
+      {
+        type: "mcp_toolset",
+        mcp_server_name: "example-mcp",
+        tools: listing.tools
+      }
+    ],
+    messages
+  });
+
+  // Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  console.log(second.content.map((block) => block.type));
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  AnthropicClient client = new();
+
+  List<BetaRequestMcpServerUrlDefinition> mcpServers =
+  [
+      new()
+      {
+          Url = "https://example-server.modelcontextprotocol.io/sse",
+          Name = "example-mcp",
+          AuthorizationToken = "YOUR_TOKEN",
+      },
+  ];
+  List<BetaMessageParam> messages =
+  [
+      new() { Role = Role.User, Content = "What tools do you have available?" },
+  ];
+
+  // Permintaan pertama: toolset belum disematkan, sehingga API meminta server untuk
+  // mengirimkan daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  var first = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Betas = [AnthropicBeta.McpClient2026_09_15],
+      McpServers = mcpServers,
+      Tools = [new BetaMcpToolset("example-mcp")],
+      Messages = messages,
+  });
+
+  var listing = first.Content
+      .Select(block => block.Value)
+      .OfType<BetaMcpToolListingBlock>()
+      .First();
+  Console.WriteLine(JsonSerializer.Serialize(listing.Tools.Select(tool => tool.Name)));
+
+  // Sematkan daftarnya: salin alat dari blok tersebut ke dalam toolset. API menggunakan
+  // persis entri-entri ini dan tidak meminta ke server lagi.
+  var second = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Betas = [AnthropicBeta.McpClient2026_09_15],
+      McpServers = mcpServers,
+      Tools =
+      [
+          new BetaMcpToolset("example-mcp")
+          {
+              Tools =
+              [
+                  .. listing.Tools.Select(tool => new BetaMcpToolParam
+                  {
+                      Name = tool.Name,
+                      Description = tool.Description,
+                      InputSchema = tool.InputSchema,
+                  }),
+              ],
+          },
+      ],
+      Messages = messages,
+  });
+
+  // Dengan toolset yang disematkan, respons tidak berisi blok mcp_tool_listing.
+  Console.WriteLine(JsonSerializer.Serialize(second.Content.Select(block => block.Type)));
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  mcpServers := []anthropic.BetaRequestMCPServerURLDefinitionParam{
+  	{
+  		URL:                "https://example-server.modelcontextprotocol.io/sse",
+  		Name:               "example-mcp",
+  		AuthorizationToken: anthropic.String("YOUR_TOKEN"),
+  	},
+  }
+  messages := []anthropic.BetaMessageParam{
+  	anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
+  }
+
+  // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  // daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  first, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model:      anthropic.ModelClaudeOpus5_5,
+  	MaxTokens:  1024,
+  	Betas:      []anthropic.AnthropicBeta{anthropic.AnthropicBetaMCPClient2026_09_15},
+  	MCPServers: mcpServers,
+  	Tools: []anthropic.BetaToolUnionParam{
+  		{OfMCPToolset: &anthropic.BetaMCPToolsetParam{MCPServerName: "example-mcp"}},
+  	},
+  	Messages: messages,
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  var listing anthropic.BetaMCPToolListingBlock
+  for _, block := range first.Content {
+  	if listingBlock, ok := block.AsAny().(anthropic.BetaMCPToolListingBlock); ok {
+  		listing = listingBlock
+  		break
+  	}
+  }
+
+  // Sematkan daftarnya: salin tools dari blok tersebut ke toolset. API memakai
+  // persis entri ini dan tidak meminta ke server lagi.
+  var toolNames []string
+  var pinnedTools []anthropic.BetaMCPToolParam
+  for _, tool := range listing.Tools {
+  	toolNames = append(toolNames, tool.Name)
+  	pinnedTools = append(pinnedTools, anthropic.BetaMCPToolParam{
+  		Name:        tool.Name,
+  		Description: anthropic.String(tool.Description),
+  		InputSchema: tool.InputSchema,
+  	})
+  }
+  fmt.Println(toolNames)
+
+  second, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model:      anthropic.ModelClaudeOpus5_5,
+  	MaxTokens:  1024,
+  	Betas:      []anthropic.AnthropicBeta{anthropic.AnthropicBetaMCPClient2026_09_15},
+  	MCPServers: mcpServers,
+  	Tools: []anthropic.BetaToolUnionParam{
+  		{OfMCPToolset: &anthropic.BetaMCPToolsetParam{
+  			MCPServerName: "example-mcp",
+  			Tools:         pinnedTools,
+  		}},
+  	},
+  	Messages: messages,
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  // Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  var blockTypes []string
+  for _, block := range second.Content {
+  	blockTypes = append(blockTypes, block.Type)
+  }
+  fmt.Println(blockTypes)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
+  import com.anthropic.models.beta.messages.BetaMcpTool;
+  import com.anthropic.models.beta.messages.BetaMcpToolListingBlock;
+  import com.anthropic.models.beta.messages.BetaMcpToolset;
+  import com.anthropic.models.beta.messages.BetaMessage;
+  import com.anthropic.models.beta.messages.BetaRequestMcpServerUrlDefinition;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+  // ...
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      BetaRequestMcpServerUrlDefinition mcpServer = BetaRequestMcpServerUrlDefinition.builder()
+          .url("https://example-server.modelcontextprotocol.io/sse")
+          .name("example-mcp")
+          .authorizationToken("YOUR_TOKEN")
+          .build();
+
+      // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+      // mengirim daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+      BetaMessage first = client.beta().messages().create(MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addBeta(AnthropicBeta.MCP_CLIENT_2026_09_15)
+          .addMcpServer(mcpServer)
+          .addTool(BetaMcpToolset.builder()
+              .mcpServerName("example-mcp")
+              .build())
+          .addUserMessage("What tools do you have available?")
+          .build());
+
+      BetaMcpToolListingBlock listing = first.content().stream()
+          .flatMap(block -> block.mcpToolListing().stream())
+          .findFirst()
+          .orElseThrow();
+      IO.println(listing.tools().stream().map(BetaMcpTool::name).toList());
+
+      // Sematkan daftarnya: salin tools dari blok tersebut ke toolset. API menggunakan
+      // persis entri-entri ini dan tidak meminta ke server lagi.
+      BetaMessage second = client.beta().messages().create(MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addBeta(AnthropicBeta.MCP_CLIENT_2026_09_15)
+          .addMcpServer(mcpServer)
+          .addTool(BetaMcpToolset.builder()
+              .mcpServerName("example-mcp")
+              .tools(listing.tools().stream().map(BetaMcpTool::toParam).toList())
+              .build())
+          .addUserMessage("What tools do you have available?")
+          .build());
+
+      // Dengan toolset yang disematkan, respons tidak berisi blok mcp_tool_listing.
+      IO.println(second.content().stream()
+          .map(block -> block.type().asString())
+          .toList());
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  use Anthropic\Beta\Messages\BetaMCPTool;
+  use Anthropic\Beta\Messages\BetaMCPToolListingBlock;
+  // ...
+
+  $client = new Client();
+
+  $mcpServers = [
+      [
+          'type' => 'url',
+          'url' => 'https://example-server.modelcontextprotocol.io/sse',
+          'name' => 'example-mcp',
+          'authorization_token' => 'YOUR_TOKEN',
+      ],
+  ];
+  $messages = [['role' => 'user', 'content' => 'What tools do you have available?']];
+
+  // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  // daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  $first = $client->beta->messages->create(
+      model: Model::CLAUDE_OPUS_5_5,
+      maxTokens: 1024,
+      betas: [AnthropicBeta::MCP_CLIENT_2026_09_15],
+      mcpServers: $mcpServers,
+      tools: [['type' => 'mcp_toolset', 'mcp_server_name' => 'example-mcp']],
+      messages: $messages,
+  );
+
+  $listing = array_find($first->content, fn ($block) => $block instanceof BetaMCPToolListingBlock);
+  echo json_encode(array_map(fn (BetaMCPTool $tool) => $tool->name, $listing->tools)), PHP_EOL;
+
+  // Sematkan daftarnya: salin alat dari blok tersebut ke toolset. API memakai
+  // persis entri ini dan tidak meminta ke server lagi.
+  $second = $client->beta->messages->create(
+      model: Model::CLAUDE_OPUS_5_5,
+      maxTokens: 1024,
+      betas: [AnthropicBeta::MCP_CLIENT_2026_09_15],
+      mcpServers: $mcpServers,
+      tools: [
+          [
+              'type' => 'mcp_toolset',
+              'mcp_server_name' => 'example-mcp',
+              'tools' => array_map(
+                  fn (BetaMCPTool $tool) => [
+                      'name' => $tool->name,
+                      'description' => $tool->description,
+                      'input_schema' => $tool->inputSchema,
+                  ],
+                  $listing->tools,
+              ),
+          ],
+      ],
+      messages: $messages,
+  );
+
+  // Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  echo json_encode(array_map(fn ($block) => $block->type, $second->content)), PHP_EOL;
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  mcp_servers = [
+    {
+      type: "url",
+      url: "https://example-server.modelcontextprotocol.io/sse",
+      name: "example-mcp",
+      authorization_token: "YOUR_TOKEN"
+    }
+  ]
+  messages = [{ role: "user", content: "What tools do you have available?" }]
+
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  # daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  first = client.beta.messages.create(
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
+    max_tokens: 1024,
+    betas: [Anthropic::AnthropicBeta::MCP_CLIENT_2026_09_15],
+    mcp_servers: mcp_servers,
+    tools: [{ type: "mcp_toolset", mcp_server_name: "example-mcp" }],
+    messages: messages
+  )
+
+  listing = first.content.find { it.is_a?(Anthropic::Beta::BetaMCPToolListingBlock) }
+  puts listing.tools.map(&:name).inspect
+
+  # Sematkan daftarnya: salin tools dari blok tersebut ke toolset. API memakai
+  # persis entri-entri ini dan tidak meminta ke server lagi.
+  second = client.beta.messages.create(
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
+    max_tokens: 1024,
+    betas: [Anthropic::AnthropicBeta::MCP_CLIENT_2026_09_15],
+    mcp_servers: mcp_servers,
+    tools: [
+      {
+        type: "mcp_toolset",
+        mcp_server_name: "example-mcp",
+        tools: listing.tools.map(&:to_h)
+      }
+    ],
+    messages: messages
+  )
+
+  # Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  puts second.content.map(&:type).inspect
+  ```
+</CodeGroup>
+
+Dengan tambahan header beta `inline-tools-2026-09-15`, Anda dapat menambahkan server MCP di tengah percakapan. Lihat [Menambahkan server MCP di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta).
+
 ## Beberapa server MCP
 
 Anda dapat terhubung ke beberapa server MCP dengan menyertakan beberapa definisi server dalam `mcp_servers` dan MCPToolset yang sesuai untuk masing-masing dalam array `tools`:
 
 ```json
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "max_tokens": 1000,
   "messages": [
     {
@@ -674,8 +1241,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.63.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.63.0")
+        implementation("com.anthropic:anthropic-java:2.65.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.65.0")
         ```
       </Tab>
 
@@ -684,12 +1251,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.63.0</version>
+            <version>2.65.0</version>
         </dependency>
         ```
       </Tab>
@@ -796,7 +1363,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
               # Mendaftar alat dan mengonversinya untuk Claude API
               tools_result = await mcp_client.list_tools()
               runner = client.beta.messages.tool_runner(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=1024,
                   messages=[
                       {"role": "user", "content": "What tools do you have available?"},
@@ -837,7 +1404,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   };
 
   const finalMessage = await anthropic.beta.messages.toolRunner({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: mcpTools(tools, mcpClientForTools)
@@ -865,7 +1432,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   var runner = anthropic.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -916,7 +1483,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
 
   	runner := client.Beta.Messages.NewToolRunner(betaTools, anthropic.BetaToolRunnerParams{
   		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Messages: []anthropic.BetaMessageParam{
   				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What tools do you have available?")),
@@ -965,7 +1532,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
           List<McpBetaTool> betaTools = BetaMcp.mcpTools(mcpClient.listTools().tools(), mcpClient);
 
           MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(1024L)
                   .addUserMessage("What tools do you have available?")
                   .addTools(betaTools)
@@ -998,7 +1565,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   $runner = $anthropic->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'What tools do you have available?']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: BetaMcp::tools($mcp->listTools()->tools, $mcp),
   );
 
@@ -1017,7 +1584,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
 
   # Mendaftar alat dan mengonversinya untuk Claude API
   runner = anthropic.beta.messages.tool_runner(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "What tools do you have available?" }],
     tools: Anthropic::Mcp.tools(mcp_client.tools, mcp_client)
@@ -1038,7 +1605,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
 
   prompt = await mcp_client.get_prompt(name="my-prompt")
   response = await client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[mcp_message(message) for message in prompt.messages],
   )
@@ -1051,7 +1618,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
 
   const { messages } = await mcpClient.getPrompt({ name: "my-prompt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: mcpMessages(messages)
   });
@@ -1064,7 +1631,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = BetaMcp.Messages(prompt.Messages),
       }
@@ -1089,7 +1656,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages:  messages,
   })
@@ -1104,7 +1671,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
           new McpSchema.GetPromptRequest("my-prompt", Map.of()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .messages(BetaMcp.mcpMessages(prompt.messages()))
           .build());
@@ -1118,7 +1685,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
   $response = $anthropic->beta->messages->create(
       maxTokens: 1024,
       messages: array_map(BetaMcp::message(...), $prompt->messages),
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $response, "\n";
@@ -1128,7 +1695,7 @@ Konversi pesan prompt MCP ke format pesan Claude API:
   prompt = mcp_client.get_prompt(name: "my-prompt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: prompt["messages"].map { |message| Anthropic::Mcp.message(message) }
   )
@@ -1151,7 +1718,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   # Sebagai blok konten dalam pesan
   resource = await mcp_client.read_resource(uri="file:///path/to/doc.txt")
   response = await client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -1181,7 +1748,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   // Sebagai blok konten dalam pesan
   const resource = await mcpClient.readResource({ uri: "file:///path/to/doc.txt" });
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1207,7 +1774,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   var response = await anthropic.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -1255,7 +1822,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   }
 
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
@@ -1303,7 +1870,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
           BetaTextBlockParam.builder().text("Summarize this document").build()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessageOfBetaContentBlockParams(content)
           .build());
@@ -1347,7 +1914,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $response, "\n";
@@ -1363,7 +1930,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   resource = mcp_client.read_resource(uri: "file:///path/to/doc.txt")
 
   response = anthropic.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1416,7 +1983,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah deprecated,
 
 ```json
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "max_tokens": 1000,
   "messages": [
     // ...
@@ -1440,7 +2007,7 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah deprecated,
 
 ```json
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "max_tokens": 1000,
   "messages": [
     // ...

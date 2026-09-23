@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 7c2f331466de6487628cb596b00a933f0fd8ce6c65615e15da1858804d52362c
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d9d1496c530eff89af8dc7ab259cc2478bb41be3f3c97793ea99134ee21be68b
 ---
 
 ---
@@ -68,7 +68,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
 
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         tools=[get_weather, calculate_sum],
         messages=[
@@ -112,7 +112,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     });
 
     const finalMessage = await client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [getWeatherTool],
       messages: [{ role: "user", content: "What's the weather like in Paris?" }]
@@ -154,7 +154,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     });
 
     const finalMessage = await client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [calculateSumTool],
       messages: [{ role: "user", content: "What's 15 + 27?" }]
@@ -238,7 +238,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     var runner = client.Beta.Messages.ToolRunner(
         new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages =
             [
@@ -318,7 +318,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     		[]anthropic.BetaTool{getWeather, calculateSum},
     		anthropic.BetaToolRunnerParams{
     			BetaMessageNewParams: anthropic.BetaMessageNewParams{
-    				Model:     anthropic.ModelClaudeOpus5,
+    				Model:     anthropic.ModelClaudeOpus5_5,
     				MaxTokens: 1024,
     				Messages: []anthropic.BetaMessageParam{
     					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
@@ -404,7 +404,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
         BetaToolRunner runner = client.beta()
                 .messages()
                 .toolRunner(MessageCreateParams.builder()
-                        .model(Model.CLAUDE_OPUS_5)
+                        .model(Model.CLAUDE_OPUS_5_5)
                         .maxTokens(1024)
                         .addBeta("structured-outputs-2025-11-13")
                         .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
@@ -498,7 +498,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
         messages: [
             ['role' => 'user', 'content' => "What's the weather like in Paris? Also, what's 15 + 27?"],
         ],
-        model: Model::CLAUDE_OPUS_5,
+        model: Model::CLAUDE_OPUS_5_5,
         tools: [$getWeather, $calculateSum],
     );
 
@@ -560,7 +560,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
     # Gunakan tool runner
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [GetWeather.new, CalculateSum.new],
       messages: [
@@ -595,7 +595,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     client = anthropic.Anthropic()
     # ...
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         tools=[get_weather, calculate_sum],
         messages=[
@@ -619,7 +619,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     const client = new Anthropic();
     // ...
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [getWeatherTool],
       messages: [{ role: "user", content: "What's the weather like in Paris?" }]
@@ -643,7 +643,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     var runner = client.Beta.Messages.ToolRunner(
         new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages =
             [
@@ -679,7 +679,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     	[]anthropic.BetaTool{getWeather},
     	anthropic.BetaToolRunnerParams{
     		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 1024,
     			Messages: []anthropic.BetaMessageParam{
     				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
@@ -711,7 +711,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     BetaToolRunner runner = client.beta()
             .messages()
             .toolRunner(MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_5)
+                    .model(Model.CLAUDE_OPUS_5_5)
                     .maxTokens(1024)
                     .addBeta("structured-outputs-2025-11-13")
                     .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
@@ -740,7 +740,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
         messages: [
             ['role' => 'user', 'content' => "What's the weather like in Paris? Also, what's 15 + 27?"],
         ],
-        model: Model::CLAUDE_OPUS_5,
+        model: Model::CLAUDE_OPUS_5_5,
         tools: [$getWeather, $calculateSum],
     );
 
@@ -760,7 +760,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [GetWeather.new, CalculateSum.new],
       messages: [
@@ -823,7 +823,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
     ```python
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         max_iterations=10,
         tools=[get_weather],
@@ -859,7 +859,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
     ```typescript
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       max_iterations: 10,
       tools: [getWeatherTool],
@@ -899,7 +899,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
     var runner = client.Beta.Messages.ToolRunner(
         new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages = [new() { Role = Role.User, Content = "What's the weather in San Francisco?" }],
         },
@@ -956,7 +956,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
     	[]anthropic.BetaTool{getWeather},
     	anthropic.BetaToolRunnerParams{
     		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 1024,
     			Messages: []anthropic.BetaMessageParam{
     				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
@@ -994,7 +994,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
             .messages()
             .toolRunner(ToolRunnerCreateParams.builder()
                     .initialMessageParams(MessageCreateParams.builder()
-                            .model(Model.CLAUDE_OPUS_5)
+                            .model(Model.CLAUDE_OPUS_5_5)
                             .maxTokens(1024)
                             .addBeta("structured-outputs-2025-11-13")
                             .addUserMessage("Give me a detailed weather report for every major US city.")
@@ -1038,7 +1038,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
         messages: [
             ['role' => 'user', 'content' => 'Give a detailed weather report for every major US city.'],
         ],
-        model: Model::CLAUDE_OPUS_5,
+        model: Model::CLAUDE_OPUS_5_5,
         tools: [$getWeather],
         maxIterations: 10,
     );
@@ -1074,7 +1074,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
     ```ruby
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       max_iterations: 10,
       tools: [GetWeather.new],
@@ -1100,7 +1100,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah mendeprekasi opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction), yang berfungsi dengan tool runner setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien.
+Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah mendeprekasi opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner di setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, dan Java memiliki helper `compact_before_next_turn()` untuk compaction sesuai permintaan, yang ditulis dengan konvensi penamaan masing-masing bahasa. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, jangan keduanya.
 
 ### Men-debug eksekusi alat
 
@@ -1130,7 +1130,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
     client = anthropic.Anthropic()
     # ...
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         tools=[my_tool],
         messages=[{"role": "user", "content": "Run my_tool with the query 'hello'."}],
@@ -1141,10 +1141,10 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
 
         if tool_response is not None:
             # tool_response adalah dict: {"role": "user", "content": [...]}
-            # Periksa apakah ada hasil alat yang mengandung error
+            # Periksa apakah ada hasil alat yang berisi error
             for block in tool_response["content"]:
                 if block.get("is_error"):
-                    # Opsi 1: Lempar exception untuk menghentikan loop
+                    # Opsi 1: Munculkan exception untuk menghentikan loop
                     raise RuntimeError(f"Tool failed: {json.dumps(block['content'])}")
 
                     # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
@@ -1160,7 +1160,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
     const client = new Anthropic();
     // ...
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [myTool],
       messages: [{ role: "user", content: "Run my_tool with the query 'hello'." }]
@@ -1173,7 +1173,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
         // Periksa apakah ada hasil alat yang mengandung error
         for (const block of toolResultMessage.content) {
           if (block.type === "tool_result" && block.is_error) {
-            // Opsi 1: Lempar exception untuk menghentikan loop
+            // Opsi 1: Lempar error untuk menghentikan loop
             throw new Error(`Tool failed: ${JSON.stringify(block.content)}`);
 
             // Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
@@ -1221,7 +1221,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
             }
             catch (HttpRequestException ex)
             {
-                // Catat log di sini jika Anda perlu memeriksa kegagalan sebelum Claude melihatnya.
+                // Lakukan logging di sini jika Anda perlu memeriksa kegagalan sebelum Claude melihatnya.
                 throw new BetaToolError($"Weather service unavailable: {ex.Message}");
             }
         },
@@ -1230,7 +1230,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
     var runner = client.Beta.Messages.ToolRunner(
         new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages =
             [
@@ -1261,7 +1261,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [MyTool.new],
       messages: [{role: "user", content: "Run my_tool with the query 'hello'."}]
@@ -1271,7 +1271,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
       message = runner.next_message
       break unless message
 
-      # Saat next_message kembali, runner telah menjalankan alat pada giliran ini dan
+      # Saat next_message kembali, runner telah menjalankan alat giliran ini dan
       # menambahkan hasilnya sebagai pesan terakhir (peran user). Periksa di sini,
       # sebelum permintaan berikutnya mengirimkannya ke Claude.
       tool_results = runner.params[:messages].last
@@ -1279,7 +1279,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
       if tool_results && tool_results[:role] == :user && tool_results[:content].is_a?(Array)
         tool_results[:content].each do |block|
           if block[:type] == :tool_result && block[:is_error]
-            # Opsi 1: Lempar exception untuk menghentikan loop
+            # Opsi 1: Munculkan exception untuk menghentikan loop
             raise "Tool failed: #{block[:content]}"
 
             # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
@@ -1307,7 +1307,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     client = anthropic.Anthropic()
     # ...
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         tools=[search_documents],
         messages=[
@@ -1323,7 +1323,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
 
         if tool_response is not None:
             # tool_response adalah dict: {"role": "user", "content": [...]}
-            # Ubah hasil alat untuk menambahkan cache control
+            # Ubah hasil alat untuk menambahkan kontrol cache
             for block in tool_response["content"]:
                 if block["type"] == "tool_result":
                     # Tambahkan cache_control untuk meng-cache hasil alat ini
@@ -1341,7 +1341,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     const client = new Anthropic();
     // ...
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [searchDocuments],
       messages: [
@@ -1353,15 +1353,15 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
       const toolResultMessage = await runner.generateToolResponse();
 
       if (toolResultMessage && typeof toolResultMessage.content !== "string") {
-        // Ubah hasil alat untuk menambahkan cache control
+        // Ubah hasil alat untuk menambahkan kontrol cache
         for (const block of toolResultMessage.content) {
           if (block.type === "tool_result") {
             // Tambahkan cache_control untuk meng-cache hasil alat ini
             block.cache_control = { type: "ephemeral" };
           }
         }
-        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan asisten
-        // dan respons alat yang di-cache (yang kini telah dimutasi).
+        // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan
+        // asisten dan respons alat yang di-cache (yang kini telah diubah).
       }
 
       console.log(message.content);
@@ -1387,8 +1387,8 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     		return anthropic.BetaToolResultBlockParamContentUnion{
     			OfText: &anthropic.BetaTextBlockParam{
     				Text: fmt.Sprintf("Found 3 documents matching: %s", input.Query),
-    				// Atur cache_control pada blok konten bagian dalam. cache_control
-    				// pada blok tool_result bagian luar saat ini belum dapat
+    				// Atur cache_control pada blok konten bagian dalam. cache_control milik
+    				// blok tool_result bagian luar saat ini belum dapat
     				// diatur melalui runner Go.
     				CacheControl: anthropic.NewBetaCacheControlEphemeralParam(),
     			},
@@ -1403,7 +1403,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     	[]anthropic.BetaTool{searchDocuments},
     	anthropic.BetaToolRunnerParams{
     		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 1024,
     			Messages: []anthropic.BetaMessageParam{
     				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
@@ -1456,7 +1456,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
         messages: [
             ['role' => 'user', 'content' => 'Search for information about the climate of San Francisco.'],
         ],
-        model: Model::CLAUDE_OPUS_5,
+        model: Model::CLAUDE_OPUS_5_5,
         tools: [$searchDocuments],
     );
 
@@ -1475,8 +1475,8 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
         }
 
         if ($toolResults !== []) {
-            // pushMessages() menandai state sebagai termutasi, sehingga runner melewati
-            // penambahan otomatisnya. Push pesan asisten dan hasil alat.
+            // pushMessages() menandai state sebagai telah diubah, sehingga runner melewati
+            // penambahan otomatisnya. Dorong pesan asisten dan hasil alat.
             $runner->pushMessages(
                 ['role' => 'assistant', 'content' => $message->content],
                 ['role' => 'user', 'content' => $toolResults],
@@ -1492,7 +1492,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [SearchDocuments.new],
       messages: [{role: "user", content: "Search for information about the climate of San Francisco"}]
@@ -1503,13 +1503,13 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
       break unless message
 
       # Akses hasil alat terbaru dari array messages
-      # Runner secara otomatis menambahkan hasil alat, tetapi Anda dapat memodifikasinya
+      # Runner otomatis menambahkan hasil alat, tetapi Anda dapat mengubahnya
       tool_results_message = runner.params[:messages].last
 
       if tool_results_message && tool_results_message[:role] == :user && tool_results_message[:content].is_a?(Array)
         tool_results_message[:content].each do |block|
           if block[:type] == :tool_result
-            # Modifikasi hasil alat untuk menambahkan cache control
+            # Ubah hasil alat untuk menambahkan kontrol cache
             block[:cache_control] = {type: "ephemeral"}
           end
         end
@@ -1538,7 +1538,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     client = anthropic.Anthropic()
     # ...
     runner = client.beta.messages.tool_runner(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         tools=[calculate_sum],
         messages=[{"role": "user", "content": "What is 15 + 27?"}],
@@ -1562,7 +1562,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     const client = new Anthropic();
     // ...
     const runner = client.beta.messages.toolRunner({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
       tools: [getWeatherTool],
@@ -1590,7 +1590,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     var runner = client.Beta.Messages.ToolRunner(
         new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages =
             [
@@ -1628,7 +1628,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     	[]anthropic.BetaTool{calculateSum},
     	anthropic.BetaToolRunnerParams{
     		BetaMessageNewParams: anthropic.BetaMessageNewParams{
-    			Model:     anthropic.ModelClaudeOpus5,
+    			Model:     anthropic.ModelClaudeOpus5_5,
     			MaxTokens: 1024,
     			Messages: []anthropic.BetaMessageParam{
     				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What is 15 + 27?")),
@@ -1671,7 +1671,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
         BetaToolRunner runner = client.beta()
                 .messages()
                 .toolRunner(MessageCreateParams.builder()
-                        .model(Model.CLAUDE_OPUS_5)
+                        .model(Model.CLAUDE_OPUS_5_5)
                         .maxTokens(1024)
                         .addBeta("structured-outputs-2025-11-13")
                         .addUserMessage("What is 15 + 27?")
@@ -1698,7 +1698,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [CalculateSum.new],
       messages: [{role: "user", content: "What is 15 + 27?"}]

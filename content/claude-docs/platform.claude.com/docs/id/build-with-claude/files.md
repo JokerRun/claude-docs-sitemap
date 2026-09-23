@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 18bb2777286318316fa353e3ba8a57ac89a0aaaa7ee3c331971871295c461aaa
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: c6b2256b7dbfe8c02ced5d225e3c55cb65e2ed64bad384f52584c81e099d9a15
 ---
 
 ---
@@ -186,7 +186,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -212,7 +212,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```bash CLI
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -228,7 +228,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -251,7 +251,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -280,7 +280,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   var response = await client.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -305,7 +305,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```go Go
   msg, err := client.Messages.New(context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -325,7 +325,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```java Java
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(List.of(
           ContentBlockParam.ofText(TextBlockParam.builder()
@@ -359,7 +359,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $response;
@@ -367,7 +367,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```ruby Ruby
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -461,7 +461,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -479,9 +479,9 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   ```
 
   ```bash CLI
-  # Referensi "@./path" menyisipkan isi file secara langsung ke dalam field.
+  # Referensi "@./path" menyisipkan isi file langsung ke dalam field.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --transform 'content.#(type=="text").text' \
     --raw-output <<'YAML'
@@ -505,7 +505,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
       text_content = f.read()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -534,7 +534,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   const textContent = await fs.readFile("document.txt", "utf-8");
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -563,7 +563,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new()
       {
@@ -592,7 +592,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -618,7 +618,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   String textContent = Files.readString(Path.of("document.txt"));
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
       .build();
@@ -648,7 +648,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   foreach ($message->content as $block) {
@@ -665,7 +665,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   text_content = File.read("document.txt")
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {

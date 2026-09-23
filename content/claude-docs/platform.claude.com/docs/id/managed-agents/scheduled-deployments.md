@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 94c309d9d34f8505b20ef79bbf8af4ad70b5f9ac3aac06303d284357ea5969a9
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 974dab6ac02b95402d042fe3894a32d12f4dbf60d9806be81a49968f55982ce3
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Deployment terjadwal
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
 description: "Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya."
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -22,11 +25,11 @@ Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, li
 
 Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), dan secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
-* Deployment juga memerlukan setidaknya satu event awal, sebuah `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi.
-* Di dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
+* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), serta secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; sebagai gantinya, lampirkan melalui API atau SDK.
+* Deployment juga memerlukan setidaknya satu event awal, yaitu `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi. Dalam file deployment untuk `ant apply`, teks di bawah frontmatter menjadi `user.message` tersebut.
+* Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah tingkat menit.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -50,9 +53,27 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   EOF
   ```
 
-  ```bash CLI
-  ant apply deployment.md
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply deployment.md
+    ```
+
+    <File filename="deployment.md">
+      ```markdown
+      ---
+      name: Weekly compliance scan
+      agent: agent_011CYm1BLqPXpQRk5khsSXrs
+      environment_id: env_01595EKxaaTTGwwY3kyXdtbs
+      schedule:
+        type: cron
+        expression: "0 20 * * 5"
+        timezone: America/New_York
+      ---
+
+      Run the weekly compliance scan.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   deployment = client.beta.deployments.create(
@@ -209,6 +230,10 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     }
   )
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mencetak ID deployment baru dan mencatatnya di `claude-lock.json`. Untuk melihat objek deployment, jalankan `ant beta:deployments retrieve`.
+  </ForLanguage>
 </CodeGroup>
 
 Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu eksekusi berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah ditetapkan dengan benar.

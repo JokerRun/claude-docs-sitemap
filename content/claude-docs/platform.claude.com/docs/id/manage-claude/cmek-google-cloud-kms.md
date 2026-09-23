@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 47d0826ca7adbce112bb216482c26dd8c9ec79944d70fcfc603a581f924114a7
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 7991cd8c6019a68142d16ba8871789038bf39eb7bf055c763a6bee6fc0b52758
 ---
 
 ---
@@ -62,22 +62,35 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
   <Step title="Buat crypto key">
     Buat kunci simetris dengan tujuan `ENCRYPT_DECRYPT`. Anthropic sangat merekomendasikan perlindungan HSM: kunci HSM Cloud KMS tervalidasi FIPS 140-2 Level 3, dan selisih biayanya dibandingkan kunci perangkat lunak kecil.
 
+    Opsi `--labels` menambahkan label organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Label ini diperlukan agar Anthropic dapat memvalidasi kunci.
+
+    <Note>
+      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID yang berawalan `org_`.
+    </Note>
+
     ```bash
-    gcloud kms keys create <your-key-name> \
-      --project=<your-project-id> \
-      --location=<region> \
-      --keyring=<your-keyring-name> \
+    gcloud kms keys create <KEY_NAME> \
+      --project=<PROJECT_ID> \
+      --location=<REGION> \
+      --keyring=<KEYRING_NAME> \
       --purpose=encryption \
-      --protection-level=hsm
+      --protection-level=hsm \
+      --labels=anthropic-org-<ORGANIZATION_UUID>=true
     ```
 
     Untuk perlindungan perangkat lunak sebagai gantinya, hilangkan `--protection-level=hsm`. Tidak ada hal lain dalam panduan ini yang berubah.
 
     Anda juga dapat membuat kunci dari Google Cloud Console. Buka key ring, klik **Create key**, pilih **Generated key**, atur tujuan dan algoritma ke symmetric encrypt and decrypt, lalu pilih **HSM** di bawah protection level.
 
-    <Frame caption="Buat kunci symmetric encrypt/decrypt (enkripsi/dekripsi simetris) yang dilindungi HSM.">
-      ![Halaman Create key Google Cloud KMS dengan tingkat perlindungan HSM dan tujuan Symmetric encrypt/decrypt.](https://platform.claude.com/docs/images/cmek/gcp-create-key.png)
+    <Frame caption="Buat kunci symmetric encrypt/decrypt (enkripsi/dekripsi simetris) yang dilindungi HSM dengan label organisasi.">
+      ![Halaman Create key Google Cloud KMS dengan perlindungan HSM, symmetric encrypt/decrypt, dan label anthropic-org yang diatur ke true.](https://platform.claude.com/docs/images/cmek/gcp-create-key-label.png)
     </Frame>
+
+    Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu label seperti itu untuk setiap organisasi. Sebuah kunci dapat memiliki paling banyak 64 label, termasuk label Anda sendiri.
+
+    <Note>
+      Untuk menambahkan label ke kunci yang belum memilikinya, jalankan `gcloud kms keys update <KEY_NAME> --project=<PROJECT_ID> --location=<REGION> --keyring=<KEYRING_NAME> --update-labels=anthropic-org-<ORGANIZATION_UUID>=true`. Perintah ini menggabungkan label tersebut dengan label apa pun yang sudah dimiliki kunci.
+    </Note>
   </Step>
 
   <Step title="Berikan akses ke kunci untuk service account Anthropic">
@@ -150,6 +163,8 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
         <Steps>
           <Step title="Daftarkan kunci ke Anthropic">
             Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Google Cloud KMS**, dan klik **Continue**. Tempelkan nama resource kunci lengkap ke **Key resource name**, lalu klik **Add**.
+
+            Langkah detail kunci menampilkan label organisasi. Tambahkan label tersebut ke kunci, seperti yang dijelaskan pada [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), sebelum Anda mengklik **Add**.
           </Step>
 
           <Step title="Validasi kunci">

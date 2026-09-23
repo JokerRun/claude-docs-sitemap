@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 900d5b77cfec41eb15371e6b9a64f0ff9d85e153a16ca3bd0e17a067ac5bd0ce
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d5d0abe145317af091c442121a9229c38564a955f66ac62813cb2b4afe342f05
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Ikhtisar Claude Managed Agents
 url: https://platform.claude.com/docs/id/managed-agents/overview
 description: Harness agen siap pakai dan dapat dikonfigurasi yang berjalan di infrastruktur terkelola. Paling cocok untuk tugas yang berjalan lama dan pekerjaan asinkron.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

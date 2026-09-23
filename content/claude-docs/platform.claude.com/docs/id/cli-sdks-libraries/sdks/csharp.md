@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8cba0cffe8bee0812069c3189b31cc07061da08427be0bd72547571afcdcc6d0
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 554bfa0f1247757da4e9ece644b7043314cb99edf26b4166403baa24451f15e3
 ---
 
 ---
@@ -53,7 +53,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = Model.ClaudeOpus5,
+    Model = Model.ClaudeOpus5_5,
 };
 
 var message = await client.Messages.Create(parameters);
@@ -145,7 +145,7 @@ MessageCreateParams parameters = new()
             Content = "Hello, Claude",
         },
     ],
-    Model = Model.ClaudeOpus5,
+    Model = Model.ClaudeOpus5_5,
 };
 
 await foreach (var message in client.Messages.CreateStreaming(parameters))
@@ -327,7 +327,7 @@ using ModelContextProtocol.Client;
 // Dikonfigurasi menggunakan variabel lingkungan ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, dan ANTHROPIC_BASE_URL
 AnthropicClient client = new();
 
-IChatClient chatClient = client.AsIChatClient("claude-opus-5")
+IChatClient chatClient = client.AsIChatClient("claude-opus-5-5")
     .AsBuilder()
     .UseFunctionInvocation()
     .Build();

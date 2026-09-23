@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a8e32a89a488bf0470d708f36e1b735480705f24db92d192dfd84dcffd34b867
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: a25e154edc1d906d33f51574f81d15690ccc1c162c896903d52bd77337f3341b
 ---
 
 ---
@@ -85,7 +85,7 @@ Jika Anda menggunakan kunci API yang dicakupkan ke beberapa workspace, seperti [
 ```bash CLI
 ant messages create \
   --workspace-id wrkspc_01... \
-  --model claude-opus-5 \
+  --model claude-opus-5-5 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```

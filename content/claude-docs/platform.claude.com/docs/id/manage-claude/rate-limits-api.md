@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 6b24dcfd500fadf2091450390234ec95d99dcb7f26b443fadeb3b2b230634dde
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 051b9a758b1cb30e78d0340b49f59da4217cfe4bace450fdfcb9e9a7c65b0388
 ---
 
 ---
@@ -292,7 +292,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "type": "rate_limit",
       "group_type": "model_group",
-      "models": ["claude-opus-5"],
+      "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 4000 },
         { "type": "input_tokens_per_minute", "value": 10000000 },
@@ -624,7 +624,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
     {
       "type": "workspace_rate_limit",
       "group_type": "model_group",
-      "models": ["claude-opus-5"],
+      "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },
         { "type": "input_tokens_per_minute", "value": 500000, "org_limit": 10000000 }

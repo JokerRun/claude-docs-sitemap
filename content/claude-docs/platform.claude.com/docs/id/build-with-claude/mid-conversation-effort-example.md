@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 925a46fd80bcd80c78e960b6ec95b2bbe8716eddf8dd8dbbd186ee481b8ae504
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: fc99a7cc6ddf7d41e92a8ec7a14569a7210649dd0678f09c4fb985352d8705ab
 ---
 
 ---
@@ -25,7 +25,7 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 
 ## Menyiapkan loop
 
-Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada waktu yang sama (port PHP berjalan secara sekuensial dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak yang boleh diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran ketika variabel lingkungan tersebut disetel, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file terkompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak disetel saat Anda menjalankan contoh ini sendiri.
+Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi jumlah subagen yang berjalan secara bersamaan (port PHP berjalan secara berurutan dan mengabaikannya). `MAX_TOTAL_SUBTASKS` membatasi jumlah subtugas yang boleh diantrekan model dalam satu panggilan Workflow. Dengan memisahkan keduanya, model dapat merencanakan backlog yang besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saja ketika variabel lingkungan tersebut ditetapkan. Dengan begitu, "harness" (kerangka pengujian) dokumentasi otomatis dapat memvalidasi bahwa file berhasil dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh. Biarkan variabel ini tidak ditetapkan saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup>
   ```python Python
@@ -44,7 +44,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   client = anthropic.Anthropic()
 
-  MODEL = "claude-opus-5"
+  MODEL = "claude-opus-5-5"
   EFFORT = "xhigh"
 
   SYSTEM_PROMPT = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -74,7 +74,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   const client = new Anthropic();
 
-  const MODEL = "claude-opus-5";
+  const MODEL = "claude-opus-5-5";
   const EFFORT = "xhigh";
 
   const SYSTEM_PROMPT =
@@ -102,7 +102,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   AnthropicClient client = new();
 
-  const Model model = Model.ClaudeOpus5;
+  const Model model = Model.ClaudeOpus5_5;
   var effort = Effort.Xhigh;
 
   const string systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly.";
@@ -148,7 +148,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
   var client = anthropic.NewClient()
 
   const (
-  	modelID = anthropic.ModelClaudeOpus5
+  	modelID = anthropic.ModelClaudeOpus5_5
   	effort  = anthropic.OutputConfigEffortXhigh
 
   	systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -230,7 +230,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  static final Model MODEL = Model.CLAUDE_OPUS_5;
+  static final Model MODEL = Model.CLAUDE_OPUS_5_5;
   static final boolean DOC_TEST_MODE =
           !Objects.requireNonNullElse(System.getenv("DOC_TEST_MODE"), "").isEmpty();
   static final OutputConfig.Effort EFFORT = OutputConfig.Effort.XHIGH;
@@ -258,7 +258,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   $client = new Client();
 
-  const MODEL = 'claude-opus-5';
+  const MODEL = 'claude-opus-5-5';
   define('DOC_TEST_MODE', (string) getenv('DOC_TEST_MODE') !== '');
   const EFFORT = 'xhigh';
 
@@ -285,7 +285,7 @@ Contoh ini berupa satu file. Konstanta-konstantanya mengontrol tingkat effort, b
 
   CLIENT = Anthropic::Client.new
 
-  MODEL = "claude-opus-5"
+  MODEL = "claude-opus-5-5"
   EFFORT = :xhigh
 
   SYSTEM_PROMPT = "You are a helpful general-purpose agent. Answer the user's request directly."
@@ -2857,9 +2857,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 </CodeGroup>
 
-## Mengalihkan mode dengan pesan sistem di tengah percakapan
+## Mengaktifkan dan menonaktifkan mode dengan pesan sistem di tengah percakapan
 
-Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah jatuh tempo: pemberitahuan keluar, teks mode lengkap saat masuk, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache di depannya tetap tidak tersentuh, dan memenuhi aturan penempatan bahwa pesan sistem mengikuti giliran pengguna.
+Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya dikirim: pemberitahuan keluar, teks mode lengkap saat mode diaktifkan, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache sebelumnya tetap utuh. Penempatan ini juga memenuhi aturan bahwa pesan sistem harus mengikuti giliran pengguna.
 
 <CodeGroup>
   ```bash cURL
@@ -2874,7 +2874,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
     -H "content-type: application/json" \
     -d @- <<'EOF'
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 64000,
     "system": "You are a helpful general-purpose agent. Answer the user's request directly.",
     "output_config": {"effort": "xhigh"},
@@ -2917,7 +2917,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   # subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas di sini,
   # contoh SDK memuat teks persetujuan tetap (standing consent) selengkapnya.
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 64000
   system: You are a helpful general-purpose agent. Answer the user's request directly.
   output_config: {effort: xhigh}

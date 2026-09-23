@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 60811dab4f230e4192dec91261088a3d0b567d51b6479a2b896ec94759445340
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ca48255779e1e8887fb4e07b0311d247c9637568c3db4ca2a4dd4d1b29a831d8
 ---
 
 ---
@@ -38,7 +38,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello, Claude"}
@@ -48,14 +48,14 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -66,7 +66,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -78,7 +78,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   };
@@ -90,7 +90,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -106,7 +106,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude")
       .build();
@@ -121,7 +121,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
@@ -130,7 +130,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -151,7 +151,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
       "text": "Hello!"
     }
   ],
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -175,7 +175,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello, Claude"},
@@ -188,7 +188,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}' \
     --message '{role: assistant, content: "Hello!"}' \
@@ -197,7 +197,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 
   ```python Python
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {"role": "user", "content": "Hello, Claude"},
@@ -212,7 +212,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -228,7 +228,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -246,7 +246,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -264,7 +264,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude")
       .addAssistantMessage("Hello!")
@@ -285,7 +285,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
           ['role' => 'assistant', 'content' => 'Hello!'],
           ['role' => 'user', 'content' => 'Can you describe LLMs to me?'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -295,7 +295,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -318,7 +318,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
       "text": "Sure, I'd be happy to provide..."
     }
   ],
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -330,7 +330,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 
 ### Role system dalam messages
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, dan Claude Opus 5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan mengikuti [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
@@ -525,7 +525,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": [
@@ -546,7 +546,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": [
@@ -567,7 +567,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -581,9 +581,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
           text: What is in the above image?
   YAML
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: Gambar yang direferensikan melalui URL
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -607,7 +607,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -628,9 +628,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   )
   print(message)
 
-  # Opsi 2: Gambar yang direferensikan melalui URL
+  # Opsi 2: Gambar yang dirujuk melalui URL
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -661,7 +661,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -687,7 +687,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   // Opsi 2: Gambar yang dirujuk melalui URL
   const messageFromUrl = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -728,7 +728,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -756,7 +756,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   // Opsi 2: Gambar yang dirujuk melalui URL
   var parametersFromUrl = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -784,7 +784,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```go Go
   client := anthropic.NewClient()
 
-  // Opsi 1: Gambar berenkode Base64
+  // Opsi 1: Gambar yang dienkode Base64
   imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
@@ -806,7 +806,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   imageData := base64.StdEncoding.EncodeToString(imageBytes)
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -822,7 +822,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   // Opsi 2: Gambar yang dirujuk melalui URL
   messageFromURL, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -866,7 +866,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   Message message = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(base64Content)
           .build());
@@ -888,7 +888,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   Message messageFromUrl = client.messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessageOfBlockParams(urlContent)
           .build());
@@ -924,11 +924,11 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   echo $message;
 
-  // Opsi 2: Gambar yang direferensikan melalui URL
+  // Opsi 2: Gambar yang dirujuk melalui URL
   $message_from_url = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -949,7 +949,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   echo $message_from_url;
   ```
@@ -966,7 +966,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -992,7 +992,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   # Opsi 2: Gambar yang dirujuk melalui URL
   message_from_url = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1028,7 +1028,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       "text": "This image is a beautiful minimalist/flat-design illustration of a sunset landscape. Here's what it contains:\n\n**Sky & Sun:**\n- A warm gradient sky transitioning from golden-yellow at the top to deep orange toward the horizon\n- A large pale yellow sun positioned in the upper-right area\n\n**Birds:**\n- Three small silhouetted birds flying in the upper-left portion of the sky, depicted as simple \"M\" or \"v\" shapes\n\n**Mountains:**\n- Multiple layered mountain peaks in purple and maroon tones\n- The mountains overlap to create depth, with varying shades of dusty purple and deep burgundy\n\n**Water:**\n- A dark purple body of water at the bottom of the image\n- A reflection of the sun shown as horizontal cream/peach colored lines in the center-bottom area\n\nThe overall style is clean, geometric, and uses a warm sunset color palette (oranges, yellows, purples, and maroons), giving it a peaceful, serene aesthetic typical of modern vector/flat design artwork."
     }
   ],
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {

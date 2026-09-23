@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 86601d844d860e05b2e2613dbfb33c36066fa16613c6c02d95ff6234728f29cd
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 1f3e4acfc0081efa673d21781e32da5af93cdbe81ddae791095a6011e4a3ccb4
 ---
 
 ---
@@ -39,7 +39,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -68,7 +68,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -91,7 +91,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -120,7 +120,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -154,7 +154,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -188,7 +188,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -233,7 +233,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -274,7 +274,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -284,7 +284,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -410,7 +410,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -437,7 +437,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   ```
 
   ```bash CLI
-  ant messages create --model claude-opus-5 --max-tokens 1024 <<'YAML'
+  ant messages create --model claude-opus-5-5 --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -464,7 +464,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   )  # Minimum cacheable length
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -501,7 +501,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
     "This is a very long document with thousands of words..." + " ... ".repeat(1000); // Minimum cacheable length
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -539,7 +539,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -573,7 +573,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   	strings.Repeat(" ... ", 1000) // Minimum cacheable length
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -615,7 +615,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -660,7 +660,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -675,7 +675,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
     " ... " * 1000 # Minimum cacheable length
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -761,7 +761,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
         -H "content-type: application/json" \
         -d @- <<EOF
       {
-        "model": "claude-opus-5",
+        "model": "claude-opus-5-5",
         "max_tokens": 1024,
         "messages": [
           {
@@ -787,7 +787,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```bash CLI
       ant messages create <<YAML
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -807,7 +807,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```python Python
       cited_response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -830,7 +830,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```typescript TypeScript
       const citedResponse = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -858,7 +858,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
       var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages =
               [
@@ -886,7 +886,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
       ```go Go
       citedMsg, err := client.Messages.New(context.Background(),
       	anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(
@@ -912,7 +912,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(List.of(
               ContentBlockParam.ofDocument(DocumentBlockParam.builder()
@@ -949,7 +949,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
                   ],
               ],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       echo $citedResponse;
@@ -957,7 +957,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```ruby Ruby
       cited_response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1013,7 +1013,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -1042,7 +1042,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1069,7 +1069,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       ).decode()
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -1100,7 +1100,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       const pdfBase64 = Buffer.from(await readFile("/path/to/document.pdf")).toString("base64");
 
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1136,7 +1136,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages =
               [
@@ -1173,7 +1173,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(
@@ -1213,7 +1213,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
               List.of(
@@ -1256,7 +1256,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1268,7 +1268,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1307,7 +1307,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -1335,7 +1335,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1357,7 +1357,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client = anthropic.Anthropic()
 
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -1385,7 +1385,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       const client = new Anthropic();
 
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1418,7 +1418,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var response = await client.Messages.Create(
           new()
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages =
               [
@@ -1452,7 +1452,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(
@@ -1491,7 +1491,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(
               List.of(
@@ -1531,7 +1531,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1541,7 +1541,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1582,7 +1582,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "content-type: application/json" \
         -d @- <<EOF
       {
-        "model": "claude-opus-5",
+        "model": "claude-opus-5-5",
         "max_tokens": 1024,
         "messages": [
           {
@@ -1608,7 +1608,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```bash CLI
       ant messages create <<YAML
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1628,7 +1628,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```python Python
       cited_response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -1651,7 +1651,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```typescript TypeScript
       const citedResponse = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1679,7 +1679,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       var citedResponse = await client.Messages.Create(
           new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages =
               [
@@ -1707,7 +1707,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       ```go Go
       citedMsg, err := client.Messages.New(context.Background(),
       	anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(
@@ -1733,7 +1733,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```java Java
       MessageCreateParams citedParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessageOfBlockParams(List.of(
               ContentBlockParam.ofDocument(DocumentBlockParam.builder()
@@ -1770,7 +1770,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   ],
               ],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
       );
 
       echo $citedResponse;
@@ -1778,7 +1778,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```ruby Ruby
       cited_response = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -1830,7 +1830,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -1861,7 +1861,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -1887,7 +1887,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -1918,7 +1918,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1954,7 +1954,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -1992,7 +1992,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -2041,7 +2041,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
           List.of(
@@ -2084,7 +2084,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -2094,7 +2094,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {

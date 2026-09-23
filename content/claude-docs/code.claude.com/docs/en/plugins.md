@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 52d5190cb5bde72672723d01ba357f1d462393dd1c3f52f938938f2eb54ec107
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e94df1d96179f323733a6cf650f4b36cd8de9f44d709ffd49b6d3ccf33c840c4
 ---
 
 > ## Documentation Index
@@ -320,6 +320,8 @@ As you make changes to your plugin, run `/reload-plugins` to pick up the updates
 
   To test a plugin together with a plugin it depends on, see [Test a plugin and its dependency locally](/docs/en/plugin-dependencies#test-a-plugin-and-its-dependency-locally).
 </Tip>
+
+To load plugins in a session where you can't add the flag, list their absolute paths in the [`CLAUDE_CODE_PLUGIN_DIRS`](/docs/en/env-vars#variables) environment variable instead. Claude Code loads each path as it loads a `--plugin-dir` path. These plugins load in addition to any you pass with `--plugin-dir`. [Project and local settings can't set this variable](/docs/en/settings-reference#variables-claude-code-ignores-in-env). `CLAUDE_CODE_PLUGIN_DIRS` requires Claude Code v2.1.280 or later.
 
 Trying the plugin with `--plugin-dir` tells you it can work. To find out how often Claude actually reaches for it and gets the right result, run it against a set of test prompts with [`claude plugin eval`](/docs/en/plugin-evals). Each prompt runs several times with and without the plugin loaded, so you can see what the plugin contributes and catch regressions when you change it or a new model ships.
 

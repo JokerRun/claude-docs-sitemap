@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: a61950d7cc88d43c5db6214bd65b62574b96bb5e3cd5ded32c097c80dcfe56ae
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 1d448ab56e7b1ea6933a86bd459a2487d988ceb0f9b3bfde28b61520f61485e0
 ---
 
 ---
@@ -19,6 +19,7 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5
     - claude-opus-4-8
@@ -29,6 +30,8 @@ featureMetadata:
     Google Cloud: ga
     Microsoft Foundry: beta
   details:
+    - Di Claude API dan Google Cloud, Claude Opus 5.5 mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
+    - Di Amazon Bedrock, Claude Opus 5.5 menerima versi alat `computer_20251124` yang lebih lama sebagaimana Claude Opus 5.
     - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
@@ -42,7 +45,7 @@ Untuk tugas yang tetap berada di dalam halaman web, [alat penggunaan browser](ht
 <Note>
   Penggunaan komputer tersedia di Claude API dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) sebagai toolset `computer_toolset_20260801`; lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) untuk model yang didukung.
 
-  Integrasi `computer_20251124` yang sudah ada tetap berfungsi, dan versi alat sebelumnya tetap tersedia dalam beta untuk model dan platform yang tidak mendukung toolset ini. Lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) untuk meningkatkan versi, atau [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) untuk header beta.
+  Integrasi `computer_20251124` yang sudah ada tetap berfungsi pada model yang tercantum untuknya di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions), dan versi alat sebelumnya tetap tersedia dalam beta untuk model dan platform yang tidak mendukung toolset ini. Lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) untuk meningkatkan versi, atau [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) untuk header beta.
 </Note>
 
 ## Pertimbangan keamanan
@@ -77,7 +80,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -103,7 +106,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - type: computer_toolset_20260801
@@ -121,7 +124,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {"type": "computer_toolset_20260801"},
@@ -137,7 +140,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -163,7 +166,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools =
       [
@@ -189,7 +192,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfComputerToolset20260801: &anthropic.ComputerToolset20260801Param{}},
@@ -216,7 +219,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(ComputerToolset20260801.builder().build())
           .addTool(ToolTextEditor20250728.builder().build())
@@ -237,7 +240,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
       messages: [
           ['role' => 'user', 'content' => 'Save a picture of a cat to my desktop.'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           ['type' => 'computer_toolset_20260801'],
           [
@@ -258,7 +261,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       { type: "computer_toolset_20260801" },
@@ -287,7 +290,7 @@ Ketika Claude bertindak pada desktop, respons memiliki `stop_reason` berupa `too
   "id": "msg_01UZ3bXcQH8mTqNhVfL9eK2p",
   "type": "message",
   "role": "assistant",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "content": [
     {
       "type": "text",
@@ -1830,9 +1833,9 @@ Loop agen yang panjang mengakumulasi tangkapan layar dengan cepat (kira-kira 1.0
 
 Agar [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap efektif sambil membatasi konteks:
 
-* Tempatkan satu breakpoint `cache_control` setelah prompt sistem dan definisi alat, dan hingga tiga lagi pada blok `tool_result` terakhir dari masing-masing giliran terbaru, dengan memajukannya setiap giliran. Dalam [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda pada beberapa blok bertindak sebagai satu breakpoint tetapi masing-masing tetap dihitung terhadap batas empat, jadi gunakan satu per giliran.
-* Pangkas tangkapan layar lama secara *batch*, bukan satu per giliran. Membuang satu tangkapan layar setiap giliran mengubah prefiks setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga tangkapan layar terakhir dan memangkas setiap 25 giliran, sehingga prefiks tetap identik byte demi byte di antara peristiwa pemangkasan; jika tangkapan layar Anda melebihi 2000 px pada salah satu sisi, pilih interval yang menjaga setiap permintaan pada 20 gambar atau kurang.
-* Pada Claude Fable 5.1, hindari pemangkasan di sisi klien: menghapus tangkapan layar sebelumnya [membatalkan setiap blok thinking berikutnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) dalam setiap permintaan yang masih membawa giliran tersebut. Sebagai gantinya, ubah ukuran tangkapan layar menjadi 2000 px atau kurang per sisi, dan gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk membuang yang lama dari konteks. Jika Anda harus memangkas, pertahankan pengaturan [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu; setelah setiap pemangkasan, Claude melanjutkan tanpa thinking yang dihasilkan sejak tangkapan layar yang dipangkas, pada permintaan tersebut dan setiap permintaan berikutnya.
+* Tempatkan satu breakpoint `cache_control` setelah prompt sistem dan definisi alat. Tempatkan hingga tiga breakpoint lagi pada blok `tool_result` terakhir dari masing-masing giliran terbaru, dan majukan posisinya setiap giliran. Dalam sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda pada beberapa blok berfungsi sebagai satu breakpoint, tetapi masing-masing tetap dihitung terhadap batas empat. Jadi, gunakan satu penanda per giliran.
+* Pangkas tangkapan layar lama secara *batch*, bukan satu per giliran. Menghapus satu tangkapan layar setiap giliran akan mengubah prefiks setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga tangkapan layar terakhir dan memangkas setiap 25 giliran, sehingga prefiks tetap identik byte demi byte di antara peristiwa pemangkasan. Jika tangkapan layar Anda melebihi 2000 px pada salah satu sisi, pilih interval yang menjaga setiap permintaan tetap memuat 20 gambar atau kurang.
+* Pada Claude Fable 5.1 dan Claude Opus 5.5, hindari pemangkasan di sisi klien. Menghapus tangkapan layar sebelumnya akan [membatalkan setiap blok thinking setelahnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap permintaan yang masih memuat giliran tersebut. Sebagai gantinya, ubah ukuran tangkapan layar menjadi 2000 px atau kurang per sisi, dan gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk menghapus tangkapan layar lama dari konteks. Jika Anda harus memangkas, tetapkan [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu. Setelah setiap pemangkasan, Claude melanjutkan tanpa thinking yang dihasilkan sejak tangkapan layar yang dipangkas, baik pada permintaan tersebut maupun setiap permintaan berikutnya.
 
 ### Mendiagnosis masalah klik
 
@@ -2119,7 +2122,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 ## Migrasi dari `computer_20251124`
 
-Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang ada tetap berfungsi sampai Anda mengubahnya. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
+Peningkatan dari `computer_20251124` ke toolset bersifat opsional. Model yang tercantum untuk `computer_20251124` di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Claude Opus 5.5 merupakan pengecualian di Claude API dan Google Cloud: di sana model ini hanya menerima toolset, jadi tingkatkan integrasi sebelum memindahkannya ke model tersebut. Di Amazon Bedrock, model ini tetap menerima `computer_20251124`. Untuk melakukan peningkatan, terapkan semua perubahan berikut sekaligus:
 
 1. **Hapus header beta.** Buang `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Di SDK, hapus parameter `betas` dan panggil Messages API melalui klien standar alih-alih namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.
@@ -2179,9 +2182,9 @@ Pasangan berikut menunjukkan blok `tool_use` sebelum dan sesudah perubahan. Nama
 
 Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan dalam [referensi Messages API beta](https://platform.claude.com/docs/id/api/beta/messages/create). Di SDK, teruskan header melalui parameter `betas` dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau editor teks dalam permintaan yang sama.
 
-| Versi alat          | Header beta               | Gunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                | Parameter                                                                     |
+| Versi alat          | Header beta               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                              | Parameter                                                                     |
 | ------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5                                                                                                                                                                                                                                                               | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5                                                                                                                                                                                                                      | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 | `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dipensiunkan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
 ***

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 6ad8da846c5f328a0557113d50b9d0a3741be6046adbd9b9e166c02b145a52de
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 06d0bb5e5e0db1416b5099e12ca4830574fe9890c189fa515676a3b7704dc37d
 ---
 
 ---
@@ -11,13 +11,22 @@ url: https://platform.claude.com/docs/id/release-notes/overview
 description: Pembaruan pada Claude Platform, termasuk Claude API, SDK klien, dan Claude Console.
 ---
 
-Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien, dan Claude Console, dengan urutan terbaru lebih dulu.
+Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien, dan Claude Console, diurutkan dari yang terbaru.
 
 <Tip>
-  Untuk catatan rilis Claude Apps, lihat [Catatan rilis untuk Claude Apps di Pusat Bantuan Claude](https://support.claude.com/en/articles/12138966-release-notes).
+  Untuk catatan rilis tentang Claude Apps, lihat [Catatan rilis untuk Claude Apps di Claude Help Center](https://support.claude.com/en/articles/12138966-release-notes).
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 22 September 2026
+
+* Kami telah meluncurkan **Claude Opus 5.5** (`claude-opus-5-5`), model untuk agentic coding yang berjalan lama dan pekerjaan pengetahuan. Model ini memiliki ["context window" (jendela konteks) sebesar 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) secara default, maksimum 128k token output, dan ["adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif, dengan harga $4 / $20 USD per MTok (Claude Opus 5 seharga $5 / $25). Claude Opus 5.5 tersedia di Claude API, [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5) untuk kemampuan, perubahan API, dan panduan migrasi.
+* Pada Claude Opus 5.5, thinking tidak dapat dinonaktifkan: `thinking: {"type": "disabled"}` dan `thinking: {"type": "enabled", ...}` mengembalikan error 400. Hilangkan field `thinking` dan kendalikan kedalaman thinking dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort). Tipe `tool_choice` `any` dan `tool` juga mengembalikan error 400, seperti pada Claude Fable 5.1; gunakan `auto` dengan ["strict tool use" (penggunaan alat ketat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use). Di Claude API dan Google Cloud, ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) pada model ini memerlukan toolset `computer_toolset_20260801`, dan alat `computer_20251124` yang lebih lama mengembalikan error 400; di Amazon Bedrock, `computer_20251124` tetap berfungsi. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5).
+
+- ["Fast mode" (mode cepat)](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (pratinjau riset) tersedia untuk Claude Opus 5.5 di Claude API.
+
+* Alat kini dapat didefinisikan di dalam [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), dalam beta di Claude API dengan header beta `inline-tools-2026-09-15`. Blok `tool_addition` dapat membawa definisi lengkap alat (`tool: {"type": "tool_definition", "definition": {...}}`), sehingga Anda dapat menambahkan alat, mengubah skemanya, atau memindahkan alat server ke versi yang lebih baru tanpa mengedit `tools` atau membatalkan cache prompt. Header yang sama mencakup penambahan dan penghapusan alat berdasarkan referensi. Jika Anda juga menggunakan header beta `mcp-client-2026-09-15` dari konektor MCP, definisi tersebut dapat berupa toolset MCP, dan respons mencatat daftar alat yang diambil dari setiap server dalam blok `mcp_tool_listing`, yang menyematkan daftar tersebut saat Anda mengirimkannya kembali.
 
 ### 18 September 2026
 
@@ -25,7 +34,8 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 14 September 2026
 
-* Messages API kini dapat [memadatkan percakapan sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction#compact-on-demand-with-the-compaction-parameter) di Claude API, dalam beta dengan header beta `compact-2026-09-04`. Kirim parameter tingkat atas `compaction`, dan API akan mengembalikan blok `compaction` bertanda tangan yang merangkum pesan-pesan yang Anda kirim. Pada permintaan berikutnya, kirim blok tersebut terlebih dahulu, sebagai pengganti pesan-pesan tersebut. Anda yang memilih kapan pemadatan dilakukan, permintaan dapat berjalan di latar belakang, dan Anda dapat mempertahankan giliran terbaru kata demi kata setelah ringkasan. Pada model dengan pemikiran yang dipertahankan, pemikiran dalam giliran yang dipertahankan tersebut dapat tetap valid.
+* Messages API kini dapat [memadatkan percakapan sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) di Claude API, dalam beta dengan header beta `compact-2026-09-04`. Kirim parameter tingkat atas `compaction`, dan API akan mengembalikan blok `compaction` bertanda tangan yang merangkum pesan-pesan yang Anda kirim. Pada permintaan berikutnya, kirim blok tersebut terlebih dahulu, sebagai pengganti pesan-pesan tersebut. Anda yang memilih kapan pemadatan dilakukan, permintaan dapat berjalan di latar belakang, dan Anda dapat mempertahankan giliran terbaru kata demi kata setelah ringkasan. Pada model dengan pemikiran yang dipertahankan, pemikiran dalam giliran yang dipertahankan tersebut dapat tetap valid.
+* Dengan header beta `thinking-binding-controls-2026-08-01`, field respons `input_transformations` mendapatkan tipe entri kedua, `thinking_mismatch_allowed`. Entri ini menyebutkan blok thinking yang gagal dalam pemeriksaan prefiks pada permintaan yang pemeriksaannya tidak diberlakukan oleh API: misalnya, pada Claude Fable 5.1, permintaan dari akun yang dibuat sebelum 31 Agustus 2026 dengan `prefix_mismatch_behavior` yang tidak diatur. Blok tersebut tetap mencapai model tanpa perubahan. Catat entri-entri ini untuk menemukan pengeditan riwayat dalam lalu lintas produksi sebelum Anda memilih untuk mengaktifkan pemberlakuan. Lihat [Tetapkan perilaku ketidakcocokan dan baca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls).
 
 ### 10 September 2026
 
@@ -374,12 +384,12 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 5 Februari 2026
 
-* Kami telah meluncurkan [Claude Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6), model kami yang paling cerdas untuk tugas agentik yang kompleks dan pekerjaan berjangka panjang. Opus 4.6 merekomendasikan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) (`thinking: {type: "adaptive"}`); pemikiran manual (`type: "enabled"` dengan `budget_tokens`) sudah tidak direkomendasikan lagi (deprecated). Opus 4.6 tidak mendukung prefilling pesan asisten. Pelajari lebih lanjut di [Yang baru di Claude 4.6](https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-6).
+* Kami telah meluncurkan [Claude Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6), model paling cerdas kami untuk tugas agentik yang kompleks dan pekerjaan jangka panjang. Opus 4.6 merekomendasikan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`); pemikiran manual (`type: "enabled"` dengan `budget_tokens`) sudah tidak direkomendasikan (deprecated). Opus 4.6 tidak mendukung prefilling pesan asisten. Pelajari lebih lanjut di [Yang baru di Claude 4.6](https://platform.claude.com/docs/id/about-claude/models/whats-new-claude-4-6).
 * [Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) tidak lagi memerlukan header beta dan kini mendukung Claude Opus 4.6. Effort menggantikan `budget_tokens` untuk mengontrol kedalaman pemikiran pada model-model baru.
-* Kami telah meluncurkan [API compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) (pemadatan) dalam versi beta, yang menyediakan peringkasan konteks di sisi server untuk percakapan yang secara efektif tak terbatas. Tersedia di Opus 4.6.
+* Kami telah meluncurkan [API compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) dalam beta, yang menyediakan peringkasan konteks di sisi server untuk percakapan yang secara efektif tanpa batas. Tersedia di Opus 4.6.
 * Kami telah memperkenalkan [kontrol residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency), yang memungkinkan Anda menentukan di mana inferensi model dijalankan dengan parameter `inference_geo`. Inferensi khusus AS tersedia dengan harga 1,1x untuk model yang dirilis setelah 1 Februari 2026.
 * ["Context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) kini tersedia dalam versi beta untuk Claude Opus 4.6, selain Sonnet 4.5 dan Sonnet 4. [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing) berlaku untuk permintaan yang melebihi 200 ribu token input.
-* [Fine-grained tool streaming](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) (streaming alat berbutir halus) tidak lagi memerlukan header beta pada model atau platform apa pun.
+* [Streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) tidak lagi memerlukan header beta pada model atau platform apa pun.
 
 ### 29 Januari 2026
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 3de9791147eec01498d027914afdc269e29cf9981398e26b7e26581d473e595d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: cfd19758cb1c3890d9817ee4380f07cdf7c2f1de8beaa008688ee01a25198e3f
 ---
 
 ---
@@ -34,7 +34,7 @@ Setiap perubahan pada memori menciptakan **versi memori** yang tidak dapat diuba
 
 Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke agen, memberi tahu apa isi store tersebut.
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -44,9 +44,19 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
     -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
   ```
 
-  ```bash CLI
-  ant apply memory_store.yaml
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply memory_store.yaml
+    ```
+
+    <File filename="memory_store.yaml">
+      ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+      name: User Preferences
+      description: Per-user preferences and project context.
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   store = client.beta.memory_stores.create(

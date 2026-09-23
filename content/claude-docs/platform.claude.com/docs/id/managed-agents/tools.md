@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: fddd2d93955ff0c732acd1f45776f9c51569e12a7c7ef1587693701b1b6db8b5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 1a9515bae68b1e44a5a0eea045f7e0be1be37e3ebcc3e7f1ff8d569bcc15880c
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Alat
 url: https://platform.claude.com/docs/id/managed-agents/tools
 description: Konfigurasikan alat yang tersedia untuk agen Anda.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -41,7 +44,7 @@ Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Guna
 
 Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan pengaturan web lainnya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -51,7 +54,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
     -d @- <<'EOF'
   {
     "name": "Coding Assistant",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "tools": [
       {
         "type": "agent_toolset_20260401",
@@ -65,22 +68,30 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   )
   ```
 
-  ```bash CLI
-  ant beta:agents create <<'YAML'
-  name: Coding Assistant
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      configs:
-        - name: web_fetch
-          enabled: false
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Coding Assistant
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+          configs:
+            - name: web_fetch
+              enabled: false
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   agent = client.beta.agents.create(
       name="Coding Assistant",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -95,7 +106,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: "agent_toolset_20260401",
@@ -111,7 +122,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = new("claude-opus-5"),
+      Model = new("claude-opus-5-5"),
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -130,7 +141,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: "claude-opus-5-5",
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -154,7 +165,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
 
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Coding Assistant")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
           .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
           .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
@@ -170,7 +181,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
 
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -185,7 +196,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: :agent_toolset_20260401,
@@ -264,7 +275,7 @@ Toolset berikut membatasi `web_search` ke dua situs dan melokalkan hasilnya, ser
 
 Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` dari respons:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
   agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -274,7 +285,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
     -d @- <<'EOF'
   {
     "name": "Research Agent",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "tools": [
       {
         "type": "agent_toolset_20260401",
@@ -304,33 +315,41 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   jq '.tools[0].configs' <<< "$agent"
   ```
 
-  ```bash CLI
-  ant beta:agents create --transform tools.0.configs <<'YAML'
-  name: Research Agent
-  model: claude-opus-5
-  tools:
-    - type: agent_toolset_20260401
-      configs:
-        - type: web_search
-          name: web_search
-          allowed_domains: [docs.example.com, arxiv.org]
-          user_location:
-            type: approximate
-            country: US
-            timezone: America/Los_Angeles
-        - type: web_fetch
-          name: web_fetch
-          blocked_domains: [ads.example.com]
-          max_content_tokens: 50000
-  YAML
-  ```
+  <MultiFileExample language="cli" label="CLI">
+    ```bash CLI
+    ant apply agent.md
+    ```
+
+    <File filename="agent.md">
+      ```markdown
+      ---
+      name: Research Agent
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+          configs:
+            - type: web_search
+              name: web_search
+              allowed_domains: [docs.example.com, arxiv.org]
+              user_location:
+                type: approximate
+                country: US
+                timezone: America/Los_Angeles
+            - type: web_fetch
+              name: web_fetch
+              blocked_domains: [ads.example.com]
+              max_content_tokens: 50000
+      ---
+      ```
+    </File>
+  </MultiFileExample>
 
   ```python Python
   client = Anthropic()
 
   agent = client.beta.agents.create(
       name="Research Agent",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -364,7 +383,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
 
   const agent = await client.beta.agents.create({
     name: "Research Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: "agent_toolset_20260401",
@@ -403,7 +422,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Research Agent",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -447,7 +466,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Research Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -501,7 +520,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
 
       var agent = client.beta().agents().create(AgentCreateParams.builder()
           .name("Research Agent")
-          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
               .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
@@ -539,7 +558,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
 
   $agent = $client->beta->agents->create(
       name: 'Research Agent',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -572,7 +591,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
 
   agent = client.beta.agents.create(
     name: "Research Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         type: :agent_toolset_20260401,
@@ -597,6 +616,10 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
     puts JSON.pretty_generate(toolset.configs.map(&:to_h))
   end
   ```
+
+  <ForLanguage tab="CLI">
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dan mencetak ID-nya, bukan array `configs`.
+  </ForLanguage>
 </CodeGroup>
 
 Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen; tetapkan `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
@@ -675,7 +698,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
     -d @- <<'EOF'
   {
     "name": "Weather Agent",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "tools": [
       {
         "type": "agent_toolset_20260401"
@@ -707,7 +730,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
       ```markdown
       ---
       name: Weather Agent
-      model: claude-opus-5
+      model: claude-opus-5-5
       tools:
         - type: agent_toolset_20260401
         - type: custom
@@ -729,7 +752,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   ```python Python
   agent = client.beta.agents.create(
       name="Weather Agent",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "type": "agent_toolset_20260401",
@@ -753,7 +776,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Weather Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       { type: "agent_toolset_20260401" },
       {
@@ -777,7 +800,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Weather Agent",
-      Model = new("claude-opus-5"),
+      Model = new("claude-opus-5-5"),
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -808,7 +831,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Weather Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5",
+  		ID: "claude-opus-5-5",
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -843,7 +866,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
 
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Weather Agent")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
           .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
           .build())
@@ -870,7 +893,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
 
   $agent = $client->beta->agents->create(
       name: 'Weather Agent',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               type: 'agent_toolset_20260401',
@@ -891,7 +914,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Weather Agent",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {type: :agent_toolset_20260401},
       {

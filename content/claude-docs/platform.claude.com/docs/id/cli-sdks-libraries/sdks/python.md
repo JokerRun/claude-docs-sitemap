@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 5fd57a4898059bc54cada2531fda9b42141caef65785d492b04ccf148100d988
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 7aeb779f4544bf0f8651ea216cf1a58373347b9ddafe1105fa122bb650848d72
 ---
 
 ---
@@ -64,7 +64,7 @@ message = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 )
 
 for block in message.content:
@@ -99,7 +99,7 @@ async def main() -> None:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-5",
+        model="claude-opus-5-5",
     )
     print(message.content)
 
@@ -130,7 +130,7 @@ async def main() -> None:
                     "content": "Hello, Claude",
                 }
             ],
-            model="claude-opus-5",
+            model="claude-opus-5-5",
         )
         print(message.content)
 
@@ -153,7 +153,7 @@ stream = client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     stream=True,
 )
 for event in stream:
@@ -173,7 +173,7 @@ stream = await client.messages.create(
             "content": "Hello, Claude",
         }
     ],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     stream=True,
 )
 async for event in stream:
@@ -194,7 +194,7 @@ async def main() -> None:
                 "content": "Say hello there!",
             }
         ],
-        model="claude-opus-5",
+        model="claude-opus-5-5",
     ) as stream:
         async for text in stream.text_stream:
             print(text, end="", flush=True)
@@ -225,7 +225,7 @@ Anda juga dapat menghitung token sebelum membuat permintaan:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-5", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-5-5", messages=[{"role": "user", "content": "Hello, world"}]
 )
 print(count.input_tokens)  # 10
 ```
@@ -266,7 +266,7 @@ def get_weather(location: str) -> str:
 # Gunakan tool_runner untuk menangani panggilan alat secara otomatis
 runner = client.beta.messages.tool_runner(
     max_tokens=1024,
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     tools=[get_weather],
     messages=[
         {"role": "user", "content": "What is the weather in SF?"},
@@ -292,7 +292,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-5",
+                "model": "claude-opus-5-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hello, world"}],
             },
@@ -300,7 +300,7 @@ client.messages.batches.create(
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-5",
+                "model": "claude-opus-5-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": "Hi again, friend"}],
             },
@@ -365,7 +365,7 @@ try:
                 "content": "Hello, Claude",
             }
         ],
-        model="claude-opus-5",
+        model="claude-opus-5-5",
     )
 except anthropic.APIConnectionError as e:
     print("The server could not be reached")
@@ -402,7 +402,7 @@ Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahka
 message = client.messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 )
 print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
 ```
@@ -418,7 +418,7 @@ Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan expone
 Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
 
 ```python
-# Konfigurasikan nilai default untuk semua permintaan:
+# Konfigurasikan default untuk semua permintaan:
 client = Anthropic(
     max_retries=0,  # default is 2
 )
@@ -427,7 +427,7 @@ client = Anthropic(
 client.with_options(max_retries=5).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 )
 ```
 
@@ -453,7 +453,7 @@ client = Anthropic(
 client.with_options(timeout=5.0).messages.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 )
 ```
 
@@ -538,7 +538,7 @@ Jika diperlukan, Anda dapat menimpanya dengan menetapkan header default pada obj
 </Warning>
 
 ```python
-# Tetapkan header default untuk semua permintaan pada klien
+# Atur header default untuk semua permintaan pada klien
 client = Anthropic(
     default_headers={"anthropic-version": "My-Custom-Value"},
 )
@@ -547,7 +547,7 @@ client = Anthropic(
 client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     extra_headers={"anthropic-version": "My-Custom-Value"},
 )
 ```
@@ -580,7 +580,7 @@ Dalam respons, Anda dapat membedakan antara field yang secara eksplisit `null` d
 
 ```python
 response = client.messages.create(
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello"}],
 )
@@ -603,7 +603,7 @@ client = Anthropic()
 response = client.messages.with_raw_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 )
 
 print(response.headers.get("request-id"))
@@ -623,7 +623,7 @@ Pendekatan `.with_raw_response` langsung membaca seluruh body respons saat Anda 
 with client.messages.with_streaming_response.create(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
-    model="claude-opus-5",
+    model="claude-opus-5-5",
 ) as response:
     print(response.headers.get("request-id"))
 
@@ -728,7 +728,7 @@ Sebagai contoh, untuk mengaktifkan [pengeditan konteks](https://platform.claude.
 client = Anthropic()
 
 response = client.beta.messages.create(
-    model="claude-opus-5",
+    model="claude-opus-5-5",
     max_tokens=1024,
     messages=[{"role": "user", "content": "Hello, Claude"}],
     betas=["context-management-2025-06-27"],

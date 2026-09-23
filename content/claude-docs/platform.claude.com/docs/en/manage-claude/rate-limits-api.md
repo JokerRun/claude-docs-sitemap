@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 0c218dd87bd7100253810e94f8407b7f401c2e025bbdd9429dc78a6d7d612c54
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 52a12a68ebc33aaa9d9b4f12b7430c817d5a81bb17f6f88759e00a11994c8f77
 ---
 
 ---
@@ -292,7 +292,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
     {
       "type": "rate_limit",
       "group_type": "model_group",
-      "models": ["claude-opus-5"],
+      "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 4000 },
         { "type": "input_tokens_per_minute", "value": 10000000 },
@@ -624,7 +624,7 @@ For complete parameter details and response schemas, see the [Workspace Rate Lim
     {
       "type": "workspace_rate_limit",
       "group_type": "model_group",
-      "models": ["claude-opus-5"],
+      "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },
         { "type": "input_tokens_per_minute", "value": 500000, "org_limit": 10000000 }

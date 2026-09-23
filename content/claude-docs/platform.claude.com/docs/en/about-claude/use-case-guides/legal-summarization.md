@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-08-14T02:57:38.618353Z
-sha256: a7539847a7b438bdaa8f9ce656dbff418e6de5fb216064e42400ff58229efb1e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e17e7d31f96cffcf820998a5762a055654fea890b62651534362859c355c2293
 ---
 
 ---
@@ -195,7 +195,7 @@ client = anthropic.Anthropic()
 
 
 def summarize_document(
-    text, details_to_extract, model="claude-opus-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
 ):
     # Format the details to extract to be placed within the prompt's context
     details_to_extract_str = "\n".join(details_to_extract)
@@ -302,7 +302,7 @@ def chunk_text(text, chunk_size=20000):
 
 
 def summarize_long_document(
-    text, details_to_extract, model="claude-opus-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
 ):
     # Format the details to extract to be placed within the prompt's context
     details_to_extract_str = "\n".join(details_to_extract)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 2ba3a1c3fc93dd82bdf6aac6f06e10af4560a0ec58b763a98543b6eed56c30f5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e9fae34abd4b2ddd8db6d0943dfad96a1e8298d39556de2e04535b994af9a4e8
 ---
 
 ---
@@ -47,7 +47,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -77,7 +77,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
     https://platform.claude.com/docs/images/vision-example.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -98,7 +98,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -124,7 +124,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -161,7 +161,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -192,7 +192,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   imageData := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -230,7 +230,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -262,7 +262,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -274,7 +274,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   image_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -307,7 +307,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -332,7 +332,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -349,7 +349,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   ```python Python
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -374,7 +374,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -408,7 +408,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -436,7 +436,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -473,7 +473,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
     .messages()
     .create(
       MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(contentBlockParams)
         .build()
@@ -501,7 +501,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -511,7 +511,7 @@ On the API, provide images to Claude as `image` content blocks using one of thre
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -557,7 +557,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -593,7 +593,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
   # Then use the returned file_id in your message
   ant messages create \
     --transform content --format yaml <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -616,7 +616,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
 
   # Use the uploaded file in a message
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -650,7 +650,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
 
   // Use the uploaded file in a message
   const response = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -698,7 +698,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
   // Use the uploaded file in a message
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -740,7 +740,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
   // Use the uploaded file in a message
   message, err := client.Messages.New(context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -782,7 +782,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
       ImageBlockParam imageParam = ImageBlockParam.builder().fileSource(file.id()).build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessageOfBlockParams(
           List.of(
@@ -823,7 +823,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -842,7 +842,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
 
   # Use the uploaded file in a message
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -875,7 +875,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -917,7 +917,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -947,7 +947,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
 
   client = anthropic.Anthropic()
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -988,7 +988,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC";
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -1038,7 +1038,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
 
   var message = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages =
       [
@@ -1079,7 +1079,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
   image2Data := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
@@ -1136,7 +1136,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
       .messages()
       .create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addUserMessageOfBlockParams(contentBlockParams)
               .build()
@@ -1179,7 +1179,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $message;
@@ -1192,7 +1192,7 @@ You can include multiple images in a single request, and Claude analyzes them jo
   image2_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {

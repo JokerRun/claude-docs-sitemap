@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 3dff996c5b499da8177b1ae19e32197efb3b5f85dc5517a69f163dba3040d065
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 254dae6fe3d2416e4fadd9f834c755d3118cfb067ee85cb5be2e7251094af658
 ---
 
 ---
@@ -201,18 +201,18 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [{"role": "user", "content": "Hello, Claude"}]
         }' | jq -r '.content[] | select(.type == "text") | .text'
       ```
 
       ```bash CLI
-      # Membaca JWT-SVID yang ditulis spiffe-helper ke
-      # ANTHROPIC_IDENTITY_TOKEN_FILE, ditambah ANTHROPIC_FEDERATION_RULE_ID,
+      # Membaca JWT-SVID yang ditulis oleh spiffe-helper ke
+      # ANTHROPIC_IDENTITY_TOKEN_FILE, serta ANTHROPIC_FEDERATION_RULE_ID,
       # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID.
       ant messages create \
-        --model claude-opus-5 \
+        --model claude-opus-5-5 \
         --max-tokens 1024 \
         --message '{role: user, content: "Hello, Claude"}'
       ```
@@ -221,12 +221,12 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       import anthropic
 
       # Membaca JWT-SVID yang ditulis spiffe-helper ke
-      # ANTHROPIC_IDENTITY_TOKEN_FILE, ditambah ANTHROPIC_FEDERATION_RULE_ID,
+      # ANTHROPIC_IDENTITY_TOKEN_FILE, serta ANTHROPIC_FEDERATION_RULE_ID,
       # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID.
       client = anthropic.Anthropic()
 
       message = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[{"role": "user", "content": "Hello, Claude"}],
       )
@@ -242,7 +242,7 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       const client = new Anthropic();
 
       const message = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hello, Claude" }]
       });
@@ -254,14 +254,14 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       ```
 
       ```csharp C#
-      // Membaca JWT-SVID yang ditulis spiffe-helper ke
-      // ANTHROPIC_IDENTITY_TOKEN_FILE, ditambah ANTHROPIC_FEDERATION_RULE_ID,
+      // Membaca JWT-SVID yang ditulis oleh spiffe-helper ke
+      // ANTHROPIC_IDENTITY_TOKEN_FILE, serta ANTHROPIC_FEDERATION_RULE_ID,
       // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID.
       using var client = new AnthropicClient();
 
       var message = await client.Messages.Create(new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
       });
@@ -281,7 +281,7 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       client := anthropic.NewClient()
 
       message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -305,7 +305,7 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addUserMessage("Hello, Claude")
               .build());
@@ -317,12 +317,12 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       use Anthropic\Client;
 
       // Membaca JWT-SVID yang ditulis spiffe-helper ke
-      // ANTHROPIC_IDENTITY_TOKEN_FILE, ditambah ANTHROPIC_FEDERATION_RULE_ID,
+      // ANTHROPIC_IDENTITY_TOKEN_FILE, serta ANTHROPIC_FEDERATION_RULE_ID,
       // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID.
       $client = new Client();
 
       $message = $client->messages->create(
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           maxTokens: 1024,
           messages: [['role' => 'user', 'content' => 'Hello, Claude']],
       );
@@ -334,12 +334,12 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       require "anthropic"
 
       # Membaca JWT-SVID yang ditulis spiffe-helper ke
-      # ANTHROPIC_IDENTITY_TOKEN_FILE, ditambah ANTHROPIC_FEDERATION_RULE_ID,
+      # ANTHROPIC_IDENTITY_TOKEN_FILE, serta ANTHROPIC_FEDERATION_RULE_ID,
       # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID.
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [{role: "user", content: "Hello, Claude"}]
       )
@@ -380,7 +380,7 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       )
 
       message = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[{"role": "user", "content": "Hello, Claude"}],
       )
@@ -426,7 +426,7 @@ SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau 
       	)
 
       	message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),

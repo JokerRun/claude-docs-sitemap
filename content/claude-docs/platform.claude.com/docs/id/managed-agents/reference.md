@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 7d422672594c8a7840b50b9a03ab71095896e7153a4d70d1fcddd4001c9479ea
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: fc321997ce02f52184203f7fcf1697dcb26044cac535cfbe86824b62c5df0783
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Referensi
 url: https://platform.claude.com/docs/id/managed-agents/reference
 description: Tipe event, flag CLI worker self-hosted, tipe server MCP yang didukung, batas laju, dan pedoman branding untuk Claude Managed Agents.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -80,9 +83,9 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
   </Tab>
 
   <Tab title="Event sistem">
-    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                             |
-    | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `system.message` | Menambahkan konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8. Pada model utama yang tidak didukung, event ditolak dengan `model_does_not_support_mid_conversation_system`. |
+    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                  |
+    | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `system.message` | Menambahkan konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
   <Tab title="Event deltas">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d61709baa0effe78e1c8b3228a89aaf6c41e7a9f773a6e138775e97d31714492
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ed6151f0133761a62eff41e83d587682328f4900618a29f0e2cd362a98b92572
 ---
 
 ---
@@ -132,7 +132,7 @@ bucket_width=1d" \
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-15T00:00:00Z&\
 ending_at=2025-01-15T23:59:59Z&\
-models[]=claude-opus-5&\
+models[]=claude-opus-5-5&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \

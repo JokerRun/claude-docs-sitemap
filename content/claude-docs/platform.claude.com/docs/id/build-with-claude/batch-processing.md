@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 2cdfc38aa0514e5f07fcc034dc381b498d7539e412dd626043a6b6de57221ff9
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: fdc65f6f91811bf83ca633a0e10f4c11a2afd2b4d9d2127081b2fbeaf6729c10
 ---
 
 ---
@@ -94,6 +94,7 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 | Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                                                           | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                        | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                                                             | $5 / MTok    | $25 / MTok    |
+| Claude Opus 5.5                                                                                                                       | $2 / MTok    | $10 / MTok    |
 | Claude Opus 5                                                                                                                         | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.8                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.7                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
@@ -131,7 +132,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           {
               "custom_id": "my-first-request",
               "params": {
-                  "model": "claude-opus-5",
+                  "model": "claude-opus-5-5",
                   "max_tokens": 1024,
                   "messages": [
                       {"role": "user", "content": "Hello, world"}
@@ -141,7 +142,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           {
               "custom_id": "my-second-request",
               "params": {
-                  "model": "claude-opus-5",
+                  "model": "claude-opus-5-5",
                   "max_tokens": 1024,
                   "messages": [
                       {"role": "user", "content": "Hi again, friend"}
@@ -157,14 +158,14 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
   requests:
     - custom_id: my-first-request
       params:
-        model: claude-opus-5
+        model: claude-opus-5-5
         max_tokens: 1024
         messages:
           - role: user
             content: Hello, world
     - custom_id: my-second-request
       params:
-        model: claude-opus-5
+        model: claude-opus-5-5
         max_tokens: 1024
         messages:
           - role: user
@@ -183,7 +184,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           Request(
               custom_id="my-first-request",
               params=MessageCreateParamsNonStreaming(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=1024,
                   messages=[
                       {
@@ -196,7 +197,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           Request(
               custom_id="my-second-request",
               params=MessageCreateParamsNonStreaming(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=1024,
                   messages=[
                       {
@@ -220,7 +221,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [{ role: "user", content: "Hello, world" }]
         }
@@ -228,7 +229,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [{ role: "user", content: "Hi again, friend" }]
         }
@@ -255,7 +256,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
               CustomID = "my-first-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus5,
+                  Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -268,7 +269,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
               CustomID = "my-second-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus5,
+                  Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
                   Messages =
                   [
@@ -291,7 +292,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
   			{
   				CustomID: "my-first-request",
   				Params: anthropic.MessageBatchNewParamsRequestParams{
-  					Model:     anthropic.ModelClaudeOpus5,
+  					Model:     anthropic.ModelClaudeOpus5_5,
   					MaxTokens: 1024,
   					Messages: []anthropic.MessageParam{
   						anthropic.NewUserMessage(
@@ -303,7 +304,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
   			{
   				CustomID: "my-second-request",
   				Params: anthropic.MessageBatchNewParamsRequestParams{
-  					Model:     anthropic.ModelClaudeOpus5,
+  					Model:     anthropic.ModelClaudeOpus5_5,
   					MaxTokens: 1024,
   					Messages: []anthropic.MessageParam{
   						anthropic.NewUserMessage(
@@ -327,7 +328,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
         .customId("my-first-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_5)
+            .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024)
             .addUserMessage("Hello, world")
             .build()
@@ -339,7 +340,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
         .customId("my-second-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_5)
+            .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024)
             .addUserMessage("Hi again, friend")
             .build()
@@ -361,7 +362,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           [
               'custom_id' => 'my-first-request',
               'params' => [
-                  'model' => 'claude-opus-5',
+                  'model' => 'claude-opus-5-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       ['role' => 'user', 'content' => 'Hello, world']
@@ -371,7 +372,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
           [
               'custom_id' => 'my-second-request',
               'params' => [
-                  'model' => 'claude-opus-5',
+                  'model' => 'claude-opus-5-5',
                   'max_tokens' => 1024,
                   'messages' => [
                       ['role' => 'user', 'content' => 'Hi again, friend']
@@ -392,7 +393,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [
             { role: "user", content: "Hello, world" }
@@ -402,7 +403,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [
             { role: "user", content: "Hi again, friend" }
@@ -938,8 +939,8 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
 Hasilnya dalam format `.jsonl`, di mana setiap baris adalah objek JSON valid yang merepresentasikan hasil dari satu permintaan dalam Message Batch. Untuk setiap hasil yang di-streaming, Anda dapat melakukan sesuatu yang berbeda tergantung pada `custom_id` dan jenis hasilnya. Berikut adalah contoh kumpulan hasil:
 
 ```jsonl .jsonl file
-{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-5","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
-{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-5","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
+{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-5-5","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
+{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-5-5","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
 ```
 
 Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk kesalahan](https://platform.claude.com/docs/id/api/errors#error-shapes) standar.
@@ -1082,7 +1083,7 @@ Contoh implementasi caching prompt dalam batch:
           {
               "custom_id": "my-first-request",
               "params": {
-                  "model": "claude-opus-5",
+                  "model": "claude-opus-5-5",
                   "max_tokens": 1024,
                   "system": [
                       {
@@ -1103,7 +1104,7 @@ Contoh implementasi caching prompt dalam batch:
           {
               "custom_id": "my-second-request",
               "params": {
-                  "model": "claude-opus-5",
+                  "model": "claude-opus-5-5",
                   "max_tokens": 1024,
                   "system": [
                       {
@@ -1130,7 +1131,7 @@ Contoh implementasi caching prompt dalam batch:
   requests:
     - custom_id: my-first-request
       params:
-        model: claude-opus-5
+        model: claude-opus-5-5
         max_tokens: 1024
         system:
           - type: text
@@ -1147,7 +1148,7 @@ Contoh implementasi caching prompt dalam batch:
             content: Analyze the major themes in Pride and Prejudice.
     - custom_id: my-second-request
       params:
-        model: claude-opus-5
+        model: claude-opus-5-5
         max_tokens: 1024
         system:
           - type: text
@@ -1176,7 +1177,7 @@ Contoh implementasi caching prompt dalam batch:
           Request(
               custom_id="my-first-request",
               params=MessageCreateParamsNonStreaming(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=1024,
                   system=[
                       {
@@ -1200,7 +1201,7 @@ Contoh implementasi caching prompt dalam batch:
           Request(
               custom_id="my-second-request",
               params=MessageCreateParamsNonStreaming(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=1024,
                   system=[
                       {
@@ -1233,7 +1234,7 @@ Contoh implementasi caching prompt dalam batch:
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           system: [
             {
@@ -1254,7 +1255,7 @@ Contoh implementasi caching prompt dalam batch:
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           system: [
             {
@@ -1293,7 +1294,7 @@ Contoh implementasi caching prompt dalam batch:
               CustomID = "my-first-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus5,
+                  Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
                   System = new List<TextBlockParam>
                   {
@@ -1318,7 +1319,7 @@ Contoh implementasi caching prompt dalam batch:
               CustomID = "my-second-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus5,
+                  Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
                   System = new List<TextBlockParam>
                   {
@@ -1350,7 +1351,7 @@ Contoh implementasi caching prompt dalam batch:
   		{
   			CustomID: "my-first-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus5,
+  				Model:     anthropic.ModelClaudeOpus5_5,
   				MaxTokens: 1024,
   				System: []anthropic.TextBlockParam{
   					{
@@ -1369,7 +1370,7 @@ Contoh implementasi caching prompt dalam batch:
   		{
   			CustomID: "my-second-request",
   			Params: anthropic.MessageBatchNewParamsRequestParams{
-  				Model:     anthropic.ModelClaudeOpus5,
+  				Model:     anthropic.ModelClaudeOpus5_5,
   				MaxTokens: 1024,
   				System: []anthropic.TextBlockParam{
   					{
@@ -1406,7 +1407,7 @@ Contoh implementasi caching prompt dalam batch:
             .customId("my-first-request")
             .params(
               BatchCreateParams.Request.Params.builder()
-                .model(Model.CLAUDE_OPUS_5)
+                .model(Model.CLAUDE_OPUS_5_5)
                 .maxTokens(1024)
                 .systemOfTextBlockParams(
                   List.of(
@@ -1431,7 +1432,7 @@ Contoh implementasi caching prompt dalam batch:
             .customId("my-second-request")
             .params(
               BatchCreateParams.Request.Params.builder()
-                .model(Model.CLAUDE_OPUS_5)
+                .model(Model.CLAUDE_OPUS_5_5)
                 .maxTokens(1024)
                 .systemOfTextBlockParams(
                   List.of(
@@ -1464,7 +1465,7 @@ Contoh implementasi caching prompt dalam batch:
           [
               'custom_id' => 'my-first-request',
               'params' => [
-                  'model' => 'claude-opus-5',
+                  'model' => 'claude-opus-5-5',
                   'max_tokens' => 1024,
                   'system' => [
                       [
@@ -1485,7 +1486,7 @@ Contoh implementasi caching prompt dalam batch:
           [
               'custom_id' => 'my-second-request',
               'params' => [
-                  'model' => 'claude-opus-5',
+                  'model' => 'claude-opus-5-5',
                   'max_tokens' => 1024,
                   'system' => [
                       [
@@ -1515,7 +1516,7 @@ Contoh implementasi caching prompt dalam batch:
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           system: [
             {
@@ -1536,7 +1537,7 @@ Contoh implementasi caching prompt dalam batch:
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           system: [
             {
@@ -1571,7 +1572,7 @@ Worker batch juga membatasi `web_search` per organisasi sehingga pemrosesan batc
 
 ### Output diperpanjang (beta)
 
-Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, atau Claude Sonnet 4.6. Sertakan header ini untuk menghasilkan output yang jauh lebih panjang daripada batas `max_tokens` standar 128k dalam satu giliran.
+Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, atau Claude Sonnet 4.6. Sertakan header tersebut untuk menghasilkan output yang jauh lebih panjang daripada batas standar `max_tokens` sebesar 128k dalam satu giliran.
 
 <Note>
   Output diperpanjang hanya tersedia di Message Batches API, bukan Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform on AWS, dan saat ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
@@ -1594,7 +1595,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
           {
               "custom_id": "long-form-request",
               "params": {
-                  "model": "claude-opus-5",
+                  "model": "claude-opus-5-5",
                   "max_tokens": 300000,
                   "messages": [
                       {"role": "user", "content": "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices."}
@@ -1610,7 +1611,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
   requests:
     - custom_id: long-form-request
       params:
-        model: claude-opus-5
+        model: claude-opus-5-5
         max_tokens: 300000
         messages:
           - role: user
@@ -1633,7 +1634,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
           Request(
               custom_id="long-form-request",
               params=MessageCreateParamsNonStreaming(
-                  model="claude-opus-5",
+                  model="claude-opus-5-5",
                   max_tokens=300_000,
                   messages=[
                       {
@@ -1658,7 +1659,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
       {
         custom_id: "long-form-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 300000,
           messages: [
             {
@@ -1693,7 +1694,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
               CustomID = "long-form-request",
               Params = new()
               {
-                  Model = Model.ClaudeOpus5,
+                  Model = Model.ClaudeOpus5_5,
                   MaxTokens = 300_000,
                   Messages =
                   [
@@ -1717,7 +1718,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
   			{
   				CustomID: "long-form-request",
   				Params: anthropic.BetaMessageBatchNewParamsRequestParams{
-  					Model:     anthropic.ModelClaudeOpus5,
+  					Model:     anthropic.ModelClaudeOpus5_5,
   					MaxTokens: 300_000,
   					Messages: []anthropic.BetaMessageParam{
   						anthropic.NewBetaUserMessage(
@@ -1748,7 +1749,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
           .customId("long-form-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(300_000L)
               .addUserMessage("Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices.")
               .build()
@@ -1772,7 +1773,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
           [
               'custom_id' => 'long-form-request',
               'params' => [
-                  'model' => 'claude-opus-5',
+                  'model' => 'claude-opus-5-5',
                   'max_tokens' => 300_000,
                   'messages' => [
                       ['role' => 'user', 'content' => 'Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices.']
@@ -1794,7 +1795,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
       {
         custom_id: "long-form-request",
         params: {
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 300_000,
           messages: [
             { role: "user", content: "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices." }

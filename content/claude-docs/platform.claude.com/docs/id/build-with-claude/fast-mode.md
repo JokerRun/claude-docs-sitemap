@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 35c599b562cb58c8ef14ae2739bf620c2daae8e452b4942795b3580fc1f65919
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d837eb3ff61eab488517a4a461c57a320cb76e5a66dc331c0c07ef6ea1c38d92
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
 description: Dapatkan token output per detik hingga 2,5x lebih tinggi dari model Claude Opus yang didukung.
 ---
 
-Mode cepat (fast mode) memberikan token output per detik hingga 2,5x lebih tinggi dari Claude Opus 5 dan Claude Opus 4.8 dengan harga premium. Atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` pada permintaan Anda untuk ikut serta.
+"Fast mode" (mode cepat) memberikan token output per detik hingga 2,5x lebih tinggi dari Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Untuk ikut serta, atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` pada permintaan Anda.
 
 <Note>
   Mode cepat sedang dalam pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk mode cepat.
@@ -25,19 +25,20 @@ Mode cepat (fast mode) memberikan token output per detik hingga 2,5x lebih tingg
 
 Mode cepat didukung pada model-model berikut:
 
+* Claude Opus 5.5 (claude-opus-5-5)
 * Claude Opus 5 (claude-opus-5)
 * Claude Opus 4.8 (claude-opus-4-8)
 
 <Note>
-  Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 tersedia sebagai pratinjau riset hanya di Claude API, termasuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Mode ini tidak tersedia di Amazon Bedrock, Claude Platform on AWS, Google Cloud, atau Microsoft Foundry.
+  Mode cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 hanya tersedia sebagai pratinjau riset di Claude API, termasuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Fitur ini tidak tersedia di Amazon Bedrock, Claude Platform on AWS, Google Cloud, atau Microsoft Foundry.
 </Note>
 
 <Note>
-  Mode cepat tidak tersedia pada Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak beralih kembali ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47) atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak beralih ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 5.5, [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47), atau Claude Opus 4.8.
 </Note>
 
 <Note>
-  Mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing) alih-alih tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-46) atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing), bukan tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 5.5, [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-46), atau Claude Opus 4.8.
 </Note>
 
 ## Cara kerja mode cepat
@@ -59,7 +60,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
     -H "anthropic-beta: fast-mode-2026-02-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "speed": "fast",
       "messages": [{
@@ -74,7 +75,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
     --beta fast-mode-2026-02-01 \
     --transform 'content.#(type=="text").text' \
     --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   speed: fast
   messages:
@@ -87,7 +88,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       speed="fast",
       betas=["fast-mode-2026-02-01"],
@@ -105,7 +106,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     speed: "fast",
     betas: ["fast-mode-2026-02-01"],
@@ -128,7 +129,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 4096,
       Speed = Speed.Fast,
       Betas = ["fast-mode-2026-02-01"],
@@ -150,7 +151,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Speed:     anthropic.BetaMessageNewParamsSpeedFast,
   	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFastMode2026_02_01},
@@ -173,7 +174,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
 
   BetaMessage response = client.beta().messages().create(
           MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .speed(MessageCreateParams.Speed.FAST)
                   .addBeta(AnthropicBeta.FAST_MODE_2026_02_01)
@@ -189,7 +190,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 4096,
       speed: 'fast',
       betas: ['fast-mode-2026-02-01'],
@@ -209,7 +210,7 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     speed: "fast",
     betas: ["fast-mode-2026-02-01"],
@@ -228,6 +229,7 @@ Mode cepat dihargai dengan pengali terhadap tarif standar di seluruh jendela kon
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
+| Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
 Harga mode cepat bertumpuk dengan pengubah harga lainnya:
@@ -266,7 +268,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
     -H "anthropic-beta: fast-mode-2026-02-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "speed": "fast",
       "messages": [{"role": "user", "content": "Hello"}]
@@ -278,7 +280,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
     --beta fast-mode-2026-02-01 \
     --transform usage.speed \
     --raw-output <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   speed: fast
   messages:
@@ -291,7 +293,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       speed="fast",
       betas=["fast-mode-2026-02-01"],
@@ -305,7 +307,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     speed: "fast",
     betas: ["fast-mode-2026-02-01"],
@@ -320,7 +322,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5",
+      Model = "claude-opus-5-5",
       MaxTokens = 1024,
       Speed = Speed.Fast,
       Betas = ["fast-mode-2026-02-01"],
@@ -334,7 +336,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Speed:     anthropic.BetaMessageNewParamsSpeedFast,
   	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFastMode2026_02_01},
@@ -352,7 +354,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .speed(MessageCreateParams.Speed.FAST)
           .addBeta(AnthropicBeta.FAST_MODE_2026_02_01)
@@ -367,7 +369,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       speed: 'fast',
       betas: ['fast-mode-2026-02-01'],
@@ -381,7 +383,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     speed: "fast",
     betas: ["fast-mode-2026-02-01"],
@@ -430,9 +432,9 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  # `ant` mencoba ulang 429/5xx secara otomatis dan tidak memiliki override max_retries
-  # per permintaan, jadi pada 429 mode cepat, fallback berjalan setelah percobaan ulang
-  # bawaan habis. --transform-error menampilkan error.type untuk percabangan.
+  # `ant` mencoba ulang 429/5xx secara otomatis dan tidak punya override max_retries per permintaan,
+  # sehingga pada 429 mode cepat, fallback berjalan setelah percobaan ulang bawaan
+  # habis. --transform-error menampilkan error.type untuk percabangan.
   create_message_with_fast_fallback() {
     local speed="$1" max_attempts="${2:-3}" body out
     body=${3:-$(cat)}
@@ -459,7 +461,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
   MESSAGE=$(
     create_message_with_fast_fallback fast <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -496,7 +498,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
 
   message = create_message_with_fast_fallback(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello"}],
       betas=["fast-mode-2026-02-01"],
@@ -534,7 +536,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
   const message = await createMessageWithFastFallback(
     {
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello" }],
       betas: ["fast-mode-2026-02-01"],
@@ -582,7 +584,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   var message = await CreateMessageWithFastFallback(
       new MessageCreateParams
       {
-          Model = "claude-opus-5",
+          Model = "claude-opus-5-5",
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello" }],
           Betas = ["fast-mode-2026-02-01"],
@@ -622,7 +624,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   		context.TODO(),
   		&client,
   		anthropic.BetaMessageNewParams{
-  			Model:     anthropic.ModelClaudeOpus5,
+  			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 1024,
   			Messages: []anthropic.BetaMessageParam{
   				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello")),
@@ -671,7 +673,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   void main() {
       BetaMessage message = createMessageWithFastFallback(
               MessageCreateParams.builder()
-                      .model(Model.CLAUDE_OPUS_5)
+                      .model(Model.CLAUDE_OPUS_5_5)
                       .maxTokens(1024L)
                       .addUserMessage("Hello")
                       .addBeta(AnthropicBeta.FAST_MODE_2026_02_01)
@@ -722,7 +724,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
   $message = createMessageWithFastFallback(
       $client,
       [
-          'model' => 'claude-opus-5',
+          'model' => 'claude-opus-5-5',
           'maxTokens' => 1024,
           'messages' => [['role' => 'user', 'content' => 'Hello']],
           'betas' => ['fast-mode-2026-02-01'],
@@ -748,7 +750,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 
   message = create_message_with_fast_fallback(
     client,
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }],
     betas: ["fast-mode-2026-02-01"],
@@ -761,7 +763,7 @@ Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk er
 ## Pertimbangan
 
 * **Caching prompt:** Beralih antara kecepatan cepat dan standar membatalkan prompt cache. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
-* **Model yang didukung:** Mode cepat didukung pada Claude Opus 5 dan Claude Opus 4.8. Lihat [Model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+* **Model yang didukung:** Mode cepat didukung pada Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Lihat [Model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
 * **TTFT:** Manfaat mode cepat berfokus pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
 * **Batch API:** Mode cepat tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 * **Priority Tier:** Mode cepat tidak tersedia dengan komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers).

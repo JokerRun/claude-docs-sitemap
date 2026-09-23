@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 28a334dc4e4fa27152df79d99353e7d8812a583a2d7664699054a97b1d73149f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 7d66a22a28ed3ff4a032aa7d32d7a908bb38cfef6b647120a8330a8ee67f6db0
 ---
 
 ---
@@ -33,7 +33,7 @@ A `tool_use` block for a member of the [computer use](https://platform.claude.co
   ```json JSON
   {
     "id": "msg_01Aq9w938a90dw8q",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "stop_reason": "tool_use",
     "role": "assistant",
     "content": [

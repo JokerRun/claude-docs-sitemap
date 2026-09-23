@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: 441b940bd0ecff6302847e33945bb0ad0ada7e5a2a4c4f8e948448711b14597b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e8b6e90ae9218711da6903f3fec960dc35b931822578081dcaec25eaa64f3084
 ---
 
 ---
@@ -28,7 +28,7 @@ Write the agent as a Markdown file under `agents/` and apply it:
     ```markdown
     ---
     name: Summarizer
-    model: claude-opus-5
+    model: claude-opus-5-5
     tools:
       - type: agent_toolset_20260401
     ---
@@ -118,7 +118,7 @@ Resources refer to each other by path. Wherever the API expects another resource
     ```markdown
     ---
     name: Code reviewer
-    model: claude-opus-5
+    model: claude-opus-5-5
     tools:
       - type: agent_toolset_20260401
     skills:
@@ -133,7 +133,7 @@ Resources refer to each other by path. Wherever the API expects another resource
     ```markdown
     ---
     name: Engineering lead
-    model: claude-opus-5
+    model: claude-opus-5-5
     multiagent:
       type: coordinator
       agents:
@@ -159,6 +159,7 @@ Resources refer to each other by path. Wherever the API expects another resource
 
   <File filename="environments/cloud.yaml">
     ```yaml
+    # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
     name: review-env
     description: Cloud container with unrestricted networking for review sessions.
     config:
@@ -170,6 +171,7 @@ Resources refer to each other by path. Wherever the API expects another resource
 
   <File filename="memory_stores/review-notes.yaml">
     ```yaml
+    # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
     name: Review notes
     description: Recurring issues and house-style decisions the reviewer has recorded between runs.
     ```

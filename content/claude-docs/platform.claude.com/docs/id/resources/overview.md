@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b28747a8c7a3dc560983a5fe34e241b1504b87db5164405a954210935a99147e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 652c8101a864d32e9374c82e05ae026a01581c4b964b59b47f93e343a34ea789
 ---
 
 ---
@@ -12,6 +12,10 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
 ---
 
 <CardGroup cols={3}>
+  <Card title="Kartu Sistem Claude Opus 5.5" icon="file" href="https://www.anthropic.com/claude-opus-5-5-system-card">
+    Dokumentasi terperinci tentang Claude Opus 5.5.
+  </Card>
+
   <Card title="Kartu Sistem Claude Fable 5.1 dan Mythos 5.1" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
     Dokumentasi terperinci tentang Claude Fable 5.1 dan Claude Mythos 5.1.
   </Card>
@@ -65,7 +69,7 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
   </Card>
 
   <Card title="Kartu Sistem Claude 4" icon="file" href="https://www.anthropic.com/claude-4-system-card">
-    Dokumentasi terperinci tentang model-model Claude 4.
+    Dokumentasi terperinci tentang model Claude 4.
   </Card>
 
   <Card title="Kartu Sistem Claude Sonnet 3.7" icon="file" href="https://www.anthropic.com/claude-3-7-sonnet-system-card">
@@ -77,10 +81,10 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
   </Card>
 
   <Card title="Kartu Model Claude 3" icon="file" href="https://www.anthropic.com/claude-3-model-card">
-    Dokumentasi terperinci tentang model-model Claude 3 termasuk adendum 3.5 terbaru.
+    Dokumentasi terperinci tentang model Claude 3, termasuk adendum 3.5 terbaru.
   </Card>
 
   <Card title="Kartu Model Claude 2" icon="file" href="https://www.anthropic.com/claude-2-model-card">
-    Dokumentasi terperinci tentang model-model Claude 2.
+    Dokumentasi terperinci tentang model Claude 2.
   </Card>
 </CardGroup>

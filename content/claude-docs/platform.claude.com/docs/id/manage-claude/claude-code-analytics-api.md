@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8ab84e008d92a53d4c3245d2b5d70635e2b50b87c994acaf4de21c0c93195e74
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 26a39f18370f07ce5e14045ae33ed7172b4ebd95f402a7aaa4946e21cc4fb419
 ---
 
 ---
@@ -195,7 +195,7 @@ API mengembalikan data dalam format berikut:
       },
       "model_breakdown": [
         {
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "tokens": {
             "input": 100000,
             "output": 35000,
@@ -204,7 +204,7 @@ API mengembalikan data dalam format berikut:
           },
           "estimated_cost": {
             "currency": "USD",
-            "amount": 141
+            "amount": 113
           }
         }
       ]
@@ -282,5 +282,5 @@ Claude Code Analytics API membantu Anda memahami dan mengoptimalkan alur kerja p
 * [Dashboard Claude Code Analytics](https://platform.claude.com/claude-code)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) - Lacak penggunaan API di semua layanan Anthropic
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) - Ambil data audit dan aktivitas
-* [Manajemen identitas dan akses](https://code.claude.com/docs/id/iam)
+* [Manajemen identitas dan akses](https://code.claude.com/docs/en/iam)
 * [Memantau penggunaan dengan OpenTelemetry](https://code.claude.com/docs/id/monitoring-usage) untuk metrik kustom dan peringatan

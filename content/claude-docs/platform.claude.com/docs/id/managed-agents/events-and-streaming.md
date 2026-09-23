@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: d734de6f5461426078b5b4103ea604f87618102869b0d8692134f4ba2ace85d3
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b61001ca7a9befa4bb0dd48b51168623821dad477af2f9d52fe752b54f96cddc
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Aliran event sesi
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
 description: Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -2641,7 +2644,7 @@ Tidak ada event yang melanjutkan sesi yang dijeda di batasnya. Sebagai gantinya,
 ### Mengirim pesan sistem
 
 <Note>
-  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya mendarat di thread utama.
+  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event akan ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
 </Note>
 
 Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang menetapkan prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.

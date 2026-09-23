@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: b5fef2c2564f19faabffa9d0e20832ddb860422b9ccee3f94785c004fe7ca297
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 2b9b29a57dd8ce6cbfa63fd759353818b78a44c8b2dcea30b560cb1801048069
 ---
 
 ---
@@ -133,7 +133,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   <Accordion title="Fidelitas tugas (analisis sentimen) - evaluasi kecocokan persis">
     **Apa yang diukur:** Eval "exact match" (kecocokan persis) mengukur apakah output model cocok dengan jawaban benar yang telah ditentukan sebelumnya, biasanya setelah menormalkan spasi dan huruf besar/kecil. Ini adalah metrik sederhana dan tidak ambigu yang sempurna untuk tugas dengan jawaban kategorikal yang jelas seperti analisis sentimen (positif, negatif, netral).
 
-    **Contoh kasus uji eval:** 1.000 tweet dengan sentimen yang dilabeli manusia.
+    **Contoh kasus uji eval:** 1.000 tweet dengan sentimen yang dilabeli oleh manusia.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -156,7 +156,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(prompt: str):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=50,
               messages=[{"role": "user", "content": prompt}],
           )
@@ -199,7 +199,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 50,
           messages: [{ role: "user", content: prompt }]
         });
@@ -241,7 +241,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           var message = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 50,
               Messages = [new() { Role = Role.User, Content = prompt }],
           });
@@ -311,7 +311,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       func getCompletion(prompt string) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 50,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
@@ -364,7 +364,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       String getCompletion(String prompt) {
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(50L)
               .addUserMessage(prompt)
               .build();
@@ -404,7 +404,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       function getCompletion(Client $client, string $prompt): string
       {
           $message = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 50,
               messages: [
                   [
@@ -464,7 +464,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(client, prompt)
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 50,
           messages: [
             {
@@ -495,7 +495,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   <Accordion title="Konsistensi (bot FAQ) - evaluasi cosine similarity">
     **Apa yang diukur:** "Cosine similarity" (kemiripan kosinus) mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang mendekati 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya berbeda.
 
-    **Contoh kasus uji eval:** 50 grup dengan beberapa versi parafrase masing-masing.
+    **Contoh kasus uji eval:** 50 kelompok yang masing-masing berisi beberapa versi parafrase.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -533,7 +533,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(prompt: str):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=2048,
               messages=[{"role": "user", "content": prompt}],
           )
@@ -588,7 +588,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 2048,
           messages: [{ role: "user", content: prompt }]
         });
@@ -603,7 +603,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         let total = 0;
         for (const embeddingA of embeddings) {
           for (const embeddingB of embeddings) {
-            // Vektor sudah dinormalisasi, jadi cosine similarity sama dengan dot product
+            // Vektor sudah dinormalisasi, jadi cosine similarity (kemiripan kosinus) sama dengan dot product
             total += embeddingA.reduce(
               (sum: number, value: number, i: number) => sum + value * embeddingB[i],
               0
@@ -632,7 +632,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```
 
       ```java Java
-      // Model sentence-embedding tidak tersedia sebagai library Java native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      // Model sentence-embedding tidak tersedia sebagai pustaka Java native. Lihat tab Python atau TypeScript untuk resep eval ini.
       ```
 
       ```php PHP
@@ -640,7 +640,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```
 
       ```ruby Ruby
-      # Model sentence-embedding tidak tersedia sebagai pustaka Ruby native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      # Model sentence-embedding tidak tersedia sebagai library Ruby native. Lihat tab Python atau TypeScript untuk resep eval ini.
       ```
     </CodeGroup>
   </Accordion>
@@ -675,7 +675,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(prompt: str):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=1024,
               messages=[{"role": "user", "content": prompt}],
           )
@@ -720,7 +720,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [{ role: "user", content: prompt }]
         });
@@ -728,9 +728,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         return textBlock ? textBlock.text : "";
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
       function rougeL(candidate: string, reference: string): number {
         const candidateWords = candidate.toLowerCase().trim().split(/\s+/);
         const referenceWords = reference.toLowerCase().trim().split(/\s+/);
@@ -788,16 +788,16 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           var message = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = prompt }],
           });
           return ContentText(message);
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor dapat berbeda dari pustaka rouge Python.
       double RougeL(string candidate, string reference)
       {
           var candidateWords = Regex.Split(candidate.ToLowerInvariant().Trim(), @"\s+");
@@ -886,7 +886,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       func getCompletion(prompt string) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
@@ -898,9 +898,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	return contentText(message)
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berdasarkan spasi; skor mungkin berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
       func rougeL(candidate, reference string) float64 {
       	candidateWords := strings.Fields(strings.ToLower(candidate))
       	referenceWords := strings.Fields(strings.ToLower(reference))
@@ -972,16 +972,16 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       String getCompletion(String prompt) {
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage(prompt)
               .build();
           return contentText(client.messages().create(params));
       }
 
-      // ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
       double rougeL(String candidate, String reference) {
           var candidateWords = candidate.toLowerCase().strip().split("\\s+");
           var referenceWords = reference.toLowerCase().strip().split("\\s+");
@@ -1028,7 +1028,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               'text' => 'Jane Doe, a local hero, made headlines last week for saving... In city hall news, the budget... Meteorologists predict...',
               'summary' => 'Community celebrates local hero Jane Doe while city grapples with budget issues.',
           ],
-          // Kasus tepi: Judul yang menyesatkan
+          // Kasus tepi: Judul menyesatkan
           [
               'text' => "You won't believe what this celebrity did! ... extensive charity work ...",
               'summary' => "Celebrity's extensive charity work surprises fans",
@@ -1039,7 +1039,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       function getCompletion(Client $client, string $prompt): string
       {
           $message = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
               messages: [
                   [
@@ -1051,9 +1051,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           return contentText($message);
       }
 
-      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, dari kata-kata antara
+      // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata yang dipisah spasi; skor dapat berbeda dari pustaka rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
       function rougeL(string $candidate, string $reference): float
       {
           $candidateWords = preg_split('/\s+/', strtolower(trim($candidate)));
@@ -1123,7 +1123,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(client, prompt)
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
           messages: [
             {
@@ -1135,9 +1135,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         content_text(message)
       end
 
-      # ROUGE-L mengukur longest common subsequence (LCS) kata antara
+      # ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       # ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      # disederhanakan menjadi kata berbasis spasi; skor dapat berbeda dari library rouge Python.
+      # disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
       def rouge_l(candidate, reference)
         candidate_words = candidate.downcase.split
         reference_words = reference.downcase.split
@@ -1198,7 +1198,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(prompt: str):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=2048,
               messages=[{"role": "user", "content": prompt}],
           )
@@ -1212,9 +1212,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           5: Perfectly {target_tone}
           Output only the number."""
 
-          # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=50,
               messages=[{"role": "user", "content": tone_prompt}],
           )
@@ -1255,7 +1255,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 2048,
           messages: [{ role: "user", content: prompt }]
         });
@@ -1270,9 +1270,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly ${targetTone}
       Output only the number.`;
 
-        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 50,
           messages: [{ role: "user", content: tonePrompt }]
         });
@@ -1299,9 +1299,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```csharp C#
       Inquiry[] inquiries =
       [
-          // Kasus tepi: Pelanggan marah
+          // Kasus tepi: Pelanggan yang marah
           new("This is the third time you've messed up my order. I want a refund NOW!", "empathetic"),
-          // Kasus tepi: Masalah kompleks
+          // Kasus tepi: Masalah yang kompleks
           new("I tried resetting my password but then my account got locked...", "patient"),
           // Kasus tepi: Pujian sebagai keluhan
           new("I can't believe how good your product is. It's ruined all others for me!", "professional"),
@@ -1314,7 +1314,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           var message = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 2048,
               Messages = [new() { Role = Role.User, Content = prompt }],
           });
@@ -1331,10 +1331,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only the number.
               """;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 50,
               Messages = [new() { Role = Role.User, Content = tonePrompt }],
           });
@@ -1384,18 +1384,18 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       }
 
       var inquiries = []inquiry{
-      	// Kasus tepi: Pelanggan marah
+      	// Kasus tepi: Pelanggan yang marah
       	{"This is the third time you've messed up my order. I want a refund NOW!", "empathetic"},
-      	// Kasus tepi: Masalah kompleks
+      	// Kasus tepi: Masalah yang kompleks
       	{"I tried resetting my password but then my account got locked...", "patient"},
-      	// Kasus tepi: Pujian sebagai keluhan
+      	// Kasus tepi: Pujian yang tampak seperti keluhan
       	{"I can't believe how good your product is. It's ruined all others for me!", "professional"},
       	// ... 97 pertanyaan lainnya
       }
 
       func getCompletion(prompt string) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 2048,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
@@ -1414,9 +1414,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly %[1]s
       Output only the number.`, targetTone, modelOutput)
 
-      	// Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+      	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 50,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(tonePrompt)),
@@ -1451,7 +1451,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           new Inquiry("This is the third time you've messed up my order. I want a refund NOW!", "empathetic"),
           // Kasus tepi: Masalah yang kompleks
           new Inquiry("I tried resetting my password but then my account got locked...", "patient"),
-          // Kasus tepi: Pujian sebagai keluhan
+          // Kasus tepi: Pujian yang tampak seperti keluhan
           new Inquiry("I can't believe how good your product is. It's ruined all others for me!", "professional")
           // ... 97 pertanyaan lainnya
       );
@@ -1468,7 +1468,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       String getCompletion(String prompt) {
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(2048L)
               .addUserMessage(prompt)
               .build();
@@ -1483,9 +1483,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly %1$s
               Output only the number.""".formatted(targetTone, modelOutput);
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(50L)
               .addUserMessage(tonePrompt)
               .build();
@@ -1519,7 +1519,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       function getCompletion(Client $client, string $prompt): string
       {
           $message = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 2048,
               messages: [
                   [
@@ -1541,9 +1541,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
           PROMPT;
 
-          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 50,
               messages: [
                   [
@@ -1582,11 +1582,11 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       client = Anthropic::Client.new
 
       inquiries = [
-        # Kasus tepi: Pelanggan marah
+        # Kasus tepi: Pelanggan yang marah
         { text: "This is the third time you've messed up my order. I want a refund NOW!", tone: "empathetic" },
-        # Kasus tepi: Masalah kompleks
+        # Kasus tepi: Masalah yang kompleks
         { text: "I tried resetting my password but then my account got locked...", tone: "patient" },
-        # Kasus tepi: Pujian sebagai keluhan
+        # Kasus tepi: Pujian yang disampaikan sebagai keluhan
         { text: "I can't believe how good your product is. It's ruined all others for me!", tone: "professional" }
         # ... 97 pertanyaan lainnya
       ]
@@ -1597,7 +1597,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(client, prompt)
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 2048,
           messages: [
             {
@@ -1618,9 +1618,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
         PROMPT
 
-        # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 50,
           messages: [
             {
@@ -1644,7 +1644,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   <Accordion title="Pelestarian privasi (chatbot medis) - klasifikasi biner berbasis LLM">
     **Apa yang diukur:** Klasifikasi biner menentukan apakah suatu input termasuk dalam salah satu dari dua kelas. Di sini, metode ini digunakan untuk mengklasifikasikan apakah suatu respons mengandung PHI atau tidak. Metode ini dapat memperhitungkan konteks dan mengidentifikasi bentuk PHI yang halus atau implisit yang mungkin terlewat oleh sistem berbasis aturan.
 
-    **Contoh kasus uji eval:** 500 kueri pasien simulasi, beberapa mengandung PHI.
+    **Contoh kasus uji eval:** 500 kueri pasien simulasi, beberapa di antaranya mengandung PHI.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -1670,7 +1670,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(prompt: str):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=1024,
               messages=[{"role": "user", "content": prompt}],
           )
@@ -1692,9 +1692,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           <response>{model_output}</response>
           Output only 'yes' or 'no'."""
 
-          # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=50,
               messages=[{"role": "user", "content": binary_prompt}],
           )
@@ -1742,7 +1742,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: [{ role: "user", content: prompt }]
         });
@@ -1769,9 +1769,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>${modelOutput}</response>
       Output only 'yes' or 'no'.`;
 
-        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 50,
           messages: [{ role: "user", content: binaryPrompt }]
         });
@@ -1810,7 +1810,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           var message = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = prompt }],
           });
@@ -1837,10 +1837,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only 'yes' or 'no'.
               """;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 50,
               Messages = [new() { Role = Role.User, Content = binaryPrompt }],
           });
@@ -1906,7 +1906,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       func getCompletion(prompt string) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
@@ -1934,9 +1934,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>%s</response>
       Output only 'yes' or 'no'.`, modelOutput)
 
-      	// Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+      	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 50,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(binaryPrompt)),
@@ -1987,7 +1987,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       String getCompletion(String prompt) {
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage(prompt)
               .build();
@@ -2011,9 +2011,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               <response>%s</response>
               Output only 'yes' or 'no'.""".formatted(modelOutput);
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(50L)
               .addUserMessage(binaryPrompt)
               .build();
@@ -2051,7 +2051,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       function getCompletion(Client $client, string $prompt): string
       {
           $message = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
               messages: [
                   [
@@ -2082,9 +2082,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
           PROMPT;
 
-          // Umumnya praktik terbaik adalah memakai model evaluasi yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 50,
               messages: [
                   [
@@ -2140,7 +2140,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(client, prompt)
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
           messages: [
             {
@@ -2168,9 +2168,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
         PROMPT
 
-        # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        # Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 50,
           messages: [
             {
@@ -2249,7 +2249,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(conversation: list):
           message = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=1024,
               messages=conversation,
           )
@@ -2266,9 +2266,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           5: Perfectly utilizes context
           Output only the number and nothing else."""
 
-          # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
-              model="claude-opus-5",
+              model="claude-opus-5-5",
               max_tokens=50,
               messages=[{"role": "user", "content": ordinal_prompt}],
           )
@@ -2333,7 +2333,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       async function getCompletion(conversation: Anthropic.MessageParam[]): Promise<string> {
         const message = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 1024,
           messages: conversation
         });
@@ -2358,9 +2358,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`;
 
-        // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
-          model: "claude-opus-5",
+          model: "claude-opus-5-5",
           max_tokens: 50,
           messages: [{ role: "user", content: ordinalPrompt }]
         });
@@ -2393,19 +2393,19 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               new("user", "Yes, it is. I named her Luna."),
               new("assistant", "Luna is a lovely name! As a first-time dog owner, you might have some questions. What would you like to know about caring for Luna?"),
               // ...
-              // Kasus tepi: Bergantung pada konteks dari jauh sebelumnya
+              // Kasus tepi: Bergantung pada konteks dari bagian yang jauh lebih awal
               new("user", "What should I know about caring for a dog of this specific breed?"),
           ],
           [
               new("user", "I'm reading 'To Kill a Mockingbird' for my book club."),
               new("assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"),
-              // Kasus tepi: Pergeseran topik yang mendadak
+              // Kasus tepi: Pergantian topik secara tiba-tiba
               new("user", "It's powerful. Hey, when was Scout's birthday again?"),
               new("assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"),
-              // Kasus tepi: Pergeseran topik lainnya
+              // Kasus tepi: Pergantian topik lainnya
               new("user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"),
           ],
-          // ... 98 percakapan lagi
+          // ... 98 percakapan lainnya
       ];
 
       var client = new AnthropicClient();
@@ -2414,7 +2414,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           var message = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
               Messages = [.. conversation.Select(turn => new MessageParam
               {
@@ -2440,10 +2440,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only the number and nothing else.
               """;
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
-              Model = Model.ClaudeOpus5,
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 50,
               Messages = [new() { Role = Role.User, Content = ordinalPrompt }],
           });
@@ -2493,13 +2493,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	{
       		{"user", "I'm reading 'To Kill a Mockingbird' for my book club."},
       		{"assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"},
-      		// Kasus tepi: Pergeseran topik mendadak
+      		// Kasus tepi: Pergantian topik mendadak
       		{"user", "It's powerful. Hey, when was Scout's birthday again?"},
       		{"assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"},
-      		// Kasus tepi: Pergeseran topik lainnya
+      		// Kasus tepi: Pergantian topik lainnya
       		{"user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"},
       	},
-      	// ... 98 percakapan lagi
+      	// ... 98 percakapan lainnya
       }
 
       var client = anthropic.NewClient()
@@ -2528,7 +2528,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       func getCompletion(conversation []turn) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
       		Messages:  toMessageParams(conversation),
       	})
@@ -2551,9 +2551,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`, conversationText.String(), modelOutput)
 
-      	// Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+      	// Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-      		Model:     anthropic.ModelClaudeOpus5,
+      		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 50,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(ordinalPrompt)),
@@ -2594,10 +2594,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           List.of(
               new Turn("user", "I'm reading 'To Kill a Mockingbird' for my book club."),
               new Turn("assistant", "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"),
-              // Kasus tepi: Pergeseran topik mendadak
+              // Kasus tepi: Pergantian topik mendadak
               new Turn("user", "It's powerful. Hey, when was Scout's birthday again?"),
               new Turn("assistant", "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"),
-              // Kasus tepi: Pergeseran topik lainnya
+              // Kasus tepi: Pergantian topik lainnya
               new Turn("user", "Oh, right. Well, can you suggest a recipe for a classic Southern cake?"))
           // ... 98 percakapan lainnya
       );
@@ -2614,7 +2614,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       String getCompletion(List<Turn> conversation) {
           var builder = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L);
           for (var turn : conversation) {
               if (turn.role().equals("user")) {
@@ -2640,9 +2640,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly utilizes context
               Output only the number and nothing else.""".formatted(conversationText, modelOutput);
 
-          // Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(50L)
               .addUserMessage(ordinalPrompt)
               .build();
@@ -2676,7 +2676,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           [
               ['role' => 'user', 'content' => "I'm reading 'To Kill a Mockingbird' for my book club."],
               ['role' => 'assistant', 'content' => "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?"],
-              // Kasus tepi: Pergantian topik yang mendadak
+              // Kasus tepi: Pergantian topik mendadak
               ['role' => 'user', 'content' => "It's powerful. Hey, when was Scout's birthday again?"],
               ['role' => 'assistant', 'content' => "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?"],
               // Kasus tepi: Pergantian topik lainnya
@@ -2688,7 +2688,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       function getCompletion(Client $client, array $conversation): string
       {
           $message = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
               messages: $conversation,
           );
@@ -2711,9 +2711,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
           PROMPT;
 
-          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
-              model: Model::CLAUDE_OPUS_5,
+              model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 50,
               messages: [
                   [
@@ -2764,13 +2764,13 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         [
           { role: "user", content: "I'm reading 'To Kill a Mockingbird' for my book club." },
           { role: "assistant", content: "Great choice! 'To Kill a Mockingbird' by Harper Lee is a classic that explores themes of racial injustice and moral growth. How are you finding it so far?" },
-          # Kasus tepi: Pergeseran topik mendadak
+          # Kasus tepi: Pergantian topik yang mendadak
           { role: "user", content: "It's powerful. Hey, when was Scout's birthday again?" },
           { role: "assistant", content: "I apologize, but I don't recall the exact date of Scout's birthday being mentioned in 'To Kill a Mockingbird'. The novel doesn't focus on such specific details. Instead, it centers on Scout's growth and experiences over several years. Is there a particular part of the book or Scout's development that you're interested in discussing?" },
-          # Kasus tepi: Pergeseran topik lainnya
+          # Kasus tepi: Pergantian topik lainnya
           { role: "user", content: "Oh, right. Well, can you suggest a recipe for a classic Southern cake?" }
         ]
-        # ... 98 percakapan lagi
+        # ... 98 percakapan lainnya
       ]
 
       def content_text(message)
@@ -2779,7 +2779,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       def get_completion(client, conversation)
         message = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
           messages: conversation
         )
@@ -2798,9 +2798,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
         PROMPT
 
-        # Umumnya praktik terbaik adalah menggunakan model yang berbeda untuk mengevaluasi daripada model yang digunakan untuk menghasilkan output yang dievaluasi
+        # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
-          model: Anthropic::Model::CLAUDE_OPUS_5,
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 50,
           messages: [
             {
@@ -2869,7 +2869,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     def grade_completion(output, golden_answer):
         grader_message = client.messages.create(
-            model="claude-opus-5",
+            model="claude-opus-5-5",
             max_tokens=2048,
             messages=[
                 {"role": "user", "content": build_grader_prompt(output, golden_answer)}
@@ -2901,7 +2901,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     def get_completion(prompt: str):
         message = client.messages.create(
-            model="claude-opus-5",
+            model="claude-opus-5-5",
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -2928,7 +2928,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     async function gradeCompletion(output: string, goldenAnswer: string): Promise<string> {
       const graderResponse = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 2048,
         messages: [{ role: "user", content: buildGraderPrompt(output, goldenAnswer) }]
       });
@@ -2953,7 +2953,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     async function getCompletion(prompt: string): Promise<string> {
       const message = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [{ role: "user", content: prompt }]
       });
@@ -2987,7 +2987,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     {
         var graderResponse = await client.Messages.Create(new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 2048,
             Messages = [new() { Role = Role.User, Content = BuildGraderPrompt(output, goldenAnswer) }],
         });
@@ -3009,7 +3009,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     {
         var message = await client.Messages.Create(new MessageCreateParams
         {
-            Model = Model.ClaudeOpus5,
+            Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
             Messages = [new() { Role = Role.User, Content = prompt }],
         });
@@ -3065,7 +3065,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     func gradeCompletion(output, goldenAnswer string) string {
     	graderResponse, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    		Model:     anthropic.ModelClaudeOpus5,
+    		Model:     anthropic.ModelClaudeOpus5_5,
     		MaxTokens: 2048,
     		Messages: []anthropic.MessageParam{
     			anthropic.NewUserMessage(anthropic.NewTextBlock(buildGraderPrompt(output, goldenAnswer))),
@@ -3082,7 +3082,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     func getCompletion(prompt string) string {
     	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    		Model:     anthropic.ModelClaudeOpus5,
+    		Model:     anthropic.ModelClaudeOpus5_5,
     		MaxTokens: 1024,
     		Messages: []anthropic.MessageParam{
     			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
@@ -3146,7 +3146,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     String gradeCompletion(String output, String goldenAnswer) {
         var params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_5)
+            .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(2048L)
             .addUserMessage(buildGraderPrompt(output, goldenAnswer))
             .build();
@@ -3156,7 +3156,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     String getCompletion(String prompt) {
         var params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_5)
+            .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024L)
             .addUserMessage(prompt)
             .build();
@@ -3191,7 +3191,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     function gradeCompletion(Client $client, string $output, string $goldenAnswer): string
     {
         $graderResponse = $client->messages->create(
-            model: Model::CLAUDE_OPUS_5,
+            model: Model::CLAUDE_OPUS_5_5,
             maxTokens: 2048,
             messages: [
                 [
@@ -3220,7 +3220,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     function getCompletion(Client $client, string $prompt): string
     {
         $message = $client->messages->create(
-            model: Model::CLAUDE_OPUS_5,
+            model: Model::CLAUDE_OPUS_5_5,
             maxTokens: 1024,
             messages: [
                 [
@@ -3271,7 +3271,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     def grade_completion(client, output, golden_answer)
       grader_response = client.messages.create(
-        model: Anthropic::Model::CLAUDE_OPUS_5,
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 2048,
         messages: [
           {
@@ -3297,7 +3297,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
     def get_completion(client, prompt)
       message = client.messages.create(
-        model: Anthropic::Model::CLAUDE_OPUS_5,
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           {

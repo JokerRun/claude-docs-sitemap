@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: f181d52d2ee066dc4f8b82943759f549e80278bfda3bc362e147400b637315d2
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 72495d200064ed80d5396b626448ea2e1c3648c51d309766bfbab670eb6df81b
 ---
 
 > ## Documentation Index
@@ -283,7 +283,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: "Generate a summary of yesterday's commits and open issues"
           claude_args: |
-            --model claude-opus-4-8
+            --model claude-opus-5-5
             --allowedTools "mcp__github__list_commits,mcp__github__list_issues"
 ```
 

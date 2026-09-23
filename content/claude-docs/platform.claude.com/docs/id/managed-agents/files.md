@@ -1,15 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: a1d585c8c7e84bb3c4712f67a4daecf5b5993ac27c9a01129f7e492c3793d1db
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: d495299019259c83db9497fca1120a15caa69a174b1d2fd53df5dad213ed01a7
 ---
 
 ---
 title: Menambahkan file
 url: https://platform.claude.com/docs/id/managed-agents/files
-description: Unggah file dan mount ke dalam sandbox Anda untuk dibaca dan diproses.
+description: Unggah file dan me-mount-nya di sandbox Anda untuk dibaca dan diproses.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

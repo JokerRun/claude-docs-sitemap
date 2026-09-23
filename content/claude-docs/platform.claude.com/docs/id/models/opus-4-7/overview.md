@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-7/overview
-fetched_at: 2026-09-03T02:44:34.856042Z
-sha256: 761af5ddb6c11f4b878662b0d4d5dcbec35f2a575cd818086295a9a813777be4
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6b1be3204fd6550233c62dc7471b651e3695bcd526e46fc7c1e062277c14bdc3
 ---
 
 ---
 title: Claude Opus 4.7
 url: https://platform.claude.com/docs/id/models/opus-4-7/overview
-description: "Referensi Claude Opus 4.7: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.7 adalah model lama; Claude Opus 5 adalah model Opus saat ini."
+description: "Referensi Claude Opus 4.7: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.7 adalah model lama; Claude Opus 5.5 adalah model Opus saat ini."
 ---
 
 **Legacy.** Released April 16, 2026.
 
-Although Claude Opus 4.7 is still available, you should consider migrating to Claude Opus 5 for improved performance. [See Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) · [Migrate to Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47)
+Although Claude Opus 4.7 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide)
 
 Model ID: `claude-opus-4-7`
 
@@ -26,14 +26,14 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 | Model                                                                             | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
 | :-------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
 | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview)       | 1M      | 128K       | $5 / $25     | Adaptive             | `high`         | May 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)   | 1M      | 128K       | $4 / $20     | Adaptive (always on) | `medium`       | Jun 2026         |
 | **Claude Opus 4.7** (this model)                                                  | 1M      | 128K       | $5 / $25     | Adaptive             | `high`         | Jan 2026         |
 | [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview)   | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jan 2026         |
 | [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview) | 200K    | 64K        | $1 / $5      | Extended             | —              | Feb 2025         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
-* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1). See Pricing for the full list.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
 * **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.
@@ -87,11 +87,11 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Migrasi ke Claude Opus 5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47">
-    Apa yang berubah saat berpindah dari Claude Opus 4.7 ke Claude Opus 5.
+  <Card title="Migrasi ke Claude Opus 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47">
+    Apa yang berubah saat beralih dari Claude Opus 4.7 ke Claude Opus 5.5.
   </Card>
 
-  <Card title="Claude Opus 5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/opus-5/overview">
+  <Card title="Claude Opus 5.5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/opus-5-5/overview">
     Model Opus saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 </CardGroup>

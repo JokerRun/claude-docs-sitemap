@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8c2d00fd673ef30afd14b6828b2ea64eda8a9afeac9f2f0e285f6093b0915dc7
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 79172f65dcf5cee3c6abb5a8aaa2c52d9cd40af6d6942d0c7a6ed6b2f9abc54b
 ---
 
 ---
@@ -186,7 +186,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -212,7 +212,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```bash CLI
   ant messages create <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -228,7 +228,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -251,7 +251,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -280,7 +280,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
   var response = await client.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [
@@ -305,7 +305,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
   ```go Go
   msg, err := client.Messages.New(context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -325,7 +325,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```java Java
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(List.of(
           ContentBlockParam.ofText(TextBlockParam.builder()
@@ -359,7 +359,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo $response;
@@ -367,7 +367,7 @@ Once uploaded, reference the file by passing the `id` from the upload response a
 
   ```ruby Ruby
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -461,7 +461,7 @@ The following examples read a text file and send its contents as plain text:
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "messages": [
       {
@@ -481,7 +481,7 @@ The following examples read a text file and send its contents as plain text:
   ```bash CLI
   # The "@./path" reference inlines the file contents directly into the field.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --transform 'content.#(type=="text").text' \
     --raw-output <<'YAML'
@@ -505,7 +505,7 @@ The following examples read a text file and send its contents as plain text:
       text_content = f.read()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -534,7 +534,7 @@ The following examples read a text file and send its contents as plain text:
   const textContent = await fs.readFile("document.txt", "utf-8");
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -563,7 +563,7 @@ The following examples read a text file and send its contents as plain text:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new()
       {
@@ -592,7 +592,7 @@ The following examples read a text file and send its contents as plain text:
   }
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -618,7 +618,7 @@ The following examples read a text file and send its contents as plain text:
   String textContent = Files.readString(Path.of("document.txt"));
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
       .build();
@@ -648,7 +648,7 @@ The following examples read a text file and send its contents as plain text:
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   foreach ($message->content as $block) {
@@ -665,7 +665,7 @@ The following examples read a text file and send its contents as plain text:
   text_content = File.read("document.txt")
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {

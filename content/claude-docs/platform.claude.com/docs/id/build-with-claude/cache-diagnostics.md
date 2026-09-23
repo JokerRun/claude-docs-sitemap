@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: c4a3e5fa8d124cd511df000616ac157e8e6c1b0b72840a86e5780f4934a2f24a
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 74b356591a927ef14aded9c9983b2c8658c7afd3cf0adf74fd709297d78f0d18
 ---
 
 ---
@@ -48,7 +48,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
     -H "anthropic-beta: cache-diagnosis-2026-04-07" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "cache_control": {"type": "ephemeral"},
       "system": "You are an AI assistant analyzing a large document. <document>...</document>",
@@ -66,7 +66,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
     -H "content-type: application/json" \
     -d @- <<EOF | jq '{id, diagnostics}'  # diagnostics: null means no divergence was found
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "cache_control": {"type": "ephemeral"},
     "system": "You are an AI assistant analyzing a large document. <document>...</document>",
@@ -85,7 +85,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   turn1=$(ant beta:messages create \
     --beta cache-diagnosis-2026-04-07 \
     --transform '{id,usage,diagnostics}' <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
     type: ephemeral
@@ -104,7 +104,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   ant beta:messages create \
     --beta cache-diagnosis-2026-04-07 \
     --transform '{id,usage,diagnostics}' <<YAML
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
     type: ephemeral
@@ -128,7 +128,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   # Giliran 1: ikut serta dengan previous_message_id=None
   r1 = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       cache_control={"type": "ephemeral"},
       system=SYSTEM,
@@ -139,7 +139,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   # Giliran 2: rujuk id respons sebelumnya
   r2 = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       cache_control={"type": "ephemeral"},
       system=SYSTEM,
@@ -168,7 +168,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   // Giliran 1: ikut serta dengan previous_message_id: null
   const r1 = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     cache_control: { type: "ephemeral" },
     system: SYSTEM,
@@ -179,7 +179,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   // Giliran 2: rujuk id respons sebelumnya
   const r2 = await client.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     cache_control: { type: "ephemeral" },
     system: SYSTEM,
@@ -209,7 +209,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   var r1 = await client.Beta.Messages.Create(
       new()
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           CacheControl = new(),
           System = system,
@@ -225,7 +225,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   var r2 = await client.Beta.Messages.Create(
       new()
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           CacheControl = new(),
           System = system,
@@ -261,7 +261,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   }
 
   r1, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:        anthropic.ModelClaudeOpus5,
+  	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
   	CacheControl: anthropic.BetaCacheControlEphemeralParam{},
   	System:       system,
@@ -278,7 +278,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   }
 
   r2, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-  	Model:        anthropic.ModelClaudeOpus5,
+  	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
   	CacheControl: anthropic.BetaCacheControlEphemeralParam{},
   	System:       system,
@@ -313,12 +313,12 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   var r1 = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .cacheControl(BetaCacheControlEphemeral.builder().build())
           .system(system)
           .addUserMessage("Summarize section 1.")
-          // Berikan null pada giliran pertama untuk ikut serta tanpa pesan sebelumnya untuk dibandingkan.
+          // Berikan null pada giliran pertama untuk ikut serta tanpa pesan sebelumnya sebagai pembanding.
           .diagnostics(BetaDiagnosticsParam.builder().previousMessageId((String) null).build())
           .addBeta(AnthropicBeta.CACHE_DIAGNOSIS_2026_04_07)
           .build()
@@ -326,7 +326,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
 
   var r2 = client.beta().messages().create(
       MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .cacheControl(BetaCacheControlEphemeral.builder().build())
           .system(system)
@@ -344,7 +344,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
       IO.println("Comparison still pending.");
   } else {
       var reason = r2.diagnostics().get().cacheMissReason().get();
-      // CacheMissReason tidak mengekspos accessor .type() bertipe; baca dari JSON mentah.
+      // CacheMissReason tidak menyediakan accessor .type() bertipe; baca nilainya dari JSON mentah.
       @SuppressWarnings("unchecked")
       var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
       IO.println("cache_miss_reason: " + json.get("type").asStringOrThrow());
@@ -357,7 +357,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   $system = 'You are an AI assistant analyzing a large document. <document>...</document>';
 
   $r1 = $client->beta->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       cacheControl: new BetaCacheControlEphemeral,
       system: $system,
@@ -369,7 +369,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   );
 
   $r2 = $client->beta->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       cacheControl: new BetaCacheControlEphemeral,
       system: $system,
@@ -395,7 +395,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
 
   r1 = client.beta.messages.create(
-    model: :"claude-opus-5",
+    model: :"claude-opus-5-5",
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -407,7 +407,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   )
 
   r2 = client.beta.messages.create(
-    model: :"claude-opus-5",
+    model: :"claude-opus-5-5",
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -437,7 +437,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
 
 <CodeGroup>
   ```bash cURL
-  # Giliran 2: streaming respons. diagnostik tiba pada event message_start;
+  # Giliran 2: lakukan streaming respons. diagnostics tiba pada event message_start;
   # nilai null berarti tidak ditemukan divergensi.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -446,7 +446,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
     -H "content-type: application/json" \
     -d @- <<EOF | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "stream": true,
     "cache_control": {"type": "ephemeral"},
@@ -462,12 +462,12 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```bash CLI
-  # Giliran 2: stream. Dengan --stream, CLI mengeluarkan setiap event SSE sebagai satu objek JSON.
+  # Giliran 2: streaming. Dengan --stream, CLI mengeluarkan setiap event SSE sebagai satu objek JSON.
   # diagnostics tiba pada event message_start; ambil dengan jq.
   ant beta:messages create \
     --beta cache-diagnosis-2026-04-07 \
     --stream --format jsonl <<YAML |
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
     type: ephemeral
@@ -486,9 +486,9 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```python Python
-  # Giliran 2: streaming, merujuk ke id respons sebelumnya
+  # Giliran 2: streaming, merujuk id respons sebelumnya
   with client.beta.messages.stream(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       cache_control={"type": "ephemeral"},
       system=SYSTEM,
@@ -516,7 +516,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
 
   ```typescript TypeScript
   const stream = client.beta.messages.stream({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     cache_control: { type: "ephemeral" },
     system: SYSTEM,
@@ -536,7 +536,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   }
   process.stdout.write("\n");
 
-  // diagnostics tiba pada message_start dan dibawa hingga pesan akhir
+  // diagnostics tiba pada message_start dan diteruskan hingga pesan akhir
   const r2 = await stream.finalMessage();
 
   if (r2.diagnostics === null) {
@@ -555,7 +555,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   var stream = client.Beta.Messages.CreateStreaming(
       new()
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           CacheControl = new(),
           System = system,
@@ -578,7 +578,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   {
       if (streamEvent.TryPickStart(out var start))
       {
-          // diagnostics tiba pada event message_start
+          // diagnostics diterima pada event message_start
           diagnostics = start.Message.Diagnostics;
       }
       else if (streamEvent.TryPickContentBlockDelta(out var delta) && delta.Delta.TryPickText(out var textDelta))
@@ -597,9 +597,9 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```go Go
-  // Giliran 2: streaming, merujuk ke id respons sebelumnya
+  // Giliran 2: streaming, merujuk id respons sebelumnya
   stream := client.Beta.Messages.NewStreaming(ctx, anthropic.BetaMessageNewParams{
-  	Model:        anthropic.ModelClaudeOpus5,
+  	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
   	CacheControl: anthropic.BetaCacheControlEphemeralParam{},
   	System:       system,
@@ -637,9 +637,9 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```java Java
-  // Giliran 2: stream, dengan merujuk id respons sebelumnya
+  // Giliran 2: streaming, merujuk id respons sebelumnya
   var params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .cacheControl(BetaCacheControlEphemeral.builder().build())
       .system(system)
@@ -660,7 +660,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       IO.println("");
   }
 
-  // diagnostics tiba pada message_start dan dibawa hingga ke pesan yang terakumulasi
+  // diagnostics tiba pada message_start dan diteruskan ke pesan yang terakumulasi
   var diagnostics = accumulator.message().diagnostics();
   if (diagnostics.isEmpty()) {
       IO.println("No divergence detected.");
@@ -668,7 +668,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       IO.println("Comparison still pending.");
   } else {
       var reason = diagnostics.get().cacheMissReason().get();
-      // CacheMissReason tidak mengekspos accessor .type() bertipe; baca dari JSON mentah.
+      // CacheMissReason tidak menyediakan accessor .type() bertipe; baca dari JSON mentah.
       @SuppressWarnings("unchecked")
       var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
       IO.println("cache_miss_reason: " + json.get("type").asStringOrThrow());
@@ -678,7 +678,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```php PHP
   // Giliran 2: streaming, merujuk ke id respons sebelumnya
   $stream = $client->beta->messages->createStream(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       cacheControl: new BetaCacheControlEphemeral,
       system: $system,
@@ -717,7 +717,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```ruby Ruby
   # Giliran 2: streaming, merujuk ke id respons sebelumnya
   stream = client.beta.messages.stream(
-    model: :"claude-opus-5",
+    model: :"claude-opus-5-5",
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -783,7 +783,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
         messages.append({"role": "user", "content": user_message})
 
         r = client.beta.messages.create(
-            model="claude-opus-5",
+            model="claude-opus-5-5",
             max_tokens=1024,
             cache_control={"type": "ephemeral"},
             system=SYSTEM,
@@ -815,7 +815,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
       messages.push({ role: "user", content: prompt });
 
       const r: BetaMessage = await client.beta.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         cache_control: { type: "ephemeral" },
         system: SYSTEM,
@@ -851,7 +851,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
         var r = await client.Beta.Messages.Create(
             new()
             {
-                Model = Messages::Model.ClaudeOpus5,
+                Model = Messages::Model.ClaudeOpus5_5,
                 MaxTokens = 1024,
                 CacheControl = new(),
                 System = system,
@@ -896,7 +896,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
     	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(prompt)))
 
     	r, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-    		Model:        anthropic.ModelClaudeOpus5,
+    		Model:        anthropic.ModelClaudeOpus5_5,
     		MaxTokens:    1024,
     		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
     		System:       system,
@@ -940,7 +940,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
         var r = client.beta().messages().create(
             MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_5)
+                .model(Model.CLAUDE_OPUS_5_5)
                 .maxTokens(1024)
                 .cacheControl(BetaCacheControlEphemeral.builder().build())
                 .system(system)
@@ -952,7 +952,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
         if (r.diagnostics().isPresent() && r.diagnostics().get().cacheMissReason().isPresent()) {
             var reason = r.diagnostics().get().cacheMissReason().get();
-            // CacheMissReason tidak menyediakan accessor .type() bertipe; baca dari JSON mentah.
+            // CacheMissReason tidak menyediakan accessor .type() bertipe; baca nilainya dari JSON mentah.
             @SuppressWarnings("unchecked")
             var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
             IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + json.get("type").asStringOrThrow());
@@ -978,7 +978,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
         $messages[] = ['role' => 'user', 'content' => $userMsg];
 
         $r = $client->beta->messages->create(
-            model: Model::CLAUDE_OPUS_5,
+            model: Model::CLAUDE_OPUS_5_5,
             maxTokens: 1024,
             cacheControl: new BetaCacheControlEphemeral,
             system: $system,
@@ -1010,7 +1010,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
       messages << {role: "user", content: user_msg}
 
       r = client.beta.messages.create(
-        model: :"claude-opus-5",
+        model: :"claude-opus-5-5",
         max_tokens: 1024,
         cache_control: {type: "ephemeral"},
         system_: SYSTEM,

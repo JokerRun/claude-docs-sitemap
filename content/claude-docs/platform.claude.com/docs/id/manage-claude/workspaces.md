@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d2e9217091598ea34a291548cdfcc80febb16aac50bb6b64754f8b7be56589c4
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ab93e132f3dd4f75da2125946ac9b1033362f831e6c4fbce21d463bf9d47792d
 ---
 
 ---
@@ -872,17 +872,17 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }' | grep -i '^anthropic-workspace-id'
   ```
 
   ```bash CLI
-  # --debug mencetak respons HTTP, termasuk header Anthropic-Workspace-Id,
-  # ke stderr; > /dev/null menyembunyikan body JSON di stdout
+  # --debug mencetak respons HTTP, termasuk Anthropic-Workspace-Id
+  # header, ke stderr; > /dev/null menyembunyikan body JSON di stdout
   ant --debug messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}' > /dev/null
   ```
@@ -891,7 +891,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
   client = anthropic.Anthropic()
 
   response = client.messages.with_raw_response.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -904,7 +904,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
 
   const { response } = await client.messages
     .create({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     })
@@ -917,7 +917,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
 
   using var response = await client.WithRawResponse.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   });
@@ -932,7 +932,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
   _, err := client.Messages.New(
   	context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -960,7 +960,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
 
       HttpResponseFor<Message> response = client.messages().withRawResponse().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .addUserMessage("Hello, Claude")
               .build()
@@ -975,7 +975,7 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
   $client = new Client();
 
   $response = $client->messages->raw->create([
-      'model' => Model::CLAUDE_OPUS_5,
+      'model' => Model::CLAUDE_OPUS_5_5,
       'maxTokens' => 1024,
       'messages' => [['role' => 'user', 'content' => 'Hello, Claude']],
   ]);
@@ -990,13 +990,13 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
   workspace_id = nil
   read_workspace_id = lambda do |request, call_next|
     response = call_next.call(request)
-    # Kunci dalam response.headers menggunakan huruf kecil
+    # Kunci di response.headers menggunakan huruf kecil
     workspace_id = response.headers["anthropic-workspace-id"]
     response
   end
 
   client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
     request_options: { middleware: [read_workspace_id] }

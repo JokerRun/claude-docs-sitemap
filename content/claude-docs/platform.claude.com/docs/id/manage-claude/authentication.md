@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: d92eb935c0022b86707d8dbac9c46a5c6a31647b613f33caa9ccbbbe27420717
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9293ba67ff377b1d37617cd9ab430bc4c4feee2e17eb3f9b132ce7e9724407a3
 ---
 
 ---
@@ -64,7 +64,7 @@ Simpan kunci API di pengelola rahasia, rotasi secara berkala, dan nonaktifkan at
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
@@ -72,13 +72,13 @@ Simpan kunci API di pengelola rahasia, rotasi secara berkala, dan nonaktifkan at
 
   ```python Python
   client = Anthropic(api_key="my-anthropic-api-key")
-  # atau, dengan ANTHROPIC_API_KEY diatur di environment:
+  # atau, dengan ANTHROPIC_API_KEY yang diatur di environment:
   client = Anthropic()
   ```
 
   ```typescript TypeScript
   const client = new Anthropic({ apiKey: "my-anthropic-api-key" });
-  // atau, dengan ANTHROPIC_API_KEY diatur di environment:
+  // atau, dengan ANTHROPIC_API_KEY yang sudah diatur di environment:
   // const client = new Anthropic();
   ```
 
@@ -105,7 +105,7 @@ Simpan kunci API di pengelola rahasia, rotasi secara berkala, dan nonaktifkan at
   using Anthropic;
 
   AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
-  // Atau, dengan ANTHROPIC_API_KEY yang diatur di environment:
+  // Atau, dengan ANTHROPIC_API_KEY yang sudah diatur di environment:
   // AnthropicClient client = new();
   ```
 
@@ -118,7 +118,7 @@ Simpan kunci API di pengelola rahasia, rotasi secara berkala, dan nonaktifkan at
 
   ```ruby Ruby
   anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
-  # atau, dengan ANTHROPIC_API_KEY diatur di environment:
+  # atau, dengan ANTHROPIC_API_KEY yang diatur di environment:
   anthropic = Anthropic::Client.new
   ```
 
@@ -140,7 +140,7 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
 
 <CodeGroup>
   ```bash cURL
-  # Wajib pada setiap permintaan untuk kunci multi-workspace.
+  # Wajib di setiap permintaan untuk kunci multi-workspace.
   # Hilangkan header anthropic-workspace-id untuk kunci single-workspace.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -148,18 +148,18 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
     -H "anthropic-workspace-id: wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
   ```
 
   ```bash CLI
-  # Wajib pada setiap perintah untuk kunci multi-workspace.
-  # Hilangkan --workspace-id untuk kunci workspace tunggal.
+  # Wajib di setiap perintah untuk kunci multi-workspace.
+  # Hilangkan --workspace-id untuk kunci single-workspace.
   ant messages create \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -167,10 +167,10 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```python Python
   client = Anthropic()  # reads ANTHROPIC_API_KEY
 
-  # Wajib pada setiap permintaan untuk kunci multi-workspace.
+  # Wajib di setiap permintaan untuk kunci multi-workspace.
   # Hilangkan extra_headers untuk kunci single-workspace.
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
       extra_headers={"anthropic-workspace-id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"},
@@ -186,11 +186,11 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```typescript TypeScript
   const client = new Anthropic(); // reads ANTHROPIC_API_KEY
 
-  // Wajib pada setiap permintaan untuk kunci multi-workspace.
+  // Wajib di setiap permintaan untuk kunci multi-workspace.
   // Hilangkan argumen kedua untuk kunci single-workspace.
   const message = await client.messages.create(
     {
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     },
@@ -209,7 +209,7 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
   };
@@ -229,7 +229,7 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
       .Messages.Create(parameters);
   Console.WriteLine(message);
 
-  // Atau atur sekali untuk setiap permintaan dari client ini:
+  // Atau atur sekali untuk setiap permintaan dari klien ini:
   AnthropicClient workspaceClient = new(new ClientOptions
   {
       ExtraHeaders = new Dictionary<string, string>
@@ -242,10 +242,10 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```go Go
   client := anthropic.NewClient() // reads ANTHROPIC_API_KEY
 
-  // Wajib pada setiap permintaan untuk kunci multi-workspace.
+  // Wajib di setiap permintaan untuk kunci multi-workspace.
   // Hilangkan opsi ini untuk kunci single-workspace.
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -265,10 +265,10 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv(); // reads ANTHROPIC_API_KEY
 
-  // Wajib pada setiap permintaan untuk kunci multi-workspace.
+  // Wajib di setiap permintaan untuk kunci multi-workspace.
   // Hilangkan putAdditionalHeader untuk kunci single-workspace.
   Message message = client.messages().create(MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addUserMessage("Hello, Claude")
       .putAdditionalHeader("anthropic-workspace-id", "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
@@ -286,10 +286,10 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```php PHP
   $client = new Client(); // reads ANTHROPIC_API_KEY
 
-  // Wajib pada setiap permintaan untuk kunci multi-workspace.
+  // Wajib di setiap permintaan untuk kunci multi-workspace.
   // Hilangkan requestOptions untuk kunci single-workspace.
   $message = $client->messages->create(
-      model: Model::CLAUDE_OPUS_5,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
       requestOptions: [
@@ -303,10 +303,10 @@ Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces]
   ```ruby Ruby
   client = Anthropic::Client.new # reads ANTHROPIC_API_KEY
 
-  # Wajib pada setiap permintaan untuk kunci multi-workspace.
+  # Wajib di setiap permintaan untuk kunci multi-workspace.
   # Hilangkan request_options untuk kunci single-workspace.
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_OPUS_5,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
     request_options: {extra_headers: {"anthropic-workspace-id" => "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"}}

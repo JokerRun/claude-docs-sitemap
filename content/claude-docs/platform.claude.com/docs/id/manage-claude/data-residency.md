@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b5a0830fd9d6e0430f0a627e536b12df77ca2e935a2602a55aaa8e60c0f5595f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: bd59d640bf9373e82b243f71c52cd5f3987f6875b3f21b0b3ff8c5322e94431a
 ---
 
 ---
@@ -42,7 +42,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "inference_geo": "us",
       "messages": [{
@@ -54,7 +54,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --inference-geo us \
     --message '{role: user, content: "Summarize the key points of this document."}' \
@@ -65,7 +65,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       inference_geo="us",
       messages=[
@@ -84,7 +84,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     inference_geo: "us",
     messages: [
@@ -109,7 +109,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   var response = await client.Messages.Create(
       new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           InferenceGeo = "us",
           Messages =
@@ -135,7 +135,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  	Model:        anthropic.ModelClaudeOpus5,
+  	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
   	InferenceGeo: anthropic.String("us"),
   	Messages: []anthropic.MessageParam{
@@ -160,7 +160,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
 
   Message response = client.messages().create(
           MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(1024L)
                   .inferenceGeo("us")
                   .addUserMessage("Summarize the key points of this document.")
@@ -177,7 +177,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       inferenceGeo: 'us',
       messages: [
@@ -198,7 +198,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     inference_geo: "us",
     messages: [

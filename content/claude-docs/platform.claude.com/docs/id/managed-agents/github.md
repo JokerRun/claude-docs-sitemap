@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: c4a90be2cc6392c45ce1a73cdab8e71a8ae33aa45ca0f33d8a0a42630d4cdc74
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: afbb988732a9b7b1407a5b9d8333b2ea6aa25ccd99c2dd14b1894a1d23ccd3cf
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Mengakses GitHub
 url: https://platform.claude.com/docs/id/managed-agents/github
 description: Hubungkan agen Anda ke repositori GitHub untuk melakukan clone, membaca, dan membuat pull request.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---
@@ -32,7 +35,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
     --data @- <<JSON | jq -r '.id'
   {
     "name": "Code Reviewer",
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "system": "You are a code review assistant with access to GitHub.",
     "mcp_servers": [
       {
@@ -62,7 +65,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       ```markdown
       ---
       name: Code Reviewer
-      model: claude-opus-5
+      model: claude-opus-5-5
       mcp_servers:
         - type: url
           name: github
@@ -81,7 +84,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```python Python
   agent = client.beta.agents.create(
       name="Code Reviewer",
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system="You are a code review assistant with access to GitHub.",
       mcp_servers=[
           {
@@ -103,7 +106,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```typescript TypeScript
   const agent = await client.beta.agents.create({
     name: "Code Reviewer",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {
@@ -126,7 +129,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Code Reviewer",
-      Model = BetaManagedAgentsModel.ClaudeOpus5,
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a code review assistant with access to GitHub.",
       McpServers =
       [
@@ -151,7 +154,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Code Reviewer",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5,
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	System: anthropic.String("You are a code review assistant with access to GitHub."),
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
@@ -183,7 +186,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```java Java
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Code Reviewer")
-      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+      .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .system("You are a code review assistant with access to GitHub.")
       .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
           .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -203,7 +206,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Code Reviewer',
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a code review assistant with access to GitHub.',
       mcpServers: [
           [
@@ -225,7 +228,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Code Reviewer",
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system_: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {

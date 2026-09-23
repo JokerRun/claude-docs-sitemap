@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 31c2bf8ae4367fd4ea19a7af641d4bb7726e946025e7ceb650e85e6ebee33fa5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: a6c13d316f03a278fbe66c836c0870a4a2322121b20937f213d7a70a3afee9db
 ---
 
 ---
@@ -154,7 +154,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1000,
       "messages": [{"role": "user", "content": "Use the hello tool to greet tunnel."}],
       "mcp_servers": [
@@ -170,7 +170,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
 
   ```bash CLI
   ant beta:messages create --beta mcp-client-2025-11-20 <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1000
   messages:
     - role: user
@@ -189,7 +189,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1000,
       messages=[{"role": "user", "content": "Use the hello tool to greet tunnel."}],
       mcp_servers=[
@@ -210,7 +210,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
   const anthropic = new Anthropic();
 
   const response = await anthropic.beta.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       {
@@ -242,7 +242,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
 
   var parameters = new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeOpus5,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
@@ -271,7 +271,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1000,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Use the hello tool to greet tunnel.")),
@@ -307,7 +307,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1000L)
           .addUserMessage("Use the hello tool to greet tunnel.")
           .addMcpServer(BetaRequestMcpServerUrlDefinition.builder()
@@ -333,7 +333,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
       messages: [
           ['role' => 'user', 'content' => 'Use the hello tool to greet tunnel.']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       mcpServers: [
           [
               'type' => 'url',
@@ -357,7 +357,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1000,
     messages: [
       { role: "user", content: "Use the hello tool to greet tunnel." }

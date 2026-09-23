@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8ae0cd2bbee18a5d020a682f1091ddeeed5c3318660f132648a08cf51452e815
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 4074f92e95077a390fc519a81b6bd9ec4151cd8ef2afd09d6552a8432f413ccc
 ---
 
 ---
 title: Pemanggilan alat secara programatik
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, mengurangi perjalanan bolak-balik model dan penggunaan token dalam alur kerja multi-alat.
+description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, sehingga mengurangi perjalanan bolak-balik model dan penggunaan token dalam alur kerja multi-alat.
 featureMetadata:
   status: ga
   zdr: not-eligible
@@ -17,6 +17,7 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
     - claude-opus-4-7
@@ -35,7 +36,7 @@ featureMetadata:
       note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat secara programatik memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
   details:
     - Pemanggilan alat secara programatik memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
-    - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru tetapi tidak mendukung pemanggilan alat secara programatik.
+    - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru, tetapi tidak mendukung pemanggilan alat secara programatik.
 ---
 
 "Programmatic tool calling" (pemanggilan alat secara programatik) memungkinkan Claude menulis kode yang memanggil alat Anda secara programatik di dalam kontainer [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), alih-alih memerlukan perjalanan bolak-balik melalui model untuk setiap pemanggilan alat. Ini mengurangi "latency" (latensi) untuk alur kerja multi-alat dan menurunkan konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum mencapai "context window" (jendela konteks) model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji riset web multilangkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat secara programatik di atas alat pencarian dasar meningkatkan kinerja rata-rata sebesar 11% sambil menggunakan 24% lebih sedikit token input (lihat [Improved web search with dynamic filtering](https://claude.com/blog/improved-web-search-with-dynamic-filtering)).
@@ -59,7 +60,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
       --header "anthropic-version: 2023-06-01" \
       --header "content-type: application/json" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "messages": [
               {
@@ -93,7 +94,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
@@ -124,7 +125,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
@@ -156,7 +157,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -197,7 +198,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
           new() {
@@ -232,7 +233,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue")),
@@ -269,7 +270,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addUserMessage("Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue")
           .addTool(CodeExecutionTool20260120.builder().build())
@@ -302,7 +303,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
       messages: [
           ['role' => 'user', 'content' => 'Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'type' => 'code_execution_20260120',
@@ -333,7 +334,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
@@ -537,7 +538,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
       --header "anthropic-version: 2023-06-01" \
       --header "content-type: application/json" \
       --data '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "container": "container_xyz789",
           "messages": [
@@ -607,7 +608,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 4096
   container: container_xyz789
   messages:
@@ -639,7 +640,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
           content: >-
             [{"customer_id": "C1", "revenue": 45000}, {"customer_id": "C2",
             "revenue": 38000}, ...]
-  # Array tools yang sama dengan permintaan asli
+  # Array tools yang sama dengan permintaan awal
   tools:
     - type: code_execution_20260120
       name: code_execution
@@ -662,7 +663,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=4096,
       container="container_xyz789",  # Reuse the container
       messages=[
@@ -706,7 +707,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
               ],
           },
       ],
-      # Array tools yang sama dengan permintaan asli
+      # Array tools yang sama dengan permintaan awal
       tools=[
           {"type": "code_execution_20260120", "name": "code_execution"},
           {
@@ -729,7 +730,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: "container_xyz789", // Reuse the container
     messages: [
@@ -772,7 +773,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
         ]
       }
     ],
-    // Array tools yang sama dengan permintaan asli
+    // Array tools yang sama dengan permintaan awal
     tools: [
       {
         type: "code_execution_20260120",
@@ -805,7 +806,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = "container_xyz789",
       Messages =
@@ -881,7 +882,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfString: anthropic.String("container_xyz789"),
@@ -923,7 +924,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
   			},
   		},
   	},
-  	// Array tools yang sama dengan permintaan asli
+  	// Array tools yang sama dengan permintaan awal
   	Tools: []anthropic.ToolUnionParam{
   		{OfCodeExecutionTool20260120: &anthropic.CodeExecutionTool20260120Param{}},
   		{OfTool: &anthropic.ToolParam{
@@ -956,7 +957,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .container("container_xyz789")
           .addUserMessage("Query customer purchase history from the last quarter and identify our top 5 customers by revenue")
@@ -986,7 +987,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
                       .content("[{\"customer_id\": \"C1\", \"revenue\": 45000}, {\"customer_id\": \"C2\", \"revenue\": 38000}, ...]")
                       .build())
           ))
-          // Array tools yang sama dengan permintaan asli
+          // Array tools yang sama dengan permintaan awal
           .addTool(CodeExecutionTool20260120.builder().build())
           .addTool(Tool.builder()
               .name("query_database")
@@ -1055,9 +1056,9 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
               ],
           ],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       container: 'container_xyz789',
-      // Array tools yang sama dengan permintaan asli
+      // Array tools yang sama dengan permintaan awal
       tools: [
           [
               'type' => 'code_execution_20260120',
@@ -1090,7 +1091,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     container: "container_xyz789",
     messages: [
@@ -1134,7 +1135,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
         ]
       }
     ],
-    # Array tools yang sama dengan permintaan asli
+    # Array tools yang sama seperti pada permintaan awal
     tools: [
       {
         type: "code_execution_20260120",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7e4d3ff5660f6926faa63f8246d9bb6af19a024960bc10129a1035c0e2dfb67f
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b9bbba9b9745ae66d69ccb24df38b32f455b0a7575de324849c58f3a06583e36
 ---
 
 ---
@@ -27,7 +27,7 @@ Sumber daya dalam versi beta (termasuk agents, sessions, deployments, dan enviro
 
 ```bash
 ant models list
-ant messages create --model claude-opus-5 --max-tokens 1024 ...
+ant messages create --model claude-opus-5-5 --max-tokens 1024 ...
 ant beta:agents retrieve --agent-id agent_01...
 ant beta:sessions:events list --session-id session_01...
 ```
@@ -50,14 +50,14 @@ ant beta:sessions:events list --session-id session_01...
 `auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#interactive-explorer) saat menulis ke terminal, dan JSON berformat rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
 
 ```bash
-ant models retrieve --model-id claude-opus-5 --format yaml
+ant models retrieve --model-id claude-opus-5-5 --format yaml
 ```
 
 ```yaml Output
 type: model
-id: claude-opus-5
-display_name: Claude Opus 5
-created_at: "2026-07-24T00:00:00Z"
+id: claude-opus-5-5
+display_name: Claude Opus 5.5
+created_at: "2026-09-22T00:00:00Z"
 ...
 ```
 
@@ -82,9 +82,9 @@ ant beta:agents list \
 ```
 
 ```jsonl Output
-{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-opus-5"}
-{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-opus-5"}
-{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-5"}
+{"id": "agent_011CYm1BLqPX...", "name": "Docs CLI Test Agent", "model": "claude-opus-5-5"}
+{"id": "agent_011CYkVwfaEt...", "name": "Coffee Making Assistant", "model": "claude-opus-5-5"}
+{"id": "agent_011CYixHhtUP...", "name": "Coding Assistant", "model": "claude-opus-5-5"}
 ```
 
 ### Mengekstrak nilai skalar
@@ -94,7 +94,7 @@ Untuk mengambil satu field sebagai string tanpa tanda kutip (misalnya, ID sumber
 ```bash
 AGENT_ID=$(ant beta:agents create \
   --name "My Agent" \
-  --model '{id: claude-opus-5}' \
+  --model '{id: claude-opus-5-5}' \
   --transform id --raw-output)
 
 printf '%s\n' "$AGENT_ID"
@@ -128,7 +128,7 @@ Flag yang dapat diulang membentuk array. Setiap `--tool` atau `--event` menambah
 ```bash
 ant beta:agents create \
   --name "Research Agent" \
-  --model '{id: claude-opus-5}' \
+  --model '{id: claude-opus-5-5}' \
   --tool '{type: agent_toolset_20260401}' \
   --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
@@ -147,7 +147,7 @@ Heredoc bekerja dengan cara yang sama dan praktis untuk YAML multibaris. Beri ta
 ```bash
 ant beta:agents create <<'YAML'
 name: Research Agent
-model: claude-opus-5
+model: claude-opus-5-5
 system: |
   You are a research assistant. Cite sources for every claim.
 tools:
@@ -167,7 +167,7 @@ Untuk menyisipkan isi file ke dalam field bernilai string, awali path dengan `@`
 
 ```bash
 ant beta:agents create \
-  --name "Researcher" --model '{id: claude-opus-5}' \
+  --name "Researcher" --model '{id: claude-opus-5-5}' \
   --system @./prompts/researcher.txt
 ```
 
@@ -175,7 +175,7 @@ Di dalam nilai flag terstruktur, bungkus path dengan tanda kutip. Untuk mengirim
 
 ```bash
 ant messages create \
-  --model claude-opus-5 \
+  --model claude-opus-5-5 \
   --max-tokens 1024 \
   --message '{role: user, content: [
     {type: document, source: {type: base64, media_type: application/pdf, data: "@./scan.pdf"}},

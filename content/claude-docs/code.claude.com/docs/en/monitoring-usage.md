@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1a6aa8d229809c3a1a1323e6ef23bb57eb6946283f9152133a3dd4a9bf26f89b
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: bab6f018dea36274280bde91ed3769bac4745e17516c05419e4d58197640a354
 ---
 
 > ## Documentation Index
@@ -368,8 +368,9 @@ The script must output valid JSON with string key-value pairs representing HTTP 
 echo "{\"Authorization\": \"Bearer $(get-token.sh)\", \"X-API-Key\": \"$(get-api-key.sh)\"}"
 ```
 
-If the helper fails or prints output that doesn't meet these requirements, Claude Code reports the error in:
+If the helper fails or prints output that doesn't meet these requirements, exports fail and your telemetry backend receives nothing from the session until the helper works again. Claude Code reports the failure in:
 
+* A warning notification in interactive sessions, [`otelHeadersHelper failed; telemetry is not being exported`](/docs/en/errors#otelheadershelper-failed), shown once per session when the helper first fails
 * `/status` output
 * The debug log, when running with [`--debug`](/docs/en/cli-reference#cli-flags) or after running `/debug` in the session
 * stderr, in non-interactive sessions started with `-p`
@@ -1123,6 +1124,11 @@ Logged when all hooks for a hook event have finished.
 * `num_non_blocking_error`: Count that failed without blocking
 * `num_cancelled`: Count cancelled before completion
 * `total_duration_ms`: Wall-clock duration of all matching hooks
+* `stdout_chars`: Total characters of stdout across the matching hooks that succeeded. Requires Claude Code v2.1.280 or later
+* `additional_context_chars`: Total characters of `additionalContext` returned by the matching hooks. Requires Claude Code v2.1.280 or later
+* `system_message_chars`: Total characters of `systemMessage` returned by the matching hooks. Requires Claude Code v2.1.280 or later
+* `initial_user_message_chars`: Total characters of `initialUserMessage` returned by the matching hooks. Requires Claude Code v2.1.280 or later
+* `num_outputs_persisted`: Number of hook outputs over the [10,000-character cap](/docs/en/hooks#json-output) that Claude Code saved to a file. Requires Claude Code v2.1.280 or later
 * `managed_only`: `"true"` when only managed-policy hooks are permitted
 * `hook_source`: `"policySettings"` or `"merged"`
 * `safe_mode`: `"true"` when the session was started with [`--safe-mode`](/docs/en/cli-reference), `"false"` otherwise. Requires Claude Code v2.1.169 or later

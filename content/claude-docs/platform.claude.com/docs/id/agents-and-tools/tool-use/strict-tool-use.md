@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 20afec72e788f86339a2f5b84799dee52aa1ebea8191edfcc88266aa9ec41ccd
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6bee62bf75802544ac9468a607370a021da9f2ee35fa88cc868218593ace1bd6
 ---
 
 ---
@@ -41,7 +41,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "What is the weather in San Francisco?"}
@@ -71,7 +71,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
 
   ```bash CLI
   ant messages create --transform content <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -98,7 +98,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
       tools=[
@@ -134,7 +134,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   });
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -177,7 +177,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }],
       Tools = [
@@ -208,7 +208,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather like in San Francisco?")),
@@ -265,7 +265,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("What's the weather like in San Francisco?")
       .addTool(
@@ -290,7 +290,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -322,7 +322,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather like in San Francisco?" }
@@ -402,7 +402,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {"role": "user", "content": "Search for flights to Tokyo departing June 1, 2026"}
@@ -426,7 +426,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -453,7 +453,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       ```python Python
       client = Anthropic()
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -504,7 +504,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       };
 
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }],
         tools: [searchFlightsTool]
@@ -522,7 +522,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
           Tools = [
@@ -553,7 +553,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for flights to Tokyo departing June 1, 2026")),
@@ -610,7 +610,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Search for flights to Tokyo departing June 1, 2026")
           .addTool(
@@ -634,7 +634,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
           messages: [
               ['role' => 'user', 'content' => 'Search for flights to Tokyo departing June 1, 2026']
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           tools: [
               [
                   'name' => 'search_flights',
@@ -663,7 +663,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }
@@ -703,7 +703,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {"role": "user", "content": "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026"}
@@ -744,7 +744,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
       ```bash CLI
       ant messages create <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -779,7 +779,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       ```python Python
       client = Anthropic()
       response = client.messages.create(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           messages=[
               {
@@ -859,7 +859,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       ];
 
       const response = await client.messages.create({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           {
@@ -883,7 +883,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
           Tools = [
@@ -931,7 +931,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	Messages: []anthropic.MessageParam{
       		anthropic.NewUserMessage(anthropic.NewTextBlock("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")),
@@ -1007,7 +1007,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")
           .addTool(
@@ -1038,7 +1038,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
           messages: [
               ['role' => 'user', 'content' => 'Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026']
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           tools: [
               [
                   'name' => 'search_flights',
@@ -1079,7 +1079,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }

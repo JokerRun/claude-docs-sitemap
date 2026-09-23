@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 141409806b842d3a9f0aab03c3679cbca6d64322264f3394f2797fcb145ad9fa
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 4767edca45d0be5b82602b632aaaa200623e64036f6f345dbb10cc1acf4dd91f
 ---
 
 ---
@@ -153,7 +153,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
     -H "anthropic-version: 2023-06-01" \
     -d @- <<'EOF'
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "max_tokens": 1024,
     "tools": [
       {
@@ -190,7 +190,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - name: get_weather
@@ -222,7 +222,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {
@@ -262,7 +262,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -310,7 +310,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [
           new ToolUnion(new Tool()
@@ -358,7 +358,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
@@ -412,7 +412,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(Tool.builder()
               .name("get_weather")
@@ -461,7 +461,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -503,7 +503,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -563,10 +563,10 @@ Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk 
 
 Tidak semua model dan pengaturan mendukung penggunaan alat paksa. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` gagal, sementara `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
 
-| Model atau pengaturan                                                                                                                    | Pembatasan                                                                                                               | Yang digunakan sebagai gantinya                                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), termasuk pada model yang thinking-nya aktif secara default seperti Claude Opus 5, mendukung penggunaan alat paksa                                                                                                                                                                                                 |
-| Claude Fable 5.1 dan [Claude Mythos 5.1](https://anthropic.com/glasswing)                                                                | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid terhadap skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda memerlukan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih `auto`. `none` juga didukung |
+| Model atau pengaturan                                                                                                                                          | Batasan                                                                                                                  | Alternatif yang digunakan                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ["Extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak menghalangi penggunaan alat paksa (Claude Opus 5 mendukungnya dengan thinking aktif); model-model di baris berikutnya menolak penggunaan alat paksa terlepas dari pengaturan thinking                                                                                                                 |
+| Claude Opus 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://anthropic.com/glasswing)                                                                    | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika Anda memerlukan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung |
 
 Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 

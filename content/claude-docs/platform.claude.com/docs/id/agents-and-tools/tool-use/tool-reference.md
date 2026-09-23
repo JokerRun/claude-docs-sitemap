@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 34dd4472a9e87d3974dc7473ac22f4064453ca2994f8735ea93ed554501604e5
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ae5deb10a376daf407cf1405a537d055d9e4c6c7f39ff40b452a880cf79e7426
 ---
 
 ---
@@ -43,11 +43,11 @@ Sebagian besar alat yang disediakan Anthropic memiliki akhiran `_YYYYMMDD` dalam
 
 Ketika sebuah alat memiliki beberapa versi aktif, hubungan di antaranya bervariasi:
 
-* **Berbasis kapabilitas:** `web_search_20260209` dan `web_fetch_20260209` menambahkan pemfilteran konten dinamis dibandingkan pendahulunya; `web_fetch_20260309` menambahkan opsi bypass cache; `web_search_20260318` dan `web_fetch_20260318` menambahkan kontrol penyertaan respons. `code_execution_20260120` menambahkan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox; `code_execution_20260521` mengungkapkan batas waktu per sel dalam deskripsi alat. Dalam setiap kasus, baik versi baru maupun lama sama-sama terkini; versi mana yang Anda gunakan bergantung pada apakah Anda memerlukan kapabilitas baru tersebut.
-* **Berbasis model:** `text_editor_20250728` ditujukan untuk model Claude 4 dan yang lebih baru, sedangkan `text_editor_20250124` untuk model yang lebih lama. Versi yang Anda gunakan bergantung pada model yang Anda targetkan.
+* **Berdasarkan kemampuan:** `web_search_20260209` dan `web_fetch_20260209` menambahkan pemfilteran konten dinamis dibandingkan pendahulunya; `web_fetch_20260309` menambahkan opsi untuk melewati cache; `web_search_20260318` dan `web_fetch_20260318` menambahkan kontrol penyertaan respons. `code_execution_20260120` menambahkan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox; `code_execution_20260521` mengungkapkan batas waktu per sel dalam deskripsi alat. Dalam setiap kasus, versi baru maupun lama sama-sama berlaku; versi mana yang Anda gunakan bergantung pada apakah Anda membutuhkan kemampuan baru tersebut.
+* **Berdasarkan model:** `text_editor_20250728` ditujukan untuk model Claude 4 dan yang lebih baru, sedangkan `text_editor_20250124` ditujukan untuk model yang lebih lama. Versi yang Anda gunakan bergantung pada model yang Anda targetkan.
 * **Varian, bukan versi:** `tool_search_tool_regex_20251119` dan `tool_search_tool_bm25_20251119` adalah dua algoritma pencarian yang dirilis bersamaan. Tidak ada yang menggantikan yang lain.
-* **Legacy:** `code_execution_20250522` hanya mendukung Python. `code_execution_20250825` menambahkan Bash dan operasi file.
-* **Penerus:** `computer_toolset_20260801` adalah penerus stabil dari versi beta `computer_20251124` dan `computer_20250124`, yang tetap tersedia untuk integrasi yang sudah ada dan untuk model yang tidak mendukung toolset tersebut ([Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions)). `browser_toolset_20260801` adalah versi pertama dari alat penggunaan browser. Keduanya adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
+* **Lama (legacy):** `code_execution_20250522` hanya mendukung Python. `code_execution_20250825` menambahkan Bash dan operasi file.
+* **Penerus:** `computer_toolset_20260801` adalah penerus stabil dari versi beta `computer_20251124` dan `computer_20250124`, yang tetap tersedia pada model yang tercantum untuk versi tersebut di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions). `browser_toolset_20260801` adalah versi pertama dari alat browser use. Keduanya merupakan [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
 
 Tipe `mcp_toolset` tidak diberi versi berdasarkan tanggal; pemversiannya dibawa dalam header `anthropic-beta`.
 

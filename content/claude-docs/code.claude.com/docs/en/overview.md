@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/overview
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 1e235e1f7d470485720b87f48d03d914796fe6e2ce0c39915f2f7bcb6af744a1
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 09ff036a7c2b9c0afe3c9ecf29d34a8ea23e14aec8400c10737a06c91082149b
 ---
 
 > ## Documentation Index
@@ -227,7 +227,7 @@ Each [surface](/docs/en/glossary#surface) connects to the same underlying Claude
 
 Beyond the [Terminal](/docs/en/quickstart), [VS Code](/docs/en/vs-code), [JetBrains](/docs/en/jetbrains), [Desktop](/docs/en/desktop), and [Web](/docs/en/claude-code-on-the-web) surfaces above, Claude Code integrates with CI/CD, chat, and browser workflows:
 
-| I want to...                                                                    | Best option                                                                                                     |
+| What I want to do                                                               | Best option                                                                                                     |
 | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Continue a local session from my phone or another device                        | [Remote Control](/docs/en/remote-control)                                                                            |
 | Push events from Telegram, Discord, iMessage, or my own webhooks into a session | [Channels](/docs/en/channels)                                                                                        |
@@ -246,6 +246,7 @@ Once you've installed Claude Code, these guides help you go deeper.
 * [Quickstart](/docs/en/quickstart): walk through your first real task, from exploring a codebase to committing a fix
 * [Store instructions and memories](/docs/en/memory): give Claude persistent instructions with CLAUDE.md files and auto memory
 * [Common workflows](/docs/en/common-workflows) and [best practices](/docs/en/best-practices): patterns for getting the most out of Claude Code
+* [Claude Academy](https://academy.claude.com/): free self-paced courses, including [Claude Code 101](https://academy.claude.com/courses/claude-code-101) and [Claude Code in Action](https://academy.claude.com/courses/claude-code-in-action)
 * [A harness for every task](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code): how the Claude Code team uses [dynamic workflows](/docs/en/workflows) to orchestrate many subagents at once
 * [Settings](/docs/en/settings): customize Claude Code for your workflow
 * [Troubleshooting](/docs/en/troubleshooting): solutions for common issues

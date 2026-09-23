@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: dba8e7143de906fecfc7a857f7b40bd156a3ae95e781a18343dee80bbb2b1882
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: a58ef73270873fc5122db8eadfef5c3f474c7e7cdb23e24a9c9aa2b7a950bd3b
 ---
 
 ---
@@ -20,6 +20,7 @@ featureMetadata:
     - claude-fable-5
     - claude-mythos-5
     - claude-mythos-preview
+    - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
     - claude-opus-4-7
@@ -83,7 +84,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -114,7 +115,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
   ant messages create \
     --transform 'content.#(type=="text").text|@fromstr' \
     --format jsonl <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -141,7 +142,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -173,7 +174,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -216,7 +217,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan." }],
       OutputConfig = new OutputConfig
@@ -249,7 +250,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
 
   response, _ := client.Messages.New(context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -293,7 +294,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       StructuredMessageCreateParams<ContactInfo> params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.")
           .outputConfig(ContactInfo.class)
@@ -318,7 +319,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
               'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       outputConfig: [
           'format' => [
               'type' => 'json_schema',
@@ -345,7 +346,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -428,7 +429,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
   ant messages create \
     --transform 'content.#(type=="text").text|@fromstr|{name,email}' \
     --format yaml <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -466,7 +467,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
   client = Anthropic()
 
   response = client.messages.parse(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -494,7 +495,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
   const client = new Anthropic();
 
   const response = await client.messages.parse({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {
@@ -506,7 +507,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
     output_config: { format: zodOutputFormat(ContactInfoSchema) }
   });
 
-  // Diurai dan divalidasi secara otomatis
+  // Di-parse dan divalidasi secara otomatis
   console.log(response.parsed_output);
   ```
 
@@ -519,7 +520,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() {
           Role = Role.User,
@@ -581,7 +582,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
   	schema := generateSchema(&ContactInfo{})
 
   	message, _ := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -617,7 +618,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .outputConfig(ContactInfo.class)
           .addUserMessage("Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm.")
@@ -652,7 +653,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
       messages: [
           ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm.'],
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       outputConfig: ['format' => ContactInfo::class],
   );
 
@@ -673,7 +674,7 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
   end
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{
       role: "user",
@@ -701,7 +702,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     ant messages create \
       --transform 'content.#(type=="text").text|@fromstr|{name,email}' \
       --format yaml <<'YAML'
-    model: claude-opus-5
+    model: claude-opus-5-5
     max_tokens: 1024
     messages:
       - role: user
@@ -742,7 +743,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
         plan_interest: str
     # ...
     response = client.messages.parse(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         messages=[
             {
@@ -767,14 +768,14 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     from pydantic import TypeAdapter
     # ...
 
-    # Pertama konversi model Pydantic ke skema JSON, lalu transformasikan
+    # Pertama, konversi model Pydantic ke skema JSON, lalu transformasikan
     schema = TypeAdapter(ContactInfo).json_schema()
     schema = transform_schema(schema)
     # Ubah skema jika diperlukan
     schema["properties"]["custom_field"] = {"type": "string"}
 
     response = client.messages.create(
-        model="claude-opus-5",
+        model="claude-opus-5-5",
         max_tokens=1024,
         messages=[{"role": "user", "content": "..."}],
         output_config={
@@ -802,7 +803,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     const client = new Anthropic();
 
     const response = await client.messages.parse({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [
         {
@@ -829,7 +830,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     const client = new Anthropic();
 
     const response = await client.messages.parse({
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [
         {
@@ -874,7 +875,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
 
     var response = await client.Messages.Create(new MessageCreateParams
     {
-        Model = Model.ClaudeOpus5,
+        Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
         Messages = [new() {
             Role = Role.User,
@@ -940,7 +941,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     	schema := generateSchema(&ContactInfo{})
 
     	message, _ := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-    		Model:     anthropic.ModelClaudeOpus5,
+    		Model:     anthropic.ModelClaudeOpus5_5,
     		MaxTokens: 1024,
     		Messages: []anthropic.MessageParam{
     			anthropic.NewUserMessage(anthropic.NewTextBlock(
@@ -987,7 +988,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         StructuredMessageCreateParams<ContactInfo> createParams = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_5)
+            .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024)
             .outputConfig(ContactInfo.class)
             .addUserMessage("Extract contact info: John Smith, john@example.com, interested in the Pro plan")
@@ -1027,7 +1028,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
 
       void main() {
           StructuredMessageCreateParams<BookList> createParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(2048)
               .outputConfig(BookList.class, JsonSchemaLocalValidation.NO)
               .addUserMessage("List some famous late twentieth century novels.")
@@ -1210,7 +1211,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
               .build();
 
           MessageCreateParams createParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
               .outputConfig(outputConfig)
               .addUserMessage(
@@ -1254,7 +1255,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
         messages: [
             ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'],
         ],
-        model: 'claude-opus-5',
+        model: 'claude-opus-5-5',
         outputConfig: ['format' => ContactInfo::class],
     );
 
@@ -1326,7 +1327,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
           messages: [
               ['role' => 'user', 'content' => 'Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan.'],
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           outputConfig: OutputConfig::with(format: JSONOutputFormat::with(schema: [
               'type' => 'object',
               'properties' => [
@@ -1361,7 +1362,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     client = Anthropic::Client.new
 
     message = client.messages.create(
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [
         {
@@ -1395,7 +1396,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
       end
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         messages: [{role: "user", content: "give me some famous numbers"}],
         output_config: {format: Output}
@@ -1435,7 +1436,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 4096,
           "messages": [
             {
@@ -1470,7 +1471,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       ant messages create \
         --transform 'content.#(type=="text").text|@fromstr' \
         --format jsonl <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 4096
       messages:
         - role: user
@@ -1509,7 +1510,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       invoice_text = "Invoice #12345, Date: 2024-01-15, Total: $500.00"
 
       response = client.messages.parse(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=4096,
           output_format=Invoice,
           messages=[
@@ -1536,7 +1537,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
       const invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
       const response = await client.messages.parse({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         output_config: { format: zodOutputFormat(InvoiceSchema) },
         messages: [{ role: "user", content: `Extract invoice data from: ${invoiceText}` }]
@@ -1551,7 +1552,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           OutputConfig = new OutputConfig
           {
@@ -1619,7 +1620,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       }
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 4096,
       	OutputConfig: anthropic.OutputConfigParam{
       		Format: anthropic.JSONOutputFormatParam{
@@ -1678,7 +1679,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           String invoiceText = "Invoice #12345, Date: 2024-01-15, Total: $500.00";
 
           StructuredMessageCreateParams<Invoice> params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .outputConfig(Invoice.class)
               .addUserMessage("Extract invoice data from: " + invoiceText)
@@ -1716,7 +1717,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           messages: [
               ['role' => 'user', 'content' => "Extract invoice data from: $invoiceText"]
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           outputConfig: ['format' => Invoice::class],
       );
 
@@ -1745,7 +1746,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       invoice_text = "Invoice #12345, Date: 2024-01-15, Total: $500.00"
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 4096,
         output_config: {format: Invoice},
         messages: [
@@ -1769,7 +1770,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -1800,7 +1801,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       ant messages create \
         --transform 'content.#(type=="text").text|@fromstr' \
         --format jsonl <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       messages:
         - role: user
@@ -1845,7 +1846,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
       feedback_text = "Great product, but the delivery was slow."
       response = client.messages.parse(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           output_format=Classification,
           messages=[{"role": "user", "content": f"Classify this feedback: {feedback_text}"}],
@@ -1869,7 +1870,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
       const feedbackText = "Great product, but the delivery was slow.";
       const response = await client.messages.parse({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         output_config: { format: zodOutputFormat(ClassificationSchema) },
         messages: [{ role: "user", content: `Classify this feedback: ${feedbackText}` }]
@@ -1883,7 +1884,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = $"Classify this feedback: {feedbackText}" }],
           OutputConfig = new OutputConfig
@@ -1927,7 +1928,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       }
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	OutputConfig: anthropic.OutputConfigParam{
       		Format: anthropic.JSONOutputFormatParam{
@@ -1974,7 +1975,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           String feedbackText = "Great product, fast shipping!";
 
           StructuredMessageCreateParams<Classification> params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .outputConfig(Classification.class)
               .addUserMessage("Classify this feedback: " + feedbackText)
@@ -2011,7 +2012,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           messages: [
               ['role' => 'user', 'content' => "Classify this feedback: {$feedbackText}"]
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           outputConfig: ['format' => Classification::class],
       );
 
@@ -2034,7 +2035,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       feedback_text = "Great product, fast shipping!"
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         output_config: {format: Classification},
         messages: [
@@ -2056,7 +2057,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -d '{
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [
             {
@@ -2090,7 +2091,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       ant messages create \
         --transform 'content.#(type=="text").text' \
         --raw-output <<'YAML'
-      model: claude-opus-5
+      model: claude-opus-5-5
       max_tokens: 1024
       output_config:
         format:
@@ -2136,7 +2137,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
 
       response = client.messages.parse(
-          model="claude-opus-5",
+          model="claude-opus-5-5",
           max_tokens=1024,
           output_format=APIResponse,
           messages=[{"role": "user", "content": "Process this request: ..."}],
@@ -2159,7 +2160,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       });
 
       const response = await client.messages.parse({
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         output_config: { format: zodOutputFormat(APIResponseSchema) },
         messages: [{ role: "user", content: "Process this request..." }]
@@ -2171,7 +2172,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       ```csharp C#
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Process this request: ..." }],
           OutputConfig = new OutputConfig
@@ -2207,7 +2208,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       client := anthropic.NewClient()
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 1024,
       	OutputConfig: anthropic.OutputConfigParam{
       		Format: anthropic.JSONOutputFormatParam{
@@ -2298,7 +2299,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           StructuredMessageCreateParams<APIResponse> params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .outputConfig(APIResponse.class)
               .addUserMessage("Process this request: ...")
@@ -2341,7 +2342,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
           messages: [
               ['role' => 'user', 'content' => 'Process this request: ...']
           ],
-          model: 'claude-opus-5',
+          model: 'claude-opus-5-5',
           outputConfig: ['format' => APIResponse::class],
       );
 
@@ -2375,7 +2376,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
       end
 
       message = client.messages.create(
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         output_config: {format: APIResponse},
         messages: [
@@ -2408,7 +2409,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -2450,7 +2451,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -2470,7 +2471,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               type: string
         required: [summary, next_steps]
         additionalProperties: false
-  # Penggunaan alat ketat: parameter alat terjamin
+  # Penggunaan alat ketat: parameter alat yang dijamin
   tools:
     - name: search_flights
       strict: true
@@ -2489,7 +2490,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
           {
@@ -2512,7 +2513,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               },
           }
       },
-      # Penggunaan alat ketat: parameter alat terjamin
+      # Penggunaan alat ketat: parameter alat yang dijamin
       tools=[
           {
               "name": "search_flights",
@@ -2535,7 +2536,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Help me plan a trip to Paris departing May 15, 2026" }],
     // Output JSON: format respons terstruktur
@@ -2553,7 +2554,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
         }
       }
     },
-    // Strict tool use (penggunaan alat ketat): parameter alat yang terjamin
+    // Penggunaan alat ketat: parameter alat yang dijamin
     tools: [
       {
         name: "search_flights",
@@ -2572,7 +2573,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
     ]
   });
 
-  // Claude dapat memanggil alat terlebih dahulu (tool_use) atau merespons dengan JSON (text)
+  // Claude dapat memanggil alat terlebih dahulu (tool_use) atau merespons dengan JSON (teks)
   console.log("Stop reason:", response.stop_reason);
   for (const block of response.content) {
     switch (block.type) {
@@ -2589,7 +2590,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   ```csharp C#
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Help me plan a trip to Paris departing May 15, 2026" }],
       // Output JSON: format respons terstruktur
@@ -2610,7 +2611,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               },
           },
       },
-      // Penggunaan alat ketat: parameter alat terjamin
+      // Penggunaan alat ketat: parameter alat yang dijamin
       Tools =
       [
           new Tool
@@ -2639,7 +2640,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Help me plan a trip to Paris departing May 15, 2026")),
@@ -2658,7 +2659,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   			},
   		},
   	},
-  	// Penggunaan alat ketat: parameter alat terjamin
+  	// Penggunaan alat ketat: parameter alat yang dijamin
   	Tools: []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
   			Name:   "search_flights",
@@ -2695,7 +2696,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       .putAdditionalProperty("additionalProperties", JsonValue.from(false))
       .build();
 
-  // Penggunaan alat ketat: parameter alat terjamin
+  // Penggunaan alat ketat: parameter alat yang dijamin
   InputSchema toolSchema = InputSchema.builder()
       .properties(JsonValue.from(Map.of(
           "destination", Map.of("type", "string"),
@@ -2706,7 +2707,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
       .addUserMessage("Help me plan a trip to Paris departing May 15, 2026")
       .outputConfig(OutputConfig.builder()
@@ -2744,10 +2745,10 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       messages: [
           ['role' => 'user', 'content' => 'Help me plan a trip to Paris departing May 15, 2026']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       // Output JSON: format respons terstruktur
       outputConfig: ['format' => TripPlan::class],
-      // Penggunaan alat ketat: parameter alat yang terjamin
+      // Penggunaan alat ketat: parameter alat yang dijamin
       tools: [
           [
               'name' => 'search_flights',
@@ -2765,7 +2766,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       ],
   );
 
-  // Claude dapat memanggil alat terlebih dahulu (tool_use) atau merespons dengan JSON (text)
+  // Claude dapat memanggil alat terlebih dahulu (tool_use) atau merespons dengan JSON (teks)
   $plan = $message->parsedOutput();
   if ($plan instanceof TripPlan) {
       echo $plan->summary, "\n";
@@ -2778,7 +2779,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [
       {role: "user", content: "Help me plan a trip to Paris departing May 15, 2026"}
@@ -2798,7 +2799,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
         }
       }
     },
-    # Penggunaan alat ketat: parameter alat terjamin
+    # Penggunaan alat ketat: parameter alat yang dijamin
     tools: [
       {
         name: "search_flights",

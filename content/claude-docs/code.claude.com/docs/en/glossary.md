@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 1ab3fe3d0f14e34504d4f44ee789b5277c117583601be0550b497aa6a8b8ecf2
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6f3e7f5f81253a17d2e0af58fea59cba41244eb793d1841086185b6d928590a5
 ---
 
 > ## Documentation Index
@@ -160,6 +160,14 @@ Learn more: [Adjust effort level](/docs/en/model-config#adjust-effort-level)
 Visible step-by-step reasoning the model performs before responding. You can adjust it with the [effort level](#effort-level), or cap thinking tokens with `MAX_THINKING_TOKENS` on models with a fixed thinking budget. Thinking appears in gray italic text in the terminal.
 
 Learn more: [Use extended thinking](/docs/en/model-config#extended-thinking)
+
+## F
+
+### Frontmatter
+
+A block of YAML settings at the very top of a Markdown file, between an opening `---` line and a closing `---` line. Skills, subagents, output styles, and rules each read their configuration from frontmatter, such as a skill's `description` or a subagent's `tools`, and treat everything after the closing `---` as the instructions. The opening `---` must be the file's first line. Each file type accepts its own set of fields.
+
+Learn more: [Skill frontmatter](/docs/en/skills#frontmatter-reference), [Subagent frontmatter](/docs/en/sub-agents#supported-frontmatter-fields), [Output style frontmatter](/docs/en/output-styles#frontmatter), [Rule frontmatter](/docs/en/memory#rules-frontmatter-reference)
 
 ## H
 

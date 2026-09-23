@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 40f9882494c502ce91680e172ebc483c9acbca047888fc3997c7c6d641d6d388
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 2e266d0092c158c04ba7cdac57fc742e3185e69c26ec4d6dd7a008ed9dd686fe
 ---
 
 ---
@@ -59,7 +59,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "system": "You are a scientist",
       "messages": [{
         "role": "user",
@@ -70,7 +70,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   ```bash CLI
   ant messages count-tokens \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --system "You are a scientist" \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -79,7 +79,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       system="You are a scientist",
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -91,7 +91,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a scientist",
     messages: [
       {
@@ -114,7 +114,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       System = "You are a scientist",
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
   };
@@ -127,7 +127,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	System: anthropic.MessageCountTokensParamsSystemUnion{
   		OfString: anthropic.String("You are a scientist"),
   	},
@@ -153,7 +153,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .system("You are a scientist")
         .addUserMessage("Hello, Claude")
         .build();
@@ -171,7 +171,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
       messages: [
           ['role' => 'user', 'content' => 'Hello, Claude']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       system: 'You are a scientist',
   );
 
@@ -182,7 +182,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     system: "You are a scientist",
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -210,7 +210,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "tools": [
         {
           "name": "get_weather",
@@ -238,7 +238,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   tools:
     - name: get_weather
       description: Get the current weather in a given location
@@ -260,7 +260,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       tools=[
           {
               "name": "get_weather",
@@ -287,7 +287,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         name: "get_weather",
@@ -322,7 +322,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       Tools =
       [
           new MessageCountTokensTool(new Tool()
@@ -350,7 +350,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	Tools: []anthropic.MessageCountTokensToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
   			Name:        "get_weather",
@@ -402,7 +402,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
         .build();
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .addTool(
           Tool.builder()
             .name("get_weather")
@@ -424,7 +424,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       tools: [
           [
               'name' => 'get_weather',
@@ -450,7 +450,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     tools: [
       {
         name: "get_weather",
@@ -496,7 +496,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "messages": [
       {"role": "user", "content": [
         {"type": "image", "source": {
@@ -516,7 +516,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages count-tokens <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   messages:
     - role: user
       content:
@@ -541,7 +541,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       messages=[
           {
               "role": "user",
@@ -571,7 +571,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   const imageData = Buffer.from(imageArrayBuffer).toString("base64");
 
   const response = await anthropic.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       {
         role: "user",
@@ -613,7 +613,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       Messages =
       [
           new()
@@ -662,7 +662,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client := anthropic.NewClient()
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewImageBlockBase64("image/jpeg", imageData),
@@ -712,7 +712,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .addUserMessageOfBlockParams(List.of(imageBlock, textBlock))
         .build();
 
@@ -744,7 +744,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   print_r($response);
   ```
@@ -762,7 +762,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       {
         role: "user",
@@ -806,7 +806,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
     -H "content-type: application/json" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "thinking": {
         "type": "adaptive"
       },
@@ -839,7 +839,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   thinking:
     type: adaptive
   messages:
@@ -863,7 +863,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   client = anthropic.Anthropic()
 
   response = client.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       thinking={"type": "adaptive"},
       messages=[
           {
@@ -895,7 +895,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   const client = new Anthropic();
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     thinking: { type: "adaptive" },
     messages: [
       {
@@ -939,7 +939,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       Thinking = new ThinkingConfigAdaptive(),
       Messages =
       [
@@ -986,7 +986,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   )
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
   	},
@@ -1031,7 +1031,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .thinking(ThinkingConfigAdaptive.builder().build())
         .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
         .addAssistantMessageOfBlockParams(assistantBlocks)
@@ -1070,7 +1070,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
               'content' => 'Can you write a formal proof?'
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       thinking: ['type' => 'adaptive'],
   );
 
@@ -1081,7 +1081,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   client = Anthropic::Client.new
 
   response = client.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     thinking: {
       type: "adaptive"
     },
@@ -1133,7 +1133,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
     -H "anthropic-version: 2023-06-01" \
     -d @- <<EOF
   {
-    "model": "claude-opus-5",
+    "model": "claude-opus-5-5",
     "messages": [{
       "role": "user",
       "content": [
@@ -1157,7 +1157,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   ```bash CLI
   ant messages count-tokens <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   messages:
     - role: user
       content:
@@ -1181,7 +1181,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
       pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
   response = client.messages.count_tokens(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       messages=[
           {
               "role": "user",
@@ -1211,7 +1211,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   const pdfBase64 = await readFile("/path/to/document.pdf", { encoding: "base64" });
 
   const response = await client.messages.countTokens({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       {
         role: "user",
@@ -1251,7 +1251,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
   var parameters = new MessageCountTokensParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       Messages =
       [
           new()
@@ -1285,7 +1285,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
   response, err := client.Messages.CountTokens(context.TODO(), anthropic.MessageCountTokensParams{
-  	Model: anthropic.ModelClaudeOpus5,
+  	Model: anthropic.ModelClaudeOpus5_5,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
   			anthropic.NewDocumentBlock(anthropic.Base64PDFSourceParam{
@@ -1325,7 +1325,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
       );
 
       MessageCountTokensParams params = MessageCountTokensParams.builder()
-        .model(Model.CLAUDE_OPUS_5)
+        .model(Model.CLAUDE_OPUS_5_5)
         .addUserMessageOfBlockParams(List.of(documentBlock, textBlock))
         .build();
 
@@ -1358,7 +1358,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
               ]
           ]
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   echo json_encode($response);
@@ -1372,7 +1372,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
   response = client.messages.count_tokens(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     messages: [
       {
         role: "user",

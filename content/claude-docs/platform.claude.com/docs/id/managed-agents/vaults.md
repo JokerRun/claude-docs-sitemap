@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8269da49505f2fbfcead7f2c29a6c16cd0ababa376ab0ea0e30596a44bcb380d
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 9c465fbdd9e344ce26bd636a4d16b4021c77d74e4fae896c7745fb1b2924bb20
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Autentikasi dengan vault
 url: https://platform.claude.com/docs/id/managed-agents/vaults
 description: Daftarkan kredensial per pengguna saat membuat sesi.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

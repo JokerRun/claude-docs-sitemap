@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 6686f22bc026aadaaa59c38e0dc5520765f73baed2aeb3c07809aed5e6b36852
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 6cd4bc2a797cc6c370b41cfc1ab47be631f1db6d53cd941cfffbc82333abf2be
 ---
 
 ---
@@ -48,6 +48,7 @@ This page covers `type: cloud` environments. To run sandboxes on your own infras
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: python-dev
       config:
         type: cloud
@@ -263,6 +264,7 @@ The `packages` field pre-installs packages into the sandbox before the agent sta
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: data-analysis
       config:
         type: cloud
@@ -441,6 +443,7 @@ The following example creates an environment with `limited` networking:
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: api-access
       config:
         type: cloud

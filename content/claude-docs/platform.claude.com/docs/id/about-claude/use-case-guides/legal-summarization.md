@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 27829642227daaca4181956a25fd78c1421e6a91dca05d28e5ea0a5225b3f837
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: b28aa2e2a0a22d56522e262c3121a121c7bef3b7d98ce6e689018ff70a2b8043
 ---
 
 ---
@@ -195,12 +195,12 @@ client = anthropic.Anthropic()
 
 
 def summarize_document(
-    text, details_to_extract, model="claude-opus-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
 ):
     # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
 
-    # Minta model untuk meringkas perjanjian subsewa
+    # Minta model untuk merangkum perjanjian sewa ulang (sublease)
     prompt = f"""Summarize the following sublease agreement. Focus on these key aspects:
 
     {details_to_extract_str}
@@ -302,12 +302,12 @@ def chunk_text(text, chunk_size=20000):
 
 
 def summarize_long_document(
-    text, details_to_extract, model="claude-opus-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
 ):
     # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
 
-    # Iterasi setiap chunk dan rangkum masing-masing
+    # Iterasi setiap chunk dan ringkas masing-masing
     chunk_summaries = [
         summarize_document(
             chunk, details_to_extract, model=model, max_tokens=max_tokens

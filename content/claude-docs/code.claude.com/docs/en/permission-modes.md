@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 5f0b4a6411c4543e32d61d8f5be657592aac8373777099a3e14b80c0515f48ba
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 169be38485b58adb83c7e81ed8b2846a6533d0c6dee18d0e5a33e3feb84f87ff
 ---
 
 > ## Documentation Index
@@ -262,7 +262,7 @@ Press `Shift+Tab` again to leave plan mode without approving a plan.
 
 When the plan is ready, Claude presents it and asks how to proceed. From that prompt you can choose:
 
-* **Yes, and use auto mode**: approve and start in [auto mode](#eliminate-prompts-with-auto-mode). When auto mode is unavailable, this option reads **Yes, auto-accept edits**. If you started the session with bypass permissions enabled, the option reads **Yes, and switch to BYPASS PERMISSIONS (no further prompts) for this session** instead.
+* **Yes, and use auto mode**: approve and start in [auto mode](#eliminate-prompts-with-auto-mode). If auto mode isn't [available to your session](#eliminate-prompts-with-auto-mode), for example because your organization turned it off, this option reads **Yes, auto-accept edits**. If you started the session with bypass permissions enabled, the option reads **Yes, and switch to BYPASS PERMISSIONS (no further prompts) for this session** instead.
 * **Yes, manually approve edits**: approve and review each edit individually.
 * **No, keep planning**: stay in plan mode and tell Claude what to change.
 

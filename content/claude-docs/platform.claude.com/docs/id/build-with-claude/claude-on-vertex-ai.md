@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: cb1e6b5e10c0f106c79ccf70b414aaed0434e273fc96be6547b65376a1f03d76
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 61d49cad9f683589a36080e150cdc730919a9ab090766d23e7362a16adbc2a79
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.63.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.63.0")
+      implementation("com.anthropic:anthropic-java:2.65.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.65.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.63.0</version>
+          <version>2.65.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.63.0</version>
+          <version>2.65.0</version>
       </dependency>
       ```
 
@@ -83,7 +83,7 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
               .build();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addUserMessage("What is the capital of France?")
               .build();
@@ -126,6 +126,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | :--------------------------------------------------------------------------------------------------- | :--------------------------- |
 | Claude Fable 5.1                                                                                     | `claude-fable-5-1`           |
 | Claude Fable 5                                                                                       | `claude-fable-5`             |
+| Claude Opus 5.5                                                                                      | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                        | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                      | `claude-opus-4-8`            |
 | Claude Opus 4.7                                                                                      | `claude-opus-4-7`            |
@@ -152,7 +153,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
 <CodeGroup>
   ```bash cURL
-  MODEL_ID=claude-opus-5
+  MODEL_ID=claude-opus-5-5
   PROJECT_ID=MY_PROJECT_ID
 
   curl https://aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/global/publishers/anthropic/models/${MODEL_ID}:rawPredict \
@@ -178,7 +179,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=100,
       messages=[
           {
@@ -196,14 +197,14 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   const projectId = "MY_PROJECT_ID";
   const region = "global";
 
-  // Melalui alur standar `google-auth-library`.
+  // Menggunakan alur standar `google-auth-library`.
   const client = new AnthropicVertex({
     projectId,
     region
   });
 
   const result = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [
       {
@@ -226,7 +227,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
       Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
   };
@@ -244,13 +245,13 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Menggunakan kredensial Google Cloud default
+  	// Menggunakan kredensial default Google Cloud
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -271,7 +272,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   import com.anthropic.vertex.backends.VertexBackend;
 
   void main() {
-      // Menggunakan kredensial Google Cloud default
+      // Menggunakan kredensial default Google Cloud
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(VertexBackend.fromEnv())
           .build();
@@ -280,7 +281,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")
                   .build()
@@ -305,7 +306,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
       messages: [
           ['role' => 'user', 'content' => 'Hey Claude!']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
   echo $textBlock->text;
@@ -320,7 +321,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]
   )
@@ -372,7 +373,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
@@ -422,7 +423,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 <CodeGroup>
   ```bash cURL
-  MODEL_ID=claude-opus-5
+  MODEL_ID=claude-opus-5-5
   PROJECT_ID=MY_PROJECT_ID
 
   curl https://aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/global/publishers/anthropic/models/${MODEL_ID}:rawPredict \
@@ -448,7 +449,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=100,
       messages=[
           {
@@ -472,7 +473,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   });
 
   const result = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [
       {
@@ -495,7 +496,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
       Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
   };
@@ -513,13 +514,13 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Menggunakan kredensial Google Cloud default
+  	// Menggunakan kredensial default Google Cloud
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -555,7 +556,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")
                   .build()
@@ -580,7 +581,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
       messages: [
           ['role' => 'user', 'content' => 'Hey Claude!']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
 
   $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
@@ -596,7 +597,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]
   )
@@ -611,7 +612,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
 
 <CodeGroup>
   ```bash cURL
-  MODEL_ID=claude-opus-5
+  MODEL_ID=claude-opus-5-5
   LOCATION=us # Multi-region identifier: "us" or "eu"
   PROJECT_ID=MY_PROJECT_ID
 
@@ -638,7 +639,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=100,
       messages=[
           {
@@ -662,7 +663,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
   });
 
   const result = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [
       {
@@ -685,7 +686,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
       Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
   };
@@ -703,13 +704,13 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Pengidentifikasi multi-region: "us" atau "eu"
+  	// Pengenal multi-region: "us" atau "eu"
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "us", "MY_PROJECT_ID"),
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -730,7 +731,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
   import com.google.auth.oauth2.GoogleCredentials;
 
   void main() throws Exception {
-      // Pengidentifikasi multi-region: "us" atau "eu"
+      // Pengenal multi-region: "us" atau "eu"
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(
               VertexBackend.builder()
@@ -745,7 +746,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
           .messages()
           .create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5)
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")
                   .build()
@@ -770,7 +771,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
       messages: [
           ['role' => 'user', 'content' => 'Hey Claude!']
       ],
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
   );
   $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
   echo $textBlock->text;
@@ -785,7 +786,7 @@ Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat a
   )
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]
   )

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 277e67df91e054c113b91fc4a42fe324d55da0f3da9df16cde5caf3276c6dbc1
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 26eac90b5dd32000f617c00b500289e0deb64f436bbaaea7525a4a62c6779d67
 ---
 
 > ## Documentation Index
@@ -20,10 +20,6 @@ sha256: 277e67df91e054c113b91fc4a42fe324d55da0f3da9df16cde5caf3276c6dbc1
 Agent teams let you coordinate multiple Claude Code instances working together. One session acts as the team lead, coordinating work, assigning tasks, and synthesizing results. Teammates work independently, each in its own context window, and communicate directly with each other. You can also talk to any teammate directly without going through the lead.
 
 Before you set up a team, check whether a lighter option does the job. [Subagents](/docs/en/sub-agents) work within a single session, and with [cross-session messaging](/docs/en/cross-session-messaging) Claude can pass findings between the sessions you run yourself.
-
-<Note>
-  This page describes agent teams as of v2.1.178. With `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` set, spawning a teammate no longer needs a setup step, and cleanup happens automatically when the session exits. Before v2.1.178, you asked Claude to create and name a team first, and Claude used the `TeamCreate` and `TeamDelete` tools to set it up and remove it. Both tools no longer exist. The `team_name` input on the Agent tool is accepted but ignored, and the `team_name` field in `TaskCreated`, `TaskCompleted`, and `TeammateIdle` [hook payloads](/docs/en/hooks#taskcreated) carries the session-derived name and is deprecated.
-</Note>
 
 ## When to use agent teams
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: b0fb7d14219753215d6e0c4d08d90ad8f8ec66b9b450d24bfc80e1e4b6aab48e
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: 62fbe7db0dadb8c7d77bdf4cf8fe845b4e35d333314adea3c79c9c8070bd4112
 ---
 
 ---
@@ -22,7 +22,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [{"type": "web_search_20260209", "name": "web_search"}],
       "messages": [{"role": "user", "content": "What'\''s the latest on the Mars rover?"}]
@@ -31,7 +31,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
 
   ```bash CLI
   ant messages create --transform content --format yaml \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: web_search_20260209, name: web_search}' \
     --message '{role: user, content: "What is the latest on the Mars rover?"}'
@@ -40,7 +40,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   ```python Python
   client = anthropic.Anthropic()
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "web_search_20260209", "name": "web_search"}],
       messages=[{"role": "user", "content": "What's the latest on the Mars rover?"}],
@@ -51,7 +51,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   ```typescript TypeScript
   const client = new Anthropic();
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -64,7 +64,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20260209())],
       Messages = [new() { Role = Role.User, Content = "What's the latest on the Mars rover?" }]
@@ -78,7 +78,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
@@ -100,7 +100,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(WebSearchTool20260209.builder().build())
           .addUserMessage("What's the latest on the Mars rover?")
@@ -115,7 +115,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [
           ['type' => 'web_search_20260209', 'name' => 'web_search'],
@@ -132,7 +132,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -151,7 +151,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
 
 <CodeGroup>
   ```bash cURL
-  # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   TOOLS='[
     {
       "name": "get_weather",
@@ -171,10 +171,10 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "$(jq -n --argjson tools "$TOOLS" --arg msg "$USER_MSG" '{
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: $tools,
-      # Minta paling banyak satu pemanggilan alat per giliran.
+      # Minta paling banyak satu panggilan alat per giliran.
       tool_choice: {type: "auto", disable_parallel_tool_use: true},
       messages: [{role: "user", content: $msg}]
     }')")
@@ -195,7 +195,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       --arg tool_use_id "$(echo "$TOOL_USE" | jq -r '.id')" \
       --arg weather "$WEATHER" \
       '{
-        model: "claude-opus-5",
+        model: "claude-opus-5-5",
         max_tokens: 1024,
         tools: $tools,
         tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -210,16 +210,16 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ```
 
   ```bash CLI
-  # ant membaca body permintaan sebagai YAML di stdin; jq membawa status
-  # percakapan ke permintaan kedua.
+  # ant membaca body permintaan sebagai YAML di stdin; jq membawa
+  # state percakapan ke permintaan kedua.
   USER_MSG="What's the weather in San Francisco?"
   MESSAGES=$(jq -n --arg msg "$USER_MSG" '[{role: "user", content: $msg}]')
   call_api() {
     {
       cat <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
-  # Minta paling banyak satu pemanggilan alat per giliran.
+  # Minta paling banyak satu panggilan alat per giliran.
   tool_choice: {type: auto, disable_parallel_tool_use: true}
   tools:
     - name: get_weather
@@ -234,7 +234,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     } | ant messages create --format json
   }
 
-  # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   RESPONSE=$(call_api)
   TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
   echo "Claude called $(jq -r '.name' <<<"$TOOL_USE") with $(jq -c '.input' <<<"$TOOL_USE")"
@@ -277,12 +277,12 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ]
   messages = [{"role": "user", "content": "What's the weather in San Francisco?"}]
 
-  # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
-      # Minta paling banyak satu pemanggilan alat per giliran.
+      # Minta paling banyak satu panggilan alat per giliran.
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
       messages=messages,
   )
@@ -301,7 +301,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       },
   ]
   followup = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -333,12 +333,12 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     { role: "user", content: "What's the weather in San Francisco?" }
   ];
 
-  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
-    // Minta paling banyak satu pemanggilan alat per giliran.
+    // Minta paling banyak satu panggilan alat per giliran.
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
     messages
   });
@@ -347,7 +347,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   )!;
   console.log(`Claude called ${toolUse.name} with ${JSON.stringify(toolUse.input)}`);
 
-  // Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
+  // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
   const weather = "15 degrees Celsius, partly cloudy"; // your weather lookup goes here
   messages.push(
     { role: "assistant", content: response.content },
@@ -357,7 +357,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     }
   );
   const followup = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -395,15 +395,15 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       }),
   ];
 
-  // Minta paling banyak satu pemanggilan alat per giliran.
+  // Minta paling banyak satu panggilan alat per giliran.
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
   const string userPrompt = "What's the weather in San Francisco?";
 
-  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -420,7 +420,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   }
   Console.WriteLine($"Claude called {toolUse!.Name} with {JsonSerializer.Serialize(toolUse.Input)}");
 
-  // Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
+  // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
   var weather = "15 degrees Celsius, partly cloudy";
   List<ContentBlockParam> toolResults =
   [
@@ -432,7 +432,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ];
   var followup = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
@@ -473,7 +473,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   		},
   	}},
   }
-  // Minta paling banyak satu pemanggilan alat per giliran.
+  // Minta paling banyak satu panggilan alat per giliran.
   toolChoice := anthropic.ToolChoiceUnionParam{
   	OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   }
@@ -481,9 +481,9 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   	anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in San Francisco?")),
   }
 
-  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:      anthropic.ModelClaudeOpus5,
+  	Model:      anthropic.ModelClaudeOpus5_5,
   	MaxTokens:  1024,
   	Tools:      tools,
   	ToolChoice: toolChoice,
@@ -501,7 +501,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   }
   fmt.Printf("Claude called %s with %s\n", toolUse.Name, string(toolUse.Input))
 
-  // Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
+  // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
   weather := "15 degrees Celsius, partly cloudy"
   var assistantContent []anthropic.ContentBlockParamUnion
   for _, block := range response.Content {
@@ -512,7 +512,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   	anthropic.NewUserMessage(anthropic.NewToolResultBlock(toolUse.ID, weather, false)),
   )
   followup, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:      anthropic.ModelClaudeOpus5,
+  	Model:      anthropic.ModelClaudeOpus5_5,
   	MaxTokens:  1024,
   	Tools:      tools,
   	ToolChoice: toolChoice,
@@ -558,16 +558,16 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
               .build())
           .build();
 
-      // Minta paling banyak satu pemanggilan alat per giliran.
+      // Minta paling banyak satu panggilan alat per giliran.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
 
       String userPrompt = "What's the weather in San Francisco?";
 
-      // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+      // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(weatherTool)
           .toolChoice(toolChoice)
@@ -579,10 +579,10 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
           .orElseThrow();
       IO.println("Claude called " + toolUse.name() + " with " + toolUse._input());
 
-      // Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
+      // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
       String weather = "15 degrees Celsius, partly cloudy";
       Message followup = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(weatherTool)
           .toolChoice(toolChoice)
@@ -625,12 +625,12 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ];
   $userMessage = ['role' => 'user', 'content' => "What's the weather in San Francisco?"];
 
-  // Minta paling banyak satu pemanggilan alat per giliran.
+  // Minta paling banyak satu panggilan alat per giliran.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
-  // Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -645,10 +645,10 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   }
   printf("Claude called %s with %s\n", $toolUse->name, json_encode($toolUse->input));
 
-  // Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
+  // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
   $weather = '15 degrees Celsius, partly cloudy';
   $followup = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: $tools,
       toolChoice: $toolChoice,
@@ -668,7 +668,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       ],
   );
 
-  // Claude menggunakan hasil tersebut untuk menjawab pertanyaan awal.
+  // Claude menggunakan hasilnya untuk menjawab pertanyaan awal.
   foreach ($followup->content as $block) {
       if ($block->type === 'text') {
           echo $block->text, "\n";
@@ -694,12 +694,12 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ]
   messages = [{role: "user", content: "What's the weather in San Francisco?"}]
 
-  # Claude membalas dengan blok tool_use yang menyebutkan nama alat dan argumennya.
+  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
-    # Minta paling banyak satu pemanggilan alat per giliran.
+    # Minta paling banyak satu panggilan alat per giliran.
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
     messages: messages
   )
@@ -718,7 +718,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     }
   ]
   followup = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -873,6 +873,7 @@ Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prom
 
 | Model                                                                                                                                       | Pilihan alat                   | Jumlah token prompt sistem penggunaan alat |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ |
+| Claude Opus 5.5                                                                                                                             | `auto`, `none`                 | 286 token                                  |
 | Claude Opus 5                                                                                                                               | `auto`, `none`***`any`, `tool` | 286 token***406 token                      |
 | Claude Opus 4.8                                                                                                                             | `auto`, `none`***`any`, `tool` | 290 token***410 token                      |
 | Claude Opus 4.7                                                                                                                             | `auto`, `none`***`any`, `tool` | 675 token***804 token                      |

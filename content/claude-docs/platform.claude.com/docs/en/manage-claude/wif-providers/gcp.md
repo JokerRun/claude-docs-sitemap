@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-09-05T02:20:11.001334Z
-sha256: ad5bd2da6d8f745f51dfc88ab53a172d43b22fba007f71212a55ffa80ab5dd2c
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: baa41ebb3eaee1dbe742e4c88410e6adec310134b68b9dfc0f0b6791f827a3a6
 ---
 
 ---
@@ -163,7 +163,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Cloud Run"}]
     }' | jq -r '.content[] | select(.type == "text") | .text'
@@ -195,7 +195,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   )
 
   message = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello from Cloud Run"}],
   )
@@ -229,7 +229,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   });
 
   const message = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello from Cloud Run" }]
   });
@@ -265,7 +265,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   )
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello from Cloud Run")),
@@ -306,7 +306,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
           .addUserMessage("Hello from Cloud Run")
           .build());
@@ -330,7 +330,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeOpus5,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello from Cloud Run" }],
   });
@@ -370,7 +370,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, and
   # ANTHROPIC_SERVICE_ACCOUNT_ID, and ANTHROPIC_WORKSPACE_ID are read from the environment.
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello from Cloud Run"}'
   ```
@@ -395,7 +395,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   $client = new Client(credentials: $credentials);
 
   $message = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello from Cloud Run']],
   );
@@ -419,7 +419,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   client = Anthropic::Client.new(credentials: credentials)
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello from Cloud Run"}]
   )

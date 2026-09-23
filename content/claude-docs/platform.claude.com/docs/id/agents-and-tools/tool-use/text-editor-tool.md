@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: f305bd1ee6a2684edf1331df921b57756688be7b28c7148131a60a1f2c4acde8
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: aca052b1068c35d6789937b7d3cc7c0e4daa792ad0dd423d2226de93ced3729a
 ---
 
 ---
@@ -45,7 +45,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -65,7 +65,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: text_editor_20250728, name: str_replace_based_edit_tool, max_characters: 10000}' \
     --message '{role: user, content: There is a syntax error in my primes.py file. Can you help me fix it?}'
@@ -75,7 +75,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[
           {
@@ -99,7 +99,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   const anthropic = new Anthropic();
 
   const response = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -125,7 +125,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = [new ToolTextEditor20250728 { MaxCharacters = 10000 }],
           Messages =
@@ -146,7 +146,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTextEditor20250728: &anthropic.ToolTextEditor20250728Param{
@@ -175,7 +175,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
         .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addTool(editorTool)
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -190,7 +190,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [ToolTextEditor20250728::with(maxCharacters: 10000)],
       messages: [
@@ -208,7 +208,7 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -401,7 +401,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -420,7 +420,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-5 \
+    --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: text_editor_20250728, name: str_replace_based_edit_tool}' \
     --message '{role: user, content: There is a syntax error in my primes.py file. Can you help me fix it?}'
@@ -430,7 +430,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
       messages=[
@@ -448,7 +448,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   const anthropic = new Anthropic();
 
   const response = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -473,7 +473,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = [new ToolTextEditor20250728()],
           Messages =
@@ -494,7 +494,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTextEditor20250728: &anthropic.ToolTextEditor20250728Param{}},
@@ -519,7 +519,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
       ToolTextEditor20250728.builder().build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
       .addTool(editorTool)
       .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -534,7 +534,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [new ToolTextEditor20250728()],
       messages: [
@@ -552,7 +552,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{type: "text_editor_20250728", name: "str_replace_based_edit_tool"}],
     messages: [
@@ -572,7 +572,7 @@ Claude menggunakan alat editor teks terlebih dahulu untuk melihat file:
 ```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -602,7 +602,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -649,7 +649,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - type: text_editor_20250728
@@ -712,7 +712,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
       messages=[
@@ -755,7 +755,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   const anthropic = new Anthropic();
 
   const response = await anthropic.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -809,7 +809,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = [new ToolTextEditor20250728()],
           Messages =
@@ -863,7 +863,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTextEditor20250728: &anthropic.ToolTextEditor20250728Param{}},
@@ -897,7 +897,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5)
+    .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
     .addTool(ToolTextEditor20250728.builder().build())
     .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
@@ -942,7 +942,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [new ToolTextEditor20250728()],
       messages: [
@@ -985,7 +985,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{type: "text_editor_20250728", name: "str_replace_based_edit_tool"}],
     messages: [
@@ -1036,7 +1036,7 @@ Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace`
 ```json Output
 {
   "id": "msg_01VwXyZAbCdEfGhIjKlMnO",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "tool_use",
   "role": "assistant",
   "content": [
@@ -1068,7 +1068,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "tools": [
         {
@@ -1113,13 +1113,13 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
 
   ```bash CLI
   ant messages create <<'YAML'
-  model: claude-opus-5
+  model: claude-opus-5-5
   max_tokens: 1024
   tools:
     - type: text_editor_20250728
       name: str_replace_based_edit_tool
   messages:
-    # Pesan sebelumnya...
+    # Pesan-pesan sebelumnya...
     - role: assistant
       content:
         - type: text
@@ -1145,7 +1145,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
 
   ```python Python
   response = client.messages.create(
-      model="claude-opus-5",
+      model="claude-opus-5-5",
       max_tokens=1024,
       tools=[{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}],
       messages=[
@@ -1188,7 +1188,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
 
   ```typescript TypeScript
   const response = await client.messages.create({
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [
       {
@@ -1240,7 +1240,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   var response = await client.Messages.Create(
       new()
       {
-          Model = Model.ClaudeOpus5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = [new ToolTextEditor20250728()],
           Messages =
@@ -1292,13 +1292,13 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus5,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools: []anthropic.ToolUnionParam{
   		{OfTextEditor20250728: &anthropic.ToolTextEditor20250728Param{}},
   	},
   	Messages: []anthropic.MessageParam{
-  		// Pesan sebelumnya...
+  		// Pesan-pesan sebelumnya...
   		anthropic.NewAssistantMessage(
   			anthropic.NewTextBlock("I found the syntax error in your primes.py file. In the `get_primes` function, there is a missing colon (:) at the end of the for loop line. Let me fix that for you."),
   			anthropic.NewToolUseBlock(
@@ -1331,10 +1331,10 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5)
+    .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
     .addTool(ToolTextEditor20250728.builder().build())
-    // Pesan-pesan sebelumnya ditempatkan di sini
+    // Pesan-pesan sebelumnya akan ditempatkan di sini
     .addAssistantMessageOfBlockParams(
       List.of(
         ContentBlockParam.ofText(
@@ -1386,7 +1386,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5',
+      model: 'claude-opus-5-5',
       maxTokens: 1024,
       tools: [new ToolTextEditor20250728()],
       messages: [
@@ -1431,7 +1431,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [{type: "text_editor_20250728", name: "str_replace_based_edit_tool"}],
     messages: [
@@ -1478,7 +1478,7 @@ Terakhir, Claude memberikan penjelasan lengkap tentang perbaikannya:
 ````json Output
 {
   "id": "msg_01IjKlMnOpQrStUvWxYzAb",
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "stop_reason": "end_turn",
   "role": "assistant",
   "content": [

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8cc17c2c7f028405d8ed1dce620e5ef69e39acce3d74dae9c3ed49bb3809573c
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: ec25fee43a688147b18fa81bce2c2f5536c4072050b9a47a4200a76e761700e3
 ---
 
 ---
@@ -10,6 +10,9 @@ title: Referensi sandbox cloud
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
 description: Paket, database, dan utilitas pra-instal yang tersedia di sandbox cloud.
 featureMetadata:
+  topic:
+    title: Managed Agents
+    url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
 ---

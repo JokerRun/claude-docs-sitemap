@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 112696b8b1794f93d1a2f6a48ac9e21ffda4632b917692f2f9b857cfc1fdc916
+fetched_at: 2026-09-23T02:21:59.104890Z
+sha256: e49eea40e42120b18979f75d89effa6486a5e529a27da2a147c0be7ef41c1e8e
 ---
 
 ---
@@ -32,6 +32,7 @@ Tabel ini mencantumkan apa yang didukung setiap model, apa defaultnya, dan nilai
 | Claude Fable 5        | Hanya adaptive                   | Selalu aktif | `"enabled"`, `"disabled"`  |
 | Claude Mythos 5       | Hanya adaptive                   | Selalu aktif | `"enabled"`, `"disabled"`  |
 | Claude Mythos Preview | Adaptive, extended               | Selalu aktif | `"disabled"`               |
+| Claude Opus 5.5       | Hanya adaptive                   | Selalu aktif | `"enabled"`, `"disabled"`  |
 | Claude Opus 5         | Hanya adaptive                   | Aktif        | `"enabled"`, `"disabled"`2 |
 | Claude Opus 4.8       | Hanya adaptive                   | Nonaktif     | `"enabled"`                |
 | Claude Opus 4.7       | Hanya adaptive                   | Nonaktif     | `"enabled"`                |
@@ -43,7 +44,7 @@ Tabel ini mencantumkan apa yang didukung setiap model, apa defaultnya, dan nilai
 | Claude Sonnet 4.5     | Hanya extended                   | Nonaktif     | `"adaptive"`               |
 
 *1 `enabled` dan `budget_tokens` masih berfungsi pada model-model ini tetapi sudah deprecated; gunakan adaptive thinking sebagai gantinya.*\
-*2 Claude Opus 5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400. Pembatasan ini berlaku untuk Claude Opus 5 dan model yang lebih baru serta diberlakukan pada setiap permintaan.*
+*2 Claude Opus 5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` akan mengembalikan error 400. Pembatasan ini diberlakukan pada setiap permintaan.*
 
 Model yang ditandai `Selalu aktif` tidak dapat menonaktifkan thinking. Model yang ditandai `Aktif` secara default menggunakan thinking tetapi menerima `thinking: {type: "disabled"}`.
 
@@ -63,7 +64,7 @@ Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking
 
 ## Error 400 menyatakan `"thinking.type.disabled"` tidak didukung
 
-Permintaan gagal dengan error 400. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5, pesannya berbunyi:
+Permintaan gagal dengan error 400. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Mythos 5, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -107,7 +108,7 @@ Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [
 
 ## Error 400 menyatakan signature blok thinking tidak valid
 
-Permintaan ke Claude Fable 5.1 yang memutar ulang blok thinking sebelumnya gagal dengan 400 `invalid_request_error` yang pesannya berbunyi:
+Permintaan ke Claude Fable 5.1 atau Claude Opus 5.5 yang memutar ulang blok thinking sebelumnya gagal dengan error 400 `invalid_request_error` yang pesannya berbunyi:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
@@ -119,7 +120,7 @@ Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang beruba
 
 Jika pesan berhenti setelah ``Invalid `signature` in `thinking` block``, berarti signature itu sendiri tidak lolos verifikasi. Signature tersebut terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku. Teks pemikiran yang diedit menghasilkan error yang berbeda. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
 
-Pada Claude Fable 5.1, API hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Contohnya adalah giliran yang diedit, diurutkan ulang, atau dihapus; pengingat per giliran yang disisipkan lalu kemudian dihapus; prompt `system` atau array `tools` yang disusun ulang; atau compaction sisi klien yang mempertahankan giliran terbaru beserta pemikirannya apa adanya. Pemeriksaan ini diberlakukan untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, serta untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server tidak pernah memicunya.
+Pada Claude Fable 5.1 dan Claude Opus 5.5, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan: giliran yang diedit, diurutkan ulang, atau dihapus, pengingat per giliran yang disisipkan lalu kemudian dihapus, prompt `system` atau array `tools` yang dibangun ulang, atau "compaction" (pemadatan) sisi klien yang mempertahankan giliran terbaru beserta pemikirannya apa adanya. Pemeriksaan ini diberlakukan untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server tidak pernah memicunya.
 
 Untuk memperbaikinya, jaga agar riwayat bersifat append-only: kirim kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server melakukan pemangkasan apa pun. Mencoba ulang body permintaan yang sama tidak menghilangkan error. Untuk melanjutkan permintaan ini tanpa penalaran yang telah diinvalidasi, kirim header beta `thinking-binding-controls-2026-08-01` dan tetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Sebagai alternatif, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat (minimal blok yang disebutkan dan setiap blok setelahnya, dalam giliran tersebut dan semua giliran berikutnya), biarkan blok lain di setiap giliran tetap di tempatnya, dan coba ulang sekali.
 
