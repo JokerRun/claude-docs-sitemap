@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6f3e7f5f81253a17d2e0af58fea59cba41244eb793d1841086185b6d928590a5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 6bb9373f9c5efcf494c42bdebc2c1cc19e026abaf523a74da998daa9f84623c3
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ This glossary defines Claude Code terminology. Each entry links to the page wher
 
 ### AGENTS.md
 
-A markdown file of project instructions you write for AI coding agents. If your repository has one and no [CLAUDE.md](#claude-md), Claude reads it as your project instructions without you adding a second file. You can change the **Project instructions** setting in `/config` to have Claude read both files or only `CLAUDE.md`. Reading `AGENTS.md` directly requires Claude Code v2.1.277 or later in a session that fetches feature flags; on other versions, import it from a CLAUDE.md.
+A markdown file of project instructions you write for AI coding agents. If your repository has one and no [CLAUDE.md](#claude-md), Claude reads it as your project instructions without you adding a second file. You can change the **Project instructions** setting in `/config` to have Claude read both files or only `CLAUDE.md`. Reading `AGENTS.md` directly requires Claude Code v2.1.277 or later. In some sessions Claude [can't read `AGENTS.md`](/docs/en/memory#when-agents-md-support-is-unavailable), so [import it from a `CLAUDE.md`](/docs/en/memory#share-one-file-with-other-coding-tools) there instead.
 
 Learn more: [AGENTS.md](/docs/en/memory#agents-md)
 

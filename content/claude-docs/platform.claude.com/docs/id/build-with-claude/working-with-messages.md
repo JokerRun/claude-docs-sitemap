@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ca48255779e1e8887fb4e07b0311d247c9637568c3db4ca2a4dd4d1b29a831d8
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 3cefe529ee41b8b90eff17903c2cea186b51270759ecae1c89b54ee4c93d2b5f
 ---
 
 ---
@@ -27,7 +27,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model sebagai gantinya. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Menetapkannya ke nilai non-default akan menghasilkan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
 </Note>
 
 <CodeGroup>
@@ -563,7 +563,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```bash CLI
   IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
 
-  # Opsi 1: Gambar berenkode Base64 (CLI otomatis mengenkode referensi @file biner)
+  # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
   curl -s "$IMAGE_URL" -o ./vision-example.jpg
 
   ant messages create <<'YAML'

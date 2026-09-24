@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: a58ef73270873fc5122db8eadfef5c3f474c7e7cdb23e24a9c9aa2b7a950bd3b
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: c36a350b6b5cd784eeaa766bb3c8e46879df2423f8110d83b461dbd618aa5e5c
 ---
 
 ---
@@ -2471,7 +2471,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               type: string
         required: [summary, next_steps]
         additionalProperties: false
-  # Penggunaan alat ketat: parameter alat yang dijamin
+  # Penggunaan alat ketat: parameter alat yang terjamin
   tools:
     - name: search_flights
       strict: true

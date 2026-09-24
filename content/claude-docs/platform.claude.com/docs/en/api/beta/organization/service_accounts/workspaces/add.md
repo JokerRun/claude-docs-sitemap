@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fec2547adbe079855591ccae4fa04ed0f3827fec80a6faa52f1836620315f22f
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0736b6ea6bd87647409c147bd9c0b14ebaad5184f1bfd35430d14993c51cc071
 ---
 
 ---
@@ -39,7 +39,7 @@ rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -132,6 +132,10 @@ rejected.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Body parameters
 

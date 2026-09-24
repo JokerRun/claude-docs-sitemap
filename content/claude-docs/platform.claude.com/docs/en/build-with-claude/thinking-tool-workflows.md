@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-09-01T02:22:36.834082Z
-sha256: 6115e95e9d463e6ef7317bf3fb52975984a71361837ddafc406d02d557bff705
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 2b102ea78a61cb61adf5ba7533b1f659308347bdffc1ea7b92667bddd5a490fe
 ---
 
 ---
@@ -37,6 +37,32 @@ The example defines a `get_weather` tool, lets Claude think and request a tool c
     Send a request with adaptive thinking enabled and the tool defined. Apart from the `thinking` parameter, this is a standard [tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) request:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "anthropic-version: 2023-06-01" \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -d @- <<'EOF'
+      {
+        "model": "claude-opus-4-8",
+        "max_tokens": 16000,
+        "thinking": {"type": "adaptive"},
+        "tools": [{
+          "name": "get_weather",
+          "description": "Get current weather for a location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
+        }],
+        "messages": [{"role": "user", "content": "What's the weather in Paris?"}]
+      }
+      EOF
+      ```
+
       ```bash CLI
       ant messages create --transform content <<'YAML'
       model: claude-opus-4-8
@@ -301,6 +327,11 @@ The example defines a `get_weather` tool, lets Claude think and request a tool c
     Each sample is a self-contained script: it repeats the first request, then immediately sends the follow-up using the response it just received.
 
     <CodeGroup>
+      ```bash cURL
+      # This workflow does not translate well to a one-off shell command.
+      # Use one of the SDK examples in this code group instead.
+      ```
+
       ```bash CLI
       # First turn: write the assistant content array (thinking and tool_use
       # blocks, signatures intact) to a file. Routing model-generated text

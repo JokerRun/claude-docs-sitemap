@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ccbc13bf5350885155387dd1fb387fcaa67f1ffbb992c3b76ba3e96949934bcb
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: a949e89777b79d16660b17f48ab42c6a0fd78bb02f361af62904881ad0fff44f
 ---
 
 ---
@@ -264,6 +264,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: data-analysis
       config:
         type: cloud
@@ -442,6 +443,7 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 
     <File filename="environment.yaml">
       ```yaml
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
       name: api-access
       config:
         type: cloud

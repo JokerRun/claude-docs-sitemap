@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 3d66c899ecd60097d82da1f09d1f2654d24cd3ec1892a5e7d1b252f2099bc04f
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 7fc16d3e52f1741218cb087dbd696607cca9d0f2eead156fe833139596d94234
 ---
 
 ---
@@ -112,10 +112,6 @@ Multi-model strategies pair a lower-cost model with a frontier model so that mos
 
   <Card title="What's new in Claude Opus 5.5" icon="sparkle" href="https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5">
     The latest Opus model: breaking changes, new features, and behavior differences
-  </Card>
-
-  <Card title="What's new in Claude Opus 5" icon="sparkle" href="https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5">
-    Explore the improvements in Claude Opus 5
   </Card>
 
   <Card title="What's new in Claude Sonnet 5" icon="sparkle" href="https://platform.claude.com/docs/en/models/sonnet-5/whats-new-sonnet-5">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d837eb3ff61eab488517a4a461c57a320cb76e5a66dc331c0c07ef6ea1c38d92
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: dd6c589a2779e0a6a4dcd95c7cc05d750ca415301c896428b3d553e58832db28
 ---
 
 ---
@@ -34,11 +34,11 @@ Mode cepat didukung pada model-model berikut:
 </Note>
 
 <Note>
-  Mode cepat tidak tersedia pada Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak beralih ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 5.5, [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47), atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.7. Permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), permintaan tidak beralih ke kecepatan standar. Model itu sendiri tetap tersedia dengan kecepatan standar. Untuk terus menggunakan mode cepat, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47).
 </Note>
 
 <Note>
-  Mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing), bukan tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 5.5, [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-46), atau Claude Opus 4.8.
+  Mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut dijalankan dengan kecepatan standar dan ditagih dengan [tarif standar](https://platform.claude.com/docs/id/about-claude/pricing), bukan tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](https://platform.claude.com/docs/id/build-with-claude/fast-mode#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.6 dan model Opus sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46).
 </Note>
 
 ## Cara kerja mode cepat

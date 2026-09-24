@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 12171eede18a6c4df9ab85993664326350eac620d2d858de56891f291feb8831
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 6344ec30fa1e65ea99587986c1f495f3157b042a5b8a5f0336c6db7013d15d6f
 ---
 
 ---
@@ -30,7 +30,7 @@ Delete Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Delete Vault
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

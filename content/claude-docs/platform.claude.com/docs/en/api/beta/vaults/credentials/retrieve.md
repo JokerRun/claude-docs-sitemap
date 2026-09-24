@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: f34fe8dcd63e0a94c523bd99ac94e9d3faa63e8bd82d159f994505d2c83570ec
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 6405742390a8ab9a947e5e39494b7aef8c34c7964e8e8906bdcb763e812dcbcd
 ---
 
 ---
@@ -34,7 +34,7 @@ Get Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Get Credential
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: a83db559dd71a37f5a114d68552fd8fb64a225fc7979c1fbd6df10e374265e27
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 09a4f76dce3bd471a4920005b7fd4415a4a2ea43f2060a85bddbec694fd14666
 ---
 
 ---
@@ -30,7 +30,7 @@ Get File Metadata
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Get File Metadata
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

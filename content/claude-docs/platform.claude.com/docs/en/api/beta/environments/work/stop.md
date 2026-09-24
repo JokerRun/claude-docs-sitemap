@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 4e7b171717c35ec48b0ccb010d42bfce419bcf03edd6db22f62861a9d621aeb7
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: c6dbfe71146952521f280e79dc23d9e3d0c94741203840722a15062e449e4945
 ---
 
 ---
@@ -32,7 +32,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

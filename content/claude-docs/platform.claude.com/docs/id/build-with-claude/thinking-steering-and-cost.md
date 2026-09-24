@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: cbdd62417efbbdadfbb3abc1f86643823f4e8131cd1d02e0cbe786df282e23a7
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 8c17b65fd842d56b911d6d482392b8ece8f0fb6eed39f3631eb38073007fdcc0
 ---
 
 ---
@@ -50,13 +50,13 @@ Untuk panduan prompting yang lebih luas dengan pemikiran, lihat [memanfaatkan ke
 
 Effort adalah tuas pengarah utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering Claude berpikir dan seberapa dalam:
 
-| Tingkat effort   | Perilaku pemikiran                                                                                                                       |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `max`            | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
-| `xhigh`          | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
-| `high` (default) | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
-| `medium`         | Claude menggunakan pemikiran sedang. Dapat melewatkan pemikiran untuk kueri sederhana.                                                   |
-| `low`            | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
+| Tingkat effort                             | Perilaku pemikiran                                                                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `max`                                      | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
+| `xhigh`                                    | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
+| `high` (default pada sebagian besar model) | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
+| `medium` (default pada Claude Opus 5.5)    | Claude menggunakan pemikiran moderat. Dapat melewatkan pemikiran untuk kueri sederhana.                                                  |
+| `low`                                      | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
 
 Pada setiap tingkat, Claude memutuskan per permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
@@ -213,7 +213,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
-          output_config={"effort": "medium"},
+          output_config={"effort": "low"},
           messages=MESSAGES,
       )
 
@@ -255,7 +255,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
         }
       ];
 
-      // Permintaan pertama - membuat cache
+      // Permintaan pertama - membangun cache
       console.log("First request - establishing cache");
       const response1 = await client.messages.create({
         model: "claude-opus-5-5",
@@ -293,7 +293,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
         model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
-        output_config: { effort: "medium" },
+        output_config: { effort: "low" },
         messages
       });
 
@@ -387,7 +387,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           Thinking = new ThinkingConfigAdaptive(),
           OutputConfig = new OutputConfig
           {
-              Effort = Effort.Medium
+              Effort = Effort.Low
           },
           Messages =
           [
@@ -468,7 +468,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       	),
       }
 
-      // Permintaan pertama - membuat cache
+      // Permintaan pertama - membangun cache
       fmt.Println("First request - establishing cache")
       response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
       	Model:     anthropic.ModelClaudeOpus5_5,
@@ -513,7 +513,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
       	},
       	OutputConfig: anthropic.OutputConfigParam{
-      		Effort: anthropic.OutputConfigEffortMedium,
+      		Effort: anthropic.OutputConfigEffortLow,
       	},
       	Messages: messages,
       })
@@ -586,7 +586,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .outputConfig(OutputConfig.builder()
-                  .effort(OutputConfig.Effort.MEDIUM)
+                  .effort(OutputConfig.Effort.LOW)
                   .build())
               .addUserMessageOfBlockParams(List.of(
                   ContentBlockParam.ofText(TextBlockParam.builder()
@@ -730,7 +730,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           ],
           model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
-          outputConfig: ['effort' => 'medium'],
+          outputConfig: ['effort' => 'low'],
       );
 
       echo "Third response usage: " . json_encode($response3->usage) . "\n";
@@ -825,7 +825,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           type: "adaptive"
         },
         output_config: {
-          effort: "medium"
+          effort: "low"
         },
         messages: [
           {
@@ -879,7 +879,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
   Third response usage: { cache_creation_input_tokens: 3546, cache_read_input_tokens: 0, input_tokens: 2706, output_tokens: 1468 }
   ```
 
-  Dengan breakpoint cache di dalam array messages, mengubah effort dari default `high` ke `medium` membatalkannya: permintaan ketiga menunjukkan `cache_creation_input_tokens=3546` dan `cache_read_input_tokens=0` sedangkan permintaan kedua menunjukkan pembacaan cache penuh.
+  Dengan breakpoint cache di dalam array messages, mengubah effort dari `medium`, default pada Claude Opus 5.5, menjadi `low` akan membatalkannya: permintaan ketiga menunjukkan `cache_creation_input_tokens=3546` dan `cache_read_input_tokens=0`, sedangkan permintaan kedua menunjukkan pembacaan cache penuh.
 </Accordion>
 
 ### Kontrol biaya

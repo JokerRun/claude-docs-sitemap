@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4090ece98c26ac492fbbde6a1350e01470301dc8dd6afa8784ce728dc7abd2b0
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9256676674bab6f7855d20c0916974f96ab07e39c67c186bcc2c4ebf0de11626
 ---
 
 ---
@@ -1112,11 +1112,11 @@ Teruskan middleware ke konstruktor klien, dan bagikan satu instance `BetaFallbac
 
 ### Bagaimana perilakunya
 
-* Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak meneruskan permintaan ke entri berikutnya.
-* Ketika setiap model dalam daftar telah menolak, middleware mengembalikan penolakan terakhir (respons penolakan model terakhir) alih-alih memunculkan error.
-* Blok thinking dari Claude Fable 5.1 atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang [dipertahankan hanya untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya.
+* Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak akan meneruskan permintaan ke entri berikutnya.
+* Ketika setiap model dalam daftar telah menolak, middleware mengembalikan penolakan terakhir (respons penolakan dari model terakhir) alih-alih memunculkan error.
+* Blok thinking dari Claude Fable 5.1, Claude Opus 5.5, atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang [hanya dipertahankan untuk model tersebut atau model yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)).
 * Respons yang dilayani melalui middleware menyertakan blok konten `fallback` di setiap batas model, sama seperti respons fallback sisi server. Middleware mengelola blok-blok tersebut untuk Anda pada permintaan berikutnya.
-* Model yang menerima dicatat di `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tetap terkunci padanya alih-alih bertanya ulang ke model yang menolak.
+* Model yang menerima permintaan dicatat di `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tersebut tetap terkunci pada model itu alih-alih bertanya lagi ke model yang menolak.
 
 <Note>
   Middleware dan parameter `fallbacks` sisi server melakukan pekerjaan yang sama. Konfigurasikan salah satunya, jangan pernah keduanya pada permintaan yang sama. Untuk mengirim permintaan `fallbacks` sisi server dari aplikasi yang memasang middleware, gunakan instance klien terpisah tanpanya.
@@ -1134,12 +1134,12 @@ Melalui HTTP mentah atau dengan logika percobaan ulang kustom, implementasikan p
   <Step title="Kirim ulang pada model fallback">
     Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Model lain biasanya dapat melayani permintaan yang ditolak Claude Fable 5.1 atau Claude Fable 5. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit):
 
-    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap di tempatnya atau menghapusnya untuk menghemat token input. Model fallback tidak dapat menggunakannya dengan cara mana pun: ia mengabaikan blok Claude Fable 5, dan blok Claude Fable 5.1 [dipertahankan hanya untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya.
-    * **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan yang persis. Server menangani blok thinking model sebelumnya pada penukaran, jadi jangan menghapusnya (lihat [Field yang harus cocok dengan permintaan yang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#reference)).
+    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap ada atau menghapusnya untuk menghemat token input. Model fallback biasanya tidak dapat menggunakannya dalam kedua kasus: model tersebut mengabaikan blok Claude Fable 5, dan blok Claude Fable 5.1 [hanya dipertahankan untuk model tersebut atau model yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)).
+    * **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan persis. Server menangani blok thinking dari model sebelumnya saat penukaran, jadi jangan menghapusnya (lihat [Field yang harus cocok dengan permintaan yang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#reference)).
   </Step>
 
-  <Step title="Tetap pada model fallback">
-    Untuk percakapan multi-giliran, terus gunakan model fallback untuk giliran berikutnya alih-alih beralih kembali.
+  <Step title="Tetap gunakan model fallback">
+    Untuk percakapan multi-giliran, terus gunakan model fallback untuk giliran-giliran berikutnya alih-alih beralih kembali.
   </Step>
 </Steps>
 

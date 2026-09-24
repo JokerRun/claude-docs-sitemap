@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ddca8831ed7e462375678373264963ebb8abbf26828eb8a99360804875cae03c
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 96079c2f7b060cdd2f51c7a0fd4e67e36178d1fe4f97d38fdbd380c92ac3436e
 ---
 
 ---
@@ -36,7 +36,7 @@ If you built an agent by calling `messages.create` in a `while` loop, running to
 
 **Before** (Messages API loop, simplified):
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   messages = [{"role": "user", "content": task}]
   while True:

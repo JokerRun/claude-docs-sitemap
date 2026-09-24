@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: dc4f9ce3eb0f034574df9e2baff0a66c2b813c5e6dd1789e51a9d8784576c560
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: b784de913a7067b49e0cb9fc5c4358d07ca72f09c630576a79c4d8f44f9d6f04
 ---
 
 ---
@@ -40,7 +40,7 @@ List Session Resources
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -133,6 +133,10 @@ List Session Resources
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

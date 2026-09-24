@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 50fae7abaaa50370f7e279a635ee52bce26a2347ff6673d1cffb4fe3bb30d4f8
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0160d266bfa533dd9fe478ab3bc59b7cb7e132e400da144522d8db94386f8af0
 ---
 
 ---
@@ -34,7 +34,7 @@ accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ accounts.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Body parameters
 

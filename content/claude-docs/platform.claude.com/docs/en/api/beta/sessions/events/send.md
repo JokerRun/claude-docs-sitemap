@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 9b254eed3ba4f3afe672a7056d05f1e0d55bba0db42b027f83857a296f7744e0
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: d2d7deba86309a89ec44c9667871e8bb7af49d3ed6878748462b275f931ee6c3
 ---
 
 ---
@@ -28,7 +28,7 @@ Send Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,10 @@ Send Events
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

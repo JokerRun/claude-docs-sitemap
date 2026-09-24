@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: efef992a5a71eb6cffe16a63f0955a360d34e0a587f343709857a1161d6cc525
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 7897b228df5ddbac83658403b330f8cd26aecf26cd71c7f9fedd9fae68cfc9f6
 ---
 
 ---
@@ -67,7 +67,6 @@ Here's how to detect and handle streaming refusals in your application:
 
 <CodeGroup>
   ```bash cURL
-  # Stream request and check for refusal
   response=$(curl -N https://api.anthropic.com/v1/messages \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -79,8 +78,21 @@ Here's how to detect and handle streaming refusals in your application:
       "stream": true
     }')
 
-  # Check for refusal in the stream
-  if echo "$response" | grep -q '"stop_reason":"refusal"'; then
+  if echo "$response" | jq -R -e 'select(startswith("data: "))
+      | sub("^data: "; "") | fromjson
+      | select(.delta.stop_reason == "refusal")' >/dev/null; then
+    echo "Response refused - resetting conversation context"
+    # Reset your conversation state here
+  fi
+  ```
+
+  ```bash CLI
+  response=$(ant messages create --stream --format jsonl \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: Hello}')
+
+  if echo "$response" | jq -e 'select(.delta.stop_reason == "refusal")' >/dev/null; then
     echo "Response refused - resetting conversation context"
     # Reset your conversation state here
   fi

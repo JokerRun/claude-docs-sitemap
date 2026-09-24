@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/migration-guide
-fetched_at: 2026-09-12T02:20:53.386482Z
-sha256: d7b3973aca2bbd0d02f1e0769ed838dd94f5da83e7733b1e1ca2b908205f1316
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 88a8c6bf920e69dc0b9420af99bb09ac5a72d631761abbc0c78c0b7028e644eb
 ---
 
 ---
@@ -370,7 +370,7 @@ model = "claude-mythos-5"  # After
 ## Migrating to Claude Mythos 5 and Claude Fable 5 from Claude Opus 4.8
 
 <Note>
-  If your code is on Claude Opus 4.7 or earlier, first apply the relevant [Migrating to Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/migration-guide) from-section for the API-level changes from your current model, then the remaining delta in this section.
+  If your code is on Claude Opus 4.7 or earlier, first apply the relevant [Migrating to Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide) from-section for the API-level changes from your current model, then the remaining delta in this section.
 </Note>
 
 Migration is mostly drop-in. Claude Fable 5 and Claude Mythos 5 use the same [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) and the same [tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) patterns as Claude Opus 4.8, with the same [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) by default and the same [128k max output tokens](https://platform.claude.com/docs/en/models/overview). Token counts are roughly unchanged because the models use the same tokenizer. The key changes to check are always-on [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking), thinking output, safety classifier refusals (Claude Fable 5 only), and pricing.

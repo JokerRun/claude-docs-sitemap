@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2433132266a7a00609b749705da36a50ec0394a5e2d3333a67e6b9b19d27850e
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f3ffdb7d1703ca307984a842e047b1c341b458af9fb2638424e93618ec8ad5f4
 ---
 
 ---
@@ -69,28 +69,22 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
     }'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
-    ```bash CLI
-    ant beta:messages create --beta compact-2026-09-04 < request.yaml
-    ```
-
-    <File filename="request.yaml">
-      ```yaml
-      model: claude-opus-5-5
-      # max_tokens caps the whole call, including any thinking, so allow several thousand tokens.
-      max_tokens: 4096
-      messages:
-        - role: user
-          content: I am building a recipe app. Help me name the main entities in the data model.
-        - role: assistant
-          content: Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.
-        - role: user
-          content: Good. Now suggest field names for Recipe.
-      compaction:
-        type: summarize
-      ```
-    </File>
-  </MultiFileExample>
+  ```bash CLI
+  ant beta:messages create --beta compact-2026-09-04 <<'YAML'
+  model: claude-opus-5-5
+  # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+  max_tokens: 4096
+  messages:
+    - role: user
+      content: I am building a recipe app. Help me name the main entities in the data model.
+    - role: assistant
+      content: Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.
+    - role: user
+      content: Good. Now suggest field names for Recipe.
+  compaction:
+    type: summarize
+  YAML
+  ```
 
   ```python Python
   from anthropic.types.beta import BetaMessageParam
@@ -775,7 +769,9 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
 
 Pemeriksaan `stop_reason` dilakukan sebelum kode mencari blok; [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) menjelaskan alasannya. Riwayat diganti, bukan ditambahkan: pesan yang dikembalikan menggantikan setiap pesan yang dibawa permintaan, sesuai aturan di [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary). Ketika tidak ada ringkasan yang dikembalikan, loop mempertahankan riwayatnya dan meminta lagi setelah giliran berikutnya.
 
-[Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) SDK di Python, TypeScript, C#, Go, dan Java dapat mengirim permintaan compaction untuk Anda. Saat Anda memutuskan untuk melakukan compaction, panggil `compact_before_next_turn()` pada runner (`compactBeforeNextTurn()` di TypeScript dan Java, `CompactBeforeNextTurn()` di C# dan Go). Setelah giliran saat ini beserta panggilan alatnya selesai, runner mengirim permintaan compaction dan mengganti riwayatnya dengan pesan yang dikembalikan. Buat runner dengan beta `compact-2026-09-04`, karena runner tidak menambahkannya. Runner menyusun permintaan dari parameternya sendiri dan tidak menyertakan `context_management`. Jika parameter tersebut mencakup `stop_sequences`, `tool_choice` bertipe `any` atau `tool`, atau `output_config.format` untuk structured output, API menolak permintaan dengan error 400. [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) menjelaskan alasannya. Runner menolak melakukan compaction selama `context_management`-nya memiliki edit compaction, jadi gunakan satu jenis compaction saja pada sebuah runner.
+[Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) SDK di Python, TypeScript, C#, Go, Java, PHP, dan Ruby dapat mengirim permintaan compaction untuk Anda. Ketika Anda memutuskan untuk melakukan compaction, panggil `compact_before_next_turn()` pada runner (`compactBeforeNextTurn()` di TypeScript, Java, dan PHP, serta `CompactBeforeNextTurn()` di C# dan Go). Setelah giliran saat ini dan panggilan alatnya selesai, runner mengirim permintaan compaction dan mengganti riwayatnya dengan pesan yang dikembalikan. Buat runner dengan beta `compact-2026-09-04`, karena runner tidak menambahkannya.
+
+Runner menyusun permintaan compaction dari parameternya sendiri dan tidak menyertakan `context_management`. Runner juga tidak menyertakan `stop_sequences`, `tool_choice` bertipe `any` atau `tool`, dan `output_config.format` untuk structured output, yang ditolak API pada permintaan compaction. [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) menjelaskan alasannya. Runner mengirimkannya lagi pada permintaan-permintaan berikutnya. Versi SDK sebelum Python 1.8.0, TypeScript 0.128.0, C# 12.50.0, Go 1.75.0, dan Java 2.65.0 juga mengirimkannya pada permintaan compaction. Pada versi-versi tersebut, runner yang menetapkan salah satu parameter ini akan mendapatkan error 400. Runner mengirim [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (anggaran tugas) tanpa perubahan. Jika `output_config.task_budget` menetapkan `remaining`, permintaan compaction mengembalikan error 400, jadi biarkan `remaining` tidak ditetapkan, seperti yang dijelaskan di [Batasan dan interaksi dengan fitur lain](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#how-it-fits-with-the-rest-of-the-api). Runner menolak melakukan compaction selama `context_management`-nya memiliki edit compaction, jadi gunakan satu jenis compaction saja pada sebuah runner.
 
 ### Kapan melakukan compaction
 

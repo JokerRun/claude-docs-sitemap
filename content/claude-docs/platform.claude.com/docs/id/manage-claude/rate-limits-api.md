@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 051b9a758b1cb30e78d0340b49f59da4217cfe4bace450fdfcb9e9a7c65b0388
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 317211514bcc08eb709878ecd6a7b22e78dd7ff33e1cea0696148b31007f0ac3
 ---
 
 ---
@@ -814,8 +814,8 @@ Tidak. Untuk mengatur batas laju workspace, buka workspace di [Claude Console](h
 
 ## Lihat juga
 
-* [Rate limits](https://platform.claude.com/docs/id/api/rate-limits)
+* [Batas laju](https://platform.claude.com/docs/id/api/rate-limits)
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/admin)
-* [Workspaces](https://platform.claude.com/docs/id/manage-claude/workspaces)
+* [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)

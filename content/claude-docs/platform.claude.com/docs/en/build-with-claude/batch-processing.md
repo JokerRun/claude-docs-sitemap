@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ad532ac6142ca5f1a7c7b60204b0d8e9511c358d11c91dbf3ebf904298adedfb
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 983191cfea8d16cf912615e3daba9caecfe6181db53c08b8fb8f94dbaa8a090d
 ---
 
 ---
@@ -108,6 +108,10 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 | Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | $1.50 / MTok | $7.50 / MTok  |
 | Claude Haiku 4.5                                                                                                                      | $0.50 / MTok | $2.50 / MTok  |
 | Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)) | $0.40 / MTok | $2 / MTok     |
+
+* **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
+* **Limited access:** Offered separately, by invitation only, as part of [Project Glasswing](https://anthropic.com/glasswing). For access, contact your Anthropic, AWS, or Google Cloud account team.
+* **Retired:** May still be available on other cloud platforms. See [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) for more.
 
 ## How to use the Message Batches API
 

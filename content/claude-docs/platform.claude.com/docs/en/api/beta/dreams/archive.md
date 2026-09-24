@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1bd3a60b217d1e48a6bc361951f3840b6d7487f1d7298d2554d75a0a5b1a1433
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: cf5bf52ffc916c613b6629cab212de6c74df0bc3f00f827fbb7651eda9dd2550
 ---
 
 ---
@@ -34,7 +34,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

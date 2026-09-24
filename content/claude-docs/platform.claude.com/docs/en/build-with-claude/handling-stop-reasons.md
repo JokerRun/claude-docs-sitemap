@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 108ddfa230582e6f04a52506a4034cbf440d5e3e22968fbf0492ed926f438207
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9209b030f3a25d63f3fc0d90e050588394378d2d2a4a65cc34f80a1854b5ac8d
 ---
 
 ---
@@ -904,14 +904,45 @@ Claude stopped because it reached the `max_tokens` limit specified in your reque
 
   <CodeGroup exclude="shell:cURL">
     ```bash CLI
-    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl < request.yaml)
+    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl <<'YAML'
+    model: claude-opus-5-5
+    tools:
+      - name: get_weather
+        description: Get the current weather in a given location
+        input_schema:
+          type: object
+          properties:
+            location:
+              type: string
+          required:
+            - location
+    messages:
+      - role: user
+        content: What is the weather in San Francisco?
+    YAML
+    )
 
     # Check if the response was truncated mid tool use
     STOP_REASON=$(jq -r '.stop_reason' <<<"$RESPONSE")
     LAST_TYPE=$(jq -r '.content[-1].type' <<<"$RESPONSE")
     if [ "$STOP_REASON" = "max_tokens" ] && [ "$LAST_TYPE" = "tool_use" ]; then
       # Retry with a higher max_tokens
-      ant messages create --max-tokens 4096 < request.yaml
+      ant messages create --max-tokens 4096 <<'YAML'
+    model: claude-opus-5-5
+    tools:
+      - name: get_weather
+        description: Get the current weather in a given location
+        input_schema:
+          type: object
+          properties:
+            location:
+              type: string
+          required:
+            - location
+    messages:
+      - role: user
+        content: What is the weather in San Francisco?
+    YAML
     fi
     ```
 

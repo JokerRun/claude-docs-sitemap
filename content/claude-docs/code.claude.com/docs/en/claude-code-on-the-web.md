@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d04bb7a4e226669025f3e4a9d743c119e8ff412772cbeb4ab1792ac8851d7727
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: e5c3075568d1e5c4fd6a162db1df70ca6d4d62649646522db14f1509d5f5b526
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: d04bb7a4e226669025f3e4a9d743c119e8ff412772cbeb4ab1792ac8851d7727
 > Run Claude Code sessions in the cloud from your browser, phone, desktop app, or terminal, move them with --cloud and --teleport, and auto-fix pull requests.
 
 <Note>
-  Cloud sessions are in research preview for Pro, Max, and Team users, and for Enterprise users with premium seats or Chat + Claude Code seats.
+  Cloud sessions are available on Pro, Max, and Team plans, and for Enterprise users with premium seats or Chat + Claude Code seats.
 </Note>
 
 A cloud session is a Claude Code session that runs on cloud infrastructure instead of on your machine. By default it runs on infrastructure Anthropic manages, or on your organization's [self-hosted environment](/docs/en/self-hosted-environments) when routed there. The session keeps running after you close your laptop, and you can check on it or steer it from any device.

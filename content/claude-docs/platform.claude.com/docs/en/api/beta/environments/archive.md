@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 23645e7d29f89c52c0976d990e8fa4902de003df032087531ebf37e7b14bd56e
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f2d841acf480471c89ebd2c39cfe54426cc50df87fd65a89ecd6354e007c0fb8
 ---
 
 ---
@@ -28,7 +28,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

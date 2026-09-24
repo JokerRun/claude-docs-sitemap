@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ef80e34212d11e3d64c09fe001178a20121e2599114a593c1f17054b16177de6
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: af467f29a4cb0ce58b92bca6557c580b5459646fc8ae3aed3d239e38c81aab87
 ---
 
 ---
@@ -54,15 +54,16 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 
 ### Pricing
 
-| Feature                                                                                | Value                                                               |
-| :------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Input                                                                                  | $1 / MTok                                                           |
-| Output                                                                                 | $5 / MTok                                                           |
-| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $1.25 / MTok                                                        |
-| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $2 / MTok                                                           |
-| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.10 / MTok                                                        |
-| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output                                    |
-| Full price list                                                                        | [Pricing](https://platform.claude.com/docs/id/about-claude/pricing) |
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $1 / MTok                        |
+| Output                                                                                 | $5 / MTok                        |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $1.25 / MTok                     |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $2 / MTok                        |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.10 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
 
 ### Capabilities
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 83284c85d33a8f28c46c0cb27ebe5cd5df4dbd2205170a2cc99efc1c84a04528
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: b5a050a0fafbeae368bacf276fc8f9ec67144d1409f3651ef24c503d1b24b2c7
 ---
 
 > ## Documentation Index
@@ -41,7 +41,6 @@ These work on every provider:
 
 These have provider-specific differences:
 
-* **CLAUDE.md memory**: `CLAUDE.md` files load on every provider. Reading [`AGENTS.md` files](/docs/en/memory#agents-md) as project instructions also requires a session that [fetches feature flags](/docs/en/env-vars#features-that-need-feature-flag-fetching)
 * **MCP servers**: [connectors from claude.ai](/docs/en/mcp#use-mcp-servers-from-claude-ai) load only when your claude.ai subscription is the active authentication method. [Tool search](/docs/en/mcp#configure-tool-search) is off by default when `ANTHROPIC_BASE_URL` points to a non-first-party host, and isn't supported on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation or on Microsoft Foundry [deployments hosted on Azure](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options)
 * **Subagents**: the built-in [Explore subagent](/docs/en/sub-agents#built-in-subagents) caps its inherited model at Opus on the Claude API, and inherits the main conversation's model directly on any other provider, including Claude Platform on AWS
 * **[Commands](/docs/en/commands#all-commands)**:

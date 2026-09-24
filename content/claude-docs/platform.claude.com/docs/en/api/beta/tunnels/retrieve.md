@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 5a24d6053b0a6875f8a909067653670755141e570875da84e22b557ee7c50ba5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9ac2e3a22cc4c4490e42c52fee4d5842e94dec07c9f7dbab69e628c1005aa214
 ---
 
 ---
@@ -32,7 +32,7 @@ Fetches a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Fetches a tunnel by ID.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

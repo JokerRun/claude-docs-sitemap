@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 272beaba772c26267c7c03be39a42c775d1ab54548dbe5fae3dfb4e9609f0d6a
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 77a3c015084155915ce820e8811f9d349f12914bda2706f4d9d3de7b4308af2e
 ---
 
 ---
@@ -50,13 +50,13 @@ For broader prompting guidance with thinking, see [leverage thinking and interle
 
 Effort is the primary steering lever for thinking. Each level sets a different default for how often Claude thinks and how deeply:
 
-| Effort level     | Thinking behavior                                                                                |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| `max`            | Claude thinks the most readily and at the greatest depth, with no constraint on thinking length. |
-| `xhigh`          | Claude thinks more readily and at greater depth than at `high`, suited to extended exploration.  |
-| `high` (default) | Claude thinks on most requests that benefit from it. Provides deep reasoning on complex tasks.   |
-| `medium`         | Claude uses moderate thinking. May skip thinking for simple queries.                             |
-| `low`            | Claude minimizes thinking. Skips thinking for simple tasks where speed matters most.             |
+| Effort level                          | Thinking behavior                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `max`                                 | Claude thinks the most readily and at the greatest depth, with no constraint on thinking length. |
+| `xhigh`                               | Claude thinks more readily and at greater depth than at `high`, suited to extended exploration.  |
+| `high` (default on most models)       | Claude thinks on most requests that benefit from it. Provides deep reasoning on complex tasks.   |
+| `medium` (default on Claude Opus 5.5) | Claude uses moderate thinking. May skip thinking for simple queries.                             |
+| `low`                                 | Claude minimizes thinking. Skips thinking for simple tasks where speed matters most.             |
 
 At every level, Claude decides per request whether to think. In a tool-use loop, the first request after new user input typically carries most of the reasoning, and follow-up requests that only process tool results can skip thinking, including at `xhigh` and `max`. Thinking per request also tends to decrease as a conversation grows longer. No level guarantees a thinking block on every request.
 
@@ -213,7 +213,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
-          output_config={"effort": "medium"},
+          output_config={"effort": "low"},
           messages=MESSAGES,
       )
 
@@ -293,7 +293,7 @@ The following example demonstrates the invalidation with a multi-turn script you
         model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: { type: "adaptive" },
-        output_config: { effort: "medium" },
+        output_config: { effort: "low" },
         messages
       });
 
@@ -387,7 +387,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           Thinking = new ThinkingConfigAdaptive(),
           OutputConfig = new OutputConfig
           {
-              Effort = Effort.Medium
+              Effort = Effort.Low
           },
           Messages =
           [
@@ -513,7 +513,7 @@ The following example demonstrates the invalidation with a multi-turn script you
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
       	},
       	OutputConfig: anthropic.OutputConfigParam{
-      		Effort: anthropic.OutputConfigEffortMedium,
+      		Effort: anthropic.OutputConfigEffortLow,
       	},
       	Messages: messages,
       })
@@ -586,7 +586,7 @@ The following example demonstrates the invalidation with a multi-turn script you
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .outputConfig(OutputConfig.builder()
-                  .effort(OutputConfig.Effort.MEDIUM)
+                  .effort(OutputConfig.Effort.LOW)
                   .build())
               .addUserMessageOfBlockParams(List.of(
                   ContentBlockParam.ofText(TextBlockParam.builder()
@@ -730,7 +730,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           ],
           model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
-          outputConfig: ['effort' => 'medium'],
+          outputConfig: ['effort' => 'low'],
       );
 
       echo "Third response usage: " . json_encode($response3->usage) . "\n";
@@ -825,7 +825,7 @@ The following example demonstrates the invalidation with a multi-turn script you
           type: "adaptive"
         },
         output_config: {
-          effort: "medium"
+          effort: "low"
         },
         messages: [
           {
@@ -879,7 +879,7 @@ The following example demonstrates the invalidation with a multi-turn script you
   Third response usage: { cache_creation_input_tokens: 3546, cache_read_input_tokens: 0, input_tokens: 2706, output_tokens: 1468 }
   ```
 
-  With the cache breakpoint in the messages array, changing effort from the default `high` to `medium` invalidates it: the third request shows `cache_creation_input_tokens=3546` and `cache_read_input_tokens=0` where the second showed a full cache read.
+  With the cache breakpoint in the messages array, changing effort from `medium`, the default on Claude Opus 5.5, to `low` invalidates it: the third request shows `cache_creation_input_tokens=3546` and `cache_read_input_tokens=0` where the second showed a full cache read.
 </Accordion>
 
 ### Cost control

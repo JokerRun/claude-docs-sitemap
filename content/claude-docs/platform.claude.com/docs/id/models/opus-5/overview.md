@@ -1,35 +1,27 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0f1ca8b4307a6ce7f01424577a7fea5fee4f15381172fe71225b6c7bf4162e89
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 38fbc45e44046fb5c5ba4c78585397d499e246e0504a8b75ed58edf115e464ce
 ---
 
 ---
 title: Claude Opus 5
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-description: "Referensi Claude Opus 5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 5.5 adalah model Opus saat ini."
+description: "Referensi Claude Opus 5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 5 adalah model lama (legacy); Claude Opus 5.5 adalah model Opus saat ini."
 ---
 
 **Legacy.** Released July 24, 2026.
 
-For complex agentic coding and enterprise work
-
-Although Claude Opus 5 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide)
+Although Claude Opus 5 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5)
 
 Model ID: `claude-opus-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok · Output pricing: $25 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-opus-5) · [What’s new](https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5)
+[Announcement](https://www.anthropic.com/news/claude-opus-5)
 
-## Ikhtisar
-
-Claude Opus 5 merupakan lompatan besar dibandingkan Claude Opus 4.8, dengan kemajuan terbesar dalam penalaran mendalam, tugas agentik dan berjangka panjang, serta penskalaan komputasi saat pengujian (test-time compute scaling). Halaman ini merangkum semua yang baru di Claude Opus 5, termasuk perubahan alat di tengah percakapan dan dua perubahan yang merusak kompatibilitas (breaking changes) untuk kode yang berjalan di Claude Opus 4.8: thinking aktif secara default, dan thinking hanya dapat dinonaktifkan pada effort `high` atau lebih rendah.
-
-[Apa yang baru di Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5)
-
-## Perbandingannya
+## Perbandingannya dengan jajaran model saat ini
 
 | Model                                                                             | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
 | :-------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
@@ -60,15 +52,16 @@ Claude Opus 5 merupakan lompatan besar dibandingkan Claude Opus 4.8, dengan kema
 
 ### Pricing
 
-| Feature                                                                                | Value                                                               |
-| :------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Input                                                                                  | $5 / MTok                                                           |
-| Output                                                                                 | $25 / MTok                                                          |
-| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6.25 / MTok                                                        |
-| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $10 / MTok                                                          |
-| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.50 / MTok                                                        |
-| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output                                    |
-| Full price list                                                                        | [Pricing](https://platform.claude.com/docs/id/about-claude/pricing) |
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $5 / MTok                        |
+| Output                                                                                 | $25 / MTok                       |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6.25 / MTok                     |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $10 / MTok                       |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.50 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
 
 ### Capabilities
 
@@ -111,18 +104,6 @@ Claude Opus 5 merupakan lompatan besar dibandingkan Claude Opus 4.8, dengan kema
 
   <Card title="Prompting Claude Opus 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5">
     Panduan prompting khusus model.
-  </Card>
-
-  <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Effort secara default bernilai `high` pada Claude Opus 5 dan lebih berpengaruh dibandingkan pada model-model sebelumnya. Pilih tingkat sesuai beban kerja.
-  </Card>
-
-  <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Aktif secara default. Menonaktifkan pemikiran memerlukan effort `high` atau lebih rendah.
-  </Card>
-
-  <Card title="Mode cepat" icon="lightning" href="https://platform.claude.com/docs/id/build-with-claude/fast-mode">
-    Claude Opus 5 dengan latensi lebih rendah di Claude API (pratinjau riset), dengan harga terpisah.
   </Card>
 </CardGroup>
 

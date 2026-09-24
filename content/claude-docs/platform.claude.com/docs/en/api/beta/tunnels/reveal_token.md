@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: bf0eab38add3d30138c7deb5fa46ae486f6b9cb4445b26b2f5553f0fffedca33
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 666af24550cbe83e104567324de54589a5a5d1239017f5ca9161ecde8f28c376
 ---
 
 ---
@@ -32,7 +32,7 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

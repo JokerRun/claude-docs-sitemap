@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 12fdf028a76206c6ebe0057787d0b3aec6127df23835738e6bf0210c0fe58bf2
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 3c67e57dcdb8566950e84d4954c806edc1d9aeb30e602237df0e2bc7a0f61eeb
 ---
 
 ---
@@ -70,10 +70,6 @@ Anthropic saat ini menghentikan dan memensiunkan model untuk memastikan kapasita
 Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kembali untuk publik. Sementara itu, Anthropic telah berkomitmen pada pelestarian jangka panjang bobot model dan langkah-langkah lain untuk membantu memitigasi dampak ini. Untuk detail lebih lanjut, lihat [Commitments on Model Deprecation and Preservation](https://www.anthropic.com/research/deprecation-commitments).
 
 ## Status model
-
-<Note>
-  [Claude Mythos Preview](https://anthropic.com/glasswing) (`claude-mythos-preview`) telah dihentikan. Untuk bermigrasi ke [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`), lihat [panduan migrasi](https://platform.claude.com/docs/id/models/fable-5/migration-guide#migrating-from-claude-mythos-preview).
-</Note>
 
 Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut beserta statusnya:
 

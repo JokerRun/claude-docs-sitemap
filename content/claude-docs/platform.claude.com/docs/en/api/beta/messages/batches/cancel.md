@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: cda3c36d42f625d2e43370c813bef23e0cd2c283d967bdb3f14bee173c361aaa
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 86146e7f7f22eb92d0dc1e36bb0ffa408592bb02c9be8e0ebcfa91c3c7d3492a
 ---
 
 ---
@@ -34,7 +34,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

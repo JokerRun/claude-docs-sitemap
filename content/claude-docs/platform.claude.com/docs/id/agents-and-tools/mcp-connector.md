@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d27f8ceb304bdd0dff15c7adc176f9e24a0e7814f9d03a3736ca5b268b708030
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 2156178a532705b5124746e3d5c6a4a44dc6414ebb57bf1b05625ed00895fd51
 ---
 
 ---
@@ -610,17 +610,18 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
     ]
   }'
 
-  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
-  # daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta daftar
+  # alat dari server dan respons diawali dengan blok mcp_tool_listing.
+  # tee menampilkan respons di stderr sementara variabel menangkapnya.
   FIRST=$(curl -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2026-09-15" \
-    -d "$BODY")
+    -d "$BODY" | tee /dev/stderr)
 
-  # Sematkan daftar: salin tools dari blok tersebut ke toolset. API memakai
-  # persis entri-entri ini dan tidak meminta ke server lagi.
+  # Sematkan daftar: salin alat dari blok tersebut ke toolset. API memakai
+  # persis entri ini dan tidak meminta ke server lagi.
   TOOLS=$(jq '.content[] | select(.type == "mcp_tool_listing") | .tools' \
     <<<"$FIRST")
   PINNED=$(jq --argjson tools "$TOOLS" '.tools[0].tools = $tools' <<<"$BODY")
@@ -652,16 +653,17 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   YAML
   )
 
-  # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
-  # mengirim daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta daftar
+  # alatnya ke server dan respons diawali dengan blok mcp_tool_listing.
+  # tee menampilkan respons di stderr sementara variabel menangkapnya.
   first=$(ant beta:messages create --beta mcp-client-2026-09-15 --format json \
-    <<<"$request")
+    <<<"$request" | tee /dev/stderr)
   tools=$(jq -c '.content[] | select(.type == "mcp_tool_listing") | .tools' \
     <<<"$first")
 
-  # Sematkan daftarnya: salin tools dari blok tersebut ke toolset. Flag --tool
-  # menggantikan array tools di body. API memakai persis entri-entri ini dan
-  # tidak meminta ke server lagi, jadi respons tidak memiliki blok mcp_tool_listing.
+  # Sematkan daftar: salin tools dari blok ke dalam toolset. Flag --tool
+  # menggantikan array tools di body. API memakai persis entri ini dan
+  # tidak bertanya lagi ke server, jadi respons tidak memiliki blok mcp_tool_listing.
   ant beta:messages create --beta mcp-client-2026-09-15 \
     --tool "{type: mcp_toolset, mcp_server_name: example-mcp, tools: $tools}" \
     <<<"$request"
@@ -803,8 +805,8 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
       new() { Role = Role.User, Content = "What tools do you have available?" },
   ];
 
-  // Permintaan pertama: toolset belum disematkan, sehingga API meminta server untuk
-  // mengirimkan daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
+  // daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
   var first = await client.Beta.Messages.Create(new MessageCreateParams
   {
       Model = Messages::Model.ClaudeOpus5_5,
@@ -819,9 +821,9 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
       .Select(block => block.Value)
       .OfType<BetaMcpToolListingBlock>()
       .First();
-  Console.WriteLine(JsonSerializer.Serialize(listing.Tools.Select(tool => tool.Name)));
+  Console.WriteLine(string.Join(", ", listing.Tools.Select(tool => tool.Name)));
 
-  // Sematkan daftarnya: salin alat dari blok tersebut ke dalam toolset. API menggunakan
+  // Sematkan daftarnya: salin alat dari blok tersebut ke toolset. API menggunakan
   // persis entri-entri ini dan tidak meminta ke server lagi.
   var second = await client.Beta.Messages.Create(new MessageCreateParams
   {
@@ -847,8 +849,8 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
       Messages = messages,
   });
 
-  // Dengan toolset yang disematkan, respons tidak berisi blok mcp_tool_listing.
-  Console.WriteLine(JsonSerializer.Serialize(second.Content.Select(block => block.Type)));
+  // Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  Console.WriteLine(string.Join(", ", second.Content.Select(block => block.Type)));
   ```
 
   ```go Go
@@ -1061,14 +1063,14 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   messages = [{ role: "user", content: "What tools do you have available?" }]
 
   # Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
-  # daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
+  # mengirim daftar alatnya dan respons diawali dengan blok mcp_tool_listing.
   first = client.beta.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     betas: [Anthropic::AnthropicBeta::MCP_CLIENT_2026_09_15],
-    mcp_servers: mcp_servers,
+    mcp_servers:,
     tools: [{ type: "mcp_toolset", mcp_server_name: "example-mcp" }],
-    messages: messages
+    messages:
   )
 
   listing = first.content.find { it.is_a?(Anthropic::Beta::BetaMCPToolListingBlock) }
@@ -1080,7 +1082,7 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     betas: [Anthropic::AnthropicBeta::MCP_CLIENT_2026_09_15],
-    mcp_servers: mcp_servers,
+    mcp_servers:,
     tools: [
       {
         type: "mcp_toolset",
@@ -1088,10 +1090,10 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
         tools: listing.tools.map(&:to_h)
       }
     ],
-    messages: messages
+    messages:
   )
 
-  # Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
+  # Dengan toolset yang disematkan, respons tidak berisi blok mcp_tool_listing.
   puts second.content.map(&:type).inspect
   ```
 </CodeGroup>

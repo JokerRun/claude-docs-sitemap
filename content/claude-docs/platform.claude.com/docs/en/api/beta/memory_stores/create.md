@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: e2e931205d87a8a38561e95bedcfefac388988d7426194f9d40db25d46dc516a
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: acb66c295109815958c56562e5c3d521f8ccf16723e9ebdee6c39ba9d0a88e5b
 ---
 
 ---
@@ -24,7 +24,7 @@ Create a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -117,6 +117,10 @@ Create a memory store
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

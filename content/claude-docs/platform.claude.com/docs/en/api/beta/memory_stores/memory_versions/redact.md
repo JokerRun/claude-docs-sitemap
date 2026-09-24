@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 0bf48cc1e9e1e8aa503d09a981ae417bf9ac146caacf50fc9785137078215f97
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 67bb8789da91afc7713003af23f819d67d5e0818fb341da8dd520f3414f19948
 ---
 
 ---
@@ -34,7 +34,7 @@ Redact a memory version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Redact a memory version
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

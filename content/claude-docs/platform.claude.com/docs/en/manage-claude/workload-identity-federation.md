@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2d8822d18e12e5dc9503dce2a9c1d2940f810f524bda8e3deed13b9c762005ff
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 94188cc0f391d6291bf0a18f846c98aed2a3fc760938b6cfdbaf308ae6bba279
 ---
 
 ---
@@ -96,7 +96,7 @@ With federation configured, your workload exchanges its IdP-issued JWT for an An
 
 You can construct the client with explicit credentials or with no arguments. With no arguments, the SDK resolves credentials from environment variables or the active profile, as described under [Credential precedence](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation#credential-precedence). The zero-argument form is the recommended pattern for production workloads: ship the same container image everywhere and inject `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, and `ANTHROPIC_IDENTITY_TOKEN_FILE` per environment.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   # 1. Acquire your IdP's JWT (platform-specific; see the per-provider guides).
   JWT=$(cat /var/run/secrets/anthropic.com/token)

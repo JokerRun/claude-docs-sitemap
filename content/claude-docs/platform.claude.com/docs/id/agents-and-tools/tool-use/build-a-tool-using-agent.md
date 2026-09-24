@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c80eb0378d259935a11dbd447ec4442ae75dd91154c6344de0a95ba12899b19e
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 506b5aa2db4361cf01944c88d2423c8baf0d2ede420d7b4d4f242b23f3e38b4e
 ---
 
 ---
@@ -1077,7 +1077,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   }
 
   # Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat konteks sebelumnya.
-  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
+  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
 
   call_api() {
     curl -s https://api.anthropic.com/v1/messages \
@@ -1090,8 +1090,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   RESPONSE=$(call_api)
 
-  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
-  # diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
+  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
+  # yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
     TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
     TOOL_NAME=$(echo "$TOOL_USE" | jq -r '.name')
@@ -1118,8 +1118,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ```bash CLI
   #!/usr/bin/env bash
   # Ring 2: Loop agentik.
-  # Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
+  # Memakai jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
   set -euo pipefail
 
   run_tool() {
@@ -1134,12 +1134,12 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   # Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat
   # konteks sebelumnya.
-  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
+  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
 
   call_api() {
-    # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
+    # ant membaca body permintaan sebagai YAML dari stdin: tanpa header auth, tanpa
     # amplop JSON buatan tangan. Kunci statis (model, tools, tool_choice)
-    # berada dalam heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai
+    # berada di heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai
     # JSON, yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
@@ -1171,7 +1171,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   RESPONSE=$(call_api)
 
-  # Loop hingga Claude berhenti meminta alat. Setiap iterasi menjalankan
+  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan
   # alat yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk
   # melanjutkan.
   while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
@@ -1245,7 +1245,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   messages = [
       {
           "role": "user",
-          "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
+          "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
       }
   ]
 
@@ -1257,8 +1257,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       messages=messages,
   )
 
-  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
-  # yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude melanjutkan.
+  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang diminta,
+  # menambahkan hasilnya ke riwayat, lalu meminta Claude untuk melanjutkan.
   while response.stop_reason == "tool_use":
       tool_use = next(block for block in response.content if block.type == "tool_use")
       result = run_tool(tool_use.name, tool_use.input)
@@ -1336,7 +1336,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     {
       role: "user",
       content:
-        "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
+        "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
     },
   ];
 
@@ -1349,7 +1349,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   });
 
   // Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
-  // yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude melanjutkan.
+  // yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while (response.stop_reason === "tool_use") {
     const toolUse = response.content.find(
       (block): block is Anthropic.ToolUseBlock => block.type === "tool_use",
@@ -1443,13 +1443,13 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
-  // Simpan seluruh riwayat percakapan dalam sebuah list agar setiap giliran melihat konteks sebelumnya.
+  // Simpan seluruh riwayat percakapan dalam list agar setiap giliran melihat konteks sebelumnya.
   List<MessageParam> messages =
   [
       new()
       {
           Role = Role.User,
-          Content = "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
+          Content = "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
       },
   ];
 
@@ -1463,7 +1463,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   });
 
   // Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
-  // yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude melanjutkan.
+  // yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while (response.StopReason == StopReason.ToolUse)
   {
       ToolUseBlock? toolUse = null;
@@ -1566,10 +1566,10 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   		OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   	}
 
-  	// Simpan seluruh riwayat percakapan dalam sebuah slice agar setiap giliran melihat konteks sebelumnya.
+  	// Simpan seluruh riwayat percakapan dalam slice agar setiap giliran melihat konteks sebelumnya.
   	messages := []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
-  			"Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
+  			"Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
   		)),
   	}
 
@@ -1584,8 +1584,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   		log.Fatal(err)
   	}
 
-  	// Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
-  	// diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
+  	// Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang diminta,
+  	// menambahkan hasilnya ke riwayat, lalu meminta Claude untuk melanjutkan.
   	for response.StopReason == "tool_use" {
   		var toolUse anthropic.ContentBlockUnion
   		for _, block := range response.Content {
@@ -1652,7 +1652,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   import java.util.Map;
 
   String runTool(ToolUseBlock toolUse) {
-      // Input alat mentah adalah objek JSON; baca field-nya sebagai map.
+      // Input alat mentah berupa objek JSON; baca field-nya sebagai map.
       Map<String, JsonValue> input = (Map<String, JsonValue>) toolUse._input().asObject().get();
       if (toolUse.name().equals("create_calendar_event")) {
           String title = input.containsKey("title") ? input.get("title").asStringOrThrow() : "";
@@ -1692,11 +1692,11 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
           .disableParallelToolUse(true)
           .build();
 
-      // Simpan seluruh riwayat percakapan dalam list agar setiap giliran melihat konteks sebelumnya.
+      // Simpan seluruh riwayat percakapan dalam list agar tiap giliran melihat konteks sebelumnya.
       List<MessageParam> messages = new ArrayList<>();
       messages.add(MessageParam.builder()
           .role(MessageParam.Role.USER)
-          .content("Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.")
+          .content("Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.")
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
@@ -1707,8 +1707,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
           .messages(messages)
           .build());
 
-      // Loop hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
-      // diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
+      // Ulangi hingga Claude berhenti meminta alat. Tiap iterasi menjalankan alat yang
+      // diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
       while (response.stopReason().isPresent()
               && response.stopReason().get().equals(StopReason.TOOL_USE)) {
           ToolUseBlock toolUse = response.content().stream()
@@ -1798,7 +1798,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   $messages = [
       [
           'role' => 'user',
-          'content' => 'Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.',
+          'content' => 'Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.',
       ],
   ];
 
@@ -1810,8 +1810,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       messages: $messages,
   );
 
-  // Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
-  // diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
+  // Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
+  // yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while ($response->stopReason === 'tool_use') {
       $toolUse = null;
       foreach ($response->content as $block) {
@@ -1900,7 +1900,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   messages = [
     {
       role: "user",
-      content: "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."
+      content: "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."
     }
   ]
 
@@ -1912,8 +1912,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     messages: messages
   )
 
-  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
-  # diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
+  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
+  # yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while response.stop_reason == :tool_use
     tool_use = response.content.find { |block| block.type == :tool_use }
     result = run_tool(tool_use.name, tool_use.input)
@@ -2008,7 +2008,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     esac
   }
 
-  MESSAGES='[{"role": "user", "content": "Check what I have next Monday, then schedule a planning session that avoids any conflicts."}]'
+  MESSAGES='[{"role": "user", "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."}]'
 
   call_api() {
     curl -s https://api.anthropic.com/v1/messages \
@@ -2022,8 +2022,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   RESPONSE=$(call_api)
 
   while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
-    # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-    # dan kembalikan semua hasilnya bersama dalam satu pesan user.
+    # Satu respons dapat berisi beberapa blok tool_use. Proses semua blok
+    # tersebut dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
     TOOL_RESULTS='[]'
     while read -r block; do
       NAME=$(echo "$block" | jq -r '.name')
@@ -2048,8 +2048,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ```bash CLI
   #!/usr/bin/env bash
   # Ring 3: Beberapa alat, panggilan paralel.
-  # Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
+  # Memakai jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
   set -euo pipefail
 
   run_tool() {
@@ -2064,12 +2064,12 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     esac
   }
 
-  MESSAGES='[{"role": "user", "content": "Check what I have next Monday, then schedule a planning session that avoids any conflicts."}]'
+  MESSAGES='[{"role": "user", "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."}]'
 
   call_api() {
-    # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
-    # amplop JSON buatan tangan. Kunci statis (model, tools) berada dalam
-    # heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai JSON,
+    # ant membaca body permintaan sebagai YAML dari stdin: tanpa header auth, tanpa
+    # amplop JSON yang dibuat manual. Kunci statis (model, tools) ada di
+    # heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai JSON,
     # yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
@@ -2108,8 +2108,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   RESPONSE=$(call_api)
 
   while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
-    # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-    # dan kembalikan semua hasilnya bersama dalam satu pesan user.
+    # Satu respons bisa berisi beberapa blok tool_use. Proses semuanya
+    # dan kembalikan semua hasil sekaligus dalam satu pesan user.
     TOOL_RESULTS='[]'
     while read -r block; do
       NAME=$(jq -r '.name' <<<"$block")
@@ -2194,7 +2194,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   messages = [
       {
           "role": "user",
-          "content": "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+          "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
       }
   ]
 
@@ -2207,7 +2207,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   while response.stop_reason == "tool_use":
       # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-      # dan kembalikan semua hasilnya bersama dalam satu pesan user.
+      # dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
       tool_results = []
       for block in response.content:
           if block.type == "tool_use":
@@ -2296,7 +2296,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     {
       role: "user",
       content:
-        "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+        "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
     },
   ];
 
@@ -2309,7 +2309,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   while (response.stop_reason === "tool_use") {
     // Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-    // dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
+    // lalu kembalikan semua hasilnya sekaligus dalam satu pesan user.
     const toolResults: Anthropic.ToolResultBlockParam[] = [];
     for (const block of response.content) {
       if (block.type === "tool_use") {
@@ -2418,7 +2418,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       new()
       {
           Role = Role.User,
-          Content = "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+          Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
       },
   ];
 
@@ -2432,8 +2432,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   while (response.StopReason == StopReason.ToolUse)
   {
-      // Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-      // dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
+      // Satu respons dapat berisi beberapa blok tool_use. Proses semua blok
+      // tersebut dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
       List<ContentBlockParam> toolResults = [];
       foreach (var block in response.Content)
       {
@@ -2539,7 +2539,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   	messages := []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
-  			"Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+  			"Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
   		)),
   	}
 
@@ -2555,7 +2555,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   	for response.StopReason == "tool_use" {
   		// Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-  		// dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
+  		// lalu kembalikan semua hasilnya sekaligus dalam satu pesan user.
   		var toolResults []anthropic.ContentBlockParamUnion
   		for _, block := range response.Content {
   			if block.Type == "tool_use" {
@@ -2616,7 +2616,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   import java.util.Map;
 
   String runTool(ToolUseBlock toolUse) {
-      // Input alat mentah adalah objek JSON; baca field-nya sebagai map.
+      // Input alat mentah berupa objek JSON; baca field-nya sebagai map.
       Map<String, JsonValue> input = (Map<String, JsonValue>) toolUse._input().asObject().get();
       if (toolUse.name().equals("create_calendar_event")) {
           String title = input.containsKey("title") ? input.get("title").asStringOrThrow() : "";
@@ -2669,7 +2669,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       List<MessageParam> messages = new ArrayList<>();
       messages.add(MessageParam.builder()
           .role(MessageParam.Role.USER)
-          .content("Check what I have next Monday, then schedule a planning session that avoids any conflicts.")
+          .content("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
@@ -2683,7 +2683,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       while (response.stopReason().isPresent()
               && response.stopReason().get().equals(StopReason.TOOL_USE)) {
           // Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-          // dan kembalikan semua hasilnya bersama dalam satu pesan user.
+          // dan kembalikan semua hasil sekaligus dalam satu pesan user.
           List<ContentBlockParam> toolResults = new ArrayList<>();
           for (ContentBlock block : response.content()) {
               if (block.toolUse().isPresent()) {
@@ -2785,7 +2785,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   $messages = [
       [
           'role' => 'user',
-          'content' => 'Check what I have next Monday, then schedule a planning session that avoids any conflicts.',
+          'content' => 'Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.',
       ],
   ];
 
@@ -2797,8 +2797,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   );
 
   while ($response->stopReason === 'tool_use') {
-      // Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-      // dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
+      // Satu respons dapat berisi beberapa blok tool_use. Proses semua blok
+      // tersebut dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
       $toolResults = [];
       foreach ($response->content as $block) {
           if ($block->type === 'tool_use') {
@@ -2887,7 +2887,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   messages = [
     {
       role: "user",
-      content: "Check what I have next Monday, then schedule a planning session that avoids any conflicts."
+      content: "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."
     }
   ]
 
@@ -2899,8 +2899,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   )
 
   while response.stop_reason == :tool_use
-    # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-    # dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
+    # Satu respons dapat berisi beberapa blok tool_use. Proses semua blok
+    # tersebut dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
     tool_results = response.content.select { |block| block.type == :tool_use }.map do |tool_use|
       {
         type: "tool_result",
@@ -2929,7 +2929,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 **Apa yang diharapkan**
 
 ```text Output wrap
-I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
+I checked your calendar for Monday, March 30 and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
 Untuk informasi lebih lanjut tentang eksekusi konkuren dan jaminan urutan, lihat [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use).
@@ -2994,7 +2994,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   }
 
   EMAILS=$(seq 0 14 | sed 's/.*/user&@example.com/' | paste -sd, -)
-  MESSAGES="[{\"role\": \"user\", \"content\": \"Schedule an all-hands with everyone: $EMAILS\"}]"
+  MESSAGES="[{\"role\": \"user\", \"content\": \"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: $EMAILS\"}]"
 
   call_api() {
     curl -s https://api.anthropic.com/v1/messages \
@@ -3017,7 +3017,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
         TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
           '. + [{type: "tool_result", tool_use_id: $id, content: $result}]')
       else
-        # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+        # Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
         TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
           '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]')
       fi
@@ -3037,8 +3037,8 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ```bash CLI
   #!/usr/bin/env bash
   # Ring 4: Penanganan error.
-  # Menggunakan jq untuk state array pesan lintas-giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
+  # Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
   set -euo pipefail
 
   run_tool() {
@@ -3061,13 +3061,13 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   }
 
   EMAILS=$(seq 0 14 | sed 's/.*/user&@example.com/' | paste -sd, -)
-  MESSAGES=$(jq -n --arg msg "Schedule an all-hands with everyone: $EMAILS" \
+  MESSAGES=$(jq -n --arg msg "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: $EMAILS" \
     '[{role: "user", content: $msg}]')
 
   call_api() {
-    # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
-    # envelope JSON buatan tangan. Kunci statis (model, tools) berada dalam
-    # heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai JSON,
+    # ant membaca body request sebagai YAML dari stdin: tanpa header auth, tanpa
+    # amplop JSON yang dibuat manual. Kunci statis (model, tools) berada di
+    # heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai JSON,
     # yang diterima YAML sebagai sintaks flow.
     {
       cat <<'YAML'
@@ -3116,7 +3116,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           '. + [{type: "tool_result", tool_use_id: $id, content: $result}]' \
           <<<"$TOOL_RESULTS")
       else
-        # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+        # Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
         TOOL_RESULTS=$(jq --arg id "$ID" --arg result "$OUTPUT" \
           '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]' \
           <<<"$TOOL_RESULTS")
@@ -3198,7 +3198,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   messages = [
       {
           "role": "user",
-          "content": "Schedule an all-hands with everyone: " + ", ".join(f"user{i}@example.com" for i in range(15)),
+          "content": "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + ", ".join(f"user{i}@example.com" for i in range(15)),
       }
   ]
 
@@ -3219,7 +3219,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
                       {"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(result)}
                   )
               except Exception as exc:
-                  # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+                  # Beri sinyal kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
                   tool_results.append(
                       {
                           "type": "tool_result",
@@ -3309,7 +3309,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   const messages: Anthropic.MessageParam[] = [
     {
       role: "user",
-      content: `Schedule an all-hands with everyone: ${emails.join(", ")}`,
+      content: `Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: ${emails.join(", ")}`,
     },
   ];
 
@@ -3332,7 +3332,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
             content: JSON.stringify(result),
           });
         } catch (err) {
-          // Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+          // Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
           toolResults.push({
             type: "tool_result",
             tool_use_id: block.id,
@@ -3438,12 +3438,12 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       throw new InvalidOperationException($"Unknown tool: {toolUse.Name}");
   }
 
-  // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
+  // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
   var emails = string.Join(", ", Enumerable.Range(0, 15).Select(i => $"user{i}@example.com"));
 
   List<MessageParam> messages =
   [
-      new() { Role = Role.User, Content = $"Schedule an all-hands with everyone: {emails}" },
+      new() { Role = Role.User, Content = $"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: {emails}" },
   ];
 
   var response = await client.Messages.Create(new MessageCreateParams
@@ -3468,7 +3468,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
               }
               catch (Exception e)
               {
-                  // Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+                  // Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
                   toolResult = new ToolResultBlockParam()
                   {
                       ToolUseID = toolUse.ID,
@@ -3574,14 +3574,14 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   		}},
   	}
 
-  	// Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
+  	// Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
   	emails := make([]string, 15)
   	for i := range emails {
   		emails[i] = fmt.Sprintf("user%d@example.com", i)
   	}
   	messages := []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
-  			"Schedule an all-hands with everyone: " + strings.Join(emails, ", "),
+  			"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + strings.Join(emails, ", "),
   		)),
   	}
 
@@ -3605,7 +3605,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   				}
   				result, toolErr := runTool(block.Name, input)
   				if toolErr != nil {
-  					// Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+  					// Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
   					toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, toolErr.Error(), true))
   				} else {
   					toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, result, false))
@@ -3663,7 +3663,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   import java.util.stream.IntStream;
 
   String runTool(ToolUseBlock toolUse) {
-      // Input alat mentah adalah objek JSON; baca field-nya sebagai map.
+      // Input alat mentah berupa objek JSON; baca field-nya sebagai map.
       Map<String, JsonValue> input = (Map<String, JsonValue>) toolUse._input().asObject().get();
       if (toolUse.name().equals("create_calendar_event")) {
           int attendeeCount = input.containsKey("attendees")
@@ -3719,7 +3719,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
               .build())
           .build();
 
-      // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
+      // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
       String emails = IntStream.range(0, 15)
           .mapToObj(i -> "user" + i + "@example.com")
           .collect(Collectors.joining(", "));
@@ -3727,7 +3727,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       List<MessageParam> messages = new ArrayList<>();
       messages.add(MessageParam.builder()
           .role(MessageParam.Role.USER)
-          .content("Schedule an all-hands with everyone: " + emails)
+          .content("Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + emails)
           .build());
 
       Message response = client.messages().create(MessageCreateParams.builder()
@@ -3749,7 +3749,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
                   try {
                       resultBuilder.content(runTool(toolUse));
                   } catch (Exception e) {
-                      // Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+                      // Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
                       resultBuilder.content(e.getMessage()).isError(true);
                   }
                   toolResults.add(ContentBlockParam.ofToolResult(resultBuilder.build()));
@@ -3846,12 +3846,12 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       throw new InvalidArgumentException("Unknown tool: {$name}");
   }
 
-  // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
+  // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
   $emails = array_map(fn (int $i): string => "user{$i}@example.com", range(0, 14));
   $messages = [
       [
           'role' => 'user',
-          'content' => 'Schedule an all-hands with everyone: ' . implode(', ', $emails),
+          'content' => 'Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: ' . implode(', ', $emails),
       ],
   ];
 
@@ -3873,7 +3873,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
                       'content' => runTool($block->name, $block->input),
                   ];
               } catch (Exception $e) {
-                  // Beri sinyal kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+                  // Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
                   $toolResults[] = [
                       'type' => 'tool_result',
                       'tool_use_id' => $block->id,
@@ -3960,12 +3960,12 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     end
   end
 
-  # Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
+  # Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
   emails = (0...15).map { |i| "user#{i}@example.com" }
   messages = [
     {
       role: "user",
-      content: "Schedule an all-hands with everyone: #{emails.join(", ")}"
+      content: "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: #{emails.join(", ")}"
     }
   ]
 
@@ -3985,7 +3985,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           content: run_tool(tool_use.name, tool_use.input)
         }
       rescue => e
-        # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+        # Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
         {
           type: "tool_result",
           tool_use_id: tool_use.id,
@@ -4053,7 +4053,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```python Python
-  # Ring 5: Abstraksi Tool Runner SDK.
+  # Ring 5: Abstraksi SDK Tool Runner.
 
   import json
 
@@ -4102,7 +4102,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       messages=[
           {
               "role": "user",
-              "content": "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+              "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
           }
       ],
   ).until_done()
@@ -4113,7 +4113,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```typescript TypeScript
-  // Ring 5: Abstraksi Tool Runner SDK.
+  // Ring 5: Abstraksi SDK Tool Runner.
 
   import Anthropic from "@anthropic-ai/sdk";
   import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -4170,7 +4170,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       {
         role: "user",
         content:
-          "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+          "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
       },
     ],
   });
@@ -4183,7 +4183,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```csharp C#
-  // Ring 5: Abstraksi Tool Runner SDK.
+  // Ring 5: Abstraksi SDK Tool Runner.
 
   using System;
   using System.Collections.Generic;
@@ -4199,9 +4199,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 
   AnthropicClient client = new();
 
-  // Definisikan setiap alat sebagai runnable tool: definisinya membawa JSON Schema
-  // dan callback Run menyimpan implementasinya. Melempar exception akan mengirim
-  // pesan kembali ke Claude sebagai tool result dengan is_error diset.
+  // Definisikan setiap alat sebagai runnable tool: definisinya memuat JSON Schema
+  // dan callback Run berisi implementasinya. Melempar exception akan mengirim
+  // pesan kembali ke Claude sebagai hasil alat dengan is_error diatur.
   var createCalendarEvent = new BetaRunnableTool
   {
       Name = "create_calendar_event",
@@ -4281,7 +4281,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
               new()
               {
                   Role = Role.User,
-                  Content = "Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+                  Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
               },
           ],
       },
@@ -4304,7 +4304,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```go Go
-  // Ring 5: Abstraksi Tool Runner SDK.
+  // Ring 5: Abstraksi SDK Tool Runner.
 
   package main
 
@@ -4318,7 +4318,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   )
 
   // Struct input mendefinisikan skema setiap alat. Tool runner menghasilkan
-  // JSON Schema dari field struct dan tag jsonschema-nya.
+  // JSON Schema dari field struct beserta tag jsonschema-nya.
   type RecurrenceInput struct {
   	Frequency string `json:"frequency,omitempty" jsonschema:"enum=daily,enum=weekly,enum=monthly,description=How often the event repeats"`
   	Count     int    `json:"count,omitempty" jsonschema:"description=Number of occurrences"`
@@ -4341,7 +4341,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   	ctx := context.Background()
 
   	// Definisikan setiap alat sebagai fungsi handler. Mengembalikan error akan mengirim
-  	// pesan kembali ke Claude sebagai tool result dengan is_error diset.
+  	// pesan kembali ke Claude sebagai hasil alat dengan is_error diatur.
   	createCalendarEvent, err := toolrunner.NewBetaToolFromJSONSchema(
   		"create_calendar_event",
   		"Create a calendar event with attendees and optional recurrence.",
@@ -4385,7 +4385,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   				MaxTokens: 1024,
   				Messages: []anthropic.BetaMessageParam{
   					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
-  						"Check what I have next Monday, then schedule a planning session that avoids any conflicts.",
+  						"Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
   					)),
   				},
   			},
@@ -4409,7 +4409,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```java Java
-  // Ring 5: Abstraksi Tool Runner SDK.
+  // Ring 5: Abstraksi SDK Tool Runner.
 
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -4422,9 +4422,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   import java.util.List;
   import java.util.function.Supplier;
 
-  // Definisikan setiap alat sebagai kelas: field-nya mendeskripsikan skema input, dan
+  // Definisikan setiap alat sebagai kelas: field-nya menjelaskan skema input, dan
   // metode get() berisi implementasinya. Melempar exception akan mengirim
-  // pesan kembali ke Claude sebagai tool result dengan is_error diset.
+  // pesan kembali ke Claude sebagai hasil alat dengan is_error diatur.
   @JsonClassDescription("Create a calendar event with attendees.")
   static class CreateCalendarEvent implements Supplier<String> {
       @JsonPropertyDescription("Event title")
@@ -4462,7 +4462,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Runner memanggil API, menjalankan alat yang diminta, dan mengirim balik hasilnya
+      // Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
       // hingga Claude menghasilkan jawaban akhir.
       BetaToolRunner runner = client.beta()
               .messages()
@@ -4470,7 +4470,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
                       .model(Model.CLAUDE_OPUS_5_5)
                       .maxTokens(1024)
                       .addBeta("structured-outputs-2025-11-13")
-                      .addUserMessage("Check what I have next Monday, then schedule a planning session that avoids any conflicts.")
+                      .addUserMessage("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
                       .addTool(CreateCalendarEvent.class)
                       .addTool(ListCalendarEvents.class)
                       .build());
@@ -4489,7 +4489,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```php PHP
   <?php
 
-  // Ring 5: Abstraksi Tool Runner SDK.
+  // Ring 5: Abstraksi SDK Tool Runner.
 
   use Anthropic\Client;
   use Anthropic\Lib\Tools\BetaRunnableTool;
@@ -4497,9 +4497,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 
   $client = new Client();
 
-  // Definisikan setiap alat sebagai alat yang dapat dijalankan: definisinya membawa JSON Schema
-  // dan closure `run` menyimpan implementasinya. Melempar exception akan mengirim
-  // pesan kembali ke Claude sebagai tool result dengan is_error diset.
+  // Definisikan setiap alat sebagai runnable tool: definisinya memuat JSON Schema
+  // dan closure run berisi implementasinya. Melempar exception akan mengirim
+  // pesan kembali ke Claude sebagai hasil alat dengan is_error diset.
   $createCalendarEvent = new BetaRunnableTool(
       definition: [
           'name' => 'create_calendar_event',
@@ -4556,14 +4556,14 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       ]),
   );
 
-  // Runner memanggil API, menjalankan alat yang diminta, dan mengumpankan hasilnya kembali
+  // Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
   // hingga Claude menghasilkan jawaban akhir.
   $runner = $client->beta->messages->toolRunner(
       maxTokens: 1024,
       messages: [
           [
               'role' => 'user',
-              'content' => 'Check what I have next Monday, then schedule a planning session that avoids any conflicts.',
+              'content' => 'Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.',
           ],
       ],
       model: Model::CLAUDE_OPUS_5_5,
@@ -4583,15 +4583,15 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```ruby Ruby
-  # Ring 5: Abstraksi Tool Runner SDK.
+  # Ring 5: Abstraksi SDK Tool Runner.
 
   require "anthropic"
 
   client = Anthropic::Client.new
 
-  # Definisikan setiap alat sebagai kelas: model input bertipe mendeskripsikan skema, dan
-  # metode call berisi implementasinya. Memunculkan error akan mengirim pesan
-  # kembali ke Claude sebagai hasil alat dengan is_error diaktifkan.
+  # Definisikan setiap alat sebagai kelas: model input bertipe menjelaskan skema, dan
+  # metode call berisi implementasinya. Memunculkan error akan mengirim pesannya
+  # kembali ke Claude sebagai hasil alat dengan is_error diatur.
   class RecurrenceInput < Anthropic::BaseModel
     optional :frequency, Anthropic::InputSchema::EnumOf["daily", "weekly", "monthly"],
              doc: "How often the event repeats"
@@ -4629,7 +4629,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
     end
   end
 
-  # Runner memanggil API, menjalankan alat yang diminta, dan mengembalikan hasilnya
+  # Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
   # hingga Claude menghasilkan jawaban akhir.
   runner = client.beta.messages.tool_runner(
     model: "claude-opus-5-5",
@@ -4638,7 +4638,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
     messages: [
       {
         role: "user",
-        content: "Check what I have next Monday, then schedule a planning session that avoids any conflicts."
+        content: "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."
       }
     ]
   )
@@ -4655,7 +4655,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 **Apa yang diharapkan**
 
 ```text Output wrap
-I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
+I checked your calendar for Monday, March 30 and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
 Outputnya identik dengan Cincin 3. Perbedaannya ada pada kodenya: kira-kira setengah jumlah baris, tanpa loop manual, dan skemanya berada di samping implementasinya.

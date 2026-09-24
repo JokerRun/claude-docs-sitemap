@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: b87a5fe509d9fa2e5ed9241434b1b5c682c2c44f3991c5d6298fd0b7fa81b0be
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: e5725b6988944e8ac21fb98af7f3b30c92394b8eecdceba34f3738fc5cd24778
 ---
 
 ---
@@ -40,7 +40,7 @@ other scopes require a Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -133,6 +133,10 @@ other scopes require a Console session.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

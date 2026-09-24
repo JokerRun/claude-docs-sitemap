@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 7256c7b2ca72f673a50aceb7af09630c6f746de851680821db2b39a62a92053f
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 28ea7b065fa26b5b4cf423a16aba4df5df8045f266594cd9a52169d7fda23328
 ---
 
 ---
@@ -100,7 +100,7 @@ List memory versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -193,6 +193,10 @@ List memory versions
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

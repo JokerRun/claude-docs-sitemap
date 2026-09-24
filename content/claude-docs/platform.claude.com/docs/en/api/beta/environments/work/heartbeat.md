@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0039cca581db3f5d261b5b96f50e504fb790c996a93788a07c2e9f70373509c0
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f6c76962f92387c725aa2b25a0e368b35092efcd7a27d21fc2e82d59b2dda45a
 ---
 
 ---
@@ -42,7 +42,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,10 @@ Record a heartbeat for a work item to maintain the lease.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

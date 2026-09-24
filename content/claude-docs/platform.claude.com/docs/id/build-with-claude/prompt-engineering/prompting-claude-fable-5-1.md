@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6b59792df92322cc19c6fbe79be1737b4edee9e7fc9719dcc76b948a20004eab
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 5666dbd4c7c30cd058dbf82b4bba1094d7668e9f46a9871e9b6b3ac2eb7446bd
 ---
 
 ---
@@ -768,7 +768,7 @@ Untuk menemukan pengeditan yang sudah dilakukan harness Anda, jalankan sesi deng
 
 ## Kepadatan tulisan
 
-Tulisan Claude Fable 5.1 secara umum merupakan peningkatan dari model Claude sebelumnya, dengan lebih sedikit frasa klise dan lebih sedikit jargon yang tidak dijelaskan. Namun, dalam beberapa kasus, prosanya lebih padat daripada Claude Fable 5: kalimatnya lebih panjang dan jeda paragrafnya lebih sedikit. Instruksi yang mendefinisikan anti-pola tersebut, yaitu prosa yang dibuat-buat, dapat membantu. Tambahkan ke pesan pengguna (lebih disarankan) atau prompt sistem:
+Tulisan Claude Fable 5.1 memiliki sedikit frasa klise dan sedikit jargon yang tidak dijelaskan. Namun, dalam beberapa kasus, prosanya lebih padat daripada Claude Fable 5: kalimatnya lebih panjang dan jeda paragrafnya lebih sedikit. Instruksi yang mendefinisikan anti-pola tersebut, yaitu prosa yang dibuat-buat, dapat membantu. Tambahkan ke pesan pengguna (lebih disarankan) atau prompt sistem:
 
 ```text wrap
 Mannered prose substitutes metaphor and flourish for direct statement. Instead of "a parameter worth varying," the mannered writer produces "a dial worth turning." Instead of "this point still matters," they write "this point earns its keep." The phrases exist to display the writer, not to convey the idea, and readers can tell. That is why mannered prose irritates: it makes the reader work harder so the writer can perform. It is also imprecise. Metaphors drag in connotations the writer did not choose and cannot control. The fix is to say what you mean. When a literal phrase is available, use it.

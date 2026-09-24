@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8c4b78cbd8c72be75f1e5e21673f842700ff1aad87f67bb83af40a7754146d80
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: cc62c2268c9054251d6b9b729a33a0b93f5e75c7dc61806fc500608b7290dad0
 ---
 
 ---
@@ -32,7 +32,7 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

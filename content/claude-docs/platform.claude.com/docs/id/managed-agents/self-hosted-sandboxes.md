@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b9c9e61a5bbfc9c9e93e3af440108917c7687ef9391dbe8f3a6b7dd5f43e065f
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 5a3dfb61c5a23c19f388088c9f94745546ce26b5a2de8cebda6b28771a89e20c
 ---
 
 ---
@@ -103,6 +103,7 @@ Anda memerlukan:
 
         <File filename="environment.yaml">
           ```yaml
+          # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
           name: self-hosted
           config:
             type: self_hosted
@@ -214,10 +215,7 @@ Anda memerlukan:
 
 ## Menjalankan worker
 
-Pilih salah satu pola berikut:
-
-* **Always-on** untuk penyiapan paling sederhana. Proses yang berjalan lama melakukan polling antrean secara terus-menerus dan hanya memerlukan HTTPS keluar.
-* **Dipicu webhook** jika Anda tidak ingin menjalankan poller yang menganggur. Pola ini memerlukan endpoint webhook yang dapat dijangkau Anthropic. Lihat [Webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk penyiapan endpoint dan verifikasi tanda tangan.
+Pilih **always-on** untuk penyiapan paling sederhana: proses yang berjalan lama melakukan polling pada antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Pilih **dipicu webhook** agar tidak perlu menjalankan poller yang menganggur; pola ini memerlukan endpoint webhook yang dapat dijangkau oleh Anthropic (lihat [Webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk penyiapan endpoint dan verifikasi tanda tangan).
 
 <Tabs>
   <Tab title="Always-on (ant CLI)">
@@ -254,29 +252,17 @@ Pilih salah satu pola berikut:
       <Step title="Jalankan worker">
         **Dalam proses**
 
-        `ant beta:worker poll` melakukan hal berikut:
-
-        * Mengklaim work item yang ditugaskan ke environment.
-        * Mengunduh skill.
-        * Mengeksekusi panggilan alat di direktori kerja.
-        * Mengirimkan hasilnya kembali.
-
-        Perintah ini membaca `ANTHROPIC_ENVIRONMENT_KEY` dan `ANTHROPIC_ENVIRONMENT_ID` dari environment.
+        `ant beta:worker poll` mengklaim work item yang ditugaskan ke environment, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali. Perintah ini membaca `ANTHROPIC_ENVIRONMENT_KEY` dan `ANTHROPIC_ENVIRONMENT_ID` dari environment.
 
         ```bash
         ant beta:worker poll --workdir "/workspace"
         ```
 
-        Worker berhenti dengan bersih saat menerima SIGTERM atau SIGINT. Sebelum berhenti, worker membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan melepaskan work item.
+        Worker berhenti dengan bersih saat menerima SIGTERM atau SIGINT: worker membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan melepaskan work item sebelum berhenti.
 
         **Sandbox per sesi**
 
-        Jika Anda memerlukan isolasi yang lebih kuat, seperti sistem file baru, batas sumber daya, atau kontrol jaringan per sesi, jalankan setiap sesi di sandbox-nya sendiri:
-
-        * Bangun image yang sudah menginstal `ant` dengan `ant beta:worker run` sebagai entrypoint.
-        * Image dasar harus menyediakan `/bin/bash`. `curl` hanya digunakan saat build.
-
-        Saat sandbox dimulai, sandbox membaca detail sesi dari variabel environment, menangani sesi tersebut, lalu berhenti:
+        Jika Anda memerlukan isolasi yang lebih kuat (sistem file baru, batas sumber daya, atau kontrol jaringan per sesi), jalankan setiap sesi di sandbox-nya sendiri. Bangun image dengan `ant` terinstal dan `ant beta:worker run` sebagai entrypoint. Image dasar harus menyediakan `/bin/bash`; `curl` hanya digunakan saat build. Ketika sandbox dimulai, sandbox membaca detail sesi dari variabel environment, menangani sesi tersebut, lalu keluar:
 
         ```text
         FROM your-base-image
@@ -290,13 +276,7 @@ Pilih salah satu pola berikut:
         ENTRYPOINT ["ant", "beta:worker", "run"]
         ```
 
-        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyediakan data berikut untuk skrip:
-
-        * Variabel `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` di environment skrip.
-        * Work item yang diklaim dalam format JSON di input standar skrip, termasuk `secret` per sesi milik work item jika Anthropic menerbitkannya.
-        * `ANTHROPIC_BASE_URL`, yang bersifat opsional dan hanya diteruskan jika diatur di host poller. Variabel ini menggantikan endpoint API default.
-
-        Dalam contoh ini, `/host/outputs` adalah direktori host pilihan Anda. Direktori ini di-bind-mount ke direktori kerja sandbox (`/workspace`) agar Anda dapat mengambil hasil sesi setelah sandbox berhenti. Pada environment self-hosted, agen menulis hasil di bawah direktori kerja, bukan di `/mnt/session/outputs` (lihat [Sistem file sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#sandbox-filesystem)). Karena itu, me-mount direktori kerja adalah cara untuk menangkap hasil tersebut. Mount ini juga mencakup pohon `skills/` yang diunduh dan file perantara apa pun yang dibuat agen.
+        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyuntikkan `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` ke environment skrip, dan menulis work item yang diklaim ke input standar skrip sebagai JSON, termasuk `secret` per sesi milik work item tersebut jika Anthropic menerbitkannya. `ANTHROPIC_BASE_URL` bersifat opsional dan hanya diteruskan jika telah diatur di host poller; variabel ini menggantikan endpoint API default. Dalam contoh ini, `/host/outputs` adalah direktori host yang Anda pilih; direktori ini di-bind-mount ke direktori kerja sandbox (`/workspace`) sehingga Anda dapat mengambil hasil sesi setelah sandbox keluar. Pada environment self-hosted, agen menulis hasil di bawah direktori kerja, bukan di `/mnt/session/outputs` (lihat [Sistem file sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#sandbox-filesystem)), sehingga me-mount direktori kerja itulah cara menangkap hasil tersebut; mount ini juga mencakup pohon `skills/` yang diunduh dan file perantara apa pun yang dibuat agen.
 
         ```bash
         #!/bin/bash
@@ -309,13 +289,9 @@ Pilih salah satu pola berikut:
           your-image
         ```
 
-        Entrypoint `ant beta:worker run` tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores). Jika sesi di environment ini melampirkan memory store:
+        Entrypoint `ant beta:worker run` tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores). Jika sesi di environment ini melampirkan memory store, tetap gunakan poller, tetapi bangun image per sesi berbasis worker SDK dan perluas skrip spawn agar meneruskan `secret` milik work item ke dalam sandbox, seperti yang ditunjukkan di [Jalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
 
-        * Tetap gunakan poller.
-        * Bangun image per sesi berbasis worker SDK.
-        * Perluas skrip spawn agar meneruskan `secret` milik work item ke dalam sandbox, seperti yang ditunjukkan di [Jalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session).
-
-        Mulai poller dengan mengarahkannya ke skrip:
+        Mulai poller dengan mengarahkannya ke skrip tersebut:
 
         ```bash
         ant beta:worker poll --on-work ./spawn.sh
@@ -455,11 +431,9 @@ Pilih salah satu pola berikut:
       </Step>
 
       <Step title="Implementasikan handler webhook">
-        `EnvironmentWorker` mengklaim work item, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, mengirimkan hasilnya kembali, lalu berhenti. Panggil worker ini saat `session.status_run_started` terpicu.
+        `EnvironmentWorker` mengklaim work item, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, mengirimkan hasilnya kembali, lalu keluar. Panggil worker ini ketika `session.status_run_started` terpicu.
 
-        Jika Anda sendiri yang menyerahkan work item yang diklaim ke `handle_item()`, seperti yang dilakukan handler ini, teruskan juga `secret` milik work item sebagai `work_secret` (`workSecret` di TypeScript, `WorkSecret` di Go). Dengan begitu, sesi dapat me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) apa pun yang dilampirkan padanya.
-
-        Handler seperti ini menjalankan setiap item yang diklaim dalam satu proses di satu host. Akibatnya, dua sesi yang melampirkan memory store yang sama tidak dapat berjalan melaluinya secara bersamaan (lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host)). Jika sesi Anda berbagi store, jalankan [satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session) sebagai gantinya.
+        Ketika Anda sendiri yang menyerahkan work item yang diklaim ke `handle_item()`, seperti yang dilakukan handler ini, teruskan `secret` milik work item sebagai `work_secret` (`workSecret` di TypeScript, `WorkSecret` di Go) agar sesi dapat me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) apa pun yang dilampirkan padanya. Handler seperti ini menjalankan setiap item yang diklaim dalam satu proses di satu host, sehingga dua sesi yang melampirkan memory store yang sama tidak dapat berjalan melaluinya secara bersamaan (lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#prepare-the-host)); jika sesi Anda berbagi store, jalankan [satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-one-sandbox-per-session) sebagai gantinya.
 
         <CodeGroup exclude="shell">
           ```python Python
@@ -582,7 +556,7 @@ Pilih salah satu pola berikut:
 
           ```csharp C#
           // EnvironmentWorker saat ini belum tersedia di SDK C#.
-          // Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
+          // Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
           ```
 
           ```go Go
@@ -703,7 +677,7 @@ Pilih salah satu pola berikut:
 
           ```php PHP
           // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-          // Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
+          // Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
           ```
 
           ```ruby Ruby

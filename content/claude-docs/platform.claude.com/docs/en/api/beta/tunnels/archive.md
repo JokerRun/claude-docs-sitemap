@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 4825319bf3e556ab69f650e540ea74ef23ece66ffc5580bc23aed1c5484976cc
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 894c1cbaaaeb1a24647233f0ebc13e50b03160c8cd4bff309f9f620e4668bf2b
 ---
 
 ---
@@ -32,7 +32,7 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

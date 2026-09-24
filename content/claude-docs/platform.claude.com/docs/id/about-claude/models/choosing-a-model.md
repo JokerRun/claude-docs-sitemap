@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 78a32bb1aa79d545627bb7c1a14d83870a98530d3bc49a4f4436de9cea8f260b
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 58f22fb6c2410dbdf83a70647971f601101566546f8c974792fd642fdd0ffe17
 ---
 
 ---
@@ -107,15 +107,11 @@ Strategi multi-model memasangkan model berbiaya lebih rendah dengan model fronti
   </Card>
 
   <Card title="Yang baru di Claude Fable 5.1" icon="sparkle" href="https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1">
-    Dirancang untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang
+    Dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang
   </Card>
 
   <Card title="Yang baru di Claude Opus 5.5" icon="sparkle" href="https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5">
     Model Opus terbaru: perubahan yang merusak kompatibilitas, fitur baru, dan perbedaan perilaku
-  </Card>
-
-  <Card title="Yang baru di Claude Opus 5" icon="sparkle" href="https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5">
-    Jelajahi peningkatan di Claude Opus 5
   </Card>
 
   <Card title="Yang baru di Claude Sonnet 5" icon="sparkle" href="https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5">

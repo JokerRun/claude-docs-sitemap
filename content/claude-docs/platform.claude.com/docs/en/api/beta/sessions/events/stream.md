@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 0125b768c85d86e9e0ec2cc4a4da2dee51d7ecde03cb688589e4660bd3e40ae1
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 4fa7fc72ce3830c511885115bee0f8c7d232be54a09399a1f2357d07659a8a30
 ---
 
 ---
@@ -38,7 +38,7 @@ Stream Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,10 @@ Stream Events
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -550,7 +554,7 @@ Stream Events
 
       format: date-time
 
-    - `evaluated_permission: optional "allow" or "ask" or "deny"`
+    - `evaluated_permission: optional BetaManagedAgentsAgentEvaluatedPermission`
 
       AgentEvaluatedPermission enum
 
@@ -688,15 +692,9 @@ Stream Events
 
       format: date-time
 
-    - `evaluated_permission: optional "allow" or "ask" or "deny"`
+    - `evaluated_permission: optional BetaManagedAgentsAgentEvaluatedPermission`
 
       AgentEvaluatedPermission enum
-
-      - `"allow"`
-
-      - `"ask"`
-
-      - `"deny"`
 
     - `evaluation: optional BetaManagedAgentsAgentToolEvaluation`
 
@@ -1666,11 +1664,15 @@ Stream Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5-1" or "claude-sonnet-5" or "claude-fable-5" or 11 more`
+          - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-opus-5-5"`
+
+              Powerful intelligence for coding, knowledge work, and long-running agents
 
             - `"claude-fable-5-1"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ddb0f4db5e27c797abed7bdfcae808210df8df391e1540a009d394fad5f29a84
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: d1a84851ae27806055de5fc6a80292845eb1590307047d0d3bfd44b0827756ad
 ---
 
 ---
@@ -49,7 +49,7 @@ List Skills
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -142,6 +142,10 @@ List Skills
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

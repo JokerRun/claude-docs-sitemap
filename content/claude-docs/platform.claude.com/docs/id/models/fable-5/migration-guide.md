@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/migration-guide
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: e62876ed305fa2f470ccc8cb02dd75d2ef69707fb048d1a2af0c27e36313e4ee
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: c6492a3436a8999b38775241850b085b9a14c10427f050e987d8039fd1cc4f1b
 ---
 
 ---
@@ -370,7 +370,7 @@ model = "claude-mythos-5"  # After
 ## Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Opus 4.8
 
 <Note>
-  Jika kode Anda menggunakan Claude Opus 4.7 atau lebih lama, terapkan terlebih dahulu bagian "dari" yang relevan pada [Bermigrasi ke Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/migration-guide) untuk perubahan tingkat API dari model Anda saat ini, lalu delta yang tersisa dalam bagian ini.
+  Jika kode Anda menggunakan Claude Opus 4.7 atau yang lebih lama, terapkan terlebih dahulu bagian "dari" yang relevan di [Migrasi ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide) untuk perubahan tingkat API dari model Anda saat ini, lalu delta yang tersisa di bagian ini.
 </Note>
 
 Migrasi sebagian besar bersifat drop-in. Claude Fable 5 dan Claude Mythos 5 menggunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) yang sama dan pola [penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) yang sama seperti Claude Opus 4.8, dengan [jendela konteks 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) yang sama secara default dan [128k token output maksimum](https://platform.claude.com/docs/id/models/overview) yang sama. Jumlah token kurang lebih tidak berubah karena model-model tersebut menggunakan tokenizer yang sama. Perubahan utama yang perlu diperiksa adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif, output thinking, penolakan dari pengklasifikasi keamanan (hanya Claude Fable 5), dan harga.

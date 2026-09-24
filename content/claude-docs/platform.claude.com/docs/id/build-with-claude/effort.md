@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9fa17b29cb422236240c8734dc5b7e78859d71250de91f47de9691853bd49d38
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: d41215a9daf5b0876790ff692c214bc05da0a17ccf8acf0e62f84be79239e988
 ---
 
 ---
 title: Effort
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-description: Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan ketelitian respons dan efisiensi token.
+description: Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
 featureMetadata:
   status: ga
   zdr:

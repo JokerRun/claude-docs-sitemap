@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 895168719c81f175fb639e8a3903ad5b54c15a7611587a39a4774d91515b6547
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 240c9ff22b5f8ad8f7d20ec7e6f39bece047677468eb17dc765611756fa96370
 ---
 
 ---
@@ -39,7 +39,7 @@ access logs.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -132,6 +132,10 @@ access logs.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

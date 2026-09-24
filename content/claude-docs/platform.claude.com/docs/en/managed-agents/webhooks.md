@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: dd5c4e3a28f8d218be6e8e206cc0e73377347e3eb5ff560b90a98d8defa16cfa
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 5b89d403c7c6d3dbe6fcc5ef566f535023df665c44dea3e7ac910ecb584723e5
 ---
 
 ---
@@ -122,7 +122,7 @@ Every delivery carries the `webhook-id`, `webhook-timestamp`, and `webhook-signa
 
 Set `ANTHROPIC_WEBHOOK_SIGNING_KEY` to the `whsec_`-prefixed secret shown at endpoint creation.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   from flask import Flask, request
   import anthropic
@@ -365,7 +365,7 @@ Every event payload has the same structure, including the event type, identifier
 }
 ```
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   if event.data.type == "session.status_idled":
       session = client.beta.sessions.retrieve(event.data.id)

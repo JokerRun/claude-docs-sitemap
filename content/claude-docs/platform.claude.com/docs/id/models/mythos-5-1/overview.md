@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: a3ef5e45c90ceeb7cc7ca993b230c334c6b131110c44143e52e00997bb83c5a5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f5f9e3db984b401555f0ddb5b53baedcc3b42144df3b45e36575abbcea123ae5
 ---
 
 ---
@@ -54,15 +54,16 @@ Claude Mythos 5.1 is offered separately, by invitation only, as part of Project 
 
 ### Pricing
 
-| Feature                                                                                | Value                                                               |
-| :------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Input                                                                                  | $10 / MTok                                                          |
-| Output                                                                                 | $50 / MTok                                                          |
-| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $12.50 / MTok                                                       |
-| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $20 / MTok                                                          |
-| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.25 / MTok                                                        |
-| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output                                    |
-| Full price list                                                                        | [Pricing](https://platform.claude.com/docs/id/about-claude/pricing) |
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $10 / MTok                       |
+| Output                                                                                 | $50 / MTok                       |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $12.50 / MTok                    |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $20 / MTok                       |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.25 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
 
 ### Capabilities
 

@@ -136,7 +136,7 @@
   lastmod: '2026-08-29T04:34:32.626Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-09-22T16:48:35.254Z'
+  lastmod: '2026-09-23T19:28:13.234Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-09-15T22:32:08.027Z'
@@ -169,7 +169,7 @@
   lastmod: '2026-08-29T01:09:31.960Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-09-22T16:28:44.718Z'
+  lastmod: '2026-09-23T18:54:39.442Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
   lastmod: '2026-09-22T17:25:51.617Z'
@@ -190,7 +190,7 @@
   lastmod: '2026-09-22T03:07:26.928Z'
 - source: code
   loc: https://code.claude.com/docs/en/cloud-environments
-  lastmod: '2026-09-22T01:47:04.533Z'
+  lastmod: '2026-09-23T18:54:39.444Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-09-15T21:20:07.928Z'
@@ -253,7 +253,7 @@
   lastmod: '2026-09-22T17:24:53.464Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-09-23T01:47:01.480Z'
+  lastmod: '2026-09-23T19:37:28.919Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
   lastmod: '2026-09-22T17:22:44.147Z'
@@ -262,7 +262,7 @@
   lastmod: '2026-09-22T16:44:19.793Z'
 - source: code
   loc: https://code.claude.com/docs/en/feature-availability
-  lastmod: '2026-09-18T22:48:22.109Z'
+  lastmod: '2026-09-23T19:37:28.890Z'
 - source: code
   loc: https://code.claude.com/docs/en/features-overview
   lastmod: '2026-09-22T19:59:56.274Z'
@@ -286,7 +286,7 @@
   lastmod: '2026-08-29T04:34:32.627Z'
 - source: code
   loc: https://code.claude.com/docs/en/glossary
-  lastmod: '2026-09-22T17:25:51.614Z'
+  lastmod: '2026-09-23T19:37:28.899Z'
 - source: code
   loc: https://code.claude.com/docs/en/goal
   lastmod: '2026-09-15T21:22:35.643Z'
@@ -346,7 +346,7 @@
   lastmod: '2026-09-17T17:01:54.508Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-09-22T17:25:51.616Z'
+  lastmod: '2026-09-23T19:37:28.900Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-09-15T21:24:39.189Z'
@@ -505,7 +505,7 @@
   lastmod: '2026-09-23T02:03:20.729Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
-  lastmod: '2026-09-19T00:12:42.473Z'
+  lastmod: '2026-09-23T18:54:39.439Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new
   lastmod: '2026-09-15T21:22:35.648Z'
@@ -1565,6 +1565,8 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
 - source: platform
+  loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
+- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
@@ -1801,11 +1803,13 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/models/opus-4-8/overview
 - source: platform
-  loc: https://platform.claude.com/docs/en/models/opus-5/migration-guide
+  loc: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
+- source: platform
+  loc: https://platform.claude.com/docs/en/models/opus-5-5/overview
+- source: platform
+  loc: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5
 - source: platform
   loc: https://platform.claude.com/docs/en/models/opus-5/overview
-- source: platform
-  loc: https://platform.claude.com/docs/en/models/opus-5/whats-new-opus-5
 - source: platform
   loc: https://platform.claude.com/docs/en/models/overview
 - source: platform
@@ -1846,6 +1850,8 @@
   loc: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-8
 - source: platform
   loc: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5
+- source: platform
+  loc: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5-5
 - source: platform
   loc: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-5
 - source: platform
@@ -2078,6 +2084,8 @@
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
 - source: platform
@@ -2315,11 +2323,13 @@
 - source: platform
   loc: https://platform.claude.com/docs/id/models/opus-4-8/overview
 - source: platform
-  loc: https://platform.claude.com/docs/id/models/opus-5/migration-guide
+  loc: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
+- source: platform
+  loc: https://platform.claude.com/docs/id/models/opus-5-5/overview
+- source: platform
+  loc: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
 - source: platform
   loc: https://platform.claude.com/docs/id/models/opus-5/overview
-- source: platform
-  loc: https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5
 - source: platform
   loc: https://platform.claude.com/docs/id/models/overview
 - source: platform
@@ -2360,6 +2370,8 @@
   loc: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-8
 - source: platform
   loc: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-5
+- source: platform
+  loc: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-5-5
 - source: platform
   loc: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-5
 - source: platform

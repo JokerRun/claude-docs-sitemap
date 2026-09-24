@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0dd1eb547385a164c59ff2fc8a08fb0678bf4a4807a150fff7ffcdbdc545c376
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 5877f49f14e6192d050829e64d5149e381f4ccbf8933dac9a2e0a34e1515d748
 ---
 
 ---
@@ -2387,7 +2387,10 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
   ```
 
   ```bash CLI
-  cat > request.yaml <<'YAML'
+  CURRENT=$(ant beta:messages count-tokens \
+    --beta compact-2026-01-12 \
+    --transform input_tokens \
+    --raw-output <<'YAML'
   model: claude-opus-5-5
   messages:
     - role: user
@@ -2396,16 +2399,21 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
     edits:
       - type: compact_20260112
   YAML
-
-  CURRENT=$(ant beta:messages count-tokens \
-    --beta compact-2026-01-12 \
-    --transform input_tokens \
-    --raw-output < request.yaml)
+  )
 
   ORIGINAL=$(ant beta:messages count-tokens \
     --beta compact-2026-01-12 \
     --transform context_management.original_input_tokens \
-    --raw-output < request.yaml)
+    --raw-output <<'YAML'
+  model: claude-opus-5-5
+  messages:
+    - role: user
+      content: Hello, Claude
+  context_management:
+    edits:
+      - type: compact_20260112
+  YAML
+  )
 
   printf 'Current tokens: %s\n' "$CURRENT"
   printf 'Original tokens: %s\n' "$ORIGINAL"

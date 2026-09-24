@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: a0430cf5e529cd057f0212748d7f07eca9c699dd38768a82bbd9dac46b840a25
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0718f345a0b9227601e35e1b469e019189b56375b55d602a662e8fe61f4d736a
 ---
 
 ---
@@ -30,7 +30,7 @@ Get Deployment Run
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Get Deployment Run
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

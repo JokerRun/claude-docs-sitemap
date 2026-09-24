@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1d448ab56e7b1ea6933a86bd459a2487d988ceb0f9b3bfde28b61520f61485e0
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 35e18f174565db66011720e2b7e8fdd818536c0a78f5a7b17dc695b3dd9c1920
 ---
 
 ---
@@ -31,7 +31,7 @@ featureMetadata:
     Microsoft Foundry: beta
   details:
     - Di Claude API dan Google Cloud, Claude Opus 5.5 mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
-    - Di Amazon Bedrock, Claude Opus 5.5 menerima versi alat `computer_20251124` yang lebih lama sebagaimana Claude Opus 5.
+    - Di Amazon Bedrock, Claude Opus 5.5 menerima versi alat `computer_20251124` yang lebih lama, sama seperti Claude Opus 5.
     - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---

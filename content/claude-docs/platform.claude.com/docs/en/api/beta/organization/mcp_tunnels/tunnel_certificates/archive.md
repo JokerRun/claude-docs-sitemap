@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a65a961e4cbc061ababcad0de2a4a8c4d8edbdcfbd62f81cdc9f60167eee6708
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9f2ebdd55540db19ad629daa522f87c0238e945809d0f580341ee644cc5e6e46
 ---
 
 ---
@@ -42,7 +42,7 @@ certificate is added.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,10 @@ certificate is added.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

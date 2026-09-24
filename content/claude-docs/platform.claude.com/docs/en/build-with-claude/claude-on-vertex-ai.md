@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 34aeb7d0266a58e36d5650eeb43e7ec144f2e5371d50d3dc2dc9c28cbc8763dc
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 18ad099000cc12751e3b43c129702311da41b3ff1af5c556e1d926193afd2b64
 ---
 
 ---
@@ -125,7 +125,9 @@ Lifecycle terms (Deprecated, Retired) are defined in [Model deprecations](https:
 | Model                                                                                                | Agent Platform API model ID  |
 | :--------------------------------------------------------------------------------------------------- | :--------------------------- |
 | Claude Fable 5.1                                                                                     | `claude-fable-5-1`           |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                          | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                       | `claude-fable-5`             |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                            | `claude-mythos-5`            |
 | Claude Opus 5.5                                                                                      | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                        | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                      | `claude-opus-4-8`            |

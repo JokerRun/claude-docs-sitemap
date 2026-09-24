@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 527b2cd7e5b5c1251238f4d8d38903c60078dd61fffd125e07e26166b8862a0c
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 29d75b6cac948f9026299f7468cfbf9d75f476bfaa071996e26f228495dfef91
 ---
 
 ---
@@ -11,13 +11,9 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/pr
 description: Perbedaan perilaku dan pola prompting untuk Claude Opus 5, mencakup verbositas respons, narasi agentik, pembatasan cakupan tugas, delegasi subagen, koreksi diri, dan artefak output saat thinking dinonaktifkan.
 ---
 
-Panduan ini membahas pola prompting yang khusus untuk Claude Opus 5. Untuk kemampuan model dan perubahan API, lihat [Yang baru di Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/whats-new-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini membahas pola prompting yang khusus untuk Claude Opus 5. Untuk spesifikasi model, lihat [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Opus 5 dibangun untuk pekerjaan agentic coding yang kompleks dan pekerjaan enterprise, dengan kekuatan khusus pada tugas agentik berjangka panjang. Model ini bekerja dengan baik secara langsung pada prompt Claude Opus 4.8 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
-
-<Note>
-  Untuk perubahan API saat bermigrasi dari Claude Opus 4.8 (thinking aktif secara default, dan penonaktifan thinking dibatasi pada effort `high`), lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5).
-</Note>
 
 ## Peningkatan kemampuan
 
@@ -99,7 +95,7 @@ Only correct an earlier statement when the error would change the user's code, c
 
 ## Menjalankan dengan thinking dinonaktifkan
 
-Claude Opus 5 berjalan dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Dengan thinking dinonaktifkan, dua artefak terkadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
+Claude Opus 5 berjalan dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Permintaan yang menggabungkan `thinking: {"type": "disabled"}` dengan effort `xhigh` atau `max` akan mengembalikan error 400. Dengan thinking dinonaktifkan, dua artefak terkadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
 
 **Pemanggilan alat sebagai teks.** Dengan thinking dinonaktifkan, model terkadang menulis pemanggilan alat ke dalam teks yang ditujukan kepada pengguna alih-alih mengeluarkan blok `tool_use` terstruktur. Giliran selesai secara normal dan pemanggilan tersebut tidak pernah berjalan, dan dalam loop agentik teks yang bocor tetap berada dalam riwayat percakapan, sehingga giliran berikutnya juga terpengaruh. Ini paling umum terjadi pada beban kerja yang banyak menggunakan alat seperti pencarian.
 

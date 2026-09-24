@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ca0897bcde3e0cbe7c77b4bdb852baf7c7fe2ba5238f730204886b6d4b739ccb
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 8febf86a6bc36ab5c398c5a44f41f99c4abf100c402f5d78f8ff4c3aa5f364c2
 ---
 
 ---
@@ -30,7 +30,7 @@ Get Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Get Vault
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

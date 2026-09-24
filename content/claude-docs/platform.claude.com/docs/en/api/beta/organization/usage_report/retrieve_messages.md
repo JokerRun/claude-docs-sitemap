@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0bcc857a61203dd5122cca09f661f6dc152bb9ba781601260b11af1c2edcd9c5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 8ea49b4b42917af618a89d86620447251ee311c5c67dc3e10daf017d36317148
 ---
 
 ---
@@ -149,7 +149,7 @@ Get Messages Usage Report
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -242,6 +242,10 @@ Get Messages Usage Report
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

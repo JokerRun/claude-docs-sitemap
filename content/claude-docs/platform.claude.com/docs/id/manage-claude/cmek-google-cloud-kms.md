@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 7991cd8c6019a68142d16ba8871789038bf39eb7bf055c763a6bee6fc0b52758
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f47cca7214c6a8804d5c9d2c7c60fd4e038b4cea4cfd6341780def6e84854455
 ---
 
 ---
@@ -15,42 +15,42 @@ description: Gunakan Google Cloud KMS untuk menyediakan kunci enkripsi bagi orga
 claude "/claude-api help me configure a customer-managed encryption key with Google Cloud KMS"
 ```
 
-Panduan ini menjelaskan langkah-langkah mengonfigurasi kunci Google Cloud KMS sebagai ["customer-managed encryption key" (kunci enkripsi yang dikelola pelanggan), atau CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
+Panduan ini memandu Anda mengonfigurasi kunci Google Cloud KMS sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
 
-* Proyek Google Cloud dengan penagihan yang diaktifkan.
+* Proyek Google Cloud dengan penagihan diaktifkan.
 * Cloud KMS API diaktifkan (`cloudkms.googleapis.com`).
-* Izin untuk membuat key ring dan kunci KMS, serta untuk menetapkan kebijakan IAM pada keduanya (`roles/cloudkms.admin` atau yang setara).
-* Kunci API Admin Anthropic untuk organisasi Anda.
-* [CLI `gcloud`](https://cloud.google.com/cli) terinstal dan terautentikasi.
-* **Data Access audit logs** Cloud KMS diaktifkan untuk proyek (IAM & Admin > Audit Logs > Cloud Key Management Service, dengan `DATA_READ` dan `DATA_WRITE`). Log ini nonaktif secara default; tanpanya, operasi enkripsi dan dekripsi Anthropic tidak menghasilkan entri apa pun di Cloud Logging.
+* Izin untuk membuat key ring dan kunci KMS, serta untuk menetapkan kebijakan IAM pada keduanya (`roles/cloudkms.admin` atau setara).
+* Kunci Admin API Anthropic untuk organisasi Anda.
+* [`gcloud` CLI](https://cloud.google.com/cli) terinstal dan terautentikasi.
+* Cloud KMS **Data Access audit logs** diaktifkan untuk proyek (IAM & Admin > Audit Logs > Cloud Key Management Service, dengan `DATA_READ` dan `DATA_WRITE`). Ini dinonaktifkan secara default; tanpanya, operasi enkripsi dan dekripsi Anthropic tidak menghasilkan entri apa pun di Cloud Logging.
 
-## Email service account Anthropic
+## Email akun layanan Anthropic
 
-Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus memberikan service account Anthropic sebuah kunci yang dapat digunakannya untuk mengenkripsi data. Email service account untuk CMEK Anthropic adalah:
+Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus memberikan akun layanan Anthropic sebuah kunci yang dapat digunakannya untuk mengenkripsi data. Email akun layanan untuk Anthropic CMEK adalah:
 
 ```text wrap
 anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
 ```
 
 <Warning>
-  Gunakan hanya email service account yang dipublikasikan ini. Jangan pernah mempercayai pengenal yang diberikan melalui email, chat, atau saluran onboarding apa pun.
+  Gunakan hanya email akun layanan yang dipublikasikan ini. Jangan pernah memercayai pengenal yang diberikan melalui email, chat, atau saluran onboarding apa pun.
 </Warning>
 
 <Note>
-  **Domain restricted sharing:** Jika proyek Anda berada di bawah organisasi Google Cloud yang menerapkan `constraints/iam.allowedPolicyMemberDomains`, binding IAM berikut akan ditolak karena service account Anthropic berada di luar organisasi Anda. Anda memerlukan pengecualian tingkat proyek pada constraint tersebut, atau menambahkan customer ID Cloud Identity Anthropic (format `C0xxxxxxxx`) ke daftar yang diizinkan. Hubungi Anthropic untuk mendapatkan customer ID jika diperlukan.
+  **Berbagi terbatas domain:** Jika proyek Anda berada di bawah organisasi Google Cloud yang menerapkan `constraints/iam.allowedPolicyMemberDomains`, binding IAM berikut ditolak karena akun layanan Anthropic berada di luar organisasi Anda. Anda memerlukan pengecualian tingkat proyek pada constraint tersebut, atau menambahkan ID pelanggan Cloud Identity Anthropic (format `C0xxxxxxxx`) ke daftar yang diizinkan. Hubungi Anthropic untuk mendapatkan ID pelanggan jika diperlukan.
 </Note>
 
 ## Penyiapan kunci enkripsi
 
 <Steps>
   <Step title="Buat atau pilih key ring">
-    Lewati langkah ini jika Anda sudah memiliki key ring untuk digunakan kembali. Key ring bersifat regional. Pilih lokasi US region tunggal seperti `us-east5` yang sesuai dengan geografi Anthropic yang Anda konfigurasikan. Lokasi multi-region seperti `us` dan `global` tidak didukung.
+    Lewati langkah ini jika Anda sudah memiliki key ring untuk digunakan kembali. Key ring bersifat regional. Pilih lokasi US single-region seperti `us-east5` yang sesuai dengan geografi Anthropic yang Anda konfigurasikan. Lokasi multi-region seperti `us` dan `global` tidak didukung.
 
     ```bash
     gcloud kms keyrings create <your-keyring-name> \
@@ -60,12 +60,12 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
   </Step>
 
   <Step title="Buat crypto key">
-    Buat kunci simetris dengan tujuan `ENCRYPT_DECRYPT`. Anthropic sangat merekomendasikan perlindungan HSM: kunci HSM Cloud KMS tervalidasi FIPS 140-2 Level 3, dan selisih biayanya dibandingkan kunci perangkat lunak kecil.
+    Buat kunci simetris dengan tujuan `ENCRYPT_DECRYPT`. Anthropic sangat merekomendasikan perlindungan HSM: kunci Cloud KMS HSM tervalidasi FIPS 140-2 Level 3, dan selisih biaya dibandingkan kunci perangkat lunak kecil.
 
     Opsi `--labels` menambahkan label organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Label ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID yang berawalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID berawalan `org_`.
     </Note>
 
     ```bash
@@ -80,23 +80,23 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
 
     Untuk perlindungan perangkat lunak sebagai gantinya, hilangkan `--protection-level=hsm`. Tidak ada hal lain dalam panduan ini yang berubah.
 
-    Anda juga dapat membuat kunci dari Google Cloud Console. Buka key ring, klik **Create key**, pilih **Generated key**, atur tujuan dan algoritma ke symmetric encrypt and decrypt, lalu pilih **HSM** di bawah protection level.
+    Anda juga dapat membuat kunci dari Google Cloud Console. Buka key ring, klik **Create key**, pilih **Generated key**, atur tujuan dan algoritma ke symmetric encrypt and decrypt, dan pilih **HSM** di bawah protection level.
 
-    <Frame caption="Buat kunci symmetric encrypt/decrypt (enkripsi/dekripsi simetris) yang dilindungi HSM dengan label organisasi.">
-      ![Halaman Create key Google Cloud KMS dengan perlindungan HSM, symmetric encrypt/decrypt, dan label anthropic-org yang diatur ke true.](https://platform.claude.com/docs/images/cmek/gcp-create-key-label.png)
+    <Frame caption="Buat kunci symmetric encrypt/decrypt yang dilindungi HSM dengan label organisasi.">
+      ![Google Cloud KMS Create key page with HSM protection, symmetric encrypt/decrypt, and the anthropic-org label set to true.](https://platform.claude.com/docs/images/cmek/gcp-create-key-label.png)
     </Frame>
 
-    Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu label seperti itu untuk setiap organisasi. Sebuah kunci dapat memiliki paling banyak 64 label, termasuk label Anda sendiri.
+    Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu label seperti itu untuk setiap organisasi. Sebuah kunci dapat membawa paling banyak 64 label, termasuk milik Anda sendiri.
 
     <Note>
-      Untuk menambahkan label ke kunci yang belum memilikinya, jalankan `gcloud kms keys update <KEY_NAME> --project=<PROJECT_ID> --location=<REGION> --keyring=<KEYRING_NAME> --update-labels=anthropic-org-<ORGANIZATION_UUID>=true`. Perintah ini menggabungkan label tersebut dengan label apa pun yang sudah dimiliki kunci.
+      Untuk menambahkan label ke kunci yang belum memilikinya, jalankan `gcloud kms keys update <KEY_NAME> --project=<PROJECT_ID> --location=<REGION> --keyring=<KEYRING_NAME> --update-labels=anthropic-org-<ORGANIZATION_UUID>=true`. Ini menggabungkan label dengan label apa pun yang sudah dimiliki kunci.
     </Note>
   </Step>
 
-  <Step title="Berikan akses ke kunci untuk service account Anthropic">
-    Diperlukan dua binding IAM tingkat kunci. Keduanya dicakup pada satu crypto key saja, bukan seluruh proyek atau seluruh key ring.
+  <Step title="Berikan akun layanan Anthropic akses ke kunci">
+    Dua binding IAM tingkat kunci diperlukan. Keduanya dicakup ke satu crypto key, bukan seluruh proyek atau seluruh keyring.
 
-    Encrypt dan decrypt, yang digunakan Anthropic untuk mengenkripsi dan mendekripsi data key yang melindungi data workspace Anda ("envelope encryption" (enkripsi amplop)):
+    Encrypt dan decrypt, yang digunakan Anthropic untuk mengenkripsi dan mendekripsi kunci data yang melindungi data workspace Anda (enkripsi envelope):
 
     ```bash
     gcloud kms keys add-iam-policy-binding <your-key-name> \
@@ -118,15 +118,15 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
       --role=roles/cloudkms.viewer
     ```
 
-    Dari Console, pilih kunci, buka panel **Permissions**, klik **Grant access**, dan tambahkan service account dengan kedua peran Cloud KMS CryptoKey Encrypter/Decrypter dan Cloud KMS Viewer. Pastikan Anda berada di halaman permissions milik kunci, bukan key ring atau proyek, sehingga pemberian akses hanya dicakup pada kunci ini.
+    Dari Console, pilih kunci, buka panel **Permissions**, klik **Grant access**, dan tambahkan akun layanan dengan peran Cloud KMS CryptoKey Encrypter/Decrypter dan Cloud KMS Viewer. Pastikan Anda berada di halaman permissions kunci, bukan key ring atau proyek, sehingga pemberian akses dicakup hanya ke kunci ini.
 
-    <Frame caption="Berikan kedua peran kepada service account Anthropic melalui Grant access (berikan akses), dicakup pada kunci.">
-      ![Dialog Grant access dengan service account Anthropic yang diberi peran Cloud KMS CryptoKey Encrypter/Decrypter dan Viewer.](https://platform.claude.com/docs/images/cmek/gcp-grant-access.png)
+    <Frame caption="Berikan akun layanan Anthropic kedua peran, dicakup ke kunci.">
+      ![Grant access dialog with the Anthropic service account assigned Cloud KMS CryptoKey Encrypter/Decrypter and Viewer roles.](https://platform.claude.com/docs/images/cmek/gcp-grant-access.png)
     </Frame>
   </Step>
 
-  <Step title="Catat nama resource lengkap kunci">
-    Anda memberikan ini kepada Anthropic saat mendaftarkan kunci. Formatnya adalah:
+  <Step title="Catat nama resource kunci lengkap">
+    Anda meneruskan ini ke Anthropic saat mendaftarkan kunci. Formatnya adalah:
 
     ```text wrap
     projects/<your-project-id>/locations/<region>/keyRings/<your-keyring-name>/cryptoKeys/<your-key-name>
@@ -144,15 +144,15 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
 
     Dari Console, buka halaman detail kunci dan klik **Copy resource name**.
 
-    <Frame caption="Salin nama resource lengkap kunci melalui Copy resource name (salin nama resource) dari menu tindakan.">
-      ![Detail key ring Google Cloud dengan tindakan Copy resource name disorot di menu tindakan kunci.](https://platform.claude.com/docs/images/cmek/gcp-copy-resource-name.png)
+    <Frame caption="Salin nama resource lengkap kunci dari menu tindakan.">
+      ![Google Cloud key ring details with the Copy resource name action highlighted in the key's actions menu.](https://platform.claude.com/docs/images/cmek/gcp-copy-resource-name.png)
     </Frame>
   </Step>
 </Steps>
 
-## Daftarkan kunci ke Anthropic
+## Daftarkan kunci dengan Anthropic
 
-Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
+Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
 
 <Tabs>
   <Tab title="Claude Platform">
@@ -161,26 +161,26 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
     <Tabs>
       <Tab title="Claude Console">
         <Steps>
-          <Step title="Daftarkan kunci ke Anthropic">
-            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Google Cloud KMS**, dan klik **Continue**. Tempelkan nama resource kunci lengkap ke **Key resource name**, lalu klik **Add**.
+          <Step title="Daftarkan kunci dengan Anthropic">
+            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Google Cloud KMS**, dan klik **Continue**. Tempel nama resource kunci lengkap ke **Key resource name**, dan klik **Add**.
 
-            Langkah detail kunci menampilkan label organisasi. Tambahkan label tersebut ke kunci, seperti yang dijelaskan pada [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), sebelum Anda mengklik **Add**.
+            Langkah detail kunci menampilkan label organisasi. Tambahkan ke kunci, seperti yang dijelaskan [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), sebelum Anda mengklik **Add**.
           </Step>
 
           <Step title="Validasi kunci">
-            Di halaman **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, sebuah pesan akan memberikan alasannya.
+            Di halaman **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul ketika pemeriksaan lolos. Jika gagal, sebuah pesan memberikan alasannya.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Buka **Settings > Workspaces**, pilih workspace, dan buka tab **Security**-nya. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
           </Step>
         </Steps>
       </Tab>
 
       <Tab title="API">
         <Steps>
-          <Step title="Daftarkan kunci ke Anthropic">
-            Buat konfigurasi kunci eksternal melalui Admin API, menggunakan nama resource dari langkah Catat nama resource lengkap kunci di bawah Penyiapan kunci enkripsi.
+          <Step title="Daftarkan kunci dengan Anthropic">
+            Buat konfigurasi kunci eksternal melalui Admin API, menggunakan nama resource dari langkah Catat nama resource kunci lengkap di bawah Penyiapan kunci enkripsi.
 
             <CodeGroup>
               ```bash cURL
@@ -346,7 +346,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
           </Step>
 
           <Step title="Validasi kunci">
-            Picu proses bolak-balik enkripsi dan dekripsi terhadap kunci Anda.
+            Picu round-trip enkripsi dan dekripsi terhadap kunci Anda.
 
             <CodeGroup>
               ```bash cURL
@@ -437,13 +437,13 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
             Jika validasi gagal, penyebab umumnya adalah:
 
-            * **VPC Service Controls:** jika service perimeter melindungi Cloud KMS di proyek Anda, tambahkan Anthropic ke access level pada perimeter tersebut (atau kecualikan proyek kunci) agar Anthropic dapat menjangkau kunci.
-            * **Domain restricted sharing:** kebijakan organisasi `constraints/iam.allowedPolicyMemberDomains` dapat menghapus binding service account Anthropic (lihat catatan sebelumnya). Pastikan binding tersebut ada dengan `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
-            * **Versi kunci dinonaktifkan atau dihancurkan:** pastikan versi utama kunci diaktifkan, dan tidak dinonaktifkan, dijadwalkan untuk dihancurkan, atau sudah dihancurkan.
+            * **VPC Service Controls:** jika perimeter layanan melindungi Cloud KMS di proyek Anda, tambahkan Anthropic ke access level pada perimeter (atau kecualikan proyek kunci) sehingga Anthropic dapat menjangkau kunci.
+            * **Berbagi terbatas domain:** kebijakan org `constraints/iam.allowedPolicyMemberDomains` dapat menghapus binding akun layanan Anthropic (lihat catatan sebelumnya). Konfirmasikan binding ada dengan `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
+            * **Versi kunci dinonaktifkan atau dihancurkan:** konfirmasikan versi utama kunci diaktifkan, dan tidak dinonaktifkan, dijadwalkan untuk dihancurkan, atau dihancurkan.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Setelah kunci divalidasi, lampirkan ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan waktu [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Setelah kunci divalidasi, lampirkan ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
 
             <CodeGroup>
               ```bash cURL
@@ -562,9 +562,9 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
   </Tab>
 
   <Tab title="Claude Enterprise">
-    Di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), buka **Encryption keys**, lalu klik **Add key**. Pilih **Google Cloud**, tempelkan nama resource lengkap kunci dari langkah sebelumnya, dan klik **Continue**. Anthropic memvalidasi kunci dengan proses bolak-balik enkripsi dan dekripsi. Setelah kunci ditampilkan sebagai terverifikasi, organisasi Anda dilindungi CMEK sejak saat itu.
+    Di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), buka **Encryption keys**, lalu klik **Add key**. Pilih **Google Cloud**, tempel nama resource kunci lengkap dari langkah sebelumnya, dan klik **Continue**. Anthropic memvalidasi kunci dengan round-trip enkripsi dan dekripsi. Setelah ditampilkan sebagai terverifikasi, organisasi Anda dilindungi CMEK sejak saat itu.
 
-    Di Claude Enterprise, CMEK berlaku untuk seluruh organisasi, sehingga tidak ada langkah pelampiran workspace terpisah, dan sebuah organisasi hanya dapat memiliki satu kunci.
+    Di Claude Enterprise, CMEK berlaku untuk seluruh organisasi, sehingga tidak ada langkah lampiran workspace terpisah, dan sebuah organisasi hanya dapat memiliki satu kunci.
   </Tab>
 </Tabs>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 254879104bad18180fcd1a480b1a62d518d604d88365443eec9c07ea26a2b07a
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 73ad08542bb53f482c6fd9dbc3a1145a493301522adcb83a4d6282339f1d03c3
 ---
 
 ---
@@ -32,7 +32,7 @@ Update work item metadata with merge semantics.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ Update work item metadata with merge semantics.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2aabdd3452bfeafb064e10f85b7eda182445e301a580e115df557a96987b45cb
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 4747bbb5a60349fc0ae1750b917fd677abe3d9ca3318a6135a14fb7c1ef772d6
 ---
 
 ---
@@ -540,51 +540,45 @@ The following request keeps `get_weather` in `tools` and defines `db_query` afte
     }'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
-    ```bash CLI
-    ant beta:messages create --beta inline-tools-2026-09-15 < request.yaml
-    ```
-
-    <File filename="request.yaml">
-      ```yaml
-      model: claude-opus-5-5
-      max_tokens: 1024
-      # Keep at least one non-deferred tool in `tools`, so a tool defined
-      # later doesn't change the start of the rendered prompt.
-      tools:
-        - name: get_weather
-          description: Get the current weather for a location.
-          input_schema:
-            type: object
-            properties:
-              location:
-                type: string
-                description: City name
-            required:
-              - location
-      messages:
-        - role: user
-          content: How many orders shipped yesterday?
-        # Define db_query by value from this point onward. `tools` and the
-        # earlier messages stay exactly as sent, so the cache still hits.
-        - role: system
-          content:
-            - type: tool_addition
-              tool:
-                type: tool_definition
-                definition:
-                  name: db_query
-                  description: Run a read-only SQL query against the analytics database.
-                  input_schema:
-                    type: object
-                    properties:
-                      sql:
-                        type: string
-                    required:
-                      - sql
-      ```
-    </File>
-  </MultiFileExample>
+  ```bash CLI
+  ant beta:messages create --beta inline-tools-2026-09-15 <<'YAML'
+  model: claude-opus-5-5
+  max_tokens: 1024
+  # Keep at least one non-deferred tool in `tools`, so a tool defined
+  # later doesn't change the start of the rendered prompt.
+  tools:
+    - name: get_weather
+      description: Get the current weather for a location.
+      input_schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: City name
+        required:
+          - location
+  messages:
+    - role: user
+      content: How many orders shipped yesterday?
+    # Define db_query by value from this point onward. `tools` and the
+    # earlier messages stay exactly as sent, so the cache still hits.
+    - role: system
+      content:
+        - type: tool_addition
+          tool:
+            type: tool_definition
+            definition:
+              name: db_query
+              description: Run a read-only SQL query against the analytics database.
+              input_schema:
+                type: object
+                properties:
+                  sql:
+                    type: string
+                required:
+                  - sql
+  YAML
+  ```
 
   ```python Python
   client = anthropic.Anthropic()

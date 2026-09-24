@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8899d6e92f9788bff73969504fa071dad8e99dc96fd41cb157e3f0af4118cc72
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0977d79580e8ae1bd7df97107595a08419bcc9deba1ef09190b7594adadd902a
 ---
 
 ---
@@ -48,7 +48,7 @@ archived service accounts.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -141,6 +141,10 @@ archived service accounts.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

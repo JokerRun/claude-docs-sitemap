@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 87fb068bff2c5e3dd8b59033c9bea6d93711a89010aeeb7eaca5b4fd1d1a4236
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 78ec1108ec5947039cf844b909c7497ba2916adbde0a081747644f815b75f269
 ---
 
 ---
@@ -119,23 +119,23 @@ Anda juga dapat memberikan cakupan spesifik di awal untuk melewati pertanyaan ko
 /claude-api migrate apps/api.py and apps/worker.py to claude-opus-5-5
 ```
 
-Ketika cakupannya ambigu (misalnya, `/claude-api migrate to claude-opus-5` saja), skill ini meminta Anda memilih antara seluruh direktori kerja, subdirektori tertentu, atau daftar file eksplisit sebelum mengedit file apa pun. Ini berlaku untuk pemanggil Messages API maupun Managed Agents.
+Ketika cakupannya ambigu (misalnya, `/claude-api migrate to claude-opus-5-5` tanpa keterangan tambahan), skill ini meminta Anda memilih antara seluruh direktori kerja, subdirektori tertentu, atau daftar file eksplisit sebelum mengedit file apa pun. Hal ini berlaku untuk pemanggil Messages API maupun Managed Agents.
 
 Skill ini menangani:
 
-* **Penggantian ID model**, termasuk konstanta SDK bertipe (`Model.CLAUDE_OPUS_4_8` → `Model.CLAUDE_OPUS_5`) di semua bahasa yang didukung, serta mengklasifikasikan setiap file sebagai pemanggil, pendefinisi model, atau referensi string opak sebelum mengedit
+* **Penggantian ID model**, termasuk konstanta SDK bertipe (`Model.CLAUDE_OPUS_4_8` → `Model.CLAUDE_OPUS_5_5`) di semua bahasa yang didukung, serta mengklasifikasikan setiap file sebagai pemanggil, pendefinisi model, atau referensi string opak sebelum mengedit
 * **Deteksi platform cloud**, mempertahankan format ID model khusus platform (misalnya, prefiks `anthropic.` di Amazon Bedrock) dan melewati perubahan untuk fitur yang tidak tersedia di platform yang dioperasikan mitra
 * **Perubahan parameter yang merusak kompatibilitas**, seperti menghapus `temperature`, `top_p`, dan `top_k` untuk Claude Opus 4.8 dan Claude Opus 4.7, serta mengonversi `thinking: {type: "enabled", budget_tokens: N}` menjadi `thinking: {type: "adaptive"}`
 * **Penggantian prefill**, mengonversi pola prefill pesan asisten menjadi [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika memungkinkan
 * **Pembersihan header beta**, menghapus header beta yang tidak diperlukan oleh model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create` ke `client.messages.create`
 * **Kalibrasi effort**, merekomendasikan titik awal `output_config.effort` untuk model target (misalnya, nilai default `high` pada Claude Opus 5, dan `xhigh` untuk kasus penggunaan coding dan agentik pada Claude Opus 4.8 dan Claude Opus 4.7)
-* **Penyetelan perilaku prompt**, menandai prompt kontrol panjang, pemicu alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
+* **Penyetelan perilaku prompt**, menandai prompt terkait kontrol panjang, pemicuan alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
 * **Penanganan default diam-diam**, mengaktifkan kembali ringkasan thinking (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
 * **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, atau Claude Opus 5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware refusal-fallback SDK, atau percobaan ulang dengan kredit fallback), serta memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya
 
 Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/"rate limit" (batas laju)).
 
-Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Bermigrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Bermigrasi ke Claude Opus 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5), dan [Bermigrasi ke Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
+Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), dan [Migrasi ke Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
 
 ## Menyiapkan Managed Agent
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 7f02c23cdba96f84372585d8dc3d159a85308c8a25718a259fa82a1a66de951c
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: d6c67d112bb8a281651f029f4e1610489ee1eaf02416241dd6aa59292513d5c3
 ---
 
 ---
@@ -37,7 +37,7 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,10 @@ issuer cannot be changed), or recreate them against another issuer.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

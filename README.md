@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-09-17 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-09-04 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-09-22 |  |
-| ... | _(~1102 more rows)_ | | |
+| ... | _(~1108 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

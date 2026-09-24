@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d9d1496c530eff89af8dc7ab259cc2478bb41be3f3c97793ea99134ee21be68b
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 7bce1627503c12da910937191acc42702f582a57f4ff8edbf0ac23879413eb19
 ---
 
 ---
@@ -998,7 +998,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
                             .maxTokens(1024)
                             .addBeta("structured-outputs-2025-11-13")
                             .addUserMessage("Give me a detailed weather report for every major US city.")
-                            .addTool(GetWeather.class)
+                            .addTool(getWeather)
                             .build())
                     .maxIterations(10L)
                     .build());
@@ -1015,12 +1015,12 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
             long doubled = Math.min(current * 2, ceiling);
             IO.println("Response truncated at " + current + " tokens, retrying with " + doubled + ".");
 
-            // Memanggil setNextParams() menandai giliran ini sebagai dikelola-pengguna: runner
-            // TIDAK otomatis menambahkan pesan yang terpotong, sehingga iterasi berikutnya
-            // mengirim ulang prefiks percakapan yang sama dengan anggaran yang lebih besar.
+            // Calling setNextParams() flags this turn as user-managed: the runner
+            // does NOT auto-append the truncated message, so the next iteration
+            // re-sends the same conversation prefix with the larger budget.
             runner.setNextParams(runner.params().toBuilder().maxTokens(doubled).build());
         }
-        // Tidak ada mutasi pada giliran normal: runner otomatis menambahkan dan melanjutkan.
+        // No mutation on a normal turn: the runner auto-appends and continues.
     }
     ```
   </Tab>
@@ -1100,7 +1100,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah mendeprekasi opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner di setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, dan Java memiliki helper `compact_before_next_turn()` untuk compaction sesuai permintaan, yang ditulis dengan konvensi penamaan masing-masing bahasa. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, jangan keduanya.
+Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah menghentikan (deprecated) opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, Java, PHP, dan Ruby memiliki helper `compact_before_next_turn()` untuk compaction sesuai permintaan, yang ditulis dengan konvensi penamaan masing-masing bahasa. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, bukan keduanya.
 
 ### Men-debug eksekusi alat
 

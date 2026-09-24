@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ab87d1554f79582062c7b96b2e8fdf51fd7ce5762c357877ed0df81600a2b321
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: af4cf1f5775a76df6608ffe6fa42dd918be536a681d53ebb36f04c3a97774074
 ---
 
 ---
@@ -519,7 +519,7 @@ The right budget depends on how much work your agentic loop currently does. Rath
 
 Run a representative sample of tasks **without** `task_budget` set and record the total tokens Claude spends per task. For an agentic loop, sum `usage.output_tokens` across every request in the loop, plus the tokens of the tool results you append between requests:
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL">
   ```bash CLI
   ant messages create --transform 'usage.output_tokens' <<'YAML'
   model: claude-opus-5-5

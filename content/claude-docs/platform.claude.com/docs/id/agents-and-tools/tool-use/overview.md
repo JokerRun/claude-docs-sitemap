@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 62fbe7db0dadb8c7d77bdf4cf8fe845b4e35d333314adea3c79c9c8070bd4112
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: adb545fc0306412f6c666b21915acdf7bf9203829943bc4f8bd6cfbac6fc64d9
 ---
 
 ---
@@ -871,22 +871,26 @@ Token tambahan dari penggunaan alat berasal dari:
 
 Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prompt" (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
-| Model                                                                                                                                       | Pilihan alat                   | Jumlah token prompt sistem penggunaan alat |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ |
-| Claude Opus 5.5                                                                                                                             | `auto`, `none`                 | 286 token                                  |
-| Claude Opus 5                                                                                                                               | `auto`, `none`***`any`, `tool` | 286 token***406 token                      |
-| Claude Opus 4.8                                                                                                                             | `auto`, `none`***`any`, `tool` | 290 token***410 token                      |
-| Claude Opus 4.7                                                                                                                             | `auto`, `none`***`any`, `tool` | 675 token***804 token                      |
-| Claude Opus 4.6                                                                                                                             | `auto`, `none`***`any`, `tool` | 497 token***589 token                      |
-| Claude Opus 4.5                                                                                                                             | `auto`, `none`***`any`, `tool` | 496 token***588 token                      |
-| Claude Opus 4.1 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `auto`, `none`***`any`, `tool` | 313 token***315 token                      |
-| Claude Opus 4 ([dipensiunkan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | `auto`, `none`***`any`, `tool` | 313 token***315 token                      |
-| Claude Sonnet 5                                                                                                                             | `auto`, `none`***`any`, `tool` | 354 token***474 token                      |
-| Claude Sonnet 4.6                                                                                                                           | `auto`, `none`***`any`, `tool` | 497 token***589 token                      |
-| Claude Sonnet 4.5                                                                                                                           | `auto`, `none`***`any`, `tool` | 496 token***588 token                      |
-| Claude Sonnet 4 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `auto`, `none`***`any`, `tool` | 313 token***315 token                      |
-| Claude Haiku 4.5                                                                                                                            | `auto`, `none`***`any`, `tool` | 496 token***588 token                      |
-| Claude Haiku 3.5 ([dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `auto`, `none`***`any`, `tool` | 264 token***355 token                      |
+| Model                                                                                                                                 | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------- | :--------------------------------------- |
+| Claude Opus 5.5                                                                                                                       | 286 tokens                                |                                          |
+| Claude Opus 5                                                                                                                         | 286 tokens                                | 406 tokens                               |
+| Claude Opus 4.8                                                                                                                       | 290 tokens                                | 410 tokens                               |
+| Claude Opus 4.7                                                                                                                       | 675 tokens                                | 804 tokens                               |
+| Claude Opus 4.6                                                                                                                       | 497 tokens                                | 589 tokens                               |
+| Claude Opus 4.5                                                                                                                       | 496 tokens                                | 588 tokens                               |
+| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
+| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | 313 tokens                                | 315 tokens                               |
+| Claude Sonnet 5                                                                                                                       | 354 tokens                                | 474 tokens                               |
+| Claude Sonnet 4.6                                                                                                                     | 497 tokens                                | 589 tokens                               |
+| Claude Sonnet 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
+| Claude Haiku 4.5                                                                                                                      | 496 tokens                                | 588 tokens                               |
+| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 264 tokens                                | 355 tokens                               |
+
+* **auto, none:** The count when tool\_choice is auto or none.
+* **any, tool:** The count when tool\_choice is any or tool.
+* **Retired:** May still be available on other cloud platforms. See [Model deprecations](https://platform.claude.com/docs/id/about-claude/model-deprecations) for more.
 
 Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghitung total biaya suatu permintaan.
 

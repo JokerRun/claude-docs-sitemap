@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 8f89f10026bdf6496609e2d5553f73426a9e340f513d4aac001fa609b5c67b84
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 41195616e7e365036482885b03f161cd3fb16c557cdb27da7ccecb5e7632a428
 ---
 
 ---
@@ -34,7 +34,7 @@ Validate Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Validate Credential
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

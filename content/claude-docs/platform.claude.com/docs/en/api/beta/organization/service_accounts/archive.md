@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6ce85540f5b608e7ba8a399131c0a0c53921fead870b52f02c8e6a8107b6f1f9
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0489cf61fbf7eb4e7c67d58497bcb58163f00f22ec0337be5c92bbc86dc84b9c
 ---
 
 ---
@@ -37,7 +37,7 @@ those rules first or change their target to another service account.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,10 @@ those rules first or change their target to another service account.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

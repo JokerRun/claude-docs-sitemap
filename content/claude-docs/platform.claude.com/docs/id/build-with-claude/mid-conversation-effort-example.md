@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: fc99a7cc6ddf7d41e92a8ec7a14569a7210649dd0678f09c4fb985352d8705ab
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 87c76e9a60877bfa392822ca45becb2ec1f0dd7b3c34a812a22455a69841cf88
 ---
 
 ---
@@ -25,7 +25,7 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 
 ## Menyiapkan loop
 
-Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi jumlah subagen yang berjalan secara bersamaan (port PHP berjalan secara berurutan dan mengabaikannya). `MAX_TOTAL_SUBTASKS` membatasi jumlah subtugas yang boleh diantrekan model dalam satu panggilan Workflow. Dengan memisahkan keduanya, model dapat merencanakan backlog yang besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saja ketika variabel lingkungan tersebut ditetapkan. Dengan begitu, "harness" (kerangka pengujian) dokumentasi otomatis dapat memvalidasi bahwa file berhasil dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh. Biarkan variabel ini tidak ditetapkan saat Anda menjalankan contoh ini sendiri.
+Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi jumlah subagen yang berjalan bersamaan (port PHP berjalan secara berurutan dan mengabaikan konstanta ini). `MAX_TOTAL_SUBTASKS` membatasi jumlah subtugas yang dapat diantrekan model dalam satu panggilan Workflow. Pemisahan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saat variabel lingkungan tersebut diatur. Dengan begitu, harness dokumentasi otomatis dapat memvalidasi bahwa file berhasil dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh. Biarkan variabel ini tidak diatur saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup>
   ```python Python

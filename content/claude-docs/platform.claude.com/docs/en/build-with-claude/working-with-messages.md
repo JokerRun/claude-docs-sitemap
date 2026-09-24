@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 83d4a1fd3e423704edcb73f5ea91a20dd85e0431e1958cf6b0fa8ea17fcec2ea
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 23dc8de41509a4995cf0cc66c9fc667d2442d66e20d1ad7e0386713b7eb02ec4
 ---
 
 ---
@@ -27,7 +27,7 @@ This guide covers common patterns for working with the Messages API, including b
 ## Basic request and response
 
 <Note>
-  The `temperature`, `top_p`, and `top_k` sampling parameters are not supported on Claude 4.7 and later models and Claude Mythos Preview. Setting them to a non-default value returns a 400 error. Omit them from request payloads and use prompting to guide the model's behavior instead. See the [migration guide](https://platform.claude.com/docs/en/models/opus-5/migration-guide#migrating-from-claude-opus-47).
+  The `temperature`, `top_p`, and `top_k` sampling parameters are not supported on Claude 4.7 and later models and Claude Mythos Preview. Setting them to a non-default value returns a 400 error. Omit them from request payloads and use prompting to guide the model's behavior instead. See the [migration guide](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#opus-46-breaking-changes).
 </Note>
 
 <CodeGroup>

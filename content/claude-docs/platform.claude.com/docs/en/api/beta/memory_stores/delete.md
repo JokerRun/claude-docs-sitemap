@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 503d8b943a3731f6e4437d97239e0473fc2cc37b5028780bfa8f7c80e118cb8d
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 494639b1703729e3e3bc7cd5dccb1c612c687972086c592cc79ab33d3f424527
 ---
 
 ---
@@ -30,7 +30,7 @@ Delete a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Delete a memory store
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

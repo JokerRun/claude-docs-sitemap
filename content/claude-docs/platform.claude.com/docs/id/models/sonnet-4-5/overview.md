@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 98f26509f6061ab461cc408667b9d4f50e3146325411bfdeebbf799d1316ee23
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 820cf78fbec8d1a76a0987c23d46cc688138cf33b45bfbcfb9df036121f693a1
 ---
 
 ---
@@ -53,15 +53,16 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 
 ### Pricing
 
-| Feature                                                                                | Value                                                               |
-| :------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Input                                                                                  | $3 / MTok                                                           |
-| Output                                                                                 | $15 / MTok                                                          |
-| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $3.75 / MTok                                                        |
-| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6 / MTok                                                           |
-| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.30 / MTok                                                        |
-| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output                                    |
-| Full price list                                                                        | [Pricing](https://platform.claude.com/docs/id/about-claude/pricing) |
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $3 / MTok                        |
+| Output                                                                                 | $15 / MTok                       |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $3.75 / MTok                     |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6 / MTok                        |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.30 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
 
 ### Capabilities
 

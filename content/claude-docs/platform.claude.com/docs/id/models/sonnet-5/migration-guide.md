@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/migration-guide
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: e6e6c06884746e7e73ec3f3028a3c6522526541882fcf901503ab97e6a30709e
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 11f5ee894d365017703616ef99d31d50a6646e0ce7840515172a995496c51be1
 ---
 
 ---
@@ -82,7 +82,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
              "messages": [
                {
                  "role": "user",
-                 "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+                 "content": "Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024."
                }
              ]
            }'
@@ -99,7 +99,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            effort: high
          messages:
            - role: user
-             content: Are there an infinite number of prime numbers such that n mod 4 == 3?
+             content: Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.
          YAML
          ```
 
@@ -114,12 +114,12 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
              messages=[
                  {
                      "role": "user",
-                     "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?",
+                     "content": "Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.",
                  }
              ],
          )
 
-         # Respons berisi blok pemikiran yang diringkas dan blok teks
+         # Respons berisi blok thinking yang diringkas dan blok teks
          for block in response.content:
              match block.type:
                  case "thinking":
@@ -144,7 +144,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            messages: [
              {
                role: "user",
-               content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+               content: "Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024."
              }
            ]
          });
@@ -176,12 +176,12 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
                  new()
                  {
                      Role = Role.User,
-                     Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?",
+                     Content = "Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.",
                  },
              ],
          });
 
-         // Respons berisi blok pemikiran yang diringkas dan blok teks
+         // Respons berisi blok thinking yang diringkas dan blok teks
          foreach (var block in response.Content)
          {
              if (block.TryPickThinking(out var thinking))
@@ -210,14 +210,14 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
          		Effort: anthropic.OutputConfigEffortHigh,
          	},
          	Messages: []anthropic.MessageParam{
-         		anthropic.NewUserMessage(anthropic.NewTextBlock("Are there an infinite number of prime numbers such that n mod 4 == 3?")),
+         		anthropic.NewUserMessage(anthropic.NewTextBlock("Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.")),
          	},
          })
          if err != nil {
          	log.Fatal(err)
          }
 
-         // Respons berisi blok pemikiran yang diringkas dan blok teks
+         // Respons berisi blok thinking yang diringkas dan blok teks
          for _, block := range response.Content {
          	switch block := block.AsAny().(type) {
          	case anthropic.ThinkingBlock:
@@ -247,12 +247,12 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
                  .outputConfig(OutputConfig.builder()
                      .effort(OutputConfig.Effort.HIGH)
                      .build())
-                 .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
+                 .addUserMessage("Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.")
                  .build();
 
              var response = client.messages().create(params);
 
-             // Respons berisi blok pemikiran yang diringkas dan blok teks
+             // Respons berisi blok thinking yang diringkas dan blok teks
              for (var block : response.content()) {
                  block.thinking().ifPresent(thinkingBlock ->
                      IO.println("\nThinking summary: " + thinkingBlock.thinking())
@@ -278,7 +278,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
              messages: [
                  [
                      'role' => 'user',
-                     'content' => 'Are there an infinite number of prime numbers such that n mod 4 == 3?',
+                     'content' => 'Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024.',
                  ],
              ],
          );
@@ -304,7 +304,7 @@ Butir 4 dan 5 dalam daftar berikut adalah perubahan yang merusak kompatibilitas.
            messages: [
              {
                role: :user,
-               content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+               content: "Find all pairs of positive integers (x, y) such that x^2 - y^2 = 2024."
              }
            ]
          )

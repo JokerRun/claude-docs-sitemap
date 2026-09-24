@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 0fea3079f7a50d1b1d5f335b379f5425ab84ec66e15fdb32ce5d8b32abd2ca13
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: b94bfffed6ea337284e086c9f3109327598f321c364213f95bc3511c9bac6229
 ---
 
 ---
@@ -41,7 +41,7 @@ accounts cannot be added and are rejected.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -134,6 +134,10 @@ accounts cannot be added and are rejected.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Body parameters
 

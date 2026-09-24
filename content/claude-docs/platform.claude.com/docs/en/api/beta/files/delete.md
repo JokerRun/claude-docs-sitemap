@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 24f7702ae1893e9e1e19875b2778002536ddd8db7c906aa4424f285a3922c563
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0ce77fec507d35e43cb991996b7ce2ce02346ddecbe0bb4b0907f97a2577d2ec
 ---
 
 ---
@@ -30,7 +30,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Delete File
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

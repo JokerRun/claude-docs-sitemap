@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: fc8aba2565ac8c8f9c9421936a291e5c858e9c022ebd259764d98ff31bbf36f4
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: feb94ddf3cf5cdafda72b53818008051ba0d44bcf97d5a4a4c3439b8fd896609
 ---
 
 ---
@@ -51,7 +51,7 @@ unless `include_archived=true`.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -144,6 +144,10 @@ unless `include_archived=true`.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

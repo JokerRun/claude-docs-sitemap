@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ed82d6c3e014406f3ea16712d7474ad80b0c26a5e33b361e8d4879240e032ca6
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 404780805ecccf2cbeb889e6af694df5b86f2e9e5f9791887c0cc66ed1f52f60
 ---
 
 ---
@@ -28,7 +28,7 @@ Delete Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -121,6 +121,10 @@ Delete Session
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

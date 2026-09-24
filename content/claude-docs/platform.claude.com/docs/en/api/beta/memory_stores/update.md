@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: c51461b842d40bbeb383841b10d379d3a9d54dc4cc0d7516b95894aa8233359a
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9782973ce725cbdf4464d6db4bab336b214d90e9136ac0616707c77ea14d5e0e
 ---
 
 ---
@@ -30,7 +30,7 @@ Update a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -123,6 +123,10 @@ Update a memory store
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 27dc33fcd55f98d945bdff6ae942802009beed36611ede5b6c233df25239e3ad
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 9c4c04279d483cf43cb6e90179360eef4284488ffab76bfa0dd568abd3640268
 ---
 
 ---
@@ -11,12 +11,12 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/pr
 description: Perbedaan perilaku dan pola prompting untuk Claude Opus 4.8, mencakup verbositas, kalibrasi effort, penggunaan alat, subagen, dan default frontend.
 ---
 
-Panduan ini mencakup pola prompting yang spesifik untuk Claude Opus 4.8. Untuk perubahan API yang terlibat dalam perpindahan dari Claude Opus 4.8 ke model Opus terbaru, lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-4-8-to-claude-opus-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini membahas pola prompting yang khusus untuk Claude Opus 4.8. Untuk perubahan API yang terlibat dalam peralihan dari Claude Opus 4.8 ke Claude Opus 5.5, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Opus 4.8 memiliki kekuatan khusus dalam pekerjaan agentik jangka panjang, pekerjaan berbasis pengetahuan, visi, dan tugas memori. Model ini berkinerja baik secara langsung pada prompt Claude Opus 4.7 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk perubahan parameter API sejak Claude Opus 4.7 (parameter sampling, default effort, default "context window" (jendela konteks) 1M, pesan sistem di tengah percakapan, dan detail penghentian penolakan), lihat [Migrasi ke Claude Opus 5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5/migration-guide#migrating-from-claude-opus-47), yang mencakup perubahan yang sama dalam perjalanan menuju model Opus terbaru; Claude Opus 4.8 memiliki perilaku yang sama.
+  Untuk perubahan parameter API sejak Claude Opus 4.7 ("context window" (jendela konteks) 1M sebagai default dan pesan sistem di tengah percakapan), lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), yang membahas perubahan yang sama dalam perjalanan menuju Claude Opus 5.5; Claude Opus 4.8 memiliki perilaku yang sama.
 </Note>
 
 ## Panjang respons dan verbositas

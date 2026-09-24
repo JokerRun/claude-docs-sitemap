@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 043a9a94e4f27ad7d58ab1967144cca39929c011b88452f41d91160126c0baa5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 03cbe0e69170fad0ddc7ece5a82fca929581ddd2c177bb4caa0a1a7a965aefa7
 ---
 
 ---
@@ -48,7 +48,7 @@ Retrieve a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -141,6 +141,10 @@ Retrieve a memory
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

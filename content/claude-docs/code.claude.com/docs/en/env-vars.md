@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/env-vars
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9a21dd1e8a8cbc10ddae2a490f693fe2516538d52a0a4594add63537821e3431
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 00b2d4746a0cdcc9f6c48dc559f08a388c8bf5ba96c807ee74677cda5bbabc27
 ---
 
 > ## Documentation Index
@@ -521,7 +521,6 @@ Claude Code turns some features on through feature flags it fetches from Anthrop
 
 With fetching off, you can't:
 
-* Have Claude Code [read `AGENTS.md` files](/docs/en/memory#agents-md) as project instructions; it loads `CLAUDE.md` files only
 * [Start sessions in auto mode by default](/docs/en/permission-modes#which-mode-a-session-starts-in) on Pro, Max, and Team plans
 * Have the VS Code extension [read settings files for the starting permission mode](/docs/en/permission-modes#switch-permission-modes)
 * Run [`/auto-mode-setup`](/docs/en/auto-mode-config#generate-environment-entries) to draft `autoMode.environment` entries

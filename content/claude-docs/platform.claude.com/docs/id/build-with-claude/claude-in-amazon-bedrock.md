@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6d7e5a920420586385511f3987a0483dfe0d19c345ffe9e5a8cd558a8cf057bb
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: fbea174ad4d6e00f9c6824c91e738dfd49307e1139d1dbdb6ad6d8f3b843de69
 ---
 
 ---
@@ -339,17 +339,19 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 
 ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
-| Model                 | ID Model                        | Akses                                                                                                |
-| --------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.1      | anthropic.claude-fable-5-1      | Terbuka                                                                                              |
-| Claude Fable 5        | anthropic.claude-fable-5        | Terbuka                                                                                              |
-| Claude Opus 5.5       | anthropic.claude-opus-5-5       | Lihat [Akses](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 5         | anthropic.claude-opus-5         | Lihat [Akses](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 4.8       | anthropic.claude-opus-4-8       | Terbuka                                                                                              |
-| Claude Opus 4.7       | anthropic.claude-opus-4-7       | Terbuka                                                                                              |
-| Claude Sonnet 5       | `anthropic.claude-sonnet-5`     | Terbuka                                                                                              |
-| Claude Haiku 4.5      | anthropic.claude-haiku-4-5      | Terbuka                                                                                              |
-| Claude Mythos Preview | anthropic.claude-mythos-preview | Hanya dengan undangan ([Project Glasswing](https://anthropic.com/glasswing))                         |
+| Model                                                                           | Model ID                          | Access                                                                                              |
+| :------------------------------------------------------------------------------ | :-------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| Claude Fable 5.1                                                                | `anthropic.claude-fable-5-1`      | Open                                                                                                |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))     | `anthropic.claude-mythos-5-1`     | Invitation only                                                                                     |
+| Claude Fable 5                                                                  | `anthropic.claude-fable-5`        | Open                                                                                                |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))       | `anthropic.claude-mythos-5`       | Invitation only                                                                                     |
+| Claude Mythos Preview ([limited availability](https://anthropic.com/glasswing)) | `anthropic.claude-mythos-preview` | Invitation only                                                                                     |
+| Claude Opus 5.5                                                                 | `anthropic.claude-opus-5-5`       | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 5                                                                   | `anthropic.claude-opus-5`         | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 4.8                                                                 | `anthropic.claude-opus-4-8`       | Open                                                                                                |
+| Claude Opus 4.7                                                                 | `anthropic.claude-opus-4-7`       | Open                                                                                                |
+| Claude Sonnet 5                                                                 | `anthropic.claude-sonnet-5`       | Open                                                                                                |
+| Claude Haiku 4.5                                                                | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
 Gunakan Claude Code 2.1.255 atau yang lebih baru dengan Claude Fable 5.1 di Amazon Bedrock, dan 2.1.280 atau yang lebih baru dengan Claude Opus 5.5; jalankan `claude update` untuk memperbarui.
 

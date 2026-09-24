@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 61d49cad9f683589a36080e150cdc730919a9ab090766d23e7362a16adbc2a79
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0fca913d9ba75fb7ad8da9bd9f513fd3ec266ca7126e3a1db1d7a853a7ec5634
 ---
 
 ---
@@ -125,7 +125,9 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Model                                                                                                | Agent Platform API model ID  |
 | :--------------------------------------------------------------------------------------------------- | :--------------------------- |
 | Claude Fable 5.1                                                                                     | `claude-fable-5-1`           |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                          | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                       | `claude-fable-5`             |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                            | `claude-mythos-5`            |
 | Claude Opus 5.5                                                                                      | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                        | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                      | `claude-opus-4-8`            |

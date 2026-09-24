@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: aef06da86118525ddbc63d10380899541aad76680be73a71e6b6cea2b801c5dc
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: b36b26a0f95b5010d1a5ab9ca5170baeeeb5fe1d5e500ceeac48c2a4310afcc3
 ---
 
 ---
@@ -38,7 +38,7 @@ Tulis agen sebagai berkas Markdown di bawah `agents/`, lalu terapkan:
   </File>
 </MultiFileExample>
 
-Frontmatter berisi konfigurasi agen (bidang-bidang dari [Definisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sedangkan isi berkas menjadi prompt sistem agen tersebut. `ant apply` [menyimpulkan](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply#kind-inference) bahwa berkas tersebut adalah agen berdasarkan path-nya, dalam hal ini direktori `agents/`.
+Frontmatter berisi konfigurasi agen (bidang-bidang dari [Definisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sedangkan isi berkas menjadi "system prompt" (prompt sistem) agen tersebut. `ant apply` [menyimpulkan](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply#kind-inference) bahwa berkas tersebut adalah agen berdasarkan path-nya, dalam hal ini direktori `agents/`.
 
 Di terminal interaktif, `ant apply` mencetak rencana dan menunggu persetujuan Anda:
 
@@ -70,9 +70,9 @@ Resources  + 1 created
 State written to ./claude-lock.json
 ```
 
-Jawab `d` untuk melihat detailnya terlebih dahulu, yaitu bidang-bidang setiap sumber daya baru atau diff per bidang untuk setiap pembaruan. `--dry-run` mencetak rencana terperinci tersebut lalu keluar tanpa mengubah apa pun.
+Jawab `d` untuk melihat detailnya terlebih dahulu: bidang-bidang setiap sumber daya baru, atau diff per bidang untuk setiap pembaruan. `--dry-run` mencetak rencana terperinci tersebut dan keluar tanpa mengubah apa pun.
 
-Untuk mengubah agen, edit berkasnya dan jalankan `ant apply` lagi. Kali ini rencana akan menampilkan pembaruan, bukan pembuatan.
+Untuk mengubah agen, edit berkas tersebut dan jalankan `ant apply` lagi. Rencana kemudian menampilkan pembaruan alih-alih pembuatan.
 
 ## Commit claude-lock.json
 
@@ -102,16 +102,16 @@ Commit lockfile bersama berkas-berkas Anda. Dengan lockfile inilah eksekusi beri
 
 ## Kembangkan menjadi sebuah proyek
 
-Anda juga dapat mendefinisikan sumber daya lainnya secara deklaratif sebagai berkas. Sebuah berkas berisi body permintaan yang akan Anda kirim ke endpoint pembuatan untuk jenis sumber daya tersebut:
+Anda juga dapat mendefinisikan sumber daya lain secara deklaratif sebagai berkas. Sebuah berkas berisi body permintaan yang akan Anda kirim ke endpoint pembuatan untuk jenis tersebut:
 
-* [Lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) adalah berkas YAML di `environments/`.
-* [Penyimpanan memori](https://platform.claude.com/docs/id/managed-agents/memory) adalah berkas YAML di `memory_stores/`.
-* [Deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) adalah berkas Markdown di `deployments/`. Frontmatter-nya menjadi body permintaan, sedangkan teks prosanya menjadi pesan yang memulai setiap sesi.
-* [Skill](https://platform.claude.com/docs/id/managed-agents/skills) adalah direktori dengan `SKILL.md` di root-nya, yang lazimnya berada di bawah `skills/` dan diunggah sebagai satu bundel.
+* Sebuah [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) adalah berkas YAML di `environments/`.
+* Sebuah [penyimpanan memori](https://platform.claude.com/docs/id/managed-agents/memory) adalah berkas YAML di `memory_stores/`.
+* Sebuah [deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) adalah berkas Markdown di `deployments/`: frontmatter adalah body permintaan, dan teks prosa menjadi pesan yang memulai setiap sesi.
+* Sebuah [skill](https://platform.claude.com/docs/id/managed-agents/skills) adalah direktori dengan `SKILL.md` di root-nya, secara konvensional di bawah `skills/`, yang diunggah sebagai satu bundel.
 
-Semua sumber daya kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdown. Dalam Markdown, frontmatter menjadi body, sedangkan teks prosa mengisi bidang teks milik jenis sumber daya tersebut: `system` untuk agen, `description` untuk lingkungan atau penyimpanan memori, dan pesan pertama untuk deployment.
+Sumber daya apa pun kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdown. Dalam Markdown, frontmatter adalah body permintaan, dan teks prosa mengisi bidang teks dari jenis sumber daya tersebut: `system` untuk agen, `description` untuk lingkungan atau penyimpanan memori, dan pesan pertama untuk deployment.
 
-Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen lead mencantumkan `./reviewer.md` dalam daftar anggotanya, dan deployment menyebut agen, lingkungan, serta penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Proyek ini terdiri dari enam berkas:
+Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut sebagai gantinya. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen lead mencantumkan `./reviewer.md` dalam daftar anggotanya, dan deployment menyebutkan agen, lingkungan, dan penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Proyek ini memiliki enam berkas:
 
 <MultiFileExample variant="explorer">
   <File filename="agents/reviewer.md">
@@ -159,6 +159,7 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
 
   <File filename="environments/cloud.yaml">
     ```yaml
+    # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
     name: review-env
     description: Cloud container with unrestricted networking for review sessions.
     config:
@@ -170,6 +171,7 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
 
   <File filename="memory_stores/review-notes.yaml">
     ```yaml
+    # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
     name: Review notes
     description: Recurring issues and house-style decisions the reviewer has recorded between runs.
     ```
@@ -201,11 +203,11 @@ Terapkan seluruh direktori:
 ant apply .
 ```
 
-Setelah itu, `claude-lock.json` memiliki entri untuk setiap berkas dalam proyek.
+`claude-lock.json` kemudian memiliki entri untuk setiap berkas dalam proyek.
 
-Path relatif adalah cara berkas-berkas ini saling menunjuk. `ant apply` mengunci referensi agen dan skill ke versi yang baru saja diterapkannya. Dengan begitu, mengedit `reviewer.md` atau skill tersebut akan memperbarui semua yang mereferensikannya dalam eksekusi yang sama. Path juga dapat digunakan di dalam objek, seperti pada entri `resources` milik deployment, dan kunci lainnya seperti `access` tetap dipertahankan.
+Path relatif adalah cara berkas-berkas ini saling menunjuk. `ant apply` mengunci referensi agen dan skill ke versi yang baru saja diterapkannya, sehingga mengedit `reviewer.md` atau skill tersebut akan memperbarui semua yang mereferensikannya dalam eksekusi yang sama. Path juga berfungsi di dalam objek, seperti pada entri `resources` milik deployment, di mana kunci lain seperti `access` tetap dipertahankan.
 
-Untuk menunjuk sumber daya yang tidak dikelola oleh berkas-berkas ini, tuliskan ID-nya (`agent_...`, `skill_...`). Nilai lainnya, seperti `{type: anthropic, skill_id: xlsx}`, dikirim ke API apa adanya. Referensi skill juga dapat berupa URL GitHub dengan format `https://github.com/<owner>/<repo>/tree/<branch>/<dir>`, misalnya sebuah direktori di [repositori skill](https://github.com/anthropics/skills) open-source milik Anthropic. `ant apply` mengunduh lalu mengunggah direktori tersebut, dan menguncinya ke commit yang telah di-resolve hingga Anda menjalankan perintah dengan `--upgrade` (atur `GITHUB_TOKEN` untuk repositori privat).
+Untuk menunjuk ke sumber daya yang tidak dikelola oleh berkas-berkas ini, tuliskan ID-nya (`agent_...`, `skill_...`) sebagai gantinya. Hal lain, seperti `{type: anthropic, skill_id: xlsx}`, dikirim ke API sebagaimana tertulis. Referensi skill juga dapat berupa URL GitHub dengan format `https://github.com/<owner>/<repo>/tree/<branch>/<dir>`, misalnya direktori dari [repositori skills](https://github.com/anthropics/skills) open-source milik Anthropic: `ant apply` mengunduh dan mengunggah direktori tersebut, dikunci ke commit yang telah di-resolve hingga Anda menjalankannya dengan `--upgrade` (atur `GITHUB_TOKEN` untuk repositori privat).
 
 ### Cara ant apply menyimpulkan jenis berkas
 

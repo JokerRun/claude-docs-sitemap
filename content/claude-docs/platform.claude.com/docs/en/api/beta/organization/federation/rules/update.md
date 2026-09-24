@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 83683f267a218faef6b45d0bf1df1797720607a6908e318133c5b482f6cbd765
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 3eb6f4a4c68cf67b529747ed855f1fe0cfdf5fc2fabdc396d75c047ad7a0ec8a
 ---
 
 ---
@@ -48,7 +48,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -141,6 +141,10 @@ Console session.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Body parameters
 

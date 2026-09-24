@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-6/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 65305c463751b8e9456ea3c1ff156451c78ad758785db9af2e0645a26d98d724
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: cb5b6b98e0f5ed414985c9bdf592bf9af461490b90706ca3cf73a5c00bbbaa84
 ---
 
 ---
 title: Claude Opus 4.6
 url: https://platform.claude.com/docs/id/models/opus-4-6/overview
-description: "Referensi Claude Opus 4.6: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.6 adalah model lama; Claude Opus 5.5 adalah model Opus saat ini."
+description: "Referensi Claude Opus 4.6: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.6 adalah model lama (legacy); Claude Opus 5.5 adalah model Opus saat ini."
 ---
 
 **Legacy.** Released February 5, 2026.
 
-Although Claude Opus 4.6 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide)
+Although Claude Opus 4.6 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46)
 
 Model ID: `claude-opus-4-6`
 
@@ -52,15 +52,16 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 
 ### Pricing
 
-| Feature                                                                                | Value                                                               |
-| :------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Input                                                                                  | $5 / MTok                                                           |
-| Output                                                                                 | $25 / MTok                                                          |
-| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6.25 / MTok                                                        |
-| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $10 / MTok                                                          |
-| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.50 / MTok                                                        |
-| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output                                    |
-| Full price list                                                                        | [Pricing](https://platform.claude.com/docs/id/about-claude/pricing) |
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $5 / MTok                        |
+| Output                                                                                 | $25 / MTok                       |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $6.25 / MTok                     |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $10 / MTok                       |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.50 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
 
 ### Capabilities
 
@@ -87,8 +88,8 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Migrasi ke Claude Opus 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47">
-    Apa yang berubah saat beralih dari Claude Opus 4.7 dan model Opus sebelumnya ke Claude Opus 5.5.
+  <Card title="Migrasi ke Claude Opus 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46">
+    Apa yang berubah saat beralih dari Claude Opus 4.6 ke Claude Opus 5.5.
   </Card>
 
   <Card title="Claude Opus 5.5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/opus-5-5/overview">

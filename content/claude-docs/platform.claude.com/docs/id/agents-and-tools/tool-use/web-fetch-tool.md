@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 277d871fea1931c456765e0b434ad9bf6c8dc277ba5af23d8830fb353db22b47
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: fbf9429de699dd3459ac1b558fbadf91e5651b8139f8f7f61cd136d7e5ad1bd7
 ---
 
 ---
@@ -39,6 +39,8 @@ Untuk kelayakan Zero Data Retention dan solusi alternatif `allowed_callers`, lih
   * URL dalam pesan pengguna
   * URL dalam hasil alat sisi klien (termasuk ketika hasil tersebut mengulang teks yang dihasilkan Claude)
   * URL dari hasil web search atau web fetch sebelumnya (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
+
+  Claude juga tidak dapat mengambil URL yang tampaknya berisi kredensial, seperti kunci API atau kata sandi, kecuali kredensial tersebut muncul dalam "system prompt" (prompt sistem) atau dalam teks pesan pengguna.
 
   Meski demikian, masih ada risiko tersisa yang perlu Anda pertimbangkan dengan cermat saat menggunakan alat ini.
 
@@ -661,7 +663,7 @@ Berikut kode error yang mungkin muncul:
 
 * `invalid_tool_input`: Input alat tidak valid, misalnya URL yang formatnya salah atau skema selain HTTP(S)
 * `url_too_long`: URL melebihi panjang maksimum (250 karakter)
-* `url_not_allowed`: URL diblokir oleh aturan pemfilteran domain (termasuk pengaturan organisasi Anda) atau oleh pembatasan dari sisi Anthropic, seperti alamat privat dan `robots.txt`
+* `url_not_allowed`: URL diblokir oleh aturan pemfilteran domain (termasuk pengaturan organisasi Anda) atau oleh pembatasan dari sisi Anthropic, seperti alamat privat, `robots.txt`, dan URL yang tampaknya berisi kredensial yang tidak Anda berikan
 * `url_not_in_prior_context`: URL belum pernah muncul sebelumnya dalam percakapan (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
 * `url_not_accessible`: Gagal mengambil konten (error HTTP)
 * `too_many_requests`: "Rate limit" (batas laju) terlampaui
@@ -677,11 +679,13 @@ Demi keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya sudah mu
 * URL dalam hasil alat sisi klien
 * URL dari hasil web search atau web fetch sebelumnya
 
-Alat ini tidak dapat mengambil URL yang hanya muncul dalam output Claude sendiri atau hanya dalam "system prompt" (prompt sistem). Agar URL dari prompt sistem dapat diambil, sertakan juga URL tersebut dalam pesan pengguna.
+Alat ini tidak dapat mengambil URL yang hanya muncul dalam output Claude sendiri atau hanya dalam prompt sistem. Agar URL dari prompt sistem dapat diambil, sertakan juga URL tersebut dalam pesan pengguna.
 
 Hasil dari alat sisi server lainnya juga bukan sumber yang diizinkan. Contohnya adalah [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), [konektor "Model Context Protocol", atau MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), dan [tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 Sebaliknya, hasil alat sisi klien tetap merupakan sumber yang diizinkan, bahkan ketika hasil tersebut mengulang teks yang dihasilkan Claude. Contohnya adalah perintah yang mencetak input-nya, atau pesan error yang mengutip input tersebut.
+
+Alat ini juga menolak URL yang tampaknya berisi kredensial, seperti kunci API atau kata sandi, kecuali kredensial tersebut muncul dalam prompt sistem atau dalam teks pesan pengguna. Kredensial yang hanya muncul dalam hasil alat tidak diperhitungkan. Dalam kasus ini, hasilnya adalah error `url_not_allowed`. Untuk mengambil URL semacam itu, sertakan URL tersebut dalam pesan pengguna.
 
 ## Gabungan pencarian dan fetch
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 2fa8d753c4a56e6420f33ca5a6909a459528a27fe45be9f1fcc7ea81f726e807
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 57c8c3c1f2bf982bfc76879c2f45011d6ea171e17630e65d1b19086304510841
 ---
 
 ---
@@ -24,7 +24,7 @@ Create Workspace
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -117,6 +117,10 @@ Create Workspace
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Body parameters
 

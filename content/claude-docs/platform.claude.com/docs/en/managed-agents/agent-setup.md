@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 79238f7545cc38dcb4c1cb629022147e5ed5caf01af627205bde049c6a5323e7
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 677f9f76a48c76ab46a1e6bb0b8487864409dad7930182a8973d832a3134cbde
 ---
 
 ---
@@ -478,7 +478,7 @@ With the CLI, edit the agent's file and run `ant apply` again; apply supplies `v
 
 The preceding example supplies `version` from the create response, so the update only applies if nothing else has changed the agent since you read it. To apply an update unconditionally, omit `version` from the request:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI, python, typescript, csharp, go, java, php, ruby">
   ```bash cURL
   updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

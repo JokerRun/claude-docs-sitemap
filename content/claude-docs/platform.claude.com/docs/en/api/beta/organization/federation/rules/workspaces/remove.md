@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6b04e2e238b654d888243bbb70c02c849e76661474bd091cb9998bd0f7918ab5
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 44243e6093693aa384a6903c2c643e433df22943c122eeba3267b23d651512f7
 ---
 
 ---
@@ -41,7 +41,7 @@ Console session.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -134,6 +134,10 @@ Console session.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 ## Returns
 

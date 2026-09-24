@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: c9d63745241928252951155fd9168e02986c527c665779691bf43bd97ce81a2b
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: d15e4a152e8a4cf38ff0af39789a5b663045c5497b2e7b618de265a37d2f5ab6
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: c9d63745241928252951155fd9168e02986c527c665779691bf43bd97ce81a2b
 > Configure cloud environments for Claude Code cloud sessions: network access levels, environment variables, setup scripts, and environment caching.
 
 <Note>
-  Cloud environments apply to [cloud sessions](/docs/en/claude-code-on-the-web), which are in research preview for Pro, Max, and Team users, and for Enterprise users with [premium seats or Chat + Claude Code seats](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan).
+  Cloud environments apply to [cloud sessions](/docs/en/claude-code-on-the-web), which are available on Pro, Max, and Team plans, and for Enterprise users with [premium seats or Chat + Claude Code seats](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan).
 </Note>
 
 Each [cloud session](/docs/en/claude-code-on-the-web) runs in a cloud environment. You can configure an environment to allow or deny [network access](#access-levels), [set environment variables](#set-environment-variables) for the session, on Pro and Max plans store [API credentials](#add-api-credentials) that sessions use without seeing them, and run a [setup script](#setup-scripts) before Claude starts working.

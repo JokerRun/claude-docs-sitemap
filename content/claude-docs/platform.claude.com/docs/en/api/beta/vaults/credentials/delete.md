@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: bba955ec99a676829d029fc287806eaa26f2d6460cc99dec9fc10d2c370bb9ae
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: c9904759073c310cfca4caaa39614193299e0ef39cd90afb90932dcb47acdb45
 ---
 
 ---
@@ -34,7 +34,7 @@ Delete Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Delete Credential
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 9935e72d1f1494474bab1d83bb98eb3f63269ae4df0ad2a47872ceaaa837600f
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: bd1593aabe059e69a8e5b53c632948695da299f397e6e107d0eef5c969ea77b4
 ---
 
 ---
@@ -36,7 +36,7 @@ Fetches a tunnel certificate by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -129,6 +129,10 @@ Fetches a tunnel certificate by ID.
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

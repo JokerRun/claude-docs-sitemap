@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 44f97ad4ce7a00af1a53caa7da16ed777aff1a23096394d2a5022d8929eb6a33
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 2767f2e5be2dc41ef5d05bae5b9ee8b0a726276377367b85d1812374587bba23
 ---
 
 ---
@@ -34,7 +34,7 @@ Archive Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -127,6 +127,10 @@ Archive Credential
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

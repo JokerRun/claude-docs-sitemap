@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 77ffa5bfe24efd95b367b8c4b08b4592e236658a987c5d5e28aebc06bd631655
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 0099de7b2a1c8f63236097fa74ee8881128e7283694d4c801be2369c70327f25
 ---
 
 ---
@@ -32,7 +32,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -125,6 +125,10 @@ The Models API response can be used to determine information about a specific mo
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

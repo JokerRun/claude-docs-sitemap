@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: e87132a05557e8c84235a6d78ea19139ea1e055614ae23487ac9188141e718e8
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: ee199f2a49dfe1b5373057b0cb327d5db81944cbba074a17b7eb2965e96570b2
 ---
 
 ---
@@ -44,7 +44,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -137,6 +137,10 @@ The Models API response can be used to determine which models are available for 
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

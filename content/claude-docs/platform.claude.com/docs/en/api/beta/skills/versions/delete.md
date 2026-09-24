@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 36c84ddee241d53296102e100d49506a30bc911afbebbbe693c1f8cda417faff
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: f0fb86ecf600a923cc83aa7a9c03bf1866d4a83a5d151d3e8e264ae35f70fd3e
 ---
 
 ---
@@ -38,7 +38,7 @@ Delete Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -131,6 +131,10 @@ Delete Skill Version
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

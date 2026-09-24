@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: d50ac0f3c3e6481004982185f705b168b2f207670d84345efa89554f31d6f838
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 41fb6f92e72b96d43a931ad8feb164234c51efb69746df30f7e720b1eaf0f340
 ---
 
 ---
@@ -81,7 +81,7 @@ A **spend limit increase request** is created when a member clicks **Request mor
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `pending`  | Awaiting admin action. The request normally carries a live `spend_summary` so you can see the member's current effective spend limit and period-to-date spend while deciding; `spend_summary` may be `null` if it could not be computed. |
 | `approved` | The request was resolved with approval: either an admin approved it explicitly, another admin action raised the member's spend limit, or Anthropic support raised a spend limit on the organization's behalf. `spend_summary` is `null`. |
-| `denied`   | An admin declined. `spend_summary` is `null`. claude.ai hides that member's request button for 30 days from `resolved_at`; an admin can still raise the member's spend limit directly at any time.                                       |
+| `denied`   | An admin declined. `spend_summary` is `null`. The member can send a new request right away; only a `pending` request blocks a new one. An admin can still raise the member's spend limit directly at any time.                           |
 
 Both `approved` and `denied` are terminal. A member has at most one `pending` request at a time.
 

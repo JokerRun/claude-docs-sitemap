@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 136c7ce5fc74137d25a948f833adfeb9f64bf9bc56718f0b7eb81a59059ad261
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 1fcb5c119b02db8ddbdbeaa2081638f48aa9f5d8d122a91038c56b5cc4899701
 ---
 
 ---
@@ -682,20 +682,22 @@ Lifecycle terms (Deprecated, Retired) are defined in [Model deprecations](https:
 
 The following Claude models are available through Foundry:
 
-| Model             | Default deployment name | Hosted on Azure | Hosted on Anthropic |
-| :---------------- | :---------------------- | :-------------: | :-----------------: |
-| Claude Fable 5.1  | `claude-fable-5-1`      |                 |          ✓          |
-| Claude Fable 5    | `claude-fable-5`        |                 |          ✓          |
-| Claude Opus 5.5   | `claude-opus-5-5`       |        ✓        |          ✓          |
-| Claude Opus 5     | `claude-opus-5`         |        ✓        |          ✓          |
-| Claude Opus 4.8   | `claude-opus-4-8`       |        ✓        |          ✓          |
-| Claude Opus 4.7   | `claude-opus-4-7`       |                 |          ✓          |
-| Claude Opus 4.6   | `claude-opus-4-6`       |                 |          ✓          |
-| Claude Opus 4.5   | `claude-opus-4-5`       |                 |          ✓          |
-| Claude Sonnet 5   | `claude-sonnet-5`       |        ✓        |          ✓          |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6`     |                 |          ✓          |
-| Claude Sonnet 4.5 | `claude-sonnet-4-5`     |                 |          ✓          |
-| Claude Haiku 4.5  | `claude-haiku-4-5`      |        ✓        |          ✓          |
+| Model                                                                       | Default deployment name | Hosted on Azure | Hosted on Anthropic |
+| :-------------------------------------------------------------------------- | :---------------------- | :-------------: | :-----------------: |
+| Claude Fable 5.1                                                            | `claude-fable-5-1`      |                 |          ✓          |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing)) | `claude-mythos-5-1`     |                 |          ✓          |
+| Claude Fable 5                                                              | `claude-fable-5`        |                 |          ✓          |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))   | `claude-mythos-5`       |                 |          ✓          |
+| Claude Opus 5.5                                                             | `claude-opus-5-5`       |        ✓        |          ✓          |
+| Claude Opus 5                                                               | `claude-opus-5`         |        ✓        |          ✓          |
+| Claude Opus 4.8                                                             | `claude-opus-4-8`       |        ✓        |          ✓          |
+| Claude Opus 4.7                                                             | `claude-opus-4-7`       |                 |          ✓          |
+| Claude Opus 4.6                                                             | `claude-opus-4-6`       |                 |          ✓          |
+| Claude Opus 4.5                                                             | `claude-opus-4-5`       |                 |          ✓          |
+| Claude Sonnet 5                                                             | `claude-sonnet-5`       |        ✓        |          ✓          |
+| Claude Sonnet 4.6                                                           | `claude-sonnet-4-6`     |                 |          ✓          |
+| Claude Sonnet 4.5                                                           | `claude-sonnet-4-5`     |                 |          ✓          |
+| Claude Haiku 4.5                                                            | `claude-haiku-4-5`      |        ✓        |          ✓          |
 
 By default, deployment names match the model IDs shown in the preceding table. However, you can create custom deployments with different names in the Foundry portal to manage different configurations, versions, or rate limits. Use the deployment name (not necessarily the model ID) in your API requests.
 

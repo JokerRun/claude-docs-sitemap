@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 347680a7d1d9aebb740542832630f282a94114f55524afba797bdd2162776913
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 34519a3f7fb0fa17f361985e448a84d8e8eb357a5bbf7b727ea6117697ed9378
 ---
 
 ---
@@ -42,7 +42,7 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 43 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 45 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -135,6 +135,10 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
     - `"mid-conversation-system-clear-at-2026-08-21"`
 
     - `"compact-2026-09-04"`
+
+    - `"inline-tools-2026-09-15"`
+
+    - `"mcp-client-2026-09-15"`
 
 - `"anthropic-workspace-id": optional string`
 

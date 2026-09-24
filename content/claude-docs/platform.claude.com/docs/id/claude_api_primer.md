@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 589e7ab48c6f9ac34e1e295ce1b8f91ab14d3f0d6aedc761419db29a2871cb4a
+fetched_at: 2026-09-24T02:21:35.920672Z
+sha256: 4117c84cbf5bf12de58901bfe23e0785215bf22f59d006d88d37baec9cc2ec60
 ---
 
 ---
@@ -250,6 +250,7 @@ Temperature harus diatur ke 1 (atau dibiarkan tidak diatur) setiap kali thinking
 
 Thinking didukung pada model-model berikut:
 
+* Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
 * Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
 * Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
 * Claude Opus 4.8 (claude-opus-4-8, hanya adaptive thinking)
