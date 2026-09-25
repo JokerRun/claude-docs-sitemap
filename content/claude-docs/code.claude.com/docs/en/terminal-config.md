@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 91c89a78b935c7606949e19462ccf2029a0ac01c6aba6c35bf41a9474a3ecd14
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 367f9563fbfbf7e91a2d2e243a0555f4a5336d3086128c60e08e440d511c9d9c
 ---
 
 > ## Documentation Index
@@ -147,7 +147,7 @@ To customize what appears at the bottom of the interface, configure a [custom st
 
 ### Create a custom theme
 
-In addition to the built-in presets, `/theme` lists any custom themes you have defined and any themes contributed by installed [plugins](/docs/en/plugins-reference#themes). Select **New custom theme…** at the end of the list to create one interactively: you name the theme, then pick individual color tokens to override. Press `Ctrl+E` while a custom theme is highlighted to edit it.
+In addition to the built-in presets, `/theme` lists any custom themes you have defined and any themes contributed by installed [plugins](/docs/en/plugins/components#themes-and-output-styles). Select **New custom theme…** at the end of the list to create one interactively: you name the theme, then pick individual color tokens to override. Press `Ctrl+E` while a custom theme is highlighted to edit it.
 
 Each custom theme is a JSON file in `~/.claude/themes/`. The filename without the `.json` extension is the theme's slug, and selecting the theme stores `custom:<slug>` as your theme preference. The file has three optional fields:
 

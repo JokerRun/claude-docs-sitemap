@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-library
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 269f72f373591c655b5be922a87303e08244aeeaa033fb001d19876a8e021003
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 67b1e5011a5aeafb69109bb91b6a7569faa4b3ba7d7407aaf21e95be190f02d4
 ---
 
 > ## Documentation Index
@@ -1209,7 +1209,7 @@ export const text = {
   },
   "migrate-a-pattern-across": {
     title: "Migrate a pattern across the codebase",
-    teaches: "Describe the old pattern and the new one. Asking Claude to identify every place first means the call sites are listed in the response, so you can check none were missed. For a migration across many files, run [/batch](/docs/en/commands). Claude splits the work into units for you to approve, then background subagents make the changes and open one pull request per unit."
+    teaches: "Describe the old pattern and the new one. Asking Claude to identify every place first means the call sites are listed in the response, so you can check none were missed. For a migration across many files, run [/batch](/docs/en/commands). Claude splits the work into units for you to approve, then background subagents make the changes."
   },
   "optimize-against-a-measurable": {
     title: "Optimize against a measurable target",

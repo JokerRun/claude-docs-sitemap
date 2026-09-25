@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c86f7d59a61c3516743dada168cfde9ba0fa227049513d6473a1373f423c8123
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 88e2081eb024f4a5d6b20916f2124968037a0bd57d8d1467a1cbb35c2ee22703
 ---
 
 ---
@@ -19,6 +19,14 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 24 September 2026
+
+* Kami memperluas cakupan penolakan yang ditagih sehingga mencakup penolakan yang tiba sebelum output apa pun ketika `stop_details.category` bernilai `"bio"`, `"frontier_llm"`, atau `"reasoning_extraction"`, yaitu kategori dengan volume "false positive" (positif palsu) yang terukur rendah. Penolakan di tengah stream sudah ditagih sebelumnya. Penolakan yang kini ditagih dikenakan biaya seperti permintaan lainnya, sesuai tarif model yang menjalankannya. Penolakan sebelum output apa pun dalam kategori lain tetap tidak ditagih, dan kredit fallback tidak berubah. Perubahan ini berlaku di semua platform. Lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
+
+### 23 September 2026
+
+* [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics) telah keluar dari beta di Claude API dan tidak lagi memerlukan header beta `cache-diagnosis-2026-04-07`. Sertakan objek `diagnostics` pada permintaan Messages untuk mengaktifkannya; permintaan yang masih mengirim header tersebut tetap berfungsi seperti sebelumnya. Respons dari `POST /v1/messages` kini selalu menyertakan field `diagnostics`, yang bernilai `null` jika permintaan tidak menyertakan objek `diagnostics`.
+
 ### 22 September 2026
 
 * Kami telah meluncurkan **Claude Opus 5.5** (`claude-opus-5-5`), model untuk "agentic coding" (pemrograman agentik) jangka panjang dan pekerjaan berbasis pengetahuan. Model ini memiliki ["context window" (jendela konteks) sebesar 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) secara default, maksimum 128k token output, dan ["adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif, dengan harga $4 / $20 USD per MTok (Claude Opus 5 seharga $5 / $25). Claude Opus 5.5 tersedia di Claude API, [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5) untuk kemampuan, perubahan API, dan panduan migrasi.
@@ -28,6 +36,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 18 September 2026
 
+* Untuk [diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics), respons terhadap permintaan yang mengirim header beta `cache-diagnosis-2026-04-07` kini selalu menyertakan field `diagnostics`. Field tersebut bernilai `null` jika permintaan tidak menyertakan objek `diagnostics`. Sebelumnya, field tersebut dihilangkan dalam kasus itu.
 * Endpoint sesi lokal [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini juga mengembalikan transkrip sesi Claude in Chrome (nilai `product_surface` `claude_in_chrome`), dalam beta untuk organisasi Claude Enterprise, dengan Compliance Access Key Anda yang sudah ada dan scope `read:compliance_user_data`. Lihat [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions).
 
 ### 14 September 2026
@@ -39,6 +48,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 * Kebijakan izin Claude Managed Agents kini menyertakan `auto`: server mengevaluasi setiap panggilan alat agen atau MCP lalu menjalankannya, menolaknya, atau menjeda untuk menunggu persetujuan Anda. Event `agent.tool_use` dan `agent.mcp_tool_use` melaporkan bagaimana setiap panggilan dievaluasi dalam field `evaluation` di samping `evaluated_permission`. Lihat [Biarkan server mengevaluasi setiap panggilan dengan `auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto).
 * Versi 1.32.0 dari CLI `ant` menambahkan `ant beta:sessions connect`, yang menghubungkan terminal Anda ke sesi Claude Managed Agents. Anda dapat mengikuti sesi secara langsung, mengirim pesan, serta mengizinkan atau menolak panggilan alat yang sedang menunggu persetujuan. Berikan `--web` untuk menyajikan penampil sesi Claude Console secara lokal dan membuka sesi di sana sebagai gantinya. Lihat [Hubungkan ke sesi Managed Agents dari terminal Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect).
+
+### 9 September 2026
+
+* Untuk [diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics), API kini hanya menyimpan fingerprint permintaan jika permintaan tersebut menyertakan objek `diagnostics`. Permintaan yang hanya mengirim header beta `cache-diagnosis-2026-04-07` tetap diterima, tetapi tidak ada fingerprint yang disimpan. Giliran berikutnya yang mengarahkan `previous_message_id` ke permintaan tersebut akan melaporkan `previous_message_not_found`. Sertakan `diagnostics` pada setiap giliran, dengan `"previous_message_id": null` pada giliran pertama.
 
 ### 3 September 2026
 

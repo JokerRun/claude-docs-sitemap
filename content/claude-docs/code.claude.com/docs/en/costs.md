@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0a5e6c706ac1ac7501867af5fdae3468430f45a79b2fdaf9b9d0f5b5efba8ead
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 7dba054db48be060f6e646780667cf132a9b4825f14e5d12dead0adb0cd558a7
 ---
 
 > ## Documentation Index
@@ -255,7 +255,7 @@ MCP tool definitions are [deferred by default](/docs/en/mcp#scale-with-mcp-tool-
 
 ### Install code intelligence plugins for typed languages
 
-[Code intelligence plugins](/docs/en/discover-plugins#code-intelligence) give Claude precise symbol navigation instead of text-based search, reducing unnecessary file reads when exploring unfamiliar code. A single "go to definition" call replaces what might otherwise be a grep followed by reading multiple candidate files. Installed language servers also report type errors automatically after edits, so Claude catches mistakes without running a compiler.
+[Code intelligence plugins](/docs/en/plugins/code-intelligence) give Claude precise symbol navigation instead of text-based search, reducing unnecessary file reads when exploring unfamiliar code. A single "go to definition" call replaces what might otherwise be a grep followed by reading multiple candidate files. Installed language servers also report type errors automatically after edits, so Claude catches mistakes without running a compiler.
 
 ### Offload processing to hooks and skills
 
@@ -351,6 +351,8 @@ Claude Code uses tokens for some background functionality even when idle:
 * **Command processing**: Some commands like `/usage` may generate requests to check status
 
 These background processes consume a small amount of tokens (typically under \$0.04 per session) even without active interaction.
+
+When prompt suggestions are on, Claude Code also sends a short request to the model your session is using after Claude responds, to [suggest your next prompt](/docs/en/interactive-mode#prompt-suggestions). That request reuses the conversation's prompt cache, so it is mostly cache reads plus a few output tokens. Claude Code [skips it while your account is close to or at its usage limit](/docs/en/interactive-mode#when-claude-code-skips-suggestions). To stop these requests, [turn prompt suggestions off](/docs/en/interactive-mode#turn-prompt-suggestions-off).
 
 ## Why usage climbs in a long session
 

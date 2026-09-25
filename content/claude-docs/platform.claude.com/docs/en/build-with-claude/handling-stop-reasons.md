@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9209b030f3a25d63f3fc0d90e050588394378d2d2a4a65cc34f80a1854b5ac8d
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: aed6ed6b47b6d9924654ebe0a7dfda7337ee27662182bb5bff2b0e7597cde219
 ---
 
 ---
@@ -1960,7 +1960,7 @@ A refused request on Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, or Claud
 Claude stopped because it reached the model's context window limit. This lets you request the maximum possible tokens without knowing the exact input size.
 
 <Note>
-  This stop reason is currently typed only in the SDKs' `beta` namespace, so the following examples call `client.beta.messages` and use the `Beta`-prefixed types. On Sonnet 4.5 and newer models the API returns this value without a beta header. For earlier models, add the `model-context-window-exceeded-2025-08-26` beta header to enable it.
+  This stop reason is currently typed only in the SDKs' `beta` namespace, so the following examples call `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) and use the `Beta`-prefixed types. On Sonnet 4.5 and newer models the API returns this value without a beta header. For earlier models, add the `model-context-window-exceeded-2025-08-26` beta header to enable it.
 </Note>
 
 <CodeGroup>

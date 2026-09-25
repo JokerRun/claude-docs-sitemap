@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 2cc87bb794f9e3095039377a65794e948608c76ece831ee2634f5e8599aa36e1
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: ed080236f90e9658bebed6f6da51372a1b634fa1f207b0522786fdaf1e29a6b2
 ---
 
 > ## Documentation Index
@@ -20,13 +20,13 @@ Plugins let you extend Claude Code with custom functionality that can be shared 
 * **Hooks**: event handlers that respond to tool use and other events
 * **MCP servers**: external tool integrations via Model Context Protocol
 
-For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins).
+For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins/overview).
 
 ## Loading plugins
 
 Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. The SDK supports loading multiple plugins from different locations.
 
-To use a plugin distributed through a [marketplace](/docs/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
+To use a plugin distributed through a [marketplace](/docs/en/plugins/overview) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -139,7 +139,7 @@ When plugins load successfully, they appear in the system initialization message
   ```
 </CodeGroup>
 
-## Using plugin skills
+## Use plugin skills
 
 Skills from plugins are automatically namespaced with the plugin name to avoid conflicts. To invoke one directly, send `/plugin-name:skill-name` as the prompt.
 
@@ -337,8 +337,8 @@ If plugin skills don't work:
 
 ## See also
 
-* [Plugins](/docs/en/plugins) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins-reference) - Technical specifications
+* [Plugins](/docs/en/plugins/overview) - Complete plugin development guide
+* [Plugins reference](/docs/en/plugins/manifest-reference) - Technical specifications
 * [Commands](/docs/en/agent-sdk/skills#dispatch-commands-by-name) - Dispatching commands in the SDK
 * [Subagents](/docs/en/agent-sdk/subagents) - Working with specialized agents
 * [Skills](/docs/en/agent-sdk/skills) - Using Agent Skills

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 86bb9c05ee88e65813693653709a150d1d0ed617669fa3d678db71e2305fcab5
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 89fe06bf317d7b4615f2074177dcb63d18164e140a80ac836722b4a4a83cd9cb
 ---
 
 ---
@@ -1223,6 +1223,17 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             maxLength: 64, minLength: 1
 
       - `string`
+
+    - `diagnostics: optional DiagnosticsParam or null`
+
+      Request-level diagnostics. Currently carries the previous response
+      id for prompt-cache divergence reporting.
+
+      - `previous_message_id: optional string or null`
+
+        The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
+
+        maxLength: 256
 
     - `inference_geo: optional string or null`
 

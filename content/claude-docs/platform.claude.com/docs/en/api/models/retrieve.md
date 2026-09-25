@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 00aa479d461a8254a3af116261e1e25fe8af6eea92cab204864875c9fc3092e5
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 34f9eca87ad59e1fed39121ab07dfba623d205fd88b6a5e85f477cdab0ab0017
 ---
 
 ---
@@ -26,7 +26,15 @@ The Models API response can be used to determine information about a specific mo
 
 ## Headers
 
+- `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 - `"anthropic-beta": optional array of AnthropicBeta`
+
+  **Deprecated**: Deprecated. This parameter will be removed from this method in a future release. To use beta features, call the beta models methods (`client.beta.models`) instead.
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -129,12 +137,6 @@ The Models API response can be used to determine information about a specific mo
     - `"inline-tools-2026-09-15"`
 
     - `"mcp-client-2026-09-15"`
-
-- `"anthropic-workspace-id": optional string`
-
-  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
-
-  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ## Returns
 

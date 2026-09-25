@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 62d856729e3fb1942886646ad2ec79f1c5dabe9ec46ba399f28d5dbc8bb64f1a
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: f9fd658394b62295a48af95ab8c2db68876da81774e8b93ea39b3c2419428379
 ---
 
 ---
@@ -1006,7 +1006,7 @@ For `mcp_oauth` credentials, re-resolution also refreshes the access token if it
 
 ### Diagnose an OAuth refresh failure
 
-To diagnose why a refresh failed, call `POST /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate` (or `client.beta.vaults.credentials.mcp_oauth_validate(...)` in the SDK). This lets you decide how to handle the failure; the right action depends on the error type.
+To diagnose why a refresh failed, call `POST /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate` (or `client.beta.vaults.credentials.mcp_oauth_validate(...)` (typescript: `client.beta.vaults.credentials.mcpOAuthValidate(...)`; csharp: `client.Beta.Vaults.Credentials.McpOAuthValidate(...)`; go: `client.Beta.Vaults.Credentials.MCPOAuthValidate(...)`; java: `client.beta().vaults().credentials().mcpOAuthValidate(...)`; php: `$client->beta->vaults->credentials->mcpOAuthValidate(...)`) in the SDK). This lets you decide how to handle the failure; the right action depends on the error type.
 
 The top-level `status` tells you what to do next:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 5b89d403c7c6d3dbe6fcc5ef566f535023df665c44dea3e7ac910ecb584723e5
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 518c460d63fb3877908c370ab432dd088b943eacc8e314e0e526a0c08f939373
 ---
 
 ---
@@ -118,7 +118,7 @@ A webhook endpoint consists of:
 
 ## Verify the signature
 
-Every delivery carries the `webhook-id`, `webhook-timestamp`, and `webhook-signature` headers. Use the SDK's `unwrap()` helper to verify the signature and parse the event in one step. It throws if the signature is invalid or the payload is more than 5 minutes old.
+Every delivery carries the `webhook-id`, `webhook-timestamp`, and `webhook-signature` headers. Use the SDK's `unwrap()` (csharp, go: `Unwrap()`) helper to verify the signature and parse the event in one step. It throws if the signature is invalid or the payload is more than 5 minutes old.
 
 Set `ANTHROPIC_WEBHOOK_SIGNING_KEY` to the `whsec_`-prefixed secret shown at endpoint creation.
 

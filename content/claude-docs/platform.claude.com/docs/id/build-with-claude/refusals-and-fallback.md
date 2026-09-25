@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9256676674bab6f7855d20c0916974f96ab07e39c67c186bcc2c4ebf0de11626
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 1ead3f72e0fbd5600fa8ff0926ca62f4c77d7797f3a79bec1e64085bbc37e12d
 ---
 
 ---
@@ -187,19 +187,27 @@ Objek `stop_details` menjelaskan penolakan tersebut:
 * `category` dan `explanation` keduanya `null` ketika penolakan tidak terpetakan ke kategori bernama. Nilai `null` itu adalah nilai normal dan permanen, bukan placeholder.
 * `stop_details` sendiri bernilai `null` untuk setiap stop reason selain `refusal`.
 
-| `category`               | Artinya                                                                                                                                                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"cyber"`                | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini.                                                                                  |
-| `"bio"`                  | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini.                                                                                           |
-| `"frontier_llm"`         | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini. |
-| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).              |
-| `"general_harms"`        | Permintaan termasuk dalam area kebijakan penggunaan di luar empat kategori bernama. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                    |
+| `category`               | Artinya                                                                                                                                                                                                                                               | Ditagih sebelum output apa pun |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `"cyber"`                | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini.                                                                                  | Tidak                          |
+| `"bio"`                  | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini.                                                                                           | Ya                             |
+| `"frontier_llm"`         | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini. | Ya                             |
+| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).              | Ya                             |
+| `"general_harms"`        | Permintaan termasuk dalam area kebijakan penggunaan di luar empat kategori bernama. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                    | Tidak                          |
 
 Penolakan dapat tiba sebelum output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
 
-<Note>
-  **Bagaimana penolakan ditagih:** Anda tidak ditagih untuk penolakan yang tiba sebelum output apa pun. `content` kosong, dan jumlah token muncul di `usage` tetapi tidak dikenakan biaya. Permintaan tetap dihitung terhadap batas laju Anda. Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal.
-</Note>
+## Cara penolakan ditagih
+
+Aturan penagihan ini berlaku di setiap platform: Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry.
+
+**Penolakan sebelum output apa pun:** Untuk menghambat upaya mengakali pengamanan Anthropic dalam skala besar, penolakan yang tiba sebelum output apa pun ditagih jika `stop_details.category`-nya adalah `"bio"`, `"frontier_llm"`, atau `"reasoning_extraction"`. Per September 2026, ini adalah kategori dengan volume "false positive" (positif palsu) yang rendah menurut pengukuran Anthropic. Penolakan ini ditagih seperti permintaan lainnya, dengan tarif model yang menjalankannya. Penolakan sebelum output apa pun dalam kategori lain, atau dengan kategori `null`, tidak ditagih. Dalam kedua kasus, `content` kosong dan jumlah token muncul di `usage`. Permintaan tetap dihitung terhadap batas laju Anda.
+
+**Penolakan di tengah stream:** Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal.
+
+**Fallback:** Saat Anda menggunakan fallback, penolakan yang memicunya ditagih, selain permintaan fallback itu sendiri, jika penolakan tersebut terjadi di tengah stream atau termasuk dalam salah satu kategori yang ditagih. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengompensasi cache miss prompt pada permintaan fallback, sehingga Anda tidak membayar untuk meng-cache percakapan dua kali. Untuk cara fallback sisi server melaporkan setiap percobaan, lihat [Penagihan dan batas laju](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#billing-and-rate-limits).
+
+Kategori yang ditagih dapat berubah seiring Anthropic terus mengukur dan menyempurnakan tingkat positif palsu pengamanannya. Kolom **Ditagih sebelum output apa pun** dalam [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) mencantumkan kategori yang ditagih.
 
 ## Memilih pendekatan fallback
 
@@ -744,7 +752,7 @@ Pada permintaan non-streaming, penolakan di tengah output berperilaku berbeda: r
 
 ### Penagihan dan batas laju
 
-Percobaan yang menolak sebelum menghasilkan output apa pun tidak ditagih: tokennya dilaporkan pada entri `usage.iterations`-nya tetapi tidak dikenakan biaya. Setiap percobaan yang menghasilkan output, termasuk yang menolak di tengah responsnya, ditagih secara terpisah dengan tarif model yang menjalankannya. Array `usage.iterations` adalah catatan per-percobaan dari apa yang ditagihkan kepada Anda. Jumlah `usage` tingkat atas hanya menggambarkan percobaan yang menghasilkan pesan yang dikembalikan. Token dari model yang berbeda tidak pernah dijumlahkan ke dalam satu field.
+Setiap percobaan mengikuti aturan di [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed), dengan tarif model yang menjalankannya. Percobaan yang menolak sebelum menghasilkan output apa pun hanya ditagih jika kategori penolakannya termasuk yang ditagih, dan tokennya tetap dilaporkan pada entri `usage.iterations`-nya. Setiap percobaan yang menghasilkan output, termasuk yang menolak di tengah responsnya, ditagih secara terpisah. Array `usage.iterations` adalah catatan per-percobaan dari apa yang ditagihkan kepada Anda. Jumlah `usage` tingkat atas hanya menggambarkan percobaan yang menghasilkan pesan yang dikembalikan. Token dari model yang berbeda tidak pernah dijumlahkan ke dalam satu field.
 
 Setiap percobaan yang berjalan, termasuk yang menolak, dihitung terhadap batas laju modelnya sendiri.
 
@@ -762,11 +770,11 @@ Sticky routing berlaku untuk permintaan streaming maupun non-streaming. Pada per
 
 ## Fallback sisi klien dengan middleware SDK
 
-Setiap SDK Anthropic menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihargai ulang tanpa penyiapan per-permintaan.
+Setiap SDK Anthropic menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihargai ulang tanpa penyiapan per-permintaan.
 
 ### Menyiapkannya
 
-Teruskan middleware ke konstruktor klien, dan bagikan satu instance `BetaFallbackState` di seluruh permintaan dalam sebuah percakapan.
+Teruskan `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddleware`; go: `betafallback.BetaRefusalFallbackMiddleware`; csharp: `BetaRefusalFallbackHandler`; java: `BetaRefusalFallbackInterceptor`; php: `RefusalFallbackMiddleware`) ke konstruktor klien, dan bagikan satu instance `BetaFallbackState` di seluruh permintaan dalam sebuah percakapan.
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: f2cf097d8c14d9e3602866223ba3c3ef34df3e2562ebdcc50aba33eef8a6945b
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: e9fd2dc6381be04b470c4e275d31a8870f460bb78ca547b2848c5e78d224a321
 ---
 
 > ## Documentation Index
@@ -270,7 +270,7 @@ Converts any permission prompt into a denial, without calling `canUseTool`. Tool
 
 #### Bypass permissions mode (`bypassPermissions`)
 
-Auto-approves tool uses without prompting, except the cases listed in the warning below. Hooks still execute and can block operations if needed.
+Auto-approves tool uses without prompting, except the cases listed in the warning below. Hooks still execute and can block operations if needed. On Linux and macOS, Claude Code refuses to start in this mode as root or under `sudo` outside a [recognized sandbox](/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode), and the query fails before the first turn.
 
 <Warning>
   Use with extreme caution. Claude has full system access in this mode. Only use in controlled environments where you trust all possible operations.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: f763564224aab87e26142cae78796e88638a163e8550f29fb10c4c5e68c7f186
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 7234b074d239eb0c308218c6717571af45e0d49df5eec94aced91642b2b5b331
 ---
 
 ---
@@ -55,7 +55,7 @@ Permintaan yang ditolak Claude Fable 5 biasanya dapat dilayani oleh model Claude
 
 ### Penagihan
 
-Anda tidak ditagih untuk permintaan yang ditolak sebelum output apa pun dihasilkan. Ketika Anda mencoba ulang pada model lain, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya prompt-cache akibat perpindahan, sehingga Anda tidak membayar biaya tersebut dua kali.
+Penolakan yang tiba sebelum output apa pun ditagih jika termasuk dalam kategori dengan volume "false positive" (positif palsu) yang rendah, untuk menghambat upaya mengakali pengamanan Anthropic dalam skala besar. Sebelum 24 September 2026, penolakan ini tidak ditagih. Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal. Untuk kategori yang ditagih, lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed). Ketika Anda mencoba ulang pada model lain, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya prompt-cache akibat perpindahan, sehingga Anda tidak membayar biaya tersebut dua kali.
 
 ## Ketersediaan
 

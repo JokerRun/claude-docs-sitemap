@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 37468f6b8f43a0aa668a58b45ab34113ebfc936594b6898c706a263050970fd3
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 339b51a72519c2ecc8c7edd85f87c8df62e8b9fe903f876c7767d6303562a090
 ---
 
 ---
@@ -48,6 +48,19 @@ For the full request and response schemas, signature verification, and operation
 
 ***
 
+## Continue a conversation after a denied request
+
+Each request includes the whole conversation, so a denied message is sent again with every later message. If your AI security server evaluates the whole transcript, it denies those requests too. To continue, the user removes the denied content from what the app sends next, including any file Claude would read again.
+
+The steps depend on the app:
+
+* **claude.ai, including Claude Desktop and the mobile apps.** The user edits the denied message, or an earlier one, rather than sending a corrected copy as a new message. On the web and in Claude Desktop, the edit resends the message's attachments unless the user removes them. A new chat also works.
+* **Claude Code.** The user runs `/rewind` and selects the prompt that first brought the content in. If asked, they select **Restore conversation**, then edit or clear the prompt that returns to the input field. `/clear` starts over. See [Checkpointing](https://code.claude.com/docs/en/checkpointing).
+* **Cowork.** The user edits the denied message if it is their latest one. The edit resends attached files, and **Restart from here** resends the whole message unchanged. If the content is in a file or an earlier message, the user selects **New task**.
+* **Claude Tag.** In Slack, the user first edits the denied message, or deletes it if it is a reply. They then send `@Claude !restart` on its own where Claude was answering: in that thread, or at the channel's top level. The new session rereads the messages still in Slack, so the edit or deletion comes first. See the [`!restart` command](https://claude.com/docs/claude-tag/users/commands#restart-a-stuck-or-wrong-context-session).
+
+***
+
 ## Use cases
 
 * **Data loss prevention (DLP).** Forward the transcript to your DLP scanner and deny prompts that carry regulated or classified material. This is the most common deployment.
@@ -69,7 +82,7 @@ For the full request and response schemas, signature verification, and operation
 
 Inference hooks are available to Claude Enterprise organizations. Configuring them requires the `organization:manage` permission, which only the Owner and Primary owner roles hold.
 
-One hook governs conversations across claude.ai, Cowork, and Claude Code sessions in your Claude Enterprise organization, whether they run on the web, in the desktop or mobile apps, or in the CLI. Inference hooks are not available on Amazon Bedrock or Google Cloud.
+One hook governs conversations across claude.ai, Cowork, Claude Code, and Claude Tag sessions in your Claude Enterprise organization, whether they run on the web, in the desktop or mobile apps, in the CLI, or in Slack. Inference hooks are not available on Amazon Bedrock or Google Cloud.
 
 Governed requests are the inference requests behind the user's conversation. Ancillary requests, such as conversation title generation, aren't sent to your endpoint, and system prompts and tool definitions are never included in what is sent. Voice mode is not covered.
 

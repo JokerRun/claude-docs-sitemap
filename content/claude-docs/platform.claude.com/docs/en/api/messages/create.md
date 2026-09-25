@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: f770a1842b8525a3a6f7ee501e9dacd843d2d211e6cd95f7791c255fff4c021d
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 49ca0c3b865bf658730257ed5c1a97504ee58efeaf1c05ab84ee15417a6f117e
 ---
 
 ---
@@ -1203,6 +1203,17 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         maxLength: 64, minLength: 1
 
   - `string`
+
+- `diagnostics: optional DiagnosticsParam or null`
+
+  Request-level diagnostics. Currently carries the previous response
+  id for prompt-cache divergence reporting.
+
+  - `previous_message_id: optional string or null`
+
+    The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
+
+    maxLength: 256
 
 - `inference_geo: optional string or null`
 
@@ -3869,6 +3880,67 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `file_id: string`
 
+  - `diagnostics: Diagnostics or null`
+
+    Request-level diagnostics: why the prompt cache could not fully reuse
+    the prefix of the request named by `diagnostics.previous_message_id`.
+
+    - `cache_miss_reason: CacheMissReason or null`
+
+      Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+      - `CacheMissModelChanged object`
+
+        - `type: "model_changed"`
+
+          default: model_changed
+
+        - `cache_missed_input_tokens: number`
+
+          Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+      - `CacheMissSystemChanged object`
+
+        - `type: "system_changed"`
+
+          default: system_changed
+
+        - `cache_missed_input_tokens: number`
+
+          Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+      - `CacheMissToolsChanged object`
+
+        - `type: "tools_changed"`
+
+          default: tools_changed
+
+        - `cache_missed_input_tokens: number`
+
+          Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+      - `CacheMissMessagesChanged object`
+
+        - `type: "messages_changed"`
+
+          default: messages_changed
+
+        - `cache_missed_input_tokens: number`
+
+          Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+      - `CacheMissPreviousMessageNotFound object`
+
+        - `type: "previous_message_not_found"`
+
+          default: previous_message_not_found
+
+      - `CacheMissUnavailable object`
+
+        - `type: "unavailable"`
+
+          default: unavailable
+
   - `model: Model`
 
     The model that will complete your prompt.
@@ -4413,6 +4485,12 @@ curl https://api.anthropic.com/v1/messages \
       "type": "text"
     }
   ],
+  "diagnostics": {
+    "cache_miss_reason": {
+      "cache_missed_input_tokens": 0,
+      "type": "model_changed"
+    }
+  },
   "model": "claude-opus-5",
   "role": "assistant",
   "stop_details": {

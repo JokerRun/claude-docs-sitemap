@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c6fa761afc833b3c5cbf1147ce8b1384fbf3748bfe471beec800b7bee4a1740a
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: edc97bf1872a1292911b08600aadfc494295009cc6db1da232279dae46c0429b
 ---
 
 ---
@@ -116,7 +116,7 @@ Be as specific as the workload allows. Loosen `subject_prefix` to `repo:your-org
 
 ## Acquire and use a token
 
-Set the federation environment variables on the job and call the SDK normally. `Anthropic()` reads `ANTHROPIC_IDENTITY_TOKEN_FILE`, exchanges the JWT on the first request, and refreshes the access token automatically before it expires.
+Set the federation environment variables on the job and call the SDK normally. `Anthropic()` (typescript: `new Anthropic()`; csharp: `new AnthropicClient()`; go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.fromEnv()`; php: `new Client()`; ruby: `Anthropic::Client.new`) reads `ANTHROPIC_IDENTITY_TOKEN_FILE`, exchanges the JWT on the first request, and refreshes the access token automatically before it expires.
 
 <CodeGroup>
   ```yaml Workflow

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: b11a6290da7b1c60ea17e50433a353c888fa3eeef5f3b28efbae26afd307cbc8
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 114c6066fe83bfa7dbad6d1dc04352480de22b17f2e574dceb943838fff5383b
 ---
 
 ---
@@ -17,6 +17,11 @@ url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
 Lists chat metadata with filtering capabilities for targeted
 compliance review. Results are sorted chronologically (time ascending)
 by the `order_by` key, with ties broken by id.
+
+Incremental polling with `order_by=updated_at` returns a chat again
+after it receives a new message, is moved into or out of a project, or
+is deleted in claude.ai. A chat is not guaranteed to be returned again
+after other edits, such as a rename.
 
 **Deprecation notice:** Combining `user_ids[]` with any `updated_at.*`
 filter is deprecated and will be rejected with HTTP 400 after
@@ -167,7 +172,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   - `updated_at: string`
 
-    Last update timestamp
+    Last update timestamp. Updated when the chat receives a new message, is moved into or out of a project, or is deleted in claude.ai. Other edits, such as renaming the chat, are not guaranteed to change it.
 
     format: date-time
 

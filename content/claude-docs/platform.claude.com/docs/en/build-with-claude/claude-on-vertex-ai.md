@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 18ad099000cc12751e3b43c129702311da41b3ff1af5c556e1d926193afd2b64
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: dd1f45028a3ecfbf6b926bb4cef3f58be60e371c6e1874bfc77054f34a03faaf
 ---
 
 ---
@@ -421,7 +421,7 @@ Regional and multi-region endpoints include a 10% pricing premium over global en
 
 **Using global endpoints (recommended):**
 
-Set the `region` parameter to `"global"` when initializing the client:
+Set the `region` (php: `location`) parameter to `"global"` when initializing the client:
 
 <CodeGroup>
   ```bash cURL
@@ -610,7 +610,7 @@ Set the `region` parameter to `"global"` when initializing the client:
 
 **Using multi-region endpoints:**
 
-Set the `region` parameter to a multi-region identifier: `"us"` for the United States or `"eu"` for the European Union. The SDK routes requests to the corresponding multi-region endpoint (`https://aiplatform.us.rep.googleapis.com` or `https://aiplatform.eu.rep.googleapis.com`), which dynamically balances traffic across regions within that geography.
+Set the `region` (php: `location`) parameter to a multi-region identifier: `"us"` for the United States or `"eu"` for the European Union. The SDK routes requests to the corresponding multi-region endpoint (`https://aiplatform.us.rep.googleapis.com` or `https://aiplatform.eu.rep.googleapis.com`), which dynamically balances traffic across regions within that geography.
 
 <CodeGroup>
   ```bash cURL

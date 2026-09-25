@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 6bb9373f9c5efcf494c42bdebc2c1cc19e026abaf523a74da998daa9f84623c3
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 20dd9b01257078204dd161f3bab1fc190b45ba21c32e8d0ae8a884a61cd086b6
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ Learn more: [Eliminate prompts with auto mode](/docs/en/permission-modes#elimina
 
 ### Bare mode
 
-With `--bare`, Claude Code starts without loading hooks, skills, custom commands, subagents, plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls where you need the same result on every machine.
+With `--bare`, Claude Code starts without loading hooks, skills, custom commands, subagents, installed plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls where you need the same result on every machine.
 
 Learn more: [Start faster with bare mode](/docs/en/headless#start-faster-with-bare-mode)
 
@@ -249,9 +249,9 @@ Learn more: [Analyze before you edit with plan mode](/docs/en/permission-modes#a
 
 ### Plugin
 
-A bundle of skills, hooks, subagents, and MCP servers packaged as a single installable unit. Plugin skills are namespaced as `plugin-name:skill-name` so multiple plugins coexist. Distribute plugins across teams via a [marketplace](/docs/en/plugin-marketplaces).
+A bundle of skills, hooks, subagents, and MCP servers packaged as a single installable unit. Plugin skills are namespaced as `plugin-name:skill-name` so multiple plugins coexist. Distribute plugins across teams via a [marketplace](/docs/en/plugins/overview).
 
-Learn more: [Plugins](/docs/en/plugins)
+Learn more: [Plugins](/docs/en/plugins/overview)
 
 ### Project trust
 

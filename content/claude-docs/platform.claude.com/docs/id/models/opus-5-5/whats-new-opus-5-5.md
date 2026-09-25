@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: cbfd75cd240fbe48b90e5a71d753701a502654ac71e6739b0e0f8736749cc60a
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: d55cc7d9507265f5c03821503c2d5c06088975b77929f7be41e1968fe67138ef
 ---
 
 ---
@@ -95,7 +95,7 @@ Jika integrasi Claude Opus 5 Anda berjalan dengan thinking dinonaktifkan, lihat 
 
 ## Penolakan dan fallback
 
-Claude Opus 5.5 dilengkapi dengan pengklasifikasi keamanan, dan semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) berlaku. Permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan, jadi tangani penolakan dan konfigurasikan fallback: coba ulang di model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`, dalam beta, mencoba ulang di model yang direkomendasikan Anthropic untuk kategori tersebut), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau mekanisme coba ulang Anda sendiri.
+Claude Opus 5.5 dilengkapi dengan pengklasifikasi keamanan, dan semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) berlaku. Permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan, jadi tangani penolakan dan konfigurasikan fallback: coba ulang di model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`, dalam beta, mencoba ulang di model yang direkomendasikan Anthropic untuk kategori tersebut), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau mekanisme coba ulang Anda sendiri. Apakah penolakan yang tiba sebelum output apa pun ditagih bergantung pada kategori penolakannya, dan penolakan tersebut tetap dihitung terhadap "rate limit" (batas laju) Anda dalam kedua kasus; lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 
 ## Harga
 

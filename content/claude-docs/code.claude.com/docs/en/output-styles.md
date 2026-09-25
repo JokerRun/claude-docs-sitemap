@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ae43865588976c81ad1002e2274261c63b1c9291838c1bdc065dae0fb2e59b5e
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: c943591b4344166a0f3d55f588774e8072f8010d28de5e0006a29d93985eccf5
 ---
 
 > ## Documentation Index
@@ -162,7 +162,7 @@ In the VS Code extension, you can also create the file from the [**Output styles
   </Step>
 </Steps>
 
-[Plugins](/docs/en/plugins-reference) can also ship output styles in an `output-styles/` directory.
+[Plugins](/docs/en/plugins/manifest-reference) can also ship output styles in an `output-styles/` directory.
 
 <h3 id="frontmatter">
   Frontmatter reference
@@ -213,5 +213,5 @@ The built-in Explanatory and Learning styles produce longer responses than Defau
 
 * [Settings](/docs/en/settings): where the `outputStyle` field lives and how settings precedence works
 * [Permission modes](/docs/en/permission-modes): how the Proactive style compares to auto mode
-* [Plugins](/docs/en/plugins): package and distribute output styles alongside skills, hooks, and agents
+* [Plugins](/docs/en/plugins/overview): package and distribute output styles alongside skills, hooks, and agents
 * [Debug your configuration](/docs/en/debug-your-config): diagnose why an output style isn't taking effect

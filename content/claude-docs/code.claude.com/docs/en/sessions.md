@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 9031c105d25ad6188f1e2147a347fe64091e0da7aa9769569db37d208c2e94a4
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 9b990edc1ebfb868021c0d798e6b510cc68262d6e0872a1506fb66dddf78bc81
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ You can run `claude --resume <session-id>` from any directory: Claude Code looks
 
 A resumed session restores the conversation along with the state saved in it:
 
-* Conversation history: the full history, including tool calls and results. A tool that was still running when the previous process ended, for example in a crash, doesn't finish or run again when you resume; Claude continues without its output.
+* Conversation history: the full history, including tool calls and results. A tool that was still running when the previous process ended, for example in a crash, doesn't finish or run again when you resume. Claude sees the call marked as cut off before its result was recorded and is told to check whether it took effect before running it again, unless [`CLAUDE_CODE_RESUME_INTERRUPTED_TURN`](/docs/en/env-vars#variables) is set. Before v2.1.281, Claude Code dropped the cut-off call from the conversation or showed it to Claude as one you interrupted.
 * Model: the session continues on the model it was using. The model isn't restored when it has been retired or isn't allowed by `availableModels`, when a `--model` flag or `ANTHROPIC_MODEL`-family environment variable picks one at launch, or on providers that use provider-specific deployment IDs, such as [Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry](/docs/en/third-party-integrations); see [model configuration](/docs/en/model-config#setting-your-model) for the resolution order.
 * Agent: a session started with [`--agent`](/docs/en/sub-agents#invoke-subagents-explicitly) or the `agent` setting continues as that agent, keeping its tool restrictions and model. Pass `--agent` when resuming to pick a different one; for the system prompt in either case, see [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations). Claude Code looks for the agent in two places: the session's original directory, provided you have [trusted that workspace](/docs/en/permissions#project-allow-rules-and-workspace-trust), and then the directory you resume from, so a project-scoped agent still loads when you resume from another directory. If Claude Code doesn't find the agent in either place, the session resumes with the default tools and shows a [warning naming the agent](/docs/en/errors#session-agent-no-longer-available).
 * Permission mode: if you resume from a terminal with `claude --continue`, `claude --resume <session-id>`, or `claude --resume <name>` when the name matches one session, without `-p`, Claude Code restores the permission mode the session was in, except in the cases in [permission mode on resume](#permission-mode-on-resume), which also covers the session picker, `/resume`, and resuming with `claude -p`. Pass `--permission-mode` or `--dangerously-skip-permissions` to override the restored mode.

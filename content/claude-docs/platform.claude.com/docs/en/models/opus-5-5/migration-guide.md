@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: dc4678b94bf930eceaad37db502ba277617fd8a2cc7f55716ff7827715d80e1b
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 9a108c032bf9a368ea9d84648de028e5641f97ab3e65d1301db5e379c2c04b90
 ---
 
 ---
@@ -1191,7 +1191,7 @@ These are not required but will improve your experience:
 
 1. **Consider task budgets (beta):** For agentic workloads, [task budgets](https://platform.claude.com/docs/en/build-with-claude/task-budgets) tell the model how many tokens it has for a full agentic loop. They require the `task-budgets-2026-03-13` beta header.
 
-2. **Consider mid-conversation tool changes (beta):** Mid-conversation tool changes (beta header `mid-conversation-tool-changes-2026-07-01`) are available on the Claude API, Amazon Bedrock, and Google Cloud. They let you add or remove tools between turns of a conversation without invalidating [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns. Without the header, a changed tool list invalidates the cached prefix.
+2. **Consider mid-conversation tool changes (beta):** Mid-conversation tool changes let you add or remove tools between turns of a conversation without invalidating [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits on earlier turns. Changing the `tools` array itself invalidates the cached prefix. On the Claude API, send the `inline-tools-2026-09-15` beta header. The older `mid-conversation-tool-changes-2026-07-01` header still works for changes that name a tool by reference, on the Claude API, Amazon Bedrock, and Google Cloud.
 
 ## Migrating to Claude Opus 5.5 from Claude Opus 4.7
 
@@ -1561,7 +1561,7 @@ The first item is required on Claude Opus 5.5; the rest are recommended.
 
 4. **Remove interleaved thinking beta header:** With adaptive thinking, interleaved thinking is automatic on every model that supports adaptive thinking. Remove `betas=["interleaved-thinking-2025-05-14"]` from your requests.
 
-5. **Migrate to output\_config.format:** If using structured outputs, update `output_format={...}` to `output_config={"format": {...}}`. The API still accepts the deprecated `output_format` parameter, but it will be removed in a future model release. The Python SDK (v1.0 and later) does not accept `output_format={...}` on `client.beta.messages.create()` or `count_tokens()`. The `output_format=Model` argument of the `parse()` and `stream()` helpers is unchanged.
+5. **Migrate to output\_config.format:** If using structured outputs, update `output_format={...}` to `output_config={"format": {...}}`. The `output_format` parameter is deprecated and will be removed in the future. To use it anyway, add the `structured-outputs-2025-11-13` beta header. Without it, the API returns a 400 error. The Python SDK (v1.0 and later) does not accept `output_format={...}` on `client.beta.messages.create()` or `count_tokens()`. The `output_format=Model` argument of the `parse()` and `stream()` helpers is unchanged.
 
 ### Migrating from Claude 4.1 or earlier
 

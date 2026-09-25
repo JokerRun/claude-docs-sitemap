@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3de2ac6a991dc7f759a628f07d61327a335edd76056116a0a35d44c79e5c2ed4
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: ca2287fe5fc446adfdf0b248cec58f6bde2ff10e0eb35a4e86cb85b9bb7a720f
 ---
 
 ---
@@ -828,6 +828,67 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               default: container_upload
 
             - `file_id: string`
+
+        - `diagnostics: Diagnostics or null`
+
+          Request-level diagnostics: why the prompt cache could not fully reuse
+          the prefix of the request named by `diagnostics.previous_message_id`.
+
+          - `cache_miss_reason: CacheMissReason or null`
+
+            Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+            - `CacheMissModelChanged object`
+
+              - `type: "model_changed"`
+
+                default: model_changed
+
+              - `cache_missed_input_tokens: number`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `CacheMissSystemChanged object`
+
+              - `type: "system_changed"`
+
+                default: system_changed
+
+              - `cache_missed_input_tokens: number`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `CacheMissToolsChanged object`
+
+              - `type: "tools_changed"`
+
+                default: tools_changed
+
+              - `cache_missed_input_tokens: number`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `CacheMissMessagesChanged object`
+
+              - `type: "messages_changed"`
+
+                default: messages_changed
+
+              - `cache_missed_input_tokens: number`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `CacheMissPreviousMessageNotFound object`
+
+              - `type: "previous_message_not_found"`
+
+                default: previous_message_not_found
+
+            - `CacheMissUnavailable object`
+
+              - `type: "unavailable"`
+
+                default: unavailable
 
         - `model: Model`
 

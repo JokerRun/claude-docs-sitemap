@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b91492f144964630077fb9ed2dd3cb265305996d0e54ed7bd99b30a32a8732d4
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: a834086c3f119797d4a62afb4350873c5f9dc387a27717317f94f1ff95e37be7
 ---
 
 > ## Documentation Index
@@ -308,7 +308,7 @@ You can also open VS Code settings (`Cmd+,` on Mac or `Ctrl+,` on Windows/Linux)
 
 ## Manage plugins
 
-The VS Code extension includes a graphical interface for installing and managing [plugins](/docs/en/plugins). Type `/plugins` in the prompt box to open the **Manage plugins** interface.
+The VS Code extension includes a graphical interface for installing and managing [plugins](/docs/en/plugins/overview). Type `/plugins` in the prompt box to open the **Manage plugins** interface.
 
 ### Install plugins
 
@@ -365,7 +365,7 @@ Plugin changes you make in the dialog apply right away to the Claude Code sessio
   Plugin management in VS Code uses the same CLI commands under the hood. Plugins and marketplaces you configure in the extension are also available in the CLI, and vice versa.
 </Note>
 
-For more about the plugin system, see [Plugins](/docs/en/plugins) and [Plugin marketplaces](/docs/en/plugin-marketplaces).
+For more about the plugin system, see [Plugins](/docs/en/plugins/overview) and [Plugin marketplaces](/docs/en/plugins/overview).
 
 ## Automate browser tasks with Chrome
 

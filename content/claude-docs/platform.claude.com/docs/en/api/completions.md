@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: a9ae361e07462cd61cc77aebccfee0caa92273aa568ca7b6c6a508863baf8abc
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 53cee3a649fb5298f833e0f6e58fb2cfbb3ad73fb2545afcce5c0196cbf52e7d
 ---
 
 ---
@@ -24,7 +24,15 @@ Future models and features will not be compatible with Text Completions. See our
 
 ### Headers
 
+- `"anthropic-workspace-id": optional string`
+
+  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+
+  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+
 - `"anthropic-beta": optional array of AnthropicBeta`
+
+  **Deprecated**: Deprecated. This parameter has no effect on this method and will be removed in a future release.
 
   Optional header to specify the beta version(s) you want to use.
 
@@ -127,12 +135,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `"inline-tools-2026-09-15"`
 
     - `"mcp-client-2026-09-15"`
-
-- `"anthropic-workspace-id": optional string`
-
-  Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
-
-  Only needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
 
 ### Body parameters
 

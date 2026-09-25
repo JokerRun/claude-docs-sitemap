@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-security
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 49a6cfd6b9e42dbff892c1bc3107611c901f52f1063bb149d65f7cdbf19b2acb
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: fbad762950cec52ccbb1940499850ad30293e62ec45fc434310b438793bada56
 ---
 
 > ## Documentation Index
@@ -30,20 +30,20 @@ To run the plugin, you need:
 
 ## Install the plugin
 
-In a Claude Code session, install from the [official Anthropic marketplace](/docs/en/discover-plugins#official-anthropic-marketplace):
+In a Claude Code session, install from the [official Anthropic marketplace](/docs/en/plugins/anthropic-marketplaces):
 
 ```text theme={null}
 /plugin install claude-security@claude-plugins-official
 ```
 
-The command opens the plugin's details, where you choose an [installation scope](/docs/en/discover-plugins#install-plugins) to start the install.
+The command opens the plugin's details, where you choose an [installation scope](/docs/en/plugins/install#install-a-plugin) to start the install.
 
 If the install fails, the fix depends on which message Claude Code reports:
 
 * If it reports `Marketplace "claude-plugins-official" not found`, add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* If it reports that it [can't find the plugin in the marketplace](/docs/en/discover-plugins#install-plugins), check the plugin name for a typo.
+* If it reports that it [can't find the plugin in the marketplace](/docs/en/plugins/install#install-a-plugin), check the plugin name for a typo.
 
-Check the install summary. If it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) to activate the plugin in your current session.
+Check the install summary. If it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/plugins/cli-reference#reload-plugins) to activate the plugin in your current session.
 
 Once the plugin is active, you're ready to [scan and fix your codebase](#scan-and-fix-your-codebase).
 
@@ -151,4 +151,4 @@ To go deeper on the pieces this page touches:
 * [Code Review](/docs/en/code-review): set up the PR-time multi-agent review
 * [Claude Security](https://claude.com/product/claude-security): the managed service that monitors connected repositories
 * [Claude Code security](/docs/en/security): how Claude Code approaches trust, permissions, and safeguards
-* [Discover and install plugins](/docs/en/discover-plugins#official-anthropic-marketplace): browse other official plugins
+* [Install and manage plugins](/docs/en/plugins/install): find and install other plugins from the official marketplace

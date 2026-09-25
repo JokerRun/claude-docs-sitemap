@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c85b369074bb8f4e47d12916a5597540ae317640434ba338b86868098a1ef626
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 8c640a4b35562fc0a4bbbf225c096cec121314f3744ae1503721952dea5c1a19
 ---
 
 ---
@@ -144,7 +144,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   An asynchronous job that reads a memory store and past sessions, then writes a reorganized version of that memory store.
 
-  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead. The Dreams API is in research preview, so this resource can still change.
+  By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
+
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#how-it-works) for what a dream reads and produces.
 

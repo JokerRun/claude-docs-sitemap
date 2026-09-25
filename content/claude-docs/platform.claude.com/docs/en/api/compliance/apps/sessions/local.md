@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1a8341a09af392900e13cb49c28ded6ffae7cd437cb060952d7e5ece6d82abe2
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: f16801ae2e4acfe1f0b00c678d4b0fe54922285d5768cd28b0443b2f07073fe0
 ---
 
 ---
@@ -378,6 +378,13 @@ in their place. The boundary is pinned on the walk's first page and
 honored for 24 hours: a cursor older than that is rejected with an
 explicit 400; restart the walk to read under the current boundary.
 
+On a very large session, some pages are too large to read and return a
+400; retrying does not help. If the request used `order=desc`, read the
+session oldest first from its first page instead (omit `order` and
+`page`, then follow `next_page`). Rarely, an oldest-first page returns
+this 400 too; contact Anthropic support and quote the `request-id`
+response header.
+
 #### Path parameters
 
 - `local_session_id: string`
@@ -392,7 +399,7 @@ explicit 400; restart the walk to read under the current boundary.
 
 - `order: optional "asc" or "desc"`
 
-  Sort direction. `asc` (oldest-first, default) or `desc`.
+  Sort direction. `asc` (oldest-first, default) or `desc`. On very large sessions some pages are too large to read and return a 400, far more often with `desc`; read those sessions with `asc`, starting again from the first page.
 
   default: asc
 

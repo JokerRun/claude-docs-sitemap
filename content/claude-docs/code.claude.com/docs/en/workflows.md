@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 3c16c7c55ce293e8a977e5238ddb1c0757135ddc5eafbd080356ee2ab5fe7747
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 981bab002b2e83f02c95204071141695080db661650b80c3169c4f305a75809c
 ---
 
 > ## Documentation Index
@@ -222,7 +222,7 @@ If a project workflow and a personal workflow share a name, the project one runs
 
 ### Distribute a workflow in a plugin
 
-To share a workflow across teams or repositories, include it in a [plugin](/docs/en/plugins). Place the script in a `workflows/` directory at the plugin root, or point to a different location with the [`workflows` manifest field](/docs/en/plugins-reference#component-path-fields).
+To share a workflow across teams or repositories, include it in a [plugin](/docs/en/plugins/overview). Place the script in a `workflows/` directory at the plugin root, or point to a different location with the [`workflows` manifest field](/docs/en/plugins/manifest-reference#fields).
 
 Plugin workflows are namespaced by the plugin name. A plugin called `acme-tools` containing a script whose `meta.name` is `release-audit` runs as `/acme-tools:release-audit`.
 

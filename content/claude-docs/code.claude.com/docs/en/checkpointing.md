@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 82edec95e91ab38c7ec1544c6415a8e04764d9cc219371c54879dd9c68eb7519
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 0b139362e067d924787fd5bc056fc908149330dc2d184739a95aa3d7c2c54f69
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ Choosing Summarize up to here leaves you at the end of the conversation with the
 
 #### Rewind past a cleared conversation
 
-If you ran `/clear` earlier in the same Claude Code process, the rewind menu shows an additional entry at the top of the list labeled `/resume <session-id> (previous session)`. Select it to resume the conversation that was active before `/clear` ran. The entry is available until you exit Claude Code or resume a different session, and requires Claude Code v2.1.191 or later. On earlier versions, run `/resume` and pick the previous session from the list instead.
+If you ran `/clear` earlier in the same Claude Code process, the rewind menu shows an additional entry at the top of the list labeled `/resume <session-id> (previous session)`. Select it to resume the conversation that was active before `/clear` ran. The entry is available until you exit Claude Code or resume a different session.
 
 #### Guide a summary
 

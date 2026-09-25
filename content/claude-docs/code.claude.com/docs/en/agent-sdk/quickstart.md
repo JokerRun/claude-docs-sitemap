@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b89a7b4c31340c7432ca9c27b6e13b29d6b1ea4b5cd219106de3025d5c492352
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: dbd4a077d1542180177d225c98a48fabdb4e8ab5d4b31880ac7817f176436bec
 ---
 
 > ## Documentation Index
@@ -272,7 +272,9 @@ As it works, the agent prints its reasoning and each tool it calls, ending with 
 This is what makes the Agent SDK different: Claude executes tools directly instead of asking you to implement them.
 
 <Note>
-  If you see an authentication error such as `Not logged in` or `Invalid API key`, make sure you've set the `ANTHROPIC_API_KEY` environment variable in the shell where you run your agent. The SDK doesn't load `.env` files automatically. See the [full troubleshooting guide](/docs/en/troubleshooting) for more help.
+  If you see an authentication error such as `Not logged in` or `Invalid API key`, make sure you've set the `ANTHROPIC_API_KEY` environment variable in the shell where you run your agent. The SDK doesn't load `.env` files automatically.
+
+  For the causes and fixes behind these and other authentication errors, see [Authentication errors](/docs/en/errors#authentication-errors) in the Error reference.
 </Note>
 
 ### Try other prompts
@@ -374,4 +376,4 @@ Now that you've created your first agent, learn how to extend its capabilities a
 * **[MCP servers](/docs/en/agent-sdk/mcp)**: connect to databases, browsers, APIs, and other external systems
 * **[Hosting](/docs/en/agent-sdk/hosting)**: deploy agents to Docker, cloud, and CI/CD
 * **[Example agents](https://github.com/anthropics/claude-agent-sdk-demos)**: see complete examples: email assistant, research agent, and more
-* **[Troubleshooting](/docs/en/agent-sdk/troubleshooting)**: fix Agent SDK errors by the exact message you see
+* **[Troubleshooting](/docs/en/agent-sdk/troubleshooting)**: fix errors when the CLI fails to start or exits, or a result arrives without structured output

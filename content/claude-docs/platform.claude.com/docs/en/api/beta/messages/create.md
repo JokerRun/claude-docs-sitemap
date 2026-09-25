@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 772261cb8f430e34d24b6b5265ac259d93876b81cfee7449d4c00ad0a56730a4
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 3e2072244492cd59e7bf96ba8de6ec3c09a8fcc7ac9c438b6d5c8a9d5fa825be
 ---
 
 ---
@@ -7461,7 +7461,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     Request-level diagnostics: why the prompt cache could not fully reuse
     the prefix of the request named by `diagnostics.previous_message_id`.
 
-    - `cache_miss_reason: BetaCacheMissModelChanged or BetaCacheMissSystemChanged or BetaCacheMissToolsChanged or 3 more or null`
+    - `cache_miss_reason: BetaCacheMissReason or null`
 
       Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
 

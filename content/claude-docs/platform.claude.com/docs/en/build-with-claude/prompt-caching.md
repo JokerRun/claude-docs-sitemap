@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: d15ec5d452fb306ece7588f0addd3324329c8f38e13a56ef1a4dbad8bee74fbd
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: e1eee7d99ee05c380b15d3f11ae0bf3162b4b5cec08fa484b703c97aaef95e51
 ---
 
 ---
@@ -800,7 +800,7 @@ Tailor your prompt caching strategy to your scenario:
 If experiencing unexpected behavior:
 
 <Tip>
-  [Cache diagnostics](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics) (beta) has the API compare consecutive requests and report exactly where the prompt prefix diverged, which automatically handles many of the steps in this list.
+  [Cache diagnostics](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics) has the API compare consecutive requests and report where the prompt prefix diverged, which automatically handles many of the steps in this list.
 </Tip>
 
 * Ensure cached sections are identical across calls. For explicit breakpoints, verify that `cache_control` markers are in the same locations

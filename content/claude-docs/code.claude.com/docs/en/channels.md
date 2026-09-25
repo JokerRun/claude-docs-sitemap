@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 0521def6e65123e04363b14e5a9402cf9055f8e24c96146917ca78019b4cf96e
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 69b103729b34b44681d987d75a848e7dd422b779a7c6aaca3d6b1b04125f409e
 ---
 
 > ## Documentation Index
@@ -50,9 +50,9 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
         If the install fails, match the message Claude Code reports:
 
         * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-        * The plugin is [not found in the marketplace](/docs/en/discover-plugins#install-plugins): check the plugin name.
+        * The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
 
-        When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) to make the plugin's configure command available.
+        When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/plugins/cli-reference#reload-plugins) to make the plugin's configure command available.
       </Step>
 
       <Step title="Configure your token">
@@ -128,9 +128,9 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
         If the install fails, match the message Claude Code reports:
 
         * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-        * The plugin is [not found in the marketplace](/docs/en/discover-plugins#install-plugins): check the plugin name.
+        * The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
 
-        When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/discover-plugins#apply-plugin-changes-without-restarting) to make the plugin's configure command available.
+        When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to activate.`, see [Apply plugin changes without restarting](/docs/en/plugins/cli-reference#reload-plugins) to make the plugin's configure command available.
       </Step>
 
       <Step title="Configure your token">
@@ -193,7 +193,7 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
         If the install fails, match the message Claude Code reports:
 
         * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-        * The plugin is [not found in the marketplace](/docs/en/discover-plugins#install-plugins): check the plugin name.
+        * The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
 
         When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects.
 
@@ -250,7 +250,7 @@ To try the fakechat demo, you'll need:
     If the install fails, match the message Claude Code reports:
 
     * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-    * The plugin is [not found in the marketplace](/docs/en/discover-plugins#install-plugins): check the plugin name.
+    * The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
 
     When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects.
 

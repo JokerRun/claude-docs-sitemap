@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 3584271ff83a2a77195d52b2719c7c4730347398e77e8f62a20d277cb42adf21
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: a738dfe5b62bb351f28e14cb7b2e7c0b73351f8e0107b0949788d0029144a62a
 ---
 
 ---
@@ -374,7 +374,7 @@ Retrieves message history and file metadata for a specific chat.
 
 - `updated_at: string`
 
-  Last update timestamp
+  Last update timestamp. Updated when the chat receives a new message, is moved into or out of a project, or is deleted in claude.ai. Other edits, such as renaming the chat, are not guaranteed to change it.
 
   format: date-time
 

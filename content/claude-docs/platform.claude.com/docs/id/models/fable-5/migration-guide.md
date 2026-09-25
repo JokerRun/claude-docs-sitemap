@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/migration-guide
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c6492a3436a8999b38775241850b085b9a14c10427f050e987d8039fd1cc4f1b
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: f837aa34260d58fdf78688289fca4056332bb2c460ec0ae804e677128fa6a534
 ---
 
 ---
@@ -687,7 +687,7 @@ Butir-butir dalam bagian ini menjelaskan perbedaan API dan perilaku yang perlu d
 
 5. **Pengklasifikasi keamanan dan stop reason `refusal` (hanya Claude Fable 5):** `claude-fable-5` menjalankan pengklasifikasi keamanan pada permintaan dan selama pembuatan respons. Claude Mythos 5 tidak menyertakan pengklasifikasi ini. Ketika pengklasifikasi menolak permintaan, Messages API mengembalikan `stop_reason: "refusal"` sebagai respons HTTP 200 yang berhasil, bukan error. Field `stop_details.category` melaporkan pengklasifikasi mana yang terpicu, dengan kategori seperti `"cyber"`, `"bio"`, dan `"reasoning_extraction"`, atau `null` ketika penolakan tidak terpetakan ke kategori bernama apa pun. Lihat [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk daftar lengkapnya.
 
-   Anda tidak ditagih untuk token input dari permintaan yang ditolak sebelum output apa pun dihasilkan. Ketika pengklasifikasi terpicu di tengah stream, input dan output yang sudah di-stream ditagih; buang output parsial tersebut.
+   Penolakan yang tiba sebelum output apa pun ditagih jika kategorinya adalah `"bio"`, `"frontier_llm"`, atau `"reasoning_extraction"`. Penolakan sebelum output apa pun dalam kategori lain, atau dengan kategori `null`, tidak ditagih ([Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed)). Sebelum 24 September 2026, tidak ada penolakan sebelum output apa pun yang ditagih di Claude Fable 5. Ketika pengklasifikasi terpicu di tengah stream, input dan output yang sudah di-stream ditagih; buang output parsial tersebut.
 
    Untuk menjalankan ulang permintaan yang ditolak pada model lain secara otomatis, kirimkan parameter opt-in `fallbacks`, yang berstatus beta di Claude API. Parameter ini tidak tersedia di Message Batches API atau di Amazon Bedrock, Google Cloud, dan Microsoft Foundry; pada ketiga platform tersebut, jalankan percobaan ulang di sisi klien atau gunakan middleware refusal-fallback SDK. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 

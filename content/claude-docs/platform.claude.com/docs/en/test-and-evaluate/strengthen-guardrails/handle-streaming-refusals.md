@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 7897b228df5ddbac83658403b330f8cd26aecf26cd71c7f9fedd9fae68cfc9f6
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 7a6976fb0463248753437dcc30e79f5121e1b507ca4602142596e46bc88b27d6
 ---
 
 ---
@@ -52,9 +52,7 @@ In the event stream, `stop_details` arrives on the `message_delta` event alongsi
 When you receive **`stop_reason`: `refusal`**, you must reset the conversation context before continuing. You can remove or rephrase the turn that triggered the refusal, or clear the conversation history entirely. Attempting to continue without resetting will result in continued refusals.
 
 <Note>
-  Usage metrics are still provided in the response, even when the response is refused.
-
-  When a refusal arrives before Claude generates any output, you are not billed for the request on the Claude API, and the usage counts in that response are informational only. When Claude generates output before the refusal, you are billed for that request.
+  Usage metrics are still provided in the response, even when the response is refused. Whether a refused request is billed depends on when the refusal arrives and its category; see [How refusals are billed](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 </Note>
 
 <Tip>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b8b48042f1118bfd5b320ca4ccde4cc5f90145ce8195ea2cb212152572e626ef
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: e297397f49122c24ef0f27a0947fd376df9a889a92615a26064ffecb721211b3
 ---
 
 > ## Documentation Index
@@ -109,7 +109,7 @@ Suppose you need to locate code related to a specific feature or functionality.
 
   * Be specific about what you're looking for
   * Use domain language from the project
-  * Install a [code intelligence plugin](/docs/en/discover-plugins#code-intelligence) for your language to give Claude precise "go to definition" and "find references" navigation
+  * Install a [code intelligence plugin](/docs/en/plugins/code-intelligence) for your language to give Claude precise "go to definition" and "find references" navigation
 </Tip>
 
 ***

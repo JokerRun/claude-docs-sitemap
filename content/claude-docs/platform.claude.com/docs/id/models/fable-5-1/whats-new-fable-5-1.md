@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4bd6863574a770dcec12d51421ad4c57ea93c9b62a91548d3388b80f47836a4a
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: e9619905921dc61dede20cee84359ec510c85f19946f1691891a139b6443ba04
 ---
 
 ---
@@ -410,7 +410,7 @@ Claude Fable 5.1 menyertakan classifier keamanan yang mencakup kategori `stop_de
 
 * **Penolakan:** permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan yang terpicu.
 * **Fallback:** coba ulang permintaan yang ditolak pada model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau percobaan ulang Anda sendiri. `fallbacks: "default"` (beta) mencoba ulang permintaan yang ditolak pada model yang direkomendasikan Anthropic untuk kategori tersebut. Target fallback yang diizinkan untuk Claude Fable 5.1 adalah Claude Opus 4.8 dan Claude Opus 5.
-* **Penagihan:** Anda tidak ditagih untuk penolakan yang tiba sebelum output apa pun, dan, untuk Claude Fable 5.1, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya cache prompt akibat pergantian model.
+* **Penagihan:** penolakan yang tiba sebelum output apa pun ditagih jika termasuk dalam kategori dengan volume "false positive" (positif palsu) yang rendah, untuk menghambat upaya mengakali pengamanan Anthropic dalam skala besar ([Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed)). Sebelum 24 September 2026, penolakan ini tidak ditagih. Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal. Untuk Claude Fable 5.1, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya cache prompt akibat pergantian model.
 
 ## Harga
 

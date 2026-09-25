@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b5a050a0fafbeae368bacf276fc8f9ec67144d1409f3651ef24c503d1b24b2c7
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 06fa363585336a1cf66d707ab96d7c2aee43ffd71ac32773442974c89d87da1d
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ These work on every provider:
 * [CLI](/docs/en/quickstart) and [Agent SDK](/docs/en/agent-sdk/overview)
 * [VS Code](/docs/en/vs-code) and [JetBrains](/docs/en/jetbrains) extensions
 * [Subagents](/docs/en/sub-agents), [hooks](/docs/en/hooks-guide), [commands](/docs/en/commands), and [skills](/docs/en/skills)
-* [CLAUDE.md memory](/docs/en/memory), [plugins](/docs/en/plugins), and [MCP servers](/docs/en/mcp)
+* [CLAUDE.md memory](/docs/en/memory), [plugins](/docs/en/plugins/overview), and [MCP servers](/docs/en/mcp)
 * [Checkpoints](/docs/en/checkpointing), [sandboxing](/docs/en/sandboxing), and [Workflows](/docs/en/workflows)
 * [OpenTelemetry metrics](/docs/en/monitoring-usage) and the [managed settings file](/docs/en/managed-settings#delivery-mechanisms)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: cf6cb15b84fdd3daf712e69a246f6239a9f97a043d1385c2ea4ab511e82ecabb
+fetched_at: 2026-09-25T02:20:28.349481Z
+sha256: 64dc3564de45b9a0dc1b597b48a5af7b4f355d6a94e97799a7748237c6ea8c3f
 ---
 
 ---
@@ -52,9 +52,7 @@ Dalam event stream, `stop_details` tiba pada event `message_delta` bersama denga
 Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks percakapan sebelum melanjutkan. Anda dapat menghapus atau menyusun ulang giliran yang memicu penolakan, atau menghapus riwayat percakapan sepenuhnya. Mencoba melanjutkan tanpa mereset akan mengakibatkan penolakan yang berlanjut.
 
 <Note>
-  Metrik penggunaan tetap disediakan dalam respons, bahkan ketika respons ditolak.
-
-  Ketika penolakan tiba sebelum Claude menghasilkan output apa pun, Anda tidak ditagih untuk permintaan tersebut pada API Claude, dan jumlah penggunaan dalam respons tersebut hanya bersifat informatif. Ketika Claude menghasilkan output sebelum penolakan, Anda ditagih untuk permintaan tersebut.
+  Metrik penggunaan tetap disediakan dalam respons, bahkan ketika respons ditolak. Apakah permintaan yang ditolak ditagih bergantung pada kapan penolakan tiba dan kategorinya; lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 </Note>
 
 <Tip>
@@ -67,7 +65,6 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 <CodeGroup>
   ```bash cURL
-  # Lakukan request streaming dan periksa apakah ada penolakan
   response=$(curl -N https://api.anthropic.com/v1/messages \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -79,8 +76,21 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       "stream": true
     }')
 
-  # Periksa apakah ada penolakan dalam stream
-  if echo "$response" | grep -q '"stop_reason":"refusal"'; then
+  if echo "$response" | jq -R -e 'select(startswith("data: "))
+      | sub("^data: "; "") | fromjson
+      | select(.delta.stop_reason == "refusal")' >/dev/null; then
+    echo "Response refused - resetting conversation context"
+    # Reset status percakapan Anda di sini
+  fi
+  ```
+
+  ```bash CLI
+  response=$(ant messages create --stream --format jsonl \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: Hello}')
+
+  if echo "$response" | jq -e 'select(.delta.stop_reason == "refusal")' >/dev/null; then
     echo "Response refused - resetting conversation context"
     # Reset status percakapan Anda di sini
   fi
