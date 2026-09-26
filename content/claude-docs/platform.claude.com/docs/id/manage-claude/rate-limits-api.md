@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 317211514bcc08eb709878ecd6a7b22e78dd7ff33e1cea0696148b31007f0ac3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f884d4335ad4761b18e05fd0375600fc7ba6fcb0f6ae42f7baf2a7a07314818b
 ---
 
 ---
@@ -161,9 +161,9 @@ Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapka
 * **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas, dan grup lain mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat web search.
 * **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk daftar nilai.
 * **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lain, `models` adalah `null`.
-* **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Rate limits](https://platform.claude.com/docs/id/api/rate-limits) untuk bagaimana setiap limiter diukur dan diberlakukan.
+* **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk bagaimana setiap limiter diukur dan diberlakukan.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/admin/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/beta/organization/rate_limits/list).
 
 ### Daftar semua batas laju organisasi
 
@@ -478,10 +478,10 @@ Respons hanya menyertakan override, jadi apa pun yang hilang darinya diwarisi da
 * Dalam grup yang ada, tipe limiter yang tidak ada dalam `limits[]` tidak memiliki override workspace untuk limiter tersebut. Workspace mewarisi nilai organisasi untuknya.
 * Untuk setiap limiter yang ada, `org_limit` adalah nilai tingkat organisasi untuk limiter yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe limiter tersebut.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/admin/workspaces/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/beta/organization/workspaces/rate_limits/list).
 
 <Tip>
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/admin/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, jadi tidak memiliki entri pada endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, jadi tidak memiliki entri pada endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
 </Tip>
 
 <CodeGroup>
@@ -816,6 +816,6 @@ Tidak. Untuk mengatur batas laju workspace, buka workspace di [Claude Console](h
 
 * [Batas laju](https://platform.claude.com/docs/id/api/rate-limits)
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin)
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
 * [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)

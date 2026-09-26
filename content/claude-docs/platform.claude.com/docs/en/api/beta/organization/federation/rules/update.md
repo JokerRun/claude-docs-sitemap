@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3eb6f4a4c68cf67b529747ed855f1fe0cfdf5fc2fabdc396d75c047ad7a0ec8a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a7a665df85089afc590f2e32178127fa50345a39e8ab0d2b2235ae426c5513e5
 ---
 
 ---
@@ -164,11 +164,7 @@ Console session.
 
 - `match: optional BetaFederationRuleMatch or null`
 
-  Does the incoming JWT qualify?
-
-  All populated fields must pass; omitted fields are skipped. At least one
-  of `subject_prefix` (other than a wildcard-only value like `*`), `claims`,
-  or `condition` is required; `audience` alone is not sufficient.
+  Replaces the entire match object. All populated matcher fields must pass.
 
   - `audience: optional string or null`
 
@@ -196,7 +192,7 @@ Console session.
 
   Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `oauth_scope: optional string or null`
 
@@ -206,7 +202,7 @@ Console session.
 
 - `target: optional BetaServiceAccountTarget or null`
 
-  Bind to a fixed service account by ID.
+  Replaces the entire target object. Currently always a `service_account` target.
 
   - `type: "service_account"`
 
@@ -222,7 +218,7 @@ Console session.
 
   Replaces the lifetime in seconds for access tokens minted via this rule (60-86400). Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
 
-  maximum: 86400, minimum: 60
+  minimum: 60, maximum: 86400
 
 - `workspace_id: optional string or null`
 

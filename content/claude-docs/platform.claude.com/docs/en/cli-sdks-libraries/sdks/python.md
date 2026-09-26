@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 959455748209dbb369af90156e93d59015631cbd903a4ae77946efb17475eb07
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 34497fb2e868393f49261685f51ca61fcb85fab785093ac2734326ce1a371ce3
 ---
 
 ---
@@ -225,7 +225,8 @@ You can also count tokens before making a request:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-5-5", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-5-5",
+    messages=[{"role": "user", "content": "Hello, world"}],
 )
 print(count.input_tokens)  # 10
 ```

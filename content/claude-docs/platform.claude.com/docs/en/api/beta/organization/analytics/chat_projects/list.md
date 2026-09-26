@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 826c944f47eb8887e3181bc049bcef6408cfa6a3474cedf80f0e2ada3b479b59
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8ece917000a1c6913333fe641cba73668d0b5319bdf8b7c6650da9ae4c6f4180
 ---
 
 ---
@@ -112,7 +112,7 @@ plan. Requires an API key with the `read:analytics` scope.
 
     - `created_by: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      User who created the project. Null if the project was deleted before attribution was recorded, or if the creator's account no longer exists.
 
       - `type: "user"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 74b356591a927ef14aded9c9983b2c8658c7afd3cf0adf74fd709297d78f0d18
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 023e118e0b6c6380632653e4687290f8f35a4c9b7c76f93c0f3a82a53ecb26ed
 ---
 
 ---
@@ -10,13 +10,12 @@ title: Diagnostik cache
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
 description: Diagnosis cache miss prompt yang tidak terduga dengan membandingkan permintaan berurutan dan mengidentifikasi secara tepat di mana prefiks prompt menyimpang.
 featureMetadata:
-  status: beta
-  betaHeader: cache-diagnosis-2026-04-07
+  status: ga
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
   supportedPlatforms:
-    Claude API: beta
+    Claude API: ga
     Claude Platform on AWS: not available
     Amazon Bedrock: not available
     Google Cloud: not available
@@ -29,7 +28,7 @@ Diagnostik cache menutup celah tersebut. Teruskan `id` dari respons sebelumnya, 
 
 ## Cara kerja diagnostik cache
 
-Ketika header beta disertakan, API menyimpan fingerprint (sidik jari) ringan dari setiap permintaan, dengan kunci berupa `id` respons. Pada permintaan berikutnya, sertakan `id` tersebut sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan fingerprint yang tersimpan, dan melampirkan objek `diagnostics` pada respons yang menjelaskan titik penyimpangan pertama.
+Untuk setiap permintaan yang menyertakan objek `diagnostics`, API menyimpan "fingerprint" (sidik jari) ringan dengan kunci berupa `id` respons. API tidak menyimpan apa pun untuk permintaan yang tidak menyertakan objek tersebut. Pada permintaan berikutnya, sertakan `id` dari respons sebelumnya sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan fingerprint yang tersimpan, dan melampirkan objek `diagnostics` ke respons yang menjelaskan titik penyimpangan pertama.
 
 Perbandingan ini berkaitan dengan struktur permintaan, terlepas dari apakah cache benar-benar hit atau tidak. Lihat [Membaca diagnostik bersama usage](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#reading-diagnostics-alongside-usage) untuk cara menggabungkan hasil `diagnostics` dengan `usage.cache_read_input_tokens`.
 
@@ -37,7 +36,7 @@ Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah berisi kon
 
 ## Penggunaan dasar
 
-Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya untuk dibandingkan. Pada giliran berikutnya, teruskan `id` dari respons sebelumnya.
+Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. "Beta header" (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang masih mengirimkannya tetap berfungsi seperti sebelumnya.
 
 <CodeGroup>
   ```bash cURL
@@ -45,7 +44,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: cache-diagnosis-2026-04-07" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -62,7 +60,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: cache-diagnosis-2026-04-07" \
     -H "content-type: application/json" \
     -d @- <<EOF | jq '{id, diagnostics}'  # diagnostics: null means no divergence was found
   {
@@ -83,7 +80,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   ```bash CLI
   # Giliran 1
   turn1=$(ant beta:messages create \
-    --beta cache-diagnosis-2026-04-07 \
     --transform '{id,usage,diagnostics}' <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
@@ -102,7 +98,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   # Giliran 2: teruskan id dari giliran 1 sebagai previous_message_id
   message_id=$(jq -r '.id' <<<"$turn1")
   ant beta:messages create \
-    --beta cache-diagnosis-2026-04-07 \
     --transform '{id,usage,diagnostics}' <<YAML
   model: claude-opus-5-5
   max_tokens: 1024
@@ -134,7 +129,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
       system=SYSTEM,
       messages=[{"role": "user", "content": "Summarize section 1."}],
       diagnostics={"previous_message_id": None},
-      betas=["cache-diagnosis-2026-04-07"],
   )
 
   # Giliran 2: rujuk id respons sebelumnya
@@ -149,7 +143,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
           {"role": "user", "content": "Now summarize section 2."},
       ],
       diagnostics={"previous_message_id": r1.id},
-      betas=["cache-diagnosis-2026-04-07"],
   )
 
   diagnostics = r2.diagnostics
@@ -173,8 +166,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
     cache_control: { type: "ephemeral" },
     system: SYSTEM,
     messages: [{ role: "user", content: "Summarize section 1." }],
-    diagnostics: { previous_message_id: null },
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: { previous_message_id: null }
   });
 
   // Giliran 2: rujuk id respons sebelumnya
@@ -188,8 +180,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
       { role: "assistant", content: r1.content },
       { role: "user", content: "Now summarize section 2." }
     ],
-    diagnostics: { previous_message_id: r1.id },
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: { previous_message_id: r1.id }
   });
 
   if (r2.diagnostics === null) {
@@ -218,7 +209,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
               new() { Role = Role.User, Content = "Summarize section 1." },
           ],
           Diagnostics = new() { PreviousMessageID = null },
-          Betas = [AnthropicBeta.CacheDiagnosis2026_04_07],
       }
   );
 
@@ -240,7 +230,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
               new() { Role = Role.User, Content = "Now summarize section 2." },
           ],
           Diagnostics = new() { PreviousMessageID = r1.ID },
-          Betas = [AnthropicBeta.CacheDiagnosis2026_04_07],
       }
   );
 
@@ -271,7 +260,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   	Diagnostics: anthropic.BetaDiagnosticsParam{
   		PreviousMessageID: param.Null[string](),
   	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaCacheDiagnosis2026_04_07},
   })
   if err != nil {
   	panic(err)
@@ -290,7 +278,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
   	Diagnostics: anthropic.BetaDiagnosticsParam{
   		PreviousMessageID: anthropic.String(r1.ID),
   	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaCacheDiagnosis2026_04_07},
   })
   if err != nil {
   	panic(err)
@@ -320,7 +307,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
           .addUserMessage("Summarize section 1.")
           // Berikan null pada giliran pertama untuk ikut serta tanpa pesan sebelumnya sebagai pembanding.
           .diagnostics(BetaDiagnosticsParam.builder().previousMessageId((String) null).build())
-          .addBeta(AnthropicBeta.CACHE_DIAGNOSIS_2026_04_07)
           .build()
   );
 
@@ -334,7 +320,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
           .addMessage(r1)
           .addUserMessage("Now summarize section 2.")
           .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(r1.id()).build())
-          .addBeta(AnthropicBeta.CACHE_DIAGNOSIS_2026_04_07)
           .build()
   );
 
@@ -365,7 +350,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
           ['role' => 'user', 'content' => 'Summarize section 1.'],
       ],
       diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID(null),
-      betas: [AnthropicBeta::CACHE_DIAGNOSIS_2026_04_07],
   );
 
   $r2 = $client->beta->messages->create(
@@ -379,7 +363,6 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
           ['role' => 'user', 'content' => 'Now summarize section 2.'],
       ],
       diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID($r1->id),
-      betas: [AnthropicBeta::CACHE_DIAGNOSIS_2026_04_07],
   );
 
   echo match (true) {
@@ -402,8 +385,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
     messages: [
       {role: "user", content: "Summarize section 1."}
     ],
-    diagnostics: {previous_message_id: nil},
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: {previous_message_id: nil}
   )
 
   r2 = client.beta.messages.create(
@@ -416,8 +398,7 @@ Kirim header beta pada setiap giliran. Pada giliran pertama, teruskan `"previous
       {role: "assistant", content: r1.content},
       {role: "user", content: "Now summarize section 2."}
     ],
-    diagnostics: {previous_message_id: r1.id},
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: {previous_message_id: r1.id}
   )
 
   case r2.diagnostics
@@ -442,7 +423,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: cache-diagnosis-2026-04-07" \
     -H "content-type: application/json" \
     -d @- <<EOF | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
   {
@@ -465,7 +445,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   # Giliran 2: streaming. Dengan --stream, CLI mengeluarkan setiap event SSE sebagai satu objek JSON.
   # diagnostics tiba pada event message_start; ambil dengan jq.
   ant beta:messages create \
-    --beta cache-diagnosis-2026-04-07 \
     --stream --format jsonl <<YAML |
   model: claude-opus-5-5
   max_tokens: 1024
@@ -486,7 +465,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```python Python
-  # Giliran 2: streaming, merujuk id respons sebelumnya
+  # Giliran 2: streaming, merujuk ke id respons sebelumnya
   with client.beta.messages.stream(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -498,7 +477,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
           {"role": "user", "content": "Now summarize section 2."},
       ],
       diagnostics={"previous_message_id": r1.id},
-      betas=["cache-diagnosis-2026-04-07"],
   ) as stream:
       for text in stream.text_stream:
           print(text, end="", flush=True)
@@ -525,8 +503,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       { role: "assistant", content: r1.content },
       { role: "user", content: "Now summarize section 2." }
     ],
-    diagnostics: { previous_message_id: r1.id },
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: { previous_message_id: r1.id }
   });
 
   for await (const event of stream) {
@@ -549,7 +526,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```csharp C#
-  // Giliran 2: streaming, merujuk ke id respons sebelumnya
+  // Giliran 2: streaming, dengan merujuk id respons sebelumnya
   BetaDiagnostics? diagnostics = null;
 
   var stream = client.Beta.Messages.CreateStreaming(
@@ -570,7 +547,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
               new() { Role = Role.User, Content = "Now summarize section 2." },
           ],
           Diagnostics = new() { PreviousMessageID = r1.ID },
-          Betas = [AnthropicBeta.CacheDiagnosis2026_04_07],
       }
   );
 
@@ -597,7 +573,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```go Go
-  // Giliran 2: streaming, merujuk id respons sebelumnya
+  // Giliran 2: streaming, merujuk ke id respons sebelumnya
   stream := client.Beta.Messages.NewStreaming(ctx, anthropic.BetaMessageNewParams{
   	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
@@ -611,7 +587,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   	Diagnostics: anthropic.BetaDiagnosticsParam{
   		PreviousMessageID: anthropic.String(r1.ID),
   	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaCacheDiagnosis2026_04_07},
   })
   defer stream.Close()
 
@@ -637,7 +612,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```java Java
-  // Giliran 2: streaming, merujuk id respons sebelumnya
+  // Giliran 2: streaming, merujuk ke id respons sebelumnya
   var params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
@@ -647,7 +622,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       .addMessage(r1)
       .addUserMessage("Now summarize section 2.")
       .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(r1.id()).build())
-      .addBeta(AnthropicBeta.CACHE_DIAGNOSIS_2026_04_07)
       .build();
 
   var accumulator = BetaMessageAccumulator.create();
@@ -688,7 +662,6 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
           ['role' => 'user', 'content' => 'Now summarize section 2.'],
       ],
       diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID($r1->id),
-      betas: [AnthropicBeta::CACHE_DIAGNOSIS_2026_04_07],
   );
 
   $diagnostics = null;
@@ -726,8 +699,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       {role: "assistant", content: r1.content},
       {role: "user", content: "Now summarize section 2."}
     ],
-    diagnostics: {previous_message_id: r1.id},
-    betas: ["cache-diagnosis-2026-04-07"]
+    diagnostics: {previous_message_id: r1.id}
   )
 
   stream.each do |event|
@@ -789,7 +761,6 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
             system=SYSTEM,
             messages=messages,
             diagnostics={"previous_message_id": prev_id},
-            betas=["cache-diagnosis-2026-04-07"],
         )
 
         if r.diagnostics is not None and r.diagnostics.cache_miss_reason is not None:
@@ -820,8 +791,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
         cache_control: { type: "ephemeral" },
         system: SYSTEM,
         messages,
-        diagnostics: { previous_message_id: prevId },
-        betas: ["cache-diagnosis-2026-04-07"]
+        diagnostics: { previous_message_id: prevId }
       });
 
       if (r.diagnostics?.cache_miss_reason) {
@@ -857,7 +827,6 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
                 System = system,
                 Messages = messages,
                 Diagnostics = new() { PreviousMessageID = prevId },
-                Betas = [AnthropicBeta.CacheDiagnosis2026_04_07],
             }
         );
 
@@ -904,7 +873,6 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
     		Diagnostics: anthropic.BetaDiagnosticsParam{
     			PreviousMessageID: prevID,
     		},
-    		Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaCacheDiagnosis2026_04_07},
     	})
     	if err != nil {
     		panic(err)
@@ -946,7 +914,6 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
                 .system(system)
                 .messages(messages)
                 .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(prevId).build())
-                .addBeta(AnthropicBeta.CACHE_DIAGNOSIS_2026_04_07)
                 .build()
         );
 
@@ -984,7 +951,6 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
             system: $system,
             messages: $messages,
             diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID($prevId),
-            betas: [AnthropicBeta::CACHE_DIAGNOSIS_2026_04_07],
         );
 
         if ($r->diagnostics?->cacheMissReason !== null) {
@@ -1015,8 +981,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
         cache_control: {type: "ephemeral"},
         system_: SYSTEM,
         messages: messages,
-        diagnostics: {previous_message_id: prev_id},
-        betas: ["cache-diagnosis-2026-04-07"]
+        diagnostics: {previous_message_id: prev_id}
       )
 
       if (reason = r.diagnostics&.cache_miss_reason)
@@ -1032,12 +997,11 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
 ## Format respons
 
-Field `diagnostics` pada `Message` respons memiliki empat kemungkinan status:
+Field `diagnostics` pada `Message` respons memiliki tiga kemungkinan nilai:
 
 | Nilai                          | Arti                                                                                                                                                                                                                         |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| field tidak ada                | Permintaan tidak menyertakan `diagnostics`, atau header beta tidak ada.                                                                                                                                                      |
-| `null`                         | Entah `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau perbandingan telah dijalankan dan tidak menemukan penyimpangan.                                                             |
+| `null`                         | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau perbandingan telah dijalankan dan tidak menemukan penyimpangan.                 |
 | `{"cache_miss_reason": null}`  | Perbandingan masih berjalan ketika respons diserialisasi. Ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap sebagai tidak konklusif dan periksa giliran berikutnya.                                       |
 | `{"cache_miss_reason": {...}}` | Sebuah `cache_miss_reason` dilampirkan. Untuk tipe `*_changed`, ini mengidentifikasi titik penyimpangan pertama; `previous_message_not_found` dan `unavailable` adalah kasus di mana tidak ada perbandingan yang dihasilkan. |
 
@@ -1074,7 +1038,7 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 | `system_changed`             | Parameter `system` berbeda. Biasanya timestamp, ID permintaan, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem.                                                                                                                                                                                                                                                                                                                                   | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan pindahkan data dinamis ke pesan `user` pertama setelah breakpoint cache Anda.                                                                                                                                                                                       |
 | `tools_changed`              | Array `tools` berbeda: alat ditambahkan, dihapus, atau diurutkan ulang antar giliran, atau JSON `input_schema` alat diserialisasi secara non-deterministik.                                                                                                                                                                                                                                                                                                              | Kirim daftar alat yang sama pada setiap giliran dalam urutan tetap dengan skema yang diserialisasi secara deterministik (misalnya, urutkan kunci).                                                                                                                                                                                      |
 | `messages_changed`           | Model, system, dan tools semuanya cocok, tetapi entri sebelumnya dalam `messages` diubah, diurutkan ulang, atau dihapus alih-alih ditambahkan di akhir. Biasanya riwayat percakapan dipotong atau diedit, atau giliran asisten dan blok `tool_result` diserialisasi ulang secara berbeda saat dikirim kembali.                                                                                                                                                           | Perlakukan riwayat sebagai append-only; kembalikan `content` asisten dan hasil alat secara verbatim.                                                                                                                                                                                                                                    |
-| `previous_message_not_found` | Tidak ada fingerprint tersimpan untuk `previous_message_id` yang diberikan. Ini bukan bukti bahwa permintaan Anda berubah. Biasanya permintaan sebelumnya tidak membawa header beta, berasal dari workspace yang berbeda, atau terlalu banyak waktu telah berlalu sejak permintaan itu dikirim.                                                                                                                                                                          | Kirim header beta pada setiap giliran dan jaga agar giliran berurutan berdekatan dalam waktu.                                                                                                                                                                                                                                           |
+| `previous_message_not_found` | Tidak ada fingerprint tersimpan untuk `previous_message_id` yang diberikan. Ini bukan bukti bahwa permintaan Anda berubah. Biasanya permintaan sebelumnya tidak menyertakan objek `diagnostics`, berasal dari workspace yang berbeda, atau sudah terlalu lama sejak dikirim.                                                                                                                                                                                             | Sertakan objek `diagnostics` pada setiap giliran dan jaga agar giliran-giliran berturut-turut berdekatan waktunya.                                                                                                                                                                                                                      |
 | `unavailable`                | Informasi diagnostik tidak tersedia untuk permintaan ini. Ini mencakup kasus di mana `model`, `system`, dan `tools` cocok tetapi parameter permintaan lain yang memengaruhi prompt (`tool_choice`, `thinking`, `context_management`, `output_config`, `output_format`, atau kumpulan header `anthropic-beta` yang aktif) berbeda, serta percakapan yang sangat panjang di mana penyimpangan berada di luar horizon perbandingan. Permintaan Anda diproses secara normal. | Pertahankan parameter permintaan yang memengaruhi prompt tetap konstan selama masa hidup percakapan yang di-cache. Jika terus terjadi, terapkan pemeriksaan manual di bagian [Memecahkan masalah umum](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#troubleshooting-common-issues) pada halaman caching prompt. |
 
 <Note>
@@ -1096,7 +1060,6 @@ Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` 
 
 ## Keterbatasan
 
-* **Beta:** Nama field dan semantik dapat berubah selama fitur ini dalam tahap beta.
 * **Hanya Claude API:** Tidak tersedia di Amazon Bedrock atau Google Cloud.
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
 * **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
@@ -1107,7 +1070,7 @@ Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` 
 
 Diagnostik cache memenuhi syarat ZDR (dengan kualifikasi). Anthropic tidak menyimpan teks mentah prompt Anda atau output Claude untuk fitur ini.
 
-Fingerprint yang disimpan untuk setiap permintaan hanya terdiri dari hash kriptografis dan estimasi jumlah token, dengan kunci berupa `id` respons dan dibatasi pada organisasi dan workspace Anda. Fingerprint kedaluwarsa setelah periode singkat dan tidak digunakan untuk tujuan lain apa pun.
+API hanya menyimpan fingerprint untuk permintaan yang menyertakan objek `diagnostics`. Fingerprint hanya terdiri dari hash kriptografis dan estimasi jumlah token, dengan kunci berupa `id` respons dan dibatasi cakupannya pada organisasi dan workspace Anda. Fingerprint kedaluwarsa setelah periode singkat dan tidak digunakan untuk tujuan lain apa pun.
 
 Untuk kelayakan ZDR di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
@@ -1115,4 +1078,3 @@ Untuk kelayakan ZDR di seluruh fitur, lihat [API dan retensi data](https://platf
 
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
-* [Header beta](https://platform.claude.com/docs/id/api/beta-headers)

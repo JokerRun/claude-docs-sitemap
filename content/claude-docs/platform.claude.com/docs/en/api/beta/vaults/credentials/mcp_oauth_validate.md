@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 41195616e7e365036482885b03f161cd3fb16c557cdb27da7ccecb5e7632a428
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3eed195ae7e6c11727a0830acf2e9bfa8b299f9738e82f70a6a159643908ac5c
 ---
 
 ---
@@ -156,11 +156,11 @@ Validate Credential
 
   - `mcp_probe: BetaManagedAgentsMCPProbe or null`
 
-    The failing step of an MCP validation probe.
+    Details of the failing MCP probe step. Null when the probe succeeded.
 
     - `http_response: BetaManagedAgentsRefreshHTTPResponse or null`
 
-      An HTTP response captured during a credential validation probe.
+      The captured HTTP error response. Null when no HTTP response was received (timeout, DNS, TLS).
 
       - `body: string`
 
@@ -186,15 +186,15 @@ Validate Credential
 
   - `refresh: BetaManagedAgentsRefreshObject or null`
 
-    Outcome of a refresh-token exchange attempted during credential validation.
+    Details of the refresh-token exchange attempted on a 401. Null when no refresh was attempted.
 
     - `http_response: BetaManagedAgentsRefreshHTTPResponse or null`
 
-      An HTTP response captured during a credential validation probe.
+      The captured HTTP error response from the token endpoint. Populated only when `status` is `failed`.
 
     - `status: "succeeded" or "failed" or "connect_error" or "no_refresh_token"`
 
-      Outcome of a refresh-token exchange attempted during credential validation.
+      Outcome of the refresh attempt.
 
       - `"succeeded"`
 
@@ -214,7 +214,7 @@ Validate Credential
 
   - `status: BetaManagedAgentsCredentialValidationStatus`
 
-    Overall verdict of a credential validation probe.
+    Overall verdict of the validation probe.
 
     - `"valid"`
 
@@ -230,7 +230,7 @@ Validate Credential
 
   - `validated_at: string`
 
-    A timestamp in RFC 3339 format
+    When the validation probe was performed.
 
     format: date-time
 

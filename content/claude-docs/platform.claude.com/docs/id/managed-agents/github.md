@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: afbb988732a9b7b1407a5b9d8333b2ea6aa25ccd99c2dd14b1894a1d23ccd3cf
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 93bf9420b70e0ba1800892a306b97970edf2a0a052e44b252dedaa8b6f752604
 ---
 
 ---
@@ -56,7 +56,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply code-reviewer.md
     ```
@@ -79,7 +79,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       You are a code review assistant with access to GitHub.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

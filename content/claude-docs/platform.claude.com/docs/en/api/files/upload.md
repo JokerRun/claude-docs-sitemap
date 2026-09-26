@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 55e89cc2787565ac60d65e1509739df87ba2189338f8e6fe1c1c5c2b0625e576
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 101c9710b07a8d1c0816e5c6b5dda927decaf77a40eece3495f4680c97b7c792
 ---
 
 ---
@@ -64,13 +64,13 @@ Upload File
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 

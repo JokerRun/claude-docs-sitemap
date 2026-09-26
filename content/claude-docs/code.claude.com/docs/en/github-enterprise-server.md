@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 8c67198fec05db74aa0d04b3f21d75e2b037a64935cd5d8cb7b8c95618e86dbb
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4c09f999f4f4968d4a4b355ced3aa58fe56cd124bab97111421d2fc02a8f3077
 ---
 
 > ## Documentation Index
@@ -223,7 +223,7 @@ If reviews or Anthropic-hosted cloud sessions time out, your GHES instance may n
 
 ### Session start fails with `Unable to get organization UUID`
 
-Cloud sessions require a Team or Enterprise organization. Sign in with `/login` using your organization account. If you authenticate with an API key instead, cloud sessions fail earlier with a message asking you to run `/login`.
+Sign in with `/login` using your organization account. If you authenticate with an API key instead, cloud sessions fail earlier with a message asking you to run `/login`.
 
 ## Related resources
 

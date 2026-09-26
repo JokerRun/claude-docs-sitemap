@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 80739ab4344b9a9a6a2fb4a4dd6e3361cec87b3767d5dc4b72e7e9a79117bdff
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3d8ccd5d40414f1a0e965f2fc02ed2153f6b9604a726b0f9fd18e640fbe55560
 ---
 
 ---
@@ -145,15 +145,15 @@ persist(cursor)
 
 Setiap entri dalam `data` adalah Activity dengan bentuk tingkat atas berikut:
 
-| Field               | Tipe             | Deskripsi                                                                                                                                                                                                                                                             |
-| ------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                | string           | Pengidentifikasi unik untuk aktivitas.                                                                                                                                                                                                                                |
-| `created_at`        | string RFC 3339  | Kapan aktivitas terjadi.                                                                                                                                                                                                                                              |
-| `organization_id`   | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi (masuk, keluar, panggilan Compliance API).                                                                                                                      |
-| `organization_uuid` | string atau null | Cakupan yang sama dengan `organization_id`, dinyatakan sebagai UUID.                                                                                                                                                                                                  |
-| `actor`             | union Actor      | Siapa atau apa yang melakukan aktivitas. Lihat tabel aktor berikut.                                                                                                                                                                                                   |
-| `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                                      |
-| *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `filename` pada peristiwa file. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
+| Field               | Tipe             | Deskripsi                                                                                                                                                                                                                                                                   |
+| ------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | string           | Pengidentifikasi unik untuk aktivitas.                                                                                                                                                                                                                                      |
+| `created_at`        | string RFC 3339  | Kapan aktivitas terjadi.                                                                                                                                                                                                                                                    |
+| `organization_id`   | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi (masuk, keluar, panggilan Compliance API).                                                                                                                            |
+| `organization_uuid` | string atau null | Cakupan yang sama dengan `organization_id`, dinyatakan sebagai UUID.                                                                                                                                                                                                        |
+| `actor`             | union Actor      | Siapa atau apa yang melakukan aktivitas. Lihat tabel aktor berikut.                                                                                                                                                                                                         |
+| `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                                            |
+| *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `claude_file_id` pada peristiwa file. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
 
 Field `actor` adalah "discriminated union" (union terdiskriminasi). Diskriminator `type` memberi tahu Anda field lain mana yang ada:
 
@@ -170,6 +170,8 @@ Field `actor` adalah "discriminated union" (union terdiskriminasi). Diskriminato
 Aktivitas `user_actor` tidak selalu berarti pengguna yang melakukan tindakan tersebut. Proses yang dijalankan Anthropic atas nama pengguna saat ini dapat muncul sebagai `user_actor` untuk pengguna yang terdampak alih-alih sebagai `system_actor`, dan atribusi ini dapat berubah. Misalnya, aktivitas memori dari migrasi, seperti `platform_memory_store_created`, `platform_memory_created`, dan `platform_memory_deleted`, diatribusikan dengan cara ini. Aktivitas migrasi ini saat ini menampilkan `ip_address` bernilai `0.0.0.0`.
 
 Aktivitas `claude_*_viewed` berarti aplikasi Claude memuat konten, bukan berarti seseorang melihatnya. Jenis seperti `claude_chat_viewed`, `claude_file_viewed`, dan `claude_project_viewed` dicatat setiap kali aplikasi Claude memuat chat, file, atau proyek dari server Anthropic. Pemuatan berulang tidak dideduplikasi. Aplikasi web, desktop, dan seluler memuat konten pada saat yang berbeda, terkadang di latar belakang, dan dapat menampilkan salinan cache tanpa memuatnya. Akibatnya, jumlah aktivitas ini bervariasi menurut platform, dan tidak sesuai dengan jumlah pesan yang dikirim atau layar yang dilihat.
+
+Aktivitas tentang file, dokumen proyek, atau artifact tidak menyertakan nama atau judulnya. Mulai 24 September 2026, field `filename` dan `title` pada aktivitas ini selalu bernilai `null`, string kosong, atau dihilangkan, termasuk pada aktivitas yang dicatat sebelum tanggal tersebut. Untuk mencari nama atau judul, berikan ID `claude_file_*`, `claude_proj_doc_*`, atau `claude_artifact_version_*` dari aktivitas ke endpoint metadata yang sesuai di [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts), menggunakan Compliance Access Key dengan scope `read:compliance_user_data`. Anda tidak dapat mencari nama atau judul setelah file, dokumen, atau artifact dihapus, atau ketika aktivitas tidak memiliki ID tersebut.
 
 <Note>
   **Bangun handler yang kompatibel ke depan.** Teruskan nilai `type` dan `actor.type` yang tidak dikenali, dan abaikan field yang tidak diharapkan handler Anda, sehingga integrasi Anda tetap berfungsi ketika jenis aktivitas baru dirilis.

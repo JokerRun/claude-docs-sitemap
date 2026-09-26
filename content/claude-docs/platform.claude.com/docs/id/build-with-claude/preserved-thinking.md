@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: e3b283d3fd6839e1d4dc091bbd2a038e50de94883c6351dcb23fa7a90c218216
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 2e4e5ede38e175859c44fded7c73d648d5afb3335bc173a0f0ff4b3958f48aed
 ---
 
 ---
@@ -87,7 +87,11 @@ Anda memilihnya dengan `thinking.block_binding.prefix_mismatch_behavior`:
 * **`"error"` (default):** API menolak permintaan dengan 400 `invalid_request_error` yang menyebutkan blok pertama yang gagal.
 * **`"drop_block"`:** API membuang setiap blok yang gagal dan setiap blok pemikiran setelahnya, dan permintaan berhasil. Blok yang dibuang tidak ditagih. Model menjawab giliran tersebut tanpa menggunakan penalaran dari blok yang dibuang, dan cache prompt dimulai ulang pada titik edit. Respons mencantumkan setiap blok yang dibuang dalam `input_transformations` (pada event `message_start` saat streaming) dengan `reason: "prefix_binding_mismatch"`.
 
-`"drop_block"` membuat permintaan tetap berhasil tetapi tidak memperbaiki edit tersebut. Hitung respons dalam setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, dan buat peringatan untuknya. Di Message Batches API, item yang tidak menetapkan field ini tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Tetapkan `"error"` secara eksplisit di sana jika Anda ingin item batch gagal.
+<Warning>
+  `"drop_block"` menyembunyikan error tetapi tidak memperbaiki edit yang menyebabkannya. Blok yang dibuang tidak ditagih, tetapi penggunaan token sesi mungkin tetap meningkat karena Claude terkadang berpikir lebih banyak untuk membuat ulang pemikiran yang dibuang. Peningkatan ini cenderung lebih besar ketika lebih banyak blok pemikiran dibuang, atau ketika blok dibuang pada lebih banyak giliran dalam sesi yang panjang.
+</Warning>
+
+Hitung respons dalam setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, buat peringatan untuk respons tersebut, dan ganti setiap edit dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Di Message Batches API, item yang tidak menetapkan field tersebut tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Tetapkan `"error"` secara eksplisit jika Anda ingin item batch gagal dalam kasus tersebut.
 
 Field tersebut dan array `input_transformations` sama-sama memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. [Tetapkan perilaku ketidakcocokan dan baca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls) menunjukkan permintaan tersebut di setiap "software development kit" (kit pengembangan perangkat lunak), atau SDK.
 

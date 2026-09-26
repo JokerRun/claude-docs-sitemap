@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/glossary
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: ae5229f6883ac2ca5a10b37f2e621439d0df2a82335fc52f642e9002a50c56cb
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: df335eaa0daa002bf56d53aeb342dd01661ab01b1fe22a41c4eb072f07dfe6e5
 ---
 
 ---
@@ -39,7 +39,7 @@ HHH (helpful, honest, harmless — membantu, jujur, tidak berbahaya) adalah kera
 
 ## MCP (Model Context Protocol)
 
-"Model Context Protocol", atau MCP, adalah protokol terbuka yang menstandarkan bagaimana aplikasi memberikan konteks kepada LLM. Seperti port USB-C untuk aplikasi AI, MCP menyediakan cara terpadu untuk menghubungkan model AI ke berbagai sumber data dan alat. MCP memungkinkan sistem AI untuk mempertahankan konteks yang konsisten di seluruh interaksi dan mengakses sumber daya eksternal dengan cara yang terstandar. Lihat [dokumentasi MCP](https://platform.claude.com/docs/id/mcp) untuk mempelajari lebih lanjut.
+"Model Context Protocol", atau MCP, adalah protokol terbuka yang menstandarkan bagaimana aplikasi memberikan konteks kepada LLM. Seperti port USB-C untuk aplikasi AI, MCP menyediakan cara terpadu untuk menghubungkan model AI ke berbagai sumber data dan alat. MCP memungkinkan sistem AI untuk mempertahankan konteks yang konsisten di seluruh interaksi dan mengakses sumber daya eksternal dengan cara yang terstandar. Lihat [dokumentasi MCP](https://modelcontextprotocol.io/) untuk mempelajari lebih lanjut.
 
 ## MCP connector
 

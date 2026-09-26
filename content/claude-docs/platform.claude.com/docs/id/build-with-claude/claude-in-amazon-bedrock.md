@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: fbea174ad4d6e00f9c6824c91e738dfd49307e1139d1dbdb6ad6d8f3b843de69
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a38f107779564d787f86e29f2d46307de754ea957697eda9f6ff22b70e25b25f
 ---
 
 ---
@@ -332,7 +332,7 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 </Tabs>
 
 <Tip>
-  Anda juga dapat menggunakan client `Anthropic` standar: atur `base_url` ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key`. Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan client khusus.
+  Anda juga dapat menggunakan klien `Anthropic` standar: atur `base_url` ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key`. Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
 </Tip>
 
 ## Model yang didukung

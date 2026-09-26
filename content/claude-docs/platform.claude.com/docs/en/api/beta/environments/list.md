@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 7d865214d1c6b998b6723624d93b805311a881e77bc82f4435e99faea5328d13
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a9dc30e8013bf3f5efbc58b48f9685eff5eb3fe4e5d81f24cea7c56f3ae66ece
 ---
 
 ---
@@ -28,7 +28,7 @@ List environments with pagination support.
 
   Maximum number of environments to return
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

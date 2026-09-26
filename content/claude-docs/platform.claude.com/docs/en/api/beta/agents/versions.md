@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3d505e8581886049d97e356f3e7a2c8f1c500171c308e3a08df7cfda029b0f4a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d3b249decd73eb89110fd47b36a76a949c15e1f1c9a5bfe3b2de46f2c89b0d18
 ---
 
 ---
@@ -160,7 +160,7 @@ List Agent Versions
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the agent was archived. Null if not archived.
 
     format: date-time
 
@@ -191,6 +191,8 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `string`
 
       - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
@@ -258,11 +260,9 @@ List Agent Versions
 
           High-performance model for agents and coding
 
-      - `string`
-
     - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 
-      How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
+      How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`. Always present; resolved to the per-model default at save time when not supplied.
 
       - `BetaManagedAgentsEffortLow object`
 
@@ -300,7 +300,7 @@ List Agent Versions
 
     - `speed: optional "standard" or "fast"`
 
-      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
 
       - `"standard"`
 
@@ -308,7 +308,7 @@ List Agent Versions
 
   - `multiagent: BetaManagedAgentsMultiagent or null`
 
-    Resolved coordinator topology with a concrete agent roster.
+    Multiagent orchestration configuration. Null when the agent is single-threaded.
 
     - `type: "coordinator"`
 

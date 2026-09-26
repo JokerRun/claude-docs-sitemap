@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-4-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: f0cdb6d5a42f633fb5668abc1c5cbc8f22f4eb81837408528347d02c2d4015dc
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4975e83c33a6fed2679fc011b3942a0ad73feac5b158de6cbf44df3cc1b08d50
 ---
 
 ---
@@ -112,7 +112,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 ## Reference
 
 <CardGroup cols={3}>
-  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts#claude-haiku-4-5">
+  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts/overview#claude-haiku-4-5">
     The system prompt Claude Haiku 4.5 uses on claude.ai and the Claude apps.
   </Card>
 

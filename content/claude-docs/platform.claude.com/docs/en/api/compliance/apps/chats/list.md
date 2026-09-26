@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 114c6066fe83bfa7dbad6d1dc04352480de22b17f2e574dceb943838fff5383b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f635a2567d7c7d5b8144a06ef4f88b1ef1f4f98895a8012679fd1002fd45f9fd
 ---
 
 ---
@@ -72,7 +72,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order_by: optional "created_at" or "updated_at"`
 
@@ -178,21 +178,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   - `user: object or null`
 
-    The user who created the chat.
-
-    Null when the API key is restricted to one organization and the creator
-    is no longer a member of it (for example, after they were removed from
-    it).
-
-    A key for the whole parent organization returns the creator's `id`
-    and current `email_address` for every chat; on the list endpoint, pass
-    `organization_ids[]` to keep the results to one organization. For the
-    email address the creator had when the chat was created, query
-    `GET /v1/compliance/activities` with `activity_types[]=claude_chat_created`
-    and a `created_at` window around the chat's `created_at`, find the event
-    whose `claude_chat_id` matches this chat's `id`, and read
-    `actor.email_address`. These events exist only for chats created after
-    compliance logging was enabled for the organization.
+    The user who created the chat. Null when the API key is restricted to one organization and the creator is no longer a member of it.
 
     - `id: string`
 

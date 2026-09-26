@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: dd6c589a2779e0a6a4dcd95c7cc05d750ca415301c896428b3d553e58832db28
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 9e147af8f040ee81dc15ea3beb722887ca47fe852fe6a22a718308ddbd2414ca
 ---
 
 ---
@@ -414,7 +414,7 @@ Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat 
 
 ### Percobaan ulang otomatis
 
-Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu jeda yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
+Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), dengan menunggu jeda yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
 
 ### Beralih kembali ke kecepatan standar
 
@@ -422,13 +422,13 @@ Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan he
   Bagian ini membahas fallback sisi klien yang bersifat opt-in ketika mode cepat terkena batas laju. Ini terpisah dari perilaku pada [Claude Opus 4.6](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models), di mana mode cepat tidak tersedia dan permintaan berjalan pada kecepatan standar secara otomatis.
 </Note>
 
-Jika Anda lebih memilih beralih kembali ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+Jika Anda lebih memilih beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal saat terjadi error batas laju.
 
 <Note>
   Beralih dari kecepatan cepat ke standar akan mengakibatkan [prompt cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) miss. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
 </Note>
 
-Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh-contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Karena mengatur `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, error server internal), contoh-contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI

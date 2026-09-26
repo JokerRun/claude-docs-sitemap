@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: f9fd658394b62295a48af95ab8c2db68876da81774e8b93ea39b3c2419428379
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ebc3c55d4c202d82205f29e35a078cfc6012e76de3a97656f42e43bd4ee598f5
 ---
 
 ---
@@ -44,7 +44,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant beta:vaults create < alice.vault.yaml
     ```
@@ -56,7 +56,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
         external_user_id: usr_abc123
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   vault = client.beta.vaults.create(

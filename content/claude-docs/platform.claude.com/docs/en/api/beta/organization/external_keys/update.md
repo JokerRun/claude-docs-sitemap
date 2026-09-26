@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 80d6a6de0a6dbc25a238948586c98e46b42bbbc4d02ab6ef23f99dde3534d8fb
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 7772aa50f7cdb69a87c14b630cd76f8107cd2a36bcbc1453bf880d8ad4705134
 ---
 
 ---
@@ -34,7 +34,7 @@ encrypted data requires the original key identity to decrypt.
 
   Human-friendly display name.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `geo: optional "us" or null`
 

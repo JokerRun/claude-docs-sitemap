@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: fc321997ce02f52184203f7fcf1697dcb26044cac535cfbe86824b62c5df0783
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 587ac6c5b625889d4098ee8d5f656458c6455540b77db4cf9dd43a5f3119bb5f
 ---
 
 ---
@@ -102,15 +102,15 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
 
 Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menggerakkan environment `self_hosted`. Lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk menyiapkan environment, menjalankan worker, dan opsi helper SDK.
 
-| Flag                   | Deskripsi                                                                                                                                                                                      |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                    |
-| `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                   |
-| `--workdir`            | Direktori tempat skill diunduh dan alat membaca serta menulis file. Default-nya `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`.                                  |
-| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.                                      |
-| `--unrestricted-paths` | Mengizinkan alat file untuk membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash. |
-| `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/api/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`.            |
-| `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                           |
+| Flag                   | Deskripsi                                                                                                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                       |
+| `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                      |
+| `--workdir`            | Direktori tempat skill diunduh dan alat membaca serta menulis file. Default-nya `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`.                                     |
+| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.                                         |
+| `--unrestricted-paths` | Mengizinkan alat file untuk membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash.    |
+| `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`. |
+| `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                              |
 
 Worker CLI tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/memory): sesi yang melampirkannya tetap berjalan, tetapi agen tidak menemukan apa pun di `mount_path` store tersebut dan tidak ada perubahan yang disinkronkan kembali ke store. Untuk menggunakan memory store dalam sesi pada environment self-hosted, jalankan worker SDK sebagai gantinya; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
 

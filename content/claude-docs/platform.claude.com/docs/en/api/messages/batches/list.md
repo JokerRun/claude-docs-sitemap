@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 03331b5fef49e3be081ebb1b093ca0ea3cd140a336d528dfe25c7aa8f27bce67
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 14e728a770deb5ef0f66b810d4b427fd25850887f1439105e819278f0969a715
 ---
 
 ---
@@ -34,7 +34,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 ## Headers
 

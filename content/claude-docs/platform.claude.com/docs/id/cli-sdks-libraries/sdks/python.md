@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 7aeb779f4544bf0f8651ea216cf1a58373347b9ddafe1105fa122bb650848d72
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3307cbca26bb2830e44da9d3018adbddc149e368322458ea3952e1a1e24fdcee
 ---
 
 ---
@@ -225,7 +225,8 @@ Anda juga dapat menghitung token sebelum membuat permintaan:
 
 ```python
 count = client.messages.count_tokens(
-    model="claude-opus-5-5", messages=[{"role": "user", "content": "Hello, world"}]
+    model="claude-opus-5-5",
+    messages=[{"role": "user", "content": "Hello, world"}],
 )
 print(count.input_tokens)  # 10
 ```

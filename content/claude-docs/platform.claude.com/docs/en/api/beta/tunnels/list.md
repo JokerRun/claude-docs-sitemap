@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 34519a3f7fb0fa17f361985e448a84d8e8eb357a5bbf7b727ea6117697ed9378
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0539d6fc039f825134785222958966233f5dc0c2bdd02b7cdec0baaface42515
 ---
 
 ---
@@ -160,13 +160,13 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was archived. Null if it is not archived.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was created.
 
     format: date-time
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 7fb104400e0010f2f76d08c183bb64c1c67ebb8b3b24ddd832a885eb890de799
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: fc5b28af307bfce6573e3b04c03503d9fe0769076cf8fbb5d70d885dab56590f
 ---
 
 ---
@@ -29,7 +29,7 @@ Requests whose requester is no longer a member are excluded.
 
 - `limit: optional number`
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

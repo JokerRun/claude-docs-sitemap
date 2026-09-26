@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 04a824ac5219ca0088a1c908209dbd1bc984cbbec501f02bdf62c9a0b77012ac
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 66fdf74c23ad5af2b8cd6668ba12ebd6d4d85c5ffceba3ddba097ae025d9ac43
 ---
 
 ---
@@ -2182,7 +2182,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename
     -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply financial_skill
     ```
@@ -2201,7 +2201,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (sufiks `;filename
       print("financial analysis helper")
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   from anthropic.lib import files_from_dir

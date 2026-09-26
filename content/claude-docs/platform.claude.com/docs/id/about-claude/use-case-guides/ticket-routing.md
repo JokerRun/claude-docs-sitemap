@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0b33a272bad3ddcb85cd761c8a75db2e0bdb4641748e663c275565749c5fc842
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 732c3ed9668396c1ca5e3cadf9bad04aed73a8cb6eaf37f96a1f6f2b0ea925c3
 ---
 
 ---
@@ -242,7 +242,7 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
 
 Pilihan model bergantung pada trade-off antara biaya, akurasi, dan waktu respons.
 
-Banyak pelanggan menganggap `claude-haiku-4-5-20251001` sebagai model ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian materi yang mendalam atau volume kategori maksud yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/about-claude/models).
+Banyak pelanggan menganggap `claude-haiku-4-5-20251001` sebagai model ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian materi yang mendalam atau volume kategori maksud yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/models/overview).
 
 ### Bangun prompt yang kuat
 

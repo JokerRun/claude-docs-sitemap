@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 46a7cc6beced36dcd6877c40c5665538dc4e3203fb535e02241000a5f1e4e945
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 14cae80e8d8da7dd36d62fd4af90f92dbef98d8eb65a2c65302e174ced7d0d2a
 ---
 
 ---
@@ -519,7 +519,7 @@ Anggaran yang tepat bergantung pada seberapa banyak pekerjaan yang saat ini dila
 
 Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan catat total token yang dihabiskan Claude per tugas. Untuk loop agentik, jumlahkan `usage.output_tokens` di setiap permintaan dalam loop, ditambah token dari hasil alat yang Anda tambahkan di antara permintaan:
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL">
   ```bash CLI
   ant messages create --transform 'usage.output_tokens' <<'YAML'
   model: claude-opus-5-5

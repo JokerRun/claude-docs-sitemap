@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9c465fbdd9e344ce26bd636a4d16b4021c77d74e4fae896c7745fb1b2924bb20
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f8c56d21b4737fc78ca16a1fc028b9d7a648c100862d89560dbeedbfc5405ef0
 ---
 
 ---
@@ -44,7 +44,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant beta:vaults create < alice.vault.yaml
     ```
@@ -56,7 +56,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
         external_user_id: usr_abc123
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   vault = client.beta.vaults.create(
@@ -1006,7 +1006,7 @@ Untuk kredensial `mcp_oauth`, penyelesaian ulang juga me-refresh access token ji
 
 ### Mendiagnosis kegagalan refresh OAuth
 
-Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate` (atau `client.beta.vaults.credentials.mcp_oauth_validate(...)` di SDK). Ini memungkinkan Anda memutuskan cara menangani kegagalan tersebut; tindakan yang tepat bergantung pada jenis error.
+Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate` (atau `client.beta.vaults.credentials.mcp_oauth_validate(...)` (typescript: `client.beta.vaults.credentials.mcpOAuthValidate(...)`; csharp: `client.Beta.Vaults.Credentials.McpOAuthValidate(...)`; go: `client.Beta.Vaults.Credentials.MCPOAuthValidate(...)`; java: `client.beta().vaults().credentials().mcpOAuthValidate(...)`; php: `$client->beta->vaults->credentials->mcpOAuthValidate(...)`) di SDK). Ini memungkinkan Anda memutuskan cara menangani kegagalan tersebut; tindakan yang tepat bergantung pada jenis error.
 
 `status` tingkat atas memberi tahu Anda apa yang harus dilakukan selanjutnya:
 

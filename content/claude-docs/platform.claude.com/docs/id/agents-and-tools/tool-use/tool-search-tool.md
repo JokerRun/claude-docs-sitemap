@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1058fc64c2110451cf37295afa4768dab0445e0adacacd677354f1b81e89210e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 48b656a8066b39975a1fb03613f1983e5574c236bfbdd685461013a8afadd7a3
 ---
 
 ---
@@ -872,7 +872,7 @@ Tool search tidak diukur sebagai alat server terpisah. Objek `usage.server_tool_
     Konfigurasikan MCP toolset dengan pemuatan deferred.
   </Card>
 
-  <Card title="Tool use with prompt caching" icon="bolt" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
+  <Card title="Penggunaan alat dengan caching prompt" icon="bolt" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
     Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache Anda.
   </Card>
 

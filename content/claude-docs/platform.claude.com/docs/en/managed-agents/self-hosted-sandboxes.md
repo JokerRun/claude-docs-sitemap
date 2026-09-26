@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 7f57fdb69a7199e1f308bd79cf6d106277ef8e27e9e16460e1132972c838793b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 37c76a458db3e69f8cbcf1e625c85d78d5ae144ba01036af1e068da05132e1db
 ---
 
 ---
@@ -96,7 +96,7 @@ You need:
         }'
       ```
 
-      <MultiFileExample language="cli" label="CLI">
+      <CodeGroupItem>
         ```bash CLI
         ant apply environment.yaml
         ```
@@ -109,7 +109,7 @@ You need:
             type: self_hosted
           ```
         </File>
-      </MultiFileExample>
+      </CodeGroupItem>
 
       ```python Python
       client = anthropic.Anthropic()

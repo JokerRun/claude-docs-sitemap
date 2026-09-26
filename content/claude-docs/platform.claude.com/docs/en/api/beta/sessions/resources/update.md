@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c1118a4cf8f0dc931df87fcb7a56261af6b1169374c020c6602fd48c4bfe5175
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 60671ac8e2c68d873bc6fd2ec54a98bbdf870072bcab804ddc427aa0ebaf4a40
 ---
 
 ---
@@ -222,7 +222,7 @@ Update Session Resource
 
   - `access: optional "read_write" or "read_only" or null`
 
-    Access mode for an attached memory store.
+    Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
     - `"read_write"`
 

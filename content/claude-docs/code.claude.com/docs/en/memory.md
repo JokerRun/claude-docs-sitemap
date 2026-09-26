@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: cf73d3a512d5bab41ed6f22adeb7751ef7e97f022addcf22da091b3830192a8f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 211356a949f98a2005ccc5ca66d5366cffeae5849d3df7cdddd51c61d9455cea
 ---
 
 > ## Documentation Index
@@ -253,6 +253,8 @@ This example links both a shared directory and an individual file:
 ln -s ~/shared-claude-rules .claude/rules/shared
 ln -s ~/company-standards/security.md .claude/rules/security.md
 ```
+
+If you point a `.claude/rules/` or `CLAUDE.md` symlink at a network path such as the UNC share `\\server\share` or a path under `/net` or `/Network`, the linked instructions don't load. Claude Code doesn't follow the link, because looking up such a path can contact the host it names. `\\wsl$` paths don't count as network paths.
 
 #### User-level rules
 
@@ -591,6 +593,8 @@ Run `/memory` and select the auto memory folder to browse what Claude has saved.
 ### My CLAUDE.md is too large
 
 Files over 200 lines consume more context and may reduce adherence. Claude Code skips a file over 4 MiB. Use [path-scoped rules](#path-specific-rules) to load instructions only when Claude works with matching files, or trim content that isn't needed in every session. Splitting into [`@path` imports](#import-additional-files) helps organization but doesn't reduce context, since imported files load at launch.
+
+If one of your instruction files is over the recommended length, you see a warning at startup and when you run `/status`. You also see a warning when files that are each within that length add up past a combined limit at session start. Each CLAUDE.md, rules file, and `@path` import counts as a separate file.
 
 The [`/doctor`](/docs/en/commands#all-commands) checkup proposes trims for a checked-in CLAUDE.md: it cuts content Claude can derive from the codebase, such as directory layouts, dependency lists, and architecture overviews, and keeps pitfalls, rationale, and conventions that differ from tool defaults. The trim check requires Claude Code v2.1.206 or later.
 

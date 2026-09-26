@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4e10ee71eabfc8ea9e511901eb7fdc40da5f552fb0077350d72a4f0f57dfa4d5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 9f8510d5ad8d23abe72a764b6640cad1b31dc0686c336f3ce23deec638e8139e
 ---
 
 ---
@@ -65,7 +65,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     The `--labels` option adds the organization label, `anthropic-org-<ORGANIZATION_UUID>` with the value `true`, where `<ORGANIZATION_UUID>` is your Anthropic organization ID in lowercase. The label is required for Anthropic to validate the key.
 
     <Note>
-      **Finding your organization ID:** Copy the **Organization ID** field under **Settings > Organization** in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/admin-api/organization/get-me) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
+      **Finding your organization ID:** Copy the **Organization ID** field under **Settings > Organization** in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/beta/organization/retrieve) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
     </Note>
 
     ```bash

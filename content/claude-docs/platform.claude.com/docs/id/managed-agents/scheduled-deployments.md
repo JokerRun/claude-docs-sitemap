@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 974dab6ac02b95402d042fe3894a32d12f4dbf60d9806be81a49968f55982ce3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 975f74770862245a46c6eddd286291086263d32882299c58871cdc6b916908cb
 ---
 
 ---
@@ -53,7 +53,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply deployment.md
     ```
@@ -73,7 +73,9 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
       Run the weekly compliance scan.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mencetak ID deployment baru dan mencatatnya di `claude-lock.json`. Untuk melihat objek deployment, jalankan `ant beta:deployments retrieve`.
+  </CodeGroupItem>
 
   ```python Python
   deployment = client.beta.deployments.create(
@@ -230,10 +232,6 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     }
   )
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mencetak ID deployment baru dan mencatatnya di `claude-lock.json`. Untuk melihat objek deployment, jalankan `ant beta:deployments retrieve`.
-  </ForLanguage>
 </CodeGroup>
 
 Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu eksekusi berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah ditetapkan dengan benar.

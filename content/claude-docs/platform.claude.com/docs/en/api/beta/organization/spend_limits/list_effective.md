@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 67b04c70235fd57e51da610c12f34b7626dd9117d4117e2a9edf6ce82b5bd4ce
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8e11643578ffad094de0d48bb0c4bd548861d372120fdbecc7442ccb6cd7970d
 ---
 
 ---
@@ -26,7 +26,7 @@ Paginates by member, so a member's periods never split across pages.
 
   Maximum number of members per page. A member's period rows never split across pages, so a page may carry more rows than this. Defaults to `20`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

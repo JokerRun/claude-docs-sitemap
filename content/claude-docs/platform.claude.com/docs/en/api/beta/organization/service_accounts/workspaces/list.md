@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 1c28a2e0b53a69a6fc2c0e9714dc0a3829ae4aafb8867209822b2e7d02e68500
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c1ec6734ad32bdf1cea022e57523d1be6e1b1d52c99c3a233b13dc91ebc5dc91
 ---
 
 ---
@@ -44,7 +44,7 @@ page to recover.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

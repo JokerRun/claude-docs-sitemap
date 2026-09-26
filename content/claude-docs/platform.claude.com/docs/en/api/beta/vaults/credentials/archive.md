@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 2767f2e5be2dc41ef5d05bae5b9ee8b0a726276377367b85d1812374587bba23
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 877185672724cc2028527486044024c6805fefb684f6f5fc8c55b259bee6a590
 ---
 
 ---
@@ -152,13 +152,13 @@ Archive Credential
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the credential was archived. Null if not archived.
 
     format: date-time
 
   - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
-    Authentication details for a credential.
+    Authentication configuration for this credential.
 
     - `BetaManagedAgentsMCPOAuthAuthResponse object`
 
@@ -178,7 +178,7 @@ Archive Credential
 
       - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse or null`
 
-        OAuth refresh token configuration returned in credential responses.
+        Refresh token configuration, if the credential supports token refresh.
 
         - `client_id: string`
 

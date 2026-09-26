@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c5f104220fded54124efa8a918681ce21606ff033f24c7f983f31440c0bf4fb5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 31191132bd5157057b3f3ee69e45c8eca4bfceb460c341638db0d2773b322d0a
 ---
 
 ---
@@ -152,13 +152,13 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was archived. Null if it is not archived.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was created.
 
     format: date-time
 

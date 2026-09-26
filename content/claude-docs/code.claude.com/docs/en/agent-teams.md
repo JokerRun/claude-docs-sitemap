@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: eb9e913c3bd93b8ba617a09a6b938c9d3c843c7d61bf4c251f1280835d32da38
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1aa4bf6be58c47fc4f06cb95505c1f13dd6600a2e633b7f5bec1302686b66ff8
 ---
 
 > ## Documentation Index
@@ -302,7 +302,9 @@ In [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode), the 
 
 ### Context and communication
 
-Each teammate has its own context window. When spawned, a teammate loads the same project context as a regular session: CLAUDE.md, MCP servers, and skills. It also receives the spawn prompt from the lead. The lead's conversation history does not carry over.
+Each teammate has its own context window. When spawned, a teammate loads the same project context as a regular session: CLAUDE.md, MCP servers, and skills. If you start the lead with [`--setting-sources`](/docs/en/cli-reference#cli-flags), teammates load from the same restricted list of sources. Before v2.1.281, [split-pane](#choose-a-display-mode) teammates loaded every settings source.
+
+A teammate also receives the spawn prompt from the lead. The lead's conversation history does not carry over.
 
 **How teammates share information:**
 

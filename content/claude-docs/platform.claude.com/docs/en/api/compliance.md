@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 5f29205b81091475286c4c4b3a26bc48eaf8dbd207cac2c71dbb06ddeffe6e9c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4d0c7a4f5190d717b42d04c32529e717d502858f5caed5a805c7049ce54e5148
 ---
 
 ---
@@ -4222,7 +4222,7 @@ compliance activities that can be filtered by various criteria.
 
   Maximum results (default: 100, max: 5000)
 
-  default: 100, maximum: 5000, minimum: 1
+  default: 100, minimum: 1, maximum: 5000
 
 - `order: optional "asc" or "desc"`
 
@@ -11230,7 +11230,7 @@ compliance activities that can be filtered by various criteria.
 
     - `authorization_basis: optional object or null`
 
-      CcrAgentProxyCredentialAuthorizationBasis records how the actor was authorized to perform a Claude Code agent proxy credential operation. Populated only when the operation was authorized against a specific actor's permissions; absent on system-initiated operations (for example, an automatic token rotation) and on operations authorized by a provisioning link rather than the actor's own permissions.
+      How the actor was authorized to create this credential. Absent on system-initiated operations and on credentials created via a provisioning link.
 
       - `slack_channel_id: string`
 
@@ -11506,7 +11506,7 @@ compliance activities that can be filtered by various criteria.
 
     - `authorization_basis: optional object or null`
 
-      CcrAgentProxyCredentialAuthorizationBasis records how the actor was authorized to perform a Claude Code agent proxy credential operation. Populated only when the operation was authorized against a specific actor's permissions; absent on system-initiated operations (for example, an automatic token rotation) and on operations authorized by a provisioning link rather than the actor's own permissions.
+      How the actor was authorized to delete this credential.
 
       - `slack_channel_id: string`
 
@@ -11798,7 +11798,7 @@ compliance activities that can be filtered by various criteria.
 
     - `authorization_basis: optional object or null`
 
-      CcrAgentProxyCredentialAuthorizationBasis records how the actor was authorized to perform a Claude Code agent proxy credential operation. Populated only when the operation was authorized against a specific actor's permissions; absent on system-initiated operations (for example, an automatic token rotation) and on operations authorized by a provisioning link rather than the actor's own permissions.
+      How the actor was authorized to rotate this credential. Absent on automatic rotations initiated by the system rather than by a user.
 
       - `slack_channel_id: string`
 
@@ -12078,7 +12078,7 @@ compliance activities that can be filtered by various criteria.
 
     - `authorization_basis: optional object or null`
 
-      CcrAgentProxyCredentialAuthorizationBasis records how the actor was authorized to perform a Claude Code agent proxy credential operation. Populated only when the operation was authorized against a specific actor's permissions; absent on system-initiated operations (for example, an automatic token rotation) and on operations authorized by a provisioning link rather than the actor's own permissions.
+      How the actor was authorized to update this credential.
 
       - `slack_channel_id: string`
 
@@ -82760,7 +82760,7 @@ compliance activities that can be filtered by various criteria.
 
           - `duration: number`
 
-            maximum: 2147483647, minimum: -2147483648
+            minimum: -2147483648, maximum: 2147483647
 
           - `timescale: "day" or "indefinite" or "month"`
 
@@ -82788,7 +82788,7 @@ compliance activities that can be filtered by various criteria.
 
           - `duration: number`
 
-            maximum: 2147483647, minimum: -2147483648
+            minimum: -2147483648, maximum: 2147483647
 
           - `timescale: "day" or "indefinite" or "month"`
 
@@ -91189,7 +91189,7 @@ compliance activities that can be filtered by various criteria.
 
     - `event_data: optional object or null`
 
-      A nested object within a compliance activity payload.
+      Details of the authentication attempt.
 
       - `external_client_id: optional string or null`
 
@@ -91217,7 +91217,7 @@ compliance activities that can be filtered by various criteria.
 
     - `status: optional object or null`
 
-      A nested object within a compliance activity payload.
+      The outcome of the token exchange.
 
       - `outcome: string`
 
@@ -93131,7 +93131,7 @@ compliance activities that can be filtered by various criteria.
 
     - `event_data: optional object or null`
 
-      A nested object within a compliance activity payload.
+      Details of the authentication attempt.
 
       - `federation_rule_id: optional string or null`
 
@@ -93143,7 +93143,7 @@ compliance activities that can be filtered by various criteria.
 
       - `oidc_token: optional object or null`
 
-        A nested object within a compliance activity payload.
+        Details of the presented OIDC token.
 
         - `claims: optional map[unknown] or null`
 
@@ -93183,7 +93183,7 @@ compliance activities that can be filtered by various criteria.
 
     - `status: optional object or null`
 
-      A nested object within a compliance activity payload.
+      The outcome of the token exchange.
 
       - `outcome: string`
 
@@ -131957,7 +131957,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
   Maximum results (default: 1000, max: 1000)
 
-  default: 1000, maximum: 1000, minimum: 1
+  default: 1000, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -132037,7 +132037,7 @@ List current user members of an organization.
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -132151,7 +132151,7 @@ List Compliance Roles
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -132315,7 +132315,7 @@ List Compliance Role Permissions
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -132770,7 +132770,7 @@ List Compliance Groups
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `name_prefix: optional string`
 
@@ -132958,7 +132958,7 @@ List Compliance Group Members
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -133091,7 +133091,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order_by: optional "created_at" or "updated_at"`
 
@@ -133197,21 +133197,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   - `user: object or null`
 
-    The user who created the chat.
-
-    Null when the API key is restricted to one organization and the creator
-    is no longer a member of it (for example, after they were removed from
-    it).
-
-    A key for the whole parent organization returns the creator's `id`
-    and current `email_address` for every chat; on the list endpoint, pass
-    `organization_ids[]` to keep the results to one organization. For the
-    email address the creator had when the chat was created, query
-    `GET /v1/compliance/activities` with `activity_types[]=claude_chat_created`
-    and a `created_at` window around the chat's `created_at`, find the event
-    whose `claude_chat_id` matches this chat's `id`, and read
-    `actor.email_address`. These events exist only for chats created after
-    compliance logging was enabled for the organization.
+    The user who created the chat. Null when the API key is restricted to one organization and the creator is no longer a member of it.
 
     - `id: string`
 
@@ -133375,7 +133361,7 @@ Retrieves message history and file metadata for a specific chat.
 
   Maximum results (max: 1000). When omitted, the full result set is returned in one response.
 
-  maximum: 1000, minimum: 1
+  minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -133693,21 +133679,7 @@ Retrieves message history and file metadata for a specific chat.
 
 - `user: object or null`
 
-  The user who created the chat.
-
-  Null when the API key is restricted to one organization and the creator
-  is no longer a member of it (for example, after they were removed from
-  it).
-
-  A key for the whole parent organization returns the creator's `id`
-  and current `email_address` for every chat; on the list endpoint, pass
-  `organization_ids[]` to keep the results to one organization. For the
-  email address the creator had when the chat was created, query
-  `GET /v1/compliance/activities` with `activity_types[]=claude_chat_created`
-  and a `created_at` window around the chat's `created_at`, find the event
-  whose `claude_chat_id` matches this chat's `id`, and read
-  `actor.email_address`. These events exist only for chats created after
-  compliance logging was enabled for the organization.
+  The user who created the chat. Null when the API key is restricted to one organization and the creator is no longer a member of it.
 
   - `id: string`
 
@@ -134089,7 +134061,7 @@ are sorted chronologically (time ascending) by created_at.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `organization_ids: optional array of string`
 
@@ -134175,11 +134147,7 @@ are sorted chronologically (time ascending) by created_at.
 
   - `user: object or null`
 
-    The user who created a project or project document.
-
-    Fields that reference this type are null when the creator's account has
-    been deleted or the creator is no longer a member of an organization the
-    key may read.
+    Project creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
     - `id: string`
 
@@ -134305,11 +134273,7 @@ Get detailed information for a specific project.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Project creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 
@@ -134440,7 +134404,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -134589,7 +134553,7 @@ role.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -134806,11 +134770,7 @@ Get detailed information for a specific project document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 
@@ -134900,11 +134860,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 
@@ -135127,7 +135083,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   Maximum results (default: 100, max: 500)
 
-  default: 100, maximum: 500, minimum: 1
+  default: 100, minimum: 1, maximum: 500
 
 - `page: optional string`
 
@@ -135365,7 +135321,7 @@ response header.
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -135385,13 +135341,13 @@ response header.
 
   Truncate each text item inside a tool result to at most this many bytes (cut on a code-point boundary). Pass `-1` to request the server maximum (approximately 1 MiB); larger values are clamped to it. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 - `tool_use_input_max_bytes: optional number`
 
   Truncate each tool-use input to at most this many bytes (cut on a code-point boundary so the result is valid UTF-8). Pass `-1` to request the server maximum (approximately 1 MiB); larger values are clamped to it. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
 
@@ -135725,7 +135681,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   Maximum results (default: 100, max: 500)
 
-  default: 100, maximum: 500, minimum: 1
+  default: 100, minimum: 1, maximum: 500
 
 - `organization_ids: optional array of string`
 
@@ -135779,7 +135735,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   - `started_by_user: object or null`
 
-    A user associated with a remote session.
+    The user who initiated an agent-owned session (for example, by mentioning Claude in Slack or via a scheduled trigger). Null for user-owned sessions — where the session's `user` started it — and for agent sessions with no human initiator. For initiators no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -135801,7 +135757,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   - `user: object or null`
 
-    A user associated with a remote session.
+    The user who owns the session. Null for sessions owned by an automated agent rather than a user. At most one of `user` and `agent_id` is set. For users no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -135885,7 +135841,7 @@ malformed session identifier returns 400.
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -135905,13 +135861,13 @@ malformed session identifier returns 400.
 
   Truncate each text item inside a tool result to at most this many bytes (cut on a code-point boundary). Pass `-1` to request the server maximum. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 - `tool_use_input_max_bytes: optional number`
 
   Truncate each tool-use input to at most this many bytes (cut on a code-point boundary so the result is valid UTF-8). Pass `-1` to request the server maximum. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
 
@@ -136073,7 +136029,7 @@ malformed session identifier returns 400.
 
   - `started_by_user: object or null`
 
-    A user associated with a remote session.
+    The user who initiated an agent-owned session (for example, by mentioning Claude in Slack or via a scheduled trigger). Null for user-owned sessions — where the session's `user` started it — and for agent sessions with no human initiator. For initiators no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -136095,7 +136051,7 @@ malformed session identifier returns 400.
 
   - `user: object or null`
 
-    A user associated with a remote session.
+    The user who owns the session. Null for sessions owned by an automated agent rather than a user. At most one of `user` and `agent_id` is set. For users no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -136180,7 +136136,7 @@ returned.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `organization_ids: optional array of string`
 
@@ -136270,12 +136226,7 @@ returned.
 
   - `user: object or null`
 
-    The user who owns a Code Artifact.
-
-    Fields that reference this type are null when the Artifact was
-    published by an agent session rather than a user account, when the
-    owner's account has been deleted, or when the owner is no longer a
-    member of an organization the key may read.
+    Artifact owner with email, or null if the Artifact was published by an agent session, the owner's account has been deleted, or the owner is no longer a member of an organization the key may read
 
     - `id: string`
 

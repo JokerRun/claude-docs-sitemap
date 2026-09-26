@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 060d7f67248ddc3640f79cf74264e8c230438eb8115ee9d387bd1cd37e38cf7e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 388a3197fc2ffbe9e63cf67cff5f9fcc085774f72ff9780ba195c57197ea357c
 ---
 
 ---
@@ -37,7 +37,7 @@ returned.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `organization_ids: optional array of string`
 
@@ -127,12 +127,7 @@ returned.
 
   - `user: object or null`
 
-    The user who owns a Code Artifact.
-
-    Fields that reference this type are null when the Artifact was
-    published by an agent session rather than a user account, when the
-    owner's account has been deleted, or when the owner is no longer a
-    member of an organization the key may read.
+    Artifact owner with email, or null if the Artifact was published by an agent session, the owner's account has been deleted, or the owner is no longer a member of an organization the key may read
 
     - `id: string`
 

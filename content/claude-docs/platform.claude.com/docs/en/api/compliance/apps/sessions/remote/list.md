@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: e7cd144913ae5cf36b6d6c6453b79a8dca256879acaabcf59877cc9f61ffb19f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: cacb9dfbd931a79bf2ebc117156f2cd21314b0395da97caa940b7147fd8ff114
 ---
 
 ---
@@ -64,7 +64,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   Maximum results (default: 100, max: 500)
 
-  default: 100, maximum: 500, minimum: 1
+  default: 100, minimum: 1, maximum: 500
 
 - `organization_ids: optional array of string`
 
@@ -118,7 +118,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   - `started_by_user: object or null`
 
-    A user associated with a remote session.
+    The user who initiated an agent-owned session (for example, by mentioning Claude in Slack or via a scheduled trigger). Null for user-owned sessions — where the session's `user` started it — and for agent sessions with no human initiator. For initiators no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -140,7 +140,7 @@ retrieve the next page, and stop when `next_page` is null.
 
   - `user: object or null`
 
-    A user associated with a remote session.
+    The user who owns the session. Null for sessions owned by an automated agent rather than a user. At most one of `user` and `agent_id` is set. For users no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 

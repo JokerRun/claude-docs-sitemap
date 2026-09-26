@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/list
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 90771bc96a1ce02b67d50983de92420b1fe9c91a8b855eb35d963ab512f681be
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c371d6c13abab202ba4170198819cd318cdb14a2a00f5bf8181b1b77ea34a5f1
 ---
 
 ---
@@ -62,7 +62,7 @@ the remaining entries.
 
   When omitted, every remaining entry is returned in a single page and `next_page` is `null`.
 
-  maximum: 1000, minimum: 1
+  minimum: 1, maximum: 1000
 
 - `page: optional string`
 

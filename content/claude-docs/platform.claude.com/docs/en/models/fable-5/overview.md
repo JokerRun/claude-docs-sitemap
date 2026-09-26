@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 05814473259d2a2ae6550c98a949dd47fe2824f41fbab3160670f868c146ae1a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f1cf06498c38623a451f3df484d83ab8f56eeef679b8f9b184a9b1e6d852bf7f
 ---
 
 ---
@@ -115,7 +115,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 ## Reference
 
 <CardGroup cols={3}>
-  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts#claude-fable-5">
+  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts/overview#claude-fable-5">
     The system prompt Claude Fable 5 uses on claude.ai and the Claude apps.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1ae41878465156d64aedf3e555e2c215a9792ba7d7e82b00674eb31e91b503a0
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6e105129a0e7ef0d07db9ec32c0c770d5d5da4c784868786a8bc3b3d06a948e1
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-[Admin API](https://platform.claude.com/docs/id/api/admin) memungkinkan Anda mengelola anggota, workspace, undangan, dan kunci API organisasi Anda secara terprogram alih-alih secara manual di [Claude Console](https://platform.claude.com/).
+[Admin API](https://platform.claude.com/docs/id/api/beta/organization) memungkinkan Anda mengelola anggota, workspace, undangan, dan kunci API organisasi Anda secara terprogram alih-alih secara manual di [Claude Console](https://platform.claude.com/).
 
 <Check>
   **Admin API memerlukan akses khusus**
@@ -39,7 +39,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 
 Lakukan autentikasi dengan salah satu dari tiga kredensial tersebut. Kunci Admin API mencakup sebagian besar endpoint. Endpoint service-account, federation-issuer, dan federation-rule hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci service account dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
 
-SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby mengekspos Admin API di bawah `client.beta.organization`, dan CLI `ant` di bawah `ant beta:organization`. Contoh di halaman ini menggunakan client default, yang membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token bearer OAuth dari `ANTHROPIC_AUTH_TOKEN`. Metode list SDK di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengambil halaman tambahan sesuai permintaan, sehingga `limit` menetapkan ukuran halaman, bukan total. Contoh PHP, Ruby, dan curl mengembalikan satu halaman. Di CLI, `--limit` membatasi hasil pada daftar anggota, undangan, workspace, anggota workspace, dan kunci API. Untuk parameter dan respons setiap endpoint, lihat [referensi Admin API](https://platform.claude.com/docs/id/api/admin).
+SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby mengekspos Admin API di bawah `client.beta.organization`, dan CLI `ant` di bawah `ant beta:organization`. Contoh di halaman ini menggunakan client default, yang membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token bearer OAuth dari `ANTHROPIC_AUTH_TOKEN`. Metode list SDK di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengambil halaman tambahan sesuai permintaan, sehingga `limit` menetapkan ukuran halaman, bukan total. Contoh PHP, Ruby, dan curl mengembalikan satu halaman. Di CLI, `--limit` membatasi hasil pada daftar anggota, undangan, workspace, anggota workspace, dan kunci API. Untuk parameter dan respons setiap endpoint, lihat [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization).
 
 ### Token bearer OAuth
 
@@ -250,7 +250,7 @@ Owner dan primary owner organisasi memiliki semua izin admin dan juga dapat meng
 
 ### Anggota organisasi
 
-Daftarkan [anggota organisasi](https://platform.claude.com/docs/id/api/admin-api/users/get-user), perbarui perannya, dan hapus mereka.
+Daftarkan [anggota organisasi](https://platform.claude.com/docs/id/api/beta/organization/users/retrieve), perbarui perannya, dan hapus mereka.
 
 Daftarkan anggota organisasi Anda:
 
@@ -546,7 +546,7 @@ Hapus anggota dari organisasi:
 
 ### Undangan organisasi
 
-Undang pengguna ke organisasi Anda dan kelola [undangan](https://platform.claude.com/docs/id/api/admin-api/invites/get-invite) yang tertunda.
+Undang pengguna ke organisasi Anda dan kelola [undangan](https://platform.claude.com/docs/id/api/beta/organization/invites/retrieve) yang tertunda.
 
 Undang pengguna ke organisasi Anda:
 
@@ -863,7 +863,7 @@ Lihat [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) 
 
 ### Anggota workspace
 
-Kelola [akses pengguna ke workspace tertentu](https://platform.claude.com/docs/id/api/admin-api/workspace_members/get-workspace-member):
+Kelola [akses pengguna ke workspace tertentu](https://platform.claude.com/docs/id/api/beta/organization/workspaces/members/retrieve):
 
 Tambahkan anggota ke workspace:
 
@@ -1357,7 +1357,7 @@ Hapus anggota dari workspace:
 
 ### Kunci API
 
-Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/admin/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, yaitu identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`; untuk kunci service account, `{"type": "service_account_actor", "service_account_id": "svac_..."}`; dan untuk kunci workspace, `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat pada satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses akun tersebut. Field `workspace_id` tingkat atas sudah deprecated dan bernilai `null` baik untuk kunci yang terikat pada Default Workspace maupun untuk kunci tanpa scope workspace; gunakan `scope` untuk membedakannya. Memfilter daftar berdasarkan `workspace_id` dengan ID Default Workspace hanya mengembalikan kunci yang terikat pada Default Workspace; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
+Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, yaitu identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`; untuk kunci service account, `{"type": "service_account_actor", "service_account_id": "svac_..."}`; dan untuk kunci workspace, `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat pada satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses akun tersebut. Field `workspace_id` tingkat atas sudah deprecated dan bernilai `null` baik untuk kunci yang terikat pada Default Workspace maupun untuk kunci tanpa scope workspace; gunakan `scope` untuk membedakannya. Memfilter daftar berdasarkan `workspace_id` dengan ID Default Workspace hanya mengembalikan kunci yang terikat pada Default Workspace; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
 
 Daftarkan kunci API aktif di sebuah workspace:
 
@@ -1730,7 +1730,7 @@ Endpoint `/v1/organizations/me` mengembalikan organisasi tempat kredensial Anda 
 }
 ```
 
-Untuk detail parameter dan skema respons, lihat [referensi Organization Info API](https://platform.claude.com/docs/id/api/admin-api/organization/get-me).
+Untuk detail parameter dan skema respons, lihat [referensi Organization Info API](https://platform.claude.com/docs/id/api/beta/organization/retrieve).
 
 ## Laporan penggunaan dan biaya
 

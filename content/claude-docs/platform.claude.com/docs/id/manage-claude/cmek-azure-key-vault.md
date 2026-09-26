@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b7ab830f8f919d06fc0a56d3f6f2d20a90c7aecf2e53fbe9e3e619af80d840b3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 568e6d6c7edde169038809a04c5f213a103d6f3a0b26bae86b8d720308e4cc2e
 ---
 
 ---
@@ -73,7 +73,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Langkah ini tidak memiliki padanan di Portal. Jika Anda tidak memiliki Azure CLI terinstal secara lokal, buka Cloud Shell dari bilah navigasi atas Portal. Setelah perintah berhasil, Anda dapat menemukan object ID service principal di **Microsoft Entra ID > Enterprise applications** dengan menghapus filter tipe aplikasi default dan mencari `anthropic-cmek-client-us`.
 
     <Frame caption="Temukan Object ID service principal pada ikhtisar aplikasi enterprise Entra-nya.">
-      ![Microsoft Entra enterprise application overview for anthropic-cmek-client-us, showing its Application ID and Object ID.](https://platform.claude.com/docs/images/cmek/azure-service-principal.png)
+      ![Ikhtisar aplikasi enterprise Microsoft Entra untuk anthropic-cmek-client-us, yang menampilkan Application ID dan Object ID-nya.](https://platform.claude.com/docs/images/cmek/azure-service-principal.png)
     </Frame>
   </Step>
 
@@ -83,7 +83,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Opsi `--tags` menambahkan tag organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Tag ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID berawalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/beta/organization/retrieve). Gunakan UUID polos, bukan ID berawalan `org_`.
     </Note>
 
     ```bash
@@ -102,11 +102,11 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Pada halaman **Create a key**, tambahkan juga tag organisasi di bawah **Tags**.
 
     <Frame caption="Buat kunci RSA berukuran 3072 atau lebih besar, dengan tag anthropic-org-<ORGANIZATION_UUID> diatur ke true.">
-      ![Azure Key Vault Create a key page with RSA, 3072 key size, and the anthropic-org tag set to true.](https://platform.claude.com/docs/images/cmek/azure-create-key-tag.png)
+      ![Halaman Create a key di Azure Key Vault dengan RSA, ukuran kunci 3072, dan tag anthropic-org diatur ke true.](https://platform.claude.com/docs/images/cmek/azure-create-key-tag.png)
     </Frame>
 
     <Frame caption="Batasi operasi yang diizinkan ke Wrap Key dan Unwrap Key. Versi kunci menampilkan tag organisasi.">
-      ![Azure Key Vault key version with 1 tag and Permitted operations limited to Wrap Key and Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations-tag.png)
+      ![Versi kunci di Azure Key Vault dengan 1 tag dan Permitted operations dibatasi ke Wrap Key dan Unwrap Key.](https://platform.claude.com/docs/images/cmek/azure-permitted-operations-tag.png)
     </Frame>
 
     Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu tag semacam itu untuk setiap organisasi. Sebuah versi kunci dapat membawa paling banyak 15 tag, termasuk milik Anda sendiri.
@@ -138,7 +138,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     </Note>
 
     <Frame caption="Tetapkan Key Vault Crypto User ke service principal Anthropic, dengan cakupan ke kunci.">
-      ![Key Vault IAM role assignments showing anthropic-cmek-client-us assigned the Key Vault Crypto User role.](https://platform.claude.com/docs/images/cmek/azure-role-assignment.png)
+      ![Penetapan peran IAM Key Vault yang menunjukkan peran Key Vault Crypto User ditetapkan ke anthropic-cmek-client-us.](https://platform.claude.com/docs/images/cmek/azure-role-assignment.png)
     </Frame>
   </Step>
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/cli-hints
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 98a65e1b65b074a14cdf9ad9ff7f3bb23894482d940b718cbf498cab9678f77f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6b9ef157bc694261f18da3adec36ec1f19b8092be6c13ae17734c19ef440a283
 ---
 
 > ## Documentation Index
@@ -129,5 +129,5 @@ The dialog names the first word of the shell command Claude ran, so users can sp
 
 ## Next steps
 
-* [Publish and distribute a plugin](/docs/en/plugins/publish): the routes into each marketplace, including the official marketplace, which the hint requires
+* [Publish and distribute a plugin](/docs/en/plugins/publish): the routes for distributing a plugin, including the official marketplace, which the hint requires
 * [Plugin commands reference](/docs/en/plugins/cli-reference#plugin-install): the shell command that installs the same plugin outside a session

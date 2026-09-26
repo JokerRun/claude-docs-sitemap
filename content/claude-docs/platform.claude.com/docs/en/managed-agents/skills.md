@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1a2d63d3ad31bca98b37784b23fcb4bf047c4db83bfd6314f98b00d64bbf23be
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 72625de2bb13a24e2f4747a0993018c19ec861f7d84fd29dfc6fcc410ff85dc8
 ---
 
 ---
@@ -40,7 +40,7 @@ These examples omit the optional `display_name` field, so the skill's display na
     -F "files[]=@example_skill.zip"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply skills/pr-summary
     ```
@@ -57,7 +57,9 @@ These examples omit the optional `display_name` field, so the skill's display na
       List what changed, why, and anything a reviewer should look at closely, in three short sections.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) uploads the `skills/pr-summary` directory, prints the new skill's ID, and records it in `claude-lock.json`. Commit `claude-lock.json` so the next `ant apply` uploads your edits as a new version instead of creating a second skill.
+  </CodeGroupItem>
 
   ```python Python
   import anthropic
@@ -201,10 +203,6 @@ These examples omit the optional `display_name` field, so the skill's display na
   puts "Created skill: #{skill.id}"
   puts "Latest version: #{skill.latest_version_id}"
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) uploads the `skills/pr-summary` directory, prints the new skill's ID, and records it in `claude-lock.json`. Commit `claude-lock.json` so the next `ant apply` uploads your edits as a new version instead of creating a second skill.
-  </ForLanguage>
 </CodeGroup>
 
 To list, retrieve, delete, and version custom skills, see [Managing custom skills](https://platform.claude.com/docs/en/build-with-claude/skills-guide#managing-custom-skills). For the full request and response schemas, see the [Create Skill API reference](https://platform.claude.com/docs/en/api/skills/create). Skill bundles upload directly to the Skills API rather than through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files).
@@ -245,7 +243,7 @@ Each entry in the `skills` array uses the following fields:
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -266,7 +264,7 @@ Each entry in the `skills` array uses the following fields:
       You are a financial analysis agent.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

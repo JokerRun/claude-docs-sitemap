@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 68e18ae1d7689ddd25178ada13f3bab2b1f7d45f6f6368294affd315c0647d5f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 43737089d1de6033c29ed7588afab3b0c153939a273f7c95e2241d37e2fcea8e
 ---
 
 ---
@@ -28,7 +28,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
   Maximum results (default: 1000, max: 1000)
 
-  default: 1000, maximum: 1000, minimum: 1
+  default: 1000, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -128,7 +128,7 @@ List current user members of an organization.
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -242,7 +242,7 @@ List Compliance Roles
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -406,7 +406,7 @@ List Compliance Role Permissions
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

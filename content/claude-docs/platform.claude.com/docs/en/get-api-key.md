@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-api-key
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 643207981709e18a128810e8b8415ede8fbee91a11b2d50922867d2f902cf7a1
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3ce34b86f26a23bdde9157c8712bbf83cb88420f0d8b01a309acb85e639c4d0d
 ---
 
 ---
@@ -55,7 +55,7 @@ To make your first request, follow the [Quickstart](https://platform.claude.com/
 
 ## API keys and the Admin API
 
-The [Admin API](https://platform.claude.com/docs/en/api/admin) includes endpoints for managing your organization's API keys programmatically, such as [Retrieve API Key](https://platform.claude.com/docs/en/api/admin/api_keys/retrieve) and [List API Keys](https://platform.claude.com/docs/en/api/admin/api_keys/list). These endpoints are for organization admins automating key management. They accept an [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys), an OAuth token with the `org:admin` scope, or a personal or service account key that isn't scoped to a specific workspace; workspace keys don't work there. They never return a key's secret value, only a partially redacted hint.
+The [Admin API](https://platform.claude.com/docs/en/api/beta/organization) includes endpoints for managing your organization's API keys programmatically, such as [Retrieve API Key](https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve) and [List API Keys](https://platform.claude.com/docs/en/api/beta/organization/api_keys/list). These endpoints are for organization admins automating key management. They accept an [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys), an OAuth token with the `org:admin` scope, or a personal or service account key that isn't scoped to a specific workspace; workspace keys don't work there. They never return a key's secret value, only a partially redacted hint.
 
 <Note>
   The Admin API can't recover a lost key or give you a key to call the Claude API with. To get a usable API key, create one in [Settings → API keys](https://platform.claude.com/settings/keys) in the Claude Console.

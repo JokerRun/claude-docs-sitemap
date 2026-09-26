@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: f47cca7214c6a8804d5c9d2c7c60fd4e038b4cea4cfd6341780def6e84854455
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 9951aff1f7858b4730550493a2976023330c2a24330d4ccb89a1a6c65bcba81f
 ---
 
 ---
@@ -65,7 +65,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Opsi `--labels` menambahkan label organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Label ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/admin-api/organization/get-me). Gunakan UUID polos, bukan ID berawalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin bidang **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca bidang `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/beta/organization/retrieve). Gunakan UUID polos, bukan ID berawalan `org_`.
     </Note>
 
     ```bash
@@ -83,7 +83,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Anda juga dapat membuat kunci dari Google Cloud Console. Buka key ring, klik **Create key**, pilih **Generated key**, atur tujuan dan algoritma ke symmetric encrypt and decrypt, dan pilih **HSM** di bawah protection level.
 
     <Frame caption="Buat kunci symmetric encrypt/decrypt yang dilindungi HSM dengan label organisasi.">
-      ![Google Cloud KMS Create key page with HSM protection, symmetric encrypt/decrypt, and the anthropic-org label set to true.](https://platform.claude.com/docs/images/cmek/gcp-create-key-label.png)
+      ![Halaman Create key di Google Cloud KMS dengan perlindungan HSM, symmetric encrypt/decrypt, dan label anthropic-org diatur ke true.](https://platform.claude.com/docs/images/cmek/gcp-create-key-label.png)
     </Frame>
 
     Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, tambahkan satu label seperti itu untuk setiap organisasi. Sebuah kunci dapat membawa paling banyak 64 label, termasuk milik Anda sendiri.
@@ -121,7 +121,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Dari Console, pilih kunci, buka panel **Permissions**, klik **Grant access**, dan tambahkan akun layanan dengan peran Cloud KMS CryptoKey Encrypter/Decrypter dan Cloud KMS Viewer. Pastikan Anda berada di halaman permissions kunci, bukan key ring atau proyek, sehingga pemberian akses dicakup hanya ke kunci ini.
 
     <Frame caption="Berikan akun layanan Anthropic kedua peran, dicakup ke kunci.">
-      ![Grant access dialog with the Anthropic service account assigned Cloud KMS CryptoKey Encrypter/Decrypter and Viewer roles.](https://platform.claude.com/docs/images/cmek/gcp-grant-access.png)
+      ![Dialog Grant access dengan akun layanan Anthropic yang diberi peran Cloud KMS CryptoKey Encrypter/Decrypter dan Viewer.](https://platform.claude.com/docs/images/cmek/gcp-grant-access.png)
     </Frame>
   </Step>
 
@@ -145,7 +145,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Dari Console, buka halaman detail kunci dan klik **Copy resource name**.
 
     <Frame caption="Salin nama resource lengkap kunci dari menu tindakan.">
-      ![Google Cloud key ring details with the Copy resource name action highlighted in the key's actions menu.](https://platform.claude.com/docs/images/cmek/gcp-copy-resource-name.png)
+      ![Detail key ring di Google Cloud dengan tindakan Copy resource name disorot di menu tindakan kunci.](https://platform.claude.com/docs/images/cmek/gcp-copy-resource-name.png)
     </Frame>
   </Step>
 </Steps>

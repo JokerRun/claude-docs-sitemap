@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: f72711de78683feb99267ee70754384d59e20cce624b63755c3de07d17fb04c2
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f9cd771d6dbf3edeadfd9ca054bd15efcbd4fa20086b09727277dea9657a85dc
 ---
 
 ---
@@ -40,7 +40,7 @@ List Workspace Members
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 ### Returns
 

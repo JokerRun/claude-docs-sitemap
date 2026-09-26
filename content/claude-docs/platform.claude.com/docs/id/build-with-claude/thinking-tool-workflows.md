@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 369dd14963fcf48f5a17c688e9a5c62a62b05964d2bee53e999ec06adc4276d8
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1ba3a28bd4e805e542bf71968ca2985f4acc04dfec18d08d39da1e33a575dfb8
 ---
 
 ---
@@ -37,6 +37,32 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
     Kirim permintaan dengan adaptive thinking diaktifkan dan alat didefinisikan. Selain parameter `thinking`, ini adalah permintaan [penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) standar:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "anthropic-version: 2023-06-01" \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -d @- <<'EOF'
+      {
+        "model": "claude-opus-4-8",
+        "max_tokens": 16000,
+        "thinking": {"type": "adaptive"},
+        "tools": [{
+          "name": "get_weather",
+          "description": "Get current weather for a location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
+        }],
+        "messages": [{"role": "user", "content": "What's the weather in Paris?"}]
+      }
+      EOF
+      ```
+
       ```bash CLI
       ant messages create --transform content <<'YAML'
       model: claude-opus-4-8
@@ -301,10 +327,15 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
     Setiap contoh adalah skrip mandiri: skrip ini mengulangi permintaan pertama, lalu segera mengirim tindak lanjutnya menggunakan respons yang baru saja diterima.
 
     <CodeGroup>
+      ```bash cURL
+      # Alur kerja ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
+      # Sebagai gantinya, gunakan salah satu contoh SDK dalam grup kode ini.
+      ```
+
       ```bash CLI
       # Giliran pertama: tulis array konten asisten (blok thinking dan tool_use,
-      # tanda tangan utuh) ke file. Mengalirkan teks hasil model
-      # melalui file menjauhkannya dari posisi ekspansi shell nantinya.
+      # dengan signature utuh) ke sebuah file. Mengalirkan teks hasil model
+      # lewat file menjauhkannya dari posisi ekspansi shell di langkah berikutnya.
       ant messages create --transform content --format jsonl \
         > assistant_content.json <<'YAML'
       model: claude-opus-4-8
@@ -326,10 +357,10 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           content: What's the weather in Paris?
       YAML
 
-      # Giliran kedua: jq mengisi dua placeholder null dari file yang ditangkap,
-      # sehingga blok kembali persis sebagai pesan asisten. Blok thinking
-      # HARUS menyertai blok tool_use. Delimiter berkutip mencegah
-      # shell mengekspansi apa pun di dalam isi.
+      # Giliran kedua: jq mengisi dua placeholder null dari file yang disimpan,
+      # sehingga blok dikembalikan apa adanya sebagai pesan asisten. Blok thinking
+      # WAJIB menyertai blok tool_use. Delimiter yang dikutip mencegah
+      # shell mengekspansi apa pun di dalam body.
       jq --slurpfile blocks assistant_content.json '
         .messages[1].content = $blocks[0] |
         .messages[2].content[0].tool_use_id =

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/overview
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 4e656e62612018e290b5c5db153943bea71f1c5d6e839a1123d12b64283134ae
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a818fd13251cf8d2d854f60083efd061e8d4799a755621bbaef465931593d80a
 ---
 
 > ## Documentation Index
@@ -16,7 +16,10 @@ sha256: 4e656e62612018e290b5c5db153943bea71f1c5d6e839a1123d12b64283134ae
 A Claude Code plugin is a directory of skills, agents, hooks, MCP servers, or other components that Claude Code installs and loads as one unit. Most plugins come from a marketplace, which is a catalog that lists plugins and where to fetch each one. You can also load a plugin from a folder someone gives you, or [build your own](/docs/en/plugins/create).
 
 <Note>
-  If you use claude.ai chat or Cowork and not Claude Code, see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview).
+  Start on claude.com instead if either of these describes you:
+
+  * **You use claude.ai chat or Cowork and not Claude Code**: see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview)
+  * **You built an MCP server and want it in Anthropic's directory**: see [Publish to the directory](https://claude.com/docs/directory/publish)
 </Note>
 
 To try a plugin now, run `/plugin` in a Claude Code terminal session and install one from the **Discover** tab, which lists the plugins from Anthropic's official marketplace and any marketplace you've added. From there:
@@ -115,7 +118,7 @@ A plugin you install at user scope in the terminal, the desktop app's local sess
 A cloud session, including one in the browser at claude.ai/code, doesn't load the plugins in your local settings. For install steps in the terminal, VS Code, and the desktop app, and for what a cloud session loads, see [Install a plugin](/docs/en/plugins/install#install-a-plugin).
 
 <Note>
-  The same plugin format also installs on claude.ai and in Cowork, where a different set of components loads. For those surfaces, see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview) on claude.com.
+  The same plugin format also installs on claude.ai and in Cowork, where a different set of components loads. For those surfaces, see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview) on claude.com and its [component support table](https://claude.com/docs/plugins/platform-support#compare-component-support-by-app).
 </Note>
 
 ## Next steps
@@ -126,7 +129,7 @@ To build your own, [Create a plugin](/docs/en/plugins/create) starts with an emp
 
 Once you've installed or built a plugin, these pages cover what comes next:
 
-* **Share what you built**: [Publish and distribute a plugin](/docs/en/plugins/publish)
+* **Share what you built**: [Publish and distribute a plugin](/docs/en/plugins/publish), through your own marketplace or [Anthropic's directory](/docs/en/plugins/publish#submit-to-anthropics-directory)
 * **Check whether it works and is used**: [Test plugins with evals](/docs/en/plugin-evals) and [Measure plugin cost and usage](/docs/en/plugins/measure)
 * **Run a marketplace for your team**: [Create a marketplace](/docs/en/plugins/create-marketplace), then [Host and maintain a marketplace](/docs/en/plugins/host-marketplace)
 * **Set plugin policy for an organization**: [Manage plugins for your organization](/docs/en/plugins/org)

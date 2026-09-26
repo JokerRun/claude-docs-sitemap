@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b549beca1b9394ddd0de051d8dde193cb0f379532530fe75eaf4d6c7fca03743
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 41461d17fd0950e637d14e7bcaf366aa1ea625c3e99dd471e2d323b79fad4595
 ---
 
 ---
@@ -166,7 +166,7 @@ Update a memory
 
 - `precondition: optional BetaManagedAgentsPrecondition`
 
-  Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
+  Optional optimistic-concurrency precondition. When supplied, the update applies only if the memory's current state matches; on mismatch the request returns `memory_precondition_failed_error` (HTTP 409). When omitted, the update is unconditional.
 
   - `type: "content_sha256"`
 
@@ -198,7 +198,7 @@ Update a memory
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    When this memory was created, in RFC 3339 format.
 
     format: date-time
 
@@ -216,7 +216,7 @@ Update a memory
 
   - `updated_at: string`
 
-    A timestamp in RFC 3339 format
+    When this memory was last modified, in RFC 3339 format. Use this as a cheap freshness signal; for who made the change, look up the head version's `created_by` via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
 
     format: date-time
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: db78f42e2d644c14375b40467600d2d37b9fae0028dd4fb656fb2e8be0108dd7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4949f6274836eba2c7fba09d25601ebc5054121bf43d0ef43cd91edf73c179d6
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Akses konten chat, lampiran file, dan proyek untuk organisasi claud
 ---
 
 <Note>
-  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint ini mengambil dan menghapus chat, file, dan proyek claude.ai. Transkrip sesi di aplikasi seperti Cowork dan Claude Code dibahas di [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions). Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint ini mengambil dan menghapus chat, file, dan proyek claude.ai; transkrip sesi di aplikasi seperti Cowork dan Claude Code dibahas di [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions). Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
@@ -21,11 +21,11 @@ description: Akses konten chat, lampiran file, dan proyek untuk organisasi claud
   **Prasyarat:** Tidak ada untuk mencantumkan chat di seluruh organisasi. Untuk memfilter daftar chat ke pengguna tertentu, Anda memerlukan ID pengguna dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain di halaman ini menerima ID sumber daya secara langsung.
 </Check>
 
-Endpoint di halaman ini menyediakan konten chat Claude Enterprise, unggahan file, proyek, dan lampiran proyek bagi peninjau kepatuhan. Endpoint ini mendukung ekspor eDiscovery (electronic discovery), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, serta penanganan permintaan penghapusan akun. Konten chat, file, dan proyek disimpan selama diizinkan oleh kebijakan retensi organisasi Anda. Ketika pengguna menghapus chat di claude.ai, konten pesannya, file terlampir, file yang dihasilkan alat, dan artifact ikut terhapus. Compliance API tetap mencantumkan chat tersebut, dengan `deleted_at` terisi dan `name` kosong, serta mengembalikan pesan-pesannya tanpa konten. Chat yang telah dihapus secara permanen ("hard-delete") tidak dapat diambil, baik penghapusan itu dilakukan melalui Compliance API sendiri maupun setelah jendela retensi organisasi berakhir.
+Endpoint di halaman ini menyediakan konten chat, unggahan file, proyek, dan lampiran proyek Claude Enterprise kepada peninjau kepatuhan. Endpoint ini mendukung ekspor "eDiscovery" (penemuan elektronik), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, serta respons penghapusan akun. Konten chat, file, dan proyek disimpan selama kebijakan retensi organisasi Anda mengizinkan. Ketika pengguna menghapus chat di claude.ai, konten pesannya, file yang dilampirkan, file yang dihasilkan alat, dan artifact-nya ikut dihapus. Compliance API tetap mencantumkan chat tersebut, dengan `deleted_at` terisi dan `name` kosong, serta mengembalikan pesan-pesannya tanpa kontennya. Chat yang telah dihapus permanen (melalui Compliance API itu sendiri, atau setelah jendela retensi organisasi berakhir) tidak dapat diambil.
 
-Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk membuatnya. Scope `read:compliance_user_data` mencakup pengambilan data, sedangkan `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, dan lampiran tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`). Panggilan yang diautentikasi dengan kunci Admin API akan mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint chat, file, proyek, dan lampiran tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan kunci Admin API mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 
-Endpoint di halaman ini menggunakan dua cara "pagination" (paginasi). Lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian menyebutkan skema mana yang berlaku.
+Endpoint di halaman ini melakukan paginasi dengan dua cara; lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian mencatat skema mana yang berlaku.
 
 ## Mengambil chat dan pesan
 

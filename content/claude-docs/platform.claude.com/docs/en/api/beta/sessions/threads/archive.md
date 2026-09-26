@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 56e5e34001854ab281698634e91608d9278c609ac0c0d306621e65751fbf9edf
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1d1f3ef9cb147d3e91f1ff3d1b9aa6d1524f2c689a5fb6ab965eaf7d8a622789
 ---
 
 ---
@@ -148,7 +148,7 @@ Archive Session Thread
 
   - `agent: BetaManagedAgentsSessionThreadAgent or BetaManagedAgentsAdvisor`
 
-    The resolved agent a `session_thread` runs.
+    Resolved agent definition for this thread. Snapshot of the agent at thread creation time.
 
     - `BetaManagedAgentsSessionThreadAgent object`
 
@@ -177,6 +177,8 @@ Archive Session Thread
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `string`
 
           - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
@@ -244,11 +246,9 @@ Archive Session Thread
 
               High-performance model for agents and coding
 
-          - `string`
-
         - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 
-          How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
+          How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`. Always present; resolved to the per-model default at save time when not supplied.
 
           - `BetaManagedAgentsEffortLow object`
 
@@ -286,7 +286,7 @@ Archive Session Thread
 
         - `speed: optional "standard" or "fast"`
 
-          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
 
           - `"standard"`
 
@@ -690,13 +690,13 @@ Archive Session Thread
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the thread was archived. Null if not archived.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    When the thread was created.
 
     format: date-time
 
@@ -710,7 +710,7 @@ Archive Session Thread
 
   - `stats: BetaManagedAgentsSessionThreadStats or null`
 
-    Timing statistics for a session thread.
+    Timing statistics for this thread. Null until the thread's first status transition.
 
     - `active_seconds: optional number`
 
@@ -732,7 +732,7 @@ Archive Session Thread
 
   - `status: BetaManagedAgentsSessionThreadStatus`
 
-    SessionThreadStatus enum
+    Current execution status of the thread.
 
     - `"running"`
 
@@ -744,13 +744,13 @@ Archive Session Thread
 
   - `updated_at: string`
 
-    A timestamp in RFC 3339 format
+    When the thread was last updated.
 
     format: date-time
 
   - `usage: BetaManagedAgentsSessionThreadUsage or null`
 
-    Cumulative token usage for a session thread across all turns.
+    Cumulative token usage for this thread. Null until the thread's first idle transition.
 
     - `active_seconds: optional number`
 
@@ -760,7 +760,7 @@ Archive Session Thread
 
     - `cache_creation: optional BetaManagedAgentsCacheCreationUsage`
 
-      Prompt-cache creation token usage broken down by cache lifetime.
+      Tokens used to create prompt cache entries, broken down by cache TTL.
 
       - `ephemeral_1h_input_tokens: optional number`
 
@@ -788,7 +788,7 @@ Archive Session Thread
 
     - `list_cost: optional BetaMonetaryAmount or null`
 
-      A monetary amount in a specific currency.
+      Cumulative list cost of this thread across all turns, priced at public list rates. Absent until cost tracking is available for the thread. Each figure is rounded to the nearest cent independently and the session's aggregate `usage.list_cost` additionally includes session runtime, so per-thread costs do not sum exactly to the session figure; the session figure is authoritative and is what a budget is enforced against.
 
       - `amount: string`
 
@@ -806,7 +806,7 @@ Archive Session Thread
 
     - `server_tool_use: optional BetaManagedAgentsServerToolUsage or null`
 
-      Cumulative count of server-executed tool invocations, broken down by tool.
+      Cumulative server-executed tool usage across all turns of this thread. Absent until server-tool tracking is available for the thread.
 
       - `web_fetch_requests: optional number`
 

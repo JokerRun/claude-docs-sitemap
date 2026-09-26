@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 584e538baff221b367655323d55da51a27a5a95160e8c92cbd415311af4ac2e8
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: dfe8847453046e29c50dea79a286983f1f6d1f2b85c4d41bec610315603c0b49
 ---
 
 ---
@@ -1203,7 +1203,7 @@ List work items in an environment.
 
   Maximum number of work items to return
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

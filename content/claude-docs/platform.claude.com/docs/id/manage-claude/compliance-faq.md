@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 497b82e0208e36021106ee4c2299c34263da216e5e2ef56544e4497d5aeff9f5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 737df0c5a55bba725a3a0289863b2ab40e0da0b775a664f56f4f5228c455ac16
 ---
 
 ---
@@ -81,7 +81,7 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
 
     Sesi lokal direkam saat permintaannya mencapai Claude API, sehingga tidak ada yang diinstal di perangkat, dan aktivitas di perangkat yang tidak pernah mencapai API tidak direkam. Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, sesi Claude Code yang dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), dan [sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna, tidak direkam. Sesi cloud ini bukan sesi jarak jauh, meskipun keduanya berjalan di cloud; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork. Organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness) tidak mendapatkan data sesi lokal, dan sesi yang tunduk pada ["zero data retention" (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope), dikecualikan.
 
-    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork dan Claude Code; cakupan untuk sesi Claude Science, Claude for Microsoft 365, dan Claude in Chrome masih dalam tahap beta.
+    Endpoint sesi lokal dan jarak jauh sudah stabil untuk sesi Cowork, Claude Code, dan Claude for Microsoft 365; cakupan untuk sesi Claude Science dan Claude in Chrome masih dalam tahap beta.
   </Accordion>
 
   <Accordion title="Apa saja yang termasuk dalam transkrip sesi?">

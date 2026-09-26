@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 410e01fb0bb756497faef61ebbc2d4f7e28a0fcd440920ac6ea50dfb8cf235dc
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0649314120a76ea86ce184138215fed1bde9d2ff846c9c607bca9634a8c2ccac
 ---
 
 ---
@@ -67,11 +67,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 

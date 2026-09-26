@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 87c76e9a60877bfa392822ca45becb2ec1f0dd7b3c34a812a22455a69841cf88
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6360747212e49568f48989e5f140f2bf664be44b712b93e92139dc9e0f7fcf48
 ---
 
 ---
@@ -27,7 +27,7 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 
 Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi jumlah subagen yang berjalan bersamaan (port PHP berjalan secara berurutan dan mengabaikan konstanta ini). `MAX_TOTAL_SUBTASKS` membatasi jumlah subtugas yang dapat diantrekan model dalam satu panggilan Workflow. Pemisahan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saat variabel lingkungan tersebut diatur. Dengan begitu, harness dokumentasi otomatis dapat memvalidasi bahwa file berhasil dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh. Biarkan variabel ini tidak diatur saat Anda menjalankan contoh ini sendiri.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   import atexit
   import concurrent.futures
@@ -307,7 +307,7 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
 
 Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah status mode dan menunjuk ke deskripsi alat, tempat instruksi yang berat berada. Teks lengkap dikirim sekali ketika mode diaktifkan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dinonaktifkan.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   MODE_ENTER = (
       "Orchestration mode is on: optimize for the most exhaustive, correct answer rather than "
@@ -407,7 +407,7 @@ Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah stat
 
 Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasilnya kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash-nya adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   WORKFLOW_TOOL = {
       "name": "Workflow",
@@ -893,7 +893,7 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
 
 Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang lepas kendali tidak dapat membanjiri "context window" (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh ini, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` disetel, harness justru memberi bash sebuah direktori fixture kecil sekali pakai yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin proses yang meluncurkan contoh ini. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan oleh kontrak `bash_20250124`; agen produksi sebaiknya mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku sesuai dokumentasi.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   # Jalankan bash di tempat contoh dijalankan. Dalam DOC_TEST_MODE, harness dokumen
   # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
@@ -1440,7 +1440,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
 
 Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, berjalan pada effort yang sama dengan loop utama. Batas waktu per permintaan membatasi setiap panggilan API sehingga koneksi yang terputus hanya menurunkan satu subagen alih-alih menghentikan seluruh proses.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   def run_subagent(model: str, prompt: str) -> str:
       """One subagent: a small nested agent loop with the bash tool plus report_findings.
@@ -1984,7 +1984,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
 
 Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya di file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan proses, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar-eksekusi, bukan di dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   _journal_lock = threading.Lock()
 
@@ -2275,7 +2275,7 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
 
 Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (sekuensial pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menurun menjadi string error alih-alih mengakhiri proses. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba membantah setiap hasil: setiap pemverifikasi menurunkan ulang klaim dari sumbernya, dengan default dianggap terbantah jika tidak pasti. Baik hasil asli maupun putusannya dikembalikan ke orkestrator sehingga keduanya dapat dipertimbangkan bersama.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   def normalize_subtasks(raw) -> list[str]:
       """Accept the subtasks input in whatever shape the model emits: an array, the array
@@ -3835,7 +3835,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   Alat bash dalam contoh ini menjalankan perintah yang ditulis model langsung di mesin Anda tanpa sandbox, dan fan-out menjalankan beberapa agen tersebut secara paralel. Jalankan di direktori dan lingkungan yang Anda rela untuk diekspos, dan tambahkan sandboxing sebelum mengadaptasinya untuk apa pun di luar eksperimen lokal.
 </Warning>
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   if __name__ == "__main__":
       task = (

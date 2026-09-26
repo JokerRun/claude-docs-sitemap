@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: f1eda352040eb98610b11d23588bb8067d21c4890fc10da158baa36d89fa67e6
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 077450fb45ae14b0527b35f92681ce2125c23b62af80e0f710063ccaee8798ae
 ---
 
 ---
@@ -32,7 +32,7 @@ The Claude API includes the following APIs:
 
 * **[Messages API](https://platform.claude.com/docs/en/api/messages/create)**: Send messages to Claude for conversational interactions (`POST /v1/messages`)
 * **[Message Batches API](https://platform.claude.com/docs/en/api/messages/batches/create)**: Process large volumes of Messages requests asynchronously with 50% cost reduction (`POST /v1/messages/batches`)
-* **[Token Counting API](https://platform.claude.com/docs/en/api/messages-count-tokens)**: Count tokens in a message before sending to manage costs and rate limits (`POST /v1/messages/count_tokens`)
+* **[Token Counting API](https://platform.claude.com/docs/en/api/messages/count_tokens)**: Count tokens in a message before sending to manage costs and rate limits (`POST /v1/messages/count_tokens`)
 * **[Models API](https://platform.claude.com/docs/en/api/models/list)**: List available Claude models and their details (`GET /v1/models`)
 * **[Files API](https://platform.claude.com/docs/en/api/files/upload)**: Upload and manage files for use across multiple API calls (`POST /v1/files`, `GET /v1/files`)
 * **[Skills API](https://platform.claude.com/docs/en/api/skills/create)**: Create and manage custom agent skills (`POST /v1/skills`, `GET /v1/skills`)

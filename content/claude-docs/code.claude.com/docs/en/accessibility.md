@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/accessibility
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 3321cce3168345b521b48ff3dae4bdea041c7f2002362f6b03a64d893e2fd5fa
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f9572ea87846a3b4e032f5b2e10b331bf80ad9f296c4406ae54f7a35ee55778f
 ---
 
 > ## Documentation Index
@@ -106,7 +106,7 @@ macOS Terminal doesn't act on the markers, and Claude Code doesn't emit them in 
 
 ## Answer menus and prompts
 
-In screen reader mode, menus you'd normally navigate with the arrow keys, including permission prompts, become numbered lists. Claude Code announces each option as a numbered line, then an `Enter selection` prompt that names the valid range. Type the number of the option you want and press Enter.
+In screen reader mode, menus you'd normally navigate with the arrow keys, including permission prompts, become numbered lists. Claude Code announces each option as a numbered line, then a `Select with numbers` prompt that names the valid range. Type the number of the option you want and press Enter.
 
 * Press Escape to cancel a menu whose prompt ends with `or Escape to cancel`.
 * If you type a number that isn't on the list, Claude Code announces the valid range and lets you try again.

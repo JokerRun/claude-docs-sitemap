@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2e266d0092c158c04ba7cdac57fc742e3185e69c26ec4d6dd7a008ed9dd686fe
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e54d2db2e08544fa57ff832f2b889222bb2385cb1f8b66be02e40f0803a9f698
 ---
 
 ---
@@ -32,7 +32,7 @@ featureMetadata:
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages/count_tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 Endpoint ini mengembalikan `invalid_request_error` untuk beberapa input yang diterima oleh Messages API: [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web, pengambilan web, eksekusi kode, dan pencarian alat (setiap alat server kecuali [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool)), [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), serta blok `image` atau `document` dengan sumber `url` atau `file`. Kirim gambar dan PDF sebagai base64 untuk menghitungnya. Untuk permintaan yang menggunakan alat server atau server MCP, respons Messages API melaporkan token yang digunakan dalam objek `usage`-nya.
 
@@ -1443,7 +1443,7 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Hitung token pesan" icon="code" href="https://platform.claude.com/docs/id/api/messages-count-tokens">
+  <Card title="Hitung token pesan" icon="code" href="https://platform.claude.com/docs/id/api/messages/count_tokens">
     Baca referensi API lengkap untuk endpoint penghitungan token.
   </Card>
 

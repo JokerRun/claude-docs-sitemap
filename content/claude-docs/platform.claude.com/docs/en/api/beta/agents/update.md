@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3123c3486289372f8bc4df3389d81d54d775fe705786e5c5b2d85dfd071537c7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: aebf3187d479e79072500770403136bb922457757a918ebba7b09659b435d84a
 ---
 
 ---
@@ -168,11 +168,13 @@ Update Agent
 
   Model identifier. Accepts the [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison), e.g. `claude-opus-5`, or a `model_config` object for additional configuration control. Omit to preserve. Cannot be cleared.
 
-  - `BetaManagedAgentsModel = "claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more or string`
+  - `BetaManagedAgentsModel = string or "claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `string`
 
     - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
@@ -239,8 +241,6 @@ Update Agent
       - `"claude-sonnet-4-5-20250929"`
 
         High-performance model for agents and coding
-
-    - `string`
 
   - `BetaManagedAgentsModelConfigParams object`
 
@@ -316,7 +316,7 @@ Update Agent
 
     - `speed: optional "standard" or "fast" or null`
 
-      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+      Inference speed mode. Defaults to `standard`.
 
       - `"standard"`
 
@@ -324,7 +324,7 @@ Update Agent
 
 - `multiagent: optional BetaManagedAgentsMultiagentParams or null`
 
-  A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+  Multiagent orchestration configuration. Full replacement. Omit to preserve; send null to clear.
 
   - `type: "coordinator"`
 
@@ -452,7 +452,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -488,7 +488,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -518,7 +518,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -548,7 +548,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -578,7 +578,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -608,7 +608,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -652,7 +652,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -690,7 +690,7 @@ Update Agent
 
         - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-          Permission policy for tool execution.
+          Permission policy for this tool. Controls whether tool calls are auto-approved or require confirmation.
 
           - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -736,7 +736,7 @@ Update Agent
 
     - `default_config: optional BetaManagedAgentsAgentToolsetDefaultConfigParams or null`
 
-      Default configuration for all tools in a toolset.
+      Default configuration applied to all tools in this set.
 
       - `enabled: optional boolean or null`
 
@@ -744,7 +744,7 @@ Update Agent
 
       - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-        Permission policy for tool execution.
+        Default permission policy for tools. Controls whether tool calls are auto-approved or require confirmation.
 
         - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -786,7 +786,7 @@ Update Agent
 
       - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-        Permission policy for tool execution.
+        Permission policy for this tool. Overrides the `default_config` setting.
 
         - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -802,7 +802,7 @@ Update Agent
 
     - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams or null`
 
-      Default configuration for all tools from an MCP server.
+      Default configuration for all tools from this server.
 
       - `enabled: optional boolean or null`
 
@@ -810,7 +810,7 @@ Update Agent
 
       - `permission_policy: optional BetaManagedAgentsAlwaysAllowPolicy or BetaManagedAgentsAlwaysAskPolicy or BetaManagedAgentsAutoPolicy or null`
 
-        Permission policy for tool execution.
+        Default permission policy for tools from this server.
 
         - `BetaManagedAgentsAlwaysAllowPolicy object`
 
@@ -838,7 +838,7 @@ Update Agent
 
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
-      JSON Schema for custom tool input parameters.
+      JSON Schema defining the expected input parameters for the tool.
 
       - `type: "object"`
 
@@ -870,7 +870,7 @@ Update Agent
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the agent was archived. Null if not archived.
 
     format: date-time
 
@@ -901,6 +901,8 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `string`
 
       - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
@@ -968,11 +970,9 @@ Update Agent
 
           High-performance model for agents and coding
 
-      - `string`
-
     - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 
-      How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
+      How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`. Always present; resolved to the per-model default at save time when not supplied.
 
       - `BetaManagedAgentsEffortLow object`
 
@@ -1010,7 +1010,7 @@ Update Agent
 
     - `speed: optional "standard" or "fast"`
 
-      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
 
       - `"standard"`
 
@@ -1018,7 +1018,7 @@ Update Agent
 
   - `multiagent: BetaManagedAgentsMultiagent or null`
 
-    Resolved coordinator topology with a concrete agent roster.
+    Multiagent orchestration configuration. Null when the agent is single-threaded.
 
     - `type: "coordinator"`
 
@@ -1452,6 +1452,15 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{
           "description": "updated",
+          "multiagent": {
+            "agents": [
+              "agent_011CZkYqphY8vELVzwCUpqiQ",
+              {
+                "type": "self"
+              }
+            ],
+            "type": "coordinator"
+          },
           "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user'\''s task end to end.",
           "version": 1
         }'

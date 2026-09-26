@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 43e5b943773395b278b367f2d59929140b896a89a5d27ab47797bc11ec90a55c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 64b9f86dc963c630b6db6edb052070476b19444ae6fb418b8c4d9f0e67136e17
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-acti
 description: Autentikasi workflow GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
 ---
 
-Setiap eksekusi "workflow" (alur kerja) GitHub Actions dapat meminta "identity token" (token identitas) bertanda tangan dari issuer yang di-host GitHub di `https://token.actions.githubusercontent.com`. Dengan "Workload Identity Federation" (federasi identitas beban kerja), atau WIF, workflow Anda menukar token tersebut dengan "access token" (token akses) Anthropic berumur pendek. Dengan begitu, job CI Anda dapat memanggil Claude API tanpa perlu menyimpan secret `ANTHROPIC_API_KEY` di repositori Anda.
+Setiap eksekusi workflow GitHub Actions dapat meminta token identitas bertanda tangan dari penerbit yang di-host GitHub di `https://token.actions.githubusercontent.com`. Dengan "Workload Identity Federation" (federasi identitas beban kerja), workflow Anda menukar token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
 
-"Claim" (klaim) `sub` pada token mengodekan konteks repositori dan pemicu. Untuk push ke sebuah branch, formatnya adalah `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Eksekusi pull request menggunakan `repo:<owner>/<repo>:pull_request`, dan deployment yang dibatasi environment menggunakan `repo:<owner>/<repo>:environment:<name>`. Aturan federasi Anda dicocokkan dengan klaim ini (dan klaim lainnya, seperti `repository_owner` dan `ref`) untuk menentukan eksekusi workflow mana yang diizinkan melakukan autentikasi.
+Klaim `sub` pada token mengodekan konteks repositori dan pemicu. Untuk push ke sebuah branch, formatnya adalah `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Eksekusi pull request menggunakan `repo:<owner>/<repo>:pull_request`, dan deployment yang dibatasi environment menggunakan `repo:<owner>/<repo>:environment:<name>`. "Federation rule" (aturan federasi) Anda dicocokkan dengan klaim ini (dan klaim lainnya, seperti `repository_owner` dan `ref`) untuk menentukan eksekusi workflow mana yang diizinkan untuk melakukan autentikasi.
 
 ## Prasyarat
 
@@ -116,7 +116,7 @@ Buat aturan sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_pref
 
 ## Memperoleh dan menggunakan token
 
-Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthropic()` membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukar JWT pada permintaan pertama, dan memperbarui token akses secara otomatis sebelum kedaluwarsa.
+Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthropic()` (typescript: `new Anthropic()`; csharp: `new AnthropicClient()`; go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.fromEnv()`; php: `new Client()`; ruby: `Anthropic::Client.new`) membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukar JWT pada permintaan pertama, dan memperbarui token akses secara otomatis sebelum kedaluwarsa.
 
 <CodeGroup>
   ```yaml Workflow
@@ -254,7 +254,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```csharp C#
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari environment job.
+  // dari lingkungan job.
   using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
@@ -316,7 +316,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```
 </CodeGroup>
 
-Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukar token pada penggunaan pertama dan menyimpan token akses Anthropic yang dihasilkan dalam cache. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pembaruan, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap terkini. Sebagai alternatif, berikan callback penyedia token ke SDK yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
+Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukar token pada penggunaan pertama dan menyimpan cache token akses Anthropic yang dihasilkan. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pembaruan, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, berikan callback penyedia token ke SDK yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
 
 ## Memverifikasi penyiapan
 

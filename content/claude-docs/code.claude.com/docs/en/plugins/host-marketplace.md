@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 396103bd118f26dd7a33b1d5cf45d77009674337239633e9fda9d3e1c8177263
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: cca26a0163583fd8985d5a12ede93b8f764a9b91c6d374f5b03ab2a8c535e9f4
 ---
 
 > ## Documentation Index
@@ -82,10 +82,10 @@ On a Team or Enterprise plan, you can also distribute the marketplace through [*
 Organization sync is stricter about the repository than `/plugin marketplace add` is:
 
 * **Marketplace repository**: on github.com and gitlab.com, it must be private or internal
-* **Plugin sources**: each plugin source must be of type `github`, `url`, or `git-subdir`, or a [relative path](/docs/en/plugins/marketplace-reference#relative-path-plugin-source) that starts with `./`
+* **Plugin sources**: organization sync accepts only some [source types](/docs/en/plugins/marketplace-reference#plugin-sources)
 * **Top-level `bin/` directory**: claude.ai rejects a plugin that has one and syncs the rest of the marketplace. The error message starts with `Plugin contains a top-level bin/ directory`. Keep executables in another directory, such as `scripts/`, and reference them as `${CLAUDE_PLUGIN_ROOT}/scripts/<name>` from your hooks or MCP server configs
 
-See [Manage plugins for your organization](https://support.claude.com/en/articles/13837433) for the admin workflow.
+[Sync your organization's plugins from a repository](https://claude.com/docs/plugins/org-sync) on claude.com lists the accepted sources, the GitLab setup, and the `bin/` error, and [Manage plugins for your organization](https://claude.com/docs/plugins/admin) covers the admin workflow.
 
 ## Grant access to a private marketplace
 
@@ -104,7 +104,7 @@ Tell users what each protocol needs on their machine:
 
 For a GitHub Enterprise Server host, users need git access to that host from their machine. See [Plugin marketplaces on GHES](/docs/en/github-enterprise-server#plugin-marketplaces-on-ghes) for what each Claude Code surface needs to reach a GHES-hosted marketplace.
 
-If you distribute through **Organization settings > Plugins & skills** on claude.ai instead, your users' git credentials aren't involved. See [Distribute through organization settings](#distribute-through-organization-settings) for which plugin sources can be private there.
+If you distribute through **Organization settings > Plugins & skills** on claude.ai instead, your users' git credentials aren't involved. See [Distribute through organization settings](#distribute-through-organization-settings).
 
 ### Serve users who have no git-host account
 

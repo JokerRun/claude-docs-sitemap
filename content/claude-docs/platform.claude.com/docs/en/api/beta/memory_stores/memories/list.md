@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 418f992bbd953f0a0982423b98b9d7719ab5d631ac5749e50d00126709108f76
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a2218eb3288ef8b92584b617c24b1dea4947c1435aa715c8959432bb25d8c2b5
 ---
 
 ---
@@ -196,7 +196,7 @@ List memories
 
     - `created_at: string`
 
-      A timestamp in RFC 3339 format
+      When this memory was created, in RFC 3339 format.
 
       format: date-time
 
@@ -214,7 +214,7 @@ List memories
 
     - `updated_at: string`
 
-      A timestamp in RFC 3339 format
+      When this memory was last modified, in RFC 3339 format. Use this as a cheap freshness signal; for who made the change, look up the head version's `created_by` via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
 
       format: date-time
 

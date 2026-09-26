@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: d2d4aab55345699fdcd84960846c46a81bfe6fdf7129ba5a8dd529a91c9432f9
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a345fd156076db8f8ad263c8f37ffc6b9bee5244af5e4a5901f5bbfb42339827
 ---
 
 > ## Documentation Index
@@ -112,7 +112,7 @@ Allow the network domains your session needs:
 On Linux and WSL2, the runtime applies write grants only to paths that already exist. In a fresh environment, create Claude Code's configuration paths before the first launch:
 
 ```bash theme={null}
-mkdir -p ~/.claude && echo '{}' > ~/.claude.json
+mkdir -p ~/.claude && { [ -f ~/.claude.json ] || echo '{}' > ~/.claude.json; }
 ```
 
 Once the settings file is in place, launch Claude Code with `npx` and pass `claude` as the command to wrap:

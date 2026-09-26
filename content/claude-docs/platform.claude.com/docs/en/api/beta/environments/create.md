@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: a06f435ce290cc4e9c186e1fbc6e8c0ee9fd0f16882254d0172840d4019ead80
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 2f0d75cb4ca552279d6f85a12bea844d2ea64f4be04c409015a37b5a2dbb39f4
 ---
 
 ---
@@ -134,7 +134,7 @@ Create a new environment with the specified configuration.
 
   Human-readable name for the environment
 
-  maxLength: 256, minLength: 1
+  minLength: 1, maxLength: 256
 
 - `config: optional BetaCloudConfigParams or BetaSelfHostedConfigParams or null`
 
@@ -188,11 +188,7 @@ Create a new environment with the specified configuration.
 
     - `packages: optional BetaPackagesParams or null`
 
-      Specify packages (and optionally their versions) available in this environment.
-
-      When versioning, use the version semantics relevant for the package manager, e.g. for `pip` use `package==1.0.0`. You are responsible for validating the package and version exist. Unversioned installs the latest.
-
-      Under `limited` networking, requires `networking.allow_package_managers` to be `true`.
+      Package manager configuration. Under `limited` networking, requires `networking.allow_package_managers` to be `true`. Omit on update to preserve the existing value.
 
       - `type: optional "packages"`
 

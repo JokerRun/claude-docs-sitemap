@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6456650cae5329b9e9e713f590e11618137fcf831a824f124243763d00d5a1d3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 5de2b88b01693ebd7c96a3658e058fc2760679df55888e87ccd0964eed7e931b
 ---
 
 ---
@@ -91,7 +91,7 @@ Infrastruktur yang mendukung penemuan, orkestrasi, dan penskalaan penggunaan ala
 | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------------------------------------------------------------- |
 | [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview)                               | Perluas kemampuan Claude dengan Skills. Gunakan Skills siap pakai (PowerPoint, Excel, Word, PDF) atau buat Skills kustom dengan instruksi dan skrip. Skills menggunakan "progressive disclosure" (pengungkapan progresif) untuk mengelola konteks secara efisien. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAwsBeta azureAiBeta />†‡        |
 | [Streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) | Lakukan streaming parameter penggunaan alat tanpa buffering/validasi JSON, sehingga mengurangi latensi saat menerima parameter berukuran besar.                                                                                                                   | Memenuhi syarat ZDR       | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi /> |
-| [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector)                                       | Hubungkan ke server jarak jauh "Model Context Protocol", atau [MCP](https://platform.claude.com/docs/id/mcp), langsung dari Messages API tanpa klien MCP terpisah.                                                                                                | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta />      |
+| [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector)                                       | Hubungkan ke server jarak jauh "Model Context Protocol", atau [MCP](https://modelcontextprotocol.io/), langsung dari Messages API tanpa klien MCP terpisah.                                                                                                       | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta />      |
 | [Pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)   | Memungkinkan Claude memanggil alat Anda secara terprogram dari dalam kontainer eksekusi kode, sehingga mengurangi latensi dan konsumsi token untuk alur kerja multi-alat.                                                                                         | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAi />†                 |
 | [Pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)                         | Skalakan hingga ribuan alat dengan menemukan dan memuat alat secara dinamis sesuai kebutuhan menggunakan pencarian berbasis regex dan BM25, sehingga mengoptimalkan penggunaan konteks dan meningkatkan akurasi pemilihan alat.                                   | Memenuhi syarat ZDR       | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi /> |
 

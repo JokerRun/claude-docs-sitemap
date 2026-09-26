@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: aed6ed6b47b6d9924654ebe0a7dfda7337ee27662182bb5bff2b0e7597cde219
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 02b0138d6f9e86f33f0dec44d9cdc21f40c0b460dfe8d05a429333b437434133
 ---
 
 ---
@@ -2401,7 +2401,10 @@ When using [server tools](https://platform.claude.com/docs/en/agents-and-tools/t
 
       for _ in range(max_continuations):
           response = client.messages.create(
-              model="claude-opus-5-5", max_tokens=4096, messages=messages, tools=tools
+              model="claude-opus-5-5",
+              max_tokens=4096,
+              messages=messages,
+              tools=tools,
           )
 
           if response.stop_reason != "pause_turn":
@@ -3041,7 +3044,10 @@ When using streaming, `stop_reason` is:
 
       while True:
           response = client.messages.create(
-              model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
+              model="claude-opus-5-5",
+              max_tokens=1024,
+              messages=messages,
+              tools=tools,
           )
 
           if response.stop_reason == "tool_use":

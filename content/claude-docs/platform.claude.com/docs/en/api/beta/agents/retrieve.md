@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3078d9eeda3c9376fb4b362dc3ba03dd9f902dc2178ac5c52a0b996764a861c4
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d904b81f6d40e0905e9ffb981ddeb420781b01549f5fddee3fd303753ab4169c
 ---
 
 ---
@@ -154,7 +154,7 @@ Get Agent
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the agent was archived. Null if not archived.
 
     format: date-time
 
@@ -185,6 +185,8 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `string`
 
       - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
 
@@ -252,11 +254,9 @@ Get Agent
 
           High-performance model for agents and coding
 
-      - `string`
-
     - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 
-      How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.
+      How hard Claude works on each inference call. One of `low`, `medium`, `high`, `xhigh`, `max`. Always present; resolved to the per-model default at save time when not supplied.
 
       - `BetaManagedAgentsEffortLow object`
 
@@ -294,7 +294,7 @@ Get Agent
 
     - `speed: optional "standard" or "fast"`
 
-      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
 
       - `"standard"`
 
@@ -302,7 +302,7 @@ Get Agent
 
   - `multiagent: BetaManagedAgentsMultiagent or null`
 
-    Resolved coordinator topology with a concrete agent roster.
+    Multiagent orchestration configuration. Null when the agent is single-threaded.
 
     - `type: "coordinator"`
 

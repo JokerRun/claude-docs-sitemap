@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: cf3cb6ccb3d6599532e7fa5a4c994831375317d287dd64c7d5f1d1187798f073
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4d1450becde66f563772c745b6b1f4eca2f74606fe4dac9cdca89df0cdac51e4
 ---
 
 ---
@@ -32,7 +32,7 @@ Claude API mencakup API berikut:
 
 * **[Messages API](https://platform.claude.com/docs/id/api/messages/create)**: Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
 * **[Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create)**: Proses permintaan Messages dalam volume besar secara asinkron dengan pengurangan biaya 50% (`POST /v1/messages/batches`)
-* **[Token Counting API](https://platform.claude.com/docs/id/api/messages-count-tokens)**: Hitung token dalam sebuah pesan sebelum mengirimnya untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
+* **[Token Counting API](https://platform.claude.com/docs/id/api/messages/count_tokens)**: Hitung token dalam sebuah pesan sebelum mengirimnya untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
 * **[Models API](https://platform.claude.com/docs/id/api/models/list)**: Daftar model Claude yang tersedia beserta detailnya (`GET /v1/models`)
 * **[Files API](https://platform.claude.com/docs/id/api/files/upload)**: Unggah dan kelola file untuk digunakan di berbagai panggilan API (`POST /v1/files`, `GET /v1/files`)
 * **[Skills API](https://platform.claude.com/docs/id/api/skills/create)**: Buat dan kelola skill agen kustom (`POST /v1/skills`, `GET /v1/skills`)

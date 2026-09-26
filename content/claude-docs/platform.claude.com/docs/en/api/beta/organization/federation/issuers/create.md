@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: fd9ac4d7c09ef60f23f6777c5055805a42eaa2aa31f57fc38fbc058022213aa5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 091af574d8aa900ada9c4302924c4e9256e876de457d3f2065a46e90b5567dd9
 ---
 
 ---
@@ -146,7 +146,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `check_jti: optional boolean or null`
 
@@ -206,7 +206,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to 49h). Defaults to 3600 (1h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
 
-  maximum: 176400, exclusiveMinimum: 0
+  minimum: 1, maximum: 176400
 
 ## Returns
 
@@ -319,11 +319,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 

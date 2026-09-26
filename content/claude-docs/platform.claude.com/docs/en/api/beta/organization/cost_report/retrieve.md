@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c277573505b9937682ac9f06ea42bd232454fac883886a8b77b7f09f4aaf72f0
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 978edd3b99c7abdb588f49decfd3f23e3682412467156e12ca6c2cce1180455a
 ---
 
 ---
@@ -49,7 +49,7 @@ Get Cost Report
 
   Maximum number of time buckets to return in the response.
 
-  default: 7, maximum: 31, minimum: 1
+  default: 7, minimum: 1, maximum: 31
 
 - `page: optional string`
 

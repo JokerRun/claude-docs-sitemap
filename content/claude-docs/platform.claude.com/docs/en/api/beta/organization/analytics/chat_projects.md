@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/chat_projects
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: df75d509fec2e5a6f4d93e0eafa622ac0182ae45a0a506174defbd3a6dd2c502
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: fcfad70163f1c3f50c79fa593064663cf537ce994c275080be2cc7bb31decd21
 ---
 
 ---
@@ -114,7 +114,7 @@ plan. Requires an API key with the `read:analytics` scope.
 
     - `created_by: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      User who created the project. Null if the project was deleted before attribution was recorded, or if the creator's account no longer exists.
 
       - `type: "user"`
 
@@ -223,7 +223,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
 
     - `created_by: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      User who created the project. Null if the project was deleted before attribution was recorded, or if the creator's account no longer exists.
 
       - `type: "user"`
 

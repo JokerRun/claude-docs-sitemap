@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: d6c67d112bb8a281651f029f4e1610489ee1eaf02416241dd6aa59292513d5c3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c8cf4e875e0b5ed1c17de02c162246d31bae984d6c6acdf2424a2590e39cd1cc
 ---
 
 ---
@@ -246,11 +246,7 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 

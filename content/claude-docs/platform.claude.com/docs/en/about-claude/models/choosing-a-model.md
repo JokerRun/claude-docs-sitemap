@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 7fc16d3e52f1741218cb087dbd696607cca9d0f2eead156fe833139596d94234
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ea49c7303d6fd33864630229a0a1b5f5f16b5db8cb08c06a936fddb24725d300
 ---
 
 ---
@@ -62,7 +62,7 @@ This approach is best for:
 
 **Claude Opus 5.5** (`claude-opus-5-5`) is built for long-running agentic coding and knowledge work, with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) always on. If your integration forces tool use (`tool_choice` of type `any` or `tool`), turns thinking off, or uses the `computer_20251124` computer use tool, see [Breaking changes](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#breaking-changes) before switching.
 
-**Claude Fable 5.1** (`claude-fable-5-1`) is Anthropic's most capable widely released model. It extends Claude Fable 5 with stronger long-running agentic coding, knowledge work, and research at the same input and output prices, with cache reads at a quarter of the cost. **Claude Mythos 5.1** (`claude-mythos-5-1`) offers the same capabilities to [Project Glasswing](https://anthropic.com/glasswing) participants only. Both models use always-on [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking). See [What's new in Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1) for details.
+**Claude Fable 5.1** (`claude-fable-5-1`) is Anthropic's most capable model open to all customers. It extends Claude Fable 5 with stronger long-running agentic coding, knowledge work, and research at the same input and output prices, with cache reads at a quarter of the cost. **Claude Mythos 5.1** (`claude-mythos-5-1`) offers the same capabilities to [Project Glasswing](https://anthropic.com/glasswing) participants only. Both models use always-on [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking). See [What's new in Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1) for details.
 
 For context windows, output limits, and prices, see the [model comparison table](https://platform.claude.com/docs/en/models/overview#latest-models-comparison).
 

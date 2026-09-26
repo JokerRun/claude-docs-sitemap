@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 66a0f39b7ed553a86654b6681a55688d3a377b42854a013ba5d64a5349a1bc76
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8b3aef12ae2e10c7a6a17f60c988d4d4ae5dcc12e0be396f130a3e38ee7d7166
 ---
 
 ---
@@ -115,7 +115,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts#claude-fable-5">
+  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts/overview#claude-fable-5">
     Prompt sistem yang digunakan Claude Fable 5 di claude.ai dan aplikasi Claude.
   </Card>
 

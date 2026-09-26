@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 6405742390a8ab9a947e5e39494b7aef8c34c7964e8e8906bdcb763e812dcbcd
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 304c9d75c4281820bddaf636577946b4c22d744398a85f7473f7b15246b7564e
 ---
 
 ---
@@ -152,13 +152,13 @@ Get Credential
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the credential was archived. Null if not archived.
 
     format: date-time
 
   - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
-    Authentication details for a credential.
+    Authentication configuration for this credential.
 
     - `BetaManagedAgentsMCPOAuthAuthResponse object`
 
@@ -178,7 +178,7 @@ Get Credential
 
       - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse or null`
 
-        OAuth refresh token configuration returned in credential responses.
+        Refresh token configuration, if the credential supports token refresh.
 
         - `client_id: string`
 

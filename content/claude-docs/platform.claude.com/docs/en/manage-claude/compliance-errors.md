@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-errors
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 66c840cec9771de1fd49e213a183c2705dfbf00a87c5a3575cf4ba0016786da8
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6dfc710e50175b18c223966dc76ab63dc4c7d8632dcb9d5ea7622b1350d4a636
 ---
 
 ---
@@ -322,7 +322,7 @@ No project document found with the provided id, or it has already been deleted.
 
 **Cause:** The project document ID does not exist or has been deleted. The document content and metadata endpoints return the first body; `DELETE /v1/compliance/apps/projects/documents/{document_id}` returns the second. This error applies to text project documents (`claude_proj_doc_...`), not to project files.
 
-**Fix:** Use `GET /v1/compliance/apps/projects/{project_id}/attachments` to list current attachments. If the document is missing, it was deleted; retrieve it through a `claude_project_document_uploaded` activity record if you only need the metadata.
+**Fix:** Use `GET /v1/compliance/apps/projects/{project_id}/attachments` to list current attachments. If the document is missing, it was deleted; retrieve it through a `claude_project_document_uploaded` activity record if you only need the metadata. The activity record shows who uploaded the document, when, and to which project, but not its name.
 
 ### Local session not found
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: d477023f154df17e6c468f74fd45836da0afed09e560feb843419753fe8da02d
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3f97092d9089282ea40d18a856b6dae55e42d444bb1f9f4f69aa3aabcacf8fe4
 ---
 
 ---
@@ -25,7 +25,7 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 | **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
 | **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
-Jenis kunci tersebut tidak dapat saling menggantikan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Kedua API muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/admin), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
+Jenis kunci tersebut tidak dapat saling menggantikan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Kedua API muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 
 <Note>
   Mencari data penggunaan dan biaya API alih-alih analitik produk? Lihat [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), yang menjelaskan jalur yang tepat untuk organisasi Claude Console maupun Claude Enterprise.
@@ -55,7 +55,7 @@ Claude Code Analytics API tersedia untuk setiap organisasi yang memiliki akses k
   </Step>
 </Steps>
 
-Untuk metrik yang tersedia, parameter permintaan, dan skema respons, lihat [panduan Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) dan [referensi API](https://platform.claude.com/docs/id/api/admin/usage_report/retrieve_claude_code).
+Untuk metrik yang tersedia, parameter permintaan, dan skema respons, lihat [panduan Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) dan [referensi API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_claude_code).
 
 ## Mendapatkan akses ke Claude Enterprise Analytics API
 
@@ -71,7 +71,7 @@ Claude Enterprise Analytics API tersedia untuk organisasi Claude Enterprise. Dat
   </Step>
 
   <Step title="Panggil API">
-    Teruskan kunci di header `x-api-key` dan sertakan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) pada setiap permintaan. Endpoint berada di bawah `https://api.anthropic.com/v1/organizations/analytics/`. Untuk contoh permintaan, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics).
+    Teruskan kunci di header `x-api-key` dan sertakan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) pada setiap permintaan. Endpoint berada di bawah `https://api.anthropic.com/v1/organizations/analytics/`. Untuk contoh permintaan, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics).
   </Step>
 </Steps>
 
@@ -82,7 +82,7 @@ Claude Enterprise Analytics API menyediakan:
 * **Penggunaan proyek, skill, dan konektor:** rincian adopsi untuk proyek chat, skill, dan konektor
 * **Laporan biaya dan penggunaan:** penggunaan token dan biaya per pengguna dan tingkat organisasi dari waktu ke waktu (paket Enterprise berbasis penggunaan)
 
-Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/admin/analytics). Bagian-bagian berikut membahas kesegaran data, definisi metrik, dan panduan operasional yang berlaku di seluruh endpoint tersebut.
+Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics). Bagian-bagian berikut membahas kesegaran data, definisi metrik, dan panduan operasional yang berlaku di seluruh endpoint tersebut.
 
 ## Ketersediaan dan kesegaran data
 
@@ -133,7 +133,7 @@ Jika organisasi Anda menggunakan Claude Code melalui Amazon Bedrock, Claude Ente
     Lacak penggunaan token API dan biaya untuk organisasi Anda.
   </Card>
 
-  <Card title="Referensi Claude Enterprise Analytics API" href="https://platform.claude.com/docs/id/api/admin/analytics">
+  <Card title="Referensi Claude Enterprise Analytics API" href="https://platform.claude.com/docs/id/api/beta/organization/analytics">
     Referensi endpoint untuk data keterlibatan, adopsi, dan biaya.
   </Card>
 

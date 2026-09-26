@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 5520c55cd91295210469a0652ba2dfd5d49acf0fdbfef8c2635658d1180b448b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 706c3351fa5d85410e74cc8384d73447800436573deeb26ac139b556cbe3f0a2
 ---
 
 ---
@@ -68,7 +68,7 @@ Config entries for `web_search` and `web_fetch` also accept domain filters and o
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -86,7 +86,7 @@ Config entries for `web_search` and `web_fetch` also accept domain filters and o
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -315,7 +315,7 @@ The following request creates an agent with this toolset and prints the `configs
   jq '.tools[0].configs' <<< "$agent"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -342,7 +342,9 @@ The following request creates an agent with this toolset and prints the `configs
       ---
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent and prints its ID, not the `configs` array.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()
@@ -616,10 +618,6 @@ The following request creates an agent with this toolset and prints the `configs
     puts JSON.pretty_generate(toolset.configs.map(&:to_h))
   end
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent and prints its ID, not the `configs` array.
-  </ForLanguage>
 </CodeGroup>
 
 In the Claude Console, set allowed or blocked domains from the `web_search` and `web_fetch` rows of the **Built-in tools** card on the agent form; set `max_content_tokens` and `user_location` in the **Raw** view of the agent's configuration.
@@ -721,7 +719,7 @@ If your sessions run in a self-hosted sandbox, the environment worker can [serve
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -747,7 +745,7 @@ If your sessions run in a self-hosted sandbox, the environment worker can [serve
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

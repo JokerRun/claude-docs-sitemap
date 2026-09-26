@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4fcd513405173a2370160e68edaa24fd728b2ecd01c45e7cfb5592fce2045ded
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3a5aac3f41781bd568e3155584854a7ddc35cf2682cc68544411d143a76f3528
 ---
 
 ---
@@ -64,6 +64,19 @@ Untuk skema permintaan dan respons lengkap, verifikasi tanda tangan, dan detail 
 
 ***
 
+## Melanjutkan percakapan setelah permintaan ditolak
+
+Setiap permintaan menyertakan seluruh percakapan, sehingga pesan yang ditolak akan terkirim lagi bersama setiap pesan berikutnya. Jika server keamanan AI Anda mengevaluasi seluruh transkrip, permintaan-permintaan tersebut juga akan ditolak. Untuk melanjutkan, pengguna harus menghapus konten yang ditolak dari apa yang akan dikirim aplikasi berikutnya, termasuk file apa pun yang akan dibaca ulang oleh Claude.
+
+Langkah-langkahnya bergantung pada aplikasi:
+
+* **claude.ai, termasuk Claude Desktop dan aplikasi seluler.** Pengguna mengedit pesan yang ditolak atau pesan sebelumnya, alih-alih mengirim salinan yang sudah diperbaiki sebagai pesan baru. Di web dan di Claude Desktop, pengeditan akan mengirim ulang lampiran pesan kecuali pengguna menghapusnya. Memulai chat baru juga bisa menjadi solusi.
+* **Claude Code.** Pengguna menjalankan `/rewind` dan memilih prompt yang pertama kali memasukkan konten tersebut. Jika diminta, pengguna memilih **Restore conversation**, lalu mengedit atau mengosongkan prompt yang kembali ke kolom input. Perintah `/clear` memulai dari awal. Lihat [Checkpointing](https://code.claude.com/docs/en/checkpointing).
+* **Cowork.** Pengguna mengedit pesan yang ditolak jika pesan tersebut adalah pesan terakhirnya. Pengeditan akan mengirim ulang file yang dilampirkan, sedangkan **Restart from here** mengirim ulang seluruh pesan tanpa perubahan. Jika konten tersebut ada di dalam file atau pesan sebelumnya, pengguna memilih **New task**.
+* **Claude Tag.** Di Slack, pengguna terlebih dahulu mengedit pesan yang ditolak, atau menghapusnya jika pesan tersebut berupa balasan. Setelah itu, pengguna mengirim `@Claude !restart` sebagai pesan tersendiri di tempat Claude sebelumnya menjawab, yaitu di thread tersebut atau di tingkat teratas channel. Sesi baru akan membaca ulang pesan-pesan yang masih ada di Slack, sehingga pengeditan atau penghapusan harus dilakukan lebih dulu. Lihat [perintah `!restart`](https://claude.com/docs/claude-tag/users/commands#restart-a-stuck-or-wrong-context-session).
+
+***
+
 ## Kasus penggunaan
 
 * **"Data loss prevention" (pencegahan kehilangan data), atau DLP.** Teruskan transkrip ke pemindai DLP Anda dan tolak prompt yang memuat materi yang diatur regulasi atau bersifat rahasia. Ini adalah penerapan yang paling umum.
@@ -85,7 +98,7 @@ Untuk skema permintaan dan respons lengkap, verifikasi tanda tangan, dan detail 
 
 Inference hooks tersedia untuk organisasi Claude Enterprise. Untuk mengonfigurasinya, Anda memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
 
-Satu hook mengatur percakapan di seluruh sesi claude.ai, Cowork, dan Claude Code dalam organisasi Claude Enterprise Anda, baik yang berjalan di web, di aplikasi desktop atau seluler, maupun di CLI. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
+Satu hook mengatur percakapan di seluruh sesi claude.ai, Cowork, Claude Code, dan Claude Tag dalam organisasi Claude Enterprise Anda, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 Permintaan yang diatur adalah permintaan inferensi di balik percakapan pengguna. Permintaan tambahan, seperti pembuatan judul percakapan, tidak dikirim ke endpoint Anda. Prompt sistem dan definisi alat juga tidak pernah disertakan dalam data yang dikirim. Mode suara tidak tercakup.
 

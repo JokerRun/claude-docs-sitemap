@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c34fee7d6aec9cbc0a7dd88676e3381026ef662f83b75d16ed3df50ae8e7dc70
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f8a366a92e60cb4ff85ace4513d92a21cd86ace6d3f9aa83e1c858e66a13a478
 ---
 
 ---
@@ -36,7 +36,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
 
 **Sebelum** (loop Messages API, disederhanakan):
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   messages = [{"role": "user", "content": task}]
   while True:
@@ -309,7 +309,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
   kill "${stream_pid}" 2>/dev/null || true
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
 
@@ -343,7 +343,7 @@ Jika Anda membangun agen dengan memanggil `messages.create` dalam loop `while`, 
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -625,16 +625,16 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
 ### Apa yang berubah
 
-| Agent SDK                                                               | Managed Agents                                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ClaudeAgentOptions(...)` dibuat per eksekusi                           | `client.beta.agents.create(...)` sekali; Agent disimpan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                                                                               |
-| `async with ClaudeSDKClient(...)` atau `query(...)`                     | `client.beta.sessions.create(...)` lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                                                                                                                                     |
-| Fungsi yang didekorasi `@tool` yang dijalankan secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                                           |
-| Alat bawaan berjalan di proses Anda terhadap sistem file Anda           | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                                                   |
-| `cwd`, `add_dirs` menunjuk ke path lokal                                | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai sumber daya sesi.                                                                                                                                                                                   |
-| `system_prompt` dan hierarki `CLAUDE.md`                                | Satu string `system` pada Agent. Setiap pembaruan yang mengubah agen menghasilkan versi baru di sisi server; sematkan sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
-| `mcp_servers` dikonfigurasi dan diautentikasi di satu tempat            | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                                                   |
-| `permission_mode`, `can_use_tool`                                       | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat (`always_allow`, `always_ask`, atau `auto`); kirim event `user.tool_confirmation` untuk pemanggilan yang dijeda menunggu persetujuan Anda.                                              |
+| Agent SDK                                                                                                         | Managed Agents                                                                                                                                                                                                                                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClaudeAgentOptions(...)` (python; typescript: `options`) dibuat untuk setiap eksekusi                            | `client.beta.agents.create(...)` (csharp: `client.Beta.Agents.Create(...)`; go: `client.Beta.Agents.New(...)`; java: `client.beta().agents().create(...)`; php: `$client->beta->agents->create(...)`) sekali saja; Agent disimpan dan diberi versi di sisi server. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup). |
+| `async with ClaudeSDKClient(...)` atau `query(...)`                                                               | `client.beta.sessions.create(...)` (csharp: `client.Beta.Sessions.Create(...)`; go: `client.Beta.Sessions.New(...)`; java: `client.beta().sessions().create(...)`; php: `$client->beta->sessions->create(...)`) lalu kirim dan terima [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).                                    |
+| Fungsi yang didefinisikan dengan `@tool` (python; typescript: `tool()`), yang dijalankan secara otomatis oleh SDK | Deklarasikan sebagai `{"type": "custom", ...}` pada Agent; klien Anda menangani event `agent.custom_tool_use` dan membalas dengan `user.custom_tool_result`. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools).                                                                                                                       |
+| Alat bawaan berjalan di proses Anda terhadap sistem file Anda                                                     | `{"type": "agent_toolset_20260401"}` menjalankan alat yang sama di dalam sandbox sesi terhadap `/workspace`.                                                                                                                                                                                                                                               |
+| `cwd`, `add_dirs` (python; typescript: `additionalDirectories`) menunjuk ke path lokal                            | Unggah atau mount [file](https://platform.claude.com/docs/id/managed-agents/files) sebagai sumber daya sesi.                                                                                                                                                                                                                                               |
+| `system_prompt` (python; typescript: `systemPrompt`) dan hierarki `CLAUDE.md`                                     | Satu string `system` pada Agent. Setiap pembaruan yang mengubah agen menghasilkan versi baru di sisi server; sematkan sesi ke versi tertentu untuk mempromosikan atau melakukan rollback tanpa deploy. Lihat [Penyiapan agen](https://platform.claude.com/docs/id/managed-agents/agent-setup).                                                             |
+| `mcp_servers` (python; typescript: `mcpServers`) dikonfigurasi dan diautentikasi di satu tempat                   | Deklarasikan server pada Agent; sediakan kredensial melalui [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) pada Session.                                                                                                                                                                                                               |
+| `permission_mode` (python; typescript: `permissionMode`), `can_use_tool` (python; typescript: `canUseTool`)       | [`permission_policy`](https://platform.claude.com/docs/id/managed-agents/permission-policies) per alat (`always_allow`, `always_ask`, atau `auto`); kirim event `user.tool_confirmation` untuk pemanggilan yang dijeda menunggu persetujuan Anda.                                                                                                          |
 
 ### Perbandingan kode
 
@@ -1368,7 +1368,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
     --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5-5"}')"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -1385,7 +1385,7 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
       You are a task automation agent. Complete the task you are given end to end.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   client.beta.agents.update(

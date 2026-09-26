@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 8e1f37b1b338fba24f7ed7815dd974e41c4b7b33b2688f9ea7301f4556e360e5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 5bdab92f45108bfb0c6e66896978a4f705d2d577777ab5cd35d645f38429f73f
 ---
 
 ---
@@ -41,7 +41,7 @@ Archived certificates are excluded unless `include_archived` is set.
 
   Maximum number of certificates to return.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

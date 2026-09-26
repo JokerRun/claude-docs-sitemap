@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: fd2c9a88056f2e65a075b9ba419945dda8d3bf03d936e7ddbc96f8f2b3515876
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 858b657c658d2598bc92931fabfa76befda85edff657cf3282ac30d15f90f264
 ---
 
 ---
@@ -492,7 +492,7 @@ Endpoint create mengembalikan akun layanan baru:
 
 Untuk membaca atau memperbarui satu akun layanan, gunakan `GET` dan `POST` pada `/v1/organizations/service_accounts/{service_account_id}`. Akun layanan harus menjadi anggota sebuah workspace sebelum token terfederasi dapat bertindak di dalamnya. Setiap akun layanan memiliki keanggotaan implisit di workspace default organisasi Anda; tambahkan keanggotaan eksplisit untuk workspace lain dengan `GET`, `POST`, dan `DELETE` pada `/v1/organizations/service_accounts/{service_account_id}/workspaces`, di mana `DELETE` menargetkan `.../workspaces/{workspace_id}`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi API Akun layanan](https://platform.claude.com/docs/id/api/admin/service_accounts).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Akun layanan](https://platform.claude.com/docs/id/api/beta/organization/service_accounts).
 
 ## Issuer federasi
 
@@ -831,7 +831,7 @@ Arsipkan issuer:
 
 Untuk membaca atau memperbarui satu issuer, gunakan `GET` dan `POST` pada `/v1/organizations/federation_issuers/{issuer_id}`. Pemanggil OAuth tidak dapat memperbarui issuer yang mendukung aturan yang `oauth_scope`-nya selain `workspace:developer` atau `workspace:inference`; lihat [Izin dan batasan](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#permissions-and-constraints).
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi API Issuer federasi](https://platform.claude.com/docs/id/api/admin/federation_issuers).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Issuer federasi](https://platform.claude.com/docs/id/api/beta/organization/federation/issuers).
 
 ## Aturan federasi
 
@@ -1263,7 +1263,7 @@ Endpoint list mengembalikan satu halaman aturan dan kursor untuk halaman berikut
 
 Untuk membaca atau memperbarui satu aturan, gunakan `GET` dan `POST` pada `/v1/organizations/federation_rules/{rule_id}`. Untuk mengelola workspace tempat aturan dapat mencetak token, gunakan `GET` dan `POST` pada `/v1/organizations/federation_rules/{rule_id}/workspaces`, dan `DELETE` pada `/v1/organizations/federation_rules/{rule_id}/workspaces/{workspace_id}`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi API Aturan federasi](https://platform.claude.com/docs/id/api/admin/federation_rules).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Aturan federasi](https://platform.claude.com/docs/id/api/beta/organization/federation/rules).
 
 ## Izin dan batasan
 
@@ -1286,4 +1286,4 @@ Pengarsipan adalah soft delete dan bersifat idempoten: mengarsipkan sumber daya 
 * [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation): konsep dan panduan penyiapan di Console
 * [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, aturan validasi, OAuth scope, dan kode error
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api): bagian lain dari permukaan manajemen organisasi
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

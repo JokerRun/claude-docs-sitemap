@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 2a19bd960b66cbc236de8ad4fbb9bbb38c793748154ebb53e2dcba081e2eaefa
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 50f126e4d4d072b675b56332010b56d98635162213a23a6fddacd99cef7de131
 ---
 
 ---
@@ -40,7 +40,7 @@ List Workspaces
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 ### Returns
 
@@ -307,7 +307,7 @@ Create Workspace
 
   Name of the Workspace.
 
-  maxLength: 40, minLength: 1
+  minLength: 1, maxLength: 40
 
 - `data_residency: optional BetaDataResidencyCreateConfig or null`
 
@@ -699,7 +699,7 @@ Update Workspace
 
   Name of the Workspace.
 
-  maxLength: 40, minLength: 1
+  minLength: 1, maxLength: 40
 
 - `tags: optional map[string] or null`
 
@@ -1281,7 +1281,7 @@ the remaining entries.
 
   When omitted, every remaining entry is returned in a single page and `next_page` is `null`.
 
-  maximum: 1000, minimum: 1
+  minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -1521,7 +1521,7 @@ List Workspace Members
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 #### Returns
 
@@ -1923,7 +1923,7 @@ omitted from the results.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

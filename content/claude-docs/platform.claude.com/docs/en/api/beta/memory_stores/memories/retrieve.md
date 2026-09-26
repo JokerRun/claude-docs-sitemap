@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 03cbe0e69170fad0ddc7ece5a82fca929581ddd2c177bb4caa0a1a7a965aefa7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 62a9bdaef9e850fe25897418a3e2738644fe154c1a5e3233d8aa09ec5f2185a8
 ---
 
 ---
@@ -176,7 +176,7 @@ Retrieve a memory
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    When this memory was created, in RFC 3339 format.
 
     format: date-time
 
@@ -194,7 +194,7 @@ Retrieve a memory
 
   - `updated_at: string`
 
-    A timestamp in RFC 3339 format
+    When this memory was last modified, in RFC 3339 format. Use this as a cheap freshness signal; for who made the change, look up the head version's `created_by` via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list).
 
     format: date-time
 

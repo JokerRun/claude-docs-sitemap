@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 0025b0b04d47f2e594179d6d89c84daae1c86b358d64a3a6bc9375103f81f818
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bdce213e7618c8ad9579c00723332f03446577ad9c50e4fa3900f74026294449
 ---
 
 ---
@@ -140,7 +140,7 @@ accounts.
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `description: optional string or null`
 
@@ -273,7 +273,7 @@ archived service accounts.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -1482,7 +1482,7 @@ page to recover.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

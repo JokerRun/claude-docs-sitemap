@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 0977d79580e8ae1bd7df97107595a08419bcc9deba1ef09190b7594adadd902a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ea0426752697cc86d6fca59f03aa5d3b8fbbd5a849596ef55c46903d28e6e38f
 ---
 
 ---
@@ -34,7 +34,7 @@ archived service accounts.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

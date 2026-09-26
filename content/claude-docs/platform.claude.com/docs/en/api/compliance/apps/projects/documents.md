@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 2217276dce67d432c88009067da8020f56aeaa55b51481e8814b9fd658b444f4
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e70a8dc35408455173b0e409c53f6d7742db15c38ac4d84e7badc8fdf6b4b573
 ---
 
 ---
@@ -50,11 +50,7 @@ Get detailed information for a specific project document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 
@@ -144,11 +140,7 @@ consumer can dedupe or match hashes without downloading every document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 
@@ -260,11 +252,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
   - `user: object or null`
 
-    The user who created a project or project document.
-
-    Fields that reference this type are null when the creator's account has
-    been deleted or the creator is no longer a member of an organization the
-    key may read.
+    Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
     - `id: string`
 
@@ -333,11 +321,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
   - `user: object or null`
 
-    The user who created a project or project document.
-
-    Fields that reference this type are null when the creator's account has
-    been deleted or the creator is no longer a member of an organization the
-    key may read.
+    Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
     - `id: string`
 

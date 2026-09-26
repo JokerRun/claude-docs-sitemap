@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 432a2fe9c5415a2f2d47f6b7be190cffe2131461e97aa36068fb08328490e12a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0ebc74b457424b0e959968d76d5ae1613d1d5096ccd907f6aca05b0afb7b453c
 ---
 
 ---
@@ -15,25 +15,25 @@ description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan ya
 
 API mengikuti format kode error HTTP yang dapat diprediksi:
 
-* 400 - `invalid_request_error`: Ada masalah dengan format atau isi permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace, kecuali batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429 sebagai gantinya.
+* 400 - `invalid_request_error`: Ada masalah pada format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace. Pengecualiannya adalah batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429.
 
-* 401 - `authentication_error`: Ada masalah dengan ["API key" (kunci API)](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Pada Claude Platform on AWS, ini juga dapat menunjukkan masalah dengan kredensial AWS atau tanda tangan SigV4 Anda.
+* 401 - `authentication_error`: Ada masalah pada ["API key" (kunci API)](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, sudah dicabut, atau sudah kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Di Claude Platform on AWS, error ini juga dapat menandakan masalah pada kredensial AWS atau tanda tangan SigV4 Anda.
 
-* 402 - `billing_error`: Ada masalah dengan informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
+* 402 - `billing_error`: Ada masalah pada informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
 
-* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa akses organisasi dan pengaturan workspace Anda di [Claude Console](https://platform.claude.com).
+* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa pengaturan akses dan workspace organisasi Anda di [Claude Console](https://platform.claude.com).
 
-* 404 - `not_found_error`: Sumber daya yang diminta tidak ditemukan. Periksa path endpoint dan ID sumber daya apa pun dalam URL permintaan.
+* 404 - `not_found_error`: Sumber daya yang diminta tidak ditemukan. Periksa path endpoint dan ID sumber daya apa pun di URL permintaan.
 
-* 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya dimodifikasi secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba ulang permintaan.
+* 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya diubah secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba kirim ulang permintaan.
 
-* 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk maksimum per endpoint.
+* 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk batas maksimum per endpoint.
 
-* 429 - `rate_limit_error`: Organisasi Anda telah mencapai "rate limit" (batas laju) — lihat [batas laju](https://platform.claude.com/docs/id/api/rate-limits) — mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dilanjutkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
+* 429 - `rate_limit_error`: Organisasi Anda telah mencapai ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan untuk tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal sampai akses dipulihkan. Lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
 
-* 500 - `api_error`: Terjadi error tak terduga di internal sistem Anthropic. Coba ulang permintaan dengan exponential backoff; jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba kirim ulang permintaan dengan "exponential backoff" (penundaan eksponensial). Jika error terus terjadi, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
-* 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. Pertimbangkan untuk menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
+* 504 - `timeout_error`: Waktu permintaan habis saat sedang diproses. Pertimbangkan untuk menggunakan [Messages API streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
 * 529 - `overloaded_error`: API sedang kelebihan beban untuk sementara.
 
@@ -43,7 +43,7 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
     Dalam kasus yang jarang, jika organisasi Anda mengalami peningkatan penggunaan yang tajam, Anda mungkin melihat error 429 karena batas akselerasi pada API. Untuk menghindari batas akselerasi, tingkatkan lalu lintas Anda secara bertahap dan pertahankan pola penggunaan yang konsisten.
   </Warning>
 
-SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan mematuhi header `retry-after` jika ada. Setiap klien SDK menerima opsi jumlah percobaan ulang maksimum untuk mengonfigurasi atau menonaktifkan perilaku ini.
+SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, sebanyak dua kali secara default, dan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
 
 Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui server-sent events (SSE), error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
 
@@ -79,7 +79,7 @@ Sesuai dengan kebijakan [pembuatan versi](https://platform.claude.com/docs/id/ap
 
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah, dan nama kelas serta namespace-nya berbeda menurut bahasa. Misalnya, 404 muncul sebagai `anthropic.NotFoundError` di Python, `Anthropic::Errors::NotFoundError` di Ruby, `com.anthropic.errors.NotFoundException` di Java, dan sebagai satu nilai `*anthropic.Error` (bercabang berdasarkan `StatusCode`) di Go. Tangkap kelas bertipe milik SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
+SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Nama kelas dan namespace-nya berbeda di setiap bahasa. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (python; typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK hanya memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`, sehingga Anda perlu membuat percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dan tangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
 
 * [Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 
@@ -89,7 +89,7 @@ Setiap respons API menyertakan header `request-id` yang unik. Header ini berisi 
 
 Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), respons menyertakan dua ID permintaan: ID permintaan AWS (`x-amzn-requestid`, primer, diindeks di CloudTrail) dan ID permintaan Anthropic (`request-id`, sekunder). Gunakan ID permintaan AWS untuk pencarian CloudTrail dan ID permintaan Anthropic untuk tiket dukungan Anthropic.
 
-SDK Python dan TypeScript mengekspos ID permintaan sebagai properti `_request_id` pada objek respons tingkat atas. SDK C#, Go, Java, dan PHP mengeksposnya melalui accessor raw-response masing-masing, dan SDK Ruby melalui [middleware](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware). Mekanisme yang sama, bersama dengan `with_raw_response` di Python dan `.withResponse()` di TypeScript, juga dapat membaca [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) lainnya, seperti `anthropic-organization-id` dan [`anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). Pada Claude Platform on AWS, gunakan accessor raw-response untuk membaca ID permintaan AWS (`x-amzn-requestid`) juga:
+SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_id` pada objek respons tingkat teratas. SDK C#, Go, Java, dan PHP menyediakannya melalui accessor respons mentah masing-masing, sedangkan SDK Ruby menyediakannya melalui [middleware](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware). Di semua SDK kecuali Ruby, gunakan `with_raw_response` (typescript: `.withResponse()`; java: `.withRawResponse()`; csharp: `WithRawResponse`; go: `option.WithResponseInto`; php: `->raw`) untuk membaca [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) lainnya, seperti `anthropic-organization-id` dan [`anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). Di Ruby, gunakan middleware yang sama. Di Claude Platform on AWS, gunakan juga accessor respons mentah untuk membaca ID permintaan AWS (`x-amzn-requestid`):
 
 <CodeGroup>
   ```bash cURL

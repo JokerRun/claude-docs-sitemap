@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: feb94ddf3cf5cdafda72b53818008051ba0d44bcf97d5a4a4c3439b8fd896609
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: aa48f70e8f39bef35c07347675fc590d4797a3d9d3c4b7597578669d4b1f5ad4
 ---
 
 ---
@@ -37,7 +37,7 @@ unless `include_archived=true`.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

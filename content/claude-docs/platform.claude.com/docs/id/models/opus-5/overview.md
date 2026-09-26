@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 38fbc45e44046fb5c5ba4c78585397d499e246e0504a8b75ed58edf115e464ce
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 5aaca6c3aa502e9cb312e4368cc338be2f8019b52bdad9403324a2c848ae92b3
 ---
 
 ---
@@ -110,7 +110,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts#claude-opus-5">
+  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts/overview#claude-opus-5">
     Prompt sistem yang digunakan Claude Opus 5 di claude.ai dan aplikasi Claude.
   </Card>
 

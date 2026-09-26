@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: e1316c9ad97af39014e3a74e108a08061920a1250f006b0d013ffc4c4fb3a310
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bc73cb5d20192056b4d9a8d023a980585a28a21910d01be0ccb9687d6dcd9887
 ---
 
 ---
@@ -138,7 +138,7 @@ Create Credential
 
 - `auth: BetaManagedAgentsMCPOAuthCreateParams or BetaManagedAgentsStaticBearerCreateParams or BetaManagedAgentsEnvironmentVariableCreateParams`
 
-  Authentication details for creating a credential.
+  Authentication configuration for the credential.
 
   - `BetaManagedAgentsMCPOAuthCreateParams object`
 
@@ -166,7 +166,7 @@ Create Credential
 
     - `refresh: optional BetaManagedAgentsMCPOAuthRefreshParams or null`
 
-      OAuth refresh token parameters for creating a credential with refresh support.
+      Refresh token configuration, if the credential supports token refresh.
 
       - `client_id: string`
 
@@ -322,13 +322,13 @@ Create Credential
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the credential was archived. Null if not archived.
 
     format: date-time
 
   - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
-    Authentication details for a credential.
+    Authentication configuration for this credential.
 
     - `BetaManagedAgentsMCPOAuthAuthResponse object`
 
@@ -348,7 +348,7 @@ Create Credential
 
       - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse or null`
 
-        OAuth refresh token configuration returned in credential responses.
+        Refresh token configuration, if the credential supports token refresh.
 
         - `client_id: string`
 

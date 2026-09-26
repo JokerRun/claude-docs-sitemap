@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 64253ed9e4db9e850a36c13b8be50f36cd33812c01c2d5bc3c980d067ef7c5c2
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f17db640b0c931ea3efe926acab1e117601c53d23434423dd9609cd1a6a89f4c
 ---
 
 > ## Documentation Index
@@ -133,7 +133,7 @@ With the variables exported in your shell, send a one-token request to the gatew
 <Tabs>
   <Tab title="Bash or Zsh">
     ```bash theme={null}
-    curl -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
+    curl -sS -w '\n%{http_code}\n' -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
       -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
       -H "anthropic-version: 2023-06-01" \
       -H "content-type: application/json" \

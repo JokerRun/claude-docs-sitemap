@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b28e1a9fb1fedb67379f19edbd09aee3128405b1346b2fce95df6369ff91cdce
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d510e0b56b9e145ae2de8257dd764b966d75d331c7932c8ba2297544e652fb64
 ---
 
 ---
@@ -150,7 +150,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `check_jti: optional boolean or null`
 
@@ -210,7 +210,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to 49h). Defaults to 3600 (1h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
 
-  maximum: 176400, exclusiveMinimum: 0
+  minimum: 1, maximum: 176400
 
 #### Returns
 
@@ -323,11 +323,7 @@ matched as the JWT's `iss` claim and is not fetched.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 
@@ -420,7 +416,7 @@ Archived issuers are excluded unless `include_archived=true`.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -638,11 +634,7 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 
@@ -948,11 +940,7 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 
@@ -1215,13 +1203,13 @@ session.
 
   Maximum allowed iat→exp spread for assertions from this issuer (1-176400 seconds, i.e. up to 49h). Assertions must carry both `iat` and `exp`; a missing `iat` is rejected.
 
-  maximum: 176400, exclusiveMinimum: 0
+  minimum: 1, maximum: 176400
 
 - `name: optional string or null`
 
   Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 #### Returns
 
@@ -1334,11 +1322,7 @@ session.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 
@@ -1642,11 +1626,7 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 
@@ -1879,7 +1859,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `oauth_scope: string`
 
@@ -1919,7 +1899,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   Lifetime in seconds for access tokens minted via this rule (60-86400). Defaults to 3600 (1h). Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
 
-  maximum: 86400, minimum: 60
+  minimum: 60, maximum: 86400
 
 - `workspace_id: optional string or null`
 
@@ -2146,7 +2126,7 @@ unless `include_archived=true`.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -2896,11 +2876,7 @@ Console session.
 
 - `match: optional BetaFederationRuleMatch or null`
 
-  Does the incoming JWT qualify?
-
-  All populated fields must pass; omitted fields are skipped. At least one
-  of `subject_prefix` (other than a wildcard-only value like `*`), `claims`,
-  or `condition` is required; `audience` alone is not sufficient.
+  Replaces the entire match object. All populated matcher fields must pass.
 
   - `audience: optional string or null`
 
@@ -2928,7 +2904,7 @@ Console session.
 
   Replaces the slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `oauth_scope: optional string or null`
 
@@ -2938,7 +2914,7 @@ Console session.
 
 - `target: optional BetaServiceAccountTarget or null`
 
-  Bind to a fixed service account by ID.
+  Replaces the entire target object. Currently always a `service_account` target.
 
   - `type: "service_account"`
 
@@ -2954,7 +2930,7 @@ Console session.
 
   Replaces the lifetime in seconds for access tokens minted via this rule (60-86400). Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
 
-  maximum: 86400, minimum: 60
+  minimum: 60, maximum: 86400
 
 - `workspace_id: optional string or null`
 
@@ -3675,7 +3651,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

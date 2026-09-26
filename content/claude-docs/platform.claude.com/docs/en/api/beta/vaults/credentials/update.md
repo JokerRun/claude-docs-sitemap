@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: fd476c43ebef8315fb0f2b6fe5ac503c9b8db868b1b2fd32b953a8482560ad3b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 60a07447c9ddcaa18528cecf55793e8d7247fb4c5ee628bea4eae0ef33f7dcbe
 ---
 
 ---
@@ -142,7 +142,7 @@ Update Credential
 
 - `auth: optional BetaManagedAgentsMCPOAuthUpdateParams or BetaManagedAgentsStaticBearerUpdateParams or BetaManagedAgentsEnvironmentVariableUpdateParams`
 
-  Updated authentication details for a credential.
+  Updated authentication configuration. The `type` is immutable; the variant sent must match the stored credential's type.
 
   - `BetaManagedAgentsMCPOAuthUpdateParams object`
 
@@ -164,7 +164,7 @@ Update Credential
 
     - `refresh: optional BetaManagedAgentsMCPOAuthRefreshUpdateParams or null`
 
-      Parameters for updating OAuth refresh token configuration.
+      Updated refresh token configuration.
 
       - `refresh_token: optional string or null`
 
@@ -284,13 +284,13 @@ Update Credential
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the credential was archived. Null if not archived.
 
     format: date-time
 
   - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
-    Authentication details for a credential.
+    Authentication configuration for this credential.
 
     - `BetaManagedAgentsMCPOAuthAuthResponse object`
 
@@ -310,7 +310,7 @@ Update Credential
 
       - `refresh: optional BetaManagedAgentsMCPOAuthRefreshResponse or null`
 
-        OAuth refresh token configuration returned in credential responses.
+        Refresh token configuration, if the credential supports token refresh.
 
         - `client_id: string`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 69b103729b34b44681d987d75a848e7dd422b779a7c6aaca3d6b1b04125f409e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ac0d3de49590c97e113b8daad96c6e5c93de989b59b63f4567bcff674f5aa292
 ---
 
 > ## Documentation Index
@@ -354,7 +354,7 @@ Neither `--channels` nor `--dangerously-load-development-channels` appears in `c
 
 During the preview, `--channels` only accepts plugins from an Anthropic-maintained allowlist, or from your organization's allowlist if an admin has set [`allowedChannelPlugins`](#restrict-which-channel-plugins-can-run). The channel plugins in [claude-plugins-official](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins) are the default approved set. If you pass something that isn't on the effective allowlist, Claude Code starts normally but the channel doesn't register, and the startup notice tells you why.
 
-To test a channel you're building, use `--dangerously-load-development-channels`. See [Test during the research preview](/docs/en/channels-reference#test-during-the-research-preview) for information about testing custom channels that you build.
+To test a channel you're building, pass it to `--dangerously-load-development-channels` in the `plugin:<name>@<marketplace>` or `server:<name>` form. See [Test during the research preview](/docs/en/channels-reference#test-during-the-research-preview) for information about testing custom channels that you build.
 
 Report issues or feedback on the [Claude Code GitHub repository](https://github.com/anthropics/claude-code/issues).
 

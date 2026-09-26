@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: eac1b710ac53d8c43baf4dfa1f70bf70d92bd8e17a7ce1fb0cec1517f42203e2
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: adff2cbd1d416ed41f2dc67828bf3755d5182ea10d4eed6d72eecca91fa6a3ab
 ---
 
 ---
@@ -34,7 +34,7 @@ The Models API response can be used to determine which models are available for 
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 ## Headers
 
@@ -168,7 +168,7 @@ The Models API response can be used to determine which models are available for 
 
   - `capabilities: ModelCapabilities or null`
 
-    Model capability information.
+    Object mapping capability names to their support details. Keys are always present for all known capabilities.
 
     - `batch: CapabilitySupport`
 
@@ -192,15 +192,15 @@ The Models API response can be used to determine which models are available for 
 
       - `clear_thinking_20251015: CapabilitySupport or null`
 
-        Indicates whether a capability is supported.
+        Whether the clear_thinking_20251015 strategy is supported.
 
       - `clear_tool_uses_20250919: CapabilitySupport or null`
 
-        Indicates whether a capability is supported.
+        Whether the clear_tool_uses_20250919 strategy is supported.
 
       - `compact_20260112: CapabilitySupport or null`
 
-        Indicates whether a capability is supported.
+        Whether the compact_20260112 strategy is supported.
 
       - `supported: boolean`
 
@@ -232,7 +232,7 @@ The Models API response can be used to determine which models are available for 
 
       - `xhigh: CapabilitySupport or null`
 
-        Indicates whether a capability is supported.
+        Whether the model supports xhigh effort level.
 
     - `image_input: CapabilitySupport`
 

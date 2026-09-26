@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: ef9d007f7dbc8b70b4c9f8487f585c42477fa099a21b963a58339f308155d26e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 08f1363adc5727bbaacb9ba1f5b6c2b73403c852b5a4b9523b7c431d2f4d0296
 ---
 
 ---
@@ -491,7 +491,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
   Number of rows per page (1-1000, default 20). One row per actor unless `group_by[]` or `bucket_width` splits an actor across rows; `cost_type`/`token_type` fan-out rows (cost endpoint only) are the exception — they do not count toward this limit, so `data` can exceed it.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `models: optional array of string`
 

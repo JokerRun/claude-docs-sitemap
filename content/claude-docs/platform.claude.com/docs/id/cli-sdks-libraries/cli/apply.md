@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b36b26a0f95b5010d1a5ab9ca5170baeeeb5fe1d5e500ceeac48c2a4310afcc3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 9673fc00440cac3c4eed74eae96fac35968a3145ba2ff7b97f9dbdd60d9c22c7
 ---
 
 ---
@@ -19,24 +19,26 @@ Untuk menginstal dan mengautentikasi CLI, lihat [panduan memulai cepat CLI](http
 
 Tulis agen sebagai berkas Markdown di bawah `agents/`, lalu terapkan:
 
-<MultiFileExample language="cli" label="CLI">
-  ```bash CLI
-  ant apply agents/summarizer.md
-  ```
-
-  <File filename="agents/summarizer.md">
-    ```markdown
-    ---
-    name: Summarizer
-    model: claude-opus-5-5
-    tools:
-      - type: agent_toolset_20260401
-    ---
-
-    You are a helpful assistant that writes concise summaries.
+<CodeGroup>
+  <CodeGroupItem>
+    ```bash CLI
+    ant apply agents/summarizer.md
     ```
-  </File>
-</MultiFileExample>
+
+    <File filename="agents/summarizer.md">
+      ```markdown
+      ---
+      name: Summarizer
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+      ---
+
+      You are a helpful assistant that writes concise summaries.
+      ```
+    </File>
+  </CodeGroupItem>
+</CodeGroup>
 
 Frontmatter berisi konfigurasi agen (bidang-bidang dari [Definisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sedangkan isi berkas menjadi "system prompt" (prompt sistem) agen tersebut. `ant apply` [menyimpulkan](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply#kind-inference) bahwa berkas tersebut adalah agen berdasarkan path-nya, dalam hal ini direktori `agents/`.
 
@@ -113,7 +115,7 @@ Sumber daya apa pun kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdow
 
 Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut sebagai gantinya. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen lead mencantumkan `./reviewer.md` dalam daftar anggotanya, dan deployment menyebutkan agen, lingkungan, dan penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Proyek ini memiliki enam berkas:
 
-<MultiFileExample variant="explorer">
+<FileExplorer>
   <File filename="agents/reviewer.md">
     ```markdown
     ---
@@ -195,7 +197,7 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
     Review any open pull requests. Start with the oldest.
     ```
   </File>
-</MultiFileExample>
+</FileExplorer>
 
 Terapkan seluruh direktori:
 

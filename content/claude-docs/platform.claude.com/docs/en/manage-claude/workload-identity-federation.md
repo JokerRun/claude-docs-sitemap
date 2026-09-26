@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 94188cc0f391d6291bf0a18f846c98aed2a3fc760938b6cfdbaf308ae6bba279
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6e82ac6d8dd10452c0d12fc5bc9b26b9d47ded548f5b22f206df7b6e61a03bef
 ---
 
 ---
@@ -86,7 +86,7 @@ The **Connect workload** wizard creates all three resources (the issuer, the ser
   </Step>
 </Steps>
 
-To manage these resources programmatically, see [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api) for the curl walkthrough, or see the [Service accounts API reference](https://platform.claude.com/docs/en/api/admin/service_accounts), [Federation issuers API reference](https://platform.claude.com/docs/en/api/admin/federation_issuers), and [Federation rules API reference](https://platform.claude.com/docs/en/api/admin/federation_rules) for complete parameter details and response schemas.
+To manage these resources programmatically, see [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api) for the curl walkthrough, or see the [Service accounts API reference](https://platform.claude.com/docs/en/api/beta/organization/service_accounts), [Federation issuers API reference](https://platform.claude.com/docs/en/api/beta/organization/federation/issuers), and [Federation rules API reference](https://platform.claude.com/docs/en/api/beta/organization/federation/rules) for complete parameter details and response schemas.
 
 ## Authenticate from your workload
 
@@ -409,4 +409,4 @@ Each guide covers where the JWT comes from on that platform, what its claims loo
 * [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api): create issuers, service accounts, and rules from infrastructure as code
 * [WIF reference](https://platform.claude.com/docs/en/manage-claude/wif-reference): environment variables, profile file schema, validation rules, and error codes
 * [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication): all authentication options across the Anthropic SDKs
-* [Admin API reference](https://platform.claude.com/docs/en/api/admin): generated request and response schemas for every Admin API endpoint
+* [Admin API reference](https://platform.claude.com/docs/en/api/beta/organization): generated request and response schemas for every Admin API endpoint

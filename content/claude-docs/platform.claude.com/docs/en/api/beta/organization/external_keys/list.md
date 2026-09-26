@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 65f0fb65067c10abb4af6af058ff3efa562043c547e85177b19c5fa7a0bffa1d
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: fa0dd362f253307055622b0d41c0ffd8a25b8f6b878d36ce9187d8705f8516fc
 ---
 
 ---
@@ -25,7 +25,7 @@ Results are ordered by creation time (newest first). Use the
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

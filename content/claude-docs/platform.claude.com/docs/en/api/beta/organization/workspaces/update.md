@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: de648a7d7cc9183579c1251f917d271e808671302f7a26683d4222d635d424db
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 721ff66894634a2e87d7f2641777e37ae68b6323f3c3112781b8fe652f0f63bf
 ---
 
 ---
@@ -70,7 +70,7 @@ Update Workspace
 
   Name of the Workspace.
 
-  maxLength: 40, minLength: 1
+  minLength: 1, maxLength: 40
 
 - `tags: optional map[string] or null`
 

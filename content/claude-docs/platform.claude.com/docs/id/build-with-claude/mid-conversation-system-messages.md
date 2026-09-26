@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: b2011818bcbd19f741d36c9f688d7de61134d8a91aa5367687a426027a4518d8
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bf9dbabc953fb0c70aa84d71c5431789637ae5cfc04a1dadb12b7222c1e0c8cd
 ---
 
 ---
@@ -15,36 +15,34 @@ description: Ubah instruksi sistem atau ketersediaan alat di tengah percakapan t
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi tersebut sangat baik untuk "prompt caching" ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): "system prompt" (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran berikutnya mengenai cache. Namun, posisi itu kurang tepat untuk instruksi yang baru Anda sadari diperlukan di tengah sesi. Mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
+Instruksi sistem biasanya ditempatkan di field `system` tingkat atas, sebelum semua pesan dalam percakapan. Posisi itu sangat cocok untuk ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): "system prompt" (prompt sistem) menjadi bagian dari prefiks yang stabil, sehingga giliran-giliran berikutnya mendapatkan cache hit. Namun, posisi itu kurang cocok untuk instruksi yang baru Anda sadari perlukan di tengah sesi. Mengedit field `system` tingkat atas akan mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang ada setelahnya.
 
-Pesan sistem di tengah percakapan menutup celah tersebut. Alih-alih mengedit field `system` tingkat atas, Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan tempat instruksi baru menjadi relevan. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya masih membacanya dari cache. Instruksi baru juga tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
+Pesan sistem di tengah percakapan mengatasi masalah tersebut. Alih-alih mengedit field `system` tingkat atas, Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan ketika instruksi baru tersebut mulai relevan. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya tetap membacanya dari cache. Instruksi baru itu juga tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
 
 <Note>
   Pesan sistem di tengah percakapan tersedia di Claude API, [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai).
 
-  Fitur ini tersedia di Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, dan Claude Opus 5. Pesan sistem di tengah percakapan tidak memerlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Di model tersebut, gunakan field `system` tingkat atas sebagai gantinya.
+  Fitur ini tersedia di Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, dan Claude Opus 5. Pesan sistem di tengah percakapan tidak memerlukan header beta. Fitur ini tidak tersedia di Claude Sonnet 5. Di model tersebut, gunakan field `system` tingkat atas.
 
-  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) masih dalam beta dan memerlukan header beta `mid-conversation-tool-changes-2026-07-01`. Fitur ini tersedia di model yang sama, di Claude API, Amazon Bedrock, dan Google Cloud. [Mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) menggunakan header beta `inline-tools-2026-09-15` sebagai pengganti header tersebut, dan tersedia di Claude API. [Menambahkan server MCP dengan cara itu](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`.
+  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) masih dalam tahap beta pada model yang sama. Di Claude API, kirim header beta `inline-tools-2026-09-15`. Header ini juga mencakup [pendefinisian alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). Pendefinisian alat di dalam pesan hanya tersedia di Claude API, dan [penambahan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`. Header lama `mid-conversation-tool-changes-2026-07-01` masih berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Google Cloud.
 
-  [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) masih dalam beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`. Fitur ini tersedia di model dan platform yang sama dengan pesan sistem di tengah percakapan.
+  [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) masih dalam tahap beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`. Fitur ini tersedia pada model dan platform yang sama dengan pesan sistem di tengah percakapan.
 </Note>
 
 ## Perubahan alat di tengah percakapan
 
-Array `tools` berada lebih awal lagi dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas. Karena itu, mengeditnya membatalkan [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan pesan sistem di tengah percakapan untuk alat. Anda tidak perlu menetapkan daftar alat untuk seluruh masa percakapan. Sebagai gantinya, Anda mengubah alat yang ditawarkan kepada model di antara giliran. Deklarasikan set alat lengkap di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya kembali, mulai dari titik tertentu dalam percakapan. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh.
+Array `tools` berada lebih awal lagi dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas. Karena itu, mengeditnya akan membatalkan [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan pesan sistem di tengah percakapan untuk alat. Alih-alih menetapkan daftar alat untuk seluruh masa percakapan, Anda mengubah alat yang ditawarkan kepada model di antara giliran. Deklarasikan set alat lengkap di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya kembali, mulai dari titik tertentu dalam percakapan. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh. Perubahan alat di tengah percakapan masih dalam tahap beta dan menggunakan header beta `inline-tools-2026-09-15` di Claude API. Di Amazon Bedrock dan Google Cloud, gunakan header lama `mid-conversation-tool-changes-2026-07-01`, yang mencakup perubahan yang menyebut alat berdasarkan referensi.
 
-`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan yang berlaku untuk setiap pesan sistem di tengah percakapan, dengan satu batasan tambahan setelah giliran yang dijeda (lihat [Batasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Perubahan berlaku mulai dari titik tersebut dalam percakapan.
+`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan yang berlaku untuk semua pesan sistem di tengah percakapan, dengan satu batasan tambahan setelah giliran yang dijeda (lihat [Batasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Perubahan berlaku mulai dari titik tersebut dalam percakapan. Field `tool` pada setiap blok mereferensikan alat, bukan mendefinisikannya:
 
-Field `tool` pada setiap blok mereferensikan alat, bukan mendefinisikannya:
-
-* `{"type": "tool_reference", "name": "..."}` menyebut nama alat yang dideklarasikan dalam array `tools` pada permintaan.
+* `{"type": "tool_reference", "name": "..."}` menyebut alat yang dideklarasikan dalam array `tools` pada permintaan.
 * Alat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) dapat direferensikan satu per satu dengan `mcp_tool_reference` (`server_name` dan `name`), atau sebagai satu toolset utuh dengan `mcp_toolset_reference` (`server_name`).
 
-Mereferensikan nama yang tidak dideklarasikan di `tools` menghasilkan error 400 (di Claude API, dengan `error.details.error_code` bernilai `tool_reference_unresolved`). Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) sebagai gantinya.
+Mereferensikan nama yang tidak dideklarasikan di `tools` akan menghasilkan error 400 (di Claude API, dengan `error.details.error_code` bernilai `tool_reference_unresolved`). Sebagai alternatif, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). Cara ini tidak didukung oleh header lama `mid-conversation-tool-changes-2026-07-01`.
 
 Setiap alat yang dideklarasikan di `tools` ditawarkan kepada model sejak awal percakapan, kecuali jika dideklarasikan dengan `defer_loading: true`. Alat seperti itu ditahan sampai blok `tool_addition` memunculkannya. `tool_addition` juga dapat menawarkan kembali alat yang sebelumnya ditarik oleh `tool_removal`.
 
-Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya setelah giliran pengguna pertama dengan blok `tool_removal`. Perubahan alat di tengah percakapan masih dalam tahap beta, sehingga permintaan ini mengirimkan header beta `mid-conversation-tool-changes-2026-07-01`.
+Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya setelah giliran pengguna pertama dengan blok `tool_removal`. Permintaan ini mengirim header beta `inline-tools-2026-09-15`.
 
 <CodeGroup>
   ```bash cURL
@@ -52,7 +50,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: mid-conversation-tool-changes-2026-07-01" \
+    -H "anthropic-beta: inline-tools-2026-09-15" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -88,7 +86,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-tool-changes-2026-07-01 \
+  ant beta:messages create --beta inline-tools-2026-09-15 \
     --transform 'content.#(type=="text").text' --raw-output <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
@@ -121,7 +119,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   response = client.beta.messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
-      betas=["mid-conversation-tool-changes-2026-07-01"],
+      betas=["inline-tools-2026-09-15"],
       # Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
       # prefiks yang di-cache tetap utuh.
       tools=[
@@ -144,7 +142,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           },
           # Tarik get_weather mulai titik ini. Blok ini merujuk
           # alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          # identik per byte dan cache tetap terkena (hit).
+          # identik per byte dan cache tetap hit.
           {
               "role": "system",
               "content": [
@@ -168,7 +166,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   const response = await client.beta.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
-    betas: ["mid-conversation-tool-changes-2026-07-01"],
+    betas: ["inline-tools-2026-09-15"],
     // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
     // prefiks yang di-cache tetap utuh.
     tools: [
@@ -212,6 +210,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta;
   using Anthropic.Models.Beta.Messages;
   using Messages = Anthropic.Models.Messages;
 
@@ -221,7 +220,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Betas = ["mid-conversation-tool-changes-2026-07-01"],
+      Betas = [AnthropicBeta.InlineTools2026_09_15],
       // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
       // prefiks yang di-cache tetap utuh.
       Tools =
@@ -245,7 +244,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           new() { Role = Role.User, Content = "Say OK." },
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `Tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap terkena (hit).
+          // identik per byte dan cache tetap hit.
           new()
           {
               Role = Role.System,
@@ -275,8 +274,8 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
-  	Betas:     []anthropic.AnthropicBeta{"mid-conversation-tool-changes-2026-07-01"},
-  	// Set alat lengkap dideklarasikan di awal dan tidak pernah berubah, sehingga
+  	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaInlineTools2026_09_15},
+  	// Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
   	// prefiks yang di-cache tetap utuh.
   	Tools: []anthropic.BetaToolUnionParam{
   		{OfTool: &anthropic.BetaToolParam{
@@ -295,9 +294,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   	},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Say OK.")),
-  		// Tarik get_weather mulai dari titik ini. Blok ini mereferensikan
-  		// alat berdasarkan nama alih-alih mengedit Tools, sehingga giliran sebelumnya tetap
-  		// identik per byte dan cache hit tetap terjadi.
+  		// Tarik get_weather mulai titik ini dan seterusnya. Blok ini merujuk
+  		// alat berdasarkan namanya alih-alih mengedit Tools, sehingga giliran sebelumnya tetap
+  		// identik byte demi byte dan cache tetap hit.
   		{
   			Role: anthropic.BetaMessageParamRoleSystem,
   			Content: []anthropic.BetaContentBlockParamUnion{
@@ -320,6 +319,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 
   ```java Java
+  import com.anthropic.models.beta.AnthropicBeta;
   import com.anthropic.models.beta.messages.BetaContentBlockParam;
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaMessageParam;
@@ -347,12 +347,12 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          .addBeta("mid-conversation-tool-changes-2026-07-01")
+          .addBeta(AnthropicBeta.INLINE_TOOLS_2026_09_15)
           .addTool(weatherTool)
           .addUserMessage("Say OK.")
           // Tarik get_weather mulai dari titik ini. Blok ini mereferensikan
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap hit.
+          // identik byte demi byte dan cache tetap hit.
           .addMessage(BetaMessageParam.builder()
               .role(BetaMessageParam.Role.SYSTEM)
               .contentOfBetaContentBlockParams(List.of(
@@ -369,12 +369,15 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 
   ```php PHP
+  use Anthropic\Beta\AnthropicBeta;
+  // ...
+
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
-      betas: ['mid-conversation-tool-changes-2026-07-01'],
+      betas: [AnthropicBeta::INLINE_TOOLS_2026_09_15],
       // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
       // prefiks yang di-cache tetap utuh.
       tools: [
@@ -395,9 +398,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       ],
       messages: [
           ['role' => 'user', 'content' => 'Say OK.'],
-          // Tarik get_weather mulai dari titik ini. Blok ini mereferensikan
+          // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          // identik byte demi byte dan cache tetap hit.
+          // identik per byte dan cache tetap terkena (hit).
           [
               'role' => 'system',
               'content' => [
@@ -421,9 +424,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
-    betas: ["mid-conversation-tool-changes-2026-07-01"],
+    betas: [Anthropic::AnthropicBeta::INLINE_TOOLS_2026_09_15],
     # Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
     # prefiks yang di-cache tetap utuh.
     tools: [
@@ -443,7 +446,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       { role: "user", content: "Say OK." },
       # Tarik get_weather mulai titik ini. Blok ini merujuk
       # alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-      # identik per byte dan cache tetap terkena (hit).
+      # identik per byte dan cache tetap hit.
       {
         role: "system",
         content: [
@@ -462,11 +465,11 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 </CodeGroup>
 
-### Mendefinisikan alat dalam pesan (beta)
+### Mendefinisikan alat di dalam pesan (beta)
 
-Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Ini memungkinkan Anda memperkenalkan alat yang belum diketahui di awal percakapan, atau yang skemanya berubah kemudian, dengan menambahkan pesan `role: "system"`. Array `tools` dan setiap pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache prompt tetap mengalami hit dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian, yaitu array `tools` tanpa alat yang tidak ditangguhkan, dibahas dalam aturan di bawah. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
+Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, yaitu dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Dengan begitu, Anda dapat memperkenalkan alat yang belum diketahui di awal percakapan, atau alat yang skemanya berubah kemudian, cukup dengan menambahkan pesan `role: "system"`. Array `tools` dan semua pesan sebelumnya tetap persis seperti yang dikirim. Akibatnya, cache prompt tetap mendapatkan hit dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian, yaitu array `tools` tanpa alat non-deferred, dibahas dalam aturan di bawah. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
 
-Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools`, seperti alat kustom atau alat klien atau server yang didefinisikan Anthropic, dengan konfigurasi seperti biasanya, termasuk `cache_control` dan `defer_loading`. Selama masa beta, beberapa tipe alat (termasuk alat computer use) belum dapat didefinisikan dalam pesan dan akan mengembalikan error 400 yang menyatakan hal tersebut; deklarasikan alat-alat tersebut di `tools` dan tambahkan berdasarkan referensi. Misalnya, untuk mendefinisikan alat kustom di tengah percakapan:
+Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools`, seperti alat kustom atau alat klien maupun server yang didefinisikan Anthropic, lengkap dengan konfigurasinya yang biasa, termasuk `cache_control` dan `defer_loading`. Selama masa beta, beberapa tipe alat (termasuk alat computer use) belum dapat didefinisikan di dalam pesan. Alat-alat tersebut akan menghasilkan error 400 yang menyatakan hal itu. Deklarasikan alat tersebut di `tools` dan tambahkan berdasarkan referensi. Sebagai contoh, untuk mendefinisikan alat kustom di tengah percakapan:
 
 ```json
 {
@@ -491,7 +494,7 @@ Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adal
 }
 ```
 
-Mulai dari posisi tersebut dan seterusnya, model dapat memanggil alat tersebut dengan cara yang sama seperti memanggil alat yang dideklarasikan di `tools`. Mengirim definisi yang identik lagi tidak mengubah apa pun, sehingga klien dapat mengirimnya ulang dengan aman, misalnya saat mencoba ulang.
+Mulai dari posisi tersebut, model dapat memanggil alat itu dengan cara yang sama seperti memanggil alat yang dideklarasikan di `tools`. Mengirim ulang definisi yang identik tidak mengubah apa pun, sehingga klien dapat mengirimnya ulang dengan aman, misalnya saat mencoba ulang permintaan.
 
 Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `db_query` setelah giliran pengguna pertama:
 
@@ -547,51 +550,45 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
     }'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
-    ```bash CLI
-    ant beta:messages create --beta inline-tools-2026-09-15 < request.yaml
-    ```
-
-    <File filename="request.yaml">
-      ```yaml
-      model: claude-opus-5-5
-      max_tokens: 1024
-      # Keep at least one non-deferred tool in `tools`, so a tool defined
-      # later doesn't change the start of the rendered prompt.
-      tools:
-        - name: get_weather
-          description: Get the current weather for a location.
-          input_schema:
-            type: object
-            properties:
-              location:
-                type: string
-                description: City name
-            required:
-              - location
-      messages:
-        - role: user
-          content: How many orders shipped yesterday?
-        # Define db_query by value from this point onward. `tools` and the
-        # earlier messages stay exactly as sent, so the cache still hits.
-        - role: system
-          content:
-            - type: tool_addition
-              tool:
-                type: tool_definition
-                definition:
-                  name: db_query
-                  description: Run a read-only SQL query against the analytics database.
-                  input_schema:
-                    type: object
-                    properties:
-                      sql:
-                        type: string
-                    required:
-                      - sql
-      ```
-    </File>
-  </MultiFileExample>
+  ```bash CLI
+  ant beta:messages create --beta inline-tools-2026-09-15 <<'YAML'
+  model: claude-opus-5-5
+  max_tokens: 1024
+  # Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
+  # belakangan tidak mengubah awal prompt yang dirender.
+  tools:
+    - name: get_weather
+      description: Get the current weather for a location.
+      input_schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: City name
+        required:
+          - location
+  messages:
+    - role: user
+      content: How many orders shipped yesterday?
+    # Definisikan db_query berdasarkan nilai mulai titik ini. `tools` dan
+    # pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+    - role: system
+      content:
+        - type: tool_addition
+          tool:
+            type: tool_definition
+            definition:
+              name: db_query
+              description: Run a read-only SQL query against the analytics database.
+              input_schema:
+                type: object
+                properties:
+                  sql:
+                    type: string
+                required:
+                  - sql
+  YAML
+  ```
 
   ```python Python
   client = anthropic.Anthropic()
@@ -601,7 +598,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
       max_tokens=1024,
       betas=["inline-tools-2026-09-15"],
       # Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
-      # belakangan tidak mengubah awal prompt yang dirender.
+      # belakangan tidak mengubah bagian awal prompt yang dirender.
       tools=[
           {
               "name": "get_weather",
@@ -618,7 +615,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
       messages=[
           {"role": "user", "content": "How many orders shipped yesterday?"},
           # Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
-          # pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          # pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
           {
               "role": "system",
               "content": [
@@ -671,7 +668,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
     ],
     messages: [
       { role: "user", content: "How many orders shipped yesterday?" },
-      // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
+      // Definisikan db_query berdasarkan nilai mulai titik ini. `tools` dan
       // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
       {
         role: "system",
@@ -802,8 +799,8 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
   	},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("How many orders shipped yesterday?")),
-  		// Definisikan db_query secara langsung (by value) mulai titik ini. Tools dan
-  		// pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache hit tetap terjadi.
+  		// Definisikan db_query secara langsung (by value) mulai dari sini. Tools dan
+  		// pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache hit tetap terjadi.
   		{
   			Role: anthropic.BetaMessageParamRoleSystem,
   			Content: []anthropic.BetaContentBlockParamUnion{
@@ -925,7 +922,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
       messages: [
           ['role' => 'user', 'content' => 'How many orders shipped yesterday?'],
           // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
-          // pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache hit tetap terjadi.
           [
               'role' => 'system',
               'content' => [
@@ -1024,20 +1021,20 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
 }
 ```
 
-Untuk mengubah skema alat, atau memindahkan alat server ke versi yang lebih baru, kirim definisi yang berbeda dengan nama yang sama. Definisi baru menggantikan definisi sebelumnya mulai dari posisi tersebut dan seterusnya. Definisi yang menggunakan kembali nama dari tipe alat yang berbeda menghasilkan error 400 dengan `error.details.error_code` bernilai `tool_name_conflict`. Versi yang lebih baru dari alat yang sama tidak dihitung sebagai tipe yang berbeda. `tool_removal` tetap menerima referensi, dan alat yang telah dihapus dapat didefinisikan atau ditawarkan kembali nanti.
+Untuk mengubah skema alat, atau untuk memindahkan alat server ke versi yang lebih baru, kirim definisi yang berbeda dengan nama yang sama. Definisi baru menggantikan definisi sebelumnya mulai dari posisi tersebut. Definisi yang memakai ulang nama dari tipe alat yang berbeda akan menghasilkan error 400 dengan `error.details.error_code` bernilai `tool_name_conflict`. Versi yang lebih baru dari alat yang sama tidak dihitung sebagai tipe yang berbeda. `tool_removal` tetap menggunakan referensi, dan alat yang telah dihapus dapat didefinisikan atau ditawarkan kembali nanti.
 
-Beberapa aturan berikut muncul dari tempat definisi tersebut dirender:
+Beberapa aturan berikut muncul dari posisi tempat definisi dirender:
 
-* **Deklarasikan apa yang Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama seharusnya berada di `tools`, dengan `defer_loading: true` dan referensi `tool_addition` di kemudian hari jika model belum boleh melihatnya. Definisikan berdasarkan nilai hanya alat yang belum diketahui pada permintaan pertama atau yang berubah kemudian.
-* **Pertahankan setidaknya satu alat yang tidak ditangguhkan di `tools`.** Percakapan yang array `tools`-nya tidak memiliki alat yang tidak ditangguhkan tetap diterima, tetapi alat pertama yang didefinisikannya berdasarkan nilai akan mengubah awal prompt yang dirender, yang menyebabkan satu cache miss penuh pada permintaan tersebut. [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat yang tidak ditangguhkan.
-* **Tipe alat bertanggal tetap menggunakan header beta masing-masing.** Jika alat server yang Anda definisikan berdasarkan nilai memerlukan header beta tersendiri, kirim header tersebut pada setiap permintaan berikutnya dalam percakapan.
-* **`cache_control` ditempatkan pada blok atau di dalam definisi, bukan keduanya,** dan dihitung terhadap batas breakpoint permintaan. Definisi yang ditangguhkan tidak dapat membawa `cache_control`.
+* **Deklarasikan alat yang sudah Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama sebaiknya ditempatkan di `tools`. Jika model belum boleh melihatnya, gunakan `defer_loading: true` dan referensi `tool_addition` di kemudian hari. Definisikan berdasarkan nilai hanya alat yang belum diketahui pada permintaan pertama atau yang berubah kemudian.
+* **Pertahankan setidaknya satu alat non-deferred di `tools`.** Percakapan yang array `tools`-nya tidak memiliki alat non-deferred tetap diterima. Namun, alat pertama yang didefinisikan berdasarkan nilai akan mengubah awal prompt yang dirender, sehingga permintaan tersebut mengalami satu cache miss penuh. [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat non-deferred.
+* **Tipe alat bertanggal tetap memerlukan header beta masing-masing.** Jika alat server yang Anda definisikan berdasarkan nilai memerlukan header beta sendiri, kirim header tersebut pada setiap permintaan berikutnya dalam percakapan.
+* **Tempatkan `cache_control` pada blok atau di dalam definisi, tidak keduanya.** `cache_control` dihitung terhadap batas breakpoint permintaan. Definisi yang ditangguhkan (deferred) tidak dapat membawa `cache_control`.
 
-Permintaan mengembalikan error 400 dengan `error.details.error_code` bernilai `available_tools_limit_exceeded` ketika salah satu batas berikut terlampaui:
+Permintaan akan menghasilkan error 400 dengan `error.details.error_code` bernilai `available_tools_limit_exceeded` jika salah satu batas berikut terlampaui:
 
-* Lebih dari 10.000 alat yang ditangguhkan tersedia setelah pesan mana pun.
+* Lebih dari 10.000 alat deferred tersedia setelah pesan mana pun.
 * Lebih dari 10.000 alat yang didefinisikan setelah pesan pengguna pertama tersedia setelah pesan mana pun.
-* Definisi alat yang dikirim setelah pesan pengguna pertama dan masih tersedia setelah pesan mana pun berjumlah total lebih dari 4 MB (4.194.304 byte).
+* Total definisi alat yang dikirim setelah pesan pengguna pertama dan masih tersedia setelah pesan mana pun melebihi 4 MB (4.194.304 byte).
 * Teks alat yang dirender lebih besar dari 4 MB (4.194.304 byte).
 
 ### Menambahkan server MCP di tengah percakapan (beta)

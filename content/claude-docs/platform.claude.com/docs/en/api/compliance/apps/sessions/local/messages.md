@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: d7f9890a879d581eaa857905e26f68ab8d334dd62716765523bc4bfbb3eb1aff
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f4b86808da5bf00bffaff084bbb3cd654f87048c4c651fd68cce868598f1b5fc
 ---
 
 ---
@@ -43,7 +43,7 @@ response header.
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -63,13 +63,13 @@ response header.
 
   Truncate each text item inside a tool result to at most this many bytes (cut on a code-point boundary). Pass `-1` to request the server maximum (approximately 1 MiB); larger values are clamped to it. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 - `tool_use_input_max_bytes: optional number`
 
   Truncate each tool-use input to at most this many bytes (cut on a code-point boundary so the result is valid UTF-8). Pass `-1` to request the server maximum (approximately 1 MiB); larger values are clamped to it. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 ### Headers
 

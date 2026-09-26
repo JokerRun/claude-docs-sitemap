@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9de103ce9baff6a17d864d5168044f9cebe2edd41ffe13e25b5125eecbb040c1
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 94630659b23039bcdcc45f5e89c134e564a9eeab601a2368a9a2d4bc10d4bd56
 ---
 
 ---
@@ -420,7 +420,7 @@ List Session Resources
 
     - `access: optional "read_write" or "read_only" or null`
 
-      Access mode for an attached memory store.
+      Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
       - `"read_write"`
 
@@ -691,7 +691,7 @@ Get Session Resource
 
   - `access: optional "read_write" or "read_only" or null`
 
-    Access mode for an attached memory store.
+    Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
     - `"read_write"`
 
@@ -953,7 +953,7 @@ Update Session Resource
 
   - `access: optional "read_write" or "read_only" or null`
 
-    Access mode for an attached memory store.
+    Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
     - `"read_write"`
 
@@ -1256,7 +1256,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
   - `access: optional "read_write" or "read_only" or null`
 
-    Access mode for an attached memory store.
+    Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
     - `"read_write"`
 
@@ -1362,7 +1362,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
     - `access: optional "read_write" or "read_only" or null`
 
-      Access mode for an attached memory store.
+      Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
       - `"read_write"`
 
@@ -1470,7 +1470,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
     - `access: optional "read_write" or "read_only" or null`
 
-      Access mode for an attached memory store.
+      Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
       - `"read_write"`
 
@@ -1578,7 +1578,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
     - `access: optional "read_write" or "read_only" or null`
 
-      Access mode for an attached memory store.
+      Access mode for the mounted store. Defaults to `read_write`. `read_only` mounts the store as a read-only filesystem.
 
       - `"read_write"`
 

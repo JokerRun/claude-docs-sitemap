@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/measure
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 778155c4b362e7be5fde2cac4fb1658ab04e8a872d4aaebbfe348d6cc85cd16b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 7a8fb371107ec9cad20b9ebbe542c2a9caa0ba3c9824891f5a8b1a97baebbb8b
 ---
 
 > ## Documentation Index
@@ -94,6 +94,8 @@ Claude Code doesn't report a plugin's usage back to its author. Usage is recorde
 * **You administer Claude Code for their organization**: the OpenTelemetry events and the Analytics API count installs and skill activations across every machine. See [Measure across a fleet](#measure-across-a-fleet).
 * **They're teammates you can ask**: each user's own Claude Code shows them whether they still use the plugin, in four places: the [`/plugin` panel](#not-used-recently-in-/plugin), [`/skill-doctor`](#find-skills-that-never-run), [`/doctor`](#unused-plugins-in-/doctor), and [`/usage`](#usage-share-in-/usage). All four are commands the user runs at the Claude Code prompt in a session on their own machine.
 * **Neither**: you have no usage signal from Claude Code for that plugin.
+
+For usage of a plugin listed in Anthropic's directory, see [Track published plugin usage](https://claude.com/docs/connectors/building/after-publishing#track-published-plugin-usage) on claude.com.
 
 ### Not used recently in `/plugin`
 

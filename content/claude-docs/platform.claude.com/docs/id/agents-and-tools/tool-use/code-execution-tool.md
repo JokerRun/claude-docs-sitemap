@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: a9f93a3bf3b93491c68b308587e4c901ab6c28a165739739a811f2d4498cf82a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 94c0607d1ac9f82d0646965f9bf69c1ff969d8301b29f9f82a3f2c20653c8fbc
 ---
 
 ---
@@ -1532,7 +1532,7 @@ Untuk melakukan upgrade, perbarui tipe alat dalam permintaan API Anda:
 
 ## Retensi data
 
-Eksekusi kode berjalan di container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses di dalam lingkungan container. File yang dibuat oleh eksekusi kode di [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (dapat diambil dengan `client.files.download()`) tetap tersimpan hingga dihapus secara eksplisit.
+Eksekusi kode berjalan di container sandbox sisi server. Data container, termasuk artefak eksekusi, file yang diunggah, dan output, disimpan hingga 30 hari. Retensi ini berlaku untuk semua data yang diproses di dalam lingkungan container. File yang dibuat oleh eksekusi kode di [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (dapat diambil dengan `client.files.download()` (csharp, go: `client.Files.Download()`; java: `client.files().download()`; php: `$client->files->download()`)) tetap tersimpan hingga dihapus secara eksplisit.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 

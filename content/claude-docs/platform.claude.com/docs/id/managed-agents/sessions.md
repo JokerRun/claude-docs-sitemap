@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 32759c7d3991394fa2585f5ddc9cd517ac4b5cf1f0b77a6c423ada43d931f5c7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4deb0ab0a0d243cfbeee544fc47cfe25aaf0092dc3ce151379e97ea4757ac971
 ---
 
 ---
@@ -477,8 +477,7 @@ Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
   * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif sesi tidak kosong, karena skills memerlukan alat `read`. Selain itu, `tools: null` dan `tools: []` mengosongkan field tersebut.
   * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
 
-* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi. Ada satu pengecualian:
-  * Level `effort` di dalam override `model` per sesi tidak diterapkan, dan karena override menggantikan objek `model` agen secara penuh, `effort` milik agen sendiri juga tidak ikut terbawa: sesi yang dibuat dengan override `model` berjalan pada level effort default model. Untuk berjalan pada level effort tertentu, atur `effort` pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#agent-configuration-fields) dan jangan menimpa `model` untuk sesi tersebut.
+* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` menggantikan objek `model` agen secara penuh, sehingga `effort` milik agen tidak ikut terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` di dalam objek `model` pada override. Tingkat yang tidak didukung model akan mengembalikan error 400, dan override `model` tanpa `effort` berjalan pada tingkat effort default model tersebut.
 
 Override hanya berlaku untuk sesi yang Anda buat. Override tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 

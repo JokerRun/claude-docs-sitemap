@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-4-6/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: ac2d275d99c560028952f90b8ddaebec735ae6804b779e7d025d350e32e30c44
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: b5242bcf12eb1ffda0f4a355b935ed6c41ec83eff1dca64b8fa9ff30628efeae
 ---
 
 ---
@@ -100,7 +100,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 ## Reference
 
 <CardGroup cols={3}>
-  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts#claude-opus-4-6">
+  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts/overview#claude-opus-4-6">
     The system prompt Claude Opus 4.6 uses on claude.ai and the Claude apps.
   </Card>
 

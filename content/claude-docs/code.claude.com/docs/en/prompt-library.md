@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-library
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 67b1e5011a5aeafb69109bb91b6a7569faa4b3ba7d7407aaf21e95be190f02d4
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d4972b94378572fe1df21375b010c977f37ff4a891bf733753d60018a92bd7b1
 ---
 
 > ## Documentation Index
@@ -633,13 +633,14 @@ export const PromptLibrary = ({text = {}, labels = {}, tagLabels = {}, phaseLabe
       return base + (href.startsWith('/en/') ? '/' + locale + href.slice(3) : href);
     };
   }, []);
+  const SAFE_HREF = /^(\/(?![\/\\\s])|#|https?:\/\/)/;
   const linkify = s => {
     const out = [];
     let last = 0;
     const re = /\[([^\]]+)\]\(([^)]+)\)/g;
     for (let m; m = re.exec(s); ) {
       if (m.index > last) out.push(s.slice(last, m.index));
-      out.push(<a key={m.index} href={doc(m[2])}>{m[1]}</a>);
+      out.push(SAFE_HREF.test(m[2]) ? <a key={m.index} href={doc(m[2])}>{m[1]}</a> : m[1]);
       last = re.lastIndex;
     }
     if (last < s.length) out.push(s.slice(last));
@@ -783,7 +784,7 @@ export const PromptLibrary = ({text = {}, labels = {}, tagLabels = {}, phaseLabe
             </div>
             <div className="pl-label">{L.whyWorks}</div>
             <div className="pl-teaches">{linkify(p.teaches)}</div>
-            {p.nextHref && p.next && <div className="pl-next">
+            {p.nextHref && p.next && SAFE_HREF.test(p.nextHref) && <div className="pl-next">
                 <span className="pl-next-label">{L.makeItStick}</span>
                 <a href={doc(p.nextHref)}>{codeify(p.next)} →</a>
               </div>}

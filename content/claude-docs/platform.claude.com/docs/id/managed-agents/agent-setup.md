@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 3e8d7ebe1bbda37b1577e3c21b0923b2797aa400a47e76d427226fa4d86b3380
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8935e77558b92d5dd4d66dbf5730dde9aca9e1c232fd562a0c32587397da6279
 ---
 
 ---
@@ -35,7 +35,7 @@ Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensik
 | `description` | Deskripsi tentang apa yang dilakukan agen.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `metadata`    | Pasangan key-value arbitrer untuk pelacakan Anda sendiri.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-Anda juga dapat menimpa `model`, `system`, `tools`, `mcp_servers`, dan `skills` untuk satu sesi tanpa mengubah agen. Tingkat `effort` yang ditetapkan di dalam penimpaan `model` per sesi tidak diterapkan, dan karena penimpaan tersebut menggantikan objek `model` agen secara penuh, sesi yang dibuat dengan penimpaan `model` berjalan pada tingkat effort default model; untuk berjalan pada tingkat effort tertentu, tetapkan `effort` pada agen dan jangan menimpa `model` untuk sesi tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
+Anda juga dapat menimpa `model`, `system`, `tools`, `mcp_servers`, dan `skills` untuk satu sesi tanpa mengubah agen. Penimpaan `model` menggantikan objek `model` milik agen secara keseluruhan, sehingga `effort` milik agen tidak ikut terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` di dalam objek `model` pada penimpaan tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
 
 ## Membuat agen
 
@@ -61,7 +61,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   AGENT_VERSION=$(jq -r '.version' <<< "$agent")
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply coding-assistant.md
     ```
@@ -78,7 +78,9 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       You are a helpful coding agent.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dari `coding-assistant.md`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui agen ini alih-alih membuat yang kedua.
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -170,10 +172,6 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
     tools: [{type: "agent_toolset_20260401"}]
   )
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dari `coding-assistant.md`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui agen ini alih-alih membuat yang kedua.
-  </ForLanguage>
 </CodeGroup>
 
 Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `version`, `created_at`, `updated_at`, dan `archived_at`, serta mengisi field `model` yang Anda hilangkan, seperti `effort`, dengan nilai defaultnya. `version` dimulai dari 1 dan bertambah setiap kali pembaruan mengubah agen.
@@ -241,7 +239,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply geo-pinned-assistant.md
     ```
@@ -258,7 +256,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
       You are a helpful assistant.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -383,7 +381,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply coding-assistant.md
     ```
@@ -400,7 +398,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
       You are a helpful coding agent. Always write tests.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   updated_agent = client.beta.agents.update(
@@ -478,7 +476,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
 
 Contoh sebelumnya menyediakan `version` dari respons pembuatan, sehingga pembaruan hanya diterapkan jika tidak ada hal lain yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI, python, typescript, csharp, go, java, php, ruby">
   ```bash cURL
   updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \

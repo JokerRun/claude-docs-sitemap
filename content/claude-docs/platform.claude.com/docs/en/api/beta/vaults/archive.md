@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 24767565ced848ace7dd3175d204c9ff079e4cf6e91663eb1392af099f898a18
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e39df97981d030a160f668786a3071367264909e2f05ba0f0b46b560755bdcab
 ---
 
 ---
@@ -148,7 +148,7 @@ Archive Vault
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the vault was archived. Null if not archived.
 
     format: date-time
 

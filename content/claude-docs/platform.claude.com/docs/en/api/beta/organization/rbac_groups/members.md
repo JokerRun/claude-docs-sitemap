@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 4840e642747325c085cee3259d98a0e2d110c47fa940ae28abfeb96bdb0908cd
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c247d13089a1f5871eaad37b497316c82cafc09bf0e10cbbd7e04a8797446561
 ---
 
 ---
@@ -34,7 +34,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

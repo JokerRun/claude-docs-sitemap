@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 58f22fb6c2410dbdf83a70647971f601101566546f8c974792fd642fdd0ffe17
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 09825f608fe0f38f2325af95de4c8ee984aa46fe707e93025f0a4e29633a7351
 ---
 
 ---
@@ -62,7 +62,7 @@ Pendekatan ini paling cocok untuk:
 
 **Claude Opus 5.5** (`claude-opus-5-5`) dirancang untuk coding agentik dan pekerjaan berbasis pengetahuan yang berjalan lama, dengan ["adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Jika integrasi Anda memaksa penggunaan alat (`tool_choice` dengan tipe `any` atau `tool`), menonaktifkan thinking, atau menggunakan alat computer use `computer_20251124`, lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) sebelum beralih.
 
-**Claude Fable 5.1** (`claude-fable-5-1`) adalah model Anthropic paling mumpuni yang dirilis secara luas. Model ini memperluas Claude Fable 5 dengan coding agentik jangka panjang, pekerjaan berbasis pengetahuan, dan riset yang lebih kuat dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya. **Claude Mythos 5.1** (`claude-mythos-5-1`) menawarkan kemampuan yang sama hanya untuk peserta [Project Glasswing](https://anthropic.com/glasswing). Kedua model menggunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) yang selalu aktif. Lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) untuk detailnya.
+**Claude Fable 5.1** (`claude-fable-5-1`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini memperluas Claude Fable 5 dengan coding agentik jangka panjang, pekerjaan berbasis pengetahuan, dan riset yang lebih kuat dengan harga input dan output yang sama, serta pembacaan cache dengan seperempat biaya. **Claude Mythos 5.1** (`claude-mythos-5-1`) menawarkan kemampuan yang sama hanya untuk peserta [Project Glasswing](https://anthropic.com/glasswing). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) untuk detailnya.
 
 Untuk jendela konteks, batas output, dan harga, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 57c8c3c1f2bf982bfc76879c2f45011d6ea171e17630e65d1b19086304510841
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 323e04550c1eb315726434e8698862a474a50ce446729b9e6b40183e401a495d
 ---
 
 ---
@@ -128,7 +128,7 @@ Create Workspace
 
   Name of the Workspace.
 
-  maxLength: 40, minLength: 1
+  minLength: 1, maxLength: 40
 
 - `data_residency: optional BetaDataResidencyCreateConfig or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 989ac26886b58e9b9899a60f3f1b9992c12593393343d4f49b71ed49a0f4039a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d031db2d6caae127d8b07b3375f4ffe6ada87ff31adc21884d5a2a5ed6d78e1c
 ---
 
 ---
@@ -60,7 +60,7 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` ar
   agent_id=$(jq -r '.id' <<<"$agent_response")
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply github-assistant.md
     ```
@@ -81,7 +81,7 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` ar
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

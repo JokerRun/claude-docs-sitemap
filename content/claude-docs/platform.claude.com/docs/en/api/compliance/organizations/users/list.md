@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 7c16da3bf5baecee393403ab4dca82aaaa576492ceddce08d81ff80a9a290a4f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 189c95b856194cf2da677a96df4db52f813074e918bea6c7cf0ec0879e653748
 ---
 
 ---
@@ -28,7 +28,7 @@ List current user members of an organization.
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

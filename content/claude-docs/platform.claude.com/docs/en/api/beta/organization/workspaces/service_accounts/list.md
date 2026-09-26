@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: f3deaff73f19aa45f0b02ab36c986945fdb2742ba5c2b6345c0118dc4791826b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 44c3c4a54f6b0a076169c0e28ed4a688fb82872419463096f380ffb7b0acf415
 ---
 
 ---
@@ -37,7 +37,7 @@ omitted from the results.
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

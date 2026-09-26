@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 140b21a9ffc95ff5948d4373aad07ff12c73f49fbab75067fdf60c81b00f68cc
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e7ad2229c84183437eb426e9d91745ec74aa7169af9915d787fbbc55d93ecd29
 ---
 
 ---
@@ -171,7 +171,7 @@ dengan Claude"
         </HomeJourneyStep>
 
         <HomeJourneyStep title="Operasikan">
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/workspaces">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/manage-claude/workspaces">
             Workspace dan admin
           </HomeJourneyLink>
 
@@ -179,7 +179,7 @@ dengan Claude"
             Manajemen kunci API
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/build-with-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
             Pemantauan penggunaan
           </HomeJourneyLink>
 
@@ -229,7 +229,7 @@ dengan Claude"
         </HomeJourneyStep>
 
         <HomeJourneyStep title="Operasikan">
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/workspaces">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/manage-claude/workspaces">
             Workspace dan admin
           </HomeJourneyLink>
 
@@ -237,7 +237,7 @@ dengan Claude"
             Manajemen kunci API
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/build-with-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
             Pemantauan penggunaan
           </HomeJourneyLink>
         </HomeJourneyStep>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 3787a46d3ee4815066c3585510a500265bbdc4088b60bc4d77eb0478980498ab
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 741c66d5831dc76cfaf5705771588bb90efc153818e228d45a15b3bf6d3fcadf
 ---
 
 ---
@@ -49,7 +49,7 @@ are sorted chronologically (time ascending) by created_at.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `organization_ids: optional array of string`
 
@@ -135,11 +135,7 @@ are sorted chronologically (time ascending) by created_at.
 
   - `user: object or null`
 
-    The user who created a project or project document.
-
-    Fields that reference this type are null when the creator's account has
-    been deleted or the creator is no longer a member of an organization the
-    key may read.
+    Project creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
     - `id: string`
 

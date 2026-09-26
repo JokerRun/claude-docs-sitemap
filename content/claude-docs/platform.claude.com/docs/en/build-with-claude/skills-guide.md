@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2e7a415530755b4a9dc41e9bea73bd80f31f382f489cf6dbe201414e90cd0fbe
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 7691f762188a7ed80367887abe0140bf165498e5c4587e5b4cc742da0c06787b
 ---
 
 ---
@@ -2182,7 +2182,7 @@ Files are identified by the filename you attach (the `;filename=` suffix in the 
     -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply financial_skill
     ```
@@ -2201,7 +2201,7 @@ Files are identified by the filename you attach (the `;filename=` suffix in the 
       print("financial analysis helper")
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   from anthropic.lib import files_from_dir

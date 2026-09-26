@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: 7d57d9540d5b058e63981f5fc6046439e32dd6dbaf9a03472f32182dd3b9aef3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e1f741f411e4ec9993e84c391e6893fab7c98d9eb9636f14015b2d22f68c1cee
 ---
 
 > ## Documentation Index
@@ -136,7 +136,7 @@ Because this is a single-shot `query()` call, the SDK raises after yielding an e
 
 The search mechanism matches queries against tool names and descriptions. Names like `search_slack_messages` surface for a wider range of requests than `query_slack`. Descriptions with specific keywords ("Search Slack messages by keyword, channel, or date range") match more queries than generic ones ("Query Slack").
 
-You can also add a system prompt section listing available tool categories. This gives the agent context about what kinds of tools are available to search for. Pass the text through the `systemPrompt` option in TypeScript or `system_prompt` in Python, using the `claude_code` preset with `append`, which adds your text to the preset's prompt instead of replacing it:
+You can also add a system prompt section listing available tool categories. This gives the agent context about what kinds of tools are available to search for. Pass the text in the `systemPrompt` option of `query()` in TypeScript, or `system_prompt` in Python. Use the `claude_code` preset with `append`, which adds your text to the preset's prompt instead of replacing it:
 
 <CodeGroup>
   ```typescript TypeScript theme={null}

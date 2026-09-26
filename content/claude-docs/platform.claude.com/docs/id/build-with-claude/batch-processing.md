@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 7cede3f62332abcb59ae73c2303a89eaafce93867135e059c80cceba13f1272a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: af38f28ca44a99f13b7a701c9b01ca5f3269d7b3562f652f92e30b9f390dba7e
 ---
 
 ---
@@ -453,7 +453,7 @@ Saat batch pertama kali dibuat, respons memiliki status pemrosesan `in_progress`
 
 ### Melacak batch Anda
 
-Field `processing_status` pada Message Batch menunjukkan tahap pemrosesan batch saat ini. Dimulai dengan `in_progress`, lalu diperbarui menjadi `ended` setelah semua permintaan dalam batch selesai diproses dan hasilnya siap. Anda dapat memantau status batch Anda dengan mengunjungi [Console](https://platform.claude.com/settings/workspaces/default/batches), atau menggunakan [endpoint pengambilan](https://platform.claude.com/docs/id/api/retrieving-message-batches).
+Field `processing_status` pada Message Batch menunjukkan tahap pemrosesan batch saat ini. Dimulai dengan `in_progress`, lalu diperbarui menjadi `ended` setelah semua permintaan dalam batch selesai diproses dan hasilnya siap. Anda dapat memantau status batch Anda dengan mengunjungi [Console](https://platform.claude.com/settings/workspaces/default/batches), atau menggunakan [endpoint pengambilan](https://platform.claude.com/docs/id/api/messages/batches/retrieve).
 
 #### Polling untuk penyelesaian Message Batch
 
@@ -611,7 +611,7 @@ Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang diber
 
 ### Mendaftar semua Message Batch
 
-Anda dapat mendaftar semua Message Batch di Workspace Anda menggunakan [endpoint daftar](https://platform.claude.com/docs/id/api/listing-message-batches). API mendukung paginasi, yang secara otomatis mengambil halaman tambahan sesuai kebutuhan:
+Anda dapat mendaftar semua Message Batch di Workspace Anda menggunakan [endpoint daftar](https://platform.claude.com/docs/id/api/messages/batches/list). API mendukung paginasi, yang secara otomatis mengambil halaman tambahan sesuai kebutuhan:
 
 <CodeGroup>
   ```bash cURL
@@ -957,7 +957,7 @@ Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk ke
 
 ### Membatalkan Message Batch
 
-Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](https://platform.claude.com/docs/id/api/canceling-message-batches). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
+Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](https://platform.claude.com/docs/id/api/messages/batches/cancel). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
 
 <CodeGroup>
   ```bash cURL

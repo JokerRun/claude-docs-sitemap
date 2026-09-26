@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 5a4982df3ceb5e9e5677db913add0423e11d17f08ad2d8ae18dc345f3f4c47d0
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0173a466933efce91d8a1a407562f0c1dccf3f42da2d0f34d58ae6fbcc5b683e
 ---
 
 > ## Documentation Index
@@ -170,7 +170,7 @@ The event-driven triggers can go quiet when the main session is idle, for exampl
 
 Claude Code captures your script's output instead of connecting it directly to the terminal, so `tput cols` and language-level width detection cannot read the terminal size from inside the script. Read the `COLUMNS` and `LINES` environment variables instead. Claude Code sets these to the current terminal dimensions before running your script.
 
-<Note>The status line runs locally and does not consume API tokens. It temporarily hides during certain UI interactions, including autocomplete suggestions, the help menu, and permission prompts.</Note>
+<Note>The status line runs locally and does not consume API tokens. It temporarily hides during certain UI interactions, including the help menu and permission prompts.</Note>
 
 ## Available data
 
@@ -1131,7 +1131,7 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 * On Windows with Git Bash installed, backslashes in the `command` path are likely being consumed as escape characters before the script runs. Use forward slashes in the path. See [Windows configuration](#windows-configuration).
 * If `disableAllHooks` is `true` outside managed settings after [settings precedence](/docs/en/hooks#disable-or-remove-hooks) applies, Claude Code runs only a `statusLine` from managed settings, and with no managed `statusLine` the status line is disabled. Remove the setting, or set it to `false` in the file that sets it, to re-enable. See [`disableAllHooks`](/docs/en/settings-reference#disableallhooks).
 * If your organization sets `allowManagedHooksOnly` in managed settings, your custom status line disappears without warning: you can only get a status line from a `statusLine` value in those managed settings. See [what runs under `allowManagedHooksOnly`](/docs/en/settings-reference#what-runs-under-allowmanagedhooksonly) for the full behavior, and ask your administrator whether this setting applies to you.
-* Run `claude --debug` to log the exit code and stderr from the first status line invocation in a session
+* Run `claude --debug` to log your script's stderr on every status line invocation, and its exit code on the first invocation in a session
 * Ask Claude to read your settings file and execute the `statusLine` command directly to surface errors
 
 **Status line shows `--` or empty values**

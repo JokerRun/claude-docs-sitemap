@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 419119d7cb43178601ef05e0858596bfd232c26ee416632736550d3f6b07fb7c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a4588674017d8a869d8a3a8ce2382f5d33dcefdeecff4fdd6c114d576ebfc1c0
 ---
 
 ---
@@ -384,7 +384,7 @@ the `read:analytics` scope.
 
     - `user: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      The user this row describes. Null on rows aggregated across users.
 
       - `type: "user"`
 

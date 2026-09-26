@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: e891666e88e2349506a291f1a9879dbcf0abaa9c0f55c85e9e75ef3d64a5094c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: faea4c84df2f6a2c4109c7e048289a822ffab3be17793f9e59c7477b8c8b9fc1
 ---
 
 ---
@@ -44,7 +44,7 @@ Give the store a `name` and a `description`. The description is passed to the ag
     -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply memory_store.yaml
     ```
@@ -56,7 +56,7 @@ Give the store a `name` and a `description`. The description is passed to the ag
       description: Per-user preferences and project context.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   store = client.beta.memory_stores.create(

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/create
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: c5f67bed1a291f9d235df07ee5088535a5df1a565ca2fd4354a0867dee915e82
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 01e1e97ca784e90f0245d7165c309e1bbadd61be68b1ca62f56887173cf2a3e4
 ---
 
 ---
@@ -76,7 +76,7 @@ Create an external key config owned by the caller's organization.
 
   Human-friendly display name.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `geo: optional "us"`
 

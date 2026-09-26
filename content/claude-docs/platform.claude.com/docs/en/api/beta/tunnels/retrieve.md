@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9ac2e3a22cc4c4490e42c52fee4d5842e94dec07c9f7dbab69e628c1005aa214
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0e0f72f0d6df3d4f6025a818c24748e2dcdf3822f13d91ffca978840dbd8b82c
 ---
 
 ---
@@ -150,13 +150,13 @@ Fetches a tunnel by ID.
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was archived. Null if it is not archived.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was created.
 
     format: date-time
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 5659b30426695bceb19a049ed7f6ac9016d0a9b04a81795825079a3b9d0c9afb
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f77ad0b2f48441f41115206b6dd41f056ec62eebf7cc9375609903b0d003ac49
 ---
 
 ---
@@ -53,7 +53,7 @@ When creating a deployment, you pass the [session configurations](https://platfo
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply deployment.md
     ```
@@ -73,7 +73,9 @@ When creating a deployment, you pass the [session configurations](https://platfo
       Run the weekly compliance scan.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) prints the new deployment's ID and records it in `claude-lock.json`. To see the deployment object, run `ant beta:deployments retrieve`.
+  </CodeGroupItem>
 
   ```python Python
   deployment = client.beta.deployments.create(
@@ -230,10 +232,6 @@ When creating a deployment, you pass the [session configurations](https://platfo
     }
   )
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) prints the new deployment's ID and records it in `claude-lock.json`. To see the deployment object, run `ant beta:deployments retrieve`.
-  </ForLanguage>
 </CodeGroup>
 
 The response includes a deployment object with a populated `schedule.upcoming_runs_at` with the next upcoming fire times, to confirm your schedule was set correctly.

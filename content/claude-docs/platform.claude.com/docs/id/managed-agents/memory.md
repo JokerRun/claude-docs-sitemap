@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: cfd19758cb1c3890d9817ee4380f07cdf7c2f1de8beaa008688ee01a25198e3f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 87cc96b57332fc8004f02469f5275fc31b38e4d48a6c84cb71ccaf9089927867
 ---
 
 ---
@@ -44,7 +44,7 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
     -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply memory_store.yaml
     ```
@@ -56,7 +56,7 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
       description: Per-user preferences and project context.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   store = client.beta.memory_stores.create(

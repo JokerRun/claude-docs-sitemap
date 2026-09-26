@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 4298728b4a38a862d041948dc7070dd1aaf5953f193cc8eaca8b97fa221d7815
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a301c0cb0f8a2ff316af50abf579c906c1b5ebe557301db2c6362dae9e491b5f
 ---
 
 > ## Documentation Index
@@ -208,7 +208,7 @@ When the first attempt isn't right, you don't start over. You iterate.
 You can redirect Claude at any point without starting over. Do either of these:
 
 * **Press `Esc`** to stop Claude immediately. The running tool call is canceled and Claude waits for your next instruction. If you have messages queued, Claude Code [sends them next](/docs/en/interactive-mode#queue-messages-while-claude-works).
-* **Type a correction and press `Enter`** without stopping Claude. The message shows as queued above the input box. If Claude is running tool calls, it reads the message as soon as those calls finish, within the same turn, and adjusts before its next step. [Queue messages while Claude works](/docs/en/interactive-mode#queue-messages-while-claude-works) covers when other queued entries are sent.
+* **Type a correction and press `Enter`** without stopping Claude. The message shows as queued in the conversation. If Claude is running tool calls, it reads the message as soon as those calls finish, within the same turn, and adjusts before its next step. [Queue messages while Claude works](/docs/en/interactive-mode#queue-messages-while-claude-works) covers when other queued entries are sent.
 
 ### Delegate, don't dictate
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/advisor
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 5c9de7c38b8482ef96e9d3cb187bbec450fc336b7e95678fdc2f861f96849856
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: df06b013b3b305a09262b4ac11bb348e7ab9f689f7a72677c565b4e0ee7a6c5b
 ---
 
 > ## Documentation Index
@@ -150,6 +150,7 @@ When Claude calls the advisor, the transcript shows an `Advising` line with the 
 
 * **Reviewed**: the line confirms that the advisor has reviewed the conversation. When the advisor returned readable guidance, press `Ctrl+O` to read it.
 * **Declined**: the line reads `Advisor declined to advise on this request`. If the advisor gave a reason, press `Ctrl+O` to read it.
+* **Unavailable**: the advisor call failed, and the line reads `Advisor unavailable (<error_code>)`, where `<error_code>` is the code the call returned.
 
 Claude generally follows the advisor's guidance, but adapts when its own evidence contradicts a specific claim: if a recommended step fails when tried, or the file contents contradict the advice, Claude surfaces the conflict rather than following the guidance unconditionally.
 

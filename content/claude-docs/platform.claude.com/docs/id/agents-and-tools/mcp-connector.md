@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 2156178a532705b5124746e3d5c6a4a44dc6414ebb57bf1b05625ed00895fd51
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 0ff08fdfeefdf39da919c881a79c905bff5ebd13ae3e7d28fd382a7893b79d58
 ---
 
 ---
@@ -1957,7 +1957,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
 
 ### Penanganan error
 
-Fungsi konversi melempar `UnsupportedMCPValueError` jika suatu nilai MCP tidak didukung oleh Claude API (di Go, helper mengembalikan `UnsupportedValueError`; di Java dan C#, helper melempar `AnthropicInvalidDataException`). Ini dapat terjadi pada tipe konten, tipe MIME, atau tautan resource yang tidak didukung (selesaikan tautan resource dengan klien MCP Anda sebelum mengonversi).
+Fungsi konversi gagal dengan `UnsupportedMCPValueError` (go: `UnsupportedValueError`; java, csharp: `AnthropicInvalidDataException`) jika suatu nilai MCP tidak didukung oleh Claude API (dilempar sebagai exception, atau di Go dikembalikan sebagai error). Hal ini dapat terjadi pada tipe konten, tipe MIME, atau tautan resource yang tidak didukung (selesaikan tautan resource dengan klien MCP Anda sebelum melakukan konversi).
 
 ## Permintaan batch
 

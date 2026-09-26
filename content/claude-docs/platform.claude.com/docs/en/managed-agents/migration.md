@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: ca26495b496838cf43f2d36f01b093eb1ed74a31c8b018fc97b73b26833ff342
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 811000609672ba8f8c8f58747a2c17b4207e066a6050462fcf7491e1394f9790
 ---
 
 ---
@@ -309,7 +309,7 @@ If you built an agent by calling `messages.create` in a `while` loop, running to
   kill "${stream_pid}" 2>/dev/null || true
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
 
@@ -343,7 +343,7 @@ If you built an agent by calling `messages.create` in a `while` loop, running to
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -1368,7 +1368,7 @@ When a new Claude model is released, migrating a Claude Managed Agents integrati
     --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5-5"}')"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -1385,7 +1385,7 @@ When a new Claude model is released, migrating a Claude Managed Agents integrati
       You are a task automation agent. Complete the task you are given end to end.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   client.beta.agents.update(

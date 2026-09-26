@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 55b0d43d00b4596f92267ad713ecee4a103c3bf17c649319ee99fa6ddee43762
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ca0df87ee45ce948861265ffaf8491a7385486a601c19b50b5c69178b2106e43
 ---
 
 ---
@@ -430,13 +430,13 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
   UTC date in YYYY-MM-DD format. Returns metrics for this single day only.
 
-  pattern: ^\d{4}-\d{2}-\d{2}$, format: date
+  format: date, pattern: ^\d{4}-\d{2}-\d{2}$
 
 - `limit: optional number`
 
   Number of records per page (default: 20, max: 1000).
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

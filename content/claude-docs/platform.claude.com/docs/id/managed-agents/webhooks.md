@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 300197a0ef84bcb2a6b248fdcbaf98eb4349086d5adf89efdd7ddd06cd47913b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a9de7f81cbbef4c09dc5ca4be6aee97e0a2fd03348b9588d366a630ced5da83f
 ---
 
 ---
@@ -118,11 +118,11 @@ Sebuah endpoint webhook terdiri dari:
 
 ## Memverifikasi tanda tangan
 
-Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Gunakan helper `unwrap()` dari SDK untuk memverifikasi tanda tangan dan mem-parse peristiwa dalam satu langkah. Helper ini melempar error jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
+Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Gunakan helper `unwrap()` (csharp, go: `Unwrap()`) dari SDK untuk memverifikasi tanda tangan dan mem-parsing peristiwa dalam satu langkah. Helper ini akan melempar kesalahan jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
 
 Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilkan saat pembuatan endpoint.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   from flask import Flask, request
   import anthropic
@@ -365,7 +365,7 @@ Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, 
 }
 ```
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
   if event.data.type == "session.status_idled":
       session = client.beta.sessions.retrieve(event.data.id)

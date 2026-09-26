@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d379957b98030ada315fcf23224c7490faf04f6bf4cc06961c4c278d314e6aac
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: af7174f3e9d6b0519c7b01f48abf003b4431a61af9b29eababf1695ba1bfecad
 ---
 
 ---
@@ -36,7 +36,7 @@ List API Keys
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `status: optional "active" or "archived" or "expired" or "inactive"`
 

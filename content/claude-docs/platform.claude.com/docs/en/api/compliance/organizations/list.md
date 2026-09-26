@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 81791b897bfca20e207a45c7a60b9ca241cdd574698b533104fe917c7b5674b8
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 168228011acea0083114ad81699a50b44ced47080e9787bfaf8d36677b4325a2
 ---
 
 ---
@@ -26,7 +26,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
   Maximum results (default: 1000, max: 1000)
 
-  default: 1000, maximum: 1000, minimum: 1
+  default: 1000, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

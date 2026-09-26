@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: be8da759abf5c05420420afcbbf02f1409a9384c36f260d482f81f3dca56c713
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c541bbf6f261c3370fba8d10b92b7361c17e9ca745bc4994cafa1d685e4f424f
 ---
 
 ---
@@ -166,19 +166,19 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was archived. Null if it is still in the trusted set.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was registered.
 
     format: date-time
 
   - `expires_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate expires, or `null` if it does not expire.
 
     format: date-time
 

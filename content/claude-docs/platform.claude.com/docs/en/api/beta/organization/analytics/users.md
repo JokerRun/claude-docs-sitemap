@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/users
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 2d01319b0eac63426c3a62e41dd7343cc495f2259260209d9754c4a953f3f4e3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d4ef947af6c58039dc3c9f858fb0150049b9602ac3859373a25e4b53c45a506f
 ---
 
 ---
@@ -386,7 +386,7 @@ the `read:analytics` scope.
 
     - `user: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      The user this row describes. Null on rows aggregated across users.
 
       - `type: "user"`
 
@@ -856,7 +856,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/users \
 
     - `user: optional BetaAnalyticsUser or null`
 
-      A user in the organization, identified by tagged id and email address.
+      The user this row describes. Null on rows aggregated across users.
 
       - `type: "user"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 993f6f49c6d0b754e52a7a6335ec28c3d1ac819ac27fe0c214e27259a5ad9162
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 87c5260ba9b23b4d29a279f209004648c7f819b200edfd12dc907ef7501f8308
 ---
 
 ---
@@ -46,7 +46,7 @@ Each upstream value must be exactly `scheme://host:port`. The port is mandatory.
 The Tunnels REST API lives at `/v1/tunnels` and supports creating, listing, and archiving tunnels, registering CA certificates, and revealing or rotating the tunnel token. See the [Tunnels API reference](https://platform.claude.com/docs/en/api/beta/tunnels/list) for all endpoints, request and response schemas, and examples.
 
 <Note>
-  The previous Admin API surface at `/v1/organizations/tunnels` (beta header `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) continues to work during a migration window and remains documented in the [Admin API reference](https://platform.claude.com/docs/en/api/admin/mcp_tunnels) with a deprecation notice. To migrate, update the path to `/v1/tunnels`, the beta header to `mcp-tunnels-2026-06-22`, and your WIF token scope to `workspace:manage_tunnels`.
+  The previous Admin API surface at `/v1/organizations/tunnels` (beta header `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) continues to work during a migration window and remains documented in the [Admin API reference](https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels) with a deprecation notice. To migrate, update the path to `/v1/tunnels`, the beta header to `mcp-tunnels-2026-06-22`, and your WIF token scope to `workspace:manage_tunnels`.
 </Note>
 
 <Warning>

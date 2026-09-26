@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 33d369365458351385acc1b8ec817a8d3d4830c4a32e1a1413eb231cee0188d3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4d1de552de08b6572176c58da636a8ab685d3a9227b3ac33ef72ef984c349099
 ---
 
 ---
@@ -40,7 +40,7 @@ List the organization's members.
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `roles: optional array of string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 506b5aa2db4361cf01944c88d2423c8baf0d2ede420d7b4d4f242b23f3e38b4e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d0832c11ddd4098a5e9d1f29643e743d1c2f089dcf4176f10513a26cd5e8ecd3
 ---
 
 ---
@@ -4022,7 +4022,7 @@ Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude m
 
 ## Cincin 5: Abstraksi SDK Tool Runner
 
-Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, teruskan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
+Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, lalu mengulanginya. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, teruskan daftarnya ke `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
 
 Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah ini menunjukkan bentuk idiomatis untuk setiap bahasa.
 

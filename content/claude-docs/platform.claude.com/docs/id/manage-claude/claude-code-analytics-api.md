@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 26a39f18370f07ce5e14045ae33ed7172b4ebd95f402a7aaa4946e21cc4fb419
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 9a4bcbd7145f69009cf0e5139b118cb3046c226eea60d633a51d9a0635613d83
 ---
 
 ---
@@ -72,7 +72,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 * **"Cursor-based pagination" (paginasi berbasis kursor):** Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
 * **Kesegaran data:** Metrik tersedia dengan penundaan hingga 1 jam demi konsistensi
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](https://platform.claude.com/docs/id/api/admin/usage_report/retrieve_claude_code).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_claude_code).
 
 ### Contoh dasar
 
@@ -278,7 +278,7 @@ Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD d
 Claude Code Analytics API membantu Anda memahami dan mengoptimalkan alur kerja pengembangan tim Anda. Pelajari lebih lanjut tentang fitur terkait:
 
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin)
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
 * [Dashboard Claude Code Analytics](https://platform.claude.com/claude-code)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) - Lacak penggunaan API di semua layanan Anthropic
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) - Ambil data audit dan aktivitas

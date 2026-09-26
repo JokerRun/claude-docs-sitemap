@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 4ab7b2a4a5978c2ee53e8834fe69015fc62d15ffeef94f00e6d8bd64ea7d1f71
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bc373945bf1baebc87397c003ebab9440acd00ca8ec29fbb45e15931f9fa9112
 ---
 
 > ## Documentation Index
@@ -202,7 +202,7 @@ If Postgres goes down, the gateway itself keeps serving signed-in developers and
 * **[Spend-limit enforcement](/docs/en/claude-apps-gateway-spend-limits#postgres-availability)**: fails open by default during the outage, so inference still flows; flip it to fail closed if you'd rather block than run unmetered
 * **Readiness**: `/readyz` reports not-ready during the outage, so orchestrators that gate traffic on readiness remove every replica from rotation at once. In that topology all traffic, including inference the gateway could still serve, fails at the load balancer until Postgres recovers. The liveness probe on `/healthz` keeps passing, so replicas aren't restarted. Point the readiness probe at `/healthz` instead if you'd rather signed-in developers keep working through a store outage; the cost is that new sign-ins fail against a replica that still reports ready.
 
-If your IdP goes down, existing sessions work until `ttl_hours`, and new logins and refreshes fail. Set a longer `ttl_hours` if your IdP has frequent maintenance windows.
+If your IdP goes down, existing sessions work until `ttl_hours` and new logins fail. A session refresh gets a try-again answer and succeeds once the IdP is back. Set a longer `ttl_hours` if your IdP has frequent maintenance windows.
 
 ### JWT secret rotation
 

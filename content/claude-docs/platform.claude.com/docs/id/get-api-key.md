@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-api-key
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 6d32ce92f7d211026682c7d1e733c7dade083c1ee5f2290515abe623dbd719d3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 202edc8623f9410e5f03152e39c5b05190bcbc28e8cc54d4bb81d7fabfc4ca9a
 ---
 
 ---
@@ -55,7 +55,7 @@ Untuk membuat permintaan pertama Anda, ikuti [Quickstart](https://platform.claud
 
 ## Kunci API dan Admin API
 
-[Admin API](https://platform.claude.com/docs/id/api/admin) mencakup endpoint untuk mengelola kunci API organisasi Anda secara terprogram, seperti [Retrieve API Key](https://platform.claude.com/docs/id/api/admin/api_keys/retrieve) dan [List API Keys](https://platform.claude.com/docs/id/api/admin/api_keys/list). Endpoint ini ditujukan bagi admin organisasi yang mengotomatiskan pengelolaan kunci. Endpoint ini menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci pribadi maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu; kunci workspace tidak berfungsi di sana. Endpoint ini tidak pernah mengembalikan nilai rahasia kunci, hanya petunjuk yang sebagian disamarkan.
+[Admin API](https://platform.claude.com/docs/id/api/beta/organization) mencakup endpoint untuk mengelola kunci API organisasi Anda secara terprogram, seperti [Retrieve API Key](https://platform.claude.com/docs/id/api/beta/organization/api_keys/retrieve) dan [List API Keys](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list). Endpoint ini ditujukan bagi admin organisasi yang mengotomatiskan pengelolaan kunci. Endpoint ini menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci pribadi maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu; kunci workspace tidak berfungsi di sana. Endpoint ini tidak pernah mengembalikan nilai rahasia kunci, hanya petunjuk yang sebagian disamarkan.
 
 <Note>
   Admin API tidak dapat memulihkan kunci yang hilang atau memberi Anda kunci untuk memanggil Claude API. Untuk mendapatkan kunci API yang dapat digunakan, buat kunci di [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console.

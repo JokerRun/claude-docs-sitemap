@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d495299019259c83db9497fca1120a15caa69a174b1d2fd53df5dad213ed01a7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: af12294272d9cb3663635447bb7e9de36dc8486082a4dfa74e5986376d8df1f3
 ---
 
 ---
@@ -274,28 +274,22 @@ Mount beberapa file dengan menambahkan entri ke array `resources`:
     }'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
-    ```bash CLI
-    ant beta:sessions create \
-      --agent agent_01J8XkN5uT3vHpLqRfWdY2 \
-      --environment-id env_01K2mPsT7hNwR4jXuLvCqD8 < session.yaml
-    ```
-
-    <File filename="session.yaml">
-      ```yaml
-      resources:
-        - type: file
-          file_id: file_011CNha8iCJcU1wXNR6q4V8w
-          mount_path: /data.csv
-        - type: file
-          file_id: file_011CPMxVD3fHLUhvTqtsQA5w
-          mount_path: /config.json
-        - type: file
-          file_id: file_011CRb3kQ7tWx9ZsLmDe2Vh4
-          mount_path: /src/main.py
-      ```
-    </File>
-  </MultiFileExample>
+  ```bash CLI
+  ant beta:sessions create \
+    --agent agent_01J8XkN5uT3vHpLqRfWdY2 \
+    --environment-id env_01K2mPsT7hNwR4jXuLvCqD8 <<YAML
+  resources:
+    - type: file
+      file_id: file_011CNha8iCJcU1wXNR6q4V8w
+      mount_path: /data.csv
+    - type: file
+      file_id: file_011CPMxVD3fHLUhvTqtsQA5w
+      mount_path: /config.json
+    - type: file
+      file_id: file_011CRb3kQ7tWx9ZsLmDe2Vh4
+      mount_path: /src/main.py
+  YAML
+  ```
 
   ```python Python
   resources = [

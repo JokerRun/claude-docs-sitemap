@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-4-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 96b7fa935e7104e66324e577822db7f111866de703c017aacd828eb863f6b220
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 59edd0ce1c4ddade00a52cbb88ef4b891dbce8028d3247e8a453ce71bd16dd48
 ---
 
 ---
@@ -100,7 +100,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 ## Reference
 
 <CardGroup cols={3}>
-  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts#claude-sonnet-4-5">
+  <Card title="System prompt" icon="text" href="https://platform.claude.com/docs/en/release-notes/system-prompts/overview#claude-sonnet-4-5">
     The system prompt Claude Sonnet 4.5 uses on claude.ai and the Claude apps.
   </Card>
 

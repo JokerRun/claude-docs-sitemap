@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 0160d266bfa533dd9fe478ab3bc59b7cb7e132e400da144522d8db94386f8af0
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c192564e5511cbc0a99be3e505e76224fd630aea034f44b6251cbacbd20f8283
 ---
 
 ---
@@ -138,7 +138,7 @@ accounts.
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `description: optional string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 0acbff18a27df8d77da0c0c58c1c5ede0bbf452c7fc43646a45bf61537803019
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f0e997d1a8455da9a9a09dfd272c77d08f8d50c1a0ae73204e591ba78d0255ce
 ---
 
 ---
@@ -38,7 +38,7 @@ List the organization's invites.
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `roles: optional array of string`
 

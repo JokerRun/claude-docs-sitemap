@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/migration-guide
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: aa2271dbfbf4c765c903d1e1670ba27a513ec6fbaeba30467ecfcca3a13443ca
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e612ae4263dc751d64409bae387a183ddca6037fd05399f93551f158ee091efb
 ---
 
 ---
@@ -21,5 +21,5 @@ description: Panduan untuk bermigrasi ke model Claude terbaru dari versi Claude 
 
 * Periksa [dokumentasi API](https://platform.claude.com/docs/id/api/overview) untuk spesifikasi terperinci
 * Tinjau [kemampuan model](https://platform.claude.com/docs/id/models/overview) untuk perbandingan kinerja
-* Tinjau [catatan rilis API](https://platform.claude.com/docs/id/release-notes/api) untuk pembaruan API
+* Tinjau [catatan rilis API](https://platform.claude.com/docs/id/release-notes/overview) untuk pembaruan API
 * Hubungi dukungan jika Anda mengalami masalah apa pun selama migrasi

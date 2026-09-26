@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: a83189c687007b13b906a20f957727d152a80df57ccc270db0ed5872878f866b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4ae33c19c939861b62b0d0bc1d525a9299a1e633ab2eea6df0a55124cb400f47
 ---
 
 > ## Documentation Index
@@ -651,6 +651,8 @@ Claude Code keys and stores the trust you accept according to where you start it
 * When you start in your home directory, Claude Code holds the trust for the current session only and doesn't write it to disk; see the [additional safeguards](/docs/en/security#additional-safeguards) note.
 
 Claude Code shows the trust dialog in interactive sessions only. A `claude -p` run or an SDK session never shows it, and trusting a parent folder doesn't count for these rules, so [What runs before you trust a folder](#what-runs-before-you-trust-a-folder) says which repository content Claude Code still uses in each of those two situations.
+
+Before it starts or restarts a [background session](/docs/en/agent-view), Claude Code also checks workspace trust for the directory the session runs in. If you run `claude --bg` from a terminal in a directory you haven't trusted, the trust dialog appears first and the session starts once you accept it. Where no dialog can appear, such as in a script, the command exits with a [`Workspace not trusted`](/docs/en/errors#workspace-not-trusted-when-dispatching-a-background-session) error instead.
 
 ### When your local settings file needs trust
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 93e59cdca3bf0e7be933d4e7babda641fcbc2c6484d581a7a8572c6e9b60d30b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1e2d2c7781469d35ab6152c11ebef359d0980644e80aa5bdb64a4fffaff9bcdb
 ---
 
 ---
@@ -320,9 +320,9 @@ No project document found with the provided id.
 No project document found with the provided id, or it has already been deleted.
 ```
 
-**Penyebab:** ID dokumen proyek tidak ada atau telah dihapus. Endpoint konten dan metadata dokumen mengembalikan body pertama; `DELETE /v1/compliance/apps/projects/documents/{document_id}` mengembalikan body kedua. Error ini berlaku untuk dokumen proyek teks (`claude_proj_doc_...`), bukan untuk file proyek.
+**Penyebab:** ID dokumen proyek tidak ada atau telah dihapus. Endpoint konten dan metadata dokumen mengembalikan body pertama; `DELETE /v1/compliance/apps/projects/documents/{document_id}` mengembalikan body kedua. Error ini berlaku untuk dokumen proyek berupa teks (`claude_proj_doc_...`), bukan untuk file proyek.
 
-**Perbaikan:** Gunakan `GET /v1/compliance/apps/projects/{project_id}/attachments` untuk mencantumkan lampiran saat ini. Jika dokumen tidak ada, dokumen tersebut telah dihapus; ambil melalui catatan aktivitas `claude_project_document_uploaded` jika Anda hanya memerlukan metadatanya.
+**Perbaikan:** Gunakan `GET /v1/compliance/apps/projects/{project_id}/attachments` untuk mencantumkan lampiran saat ini. Jika dokumen tidak ada, dokumen tersebut telah dihapus; ambil melalui catatan aktivitas `claude_project_document_uploaded` jika Anda hanya memerlukan metadatanya. Catatan aktivitas menunjukkan siapa yang mengunggah dokumen, kapan, dan ke proyek mana, tetapi tidak menunjukkan namanya.
 
 ### Sesi lokal tidak ditemukan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/retrieve_metadata
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 9d95f168c1c2502b862077982575c7b5556d6fefda92e8a231e3279a23e8aadb
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 07a04d437d1ad23e5220d272ba5ee9b2d9a192c5d8223afa42f9d21295992f18
 ---
 
 ---
@@ -56,13 +56,13 @@ Get File Metadata
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 

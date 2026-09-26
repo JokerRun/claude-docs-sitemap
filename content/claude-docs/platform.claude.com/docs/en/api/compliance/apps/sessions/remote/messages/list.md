@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: f0a3a1525fe0002e0ada34f902791dc0f47d40ae061e467c37a1154c67df2a30
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 72808881a0b534938557b16c0fefaeefc046e2be530d1c501cd4c1991613a59c
 ---
 
 ---
@@ -47,7 +47,7 @@ malformed session identifier returns 400.
 
   Maximum results (default: 100, max: 1000)
 
-  default: 100, maximum: 1000, minimum: 1
+  default: 100, minimum: 1, maximum: 1000
 
 - `order: optional "asc" or "desc"`
 
@@ -67,13 +67,13 @@ malformed session identifier returns 400.
 
   Truncate each text item inside a tool result to at most this many bytes (cut on a code-point boundary). Pass `-1` to request the server maximum. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 - `tool_use_input_max_bytes: optional number`
 
   Truncate each tool-use input to at most this many bytes (cut on a code-point boundary so the result is valid UTF-8). Pass `-1` to request the server maximum. `0` is not a valid value.
 
-  default: 10000, maximum: 2147483647, minimum: -1
+  default: 10000, minimum: -1, maximum: 2147483647
 
 ## Headers
 
@@ -235,7 +235,7 @@ malformed session identifier returns 400.
 
   - `started_by_user: object or null`
 
-    A user associated with a remote session.
+    The user who initiated an agent-owned session (for example, by mentioning Claude in Slack or via a scheduled trigger). Null for user-owned sessions — where the session's `user` started it — and for agent sessions with no human initiator. For initiators no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 
@@ -257,7 +257,7 @@ malformed session identifier returns 400.
 
   - `user: object or null`
 
-    A user associated with a remote session.
+    The user who owns the session. Null for sessions owned by an automated agent rather than a user. At most one of `user` and `agent_id` is set. For users no longer a member of an organization the key may read, the object is populated with `email_address` null.
 
     - `id: string`
 

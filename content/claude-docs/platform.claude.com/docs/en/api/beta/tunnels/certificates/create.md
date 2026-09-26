@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 023c988102b8fb56d7bae6ff29156f1a085d86236d921d9bbd081acc6a391f54
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 2105451a5e06c6486a0f5c9220393c924f67ad7f69a015cd1176757c574bc883
 ---
 
 ---
@@ -158,19 +158,19 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was archived. Null if it is still in the trusted set.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was registered.
 
     format: date-time
 
   - `expires_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate expires, or `null` if it does not expire.
 
     format: date-time
 

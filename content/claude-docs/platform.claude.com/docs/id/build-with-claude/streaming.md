@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d2c8941bc2256cc03b31c2ffb3ac371be1b5bc8d2674834eb7d241b9ec0dfc32
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: af0d1fadae38bd90e543fe8d20208131915e5637a4f70858c5411453d11fd8e3
 ---
 
 ---
@@ -17,7 +17,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
 [Python SDK](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript) menawarkan beberapa cara untuk melakukan streaming. [PHP SDK](https://github.com/anthropics/anthropic-sdk-php) menyediakan streaming melalui `createStream()`. Python SDK mendukung stream sinkron maupun asinkron. Lihat dokumentasi di masing-masing SDK untuk detailnya.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL">
   ```bash CLI
   ant messages create --stream --format jsonl \
     --model claude-opus-5-5 \
@@ -147,7 +147,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
 Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming secara internal sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mewajibkan streaming untuk menghindari timeout HTTP.
 
-<CodeGroup>
+<CodeGroup exclude="shell:cURL">
   ```bash CLI
   # Flag --stream pada CLI ant memancarkan satu event per baris dan tidak
   # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, lakukan streaming

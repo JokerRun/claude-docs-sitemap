@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 12312d1898ca741608b2c6015dbc77a46409309a572ec7e02beb0a48fed5a1a7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 80700440fdd16b2c9ff3cd860b074cd0fff83999f4dfb9b0f3b93e60edd1f740
 ---
 
 ---
@@ -35,7 +35,7 @@ returned.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `organization_ids: optional array of string`
 
@@ -125,12 +125,7 @@ returned.
 
   - `user: object or null`
 
-    The user who owns a Code Artifact.
-
-    Fields that reference this type are null when the Artifact was
-    published by an agent session rather than a user account, when the
-    owner's account has been deleted, or when the owner is no longer a
-    member of an organization the key may read.
+    Artifact owner with email, or null if the Artifact was published by an agent session, the owner's account has been deleted, or the owner is no longer a member of an organization the key may read
 
     - `id: string`
 
@@ -340,12 +335,7 @@ curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID \
 
   - `user: object or null`
 
-    The user who owns a Code Artifact.
-
-    Fields that reference this type are null when the Artifact was
-    published by an agent session rather than a user account, when the
-    owner's account has been deleted, or when the owner is no longer a
-    member of an organization the key may read.
+    Artifact owner with email, or null if the Artifact was published by an agent session, the owner's account has been deleted, or the owner is no longer a member of an organization the key may read
 
     - `id: string`
 

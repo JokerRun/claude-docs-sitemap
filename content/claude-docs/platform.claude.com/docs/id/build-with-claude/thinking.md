@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 745ecd0b6e0d2c80b941427acc082c7212e1494986c685c5d0f11222d333085c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 70c8bf8b9c91aaa4ab9c157039a472ea216b34ed9f2061ca9ee9939ec18a8052
 ---
 
 ---
@@ -515,11 +515,11 @@ Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran 
 
 ### Streaming pemikiran
 
-Pemikiran berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`, diikuti oleh satu event `signature_delta` tepat sebelum `content_block_stop` milik blok tersebut. Setelah itu, blok teks di-stream seperti biasa.
+Pemikiran dapat digunakan bersama [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`. Setelahnya, satu event `signature_delta` dikirim tepat sebelum `content_block_stop` milik blok tersebut. Blok teks kemudian di-stream seperti biasa.
 
-![Diagram urutan event streaming dengan thinking (pemikiran): thinking block (blok pemikiran) terbuka, thinking deltas (delta pemikiran) membawa teks hanya ketika pengaturan display mengembalikan teks (summarized, atau updates untuk progress-update blocks (blok pembaruan progres)), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+![Diagram urutan event streaming dengan thinking (pemikiran): thinking block (blok pemikiran) dibuka, thinking deltas (delta pemikiran) membawa teks hanya jika pengaturan display mengembalikan teks (summarized, atau updates untuk blok pembaruan progres), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
 
-Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pemikiran serta delta teks begitu tiba:
+Contoh-contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pemikiran serta delta teks begitu tiba:
 
 <CodeGroup>
   ```bash cURL
@@ -776,7 +776,7 @@ Contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pe
   ```
 </CodeGroup>
 
-Untuk menyusun kembali blok pemikiran lengkap beserta signature-nya setelah streaming, gunakan helper akumulasi pesan dari SDK Anda jika tersedia (misalnya, `stream.get_final_message()` di Python atau `stream.finalMessage()` di TypeScript). Cara ini lebih baik daripada menggabungkan delta sendiri.
+Untuk menyusun kembali blok pemikiran lengkap beserta signature-nya setelah streaming, gunakan helper akumulasi pesan dari SDK Anda, `stream.get_final_message()` (typescript: `stream.finalMessage()`; ruby: `stream.accumulated_message`; csharp: `.Aggregate()`; go: `message.Accumulate(event)`; java, php: `MessageAccumulator`), alih-alih menggabungkan delta sendiri.
 
 <Accordion title="Jejak event streaming lengkap">
   ```sse Output
@@ -819,7 +819,7 @@ Untuk menyusun kembali blok pemikiran lengkap beserta signature-nya setelah stre
   ```
 </Accordion>
 
-Ketika `display: "omitted"` ditetapkan, blok pemikiran terbuka, lalu `thinking_delta` dengan string `thinking` kosong tiba, diikuti satu `signature_delta`, dan blok ditutup. Streaming teks dimulai segera setelahnya:
+Saat `display: "omitted"` ditetapkan, blok pemikiran dibuka, lalu sebuah `thinking_delta` dengan string `thinking` kosong tiba, diikuti satu `signature_delta`, dan blok ditutup. Streaming teks dimulai segera setelahnya:
 
 ```sse Output
 event: content_block_start
@@ -838,7 +838,7 @@ event: content_block_start
 data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}}
 ```
 
-Dengan `display: "updates"` (beta), blok penalaran di-stream sama seperti pada `"omitted"`. Setiap [blok pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) men-stream teksnya sebagai event `thinking_delta` sebelum blok `tool_use` yang diperkenalkannya. Jeda beberapa detik sebelum blok pembaruan progres terbuka adalah hal yang normal:
+Dengan `display: "updates"` (beta), blok penalaran di-stream sama seperti pada `"omitted"`. Setiap [blok pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) men-stream teksnya sebagai event `thinking_delta` sebelum blok `tool_use` yang diperkenalkannya. Jeda beberapa detik sebelum blok pembaruan progres dibuka adalah hal yang normal:
 
 ```sse Output
 event: content_block_start
@@ -857,12 +857,12 @@ event: content_block_start
 data: {"type":"content_block_start","index":2,"content_block":{"type":"tool_use","id":"toolu_01D7FLrfh4GYq7yT1ULFeyMV","name":"edit_file","input":{}}}
 ```
 
-Pada `"updates"`, perlakukan sebuah blok sebagai pembaruan progres begitu salah satu event `thinking_delta`-nya membawa teks yang tidak kosong.
+Pada `"updates"`, perlakukan sebuah blok sebagai pembaruan progres segera setelah salah satu event `thinking_delta`-nya membawa teks yang tidak kosong.
 
 <Note>
-  Saat menggunakan streaming dengan pemikiran diaktifkan, Anda mungkin melihat teks terkadang tiba dalam potongan besar, bergantian dengan pengiriman kecil token demi token. Ini adalah perilaku yang diharapkan, terutama untuk konten pemikiran.
+  Saat menggunakan streaming dengan pemikiran aktif, Anda mungkin melihat teks terkadang tiba dalam potongan besar, bergantian dengan pengiriman yang lebih kecil, token demi token. Ini adalah perilaku yang diharapkan, terutama untuk konten pemikiran.
 
-  Sistem streaming memproses konten dalam batch, sehingga event streaming dapat tertunda dan terkelompok menjadi pola pengiriman "berpotongan" seperti ini.
+  Sistem streaming memproses konten secara batch, sehingga event streaming dapat tertunda dan terkelompok menjadi pola pengiriman "berpotongan" seperti ini.
 </Note>
 
 Untuk mekanisme streaming secara umum, lihat [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming).
@@ -1192,7 +1192,7 @@ Lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview) untu
 
 ### Permintaan panjang
 
-SDK mewajibkan streaming ketika `max_tokens` lebih besar dari 21.333, untuk menghindari timeout HTTP pada permintaan yang berjalan lama. Ini adalah validasi sisi klien, bukan pembatasan API. Jika Anda tidak perlu memproses event secara bertahap, gunakan `.stream()` dengan `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) untuk mendapatkan objek `Message` lengkap tanpa menangani event satu per satu. Lihat [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming#get-the-final-message-without-handling-events). Perkirakan waktu respons yang lebih lama saat pemikiran aktif, karena pembuatan blok pemikiran menambah waktu pemrosesan. Untuk beban kerja yang mendorong pemikiran di atas sekitar 32k token per permintaan, gunakan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan: permintaan semacam itu dapat berjalan cukup lama hingga mencapai timeout sistem dan batas koneksi terbuka.
+SDK mewajibkan streaming ketika `max_tokens` lebih besar dari 21.333, untuk menghindari timeout HTTP pada permintaan yang berjalan lama. Ini adalah validasi sisi klien, bukan pembatasan API. Jika Anda tidak perlu memproses event secara bertahap, gunakan `.stream()` (java: `.createStreaming()`; csharp: `.CreateStreaming()`; go: `.NewStreaming()`; php: `->createStream()`) dengan `.get_final_message()` (typescript: `.finalMessage()`; ruby: `.accumulated_message`; csharp: `.Aggregate()`; go: `message.Accumulate(event)`; java, php: `MessageAccumulator`) untuk mendapatkan objek `Message` lengkap tanpa harus menyusunnya sendiri dari event-event individual. Lihat [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming#get-the-final-message-without-handling-events). Perkirakan waktu respons yang lebih lama saat pemikiran aktif, karena pembuatan blok pemikiran menambah waktu pemrosesan. Untuk beban kerja yang mendorong pemikiran di atas sekitar 32 ribu token per permintaan, gunakan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan: permintaan semacam itu dapat berjalan cukup lama hingga mencapai timeout sistem dan batas koneksi terbuka.
 
 ## Langkah selanjutnya
 

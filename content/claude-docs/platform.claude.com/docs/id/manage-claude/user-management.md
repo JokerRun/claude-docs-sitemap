@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 63433ebaab057554ed5b2ac9ae097014285aec71e1dc4c0cdacf2e358d4d3d7a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: e602d8d808256decb9960c670c3a8ef12bf91b4a9cc2e8d9bb0659a21e685692
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/user-management
 description: "Kelola orang-orang di organisasi Claude Enterprise Anda dengan Admin API: daftarkan anggota dan ubah peran, kirim dan tarik undangan, kelola grup, dan baca peran kustom."
 ---
 
-Halaman ini membahas pengelolaan orang-orang di organisasi **Claude Enterprise** (claude.ai) Anda secara terprogram, menggunakan [Admin API](https://platform.claude.com/docs/id/api/admin): mendaftarkan anggota dan mencarinya berdasarkan alamat email, mengubah peran anggota, menghapus anggota, mengirim dan menarik undangan, mengelola grup enterprise Anda beserta keanggotaannya, dan membaca peran kustom organisasi Anda. Untuk organisasi Claude Console (Claude Platform), lihat [panduan Admin API untuk Claude Console](https://platform.claude.com/docs/id/manage-claude/admin-api).
+Halaman ini membahas pengelolaan orang-orang di organisasi **Claude Enterprise** (claude.ai) Anda secara terprogram, menggunakan [Admin API](https://platform.claude.com/docs/id/api/beta/organization): mendaftarkan anggota dan mencarinya berdasarkan alamat email, mengubah peran anggota, menghapus anggota, mengirim dan menarik undangan, mengelola grup enterprise Anda beserta keanggotaannya, dan membaca peran kustom organisasi Anda. Untuk organisasi Claude Console (Claude Platform), lihat [panduan Admin API untuk Claude Console](https://platform.claude.com/docs/id/manage-claude/admin-api).
 
 <Note>
   Permintaan grup dan peran kustom tidak memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `anthropic-beta: ce-user-management-2026-07-13`. Permintaan yang masih mengirimkannya tetap diterima dan berperilaku identik.
@@ -128,7 +128,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Error](https://
 
 `GET /v1/organizations/users` mengembalikan anggota organisasi, yang paling baru ditambahkan terlebih dahulu. Filter berdasarkan `email` untuk mencari anggota tertentu; pencocokannya tidak peka huruf besar-kecil dan mentoleransi varian umum dari alamat yang sama (misalnya, `jane+hiring@example.com` cocok dengan `jane@example.com`). Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List users](https://platform.claude.com/docs/id/api/admin/users/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List users](https://platform.claude.com/docs/id/api/beta/organization/users/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
@@ -140,7 +140,7 @@ curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
 
 `GET /v1/organizations/users/{user_id}` mengembalikan satu anggota berdasarkan ID. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get user](https://platform.claude.com/docs/id/api/admin/users/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get user](https://platform.claude.com/docs/id/api/beta/organization/users/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -152,7 +152,7 @@ curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQr
 
 `POST /v1/organizations/users/{user_id}` menetapkan peran anggota menjadi `user` atau `managed`. Anggota yang memegang peran administratif (`owner`, `membership_admin`, atau `primary_owner`) tidak dapat diubah melalui endpoint ini, dan peran administratif tidak dapat ditetapkan; keduanya mengembalikan 400 dan dikelola di pengaturan organisasi claude.ai. Jika penyedia identitas organisasi Anda mengelola peran (SSO lanjutan atau provisi SCIM lanjutan), pembaruan peran mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Update user](https://platform.claude.com/docs/id/api/admin/users/update) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Update user](https://platform.claude.com/docs/id/api/beta/organization/users/update) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -166,7 +166,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIj
 
 `DELETE /v1/organizations/users/{user_id}` menghapus anggota dari organisasi, mengembalikan seat yang dibeli yang mereka tempati ke kumpulan organisasi. Anggota yang memegang peran administratif tidak dapat dihapus melalui endpoint ini, dan jika penyedia identitas Anda mengelola keanggotaan (SCIM), penghapusan mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Remove user](https://platform.claude.com/docs/id/api/admin/users/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Remove user](https://platform.claude.com/docs/id/api/beta/organization/users/remove) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -191,7 +191,7 @@ Pada paket yang mengambil anggota dari kumpulan seat terbatas, undangan secara o
 
 Field opsional `rbac_group_ids` mencantumkan grup (berdasarkan ID berawalan `rbac_group_`) yang akan ditetapkan kepada anggota ketika mereka menerima undangan. Menyertakan `rbac_group_ids` yang tidak kosong juga mengharuskan kunci membawa cakupan `write:rbac_groups`, karena penetapan grup dapat memberikan izin yang terlampir pada peran grup tersebut.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Create invite](https://platform.claude.com/docs/id/api/admin/invites/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Create invite](https://platform.claude.com/docs/id/api/beta/organization/invites/create) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
@@ -223,7 +223,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
 
 `GET /v1/organizations/invites` mengembalikan undangan organisasi, yang terbaru terlebih dahulu, mencakup status `pending`, `accepted`, dan `expired`; tidak ada filter status. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List invites](https://platform.claude.com/docs/id/api/admin/invites/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List invites](https://platform.claude.com/docs/id/api/beta/organization/invites/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
@@ -235,7 +235,7 @@ curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
 
 `GET /v1/organizations/invites/{invite_id}` mengembalikan satu undangan berdasarkan ID. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get invite](https://platform.claude.com/docs/id/api/admin/invites/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get invite](https://platform.claude.com/docs/id/api/beta/organization/invites/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
@@ -247,7 +247,7 @@ curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCd
 
 `DELETE /v1/organizations/invites/{invite_id}` menarik undangan `pending`, menonaktifkan tautan dalam email undangan. Menarik undangan `accepted` mengembalikan 400 (hapus anggotanya sebagai gantinya); menarik undangan `expired` mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Delete invite](https://platform.claude.com/docs/id/api/admin/invites/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Delete invite](https://platform.claude.com/docs/id/api/beta/organization/invites/delete) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
@@ -263,7 +263,7 @@ Grup yang dibuat langsung oleh enterprise Anda, di [pengaturan organisasi claude
 
 `GET /v1/organizations/rbac_groups` mengembalikan grup enterprise Anda, termasuk grup yang dikelola penyedia identitas (`scim`). Memerlukan cakupan `read:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List groups](https://platform.claude.com/docs/id/api/admin/rbac_groups/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List groups](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
@@ -294,7 +294,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
 
 `GET /v1/organizations/rbac_groups/{rbac_group_id}` mengembalikan satu grup berdasarkan ID. Memerlukan cakupan `read:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get group](https://platform.claude.com/docs/id/api/admin/rbac_groups/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get group](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
@@ -306,7 +306,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYz
 
 `POST /v1/organizations/rbac_groups` membuat grup dengan `name` yang diberikan (1–255 karakter) tanpa peran atau anggota. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Create group](https://platform.claude.com/docs/id/api/admin/rbac_groups/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Create group](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/create) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
@@ -333,7 +333,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
 
 `POST /v1/organizations/rbac_groups/{rbac_group_id}` memperbarui grup. `name` adalah satu-satunya field yang dapat diubah oleh endpoint ini. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Update group](https://platform.claude.com/docs/id/api/admin/rbac_groups/update) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Update group](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/update) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
@@ -347,7 +347,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 
 `DELETE /v1/organizations/rbac_groups/{rbac_group_id}` menghapus grup. Anggotanya tetap menjadi anggota organisasi mereka, tetapi mereka kehilangan izin dari peran yang terlampir pada grup tersebut, dan [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api) grup, jika ada, tidak lagi berlaku bagi mereka. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Delete group](https://platform.claude.com/docs/id/api/admin/rbac_groups/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Delete group](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/delete) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
@@ -366,7 +366,7 @@ curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_grou
 
 `GET /v1/organizations/rbac_groups/{rbac_group_id}/members` mengembalikan anggota grup (masing-masing dengan `user_id` dan email-nya), dimulai dari yang terlama. Hanya anggota saat ini dari organisasi-organisasi enterprise Anda yang dikembalikan, sehingga satu halaman mungkin berisi lebih sedikit entri daripada `limit` meskipun `has_more` bernilai `true`. Memerlukan cakupan `read:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List group members](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List group members](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members?limit=100" \
@@ -395,7 +395,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYz
 
 `POST /v1/organizations/rbac_groups/{rbac_group_id}/members` menambahkan anggota organisasi ke grup berdasarkan `user_id`. Pengguna harus sudah menjadi anggota salah satu organisasi enterprise Anda (jika tidak, permintaan akan mengembalikan 404), dan menambahkan seseorang yang sudah ada di grup akan mengembalikan 400. Untuk grup `scim`, keanggotaan dikelola di penyedia identitas Anda dan permintaan ini akan mengembalikan 400. Untuk menetapkan grup kepada seseorang yang belum bergabung, gunakan `rbac_group_ids` saat [pembuatan undangan](https://platform.claude.com/docs/id/manage-claude/user-management#create-an-invite) sebagai gantinya. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/create) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
@@ -420,7 +420,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 
 `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}` menghapus anggota dari grup; mereka tetap menjadi anggota organisasinya. Permintaan akan mengembalikan 404 jika pengguna bukan anggota grup, dan 400 untuk grup `scim`, yang keanggotaannya dikelola di penyedia identitas Anda. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](https://platform.claude.com/docs/id/api/admin/rbac_groups/members/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/delete) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -445,7 +445,7 @@ Peran kustom bersifat hanya-baca melalui API: endpoint ini mengatalogkan peran k
 
 `GET /v1/organizations/rbac_roles` mengembalikan peran kustom organisasi Anda. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List roles](https://platform.claude.com/docs/id/api/admin/rbac_roles/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List roles](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
@@ -473,7 +473,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
 
 `GET /v1/organizations/rbac_roles/{rbac_role_id}` mengembalikan satu peran berdasarkan ID. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get role](https://platform.claude.com/docs/id/api/admin/rbac_roles/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get role](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv" \
@@ -487,7 +487,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIj
 
 Dua nilai `action` memerlukan perhatian khusus: izin `organization` yang action-nya adalah `capability_access_all` (setiap fitur produk) atau `capability_access_all_ga` (setiap fitur produk stabil, yaitu setiap fitur yang tidak berlabel beta atau research preview) merupakan pemberian menyeluruh (yang tidak mencakup akses model maupun izin panel admin berawalan `permission_`) dan dicantumkan sebagai satu baris tersebut, bukan diperluas. Ketika Anda menghitung apa yang diberikan oleh suatu peran, perlakukan baris menyeluruh sebagai mencakup semua yang dijelaskan oleh variannya, bukan hanya fitur yang disebutkan di baris lain.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List role permissions](https://platform.claude.com/docs/id/api/admin/rbac_roles/permissions/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List role permissions](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/permissions/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv/permissions?limit=20" \

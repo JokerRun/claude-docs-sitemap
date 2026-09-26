@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: af467f29a4cb0ce58b92bca6557c580b5459646fc8ae3aed3d239e38c81aab87
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: b09767b11df3bd41d8b8e13ef9e4d516e5019fe4760ec4f72924326c0b4a0dbc
 ---
 
 ---
@@ -112,7 +112,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts#claude-haiku-4-5">
+  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts/overview#claude-haiku-4-5">
     Prompt sistem yang digunakan Claude Haiku 4.5 di claude.ai dan aplikasi Claude.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-6/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 68a22dd307f538ffc902507e19610258dca7b07a3b9a50749e5f21cf05d32303
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a7f2dcb31df619b69f6105bfe1bcdb313c6eb524678512221f9a4a1a2881785e
 ---
 
 ---
@@ -100,7 +100,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $3 / MTok
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts#claude-sonnet-4-6">
+  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts/overview#claude-sonnet-4-6">
     Prompt sistem yang digunakan Claude Sonnet 4.6 di claude.ai dan aplikasi Claude.
   </Card>
 

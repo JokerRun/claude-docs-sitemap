@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 30f91875da5510256835abf995f9184be59a62ae9bcb202d5f4bd3a15dad6261
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: dce185f5fc16bb81927166368fc77cb27266eb6078cceb40f08d6e0900755b37
 ---
 
 ---
@@ -48,11 +48,7 @@ Get detailed information for a specific project document.
 
 - `user: object or null`
 
-  The user who created a project or project document.
-
-  Fields that reference this type are null when the creator's account has
-  been deleted or the creator is no longer a member of an organization the
-  key may read.
+  Document creator information, or null if the creator's account has been deleted or the creator is no longer a member of an organization the key may read
 
   - `id: string`
 

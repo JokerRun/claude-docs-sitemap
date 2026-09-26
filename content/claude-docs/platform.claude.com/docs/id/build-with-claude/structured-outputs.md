@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: c36a350b6b5cd784eeaa766bb3c8e46879df2423f8110d83b461dbd618aa5e5c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 52d2c7c4408df4605055297be6755efce6eb8b835da3d743127985e2221379ee
 ---
 
 ---
@@ -48,7 +48,7 @@ featureMetadata:
 Anda dapat menggunakan fitur-fitur ini secara terpisah atau bersama-sama dalam permintaan yang sama.
 
 <Tip>
-  **Bermigrasi dari beta?** Parameter `output_format` telah dipindahkan ke `output_config.format`, dan header beta tidak lagi diperlukan. API tetap menerima header beta lama (`structured-outputs-2025-11-13`) dan field permintaan `output_format` selama masa transisi, tetapi Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()` dan akan memunculkan `TypeError`; gunakan `output_config` sebagai gantinya. Lihat contoh kode berikut untuk bentuk API yang telah diperbarui.
+  **Bermigrasi dari beta?** Parameter `output_format` telah dipindahkan ke `output_config.format`, dan header beta tidak lagi diperlukan. Parameter `output_format` sudah usang (deprecated) dan akan dihapus di masa mendatang. Jika tetap ingin menggunakannya, tambahkan header beta `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()` dan akan memunculkan `TypeError`; gunakan `output_config` sebagai gantinya. Lihat contoh kode berikut untuk bentuk API yang telah diperbarui.
 </Tip>
 
 ## Mengapa menggunakan output terstruktur

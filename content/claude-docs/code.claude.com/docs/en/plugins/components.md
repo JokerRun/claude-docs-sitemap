@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/components
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: e71162ca2d29951532bd551208c0313c5093bcf2c2a07c33223c91bdebe69e47
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 5e1202dd105375d2e64f5da6054157dda7d11c0eaf1d716e52c223ded954d8c0
 ---
 
 > ## Documentation Index
@@ -20,6 +20,7 @@ export const PluginExplorer = ({children}) => {
     id: 'manifest',
     name: 'Manifest',
     path: '.claude-plugin/plugin.json',
+    required: "Required by Anthropic's directory",
     lines: [{
       depth: 0,
       kind: 'folder',
@@ -419,7 +420,7 @@ After you add a component, run `/reload-plugins` in a running session or start a
 
   * **Building your first plugin**: start with [Create a plugin](/docs/en/plugins/create)
   * **Installing someone else's plugin**: see [Install plugins](/docs/en/plugins/install)
-  * **Your plugin's users are on claude.ai or in Cowork**: a different set of components loads there. See [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview)
+  * **Your plugin's users are on claude.ai or in Cowork**: a different set of components loads there. See [Plugin structure and testing](https://claude.com/docs/plugins/build) and the [component support table](https://claude.com/docs/plugins/platform-support#compare-component-support-by-app)
 </Note>
 
 ## Explore the plugin directory
@@ -440,7 +441,7 @@ Each file is the smallest valid example of its format, there to show the shape r
 
 <PluginExplorer>
   <Piece id="manifest">
-    The [manifest](/docs/en/plugins/manifest-reference) is the `plugin.json` file in a plugin's `.claude-plugin/` directory. It contains the plugin's metadata and the `userConfig` values that Claude Code prompts the user for. Only `name` is required. In this one, `description` is the text users see for the plugin in `/plugin`, and `version` keeps users on that version until you change it:
+    The [manifest](/docs/en/plugins/manifest-reference) is the `plugin.json` file in a plugin's `.claude-plugin/` directory. It contains the plugin's metadata and the `userConfig` values that Claude Code prompts the user for. Claude Code loads a plugin without one, but [Anthropic's directory](/docs/en/plugins/publish#submit-to-anthropics-directory) requires it. Inside the file, only `name` is required. In this one, `description` is the text users see for the plugin in `/plugin`, and `version` keeps users on that version until you change it:
 
     ```json theme={null}
     {
@@ -818,7 +819,7 @@ The `mcpServers` manifest key takes an inline server map, a path to a JSON file,
 
 #### Reach users on claude.ai and Cowork
 
-A local stdio server, such as the `db` server under [MCP servers](#mcp-servers), runs in Claude Code and in a Cowork session that runs on your machine in the Claude Desktop app, but not on claude.ai. To reach users there too, reference a remote server by its `https://` URL, which claude.ai and Cowork offer to the user as a connector.
+A local stdio server, such as the `db` server under [MCP servers](#mcp-servers), runs in Claude Code and in a Cowork session that runs on your machine in the Claude Desktop app, but not on claude.ai. To reach users there too, reference a remote server by its `https://` URL, which claude.ai and Cowork offer to the user as a connector, as [Bundle an MCP connector with its skill](https://claude.com/docs/plugins/build#bundle-an-mcp-connector-with-its-skill) shows.
 
 #### Server names, tool names, and reloads
 
@@ -890,7 +891,7 @@ Make it executable with `chmod +x bin/hello-plugin` and load the plugin. When yo
 
 Plugin `bin/` directories come after the user's own `PATH` entries, so a plugin can't shadow `git`, `ls`, or another system command.
 
-claude.ai and Cowork don't install a plugin that has a top-level `bin/` directory, including one you [distribute through claude.ai organization settings](/docs/en/plugins/host-marketplace#distribute-through-organization-settings).
+claude.ai and Cowork don't install a plugin that has a top-level `bin/` directory, including one you [distribute through claude.ai organization settings](https://claude.com/docs/plugins/org-sync#keep-executables-out-of-the-top-level-bin-directory).
 
 ### Default settings
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 1a006f2b077ddfbb6a98984de573faebb9568a7615ad84e73045e253cba10b69
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d9a932477afddc7ffb65389ae42f810577883ab812cfa6de26705c8ba9f09210
 ---
 
 ---
@@ -50,7 +50,7 @@ the remaining entries.
 
   When omitted, every remaining entry is returned in a single page and `next_page` is `null`.
 
-  maximum: 1000, minimum: 1
+  minimum: 1, maximum: 1000
 
 - `model: optional string`
 

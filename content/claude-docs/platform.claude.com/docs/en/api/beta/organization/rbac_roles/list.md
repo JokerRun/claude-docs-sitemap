@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 908f6f981bd5c15620f4faba30cf072d62a97419c77a71c01bc42ec5aad25306
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ecf0671ef1e7ce3ae560ed15700b74a5ad7e9f4d81acc45dc7a9f68d9f4b45fe
 ---
 
 ---
@@ -26,7 +26,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 5d4a3b025e1b23a01ab5b674f980002b9b969abcf9bc13732aa4e2d77793d733
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 88b191edea368d322f632fb47318edbf1b4ce7eb2df3ce9d1b24837e1a2b91b0
 ---
 
 ---
@@ -174,7 +174,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   Slug identifier (lowercase, digits, hyphens). Unique within the organization; a duplicate name returns 409.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `oauth_scope: string`
 
@@ -214,7 +214,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   Lifetime in seconds for access tokens minted via this rule (60-86400). Defaults to 3600 (1h). Minted tokens are capped at `max(60, min(this value, 2 × remaining assertion validity))` seconds.
 
-  maximum: 86400, minimum: 60
+  minimum: 60, maximum: 86400
 
 - `workspace_id: optional string or null`
 

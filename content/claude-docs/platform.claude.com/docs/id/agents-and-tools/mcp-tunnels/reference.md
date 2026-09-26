@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: eb72706c68b5a4670ca1d0d8385334a39599c2ec849c16caef25e710e7ff9c95
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 20472cede5e210e4018d80349c026957eed2aaf73c36bc134d905dd949f4923e
 ---
 
 ---
@@ -46,7 +46,7 @@ Setiap nilai upstream harus persis berbentuk `scheme://host:port`. Port bersifat
 Tunnels REST API berada di `/v1/tunnels` dan mendukung pembuatan, pencantuman, dan pengarsipan tunnel, pendaftaran sertifikat CA, serta pengungkapan atau rotasi token tunnel. Lihat [referensi Tunnels API](https://platform.claude.com/docs/id/api/beta/tunnels/list) untuk semua endpoint, skema permintaan dan respons, serta contoh.
 
 <Note>
-  Permukaan Admin API sebelumnya di `/v1/organizations/tunnels` (header beta `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) tetap berfungsi selama periode migrasi dan tetap didokumentasikan di [referensi Admin API](https://platform.claude.com/docs/id/api/admin/mcp_tunnels) dengan pemberitahuan deprecation. Untuk bermigrasi, perbarui path menjadi `/v1/tunnels`, header beta menjadi `mcp-tunnels-2026-06-22`, dan scope token WIF Anda menjadi `workspace:manage_tunnels`.
+  Permukaan Admin API sebelumnya di `/v1/organizations/tunnels` (header beta `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) tetap berfungsi selama periode migrasi dan tetap didokumentasikan di [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization/mcp_tunnels) dengan pemberitahuan deprecation. Untuk bermigrasi, perbarui path menjadi `/v1/tunnels`, header beta menjadi `mcp-tunnels-2026-06-22`, dan scope token WIF Anda menjadi `workspace:manage_tunnels`.
 </Note>
 
 <Warning>

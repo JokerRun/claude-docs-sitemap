@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: ee989ae7794028e9c5517c510cca5fc330c7e32e5253fd62f5da50fa53ff9a25
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4895643f88449238ab418a7fcd1fb3461c5207a0a4f47d860a1416b69c6f3497
 ---
 
 ---
@@ -1191,7 +1191,7 @@ Perubahan ini tidak wajib tetapi akan meningkatkan pengalaman Anda:
 
 1. **Pertimbangkan anggaran tugas (beta):** Untuk beban kerja agentik, [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) memberi tahu model berapa banyak token yang dimilikinya untuk satu loop agentik penuh. Fitur ini memerlukan header beta `task-budgets-2026-03-13`.
 
-2. **Pertimbangkan perubahan alat di tengah percakapan (beta):** Perubahan alat di tengah percakapan (header beta `mid-conversation-tool-changes-2026-07-01`) tersedia di Claude API, Amazon Bedrock, dan Google Cloud. Fitur ini memungkinkan Anda menambahkan atau menghapus alat di antara giliran percakapan tanpa membatalkan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya. Tanpa header tersebut, daftar alat yang berubah akan membatalkan prefiks yang di-cache.
+2. **Pertimbangkan perubahan alat di tengah percakapan (beta):** Perubahan alat di tengah percakapan memungkinkan Anda menambahkan atau menghapus alat di antara giliran percakapan tanpa membatalkan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya. Mengubah array `tools` itu sendiri akan membatalkan prefiks yang di-cache. Di Claude API, kirim header beta `inline-tools-2026-09-15`. Header `mid-conversation-tool-changes-2026-07-01` yang lebih lama masih berfungsi untuk perubahan yang menyebutkan alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Google Cloud.
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7
 
@@ -1561,7 +1561,7 @@ Butir pertama wajib diterapkan pada Claude Opus 5.5, sedangkan sisanya direkomen
 
 4. **Hapus header beta interleaved thinking:** Dengan pemikiran adaptif, "interleaved thinking" (pemikiran yang diselingi) aktif secara otomatis pada setiap model yang mendukung pemikiran adaptif. Hapus `betas=["interleaved-thinking-2025-05-14"]` dari permintaan Anda.
 
-5. **Migrasi ke output\_config.format:** Jika Anda menggunakan output terstruktur, ubah `output_format={...}` menjadi `output_config={"format": {...}}`. API masih menerima parameter `output_format` yang sudah deprecated, tetapi parameter ini akan dihapus dalam rilis model mendatang. Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()`. Argumen `output_format=Model` pada helper `parse()` dan `stream()` tidak berubah.
+5. **Migrasi ke output\_config.format:** Jika Anda menggunakan output terstruktur, perbarui `output_format={...}` menjadi `output_config={"format": {...}}`. Parameter `output_format` sudah deprecated dan akan dihapus di masa mendatang. Untuk tetap menggunakannya, tambahkan header beta `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()`. Argumen `output_format=Model` dari helper `parse()` dan `stream()` tidak berubah.
 
 ### Migrasi dari Claude 4.1 atau yang lebih lama
 

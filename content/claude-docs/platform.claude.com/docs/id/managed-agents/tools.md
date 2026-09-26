@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1a9515bae68b1e44a5a0eea045f7e0be1be37e3ebcc3e7f1ff8d569bcc15880c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1f0219588e2b965d77e8fdb67f7abc4b3b4cda3d659a8e88efea4b21ada5cb58
 ---
 
 ---
@@ -68,7 +68,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -86,7 +86,7 @@ Entri config untuk `web_search` dan `web_fetch` juga menerima filter domain dan 
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -315,7 +315,7 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
   jq '.tools[0].configs' <<< "$agent"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -342,7 +342,9 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
       ---
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dan mencetak ID-nya, bukan array `configs`.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()
@@ -616,10 +618,6 @@ Permintaan berikut membuat agen dengan toolset ini dan mencetak array `configs` 
     puts JSON.pretty_generate(toolset.configs.map(&:to_h))
   end
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dan mencetak ID-nya, bukan array `configs`.
-  </ForLanguage>
 </CodeGroup>
 
 Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen; tetapkan `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
@@ -721,7 +719,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -747,7 +745,7 @@ Jika sesi Anda berjalan di sandbox self-hosted, worker environment dapat [menyaj
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

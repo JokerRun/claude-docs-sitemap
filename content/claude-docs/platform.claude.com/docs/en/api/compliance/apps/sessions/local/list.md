@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 945039f0ae9f44ad1e6811121f7bfb62a55bf3f60fdd3fcf6be183d79a5021a7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: accd0913c283c5d633b9479bf4db99872272d899a55c374cf838d4b73fc35301
 ---
 
 ---
@@ -39,7 +39,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   Maximum results (default: 100, max: 500)
 
-  default: 100, maximum: 500, minimum: 1
+  default: 100, minimum: 1, maximum: 500
 
 - `page: optional string`
 

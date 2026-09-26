@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 6ac9f4d96fedc98fb78f1a6b5034beed361fd9dfaefa48374f32128d97177b93
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 451d0aa02d10d7b53ecc5fa8775c0d01f7d13a07c55f3f8666cd784b98bbd7e8
 ---
 
 ---
@@ -154,19 +154,19 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was archived. Null if it is still in the trusted set.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was registered.
 
     format: date-time
 
   - `expires_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate expires, or `null` if it does not expire.
 
     format: date-time
 

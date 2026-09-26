@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 35e18f174565db66011720e2b7e8fdd818536c0a78f5a7b17dc695b3dd9c1920
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: b88bab6730b31318cd392778273d9096e6b7c1289dd7f1493da071e9328c880a
 ---
 
 ---
@@ -30,8 +30,8 @@ featureMetadata:
     Google Cloud: ga
     Microsoft Foundry: beta
   details:
-    - Di Claude API dan Google Cloud, Claude Opus 5.5 mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
-    - Di Amazon Bedrock, Claude Opus 5.5 menerima versi alat `computer_20251124` yang lebih lama, sama seperti Claude Opus 5.
+    - Di Claude API dan Google Cloud, model Claude 5.5 dan yang lebih baru mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
+    - Di Amazon Bedrock, Claude Opus 5.5 menerima versi alat `computer_20251124` yang lebih lama sebagaimana Claude Opus 5.
     - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
@@ -2122,7 +2122,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 ## Migrasi dari `computer_20251124`
 
-Peningkatan dari `computer_20251124` ke toolset bersifat opsional. Model yang tercantum untuk `computer_20251124` di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Claude Opus 5.5 merupakan pengecualian di Claude API dan Google Cloud: di sana model ini hanya menerima toolset, jadi tingkatkan integrasi sebelum memindahkannya ke model tersebut. Di Amazon Bedrock, model ini tetap menerima `computer_20251124`. Untuk melakukan peningkatan, terapkan semua perubahan berikut sekaligus:
+Peningkatan dari `computer_20251124` ke toolset bersifat opsional. Model yang tercantum untuk `computer_20251124` di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Pengecualiannya adalah Claude 5.5 dan model yang lebih baru di Claude API dan Google Cloud: di sana, model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5 tetap menerima `computer_20251124`. Untuk melakukan peningkatan, terapkan semua perubahan berikut sekaligus:
 
 1. **Hapus header beta.** Buang `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Di SDK, hapus parameter `betas` dan panggil Messages API melalui klien standar alih-alih namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.

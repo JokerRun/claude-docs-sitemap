@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 4c6eadd9869accf87f714d80a47cd10257f2527811f442d1e6bbc92330c7ed5d
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 5300b7749bc05d3c3e4e0b0f5ed56c8c14ff95b0b0c38e9f6cab27396f6aadae
 ---
 
 ---
@@ -186,11 +186,7 @@ Update an existing environment's configuration.
 
     - `packages: optional BetaPackagesParams or null`
 
-      Specify packages (and optionally their versions) available in this environment.
-
-      When versioning, use the version semantics relevant for the package manager, e.g. for `pip` use `package==1.0.0`. You are responsible for validating the package and version exist. Unversioned installs the latest.
-
-      Under `limited` networking, requires `networking.allow_package_managers` to be `true`.
+      Package manager configuration. Under `limited` networking, requires `networking.allow_package_managers` to be `true`. Omit on update to preserve the existing value.
 
       - `type: optional "packages"`
 
@@ -244,7 +240,7 @@ Update an existing environment's configuration.
 
   Updated name for the environment
 
-  maxLength: 256, minLength: 1
+  minLength: 1, maxLength: 256
 
 - `scope: optional "organization" or "account" or null`
 

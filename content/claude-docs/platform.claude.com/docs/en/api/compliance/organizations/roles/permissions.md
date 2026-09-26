@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 4764d1e55c8f3c767fd6edf70aef3fd9d8eff824d80a393838e22f624a9f6374
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bb781ffe7fef36bfec719f290b366cd692a63e9095b517a76222e8ad647c999d
 ---
 
 ---
@@ -34,7 +34,7 @@ List Compliance Role Permissions
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

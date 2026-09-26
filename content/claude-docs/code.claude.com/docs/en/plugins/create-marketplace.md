@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create-marketplace
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: ed9c1aa7ce4f19bb3ef7850e4433ae6869215f80c446a751057492301ee53c9e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 59ad85c7b092403fcb8c6285b979966d63109a1d01bf6ff0693892206b2bc283
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ Create your own marketplace when you want a group you choose, such as your team 
   These cases are covered on other pages:
 
   * **Sharing one plugin with a few people**: send them the plugin's directory or a `.zip` of it. See [Share a plugin without a marketplace](/docs/en/plugins/publish#share-a-plugin-without-a-marketplace).
-  * **Offering a plugin to everyone**: submit it to Anthropic's community marketplace. See [Submit to the community marketplace](/docs/en/plugins/publish#submit-to-the-community-marketplace).
+  * **Offering a plugin to everyone**: submit it to Anthropic's directory. See [Submit to Anthropic's directory](/docs/en/plugins/publish#submit-to-anthropics-directory).
   * **Using a plugin yourself**: load it with `--plugin-dir` or save it in your skills directory. See [Develop without a marketplace](/docs/en/plugins/create#develop-without-a-marketplace).
 </Note>
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: df2b07493a70af9d2d4e726e90158eab441fd5a3804cad3cf051d9b4454b2ba2
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 74fbf0695e991ff9fb73e9a1eaa5b7e10c9d9ea21c618c36bf1d745cebbf2def
 ---
 
 > ## Documentation Index
@@ -71,6 +71,10 @@ The [fast mode](/docs/en/fast-mode) availability check never appears in gateway 
 ### Streaming
 
 Stream inference responses. Claude Code reads the stream as it arrives, so if your gateway buffers complete responses before relaying them, Claude Code stalls.
+
+Deliver each response's full event sequence without dropping, duplicating, or reordering events. When an event references a content block whose `content_block_start` never arrived, or a block whose `content_block_stop` already arrived, Claude Code stops reading the stream at that event instead of applying it, so a duplicated `content_block_stop` can't run the same tool call twice. [The response above may be incomplete](/docs/en/errors#the-response-above-may-be-incomplete) describes what the user sees, under the `Part of the response never arrived` and `The response stream was malformed` variants.
+
+Relay each response through its final `message_delta` and `message_stop` events before ending the body. A body that ends after a `message_delta` carrying a `stop_reason`, with no content block still open and no content block event after that frame, counts as complete even when `message_stop` is missing. A body that your gateway ends cleanly any earlier, once a content block has started, is treated the same as a dropped connection: [Automatic retries](/docs/en/errors#automatic-retries) says when Claude Code re-issues the request, and [The response above may be incomplete](/docs/en/errors#the-response-above-may-be-incomplete) covers what it keeps once visible content has arrived. Claude Code keeps the `stop_reason` a `message_delta` delivers, so a later usage-only `message_delta` whose `delta` has `stop_reason: null` or no `stop_reason` key doesn't clear it.
 
 When the client speaks the Amazon Bedrock format, relay the `InvokeModelWithResponseStream` response body and its `Content-Type: application/vnd.amazon.eventstream` header unmodified, and don't convert the stream to server-sent events. See [Streaming errors behind a gateway or proxy](/docs/en/amazon-bedrock#streaming-errors-behind-a-gateway-or-proxy).
 
@@ -145,7 +149,7 @@ Whether a request carries them depends on where Claude Code sends it:
 
 Setting `CLAUDE_CODE_GATEWAY_HINT_HEADERS` to `0` stops the headers on every connection.
 
-The headers carry only what the rows below list: fixed vocabularies, tool names, and durations, never prompt text or file contents. Every value is printable ASCII.
+The headers carry only what the rows below list: fixed vocabularies, tool names, durations, and a random prompt identifier, never prompt text or file contents. Every value is printable ASCII.
 
 | Header                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -154,6 +158,7 @@ The headers carry only what the rows below list: fixed vocabularies, tool names,
 | `x-claude-code-compaction`          | Present on the request that summarizes the conversation during a [compaction](/docs/en/prompt-caching#compacting-the-conversation). The value says what triggered it: `auto` when the context window approached capacity, `manual` for `/compact`, or `reactive` when the API rejected a request as too long. Absent on every other request                                                                                                                                                   |
 | `x-claude-code-context-compacted`   | Present once, on the first main-conversation request after a compaction, with the same values as `x-claude-code-compaction`. The conversation prefix before this request is no longer used, so a cache keyed on it can be dropped                                                                                                                                                                                                                                                        |
 | `x-claude-code-prev-tool-durations` | Measured run time of the tool calls whose results this request carries, as `<name>=<ms>;<name>=<ms>`, for example `Bash=742;Read=9`. Sent on the next request of the same conversation after a batch of tool calls, from the main session or a subagent                                                                                                                                                                                                                                  |
+| `x-claude-code-prompt-id`           | Random UUID that identifies the user prompt a request serves. Requests serving one prompt share the value, including the turns of subagents that prompt started. Requests not attributed to a prompt omit it. Use it to group a session's requests by prompt. Requires Claude Code v2.1.283 or later                                                                                                                                                                                     |
 
 Before parsing `x-claude-code-prev-tool-durations`, check how Claude Code builds the value and what it leaves out:
 
@@ -240,7 +245,9 @@ The retry logic matches on the upstream's error wording, so forward error respon
 
 ### Disable pre-release capabilities
 
-`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` stops Claude Code from sending pre-release capabilities and their body fields on every provider, including context management and the beta tool fields. The variable doesn't affect adaptive reasoning, which is selected by model rather than by beta. It never suppresses the OAuth capability that subscription authentication requires.
+`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` stops Claude Code from sending pre-release capabilities and their body fields, including context management and the beta tool fields. The variable doesn't affect adaptive reasoning, which is selected by model rather than by beta. It never suppresses the OAuth capability that subscription authentication requires.
+
+When a host platform that embeds Claude Code sets [`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST`](/docs/en/env-vars), `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` doesn't stop auto mode sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or a [Claude apps gateway](/docs/en/claude-apps-gateway) from asking the server for [classifier review](/docs/en/permission-modes#server-side-classifier-review). That review adds an `anthropic-beta` value and a `safeguards` request field. Set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to stop it there.
 
 On Claude Code v2.1.227 or later, your organization can keep [MCP tool search](/docs/en/mcp#scale-with-mcp-tool-search) on under this variable through [managed settings](/docs/en/managed-settings). What Claude Code sends with that override in place depends on how you connect:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-08-22T02:26:42.682918Z
-sha256: 0d5c16f1059afcf53e151e6b995074bd9ac9bfcf85cf83cad1e8b61c96962d96
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 84ea8036ce6e85570501c1acf556299f4dd1d12f1de3fe03bf13add0ce3b7263
 ---
 
 ---
@@ -242,7 +242,7 @@ Here are some common success criteria that may be useful regardless of whether a
 
 The choice of model depends on the trade-offs between cost, accuracy, and response time.
 
-Many customers have found `claude-haiku-4-5-20251001` an ideal model for ticket routing, as it is the fastest and most cost-effective model in the Claude 4 family while still delivering excellent results. If your classification problem requires deep subject matter expertise or a large volume of intent categories, or complex reasoning, you may opt for the [larger Sonnet model](https://platform.claude.com/docs/en/about-claude/models).
+Many customers have found `claude-haiku-4-5-20251001` an ideal model for ticket routing, as it is the fastest and most cost-effective model in the Claude 4 family while still delivering excellent results. If your classification problem requires deep subject matter expertise or a large volume of intent categories, or complex reasoning, you may opt for the [larger Sonnet model](https://platform.claude.com/docs/en/models/overview).
 
 ### Build a strong prompt
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 3cb387d8a5640e13a24c34ba647c108c8c2b5c7f2c84ad80a4f9bfda10699598
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 30fe8a75f9560e027e29d1f6144e8cad5792bdccd5d8ae5f68b1e15362c256a1
 ---
 
 ---
@@ -86,7 +86,7 @@ Wizard **Connect workload** membuat ketiga sumber daya (issuer, service account,
   </Step>
 </Steps>
 
-Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [referensi API Service accounts](https://platform.claude.com/docs/id/api/admin/service_accounts), [referensi API Federation issuers](https://platform.claude.com/docs/id/api/admin/federation_issuers), dan [referensi API Federation rules](https://platform.claude.com/docs/id/api/admin/federation_rules) untuk detail parameter lengkap dan skema respons.
+Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [referensi API Service accounts](https://platform.claude.com/docs/id/api/beta/organization/service_accounts), [referensi API Federation issuers](https://platform.claude.com/docs/id/api/beta/organization/federation/issuers), dan [referensi API Federation rules](https://platform.claude.com/docs/id/api/beta/organization/federation/rules) untuk detail parameter lengkap dan skema respons.
 
 ## Autentikasi dari workload Anda
 
@@ -96,7 +96,7 @@ Dengan federasi terkonfigurasi, workload Anda menukar JWT yang diterbitkan IdP d
 
 Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti dijelaskan di bagian [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirimkan image container yang sama ke mana pun dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` per lingkungan.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   # 1. Dapatkan JWT dari IdP Anda (spesifik platform; lihat panduan per penyedia).
   JWT=$(cat /var/run/secrets/anthropic.com/token)
@@ -409,4 +409,4 @@ Setiap panduan membahas dari mana JWT berasal di platform tersebut, seperti apa 
 * [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api): membuat issuer, service account, dan aturan dari infrastructure as code
 * [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, skema file profil, aturan validasi, dan kode error
 * [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication): semua opsi autentikasi di seluruh SDK Anthropic
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 0718f345a0b9227601e35e1b469e019189b56375b55d602a662e8fe61f4d736a
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 92f87fd2344d4741c9cd794a96ff040c07853fb138a045bddb6381b8cbaa0122
 ---
 
 ---
@@ -148,7 +148,7 @@ Get Deployment Run
 
   - `agent: BetaManagedAgentsAgentReference`
 
-    A resolved agent reference with a concrete version.
+    Snapshot of the agent at fire time. Always fully resolved — deployments pin agent + version.
 
     - `type: "agent"`
 
@@ -160,7 +160,7 @@ Get Deployment Run
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    Time this run record was persisted.
 
     format: date-time
 
@@ -170,7 +170,7 @@ Get Deployment Run
 
   - `error: BetaManagedAgentsEnvironmentArchivedRunError or BetaManagedAgentsAgentArchivedRunError or BetaManagedAgentsEnvironmentNotFoundRunError or 13 more or null`
 
-    Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
+    Populated on creation failure. Null on success. Exactly one of `session_id` or `error` is non-null.
 
     - `BetaManagedAgentsEnvironmentArchivedRunError object`
 
@@ -338,7 +338,7 @@ Get Deployment Run
 
   - `trigger_context: BetaManagedAgentsTriggerContext`
 
-    Describes what triggered a deployment run, with trigger-specific metadata.
+    What triggered this run and trigger-specific metadata.
 
     - `BetaManagedAgentsScheduleTriggerContext object`
 
@@ -348,7 +348,7 @@ Get Deployment Run
 
       - `scheduled_at: string`
 
-        A timestamp in RFC 3339 format
+        The UTC instant at which the cron expression matched in the configured timezone, before jitter is applied. At most one run is recorded per (`deployment_id`, `scheduled_at`) pair.
 
         format: date-time
 

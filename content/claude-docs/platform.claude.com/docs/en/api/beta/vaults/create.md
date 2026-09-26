@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 656431b09363fecc12c35b71873164745c64e37dfed1332980389ce92a1a88b6
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: bbd4d268d67b3d20a0f5460299df95e021c1d2d53876817b71f61b2bad74e360
 ---
 
 ---
@@ -154,7 +154,7 @@ Create Vault
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    When the vault was archived. Null if not archived.
 
     format: date-time
 

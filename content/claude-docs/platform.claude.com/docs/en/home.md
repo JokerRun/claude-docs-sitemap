@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 11efe7d54610db4d7798fbd9c45f84959bc08be69705d5c63e4aea7dfb85e146
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3d1ddcfb90d9c166f863fee7fad6591d9be4d6075f1e86545751aef094e85965
 ---
 
 ---
@@ -171,7 +171,7 @@ with Claude"
         </HomeJourneyStep>
 
         <HomeJourneyStep title="Operate">
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/build-with-claude/workspaces">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/manage-claude/workspaces">
             Workspaces and admin
           </HomeJourneyLink>
 
@@ -179,7 +179,7 @@ with Claude"
             API key management
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/build-with-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
             Usage monitoring
           </HomeJourneyLink>
 
@@ -229,7 +229,7 @@ with Claude"
         </HomeJourneyStep>
 
         <HomeJourneyStep title="Operate">
-          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/build-with-claude/workspaces">
+          <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/manage-claude/workspaces">
             Workspaces and admin
           </HomeJourneyLink>
 
@@ -237,7 +237,7 @@ with Claude"
             API key management
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/build-with-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
             Usage monitoring
           </HomeJourneyLink>
         </HomeJourneyStep>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: bd1593aabe059e69a8e5b53c632948695da299f397e6e107d0eef5c969ea77b4
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 3a7961051880ba6a692c6678b4877e2b189efade5f9e753f198bce34744538fd
 ---
 
 ---
@@ -154,19 +154,19 @@ Fetches a tunnel certificate by ID.
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was archived. Null if it is still in the trusted set.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate was registered.
 
     format: date-time
 
   - `expires_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the certificate expires, or `null` if it does not expire.
 
     format: date-time
 

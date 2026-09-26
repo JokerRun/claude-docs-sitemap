@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: f3d74e65d38af8dbc5d0ad4987187cd11a3725395ef590db10cbc584f2022cec
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 724a29e8c983b8fc16fa40287c2fd724a484eb83b90fe9e3e9e607548d323aa7
 ---
 
 ---
@@ -241,11 +241,7 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
   - `poll_status: BetaFederationIssuerPollStatus or null`
 
-    Status of automatic JWKS polling for a federation issuer.
-
-    Anthropic periodically fetches the issuer's signing keys in the
-    background. These fields summarize the most recent fetches so the
-    health of the JWKS endpoint can be monitored.
+    Live state of Anthropic's JWKS polling for this issuer. Populated on both single-issuer retrieval and list responses, including archived issuers. Typically null for inline-key issuers (no polling), or when poll status is temporarily unavailable or polling has not started yet.
 
     - `consecutive_failures: number`
 

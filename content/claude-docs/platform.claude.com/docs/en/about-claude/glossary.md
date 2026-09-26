@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/glossary
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: f025a764592beab9e3ae7678c27097ae335cf54f245017ab3c242661e78076f6
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6499e2b7400dcb98b6f7316e8fb747f2c8a7cd029c7405e7c63c89579bbe55ff
 ---
 
 ---
@@ -39,7 +39,7 @@ Large language models (LLMs) are AI language models with many parameters that ar
 
 ## MCP (Model Context Protocol)
 
-Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to LLMs. Like a USB-C port for AI applications, MCP provides a unified way to connect AI models to different data sources and tools. MCP enables AI systems to maintain consistent context across interactions and access external resources in a standardized manner. See the [MCP documentation](https://platform.claude.com/docs/en/mcp) to learn more.
+Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to LLMs. Like a USB-C port for AI applications, MCP provides a unified way to connect AI models to different data sources and tools. MCP enables AI systems to maintain consistent context across interactions and access external resources in a standardized manner. See the [MCP documentation](https://modelcontextprotocol.io/) to learn more.
 
 ## MCP connector
 

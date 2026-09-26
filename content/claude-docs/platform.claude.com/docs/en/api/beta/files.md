@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 054743d3d4b3da7eb4bc74e2859611177f8ca3d1c747577c040d7046eaac5f53
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6f59d6d23ef7a9dc8e22978f30f048b6068ab189880d978a7c3b123bc14e5e63
 ---
 
 ---
@@ -170,13 +170,13 @@ Upload File
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 
@@ -255,7 +255,7 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -405,13 +405,13 @@ List Files
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 
@@ -761,13 +761,13 @@ Get File Metadata
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 
@@ -1028,13 +1028,13 @@ curl https://api.anthropic.com/v1/files/$FILE_ID \
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: ed080236f90e9658bebed6f6da51372a1b634fa1f207b0522786fdaf1e29a6b2
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f46b7b5f3992e08def0859e9cae81fbf5f6703611068c8f6bed0427b3b2ab971
 ---
 
 > ## Documentation Index
@@ -320,7 +320,7 @@ plugins: [
 
 ### Plugin not loading
 
-If your plugin doesn't appear in the init message:
+If your plugin doesn't appear in the init message's `plugins` list, check its [`plugin_errors`](/docs/en/agent-sdk/typescript#sdksystemmessage) field for the reason, then work through these checks:
 
 1. **Check the path**: ensure the path points to the plugin root directory, the parent of `skills/`, `agents/`, `hooks/`, `commands/`, or `.claude-plugin/`
 2. **Validate plugin.json**: if your plugin includes a manifest, ensure it has valid JSON syntax

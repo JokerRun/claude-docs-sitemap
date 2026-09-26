@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 59c97d6a6c2a4efb870d4d510c9f081cdca79ecbec3671ed2d0cba75a7a56c92
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: dd138b9249a6a834e39e120d4ab69d631322abdcf1e0be86f06104d57bb2bb36
 ---
 
 ---
@@ -146,7 +146,7 @@ Create Enrollment URL
 
   - `expires_at: string`
 
-    A timestamp in RFC 3339 format
+    When this enrollment URL expires, in RFC 3339 format.
 
     format: date-time
 

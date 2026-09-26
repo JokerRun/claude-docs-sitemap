@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/create
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ed9c1dbf023b0ce07190aac7cba1e7428d5aa76b2568491dbdd2bd182dffb871
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 97d84e0b13273bffd8a3c044906e45603094bc8c8629ce570d6339115172c7b6
 ---
 
 ---
@@ -24,7 +24,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   Name of the RBAC Group. Not uniqueness-enforced.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 ## Returns
 

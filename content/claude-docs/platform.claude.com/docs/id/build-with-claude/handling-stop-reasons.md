@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0cecc477595c0536aa34c1ef46aa075e737071fef481d96544859895699704e3
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: f8d23614362d262c6f9142c31d5f9d0e0312722696ddafb515eb868ab9f33a99
 ---
 
 ---
@@ -904,14 +904,45 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
   <CodeGroup exclude="shell:cURL">
     ```bash CLI
-    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl < request.yaml)
+    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl <<'YAML'
+    model: claude-opus-5-5
+    tools:
+      - name: get_weather
+        description: Get the current weather in a given location
+        input_schema:
+          type: object
+          properties:
+            location:
+              type: string
+          required:
+            - location
+    messages:
+      - role: user
+        content: What is the weather in San Francisco?
+    YAML
+    )
 
     # Periksa apakah respons terpotong di tengah penggunaan alat
     STOP_REASON=$(jq -r '.stop_reason' <<<"$RESPONSE")
     LAST_TYPE=$(jq -r '.content[-1].type' <<<"$RESPONSE")
     if [ "$STOP_REASON" = "max_tokens" ] && [ "$LAST_TYPE" = "tool_use" ]; then
       # Coba lagi dengan max_tokens yang lebih tinggi
-      ant messages create --max-tokens 4096 < request.yaml
+      ant messages create --max-tokens 4096 <<'YAML'
+    model: claude-opus-5-5
+    tools:
+      - name: get_weather
+        description: Get the current weather in a given location
+        input_schema:
+          type: object
+          properties:
+            location:
+              type: string
+          required:
+            - location
+    messages:
+      - role: user
+        content: What is the weather in San Francisco?
+    YAML
     fi
     ```
 
@@ -1929,7 +1960,7 @@ Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, 
 Claude berhenti karena mencapai batas "context window" (jendela konteks) model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
 
 <Note>
-  Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` SDK, sehingga contoh berikut memanggil `client.beta.messages` dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model sebelumnya, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
+  Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` pada SDK, sehingga contoh-contoh berikut memanggil `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model yang lebih lama, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
 </Note>
 
 <CodeGroup>
@@ -2370,7 +2401,10 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
       for _ in range(max_continuations):
           response = client.messages.create(
-              model="claude-opus-5-5", max_tokens=4096, messages=messages, tools=tools
+              model="claude-opus-5-5",
+              max_tokens=4096,
+              messages=messages,
+              tools=tools,
           )
 
           if response.stop_reason != "pause_turn":
@@ -3010,7 +3044,10 @@ Saat menggunakan streaming, `stop_reason`:
 
       while True:
           response = client.messages.create(
-              model="claude-opus-5-5", max_tokens=1024, messages=messages, tools=tools
+              model="claude-opus-5-5",
+              max_tokens=1024,
+              messages=messages,
+              tools=tools,
           )
 
           if response.stop_reason == "tool_use":

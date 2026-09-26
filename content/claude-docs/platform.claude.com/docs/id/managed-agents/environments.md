@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: a949e89777b79d16660b17f48ab42c6a0fd78bb02f361af62904881ad0fff44f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 30f7a1abb35bb66596bac8c7933c30d481d56632d87c414404d4489c7c4805dd
 ---
 
 ---
@@ -41,7 +41,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply environment.yaml
     ```
@@ -56,7 +56,9 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
           type: unrestricted
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat lingkungan dari `environment.yaml`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui lingkungan ini alih-alih mencoba membuatnya lagi.
+  </CodeGroupItem>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -142,10 +144,6 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
 
   puts "Environment ID: #{environment.id}"
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat lingkungan dari `environment.yaml`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui lingkungan ini alih-alih mencoba membuatnya lagi.
-  </ForLanguage>
 </CodeGroup>
 
 Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu dengan lainnya.
@@ -257,7 +255,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
   EOF
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply environment.yaml
     ```
@@ -279,7 +277,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
           type: unrestricted
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -436,7 +434,7 @@ Contoh berikut membuat environment dengan jaringan `limited`:
     }'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply environment.yaml
     ```
@@ -455,7 +453,7 @@ Contoh berikut membuat environment dengan jaringan `limited`:
           allow_package_managers: true
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   environment = client.beta.environments.create(
@@ -581,7 +579,28 @@ Saat menggunakan jaringan `limited`:
 
 * `allowed_hosts` menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
 * `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`.
-* `allow_package_managers` mengizinkan akses keluar ke registry paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages`; jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registry tercantum dalam `allowed_hosts`.
+* `allow_package_managers` mengizinkan akses keluar ke sekumpulan registry paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts`. Lihat [Host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages`; jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registry tercantum di `allowed_hosts`.
+
+#### Host package manager
+
+Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host berikut selain yang ada di `allowed_hosts`. Anthropic memelihara daftar ini dan dapat mengubahnya.
+
+| Ekosistem    | Host                                                                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Hosting kode | `github.com`, `api.github.com`, `codeload.github.com`, `raw.githubusercontent.com`, `objects.githubusercontent.com`, `release-assets.githubusercontent.com`, `gitlab.com`, `bitbucket.org` |
+| Node.js      | `registry.npmjs.org`, `registry.yarnpkg.com`, `nodejs.org`                                                                                                                                 |
+| Python       | `pypi.org`, `files.pythonhosted.org`                                                                                                                                                       |
+| Rust         | `crates.io`, `index.crates.io`, `static.crates.io`, `static.rust-lang.org`                                                                                                                 |
+| Go           | `proxy.golang.org`, `sum.golang.org`                                                                                                                                                       |
+| Java         | `repo1.maven.org`, `repo.maven.apache.org`, `services.gradle.org`, `plugins.gradle.org`, `plugins-artifacts.gradle.org`                                                                    |
+| Ruby         | `rubygems.org`, `index.rubygems.org`                                                                                                                                                       |
+| PHP          | `packagist.org`, `repo.packagist.org`                                                                                                                                                      |
+| Ubuntu (apt) | `archive.ubuntu.com`, `security.ubuntu.com`, `ppa.launchpad.net`                                                                                                                           |
+| Container    | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
+
+<Warning>
+  Akses jaringan diberikan per host, bukan per operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika environment tidak menentukan `packages`, sebagai gantinya Anda dapat membiarkan `allow_package_managers` tetap bernilai `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts`.
+</Warning>
 
 ## Siklus hidup environment
 

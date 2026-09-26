@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 7bce1627503c12da910937191acc42702f582a57f4ff8edbf0ac23879413eb19
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8efcbfcbdd1a2fc14a6c82577eb29fae799d32d0abd00747f2e1b285e16db57d
 ---
 
 ---
@@ -21,7 +21,7 @@ Alih-alih menangani pemanggilan alat, hasil alat, dan manajemen percakapan secar
 * Menyediakan keamanan tipe dan validasi
 
 <Note>
-  Tool runner masih dalam versi beta dan tersedia di [Python SDK](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/examples/ToolRunnerExample/Program.cs), [Go SDK](https://github.com/anthropics/anthropic-sdk-go/blob/main/tools.md), [Java SDK](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaToolRunnerExample.java), [PHP SDK](https://github.com/anthropics/anthropic-sdk-php/blob/main/examples/beta/beta_tool_runner.php), dan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
+  Tool runner masih dalam tahap beta dan tersedia di [Python SDK](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/examples/ToolRunnerExample/Program.cs), [Go SDK](https://github.com/anthropics/anthropic-sdk-go/blob/main/tools.md), [Java SDK](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaToolRunnerRunnableToolExample.java), [PHP SDK](https://github.com/anthropics/anthropic-sdk-php/blob/main/examples/beta/beta_tool_runner.php), dan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
 </Note>
 
 ## Penggunaan dasar
@@ -357,49 +357,62 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
   </Tab>
 
   <Tab title="Java">
-    Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Beri anotasi `@JsonClassDescription` pada kelas untuk deskripsi alat, dan `@JsonPropertyDescription` pada setiap field publik untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam snake case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)).
+    Definisikan setiap alat sebagai `BetaRunnableTool` yang memasangkan kelas input dengan fungsi yang dijalankan ketika Claude memanggil alat tersebut. Beri anotasi `@JsonClassDescription` pada kelas input untuk deskripsi alat, dan `@JsonPropertyDescription` pada setiap field publik untuk deskripsi parameter. SDK menurunkan skema JSON, nama alat (nama kelas dalam format snake-case), dan parsing input dari kelas tersebut, serta menandai alat dengan `strict: true` ([penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)).
+
+    Fungsi tersebut menerima input yang telah di-parse sebagai instance dari kelas itu dan mengembalikan `BetaToolResultBlockParam.Content`. Untuk mengembalikan teks, bungkus dengan `BetaToolResultBlockParam.Content.ofString()`. Karena fungsi tersebut adalah lambda, fungsi itu dapat menggunakan objek dari aplikasi Anda, seperti `WeatherService` pada contoh berikut.
 
     ```java
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+    import com.anthropic.helpers.BetaRunnableTool;
     import com.anthropic.helpers.BetaToolRunner;
     import com.anthropic.models.beta.messages.BetaMessage;
+    import com.anthropic.models.beta.messages.BetaToolResultBlockParam;
     import com.anthropic.models.beta.messages.MessageCreateParams;
     import com.anthropic.models.messages.Model;
     import com.fasterxml.jackson.annotation.JsonClassDescription;
     import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-    import java.util.function.Supplier;
 
     @JsonClassDescription("Get the current weather in a given location")
-    static class GetWeather implements Supplier<String> {
+    static class GetWeather {
         @JsonPropertyDescription("The city and state, e.g. San Francisco, CA")
         public String location;
 
         @JsonPropertyDescription("Temperature unit, either 'celsius' or 'fahrenheit'")
         public String unit;
-
-        @Override
-        public String get() {
-            return "{\"temperature\": \"20°C\", \"condition\": \"Sunny\"}";
-        }
     }
 
     @JsonClassDescription("Add two numbers together")
-    static class CalculateSum implements Supplier<String> {
+    static class CalculateSum {
         @JsonPropertyDescription("First number")
         public double a;
 
         @JsonPropertyDescription("Second number")
         public double b;
+    }
 
-        @Override
-        public String get() {
-            return String.valueOf(a + b);
+    // Mewakili kelas yang sudah ada di aplikasi Anda,
+    // seperti klien database atau wrapper API.
+    static class WeatherService {
+        String currentWeather(String location, String unit) {
+            return "{\"temperature\": \"20°C\", \"condition\": \"Sunny\"}";
         }
     }
 
     void main() {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+        WeatherService weatherService = new WeatherService();
+
+        // Lambda dapat menggunakan weatherService.
+        BetaRunnableTool getWeather = BetaRunnableTool.of(
+                GetWeather.class,
+                input -> BetaToolResultBlockParam.Content.ofString(
+                        weatherService.currentWeather(input.location, input.unit)));
+
+        BetaRunnableTool calculateSum = BetaRunnableTool.of(
+                CalculateSum.class,
+                input -> BetaToolResultBlockParam.Content.ofString(
+                        String.valueOf(input.a + input.b)));
 
         BetaToolRunner runner = client.beta()
                 .messages()
@@ -408,8 +421,8 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
                         .maxTokens(1024)
                         .addBeta("structured-outputs-2025-11-13")
                         .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
-                        .addTool(GetWeather.class)
-                        .addTool(CalculateSum.class)
+                        .addTool(getWeather)
+                        .addTool(calculateSum)
                         .build());
 
         for (BetaMessage message : runner) {
@@ -583,7 +596,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
 Tool runner adalah iterable yang menghasilkan pesan dari Claude. Pada setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika ya, runner menjalankan alat tersebut dan mengirim hasilnya kembali ke Claude secara otomatis, lalu menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
 
-Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat, atau hingga mencapai `max_iterations` jika Anda mengaturnya.
+Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat, atau hingga mencapai `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) jika Anda mengaturnya.
 
 Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir secara langsung:
 
@@ -715,8 +728,8 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
                     .maxTokens(1024)
                     .addBeta("structured-outputs-2025-11-13")
                     .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
-                    .addTool(GetWeather.class)
-                    .addTool(CalculateSum.class)
+                    .addTool(getWeather)
+                    .addTool(calculateSum)
                     .build());
 
     BetaMessage finalMessage = null;
@@ -815,7 +828,7 @@ Secara default, runner mengelola status percakapan untuk Anda: setelah setiap gi
 
 Anda mengambil alih dengan memodifikasi pesan runner dari dalam badan loop. Metode persisnya bergantung pada SDK. Lihat tab per bahasa berikut ini.
 
-Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop tetap dapat berakhir ketika tidak ada pemanggilan alat, dan berikan `max_iterations` untuk membatasi loop. Ketujuh SDK mendukung `max_iterations`.
+Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop tetap dapat berakhir ketika tidak ada panggilan alat, dan berikan `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) untuk membatasi loop. Ketujuh SDK mendukung `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`).
 
 <Tabs>
   <Tab title="Python">
@@ -1015,12 +1028,12 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
             long doubled = Math.min(current * 2, ceiling);
             IO.println("Response truncated at " + current + " tokens, retrying with " + doubled + ".");
 
-            // Calling setNextParams() flags this turn as user-managed: the runner
-            // does NOT auto-append the truncated message, so the next iteration
-            // re-sends the same conversation prefix with the larger budget.
+            // Memanggil setNextParams() menandai giliran ini sebagai dikelola-pengguna: runner
+            // TIDAK otomatis menambahkan pesan yang terpotong, sehingga iterasi berikutnya
+            // mengirim ulang prefiks percakapan yang sama dengan anggaran yang lebih besar.
             runner.setNextParams(runner.params().toBuilder().maxTokens(doubled).build());
         }
-        // No mutation on a normal turn: the runner auto-appends and continues.
+        // Tidak ada mutasi pada giliran normal: runner otomatis menambahkan dan melanjutkan.
     }
     ```
   </Tab>
@@ -1100,7 +1113,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah menghentikan (deprecated) opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, Java, PHP, dan Ruby memiliki helper `compact_before_next_turn()` untuk compaction sesuai permintaan, yang ditulis dengan konvensi penamaan masing-masing bahasa. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, bukan keduanya.
+Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung "compaction" ([pemadatan](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk)) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah menghentikan (deprecated) opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner di setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, Java, PHP, dan Ruby memiliki helper `compact_before_next_turn()` (typescript, java, php: `compactBeforeNextTurn()`; csharp, go: `CompactBeforeNextTurn()`) untuk compaction sesuai permintaan. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, jangan keduanya.
 
 ### Men-debug eksekusi alat
 
@@ -1249,7 +1262,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
   </Tab>
 
   <Tab title="Java">
-    Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Java SDK. Runner menangkap exception apa pun yang dilempar dari metode `get()` alat dan mengonversinya menjadi hasil alat dengan `is_error: true` secara otomatis. Untuk mengontrol konten error, tangkap exception di dalam alat Anda dan kembalikan string kustom.
+    Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Java SDK. Runner menangkap setiap exception yang dilempar dari fungsi alat dan secara otomatis mengonversinya menjadi hasil alat dengan `is_error: true`. Untuk mengontrol konten error, tangkap exception di dalam fungsi dan kembalikan konten Anda sendiri.
   </Tab>
 
   <Tab title="PHP">
@@ -1423,25 +1436,24 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
   </Tab>
 
   <Tab title="Java">
-    Untuk mengatur `cache_control` pada hasil alat, kembalikan `BetaToolResultBlockParam.Content` dari alat alih-alih `String` dan atur `cacheControl` pada blok teks dalam. Runner saat ini tidak mendukung pengaturan `cache_control` pada blok `tool_result` luar.
+    Untuk mengatur `cache_control` pada hasil alat, bangun `BetaToolResultBlockParam.Content` yang dikembalikan dengan `ofBlocks()` alih-alih `ofString()` dan atur `cacheControl` pada blok teks bagian dalam. Runner saat ini tidak mendukung pengaturan `cache_control` pada blok `tool_result` bagian luar.
 
     ```java
     @JsonClassDescription("Look up reference documentation for a topic")
-    static class SearchDocuments implements Supplier<BetaToolResultBlockParam.Content> {
+    static class SearchDocuments {
         @JsonPropertyDescription("The search query")
         public String query;
-
-        @Override
-        public BetaToolResultBlockParam.Content get() {
-            String largeResult = "..."; // a long document worth caching
-            return BetaToolResultBlockParam.Content.ofBlocks(List.of(
-                    BetaToolResultBlockParam.Content.Block.ofText(
-                            BetaTextBlockParam.builder()
-                                    .text(largeResult)
-                                    .cacheControl(BetaCacheControlEphemeral.builder().build())
-                                    .build())));
-        }
     }
+
+    BetaRunnableTool searchDocuments = BetaRunnableTool.of(SearchDocuments.class, input -> {
+        String largeResult = "..."; // a long document worth caching
+        return BetaToolResultBlockParam.Content.ofBlocks(List.of(
+                BetaToolResultBlockParam.Content.Block.ofText(
+                        BetaTextBlockParam.builder()
+                                .text(largeResult)
+                                .cacheControl(BetaCacheControlEphemeral.builder().build())
+                                .build())));
+    });
     ```
   </Tab>
 
@@ -1675,7 +1687,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
                         .maxTokens(1024)
                         .addBeta("structured-outputs-2025-11-13")
                         .addUserMessage("What is 15 + 27?")
-                        .addTool(CalculateSum.class)
+                        .addTool(calculateSum)
                         .build());
 
         for (StreamResponse<BetaRawMessageStreamEvent> stream : runner.streaming()) {

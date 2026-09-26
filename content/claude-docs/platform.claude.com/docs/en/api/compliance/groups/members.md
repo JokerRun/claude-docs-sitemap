@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 30c50f007136010a9206edb102fa6b2b57071717ba00f6d66f1f567b7d91cbf7
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: d6c6cab1e8aadd7944dade0be2791ee2cf8425ba63171dceb84855f6719cc785
 ---
 
 ---
@@ -30,7 +30,7 @@ List Compliance Group Members
 
   Maximum results (default: 500, max: 1000)
 
-  default: 500, maximum: 1000, minimum: 1
+  default: 500, minimum: 1, maximum: 1000
 
 - `page: optional string`
 

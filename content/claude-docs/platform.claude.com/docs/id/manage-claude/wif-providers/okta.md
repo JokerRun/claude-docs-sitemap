@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9d1af2955283b81ca5f06312971eeb7f6779abdee7d728666fe067b939ab6216
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ec7e8a8aac6d0f8a81873e6477a442d8503c2466d1769d97728c59fc147f6b2e
 ---
 
 ---
@@ -462,7 +462,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 </CodeGroup>
 
-Setiap tab SDK menunjukkan pola callable: Anthropic SDK memanggil kembali penyedia identity token Anda setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fetcher Okta Anda harus mengembalikan token baru pada setiap pemanggilan alih-alih menyimpannya dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
+Setiap tab SDK menunjukkan pola callable: Anthropic SDK memanggil fungsi yang Anda teruskan ke `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`) setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fungsi pengambil token Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
 
 ## Memverifikasi penyiapan
 

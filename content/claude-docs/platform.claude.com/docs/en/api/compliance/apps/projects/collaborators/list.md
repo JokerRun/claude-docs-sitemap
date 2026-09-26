@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: e28676e3bfa6ee26d19f6bfc23a1baef2488496d380aa583bc228cbe991e2357
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a755a057aed730f8fff1524f45fa42e0fc2d61e85bbce833f4ad5ca5573d4077
 ---
 
 ---
@@ -33,7 +33,7 @@ role.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: a4d8a993b08c3eba7f294d3898aca14beea43006170c2cd0d4186a157d9e31f5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 50c45cf4e3251e46602513fdd27d1b7203bb99a7a5759b31066737b2e14c3f40
 ---
 
 ---
@@ -78,7 +78,7 @@ Create an external key config owned by the caller's organization.
 
   Human-friendly display name.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `geo: optional "us"`
 
@@ -238,7 +238,7 @@ Results are ordered by creation time (newest first). Use the
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
@@ -549,7 +549,7 @@ encrypted data requires the original key identity to decrypt.
 
   Human-friendly display name.
 
-  maxLength: 255, minLength: 1
+  minLength: 1, maxLength: 255
 
 - `geo: optional "us" or null`
 

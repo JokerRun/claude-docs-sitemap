@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 01b3f0aafc953de846b8e855ef3fed3db7740d39940698322a5287438bef4008
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: c6fb99726517858be3384f041c4745f1d82d089f3011d621bfb3a88ca8af42d1
 ---
 
 ---
@@ -40,7 +40,7 @@ Contoh-contoh ini menghilangkan field opsional `display_name`, sehingga nama tam
     -F "files[]=@example_skill.zip"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply skills/pr-summary
     ```
@@ -57,7 +57,9 @@ Contoh-contoh ini menghilangkan field opsional `display_name`, sehingga nama tam
       List what changed, why, and anything a reviewer should look at closely, in three short sections.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mengunggah direktori `skills/pr-summary`, mencetak ID skill baru, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya mengunggah suntingan Anda sebagai versi baru alih-alih membuat skill kedua.
+  </CodeGroupItem>
 
   ```python Python
   import anthropic
@@ -201,10 +203,6 @@ Contoh-contoh ini menghilangkan field opsional `display_name`, sehingga nama tam
   puts "Created skill: #{skill.id}"
   puts "Latest version: #{skill.latest_version_id}"
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mengunggah direktori `skills/pr-summary`, mencetak ID skill baru, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya mengunggah suntingan Anda sebagai versi baru alih-alih membuat skill kedua.
-  </ForLanguage>
 </CodeGroup>
 
 Untuk mendaftar, mengambil, menghapus, dan membuat versi skill kustom, lihat [Mengelola skill kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat [referensi API Create Skill](https://platform.claude.com/docs/id/api/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
@@ -245,7 +243,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -266,7 +264,7 @@ Setiap entri dalam array `skills` menggunakan field berikut:
       You are a financial analysis agent.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

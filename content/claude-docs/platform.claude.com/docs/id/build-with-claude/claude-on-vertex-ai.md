@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 0fca913d9ba75fb7ad8da9bd9f513fd3ec266ca7126e3a1db1d7a853a7ec5634
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4d5af5006336b41ee3e532ba106b96338fb2e815bc8673ea1c5c21cf81e99359
 ---
 
 ---
@@ -421,7 +421,7 @@ Endpoint regional dan multi-region dikenakan premi harga 10% di atas endpoint gl
 
 **Menggunakan endpoint global (direkomendasikan):**
 
-Atur parameter `region` ke `"global"` saat menginisialisasi klien:
+Atur parameter `region` (php: `location`) ke `"global"` saat menginisialisasi klien:
 
 <CodeGroup>
   ```bash cURL
@@ -610,7 +610,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` ke pengenal multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan traffic di berbagai region dalam wilayah geografis tersebut.
+Atur parameter `region` (php: `location`) ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan traffic ke berbagai region dalam wilayah geografis tersebut.
 
 <CodeGroup>
   ```bash cURL

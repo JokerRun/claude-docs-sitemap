@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: a7e6f0f34cae8b53459d0258260e2523d705cd055fe294e4bc5c513b7290e00f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 650ff0289cc2988dd1479607c5ed0e491183079c67184c3c0d11f5cd414aa8a8
 ---
 
 ---
@@ -37,7 +37,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
   Maximum results (default: 20, max: 100)
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c1c99e506aa8dc6ce08b632666aebeb77a84da95b4441b7934e39c75a2cb2dd6
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8d7634598c9d4df32048163845fabe6e8ee9ac7b1d269189c4c8772c2006db9e
 ---
 
 ---
@@ -143,34 +143,38 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Buat agen yang mendefinisikan model, "system prompt" (prompt sistem), dan alat yang tersedia.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash cURL
-      set -euo pipefail
+      <CodeGroupItem>
+        ```bash cURL
+        set -euo pipefail
 
-      agent=$(
-        curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
-          -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
-          -H "anthropic-beta: managed-agents-2026-04-01" \
-          -H "content-type: application/json" \
-          -d @- <<'EOF'
-      {
-        "name": "Coding Assistant",
-        "model": "claude-opus-5-5",
-        "system": "You are a helpful coding assistant. Write clean, well-documented code.",
-        "tools": [
-          {"type": "agent_toolset_20260401"}
-        ]
-      }
-      EOF
-      )
+        agent=$(
+          curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-beta: managed-agents-2026-04-01" \
+            -H "content-type: application/json" \
+            -d @- <<'EOF'
+        {
+          "name": "Coding Assistant",
+          "model": "claude-opus-5-5",
+          "system": "You are a helpful coding assistant. Write clean, well-documented code.",
+          "tools": [
+            {"type": "agent_toolset_20260401"}
+          ]
+        }
+        EOF
+        )
 
-      AGENT_ID=$(jq -er '.id' <<<"$agent")
-      AGENT_VERSION=$(jq -er '.version' <<<"$agent")
+        AGENT_ID=$(jq -er '.id' <<<"$agent")
+        AGENT_VERSION=$(jq -er '.version' <<<"$agent")
 
-      echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
-      ```
+        echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
+        ```
 
-      <MultiFileExample language="cli" label="CLI">
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
         ```bash CLI
         ant apply coding-assistant.md
         ```
@@ -187,168 +191,190 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           You are a helpful coding assistant. Write clean, well-documented code.
           ```
         </File>
-      </MultiFileExample>
 
-      <ForLanguage tab="CLI">
         [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) mencetak ID agen dan mencatatnya di `claude-lock.json`. Anda akan mereferensikannya di setiap sesi yang Anda buat.
-      </ForLanguage>
+      </CodeGroupItem>
 
-      ```python Python
-      from anthropic import Anthropic
+      <CodeGroupItem>
+        ```python Python
+        from anthropic import Anthropic
 
-      client = Anthropic()
+        client = Anthropic()
 
-      agent = client.beta.agents.create(
-          name="Coding Assistant",
-          model="claude-opus-5-5",
-          system="You are a helpful coding assistant. Write clean, well-documented code.",
-          tools=[
-              {"type": "agent_toolset_20260401"},
-          ],
-      )
+        agent = client.beta.agents.create(
+            name="Coding Assistant",
+            model="claude-opus-5-5",
+            system="You are a helpful coding assistant. Write clean, well-documented code.",
+            tools=[
+                {"type": "agent_toolset_20260401"},
+            ],
+        )
 
-      print(f"Agent ID: {agent.id}, version: {agent.version}")
-      ```
+        print(f"Agent ID: {agent.id}, version: {agent.version}")
+        ```
 
-      ```typescript TypeScript
-      import Anthropic from "@anthropic-ai/sdk";
-
-      const client = new Anthropic();
-
-      const agent = await client.beta.agents.create({
-        name: "Coding Assistant",
-        model: "claude-opus-5-5",
-        system: "You are a helpful coding assistant. Write clean, well-documented code.",
-        tools: [
-          { type: "agent_toolset_20260401" },
-        ],
-      });
-
-      console.log(`Agent ID: ${agent.id}, version: ${agent.version}`);
-      ```
-
-      ```csharp C#
-      using Anthropic;
-      using Anthropic.Models.Beta.Agents;
-      using Anthropic.Models.Beta.Environments;
-      using Anthropic.Models.Beta.Sessions;
-      using Anthropic.Models.Beta.Sessions.Events;
-
-      var client = new AnthropicClient();
-
-      var agent = await client.Beta.Agents.Create(new()
-      {
-          Name = "Coding Assistant",
-          Model = BetaManagedAgentsModel.ClaudeOpus5_5,
-          System = "You are a helpful coding assistant. Write clean, well-documented code.",
-          Tools =
-          [
-              new BetaManagedAgentsAgentToolset20260401Params
-              {
-                  Type = "agent_toolset_20260401",
-              },
-          ],
-      });
-
-      Console.WriteLine($"Agent ID: {agent.ID}, version: {agent.Version}");
-      ```
-
-      ```go Go
-      package main
-
-      import (
-      	"context"
-      	"fmt"
-
-      	"github.com/anthropics/anthropic-sdk-go"
-      )
-
-      func main() {
-      	client := anthropic.NewClient()
-      	ctx := context.Background()
-
-      	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
-      		Name: "Coding Assistant",
-      		Model: anthropic.BetaManagedAgentsModelConfigParams{
-      			ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
-      		},
-      		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
-      		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-      			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-      				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-      			},
-      		}},
-      	})
-      	if err != nil {
-      		panic(err)
-      	}
-
-      	fmt.Printf("Agent ID: %s, version: %d\n", agent.ID, agent.Version)
-      ```
-
-      ```java Java
-      import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-      import com.anthropic.models.beta.agents.AgentCreateParams;
-      import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
-      import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
-      import com.anthropic.models.beta.environments.BetaCloudConfigParams;
-      import com.anthropic.models.beta.environments.BetaUnrestrictedNetwork;
-      import com.anthropic.models.beta.environments.EnvironmentCreateParams;
-      import com.anthropic.models.beta.sessions.SessionCreateParams;
-      import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
-      import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
-      import com.anthropic.models.beta.sessions.events.EventSendParams;
-
-      void main() {
-          var client = AnthropicOkHttpClient.fromEnv();
-
-          var agent = client.beta().agents().create(AgentCreateParams.builder()
-              .name("Coding Assistant")
-              .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-              .system("You are a helpful coding assistant. Write clean, well-documented code.")
-              .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build())
-              .build());
-
-          IO.println("Agent ID: " + agent.id() + ", version: " + agent.version());
-      ```
-
-      ```php PHP
-      use Anthropic\Client;
-
-      $client = new Client();
-
-      $agent = $client->beta->agents->create(
-          name: 'Coding Assistant',
-          model: 'claude-opus-5-5',
-          system: 'You are a helpful coding assistant. Write clean, well-documented code.',
-          tools: [
-              ['type' => 'agent_toolset_20260401'],
-          ],
-      );
-
-      echo "Agent ID: {$agent->id}, version: {$agent->version}\n";
-      ```
-
-      ```ruby Ruby
-      require "anthropic"
-
-      client = Anthropic::Client.new
-
-      agent = client.beta.agents.create(
-        name: "Coding Assistant",
-        model: "claude-opus-5-5",
-        system_: "You are a helpful coding assistant. Write clean, well-documented code.",
-        tools: [{type: "agent_toolset_20260401"}]
-      )
-
-      puts "Agent ID: #{agent.id}, version: #{agent.version}"
-      ```
-
-      <ForLanguage not="CLI">
         Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
-      </ForLanguage>
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```typescript TypeScript
+        import Anthropic from "@anthropic-ai/sdk";
+
+        const client = new Anthropic();
+
+        const agent = await client.beta.agents.create({
+          name: "Coding Assistant",
+          model: "claude-opus-5-5",
+          system: "You are a helpful coding assistant. Write clean, well-documented code.",
+          tools: [
+            { type: "agent_toolset_20260401" },
+          ],
+        });
+
+        console.log(`Agent ID: ${agent.id}, version: ${agent.version}`);
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```csharp C#
+        using Anthropic;
+        using Anthropic.Models.Beta.Agents;
+        using Anthropic.Models.Beta.Environments;
+        using Anthropic.Models.Beta.Sessions;
+        using Anthropic.Models.Beta.Sessions.Events;
+
+        var client = new AnthropicClient();
+
+        var agent = await client.Beta.Agents.Create(new()
+        {
+            Name = "Coding Assistant",
+            Model = BetaManagedAgentsModel.ClaudeOpus5_5,
+            System = "You are a helpful coding assistant. Write clean, well-documented code.",
+            Tools =
+            [
+                new BetaManagedAgentsAgentToolset20260401Params
+                {
+                    Type = "agent_toolset_20260401",
+                },
+            ],
+        });
+
+        Console.WriteLine($"Agent ID: {agent.ID}, version: {agent.Version}");
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```go Go
+        package main
+
+        import (
+        	"context"
+        	"fmt"
+
+        	"github.com/anthropics/anthropic-sdk-go"
+        )
+
+        func main() {
+        	client := anthropic.NewClient()
+        	ctx := context.Background()
+
+        	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+        		Name: "Coding Assistant",
+        		Model: anthropic.BetaManagedAgentsModelConfigParams{
+        			ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
+        		},
+        		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
+        		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
+        			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+        				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+        			},
+        		}},
+        	})
+        	if err != nil {
+        		panic(err)
+        	}
+
+        	fmt.Printf("Agent ID: %s, version: %d\n", agent.ID, agent.Version)
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```java Java
+        import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+        import com.anthropic.models.beta.agents.AgentCreateParams;
+        import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
+        import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
+        import com.anthropic.models.beta.environments.BetaCloudConfigParams;
+        import com.anthropic.models.beta.environments.BetaUnrestrictedNetwork;
+        import com.anthropic.models.beta.environments.EnvironmentCreateParams;
+        import com.anthropic.models.beta.sessions.SessionCreateParams;
+        import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
+        import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
+        import com.anthropic.models.beta.sessions.events.EventSendParams;
+
+        void main() {
+            var client = AnthropicOkHttpClient.fromEnv();
+
+            var agent = client.beta().agents().create(AgentCreateParams.builder()
+                .name("Coding Assistant")
+                .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
+                .system("You are a helpful coding assistant. Write clean, well-documented code.")
+                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+                    .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                    .build())
+                .build());
+
+            IO.println("Agent ID: " + agent.id() + ", version: " + agent.version());
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```php PHP
+        use Anthropic\Client;
+
+        $client = new Client();
+
+        $agent = $client->beta->agents->create(
+            name: 'Coding Assistant',
+            model: 'claude-opus-5-5',
+            system: 'You are a helpful coding assistant. Write clean, well-documented code.',
+            tools: [
+                ['type' => 'agent_toolset_20260401'],
+            ],
+        );
+
+        echo "Agent ID: {$agent->id}, version: {$agent->version}\n";
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```ruby Ruby
+        require "anthropic"
+
+        client = Anthropic::Client.new
+
+        agent = client.beta.agents.create(
+          name: "Coding Assistant",
+          model: "claude-opus-5-5",
+          system_: "You are a helpful coding assistant. Write clean, well-documented code.",
+          tools: [{type: "agent_toolset_20260401"}]
+        )
+
+        puts "Agent ID: #{agent.id}, version: #{agent.version}"
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
     </CodeGroup>
 
     Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
@@ -358,30 +384,34 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Environment mendefinisikan sandbox tempat agen Anda berjalan.
 
     <CodeGroup defaultLanguage="CLI">
-      ```bash cURL
-      environment=$(
-        curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
-          -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
-          -H "anthropic-beta: managed-agents-2026-04-01" \
-          -H "content-type: application/json" \
-          -d @- <<'EOF'
-      {
-        "name": "quickstart-env",
-        "config": {
-          "type": "cloud",
-          "networking": {"type": "unrestricted"}
+      <CodeGroupItem>
+        ```bash cURL
+        environment=$(
+          curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-beta: managed-agents-2026-04-01" \
+            -H "content-type: application/json" \
+            -d @- <<'EOF'
+        {
+          "name": "quickstart-env",
+          "config": {
+            "type": "cloud",
+            "networking": {"type": "unrestricted"}
+          }
         }
-      }
-      EOF
-      )
+        EOF
+        )
 
-      ENVIRONMENT_ID=$(jq -er '.id' <<<"$environment")
+        ENVIRONMENT_ID=$(jq -er '.id' <<<"$environment")
 
-      echo "Environment ID: $ENVIRONMENT_ID"
-      ```
+        echo "Environment ID: $ENVIRONMENT_ID"
+        ```
 
-      <MultiFileExample language="cli" label="CLI">
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
         ```bash CLI
         ant apply environment.yaml
         ```
@@ -396,96 +426,118 @@ export ANTHROPIC_API_KEY="your-api-key-here"
               type: unrestricted
           ```
         </File>
-      </MultiFileExample>
 
-      <ForLanguage tab="CLI">
         [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) juga mencatat ID environment di `claude-lock.json`. Untuk membuat agen dan environment dengan satu perintah, berikan kedua file: `ant apply coding-assistant.md environment.yaml`.
-      </ForLanguage>
+      </CodeGroupItem>
 
-      ```python Python
-      environment = client.beta.environments.create(
-          name="quickstart-env",
-          config={
-              "type": "cloud",
-              "networking": {"type": "unrestricted"},
-          },
-      )
+      <CodeGroupItem>
+        ```python Python
+        environment = client.beta.environments.create(
+            name="quickstart-env",
+            config={
+                "type": "cloud",
+                "networking": {"type": "unrestricted"},
+            },
+        )
 
-      print(f"Environment ID: {environment.id}")
-      ```
+        print(f"Environment ID: {environment.id}")
+        ```
 
-      ```typescript TypeScript
-      const environment = await client.beta.environments.create({
-        name: "quickstart-env",
-        config: {
-          type: "cloud",
-          networking: { type: "unrestricted" },
-        },
-      });
-
-      console.log(`Environment ID: ${environment.id}`);
-      ```
-
-      ```csharp C#
-      var environment = await client.Beta.Environments.Create(new()
-      {
-          Name = "quickstart-env",
-          Config = new BetaCloudConfigParams { Networking = new BetaUnrestrictedNetwork() },
-      });
-
-      Console.WriteLine($"Environment ID: {environment.ID}");
-      ```
-
-      ```go Go
-      environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
-      	Name: "quickstart-env",
-      	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
-      		OfCloud: &anthropic.BetaCloudConfigParams{
-      			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-      				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
-      			},
-      		},
-      	},
-      })
-      if err != nil {
-      	panic(err)
-      }
-
-      fmt.Printf("Environment ID: %s\n", environment.ID)
-      ```
-
-      ```java Java
-      var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
-          .name("quickstart-env")
-          .config(BetaCloudConfigParams.builder()
-              .networking(BetaUnrestrictedNetwork.builder().build())
-              .build())
-          .build());
-
-      IO.println("Environment ID: " + environment.id());
-      ```
-
-      ```php PHP
-      $environment = $client->beta->environments->create(
-          name: 'quickstart-env',
-          config: ['type' => 'cloud', 'networking' => ['type' => 'unrestricted']],
-      );
-
-      echo "Environment ID: {$environment->id}\n";
-      ```
-
-      ```ruby Ruby
-      environment = client.beta.environments.create(
-        name: "quickstart-env",
-        config: {type: "cloud", networking: {type: "unrestricted"}}
-      )
-
-      puts "Environment ID: #{environment.id}"
-      ```
-
-      <ForLanguage not="CLI">
         Simpan juga `environment.id` yang dikembalikan.
-      </ForLanguage>
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```typescript TypeScript
+        const environment = await client.beta.environments.create({
+          name: "quickstart-env",
+          config: {
+            type: "cloud",
+            networking: { type: "unrestricted" },
+          },
+        });
+
+        console.log(`Environment ID: ${environment.id}`);
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```csharp C#
+        var environment = await client.Beta.Environments.Create(new()
+        {
+            Name = "quickstart-env",
+            Config = new BetaCloudConfigParams { Networking = new BetaUnrestrictedNetwork() },
+        });
+
+        Console.WriteLine($"Environment ID: {environment.ID}");
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```go Go
+        environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
+        	Name: "quickstart-env",
+        	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
+        		OfCloud: &anthropic.BetaCloudConfigParams{
+        			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
+        				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+        			},
+        		},
+        	},
+        })
+        if err != nil {
+        	panic(err)
+        }
+
+        fmt.Printf("Environment ID: %s\n", environment.ID)
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```java Java
+        var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
+            .name("quickstart-env")
+            .config(BetaCloudConfigParams.builder()
+                .networking(BetaUnrestrictedNetwork.builder().build())
+                .build())
+            .build());
+
+        IO.println("Environment ID: " + environment.id());
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```php PHP
+        $environment = $client->beta->environments->create(
+            name: 'quickstart-env',
+            config: ['type' => 'cloud', 'networking' => ['type' => 'unrestricted']],
+        );
+
+        echo "Environment ID: {$environment->id}\n";
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      <CodeGroupItem>
+        ```ruby Ruby
+        environment = client.beta.environments.create(
+          name: "quickstart-env",
+          config: {type: "cloud", networking: {type: "unrestricted"}}
+        )
+
+        puts "Environment ID: #{environment.id}"
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
     </CodeGroup>
 
     <Tip>
@@ -609,7 +661,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Kirim pesan dan lakukan streaming respons">
-    Buka stream, kirim event pengguna, lalu proses event saat event tersebut tiba:
+    Buka stream, kirim event pengguna, lalu proses event saat tiba:
 
     <CodeGroup>
       ```bash cURL

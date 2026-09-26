@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0c5e7cf6045186e1b17eb9f7bcff8a6984e422144c7d25c4950b92fe46b89cac
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 67681efdeefa620bee61435d57bb9f7d9352ad00574b3e1007dfeebf153dd43d
 ---
 
 ---
@@ -83,7 +83,7 @@ To have Anthropic use your encryption key, you must configure an Anthropic multi
     The `--tags` option adds the organization tag, `anthropic-org-<ORGANIZATION_UUID>` with the value `true`, where `<ORGANIZATION_UUID>` is your Anthropic organization ID in lowercase. The tag is required for Anthropic to validate the key.
 
     <Note>
-      **Finding your organization ID:** Copy the **Organization ID** field under **Settings > Organization** in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/admin-api/organization/get-me) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
+      **Finding your organization ID:** Copy the **Organization ID** field under **Settings > Organization** in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/beta/organization/retrieve) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
     </Note>
 
     ```bash

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 894c1cbaaaeb1a24647233f0ebc13e50b03160c8cd4bff309f9f620e4668bf2b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6a0c1cc0f6685bcb3e190047a963f81758e62506e609a6483d69a76a7ebd7e7b
 ---
 
 ---
@@ -150,13 +150,13 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `archived_at: string or null`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was archived. Null if it is not archived.
 
     format: date-time
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    RFC 3339 datetime string indicating when the tunnel was created.
 
     format: date-time
 

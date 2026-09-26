@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 849d22d4e00fb0736adcc18c38fccc4f1b2d07dab1dbb7341adbe90acfec3cb5
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 33eabb6ef7e7c299ad09de35e53133c22d592581132a8eb1fa0fcfdc33323784
 ---
 
 ---
@@ -61,7 +61,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
   AGENT_VERSION=$(jq -r '.version' <<< "$agent")
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply coding-assistant.md
     ```
@@ -78,7 +78,9 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
       You are a helpful coding agent.
       ```
     </File>
-  </MultiFileExample>
+
+    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent from `coding-assistant.md`, prints its ID, and records it in `claude-lock.json`. Commit `claude-lock.json` so the next `ant apply` updates this agent instead of creating a second one.
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -170,10 +172,6 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
     tools: [{type: "agent_toolset_20260401"}]
   )
   ```
-
-  <ForLanguage tab="CLI">
-    [`ant apply`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply) creates the agent from `coding-assistant.md`, prints its ID, and records it in `claude-lock.json`. Commit `claude-lock.json` so the next `ant apply` updates this agent instead of creating a second one.
-  </ForLanguage>
 </CodeGroup>
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields, and fills in `model` fields you omit, such as `effort`, with their defaults. The `version` starts at 1 and increments each time an update changes the agent.
@@ -241,7 +239,7 @@ The following example pins an agent to US inference and prints the `inference_ge
   echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply geo-pinned-assistant.md
     ```
@@ -258,7 +256,7 @@ The following example pins an agent to US inference and prints the `inference_ge
       You are a helpful assistant.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -383,7 +381,7 @@ With the CLI, edit the agent's file and run `ant apply` again; apply supplies `v
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply coding-assistant.md
     ```
@@ -400,7 +398,7 @@ With the CLI, edit the agent's file and run `ant apply` again; apply supplies `v
       You are a helpful coding agent. Always write tests.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   updated_agent = client.beta.agents.update(

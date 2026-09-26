@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 48c1ecfec89d18b2cc0b679bcbe52b9a7e06d797fef6c5dda36c3ee6f582ed62
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 1c25cc7bb3d930c84ea7a07cef33a6cfa692fcb85ac1f43778260b55fd8c4bfd
 ---
 
 ---
@@ -72,7 +72,7 @@ When [defining your agent](https://platform.claude.com/docs/en/managed-agents/ag
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply engineering-lead.md reviewer.md test-writer.md
     ```
@@ -116,7 +116,7 @@ When [defining your agent](https://platform.claude.com/docs/en/managed-agents/ag
       You write unit tests.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   coordinator = client.beta.agents.create(
@@ -452,7 +452,7 @@ Create the researcher, which declares the GitHub MCP server, and the coordinator
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply coordinator.md researcher.md
     ```
@@ -487,7 +487,7 @@ Create the researcher, which declares the GitHub MCP server, and the coordinator
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   research_agent = client.beta.agents.create(

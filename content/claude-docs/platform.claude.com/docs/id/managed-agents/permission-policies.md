@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 3260d25bc93925a1e488b5f2a3e5c96d2a090e06e2cfaab4c2e3554a639f480c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ffc7949bc840a320693c4733867f27eabee1c22827c6b175cf3bffc9b6a6921c
 ---
 
 ---
@@ -60,7 +60,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
     }')
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -78,7 +78,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -252,7 +252,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
     }')
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -276,7 +276,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(
@@ -502,7 +502,7 @@ Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `na
   ]'
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -524,7 +524,7 @@ Gunakan array `configs` untuk mengganti default untuk alat individual. Nilai `na
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   tools = [
@@ -728,7 +728,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
     }')
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply agent.md
     ```
@@ -759,7 +759,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
       ---
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

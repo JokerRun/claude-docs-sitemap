@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: a6c3937a41bce1778e772bf278d9735b96d56ad013d5c83185b91808c81b5637
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: ab8ab884bba3e5c5df2573d2cedc53524feac91a1df5bdcd8a83f33a8b21c926
 ---
 
 ---
@@ -38,7 +38,7 @@ List Workspaces
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 277297b86d0684b1ae2e8cbcb6f4496674b6d183414b76072cbf2548b2e3941b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 79aed6eefc7b3d985d91d9ab3f3788df7925ec449a289d686ca03b17e7b1df72
 ---
 
 ---
@@ -28,7 +28,7 @@ Update API Key
 
   Name of the API key.
 
-  maxLength: 500, minLength: 1
+  minLength: 1, maxLength: 500
 
 - `status: optional "active" or "archived" or "inactive" or null`
 

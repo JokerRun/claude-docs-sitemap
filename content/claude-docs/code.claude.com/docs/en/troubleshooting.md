@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: d331f1f3d7c1ee691234def6a82f0b4e121d5095c78b6567c66f7cf0002b8d71
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: a776a2b327507f7af812aaea4b61d9778aa6ef43db503cf590acaa829ee143de
 ---
 
 > ## Documentation Index
@@ -24,6 +24,7 @@ This page covers performance, stability, and search problems once Claude Code is
 | Session started in auto mode, or Claude edits files and runs commands without asking                                                                 | [Which mode a session starts in](/docs/en/permission-modes#which-mode-a-session-starts-in)    |
 | `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](/docs/en/errors)                                                            |
 | `model not found` or `you may not have access to it`                                                                                                 | [Error reference](/docs/en/errors#theres-an-issue-with-the-selected-model)                    |
+| A command Claude runs fails with `Your disk quota is full`, `is full (ENOSPC)`, or `Command output was lost`                                         | [Error reference](/docs/en/errors#disk-quota-or-temp-filesystem-is-full)                      |
 | VS Code extension not connecting or detecting Claude                                                                                                 | [VS Code integration](/docs/en/vs-code#fix-common-issues)                                     |
 | `Claude Code process exited with code 1` in VS Code or an SDK app                                                                                    | [Error reference](/docs/en/errors#claude-code-process-exited-with-code-n)                     |
 | JetBrains plugin or IDE not detected                                                                                                                 | [JetBrains integration](/docs/en/jetbrains#troubleshooting)                                   |

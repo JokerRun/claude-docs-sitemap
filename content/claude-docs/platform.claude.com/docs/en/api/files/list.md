@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/list
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: b933d02ac805ff816f54c744977dd50de2203cc2384b890e4829396d9453381b
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4bd49a066e5abf7ce4cbf5e11d83ba3f5d5224909a86f79438292b7a068fc116
 ---
 
 ---
@@ -28,7 +28,7 @@ List Files
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-  default: 20, maximum: 1000, minimum: 1
+  default: 20, minimum: 1, maximum: 1000
 
 - `page: optional string`
 
@@ -70,13 +70,13 @@ List Files
 
     Original filename of the uploaded file.
 
-    maxLength: 500, minLength: 1
+    minLength: 1, maxLength: 500
 
   - `mime_type: string`
 
     MIME type of the file.
 
-    maxLength: 255, minLength: 1
+    minLength: 1, maxLength: 255
 
   - `size_bytes: number`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 367f9563fbfbf7e91a2d2e243a0555f4a5336d3086128c60e08e440d511c9d9c
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 8a2480c4a8c7f731d4015e58d760d51ef21d2c316e36576341320198697ba86d
 ---
 
 > ## Documentation Index
@@ -313,6 +313,10 @@ Run `/tui fullscreen` to switch and save the preference. Your conversation relau
   }
   ```
 </CodeGroup>
+
+## Cap response width in wide terminals
+
+In a wide terminal, each line of prose in Claude's responses runs the full width of the window. To wrap the prose at a set number of columns instead, set [`maxProseWidth`](/docs/en/settings-reference#maxprosewidth) in your settings.
 
 ## Paste large content
 

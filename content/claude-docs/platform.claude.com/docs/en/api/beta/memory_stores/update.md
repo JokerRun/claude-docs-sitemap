@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9782973ce725cbdf4464d6db4bab336b214d90e9136ac0616707c77ea14d5e0e
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 4891155ee32fb4df08ef7502b96a188b74b725e70b515ff46dd3bd6fe736ec1f
 ---
 
 ---
@@ -166,7 +166,7 @@ Update a memory store
 
   - `created_at: string`
 
-    A timestamp in RFC 3339 format
+    Timestamp when the store was created.
 
     format: date-time
 
@@ -176,13 +176,13 @@ Update a memory store
 
   - `updated_at: string`
 
-    A timestamp in RFC 3339 format
+    Timestamp when the store's `name`, `description`, or `metadata` was last modified. Memory writes inside the store do not advance this.
 
     format: date-time
 
   - `archived_at: optional string or null`
 
-    A timestamp in RFC 3339 format
+    Timestamp when the store was archived, or `null` if active. Set once and never cleared; archiving is one-way. Archived stores are read-only and cannot be attached to new sessions.
 
     format: date-time
 

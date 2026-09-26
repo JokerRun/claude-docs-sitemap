@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 0e0edb0c2b7b12f76538d221a1161e6b7948addad00b27f018b43f2a821cb194
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 6be1aebe6111eb33c8ec7c3ec54a7f8d085eb0df053994dd892d53ffe219ac59
 ---
 
 ---
@@ -56,7 +56,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   )
   ```
 
-  <MultiFileExample language="cli" label="CLI">
+  <CodeGroupItem>
     ```bash CLI
     ant apply code-reviewer.md
     ```
@@ -79,7 +79,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
       You are a code review assistant with access to GitHub.
       ```
     </File>
-  </MultiFileExample>
+  </CodeGroupItem>
 
   ```python Python
   agent = client.beta.agents.create(

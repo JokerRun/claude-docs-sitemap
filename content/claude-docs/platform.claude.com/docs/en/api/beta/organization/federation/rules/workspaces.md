@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: ee3a4d986778567a95e54fa1525274230af5feb699059f36c8c8fc71e9ce321f
+fetched_at: 2026-09-26T02:19:50.539049Z
+sha256: 84d3739b8d60d989f8a9b4f39ba898fd3f492057fa3b5d35c5401495deaf6fd8
 ---
 
 ---
@@ -228,7 +228,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   Number of results per page.
 
-  default: 20, maximum: 100, minimum: 1
+  default: 20, minimum: 1, maximum: 100
 
 - `page: optional string`
 
