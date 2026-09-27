@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 20dd9b01257078204dd161f3bab1fc190b45ba21c32e8d0ae8a884a61cd086b6
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: abbf8dc783aa0cc5cd536c1f3213a2f0526d4e4e126598f2728f0f2fdfe646f6
 ---
 
 > ## Documentation Index
@@ -61,7 +61,7 @@ Learn more: [Auto memory](/docs/en/memory#auto-memory)
 
 ### Auto mode
 
-A [permission mode](#permission-mode) where a separate classifier model reviews actions instead of you, so Claude Code runs most of them without asking you. Claude Code still asks you before actions your explicit ask rules match. On Pro, Max, and Team plans, auto mode is the [built-in starting permission mode](/docs/en/permission-modes#which-mode-a-session-starts-in) for interactive terminal and VS Code sessions. The classifier blocks scope escalation, untrusted infrastructure, and [prompt injection](#prompt-injection). Tool results are stripped from what it sees, so hostile content in a file or web page can't manipulate it directly.
+A [permission mode](#permission-mode) where a separate classifier model reviews actions instead of you, so Claude Code runs most of them without asking you. Claude Code still asks you before actions your explicit ask rules match. With Claude Code v2.1.283 or later, auto mode is the [built-in starting permission mode](/docs/en/permission-modes#which-mode-a-session-starts-in) for interactive terminal and VS Code sessions, and on earlier versions only on Pro, Max, and Team plans. The classifier blocks scope escalation, untrusted infrastructure, and [prompt injection](#prompt-injection). Tool results are stripped from what it sees, so hostile content in a file or web page can't manipulate it directly.
 
 Learn more: [Eliminate prompts with auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode)
 

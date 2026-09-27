@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e7aa08a37af70d5587714388571c257ac12ed679ef45b3b38e7bf53b5e956bfa
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: 72d4a8d8125dd56584f0bb7bcf4280669a345b7a90e4f35b76527f8ad4c5cc02
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ To control which tools Claude can use and when it asks first, configure [permiss
 To add custom tools, connect an [MCP server](/docs/en/mcp). To extend Claude with reusable prompt-based workflows, write a [skill](/docs/en/skills), which runs through the existing `Skill` tool rather than adding a new tool entry.
 
 <Info>
-  On Pro, Max, and Team plans, Claude Code starts sessions in [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode), where a classifier decides most of these prompts instead of you. The `Permission required` column shows whether the tool prompts in [Manual mode](/docs/en/permission-modes) for paths inside the working directory. File-access tools marked No, including `Read`, `Grep`, and `Glob`, still prompt for paths outside the [working directory and additional directories](/docs/en/permissions#working-directories). `Bash` is marked Yes but runs a built-in set of [read-only commands](/docs/en/permissions#read-only-commands) without prompting.
+  In [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode), a classifier decides most permission prompts instead of you. The `Permission required` column shows whether the tool prompts in [Manual mode](/docs/en/permission-modes) for paths inside the working directory. File-access tools marked No, including `Read`, `Grep`, and `Glob`, still prompt for paths outside the [working directory and additional directories](/docs/en/permissions#working-directories). `Bash` is marked Yes but runs a built-in set of [read-only commands](/docs/en/permissions#read-only-commands) without prompting.
 </Info>
 
 | Tool                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Permission required |

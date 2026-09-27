@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 29faa904f44b0600d86c921668265867ceb3aac0a68c2a7949e4352d7c6d2265
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: 259275a1ada5113aa2bb762f9cfec7eb845a3b1251e6b92f7540bfa44b393313
 ---
 
 > ## Documentation Index
@@ -108,7 +108,7 @@ For more ideas on what you can do with Claude Code, see [Common workflows](/docs
 
 The prompt box supports several features:
 
-* **Permission modes**: click the mode indicator at the bottom of the prompt box to switch permission modes. On Pro, Max, and Team plans, Auto is the built-in starting permission mode. See [how the extension chooses the starting permission mode](/docs/en/permission-modes#switch-permission-modes) for what changes that, and every permission mode the indicator offers.
+* **Permission modes**: click the mode indicator at the bottom of the prompt box to switch permission modes. With Claude Code v2.1.283 or later, Auto is the built-in starting permission mode, and on earlier versions only on Pro, Max, and Team plans. See [how the extension chooses the starting permission mode](/docs/en/permission-modes#switch-permission-modes) for what changes that, and every permission mode the indicator offers.
   * **Auto**: a classifier reviews most actions instead of asking you. See [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for what it reviews and blocks.
   * **Manual**: Claude asks permission before file edits and most shell commands.
   * **Plan**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full Markdown document where you can add inline comments to give feedback before Claude begins.
@@ -475,7 +475,7 @@ The extension also handles `vscode://anthropic.claude-code/install-plugin`, whic
 The extension has two types of settings:
 
 * **Extension settings** in VS Code: control the extension's behavior within VS Code. Open with `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux), then go to Extensions → Claude Code. You can also type `/` and select **General config…** to open settings.
-* **Claude Code settings** in `~/.claude/settings.json`: shared between the extension and CLI. Use it for allowed commands, environment variables, hooks, and MCP servers. On Pro, Max, and Team plans, it's also one input to the permission mode conversations start in. [Switch permission modes](/docs/en/permission-modes#switch-permission-modes) lists the order. See [Settings](/docs/en/settings) for details.
+* **Claude Code settings** in `~/.claude/settings.json`: shared between the extension and CLI. Use it for allowed commands, environment variables, hooks, and MCP servers. With Claude Code v2.1.283 or later, it's also one input to the permission mode conversations start in, and on earlier versions only on Pro, Max, and Team plans. [Switch permission modes](/docs/en/permission-modes#switch-permission-modes) lists the order. See [Settings](/docs/en/settings) for details.
 
 <Tip>
   Add `"$schema": "https://json.schemastore.org/claude-code-settings.json"` to your `settings.json` to get autocomplete and inline validation for all available settings directly in VS Code.

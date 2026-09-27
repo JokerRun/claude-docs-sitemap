@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 835dcb9e572078d504654a0beccb65bbfbb5f294f566bb59347bbf001d85c625
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: f1fd2bc842574eb858fb073473a5ce15e10db8da602ec1419cc2a5894c5c44b9
 ---
 
 > ## Documentation Index
@@ -1479,11 +1479,11 @@ The three rule arrays share one syntax; see [Permission rule syntax](#permission
 
 ### `useAutoModeDuringPlan`
 
-Choose whether Claude Code uses the auto mode classifier to review shell commands in plan mode. With the default `true`, the classifier reviews each command during planning when auto mode is available and you see no prompt. Set `false` to get a permission prompt for every command outside the built-in read-only set. Appears in `/config` as **Use auto mode during plan**.
+Choose whether Claude Code uses the auto mode classifier to review shell commands in plan mode. With the default `true`, the classifier reviews each command during planning when auto mode is available and you see no prompt, except for [critical-path removals](/docs/en/permission-modes#critical-paths). Set `false` to get a permission prompt for every command outside the built-in read-only set. Appears in `/config` as **Use auto mode during plan**.
 
 * **Scope**: [`User, local, or managed`](#scopes). A repository can't turn it off for you.
 * **Type**: Boolean
-  * `true`: the same as unset; when auto mode is available, the classifier reviews each shell command during planning instead of prompting you for it. A `false` in any of these files still turns it off
+  * `true`: the same as unset; when auto mode is available, the classifier reviews each shell command during planning instead of prompting you for it, except [critical-path removals](/docs/en/permission-modes#critical-paths). A `false` in any of these files still turns it off
   * `false`: you get a permission prompt for every command outside the built-in read-only set
 * **Default**: `true`
 
@@ -1625,7 +1625,7 @@ When the session's working directory is a linked [git worktree](/docs/en/worktre
 
 ### `permissions.defaultMode`
 
-Set the [permission mode](/docs/en/permission-modes) new sessions start in. When you leave it unset, sessions start in the [built-in default](/docs/en/permission-modes#which-mode-a-session-starts-in) for your plan and surface.
+Set the [permission mode](/docs/en/permission-modes) new sessions start in. When you leave it unset, sessions start in the [built-in default](/docs/en/permission-modes#which-mode-a-session-starts-in) for your surface.
 
 * **Scope**: [`Any file`](#scopes). `auto` and `bypassPermissions` don't take effect from project or local settings, so set them in `~/.claude/settings.json` instead. Before v2.1.257, `bypassPermissions` took effect from any file. For conversations the VS Code extension starts, Claude Code reads only user, managed, and `--settings` values.
 * **Type**: string, one of:
@@ -2878,6 +2878,7 @@ This example turns off automatic compaction and routes API requests through a pr
 * [`CLAUDE_CODE_PROJECT_DIR_NAME`](/docs/en/sessions#name-the-project-directory-yourself), which Claude Code reads from the launch environment only, is ignored from every file; requires v2.1.234 or later.
 * [`CLAUDE_CODE_RESTRICTED`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, is ignored from every file.
 * [`CLAUDE_CODE_DISABLE_POWERSHELL_CMD_RM_DENY`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, is ignored from every file. The variable requires Claude Code v2.1.283 or later.
+* [`CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT` and `CLAUDE_CODE_DISABLE_SUBSTITUTION_RM_PROMPT`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, are ignored from every file.
 
 ### `fileCheckpointingEnabled`
 

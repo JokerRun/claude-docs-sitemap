@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: af5154b1698edc47246ec342bedfce808a7fa8a420e99a101c6c41280d96ec8a
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: 96616b07334bae265303c86f3d687126aafbe3d8d9c8d3c90e270655f255f4b7
 ---
 
 > ## Documentation Index
@@ -570,7 +570,7 @@ Managed-settings restrictions apply to every subagent regardless of how it is de
 
 #### Permission modes
 
-Set `permissionMode` to choose the permission mode a subagent runs in. Use the modes' config values, so Manual mode is `default`. If you leave it unset, the subagent inherits the main conversation's mode, which starts as [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) on Pro, Max, and Team plans unless your settings or your organization change it.
+Set `permissionMode` to choose the permission mode a subagent runs in. Use the modes' config values, so Manual mode is `default`. If you leave it unset, the subagent inherits the main conversation's [permission mode](/docs/en/permission-modes).
 
 The main conversation's permission mode decides whether Claude Code uses the value you set:
 

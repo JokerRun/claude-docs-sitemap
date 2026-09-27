@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 78536e44351a6f021d9af6ec1599d9dbbc14866960d0daadde15358bcedb7c23
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: c0515ced5ea4433f46ee2a3d0567d80429a5e273ebaeddc83bd62b22867c738d
 ---
 
 > ## Documentation Index
@@ -63,6 +63,8 @@ Cloud sessions need access to your GitHub repositories to clone code and push br
 Installing the Claude GitHub App on a repository also enables [Auto-fix](#auto-fix-pull-requests) for pull requests in it.
 
 Threads in a [project](/docs/en/claude-projects) need the Claude GitHub App installed on each repository they clone, whichever method you connected with. See [Set up GitHub access](/docs/en/claude-projects#set-up-github-access).
+
+In Anthropic-hosted environments, your GitHub credentials stay encrypted on Anthropic's servers and never enter a session's VM. GitHub operations from the VM go through the [GitHub proxy](/docs/en/cloud-environments#github-proxy), which attaches the credential on the server side.
 
 For how `/schedule` checks repository access before creating a routine, see [Repositories and branch permissions](/docs/en/routines#repositories-and-branch-permissions). See [Connect from your terminal](/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough, including what `/web-setup` stores and how to remove it.
 

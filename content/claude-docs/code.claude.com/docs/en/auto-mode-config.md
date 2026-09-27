@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3b0b4e93d152b7dcab065a7cde9505b5ff4abc1c68a6d453899854b110cf42ba
+fetched_at: 2026-09-27T02:24:59.045187Z
+sha256: 324cc4ce0af82f89e780be8b3d89bd5cacc5c4aaa822fddd39cb5cfb068e0eca
 ---
 
 > ## Documentation Index
@@ -292,7 +292,7 @@ The tab lists the `allow`, `soft_deny`, `hard_deny`, and `environment` entries f
 
 By default, narrow Bash and PowerShell allow rules such as `Bash(npm test)` stay in effect in auto mode. Claude Code resolves them before the classifier runs, unless the command carries [per-command allowed domains](/docs/en/sandboxing#per-command-allowed-domains-in-auto-mode). Claude Code suspends only the broad rules that grant arbitrary code execution, such as `Bash(*)` or wildcarded interpreters, together with every rule that names [`Monitor`](/docs/en/tools-reference#monitor-tool), because Monitor commands run through the shell. This means a narrow rule can still let a destructive argument through without the classifier seeing it, for example a script path or flag the rule's prefix didn't anticipate.
 
-Set `autoMode.classifyAllShell` to `true` to suspend every Bash and PowerShell allow rule while auto mode is active, so the classifier evaluates every shell command regardless of your allow list.
+Set `autoMode.classifyAllShell` to `true` to suspend every Bash and PowerShell allow rule while auto mode is active, so the classifier evaluates every shell command regardless of your allow list, except [critical-path removals](/docs/en/permission-modes#critical-paths).
 
 ```json theme={null}
 {
