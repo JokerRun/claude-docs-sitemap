@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: b35ff771afdca5fd0b32ed80077a1faf33cbb1c127c537af984c8ceeab5e2239
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 89d9dba2c83b14b9cc64f0c675ac03276c96e5f3f0852093eef4a68e62d3f1d4
 ---
 
 > ## Documentation Index
@@ -199,6 +199,8 @@ claude --plugin-dir ./my-first-plugin --plugin-dir ./other-plugin.zip
 To load several plugins from one place, pass a folder that holds them, such as `--plugin-dir ./plugins`. Loading a folder of plugins requires Claude Code v2.1.265 or later.
 
 If the folder has no `.claude-plugin/` directory and no plugin components at its top level, Claude Code treats it as a folder of plugins. Each immediate subfolder that has a `.claude-plugin/plugin.json` manifest then loads as a separate plugin. Everything else in the folder is skipped without an error, including a subfolder that has no manifest. If a plugin in the folder doesn't load, check that its subfolder has a `.claude-plugin/plugin.json`.
+
+You can also pass a folder that keeps a `.claude-plugin/marketplace.json` beside its plugin folders. As long as that `.claude-plugin/` directory holds no `plugin.json`, the plugin folders still load. Nothing is installed or enabled from the marketplace file, because Claude Code doesn't read it. Loading plugins from such a folder requires Claude Code v2.1.281 or later.
 
 In an interactive session, you can also add and remove plugins in the folder after startup:
 

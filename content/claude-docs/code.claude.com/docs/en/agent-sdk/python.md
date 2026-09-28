@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 6eba17496fe36c680e46f5f60bb833318e83129b5957c17b7fa41b6f98c6332d
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 367c844b764f41cbf24e7fe382f6f886108ca8211584fb6472efe4da2a3ecc99
 ---
 
 > ## Documentation Index
@@ -259,18 +259,18 @@ def list_sessions(
 
 #### Return type: `SDKSessionInfo`
 
-| Property        | Type          | Description                                                                     |
-| :-------------- | :------------ | :------------------------------------------------------------------------------ |
-| `session_id`    | `str`         | Unique session identifier                                                       |
-| `summary`       | `str`         | Display title: custom title, auto-generated summary, or first prompt            |
-| `last_modified` | `int`         | Last modified time in milliseconds since epoch                                  |
-| `file_size`     | `int \| None` | Session file size in bytes (`None` for remote storage backends)                 |
-| `custom_title`  | `str \| None` | Session title: the user-set title, or the auto-generated title when none is set |
-| `first_prompt`  | `str \| None` | First meaningful user prompt in the session                                     |
-| `git_branch`    | `str \| None` | Git branch at the end of the session                                            |
-| `cwd`           | `str \| None` | Working directory for the session                                               |
-| `tag`           | `str \| None` | User-set session tag (see [`tag_session()`](#tag_session))                      |
-| `created_at`    | `int \| None` | Session creation time in milliseconds since epoch                               |
+| Property        | Type          | Description                                                                              |
+| :-------------- | :------------ | :--------------------------------------------------------------------------------------- |
+| `session_id`    | `str`         | Unique session identifier                                                                |
+| `summary`       | `str`         | Display title: custom title, most recent prompt, auto-generated summary, or first prompt |
+| `last_modified` | `int`         | Last modified time in milliseconds since epoch                                           |
+| `file_size`     | `int \| None` | Session file size in bytes (`None` for remote storage backends)                          |
+| `custom_title`  | `str \| None` | Session title: the user-set title, or the auto-generated title when none is set          |
+| `first_prompt`  | `str \| None` | First meaningful user prompt in the session                                              |
+| `git_branch`    | `str \| None` | Git branch at the end of the session                                                     |
+| `cwd`           | `str \| None` | Working directory for the session                                                        |
+| `tag`           | `str \| None` | User-set session tag (see [`tag_session()`](#tag_session))                               |
+| `created_at`    | `int \| None` | Session creation time in milliseconds since epoch                                        |
 
 #### Example
 
@@ -3482,7 +3482,7 @@ asyncio.run(main())
 <Warning>
   Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
 
-  If `permission_mode` is set to `bypassPermissions` and `allow_unsandboxed_commands` is enabled, the model can autonomously execute commands outside the sandbox without approval prompts, apart from the [actions no mode auto-approves](/docs/en/permission-modes#actions-no-mode-auto-approves). This combination effectively allows the model to escape sandbox isolation silently.
+  If `permission_mode` is set to `bypassPermissions` and `allowUnsandboxedCommands` is enabled, the model can autonomously execute commands outside the sandbox without approval prompts, apart from the [actions no mode auto-approves](/docs/en/permission-modes#actions-no-mode-auto-approves). This combination effectively allows the model to escape sandbox isolation silently.
 </Warning>
 
 ## See also

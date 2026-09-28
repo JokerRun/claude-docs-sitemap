@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-09-27T02:24:59.045187Z
-sha256: 9163b5c983c877d16fc64edce70410dee936fdba541a8751b1c87349b553d536
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 590b0a20c072288ff0a2388b6ac89dc632047b73def5a3bfc337605dfe3a342e
 ---
 
 > ## Documentation Index
@@ -128,6 +128,17 @@ For the resume flags, the `/resume` picker, naming, and what happens when the sa
 Claude's context window holds your conversation history, file contents, command outputs, [CLAUDE.md](/docs/en/memory), [auto memory](/docs/en/memory#auto-memory), loaded skills, and system instructions. As you work, context fills up. Claude compacts automatically, but instructions from early in the conversation can get lost. Put persistent rules in CLAUDE.md, and run `/context` to see what's using space.
 
 For an interactive walkthrough of what loads and when, see [Explore the context window](/docs/en/context-window).
+
+#### Context Claude Code adds on its own
+
+If Claude follows a rule you didn't write, such as adding a `Co-Authored-By` trailer to a commit, the rule may have come from a [system reminder](/docs/en/glossary#system-reminder). As you work, Claude Code adds its own context to the conversation alongside your messages:
+
+* Your CLAUDE.md files
+* The instructions of your [output style](/docs/en/output-styles)
+* A note when a file Claude read earlier changes on disk
+* The commit and pull request attribution lines
+
+To change or remove the attribution lines, set [`attribution`](/docs/en/settings-reference#attribution). To remove Claude Code's built-in commit and pull request instructions, set [`includeGitInstructions`](/docs/en/settings-reference#includegitinstructions) to `false`. For the other switches, see [Turn off the context your agent replaces](/docs/en/agent-sdk/modifying-system-prompts#turn-off-the-context-your-agent-replaces).
 
 #### When context fills up
 

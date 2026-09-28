@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-27T02:24:59.045187Z
-sha256: c0515ced5ea4433f46ee2a3d0567d80429a5e273ebaeddc83bd62b22867c738d
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 84b6cf5bc82335fbf4012a1d0858fd2a946f0371c8844489b4622a44ced746bf
 ---
 
 > ## Documentation Index
@@ -132,7 +132,7 @@ When a session completes, you can create a PR from claude.ai/code or [teleport](
 
 When you run `claude --cloud` from a repository that has no git remote, or from a github.com repository that the Claude GitHub App isn't installed on, Claude Code bundles your local repository and uploads it directly to the cloud session. This applies even if you connected GitHub with `/web-setup`. The bundle includes your full repository history across all branches, plus uncommitted changes to tracked files.
 
-On macOS, Linux, and WSL, Claude Code leaves uncommitted changes to files named like credentials or keys out of the upload and names the files it left out. This covers `.env` files, Terraform `*.tfvars` files, and key files such as `id_rsa` and `*.pem`. The session starts with the committed version of each, or without the file if none is committed. In a linked worktree, submodule, or similar layout, Claude Code uploads these changes with the rest and names the files it uploads.
+On macOS, Linux, and WSL, Claude Code leaves uncommitted changes to files named like credentials or keys out of the upload and names the files it left out. This covers `.env` files, Terraform `*.tfvars` files, and key files such as `id_rsa` and `*.pem`. The session starts with the committed version of each, or without the file if none is committed.
 
 To upload a bundle even when Claude Code would otherwise clone from the remote, set `CCR_FORCE_BUNDLE=1`:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-rollout
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 317a1409ba07a2ff84ee3aa889e7eb407710fc393b5a65d66f82d0c9fc13bb1f
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 049d9d07b7f42c1094b983165e73b4bee87953756825d1fc4b5c79250fe3d0c8
 ---
 
 > ## Documentation Index
@@ -197,7 +197,7 @@ Deliver the variables through the `env` block of a [managed settings file](/docs
 
 Add the conditional variables from the table to the same `env` block. A managed `ANTHROPIC_BASE_URL` is enforced and cannot be overridden by a developer's shell export, since Claude Code applies it over the process environment and lower-precedence settings.
 
-Don't include `forceLoginMethod` or `forceLoginOrgUUID` in managed settings alongside a gateway credential. Either key, with any value, blocks `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, and `apiKeyHelper` at startup, and developers can't proceed. They see `This machine's managed settings require a first-party login`, or [`Administrator policy requires a Cloud gateway sign-in`](/docs/en/errors#administrator-policy-requires-a-cloud-gateway-sign-in) under a `"gateway"` value.
+Don't include `forceLoginMethod`, `forceLoginOrgUUID`, or `forceLoginGatewayUrl` in managed settings alongside a gateway credential. `forceLoginMethod` or `forceLoginOrgUUID`, with any value, blocks `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, and `apiKeyHelper` at startup, and developers can't proceed. They see `This machine's managed settings require a first-party login`, or [`Administrator policy requires a Cloud gateway sign-in`](/docs/en/errors#administrator-policy-requires-a-cloud-gateway-sign-in) when the file sets `forceLoginMethod` to `"gateway"` or sets `forceLoginGatewayUrl`.
 
 [Server-managed settings](/docs/en/server-managed-settings#platform-availability) delivery requires a direct connection to `api.anthropic.com`, so it does not reach gateway-routed sessions. Gateway deployments use this file-based managed settings path, which enforces the same keys.
 

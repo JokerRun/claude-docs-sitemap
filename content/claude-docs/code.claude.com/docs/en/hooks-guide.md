@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 658b953245f6bbe793186ffd18efd0aef6d8c689dea1e796eec24786e2c3f332
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 1a476b68cd3c42ffb35516cc58d67628a9270e90aae466e480311e39eaa48b68
 ---
 
 > ## Documentation Index
@@ -525,7 +525,7 @@ Claude Code fires hook events at specific points in its lifecycle. When an event
 Each hook has a `type` that determines how it runs. Most hooks use `"type": "command"`, which runs a shell command. Four other types are available:
 
 * `"type": "http"`: POST event data to a URL. See [HTTP hooks](#http-hooks).
-* `"type": "mcp_tool"`: call a tool on an already-connected MCP server. See [MCP tool hooks](/docs/en/hooks#mcp-tool-hook-fields).
+* `"type": "mcp_tool"`: call a tool on a configured MCP server. See [MCP tool hooks](/docs/en/hooks#mcp-tool-hook-fields).
 * `"type": "prompt"`: single-turn LLM evaluation. See [Prompt-based hooks](#prompt-based-hooks).
 * `"type": "agent"`: multi-turn verification with tool access. Agent hooks are experimental and may change. See [Agent-based hooks](#agent-based-hooks).
 
@@ -956,7 +956,7 @@ For full configuration options and response handling, see [HTTP hooks](/docs/en/
 
 Keep these constraints in mind when designing hooks:
 
-* Command hooks communicate through stdout, stderr, and exit codes only. They can't trigger `/` commands or tool calls. Text returned via `additionalContext` is injected as a system reminder that Claude reads as plain text. HTTP hooks communicate through the response body instead.
+* Command hooks communicate through stdout, stderr, and exit codes only. They can't trigger `/` commands or tool calls. Text returned via `additionalContext` is injected as a [system reminder](/docs/en/glossary#system-reminder) that Claude reads as plain text. HTTP hooks communicate through the response body instead.
 * Hook timeouts vary by type. Override per hook with the `timeout` field in seconds.
   * `command`, `http`, `mcp_tool`: 10 minutes. Claude Code lowers this default to 30 seconds for `UserPromptSubmit`, `PreModelSwitch`, and `PostModelSwitch` hooks, and to 10 seconds for `MessageDisplay`.
   * `prompt`: 30 seconds.

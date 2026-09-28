@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 07ae897264e4335360232c24c18411a412ca57af5c63c41426b76991f05d23a6
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: d9e7f5382fe26287e7080e2a765b060c73b40c1fa7eaff6ad6a779dd849468e6
 ---
 
 > ## Documentation Index
@@ -296,6 +296,8 @@ The `ask_user` and `askUser` helpers in the following snippets stand in for your
 
   <Tab title="Approve and remember">
     The user approves and doesn't want to be asked again for this kind of call. The third callback argument carries `suggestions`, an array of ready-made [`PermissionUpdate`](/docs/en/agent-sdk/typescript#permissionupdate) entries. Echo one back in `updatedPermissions` to apply it. A suggestion with the `localSettings` destination writes the rule to `.claude/settings.local.json` so future sessions skip the prompt for matching calls.
+
+    In TypeScript, skip the always-allow choice for a request whose options carry [`suppressAlwaysAllowRule: true`](/docs/en/agent-sdk/typescript#canusetool). The hint requires Agent SDK v0.3.268 or later, and the Python `context` doesn't carry it.
 
     The Python example requires `claude-agent-sdk` 0.1.80 or later.
 

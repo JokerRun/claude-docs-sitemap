@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 22286574988c999b197b12f7a49951ae5dbf0ba79f44b37376acfffdf88c9f25
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 18db3578e2c9fc1d4e4e99eca32da0e67a176edf08b7a2156249e735947b65a1
 ---
 
 > ## Documentation Index
@@ -222,7 +222,7 @@ These actions either append to the end of the conversation or don't touch the re
 
 ### Editing files in your repository
 
-File contents enter context only when Claude reads them, and reads append to the conversation. Editing a file Claude previously read does not retroactively change the earlier read in history. Instead, Claude Code appends a `<system-reminder>` noting the file changed, and Claude re-reads it if needed.
+File contents enter context only when Claude reads them, and reads append to the conversation. Editing a file Claude previously read does not retroactively change the earlier read in history. Instead, Claude Code appends a [`<system-reminder>`](/docs/en/glossary#system-reminder) noting the file changed, and Claude re-reads it if needed.
 
 ### Editing CLAUDE.md mid-session
 

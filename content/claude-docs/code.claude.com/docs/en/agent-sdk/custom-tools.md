@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b3046d32bc13e736f2e6a5ac6f795219013019b6a085a3e1372f472269edfed4
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 704152e1918dd12a7cfbfc933764f421000cd2d3af11068314ac1287e66db11f
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ This example defines a `get_temperature` tool and wraps it in an MCP server. It 
 See the [`tool()`](/docs/en/agent-sdk/typescript#tool) TypeScript reference or the [`@tool`](/docs/en/agent-sdk/python#tool) Python reference for full parameter details, including JSON Schema input formats and return value structure.
 
 <Tip>
-  To make a parameter optional: in TypeScript, add `.default()` to the Zod field. In Python, the dict schema treats every key as required, so leave the parameter out of the schema, mention it in the description string, and read it with `args.get()` in the handler. The [`get_precipitation_chance` tool below](#add-more-tools) shows both patterns.
+  To make a parameter optional: in TypeScript, add `.optional()` to the Zod field and apply the default in the handler. In Python, the dict schema treats every key as required, so leave the parameter out of the schema, mention it in the description string, and read it with `args.get()` in the handler. The [`get_precipitation_chance` tool below](#add-more-tools) shows both patterns.
 </Tip>
 
 ### Call a custom tool
@@ -245,18 +245,19 @@ The example below defines a second tool, `get_precipitation_chance`, and replace
         .int()
         .min(1)
         .max(24)
-        .default(12) // .default() makes the parameter optional
+        .optional() // .optional() lets Claude omit the parameter
         .describe("How many hours of forecast to return")
     },
     async (args) => {
+      const hours = args.hours ?? 12; // Apply the default in the handler
       const response = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${args.latitude}&longitude=${args.longitude}&hourly=precipitation_probability&forecast_days=1`
       );
       const data: any = await response.json();
-      const chances = data.hourly.precipitation_probability.slice(0, args.hours);
+      const chances = data.hourly.precipitation_probability.slice(0, hours);
 
       return {
-        content: [{ type: "text", text: `Next ${args.hours} hours: ${chances.join("%, ")}%` }]
+        content: [{ type: "text", text: `Next ${hours} hours: ${chances.join("%, ")}%` }]
       };
     }
   );
@@ -454,7 +455,7 @@ Claude receives each resource link block as a text block containing the link's n
 
 ### Images
 
-An image block carries the image bytes inline, encoded as base64. There is no URL field. To return an image that lives at a URL, fetch it in the handler, read the response bytes, and base64-encode them before returning. The result is processed as visual input.
+An image block carries the image bytes inline, encoded as base64. There is no URL field. To return an image that lives at a URL, fetch it in the handler, read the response bytes, and base64-encode them before returning. A PNG, JPEG, GIF, or WebP image reaches Claude as visual input; an image of any other type is saved to disk and Claude receives its file path as text instead.
 
 | Field      | Type      | Notes                                                                      |
 | :--------- | :-------- | :------------------------------------------------------------------------- |
@@ -521,7 +522,7 @@ An image block carries the image bytes inline, encoded as base64. There is no UR
 
 ### Resources
 
-A resource block embeds a piece of content identified by a URI. The URI is a label for Claude to reference; the actual content rides in the block's `text` or `blob` field. Use this when your tool produces something that makes sense to address by name later, such as a generated file or a record from an external system.
+A resource block embeds a piece of content identified by a URI. The actual content rides in the block's `text` or `blob` field. Use this when your tool produces a generated file or a record from an external system.
 
 | Field               | Type         | Notes                                                                                                                                      |
 | :------------------ | :----------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -531,7 +532,7 @@ A resource block embeds a piece of content identified by a URI. The URI is a lab
 | `resource.blob`     | `string`     | The content base64-encoded, if it's binary. TypeScript only: the Python SDK drops binary resources from the tool result and logs a warning |
 | `resource.mimeType` | `string`     | Optional                                                                                                                                   |
 
-This example shows a resource block returned from inside a tool handler. The URI `file:///tmp/report.md` is a label that Claude can reference later; the SDK does not read from that path.
+This example shows a resource block returned from inside a tool handler. The SDK doesn't read from the example's URI, `file:///tmp/report.md`.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -555,7 +556,7 @@ This example shows a resource block returned from inside a tool handler. The URI
           {
               "type": "resource",
               "resource": {
-                  "uri": "file:///tmp/report.md",  # Label for Claude to reference, not a path the SDK reads
+                  "uri": "file:///tmp/report.md",  # Not a path the SDK reads
                   "mimeType": "text/markdown",
                   "text": "# Report\n...",  # The actual content, inline
               },

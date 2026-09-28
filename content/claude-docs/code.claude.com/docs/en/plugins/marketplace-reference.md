@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: c88ef93862ac6432e9b10a56ec10fa393ce7549e4057747f9adf6dccc64d90e9
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 566da5d55a3006f69cbeeb04509cbaa011401bc029b2747402b5c43c2cdd21ef
 ---
 
 > ## Documentation Index
@@ -50,11 +50,13 @@ You can't give your marketplace any of the following names:
 * **Official marketplace names**: `claude-code-marketplace`, `claude-code-plugins`, `claude-plugins-official`, `anthropic-marketplace`, `anthropic-plugins`, `agent-skills`, `anthropic-agent-skills`, `life-sciences`, `knowledge-work-plugins`, `claude-for-legal`, `claude-for-financial-services`, `financial-services-plugins`, `first-party-plugins`, and `claude-tag-plugins`. Reserved unless the marketplace comes from a `github` or `git` [marketplace source](#marketplace-sources) under `github.com/anthropics/`.
 * **Community marketplace names**: `claude-community`, `claude-plugins-community`, and `healthcare`. Reserved under the same rule as the official names.
 * **Plugin directory names**: `anthropic-plugin-directory` and `claude-plugin-directory`. Reserved under the same rule as the official names.
-* **Names that impersonate an official marketplace**: names such as `official-claude-plugins` or `claude-plugins-v2`, and any name containing a non-ASCII character. The error is `Marketplace name impersonates an official Anthropic/Claude marketplace`. A control or bidirectional-formatting character in a name also reports `Marketplace name cannot contain control or bidirectional-formatting characters`.
+* **Names that impersonate an official marketplace**: names such as `official-claude-plugins` or `claude-plugins-v2`, and any name containing a non-ASCII character. The error is `Marketplace name impersonates an official Anthropic/Claude marketplace`. A control or bidirectional-formatting character in a name also reports `Marketplace name cannot contain control or bidirectional-formatting characters`. A marketplace already registered under such a name stops loading, along with its plugins.
 * <span id="reserved-name-spellings" />**Another spelling of a reserved name**: a name that differs from a reserved name only by a trailing dot, or by a symbol other than an underscore in place of a hyphen, so `claude.code.plugins` counts as `claude-code-plugins`. `claude plugin validate` accepts such a name; adding the marketplace fails with [`is another spelling of "<reserved>", a reserved marketplace name`](/docs/en/errors#marketplace-name-is-another-spelling-of-a-reserved-name), and a marketplace already registered under one stops loading. This check requires Claude Code v2.1.280 or later.
 * **Names Claude Code uses for plugins that don't come from a marketplace**: `inline` for plugins loaded with [`--plugin-dir`](/docs/en/cli-reference), `builtin` for built-in plugins, `skills-dir` for plugins auto-loaded from [`.claude/skills/`](/docs/en/skills), and `synced` for plugins synced from your claude.ai account. `claude-plugin-test` is also reserved. `skills-dir` also appears as `{"source": "skills-dir"}` in `strictKnownMarketplaces` and `blockedMarketplaces`, described under [Source values valid only in policy lists](#source-values-valid-only-in-policy-lists).
 * **`npm`, `pip`, `uv`, `cargo`, `github`, and `gh`**: reserved in any casing. This check requires Claude Code v2.1.275 or later.
 * **Names starting with `claudeai-`**: reserved for marketplaces hosted on claude.ai. `claude plugin marketplace add` refuses any other marketplace that uses one with `Cannot add marketplace "<name>": names starting with "claudeai-" are reserved for marketplaces hosted on claude.ai`.
+
+When a registered marketplace stops loading because its name imitates an official one, `claude plugin list` and `/plugin` report `Claude Code refuses the marketplace name "<name>"`. The message tells you to remove the marketplace. Removing it also uninstalls its plugins and deletes their saved data. This named refusal message requires Claude Code v2.1.282 or later.
 
 ## Top-level fields
 

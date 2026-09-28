@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-09-14T02:24:16.718825Z
-sha256: 77d246bf45abfd375c0c6432c588395ddcb46e4452108957a706e5dc953ccebe
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: ba995377a42f1e4895c87772948f51a200ee4c4e7dccaa3c27db283df9ff8794
 ---
 
 > ## Documentation Index
@@ -325,7 +325,7 @@ This example combines text and tool streaming into a cohesive UI. It tracks whet
 
 ## Known limitations
 
-* **Structured output**: the JSON result appears only in the final `ResultMessage.structured_output`, not as streaming deltas. See [structured outputs](/docs/en/agent-sdk/structured-outputs) for details.
+* **Structured output**: with partial messages enabled, the JSON streams as a tool call's unvalidated `input_json_delta` chunks, and only the validated result reaches the final `ResultMessage.structured_output`. See [structured outputs](/docs/en/agent-sdk/structured-outputs) for details.
 
 ## Next steps
 

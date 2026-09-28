@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 0c3de237f05464f4026ecabceaf56c207d7f78347c479942fc350bd7c0ec2fb6
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 2d1feea74affe007b6fa0330cf41f86aff60d88289cd5d50c0977e73293b8c19
 ---
 
 > ## Documentation Index
@@ -672,7 +672,7 @@ If the session took its effort from your settings rather than from `--effort` or
 
 Claude Code also keeps a name you set with [`/rename`](/docs/en/commands) or `Ctrl+R` across that restart, so you can still run [`claude --resume <name>`](/docs/en/sessions#name-your-sessions) to reach the session.
 
-A prompt you stashed with [`Ctrl+S`](/docs/en/interactive-mode#general-controls) while attached is kept with the session too. Reopen the session after its process was stopped or restarted, and `Ctrl+S` restores the stashed text. Pasted content in the stash doesn't survive the restart.
+A prompt you stashed with [`Ctrl+S`](/docs/en/interactive-mode#general-controls) while attached is kept with the session too. Reopen the session after its process was stopped or restarted, and press `Ctrl+S` to restore the stashed text. Pasted content in the stash doesn't survive the restart.
 
 ### Settings, plugins, and MCP servers
 

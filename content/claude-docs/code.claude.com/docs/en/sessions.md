@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 9fe9c924c4b09baaa97b5dd26af3662f78f68dacd485ff42e1cf4a6204922c1c
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: 1aa4118ddc62a870015d171135f649a039f650fd7aafc75ebf8876cc4340dac8
 ---
 
 > ## Documentation Index
@@ -46,6 +46,7 @@ A resumed session restores the conversation along with the state saved in it:
 * Permission mode: if you resume from a terminal with `claude --continue`, `claude --resume <session-id>`, or `claude --resume <name>` when the name matches one session, without `-p`, Claude Code restores the permission mode the session was in, except in the cases in [permission mode on resume](#permission-mode-on-resume), which also covers the session picker, `/resume`, and resuming with `claude -p`. Pass `--permission-mode` or `--dangerously-skip-permissions` to override the restored mode.
 * Active goal: a [goal](/docs/en/goal#resume-with-an-active-goal) that was still active when the session ended carries over; its turn count, timer, and token-spend baseline reset.
 * Scheduled tasks: [tasks that haven't expired](/docs/en/scheduled-tasks#limitations) are restored. Background Bash and monitor tasks aren't.
+* Background work: a [background subagent](/docs/en/sub-agents#run-subagents-in-foreground-or-background), background Bash command, or [workflow](/docs/en/workflows) that ended with the previous process shows up in the resumed transcript as a note that it didn't finish. Claude Code doesn't start a turn from those notes; Claude reads them with your next prompt.
 
 Not every configuration flag from the original launch is restored. If the session depended on `--mcp-config`, `--settings`, `--plugin-dir`, `--fallback-model`, or directories added with `--add-dir`, pass them again when you resume; directories added mid-session with `/add-dir` aren't restored either, though the session picker still uses them to locate the session. The standard settings files, such as `settings.json` and `settings.local.json`, are re-read at launch, so configuration that lives in them doesn't need to be passed again. For `--system-prompt` and `--append-system-prompt`, see [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-gcp
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 3044537575ca9a8afce6ef1488fe6d586327c6ac1bbe935bd972e1a2200a2044
+fetched_at: 2026-09-28T02:30:06.058762Z
+sha256: ff9152af7de027845729eb583ac98b089bb38755ace0bbaf705d03a63e828c2a
 ---
 
 > ## Documentation Index
@@ -180,6 +180,8 @@ The steps below provision the full deployment with `gcloud` commands.
 
     store:
       postgres_url: ${GATEWAY_POSTGRES_URL}          # GKE: ${file:/secrets/postgres-url}
+      # readiness_grace_seconds: 300                 # keep passing the readiness probe
+                                                     # through a Cloud SQL failover
 
     upstreams:
       - provider: vertex
