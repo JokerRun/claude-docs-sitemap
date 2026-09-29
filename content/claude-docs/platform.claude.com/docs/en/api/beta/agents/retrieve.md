@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: d904b81f6d40e0905e9ffb981ddeb420781b01549f5fddee3fd303753ab4169c
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 291a53021b118a648dca5173df2a6582dcff76df9c65740a92ec44c289aec69b
 ---
 
 ---
@@ -186,13 +186,15 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `string`
-
-      - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
+      - `"claude-sonnet-5-5" or "claude-opus-5-5" or "claude-fable-5-1" or 13 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5-5"`
+
+          Efficient model for coding and agents
 
         - `"claude-opus-5-5"`
 
@@ -204,7 +206,7 @@ Get Agent
 
         - `"claude-sonnet-5"`
 
-          High-performance model for coding and agents
+          Efficient model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -253,6 +255,8 @@ Get Agent
         - `"claude-sonnet-4-5-20250929"`
 
           High-performance model for agents and coding
+
+      - `string`
 
     - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 

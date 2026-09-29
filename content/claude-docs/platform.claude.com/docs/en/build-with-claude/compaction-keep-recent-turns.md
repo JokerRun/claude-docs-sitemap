@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 81682a12b3933d9dbff4a1cbfea739ad5479ada0c5c1e5bf4840488d42776745
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 04c0070655a261d3c02b757959e861214d65c54e79efe1f35ea5eb054ba6d7c9
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

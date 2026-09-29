@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 09825f608fe0f38f2325af95de4c8ee984aa46fe707e93025f0a4e29633a7351
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 9beb8dff19b32f08266d05fd05a39e484e135eca6797caa769aab8b05e35bd8f
 ---
 
 ---
@@ -70,12 +70,12 @@ Untuk jendela konteks, batas output, dan harga, lihat [tabel perbandingan model]
 
 Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
-| Saat Anda membutuhkan...                                                           | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                         |
-| ---------------------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan selama berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau dek presentasi jadi |
-| Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, computer use       |
-| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5                       | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                      |
-| Latensi dan harga terendah, dengan pemikiran diperpanjang                          | Claude Haiku 4.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas sub-agen                 |
+| Saat Anda membutuhkan...                                                           | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                       |
+| ---------------------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan selama berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai |
+| Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, computer use     |
+| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                    |
+| Latensi dan harga terendah, dengan "extended thinking" (pemikiran diperpanjang)    | Claude Haiku 4.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas sub-agen               |
 
 ***
 
@@ -114,8 +114,12 @@ Strategi multi-model memasangkan model berbiaya lebih rendah dengan model fronti
     Model Opus terbaru: perubahan yang merusak kompatibilitas, fitur baru, dan perbedaan perilaku
   </Card>
 
+  <Card title="Yang baru di Claude Sonnet 5.5" icon="sparkle" href="https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5">
+    Model Sonnet terbaru: perubahan yang merusak kompatibilitas, fitur baru, dan perbedaan perilaku
+  </Card>
+
   <Card title="Yang baru di Claude Sonnet 5" icon="sparkle" href="https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5">
-    Untuk beban kerja sehari-hari yang menyeimbangkan kecepatan dan kemampuan
+    Fitur baru dan perubahan perilaku di Claude Sonnet 5
   </Card>
 
   <Card title="Mulai membangun" icon="code" href="https://platform.claude.com/docs/id/get-started">

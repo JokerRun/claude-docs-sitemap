@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: d3b249decd73eb89110fd47b36a76a949c15e1f1c9a5bfe3b2de46f2c89b0d18
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: e0e8448cd1c896ffbdb9cc20cc3ee499519a0aac8033b58346cedc7668d3827d
 ---
 
 ---
@@ -192,13 +192,15 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `string`
-
-      - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
+      - `"claude-sonnet-5-5" or "claude-opus-5-5" or "claude-fable-5-1" or 13 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5-5"`
+
+          Efficient model for coding and agents
 
         - `"claude-opus-5-5"`
 
@@ -210,7 +212,7 @@ List Agent Versions
 
         - `"claude-sonnet-5"`
 
-          High-performance model for coding and agents
+          Efficient model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -259,6 +261,8 @@ List Agent Versions
         - `"claude-sonnet-4-5-20250929"`
 
           High-performance model for agents and coding
+
+      - `string`
 
     - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: c8c6edd752524a023c3b99b7e8fbeda77d9e6b89b966f99942ff6d096a6bda1b
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 7cc530845e457dabaea00564f0c82fe8d0017c753a4dde94e7b8e9853d784551
 ---
 
 ---
@@ -1068,13 +1068,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `string`
-
-  - `"claude-fable-5-1" or "claude-opus-5-5" or "claude-mythos-5-1" or 15 more`
+  - `"claude-sonnet-5-5" or "claude-fable-5-1" or "claude-opus-5-5" or 16 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5-5"`
+
+      Efficient model for coding and agents
 
     - `"claude-fable-5-1"`
 
@@ -1090,7 +1092,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `"claude-sonnet-5"`
 
-      High-performance model for coding and agents
+      Efficient model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -1149,6 +1151,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
       **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
       New class of intelligence, strongest in coding and cybersecurity
+
+  - `string`
 
 - `cache_control: optional CacheControlEphemeral or null`
 
@@ -1239,6 +1243,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `ThinkingConfigDisabled object`
 
     - `type: "disabled"`
+
+  - `ThinkingConfigBetweenTools object`
+
+    - `type: "between_tools"`
 
   - `ThinkingConfigAdaptive object`
 

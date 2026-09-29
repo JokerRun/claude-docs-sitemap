@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 54185eb4c63743b5150e24b4fd7fd76aecc567c91dda39f5e843f0f142a9ec6f
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 5c978a32a49329c98ecf7c58063778521d4a9ecf02b76914850e169ca7467c09
 ---
 
 > ## Documentation Index
@@ -123,11 +123,11 @@ Ultrareview checks the diff before any review work runs and tells you when it ca
 
 Ultrareview is a premium feature that bills against usage credits rather than your plan's included usage.
 
-| Plan                | Included free runs | After free runs                                                                                              |
-| ------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Pro                 | 3 free runs        | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
-| Max                 | 3 free runs        | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
-| Team and Enterprise | none               | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
+| Plan | Included free runs | After free runs |
+| - | - | - |
+| Pro | 3 free runs | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
+| Max | 3 free runs | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
+| Team and Enterprise | none | billed as [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
 
 * **Free runs**: the three Pro and Max runs are a one-time allotment per account and don't refresh.
 * **Cost per review**: after you use the free runs, typically \$5 to \$25 in usage credits depending on the size of the change, matching the estimate the launch dialog shows before each run.
@@ -174,12 +174,12 @@ On Claude Code v2.1.218 or later, you can also start the cloud review by running
 
 Progress messages and the live session URL go to stderr so stdout stays parseable. Use these flags to control the output, the timeout, and whether to post the findings:
 
-| Flag                  | Description                                                                                                                                                                                                                                                                        |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--json`              | Print the raw `bugs.json` payload instead of the formatted findings                                                                                                                                                                                                                |
-| `--timeout <minutes>` | Maximum minutes to wait for the review to finish. Defaults to 45                                                                                                                                                                                                                   |
-| `--post`              | [Post the finished findings](#post-findings-to-the-pull-request) to the pull request as one plain comment from your GitHub account. Works on `github.com` pull request targets; on other targets, Claude Code ignores the flag and says so. Requires Claude Code v2.1.227 or later |
-| `--no-post`           | Don't post the findings. This is the default, and if you pass both flags, Claude Code doesn't post. Requires Claude Code v2.1.227 or later                                                                                                                                         |
+| Flag | Description |
+| - | - |
+| `--json` | Print the raw `bugs.json` payload instead of the formatted findings |
+| `--timeout <minutes>` | Maximum minutes to wait for the review to finish. Defaults to 45 |
+| `--post` | [Post the finished findings](#post-findings-to-the-pull-request) to the pull request as one plain comment from your GitHub account. Works on `github.com` pull request targets; on other targets, Claude Code ignores the flag and says so. Requires Claude Code v2.1.227 or later |
+| `--no-post` | Don't post the findings. This is the default, and if you pass both flags, Claude Code doesn't post. Requires Claude Code v2.1.227 or later |
 
 Running `claude ultrareview` requires the same authentication and usage-credits configuration as `/code-review ultra`.
 
@@ -202,14 +202,14 @@ For automatic reviews on GitHub pull requests, [Code Review](/docs/en/code-revie
 
 Both reviews examine code, but you use them at different stages of your workflow.
 
-|          | `/code-review`                                         | `/code-review ultra`                                            |
-| -------- | ------------------------------------------------------ | --------------------------------------------------------------- |
-| Target   | your working diff, a pull request, a branch, or a path | your working diff or a pull request                             |
-| Runs     | locally in your session                                | in a cloud sandbox                                              |
-| Depth    | scales with the effort argument                        | multi-agent fleet with independent verification                 |
-| Duration | seconds to a few minutes                               | roughly 5 to 10 minutes                                         |
-| Cost     | counts toward normal usage                             | free runs, then roughly \$5 to \$25 per review as usage credits |
-| Best for | quick feedback while iterating                         | pre-merge confidence on substantial changes                     |
+| | `/code-review` | `/code-review ultra` |
+| - | - | - |
+| Target | your working diff, a pull request, a branch, or a path | your working diff or a pull request |
+| Runs | locally in your session | in a cloud sandbox |
+| Depth | scales with the effort argument | multi-agent fleet with independent verification |
+| Duration | seconds to a few minutes | roughly 5 to 10 minutes |
+| Cost | counts toward normal usage | free runs, then roughly \$5 to \$25 per review as usage credits |
+| Best for | quick feedback while iterating | pre-merge confidence on substantial changes |
 
 Use `/code-review` for fast feedback as you work, or pass a PR number to review a teammate's pull request before approving it. Use `/code-review ultra` before merging a substantial change when you want a deeper pass that catches issues a local review might miss.
 

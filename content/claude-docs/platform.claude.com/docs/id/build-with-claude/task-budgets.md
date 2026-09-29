@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 14cae80e8d8da7dd36d62fd4af90f92dbef98d8eb65a2c65302e174ced7d0d2a
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 4c2b89e92379b5c38ceb1fba060c6ddee5559466bf456abd04c41c5a02da1e77
 ---
 
 ---
@@ -21,6 +21,7 @@ featureMetadata:
     - claude-opus-5
     - claude-opus-4-8
     - claude-opus-4-7
+    - claude-sonnet-5-5
 ---
 
 "Task budgets" (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model melihat hitung mundur yang terus berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikannya dengan baik seiring anggaran terpakai.
@@ -649,20 +650,21 @@ Nilai minimum `task_budget.total` yang diterima adalah **20.000 token** pada set
 
 ## Dukungan fitur
 
-| Model             | Dukungan                                         |
-| ----------------- | ------------------------------------------------ |
-| Claude Fable 5.1  | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Mythos 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 5.5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 5     | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Fable 5    | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Mythos 5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Sonnet 5   | Tidak didukung                                   |
-| Claude Opus 4.8   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 4.7   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 4.6   | Tidak didukung                                   |
-| Claude Sonnet 4.6 | Tidak didukung                                   |
-| Claude Haiku 4.5  | Tidak didukung                                   |
+| Model             | Dukungan                                     |
+| ----------------- | -------------------------------------------- |
+| Claude Fable 5.1  | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Mythos 5.1 | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Opus 5.5   | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Opus 5     | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Fable 5    | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Mythos 5   | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Sonnet 5.5 | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Sonnet 5   | Tidak didukung                               |
+| Claude Opus 4.8   | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Opus 4.7   | Beta (atur header `task-budgets-2026-03-13`) |
+| Claude Opus 4.6   | Tidak didukung                               |
+| Claude Sonnet 4.6 | Tidak didukung                               |
+| Claude Haiku 4.5  | Tidak didukung                               |
 
 Anggaran tugas tidak didukung pada [Claude Code](https://code.claude.com/docs/id/overview) atau permukaan Cowork. Gunakan anggaran tugas secara langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
 

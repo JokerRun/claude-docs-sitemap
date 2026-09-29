@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 4117c84cbf5bf12de58901bfe23e0785215bf22f59d006d88d37baec9cc2ec60
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 192399895d7fae18019fabd2876c7a2d2f52ff6a727ee41537a03c16207652db
 ---
 
 ---
@@ -21,7 +21,8 @@ description: Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaa
 Recommended default for most work, including complex agentic coding: Claude Opus 5.5: claude-opus-5-5
 Step up for the hardest long-running agentic and research tasks, at 2.5x Claude Opus 5.5 pricing: Claude Fable 5.1: claude-fable-5-1
 Previous Opus model: Claude Opus 5: claude-opus-5
-Smart model: Claude Sonnet 5: claude-sonnet-5
+Smart model: Claude Sonnet 5.5: claude-sonnet-5-5
+Previous Sonnet model: Claude Sonnet 5: claude-sonnet-5
 For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ```
 
@@ -250,16 +251,17 @@ Temperature harus diatur ke 1 (atau dibiarkan tidak diatur) setiap kali thinking
 
 Thinking didukung pada model-model berikut:
 
-* Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
-* Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
-* Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
-* Claude Opus 4.8 (claude-opus-4-8, hanya adaptive thinking)
-* Claude Opus 4.7 (`claude-opus-4-7`, hanya adaptive thinking)
-* Claude Opus 4.6 (`claude-opus-4-6`, adaptive thinking atau manual thinking lama)
-* Claude Sonnet 4.6 (`claude-sonnet-4-6`, adaptive thinking atau manual thinking lama)
-* Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya manual thinking lama)
-* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, hanya manual thinking lama)
-* Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya manual thinking lama)
+* Claude Opus 5.5 (`claude-opus-5-5`, hanya pemikiran adaptif, selalu aktif)
+* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya pemikiran adaptif, aktif secara default)
+* Claude Opus 5 (claude-opus-5, hanya pemikiran adaptif, aktif secara default)
+* Claude Sonnet 5 (`claude-sonnet-5`, hanya pemikiran adaptif, aktif secara default)
+* Claude Opus 4.8 (claude-opus-4-8, hanya pemikiran adaptif)
+* Claude Opus 4.7 (`claude-opus-4-7`, hanya pemikiran adaptif)
+* Claude Opus 4.6 (`claude-opus-4-6`, pemikiran adaptif atau pemikiran manual lama)
+* Claude Sonnet 4.6 (`claude-sonnet-4-6`, pemikiran adaptif atau pemikiran manual lama)
+* Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya pemikiran manual lama)
+* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, hanya pemikiran manual lama)
+* Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya pemikiran manual lama)
 
 <Note>
   Pada model Claude 4.7 dan yang lebih baru, "extended thinking" (pemikiran diperpanjang) manual (`type: enabled` dengan nilai `budget_tokens`) tidak didukung dan mengembalikan error 400. Gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`type: adaptive`) sebagai gantinya.
@@ -632,7 +634,7 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun.
 
-Pada Claude Opus 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap panggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 ### Output JSON
 

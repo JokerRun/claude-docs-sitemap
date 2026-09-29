@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4074f92e95077a390fc519a81b6bd9ec4151cd8ef2afd09d6552a8432f413ccc
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: d369453a45f35d076557ba3496b55b557f64e034e5b3b4d838ea6ff99bd875fa
 ---
 
 ---
 title: Pemanggilan alat secara programatik
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, sehingga mengurangi perjalanan bolak-balik model dan penggunaan token dalam alur kerja multi-alat.
+description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, sehingga mengurangi round trip model dan penggunaan token dalam alur kerja multi-alat.
 featureMetadata:
   status: ga
   zdr: not-eligible
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-7
     - claude-opus-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929
@@ -33,10 +34,10 @@ featureMetadata:
     Google Cloud: not available
     Microsoft Foundry:
       availability: ga
-      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat secara programatik memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat terprogram memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
   details:
-    - Pemanggilan alat secara programatik memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
-    - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru, tetapi tidak mendukung pemanggilan alat secara programatik.
+    - Pemanggilan alat terprogram memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
+    - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru, tetapi tidak mendukung pemanggilan alat terprogram.
 ---
 
 "Programmatic tool calling" (pemanggilan alat secara programatik) memungkinkan Claude menulis kode yang memanggil alat Anda secara programatik di dalam kontainer [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), alih-alih memerlukan perjalanan bolak-balik melalui model untuk setiap pemanggilan alat. Ini mengurangi "latency" (latensi) untuk alur kerja multi-alat dan menurunkan konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum mencapai "context window" (jendela konteks) model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji riset web multilangkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat secara programatik di atas alat pencarian dasar meningkatkan kinerja rata-rata sebesar 11% sambil menggunakan 24% lebih sedikit token input (lihat [Improved web search with dynamic filtering](https://claude.com/blog/improved-web-search-with-dynamic-filtering)).

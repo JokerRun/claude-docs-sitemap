@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 51c42dc43f6132a6717979fe2ac9fd7bf8743c9c4444d737a3b8363f7d8a8591
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 4a8ff60ca1dfb24badfb5310c14dc9d0ec989a5fabfad591569fd8012283f475
 ---
 
 ---
@@ -228,7 +228,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
             Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
             ```bash
-            VERSION=1.35.0
+            VERSION=1.36.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -266,7 +266,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.35.0
+        ARG ANT_VERSION=1.36.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

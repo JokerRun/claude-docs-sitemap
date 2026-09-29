@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 86ed1d77f691c94f346e81d8de0fb91fe98ee57b92c3dcc0776e502eb3b04e33
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: aeae711b6dfd6fe948cfd1e1d50ae1b8ea0a109671cf552e9b1c319e62ff95d6
 ---
 
 > ## Documentation Index
@@ -42,12 +42,12 @@ Voice mode enabled (hold). Hold space to record. Dictation language: en (/config
 
 `/voice` accepts an optional mode argument:
 
-| Command       | Effect                                        |
-| :------------ | :-------------------------------------------- |
-| `/voice`      | Toggle on or off, keep the current mode       |
-| `/voice hold` | Enable in [hold mode](#hold-to-record)        |
-| `/voice tap`  | Enable in [tap mode](#tap-to-record-and-send) |
-| `/voice off`  | Disable                                       |
+| Command | Effect |
+| :- | :- |
+| `/voice` | Toggle on or off, keep the current mode |
+| `/voice hold` | Enable in [hold mode](#hold-to-record) |
+| `/voice tap` | Enable in [tap mode](#tap-to-record-and-send) |
+| `/voice off` | Disable |
 
 Voice dictation persists across sessions. Set it directly in your [user settings file](/docs/en/settings) instead of running `/voice`:
 
@@ -113,28 +113,28 @@ Neither key does anything else in the press that cancels: `Esc` doesn't interrup
 Voice dictation uses the same [`language` setting](/docs/en/settings-reference#language) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
 
 <Accordion title="Supported dictation languages">
-  | Language   | Code |
-  | :--------- | :--- |
-  | Czech      | `cs` |
-  | Danish     | `da` |
-  | Dutch      | `nl` |
-  | English    | `en` |
-  | French     | `fr` |
-  | German     | `de` |
-  | Greek      | `el` |
-  | Hindi      | `hi` |
+  | Language | Code |
+  | :- | :- |
+  | Czech | `cs` |
+  | Danish | `da` |
+  | Dutch | `nl` |
+  | English | `en` |
+  | French | `fr` |
+  | German | `de` |
+  | Greek | `el` |
+  | Hindi | `hi` |
   | Indonesian | `id` |
-  | Italian    | `it` |
-  | Japanese   | `ja` |
-  | Korean     | `ko` |
-  | Norwegian  | `no` |
-  | Polish     | `pl` |
+  | Italian | `it` |
+  | Japanese | `ja` |
+  | Korean | `ko` |
+  | Norwegian | `no` |
+  | Polish | `pl` |
   | Portuguese | `pt` |
-  | Russian    | `ru` |
-  | Spanish    | `es` |
-  | Swedish    | `sv` |
-  | Turkish    | `tr` |
-  | Ukrainian  | `uk` |
+  | Russian | `ru` |
+  | Spanish | `es` |
+  | Swedish | `sv` |
+  | Turkish | `tr` |
+  | Ukrainian | `uk` |
 </Accordion>
 
 Set the language in `/config` or directly in settings. You can use either the [BCP 47 language code](https://en.wikipedia.org/wiki/IETF_language_tag) or the language name:

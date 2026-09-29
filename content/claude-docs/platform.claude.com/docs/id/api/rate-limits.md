@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 81869b2f537b8936f48d98c1b504c209b5c38084f7f606bc9305273853e45fb3
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 5a6444703d1efd6ef0f1f620f03667ad10c72a862539160516369fd1073cf2f1
 ---
 
 ---
@@ -149,6 +149,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Opus 5.5                                                                                                                           | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Opus 5                                                                                                                             | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Opus 4.x2                                                                                                                          | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 5.5                                                                                                                         | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Sonnet 5                                                                                                                           | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Sonnet 4.x3                                                                                                                        | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Haiku 4.5                                                                                                                          | 1.000                               | 2.000.000                             | 400.000                                |
@@ -162,6 +163,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Opus 5.5                                                                                                                           | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Opus 5                                                                                                                             | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Opus 4.x2                                                                                                                          | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 5.5                                                                                                                         | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Sonnet 5                                                                                                                           | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Sonnet 4.x3                                                                                                                        | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Haiku 4.5                                                                                                                          | 5.000                               | 5.000.000                             | 1.000.000                              |
@@ -175,6 +177,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Opus 5.5                                                                                                                           | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Opus 5                                                                                                                             | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Opus 4.x2                                                                                                                          | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 5.5                                                                                                                         | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Sonnet 5                                                                                                                           | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Sonnet 4.x3                                                                                                                        | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Haiku 4.5                                                                                                                          | 10.000                              | 10.000.000                            | 2.000.000                              |
@@ -190,7 +193,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
 
 *2 Batas laju Opus adalah batas total yang berlaku untuk gabungan lalu lintas di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan tidak termasuk dalam kelompok gabungan ini.*
 
-*3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5. Claude Sonnet 5 memiliki batas laju terpisah dan bukan bagian dari bucket gabungan ini.*
+*3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk gabungan lalu lintas di Sonnet 4.6 dan Sonnet 4.5. Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan tidak termasuk dalam kelompok gabungan ini.*
 
 *4 Batas ini menghitung `cache_read_input_tokens` terhadap penggunaan ITPM.*
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: cd36fcc6d6d9e17ac2a8643a3f769e42ec6cf33a8becdbfd98bc3ba8832f1aee
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 245b5d0472659075015551126902de479990475fa61deb58c5fc20ef5e51a909
 ---
 
 ---
@@ -33,6 +33,7 @@ The following table shows pricing for all Claude models:
 | Claude Opus 4.5                                                                                                                       | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
 | Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | $15 / MTok            | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok             |
 | Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))                | $15 / MTok            | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok             |
+| Claude Sonnet 5.5                                                                                                                     | $2 / MTok             | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok             |
 | Claude Sonnet 5                                                                                                                       | $2 / MTok<sup>3</sup> | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok<sup>3</sup> |
 | Claude Sonnet 4.6                                                                                                                     | $3 / MTok             | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok             |
 | Claude Sonnet 4.5                                                                                                                     | $3 / MTok             | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok             |
@@ -205,6 +206,7 @@ The Batch API allows asynchronous processing of large volumes of requests with a
 | Claude Opus 4.5                                                                                                                       | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | $7.50 / MTok | $37.50 / MTok |
 | Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))                | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5.5                                                                                                                     | $1 / MTok    | $5 / MTok     |
 | Claude Sonnet 5                                                                                                                       | $1 / MTok    | $5 / MTok     |
 | Claude Sonnet 4.6                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
 | Claude Sonnet 4.5                                                                                                                     | $1.50 / MTok | $7.50 / MTok  |
@@ -250,6 +252,7 @@ When you use `tools`, the API also automatically includes a special system promp
 | Claude Opus 4.5                                                                                                                       | 496 tokens                                | 588 tokens                               |
 | Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
 | Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))                | 313 tokens                                | 315 tokens                               |
+| Claude Sonnet 5.5                                                                                                                     | 286 tokens                                |                                          |
 | Claude Sonnet 5                                                                                                                       | 354 tokens                                | 474 tokens                               |
 | Claude Sonnet 4.6                                                                                                                     | 497 tokens                                | 589 tokens                               |
 | Claude Sonnet 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |

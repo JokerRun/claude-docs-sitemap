@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: ef75bdbd7c3b233f7ec301cd395ccafb3aefd11fab751ffb30e0fd0426ce4e61
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 96941620133344f2c7f58fb41f098d7f4ecc0350ef218179175b4705d76d2de5
 ---
 
 ---
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:
@@ -1717,7 +1718,7 @@ Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. A
 * Mempertahankan pesan asli dalam daftar Anda dan membiarkan API menangani penghapusan konten yang telah dipadatkan
 * Membuang pesan yang telah dipadatkan secara manual dan hanya menyertakan blok compaction dan seterusnya
 
-Pada Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5, blok thinking dari sebelum blok `compaction` tidak dibawa ke depan, sehingga ringkasan adalah satu-satunya yang dimiliki model dari pekerjaan sebelumnya tersebut. Jika Anda menulis `instructions` sendiri, beri tahu model apa yang harus dipertahankan dalam ringkasan; lihat [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries).
+Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, blok thinking dari sebelum blok `compaction` tidak dibawa ke depan, sehingga ringkasan adalah satu-satunya yang dimiliki model tentang pekerjaan sebelumnya tersebut. Jika Anda menulis `instructions` sendiri, beri tahu model apa yang harus dipertahankan dalam ringkasan; lihat [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries).
 
 ### Streaming
 
@@ -2901,7 +2902,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   ```
 </CodeGroup>
 
-Pada Claude Fable 5.1 dan Claude Opus 5.5, hapus blok `thinking` dan `redacted_thinking` dari setiap giliran asisten yang Anda sisipkan kembali setelah blok compaction, atau kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok-blok tersebut dihasilkan ketika riwayat lengkap masih ada, sehingga tidak lagi lolos [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Di tempat pemeriksaan tersebut diberlakukan, permintaan lanjutan akan ditolak dengan error 400. Blok teks dan blok alat yang dipertahankan dapat dibiarkan apa adanya. Membiarkan API meringkas semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari masalah ini.
+Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, hapus blok `thinking` dan `redacted_thinking` dari setiap giliran asisten yang Anda sisipkan kembali setelah blok compaction, atau kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok-blok tersebut dihasilkan ketika riwayat lengkap masih ada, sehingga tidak lagi lolos [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Di mana pemeriksaan tersebut diberlakukan, permintaan lanjutan ditolak dengan error 400. Blok teks dan blok alat yang dipertahankan dapat tetap seperti apa adanya. Membiarkan API meringkas semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari masalah ini. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, hapus blok-blok tersebut sebagai gantinya.
 
 Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) secara verbatim alih-alih meringkasnya:
 

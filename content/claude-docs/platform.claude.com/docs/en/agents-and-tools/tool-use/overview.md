@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: df2ee3fe3a44a38e69252c68d4a27fd3fabed79ea554ead8270c935ba4e95328
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: bb2933fb9e136d687d0da2699ba98d07a5e275f761c421ac4eee173ff5e95d9b
 ---
 
 ---
@@ -881,6 +881,7 @@ When you use `tools`, the API also automatically includes a special system promp
 | Claude Opus 4.5                                                                                                                       | 496 tokens                                | 588 tokens                               |
 | Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
 | Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))                | 313 tokens                                | 315 tokens                               |
+| Claude Sonnet 5.5                                                                                                                     | 286 tokens                                |                                          |
 | Claude Sonnet 5                                                                                                                       | 354 tokens                                | 474 tokens                               |
 | Claude Sonnet 4.6                                                                                                                     | 497 tokens                                | 589 tokens                               |
 | Claude Sonnet 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |

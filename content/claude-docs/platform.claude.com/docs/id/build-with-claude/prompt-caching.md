@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e550bc10013f4c9848d6060ad9ac04e10dba4499cfb2f72be32d7bd9ce44d40b
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 80f0fc89dcccb66450719e459b88736e1ab365f22e3f65d499c6e9bfe00eae20
 ---
 
 ---
 title: Caching prompt
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-description: Cache prefiks prompt dengan `cache_control` untuk memangkas biaya dan latensi, menggunakan caching otomatis atau breakpoint eksplisit dengan TTL 5 menit atau 1 jam.
+description: Simpan prefix prompt ke cache dengan `cache_control` untuk memangkas biaya dan latensi, menggunakan caching otomatis atau breakpoint eksplisit dengan TTL 5 menit atau 1 jam.
 ---
 
-"Prompt caching" (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan pemrosesan dilanjutkan dari prefiks tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
+"Prompt caching" (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan pemrosesan dilanjutkan dari "prefix" (awalan) tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
 
 <Note>
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
@@ -19,8 +19,8 @@ description: Cache prefiks prompt dengan `cache_control` untuk memangkas biaya d
 
 Ada dua cara untuk mengaktifkan caching prompt:
 
-* **[Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching)**: Tambahkan satu field `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis menerapkan "cache breakpoint" (titik henti cache) ke blok terakhir yang dapat di-cache dan memajukannya seiring percakapan bertambah panjang. Paling cocok untuk percakapan multi-giliran di mana riwayat pesan yang terus bertambah perlu di-cache secara otomatis.
-* **[Breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)**: Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol terperinci atas apa saja yang di-cache.
+* **[Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching)**: Tambahkan satu field `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis menerapkan "cache breakpoint" (titik henti cache) ke blok terakhir yang dapat di-cache dan memindahkannya maju seiring percakapan bertambah panjang. Paling cocok untuk percakapan multi-giliran di mana riwayat pesan yang terus bertambah harus di-cache secara otomatis.
+* **[Breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)**: Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol yang lebih terperinci atas apa saja yang di-cache.
 
 Cara termudah untuk memulai adalah dengan caching otomatis:
 
@@ -197,7 +197,7 @@ Cara termudah untuk memulai adalah dengan caching otomatis:
   ```
 </CodeGroup>
 
-Dengan caching otomatis, sistem meng-cache semua konten hingga dan termasuk blok terakhir yang dapat di-cache. Pada permintaan berikutnya dengan prefiks yang sama, konten yang di-cache digunakan kembali secara otomatis.
+Dengan caching otomatis, sistem menyimpan ke cache semua konten hingga dan termasuk blok terakhir yang dapat di-cache. Pada permintaan berikutnya dengan prefix yang sama, konten yang di-cache digunakan kembali secara otomatis.
 
 ***
 
@@ -205,9 +205,9 @@ Dengan caching otomatis, sistem meng-cache semua konten hingga dan termasuk blok
 
 Saat Anda mengirim permintaan dengan caching prompt diaktifkan:
 
-1. Sistem memeriksa apakah prefiks prompt, hingga breakpoint cache yang ditentukan, sudah di-cache dari kueri terbaru.
+1. Sistem memeriksa apakah prefix prompt, hingga breakpoint cache yang ditentukan, sudah di-cache dari kueri terbaru.
 2. Jika ditemukan, sistem menggunakan versi yang di-cache, sehingga mengurangi waktu pemrosesan dan biaya.
-3. Jika tidak, sistem memproses prompt secara penuh dan meng-cache prefiksnya begitu respons dimulai.
+3. Jika tidak, sistem memproses prompt lengkap dan menyimpan prefix ke cache setelah respons dimulai.
 
 Ini sangat berguna untuk:
 
@@ -216,9 +216,9 @@ Ini sangat berguna untuk:
 * Tugas berulang dengan instruksi yang konsisten
 * Percakapan multi-giliran yang panjang
 
-Secara default, cache memiliki masa berlaku 5 menit. Cache diperbarui tanpa biaya tambahan setiap kali konten yang di-cache digunakan.
+Secara default, cache memiliki masa hidup 5 menit. Cache diperbarui tanpa biaya tambahan setiap kali konten yang di-cache digunakan.
 
-Masa berlaku diukur sejak awal permintaan yang menulis atau membaca entri cache, bukan sejak akhir responsnya. Waktu yang dihabiskan untuk menghasilkan respons ikut dihitung dalam masa berlaku: jika sebuah respons membutuhkan 4 menit untuk di-stream, permintaan lanjutan yang menggunakan kembali prefiks cache yang sama harus dimulai dalam waktu sekitar 1 menit setelah respons tersebut selesai.
+Masa hidup diukur sejak awal permintaan yang menulis atau membaca entri cache, bukan sejak akhir responsnya. Waktu yang dihabiskan untuk menghasilkan respons dihitung terhadap masa hidup tersebut: jika sebuah respons membutuhkan 4 menit untuk di-stream, permintaan lanjutan yang menggunakan kembali prefix yang di-cache yang sama harus dimulai dalam waktu sekitar 1 menit setelah respons tersebut selesai.
 
 <Note>
   Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam [dengan biaya tambahan](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing).
@@ -227,7 +227,7 @@ Masa berlaku diukur sejak awal permintaan yang menulis atau membaca entri cache,
 </Note>
 
 <Tip>
-  **Caching prompt meng-cache seluruh prefiks**
+  **Caching prompt menyimpan seluruh prefix ke cache**
 
   Caching prompt mereferensikan seluruh prompt: `tools`, `system`, dan `messages` (dalam urutan tersebut), hingga dan termasuk blok yang ditandai dengan `cache_control`.
 </Tip>
@@ -252,6 +252,7 @@ Caching prompt memperkenalkan struktur harga baru. Tabel berikut menunjukkan har
 | Claude Opus 4.5                                                                                                                       | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
 | Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
 | Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))                | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
+| Claude Sonnet 5.5                                                                                                                     | $2 / MTok         | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok    |
 | Claude Sonnet 5                                                                                                                       | $2 / MTok         | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok    |
 | Claude Sonnet 4.6                                                                                                                     | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
 | Claude Sonnet 4.5                                                                                                                     | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
@@ -481,7 +482,7 @@ Caching otomatis adalah cara termudah untuk mengaktifkan caching prompt. Alih-al
 
 ### Cara kerja caching otomatis dalam percakapan multi-giliran
 
-Dengan caching otomatis, titik cache bergerak maju secara otomatis seiring percakapan bertambah panjang. Setiap permintaan baru meng-cache semuanya hingga blok terakhir yang dapat di-cache, dan konten sebelumnya dibaca dari cache.
+Dengan caching otomatis, titik cache bergerak maju secara otomatis seiring percakapan bertambah panjang. Setiap permintaan baru menyimpan ke cache semua konten hingga blok terakhir yang dapat di-cache, dan konten sebelumnya dibaca dari cache.
 
 | Permintaan   | Konten                                                                                   | Perilaku cache                                                              |
 | ------------ | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
@@ -503,7 +504,7 @@ Secara default, caching otomatis menggunakan "time to live" (masa berlaku), atau
 
 Caching otomatis kompatibel dengan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints). Saat digunakan bersama, breakpoint cache otomatis menggunakan salah satu dari 4 slot breakpoint yang tersedia.
 
-Ini memungkinkan Anda menggabungkan kedua pendekatan. Misalnya, gunakan breakpoint eksplisit untuk meng-cache "system prompt" (prompt sistem) Anda, sementara caching otomatis menangani percakapan:
+Ini memungkinkan Anda menggabungkan kedua pendekatan. Misalnya, gunakan breakpoint eksplisit untuk menyimpan prompt sistem Anda ke cache, sementara caching otomatis menangani percakapan:
 
 ```json
 {
@@ -523,9 +524,9 @@ Ini memungkinkan Anda menggabungkan kedua pendekatan. Misalnya, gunakan breakpoi
 
 ### Apa yang tetap sama
 
-Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, ambang batas token minimum, persyaratan urutan konteks, dan jendela penelusuran mundur 20 blok semuanya berlaku sama seperti pada breakpoint eksplisit.
+Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, ambang batas token minimum, persyaratan urutan konteks, dan "lookback window" (jendela penelusuran mundur) 20 blok semuanya berlaku sama seperti pada breakpoint eksplisit.
 
-### Kasus tepi
+### Kasus khusus
 
 * Jika blok terakhir sudah memiliki `cache_control` eksplisit dengan TTL yang sama, caching otomatis tidak melakukan apa pun.
 * Jika blok terakhir memiliki `cache_control` eksplisit dengan TTL yang berbeda, API mengembalikan error 400.
@@ -533,62 +534,62 @@ Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, amban
 * Jika blok terakhir tidak memenuhi syarat sebagai target breakpoint cache otomatis, sistem secara diam-diam menelusuri mundur untuk menemukan blok terdekat yang memenuhi syarat. Jika tidak ada yang ditemukan, caching dilewati.
 
 <Note>
-  Caching otomatis tersedia di setiap platform kecuali integrasi lama [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Pada integrasi tersebut, API mengembalikan error 400 untuk field `cache_control` di tingkat teratas, jadi gunakan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) sebagai gantinya.
+  Caching otomatis tersedia di setiap platform kecuali integrasi lama [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Pada integrasi tersebut, API mengembalikan error 400 untuk field `cache_control` tingkat teratas, jadi gunakan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) sebagai gantinya.
 </Note>
 
 ***
 
 ## Breakpoint cache eksplisit
 
-Untuk kontrol lebih atas caching, Anda dapat menempatkan `cache_control` langsung pada blok konten individual. Ini berguna ketika Anda perlu meng-cache bagian-bagian berbeda yang berubah dengan frekuensi berbeda, atau memerlukan kontrol terperinci atas apa saja yang di-cache.
+Untuk kontrol lebih atas caching, Anda dapat menempatkan `cache_control` langsung pada blok konten individual. Ini berguna ketika Anda perlu menyimpan ke cache bagian-bagian berbeda yang berubah dengan frekuensi berbeda, atau memerlukan kontrol terperinci atas apa saja yang di-cache.
 
 ### Menyusun prompt Anda
 
 Tempatkan konten statis (definisi alat, instruksi sistem, konteks, contoh) di awal prompt Anda. Tandai akhir konten yang dapat digunakan kembali untuk caching menggunakan parameter `cache_control`.
 
-Prefiks cache dibuat dalam urutan berikut: `tools`, `system`, lalu `messages`. Urutan ini membentuk hierarki di mana setiap tingkat dibangun di atas tingkat sebelumnya.
+Prefix cache dibuat dalam urutan berikut: `tools`, `system`, lalu `messages`. Urutan ini membentuk hierarki di mana setiap tingkat dibangun di atas tingkat sebelumnya.
 
-#### Cara kerja pemeriksaan prefiks otomatis
+#### Cara kerja pemeriksaan prefix otomatis
 
-Anda dapat menggunakan hanya satu breakpoint cache di akhir konten statis Anda, dan sistem akan secara otomatis menemukan prefiks terpanjang yang sudah ditulis ke cache oleh permintaan sebelumnya. Memahami cara kerjanya membantu Anda mengoptimalkan strategi caching Anda.
+Anda dapat menggunakan hanya satu breakpoint cache di akhir konten statis Anda, dan sistem akan secara otomatis menemukan prefix terpanjang yang sudah ditulis ke cache oleh permintaan sebelumnya. Memahami cara kerjanya membantu Anda mengoptimalkan strategi caching Anda.
 
 **Tiga prinsip inti:**
 
-1. **Penulisan cache hanya terjadi di breakpoint Anda.** Menandai sebuah blok dengan `cache_control` menulis tepat satu entri cache: hash dari prefiks yang berakhir di blok tersebut. Sistem tidak menulis entri untuk posisi sebelumnya mana pun. Karena hash bersifat kumulatif, mencakup semuanya hingga dan termasuk breakpoint, mengubah blok mana pun di atau sebelum breakpoint akan menghasilkan hash yang berbeda pada permintaan berikutnya.
+1. **Penulisan cache hanya terjadi di breakpoint Anda.** Menandai sebuah blok dengan `cache_control` menulis tepat satu entri cache: hash dari prefix yang berakhir di blok tersebut. Sistem tidak menulis entri untuk posisi sebelumnya mana pun. Karena hash bersifat kumulatif, mencakup semua konten hingga dan termasuk breakpoint, mengubah blok mana pun di atau sebelum breakpoint akan menghasilkan hash yang berbeda pada permintaan berikutnya.
 
-2. **Pembacaan cache menelusuri mundur untuk mencari entri yang ditulis oleh permintaan sebelumnya.** Pada setiap permintaan, sistem menghitung hash prefiks di breakpoint Anda dan memeriksa entri cache yang cocok. Jika tidak ada, sistem menelusuri mundur satu blok demi satu blok, memeriksa apakah hash prefiks di setiap posisi sebelumnya cocok dengan sesuatu yang sudah ada di cache. Sistem mencari penulisan sebelumnya, bukan konten yang stabil.
+2. **Pembacaan cache menelusuri mundur untuk mencari entri yang ditulis oleh permintaan sebelumnya.** Pada setiap permintaan, sistem menghitung hash prefix di breakpoint Anda dan memeriksa entri cache yang cocok. Jika tidak ada, sistem menelusuri mundur satu blok demi satu blok, memeriksa apakah hash prefix di setiap posisi sebelumnya cocok dengan sesuatu yang sudah ada di cache. Sistem mencari penulisan sebelumnya, bukan konten yang stabil.
 
-3. **"Lookback window" (jendela penelusuran mundur) adalah 20 blok.** Sistem memeriksa paling banyak 20 posisi per breakpoint, dengan breakpoint itu sendiri dihitung sebagai yang pertama. Jika sistem tidak menemukan entri yang cocok dalam jendela tersebut, pemeriksaan berhenti (atau dilanjutkan dari breakpoint eksplisit berikutnya, jika ada). Pada Claude API, rangkaian blok `tool_use` yang berurutan dihitung sebagai satu posisi, demikian pula rangkaian blok `tool_result` yang berurutan, sehingga giliran dengan banyak pemanggilan alat paralel tidak dengan sendirinya mendorong entri permintaan sebelumnya keluar dari jendela.
+3. **Lookback window adalah 20 blok.** Sistem memeriksa paling banyak 20 posisi per breakpoint, dengan breakpoint itu sendiri dihitung sebagai yang pertama. Jika sistem tidak menemukan entri yang cocok dalam jendela tersebut, pemeriksaan berhenti (atau dilanjutkan dari breakpoint eksplisit berikutnya, jika ada). Pada Claude API, rangkaian blok `tool_use` yang berurutan dihitung sebagai satu posisi, demikian pula rangkaian blok `tool_result` yang berurutan, sehingga satu giliran dengan banyak pemanggilan alat paralel tidak dengan sendirinya mendorong entri permintaan sebelumnya keluar dari jendela.
 
 **Contoh: Penelusuran mundur dalam percakapan yang terus bertambah**
 
 Anda menambahkan blok baru di setiap giliran dan menetapkan `cache_control` pada blok terakhir setiap permintaan:
 
 * **Giliran 1:** 10 blok, breakpoint pada blok 10. Belum ada entri cache sebelumnya. Sistem menulis entri di blok 10.
-* **Giliran 2:** 15 blok, breakpoint pada blok 15. Blok 15 tidak memiliki entri, sehingga sistem menelusuri mundur ke blok 10 dan menemukan entri dari giliran 1. Terjadi "cache hit" (kecocokan cache) di blok 10; sistem hanya memproses blok 11 hingga 15 dari awal dan menulis entri baru di blok 15.
-* **Giliran 3:** 35 blok, breakpoint pada blok 35. Sistem memeriksa 20 posisi (blok 35 hingga 16) dan tidak menemukan apa pun. Entri giliran 2 di blok 15 berada satu posisi di luar jendela, sehingga tidak ada cache hit. Menambahkan breakpoint kedua di blok 15 akan memulai jendela penelusuran mundur kedua di sana, yang akan menemukan entri giliran 2.
+* **Giliran 2:** 15 blok, breakpoint pada blok 15. Blok 15 tidak memiliki entri, sehingga sistem menelusuri mundur ke blok 10 dan menemukan entri dari giliran 1. "Cache hit" (kecocokan cache) terjadi di blok 10; sistem hanya memproses blok 11 hingga 15 sebagai konten baru dan menulis entri baru di blok 15.
+* **Giliran 3:** 35 blok, breakpoint pada blok 35. Sistem memeriksa 20 posisi (blok 35 hingga 16) dan tidak menemukan apa pun. Entri giliran 2 di blok 15 berada satu posisi di luar jendela, sehingga tidak ada cache hit. Menambahkan breakpoint kedua di blok 15 akan memulai lookback window kedua di sana, yang menemukan entri giliran 2.
 
 **Kesalahan umum: Breakpoint pada konten yang berubah di setiap permintaan**
 
 Prompt Anda memiliki konteks sistem statis yang besar (blok 1 hingga 5) diikuti oleh blok per permintaan yang berisi timestamp dan pesan pengguna (blok 6). Anda menetapkan `cache_control` pada blok 6:
 
 * **Permintaan 1:** Penulisan cache di blok 6. Hash mencakup timestamp.
-* **Permintaan 2:** Timestamp berbeda, sehingga hash prefiks di blok 6 berbeda. Penelusuran mundur melewati blok 5, 4, 3, 2, dan 1, tetapi sistem tidak pernah menulis entri di posisi mana pun tersebut. Tidak ada cache hit. Anda membayar penulisan cache baru di setiap permintaan dan tidak pernah mendapatkan pembacaan.
+* **Permintaan 2:** Timestamp berbeda, sehingga hash prefix di blok 6 berbeda. Penelusuran mundur melewati blok 5, 4, 3, 2, dan 1, tetapi sistem tidak pernah menulis entri di posisi mana pun tersebut. Tidak ada cache hit. Anda membayar penulisan cache baru di setiap permintaan dan tidak pernah mendapatkan pembacaan.
 
-Penelusuran mundur tidak menemukan konten stabil di belakang breakpoint Anda lalu meng-cache-nya. Penelusuran mundur menemukan entri yang sudah ditulis oleh permintaan sebelumnya, dan penulisan hanya terjadi di breakpoint. Pindahkan `cache_control` ke blok 5, blok terakhir yang tetap sama di seluruh permintaan, dan setiap permintaan berikutnya akan membaca prefiks yang di-cache. [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) juga terjebak dalam masalah yang sama: caching otomatis menempatkan breakpoint pada blok terakhir yang dapat di-cache, yang dalam struktur ini adalah blok yang berubah di setiap permintaan, jadi gunakan breakpoint eksplisit pada blok 5 sebagai gantinya.
+Penelusuran mundur tidak menemukan konten stabil di belakang breakpoint Anda lalu menyimpannya ke cache. Penelusuran ini menemukan entri yang sudah ditulis oleh permintaan sebelumnya, dan penulisan hanya terjadi di breakpoint. Pindahkan `cache_control` ke blok 5, blok terakhir yang tetap sama di seluruh permintaan, dan setiap permintaan berikutnya akan membaca prefix yang di-cache. [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) juga terjebak dalam masalah yang sama: caching otomatis menempatkan breakpoint pada blok terakhir yang dapat di-cache, yang dalam struktur ini adalah blok yang berubah di setiap permintaan, jadi gunakan breakpoint eksplisit pada blok 5 sebagai gantinya.
 
-**Poin penting:** Tempatkan `cache_control` pada blok terakhir yang prefiksnya identik di seluruh permintaan yang ingin Anda gunakan untuk berbagi cache. Dalam percakapan yang terus bertambah, blok terakhir dapat digunakan selama setiap giliran menambahkan kurang dari 20 blok: konten sebelumnya tidak pernah berubah, sehingga penelusuran mundur permintaan berikutnya menemukan penulisan sebelumnya. Untuk prompt dengan sufiks yang bervariasi (timestamp, konteks per permintaan, pesan yang masuk), tempatkan breakpoint di akhir prefiks statis, bukan pada blok yang bervariasi.
+**Poin penting:** Tempatkan `cache_control` pada blok terakhir yang prefix-nya identik di seluruh permintaan yang ingin Anda buat berbagi cache. Dalam percakapan yang terus bertambah, blok terakhir dapat digunakan selama setiap giliran menambahkan kurang dari 20 blok: konten sebelumnya tidak pernah berubah, sehingga penelusuran mundur permintaan berikutnya menemukan penulisan sebelumnya. Untuk prompt dengan sufiks yang bervariasi (timestamp, konteks per permintaan, pesan yang masuk), tempatkan breakpoint di akhir prefix statis, bukan pada blok yang bervariasi.
 
 #### Kapan menggunakan beberapa breakpoint
 
 Anda dapat menentukan hingga 4 breakpoint cache jika Anda ingin:
 
-* Meng-cache bagian-bagian berbeda yang berubah dengan frekuensi berbeda (misalnya, alat jarang berubah, tetapi konteks diperbarui setiap hari)
+* Menyimpan ke cache bagian-bagian berbeda yang berubah dengan frekuensi berbeda (misalnya, alat jarang berubah, tetapi konteks diperbarui setiap hari)
 * Memiliki kontrol lebih atas apa saja yang di-cache
 * Memastikan cache hit ketika percakapan yang terus bertambah mendorong breakpoint Anda 20 blok atau lebih melewati penulisan cache terakhir
 
 <Note>
-  **Batasan penting:** Penelusuran mundur hanya dapat menemukan entri yang sudah ditulis oleh permintaan sebelumnya. Jika percakapan yang terus bertambah mendorong breakpoint Anda 20 blok atau lebih melewati penulisan terakhir, jendela penelusuran mundur akan melewatkannya. Tambahkan breakpoint kedua yang lebih dekat ke posisi tersebut sejak awal agar penulisan terakumulasi di sana sebelum Anda membutuhkannya.
+  **Batasan penting:** Penelusuran mundur hanya dapat menemukan entri yang sudah ditulis oleh permintaan sebelumnya. Jika percakapan yang terus bertambah mendorong breakpoint Anda 20 blok atau lebih melewati penulisan terakhir, lookback window akan melewatkannya. Tambahkan breakpoint kedua yang lebih dekat ke posisi tersebut sejak awal agar penulisan terakumulasi di sana sebelum Anda membutuhkannya.
 </Note>
 
 ### Memahami biaya breakpoint cache
@@ -596,7 +597,7 @@ Anda dapat menentukan hingga 4 breakpoint cache jika Anda ingin:
 **Breakpoint cache itu sendiri tidak menambah biaya apa pun.** Anda hanya dikenakan biaya untuk:
 
 * **Penulisan cache:** Saat konten baru ditulis ke cache (25% lebih mahal dari token input dasar untuk TTL 5 menit)
-* **Pembacaan cache:** Saat konten yang di-cache digunakan (10% dari harga token input dasar, atau 2,5% pada Claude Fable 5.1 dan Claude Mythos 5.1, serta 5% pada Claude Opus 5.5)
+* **Pembacaan cache:** Saat konten yang di-cache digunakan (10% dari harga token input dasar, atau 2,5% pada Claude Fable 5.1 dan Claude Mythos 5.1, dan 5% pada Claude Opus 5.5)
 * **Token input reguler:** Untuk konten apa pun yang tidak di-cache
 
 Menambahkan lebih banyak breakpoint `cache_control` tidak meningkatkan biaya Anda; Anda tetap membayar jumlah yang sama berdasarkan konten yang benar-benar di-cache dan dibaca. Breakpoint memberi Anda kontrol atas bagian mana yang dapat di-cache secara independen.
@@ -607,20 +608,20 @@ Menambahkan lebih banyak breakpoint `cache_control` tidak meningkatkan biaya And
 
 ### Batasan cache
 
-Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), panjang minimum prompt yang dapat di-cache adalah:
+Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), panjang prompt minimum yang dapat di-cache adalah:
 
-* 512 token untuk Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Fable 5, dan [Claude Mythos 5](https://anthropic.com/glasswing)
+* 512 token untuk Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Fable 5, dan [Claude Mythos 5](https://anthropic.com/glasswing)
 * 2.048 token untuk [Claude Mythos Preview](https://anthropic.com/glasswing) dan Claude Opus 4.7
 * 4.096 token untuk Claude Opus 4.6 dan Claude Opus 4.5
-* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([sudah dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([sudah dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([sudah dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
+* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 * 4.096 token untuk Claude Haiku 4.5
-* 2.048 token untuk Claude Haiku 3.5 ([sudah dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
+* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 
 Batas minimum ini berlaku di setiap platform tempat masing-masing model tersedia.
 
-Prompt yang lebih pendek tidak dapat di-cache, meskipun ditandai dengan `cache_control`. Setiap permintaan untuk meng-cache token yang jumlahnya kurang dari batas ini akan diproses tanpa caching, dan tidak ada error yang dikembalikan. Untuk memverifikasi apakah sebuah prompt di-cache, periksa [field usage pada respons](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance): jika `cache_creation_input_tokens` dan `cache_read_input_tokens` keduanya bernilai 0, prompt tersebut tidak di-cache (kemungkinan karena tidak memenuhi persyaratan panjang minimum).
+Prompt yang lebih pendek tidak dapat di-cache, meskipun ditandai dengan `cache_control`. Setiap permintaan untuk menyimpan ke cache kurang dari jumlah token ini akan diproses tanpa caching, dan tidak ada error yang dikembalikan. Untuk memverifikasi apakah sebuah prompt di-cache, periksa [field usage pada respons](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance): jika `cache_creation_input_tokens` dan `cache_read_input_tokens` keduanya bernilai 0, prompt tersebut tidak di-cache (kemungkinan karena tidak memenuhi persyaratan panjang minimum).
 
-Jika prompt Anda sedikit di bawah batas minimum untuk model dan platform Anda, memperluas konten yang di-cache hingga mencapai ambang batas sering kali sepadan. Pembacaan cache jauh lebih murah daripada token input yang tidak di-cache, sehingga mencapai batas minimum dapat mengurangi biaya untuk prompt yang sering digunakan kembali.
+Jika prompt Anda sedikit di bawah batas minimum untuk model dan platform Anda, memperluas konten yang di-cache untuk mencapai ambang batas sering kali sepadan. Pembacaan cache jauh lebih murah daripada token input yang tidak di-cache, sehingga mencapai batas minimum dapat mengurangi biaya untuk prompt yang sering digunakan kembali.
 
 <Note>
   [Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) adalah platform yang dioperasikan oleh AWS. Di Bedrock, lihat [dokumentasi caching prompt Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) untuk batas minimum per model, perilaku kegagalan, dan nama field usage yang berlaku.
@@ -628,7 +629,7 @@ Jika prompt Anda sedikit di bawah batas minimum untuk model dan platform Anda, m
 
 Untuk permintaan bersamaan, perhatikan bahwa entri cache baru tersedia setelah respons pertama dimulai. Jika Anda memerlukan cache hit untuk permintaan paralel, tunggu respons pertama sebelum mengirim permintaan berikutnya.
 
-Saat ini, "ephemeral" adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa berlaku 5 menit.
+Saat ini, "ephemeral" adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa hidup 5 menit.
 
 ### Apa yang dapat di-cache
 
@@ -640,17 +641,17 @@ Sebagian besar blok dalam permintaan dapat di-cache. Ini mencakup:
 * Gambar & Dokumen: Blok konten dalam array `messages.content`, pada giliran pengguna
 * Penggunaan alat dan hasil alat: Blok konten dalam array `messages.content`, pada giliran pengguna maupun asisten
 
-Setiap elemen ini dapat di-cache, baik secara otomatis maupun dengan menandainya menggunakan `cache_control`.
+Masing-masing elemen ini dapat di-cache, baik secara otomatis maupun dengan menandainya menggunakan `cache_control`.
 
 ### Apa yang tidak dapat di-cache
 
 Meskipun sebagian besar blok permintaan dapat di-cache, ada beberapa pengecualian:
 
-* "Thinking blocks" (blok pemikiran) tidak dapat di-cache secara langsung dengan `cache_control`. Namun, blok thinking DAPAT di-cache bersama konten lain ketika muncul di giliran asisten sebelumnya. Ketika di-cache dengan cara ini, blok tersebut DIHITUNG sebagai token input saat dibaca dari cache.
+* Blok thinking tidak dapat di-cache secara langsung dengan `cache_control`. Namun, blok thinking DAPAT di-cache bersama konten lain ketika muncul di giliran asisten sebelumnya. Ketika di-cache dengan cara ini, blok tersebut DIHITUNG sebagai token input saat dibaca dari cache.
 
-* Blok sub-konten (seperti [sitasi](https://platform.claude.com/docs/id/build-with-claude/citations)) itu sendiri tidak dapat di-cache secara langsung. Sebagai gantinya, cache blok tingkat teratas.
+* Blok sub-konten (seperti [kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)) itu sendiri tidak dapat di-cache secara langsung. Sebagai gantinya, simpan blok tingkat teratas ke cache.
 
-  Dalam kasus sitasi, blok konten dokumen tingkat teratas yang berfungsi sebagai materi sumber untuk sitasi dapat di-cache. Ini memungkinkan Anda menggunakan caching prompt dengan sitasi secara efektif dengan meng-cache dokumen yang akan direferensikan oleh sitasi.
+  Dalam kasus kutipan, blok konten dokumen tingkat teratas yang berfungsi sebagai materi sumber untuk kutipan dapat di-cache. Ini memungkinkan Anda menggunakan caching prompt dengan kutipan secara efektif dengan menyimpan ke cache dokumen-dokumen yang akan direferensikan oleh kutipan.
 
 * Blok teks kosong tidak dapat di-cache.
 
@@ -662,23 +663,23 @@ Seperti dijelaskan dalam [Menyusun prompt Anda](https://platform.claude.com/docs
 
 Tabel berikut menunjukkan bagian cache mana yang dibatalkan oleh berbagai jenis perubahan. ✘ menunjukkan bahwa cache dibatalkan, sedangkan ✓ menunjukkan bahwa cache tetap valid.
 
-| Apa yang berubah                                                                              | Cache alat     | Cache sistem   | Cache pesan    | Dampak                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------------- | -------------- | -------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Definisi alat**                                                                             | ✘              | ✘              | ✘              | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Toggle pencarian web**                                                                      | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Toggle sitasi**                                                                             | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan sitasi memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Pengaturan kecepatan**                                                                      | ✓              | ✘              | ✘              | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Pilihan alat**                                                                              | ✓              | ✓              | ✘              | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Gambar**                                                                                    | ✓              | ✓              | ✘              | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Parameter thinking**                                                                        | Spesifik model | Spesifik model | ✘              | Konfigurasi thinking (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi tersebut sebelum keduanya. Lihat [Thinking dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                     |
-| **Pengaturan effort**                                                                         | Spesifik model | Spesifik model | ✘              | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) selalu membatalkan blok pesan, dengan efek spesifik model yang sama pada cache alat dan sistem seperti parameter thinking. Menetapkan effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
-| **Hasil non-alat yang diteruskan ke permintaan "extended thinking" (pemikiran diperpanjang)** | ✓              | ✓              | Spesifik model | Pada Opus 4.5+ dan Sonnet 4.6+, blok thinking dipertahankan secara default, sehingga cache tetap valid (✓). Pada model Opus/Sonnet sebelumnya dan semua model Haiku, semua blok thinking yang sebelumnya di-cache dihapus dari konteks, dan setiap pesan yang mengikuti blok thinking tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok thinking](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                                                                                        |
-| **Blok thinking yang dibuang**                                                                | ✓              | ✓              | ✘              | Ketika API membuang blok thinking Claude Fable 5.1, Claude Mythos 5.1, atau Claude Opus 5.5 yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut (misalnya, blok yang Anda putar ulang ke model yang tidak dapat membacanya), prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh.                                                                                             |
+| Apa yang berubah                                                        | Cache alat            | Cache sistem          | Cache pesan           | Dampak                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------------------------------------------------------------------- | --------------------- | --------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Definisi alat**                                                       | ✘                     | ✘                     | ✘                     | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Pengaktifan pencarian web**                                           | ✓                     | ✘                     | ✘                     | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Pengaktifan kutipan**                                                 | ✓                     | ✘                     | ✘                     | Mengaktifkan/menonaktifkan kutipan memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Pengaturan kecepatan**                                                | ✓                     | ✘                     | ✘                     | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Pilihan alat**                                                        | ✓                     | ✓                     | ✘                     | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Gambar**                                                              | ✓                     | ✓                     | ✘                     | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Parameter thinking**                                                  | Bergantung pada model | Bergantung pada model | ✘                     | Konfigurasi thinking (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi tersebut sebelum keduanya. Lihat [Thinking dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                      |
+| **Pengaturan effort**                                                   | Bergantung pada model | Bergantung pada model | ✘                     | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) selalu membatalkan blok pesan, dengan efek bergantung model yang sama pada cache alat dan sistem seperti parameter thinking. Menetapkan effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefix yang di-cache tetap utuh. |
+| **Hasil non-alat yang diteruskan ke permintaan pemikiran diperpanjang** | ✓                     | ✓                     | Bergantung pada model | Pada Opus 4.5+ dan Sonnet 4.6+, blok thinking dipertahankan secara default, sehingga cache tetap valid (✓). Pada model Opus/Sonnet sebelumnya dan semua model Haiku, semua blok thinking yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok thinking tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok thinking](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                                                                                        |
+| **Blok thinking yang dibuang**                                          | ✓                     | ✓                     | ✘                     | Ketika API membuang blok thinking dari Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, atau Claude Sonnet 5.5 yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut (misalnya, blok yang Anda kirim ulang ke model yang tidak dapat membacanya), prefix yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan itu. Blok yang dapat dibaca oleh model penerima, yang dikirim kembali tanpa perubahan, menjaga cache tetap utuh.                                                                               |
 
-Pada model yang mendukung [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), header beta `inline-tools-2026-09-15` memungkinkan Anda menambahkan alat, atau mengubah definisi alat, di tengah percakapan tanpa mengedit `tools`. Kirim definisi tersebut dalam blok `tool_addition` di pesan sistem di tengah percakapan dan biarkan `tools` persis seperti saat pertama kali Anda mengirimnya. Prefiks yang di-cache tetap cocok, sehingga hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian adalah array `tools` tanpa alat non-deferred, di mana alat pertama yang didefinisikan dengan cara ini menimbulkan satu "cache miss" (cache tidak ditemukan) penuh pada permintaan tersebut. Lihat [Mendefinisikan alat dalam pesan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
+Pada model yang mendukung [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), header beta `inline-tools-2026-09-15` memungkinkan Anda menambahkan alat, atau mengubah definisi alat, di tengah percakapan tanpa mengedit `tools`. Kirim definisi tersebut dalam blok `tool_addition` di dalam pesan sistem di tengah percakapan dan biarkan `tools` persis seperti saat pertama kali Anda mengirimnya. Prefix yang di-cache tetap cocok, sehingga hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian adalah array `tools` tanpa alat non-deferred, di mana alat pertama yang didefinisikan dengan cara ini menyebabkan satu cache miss penuh pada permintaan tersebut. Lihat [Mendefinisikan alat dalam pesan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
 
 <Note>
-  Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, dan Claude Opus 5, Anda dapat menambahkan instruksi sistem baru di tengah percakapan tanpa membatalkan cache sistem atau pesan. Tambahkan pesan `{"role": "system"}` ke `messages` alih-alih mengedit field `system` tingkat teratas, sehingga prefiks yang di-cache tetap tidak berubah. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat teratas sebagai gantinya. Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
+  Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, dan Claude Sonnet 5.5, Anda dapat menambahkan instruksi sistem baru di tengah percakapan tanpa membatalkan cache sistem atau pesan. Tambahkan pesan `{"role": "system"}` ke `messages` alih-alih mengedit field `system` tingkat teratas, sehingga prefix yang di-cache tetap tidak berubah. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat teratas sebagai gantinya. Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
 </Note>
 
 ### Melacak performa cache
@@ -713,14 +714,14 @@ Pantau performa cache menggunakan field respons API berikut, di dalam `usage` pa
   * `input_tokens`: 50
   * **Total token input yang diproses:** 100.050 token
 
-  Ini penting untuk memahami biaya maupun "rate limit" (batas laju), karena `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda saat menggunakan caching secara efektif.
+  Ini penting untuk memahami biaya maupun batas laju, karena `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda saat menggunakan caching secara efektif.
 </Note>
 
 ### Caching dengan blok thinking
 
 Saat menggunakan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan caching prompt, blok thinking memiliki perilaku khusus:
 
-**Caching otomatis bersama konten lain:** Meskipun blok thinking tidak dapat ditandai secara eksplisit dengan `cache_control`, blok tersebut di-cache sebagai bagian dari konten permintaan ketika Anda melakukan panggilan API berikutnya dengan hasil alat. Ini umumnya terjadi selama "tool use" (penggunaan alat) ketika Anda meneruskan kembali blok thinking untuk melanjutkan percakapan.
+**Caching otomatis bersama konten lain:** Meskipun blok thinking tidak dapat ditandai secara eksplisit dengan `cache_control`, blok tersebut di-cache sebagai bagian dari konten permintaan saat Anda melakukan panggilan API berikutnya dengan hasil alat. Ini umumnya terjadi selama penggunaan alat ketika Anda mengirim kembali blok thinking untuk melanjutkan percakapan.
 
 **Penghitungan token input:** Ketika blok thinking dibaca dari cache, blok tersebut dihitung sebagai token input dalam metrik penggunaan Anda. Ini penting untuk perhitungan biaya dan penganggaran token.
 
@@ -756,9 +757,9 @@ User: [Text response, cache=True]
 # On earlier Opus/Sonnet and all Haiku models, non-tool-result user block causes prior thinking blocks to be stripped; on Opus 4.5+/Sonnet 4.6+ they are kept
 ```
 
-Pada model Opus/Sonnet sebelumnya dan semua model Haiku, semua blok thinking sebelumnya dihapus dari konteks pada titik ini. Pada Opus 4.5+ dan Sonnet 4.6+, blok thinking sebelumnya dipertahankan secara default dan tetap menjadi bagian dari prefiks yang di-cache.
+Pada model Opus/Sonnet sebelumnya dan semua model Haiku, semua blok thinking sebelumnya dihapus dari konteks pada titik ini. Pada Opus 4.5+ dan Sonnet 4.6+, blok thinking sebelumnya dipertahankan secara default dan tetap menjadi bagian dari prefix yang di-cache.
 
-Untuk informasi lebih rinci, lihat [Thinking dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
+Untuk informasi lebih terperinci, lihat [Thinking dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 
 ### Penyimpanan dan berbagi cache
 
@@ -766,7 +767,7 @@ Untuk informasi lebih rinci, lihat [Thinking dan caching prompt](https://platfor
   Caching prompt menggunakan isolasi tingkat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Cache diisolasi per workspace, memastikan pemisahan data antar workspace dalam organisasi yang sama. Ini berlaku untuk Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Google Cloud mempertahankan isolasi cache tingkat organisasi. Jika Anda menggunakan beberapa workspace, tinjau strategi caching Anda untuk memperhitungkan perbedaan ini.
 </Warning>
 
-* **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam sebuah organisasi pada Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Google Cloud hanya menggunakan isolasi tingkat organisasi.
+* **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam satu organisasi pada Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Google Cloud hanya menggunakan isolasi tingkat organisasi.
 
 * **Pencocokan persis:** Cache hit memerlukan segmen prompt yang 100% identik, termasuk semua teks dan gambar hingga dan termasuk blok yang ditandai dengan cache control.
 
@@ -774,24 +775,24 @@ Untuk informasi lebih rinci, lihat [Thinking dan caching prompt](https://platfor
 
 ### Praktik terbaik untuk caching yang efektif
 
-Untuk mengoptimalkan kinerja caching prompt:
+Untuk mengoptimalkan performa caching prompt:
 
 * Mulailah dengan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) untuk percakapan multi-giliran. Caching otomatis menangani pengelolaan breakpoint secara otomatis.
-* Gunakan [breakpoint eksplisit tingkat blok](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) ketika Anda perlu meng-cache bagian-bagian berbeda dengan frekuensi perubahan yang berbeda.
-* Cache konten yang stabil dan dapat digunakan kembali seperti instruksi sistem, informasi latar belakang, konteks besar, atau definisi alat yang sering digunakan.
-* Tempatkan konten yang di-cache di awal prompt untuk kinerja terbaik.
-* Gunakan breakpoint cache secara strategis untuk memisahkan bagian-bagian prefiks yang dapat di-cache.
-* Tempatkan breakpoint pada blok terakhir yang tetap identik di seluruh permintaan. Untuk prompt dengan prefiks statis dan sufiks yang bervariasi (timestamp, konteks per permintaan, pesan yang masuk), itu adalah akhir prefiks, bukan blok yang bervariasi.
-* Analisis tingkat cache hit secara rutin dan sesuaikan strategi Anda sesuai kebutuhan.
+* Gunakan [breakpoint eksplisit tingkat blok](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) ketika Anda perlu menyimpan ke cache bagian-bagian berbeda dengan frekuensi perubahan yang berbeda.
+* Simpan ke cache konten yang stabil dan dapat digunakan kembali seperti instruksi sistem, informasi latar belakang, konteks besar, atau definisi alat yang sering digunakan.
+* Tempatkan konten yang di-cache di awal prompt untuk performa terbaik.
+* Gunakan breakpoint cache secara strategis untuk memisahkan bagian-bagian prefix yang dapat di-cache.
+* Tempatkan breakpoint pada blok terakhir yang tetap identik di seluruh permintaan. Untuk prompt dengan prefix statis dan sufiks yang bervariasi (timestamp, konteks per permintaan, pesan yang masuk), itu adalah akhir prefix, bukan blok yang bervariasi.
+* Analisis tingkat cache hit secara berkala dan sesuaikan strategi Anda sesuai kebutuhan.
 
 ### Mengoptimalkan untuk berbagai kasus penggunaan
 
 Sesuaikan strategi caching prompt Anda dengan skenario Anda:
 
 * Agen percakapan: Kurangi biaya dan "latency" (latensi) untuk percakapan panjang, terutama yang memiliki instruksi panjang atau dokumen yang diunggah.
-* Asisten coding: Tingkatkan autocomplete dan tanya jawab basis kode dengan menyimpan bagian yang relevan atau versi ringkasan basis kode dalam prompt.
+* Asisten coding: Tingkatkan autocomplete dan tanya jawab basis kode dengan menyimpan bagian-bagian yang relevan atau versi ringkasan basis kode dalam prompt.
 * Pemrosesan dokumen besar: Sertakan materi panjang yang lengkap termasuk gambar dalam prompt Anda tanpa meningkatkan latensi respons.
-* Set instruksi terperinci: Bagikan daftar instruksi, prosedur, dan contoh yang ekstensif untuk menyempurnakan respons Claude. Developer sering menyertakan satu atau dua contoh dalam prompt, tetapi dengan caching prompt Anda bisa mendapatkan performa yang lebih baik lagi dengan menyertakan 20+ contoh beragam dari jawaban berkualitas tinggi.
+* Kumpulan instruksi terperinci: Bagikan daftar instruksi, prosedur, dan contoh yang ekstensif untuk menyempurnakan respons Claude. Developer sering menyertakan satu atau dua contoh dalam prompt, tetapi dengan caching prompt Anda bisa mendapatkan performa yang lebih baik lagi dengan menyertakan 20+ contoh beragam dari jawaban berkualitas tinggi.
 * Penggunaan alat agentik: Tingkatkan performa untuk skenario yang melibatkan banyak pemanggilan alat dan perubahan kode iteratif, di mana setiap langkah biasanya memerlukan panggilan API baru.
 * Berbicara dengan buku, makalah, dokumentasi, transkrip podcast, dan konten panjang lainnya: Hidupkan basis pengetahuan apa pun dengan menyematkan seluruh dokumen ke dalam prompt, dan biarkan pengguna mengajukan pertanyaan kepadanya.
 
@@ -800,14 +801,14 @@ Sesuaikan strategi caching prompt Anda dengan skenario Anda:
 Jika mengalami perilaku yang tidak terduga:
 
 <Tip>
-  [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics) membuat API membandingkan permintaan yang berurutan dan melaporkan di mana prefiks prompt menyimpang, yang secara otomatis menangani banyak langkah dalam daftar ini.
+  [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics) membuat API membandingkan permintaan yang berurutan dan melaporkan di mana prefix prompt menyimpang, yang secara otomatis menangani banyak langkah dalam daftar ini.
 </Tip>
 
 * Pastikan bagian yang di-cache identik di seluruh panggilan. Untuk breakpoint eksplisit, verifikasi bahwa penanda `cache_control` berada di lokasi yang sama
-* Periksa bahwa panggilan dilakukan dalam masa berlaku cache (5 menit secara default)
+* Periksa bahwa panggilan dilakukan dalam masa hidup cache (5 menit secara default)
 * Verifikasi bahwa `tool_choice`, penggunaan gambar, konfigurasi thinking, dan `output_config.effort` tetap konsisten antar panggilan
-* Validasi bahwa Anda meng-cache setidaknya jumlah token minimum untuk model dan platform Anda (lihat [Batasan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations))
-* Pastikan breakpoint Anda berada pada blok yang tetap identik di seluruh permintaan. Penulisan cache hanya terjadi di breakpoint, dan jika blok tersebut berubah (timestamp, konteks per permintaan, pesan yang masuk), hash prefiks tidak akan pernah cocok. Penelusuran mundur tidak menemukan konten stabil di belakang breakpoint; penelusuran mundur hanya menemukan entri yang ditulis oleh permintaan sebelumnya di breakpoint mereka sendiri
+* Validasi bahwa Anda menyimpan ke cache setidaknya jumlah token minimum untuk model dan platform Anda (lihat [Batasan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations))
+* Pastikan breakpoint Anda berada pada blok yang tetap identik di seluruh permintaan. Penulisan cache hanya terjadi di breakpoint, dan jika blok tersebut berubah (timestamp, konteks per permintaan, pesan yang masuk), hash prefix tidak akan pernah cocok. Penelusuran mundur tidak menemukan konten stabil di belakang breakpoint; penelusuran ini hanya menemukan entri yang ditulis oleh permintaan sebelumnya di breakpoint mereka sendiri
 * Verifikasi bahwa kunci dalam blok konten `tool_use` Anda memiliki urutan yang stabil karena beberapa bahasa (misalnya, Swift, Go) mengacak urutan kunci selama konversi JSON, sehingga merusak cache
 * Gunakan [diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics) agar API membandingkan permintaan yang berurutan dan melaporkan bagian prompt mana yang menyimpang
 
@@ -858,54 +859,54 @@ Jika Anda melihat penulisan `ephemeral_5m_input_tokens` yang tidak Anda minta sa
 
 ### Kapan menggunakan cache 1 jam
 
-Jika Anda memiliki prompt yang digunakan secara rutin (yaitu, prompt sistem yang digunakan lebih sering dari setiap 5 menit), tetap gunakan cache 5 menit. Cache tersebut akan terus diperbarui tanpa biaya tambahan.
+Jika Anda memiliki prompt yang digunakan secara teratur (yaitu, prompt sistem yang digunakan lebih sering dari setiap 5 menit), tetap gunakan cache 5 menit, karena cache ini akan terus diperbarui tanpa biaya tambahan.
 
-Cache 1 jam paling cocok digunakan dalam skenario berikut:
+Cache 1 jam paling baik digunakan dalam skenario berikut:
 
-* Ketika Anda memiliki prompt yang kemungkinan digunakan lebih jarang dari setiap 5 menit, tetapi lebih sering dari setiap jam. Misalnya, ketika agen sampingan agentik membutuhkan waktu lebih dari 5 menit, atau ketika Anda menyimpan percakapan chat yang panjang dengan pengguna dan umumnya memperkirakan pengguna tersebut mungkin tidak merespons dalam 5 menit ke depan.
+* Ketika Anda memiliki prompt yang kemungkinan digunakan lebih jarang dari 5 menit, tetapi lebih sering dari setiap jam. Misalnya, ketika agen sampingan agentik akan membutuhkan waktu lebih dari 5 menit, atau ketika menyimpan percakapan chat panjang dengan pengguna dan Anda umumnya memperkirakan pengguna tersebut mungkin tidak merespons dalam 5 menit ke depan.
 * Ketika latensi penting dan prompt lanjutan Anda mungkin dikirim setelah lebih dari 5 menit.
-* Ketika Anda ingin meningkatkan pemanfaatan batas laju Anda, karena cache hit tidak dihitung terhadap batas laju Anda.
+* Ketika Anda ingin meningkatkan pemanfaatan batas laju Anda, karena cache hit tidak dikurangkan dari batas laju Anda.
 
 <Note>
-  Cache 5 menit dan 1 jam berperilaku sama dalam hal latensi. Umumnya Anda akan melihat peningkatan "time-to-first-token" (waktu hingga token pertama) untuk dokumen yang panjang.
+  Cache 5 menit dan 1 jam berperilaku sama dalam hal latensi. Anda umumnya akan melihat peningkatan time-to-first-token untuk dokumen panjang.
 </Note>
 
 ### Mencampur TTL yang berbeda
 
-Anda dapat menggunakan kontrol cache 1 jam dan 5 menit dalam permintaan yang sama, tetapi dengan batasan penting: Entri cache dengan TTL yang lebih panjang harus muncul sebelum TTL yang lebih pendek (yaitu, entri cache 1 jam harus muncul sebelum entri cache 5 menit mana pun).
+Anda dapat menggunakan kontrol cache 1 jam dan 5 menit dalam permintaan yang sama, tetapi dengan satu batasan penting: entri cache dengan TTL yang lebih panjang harus muncul sebelum TTL yang lebih pendek (artinya, entri cache 1 jam harus muncul sebelum entri cache 5 menit mana pun).
 
 Saat mencampur TTL, API menentukan tiga lokasi penagihan dalam prompt Anda:
 
-1. Posisi `A`: Jumlah token pada cache hit tertinggi (atau 0 jika tidak ada hit).
+1. Posisi `A`: Jumlah token pada "cache hit" (kecocokan cache) tertinggi (atau 0 jika tidak ada hit).
 2. Posisi `B`: Jumlah token pada blok `cache_control` 1 jam tertinggi setelah `A` (atau sama dengan `A` jika tidak ada).
 3. Posisi `C`: Jumlah token pada blok `cache_control` terakhir.
 
 <Note>
-  Jika `B` atau `C` lebih besar dari `A`, itu pasti merupakan "cache miss" (cache tidak ditemukan), karena `A` adalah cache hit tertinggi.
+  Jika `B` atau `C` lebih besar dari `A`, posisi tersebut pasti merupakan "cache miss" (kegagalan cache), karena `A` adalah cache hit tertinggi.
 </Note>
 
 Anda akan dikenakan biaya untuk:
 
-1. Token pembacaan cache untuk `A`.
-2. Token penulisan cache 1 jam untuk `(B - A)`.
-3. Token penulisan cache 5 menit untuk `(C - B)`.
+1. Token baca cache untuk `A`.
+2. Token tulis cache 1 jam untuk `(B - A)`.
+3. Token tulis cache 5 menit untuk `(C - B)`.
 
-Berikut adalah tiga contoh. Ini menggambarkan token input dari 3 permintaan, yang masing-masing memiliki cache hit dan cache miss yang berbeda. Akibatnya, masing-masing memiliki perhitungan harga yang berbeda, yang ditunjukkan dalam kotak berwarna. ![Diagram "Mixing TTLs" (pencampuran TTL)](https://platform.claude.com/docs/images/prompt-cache-mixed-ttl.svg)
+Berikut tiga contoh. Gambar ini menunjukkan token input dari 3 permintaan, yang masing-masing memiliki cache hit dan cache miss yang berbeda. Akibatnya, masing-masing memiliki perhitungan harga yang berbeda, yang ditampilkan dalam kotak berwarna. ![Diagram Mixing TTLs (pencampuran TTL)](https://platform.claude.com/docs/images/prompt-cache-mixed-ttl.svg)
 
 ***
 
-## Pemanasan awal cache
+## Memanaskan cache terlebih dahulu
 
-"Cache pre-warming" (pemanasan awal cache) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini menghilangkan penalti "latency" (latensi) akibat "cache miss" (cache tidak ditemukan) pada interaksi pertama pengguna, sehingga mengurangi "time-to-first-token" (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
+"Cache pre-warming" (pemanasan awal cache) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini menghilangkan penalti "latency" (latensi) akibat cache miss pada interaksi pengguna pertama, sehingga mengurangi "time-to-first-token" (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
 
 ### Cara kerjanya
 
-Atur `max_tokens: 0` dalam permintaan Anda. API membaca prompt Anda ke dalam model dan menulis cache pada setiap breakpoint `cache_control`, lalu langsung mengembalikan respons tanpa menghasilkan output apa pun. Respons memiliki array `content` yang kosong, `stop_reason: "max_tokens"`, dan blok `usage` yang terisi lengkap.
+Atur `max_tokens: 0` dalam permintaan Anda. API membaca prompt Anda ke dalam model dan menulis cache pada setiap breakpoint `cache_control`, lalu segera kembali tanpa menghasilkan output apa pun. Respons memiliki array `content` yang kosong, `stop_reason: "max_tokens"`, dan blok `usage` yang terisi lengkap.
 
-Tempatkan breakpoint `cache_control` pada blok terakhir yang juga digunakan oleh permintaan lanjutan (biasanya prompt sistem atau definisi alat Anda), bukan pada pesan pengguna placeholder. Jika tidak, entri cache akan dikunci ke placeholder dan permintaan lanjutan tidak akan mengenainya. Gunakan juga konfigurasi thinking dan `output_config.effort` yang sama dengan permintaan lanjutan Anda: nilai-nilai tersebut dirender ke dalam prompt (lihat [Apa yang membatalkan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache)), sehingga pemanasan awal dengan konfigurasi yang berbeda dapat menulis entri yang tidak pernah dikenai oleh lalu lintas sungguhan Anda. Ini berarti menggunakan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) alih-alih [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching), karena caching otomatis menempatkan breakpoint pada blok terakhir, yang dalam hal ini adalah placeholder. Pesan pengguna placeholder dapat berupa string apa pun dengan konten yang bukan spasi kosong (contoh di sini menggunakan `"warmup"`); kontennya dibaca ke dalam model tetapi tidak pernah dijawab.
+Tempatkan breakpoint `cache_control` pada blok terakhir yang digunakan bersama dengan permintaan lanjutan (biasanya prompt sistem atau definisi alat Anda), bukan pada pesan pengguna placeholder. Jika tidak, entri cache akan dikunci ke placeholder dan permintaan lanjutan tidak akan mengenainya. Gunakan juga konfigurasi thinking dan `output_config.effort` yang sama dengan permintaan lanjutan Anda: nilai-nilai tersebut dirender ke dalam prompt (lihat [Apa yang membatalkan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache)), sehingga pemanasan awal dengan konfigurasi berbeda dapat menulis entri yang tidak pernah dikenai oleh lalu lintas Anda yang sebenarnya. Ini berarti menggunakan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) alih-alih [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching), karena caching otomatis menempatkan breakpoint pada blok terakhir, yang dalam kasus ini adalah placeholder. Pesan pengguna placeholder dapat berupa string apa pun dengan konten yang bukan spasi kosong (contoh di sini menggunakan `"warmup"`); kontennya dibaca ke dalam model tetapi tidak pernah dijawab.
 
 <Note>
-  Permintaan pemanasan awal dikenakan biaya **penulisan cache** jika prefiks belum di-cache, sama seperti permintaan lainnya. Periksa `usage.cache_creation_input_tokens` dalam respons untuk memastikan bahwa penulisan telah terjadi. Tidak ada token output yang ditagih.
+  Permintaan pemanasan awal dikenakan biaya **tulis cache** jika prefiks belum di-cache, sama seperti permintaan lainnya. Periksa `usage.cache_creation_input_tokens` dalam respons untuk memastikan penulisan telah terjadi. Tidak ada token output yang ditagih.
 </Note>
 
 <CodeGroup>
@@ -1141,7 +1142,7 @@ API mengembalikan array `content` yang kosong:
 
 ### Pola penggunaan umum
 
-Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval terjadwal), lalu kirim permintaan pengguna sungguhan setelah pemanasan awal selesai:
+Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval terjadwal), lalu kirim permintaan pengguna yang sebenarnya setelah pemanasan awal selesai:
 
 <CodeGroup>
   ```bash cURL
@@ -1292,7 +1293,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
   // Hangatkan cache sebelum lalu lintas pengguna masuk.
   await prewarmCache();
 
-  // Nanti, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
+  // Nantinya, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
   const response = await respond("How do I implement a binary search tree?");
   const textBlock = response.content.find(
     (block): block is Anthropic.TextBlock => block.type === "text"
@@ -1336,7 +1337,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
           }
       );
 
-  // Hangatkan cache sebelum lalu lintas pengguna datang.
+  // Hangatkan cache sebelum lalu lintas pengguna tiba.
   await PrewarmCache();
 
   // Nantinya, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
@@ -1391,7 +1392,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
   		log.Fatal(err)
   	}
 
-  	// Nanti, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
+  	// Nantinya, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
   	response, err := respond("How do I implement a binary search tree?")
   	if err != nil {
   		log.Fatal(err)
@@ -1504,7 +1505,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
     )
   end
 
-  # Permintaan pengguna yang sebenarnya; memanfaatkan cache yang sudah hangat.
+  # Permintaan pengguna yang sebenarnya; mendapat manfaat dari cache yang sudah hangat.
   def respond(client, user_message)
     client.messages.create(
       model: Anthropic::Model::CLAUDE_OPUS_5_5,
@@ -1514,7 +1515,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
     )
   end
 
-  # Hangatkan cache sebelum lalu lintas pengguna masuk.
+  # Hangatkan cache sebelum ada lalu lintas pengguna yang masuk.
   prewarm_cache(client)
 
   # Nanti, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
@@ -1525,9 +1526,9 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
   ```
 </CodeGroup>
 
-Perlu diingat bahwa TTL cache tetap berlaku. Untuk cache default 5 menit, kirim permintaan pemanasan awal baru setidaknya setiap 5 menit agar cache tetap hangat. Untuk jeda yang lebih panjang antara permintaan pengguna, gunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) sebagai gantinya.
+Perlu diingat bahwa TTL cache tetap berlaku. Untuk cache default 5 menit, kirim permintaan pemanasan awal baru setidaknya setiap 5 menit agar cache tetap hangat. Untuk jeda yang lebih panjang antar permintaan pengguna, gunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) sebagai gantinya.
 
-### Batasan
+### Keterbatasan
 
 Permintaan `max_tokens: 0` ditolak dengan `invalid_request_error` jika salah satu dari hal berikut diatur, karena masing-masing menyiratkan output yang tidak dapat dihasilkan dengan anggaran nol token:
 
@@ -1536,7 +1537,7 @@ Permintaan `max_tokens: 0` ditolak dengan `invalid_request_error` jika salah sat
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) (`output_config.format`)
 * `tool_choice` berupa `{"type": "tool", ...}` atau `{"type": "any"}`
 
-`max_tokens: 0` juga ditolak di dalam permintaan [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Pemanasan awal menargetkan waktu hingga token pertama, yang tidak berlaku untuk pemrosesan batch, dan entri cache yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
+`max_tokens: 0` juga ditolak di dalam permintaan [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Pemanasan awal menargetkan waktu hingga token pertama, yang tidak berlaku untuk pemrosesan batch, dan entri cache yang ditulis selama pemrosesan batch kemungkinan akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
 ### Mengganti solusi sementara max\_tokens=1
 
@@ -1548,7 +1549,7 @@ Sebelum `max_tokens: 0` tersedia, beberapa aplikasi menggunakan panggilan pemana
 
 Untuk membantu Anda memulai dengan "prompt caching" (caching prompt), [cookbook caching prompt](https://platform.claude.com/cookbook/misc-prompt-caching) menyediakan contoh terperinci dan praktik terbaik.
 
-Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh ini menunjukkan cara mengimplementasikan caching dalam berbagai skenario, membantu Anda memahami penerapan praktis dari fitur ini:
+Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh ini menunjukkan cara mengimplementasikan caching dalam berbagai skenario, membantu Anda memahami penerapan praktis fitur ini:
 
 <AccordionGroup>
   <Accordion title="Contoh caching konteks besar">
@@ -1819,7 +1820,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
     * `cache_read_input_tokens`: Jumlah token dalam seluruh pesan sistem yang di-cache
   </Accordion>
 
-  <Accordion title="Caching definisi alat">
+  <Accordion title="Meng-cache definisi alat">
     Definisi alat dapat di-cache dengan menempatkan `cache_control` pada alat terakhir dalam array `tools` Anda. Semua alat yang didefinisikan sebelum dan termasuk alat tersebut di-cache sebagai satu prefiks.
 
     ```json
@@ -2122,7 +2123,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
         public static void main(String[] args) {
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          // Buat prompt sistem sementara
+          // Buat prompt sistem sementara (ephemeral)
           TextBlockParam systemPrompt = TextBlockParam.builder()
             .text("...long system prompt")
             .cacheControl(CacheControlEphemeral.builder().build())
@@ -2249,9 +2250,9 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
 
     Contoh ini menunjukkan cara menggunakan caching prompt dalam percakapan multi-giliran.
 
-    Pada setiap giliran, blok terakhir dari pesan terakhir ditandai dengan `cache_control` sehingga percakapan dapat di-cache secara bertahap. Sistem secara otomatis mencari dan menggunakan urutan blok terpanjang yang sebelumnya telah di-cache untuk pesan lanjutan. Artinya, blok yang sebelumnya ditandai dengan blok `cache_control` kemudian tidak lagi ditandai, tetapi blok tersebut tetap akan dianggap sebagai cache hit (dan juga penyegaran cache!) jika dikenai dalam waktu 5 menit.
+    Pada setiap giliran, blok terakhir dari pesan terakhir ditandai dengan `cache_control` sehingga percakapan dapat di-cache secara bertahap. Sistem secara otomatis mencari dan menggunakan urutan blok terpanjang yang sebelumnya telah di-cache untuk pesan lanjutan. Artinya, blok yang sebelumnya ditandai dengan blok `cache_control` kemudian tidak lagi ditandai dengan ini, tetapi blok tersebut tetap akan dianggap sebagai cache hit (dan juga penyegaran cache!) jika dikenai dalam waktu 5 menit.
 
-    Selain itu, perhatikan bahwa parameter `cache_control` ditempatkan pada pesan sistem. Ini untuk memastikan bahwa jika pesan tersebut dikeluarkan dari cache (setelah tidak digunakan selama lebih dari 5 menit), pesan tersebut akan ditambahkan kembali ke cache pada permintaan berikutnya.
+    Selain itu, perhatikan bahwa parameter `cache_control` ditempatkan pada pesan sistem. Hal ini untuk memastikan bahwa jika pesan ini dikeluarkan dari cache (setelah tidak digunakan selama lebih dari 5 menit), pesan tersebut akan ditambahkan kembali ke cache pada permintaan berikutnya.
 
     Pendekatan ini berguna untuk mempertahankan konteks dalam percakapan yang sedang berlangsung tanpa memproses informasi yang sama berulang kali.
 
@@ -3146,7 +3147,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
     </CodeGroup>
 
-    Contoh komprehensif ini menunjukkan cara menggunakan keempat breakpoint cache yang tersedia untuk mengoptimalkan berbagai bagian prompt Anda:
+    Contoh komprehensif ini menunjukkan cara menggunakan keempat "cache breakpoint" (titik henti cache) yang tersedia untuk mengoptimalkan berbagai bagian prompt Anda:
 
     1. **Cache alat** (breakpoint cache 1): Parameter `cache_control` pada definisi alat terakhir meng-cache semua definisi alat.
 
@@ -3188,7 +3189,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
 
 Caching prompt (baik otomatis maupun eksplisit) memenuhi syarat ZDR. Anthropic tidak menyimpan teks mentah dari prompt Anda atau respons Claude.
 
-Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cache hanya disimpan di memori dan tidak disimpan secara permanen (at rest). Entri yang di-cache memiliki masa berlaku minimum 5 menit (standar) atau 1 jam (diperpanjang), setelah itu entri tersebut segera dihapus, meskipun tidak seketika. Entri cache diisolasi antar organisasi dan, pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, antar workspace dalam satu organisasi.
+Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cache hanya disimpan di memori dan tidak disimpan secara permanen (at rest). Entri yang di-cache memiliki masa berlaku minimum 5 menit (standar) atau 1 jam (diperpanjang), setelah itu entri tersebut dihapus dengan segera, meskipun tidak seketika. Entri cache diisolasi antar organisasi dan, pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, antar workspace dalam satu organisasi.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
@@ -3198,13 +3199,13 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
 
 <AccordionGroup>
   <Accordion title="Apakah saya memerlukan beberapa breakpoint cache atau cukup satu di akhir?">
-    **Dalam sebagian besar kasus, satu breakpoint cache di akhir konten statis Anda sudah cukup.** Penulisan cache hanya terjadi pada blok yang Anda tandai. Tempatkan breakpoint pada blok terakhir yang tetap identik di seluruh permintaan, dan setiap permintaan berikutnya akan membaca entri yang sama. Jika blok setelahnya bervariasi per permintaan (timestamp, pesan yang masuk), tempatkan breakpoint sebelum blok tersebut, pada blok stabil terakhir.
+    **Dalam sebagian besar kasus, satu breakpoint cache di akhir konten statis Anda sudah cukup.** Penulisan cache hanya terjadi pada blok yang Anda tandai. Tempatkan breakpoint pada blok terakhir yang tetap identik di seluruh permintaan, dan setiap permintaan berikutnya akan membaca entri yang sama tersebut. Jika blok berikutnya bervariasi per permintaan (stempel waktu, pesan yang masuk), tempatkan breakpoint sebelumnya, pada blok stabil terakhir.
 
     Anda hanya memerlukan beberapa breakpoint jika:
 
     * Percakapan yang terus bertambah mendorong breakpoint Anda 20 blok atau lebih melewati penulisan cache terakhir, sehingga entri sebelumnya berada di luar jendela lookback
     * Anda ingin meng-cache bagian-bagian yang diperbarui dengan frekuensi berbeda secara independen
-    * Anda memerlukan kontrol eksplisit atas apa yang di-cache untuk optimasi biaya
+    * Anda memerlukan kontrol eksplisit atas apa yang di-cache untuk optimalisasi biaya
 
     Contoh: Jika Anda memiliki instruksi sistem (jarang berubah) dan konteks RAG (berubah setiap hari), Anda dapat menggunakan dua breakpoint untuk meng-cache keduanya secara terpisah.
   </Accordion>
@@ -3226,23 +3227,23 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
     total_input_tokens = cache_read_input_tokens + cache_creation_input_tokens + input_tokens
     ```
 
-    * `cache_read_input_tokens`: Token yang diambil dari cache (semua yang ada sebelum breakpoint cache yang telah di-cache)
+    * `cache_read_input_tokens`: Token yang diambil dari cache (semua yang berada sebelum breakpoint cache yang telah di-cache)
     * `cache_creation_input_tokens`: Token baru yang sedang ditulis ke cache (pada breakpoint cache)
     * `input_tokens`: Token **setelah breakpoint cache terakhir** yang tidak di-cache
 
-    **Penting:** `input_tokens` TIDAK mewakili semua token input, hanya bagian setelah breakpoint cache terakhir Anda. Jika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda.
+    **Penting:** `input_tokens` TIDAK mewakili semua token input, hanya bagian setelah breakpoint cache terakhir Anda. Jika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil dari total input Anda.
 
-    **Contoh:** Dengan dokumen 200 ribu token yang di-cache dan pertanyaan pengguna sebanyak 50 token:
+    **Contoh:** Dengan dokumen 200 ribu token yang di-cache dan pertanyaan pengguna 50 token:
 
-    * `cache_read_input_tokens`: 200.000
+    * `cache_read_input_tokens`: 200,000
     * `cache_creation_input_tokens`: 0
     * `input_tokens`: 50
-    * **Total:** 200.050 token
+    * **Total:** 200,050 token
 
     Rincian ini sangat penting untuk memahami biaya dan penggunaan batas laju Anda. Lihat [Melacak performa cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance) untuk detail lebih lanjut.
   </Accordion>
 
-  <Accordion title="Berapa lama masa berlaku cache?">
+  <Accordion title="Berapa masa berlaku cache?">
     Masa berlaku minimum default cache (TTL) adalah 5 menit. Masa berlaku ini diperbarui setiap kali konten yang di-cache digunakan.
 
     Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan [TTL cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration).
@@ -3275,7 +3276,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   </Accordion>
 
   <Accordion title="Dapatkah saya menggunakan caching prompt dengan fitur API lainnya?">
-    Ya, caching prompt dapat digunakan bersama fitur API lainnya seperti penggunaan alat dan kemampuan vision. Namun, mengubah ada tidaknya gambar dalam prompt atau memodifikasi pengaturan penggunaan alat akan merusak cache.
+    Ya, caching prompt dapat digunakan bersama fitur API lainnya seperti penggunaan alat dan kemampuan vision. Namun, mengubah ada atau tidaknya gambar dalam prompt atau memodifikasi pengaturan penggunaan alat akan merusak cache.
 
     Untuk detail lebih lanjut tentang pembatalan cache, lihat [Apa yang membatalkan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache).
   </Accordion>
@@ -3285,7 +3286,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   </Accordion>
 
   <Accordion title="Dapatkah saya menghapus cache secara manual?">
-    Saat ini, tidak ada cara untuk menghapus cache secara manual. Prefiks yang di-cache akan kedaluwarsa secara otomatis setelah minimal 5 menit tidak aktif.
+    Saat ini, tidak ada cara untuk menghapus cache secara manual. Prefiks yang di-cache secara otomatis kedaluwarsa setelah minimal 5 menit tidak aktif.
   </Accordion>
 
   <Accordion title="Bagaimana cara melacak efektivitas strategi caching saya?">
@@ -3299,27 +3300,27 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
   <Accordion title="Bagaimana caching prompt menangani privasi dan pemisahan data?">
     Caching prompt dirancang dengan langkah-langkah privasi dan pemisahan data yang kuat:
 
-    1. Kunci cache dihasilkan menggunakan hash kriptografis dari prompt hingga titik kontrol cache. Ini berarti hanya permintaan dengan prompt yang identik yang dapat mengakses cache tertentu.
+    1. Kunci cache dibuat menggunakan hash kriptografis dari prompt hingga titik kontrol cache. Ini berarti hanya permintaan dengan prompt yang identik yang dapat mengakses cache tertentu.
 
     2. Pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, cache diisolasi per workspace dalam satu organisasi. Pada Bedrock dan Google Cloud, cache diisolasi per organisasi. Dalam setiap kasus, cache tidak pernah dibagikan antar organisasi, bahkan untuk prompt yang identik. Lihat [Penyimpanan dan berbagi cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing) untuk detailnya.
 
     3. Mekanisme caching dirancang untuk menjaga integritas dan privasi setiap percakapan atau konteks yang unik.
 
-    4. Aman untuk menggunakan `cache_control` di mana saja dalam prompt Anda. Agar caching menghasilkan pembacaan, tempatkan breakpoint di akhir prefiks yang stabil: menempatkannya pada blok yang berubah di setiap permintaan (seperti timestamp atau input bebas dari pengguna) akan menulis entri baru setiap kali dan tidak pernah menghasilkan hit.
+    4. Aman untuk menggunakan `cache_control` di mana saja dalam prompt Anda. Agar caching menghasilkan pembacaan, tempatkan breakpoint di akhir prefiks yang stabil: menempatkannya pada blok yang berubah di setiap permintaan (seperti stempel waktu atau input bebas dari pengguna) akan menulis entri baru setiap kali dan tidak pernah menghasilkan hit.
 
     Langkah-langkah ini memastikan bahwa caching prompt menjaga privasi dan keamanan data sambil menawarkan manfaat performa.
   </Accordion>
 
   <Accordion title="Dapatkah saya menggunakan caching prompt dengan Batches API?">
-    Ya, caching prompt dapat digunakan dengan permintaan [Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) Anda. Namun, karena permintaan batch asinkron dapat diproses secara bersamaan dan dalam urutan apa pun, cache hit disediakan berdasarkan upaya terbaik (best-effort).
+    Ya, caching prompt dapat digunakan dengan permintaan [Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) Anda. Namun, karena permintaan batch asinkron dapat diproses secara bersamaan dan dalam urutan apa pun, cache hit diberikan berdasarkan upaya terbaik (best-effort).
 
     [Cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dapat membantu meningkatkan cache hit Anda. Cara paling hemat biaya untuk menggunakannya adalah sebagai berikut:
 
-    * Kumpulkan sekumpulan permintaan pesan yang memiliki prefiks yang sama.
+    * Kumpulkan sekumpulan permintaan pesan yang memiliki prefiks bersama.
     * Kirim permintaan batch dengan satu permintaan yang memiliki prefiks bersama ini dan blok cache 1 jam. Ini akan menulis prefiks ke cache 1 jam.
     * Segera setelah ini selesai, kirimkan sisa permintaan. Anda harus memantau job untuk mengetahui kapan job tersebut selesai.
 
-    Ini biasanya lebih baik daripada menggunakan cache 5 menit karena permintaan batch umumnya membutuhkan waktu antara 5 menit hingga 1 jam untuk selesai.
+    Cara ini biasanya lebih baik daripada menggunakan cache 5 menit karena permintaan batch umumnya membutuhkan waktu antara 5 menit hingga 1 jam untuk selesai.
   </Accordion>
 
   <Accordion title="Mengapa saya melihat error `AttributeError: 'Beta' object has no attribute 'prompt_caching'` di Python?">

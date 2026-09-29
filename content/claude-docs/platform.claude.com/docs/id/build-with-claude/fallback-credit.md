@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 8d8a22c7644dfccb84598f4bfcbac122cb01853d2220328af74a031c7d6945c6
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 84f9de4c48d790b0ebcf1ab8e64002ba6e15f211a45d1abb8310090ccd934bd4
 ---
 
 ---
@@ -629,7 +629,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
   * **`fallback-credit-*`:** pertahankan header ini pada kedua permintaan. Percobaan ulang memerlukannya untuk menukarkan token.
 
   <Note>
-    Pada model yang menyertakan jendela konteks 1M token secara default, seperti Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8, header beta `context-1m-2025-08-07` tidak berpengaruh. Untuk menjaga kedua permintaan tetap identik, hilangkan header tersebut pada keduanya alih-alih mengirimkannya pada satu dan tidak pada yang lain.
+    Pada model yang menyertakan "context window" (jendela konteks) 1M token secara default, seperti Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Sonnet 5, header beta `context-1m-2025-08-07` tidak berpengaruh. Agar kedua permintaan tetap identik, hilangkan header tersebut pada keduanya alih-alih mengirimkannya pada satu permintaan dan tidak pada yang lain.
   </Note>
 </Accordion>
 

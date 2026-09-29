@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-09-27T02:24:59.045187Z
-sha256: 7c42b93b07494009545679cd1fceddf75a51a00d8480ea7af9f2478cea99b198
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 81a5e238fbb4d93bdd2a2a6cede0a6bb01c9e34e026c19ca010c70a6954d27fe
 ---
 
 > ## Documentation Index
@@ -277,21 +277,21 @@ Here are the most important commands for daily use. Shell commands run from your
 
 **Shell commands**
 
-| Command             | What it does                                           | Example                             |
-| ------------------- | ------------------------------------------------------ | ----------------------------------- |
-| `claude`            | Start interactive mode                                 | `claude`                            |
-| `claude "task"`     | Start interactive mode with an initial prompt          | `claude "fix the build error"`      |
-| `claude -p "query"` | Run one-off query, then exit                           | `claude -p "explain this function"` |
-| `claude -c`         | Continue most recent conversation in current directory | `claude -c`                         |
-| `claude -r`         | Resume a previous conversation                         | `claude -r`                         |
+| Command | What it does | Example |
+| - | - | - |
+| `claude` | Start interactive mode | `claude` |
+| `claude "task"` | Start interactive mode with an initial prompt | `claude "fix the build error"` |
+| `claude -p "query"` | Run one-off query, then exit | `claude -p "explain this function"` |
+| `claude -c` | Continue most recent conversation in current directory | `claude -c` |
+| `claude -r` | Resume a previous conversation | `claude -r` |
 
 **Session commands**
 
-| Command                 | What it does               | Example  |
-| ----------------------- | -------------------------- | -------- |
-| `/clear`                | Clear conversation history | `/clear` |
-| `/help`                 | Show available commands    | `/help`  |
-| `/exit` or Ctrl+D twice | Exit Claude Code           | `/exit`  |
+| Command | What it does | Example |
+| - | - | - |
+| `/clear` | Clear conversation history | `/clear` |
+| `/help` | Show available commands | `/help` |
+| `/exit` or Ctrl+D twice | Exit Claude Code | `/exit` |
 
 See the [CLI reference](/docs/en/cli-reference) for the complete list of shell commands and the [commands reference](/docs/en/commands) for the complete list of session commands.
 

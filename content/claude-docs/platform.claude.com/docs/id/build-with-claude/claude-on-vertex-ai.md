@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 4d5af5006336b41ee3e532ba106b96338fb2e815bc8673ea1c5c21cf81e99359
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 71b97c728b23b30b24314e79c99bb1ac3796032a9beb348f8f56ded4d7050e64
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.65.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.65.0")
+      implementation("com.anthropic:anthropic-java:2.66.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.66.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.65.0</version>
+          <version>2.66.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.65.0</version>
+          <version>2.66.0</version>
       </dependency>
       ```
 
@@ -136,6 +136,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Claude Opus 4.5                                                                                      | `claude-opus-4-5@20251101`   |
 | Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-opus-4-1@20250805`   |
 | Claude Opus 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))    | `claude-opus-4@20250514`     |
+| Claude Sonnet 5.5                                                                                    | `claude-sonnet-5-5`          |
 | Claude Sonnet 5                                                                                      | `claude-sonnet-5`            |
 | Claude Sonnet 4.6                                                                                    | `claude-sonnet-4-6`          |
 | Claude Sonnet 4.5                                                                                    | `claude-sonnet-4-5@20250929` |
@@ -375,7 +376,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) sebesar 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks sebesar 200k token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 

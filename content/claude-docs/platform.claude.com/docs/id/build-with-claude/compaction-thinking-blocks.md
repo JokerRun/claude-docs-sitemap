@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c5cda1a0834803820df693cdd66e57eee72cffb1fb483a41c827b8404f061088
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 0e239e0143bda7e21c1882857a75944c9bbd591667c5b76ee65493f5b2618af5
 ---
 
 ---
 title: Compaction dan pemikiran yang dipertahankan
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-description: Kapan blok thinking dalam giliran yang dipertahankan setelah compaction sesuai permintaan tetap valid pada model dengan pemikiran yang dipertahankan, dan cara memeriksanya.
+description: Kapan blok pemikiran dalam giliran yang dipertahankan setelah pemadatan sesuai permintaan tetap valid pada model dengan pemikiran yang dipertahankan, dan cara memeriksanya.
 featureMetadata:
   status: beta
   betaHeader: compact-2026-09-04
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

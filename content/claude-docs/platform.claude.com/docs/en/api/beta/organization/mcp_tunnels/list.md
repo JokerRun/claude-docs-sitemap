@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 7caa22e3b382c69acb0efd18142dd1789b9cbec2c93802ccdbeaa808abd254b1
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 983547221386109b6182d4b0941380fdb097f4d6bdd0f5b7ef19956cb45b4e01
 ---
 
 ---
@@ -194,8 +194,8 @@ archived tunnels are excluded unless `include_archived` is set.
 
   - `workspace_id: string or null`
 
-    ID of the Workspace this Tunnel belongs to, or `null` for the default
-    Workspace. Immutable after creation.
+    ID of the Workspace this Tunnel belongs to. May be `null` for a Tunnel in
+    the default Workspace. A Tunnel never moves to another Workspace.
 
 - `next_page: string or null`
 

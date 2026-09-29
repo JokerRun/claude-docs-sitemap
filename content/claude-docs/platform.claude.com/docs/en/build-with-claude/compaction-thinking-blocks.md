@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 5a3c28c48516182033b5f83078e22ae729257d5b06a067bc1aad3a93a78f409e
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: db8b2fa00c022f5fd21b7e9f76037d047590c78d0d5441737b66c9dacfb25c9f
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

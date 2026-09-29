@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ae14b2ac7460de82d4ac00c3e348b84c1941840abd2803a1d366584744177aa3
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 1aa6f749dbb815c925debb2a12726b1a14aa5ab27243a4311fddf5727a45adb8
 ---
 
 ---
@@ -21,6 +21,7 @@ featureMetadata:
     - claude-mythos-5
     - claude-opus-5-5
     - claude-opus-5
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-opus-4-8
   supportedPlatforms:

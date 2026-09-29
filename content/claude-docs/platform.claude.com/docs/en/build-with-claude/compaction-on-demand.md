@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 823190dbde68807fe73a9db88e83e37b05857395af7d0357b93588fdaa30e39d
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 7470b4baa9b722cda5c7030d61a979319616bc2dbf0fbc01f554e56de44c070a
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

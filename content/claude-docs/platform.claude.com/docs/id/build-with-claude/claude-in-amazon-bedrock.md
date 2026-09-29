@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: a38f107779564d787f86e29f2d46307de754ea957697eda9f6ff22b70e25b25f
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 1ccce8ddef798c88996fba8702990414c5c9f455bc8171366885945317079054
 ---
 
 ---
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.65.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.65.0")
+        implementation("com.anthropic:anthropic-java:2.66.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.66.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.65.0</version>
+            <version>2.66.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.65.0</version>
+            <version>2.66.0</version>
         </dependency>
         ```
       </Tab>
@@ -350,6 +350,7 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 | Claude Opus 5                                                                   | `anthropic.claude-opus-5`         | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Opus 4.8                                                                 | `anthropic.claude-opus-4-8`       | Open                                                                                                |
 | Claude Opus 4.7                                                                 | `anthropic.claude-opus-4-7`       | Open                                                                                                |
+| Claude Sonnet 5.5                                                               | `anthropic.claude-sonnet-5-5`     | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Sonnet 5                                                                 | `anthropic.claude-sonnet-5`       | Open                                                                                                |
 | Claude Haiku 4.5                                                                | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
@@ -389,7 +390,7 @@ Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawark
 * **Global:** perutean dinamis ke seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
 * **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung satu region tanpa inference profile.
 
-Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya tersedia sebagai endpoint regional di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya bersifat regional dan tersedia di `us-east-1`.
 
 | Region AWS       | Lokasi                      | Jenis endpoint                 |
 | ---------------- | --------------------------- | ------------------------------ |

@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f74a45bde13084634645c6ba2389e33b7e4df1c8c57becfd1c00911447e19ca8
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 3a2e407e822bdd91771b0bf19e050cc7a0d00940dd66b32f9b7ab3be93ea1276
 ---
 
 ---
 title: Claude Sonnet 4.5
 url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
-description: "Referensi Claude Sonnet 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Sonnet 4.5 adalah model legacy; Claude Sonnet 5 adalah model Sonnet saat ini."
+description: "Referensi Claude Sonnet 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Sonnet 4.5 adalah model lama (legacy); Claude Sonnet 5.5 adalah model Sonnet saat ini."
 ---
 
 **Legacy.** Released September 29, 2025.
 
-Although Claude Sonnet 4.5 is still available, you should consider migrating to Claude Sonnet 5 for improved performance. [See Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) · [Migrate to Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/migration-guide#migrating-from-sonnet-45)
+Although Claude Sonnet 4.5 is still available, you should consider migrating to Claude Sonnet 5.5 for improved performance. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45)
 
 Model ID: `claude-sonnet-4-5-20250929`
 
@@ -23,16 +23,16 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 
 ## Bagaimana perbandingannya dengan lineup saat ini
 
-| Model                                                                             | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
-| :-------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)   | 1M      | 128K       | $4 / $20     | Adaptive (always on) | `medium`       | Jun 2026         |
-| [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview)   | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jan 2026         |
-| **Claude Sonnet 4.5** (this model)                                                | 200K    | 64K        | $3 / $15     | Extended             | —              | Jan 2025         |
-| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview) | 200K    | 64K        | $1 / $5      | Extended             | —              | Feb 2025         |
+| Model                                                                               | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20     | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jun 2026         |
+| **Claude Sonnet 4.5** (this model)                                                  | 200K    | 64K        | $3 / $15     | Extended             | —              | Jan 2025         |
+| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview)   | 200K    | 64K        | $1 / $5      | Extended             | —              | Feb 2025         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
 * **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
@@ -88,11 +88,11 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 ## Sumber Daya
 
 <CardGroup cols={3}>
-  <Card title="Migrasi ke Claude Sonnet 5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/sonnet-5/migration-guide#migrating-from-sonnet-45">
-    Apa yang berubah saat berpindah dari Claude Sonnet 4.5 dan model Sonnet sebelumnya ke Claude Sonnet 5.
+  <Card title="Migrasi ke Claude Sonnet 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-4-6">
+    Apa saja yang berubah saat beralih dari Claude Sonnet 4.5 dan model Sonnet sebelumnya ke Claude Sonnet 5.5.
   </Card>
 
-  <Card title="Claude Sonnet 5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/sonnet-5/overview">
+  <Card title="Claude Sonnet 5.5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/sonnet-5-5/overview">
     Model Sonnet saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 </CardGroup>

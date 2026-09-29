@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3f97092d9089282ea40d18a856b6dae55e42d444bb1f9f4f69aa3aabcacf8fe4
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 03d6a356ef9c7a22a31b9854381a429717cf27e4e6d6e6767a0c108c1a887d0c
 ---
 
 ---
@@ -88,7 +88,7 @@ Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Ent
 
 Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 Januari 2026.
 
-**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia mulai sekitar pukul 17:00 UTC pada hari berikutnya (jeda 1 hari); sebelum itu, hari terbaru yang tersedia biasanya adalah dua hari sebelum tanggal UTC saat ini. Data terkadang tiba lebih lambat, dan kesegaran pastinya bervariasi menurut kueri, jadi alih-alih mengasumsikan waktu yang tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
+**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia sekitar pukul 13:00–13:30 UTC pada hari berikutnya (jeda 1 hari). Sebelum itu, hari terbaru yang tersedia biasanya adalah dua hari sebelum tanggal UTC saat ini. Data tiba lebih lambat pada hari-hari ketika pipeline data hulu berjalan terlambat, dan kesegaran pastinya bervariasi per kueri. Jadi, alih-alih mengasumsikan waktu yang tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic. Hubungi dukungan jika kesenjangan tersebut berlanjut.
 
 **Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya, tetapi dapat memerlukan waktu hingga 24 jam. Nilai untuk tanggal tertentu dapat direvisi hingga 30 hari seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi. Untuk total setingkat penagihan, kueri tanggal setidaknya 30 hari yang lalu.
 

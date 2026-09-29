@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 794110e224117759487bb5258d4d8d3813634805a332ca0337b1961b2dae980e
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: c66250b412120a3c92506174843aebbaba93023592aeddb5befa71c9448cb986
 ---
 
 ---
-title: CLI, SDK, dan library
+title: SDK, CLI, dan pustaka
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-description: "Alat resmi untuk membangun dengan Claude API: CLI ant, SDK klien dalam tujuh bahasa, dan library khusus framework."
+description: "Alat resmi untuk membangun dengan Claude API: SDK klien dalam tujuh bahasa, CLI ant, dan pustaka khusus framework."
 ---
 
 Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:

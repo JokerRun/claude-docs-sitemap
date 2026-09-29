@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 897ed777b4a3e6f43ba54790581e0ff6760e335d5f1d76470d583e6c1502ad47
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 9fb16c7858e2fe22c46d5aba6b8fae23af56251e6e33ec252384c51408f2c67d
 ---
 
 ---
@@ -241,7 +241,7 @@ Requires an API key with the `read:analytics` scope.
 
         - `"web_search"`
 
-      - `currency: "USD"`
+      - `currency: string`
 
         Currency code for the cost amount. Currently always `"USD"`.
 

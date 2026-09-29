@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-security
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: fbad762950cec52ccbb1940499850ad30293e62ec45fc434310b438793bada56
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 7449fdb74028939535074a5b3620571bdc3f3830f16f6d32ff2c18158eafd446
 ---
 
 > ## Documentation Index
@@ -126,14 +126,14 @@ When the patched code has no tests, the patch's note says so, so you know its re
 
 The Claude Security plugin is the on-demand deep-scan layer in a defense-in-depth stack, alongside the [security guidance plugin](/docs/en/security-guidance), [`/security-review`](/docs/en/commands#all-commands), [Code Review](/docs/en/code-review), the managed [Claude Security](https://claude.com/product/claude-security) product, and your existing scanners:
 
-| Stage                  | Tool                                                                           | What it covers                                                                             |
-| :--------------------- | :----------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| In session             | [Security guidance plugin](/docs/en/security-guidance)                              | Common vulnerabilities in code Claude writes, fixed in the same session                    |
-| On demand, single pass | [`/security-review`](/docs/en/commands#all-commands)                                | One-time security pass on the current branch                                               |
-| On demand, deep scan   | Claude Security plugin                                                         | Multi-agent scan of a repository or diff, with independently reviewed findings and patches |
-| On pull request        | [Code Review](/docs/en/code-review), Team and Enterprise plans                      | Multi-agent correctness and security review with full codebase context                     |
-| Managed                | [Claude Security](https://claude.com/product/claude-security), Enterprise plan | Hosted scanning that monitors connected repositories                                       |
-| In CI                  | Your existing static analysis and dependency scanners                          | Language-specific rules, supply-chain checks, and policy enforcement                       |
+| Stage | Tool | What it covers |
+| :- | :- | :- |
+| In session | [Security guidance plugin](/docs/en/security-guidance) | Common vulnerabilities in code Claude writes, fixed in the same session |
+| On demand, single pass | [`/security-review`](/docs/en/commands#all-commands) | One-time security pass on the current branch |
+| On demand, deep scan | Claude Security plugin | Multi-agent scan of a repository or diff, with independently reviewed findings and patches |
+| On pull request | [Code Review](/docs/en/code-review), Team and Enterprise plans | Multi-agent correctness and security review with full codebase context |
+| Managed | [Claude Security](https://claude.com/product/claude-security), Enterprise plan | Hosted scanning that monitors connected repositories |
+| In CI | Your existing static analysis and dependency scanners | Language-specific rules, supply-chain checks, and policy enforcement |
 
 The plugin doesn't replace your existing source-code security tools. Run it alongside static analysis, dependency scanning, and code review: it reasons about your code the way a human security researcher would, which complements the deterministic checks those tools provide.
 

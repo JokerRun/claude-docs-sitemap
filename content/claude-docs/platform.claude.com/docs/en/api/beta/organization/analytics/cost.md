@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 08f1363adc5727bbaacb9ba1f5b6c2b73403c852b5a4b9523b7c431d2f4d0296
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 50732bd11daa99ddca5378008fb1f7ce230b87b53eac81ad1894809af2d369cc
 ---
 
 ---
@@ -243,7 +243,7 @@ Requires an API key with the `read:analytics` scope.
 
         - `"web_search"`
 
-      - `currency: "USD"`
+      - `currency: string`
 
         Currency code for the cost amount. Currently always `"USD"`.
 
@@ -643,7 +643,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       - `"web_search"`
 
-    - `currency: "USD"`
+    - `currency: string`
 
       Currency code for the cost amount. Currently always `"USD"`.
 
@@ -840,7 +840,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
 
         - `"web_search"`
 
-      - `currency: "USD"`
+      - `currency: string`
 
         Currency code for the cost amount. Currently always `"USD"`.
 
@@ -996,7 +996,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
 
       - `"web_search"`
 
-    - `currency: "USD"`
+    - `currency: string`
 
       Currency code for the cost amount. Currently always `"USD"`.
 

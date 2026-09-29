@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: dc7bbab2c4a36355da958c366e0a2805d5d4dbe353706aef191495904aa02387
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 6a9aae34d3d4e13a5b6389565438ca2aec1150d72e61f5efe73ff2863e966297
 ---
 
 ---
 title: Compaction yang mempertahankan giliran terbaru
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns
-description: Ringkas giliran-giliran lama dalam percakapan dengan compaction sesuai permintaan, lalu kirim giliran terbaru setelah ringkasan persis kata demi kata.
+description: Ringkas giliran-giliran lama dalam percakapan dengan compaction sesuai permintaan, lalu kirim giliran-giliran terbaru setelah ringkasan, kata demi kata.
 featureMetadata:
   status: beta
   betaHeader: compact-2026-09-04
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

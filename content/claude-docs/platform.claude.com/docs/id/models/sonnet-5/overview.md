@@ -1,45 +1,39 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/overview
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: e6bd714620b91bbb85ab7cfa9075f65701617420624e2d26075e0650783199b0
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: ae76c34cf46bac829e9dee751d54d3b861d0b42ab51b160c4eb08608c1386c60
 ---
 
 ---
 title: Claude Sonnet 5
 url: https://platform.claude.com/docs/id/models/sonnet-5/overview
-description: "Sekilas tentang Claude Sonnet 5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
+description: "Referensi Claude Sonnet 5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Sonnet 5.5 adalah model Sonnet saat ini."
 ---
 
-**Latest.** Released June 30, 2026.
+**Legacy.** Released June 30, 2026.
 
-The best combination of speed and intelligence
+Although Claude Sonnet 5 is still available, you should consider migrating to Claude Sonnet 5.5 for improved performance. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5)
 
 Model ID: `claude-sonnet-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok · Output pricing: $10 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-sonnet-5) · [What’s new](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5) · [Migration guide](https://platform.claude.com/docs/id/models/sonnet-5/migration-guide)
-
-## Ikhtisar
-
-Claude Sonnet 5 adalah generasi berikutnya dari keluarga model Sonnet milik Anthropic. Model ini merupakan peningkatan langsung (drop-in) untuk Claude Sonnet 4.6 dengan tiga perubahan perilaku: [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) aktif secara default, "extended thinking" (pemikiran diperpanjang) manual kini mengembalikan error 400 (fitur ini sudah dideprekasi pada Claude Sonnet 4.6), dan mengatur parameter sampling (`temperature`, `top_p`, `top_k`) ke nilai non-default mengembalikan error 400. Halaman ini merangkum semua yang baru saat peluncuran, termasuk tokenizer baru.
-
-[Apa yang baru di Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5)
+[Announcement](https://www.anthropic.com/news/claude-sonnet-5)
 
 ## Perbandingannya
 
-| Model                                                                             | Context | Max output | Price / MTok | Latency  | Thinking             | Default effort | Knowledge cutoff |
-| :-------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) | 1M      | 128K       | $10 / $50    | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)   | 1M      | 128K       | $4 / $20     | Moderate | Adaptive (always on) | `medium`       | Jun 2026         |
-| **Claude Sonnet 5** (this model)                                                  | 1M      | 128K       | $2 / $10     | Fast     | Adaptive             | `high`         | Jan 2026         |
-| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview) | 200K    | 64K        | $1 / $5      | Fastest  | Extended             | —              | Feb 2025         |
+| Model                                                                               | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20     | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jun 2026         |
+| **Claude Sonnet 5** (this model)                                                    | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jan 2026         |
+| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview)   | 200K    | 64K        | $1 / $5      | Extended             | —              | Feb 2025         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
 * **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
-* **Latency:** Comparative latency, relative to the current lineup, as published in the models overview. Actual latency depends on prompt length, output length, and thinking effort.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
 * **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.
@@ -78,7 +72,6 @@ Claude Sonnet 5 adalah generasi berikutnya dari keluarga model Sonnet milik Anth
 | [Max output (Batch API, beta)](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta) | 300K tokens            |
 | [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)                                                  | Adaptive               |
 | [Default effort](https://platform.claude.com/docs/id/build-with-claude/effort)                                              | `high`                 |
-| Comparative latency                                                                                                         | Fast                   |
 | Input → output                                                                                                              | Text and images → text |
 | Reliable knowledge cutoff                                                                                                   | Jan 2026               |
 | Training data cutoff                                                                                                        | Jan 2026               |
@@ -87,7 +80,7 @@ Claude Sonnet 5 adalah generasi berikutnya dari keluarga model Sonnet milik Anth
 
 | Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                         |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Released                                                                      | June 30, 2026                                                                                                                                                                                                                                                                                                                                                                                                           |
 | Retirement                                                                    | Not sooner than June 30, 2027                                                                                                                                                                                                                                                                                                                                                                                           |
 | Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
@@ -101,20 +94,28 @@ Claude Sonnet 5 adalah generasi berikutnya dari keluarga model Sonnet milik Anth
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Prompting Claude Sonnet 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5">
+  <Card title="Migrasi ke Claude Sonnet 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5">
+    Apa yang berubah saat beralih dari Claude Sonnet 5 ke Claude Sonnet 5.5.
+  </Card>
+
+  <Card title="Claude Sonnet 5.5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/sonnet-5-5/overview">
+    Model Sonnet saat ini: ikhtisar, spesifikasi, dan sumber daya.
+  </Card>
+
+  <Card title="Prompting untuk Claude Sonnet 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5">
     Panduan prompting khusus model.
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Aktif secara default pada Claude Sonnet 5. Atur kedalamannya dengan `effort`.
+    Aktif secara default di Claude Sonnet 5. Atur kedalamannya dengan `effort`.
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Effort secara default bernilai `high` pada Claude API dan Claude Code. Pilih tingkat sesuai beban kerja.
+    Effort secara default bernilai `high` di Claude API dan Claude Code. Pilih level untuk setiap beban kerja.
   </Card>
 
   <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
-    1 juta token secara default. Cara jendela konteks dihitung dan dikelola.
+    1M token secara default. Cara jendela konteks dihitung dan dikelola.
   </Card>
 </CardGroup>
 

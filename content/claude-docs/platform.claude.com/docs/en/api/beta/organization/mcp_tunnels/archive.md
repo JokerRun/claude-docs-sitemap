@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: e5efcaca79e2b74eb36a1608d0abfbb9b53addb63a56df6b1db48ed17d2c5d2f
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: b2818b5cb4b3a87857d39d22fdcaa7d1479944a71799064b8c1610ec01a8546f
 ---
 
 ---
@@ -176,8 +176,8 @@ tunnel returns the existing record unchanged.
 
   - `workspace_id: string or null`
 
-    ID of the Workspace this Tunnel belongs to, or `null` for the default
-    Workspace. Immutable after creation.
+    ID of the Workspace this Tunnel belongs to. May be `null` for a Tunnel in
+    the default Workspace. A Tunnel never moves to another Workspace.
 
 ## Example
 

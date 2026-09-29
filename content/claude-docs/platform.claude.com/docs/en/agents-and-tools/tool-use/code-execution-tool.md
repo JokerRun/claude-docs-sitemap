@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 40e1f13b1e7fe53c18f8c2d0b3b464733fb78a811c7d0db666b806375ab77be9
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 6793c131fe2b603262b269cc07676e7890bb28b7bcc33e0973cb47ed264feba4
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-7
     - claude-opus-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929

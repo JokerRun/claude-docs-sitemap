@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/security
-fetched_at: 2026-09-28T02:30:06.058762Z
-sha256: 70ab35064eb88f74f3aeb3b1dfe4fb851684d793373c1e1600150358be5bfb00
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 8d75975b693d6c92fe45be7c13a412f41aceaf80263272b71e211c8980bdd00e
 ---
 
 > ## Documentation Index
@@ -56,11 +56,11 @@ A marketplace's name places it in one of three tiers: official, community, or th
 
 The table lists which names fall in each tier:
 
-| Tier        | Which marketplaces                                                                               |
-| :---------- | :----------------------------------------------------------------------------------------------- |
-| Official    | The [official marketplace names](#official-marketplace-names), such as `claude-plugins-official` |
-| Community   | `claude-community`, `claude-plugins-community`, and `healthcare`                                 |
-| Third-party | Every other marketplace                                                                          |
+| Tier | Which marketplaces |
+| :- | :- |
+| Official | The [official marketplace names](#official-marketplace-names), such as `claude-plugins-official` |
+| Community | `claude-community`, `claude-plugins-community`, and `healthcare` |
+| Third-party | Every other marketplace |
 
 Where the `claude-community` catalog pins a plugin to a commit SHA, which it does for nearly every entry, Claude Code refuses to install a different commit.
 

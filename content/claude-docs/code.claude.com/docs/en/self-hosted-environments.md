@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: ea86ca8ec63a04d77e07db4c70630743afd83e424f8e1df42f76095a360ce27c
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 22054d3824c7f32457237eb62ddf94bc90345705c1d3fc9abcf9f1a8a9f178c6
 ---
 
 > ## Documentation Index
@@ -72,12 +72,12 @@ Environments are managed on the **Cloud environments** page in claude.ai admin s
 
 These terms appear throughout the self-hosted pages:
 
-| Term               | What it is                                                                                                                                                                                              |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Environment        | A named group of your runners, created in claude.ai settings. Sessions are routed to an environment, not to an individual runner.                                                                       |
-| Environment secret | The single shared credential runners use to authenticate and register with the environment. Shown once at environment creation, labeled **environment key** in the admin UI.                            |
-| Runner             | The long-lived process you deploy. A runner registers with the environment, receives a runner token, and polls for sessions.                                                                            |
-| Session            | One Claude Code task, started from claude.ai, the mobile app, or another Anthropic surface such as a scheduled routine or an agent. Each session runs as a child Claude Code process the runner spawns. |
+| Term | What it is |
+| :- | :- |
+| Environment | A named group of your runners, created in claude.ai settings. Sessions are routed to an environment, not to an individual runner. |
+| Environment secret | The single shared credential runners use to authenticate and register with the environment. Shown once at environment creation, labeled **environment key** in the admin UI. |
+| Runner | The long-lived process you deploy. A runner registers with the environment, receives a runner token, and polls for sessions. |
+| Session | One Claude Code task, started from claude.ai, the mobile app, or another Anthropic surface such as a scheduled routine or an agent. Each session runs as a child Claude Code process the runner spawns. |
 
 In API fields, token claims, and metric names, the environment appears as `pool`, and the environment ID is the `pool_id`. The [reference](/docs/en/self-hosted-environments-reference) maps the two spellings, including the deprecated `pool` flag names.
 

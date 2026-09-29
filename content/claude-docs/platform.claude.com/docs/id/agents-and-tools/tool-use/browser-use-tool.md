@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 33ef528f376e611d0b32863f4b450e2b05c45662a8d751619ed3fe4b93ffede1
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 3f42742254d8d1aab908e1ba4a5ee3a164147cb53ccc7a54f122bc9bb1ef6b51
 ---
 
 ---
 title: Alat penggunaan browser
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-description: Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri menggunakan alat penggunaan browser.
+description: Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri menggunakan alat browser use.
 featureMetadata:
   status: ga
   zdr:
@@ -21,6 +21,7 @@ featureMetadata:
     - claude-mythos-5
     - claude-opus-5-5
     - claude-opus-5
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-opus-4-8
   supportedPlatforms:

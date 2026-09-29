@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 7a7f111f8dae62fd6c05663c12e72673df225083b760db14ebb28c7f8fac9976
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 488db896811c35ee5b13463b41ba59afda1b2d5870a62002b22bd18b3bf2ceb0
 ---
 
 ---
-title: CLI, SDKs, and libraries
+title: SDKs, CLI, and libraries
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-description: "Official tools for building with the Claude API: the ant CLI, client SDKs in seven languages, and framework-specific libraries."
+description: "Official tools for building with the Claude API: client SDKs in seven languages, the ant CLI, and framework-specific libraries."
 ---
 
 Anthropic provides three kinds of official tooling for building with the Claude API:

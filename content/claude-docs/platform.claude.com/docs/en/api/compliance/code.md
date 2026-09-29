@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 388a3197fc2ffbe9e63cf67cff5f9fcc085774f72ff9780ba195c57197ea357c
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: c134919680ca1490aeecc61d1e5afc19885e2c28d091a70a7d624896200306de
 ---
 
 ---
@@ -211,8 +211,11 @@ response body.
 Returns 404 for Artifacts that don't exist or belong to another parent
 organization. A listed version id can start returning 404 if subsequent
 publishes rotated it out of retained history — re-list on 404. Returns
-503 while the version's content upload is
-still in flight or was abandoned — retry with backoff. Oversized
+503 while the version's content upload is still in flight or was
+abandoned — retry with backoff. Returns 422 for a version that has more
+than one file, because the Compliance API returns only single-file
+versions. Do not retry a 422. The 422's `error.details.error_code` is
+`multi_file_unavailable`. Oversized
 encoded content aborts mid-stream: headers and initial bytes arrive
 but the body terminates early — an aborted chunked transfer is the
 only truncation signal for encoded content. `Content-MD5` is emitted

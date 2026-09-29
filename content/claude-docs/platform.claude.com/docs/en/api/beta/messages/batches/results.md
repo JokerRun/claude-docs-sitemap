@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: b6bccea444f563fdd83866c2716a21040023f05db6b0f15adb0b0691dfb59768
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: b1b83f5bf6bc570e71d6cf8791ab898d9ba6434c2b28f4c5352f224522e02cec
 ---
 
 ---
@@ -2893,13 +2893,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                          - `string`
-
-                          - `"claude-fable-5-1" or "claude-opus-5-5" or "claude-mythos-5-1" or 15 more`
+                          - `"claude-sonnet-5-5" or "claude-fable-5-1" or "claude-opus-5-5" or 16 more`
 
                             The model that will complete your prompt.
 
                             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                            - `"claude-sonnet-5-5"`
+
+                              Efficient model for coding and agents
 
                             - `"claude-fable-5-1"`
 
@@ -2915,7 +2917,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                             - `"claude-sonnet-5"`
 
-                              High-performance model for coding and agents
+                              Efficient model for coding and agents
 
                             - `"claude-fable-5"`
 
@@ -2974,6 +2976,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                               **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                               New class of intelligence, strongest in coding and cybersecurity
+
+                          - `string`
 
                         - `name: "advisor"`
 

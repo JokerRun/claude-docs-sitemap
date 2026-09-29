@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: fb0ceed3acebf5eb835cec1be5df1e07df5793ff48b7d7cb66bd1e777233772f
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: f5ff37d17cf2b5f854c70300642951aa8cd3f9a065e96f57163909fb58cf4e61
 ---
 
 ---
@@ -170,13 +170,15 @@ Archive Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `string`
-
-        - `"claude-opus-5-5" or "claude-fable-5-1" or "claude-sonnet-5" or 12 more`
+        - `"claude-sonnet-5-5" or "claude-opus-5-5" or "claude-fable-5-1" or 13 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5-5"`
+
+            Efficient model for coding and agents
 
           - `"claude-opus-5-5"`
 
@@ -188,7 +190,7 @@ Archive Session
 
           - `"claude-sonnet-5"`
 
-            High-performance model for coding and agents
+            Efficient model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -237,6 +239,8 @@ Archive Session
           - `"claude-sonnet-4-5-20250929"`
 
             High-performance model for agents and coding
+
+        - `string`
 
       - `effort: optional BetaManagedAgentsEffortLow or BetaManagedAgentsEffortMedium or BetaManagedAgentsEffortHigh or 2 more`
 

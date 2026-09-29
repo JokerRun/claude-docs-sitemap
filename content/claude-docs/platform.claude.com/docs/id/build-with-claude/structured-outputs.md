@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 52d2c7c4408df4605055297be6755efce6eb8b835da3d743127985e2221379ee
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 9dd241ef3924f64be16096c85be6269af71d9ebfb87f1f1b7f4a889602d69054
 ---
 
 ---
@@ -25,6 +25,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929

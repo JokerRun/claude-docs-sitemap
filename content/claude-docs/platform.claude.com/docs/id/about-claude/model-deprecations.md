@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 3c67e57dcdb8566950e84d4954c806edc1d9aeb30e602237df0e2bc7a0f61eeb
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: c53cc4a920558d5ee124c64a80ba3baaaa39422b3a4504e161015ba571f5ed8a
 ---
 
 ---
@@ -88,6 +88,7 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 | claude-opus-4-5-20251101   | Active        | N/A               | Not sooner than November 24, 2026  |
 | claude-opus-4-1-20250805   | Retired       | June 5, 2026      | August 5, 2026                     |
 | claude-opus-4-20250514     | Retired       | April 14, 2026    | June 15, 2026                      |
+| claude-sonnet-5-5          | Active        | N/A               | Not sooner than September 28, 2027 |
 | claude-sonnet-5            | Active        | N/A               | Not sooner than June 30, 2027      |
 | claude-sonnet-4-6          | Active        | N/A               | Not sooner than February 17, 2027  |
 | claude-sonnet-4-5-20250929 | Active        | N/A               | Not sooner than September 29, 2026 |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 04827bd9a7c042e405e84f274fd78850b5d8e01be6f25283709c8c03a2ba77b7
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 5d10d3f7ca5f5497cf7e435ac2374f859588d559cd924744fff867baeb03a94f
 ---
 
 > ## Documentation Index
@@ -237,9 +237,9 @@ For current and legacy model IDs, see [Models overview](https://platform.claude.
 
 Claude Code uses these default models when no pinning variables are set:
 
-| Model type       | Default value                |
-| :--------------- | :--------------------------- |
-| Primary model    | `claude-opus-5-5`            |
+| Model type | Default value |
+| :- | :- |
+| Primary model | `claude-opus-5-5` |
 | Small/fast model | `claude-sonnet-4-5@20250929` |
 
 Background tasks such as session title generation use the small/fast model, normally a Haiku-class model. On Google Cloud's Agent Platform, Claude Code uses the default Sonnet model for background tasks because Haiku may not be enabled in every project or region. Two selections change which model carries them:

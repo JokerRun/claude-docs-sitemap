@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6a121c6f46aed870272bbe38f2ae63c6142c11ea873e879d3b19f01f3bda867b
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 8029e88f99c50dcd1e373d931e9cd6fbf61a57ff824253abe2f68d7d6d168b6b
 ---
 
 ---
 title: Compaction di latar belakang
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-description: Minta ringkasan compaction sesuai permintaan sementara percakapan berlanjut pada riwayat lengkapnya, lalu tukar blok tersebut ke dalam riwayat saat blok itu tiba.
+description: Minta ringkasan compaction sesuai permintaan sementara percakapan terus berjalan dengan riwayat lengkapnya, lalu tukarkan bloknya saat ringkasan tiba.
 featureMetadata:
   status: beta
   betaHeader: compact-2026-09-04
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

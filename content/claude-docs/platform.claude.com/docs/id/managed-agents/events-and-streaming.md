@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b61001ca7a9befa4bb0dd48b51168623821dad477af2f9d52fe752b54f96cddc
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: d34f878bd564c6941c4f5d14608eadcbb9535c5ce31fe68fdab5bb759514a9d4
 ---
 
 ---
@@ -2644,7 +2644,7 @@ Tidak ada event yang melanjutkan sesi yang dijeda di batasnya. Sebagai gantinya,
 ### Mengirim pesan sistem
 
 <Note>
-  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event akan ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
+  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, dan Claude Sonnet 5.5. Jika model utama agen tidak mendukung penyisipan sistem di tengah percakapan, event akan ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
 </Note>
 
 Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang menetapkan prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.

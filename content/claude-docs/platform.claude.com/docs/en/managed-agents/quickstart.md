@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: cf8ff974724dfa4a375289df358d9ce53357f352b4832aa321f1cebf570c1b0b
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 2133ac14eb3ff15d87a1c3f03aea8e46ab1d3b96b98de2fada595034c1dd1b67
 ---
 
 ---
@@ -50,7 +50,7 @@ This guide walks you through creating an agent, setting up an environment, start
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.35.0
+    VERSION=1.36.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -101,7 +101,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.65.0")
+    implementation("com.anthropic:anthropic-java:2.66.0")
     ```
   </Tab>
 

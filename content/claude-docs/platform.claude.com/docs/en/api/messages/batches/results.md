@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: dbe8bf048ccd0ddecf23d6f4831c25e2d5bff757e2fb22821f0ca011603f6f68
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 78c8e0ca66416247ab3f161d3a10e2ab80a04df646c0e07f3b1f546bb8bacb50
 ---
 
 ---
@@ -895,13 +895,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `string`
-
-          - `"claude-fable-5-1" or "claude-opus-5-5" or "claude-mythos-5-1" or 15 more`
+          - `"claude-sonnet-5-5" or "claude-fable-5-1" or "claude-opus-5-5" or 16 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5-5"`
+
+              Efficient model for coding and agents
 
             - `"claude-fable-5-1"`
 
@@ -917,7 +919,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `"claude-sonnet-5"`
 
-              High-performance model for coding and agents
+              Efficient model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -976,6 +978,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
               New class of intelligence, strongest in coding and cybersecurity
+
+          - `string`
 
         - `role: "assistant"`
 

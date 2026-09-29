@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: f8ebcf77997e5ad6c56bd92926f6f2fe0635601611d05e7ccd0447a2cf56c5d2
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 7ed31b282df54558414aa4448b12e41cc750cd8bc9ba2b4a1cb3e5b73b81c9e8
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-7
     - claude-opus-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929

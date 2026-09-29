@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: d41215a9daf5b0876790ff692c214bc05da0a17ccf8acf0e62f84be79239e988
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 17f2d32f725d22df478cb583bfd44ed7f2d24bfbbbad1924b1d777950ec0eb29
 ---
 
 ---
 title: Effort
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-description: Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
+description: Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
 featureMetadata:
   status: ga
   zdr:
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-opus-4-7
     - claude-opus-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:
@@ -243,13 +244,13 @@ Karena effort berlaku untuk setiap token output, parameter ini berfungsi baik th
 
 ### Tingkat effort
 
-| Tingkat  | Deskripsi                                                                                                                                                                                                                                                                                          | Kasus penggunaan umum                                                                                 |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `max`    | Kemampuan maksimum mutlak tanpa batasan pada penggunaan token. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. | Tugas yang memerlukan penalaran sedalam mungkin dan analisis paling menyeluruh                        |
-| `xhigh`  | Kemampuan yang diperluas untuk pekerjaan jangka panjang. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, dan Claude Sonnet 5.                                                                  | Tugas agentic dan coding yang berjalan lama (lebih dari 30 menit) dengan anggaran token hingga jutaan |
-| `high`   | Menghabiskan token sebanyak yang dibutuhkan tugas untuk hasil yang sangat baik. Default pada setiap model yang mendukung effort kecuali Claude Opus 5.5.                                                                                                                                           | Penalaran kompleks, masalah coding yang sulit, tugas agentic                                          |
-| `medium` | Pendekatan seimbang dengan penghematan token sedang. Default pada Claude Opus 5.5.                                                                                                                                                                                                                 | Tugas agentic yang memerlukan keseimbangan antara kecepatan, biaya, dan kinerja                       |
-| `low`    | Paling efisien. Penghematan token yang signifikan dengan sedikit penurunan kemampuan.                                                                                                                                                                                                              | Tugas yang lebih sederhana yang membutuhkan kecepatan terbaik dan biaya terendah, seperti subagen     |
+| Tingkat  | Deskripsi                                                                                                                                                                                                                                                                                                             | Kasus penggunaan umum                                                                                |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `max`    | Kemampuan maksimum mutlak tanpa batasan pada penggunaan token. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Sonnet 4.6. | Tugas yang memerlukan penalaran sedalam mungkin dan analisis paling menyeluruh                       |
+| `xhigh`  | Kemampuan yang diperluas untuk pekerjaan jangka panjang. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, dan Claude Sonnet 5.                                                                  | Tugas agentik dan coding yang berjalan lama (lebih dari 30 menit) dengan anggaran token dalam jutaan |
+| `high`   | Menghabiskan token sebanyak yang dibutuhkan tugas untuk hasil yang sangat baik. Default pada setiap model yang mendukung effort kecuali Claude Opus 5.5.                                                                                                                                                              | Penalaran kompleks, masalah coding yang sulit, tugas agentik                                         |
+| `medium` | Pendekatan seimbang dengan penghematan token moderat. Default pada Claude Opus 5.5.                                                                                                                                                                                                                                   | Tugas agentik yang memerlukan keseimbangan antara kecepatan, biaya, dan performa                     |
+| `low`    | Paling efisien. Penghematan token yang signifikan dengan sedikit penurunan kemampuan.                                                                                                                                                                                                                                 | Tugas yang lebih sederhana yang membutuhkan kecepatan terbaik dan biaya terendah, seperti subagen    |
 
 Tidak semua model yang mendukung `max` juga mendukung `xhigh`.
 
@@ -315,6 +316,14 @@ Claude Opus 4.7 juga mematuhi tingkat effort dengan lebih ketat daripada Claude 
 
 Saat menjalankan Claude Opus 4.7 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikannya dari sana adalah default yang wajar.
 
+### Tingkat effort yang direkomendasikan untuk Claude Sonnet 5.5
+
+Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default pada Claude API. Tingkat-tingkatnya telah dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah thinking yang sama dengan tingkat yang sama pada Claude Sonnet 5. Jalankan effort sweep baru pada evaluasi Anda alih-alih membawa pengaturan yang Anda gunakan pada Claude Sonnet 5. Mulailah dengan `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dengan `medium` untuk tugas yang terdefinisi dengan baik dan beralih ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dengan `medium` atau `low`. Gunakan `xhigh` atau `max` hanya jika evaluasi Anda menunjukkan peningkatan kualitas. Atur `max_tokens` dengan ruang untuk thinking dan balasan. Thinking dihitung terhadap `max_tokens` bahkan ketika konten thinking tidak dikembalikan. Untuk coding agentik, atur `max_tokens` ke 128.000, nilai maksimum model, dan lakukan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) pada respons.
+
+Untuk mematikan thinking di awal, kirim `thinking: {"type": "between_tools"}` alih-alih `"disabled"`. Ini adalah pengaturan thinking terendah pada Claude Sonnet 5.5, dan berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400, jadi gunakan adaptive thinking pada tingkat tersebut: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Lihat [Menjalankan tanpa thinking di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
+
+Claude Sonnet 5.5 juga mendukung [perubahan effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking. Lihat [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort).
+
 ### Tingkat effort yang direkomendasikan untuk Claude Sonnet 5
 
 Claude Sonnet 5 menggunakan effort `high` secara default pada Claude API dan Claude Code.
@@ -362,11 +371,11 @@ Untuk ketersediaan thinking per model, lihat [tabel konfigurasi per model](https
 
 ## Mengubah effort di tengah percakapan
 
-Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat effort yang berbeda dengan dua cara. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, dan Claude Opus 5, gunakan perubahan effort per pesan, yang mempertahankan cache prompt. Pada model lain, atur nilai tingkat atas yang baru pada permintaan berikutnya, yang memulai ulang cache.
+Anda dapat menjalankan giliran berikutnya dalam percakapan pada tingkat effort yang berbeda dengan dua cara. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5, gunakan perubahan effort per pesan, yang mempertahankan cache prompt. Pada model lain, atur nilai tingkat atas yang baru pada permintaan berikutnya, yang memulai ulang cache.
 
 ### Effort per pesan (beta)
 
-Effort per pesan masih dalam versi beta dan memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`.
+Effort per pesan masih dalam tahap beta dan memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
 
 Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru di `output_config.effort`. Tingkat baru berlaku mulai giliran `user` berikutnya dan bertahan hingga pesan selanjutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefiks yang di-cache tetap cocok.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: dbd4a077d1542180177d225c98a48fabdb4e8ab5d4b31880ac7817f176436bec
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 7b9cea573525e3009a8debea5322b9dff19a624e991faab9c8bbda2d34c24946
 ---
 
 > ## Documentation Index
@@ -357,11 +357,11 @@ Each of these snippets sets fields on the same options object. For more informat
 
 **Tools** control what your agent can do:
 
-| Tools                                  | What the agent can do   |
-| -------------------------------------- | ----------------------- |
-| `Read`, `Glob`, `Grep`                 | Read-only analysis      |
-| `Read`, `Edit`, `Glob`                 | Analyze and modify code |
-| `Read`, `Edit`, `Bash`, `Glob`, `Grep` | Full automation         |
+| Tools | What the agent can do |
+| - | - |
+| `Read`, `Glob`, `Grep` | Read-only analysis |
+| `Read`, `Edit`, `Glob` | Analyze and modify code |
+| `Read`, `Edit`, `Bash`, `Glob`, `Grep` | Full automation |
 
 **Permission modes** control how much human oversight you want. The SDK evaluates the active mode together with your allow and deny rules in a fixed order, described in [How permissions are evaluated](/docs/en/agent-sdk/permissions#how-permissions-are-evaluated). For the full list of modes, their behavior, and when to use each, see [Permission mode in How the agent loop works](/docs/en/agent-sdk/agent-loop#permission-mode).
 

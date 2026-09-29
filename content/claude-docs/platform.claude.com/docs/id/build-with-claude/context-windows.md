@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: f5bfa9ab8e8cee75da949712afd375932b006a438afe5ca20c92d2a209ce8209
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: ee7fdf06ce49427e62595c089eca524f2188e18692d2e450387fc1910b440aef
 ---
 
 ---
@@ -40,7 +40,7 @@ Semua yang ada dalam permintaan diperhitungkan terhadap jendela konteks: prompt 
 
 ## Ukuran jendela konteks berdasarkan model
 
-Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5, memiliki jendela konteks 200k token.
+Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5, memiliki jendela konteks 200k token.
 
 Untuk setiap model dengan jendela konteks 1M token, 1M adalah default: Anda tidak memerlukan header beta, dan permintaan konteks panjang ditagih dengan [harga standar](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing).
 
@@ -128,7 +128,7 @@ Setelah setiap pemanggilan alat, API memberi Claude pembaruan tentang kapasitas 
 
 Token gambar termasuk dalam anggaran ini.
 
-Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak menerima tag yang disisipkan ini. Pada model-model ini, Anda dapat memberi model anggaran eksplisit dengan [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets), yang masih dalam beta.
+Claude Opus 4.7 dan model Opus yang lebih baru, Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak menerima tag yang disisipkan ini. Pada model-model ini, Anda dapat memberikan anggaran eksplisit kepada model dengan ["task budgets" (anggaran tugas)](https://platform.claude.com/docs/id/build-with-claude/task-budgets), yang masih dalam tahap beta.
 
 <Tip>
   Untuk agen yang mencakup beberapa sesi, rancang artefak state Anda agar pemulihan konteks berlangsung cepat saat sesi baru dimulai. [Pola multisesi alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#multisession-software-development-pattern) menjelaskan pendekatan konkret langkah demi langkah. Lihat juga [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).

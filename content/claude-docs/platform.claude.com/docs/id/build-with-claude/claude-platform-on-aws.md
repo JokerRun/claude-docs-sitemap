@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: a96fe902b50663af8899b2c7f1c10d14fe286af4ce99fbb64f0b63355a4e3cdf
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 08025fdb9e43c529be80c8bd83c8307de825d6b055e856c3d6860124b39a0430
 ---
 
 ---
@@ -29,12 +29,12 @@ Claude Platform on AWS mengikuti kebijakan retensi data yang sama dengan Claude 
 
 Kedua penawaran memungkinkan Anda menggunakan Claude melalui AWS, tetapi keduanya berbeda dalam arsitektur, permukaan API, dan ketersediaan fitur.
 
-| Aspek                               | Claude Platform di AWS                                                                                                                                                                                     | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
+| Aspek                               | Claude Platform on AWS                                                                                                                                                                                     | [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Siapa yang mengoperasikan stack** | Anthropic                                                                                                                                                                                                  | AWS                                                                                                        | AWS                                                                                                                               |
 | **Permukaan API**                   | Claude API (`/v1/{endpoint}`)                                                                                                                                                                              | Messages API di `/anthropic/v1/messages`                                                                   | Bedrock Converse / InvokeModel                                                                                                    |
 | **Ketersediaan fitur**              | Biasanya di hari yang sama dengan Claude API (lihat [batasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported))                                  | Sesuai jadwal rilis Amazon Bedrock                                                                         | Sesuai jadwal rilis Amazon Bedrock                                                                                                |
-| **Agent Skills**                    | Tersedia dalam beta (tidak memerlukan header beta, perilaku sama seperti di Claude API)                                                                                                                    | Tidak tersedia (memerlukan eksekusi kode)                                                                  | Tidak tersedia                                                                                                                    |
+| **Agent Skills**                    | Tersedia                                                                                                                                                                                                   | Tidak tersedia (memerlukan eksekusi kode)                                                                  | Tidak tersedia                                                                                                                    |
 | **Fitur beta**                      | Diteruskan dengan header `anthropic-beta` (lihat [batasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported))                                     | Header `anthropic-beta` tidak didukung                                                                     | Header `anthropic-beta` tidak didukung                                                                                            |
 | **Autentikasi**                     | AWS IAM / SigV4 atau kunci API                                                                                                                                                                             | AWS IAM / SigV4                                                                                            | AWS IAM / SigV4 atau bearer token                                                                                                 |
 | **Penagihan**                       | AWS Marketplace                                                                                                                                                                                            | AWS (layanan native)                                                                                       | AWS (layanan native)                                                                                                              |
@@ -312,20 +312,20 @@ Klien membaca `AWS_REGION` dari lingkungan jika `aws_region`/`awsRegion` tidak d
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:2.65.0")
-    implementation("com.anthropic:anthropic-java-aws:2.65.0")
+    implementation("com.anthropic:anthropic-java:2.66.0")
+    implementation("com.anthropic:anthropic-java-aws:2.66.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.65.0</version>
+      <version>2.66.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.65.0</version>
+      <version>2.66.0</version>
     </dependency>
     ```
   </Tab>
@@ -361,6 +361,7 @@ Model berikut tersedia di Claude Platform on AWS:
 | Claude Opus 4.7   | `claude-opus-4-7`   |
 | Claude Opus 4.6   | `claude-opus-4-6`   |
 | Claude Opus 4.5   | `claude-opus-4-5`   |
+| Claude Sonnet 5.5 | `claude-sonnet-5-5` |
 | Claude Sonnet 5   | `claude-sonnet-5`   |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 | Claude Sonnet 4.5 | `claude-sonnet-4-5` |

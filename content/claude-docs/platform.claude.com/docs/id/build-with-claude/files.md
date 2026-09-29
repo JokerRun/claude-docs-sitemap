@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c6b2256b7dbfe8c02ced5d225e3c55cb65e2ed64bad384f52584c81e099d9a15
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 6077616b2aec2a307730957ab3404ec01839cb91559b46f0733a3c41228e78f5
 ---
 
 ---
 title: Files API
 url: https://platform.claude.com/docs/id/build-with-claude/files
-description: Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
+description: Unggah file sekali, rujuk file tersebut dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
 featureMetadata:
   status: ga
   zdr: not-eligible
   supportedPlatforms:
     Claude API: ga
-    Claude Platform on AWS: beta
+    Claude Platform on AWS: ga
     Amazon Bedrock: not available
     Google Cloud: not available
     Microsoft Foundry:
-      availability: beta
+      availability: ga
       note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), Files API memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 ---
 

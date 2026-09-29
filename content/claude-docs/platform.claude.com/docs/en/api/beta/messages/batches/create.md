@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 37cc47cb09cc8d1929081586adebb68ba5df319ba6fffdd97399586e9c5dd9fb
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 94e1c3644a5e2179cea0db5f8b7866381097016d3162b5ad6000c43a1f6d5433
 ---
 
 ---
@@ -3129,13 +3129,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                          - `string`
-
-                          - `"claude-fable-5-1" or "claude-opus-5-5" or "claude-mythos-5-1" or 15 more`
+                          - `"claude-sonnet-5-5" or "claude-fable-5-1" or "claude-opus-5-5" or 16 more`
 
                             The model that will complete your prompt.
 
                             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                            - `"claude-sonnet-5-5"`
+
+                              Efficient model for coding and agents
 
                             - `"claude-fable-5-1"`
 
@@ -3151,7 +3153,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                             - `"claude-sonnet-5"`
 
-                              High-performance model for coding and agents
+                              Efficient model for coding and agents
 
                             - `"claude-fable-5"`
 
@@ -3210,6 +3212,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                               **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                               New class of intelligence, strongest in coding and cybersecurity
+
+                          - `string`
 
                         - `name: "advisor"`
 
@@ -3845,7 +3849,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           - `"fast"`
 
-        - `thinking: optional BetaThinkingConfigEnabled or BetaThinkingConfigDisabled or BetaThinkingConfigAdaptive or null`
+        - `thinking: optional BetaThinkingConfigEnabled or BetaThinkingConfigDisabled or BetaThinkingConfigBetweenTools or BetaThinkingConfigAdaptive or null`
 
           - `BetaThinkingConfigEnabled object`
 
@@ -3886,6 +3890,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
           - `BetaThinkingConfigDisabled object`
 
             - `type: "disabled"`
+
+          - `BetaThinkingConfigBetweenTools object`
+
+            - `type: "between_tools"`
 
           - `BetaThinkingConfigAdaptive object`
 
@@ -3975,9 +3983,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `stream: optional boolean`
 
-      Whether to incrementally stream the response using server-sent events.
+      Whether to incrementally stream the response using server-sent events. When `true`, SDKs return a raw event stream.
 
-      See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
+      In the TypeScript, Python and Ruby SDKs, the recommended way to stream is `messages.stream()`. It sets `stream` for you and accumulates the events into the final message. See [Streaming with SDKs](https://platform.claude.com/docs/en/build-with-claude/streaming#streaming-with-sdks) for an example in each language.
 
     - `system: optional string or array of BetaTextBlockParam`
 
@@ -4012,6 +4020,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `BetaThinkingConfigEnabled object`
 
       - `BetaThinkingConfigDisabled object`
+
+      - `BetaThinkingConfigBetweenTools object`
 
       - `BetaThinkingConfigAdaptive object`
 

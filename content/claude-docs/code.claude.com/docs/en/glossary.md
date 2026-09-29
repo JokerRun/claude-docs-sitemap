@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-28T02:30:06.058762Z
-sha256: d64a02e68edbcea2b509a7a0b20123d386fd078a93e0c66da41ca01d861ea8db
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: c990726faebcd119dbf173b3c942a755131ece14023abc70a4eb7ab2c97a3e70
 ---
 
 > ## Documentation Index
@@ -386,9 +386,9 @@ Learn more: [Run parallel sessions with git worktrees](/docs/en/worktrees)
 
 These terms appear in older docs, blog posts, and community content. Use the current name when searching this site.
 
-| Old term                                                                | Now called                                    | Notes                                                                         |
-| ----------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
-| Headless mode                                                           | [Non-interactive mode](#non-interactive-mode) | Same `-p` flag, same behavior                                                 |
-| Web session; "Claude Code on the web" as the name for any cloud session | [Cloud session](#cloud-session)               | "Claude Code on the web" now names only the browser surface at claude.ai/code |
-| Custom commands                                                         | [Skills](#skill)                              | `.claude/commands/` files still work                                          |
-| Slash commands                                                          | Commands                                      | "Slash" dropped from product copy                                             |
+| Old term | Now called | Notes |
+| - | - | - |
+| Headless mode | [Non-interactive mode](#non-interactive-mode) | Same `-p` flag, same behavior |
+| Web session; "Claude Code on the web" as the name for any cloud session | [Cloud session](#cloud-session) | "Claude Code on the web" now names only the browser surface at claude.ai/code |
+| Custom commands | [Skills](#skill) | `.claude/commands/` files still work |
+| Slash commands | Commands | "Slash" dropped from product copy |

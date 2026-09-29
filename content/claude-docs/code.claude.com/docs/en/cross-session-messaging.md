@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cross-session-messaging
-fetched_at: 2026-09-27T02:24:59.045187Z
-sha256: a8ccea79027e86d6406e96239afffff80fd999b1c118b13300eba7019c9e9957
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 13adc33f0a96de0f74b5ce8227999156d6dd7c4662560865971d7f7816b953db
 ---
 
 > ## Documentation Index
@@ -141,11 +141,11 @@ When you rename a session, or start or resume an interactive one, with a name an
 
 How a message travels, and whether it passes through Anthropic servers, depends on where the target session runs:
 
-| Where the other session runs               | How the message travels                                                                                                      |
-| :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| On this machine                            | Over a per-session socket on macOS and Linux, or a per-session named pipe on native Windows, never through Anthropic servers |
-| On another of your machines                | Through Anthropic servers, arriving over that machine's [Remote Control](/docs/en/remote-control) connection                      |
-| In the [cloud](/docs/en/claude-code-on-the-web) | Through Anthropic servers, straight to the cloud session                                                                     |
+| Where the other session runs | How the message travels |
+| :- | :- |
+| On this machine | Over a per-session socket on macOS and Linux, or a per-session named pipe on native Windows, never through Anthropic servers |
+| On another of your machines | Through Anthropic servers, arriving over that machine's [Remote Control](/docs/en/remote-control) connection |
+| In the [cloud](/docs/en/claude-code-on-the-web) | Through Anthropic servers, straight to the cloud session |
 
 Starting a conversation with a session on another of your machines requires Claude Code v2.1.225 or later and a target that [appears in the listing](#see-which-sessions-claude-can-reach).
 
@@ -192,11 +192,11 @@ The new column is tenant_id, and rebasing on main is safe now.
 
 Set [`crossSessionInbound`](/docs/en/settings-reference#crosssessioninbound) to choose what a session does with messages arriving from your other sessions:
 
-| Value    | Behavior                                                                                                                                                                                                         |
-| :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accept` | Claude Code delivers each message to Claude                                                                                                                                                                      |
-| `hold`   | Claude Code shows a notice for each message and doesn't deliver it. If an `accept` later applies, per the [precedence rules](/docs/en/settings-reference#crosssessioninbound), Claude Code releases the held messages |
-| `refuse` | Claude Code drops each message without delivering it                                                                                                                                                             |
+| Value | Behavior |
+| :- | :- |
+| `accept` | Claude Code delivers each message to Claude |
+| `hold` | Claude Code shows a notice for each message and doesn't deliver it. If an `accept` later applies, per the [precedence rules](/docs/en/settings-reference#crosssessioninbound), Claude Code releases the held messages |
+| `refuse` | Claude Code drops each message without delivering it |
 
 Beyond editing a settings file, you can select the value in the `/config` row **Messages from your other sessions**. Claude Code writes the value you select to your user settings. The row requires Claude Code v2.1.232 or later and doesn't appear while managed settings or the `--settings` flag sets the key, since a user-settings value wouldn't apply then. Claude Code rejects the `/config crossSessionInbound=value` shorthand for this key.
 

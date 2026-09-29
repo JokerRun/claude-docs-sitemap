@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e99de5b6c6795ba2b403829ab61b176fd3eb0ded1630b97f517d67618e2bb35e
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 5d952b7332d0305a1f37c45960b12009ecd9c1c03b4afe3fdf971a54454f5f14
 ---
 
 > ## Documentation Index
@@ -209,12 +209,12 @@ A marketplace is a catalog of plugins, and Claude Code has to know about a marke
 
 In a Claude Code session, run `/plugin marketplace add` followed by the marketplace's source: a GitHub repository, a git repository on any host, a local directory or file, or a hosted `marketplace.json`.
 
-| Source                     | What you type                                                                                                                                                                                                                       | Example                                                                                                                        |
-| :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| GitHub repository          | `owner/repo`. Add `#ref` to pin a branch or tag.                                                                                                                                                                                    | `/plugin marketplace add anthropics/claude-code`, or `/plugin marketplace add your-org/plugins#v1.2.0` to pin the `v1.2.0` tag |
-| Git repository on any host | The full clone URL. Add `#ref` to pin a branch or tag.                                                                                                                                                                              | `/plugin marketplace add https://gitlab.example.com/your-group/your-marketplace.git#v1.0.0`                                    |
-| Local directory or file    | A relative or absolute path to a directory that holds `.claude-plugin/marketplace.json`, or to the JSON file itself. Start a relative path with `./` or `../`, because Claude Code reads a bare `name/name` as a GitHub repository. | `/plugin marketplace add ./my-marketplace`                                                                                     |
-| Hosted `marketplace.json`  | Its `https://` URL                                                                                                                                                                                                                  | `/plugin marketplace add https://example.com/marketplace.json`                                                                 |
+| Source | What you type | Example |
+| :- | :- | :- |
+| GitHub repository | `owner/repo`. Add `#ref` to pin a branch or tag. | `/plugin marketplace add anthropics/claude-code`, or `/plugin marketplace add your-org/plugins#v1.2.0` to pin the `v1.2.0` tag |
+| Git repository on any host | The full clone URL. Add `#ref` to pin a branch or tag. | `/plugin marketplace add https://gitlab.example.com/your-group/your-marketplace.git#v1.0.0` |
+| Local directory or file | A relative or absolute path to a directory that holds `.claude-plugin/marketplace.json`, or to the JSON file itself. Start a relative path with `./` or `../`, because Claude Code reads a bare `name/name` as a GitHub repository. | `/plugin marketplace add ./my-marketplace` |
+| Hosted `marketplace.json` | Its `https://` URL | `/plugin marketplace add https://example.com/marketplace.json` |
 
 From your shell, `claude plugin marketplace add` takes the same sources.
 
@@ -370,11 +370,11 @@ The **Marketplaces** tab in `/plugin` lists every marketplace you registered, al
 
 You can also list, update, and remove marketplaces with commands, from your shell or inside a session:
 
-| Action                         | In your shell                             | Inside a session                    |
-| :----------------------------- | :---------------------------------------- | :---------------------------------- |
-| List marketplaces              | `claude plugin marketplace list`          | `/plugin marketplace list`          |
+| Action | In your shell | Inside a session |
+| :- | :- | :- |
+| List marketplaces | `claude plugin marketplace list` | `/plugin marketplace list` |
 | Update a marketplace's listing | `claude plugin marketplace update <name>` | `/plugin marketplace update <name>` |
-| Remove a marketplace           | `claude plugin marketplace remove <name>` | `/plugin marketplace remove <name>` |
+| Remove a marketplace | `claude plugin marketplace remove <name>` | `/plugin marketplace remove <name>` |
 
 When you remove a marketplace, Claude Code uninstalls every plugin you installed from it and removes their `enabledPlugins` entries from your settings files. The **Marketplaces** tab names those plugins before it asks you to confirm.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 94c0607d1ac9f82d0646965f9bf69c1ff969d8301b29f9f82a3f2c20653c8fbc
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 763e0fb219eb40aa45e0bbf87874c2b7381ccb6f78c83c8dc322453305db47de
 ---
 
 ---
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-7
     - claude-opus-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929
@@ -36,7 +37,7 @@ featureMetadata:
       availability: ga
       note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), eksekusi kode memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
   details:
-    - Setiap model yang didukung menerima ketiga [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions). Di Claude Haiku 4.5, pemanggilan alat terprogram dan persistensi status REPL tidak tersedia, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
+    - Setiap model yang didukung menerima ketiga [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions). Pada Claude Haiku 4.5, pemanggilan alat terprogram dan persistensi status REPL tidak tersedia, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
     - Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode didukung di Claude API dan Microsoft Foundry.
 ---
 

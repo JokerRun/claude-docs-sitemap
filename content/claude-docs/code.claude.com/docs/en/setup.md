@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e3e1baf3229f5af8c66410050e946986da57a6e4b255d43b409c4349d234f504
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 39ff2834b02332e16d31ec961e9d68dee30875e84e691d4980fede2e0afe5287
 ---
 
 > ## Documentation Index
@@ -114,11 +114,11 @@ If you encounter any issues during installation, see [Troubleshoot installation 
 
 You can run Claude Code natively on Windows or inside WSL. Pick based on where your projects are located and which features you need:
 
-| Option         | Requires                                                               | [Sandboxing](/docs/en/sandboxing) | When to use                                     |
-| -------------- | ---------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------- |
-| Native Windows | None; [Git for Windows](https://git-scm.com/downloads/win) is optional | Not supported                | Windows-native projects and tools               |
-| WSL 2          | WSL 2 enabled                                                          | Supported                    | Linux toolchains or sandboxed command execution |
-| WSL 1          | WSL 1 enabled                                                          | Not supported                | If WSL 2 is unavailable                         |
+| Option | Requires | [Sandboxing](/docs/en/sandboxing) | When to use |
+| - | - | - | - |
+| Native Windows | None; [Git for Windows](https://git-scm.com/downloads/win) is optional | Not supported | Windows-native projects and tools |
+| WSL 2 | WSL 2 enabled | Supported | Linux toolchains or sandboxed command execution |
+| WSL 1 | WSL 1 enabled | Not supported | If WSL 2 is unavailable |
 
 **Option 1: Native Windows**
 

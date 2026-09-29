@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 0f1b4dbe6ae503b0bffd7f365d5e4f58473ba0cccaea6085a06af65d9a6ce3af
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: c1a53bd91a3fa83e860ef482098b5939eafca42f1d22990c308837b9f685cbd3
 ---
 
 ---
 title: Compaction sesuai permintaan
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-description: Minta Claude meringkas percakapan pada saat yang dipilih aplikasi Anda, lalu lanjutkan dari ringkasan tersebut.
+description: Minta Claude merangkum percakapan pada saat yang dipilih aplikasi Anda, lalu lanjutkan dari ringkasan tersebut.
 featureMetadata:
   status: beta
   betaHeader: compact-2026-09-04
@@ -23,6 +23,7 @@ featureMetadata:
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
+    - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
   supportedPlatforms:

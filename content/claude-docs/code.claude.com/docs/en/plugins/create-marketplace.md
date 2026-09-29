@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create-marketplace
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 59ad85c7b092403fcb8c6285b979966d63109a1d01bf6ff0693892206b2bc283
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 3b079222bc97cf17a9231e163cb9df2d47acf79cc80f0c0b155de33c087dbca5
 ---
 
 > ## Documentation Index
@@ -163,11 +163,11 @@ When the two names differ and someone installs by the manifest name, Claude Code
 
 Each plugin entry in `marketplace.json` has a `source` that tells Claude Code where to fetch that one plugin. Pick the source by where the plugin's files are stored. The table lists the sources most marketplace owners use.
 
-| Source        | Use it when                                                               | Minimal `source` value                                                                    |
-| :------------ | :------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------- |
-| Relative path | The plugin's files are inside the marketplace directory itself            | `"./plugins/my-first-plugin"`                                                             |
-| `github`      | The plugin is a GitHub repository of its own                              | `{ "source": "github", "repo": "your-org/my-first-plugin" }`                              |
-| `git-subdir`  | The plugin is a subdirectory of some other repository, such as a monorepo | `{ "source": "git-subdir", "url": "your-org/monorepo", "path": "tools/my-first-plugin" }` |
+| Source | Use it when | Minimal `source` value |
+| :- | :- | :- |
+| Relative path | The plugin's files are inside the marketplace directory itself | `"./plugins/my-first-plugin"` |
+| `github` | The plugin is a GitHub repository of its own | `{ "source": "github", "repo": "your-org/my-first-plugin" }` |
+| `git-subdir` | The plugin is a subdirectory of some other repository, such as a monorepo | `{ "source": "git-subdir", "url": "your-org/monorepo", "path": "tools/my-first-plugin" }` |
 
 In a `git-subdir` source, `url` takes a git URL or an `owner/repo` GitHub shorthand.
 

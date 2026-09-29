@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 12d27f9aa88fd9baa33c8401ef31d76621b4718e62db2a6aca60f7690e6d5c31
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 11c9d6bffa2e06e0710b115b7f8dbf69f317a7f1143353331ed470bcc9781e9a
 ---
 
 > ## Documentation Index
@@ -271,25 +271,25 @@ The Claude GitHub App must be installed on the repository you want to subscribe 
 
 GitHub triggers can subscribe to either of the following event categories. Within each category you can pick a specific action, such as `pull_request.opened`, or react to all actions in the category.
 
-| Event        | Triggers when                                                                 |
-| :----------- | :---------------------------------------------------------------------------- |
+| Event | Triggers when |
+| :- | :- |
 | Pull request | A PR is opened, closed, assigned, labeled, synchronized, or otherwise updated |
-| Release      | A release is created, published, edited, or deleted                           |
+| Release | A release is created, published, edited, or deleted |
 
 #### Filter pull requests
 
 Use filters to narrow which pull requests start a new session. All filter conditions must match for the routine to trigger. The available filter fields are:
 
-| Filter      | Matches                          |
-| :---------- | :------------------------------- |
-| Author      | PR author's GitHub username      |
-| Title       | PR title text                    |
-| Body        | PR description text              |
-| Base branch | Branch the PR targets            |
-| Head branch | Branch the PR comes from         |
-| Labels      | Labels applied to the PR         |
-| Is draft    | Whether the PR is in draft state |
-| Is merged   | Whether the PR has been merged   |
+| Filter | Matches |
+| :- | :- |
+| Author | PR author's GitHub username |
+| Title | PR title text |
+| Body | PR description text |
+| Base branch | Branch the PR targets |
+| Head branch | Branch the PR comes from |
+| Labels | Labels applied to the PR |
+| Is draft | Whether the PR is in draft state |
+| Is merged | Whether the PR has been merged |
 
 Each filter pairs a field with an operator: equals, contains, starts with, is one of, is not one of, or matches regex.
 

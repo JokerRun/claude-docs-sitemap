@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list_by_user
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 36d3e96ee6a951d5ef06337afbfd6bd2f3814a97e2b9317b70b7b5e7dd51a276
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 05eea9c1a041c87fadb65ad4c03fa844e9750a3f715c1edd8317a3cbc40495dc
 ---
 
 ---
@@ -282,7 +282,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       - `"web_search"`
 
-    - `currency: "USD"`
+    - `currency: string`
 
       Currency code for the cost amount. Currently always `"USD"`.
 

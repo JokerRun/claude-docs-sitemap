@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 1cb668b212a6bdfdede33b11a1f19c877af722e976b16a85a045314f60d0dd68
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: cbc132e187db77c5b742d1f982365bb140b23879ebe00fa5ff32677733a6b3d9
 ---
 
 ---
@@ -69,7 +69,7 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
-Pada Claude Fable 5.1 dan Claude Opus 5.5, manajemen konteks sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, manajemen konteks sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
 ### Pengeditan konteks dan caching prompt
 

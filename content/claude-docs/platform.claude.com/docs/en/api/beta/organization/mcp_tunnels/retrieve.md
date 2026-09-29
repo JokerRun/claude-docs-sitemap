@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 183f64c76ebadb20f803ce83ecf56a6022ff936ed53cdc4cc1174f2c8316575c
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: afaa379cf63f8a9b95f34bec80361ded51641199f72dd2de9c0235e8b987847d
 ---
 
 ---
@@ -171,8 +171,8 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `workspace_id: string or null`
 
-    ID of the Workspace this Tunnel belongs to, or `null` for the default
-    Workspace. Immutable after creation.
+    ID of the Workspace this Tunnel belongs to. May be `null` for a Tunnel in
+    the default Workspace. A Tunnel never moves to another Workspace.
 
 ## Example
 

@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 1ead3f72e0fbd5600fa8ff0926ca62f4c77d7797f3a79bec1e64085bbc37e12d
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 9dcf0a4428cd5a163f8dd8a5f6ffc00b10d464e4e8222e9a1d612d81bb75ed40
 ---
 
 ---
 title: Penolakan dan fallback
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-description: Bagaimana model Claude Fable dan Claude Opus mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
+description: Cara model Claude Fable, model Claude Opus, dan Claude Sonnet 5.5 mengembalikan penolakan dari pengklasifikasi dan cara mencoba ulang permintaan yang ditolak pada model fallback.
 ---
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Opus 5 dilengkapi "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak permintaan. Jika itu terjadi, Anda tetap menerima respons normal dengan `stop_reason: "refusal"`, bukan error. Field `stop_details.category` pada respons tersebut menyebutkan area kebijakan yang terkait (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Biasanya Anda masih bisa mendapatkan jawaban dengan mengirim permintaan yang sama ke model Claude lain. Halaman ini menjelaskan cara mengenali "refusal" (penolakan) dan cara menyiapkan percobaan ulang tersebut.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5 dilengkapi "safety classifier" (pengklasifikasi keamanan) yang dapat menolak permintaan. Ketika itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. Field `stop_details.category` pada respons tersebut menyebutkan area kebijakannya (lihat [Seperti apa bentuk penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Anda biasanya tetap bisa mendapatkan jawaban dengan mengirim permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali "refusal" (penolakan) dan cara menyiapkan percobaan ulang tersebut.
 
 Baca halaman ini ketika Anda membangun di atas salah satu model ini dan ingin permintaan yang ditolak diteruskan ke model lain secara otomatis. Halaman ini juga berlaku ketika Anda telah melihat `"refusal"` dalam sebuah respons dan ingin tahu apa yang harus dilakukan selanjutnya.
 
@@ -641,12 +641,12 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
 
 Beberapa aturan berlaku untuk daftar `fallbacks`:
 
-* Entri dicoba secara berurutan. Masing-masing harus berbeda dari entri lain dan dari model yang diminta.
-* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta diatur, daftar itu dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](https://platform.claude.com/docs/id/api/models/list).
+* Entri dicoba secara berurutan. Setiap entri harus berbeda dari entri lainnya dan dari model yang diminta.
+* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan beta header diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](https://platform.claude.com/docs/id/api/models/list).
 * Setiap entri menyebutkan `model` dan dapat menimpa `max_tokens`, `thinking`, `output_config`, dan `speed` hanya untuk percobaan tersebut.
-* Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan di awal.
-* Seperti pada mode default, hanya penolakan safety classifier yang memicu fallback. Batas laju, overload, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
-* Jika model fallback terkena batas laju atau overload, percobaan fallback tidak dilakukan dan penolakan sebelumnya dikembalikan sebagai gantinya. `stop_details.recommended_model` pada penolakan kemudian menyebutkan model untuk dicoba ulang secara langsung. Sesuaikan batas laju model fallback dengan volume penolakan yang Anda perkirakan, atau fallback akan terdegradasi menjadi penolakan saat beban tinggi.
+* Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan tersebut di awal. Dengan header `2026-07-01`, `thinking: {"type": "between_tools"}` adalah pengecualian: ketika permintaan Claude Sonnet 5.5 dialihkan ke Claude Sonnet 5, percobaan fallback berjalan dengan `thinking: {"type": "disabled"}` dan `display: "omitted"`. Dengan `2026-06-01`, atur `thinking` pada entri Claude Sonnet 5, atau permintaan akan ditolak di awal.
+* Sama seperti mode default, hanya penolakan oleh pengklasifikasi keamanan yang memicu fallback. Batas laju, kelebihan beban, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
+* Jika model fallback terkena batas laju atau kelebihan beban, percobaan fallback tidak dilakukan dan penolakan sebelumnya yang dikembalikan. Field `stop_details.recommended_model` pada penolakan tersebut kemudian menyebutkan model untuk dicoba ulang secara langsung. Sesuaikan batas laju model fallback dengan volume penolakan yang Anda perkirakan, atau fallback akan berubah menjadi penolakan saat beban tinggi.
 
 Respons memiliki bentuk yang sama di kedua mode: model yang melayani giliran muncul di field `model` tingkat atas, blok konten `fallback` menandai serah terima, dan `usage.iterations` mencatat setiap percobaan.
 
@@ -1122,7 +1122,7 @@ Teruskan `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddle
 
 * Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak akan meneruskan permintaan ke entri berikutnya.
 * Ketika setiap model dalam daftar telah menolak, middleware mengembalikan penolakan terakhir (respons penolakan dari model terakhir) alih-alih memunculkan error.
-* Blok thinking dari Claude Fable 5.1, Claude Opus 5.5, atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang [hanya dipertahankan untuk model tersebut atau model yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)).
+* Blok thinking dari Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang [hanya dipertahankan untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5, karena Claude Sonnet 5, model fallback-nya, tidak dapat membacanya.
 * Respons yang dilayani melalui middleware menyertakan blok konten `fallback` di setiap batas model, sama seperti respons fallback sisi server. Middleware mengelola blok-blok tersebut untuk Anda pada permintaan berikutnya.
 * Model yang menerima permintaan dicatat di `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tersebut tetap terkunci pada model itu alih-alih bertanya lagi ke model yang menolak.
 
@@ -1140,9 +1140,9 @@ Melalui HTTP mentah atau dengan logika percobaan ulang kustom, implementasikan p
   </Step>
 
   <Step title="Kirim ulang pada model fallback">
-    Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Model lain biasanya dapat melayani permintaan yang ditolak Claude Fable 5.1 atau Claude Fable 5. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit):
+    Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Jika permintaan yang ditolak mengirim `thinking: {"type": "between_tools"}`, ubah `thinking` terlebih dahulu: hanya Claude Sonnet 5.5 yang menerima nilai tersebut, jadi hilangkan `thinking` atau atur nilai yang diterima model fallback. [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dengan header `2026-07-01` melakukan perubahan ini untuk Anda ketika beralih ke Claude Sonnet 5. Model lain biasanya dapat melayani permintaan yang ditolak oleh Claude Fable 5.1 atau Claude Fable 5. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit):
 
-    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap ada atau menghapusnya untuk menghemat token input. Model fallback biasanya tidak dapat menggunakannya dalam kedua kasus: model tersebut mengabaikan blok Claude Fable 5, dan blok Claude Fable 5.1 [hanya dipertahankan untuk model tersebut atau model yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)).
+    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap di tempatnya atau menghapusnya untuk menghemat token input. Model fallback biasanya tidak dapat menggunakannya dalam kedua kasus: model tersebut mengabaikan blok Claude Fable 5, dan blok Claude Fable 5.1 [hanya dipertahankan untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5, karena Claude Sonnet 5, model fallback-nya, tidak dapat membacanya.
     * **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan persis. Server menangani blok thinking dari model sebelumnya saat penukaran, jadi jangan menghapusnya (lihat [Field yang harus cocok dengan permintaan yang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#reference)).
   </Step>
 

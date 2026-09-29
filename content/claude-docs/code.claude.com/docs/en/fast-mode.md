@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 029d23cbf8779e7c06c067e1aaa489a1d9ea91d8212a2ef5eba37c8eb258b099
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 2625add98dae64f55ece76ba89b9092cc49a3b4cb3c046c0a7701ac221dd4576
 ---
 
 > ## Documentation Index
@@ -77,11 +77,11 @@ Type `/fast on` in the session to turn fast mode on. It stays on for that sessio
 
 Fast mode has higher per-token pricing than standard Opus:
 
-| Model    | Input (MTok) | Output (MTok) |
-| -------- | ------------ | ------------- |
-| Opus 5.5 | \$8          | \$40          |
-| Opus 5   | \$10         | \$50          |
-| Opus 4.8 | \$10         | \$50          |
+| Model | Input (MTok) | Output (MTok) |
+| - | - | - |
+| Opus 5.5 | \$8 | \$40 |
+| Opus 5 | \$10 | \$50 |
+| Opus 4.8 | \$10 | \$50 |
 
 Fast mode pricing is flat across the full 1M token context window. For the standard Opus rate to compare against, see the [Claude pricing reference](https://platform.claude.com/docs/en/about-claude/pricing).
 
@@ -113,9 +113,9 @@ Standard mode is better for:
 
 Fast mode and effort level both affect response speed, but differently:
 
-| Setting                | Effect                                                                           |
-| ---------------------- | -------------------------------------------------------------------------------- |
-| **Fast mode**          | Same model quality, lower latency, higher cost                                   |
+| Setting | Effect |
+| - | - |
+| **Fast mode** | Same model quality, lower latency, higher cost |
 | **Lower effort level** | Less thinking time, faster responses, potentially lower quality on complex tasks |
 
 You can combine both: use fast mode with a lower [effort level](/docs/en/model-config#adjust-effort-level) for maximum speed on straightforward tasks.

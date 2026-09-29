@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 92397839a9248bdf4d25ea58355788be098eca409b13748eb4751b6e360bc368
+fetched_at: 2026-09-29T02:22:52.185218Z
+sha256: 558b9b72e3f2f181af20baaf3ee095907967e32301c9c66ed7355e757f435ed7
 ---
 
 > ## Documentation Index
@@ -57,11 +57,11 @@ To try a link without putting it on a page, paste it into your browser's address
 
 Add parameters to control where the session starts and what the prompt box contains:
 
-| Parameter | Description                                                                                                                                                                                                                                 |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `q`       | Text to pre-fill in the prompt box. [URL-encode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) the value. Use `%0A` for line breaks in multi-line prompts. Maximum 5,000 characters. |
-| `cwd`     | Absolute path to use as the working directory. Network and UNC paths are rejected, and so are paths that contain `..` segments or invisible or bidirectional control characters.                                                            |
-| `repo`    | A GitHub `owner/name` slug. Claude Code resolves it to a local clone it has seen before and starts there. If you have no matching clone, the session opens in your home directory instead.                                                  |
+| Parameter | Description |
+| - | - |
+| `q` | Text to pre-fill in the prompt box. [URL-encode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) the value. Use `%0A` for line breaks in multi-line prompts. Maximum 5,000 characters. |
+| `cwd` | Absolute path to use as the working directory. Network and UNC paths are rejected, and so are paths that contain `..` segments or invisible or bidirectional control characters. |
+| `repo` | A GitHub `owner/name` slug. Claude Code resolves it to a local clone it has seen before and starts there. If you have no matching clone, the session opens in your home directory instead. |
 
 `cwd` and `repo` are [two ways to set the working directory](#choose-between-cwd-and-repo). If you pass both, `cwd` takes precedence and `repo` is ignored, even if the `cwd` path does not exist.
 
@@ -159,11 +159,11 @@ You can also open a deep link from a shell script, alias, or automation rather t
 
 Claude Code registers the `claude-cli://` handler with your operating system on macOS, Linux, and Windows when you send your first prompt of an interactive session. Starting `claude` and exiting without sending a prompt doesn't register the handler. You don't run a separate install command. Registration writes to user-level locations only:
 
-| Platform | Handler location                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
-| macOS    | `~/Applications/Claude Code URL Handler.app`                                                                       |
-| Linux    | `claude-code-url-handler.desktop` under `$XDG_DATA_HOME/applications`, defaulting to `~/.local/share/applications` |
-| Windows  | `HKEY_CURRENT_USER\Software\Classes\claude-cli`                                                                    |
+| Platform | Handler location |
+| - | - |
+| macOS | `~/Applications/Claude Code URL Handler.app` |
+| Linux | `claude-code-url-handler.desktop` under `$XDG_DATA_HOME/applications`, defaulting to `~/.local/share/applications` |
+| Windows | `HKEY_CURRENT_USER\Software\Classes\claude-cli` |
 
 The handler launches Claude Code in a detected terminal emulator. On macOS, Claude Code remembers the terminal from your most recent interactive session and reuses it, supporting iTerm2, Ghostty, kitty, Alacritty, WezTerm, and Terminal.app. On Linux it honors the `$TERMINAL` environment variable, then `x-terminal-emulator`, then a list of common emulators. On Windows it prefers Windows Terminal, then PowerShell, then `cmd.exe`.
 
