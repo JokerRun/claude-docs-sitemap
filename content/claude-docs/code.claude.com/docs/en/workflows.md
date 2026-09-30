@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 8b266ce642537f5ee106be02a989ac8cd88fd5f5aea58415774ec4b43978c8aa
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 333a6dbcd09887d28bd232cb4d08ea0b307bcc01054217c33152daaa5bf81a7b
 ---
 
 > ## Documentation Index
@@ -90,7 +90,7 @@ Claude Code includes `/deep-research` as a built-in workflow:
 
 ### Watch the run
 
-Workflows run in the background, so the session stays responsive while agents work. Run `/workflows` at any time to list running and completed workflows, then select one to open its progress view.
+Workflows run in the background, so the session stays responsive while agents work. Run `/workflows` at any time to list running and completed workflows, then select one to open its progress view. To stop a running workflow without opening it, select it in the list and press `x`.
 
 The progress view shows each phase with its agent counts, token totals, and elapsed time. The footer lists the key for each action:
 

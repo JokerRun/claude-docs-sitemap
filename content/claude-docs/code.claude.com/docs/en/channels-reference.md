@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels-reference
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: a723271e1ec87358f99a908feb8681ba035e070a809b2fe83c6724b6c6da4130
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 18ec4c3f114c4af7e3cb22206fb5270f95c04908a61f69fe1d02db96baf5d18a
 ---
 
 > ## Documentation Index
@@ -164,7 +164,9 @@ This example uses [Bun](https://bun.sh) as the runtime for its built-in HTTP ser
     The payload arrives in Claude's context as a `<channel>` tag:
 
     ```text theme={null}
-    <channel source="webhook" path="/" method="POST">build failed on main: https://ci.example.com/run/1234</channel>
+    <channel source="webhook" path="/" method="POST">
+    build failed on main: https://ci.example.com/run/1234
+    </channel>
     ```
 
     Your terminal renders the event as a one-line summary, `← webhook: build failed on main: https://ci.example.com/run/1234`, rather than the raw tag. You'll then see Claude start responding: reading files, running commands, or whatever the message calls for. This is a one-way channel, so Claude acts in your session but doesn't send anything back through the webhook. To add replies, see [Expose a reply tool](#expose-a-reply-tool).

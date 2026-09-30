@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-linux
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: db5a3cf7bd70b7d7503584a736fd5aa59929e3412898f503c1cdc6925188a013
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: f7bf024f7ce37928c102592ac8234ec52efda4b65f7981b42effb64f98e386e8
 ---
 
 > ## Documentation Index
@@ -146,7 +146,9 @@ If `apt` stops with `The following packages have unmet dependencies` or `Unsatis
 * `libc6 (>= 2.34)`: your distribution is older than the package supports. Ubuntu 20.04 ships `libc6` 2.31. Upgrade to Ubuntu 22.04 or later, or Debian 12 or later.
 * All missing dependencies show `not installable` with an `:amd64` or `:arm64` suffix: you downloaded the `.deb` for a different architecture than your machine's. Run `dpkg --print-architecture` and download the matching `.deb`, or [install from the apt repository](#install), which selects the package for your architecture.
 
-### Running as root without --no-sandbox is not supported
+<h3 id="running-as-root-without-no-sandbox-is-not-supported">
+  Running as root without `--no-sandbox` is not supported
+</h3>
 
 If `claude-desktop` exits with this message, you launched it as root. Log in as a regular user and launch it from there.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1e70fad582cca399acad4ceb526c327b1be12eeb7966567aae96b6c946a00d73
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 24f1bad321fba8705b424034075f25e706180c7f5d65068622bda72d2983d444
 ---
 
 ---
@@ -86,7 +86,7 @@ To run Claude Sonnet 5.5 without up-front thinking, send `thinking: {"type": "be
 
 ## Reasoning tasks with JSON output
 
-This section applies when you ask Claude Sonnet 5.5 for a JSON answer to a task that needs a few steps of working out. Examples include totaling figures from a document, applying a rule, or ranking items. On tasks like these, the model often answers without thinking first, particularly at `low` and `medium` effort. What helps depends on how you request JSON. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) where they're available. The response text is then JSON that matches your schema, so there's nothing to parse.
+This section applies when you ask Claude Sonnet 5.5 for a JSON answer to a task that needs a few steps of working out. Examples include totaling figures from a document, applying a rule, or ranking items. On tasks like these, the model often answers without thinking first, particularly at `low` and `medium` effort. What helps depends on how you request JSON. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) where they're available. The response text is then JSON that matches your schema, so there's nothing to parse.
 
 With structured outputs, the response text holds only the JSON, so the model can work the problem out only in its thinking. When it skips thinking, it can be less accurate on these tasks. These changes help keep accuracy high.
 

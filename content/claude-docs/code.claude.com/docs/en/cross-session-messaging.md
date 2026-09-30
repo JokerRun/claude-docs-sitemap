@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cross-session-messaging
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 13adc33f0a96de0f74b5ce8227999156d6dd7c4662560865971d7f7816b953db
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 886e6885d8702664ac582edfa129ffc21e103370982beba15c3782cadcaf3620
 ---
 
 > ## Documentation Index
@@ -71,7 +71,7 @@ Claude Code refuses a message in the following cases:
 
 * The message is [over the size cap](#limitations). Claude Code refuses it in the sending session, before it leaves.
 * A rapid burst to a session on this machine has reached [what that session's inbox accepts](#limitations). Claude Code refuses further messages to that session.
-* The reply target on this machine fails a safety check, such as a symlinked target or an endpoint that isn't the expected process. [Refusing to send a cross-session message](/docs/en/errors#refusing-to-send-a-cross-session-message) lists these checks.
+* The reply target on this machine fails a safety check, such as a symlinked target. [Refusing to send a cross-session message](/docs/en/errors#refusing-to-send-a-cross-session-message) lists these checks.
 
 The receiving session checks each arriving message against its own [inbound controls](#control-inbound-messages), and the check ends in one of three outcomes:
 

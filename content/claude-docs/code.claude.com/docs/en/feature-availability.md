@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 8c15aba07207c5105d950c436dc1a33242bb06da4ac57b17c8612efb72e6fa8f
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 5fbd2c5af917263f44f9fed34beaa9c37f5f6c74b4c465896670a35eb6f598bd
 ---
 
 > ## Documentation Index
@@ -305,7 +305,7 @@ If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Micro
 | [Computer use](/docs/en/computer-use) | ✓ | ✓ | ✗ | ✗ |
 | Dispatch ([Desktop](/docs/en/desktop#sessions-from-dispatch)) | ✓ | ✓ | ✗ | ✗ |
 | [Code Review](/docs/en/code-review) | ✗ | ✗ | ✓ | ✓ |
-| [Artifacts](/docs/en/artifacts) | ✓ | ✓ | ✓ | Admin-enabled |
+| [Artifacts](/docs/en/artifacts) | ✓ | ✓ | ✓ | ✓ |
 | [Analytics dashboard and contribution metrics](/docs/en/analytics) | ✗ | ✗ | ✓ | ✓ |
 | [Enterprise Analytics API](/docs/en/analytics#access-data-programmatically) | ✗ | ✗ | ✗ | ✓ |
 | [Server-managed settings](/docs/en/server-managed-settings) | ✗ | ✗ | ✓ | ✓ |

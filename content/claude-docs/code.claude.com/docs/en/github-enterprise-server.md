@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 26f344dd36cb582f2535743f840a2e761bccdc75357e2f6f3be4313fca74be13
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: faf31e8aadaebd6f68f080ef6d265eec76ee56429f0eaa717482dc56331a8041
 ---
 
 > ## Documentation Index
@@ -223,7 +223,7 @@ If reviews or Anthropic-hosted cloud sessions time out, your GHES instance may n
 
 ### Session start fails with `Unable to get organization UUID`
 
-Sign in with `/login` using your organization account. If you authenticate with an API key instead, cloud sessions fail earlier with a message asking you to run `/login`.
+Claude Code couldn't read a claude.ai organization from your credentials. Sign in with `/login` using an account in your Team or Enterprise organization, since GitHub Enterprise Server support is limited to those plans. See [Unable to get organization UUID](/docs/en/claude-code-on-the-web#unable-to-get-organization-uuid) for the causes and the other messages this state produces.
 
 ## Related resources
 

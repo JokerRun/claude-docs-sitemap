@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: b5a818ff1626a54ed96d4d02392987bac82026b76f1f1e58c7b21293cb1e62c2
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: fd7f9908f8151c27be527b99980c847b01ea8b8b23c215af44cbbbf0ce79d71d
 ---
 
 > ## Documentation Index
@@ -1144,7 +1144,7 @@ If `/mcp` doesn't list a connector you added, run `/status` to confirm which aut
 
 If a temporary network problem keeps the connector list from loading when your session starts, Claude Code retries the fetch up to three times in the background, and the connectors appear once a retry succeeds. If they still haven't appeared, restart Claude Code to fetch the list again.
 
-If `/mcp` shows a connector as `connected · session token rejected`, or its detail view shows [`claude.ai rejected the session token`](/docs/en/errors#claude-ai-rejected-the-session-token), claude.ai rejected the token from your Claude Code login, usually because the login expired and couldn't be refreshed. Authorizing the connector again doesn't clear this state, because the connector's own authorization in claude.ai isn't what was rejected. To clear it:
+If `/mcp` shows a connector as `session token rejected`, or its detail view shows [`claude.ai rejected the session token`](/docs/en/errors#claude-ai-rejected-the-session-token), claude.ai rejected the token from your Claude Code login. Authorizing the connector again doesn't clear this state, because the connector's own authorization in claude.ai isn't what was rejected. To clear it:
 
 1. Run `/login` to sign in again.
 2. Reconnect the connector from `/mcp`.

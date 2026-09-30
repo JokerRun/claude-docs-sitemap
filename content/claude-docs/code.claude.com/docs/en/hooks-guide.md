@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: b86755bc9f1b494368be90edc0a92bc860a57a40f95c2463cdd0f5a70778404e
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 02621714b53ad11b95643b35dccbee54e940fa5aeafb8eaffa3efcc70232727b
 ---
 
 > ## Documentation Index
@@ -197,7 +197,7 @@ The empty `matcher` fires on all notification types. To fire only on specific ev
 | `elicitation_url_dialog` | An MCP server asks you to open a browser URL and you haven't typed for about six seconds |
 | `elicitation_complete` | An MCP server reports that a [URL-mode elicitation](/docs/en/hooks#elicitation-input) is complete |
 | `elicitation_response` | An MCP elicitation response is sent back to the server |
-| `agent_needs_input` | A background session starts waiting on your input while [agent view](/docs/en/agent-view) is open, or the current session asks you an [agent team teammate's terminal setup question](/docs/en/agent-teams#choose-a-display-mode) and you haven't typed for about six seconds |
+| `agent_needs_input` | A background session starts waiting on your input while [agent view](/docs/en/agent-view) is open. Also fires when a terminal session shows you an [agent team teammate's terminal setup question](/docs/en/agent-teams#choose-a-display-mode) or auto mode's notice about [classifier request charges](/docs/en/auto-mode-classifier-billing) and you haven't typed for about six seconds |
 | `agent_completed` | A background session finishes or fails. Fires only while [agent view](/docs/en/agent-view) is open |
 | `quota_auto_resume_fired` | Claude Code continues your task after a claude.ai usage limit paused it: at the reset, or sooner when something you do in Claude Code during the wait, such as adding usage credits, upgrading your plan, or switching models, makes usage available again, with the [model-setting exception](/docs/en/interactive-mode#wait-for-a-usage-limit-to-reset) |
 | `quota_auto_resume_stale` | A claude.ai usage limit reset while your computer slept for more than about 30 minutes. Claude Code waits for you to press `Enter` instead of continuing. After a shorter sleep it continues and fires `quota_auto_resume_fired` instead |

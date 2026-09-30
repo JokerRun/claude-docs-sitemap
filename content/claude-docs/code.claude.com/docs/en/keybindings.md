@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 66488b30612c15030f57ebb406facfa8911062bd1cbd8d28f3a78a9f6de766ed
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 1190c37411503456160935bdec485932ae7cd8ff7561acf1146244f9efe885d2
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ The keybindings configuration file is an object with a `bindings` array. Each bl
 | `$docs` | Optional documentation URL |
 | `bindings` | Array of binding blocks by context |
 
-This example binds `Ctrl+E` to open an external editor in the chat context, and unbinds `Ctrl+U`:
+This example binds `Ctrl+E` to open an external editor in the chat context, and unbinds `Ctrl+S`:
 
 ```json theme={null}
 {
@@ -38,7 +38,7 @@ This example binds `Ctrl+E` to open an external editor in the chat context, and 
       "context": "Chat",
       "bindings": {
         "ctrl+e": "chat:externalEditor",
-        "ctrl+u": null
+        "ctrl+s": null
       }
     }
   ]
@@ -60,7 +60,7 @@ Each binding block specifies a **context** where the bindings apply:
 | `Help` | Help menu is visible |
 | `Transcript` | Transcript viewer |
 | `HistorySearch` | History search mode (Ctrl+R) |
-| `Task` | Background task is running |
+| `Task` | A task is running in the foreground |
 | `ThemePicker` | Theme picker dialog |
 | `Attachments` | Image attachment navigation in select dialogs |
 | `Footer` | Footer indicator navigation (tasks, teams, diff, artifacts) |
@@ -616,7 +616,7 @@ When vim mode is enabled via `/config` → Editor mode, keybindings and vim mode
 
 ## Validation
 
-Claude Code validates your keybindings and shows warnings for:
+Claude Code validates your keybindings and writes a warning to the debug log for:
 
 * Parse errors (invalid JSON or structure)
 * Invalid context names
@@ -625,4 +625,4 @@ Claude Code validates your keybindings and shows warnings for:
 * Reserved shortcut conflicts
 * Duplicate bindings in the same context
 
-Claude Code reports warnings when the file loads and writes each one to the debug log. Start Claude Code with [`--debug`](/docs/en/cli-reference#cli-flags) to see the details.
+Start Claude Code with [`--debug`](/docs/en/cli-reference#cli-flags) to see the details.

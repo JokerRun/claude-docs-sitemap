@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/loading
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 2ae43ab16e376c9ed960f34c7d7e6faa4f917ae3d07ac358969f40e36082bb15
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: a7a7ae4c26c0969a19fbff133786f9949bb3258236de75b06f879c715b73f05d
 ---
 
 > ## Documentation Index
@@ -113,6 +113,13 @@ If you enable a plugin on claude.ai while a session is running, the plugin downl
 #### Sign-in requirements for terminal sync
 
 In your terminal, plugins sync only in sessions where you sign in with your claude.ai account.
+
+Claude Code neither downloads nor loads synced plugins in these terminal sessions, even after you sign in with `/login`:
+
+* A session where `ANTHROPIC_AUTH_TOKEN`, `CLAUDE_CODE_OAUTH_TOKEN`, or an `apiKeyHelper` script supplies the credential in place of that sign-in
+* A session that doesn't [fetch feature flags from Anthropic](/docs/en/env-vars#features-that-need-feature-flag-fetching), such as one where you set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`
+* A session in [bare mode](/docs/en/headless#start-faster-with-bare-mode) or one you start with `--safe-mode`
+* A session you start with a [`--setting-sources`](/docs/en/cli-reference#cli-flags) list that leaves out `user`
 
 If you signed in on an earlier version of Claude Code, that sign-in doesn't cover plugins until Claude Code renews it in the background. To get access sooner, run `/login` again. Plugin sync then starts the next time you start Claude Code.
 

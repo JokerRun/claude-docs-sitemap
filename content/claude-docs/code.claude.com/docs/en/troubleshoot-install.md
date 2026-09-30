@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: f0b079b7327e24118fc9064ecb0a23ac9d2ac12b78c386e50e53ad0d3a71f25a
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: a7e5365dc80567fa2907613dda38c2793e6182f5b2a6e0b27df646e92105b2a6
 ---
 
 > ## Documentation Index
@@ -426,7 +426,12 @@ If Homebrew installs an older Claude Code version than you expect, the same stal
 
 ### TLS or SSL connection errors
 
-Errors like `curl: (35) TLS connect error`, `schannel: next InitializeSecurityContext failed`, or PowerShell's `Could not establish trust relationship for the SSL/TLS secure channel` indicate TLS handshake failures.
+Errors such as these mean the TLS handshake failed:
+
+* `curl: (35) TLS connect error`
+* `schannel: next InitializeSecurityContext failed`
+* PowerShell's `Could not create SSL/TLS secure channel`
+* PowerShell's `Could not establish trust relationship for the SSL/TLS secure channel`
 
 **Solutions:**
 

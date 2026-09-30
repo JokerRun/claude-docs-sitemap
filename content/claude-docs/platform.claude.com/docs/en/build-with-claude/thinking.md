@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 602a83d274cd878f6bc1a30d0c6fbd28b5b1e615e99ae236a862094378b20a53
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 85f615e81f95d04b8c4e5187d10c5fa4c84e12b2ed8115883cd22d94c2bfd0a4
 ---
 
 ---
@@ -23,7 +23,9 @@ Thinking has a cost: the tokens Claude spends reasoning are billed as output tok
 
 ## How thinking works
 
-![Diagram of how thinking works: Claude evaluates the request and decides whether to think up front; with tool use, thinking can recur between tool calls; one response returns thinking blocks, then text blocks](https://platform.claude.com/docs/images/how-thinking-works.svg)
+<Frame>
+  ![Diagram of how thinking works: Claude evaluates the request and decides whether to think up front; with tool use, thinking can recur between tool calls; one response returns thinking blocks, then text blocks](https://platform.claude.com/docs/images/how-thinking-works.svg)
+</Frame>
 
 Whether Claude thinks on a given request, and how deeply, depends on your thinking configuration and the complexity of the request.
 
@@ -540,7 +542,9 @@ To see the model's reasoning, read the `thinking` blocks rather than prompting f
 
 Thinking works with [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming). Thinking blocks stream as `thinking_delta` events inside `content_block_delta` events, followed by a single `signature_delta` event just before the block's `content_block_stop`. Text blocks stream afterward as usual.
 
-![Diagram of the streaming event sequence with thinking: the thinking block opens, thinking deltas carry text only when the display setting returns text (summarized, or updates for progress-update blocks), a single signature delta closes the block, then text deltas stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+<Frame>
+  ![Diagram of the streaming event sequence with thinking: the thinking block opens, thinking deltas carry text only when the display setting returns text (summarized, or updates for progress-update blocks), a single signature delta closes the block, then text deltas stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+</Frame>
 
 The following examples stream a response with adaptive thinking, printing thinking and text deltas as they arrive:
 

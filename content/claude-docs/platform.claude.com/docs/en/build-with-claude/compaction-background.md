@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-background
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 7d4ac59ba2bafa31458e3f8b84e7641a149a46e8fbd0ab6bba238f8eba344cb4
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: f59865a84d3bccff83b111ff8c96ba16cb32d0ffe5eea02303433e343d961ef9
 ---
 
 ---
@@ -47,7 +47,9 @@ The compaction request and the block it returns are the same as in the loop. You
 
 For example, if the compaction request held messages 1 to 5 and the conversation gained messages 6 to 8 while it ran, after the swap your history is the block followed by messages 6 to 8.
 
-![Background compaction timeline: the compaction request is sent with messages 1 to 5 while the conversation continues on its full history and gains messages 6 to 8; when the block arrives, it replaces messages 1 to 5 at the front of the history, and the history becomes the block followed by messages 6 to 8](https://platform.claude.com/docs/images/compaction-background-timeline.svg)
+<Frame>
+  ![Background compaction timeline: the compaction request is sent with messages 1 to 5 while the conversation continues on its full history and gains messages 6 to 8; when the block arrives, it replaces messages 1 to 5 at the front of the history, and the history becomes the block followed by messages 6 to 8](https://platform.claude.com/docs/images/compaction-background-timeline.svg)
+</Frame>
 
 If the response has any other `stop_reason`, no summary was produced, which counts as a failure in step 2. Keep the full history; [Handle a missing summary or an error](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand#when-no-summary-comes-back) lists the causes and what to do for each.
 

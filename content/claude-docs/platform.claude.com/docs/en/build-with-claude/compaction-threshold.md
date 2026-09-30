@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 453f6f8dfc100c0af9ec5a0c91ed98133a2242048bb01dea27b1f554d883398c
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 509682a4e8e03674a302765639bda6c465805362f6261773c5dae55b61798929
 ---
 
 ---
@@ -61,7 +61,9 @@ When compaction is enabled, Claude automatically summarizes your conversation wh
 
 On subsequent requests, append the response to your messages. The API automatically drops all content blocks prior to the `compaction` block, continuing the conversation from the summary.
 
-![Compaction flow: when input tokens reach the trigger, Claude writes a summary into a compaction block and continues](https://platform.claude.com/docs/images/compaction-flow.svg)
+<Frame>
+  ![Compaction flow: when input tokens reach the trigger, Claude writes a summary into a compaction block and continues](https://platform.claude.com/docs/images/compaction-flow.svg)
+</Frame>
 
 ## Basic usage
 

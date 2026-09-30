@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 95e0f1eb52ea9496e1f1a75f06145df5f234518e7e5747d7ec0b418140416f89
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 0bddb80a2c3b55f9a2adeadf3b8a23925232ea2fae5165f95c94c1c628ecda16
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ Each finding is tagged with a severity level:
 | 🟡 | Nit | A minor issue, worth fixing but not blocking |
 | 🟣 | Pre-existing | A bug that exists in the codebase but was not introduced by this PR |
 
-Findings include a collapsible extended reasoning section you can expand to understand why Claude flagged the issue and how it verified the problem.
+Findings include a collapsed **Why this was flagged** section that you can expand to read why Claude flagged the issue and how it verified the problem.
 
 ### Rate and reply to findings
 

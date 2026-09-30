@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 852106bd19e9803c144fc7303dc19d418ef07d10b4fdb78b0822e07a31dd4c17
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 1ff0092da40b1bc68c7ba70055303dab5d7374a19e16f70bd00bace512172878
 ---
 
 ---
@@ -30,7 +30,7 @@ Define tools using the SDK helpers, then use the tool runner to run them.
 
 Depending on the SDK's tool signature, a tool returns its result as a string or as content blocks (text, image, or document blocks), so a tool can return multimodal results. A returned string becomes a single text content block. To return structured data, such as a JSON object or a number, encode it as a string first.
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Use the `@beta_tool` decorator to define tools with type hints and docstrings.
 
@@ -600,7 +600,7 @@ You can end the loop at any iteration with a `break` statement. The runner loops
 
 If you don't need intermediate messages, you can get the final message directly:
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Use `runner.until_done()` to get the final message.
 
@@ -830,7 +830,7 @@ You take over by modifying the runner's messages from inside the loop body. The 
 
 When you take over for an iteration, the runner does not append the assistant message or tool results from that turn. You become responsible for keeping the conversation valid: append the assistant message and a tool result yourself (if you want the turn to count), modify state conditionally so the loop can still exit when there are no tool calls, and pass `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) to bound the loop. All seven SDKs support `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`).
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Use `generate_tool_call_response()` to inspect or compute the tool result. Calling `append_messages()` inside the loop tells the runner you're managing history yourself, so include the assistant message and tool result in what you append.
 
@@ -1137,7 +1137,7 @@ By default, tool errors are passed back to Claude, which can then respond approp
 
 In the Python and TypeScript SDKs, use the tool response method (`generate_tool_call_response()` in Python, `generateToolResponse()` in TypeScript) to intercept tool results and check for errors before they're sent to Claude. The other SDKs don't expose that hook. Their tabs describe the closest alternative:
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     ```python
     client = anthropic.Anthropic()
@@ -1314,7 +1314,7 @@ You can modify tool results before they're sent back to Claude. This is useful f
 
 In the Python and TypeScript SDKs, use the tool response method to get the tool result, then modify it before the runner proceeds. Whether you explicitly append the modified result or mutate it in place depends on the SDK. See the code comments in each tab.
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     ```python
     client = anthropic.Anthropic()
@@ -1542,7 +1542,7 @@ In the Python and TypeScript SDKs, use the tool response method to get the tool 
 
 Enable streaming to process each turn's response incrementally. Each iteration yields a stream object that you can iterate for events.
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Set `stream=True` and use `get_final_message()` to get the accumulated message.
 

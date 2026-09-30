@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 97ea29c32e6fc0128c0b0807fdee78a6b89cfa3f871763bab252fbdbc97968d5
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 9f936a9d8487a301496de2c76b318a626360149689184bf19d5ceea38a38538e
 ---
 
 ---
@@ -448,7 +448,7 @@ Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/gl
 }
 ```
 
-Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, system prompt instructions, or [`output_config.format`](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) instead.
+Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, system prompt instructions, or [`output_config.format`](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#usage) instead.
 
 ### Thinking blocks cannot be modified
 

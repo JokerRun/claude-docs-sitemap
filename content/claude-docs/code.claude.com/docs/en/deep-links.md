@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 558b9b72e3f2f181af20baaf3ee095907967e32301c9c66ed7355e757f435ed7
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 490b034d629d886bf9e8c825a93a2a5e9b91c18b858c3a4e4e36eb81802fdf8d
 ---
 
 > ## Documentation Index
@@ -47,7 +47,7 @@ When the session opens, a warning line below the input box reads `Prompt from an
 
 ## Build a link
 
-Every deep link starts with `claude-cli://open`, which is the only path the handler accepts, followed by optional query parameters. The minimal form opens Claude Code in your home directory with an empty prompt:
+A deep link starts with `claude-cli://open`, followed by optional query parameters. The minimal form opens Claude Code in your home directory with an empty prompt:
 
 ```text theme={null}
 claude-cli://open

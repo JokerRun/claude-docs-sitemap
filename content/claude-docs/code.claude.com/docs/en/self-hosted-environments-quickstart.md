@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-quickstart
-fetched_at: 2026-08-28T04:49:21.048236Z
-sha256: e6e70c877cc20278dced5c63fc014f033650c51e0de6cccf1d8165bdd72e0d8b
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 2944aab4bfe71160eae2f2f6662910c16504ed13cb2e541da7c5264887000558
 ---
 
 > ## Documentation Index
@@ -102,7 +102,7 @@ To set up manually instead:
   </Step>
 </Steps>
 
-The runner exits by design once its active sessions finish; see [Runner lifecycle](/docs/en/self-hosted-environments#runner-lifecycle). For production, deploy it under an orchestrator that restarts it on exit. See [Deploy to production](/docs/en/self-hosted-environments-deploy).
+The runner exits by design once its active sessions finish; see [Runner lifecycle](/docs/en/self-hosted-environments#runner-lifecycle). For production, deploy it under an orchestrator that restarts it on exit and waits longer between restarts when the runner keeps exiting right after it starts. See [Deploy to production](/docs/en/self-hosted-environments-deploy) and [When the runner exits](/docs/en/self-hosted-environments-deploy#when-the-runner-exits).
 
 ## Send a follow-up message to a running session
 

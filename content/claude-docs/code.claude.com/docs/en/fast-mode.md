@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 2625add98dae64f55ece76ba89b9092cc49a3b4cb3c046c0a7701ac221dd4576
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: ab3619d2ed69c90689a8998ea6f22fff2798ba0a47332932f9a380b8e6fce99b
 ---
 
 > ## Documentation Index
@@ -72,6 +72,8 @@ Claude Code resends the session's fast mode status to devices connected through 
 Fast mode works in [cloud sessions](/docs/en/claude-code-on-the-web) when it's available on your account, whether the session runs on Anthropic-managed infrastructure or a [self-hosted runner](/docs/en/self-hosted-environments). Requires Claude Code v2.1.271 or later in the session's environment.
 
 Type `/fast on` in the session to turn fast mode on. It stays on for that session only and isn't saved as your default. The [requirements](#requirements) apply in cloud sessions too.
+
+In the browser at [claude.ai/code](https://claude.ai/code), you can also turn fast mode on and off from the model menu on the message box. The menu shows the switch when your plan includes fast mode and the selected model supports it.
 
 ## Understand the cost tradeoff
 

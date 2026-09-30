@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/migration-guide
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 66b4fb8c6a70993a54fb2637602fbf4d717ae0a66fbe785b57d10ff3bf7c98b4
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: d17aa77f342e2e70108934920034fb92f944662573e94f2001a7db0cf7c76030
 ---
 
 ---
@@ -579,7 +579,7 @@ model = "claude-mythos-5-1"  # After
      ```
    </CodeGroup>
 
-   See [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) and [Forcing tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use). If you forced a tool only to get schema-conformant JSON, use [JSON outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-outputs) (`output_config.format`) instead.
+   See [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) and [Forcing tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use). If you forced a tool only to get schema-conformant JSON, use [JSON outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#usage) (`output_config.format`) instead.
 
    If your application, rather than the user, requires a specific tool call on the current turn of a multi-turn conversation, append a [mid-conversation system message](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages) after the latest `user` turn. Name the tool, say the call is required for this turn, and tell Claude to open its response with it. Because the message is appended rather than written into the top-level `system` prompt, earlier turns stay byte-identical and keep their [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) hits:
 

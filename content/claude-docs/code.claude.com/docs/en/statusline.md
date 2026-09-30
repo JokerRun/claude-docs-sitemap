@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 6ddde6b55a53ae3a10c1c105729cb2c112ed19b30ff343c37f4a5241bce20080
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 723a9c1082bfc4696be4be3665d955f702b5d20df6245e8918954b32b5310f8c
 ---
 
 > ## Documentation Index
@@ -1143,7 +1143,7 @@ Community projects like [ccstatusline](https://github.com/sirmalloc/ccstatusline
 **Context percentage shows unexpected values**
 
 * Use `used_percentage` for the simplest accurate context state
-* Context percentage may differ from `/context` output due to when each is calculated
+* The status line reports the counts from the last API response, while `/context` adds an estimate for messages added since that response, so `/context` can read higher until the next response
 
 **OSC 8 links not clickable**
 

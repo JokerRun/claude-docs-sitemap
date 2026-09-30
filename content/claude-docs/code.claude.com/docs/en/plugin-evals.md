@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-evals
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 7173bf94efcb802a30fe48d31755b06da73164ff8ed2a52bd140d7469784fe3b
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 73b169c4922feae0a4bd01af828f99f91e2d8d54331c9ece89b22f02b5122ec4
 ---
 
 > ## Documentation Index
@@ -694,7 +694,9 @@ Anything beyond the read-only set needs your grant, such as `--allow-tools Bash 
 
 The default `--threshold` is 1.0, so the command exits 1 when any case scores below perfect. Set a threshold that matches the score you require. Exit 1 also covers a case file that failed to load, which is reported on stderr above the table.
 
-### "--json output path must end in .json"
+<h3 id="json-output-path-must-end-in-json">
+  `--json output path must end in .json`
+</h3>
 
 You put the target after `--json`, so it was read as the output path. Put the target first, as in `claude plugin eval . --json`, or give `--json` an explicit `.json` path.
 

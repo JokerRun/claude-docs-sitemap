@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 0f7962d54d7d4f6c81d3014da792a1f74a981e3cd313e775189d5b007dbc6543
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: a5ea6a641a187c3201e3072a8d126be5b7bb2d4057bf8a82a30af3ef60d74316
 ---
 
 > ## Documentation Index
@@ -45,6 +45,8 @@ Open `claude` in the repository you want to connect, run `/install-github-app`, 
 Claude Code saves the credential as a repository secret, named `ANTHROPIC_API_KEY` for an API key or `CLAUDE_CODE_OAUTH_TOKEN` for a subscription token.
 
 Claude Code then pushes a branch with the workflow files you select, already set to use that secret, and opens GitHub in your browser with a pull request ready to create. Create and merge that pull request, and `@claude` works in the repository.
+
+To stop setup partway through, press Esc. A step already in progress finishes, and no later step starts. The closing message lists what already happened in the repository, such as a pushed branch or a saved secret.
 
 If you select the review workflow, Claude posts each review on the pull request itself, as an inline comment on each issue it finds or as one summary comment when it finds none. Claude skips some pull requests, such as drafts. The [review workflow example](#run-a-skill) uses the same skill and lists them. Before v2.1.229, Claude wrote its review only to the workflow run log.
 

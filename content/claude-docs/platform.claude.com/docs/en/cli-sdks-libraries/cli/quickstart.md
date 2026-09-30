@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 05180c0d1836af5433a21e091226a672f8c24edf3a9b1edfd10cb45bf78c814c
+fetched_at: 2026-09-30T02:26:19.798321Z
+sha256: 49951bdb671282da3e064e12402a6decb28bf0233014a1a57681305611c34e31
 ---
 
 ---
@@ -14,7 +14,10 @@ description: Install the ant command-line tool, authenticate, and send your firs
 The `ant` CLI provides access to the Claude API from your terminal. Every API resource is exposed as a subcommand, with output formatting, response filtering, and YAML or JSON file input.
 
 <Frame caption="The ant CLI in action.">
-  [](https://platform.claude.com/docs/videos/ant-cli-demo.webm)
+  <video aria-label="Screen recording of the ant CLI running in a terminal.">
+    <source src="https://platform.claude.com/docs/videos/ant-cli-demo.webm" type="video/webm" />
+    <source src="https://platform.claude.com/docs/videos/ant-cli-demo.mp4" type="video/mp4" />
+  </video>
 </Frame>
 
 Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML instead of hand-written JSON, and inlines file contents into string fields with an `@path` reference. It extracts response fields with a built-in `--transform` query, so you don't need a separate tool such as `jq`, and it paginates list endpoints automatically.
