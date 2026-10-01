@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 93bf9420b70e0ba1800892a306b97970edf2a0a052e44b252dedaa8b6f752604
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b85dce4e0bb6c685729bbc1cd7350ad57fac2376b44e866a3765a83ea45cb311
 ---
 
 ---
@@ -596,7 +596,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
 
 <CodeGroup>
   ```bash cURL
-  # Daftar resource pada sesi
+  # List resources on the session
   repo_resource_id=$(curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -604,7 +604,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
     -H "content-type: application/json" | jq -r '.data[0].id')
   echo "$repo_resource_id"  # "sesrsc_01ABC..."
 
-  # Rotasi token otorisasi
+  # Rotate the authorization token
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
   # ...
     -o /dev/null \
@@ -616,10 +616,10 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```bash CLI
-  # Daftar resource pada session
+  # List resources on the session
   ant beta:sessions:resources list --session-id "$SESSION_ID"
 
-  # Rotasi token otorisasi pada resource tertentu
+  # Rotate the authorization token on a specific resource
   ant beta:sessions:resources update \
     --session-id "$SESSION_ID" \
     --resource-id "$RESOURCE_ID" \
@@ -627,12 +627,12 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```python Python
-  # Daftar resource pada sesi
+  # List resources on the session
   listed = client.beta.sessions.resources.list(session.id)
   repo_resource_id = listed.data[0].id
   print(repo_resource_id)  # "sesrsc_01ABC..."
 
-  # Rotasi token otorisasi
+  # Rotate the authorization token
   client.beta.sessions.resources.update(
       repo_resource_id,
       session_id=session.id,
@@ -641,7 +641,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```typescript TypeScript
-  // Daftar resource pada session
+  // List resources on the session
   const listed = await client.beta.sessions.resources.list(session.id);
   const repoResource = listed.data.find(
     (entry) => entry.type === "github_repository",
@@ -652,7 +652,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   const repoResourceId = repoResource.id;
   console.log(repoResourceId); // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   await client.beta.sessions.resources.update(repoResourceId, {
     session_id: session.id,
     authorization_token: "ghp_your_new_github_token",
@@ -660,12 +660,12 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```csharp C#
-  // Daftar sumber daya pada sesi
+  // List resources on the session
   var listed = await client.Beta.Sessions.Resources.List(session.ID);
   var repoResourceId = (await listed.Paginate().FirstAsync()).ID;
   Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   await client.Beta.Sessions.Resources.Update(repoResourceId, new()
   {
       SessionID = session.ID,
@@ -674,7 +674,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```go Go
-  // Daftar resource pada session
+  // List resources on the session
   listed, err := client.Beta.Sessions.Resources.List(ctx, session.ID, anthropic.BetaSessionResourceListParams{})
   if err != nil {
   	panic(err)
@@ -682,7 +682,7 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   repoResourceID := listed.Data[0].ID
   fmt.Println(repoResourceID) // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   _, err = client.Beta.Sessions.Resources.Update(ctx, repoResourceID, anthropic.BetaSessionResourceUpdateParams{
   	SessionID:          session.ID,
   	AuthorizationToken: "ghp_your_new_github_token",
@@ -693,12 +693,12 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```java Java
-  // Daftar resource pada sesi
+  // List resources on the session
   var listed = client.beta().sessions().resources().list(session.id());
   var repoResourceId = listed.data().getFirst().asGitHubRepository().id();
   IO.println(repoResourceId);  // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   client.beta().sessions().resources().update(repoResourceId, ResourceUpdateParams.builder()
       .sessionId(session.id())
       .authorizationToken("ghp_your_new_github_token")
@@ -706,12 +706,12 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```php PHP
-  // Daftar resource pada sesi
+  // List resources on the session
   $listed = $client->beta->sessions->resources->list($session->id);
   $repoResourceId = $listed->data[0]->id;
   echo $repoResourceId, PHP_EOL; // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   $client->beta->sessions->resources->update(
       $repoResourceId,
       sessionID: $session->id,
@@ -720,12 +720,12 @@ Setelah sesi dibuat, Anda dapat melihat daftar sumber daya repositorinya dan mer
   ```
 
   ```ruby Ruby
-  # Daftar resource pada sesi
+  # List resources on the session
   listed = client.beta.sessions.resources.list(session.id)
   repo_resource_id = listed.data.first.id
   puts repo_resource_id # "sesrsc_01ABC..."
 
-  # Rotasi token otorisasi
+  # Rotate the authorization token
   client.beta.sessions.resources.update(
     repo_resource_id,
     session_id: session.id,

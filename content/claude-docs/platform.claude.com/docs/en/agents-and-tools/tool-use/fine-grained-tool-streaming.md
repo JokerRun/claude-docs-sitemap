@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 44fd5fdbec52a928e7899fd9f85347919a9dcc436a34a37486892a8e783a56d6
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: fc68bdad1d4605ceaf77b13e7b03beaa08e49f9220cda7fa376bea86e8323626
 ---
 
 ---
@@ -491,7 +491,7 @@ The accumulation contract is the same as for standard tool-use streaming, so thi
 
 When a `tool_use` content block streams, the initial `content_block_start` event contains `input: {}` (an empty object). This is a placeholder. The actual input arrives as a series of `input_json_delta` events, each carrying a `partial_json` string fragment. To assemble the full input, concatenate these fragments and parse the result when the block closes.
 
-Where your SDK provides an accumulator helper (as the Python, TypeScript, Go, Java, and Ruby tabs in the previous example do), it handles this for you. The manual pattern is for SDKs without a helper, or when you want full control over how the input is assembled.
+Where your SDK provides an accumulator helper (as the Python, TypeScript, Go, Java, and Ruby tabs in the previous example do), it handles this for you. Use the manual pattern when your SDK has no helper or when you want full control over how the input is assembled.
 
 The accumulation contract:
 

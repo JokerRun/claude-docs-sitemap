@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 8e11643578ffad094de0d48bb0c4bd548861d372120fdbecc7442ccb6cd7970d
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0d1744b492d15e059248e25cc5d37e89e09ba147a498db7a995f5b2775c13a58
 ---
 
 ---
@@ -104,7 +104,7 @@ Paginates by member, so a member's periods never split across pages.
 
     ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Period this row's effective limit and spend are reported for.
 
@@ -265,7 +265,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
       },
       "amount": "50000",
       "currency": "USD",
-      "period": "monthly",
+      "period": "daily",
       "period_to_date_spend": "12050.5",
       "scope": {
         "type": "user",

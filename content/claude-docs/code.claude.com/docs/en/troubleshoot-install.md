@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: a7e5365dc80567fa2907613dda38c2793e6182f5b2a6e0b27df646e92105b2a6
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: a029ba92bd9fc4798355a98069570121cae0ddf3a2bbff51c886ea7b752fd4fc
 ---
 
 > ## Documentation Index
@@ -961,7 +961,7 @@ If you see `OAuth error: Invalid code. Please make sure the full code was copied
 
 ### 403 Forbidden after login
 
-If you see `API Error: 403 {"error":{"type":"forbidden","message":"Request not allowed"}}` after logging in:
+If you see `API Error: 403 Request not allowed` after logging in:
 
 * **Claude Pro/Max users**: verify your subscription is active at [claude.ai/settings](https://claude.ai/settings)
 * **Anthropic Console users**: confirm your account has the "Claude Code" or "Developer" role. Admins assign this in the Anthropic Console under Settings → Members.

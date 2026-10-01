@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1aa6f749dbb815c925debb2a12726b1a14aa5ab27243a4311fddf5727a45adb8
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 6723575c5a7458a9772f0eb89fffa0c0cf2ad1123bad99151ec6a744c5c340e0
 ---
 
 ---
@@ -292,23 +292,23 @@ Claude now holds references it can act on, so its next turn can click `ref_2` to
 Browser use runs as an agent loop in your application: Claude returns member tool calls, your executor runs them against the browser, and you return the results until Claude answers in text.
 
 <Steps>
-  <Step title="Provide Claude with the browser use tool and a user prompt" icon="tool">
+  <Step title="Provide Claude with the browser use tool and a user prompt">
     * Add the `browser_toolset_20260801` entry, and optionally other tools, to your API request.
     * Include a user prompt that calls for working with webpages, for example, "Open example.com/docs and tell me how to get started."
   </Step>
 
-  <Step title="Claude responds with member tool calls" icon="wrench">
+  <Step title="Claude responds with member tool calls">
     * Claude returns one or more `tool_use` blocks in a single assistant turn; several in one turn form a batch action, for example, `left_click`, then `type`, then `key`.
     * Each block's `name` is the member name, each carries `"toolset_name": "browser"`, and `input` holds only that member's parameters, with no `action` field. The response's `stop_reason` is `tool_use`.
   </Step>
 
-  <Step title="Run the calls in order and return results" icon="browser">
+  <Step title="Run the calls in order and return results">
     * Iterate every `tool_use` block in `response.content` (don't assume there's exactly one) and run them sequentially, in the order they appear, because later calls usually depend on earlier ones.
     * Return one `tool_result` per block in a new `user` message, matched by `tool_use_id`, and echo `"toolset_name": "browser"` on each. Every call must be answered or the next request is rejected.
     * If a call fails, return `is_error: true` with a text description for that block, then apply the halt rule in [Batch actions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool#batch-actions) to every later block in the turn.
   </Step>
 
-  <Step title="Claude continues until the task is complete" icon="arrows-clockwise">
+  <Step title="Claude continues until the task is complete">
     * Claude reads the results (page text, accessibility trees, screenshots, tab state) and, if it needs more, returns further member calls, which takes you back to step 3.
     * Otherwise, it returns a text response to the user.
   </Step>

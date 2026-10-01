@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 68fc43e70e039ead2141d08d0dd2ed3db5219cb3cedddf5d2842e5e3a3940a45
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 686706b76451cfbae1d93f227b664ce8498c3aafd8ab038fda022f20637fd182
 ---
 
 ---
@@ -52,7 +52,7 @@ Retrieve a spend limit by ID.
 
     ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Length of the window the limit resets over. `amount` caps spend within each period.
 
@@ -146,7 +146,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
   "amount": "50000",
   "created_at": "2019-12-27T18:11:19.117Z",
   "currency": "USD",
-  "period": "monthly",
+  "period": "daily",
   "scope": {
     "type": "user",
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 721ff66894634a2e87d7f2641777e37ae68b6323f3c3112781b8fe652f0f63bf
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 9ce477be5e0821cf7d319c8cbac1f513d3b0d956566c3671668aaac6b36d1e95
 ---
 
 ---
@@ -36,7 +36,7 @@ Update Workspace
 
       - `"us"`
 
-    - `Unrestricted = "unrestricted"`
+    - `"unrestricted"`
 
   - `default_inference_geo: optional "global" or "us" or null`
 
@@ -132,7 +132,7 @@ Update Workspace
 
         - `"us"`
 
-      - `Unrestricted = "unrestricted"`
+      - `"unrestricted"`
 
     - `default_inference_geo: "global" or "us"`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 04c8d709b01f6e6c07ece6217438570e9ad9e9a854816ffb7eb045ac138a8ee9
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 5aed3a4e153532b7654d0a0fb781bec49c3aa041acc7682380ee3ab3d5ef45b4
 ---
 
 > ## Documentation Index
@@ -148,7 +148,10 @@ The same string also appears in the `/plugin` **Errors** tab, the panel's list o
   `Marketplace "<name>" not found`
 </h3>
 
-You ran `/plugin install <plugin>@<name>` in a session, often from an install line someone sent you, and Claude Code reported that it has no marketplace by that name.
+You ran `/plugin install` in a session and Claude Code reported that it has no marketplace by that name. Two forms of the command reach this message:
+
+* **`/plugin install <plugin>@<name>`**: the install line, often one someone sent you, names a marketplace you haven't added. The rest of this entry covers finding and adding it.
+* **`/plugin install <source>` with a path, URL, or `owner/repo`**: this form reports the message instead of installing, even for a source you've already added. To install from a source in one command, see [Add a marketplace and install in one command](/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command).
 
 If the name starts with `claudeai-`, the marketplace is hosted on claude.ai, and you add it by name from your shell with `claude plugin marketplace add --claudeai <name>`. See [Add a marketplace from claude.ai](/docs/en/plugins/install#add-from-claude-ai).
 
@@ -200,6 +203,18 @@ For example, to add the official marketplace by its clone URL, in a session:
 ```
 
 A successful add prints `Successfully added marketplace: <name>`.
+
+<h3 id="invalid-git-url">
+  `Invalid git URL`
+</h3>
+
+You added a marketplace, installed a plugin, or ran an update from a git address, and the command failed with `Invalid git URL` in its message.
+
+Claude Code checks every git address before running git. It refuses an address whose protocol it doesn't support. It also refuses an address that git could read as naming a different server or folder than the one the address shows.
+
+The text after the address names what to change. Rewrite the address as the message says and run the command again.
+
+A refusal that instead says `is blocked by enterprise policy` comes from your organization's settings. See [Marketplace source is blocked by enterprise policy](#marketplace-source-is-blocked-by-enterprise-policy).
 
 <h3 id="path-does-not-exist">
   `Path does not exist: <path>`
@@ -407,6 +422,19 @@ The plugin is already available in every project, so there's nothing to add. To 
 A plugin installed only at project or local scope doesn't trigger this message. Claude Code lets you install it at user scope as well, so it's available in other projects.
 
 `claude plugin install` in your shell prints a different message. For a plugin already installed at the target scope, it prints `Plugin "<name>@<marketplace>" is already installed (scope: user)` and exits 0. If its cache directory is missing, the same command re-downloads it.
+
+<h3 id="plugin-would-share-its-folder">
+  `"<plugin>" was not installed: it would share its folder with "<other>"`
+</h3>
+
+You installed a plugin through `claude plugin install`, `/plugin`, or an install suggestion in a session, and Claude Code refused it with this line, or with `would share its saved data with`.
+
+The refused plugin's id and an installed plugin's id map to the same folder on disk: they are the same once `.` and `@` are written as `-`. On macOS and Windows, ids that differ only in capitals map to the same folder too. Installing both would put one plugin's files in the other's folder, so Claude Code refuses and the installed plugin keeps its files.
+
+The message names the way out:
+
+* **The other plugin is installed**: the message says `Only one of the two can be installed.` and names the `claude plugin uninstall` command, or the uninstall step in `/plugin`, that removes the other plugin. Run it, then install again. For what the uninstall removes, see [What an uninstall deletes and keeps](/docs/en/plugins/cli-reference#what-an-uninstall-deletes-and-keeps).
+* **Both ids arrive in one install**, such as a plugin and a dependency it needs: no install order helps. Only a maintainer of the marketplace that lists the two plugins can fix it, by renaming one of them. When the two come from different marketplaces, a maintainer of either one can.
 
 <h3 id="this-plugin-uses-a-source-type-your-claude-code-version-does-not-suppo">
   `This plugin uses a source type your Claude Code version does not support`
@@ -645,6 +673,48 @@ claude plugin install <name>@<marketplace>
 
 Then run `/reload-plugins` in your session. The **Errors** tab entry disappears and the plugin is back under **Installed**.
 
+<h3 id="installed-plugins-json-holds-a-record-this-version-cannot-read">
+  `installed_plugins.json holds a record under "<id>" that this version of Claude Code cannot read`
+</h3>
+
+The message surfaces in these forms:
+
+* **`claude plugin list`**: prints it as a `Note:`
+* **`claude plugin install`, `uninstall`, and `update`**: refuse with `Plugin "<name>" was not installed:`, `Plugin "<name>" was not uninstalled:`, or `Plugin "<name>" was not updated:`, followed by the same text
+* **`--json` on any of those three commands**: the result line carries the same `message` and `failureCode: "install_records_unreadable"`
+* **Several such records**: the message reads `holds records under`
+* **The whole file declares a format this version doesn't know**: the message reads `installed_plugins.json is in a format (version <N>) that this version of Claude Code does not know` instead
+
+The named record in `installed_plugins.json` is valid JSON under a valid plugin id, but its fields don't parse for this version. Most likely another version of Claude Code wrote it, perhaps a newer one.
+
+While the record is there, this version doesn't rewrite the file, so the record isn't lost.
+
+Take the message's options in order:
+
+1. Update Claude Code with `claude update`.
+2. If you can't update, uninstall the named plugin with the version of Claude Code that wrote the record.
+3. If neither helps, delete the record from `installed_plugins.json` by hand, then restart Claude Code or run `/reload-plugins`.
+
+<h3 id="installed-plugins-json-could-not-be-read-and-was-rebuilt">
+  `installed_plugins.json could not be read and was rebuilt`
+</h3>
+
+`claude plugin list` prints this note, with the path of a kept file named `installed_plugins.unreadable.<date>.<hash>.kept`, for as long as that file sits beside `installed_plugins.json`.
+
+An `installed_plugins.json` that isn't valid JSON, or isn't a list of plugins, can't say what you installed.
+
+Open the `.kept` file to see what the old file recorded, and reinstall the plugins you're missing. Claude Code never reads the file back, and the file ages out on the [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays) schedule.
+
+<h3 id="install-records-under-names-that-no-version-can-use">
+  `install records under names that no version of Claude Code can use were removed from installed_plugins.json`
+</h3>
+
+`claude plugin list` prints this note, with the path of a copy named `installed_plugins.set-aside.<date>.<hash>.json`, for as long as that copy sits beside `installed_plugins.json`. The note ends `Nothing needs doing about these copies.`
+
+A record in `installed_plugins.json` sat under a key that isn't a valid plugin id, so no version of Claude Code can use it. The rest of the file loads normally.
+
+Claude Code copies the unusable records into the `.set-aside` file and drops them from the list. Claude Code never reads the copies back, and the copies age out on the [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays) schedule.
+
 <h3 id="a-plugin-you-disabled-still-loads">
   `Disabled in ~/.claude/settings.json but still loads`
 </h3>
@@ -733,6 +803,12 @@ The server's configuration passes the schema check, but Claude Code can't resolv
 * **`Missing environment variables: <names>`**: set those variables in the shell you start Claude Code from, then start a new session
 * **`URL is unset or invalid`**: a `${user_config.*}` option that the URL uses isn't set. Run `/plugin configure <plugin>` to set it
 * **`has an invalid MCP url`** or **`headersHelper for MCP server '<server>' references ${user_config.*}`**: the plugin's own configuration is at fault. Fix the `url` or `headersHelper` in your plugin's MCP configuration, or report it to the plugin's author if the plugin isn't yours. The `headersHelper` case has its own entry under [plugin command references user\_config](/docs/en/errors#plugin-command-references-user-config)
+
+#### `Bundled MCP server "<name>" was not started: it needs configuration`
+
+The plugin includes the server as an [MCPB bundle](/docs/en/plugins/components#include-a-packaged-mcpb-server) that declares `user_config`, and a required setting has no saved value yet or a saved value fails the bundle's own validation, so Claude Code skips starting the server. The rest of the plugin works.
+
+Select the plugin on `/plugin`'s **Installed** tab and choose **Configure** to supply the values. After you save, `/plugin` shows `Configuration saved.` and closes, and Claude Code reloads plugins as described under [Manage installed plugins](/docs/en/plugins/install#manage-installed-plugins). The server starts once that reload applies. Before v2.1.285, Claude Code skipped the server without showing this line.
 
 #### Server is configured but never connects
 
@@ -866,9 +942,10 @@ Change to the plugin's root, the directory that holds `.claude-plugin/plugin.jso
 
 Your plugin declares `userConfig` options, but no configuration dialog appears when you install it.
 
-The interactive install shows the dialog, and the shell command takes the values as flags instead:
+Whether the install asks for the values depends on where you run it:
 
 * **`/plugin install` in a session, or the Discover tab in `/plugin`**: the dialog is part of this interactive install
+* **The VS Code extension's Manage plugins dialog**: asks for unset options as a form after the install. Before v2.1.285, installing there showed no options form, so set the values from a terminal session with `/plugin configure <plugin>@<marketplace>`
 * **`claude plugin install` in your shell**: never prompts for `userConfig` values. It saves any `--config KEY=VALUE` values you pass, and when options remain unset it prints `N userConfig options not yet set — run /plugin configure <plugin>@<marketplace> in Claude Code, or pass --config KEY=VALUE.` When any of the unset options is required, `(M required)` follows `not yet set`.
 
 If you installed from the shell, pass the values with `--config`, one flag per option:
@@ -877,9 +954,13 @@ If you installed from the shell, pass the values with `--config`, one flag per o
 claude plugin install my-plugin@my-marketplace --config api_url=https://example.com
 ```
 
-When every option is set, the install output carries no `not yet set` line. To open the dialog afterwards instead, run `/plugin configure my-plugin@my-marketplace` in a session.
+When every option is set, the install output carries no `not yet set` line.
+
+To open the dialog afterwards instead, run `/plugin configure my-plugin@my-marketplace` in a session. From the shell, [`claude plugin configure`](/docs/en/plugins/cli-reference#plugin-configure) shows which options are still unset and saves values piped in on stdin. It requires Claude Code v2.1.285 or later.
 
 If you pass a `--config` key the manifest doesn't declare, the plugin still installs, and the command prints `⚠ Installed, but --config not applied: --config key "<key>" isn't declared in this plugin's userConfig.` followed by the keys the plugin does declare.
+
+For a plugin that ships an [MCPB bundle file](/docs/en/plugins/components#include-a-packaged-mcpb-server) declaring `user_config` of its own, the message reads `isn't declared in this plugin's userConfig or by its bundled MCP servers.` instead, and the known keys include that server's keys, written `<server>.<key>`. A bundle the manifest references by URL isn't read at install time, so its keys aren't listed and the message says to configure it in `/plugin`. Setting `<server>.<key>` keys requires Claude Code v2.1.285 or later.
 
 <h3 id="claude-plugin-validate-reports-errors">
   `claude plugin validate` reports errors
@@ -956,9 +1037,11 @@ The table lists the marketplace-level messages. Entry-level messages are the plu
 | `Path contains "..": <path>` under `plugins[N].source` | Error | Use paths relative to the marketplace root without `..` segments. |
 | `Marketplace name cannot contain control or bidirectional-formatting characters` | Error | Remove the character from the name, such as an escape or a newline. |
 | `Plugin name cannot contain control or bidirectional-formatting characters` | Error | Remove the character from the plugin `name`. |
+| `Claude Code cannot install plugins from marketplace "<name>". Each part of a plugin id (plugin@marketplace) may use only the letters a-z and A-Z, digits, ".", "_" and "-", and must start with a letter or digit. Change the marketplace's "name".` | Error | Rename the marketplace to fit the rule the message states. |
+| `Claude Code cannot install plugin "<name>". Each part of a plugin id (plugin@marketplace) may use only the letters a-z and A-Z, digits, ".", "_" and "-", and must start with a letter or digit. Change this entry's "name".` | Error | Rename the entry to fit the rule the message states. |
 | `Marketplace has no plugins defined` | Warning | Add at least one entry to `plugins`. |
 | `No marketplace description provided` | Warning | Add a top-level `description`. |
-| `Plugin name "<name>" is not kebab-case` under `plugins[N] plugin.json → name` | Warning | Rename to lowercase letters, digits, and hyphens. Claude Code accepts other forms, but the claude.ai marketplace sync rejects them. |
+| `Plugin name "<name>" is not kebab-case` under `plugins[N] plugin.json → name` | Warning | Rename to lowercase letters, digits, and hyphens; the claude.ai marketplace sync requires that form. |
 | `Entry declares version "<a>" but <path>/plugin.json says "<b>"` | Warning | Update the entry to match `plugin.json`, which is authoritative at install time. |
 | `Marketplace name "<name>" is reserved in Claude Desktop` | Warning | Rename the marketplace. Claude Desktop's managed marketplace sync rejects `org`, `org-provisioned`, and `unknown` in any casing. |
 | `Marketplace name "<name>" is not accepted by Claude Desktop` or `Plugin name "<name>" is not accepted by Claude Desktop` | Warning | Rename to at most 128 characters of letters, digits, `.`, `_`, and `-`, starting with a letter or digit. |

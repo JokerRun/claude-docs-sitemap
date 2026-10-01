@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 975f74770862245a46c6eddd286291086263d32882299c58871cdc6b916908cb
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 4439922b94e023a222635db7b751230214343f3313be54c2bc840ef6b273097d
 ---
 
 ---
@@ -336,8 +336,8 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
   );
   await foreach (var run in runs.Paginate())
   {
-      // Union Error mengekspos .Message secara langsung; diskriminatornya dibaca
-      // dari .Json sampai accessor .Type yang umum ditambahkan.
+      // The Error union exposes .Message directly; the discriminator is read
+      // from .Json until a common .Type accessor is added.
       var outcome = run.SessionID ?? run.Error!.Json.GetProperty("type").GetString();
       Console.WriteLine($"{run.CreatedAt} {outcome}");
   }
@@ -365,8 +365,8 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
           DeploymentRunListParams.builder()
               .deploymentId(deployment.id())
               .build()).autoPager()) {
-      // Union Error belum mengekspos accessor umum .type()/.message();
-      // .toString() menyertakan keduanya.
+      // The Error union does not yet expose common .type()/.message()
+      // accessors; .toString() includes both.
       IO.println(run.createdAt() + " "
           + run.sessionId().orElseGet(() -> run.error().orElseThrow().toString()));
   }

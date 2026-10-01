@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 3f8bb51af100d3ab7a7ef7a851331a08711f58953f2b7e0738d85e23d0cb43e5
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b3da904bc03133f90ab011227b20d9a2b8ced1a632cf4850b0332da7be995aa3
 ---
 
 > ## Documentation Index
@@ -145,6 +145,7 @@ Bundled repositories must meet these limits:
 * The directory must be a git repository with at least one commit
 * The bundled repository must be under 100 MB. Larger repositories fall back to bundling only the current branch, then to a single squashed snapshot of the working tree, and fail if the snapshot is still too large
 * Untracked files are not included; run `git add` on files you want the cloud session to see
+* On macOS, Linux, and WSL, Claude Code refuses the upload when it can't follow a git setting that affects which attribute rules apply to your files, such as `core.attributesFile` set in an included config file. The [refusal message](/docs/en/errors#the-repository-upload-cant-follow-a-git-setting) names the setting and the fix
 * Sessions created from a bundle can push back to a GitHub remote only when your [GitHub connection](#github-authentication-options) has push access to that repository
 
 ### Send follow-ups from the CLI

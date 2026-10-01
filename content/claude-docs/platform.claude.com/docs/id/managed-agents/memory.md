@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 87cc96b57332fc8004f02469f5275fc31b38e4d48a6c84cb71ccaf9089927867
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 9c81d4a00e9b6ecba7b647b811a1354cd94b67be53a3c53cc368d92c7ac33d3a
 ---
 
 ---
@@ -1260,7 +1260,7 @@ Daftar store dalam workspace. Store yang diarsipkan dikecualikan secara default;
 
   ```php PHP
   foreach ($client->beta->memoryStores->list(includeArchived: true)->pagingEachItem() as $s) {
-      // archivedAt hanya diatur pada penyimpanan yang diarsipkan.
+      // archivedAt is only set on archived stores.
       $archivedAt = isset($s->archivedAt) ? $s->archivedAt->format(DATE_ATOM) : '';
       echo "{$s->id} {$s->name} {$archivedAt}\n";
   }

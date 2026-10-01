@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: c134919680ca1490aeecc61d1e5afc19885e2c28d091a70a7d624896200306de
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 77b35bd53a4360b64ed65aefc6dee10fcd9771627eae9108ab344585b012063b
 ---
 
 ---
@@ -95,6 +95,22 @@ returned.
 
     Artifact identifier (tagged ID)
 
+  - `artifact_type: "claude_design" or "claude_design_systems" or "claude_docs" or 3 more`
+
+    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design) or `claude_design_systems` (a design system). `other` is an Artifact made from a built-in type this list does not name yet.
+
+    - `"claude_design"`
+
+    - `"claude_design_systems"`
+
+    - `"claude_docs"`
+
+    - `"claude_slides"`
+
+    - `"code"`
+
+    - `"other"`
+
   - `organization_uuid: string`
 
     Organization UUID this Artifact belongs to
@@ -178,6 +194,7 @@ curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
   "data": [
     {
       "id": "cart_01Tu9VwXyZaBcDeFgHiJkLmN",
+      "artifact_type": "claude_docs",
       "organization_uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
       "owner_user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
       "published_version_id": "1741803761-9f3a",

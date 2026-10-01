@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: ce34c97479ba2f0deb1784ca7a8687d8bc296fecab26b5fa416aedbc4eafdfaa
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 34f2523be4c9c5440d4e82aa76cf02636dd21a4336eb65b6ddefb782a2a6a6a9
 ---
 
 ---
@@ -453,7 +453,7 @@ You can add or remove files from a session after creation using the session reso
   ```
 </CodeGroup>
 
-List all resources on a session with `resources.list`. To remove a file, call `resources.delete` with the resource ID:
+List all resources on a session with `GET /v1/sessions/{session_id}/resources` (curl; python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`). To remove a file, call `DELETE /v1/sessions/{session_id}/resources/{resource_id}` (curl; python, typescript, ruby: `client.beta.sessions.resources.delete()`; go, csharp: `client.Beta.Sessions.Resources.Delete()`; java: `client.beta().sessions().resources().delete()`; php: `$client->beta->sessions->resources->delete()`; cli: `ant beta:sessions:resources delete`) with the resource ID:
 
 <CodeGroup>
   ```bash cURL
@@ -562,7 +562,7 @@ List all resources on a session with `resources.list`. To remove a file, call `r
 
 Use the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) to list files scoped to a session and download them. Files the agent writes to `/mnt/session/outputs/` appear in the list shortly after the agent finishes writing them, sometimes a few seconds after the session goes idle. If an output file you expect is missing, list again after a short delay; once it appears in the list, its upload has finished.
 
-Filtering by `scope_id` requires the `managed-agents-2026-04-01` beta header, so the list examples use the `beta` files namespace and pass that header explicitly.
+Filtering by `scope_id` requires the `managed-agents-2026-04-01` beta header, so the list examples call `GET /v1/files` (curl; python, typescript, ruby: `client.beta.files.list()`; go, csharp: `client.Beta.Files.List()`; java: `client.beta().files().list()`; php: `$client->beta->files->list()`; cli: `ant beta:files list`) and pass that header explicitly.
 
 <CodeGroup>
   ```bash cURL

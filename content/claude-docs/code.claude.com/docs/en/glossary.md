@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 535eb51c1f23bc3cfebe06540504094bf1373f08a6dbd7cdbd4e3d93b3092a1e
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 12d7dde60bbf47e0501ac7aa5b12641b2d06b00e89ab7b89f2af90ac0f228761
 ---
 
 > ## Documentation Index
@@ -357,6 +357,12 @@ Learn more: [From cloud to terminal](/docs/en/claude-code-on-the-web#from-cloud-
 An action Claude can take: read a file, edit code, run a shell command, search the web, spawn a subagent. Tools are what make Claude Code agentic. Without them, Claude can only respond with text. Each tool use returns a result that informs Claude's next decision in the [agentic loop](#agentic-loop).
 
 Learn more: [Tools available to Claude](/docs/en/tools-reference)
+
+### Transcript
+
+The stored record of a [session](#session). The conversation is what you and Claude exchange; the transcript is that conversation kept as a file, by default at `~/.claude/projects/<project>/<session-id>.jsonl`. Claude Code reads the file back when you resume, which is how a conversation continues after the session ends. For the on-screen view of the same conversation, see the [transcript viewer](/docs/en/interactive-mode#transcript-viewer).
+
+Learn more: [Where transcripts are stored](/docs/en/sessions#where-transcripts-are-stored)
 
 ### Turn
 

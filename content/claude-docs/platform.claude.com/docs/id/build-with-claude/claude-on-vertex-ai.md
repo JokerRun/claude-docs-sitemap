@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 71b97c728b23b30b24314e79c99bb1ac3796032a9beb348f8f56ded4d7050e64
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0fcab1aee2daddbcb5a2dd511bebc7b78c597e7610de2ea815c4c041de77a0dd
 ---
 
 ---
@@ -122,27 +122,27 @@ Perhatikan bahwa ketersediaan model Anthropic bervariasi menurut region. Cari "C
 
 Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Agent Platform, lihat [dokumentasi Google Cloud untuk model Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
 
-| Model                                                                                                | Agent Platform API model ID  |
-| :--------------------------------------------------------------------------------------------------- | :--------------------------- |
-| Claude Fable 5.1                                                                                     | `claude-fable-5-1`           |
-| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                          | `claude-mythos-5-1`          |
-| Claude Fable 5                                                                                       | `claude-fable-5`             |
-| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                            | `claude-mythos-5`            |
-| Claude Opus 5.5                                                                                      | `claude-opus-5-5`            |
-| Claude Opus 5                                                                                        | `claude-opus-5`              |
-| Claude Opus 4.8                                                                                      | `claude-opus-4-8`            |
-| Claude Opus 4.7                                                                                      | `claude-opus-4-7`            |
-| Claude Opus 4.6                                                                                      | `claude-opus-4-6`            |
-| Claude Opus 4.5                                                                                      | `claude-opus-4-5@20251101`   |
-| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-opus-4-1@20250805`   |
-| Claude Opus 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))    | `claude-opus-4@20250514`     |
-| Claude Sonnet 5.5                                                                                    | `claude-sonnet-5-5`          |
-| Claude Sonnet 5                                                                                      | `claude-sonnet-5`            |
-| Claude Sonnet 4.6                                                                                    | `claude-sonnet-4-6`          |
-| Claude Sonnet 4.5                                                                                    | `claude-sonnet-4-5@20250929` |
-| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-sonnet-4@20250514`   |
-| Claude Haiku 4.5                                                                                     | `claude-haiku-4-5@20251001`  |
-| Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-3-5-haiku@20241022`  |
+| Model                                                                                                 | Agent Platform API model ID  |
+| :---------------------------------------------------------------------------------------------------- | :--------------------------- |
+| Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                           | `claude-mythos-5-1`          |
+| Claude Fable 5                                                                                        | `claude-fable-5`             |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                             | `claude-mythos-5`            |
+| Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
+| Claude Opus 5                                                                                         | `claude-opus-5`              |
+| Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
+| Claude Opus 4.7                                                                                       | `claude-opus-4-7`            |
+| Claude Opus 4.6                                                                                       | `claude-opus-4-6`            |
+| Claude Opus 4.5                                                                                       | `claude-opus-4-5@20251101`   |
+| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-opus-4-1@20250805`   |
+| Claude Opus 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))     | `claude-opus-4@20250514`     |
+| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`          |
+| Claude Sonnet 5                                                                                       | `claude-sonnet-5`            |
+| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`          |
+| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5@20250929` |
+| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-sonnet-4@20250514`   |
+| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5@20251001`  |
+| Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-3-5-haiku@20241022`  |
 
 <Tip>
   Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).

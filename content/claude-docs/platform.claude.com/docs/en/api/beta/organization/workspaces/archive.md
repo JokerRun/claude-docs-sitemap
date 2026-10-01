@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 703faa50a9651098ae31cb79dae81a7a5c1fb138e0ed2fc6df35a9e7439a7776
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b7d3e3643ac13827b3d81d2cf30de87ca663005e3296db4e11c70a1c2729c6b8
 ---
 
 ---
@@ -76,7 +76,7 @@ Archive Workspace
 
         - `"us"`
 
-      - `Unrestricted = "unrestricted"`
+      - `"unrestricted"`
 
     - `default_inference_geo: "global" or "us"`
 

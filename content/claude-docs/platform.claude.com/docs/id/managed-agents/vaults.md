@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f8c56d21b4737fc78ca16a1fc028b9d7a648c100862d89560dbeedbfc5405ef0
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0b2006a64a1b72510f5f97bdea4d4a8c0c46c7df7f1f593b1a6673563252f3cd
 ---
 
 ---
@@ -46,7 +46,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
 
   <CodeGroupItem>
     ```bash CLI
-    ant beta:vaults create < alice.vault.yaml
+    ant apply vaults/service_accounts.yaml
     ```
 
     <File filename="alice.vault.yaml">
@@ -188,7 +188,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       ```bash CLI
       ant beta:vaults:credentials create \
         --vault-id "$VAULT_ID" \
-        --display-name "Alice's Slack" <<'YAML'
+        --display-name "Slack" <<'YAML'
       auth:
         type: mcp_oauth
         mcp_server_url: https://mcp.slack.com/mcp
@@ -766,7 +766,7 @@ Berikan `vault_ids` saat membuat sesi:
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --vault-id "$VAULT_ID" \
-    --title "Alice's Slack digest"
+    --title "Slack digest"
   ```
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: b08c526b02a44fd1d6ad284f08a9da422fecae8c5167185f33b45e08e2a6ef98
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 68cc92fa7d6f0ad0feb59470efb20eb694b3f6b664823898ab1fa1acba288d67
 ---
 
 > ## Documentation Index
@@ -1560,6 +1560,7 @@ Claude Code deletes the files in the paths below once they're older than [`clean
 | `feedback/drafts/` | Queued [Claude-drafted feedback](/docs/en/tools-reference#sendfeedback-tool-behavior) awaiting your review in `/feedback`. Swept after `cleanupPeriodDays` or 30 days, whichever is shorter. When the queue is at its 10-draft limit, Claude Code deletes the oldest draft to make room. |
 | `usage-data/` | `report.html` and timestamped report copies written by [`/insights`](/docs/en/costs#analyze-your-usage-patterns), plus cached per-session analysis data used to build them |
 | `skills/.trash/`, `plugins/.trash/` | [Skills](/docs/en/skills#how-synced-skills-behave) and [plugins](/docs/en/plugins/loading#synced-plugins) that the claude.ai sync removed, such as after you turn one off on claude.ai or stop syncing. The files stay here so you can recover them until the sweep deletes them |
+| `plugins/installed_plugins.set-aside.<date>.<hash>.json`, `plugins/installed_plugins.unreadable.<date>.<hash>.kept` | Dated copies Claude Code makes before rewriting [`installed_plugins.json`](/docs/en/plugins/loading#find-plugins-on-disk): install records it dropped, and the contents of a file it couldn't read. |
 | `todos/`, `statsig/`, `logs/` | Legacy directories from older versions. No longer written. The sweep removes their contents and then the empty directory. |
 
 Session files in `sessions/`, auto memory, and Claude Desktop and Cowork transcripts each follow their own retention rule:
@@ -1698,6 +1699,7 @@ You can also delete any of the application-data paths above by hand, apart from 
 | `~/.claude/policy-limits.json` | Nothing. Refreshed automatically. |
 | `~/.claude/tasks/` | Task lists that a resumed session would pick up |
 | `~/.claude/skills/.trash/`, `~/.claude/plugins/.trash/` | The chance to recover [synced skills](/docs/en/skills#how-synced-skills-behave) and [synced plugins](/docs/en/plugins/loading#synced-plugins) that Claude Code removed |
+| `~/.claude/plugins/installed_plugins.set-aside.<date>.<hash>.json`, `~/.claude/plugins/installed_plugins.unreadable.<date>.<hash>.kept` | The copies of plugin install records that Claude Code dropped or couldn't read. Nothing reads them back |
 | `~/.claude/debug/`, `~/.claude/plans/`, `~/.claude/session-env/`, `~/.claude/shell-snapshots/`, `~/.claude/backups/` | Nothing user-facing |
 | `~/.claude/todos/`, `~/.claude/statsig/`, `~/.claude/logs/`, `~/.claude/image-cache/` | Nothing. Legacy directories not written by current versions. |
 

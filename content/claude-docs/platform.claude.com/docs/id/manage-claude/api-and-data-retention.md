@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 12588a1f369520565b85feca5bbc446a229e4dc442ff37cd7417739693b1fcf3
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 099ef8591d2c2181041c3d66a29912939f8f47c23bcfaf424d58b527537aa1ac
 ---
 
 ---
@@ -23,7 +23,7 @@ API dan fitur yang berbeda memiliki kebutuhan penyimpanan yang berbeda. Di mana 
 * Hanya apa yang secara teknis diperlukan agar fitur berfungsi yang disimpan. Konten percakapan (prompt Anda dan output Claude) tidak disimpan secara default; pengecualiannya adalah [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements), yang memerlukan retensi 30 hari.
 * Data yang disimpan dihapus pada time to live (TTL) praktis terpendek, dan Anthropic bertujuan untuk memberi pelanggan kontrol atas berapa lama data disimpan. Apa yang disimpan, dan durasi retensi di mana TTL tertentu berlaku, didokumentasikan pada halaman masing-masing fitur.
 
-Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan di halaman ini. Data yang dapat diakses melalui [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun. Konten chat, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), kecuali pengguna menghapusnya lebih awal. [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (dari sesi di mesin pengguna, dalam aplikasi seperti Cowork dan Claude Code) disimpan selama 6 tahun secara default, atau selama periode retensi percakapan kustom organisasi Anda jika periode terbatas telah ditetapkan (pengaturan claude.ai yang sama). [Transkrip sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (Cowork di cloud) disimpan selama 6 tahun, kecuali pengguna menghapus sesi tersebut lebih awal. Compliance API tidak merekam sesi lokal yang memberlakukan ZDR, maupun sesi lokal apa pun dari organisasi yang mengaktifkan kesiapan HIPAA.
+Beberapa model retensi berada di luar pengaturan ZDR dan HIPAA yang dijelaskan di halaman ini. Data yang dapat diakses melalui [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun. Konten chat, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), kecuali pengguna menghapusnya lebih awal. [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (dari sesi di mesin pengguna, dalam aplikasi seperti Cowork dan Claude Code) disimpan selama 6 tahun secara default, atau selama periode retensi percakapan kustom organisasi Anda jika periode terbatas telah ditetapkan (pengaturan claude.ai yang sama). [Transkrip sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (Cowork di cloud) disimpan selama 6 tahun, kecuali pengguna menghapus sesi tersebut lebih awal. Compliance API tidak merekam sesi lokal yang memberlakukan ZDR. Untuk organisasi yang mengaktifkan kesiapan HIPAA, API ini hanya merekam sesi lokal Cowork dan Claude Code serta menyimpan transkripnya selama 30 hari.
 
 ## Zero data retention (ZDR)
 

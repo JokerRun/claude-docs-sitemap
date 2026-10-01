@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 7a37f7394a8e3b1df1b7b76bcbe1fa587ac9dec6ea16d91fbcc61995b18f1f12
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 7efd41ae53659d7e306b0089ce51df6eca12b4745935866d2fcb9f8cb0c18072
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### September 30, 2026
+
+* We announced the deprecation of the Claude Sonnet 4.5 model (`claude-sonnet-4-5-20250929`), with retirement on the Claude API scheduled for November 30, 2026. We recommend migrating to [Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45). Read more in [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations).
 
 ### September 28, 2026
 

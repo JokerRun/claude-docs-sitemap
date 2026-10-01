@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: a924c90d8de9025e1d67e1c1deb842b815652d2e0b445f45be42ee268c1788c6
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: c9c342eb4cbd217e8233e8485d67dec6fabce4206637c10efd7340b9f736d3e4
 ---
 
 ---
@@ -151,16 +151,16 @@ Invocation of model ID anthropic.claude-sonnet-4-5-20250929-v1:0 with on-demand 
 
 Untuk memanggil model-model ini, teruskan inference profile alih-alih ID model dasar. ID inference profile adalah ID model dasar dengan prefiks dari kolom yang ditandai "Ya" pada tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN inference profile lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS mengenai inference profile yang tersedia, lihat [Region dan model yang didukung untuk inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana prefiks memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
 
-| Model                                                                                                | Base Bedrock model ID                       | `global` | `us` | `eu` | `jp` | `apac` |
-| :--------------------------------------------------------------------------------------------------- | :------------------------------------------ | :------- | :--- | :--- | :--- | :----- |
-| Claude Opus 4.6                                                                                      | `anthropic.claude-opus-4-6-v1`              | Yes      | Yes  | Yes  | Yes  | Yes    |
-| Claude Opus 4.5                                                                                      | `anthropic.claude-opus-4-5-20251101-v1:0`   | Yes      | Yes  | Yes  | No   | No     |
-| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `anthropic.claude-opus-4-1-20250805-v1:0`   | No       | Yes  | No   | No   | No     |
-| Claude Sonnet 4.6                                                                                    | `anthropic.claude-sonnet-4-6`               | Yes      | Yes  | Yes  | Yes  | No     |
-| Claude Sonnet 4.5                                                                                    | `anthropic.claude-sonnet-4-5-20250929-v1:0` | Yes      | Yes  | Yes  | Yes  | No     |
-| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `anthropic.claude-sonnet-4-20250514-v1:0`   | Yes      | Yes  | Yes  | No   | Yes    |
-| Claude Haiku 4.5                                                                                     | `anthropic.claude-haiku-4-5-20251001-v1:0`  | Yes      | Yes  | Yes  | No   | No     |
-| Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `anthropic.claude-3-5-haiku-20241022-v1:0`  | No       | Yes  | No   | No   | No     |
+| Model                                                                                                 | Base Bedrock model ID                       | `global` | `us` | `eu` | `jp` | `apac` |
+| :---------------------------------------------------------------------------------------------------- | :------------------------------------------ | :------- | :--- | :--- | :--- | :----- |
+| Claude Opus 4.6                                                                                       | `anthropic.claude-opus-4-6-v1`              | Yes      | Yes  | Yes  | Yes  | Yes    |
+| Claude Opus 4.5                                                                                       | `anthropic.claude-opus-4-5-20251101-v1:0`   | Yes      | Yes  | Yes  | No   | No     |
+| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `anthropic.claude-opus-4-1-20250805-v1:0`   | No       | Yes  | No   | No   | No     |
+| Claude Sonnet 4.6                                                                                     | `anthropic.claude-sonnet-4-6`               | Yes      | Yes  | Yes  | Yes  | No     |
+| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `anthropic.claude-sonnet-4-5-20250929-v1:0` | Yes      | Yes  | Yes  | Yes  | No     |
+| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `anthropic.claude-sonnet-4-20250514-v1:0`   | Yes      | Yes  | Yes  | No   | Yes    |
+| Claude Haiku 4.5                                                                                      | `anthropic.claude-haiku-4-5-20251001-v1:0`  | Yes      | Yes  | Yes  | No   | No     |
+| Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `anthropic.claude-3-5-haiku-20241022-v1:0`  | No       | Yes  | No   | No   | No     |
 
 ### Daftar model yang tersedia
 

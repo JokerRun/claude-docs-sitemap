@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 66576de24d78a91c8fb8d99660624d0340825e5fee735325ee0692a44275c24d
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b27fe4fb746f71c1b90f411cfa7d1d1e4bd5e829f4c19ddd885d2cfc5393c812
 ---
 
 ---
@@ -43,7 +43,7 @@ Teruskan field opsional `budget` saat Anda membuat sesi:
   ```
 
   ```bash CLI
-  # Biarkan jumlah tetap dalam tanda kutip agar dikirim sebagai string, bukan angka.
+  # Keep the amount quoted so it is sent as a string, not a number.
   ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
@@ -335,14 +335,14 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yan
   ```
 
   ```csharp C#
-  // Menetapkan null mengirim null eksplisit; membiarkan Budget tidak diatur akan menghilangkan field tersebut.
+  // Assigning null sends an explicit null; leaving Budget unset would omit the field.
   var unbudgetedSession = await client.Beta.Sessions.Update(session.ID, new() { Budget = null });
   Console.WriteLine(unbudgetedSession.Budget is null);  // True: the session no longer has a budget
   ```
 
   ```go Go
-  // Budget bernilai nol dihilangkan dari permintaan; param.NullStruct (dari
-  // github.com/anthropics/anthropic-sdk-go/packages/param) mengirim null eksplisit.
+  // A zero-value Budget is omitted from the request; param.NullStruct (from
+  // github.com/anthropics/anthropic-sdk-go/packages/param) sends an explicit null.
   unbudgetedSession, err := client.Beta.Sessions.Update(ctx, session.ID, anthropic.BetaSessionUpdateParams{
   	Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam](),
   })
@@ -353,7 +353,7 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yan
   ```
 
   ```java Java
-  // Optional kosong mengirim null eksplisit; membiarkan budget tidak disetel akan menghilangkan field tersebut.
+  // An empty Optional sends an explicit null; leaving budget unset would omit the field.
   var unbudgetedSession = client.beta().sessions().update(session.id(), SessionUpdateParams.builder()
       .budget(Optional.empty())
       .build());
@@ -361,7 +361,7 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yan
   ```
 
   ```php PHP
-  // update(budget: null) menghilangkan field tersebut, jadi kirim null eksplisit melalui klien mentah.
+  // update(budget: null) omits the field, so send the explicit null through the raw client.
   $unbudgetedSession = $client->beta->sessions->raw
       ->update($session->id, ['budget' => null])
       ->parse();

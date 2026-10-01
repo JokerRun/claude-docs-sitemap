@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 46b248db6c52f30c82f0035c845e4fa710bb9777af52eaed5d459cb94b3d2a58
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: c209b2d57340041dc010e9f4e9fd6db4ac75efdf26fab46f32e95c6fb0df8597
 ---
 
 ---
@@ -133,7 +133,7 @@ The wizard creates these resources for you. Use the following values whether you
 
 ## Acquire and use the token
 
-Inside your Google Cloud workload, fetch the identity token from the metadata server, exchange it at `POST /v1/oauth/token`, and use the returned bearer token to call the Claude API. Each Anthropic SDK handles the exchange and refresh loop for you when you pass a callable that returns a fresh identity token from the metadata server to `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples.
+Inside your Google Cloud workload, fetch the identity token from the metadata server, exchange it at `POST /v1/oauth/token`, and use the returned bearer token to call the Claude API. The Claude SDK handles the exchange and refresh loop for you when you pass a callable that returns a fresh identity token from the metadata server to `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples.
 
 <CodeGroup>
   ```bash cURL
@@ -427,7 +427,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   ```
 </CodeGroup>
 
-Google identity tokens expire after roughly one hour. The SDKs re-invoke the token provider and re-exchange automatically before expiry. For shell scripts that run longer than the access token's `expires_in`, refresh on a timer and repeat the exchange.
+Google identity tokens expire after roughly one hour. The SDK re-invokes the token provider and re-exchanges automatically before expiry. For shell scripts that run longer than the access token's `expires_in`, refresh on a timer and repeat the exchange.
 
 ## Verify the setup
 

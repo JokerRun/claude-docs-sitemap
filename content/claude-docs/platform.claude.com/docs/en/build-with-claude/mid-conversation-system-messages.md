@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: e2fe3c0feb7984e229e1731bc646e2ee212f795453106472bd1ce6317906947a
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: d5a9662526dfd6b2927d5fed1e6c08a82410d2f83904e17864fc303a690b99eb
 ---
 
 ---
@@ -2105,7 +2105,7 @@ messages.3.content.0: cache_control is not permitted on a turn-scoped system mes
 
 The first is the error returned without the beta header. On Amazon Bedrock and Google Cloud, pass the beta value as described in [Beta headers](https://platform.claude.com/docs/en/api/beta-headers).
 
-Through the SDKs, set `clear_at` on the `role: "system"` entry in `messages` and send the beta header. The following example appends a turn-scoped reminder after the user turn; on the next request, once a later user message exists, the reminder stays in the array but no longer renders:
+Through the SDK, set `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `clearAt`) on the `role: "system"` entry in `messages` and send the beta header. The following example appends a turn-scoped reminder after the user turn; on the next request, once a later user message exists, the reminder stays in the array but no longer renders:
 
 <CodeGroup>
   ```bash cURL

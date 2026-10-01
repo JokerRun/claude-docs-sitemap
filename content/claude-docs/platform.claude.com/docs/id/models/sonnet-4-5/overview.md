@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 3a2e407e822bdd91771b0bf19e050cc7a0d00940dd66b32f9b7ab3be93ea1276
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 76cd281797b1d9b4fb11e475b3b6f284b9237996b9ebf2ed7247c5d68cd58eec
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
 description: "Referensi Claude Sonnet 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Sonnet 4.5 adalah model lama (legacy); Claude Sonnet 5.5 adalah model Sonnet saat ini."
 ---
 
-**Legacy.** Released September 29, 2025.
+**Deprecated.** Released September 29, 2025.
 
-Although Claude Sonnet 4.5 is still available, you should consider migrating to Claude Sonnet 5.5 for improved performance. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45)
+Claude Sonnet 4.5 is deprecated: it is still functional but no longer recommended, and retires on November 30, 2026. Recommended replacement: Claude Sonnet 5.5. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45)
 
 Model ID: `claude-sonnet-4-5-20250929`
 
@@ -80,9 +80,10 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 
 | Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | :---------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Deprecated                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Released                                                                      | September 29, 2025                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Retirement                                                                    | Not sooner than September 29, 2026                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Deprecated                                                                    | September 30, 2026                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Retires                                                                       | November 30, 2026                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Platforms                                                                     | Claude API, [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ## Sumber Daya

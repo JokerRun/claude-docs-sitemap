@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/azure
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 3d26a741d0eca252f1f550f5a1e4065be2e23ffb0c77bac15c86d80ebffa3294
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: c6d2bf99a15778506fb7cf3918b22457da6142edddf0d9a0a2089948c5c58bc3
 ---
 
 ---
@@ -148,7 +148,7 @@ A longer accepted lifetime means a leaked Entra token stays exchangeable for lon
 
 ### Acquire and use the token
 
-At runtime your workload fetches its Entra token, exchanges it at `POST /v1/oauth/token`, and uses the returned bearer token to call Claude. Each Anthropic SDK handles the exchange and refresh loop when you supply `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples. The cURL tab shows the raw flow.
+At runtime your workload fetches its Entra token, exchanges it at `POST /v1/oauth/token`, and uses the returned bearer token to call Claude. The Claude SDK handles the exchange and refresh loop when you supply `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples. The cURL tab shows the raw flow.
 
 The samples fetch the managed identity token from the platform's token endpoint: IMDS on VMs and VM Scale Sets, or the `IDENTITY_ENDPOINT` service on App Service, Functions, and Container Apps. Replace `<APP_ID>` in the `api://<APP_ID>` resource value with the audience app registration's client ID from [Register the token audience](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#register-the-token-audience).
 
@@ -768,7 +768,7 @@ A longer accepted lifetime means a leaked Entra token stays exchangeable for lon
 
 ### Acquire and use the token
 
-At runtime the pod performs the two-hop exchange: it sends the Kubernetes-projected token (the file at `AZURE_FEDERATED_TOKEN_FILE`) to Entra's token endpoint as a federated `client_credentials` assertion, then exchanges the resulting Entra access token at `POST /v1/oauth/token`. Each Anthropic SDK handles the second exchange and the refresh loop when you pass the Entra fetch to `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples. The cURL tab shows the raw flow.
+At runtime the pod performs the two-hop exchange: it sends the Kubernetes-projected token (the file at `AZURE_FEDERATED_TOKEN_FILE`) to Entra's token endpoint as a federated `client_credentials` assertion, then exchanges the resulting Entra access token at `POST /v1/oauth/token`. The Claude SDK handles the second exchange and the refresh loop when you pass the Entra fetch to `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), as shown in the following examples. The cURL tab shows the raw flow.
 
 Two different client IDs appear in the samples. `<APP_ID>` is the audience app registration's client ID from [Register the token audience](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#register-the-token-audience); the scope `api://<APP_ID>/.default` asks Entra for a token addressed to that audience. `$AZURE_CLIENT_ID` is the managed identity's client ID, injected by the webhook, and identifies the caller. Do not substitute one for the other.
 

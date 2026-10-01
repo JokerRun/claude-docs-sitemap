@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 50732bd11daa99ddca5378008fb1f7ce230b87b53eac81ad1894809af2d369cc
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: bee3ce188830982ad57416b7d4ac0672a52c856114ccf5cbec7fc896e7d53468
 ---
 
 ---
@@ -589,9 +589,9 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       - `deleted: boolean`
 
-        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
+        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email_address` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
 
-      - `email: string or null`
+      - `email_address: string or null`
 
         The user's email address, including for users who are no longer members of the organization or its associated organizations. Null when the account has been deleted (check `deleted`) and for system-minted service accounts, which have no person's mailbox behind them (check `name`).
 
@@ -602,6 +602,12 @@ organizations on a Claude Enterprise plan. Requires an API key with the
       - `user_id: string`
 
         Tagged user ID.
+
+      - `email: string or null`
+
+        **Deprecated**
+
+        Deprecated: use `email_address`, which carries the same value.
 
     - `amount: string`
 
@@ -750,6 +756,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
       "actor": {
         "deleted": true,
         "email": "jane@example.com",
+        "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",
         "user_id": "user_01AbCdEfGhIjKlMnOpQrSt"
@@ -942,9 +949,9 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
 
       - `deleted: boolean`
 
-        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
+        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email_address` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
 
-      - `email: string or null`
+      - `email_address: string or null`
 
         The user's email address, including for users who are no longer members of the organization or its associated organizations. Null when the account has been deleted (check `deleted`) and for system-minted service accounts, which have no person's mailbox behind them (check `name`).
 
@@ -955,6 +962,12 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
       - `user_id: string`
 
         Tagged user ID.
+
+      - `email: string or null`
+
+        **Deprecated**
+
+        Deprecated: use `email_address`, which carries the same value.
 
     - `amount: string`
 

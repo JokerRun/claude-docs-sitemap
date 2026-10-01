@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/advisor
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: aeae92143c74d97e037fe33f8e830032e4b6e462c7ecf30041b2c7f43afdbaac
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 50ea0d61ff0c1ae2bc827cf0b0a5b95cdb296ba25ca255b4ee5bdc0a85e49a8c
 ---
 
 > ## Documentation Index
@@ -92,13 +92,14 @@ If you start a [background session](/docs/en/agent-view) with `--advisor` and on
 
 ## Choose an advisor model
 
-The advisor must be at least as capable as the main model. The accepted advisors for each main model are:
+Both Claude Code and the API require an advisor at least as capable as the main model, and the two rank some models differently. The accepted advisors for each main model are:
 
 | Main model | Accepted advisors | Notes |
 | - | - | - |
 | Haiku 4.5 | Fable, Opus, Sonnet | Haiku can call the advisor but cannot act as one |
 | Sonnet 4.6 | Fable, Opus, Sonnet | |
-| Sonnet 5.5 or Sonnet 5 | Fable, Opus 4.7 or later, Sonnet 5 or later | A Sonnet 4.6 advisor is rejected, and the API refuses an Opus 4.6 advisor |
+| Sonnet 5 | Fable, Opus 4.7 or later, Sonnet 5 or later | A Sonnet 4.6 advisor is rejected, and the API refuses an Opus 4.6 advisor |
+| Sonnet 5.5 | Fable, Opus 5 or later, Sonnet 5.5 | A Sonnet 4.6 advisor is rejected, and the API refuses a Sonnet 5, Opus 4.6, Opus 4.7, or Opus 4.8 advisor |
 | Opus 4.6 | Fable, Opus, Sonnet 5 or later | A Sonnet 4.6 advisor is rejected |
 | Opus 4.7 or Opus 4.8 | Fable, and Opus 4.7 or later | An Opus 4.6 or Sonnet advisor is rejected |
 | Opus 5.5 or Opus 5 | Fable, and Opus 5 or later | An Opus 4.6 or Sonnet advisor is rejected, and the API refuses an Opus 4.7 or Opus 4.8 advisor |

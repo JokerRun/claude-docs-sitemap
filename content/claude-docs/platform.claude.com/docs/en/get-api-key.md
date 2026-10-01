@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-api-key
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3ce34b86f26a23bdde9157c8712bbf83cb88420f0d8b01a309acb85e639c4d0d
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 2330619b75765959c483e65422373ded45be9b88e5775bb9a0a566c84f2e4483
 ---
 
 ---
@@ -49,7 +49,7 @@ Set the key as an environment variable:
 export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```
 
-The [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) read `ANTHROPIC_API_KEY` automatically. Direct HTTP requests send the key in the `x-api-key` header. If your API key works on multiple workspaces, you must also send the `anthropic-workspace-id` header on each Claude API request, as shown in [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace). For the Admin API, see [API keys and the Admin API](https://platform.claude.com/docs/en/get-api-key#api-keys-and-the-admin-api).
+The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) reads `ANTHROPIC_API_KEY` automatically. Direct HTTP requests send the key in the `x-api-key` header. If your API key works on multiple workspaces, you must also send the `anthropic-workspace-id` header on each Claude API request, as shown in [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace). For the Admin API, see [API keys and the Admin API](https://platform.claude.com/docs/en/get-api-key#api-keys-and-the-admin-api).
 
 To make your first request, follow the [Quickstart](https://platform.claude.com/docs/en/get-started), and see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication) for the full picture, including short-lived credentials with Workload Identity Federation.
 

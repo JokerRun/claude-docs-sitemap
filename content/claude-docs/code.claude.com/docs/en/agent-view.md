@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: de222e1034527e9f62d7bbd8488cc0a37b02d2f9a4878f8d3b933730ac5d97de
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: f5cd0eafba781a5e3357364a78d0bc1b6db302004db55b88c089f3503f60aba3
 ---
 
 > ## Documentation Index
@@ -15,9 +15,9 @@ sha256: de222e1034527e9f62d7bbd8488cc0a37b02d2f9a4878f8d3b933730ac5d97de
 
 Agent view, opened with `claude agents`, is one screen for all your background sessions: what's running, what needs your input, and what's done. Dispatch new sessions, watch their state at a glance instead of scrolling through transcripts, and step in only when one needs you. Each background session is a full Claude Code conversation that keeps running without a terminal attached, so you can open it, reply, and leave whenever you want.
 
-<img src="https://mintcdn.com/claude-code/1B48Qz2Z9hac4SLG/images/agent-view-light.png?fit=max&auto=format&n=1B48Qz2Z9hac4SLG&q=85&s=7a186c96ed47d6700d084d77e786be65" className="dark:hidden" alt="Agent view in a terminal: the header shows Claude Code v2.1.140, the model, the working directory, and a summary count. Sessions are grouped under Needs input, Working, and Completed, with a dispatch input at the bottom and a footer of keyboard hints." width="1772" height="780" data-path="images/agent-view-light.png" />
+<img src="https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/agent-view-light.png?fit=max&auto=format&n=HDAmBwgbrZVk0pOt&q=85&s=d6905012bee31f3e6b3920b09c05dd02" className="dark:hidden" alt="Agent view in a terminal. A line at the top counts the sessions awaiting input, working, and completed. Four sessions are grouped under Needs input, Working, and Completed. Each row shows the session's name, its latest status or question, and a time. At the bottom are an input for describing a new task and a row of keyboard hints." width="1872" height="680" data-path="images/agent-view-light.png" />
 
-<img src="https://mintcdn.com/claude-code/1B48Qz2Z9hac4SLG/images/agent-view-dark.png?fit=max&auto=format&n=1B48Qz2Z9hac4SLG&q=85&s=a5bed7434bae368faea3a8f023b52aa2" className="hidden dark:block" alt="Agent view in a terminal: the header shows Claude Code v2.1.140, the model, the working directory, and a summary count. Sessions are grouped under Needs input, Working, and Completed, with a dispatch input at the bottom and a footer of keyboard hints." width="1772" height="780" data-path="images/agent-view-dark.png" />
+<img src="https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/agent-view-dark.png?fit=max&auto=format&n=HDAmBwgbrZVk0pOt&q=85&s=fc3c195bfc57e313ced1f1beb36cee93" className="hidden dark:block" alt="Agent view in a terminal. A line at the top counts the sessions awaiting input, working, and completed. Four sessions are grouped under Needs input, Working, and Completed. Each row shows the session's name, its latest status or question, and a time. At the bottom are an input for describing a new task and a row of keyboard hints." width="1872" height="680" data-path="images/agent-view-dark.png" />
 
 Use agent view when you have several independent tasks Claude can work on without you watching every step. Dispatch a bug fix, a pull request review, and a flaky-test investigation as three rows, keep working in another window, and check back when a row shows it needs you or has a result.
 
@@ -69,9 +69,33 @@ This walkthrough covers the core agent view loop: dispatch a task, watch its row
   </Step>
 </Steps>
 
-You can use `claude agents` as your primary entry point instead of `claude`: dispatch every task from agent view, attach when you want the full conversation, and press `←` to return to the table.
-
 Inside a regular `claude` session, the prompt footer's `←` hint counts the background agents that are waiting on you, such as `← 2 agents`, and returns to `← for agents` when none need input. Counts above 99 show as `99+`. The count refreshes about every ten seconds while the terminal is focused and immediately when focus returns. It briefly changes color when it moves and when an agent completes, and when a background session finishes while none need your input it briefly shows the number completed, such as `← 2 done`. Both flashes are off when the [`prefersReducedMotion` setting](/docs/en/settings-reference#prefersreducedmotion) is on, and the hint is hidden in [screen reader mode](/docs/en/accessibility).
+
+### Open agent view by default
+
+To have `claude` with no arguments open agent view instead of a new conversation, turn on a `/config` setting.
+
+<Steps>
+  <Step title="Turn on the setting">
+    In a regular `claude` session, run `/config` and turn on **Open agents view by default**. To skip the menu, set the [`defaultToAgentsView`](/docs/en/settings-reference#defaulttoagentsview) key directly:
+
+    ```text theme={null}
+    /config defaultToAgentsView=true
+    ```
+  </Step>
+
+  <Step title="Start Claude Code">
+    Exit the session, then run `claude` with no arguments:
+
+    ```bash theme={null}
+    claude
+    ```
+
+    Agent view opens in place of a new conversation.
+  </Step>
+</Steps>
+
+To start a regular session while the setting is on, pass a prompt: `claude "fix the login test"`. To turn the setting off, run `/config defaultToAgentsView=false` in a regular session or in one you attach to from agent view.
 
 ## Monitor sessions with agent view
 

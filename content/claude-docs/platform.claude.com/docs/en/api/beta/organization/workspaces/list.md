@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: ab8ab884bba3e5c5df2573d2cedc53524feac91a1df5bdcd8a83f33a8b21c926
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0b52f0837081527e61638cc257147e58f49a19b078ed6fa7148d1567a8ee3c6e
 ---
 
 ---
@@ -96,7 +96,7 @@ List Workspaces
 
         - `"us"`
 
-      - `Unrestricted = "unrestricted"`
+      - `"unrestricted"`
 
     - `default_inference_geo: "global" or "us"`
 

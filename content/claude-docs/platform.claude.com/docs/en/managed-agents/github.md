@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 6be1aebe6111eb33c8ec7c3ec54a7f8d085eb0df053994dd892d53ffe219ac59
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 254212e16eb6069c86544b3bb2f74710df44607162d393b0eef564aecafc2f1c
 ---
 
 ---
@@ -248,7 +248,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   ```
 </CodeGroup>
 
-Then create a session that mounts the GitHub repository:
+Then create a session that mounts the GitHub repository. A `limited` [environment](https://platform.claude.com/docs/en/managed-agents/environments#networking) blocks an agent's MCP servers unless its networking sets `allow_mcp_servers: true` or lists each server's host in `allowed_hosts`. With neither set, session creation fails with a 400 error.
 
 <CodeGroup>
   ```bash cURL
@@ -592,7 +592,7 @@ Mount multiple repositories by adding entries to the `resources` array:
 
 ## Managing repositories on a running session
 
-After a session is created, you can list its repository resources and rotate their authorization tokens. Each resource has an `id` returned at session creation time (or through `resources.list`) that you use for updates. Repositories are attached for the lifetime of the session; to change which repositories are mounted, create a new session.
+After a session is created, you can list its repository resources and rotate their authorization tokens. Each resource has an `id` returned at session creation time (or through `GET /v1/sessions/{session_id}/resources` (curl; python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`)) that you use for updates. Repositories are attached for the lifetime of the session; to change which repositories are mounted, create a new session.
 
 <CodeGroup>
   ```bash cURL

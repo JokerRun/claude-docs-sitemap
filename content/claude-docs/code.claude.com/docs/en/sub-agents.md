@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: e5c8b23fa228ff20c4ab393734cd15578c7d1c19d85529fded042b90d14ef703
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: f7a49266d42328f2a24ab778e2c28689d527b57da737e52b8928f6e275ca01e3
 ---
 
 > ## Documentation Index
@@ -812,8 +812,6 @@ This example runs a setup script only when the `db-agent` subagent starts, and a
   }
 }
 ```
-
-A hyphenated matcher like `db-agent` matches exactly on Claude Code v2.1.195 or later. On earlier versions it is evaluated as an unanchored regular expression and also fires for any agent type that contains it, such as `prod-db-agent`; anchor it as `^db-agent$` on those versions.
 
 See [Hooks](/docs/en/hooks) for the complete hook configuration format.
 

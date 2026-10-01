@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: faf31e8aadaebd6f68f080ef6d265eec76ee56429f0eaa717482dc56331a8041
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 5aeccbc707aebbeb35b275cfa098a7eebd509d7d5c7ca26c14bf15d3fc682f27
 ---
 
 > ## Documentation Index
@@ -92,7 +92,9 @@ Claude generates the app's webhook URL when you save the connection. After you c
 
 ### Network requirements
 
-For Anthropic-hosted sessions, your GHES instance must be reachable from Anthropic infrastructure so Claude can clone repositories and post review comments. If your GHES instance is behind a firewall, allowlist Anthropic's [outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses). Sessions in a [self-hosted environment](/docs/en/self-hosted-environments-deploy#configure-git) clone from inside your network instead, unless the runner opts into the [Anthropic git proxy](/docs/en/self-hosted-environments-deploy#use-the-anthropic-git-proxy), which fetches from Anthropic's side and needs the same reachability; the [SCM connector](/docs/en/self-hosted-environments-reference#scm-connector-flags) covers the hosted pre-session flows, such as the repository picker, for a GHES host that's only routable internally.
+For Anthropic-hosted sessions, your GHES instance must be reachable from Anthropic infrastructure so Claude can clone repositories and post review comments. If your GHES instance is behind a firewall, allowlist Anthropic's [outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses). Sessions in a [self-hosted environment](/docs/en/self-hosted-environments-deploy#configure-git) clone from inside your network instead, unless the runner opts into the [Anthropic git proxy](/docs/en/self-hosted-environments-deploy#use-the-anthropic-git-proxy), which fetches from Anthropic's side and needs the same reachability.
+
+Hosted pre-session flows, such as the repository picker, run on Anthropic's side before a session starts. They need your GHES instance to be reachable from Anthropic infrastructure even when the session runs in a self-hosted environment. The [SCM connector](/docs/en/self-hosted-environments-reference#scm-connector-flags) isn't available, so those flows can't reach a GHES host that's only routable internally.
 
 ## Developer workflow
 
@@ -219,7 +221,7 @@ On other claude.ai surfaces, a "Repository not found. If it's private, GitHub ac
 
 ### GHES instance not reachable
 
-If reviews or Anthropic-hosted cloud sessions time out, your GHES instance may not be reachable from Anthropic infrastructure. Confirm your firewall allows inbound connections from Anthropic's [outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses). Sessions in a [self-hosted environment](/docs/en/self-hosted-environments) reach GHES from inside your network, so for them check the runner's own network path and the [SCM connector](/docs/en/self-hosted-environments-reference#scm-connector-flags) instead.
+If reviews or Anthropic-hosted cloud sessions time out, your GHES instance may not be reachable from Anthropic infrastructure. Confirm your firewall allows inbound connections from Anthropic's [outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses). Sessions in a [self-hosted environment](/docs/en/self-hosted-environments) reach GHES from inside your network, so when one of them can't clone, check the runner's own network path instead. For the repository picker and other hosted pre-session flows, see [Network requirements](#network-requirements).
 
 ### Session start fails with `Unable to get organization UUID`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: d5f1d9276ff19191a3fc46d3d41cb466e8decfdd6aaf7264ba4560d891bb3935
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 6b189762ed144d908785c21b0db86fa3b405a1a8f165ea71fe999fa565984937
 ---
 
 ---
@@ -1038,7 +1038,10 @@ Every persisted event includes a `processed_at` timestamp set when the event fin
 
       ```go Go
       events, err := client.Beta.Sessions.Events.List(ctx, session.ID, anthropic.BetaSessionEventListParams{
-      	Types: []string{"agent.tool_use", "agent.tool_result"},
+      	Types: []anthropic.BetaManagedAgentsSessionEventType{
+      		anthropic.BetaManagedAgentsSessionEventTypeAgentToolUse,
+      		anthropic.BetaManagedAgentsSessionEventTypeAgentToolResult,
+      	},
       })
       if err != nil {
       	panic(err)

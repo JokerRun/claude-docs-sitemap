@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 4deb0ab0a0d243cfbeee544fc47cfe25aaf0092dc3ce151379e97ea4757ac971
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 5465714a63d3e6d6e66fabaff271e5714138e49913edae8b5faaefcbf07d41d8
 ---
 
 ---
@@ -654,7 +654,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
 
 <CodeGroup>
   ```bash cURL
-  # Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+  # Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
   session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -675,7 +675,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
   ```
 
   ```bash CLI
-  # Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+  # Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
   session=$(ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
@@ -694,7 +694,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
       agent={
           "type": "agent_with_overrides",
           "id": agent.id,
-          # Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+          # Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
           "model": {"id": "claude-opus-5-5", "inference_geo": "us"},
       },
       environment_id=environment.id,
@@ -707,7 +707,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
     agent: {
       type: "agent_with_overrides",
       id: agent.id,
-      // Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+      // Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
       model: { id: "claude-opus-5-5", inference_geo: "us" }
     },
     environment_id: environment.id
@@ -722,7 +722,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
       {
           Type = BetaManagedAgentsAgentWithOverridesParamsType.AgentWithOverrides,
           ID = agent.ID,
-          // Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+          // Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
           Model = new BetaManagedAgentsModelConfigParams
           {
               ID = BetaManagedAgentsModel.ClaudeOpus5_5,
@@ -740,7 +740,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
   		OfBetaManagedAgentsAgentWithOverridess: &anthropic.BetaManagedAgentsAgentWithOverridesParams{
   			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
   			ID:   agent.ID,
-  			// Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+  			// Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID:           anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   				InferenceGeo: anthropic.String("us"),
@@ -760,7 +760,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
       .agent(BetaManagedAgentsAgentWithOverridesParams.builder()
           .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
           .id(agent.id())
-          // Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+          // Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
           .model(BetaManagedAgentsModelConfigParams.builder()
               .id(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
               .inferenceGeo("us")
@@ -776,7 +776,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
       agent: BetaManagedAgentsAgentWithOverridesParams::with(
           id: $agent->id,
           type: 'agent_with_overrides',
-          // Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+          // Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
           model: BetaManagedAgentsModelConfigParams::with(
               id: 'claude-opus-5-5',
               inferenceGeo: 'us',
@@ -792,7 +792,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
     agent: {
       type: :agent_with_overrides,
       id: agent.id,
-      # Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+      # Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
       model: {id: "claude-opus-5-5", inference_geo: "us"}
     },
     environment_id: environment.id

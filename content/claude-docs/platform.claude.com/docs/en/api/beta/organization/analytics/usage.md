@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f386a62c433b81400daa0930c1d3f505e1ab467ccd8994299c64344295946d1e
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: c4bb141b7f02363c8c7c43919bfa010bb8adf4128ac2389759e3cd181df5a682
 ---
 
 ---
@@ -588,9 +588,9 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       - `deleted: boolean`
 
-        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
+        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email_address` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
 
-      - `email: string or null`
+      - `email_address: string or null`
 
         The user's email address, including for users who are no longer members of the organization or its associated organizations. Null when the account has been deleted (check `deleted`) and for system-minted service accounts, which have no person's mailbox behind them (check `name`).
 
@@ -601,6 +601,12 @@ organizations on a Claude Enterprise plan. Requires an API key with the
       - `user_id: string`
 
         Tagged user ID.
+
+      - `email: string or null`
+
+        **Deprecated**
+
+        Deprecated: use `email_address`, which carries the same value.
 
     - `cache_creation: BetaCacheCreation`
 
@@ -751,6 +757,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
       "actor": {
         "deleted": true,
         "email": "jane@example.com",
+        "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",
         "user_id": "user_01AbCdEfGhIjKlMnOpQrSt"
@@ -947,9 +954,9 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
 
       - `deleted: boolean`
 
-        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
+        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email_address` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
 
-      - `email: string or null`
+      - `email_address: string or null`
 
         The user's email address, including for users who are no longer members of the organization or its associated organizations. Null when the account has been deleted (check `deleted`) and for system-minted service accounts, which have no person's mailbox behind them (check `name`).
 
@@ -960,6 +967,12 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
       - `user_id: string`
 
         Tagged user ID.
+
+      - `email: string or null`
+
+        **Deprecated**
+
+        Deprecated: use `email_address`, which carries the same value.
 
     - `cache_creation: BetaCacheCreation`
 

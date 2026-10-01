@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: fbf556059863e00142bc27d605bdad13ced66f7521890a26d6602a46e9a30f6d
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: cbf796b13addc834dbfcb2033aa1d38a7eab3d5161c15834380bca2ec7d43da1
 ---
 
 > ## Documentation Index
@@ -2628,12 +2628,14 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
 
 **Tool name:** `Bash`
 
+For what sets the foreground ceiling, see [Timeout and output limits](/docs/en/tools-reference#timeout-and-output-limits). For the background time limit, see [Time limit for background commands](/docs/en/tools-reference#time-limit-for-background-commands).
+
 **Input:**
 
 ```python theme={null}
 {
     "command": str,  # The command to execute
-    "timeout": int | None,  # Optional timeout in milliseconds (max 600000; higher values are clamped to the max)
+    "timeout": int | None,  # Milliseconds. Foreground: capped at 600000 by default, higher values are clamped. With run_in_background (Claude Code v2.1.285 or later): the background time limit, 1800000 when omitted, capped at 7200000 unless raised
     "description": str | None,  # Clear, concise description (5-10 words)
     "run_in_background": bool | None,  # Set to true to run in background
 }

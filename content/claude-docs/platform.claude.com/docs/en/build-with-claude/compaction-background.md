@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-background
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: f59865a84d3bccff83b111ff8c96ba16cb32d0ffe5eea02303433e343d961ef9
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: beb9598fba37af61ef3e38ae02bbe6b032234507a054241d276353e1cbf2ba90
 ---
 
 ---
@@ -57,7 +57,7 @@ If the response has any other `stop_reason`, no summary was produced, which coun
 
 The compaction request counts against your rate limits like any other request, and while it runs your application has two requests open at once. The conversation keeps growing on its full history until the swap, so start the compaction request while the context window still has room for the turns that arrive meanwhile.
 
-The following program is the loop from [Compact in a loop](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand#compact-in-a-loop) with the compaction request taken off the conversation's path. It has no PHP version, because the example depends on running two requests at once. The highlighted lines show where it differs from the loop, and the following list takes them in the order the program runs them.
+The following program is the loop from [Compact in a loop](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand#compact-in-a-loop) with the compaction request taken off the conversation's path. The highlighted lines show where it differs from the loop, and the following list takes them in the order the program runs them.
 
 <CodeGroup exclude="shell, php">
   ```python Python
@@ -474,6 +474,12 @@ The following program is the loop from [Compact in a loop](https://platform.clau
       client.close();
   }
   ```
+
+  <CodeGroupItem language="PHP">
+    <Note>
+      The PHP SDK sends requests synchronously, so it can't run the compaction request in the background while the conversation goes on.
+    </Note>
+  </CodeGroupItem>
 
   ```ruby Ruby
   client = Anthropic::Client.new

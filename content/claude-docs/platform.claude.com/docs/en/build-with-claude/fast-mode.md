@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 0da77a837eec6e109639aead4141e64dd1b5000fde6aab7b9a858a327d45ad92
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 5fd13ab764675eb91fbed94536e3e5c97a1860ba1efed472c9b0ca029a20cce4
 ---
 
 ---
@@ -414,7 +414,7 @@ To track fast mode usage and costs across your organization, see the [Usage and 
 
 ### Automatic retries
 
-When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header. The Anthropic SDKs automatically retry these requests up to 2 times by default (configurable with `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), waiting for the server-specified delay before each retry. Because fast mode uses continuous token replenishment, the `retry-after` delay is typically short and requests succeed once capacity is available.
+When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header. The SDK automatically retries these requests up to 2 times by default (configurable with `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), waiting for the server-specified delay before each retry. Because fast mode uses continuous token replenishment, the `retry-after` delay is typically short and requests succeed once capacity is available.
 
 ### Falling back to standard speed
 

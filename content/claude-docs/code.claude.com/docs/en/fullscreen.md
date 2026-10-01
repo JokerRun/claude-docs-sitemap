@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 5954ad6f485d37052541949a85a9361a88edec05a124ba620965897ef36596f6
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 067a5389cb0a29c6a375a26e5624415fa97c7d47eef889d15e7392cb5f533ad4
 ---
 
 > ## Documentation Index
@@ -275,7 +275,7 @@ CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_MOUSE=1 claude
 
 With mouse capture disabled, keyboard scrolling with `PgUp`, `PgDn`, `Ctrl+Home`, and `Ctrl+End` still works, and your terminal handles selection natively. You lose click-to-position-cursor, click-to-expand, URL clicking, and wheel scrolling inside Claude Code.
 
-To keep wheel scrolling but turn off click, drag, and hover handling, set `CLAUDE_CODE_DISABLE_MOUSE_CLICKS=1` instead. Requires Claude Code v2.1.195 or later. `CLAUDE_CODE_DISABLE_MOUSE` takes precedence when both variables are set.
+To keep wheel scrolling but turn off click, drag, and hover handling, set `CLAUDE_CODE_DISABLE_MOUSE_CLICKS=1` instead. `CLAUDE_CODE_DISABLE_MOUSE` takes precedence when both variables are set.
 
 With clicks disabled, Claude Code still captures the mouse, so the wheel and touchpad scroll the conversation but left clicks do nothing inside Claude Code. You still need to hold your terminal's key for native click-and-drag selection. Right-click and middle-click paste continue to work on terminals that support them.
 

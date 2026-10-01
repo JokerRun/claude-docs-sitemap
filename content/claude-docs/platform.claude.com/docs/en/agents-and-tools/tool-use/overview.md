@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: bb2933fb9e136d687d0da2699ba98d07a5e275f761c421ac4eee173ff5e95d9b
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 6de69c6b2f1b2fb5815e861aaf4e7e8ec6d4383c257664212cdf518d8ea82a3b
 ---
 
 ---
@@ -736,7 +736,7 @@ Claude called get_weather with {"location": "San Francisco, CA"}
 The current weather in San Francisco is 15 degrees Celsius with partly cloudy skies.
 ```
 
-[Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) covers each step in detail, including result formatting and error signaling; [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) covers responses that call several tools at once. To skip writing this round trip yourself, use [Tool Runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner): the SDKs execute your tools and send the results back automatically.
+[Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) covers each step in detail, including result formatting and error signaling; [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) covers responses that call several tools at once. To skip writing this round trip yourself, use [Tool Runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner): the SDK executes your tools and sends the results back automatically.
 
 For the full conceptual model including the agentic loop and when to choose each approach, see [How tool use works](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works).
 

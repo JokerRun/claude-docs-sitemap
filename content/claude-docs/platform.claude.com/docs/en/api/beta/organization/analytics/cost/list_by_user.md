@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list_by_user
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 05eea9c1a041c87fadb65ad4c03fa844e9750a3f715c1edd8317a3cbc40495dc
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 903d9a527916b85807267b8b7550f7cbbe07a01e2377f475bca5c31094ff4416
 ---
 
 ---
@@ -228,9 +228,9 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       - `deleted: boolean`
 
-        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
+        True when the account has been deleted, or when the user is no longer a member of the organization or its associated organizations (for example, their membership was removed or they were deprovisioned via your identity provider). `email_address` stays populated for removed users and is null when the account has been deleted. `name` follows the rules described on that field. The `user_id` is still populated for reconciliation.
 
-      - `email: string or null`
+      - `email_address: string or null`
 
         The user's email address, including for users who are no longer members of the organization or its associated organizations. Null when the account has been deleted (check `deleted`) and for system-minted service accounts, which have no person's mailbox behind them (check `name`).
 
@@ -241,6 +241,12 @@ organizations on a Claude Enterprise plan. Requires an API key with the
       - `user_id: string`
 
         Tagged user ID.
+
+      - `email: string or null`
+
+        **Deprecated**
+
+        Deprecated: use `email_address`, which carries the same value.
 
     - `amount: string`
 
@@ -389,6 +395,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
       "actor": {
         "deleted": true,
         "email": "jane@example.com",
+        "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",
         "user_id": "user_01AbCdEfGhIjKlMnOpQrSt"

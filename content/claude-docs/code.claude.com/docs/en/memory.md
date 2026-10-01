@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: cf292966f1069e2217097bec11601ed2494647bd40d78793eb4e21b72e22662e
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 11efbfc1af44b658151f1cfe8f2180df57391185065aea5cd1d29b3864dc606a
 ---
 
 > ## Documentation Index
@@ -84,23 +84,25 @@ A project CLAUDE.md can be stored in either `./CLAUDE.md` or `./.claude/CLAUDE.m
 
 ### Write effective instructions
 
-CLAUDE.md files are loaded into the context window at the start of every session, consuming tokens alongside your conversation. The [context window visualization](/docs/en/context-window) shows where CLAUDE.md loads relative to the rest of the startup context. Because they're context rather than enforced configuration, how you write instructions affects how reliably Claude follows them. Specific, concise, well-structured instructions work best.
-
-**Size**: target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence. If your instructions are growing large, use [path-scoped rules](#path-specific-rules) so instructions load only when Claude works with matching files. You can also split content into [imports](#import-additional-files) for organization, though imported files still load and enter the context window at launch.
-
-**Structure**: use markdown headers and bullets to group related instructions. Claude scans structure the same way readers do: organized sections are easier to follow than dense paragraphs.
-
-**Specificity**: write instructions that are concrete enough to verify. For example:
+Claude treats CLAUDE.md files as context, not enforced configuration, so how you write instructions affects how reliably Claude follows them. Write instructions that are concrete enough to verify:
 
 * "Use 2-space indentation" instead of "Format code properly"
 * "Run `npm test` before committing" instead of "Test your changes"
 * "API handlers live in `src/api/handlers/`" instead of "Keep files organized"
 
-**Consistency**: if two rules contradict each other, Claude may pick one arbitrarily. Review your CLAUDE.md files, nested CLAUDE.md files in subdirectories, and [`.claude/rules/`](#organize-rules-with-claude/rules/) periodically to remove outdated or conflicting instructions. In monorepos, use [`claudeMdExcludes`](#exclude-specific-claude-md-files) to skip CLAUDE.md files from other teams that aren't relevant to your work.
+Keep your files short, organized, and consistent:
 
-To have Claude check these files for outdated or conflicting instructions, run `/doctor prompt-audit` in a session. Claude reads your CLAUDE.md, CLAUDE.local.md, and AGENTS.md files, plus the rules, skills, commands, subagents, and output styles under `.claude/` and `~/.claude/`. It looks for problems such as instructions written for older models, references to files or commands that don't exist, and files that contradict each other. You get a report of findings and a set of proposed edits, and nothing in your files changes until you ask Claude to apply them.
+* **Size**: target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence. Move instructions that matter for only part of the codebase into [path-scoped rules](#path-specific-rules), which load only when Claude works with matching files. [Imports](#import-additional-files) help you organize a long file but don't reduce its context cost, because imported files also load at launch.
+* **Structure**: group related instructions under markdown headers and bullets. Organized sections are easier for Claude to follow than dense paragraphs.
+* **Consistency**: if two instructions contradict each other, Claude may pick one arbitrarily. Review your CLAUDE.md files, nested CLAUDE.md files in subdirectories, and [`.claude/rules/`](#organize-rules-with-claude/rules/) periodically to remove outdated or conflicting instructions. To have Claude find them for you, [run a prompt audit](#audit-your-instruction-files).
 
-To audit one file or directory instead, pass its path, for example `/doctor prompt-audit .claude/skills/deploy`. The audit runs through the bundled `/claude-api` skill, so it's unavailable while that skill is turned off in [`skillOverrides`](/docs/en/skills#override-skill-visibility-from-settings) or with [`disableBundledSkills`](/docs/en/settings-reference#disablebundledskills). `/doctor prompt-audit` requires Claude Code v2.1.283 or later.
+#### Audit your instruction files
+
+To have Claude check your instruction files for outdated or conflicting content, run `/doctor prompt-audit` in a session. Claude looks for problems such as instructions written for older models, references to files or commands that don't exist, and files that contradict each other. You get a report of findings with proposed edits, and nothing in your files changes until you ask Claude to apply them.
+
+By default, the audit covers your CLAUDE.md, CLAUDE.local.md, and AGENTS.md files, plus the rules, skills, commands, subagents, and output styles under `.claude/` and `~/.claude/`. To audit one file or directory instead, pass its path, for example `/doctor prompt-audit .claude/skills/deploy`.
+
+The audit runs through the bundled `/claude-api` skill. It's unavailable while that skill is turned off in [`skillOverrides`](/docs/en/skills#override-skill-visibility-from-settings) or with [`disableBundledSkills`](/docs/en/settings-reference#disablebundledskills). `/doctor prompt-audit` requires Claude Code v2.1.283 or later.
 
 ### Import additional files
 

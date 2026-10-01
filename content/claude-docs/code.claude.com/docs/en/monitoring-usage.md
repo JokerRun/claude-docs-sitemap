@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: e27c2776c9e848383ce788dd730d4f09f73e284a41e2c77d99d43c2c8623df5f
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: aa12cfdf0b859a3b7a1ec2f598fcade2886cbcc3fce179196207114da8c73e13
 ---
 
 > ## Documentation Index
@@ -551,7 +551,9 @@ All metrics and events share these standard attributes:
 | Keys from `OTEL_RESOURCE_ATTRIBUTES` | Custom attributes you set, such as `department` or `team.id`. See [Multi-team organization support](#multi-team-organization-support) | `OTEL_METRICS_INCLUDE_RESOURCE_ATTRIBUTES` (default: true) |
 | `vcs.repository.url.full`, `vcs.owner.name`, `vcs.repository.name`, `vcs.provider.name` | The session repository's identity, derived from its `origin` remote. See [Repository attributes](#repository-attributes) | `OTEL_METRICS_INCLUDE_REPOSITORY` (default: false). Requires Claude Code v2.1.269 or later |
 
-When Claude Code is signed in to a [Claude apps gateway](/docs/en/claude-apps-gateway), the CLI stamps exports with the authenticated identity from the gateway session: `user.id` is the IdP subject rather than an anonymous installation identifier, `user.email` is the signed-in email, and `user.groups` carries IdP group membership as a comma-separated string. Each export also carries `identity.source: gateway-oidc`. The gateway identity is applied last, so `user.*` and `identity.*` keys set through `OTEL_RESOURCE_ATTRIBUTES` are ignored on gateway sessions.
+In sessions signed in to a [Claude apps gateway](/docs/en/claude-apps-gateway) through `/login`, the CLI stamps exports with the authenticated identity: `user.id` is the IdP subject, `user.email` is the signed-in email, and `user.groups` carries IdP group membership as a comma-separated string. Each export also carries `identity.source: gateway-oidc`. The gateway identity is applied last, so `user.*` and `identity.*` keys set through `OTEL_RESOURCE_ATTRIBUTES` are ignored on those sessions.
+
+For the identity attributes on Claude Desktop and Cowork sessions that connect through a gateway, see the [gateway `telemetry` reference](/docs/en/claude-apps-gateway-config#telemetry).
 
 Events additionally include the following attributes. These are never attached to metrics because they would cause unbounded cardinality:
 
@@ -1314,7 +1316,8 @@ In an interactive session in a folder you haven't [trusted](/docs/en/permissions
 * `managed_settings.trigger`: `"startup"` for the session-start event, `"change"` when the managed settings or the policy helper's state changed later in the session, or `"refused"` when a managed settings policy stopped the session. Claude Code sends a `change` event only when an attribute differs from the last event it sent, and a changed setting value counts even when `OTEL_LOG_MANAGED_SETTINGS` is off
 * `error.type`: why Claude Code stopped the session. Present only on `refused` events:
   * `"helper_failed"`: a [policy helper run failed](/docs/en/settings-reference#helper-failures)
-  * `"policy_invalid"`: the managed settings contain an error that stops Claude Code from starting, or an admin source failed to load, so Claude Code can't check organization login enforcement
+  * `"policy_invalid"`: the managed settings contain an error that stops Claude Code from starting, or an admin source failed to load for a reason other than a denied read, so Claude Code can't check organization login or provider enforcement
+  * `"provider_not_allowed"`: the session would use an API provider, or send a provider's traffic to a host, that the managed [`allowedProviders`](/docs/en/settings-reference#allowedproviders) list doesn't allow. Requires Claude Code v2.1.285 or later
   * `"consent_rejected"`: the user rejected the [security approval dialog](/docs/en/server-managed-settings#security-approval-dialogs) for server-managed settings
   * `"force_refresh_failed"`: the settings fetch that [`forceRemoteSettingsRefresh`](/docs/en/settings-reference#forceremotesettingsrefresh) requires failed
   * `"gateway_rejected"`: a [Claude apps gateway](/docs/en/claude-apps-gateway) answered the managed settings load with HTTP 403
@@ -1413,11 +1416,11 @@ OpenTelemetry events are the audit data source for Claude Code activity. Every e
 
 ### Attribute actions to users
 
-The [standard attributes](#standard-attributes) on each event include the authenticated user's identity: `user.email`, `user.account_uuid`, `user.account_id`, and `organization.id` when signed in with a Claude account or, in a [cloud session](/docs/en/claude-code-on-the-web), when the session's own credentials carry them, plus `user.id` and the per-session `session.id`. `user.id` is an installation-scoped identifier, except on [Claude apps gateway](/docs/en/claude-apps-gateway) sessions, where it is the IdP subject from the gateway-issued token.
+The [standard attributes](#standard-attributes) on each event include the authenticated user's identity: `user.email`, `user.account_uuid`, `user.account_id`, and `organization.id` when signed in with a Claude account or, in a [cloud session](/docs/en/claude-code-on-the-web), when the session's own credentials carry them, plus `user.id` and the per-session `session.id`. `user.id` is an installation-scoped identifier, except in sessions signed in to a [Claude apps gateway](/docs/en/claude-apps-gateway) through `/login`, where it is the IdP subject from the gateway-issued token.
 
 In a session a developer starts, MCP tool calls, Bash commands, and file edits are therefore attributed to that developer. Claude Code doesn't act under a separate service account there; the identity recorded on each event is the developer's own Claude account, or the developer's IdP identity on a [Claude apps gateway](/docs/en/claude-apps-gateway) session. In Claude Tag channel sessions, Claude works as your organization's [shared identity](/docs/en/cloud-environments#set-the-environment-a-claude-tag-channel-uses) instead.
 
-When Claude Code authenticates with a direct API key, or against Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, there is no Claude account in the session and only `user.id` and `session.id` are populated. In these deployments, attach user identity yourself with `OTEL_RESOURCE_ATTRIBUTES`, set per user through the [managed settings](#administrator-configuration) file or a launch wrapper. Claude apps gateway sessions need none of this: the CLI stamps the IdP identity automatically, as described in [Standard attributes](#standard-attributes).
+When Claude Code authenticates with a direct API key, or against Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, there is no Claude account in the session and only `user.id` and `session.id` are populated. In these deployments, attach user identity yourself with `OTEL_RESOURCE_ATTRIBUTES`, set per user through the [managed settings](#administrator-configuration) file or a launch wrapper. Claude apps gateway sessions need none of this: see [Standard attributes](#standard-attributes) for the identity their exports carry.
 
 ```bash theme={null}
 export OTEL_RESOURCE_ATTRIBUTES="enduser.id=jdoe@example.com,enduser.directory_id=S-1-5-21-..."

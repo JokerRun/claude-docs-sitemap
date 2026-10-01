@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: e90df631109054f3f9df84ad186bce3edf2cbec93f8632992e233a011f09da2f
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 6594423d3a74eddfd773034ba71415df7bbf6507cc3f2bf4d62c58712669c348
 ---
 
 ---
@@ -65,7 +65,7 @@ Once you reach your tier's spend cap, API usage pauses until 00:00 UTC on the fi
 }
 ```
 
-* The error type is `rate_limit_error`, the same as for a rate limit, but the response has no `retry-after` header. Retrying, including the SDKs' automatic retries, fails until access resumes.
+* The error type is `rate_limit_error`, the same as for a rate limit, but the response has no `retry-after` header. Retrying, including the SDK's automatic retries, fails until access resumes.
 * On the Messages API, `error.details.error_code` is `enforced_spend_limit_reached`. Use it to tell this response apart from a rate limit.
 * Moving to a higher tier restores access; see [Requesting higher limits](https://platform.claude.com/docs/en/api/rate-limits#requesting-higher-limits).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 01d873f9cff2d653f8d17b98b8eba1af8d8ee7c5ae46ed898eefc5c24b9d77c8
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 7db37f2b75ab87963cf72fce15a6e66672241b3632b358d764c9172876248a8c
 ---
 
 ---
@@ -249,7 +249,7 @@ Thinking text is omitted by default. `thinking` blocks arrive with an empty `thi
 To turn off up-front thinking on Claude Sonnet 5.5, send `thinking: {"type": "between_tools"}`. It's the lowest thinking setting. Its progress updates between tool calls still come back as `thinking` blocks with their summary text. Without tools, the response contains only text. Claude Sonnet 5 turns thinking off with `thinking: {"type": "disabled"}` instead, and earlier models run without thinking by default. On Claude Sonnet 5.5, `disabled` returns a 400 `invalid_request_error`:
 
 ```text wrap
-"thinking.type.disabled" is not supported for this model. Use "thinking.type.between_tools" for the lowest thinking setting, or "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+To turn thinking off on this model, send "thinking": {"type": "between_tools"} instead of {"type": "disabled"}. The model does not think before responding. The short updates it writes between tool calls come back as thinking blocks.
 ```
 
 `between_tools` works on every platform that offers Claude Sonnet 5.5, with no beta header. It's accepted at `low`, `medium`, and `high` effort. At `xhigh` or `max`, it returns a 400 error. To run at those levels, use adaptive thinking: omit the `thinking` field or send `thinking: {"type": "adaptive"}`. `between_tools` takes no other field: `display`, `budget_tokens`, or `block_binding` sent with it returns a 400 error. With [server-side fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback), a `between_tools` request that falls back to Claude Sonnet 5 runs there with `thinking: {"type": "disabled"}`.

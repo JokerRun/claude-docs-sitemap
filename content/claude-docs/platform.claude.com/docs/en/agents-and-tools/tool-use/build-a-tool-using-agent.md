@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: b50e830e495626a88d66a8e8799c4472dcee0ffb39faee9bff7be11b950d07ea
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 58251ef667f2abf5f8612f610edfa0b571c56dd02a0f9b24de4b31e0ad152670
 ---
 
 ---
@@ -4025,10 +4025,6 @@ The `is_error` flag is the only difference from a successful result. Claude sees
 Rings 2 through 4 wrote the same loop by hand: call the API, check `stop_reason`, run tools, append results, repeat. The Tool Runner does this for you. Define each tool as a function, pass the list to `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), and retrieve the final message once the loop completes. Error wrapping, result formatting, and conversation management are handled internally.
 
 Each SDK provides a helper that turns an ordinary function into a runnable tool and derives the input schema from its signature; the tabs below show the idiomatic form for each language.
-
-<Note>
-  Tool Runner is available in all seven SDKs: Python, TypeScript, C#, Go, Java, PHP, and Ruby. See [Tool Runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) for the full reference. The cURL and CLI tabs show a note instead of code; keep the Ring 4 loop for curl- or CLI-based scripts.
-</Note>
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-settings
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 082ab750775e3e3fe376a5df1a3f7849ce158fb5a4a8c2704015e0117ebb4a26
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 4c62701717e98316371c4d8ae3bb3429ce7e5f3bc72ef2af415b4da43c41d298
 ---
 
 > ## Documentation Index
@@ -192,6 +192,8 @@ The cross-source keys include:
 
 The [gateway login keys](#choose-a-delivery-mechanism) follow a separate rule. Claude Code never reads them from server-managed settings, so while server-managed settings are the selected source, the highest-ranked admin source on the machine that carries a policy key still supplies them. A value in an admin source ranked below that one, or in the HKCU registry, is ignored.
 
+[`allowedProviders`](/docs/en/settings-reference#allowedproviders) has its own rule: its entry's Scope note says how a list set on the machine combines with a server-managed one. Requires Claude Code v2.1.285 or later.
+
 When an admin source sets `allowManagedMcpServersOnly` or an `allowedMcpServers` list and that value isn't the one in force, `/status` and `claude doctor` name that source and key.
 
 ### Compose every managed source
@@ -330,7 +332,10 @@ Three source states don't cause this refusal:
 * An empty managed settings file counts as `{}`.
 * A malformed value in the user-writable HKCU registry key never blocks launch. Claude Code reports it as a notice in `/status` and `claude doctor` instead.
 
-If a managed settings file, drop-in file, or `managed-settings.d/` directory can't be read and no admin source supplies a policy, sessions signed in with claude.ai or Claude Console credentials exit at startup with a message to contact an administrator.
+When a managed settings file, drop-in file, `managed-settings.d/` directory, MDM profile, or HKLM registry value exists but can't be read, and no admin source supplies a policy, what happens depends on why the read failed:
+
+* If the operating system denied the read, for example on a root-only file, every session starts without that source's policies. `/status` and `claude doctor` record the failure, and a run with `-p` also prints it to stderr.
+* For any other read failure, such as an I/O error, every session exits at startup with [a message to contact an administrator](/docs/en/errors#unable-to-read-managed-policy-settings).
 
 To find a dropped entry, look in one of three places:
 
@@ -362,6 +367,7 @@ These keys have their own fallback:
 | Field | Behavior when present but invalid |
 | :- | :- |
 | `allowedMcpServers` | Enforced as an empty allowlist until the value is fixed, so no MCP servers that users add are admitted. Servers your organization delivers through [`managedMcpServers`](/docs/en/settings-reference#managedmcpservers) still load, and `managed-mcp.json` servers load per [How a server is evaluated](/docs/en/managed-mcp#how-a-server-is-evaluated). An individual invalid entry is stripped and the valid subset is enforced. |
+| [`allowedProviders`](/docs/en/settings-reference#allowedproviders) | Enforced as an empty allowlist until the value is fixed, so every API provider is refused and Claude Code doesn't start on the machine. If only an individual entry isn't a known provider name, Claude Code drops and reports that entry and enforces the rest. |
 | `allowedHttpHookUrls` | Claude Code enforces an empty managed [allowlist](/docs/en/settings-reference#allowedhttphookurls) until you fix the value, so an HTTP hook runs only if another settings file lists its URL. If only an individual entry is invalid, Claude Code strips that entry and enforces the rest. |
 | `httpHookAllowedEnvVars` | Claude Code enforces an empty managed [allowlist](/docs/en/settings-reference#httphookallowedenvvars) until you fix the value, so a header variable is interpolated only if another settings file names it. If only an individual entry is invalid, Claude Code strips that entry and enforces the rest. |
 | `allowedChannelPlugins` | Claude Code enforces an empty allowlist until you fix the value, so no channel plugin passed to `--channels` is admitted. If only an individual entry is invalid, it strips that entry and enforces the rest. |
@@ -408,7 +414,7 @@ Claude Code reads the following keys only from a managed source; placing them in
 
 Most of them are locks: the value a lock governs, such as permission rules or `sandbox.network.allowedDomains`, is an ordinary key that any level can set, and the lock tells Claude Code to honor only the managed value.
 
-The table covers the permission, plugin, and delivery controls. For any key not listed here, the Scope column of the [settings reference](/docs/en/settings-reference#all-settings) index says whether it's managed-only; the remaining managed-only keys there include the gateway login URL, version, browser, mobile-simulator, SSH host, Desktop local-session, sandbox binary path, model pricing, model restriction, and CLAUDE.md controls.
+The table covers the permission, plugin, and delivery controls. For any key not listed here, the Scope column of the [settings reference](/docs/en/settings-reference#all-settings) index says whether it's managed-only.
 
 | Setting | Description |
 | :- | :- |

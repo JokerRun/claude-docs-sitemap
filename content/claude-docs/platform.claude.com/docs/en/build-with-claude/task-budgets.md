@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: a19c33ac96174a12713dbde84334c47cf7537cdb5b86defdbe0680373e2605b7
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 86b5f9889f7e8bc567890392612d7c79aaa1dbabdd5eedf9443484f290256c8c
 ---
 
 ---
@@ -259,7 +259,7 @@ The `task_budget` object has three fields:
 Claude sees a budget-countdown marker injected server-side throughout the conversation. The marker shows how many tokens remain in the current agentic loop and updates as the model generates thinking, tool calls, and output, and as it processes tool results. Claude uses this signal to pace itself and finish gracefully as the budget is consumed.
 
 <Note>
-  **The countdown is visible only to the model.** API responses do not include a remaining-budget field: there is no `task_budget` information in the response `usage` object, and SDKs have no accessor for it. To track spend client-side, sum token usage across the requests in your loop as shown in [Measure your current usage](https://platform.claude.com/docs/en/build-with-claude/task-budgets#measure-your-current-usage), or pass your own figure forward with `remaining` when [carrying a budget across compaction](https://platform.claude.com/docs/en/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
+  **The countdown is visible only to the model.** API responses do not include a remaining-budget field: there is no `task_budget` information in the response `usage` object, and the SDK has no accessor for it. To track spend client-side, sum token usage across the requests in your loop as shown in [Measure your current usage](https://platform.claude.com/docs/en/build-with-claude/task-budgets#measure-your-current-usage), or pass your own figure forward with `remaining` when [carrying a budget across compaction](https://platform.claude.com/docs/en/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
 </Note>
 
 <Warning>

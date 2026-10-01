@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 0f49525dabbd8294169b042caced8aa67c74376a7332dcb298db1874fada7fd9
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0422d2fc6c4d67cdb3bd6fe73cd35693b97c82cc3a703931896447852296e317
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 0f49525dabbd8294169b042caced8aa67c74376a7332dcb298db1874fada7fd9
 
 Spend limits cap how much each developer can spend through your [Claude apps gateway](/docs/en/claude-apps-gateway) in a given day, week, or month. When a developer passes their cap, the gateway returns `429` on their next request and blocks them until the period resets or an admin raises the cap. Use spend limits to give each developer, group, or the whole organization a ceiling on a credential everyone shares.
 
-A Claude apps gateway forwards all inference through one shared upstream credential, so your provider's bill attributes everything to that credential, not to individual developers. Without per-developer limits, one runaway agent fleet can spend the organization's entire commitment. Spend limits are the gateway's per-developer view and circuit breaker on top of that shared bill.
+By default, a Claude apps gateway forwards all inference through one shared upstream credential, so your provider's bill attributes everything to that credential, not to individual developers. On Amazon Bedrock, [per-developer AWS cost attribution](/docs/en/claude-apps-gateway-config#per-developer-aws-cost-attribution) changes this. Without per-developer limits, one runaway agent fleet can spend the organization's entire commitment. Spend limits are the gateway's per-developer view and circuit breaker on top of that shared bill.
 
 ## Set a cap
 

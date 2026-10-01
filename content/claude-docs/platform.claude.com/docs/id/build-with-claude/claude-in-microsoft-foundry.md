@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 6f016c42c0ba879f49582bd7aeab8cd0d918119068e455aefddbe97ed009384c
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b6264a8d0d9de08d5037cab01c1445b92d09b43b1674db691fd6db67b0a180ef
 ---
 
 ---
@@ -684,23 +684,23 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](
 
 Model Claude berikut tersedia melalui Foundry:
 
-| Model                                                                       | Default deployment name | Hosted on Azure | Hosted on Anthropic |
-| :-------------------------------------------------------------------------- | :---------------------- | :-------------: | :-----------------: |
-| Claude Fable 5.1                                                            | `claude-fable-5-1`      |                 |          ✓          |
-| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing)) | `claude-mythos-5-1`     |                 |          ✓          |
-| Claude Fable 5                                                              | `claude-fable-5`        |                 |          ✓          |
-| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))   | `claude-mythos-5`       |                 |          ✓          |
-| Claude Opus 5.5                                                             | `claude-opus-5-5`       |        ✓        |          ✓          |
-| Claude Opus 5                                                               | `claude-opus-5`         |        ✓        |          ✓          |
-| Claude Opus 4.8                                                             | `claude-opus-4-8`       |        ✓        |          ✓          |
-| Claude Opus 4.7                                                             | `claude-opus-4-7`       |                 |          ✓          |
-| Claude Opus 4.6                                                             | `claude-opus-4-6`       |                 |          ✓          |
-| Claude Opus 4.5                                                             | `claude-opus-4-5`       |                 |          ✓          |
-| Claude Sonnet 5.5                                                           | `claude-sonnet-5-5`     |        ✓        |          ✓          |
-| Claude Sonnet 5                                                             | `claude-sonnet-5`       |        ✓        |          ✓          |
-| Claude Sonnet 4.6                                                           | `claude-sonnet-4-6`     |                 |          ✓          |
-| Claude Sonnet 4.5                                                           | `claude-sonnet-4-5`     |                 |          ✓          |
-| Claude Haiku 4.5                                                            | `claude-haiku-4-5`      |        ✓        |          ✓          |
+| Model                                                                                                 | Default deployment name | Hosted on Azure | Hosted on Anthropic |
+| :---------------------------------------------------------------------------------------------------- | :---------------------- | :-------------: | :-----------------: |
+| Claude Fable 5.1                                                                                      | `claude-fable-5-1`      |                 |          ✓          |
+| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                           | `claude-mythos-5-1`     |                 |          ✓          |
+| Claude Fable 5                                                                                        | `claude-fable-5`        |                 |          ✓          |
+| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                             | `claude-mythos-5`       |                 |          ✓          |
+| Claude Opus 5.5                                                                                       | `claude-opus-5-5`       |        ✓        |          ✓          |
+| Claude Opus 5                                                                                         | `claude-opus-5`         |        ✓        |          ✓          |
+| Claude Opus 4.8                                                                                       | `claude-opus-4-8`       |        ✓        |          ✓          |
+| Claude Opus 4.7                                                                                       | `claude-opus-4-7`       |                 |          ✓          |
+| Claude Opus 4.6                                                                                       | `claude-opus-4-6`       |                 |          ✓          |
+| Claude Opus 4.5                                                                                       | `claude-opus-4-5`       |                 |          ✓          |
+| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`     |        ✓        |          ✓          |
+| Claude Sonnet 5                                                                                       | `claude-sonnet-5`       |        ✓        |          ✓          |
+| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`     |                 |          ✓          |
+| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5`     |                 |          ✓          |
+| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5`      |        ✓        |          ✓          |
 
 Secara default, nama deployment sama dengan ID model yang ditampilkan pada tabel di atas. Namun, Anda dapat membuat deployment kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama deployment (tidak harus ID model) dalam permintaan API Anda.
 

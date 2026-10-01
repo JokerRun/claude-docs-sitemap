@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 516a10e514cab6596ed89a9cfa050ce8f82893485e7e06d702153dae6e377806
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 84810029c35022dd35af2e449e940a4daf459b022834d24c92cc4d47d2466132
 ---
 
 ---
@@ -1056,7 +1056,7 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
     <CodeGroup>
       ```bash cURL
-      # Interupsi thread, lalu arsipkan
+      # Interrupt the thread, then archive it
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -1490,8 +1490,8 @@ Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/
   ```
 
   ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-  # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
+  # This workflow does not translate well to a one-off shell command.
+  # Use one of the SDK examples in this code group instead.
   ```
 
   ```python Python

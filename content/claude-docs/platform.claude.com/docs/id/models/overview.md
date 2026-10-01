@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: a5acb10f77a71bfc6527f1739af3595175be516e53f2bac415e5e967d365d141
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: b787c466ad560af836759a2b3927dbd9288811ca47ab79a06156afc26a0014d0
 ---
 
 ---
@@ -68,7 +68,7 @@ Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Op
 
 See [Model IDs and versioning](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions) and [Pricing](https://platform.claude.com/docs/id/about-claude/pricing).
 
-Legacy models (still available): [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview).
+Legacy models (still available): [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview).
 
 Setelah Anda memilih model, [pelajari cara melakukan panggilan API pertama Anda](https://platform.claude.com/docs/id/get-started). Untuk memahami cara kerja ID model, alias, dan snapshot, lihat [ID model dan pembuatan versi](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions); untuk batas pengetahuan andal dan batas data pelatihan di balik setiap model, lihat [Transparency Hub Anthropic](https://www.anthropic.com/transparency).
 

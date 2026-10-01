@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: ad0429755b887da2ee4767311e0468ba51c83fdc2ecd306c1dfb81fc0faf7161
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 0b543c482ef184d41ed73baf211538668ed913432c25145ae5219fefc83ede78
 ---
 
 > ## Documentation Index
@@ -274,7 +274,7 @@ This section answers the questions a security review asks: what data flows throu
 | - | - | - |
 | Inference (prompts, completions) | CLI → gateway → your upstream | Only if the Anthropic API is a configured upstream |
 | Telemetry (OTLP metrics, plus [opt-in logs and traces](/docs/en/claude-apps-gateway-config#telemetry)) | CLI → gateway → your collector | Never |
-| Identity (email, groups, sub) | IdP → gateway → JWT → CLI; the CLI stamps it on OTLP exports. If you turn on [`forward_user_identity`](/docs/en/claude-apps-gateway-config#per-user-identity-headers-for-a-proxy-you-run), the gateway also sends the developer's email and IdP subject as headers to your proxy | Never |
+| Identity (email, groups, sub) | IdP → gateway → CLI; the CLI stamps it on OTLP exports. If you turn on [`forward_user_identity`](/docs/en/claude-apps-gateway-config#per-user-identity-headers-for-a-proxy-you-run), the gateway also sends the developer's email and IdP subject as headers to your proxy | Never |
 | Managed settings | Your gateway YAML → CLI | Never |
 | Audit log | Gateway stderr → your aggregator | Never |
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 86304600d61adc699b1ac91e063e46da3175e14cbcf89e1c2913aa3528863e1e
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 05826b5494bdd7762d9df8df3e2c5ae801e7b9409ac8f443df92d366cb93d07f
 ---
 
 > ## Documentation Index
@@ -457,7 +457,7 @@ For details, see [Amazon Bedrock IAM documentation](https://docs.aws.amazon.com/
 
 Claude Sonnet 5, Opus 4.6 and later, and Sonnet 4.6 support the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) on Amazon Bedrock. Sonnet 5 always runs with the 1M window on both the Invoke API and the [Mantle endpoint](#use-the-mantle-endpoint), with no `[1m]` variant to select. For the other models on the Invoke API, Claude Code automatically enables the extended context window when you select a 1M model variant.
 
-The [setup wizard](#sign-in-with-bedrock) offers a 1M context option when it pins models. To enable it for a manually pinned model instead, append `[1m]` to the model ID. See [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments) for details.
+The [setup wizard](#sign-in-with-bedrock) offers a 1M context option when it pins models. To enable it for a manually pinned model instead, append `[1m]` to the model ID. See [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments) for details, including how to use the 1M window without changing the pin.
 
 ## Service tiers
 

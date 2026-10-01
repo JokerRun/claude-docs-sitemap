@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f690dae2509d85a6277147f015cac984103e165dd17e8d7ef4708890b8e942ab
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 4e140ae506c1ad545d49a64f6a439c0ce9d85fcb0890bc01304a16d48a517cb0
 ---
 
 ---
@@ -694,7 +694,7 @@ The following examples read a text file and send its contents as plain text:
 
 #### List files
 
-Retrieve a list of your uploaded files. The endpoint is paginated: each request returns up to `limit` files (20 by default, and at most 1,000), and the response's `next_page` cursor fetches the next page when passed back as the `page` parameter. Files are ordered newest first. See the [List Files API reference](https://platform.claude.com/docs/en/api/files/list). The SDKs return the first page and provide auto-pagination helpers. The CLI example bounds the total with `--max-items`:
+Retrieve a list of your uploaded files. The endpoint is paginated: each request returns up to `limit` files (20 by default, and at most 1,000), and the response's `next_page` cursor fetches the next page when passed back as the `page` parameter. Files are ordered newest first. See the [List Files API reference](https://platform.claude.com/docs/en/api/files/list). The SDK returns the first page and provides [auto-pagination](https://platform.claude.com/docs/en/api/overview#pagination) helpers. The CLI example bounds the total with `--max-items`:
 
 <CodeGroup>
   ```bash cURL

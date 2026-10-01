@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/loading
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: a7a7ae4c26c0969a19fbff133786f9949bb3258236de75b06f879c715b73f05d
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: 982b32ee0059ed80fb9fe43c48e00d992c59ac15e96268c21bd616165a9589ca
 ---
 
 > ## Documentation Index
@@ -180,6 +180,7 @@ Claude Code keeps plugin files and state records under one plugins root, which i
 | `.trash/` | Plugins that the claude.ai sync removed, such as after you turn one off on claude.ai or stop syncing |
 | `installed_plugins.json` and `known_marketplaces.json` | The records of what Claude Code has installed and which marketplaces it has fetched, described under [Check which stage a plugin reached](#check-which-stage-a-plugin-reached). A [marketplace hosted on claude.ai](/docs/en/plugins/install#add-from-claude-ai) is recorded in `known_marketplaces_claudeai.json` instead |
 | `flagged-plugins.json` | Plugins Claude Code uninstalled because their marketplace delisted them. They appear in the **Flagged** section of `/plugin`; see [Host a marketplace](/docs/en/plugins/host-marketplace) |
+| `installed_plugins.set-aside.<date>.<hash>.json` and `installed_plugins.unreadable.<date>.<hash>.kept` | Dated copies Claude Code keeps before it drops install records that no version of Claude Code can use or rebuilds an unreadable `installed_plugins.json`. See [the recovery notes](/docs/en/plugins/troubleshooting#installed-plugins-json-could-not-be-read-and-was-rebuilt). They age out on the [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays) schedule |
 
 Because `${CLAUDE_PLUGIN_ROOT}` points at a version directory, a plugin's root path changes with every version. Keep a plugin's durable files in `${CLAUDE_PLUGIN_DATA}` instead.
 

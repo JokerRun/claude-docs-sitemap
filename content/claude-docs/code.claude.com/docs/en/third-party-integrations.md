@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 51c693b40daa449bb91fadb6f4798640cf77e0d5cbda722bd0db01c0e1f76001
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: cf89409a84033b6f14300c2c4a6cca14b43cb0b0f746adcd07dc9c84a0c7b661
 ---
 
 > ## Documentation Index
@@ -243,6 +243,8 @@ If you deploy through [Amazon Bedrock](/docs/en/amazon-bedrock), [Google Cloud's
 ### Configure security policies
 
 Security teams can configure managed permissions for what Claude Code is and is not allowed to do, which cannot be overwritten by local configuration. [Learn more](/docs/en/security).
+
+To limit which of these deployment options a managed machine may use, set [`allowedProviders`](/docs/en/settings-reference#allowedproviders) in managed settings. For example, `["bedrock"]` allows Amazon Bedrock and nothing else; a Bedrock fleet that also enables the Mantle endpoint lists `"mantle"` too. The entry says which endpoint variables also need a managed `env` pin. Requires Claude Code v2.1.285 or later.
 
 <h3 id="leverage-mcp-for-integrations">
   Use MCP for integrations

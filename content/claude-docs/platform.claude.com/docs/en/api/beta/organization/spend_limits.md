@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 4be73339849779a7895479698b6abe87c49f2dde6657c4743e0140856653a7b3
+fetched_at: 2026-10-01T02:31:31.030823Z
+sha256: bc985934a1aeea1db84b0f147ed8592df5d079f0586f589e1e78030d3cbe70f4
 ---
 
 ---
@@ -70,7 +70,7 @@ Anthropic account team.
 
       Tagged ID of the workspace the spend limit applies to.
 
-- `period: optional "daily" or "monthly" or "weekly"`
+- `period: optional BetaSpendLimitPeriod`
 
   - `"daily"`
 
@@ -108,7 +108,7 @@ Anthropic account team.
 
     ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Length of the window the limit resets over. `amount` caps spend within each period.
 
@@ -211,7 +211,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
   "amount": "50000",
   "created_at": "2019-12-27T18:11:19.117Z",
   "currency": "USD",
-  "period": "monthly",
+  "period": "daily",
   "scope": {
     "type": "user",
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -263,7 +263,7 @@ Retrieve a spend limit by ID.
 
     ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Length of the window the limit resets over. `amount` caps spend within each period.
 
@@ -357,7 +357,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
   "amount": "50000",
   "created_at": "2019-12-27T18:11:19.117Z",
   "currency": "USD",
-  "period": "monthly",
+  "period": "daily",
   "scope": {
     "type": "user",
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -505,7 +505,7 @@ Paginates by member, so a member's periods never split across pages.
 
     ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Period this row's effective limit and spend are reported for.
 
@@ -666,7 +666,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
       },
       "amount": "50000",
       "currency": "USD",
-      "period": "monthly",
+      "period": "daily",
       "period_to_date_spend": "12050.5",
       "scope": {
         "type": "user",
@@ -715,7 +715,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
 
     ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Length of the window the limit resets over. `amount` caps spend within each period.
 
@@ -793,6 +793,16 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
 
     format: date-time
 
+### Beta Spend Limit Period
+
+- `BetaSpendLimitPeriod = "daily" or "monthly" or "weekly"`
+
+  - `"daily"`
+
+  - `"monthly"`
+
+  - `"weekly"`
+
 ### Beta Spend Summary
 
 - `BetaSpendSummary object`
@@ -849,7 +859,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
 
     ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Period this row's effective limit and spend are reported for.
 
@@ -1020,7 +1030,7 @@ Requests whose requester is no longer a member are excluded.
 
   Opaque cursor from a previous response's `next_page`.
 
-- `status: optional array of "approved" or "denied" or "pending"`
+- `status: optional array of BetaSpendLimitIncreaseRequestStatus`
 
   Filter by status. Omit to return all.
 
@@ -1040,41 +1050,53 @@ Requests whose requester is no longer a member are excluded.
 
   - `id: string`
 
-  - `actor: object`
+  - `actor: UserActor or ScopedAPIKeyActor`
 
-    A user within the organization. `name` and `email_address` are
-    null when the underlying account is unavailable or has been deleted;
-    `deleted` is true only for deleted accounts.
+    - `UserActor object`
 
-    - `type: "user_actor"`
+      A user within the organization. `name` and `email_address` are
+      null when the underlying account is unavailable or has been deleted;
+      `deleted` is true only for deleted accounts.
 
-      Actor type. Always `user_actor`.
+      - `type: "user_actor"`
 
-      default: user_actor
+        Actor type. Always `user_actor`.
 
-    - `deleted: boolean`
+        default: user_actor
 
-      True only when the underlying account has been deleted.
+      - `deleted: boolean`
 
-      default: false
+        True only when the underlying account has been deleted.
 
-    - `email_address: string or null`
+        default: false
 
-      The user's email address. Null when the account is unavailable or has been deleted.
+      - `email_address: string or null`
 
-    - `name: string or null`
+        The user's email address. Null when the account is unavailable or has been deleted.
 
-      The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
+      - `name: string or null`
 
-    - `user_id: string`
+        The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
 
-      Tagged ID of the user.
+      - `user_id: string`
+
+        Tagged ID of the user.
+
+    - `ScopedAPIKeyActor object`
+
+      A scoped Admin API key acting on behalf of the organization.
+
+      - `type: "scoped_api_key_actor"`
+
+        default: scoped_api_key_actor
+
+      - `scoped_api_key_id: string`
 
   - `created_at: string`
 
     format: date-time
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     - `"daily"`
 
@@ -1182,15 +1204,9 @@ Requests whose requester is no longer a member are excluded.
 
       ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-    - `period: "daily" or "monthly" or "weekly"`
+    - `period: BetaSpendLimitPeriod`
 
       Period this row's effective limit and spend are reported for.
-
-      - `"daily"`
-
-      - `"monthly"`
-
-      - `"weekly"`
 
     - `period_to_date_spend: string`
 
@@ -1318,7 +1334,7 @@ Requests whose requester is no longer a member are excluded.
 
     - `spend_limit_id: string`
 
-  - `status: "approved" or "denied" or "pending"`
+  - `status: BetaSpendLimitIncreaseRequestStatus`
 
     - `"approved"`
 
@@ -1351,7 +1367,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests \
         "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
       },
       "created_at": "2019-12-27T18:11:19.117Z",
-      "period": "monthly",
+      "period": "daily",
       "resolved_at": "2019-12-27T18:11:19.117Z",
       "resolved_by": {
         "deleted": true,
@@ -1370,7 +1386,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests \
         },
         "amount": "50000",
         "currency": "USD",
-        "period": "monthly",
+        "period": "daily",
         "period_to_date_spend": "12050.5",
         "scope": {
           "type": "user",
@@ -1415,41 +1431,53 @@ requester at the request's period.
 
   - `id: string`
 
-  - `actor: object`
+  - `actor: UserActor or ScopedAPIKeyActor`
 
-    A user within the organization. `name` and `email_address` are
-    null when the underlying account is unavailable or has been deleted;
-    `deleted` is true only for deleted accounts.
+    - `UserActor object`
 
-    - `type: "user_actor"`
+      A user within the organization. `name` and `email_address` are
+      null when the underlying account is unavailable or has been deleted;
+      `deleted` is true only for deleted accounts.
 
-      Actor type. Always `user_actor`.
+      - `type: "user_actor"`
 
-      default: user_actor
+        Actor type. Always `user_actor`.
 
-    - `deleted: boolean`
+        default: user_actor
 
-      True only when the underlying account has been deleted.
+      - `deleted: boolean`
 
-      default: false
+        True only when the underlying account has been deleted.
 
-    - `email_address: string or null`
+        default: false
 
-      The user's email address. Null when the account is unavailable or has been deleted.
+      - `email_address: string or null`
 
-    - `name: string or null`
+        The user's email address. Null when the account is unavailable or has been deleted.
 
-      The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
+      - `name: string or null`
 
-    - `user_id: string`
+        The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
 
-      Tagged ID of the user.
+      - `user_id: string`
+
+        Tagged ID of the user.
+
+    - `ScopedAPIKeyActor object`
+
+      A scoped Admin API key acting on behalf of the organization.
+
+      - `type: "scoped_api_key_actor"`
+
+        default: scoped_api_key_actor
+
+      - `scoped_api_key_id: string`
 
   - `created_at: string`
 
     format: date-time
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     - `"daily"`
 
@@ -1557,15 +1585,9 @@ requester at the request's period.
 
       ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-    - `period: "daily" or "monthly" or "weekly"`
+    - `period: BetaSpendLimitPeriod`
 
       Period this row's effective limit and spend are reported for.
-
-      - `"daily"`
-
-      - `"monthly"`
-
-      - `"weekly"`
 
     - `period_to_date_spend: string`
 
@@ -1693,7 +1715,7 @@ requester at the request's period.
 
     - `spend_limit_id: string`
 
-  - `status: "approved" or "denied" or "pending"`
+  - `status: BetaSpendLimitIncreaseRequestStatus`
 
     - `"approved"`
 
@@ -1722,7 +1744,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
   },
   "created_at": "2019-12-27T18:11:19.117Z",
-  "period": "monthly",
+  "period": "daily",
   "resolved_at": "2019-12-27T18:11:19.117Z",
   "resolved_by": {
     "deleted": true,
@@ -1741,7 +1763,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     },
     "amount": "50000",
     "currency": "USD",
-    "period": "monthly",
+    "period": "daily",
     "period_to_date_spend": "12050.5",
     "scope": {
       "type": "user",
@@ -1781,7 +1803,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   New per-user spend limit as a non-negative integer decimal string (minor units).
 
-- `period: optional "daily" or "monthly" or "weekly" or null`
+- `period: optional BetaSpendLimitPeriod or null`
 
   - `"daily"`
 
@@ -1799,41 +1821,53 @@ the member was blocked on. Anthropic emails the requester unless
 
 - `id: string`
 
-- `actor: object`
+- `actor: UserActor or ScopedAPIKeyActor`
 
-  A user within the organization. `name` and `email_address` are
-  null when the underlying account is unavailable or has been deleted;
-  `deleted` is true only for deleted accounts.
+  - `UserActor object`
 
-  - `type: "user_actor"`
+    A user within the organization. `name` and `email_address` are
+    null when the underlying account is unavailable or has been deleted;
+    `deleted` is true only for deleted accounts.
 
-    Actor type. Always `user_actor`.
+    - `type: "user_actor"`
 
-    default: user_actor
+      Actor type. Always `user_actor`.
 
-  - `deleted: boolean`
+      default: user_actor
 
-    True only when the underlying account has been deleted.
+    - `deleted: boolean`
 
-    default: false
+      True only when the underlying account has been deleted.
 
-  - `email_address: string or null`
+      default: false
 
-    The user's email address. Null when the account is unavailable or has been deleted.
+    - `email_address: string or null`
 
-  - `name: string or null`
+      The user's email address. Null when the account is unavailable or has been deleted.
 
-    The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
+    - `name: string or null`
 
-  - `user_id: string`
+      The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
 
-    Tagged ID of the user.
+    - `user_id: string`
+
+      Tagged ID of the user.
+
+  - `ScopedAPIKeyActor object`
+
+    A scoped Admin API key acting on behalf of the organization.
+
+    - `type: "scoped_api_key_actor"`
+
+      default: scoped_api_key_actor
+
+    - `scoped_api_key_id: string`
 
 - `created_at: string`
 
   format: date-time
 
-- `period: "daily" or "monthly" or "weekly"`
+- `period: BetaSpendLimitPeriod`
 
   - `"daily"`
 
@@ -1915,15 +1949,9 @@ the member was blocked on. Anthropic emails the requester unless
 
     ISO 4217 code of the organization's billing currency; the unit for `amount`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Length of the window the limit resets over. `amount` caps spend within each period.
-
-    - `"daily"`
-
-    - `"monthly"`
-
-    - `"weekly"`
 
   - `scope: User or SeatTier or RBACGroup or 3 more`
 
@@ -2047,15 +2075,9 @@ the member was blocked on. Anthropic emails the requester unless
 
     ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     Period this row's effective limit and spend are reported for.
-
-    - `"daily"`
-
-    - `"monthly"`
-
-    - `"weekly"`
 
   - `period_to_date_spend: string`
 
@@ -2183,7 +2205,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `spend_limit_id: string`
 
-- `status: "approved" or "denied" or "pending"`
+- `status: BetaSpendLimitIncreaseRequestStatus`
 
   - `"approved"`
 
@@ -2217,7 +2239,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
   },
   "created_at": "2019-12-27T18:11:19.117Z",
-  "period": "monthly",
+  "period": "daily",
   "resolved_at": "2019-12-27T18:11:19.117Z",
   "resolved_by": {
     "deleted": true,
@@ -2231,7 +2253,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "amount": "50000",
     "created_at": "2019-12-27T18:11:19.117Z",
     "currency": "USD",
-    "period": "monthly",
+    "period": "daily",
     "scope": {
       "type": "user",
       "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -2249,7 +2271,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     },
     "amount": "50000",
     "currency": "USD",
-    "period": "monthly",
+    "period": "daily",
     "period_to_date_spend": "12050.5",
     "scope": {
       "type": "user",
@@ -2295,41 +2317,53 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
   - `id: string`
 
-  - `actor: object`
+  - `actor: UserActor or ScopedAPIKeyActor`
 
-    A user within the organization. `name` and `email_address` are
-    null when the underlying account is unavailable or has been deleted;
-    `deleted` is true only for deleted accounts.
+    - `UserActor object`
 
-    - `type: "user_actor"`
+      A user within the organization. `name` and `email_address` are
+      null when the underlying account is unavailable or has been deleted;
+      `deleted` is true only for deleted accounts.
 
-      Actor type. Always `user_actor`.
+      - `type: "user_actor"`
 
-      default: user_actor
+        Actor type. Always `user_actor`.
 
-    - `deleted: boolean`
+        default: user_actor
 
-      True only when the underlying account has been deleted.
+      - `deleted: boolean`
 
-      default: false
+        True only when the underlying account has been deleted.
 
-    - `email_address: string or null`
+        default: false
 
-      The user's email address. Null when the account is unavailable or has been deleted.
+      - `email_address: string or null`
 
-    - `name: string or null`
+        The user's email address. Null when the account is unavailable or has been deleted.
 
-      The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
+      - `name: string or null`
 
-    - `user_id: string`
+        The user's current display name. Null when the account is unavailable, has been deleted, or has no name set.
 
-      Tagged ID of the user.
+      - `user_id: string`
+
+        Tagged ID of the user.
+
+    - `ScopedAPIKeyActor object`
+
+      A scoped Admin API key acting on behalf of the organization.
+
+      - `type: "scoped_api_key_actor"`
+
+        default: scoped_api_key_actor
+
+      - `scoped_api_key_id: string`
 
   - `created_at: string`
 
     format: date-time
 
-  - `period: "daily" or "monthly" or "weekly"`
+  - `period: BetaSpendLimitPeriod`
 
     - `"daily"`
 
@@ -2437,15 +2471,9 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
       ISO 4217 code of the organization's billing currency; the unit for `amount` and `period_to_date_spend`.
 
-    - `period: "daily" or "monthly" or "weekly"`
+    - `period: BetaSpendLimitPeriod`
 
       Period this row's effective limit and spend are reported for.
-
-      - `"daily"`
-
-      - `"monthly"`
-
-      - `"weekly"`
 
     - `period_to_date_spend: string`
 
@@ -2573,7 +2601,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     - `spend_limit_id: string`
 
-  - `status: "approved" or "denied" or "pending"`
+  - `status: BetaSpendLimitIncreaseRequestStatus`
 
     - `"approved"`
 
@@ -2604,7 +2632,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
   },
   "created_at": "2019-12-27T18:11:19.117Z",
-  "period": "monthly",
+  "period": "daily",
   "resolved_at": "2019-12-27T18:11:19.117Z",
   "resolved_by": {
     "deleted": true,
@@ -2623,7 +2651,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     },
     "amount": "50000",
     "currency": "USD",
-    "period": "monthly",
+    "period": "daily",
     "period_to_date_spend": "12050.5",
     "scope": {
       "type": "user",
