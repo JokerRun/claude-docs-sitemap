@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 77bfd39bca8051440176f58d8d98d592c715bb8eb790b31d8abda193fe6e1c7d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 0cae4b6b7c9f59851060d3da9f73e41a618916e9e63635cc8a797141b9cfde69
 ---
 
 ---
@@ -127,6 +127,8 @@ Get Session Resource
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

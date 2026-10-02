@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 9e263a395815fca81646d87d7bdca92484146c810ff14829c2907a68fbf8ebdc
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: d6428d565c894507142618d771db5ab97e293d8ad779412d33bf9e57be676000
 ---
 
 ---
@@ -149,6 +149,8 @@ The Models API response can be used to determine which models are available for 
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

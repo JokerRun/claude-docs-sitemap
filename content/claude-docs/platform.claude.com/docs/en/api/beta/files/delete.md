@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b78c5f37f2a15b83c9c5c34154ac373bb08b0a5514442b042ca092eeb649186a
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 041876c23fd6f5e6416a3b0b14b5e29eab498ebfe2360648d09a3ad39d73f693
 ---
 
 ---
@@ -127,6 +127,8 @@ Delete File
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

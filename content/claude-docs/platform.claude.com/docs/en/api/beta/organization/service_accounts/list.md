@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b180457f1483a53453505e712daad74213d69efafda3fd4037ced2e3bd67fea8
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 83b07aa903cf9c7580f221db618d464ad323487a03cdf2b0594b44c4b567e22a
 ---
 
 ---
@@ -145,6 +145,8 @@ archived service accounts.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

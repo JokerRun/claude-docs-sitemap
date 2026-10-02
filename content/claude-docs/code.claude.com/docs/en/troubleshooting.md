@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 5cea193721b5aca687d507465e6cb9b7a832b09cef0c086e262fcb6954ee4d40
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 06f3b1d365256d76c6b26e1fb4175f3a7edb8810c0d08a3c7483b00b7ece8b86
 ---
 
 > ## Documentation Index
@@ -78,6 +78,11 @@ To recover:
 2. Run `/compact` with a focus that drops the large output, for example `/compact keep only the plan and the diff`
 3. Move the large-file work to a [subagent](/docs/en/sub-agents) so it runs in a separate context window
 4. Run `/clear` if the earlier conversation is no longer needed
+
+If the error comes back after a `/clear`, run [`/context`](/docs/en/debug-your-config) and compare the `Messages` row with the rows above it:
+
+* **`Messages` is the largest row**: a file or tool output in the new conversation is refilling the window, so work through steps 1 to 3 again
+* **The other rows together are larger**: what loads at session start leaves too little room to work in, so [trim what loads at startup](/docs/en/errors#prompt-is-too-long)
 
 ### Command hangs or freezes
 

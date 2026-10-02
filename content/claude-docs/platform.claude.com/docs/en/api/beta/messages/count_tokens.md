@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 7a5b9dd308b2ea60b0ac2a445508610659e5d887b13baacad69d0236c28a1e7d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 277635bcdae334629714cb16d48ef82085a1304c98d5abed421c4886d6f173ff
 ---
 
 ---
@@ -125,6 +125,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -3161,19 +3163,23 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
                         Powerful intelligence for long-running agents and coding
 
-                      - `"claude-sonnet-4-5"`
-
-                        High-performance model for agents and coding
-
-                      - `"claude-sonnet-4-5-20250929"`
-
-                        High-performance model for agents and coding
-
                       - `"claude-mythos-preview"`
 
                         **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                         New class of intelligence, strongest in coding and cybersecurity
+
+                      - `"claude-sonnet-4-5"`
+
+                        **Deprecated**: Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                        High-performance model for agents and coding
+
+                      - `"claude-sonnet-4-5-20250929"`
+
+                        **Deprecated**: Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                        High-performance model for agents and coding
 
                       - `string`
 

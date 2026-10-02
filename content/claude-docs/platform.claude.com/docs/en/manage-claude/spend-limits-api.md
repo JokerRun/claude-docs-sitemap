@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 527b3cddfa65f7b086c83c3f6b568285d502f442d708cab83a0a61ae25ce616e
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 011f782fb8b9eebe13ffb69e28e616906a9b43f1ae417cb82f37e83f8140e506
 ---
 
 ---
@@ -121,7 +121,7 @@ Error responses follow the standard shape documented in [Errors](https://platfor
 
 `GET /v1/organizations/spend_limits/effective` returns one row per current member, reflecting each member's effective spend limit, its `source` in the scope hierarchy, and their `period_to_date_spend`. Requires the `read:spend_limits` scope.
 
-For complete parameter details and response schemas, see [List effective spend limits](https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list_effective) in the API reference.
+For complete parameter details and response schemas, see [List effective spend limits](https://platform.claude.com/docs/en/api/beta/organization/spend_limits/effective/list) in the API reference.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
@@ -169,7 +169,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKl
 
 `POST /v1/organizations/spend_limits` sets a per-user spend limit override. This is an upsert keyed on `(scope, period)`: setting a limit for a user and period that already has one overwrites it in place. This endpoint accepts only `scope.type: "user"`; seat-tier, group, and organization-level defaults are configured in claude.ai settings. Requires the `write:spend_limits` scope.
 
-For complete parameter details and response schemas, see [Create a spend limit](https://platform.claude.com/docs/en/api/beta/organization/spend_limits/create) in the API reference.
+For complete parameter details and response schemas, see [Create a spend limit](https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set) in the API reference.
 
 ```bash cURL
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \

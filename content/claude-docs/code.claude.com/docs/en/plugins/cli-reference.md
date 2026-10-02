@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/cli-reference
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 89cc48f446b60fd9b955a4f32fe6098bf67b0216ad31b368a7f705edcba88537
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f5b6ab21480e47245399e430dd7991202ed74d97e35dc1256ca44c016a6909cd
 ---
 
 > ## Documentation Index
@@ -544,6 +544,22 @@ The command exits `1` and prints the reason when it can't tag safely. Common rea
 * The tag already exists
 * The working tree is dirty
 
+### plugin test
+
+Run the tests for a [mod](/docs/en/plugins/mods/overview), a plugin whose code registers event handlers. The command needs no session, sign-in, or network. For how to write a test, see [Test a mod](/docs/en/plugins/mods/test).
+
+```bash theme={null}
+claude plugin test [directory]
+```
+
+The `[directory]` is the mod's directory, defaulting to the current directory. The command runs every file under it whose name ends in `.test.ts` or `.test.tsx`, and exits with status 1 when a test fails.
+
+Run the tests for a mod in `./first-mod`:
+
+```bash theme={null}
+claude plugin test ./first-mod
+```
+
 ### plugin validate
 
 Validate a plugin manifest, a marketplace manifest, or the skills, agents, and commands in a directory, and exit with a code a CI job can act on. For the create, test, and edit workflow, see [Create a plugin](/docs/en/plugins/create). For what the validator checks in each manifest, see the [plugin manifest reference](/docs/en/plugins/manifest-reference) and the [marketplace reference](/docs/en/plugins/marketplace-reference).
@@ -761,7 +777,7 @@ For which surfaces have `/plugin`, how to install without it, and what each pane
 
 A `<plugin>` is a plugin `name` or `name@marketplace`.
 
-The table below lists every session form. The shell subcommands `init`, `update`, `details`, `prune`, `eval`, and `eval init` have no session form.
+The table below lists every session form. The shell subcommands `init`, `update`, `details`, `prune`, `eval`, `eval init`, and `test` have no session form.
 
 | Command | Aliases | What it does |
 | :- | :- | :- |

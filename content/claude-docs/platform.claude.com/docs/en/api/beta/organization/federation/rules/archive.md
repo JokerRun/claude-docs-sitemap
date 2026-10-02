@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a8dc65665a7724ae2f47a1937d1ab33a799c3a425436f527f96f5dad769b0b40
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 043e7f80cbc75a8f38239dafeba9f2a6d885d3a41bb6e02854a0bf81229786b8
 ---
 
 ---
@@ -137,6 +137,8 @@ other scopes require a Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 431c93bfcdb9d9f81bd4604e7a4dc21484cfbdfd66557695c662bacaf631c21d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3290c4d8ad30152ddd654066948367468c05712ffb97a4a9427ee123a6c11553
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve detailed information about a specific work item.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

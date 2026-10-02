@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 70bbf6761d458da673f8c74ff02f9f12a031c0f7c0952eae9936b5bad91298e3
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 89569d654a1b023cc9a0ae806c7fba6987759ac603ac8c7cad615d3f380a7e09
 ---
 
 ---
@@ -140,6 +140,8 @@ List Agent Versions
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -248,9 +250,13 @@ List Agent Versions
 
       - `"claude-sonnet-4-5"`
 
+        **Deprecated**: Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
         High-performance model for agents and coding
 
       - `"claude-sonnet-4-5-20250929"`
+
+        **Deprecated**: Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
         High-performance model for agents and coding
 

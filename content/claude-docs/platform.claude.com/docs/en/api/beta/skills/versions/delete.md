@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: db0f0339acacdf480e93f924e804b6958e0657f72c495c6bcb1c48e499b99da6
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 93cc515e9869139339909bc3fcea7e10b6cd3187a6baa4d08398ae68382bcd1d
 ---
 
 ---
@@ -135,6 +135,8 @@ Delete Skill Version
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

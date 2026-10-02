@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8379a1dcbc505d1699aaf7685a95e0b6e39f9cd76837a002eb6cb8019e55e74d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6f43de1fb4cd66ef7487086f8f65ce6e53e8a4d50df28f71a23b1d311a22602b
 ---
 
 ---
@@ -138,6 +138,8 @@ accounts cannot be added and are rejected.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

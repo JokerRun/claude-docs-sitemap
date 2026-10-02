@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 61aff74f1d08a0012d787dab5cf5c359ed27d5abd37a5a6c0154afeacc8c3a4f
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1b0887c727bb1cac2b59ac8c6a28b64099036a958515a4acbd34b972c33681aa
 ---
 
 ---
@@ -139,6 +139,8 @@ Delete a memory
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

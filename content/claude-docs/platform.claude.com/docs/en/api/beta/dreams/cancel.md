@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 3fffc82c29c6d0dddd32cdcea536b8f95dd72cbab8af541f853b10c3e11b6a42
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 2891e4709afe84843ebc99443ec25c22db1986d978e3696aaa8acf074ac4028b
 ---
 
 ---
@@ -131,6 +131,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

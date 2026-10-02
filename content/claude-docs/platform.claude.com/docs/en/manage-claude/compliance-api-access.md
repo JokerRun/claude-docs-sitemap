@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api-access
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: eb55f20c287934187e82e06690ecb28fa86a713092549b0135f2384db35c58ad
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 28dbf7593fa5a4156c1c303f3a0d8381f797c08ac81ac2576fb12263b55256fe
 ---
 
 ---
@@ -85,6 +85,8 @@ Setup is one flow: enable the Compliance API for your organization, then create 
     | `read:compliance_user_data`   | Read user chats, messages, files, projects, session metadata and transcripts, organization users, and group members                                                                                                       |
     | `delete:compliance_user_data` | Delete user chats, files, and projects                                                                                                                                                                                    |
     | `read:compliance_org_data`    | Read organization metadata (names, types, roles, and groups) and the effective settings in force for organizations under the parent organization. User listings and group membership require `read:compliance_user_data`. |
+
+    With the Plugins API, `read:compliance_org_data` also reads your organization's plugin and plugin marketplace inventory through the Admin API, including members' personal plugins and their files. That inventory identifies members: it carries the user ID of each member who owns or created a plugin, or with whom a plugin has been shared individually, and the email address of a plugin's creator while they are still a member; see [Read plugins and plugin marketplaces](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#read-plugins-and-plugin-marketplaces).
 
     Choose the smallest scope set that your integration needs:
 

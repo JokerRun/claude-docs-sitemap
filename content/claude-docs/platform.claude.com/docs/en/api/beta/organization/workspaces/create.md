@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 3d390cc436f7d64c172919b9010ae4dddd7f27ffef94c02920795cad4788e526
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: e7cc2f3984ec09fa073e1e1debc05da735498331c00d5a764bdb394cffdfacb5
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Workspace
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

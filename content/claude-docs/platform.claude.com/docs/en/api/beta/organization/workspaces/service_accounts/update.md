@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0737ca2aa14050d147c0ea132e3ee589739821ac625fd727ae999cba24ce33da
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 27e1e9b0f0461c616079615efcc9d1dd338226c8cf5edea1f585b89e0a5428e3
 ---
 
 ---
@@ -140,6 +140,8 @@ rejected.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

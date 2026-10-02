@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: bffcd05364b83f888f03cc5b9b7a91a87e239b0673bd7d7d7aab3d8104127bdf
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f7c1bfebcac54143656cc27892cf01ad1e440b489d8f388a4d92c10082ba8f23
 ---
 
 ---
@@ -134,6 +134,8 @@ those rules first or change their target to another service account.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

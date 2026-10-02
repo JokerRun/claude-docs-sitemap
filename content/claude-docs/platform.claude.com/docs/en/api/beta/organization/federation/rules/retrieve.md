@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: f2197796ec10a0f87adfef86892c68d74235d90dfde5afaf5ef036aead778083
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7f0a86f6a3a81d6eecf403ce4b352a16da786fb753fdd1520f1d5b3277bd7715
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

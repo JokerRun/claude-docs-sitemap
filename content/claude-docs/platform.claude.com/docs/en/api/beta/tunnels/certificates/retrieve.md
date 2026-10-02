@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d1fc205ac7925c1dddbb36118bdae3ce10733eb36841f91ed1a806d95e50deed
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 2321ecf6759a158693b08e020a50117b12c6f28d345ee9a0c2c42816b57cf6d7
 ---
 
 ---
@@ -133,6 +133,8 @@ Fetches a tunnel certificate by ID.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

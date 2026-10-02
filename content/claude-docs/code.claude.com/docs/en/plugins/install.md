@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 5034cc12bc79360b540d2d996a58b7e9412a7475c8107f3886be974c12e73325
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 99a0c286aec42dd9fc392c937553381885fe98c3571d8a40f1cce2acdb5234f5
 ---
 
 > ## Documentation Index
@@ -46,7 +46,7 @@ Pick the tab for where you run Claude Code.
         /plugin install commit-commands@claude-plugins-official
         ```
 
-        To browse instead, run `/plugin` with no plugin name: the panel opens on the **Discover** tab, which lists plugins from every marketplace you've added, and you can type to search, then press **Enter** on a plugin to open its details.
+        To browse instead, run `/plugin` with no plugin name: the panel opens on the **Discover** tab, which lists the plugins from your marketplaces, and you can type to search, then press **Enter** on a plugin to open its details.
       </Step>
 
       <Step title="Review what the plugin adds">

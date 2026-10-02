@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: c08617070b484f8aa9ccb763c016adffd0632ece8d77360d175293a955232f06
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6a99cce85b0cdae1006f271ea0eb066e758047676a6b8514e0116b5caa4fccff
 ---
 
 ---
@@ -91,6 +91,8 @@ To get the best performance out of Claude when using tools, follow these guideli
 * **Use meaningful namespacing in tool names.** When your tools span multiple services or resources, prefix names with the service (for example, `github_list_prs`, `slack_send_message`). This makes tool selection unambiguous as your library grows, and is especially important when using [tool search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
 * **Design tool responses to return only high-signal information.** Return semantic, stable identifiers (for example, slugs or UUIDs) rather than opaque internal references, and include only the fields Claude needs to reason about its next step. Bloated responses waste context and make it harder for Claude to extract what matters.
+
+* **Ask for an explanation, not reasoning.** If a parameter asks Claude why it is making the call, ask for a short explanation or the supporting evidence. A parameter that asks for the model's thinking or step-by-step reasoning may lead to a `reasoning_extraction` refusal. See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 <AccordionGroup>
   <Accordion title="Example of a good tool description">

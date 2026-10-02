@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6d5bb1aebe8f5afdc72af5c7433e2f9859726bb8f732fa481b4f771721c7dddb
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: afd0be712cc4da3a5d58fed29e96600d09725f97a3830adf974c2d5998ee7a89
 ---
 
 ---
@@ -127,6 +127,8 @@ Get User Profile
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: dc5f115ccc9ad9f9325995994b0acc18a129bd1f67c69b0e2c0f7609526ec69c
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 23322094215e566ee0792f598b4baea176c87ff89c67dd413f90580000de17de
 ---
 
 ---
@@ -165,6 +165,8 @@ List Deployments
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

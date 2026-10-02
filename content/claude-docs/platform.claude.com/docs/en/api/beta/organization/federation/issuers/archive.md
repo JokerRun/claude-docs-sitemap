@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 49319347326a1a77c6e4630fa707861b84fadecfcc21403829187c78eb9502a6
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1f1864e9ccdae258aecf4e400a6663171506c03618ea7e797257015e775460e1
 ---
 
 ---
@@ -134,6 +134,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

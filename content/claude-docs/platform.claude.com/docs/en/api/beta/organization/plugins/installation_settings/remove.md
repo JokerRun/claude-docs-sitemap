@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings/remove
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 79176c6c4a3690f9e296101acc168103593ea2f41a47aa7c0145005c054e2dba
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 9974798f76d264c1d9d01988b66bb45b70721833fc68b7cacfe4a2359cd36835
 ---
 
 ---
@@ -151,6 +151,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

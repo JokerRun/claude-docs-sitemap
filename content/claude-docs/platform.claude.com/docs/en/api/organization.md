@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 18690c4b37f3bb2d1e30eb45151791a2e6b010782f6773872713eeb4397e7fbe
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: d2bec8d20f63179f39a069f23175209c510df9d8364bfbd088fce440221b1063
 ---
 
 ---
@@ -7814,8 +7814,8 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
 List Messages API rate limits for your organization.
 
 Each entry corresponds to one rate-limit group (either a model family
-or an API-surface category such as the Files API or Message Batches)
-and contains the set of limiter values that apply to it.
+or an API-surface category such as the Message Batches API or the web
+search tool) and contains the set of limiter values that apply to it.
 
 When `limit` is omitted, every matching entry is returned in a single
 page; when `limit` truncates the result, follow `next_page` to fetch

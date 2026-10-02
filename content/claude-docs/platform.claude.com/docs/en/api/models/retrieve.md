@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a0ab0247984ff22c0e3534b375efb65fe8a4611f3da0db0c6023f6c5b99be830
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3378ea80372612bd8bd1d7ac1d54ea43b192923f152906258ede0b29e09bcc1e
 ---
 
 ---
@@ -137,6 +137,8 @@ The Models API response can be used to determine information about a specific mo
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

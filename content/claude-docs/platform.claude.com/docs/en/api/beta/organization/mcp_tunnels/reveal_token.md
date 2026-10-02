@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a8ade7789e80a180a1bfe6d17ecc7412a802fe0ebc4b507f96291e3c457930fd
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 427cc5168bd0d2075a8117c431484764b8119833d0ccd8e194c843ddc98357ec
 ---
 
 ---
@@ -136,6 +136,8 @@ access logs.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

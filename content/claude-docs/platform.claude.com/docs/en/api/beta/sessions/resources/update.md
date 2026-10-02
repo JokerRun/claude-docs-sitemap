@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 2b3fff92edc84f22748973d5af5b2cd1e9c9aa11a1dd607337dfba2b1f2dc67c
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 71117f437b8e812ebf4d74e9514ee32d3d674a24c76745ca71e0dc30889ad77b
 ---
 
 ---
@@ -127,6 +127,8 @@ Update Session Resource
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

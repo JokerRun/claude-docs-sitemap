@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 57a54a17d28fa287c3a323cd10e0c893a3c9227414185490db52da4325b4d677
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 435772ba0fa801904bbab8d3128c978dd5627b6a984c1517b92b530ebbbcbb27
 ---
 
 ---
@@ -131,6 +131,8 @@ Redact a memory version
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 37f0d17aa7ca779110b555093499d9f9b44a63f0df413c0e0f345ff66f43a320
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 2df00fc798e538b8706070bde627e94046c9d8ae5d4e3f9da1a88af329e7a8e0
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive Vault
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

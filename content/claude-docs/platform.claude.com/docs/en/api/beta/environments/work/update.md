@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 44f13017fff7d338c93dcfb038a4374cd98a6e15567e88ccdcb95821c8f81fe4
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1ae2e742c3b501193af075db071ba36ca4e014cb71fe1ed214c11f98f50d363e
 ---
 
 ---
@@ -129,6 +129,8 @@ Update work item metadata with merge semantics.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

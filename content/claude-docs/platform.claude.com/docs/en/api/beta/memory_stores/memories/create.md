@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c12ac4e7fc1e741a76d1deb5173cb29235e5f6acd7cfbb5a77dc3d91fa12e1a3
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: ce0ea1a372efdf71f1a8b2022893cdcf1d9e7b4c8dade7fe9c69c561a5261cfa
 ---
 
 ---
@@ -141,6 +141,8 @@ Create a memory
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

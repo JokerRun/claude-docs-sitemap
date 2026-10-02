@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 78533d6d5e9d693365315423f733d65abda38d61dfb92743dcf4e3e493092a78
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: ff758b71d13806fc6672f60e20bef1422b4721ecebe92f561cfd73de2852c79f
 ---
 
 ---
@@ -155,6 +155,8 @@ page to recover.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: e982c578374a69e7baca0b69daca03f03e495081f6c56b3c5108fbf92df15681
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: a3d68b78970634760dba0a1035494f3a1058a2ad4b0e933727f8b1046f02493c
 ---
 
 ---
@@ -129,6 +129,8 @@ Get Skill
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

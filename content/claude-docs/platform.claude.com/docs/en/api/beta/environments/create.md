@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4e1ef658e9b8704a11b6e38ea7f8b47438909e227fe3d9e45e3aca5d5e5fd3e0
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 45bf149945b3e2dc7b3848457ceb3f1157c09f8a13a7d83c1525d0c58bb87637
 ---
 
 ---
@@ -121,6 +121,8 @@ Create a new environment with the specified configuration.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

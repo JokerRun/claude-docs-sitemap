@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 2ac4ef58c41f19e9b39923a603341dfe5e580f9e303a2da503058953c73dd566
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: ab11b9476086b891ecdfb459e58b72bb7f8469c3615a5d4ee4d84e3be00dd326
 ---
 
 ---
@@ -125,6 +125,8 @@ Send Events
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

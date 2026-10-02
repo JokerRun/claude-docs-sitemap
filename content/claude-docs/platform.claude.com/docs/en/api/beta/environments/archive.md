@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 637d5c1c7c431756031b39071381a7926630d9708586b3f137e86979d812e3d8
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 96aed9b0e796e39df392f4e9913c19d9f1938e51136d67fd6fee73462b33fcdc
 ---
 
 ---
@@ -125,6 +125,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

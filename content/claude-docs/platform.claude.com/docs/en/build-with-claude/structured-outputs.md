@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: cf0ed3551c80ebdd070f2eecc9474eeaa440e86e20289e0edf21e3161ea89919
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: bee981032f3efa65fbc2553fa68a0fff0a7632f7ebcc90667d6ae2a14845350d
 ---
 
 ---
@@ -2721,6 +2721,8 @@ Claude maintains its safety and helpfulness properties even when using structure
 * You'll receive a 200 status code
 * You'll be billed for the tokens generated
 * The output may not match your schema because the refusal message takes precedence over schema constraints
+
+A property that asks for the model's thinking or step-by-step reasoning may lead to a `reasoning_extraction` refusal. Ask for a short explanation instead. See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 **Token limit reached** (`stop_reason: "max_tokens"`)
 

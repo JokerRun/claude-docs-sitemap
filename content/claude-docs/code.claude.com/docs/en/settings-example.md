@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-example
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: efb4f17a7287ab4078432a5d3259adcd7ce21ebdd7959732b61292b4007e07c3
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f6cf3b20bd043675631782717e77fd398ffb41d5f964d10f736de6fd95c75cec
 ---
 
 > ## Documentation Index
@@ -221,7 +221,7 @@ One team's shared settings, committed to the repository so everyone who clones i
       "enabledPlugins": {
         "code-formatter@acme-tools": true
       },
-      // Sandbox commands: writable build dir; npm and example.com pre-allowed, other hosts still prompt
+      // Sandbox commands: writable build dir; npm and example.com pre-allowed
       "sandbox": {
         "enabled": true,
         "filesystem": {
@@ -255,7 +255,7 @@ A `managed-settings.json` file that shows the shape of the managed keys, with on
 * [`allowManagedPermissionRulesOnly`](/docs/en/settings-reference#allowmanagedpermissionrulesonly) and [`allowManagedMcpServersOnly`](/docs/en/settings-reference#allowmanagedmcpserversonly) make the managed permission and MCP allowlists the only ones that apply
 * `allowedMcpServers` pins the MCP server by URL
 * `strictKnownMarketplaces` allows one plugin marketplace
-* `sandbox` sandboxes commands with a fixed network allowlist and no unsandboxed retry
+* `sandbox` sandboxes commands with a fixed network allowlist and no unsandboxed retry. Its `failIfUnavailable` key [stops Claude Code from starting where the sandbox can't run](/docs/en/sandboxing#enforce-sandboxing-with-managed-settings)
 * `requiredMinimumVersion` sets a minimum Claude Code version
 * `cleanupPeriodDays` shortens retention of session transcripts and other local data to seven days
 * `companyAnnouncements` shows a message at startup

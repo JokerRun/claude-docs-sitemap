@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8f4d014d09951dfb89554925450e9abde205803c4e80587f857c81ee60dd443f
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f0af0832d8fcda2e9e10a165b387ee70702bfb2d20246137b0e299875b1ab3f2
 ---
 
 > ## Documentation Index
@@ -374,7 +374,7 @@ To allow additional domains on one of your own environments, follow these steps.
   </Step>
 
   <Step title="Change the network access level">
-    In the **Update cloud environment** dialog, change **Network access** to **Custom** and enter your domains in **Allowed domains**. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead for unrestricted access.
+    In the **Edit cloud environment** dialog, change **Network access** to **Custom** and enter your domains in **Allowed domains**. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead for unrestricted access.
   </Step>
 
   <Step title="Save">

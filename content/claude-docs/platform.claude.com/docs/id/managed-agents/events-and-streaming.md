@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: ba7334f7a643b917ffce7a2161e200296d6e88460a523eab83c5ab5bef75b6dd
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 588d9c8dedb0ef09a9dbc47d32e5c633475063a1a1a4b599c7ac27dbeb1a9480
 ---
 
 ---
@@ -1055,8 +1055,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       var events = client.beta().sessions().events().list(
           session.id(),
           EventListParams.builder()
-              .addType("agent.tool_use")
-              .addType("agent.tool_result")
+              .addType(BetaManagedAgentsSessionEventType.AGENT_TOOL_USE)
+              .addType(BetaManagedAgentsSessionEventType.AGENT_TOOL_RESULT)
               .build());
       for (var event : events.data()) {
           event.agentToolUse().ifPresent(toolUse ->

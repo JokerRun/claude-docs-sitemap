@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c705c7ae027735ea9990fa08f5e8b827b1abb785a28d3320ffb4aa11ccd5e0ff
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 786c8aec2ab3731d4ae858ac3cd8aaf3b3b029b35a63b833e96798d9181bc8d4
 ---
 
 ---
@@ -140,6 +140,8 @@ other scopes require a Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Body parameters
 
@@ -340,6 +342,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -528,6 +532,8 @@ Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 

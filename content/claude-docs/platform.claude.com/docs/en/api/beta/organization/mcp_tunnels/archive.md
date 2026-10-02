@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 9d245372d46d485864f922b9f27566ddab04f4bbf600ab1281dc84ff8a204635
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: fd0d723d6273a99779d6779cefb7f9c66b3508beebd15d2dda2e52507e0e8838
 ---
 
 ---
@@ -136,6 +136,8 @@ tunnel returns the existing record unchanged.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

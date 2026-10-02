@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp-quickstart
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 715c2aeef7a48f2bae86d367a66698ac9baeac7a9c86c0e7c73bc7cc36b76680
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 71d7664eb76d2bce30138f14b948b3771b4366786b1d77b0ee0a7715989d556b
 ---
 
 > ## Documentation Index
@@ -341,7 +341,9 @@ If a server doesn't connect, check its status with `/mcp` inside a session or `c
 
     What happens next tells you where the problem is:
 
-    * The command starts and waits for input: the server itself works. Run `claude mcp get <name>` and confirm the command shown there matches what you just ran. If the command shown differs from what you typed, you likely omitted the `--` separator before the server command. Remove the server and re-add it with `--` in place. If you wrote `.mcp.json` by hand, check its syntax and location.
+    * The command starts and waits for input: the server itself works.
+
+      Run `claude mcp get <name>` and confirm the command shown there matches what you just ran. If the command shown differs from what you typed, you likely omitted the `--` separator before the server command. Remove the server and re-add it with `--` in place. If you wrote `.mcp.json` by hand, check its syntax and location. Before v2.1.285, `claude mcp get` printed no `Command` line for a stdio entry saved without a `type` field, such as a hand-written `.mcp.json` entry. On those versions, run `claude mcp list` instead, which prints the command line either way.
     * The command errors: the message names what's missing, such as Node.js or a browser.
   </Accordion>
 

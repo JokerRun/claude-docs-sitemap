@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: dea32eed228fe59e481ad387b36f7febdcc9bafd75217f139a1de2adad618741
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 36fd87226f9df3dd3d001c3217e2589da566fbb43d91c3eef974d7481f571327
 ---
 
 ---
@@ -129,6 +129,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

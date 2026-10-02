@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b36da59a502f47216688c6da08857ca52329c3e07a5e8a03d3985d135def8ae3
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 2a893831399510e532c867f1ea13afdce65e1e18a7eac064499262e29197b065
 ---
 
 ---
@@ -151,6 +151,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters (form-data)
 

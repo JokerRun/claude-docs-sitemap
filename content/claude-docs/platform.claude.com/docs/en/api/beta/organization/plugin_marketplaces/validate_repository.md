@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_repository
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a8310dd449bebe49215903824b6be53df34c4a87f0dff0152b3162ed636865eb
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: af06a45e863dee9314d9e179083dd52b9b7f93117105f49b6e0d64e2a7efba08
 ---
 
 ---
@@ -140,6 +140,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

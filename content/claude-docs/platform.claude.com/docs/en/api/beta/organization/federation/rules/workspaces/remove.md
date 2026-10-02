@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 89896bdcc2fd8d27148d285747e213b3e6f6697e1852921062b7ffa61e4aadb8
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7698e22c59558948736d2f8ce60eeff843942ec16f37a54ab93507e40771daca
 ---
 
 ---
@@ -138,6 +138,8 @@ Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

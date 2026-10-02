@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d73f4901e16aa4861440ec27ba1015c3c9900ff355601da63690cf157e115287
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 748e6f24559a0e632af8f14bef586a4bfd6487cd4ea632e2179fd8e0d91c856e
 ---
 
 ---
@@ -137,6 +137,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -528,6 +530,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -828,6 +832,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Returns
 
@@ -1132,6 +1138,8 @@ session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -1515,6 +1523,8 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `BetaFederationIssuer object`
@@ -1822,6 +1832,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -2238,6 +2250,8 @@ unless `include_archived=true`.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `data: array of BetaFederationRule`
@@ -2538,6 +2552,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Returns
 
@@ -2857,6 +2873,8 @@ Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -3249,6 +3267,8 @@ other scopes require a Console session.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `BetaFederationRule object`
@@ -3564,6 +3584,8 @@ other scopes require a Console session.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -3763,6 +3785,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -3951,6 +3975,8 @@ Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Returns
 

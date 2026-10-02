@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 26221728e1acfce699d973c7cf9667a4ae6c5a9ab26a3134a357768e86cf3553
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 4aa7e61031b5d52456433bd9804503717b8e0b5a3c35137f48ea5324c7913db4
 ---
 
 ---
@@ -34,6 +34,8 @@ Your existing Claude Fable 5 prompts should perform well on Claude Fable 5.1 wit
 
 <Note>
   Claude Fable 5.1 runs safety classifiers and can return `stop_reason: "refusal"`. See [Refusals, fallback, and billing](https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1#refusals-fallback-and-billing) and [Reduce safeguard false positives](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#reduce-safeguard-false-positives).
+
+  Prompts, skills, and tool descriptions that ask the model to write out its thinking or reasoning may be declined with the `reasoning_extraction` category. Ask for a short explanation or a summary of the actions taken instead, or read the reasoning from [summarized thinking](https://platform.claude.com/docs/en/build-with-claude/thinking#summarized-thinking) blocks (`display: "summarized"`). See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 </Note>
 
 ## Consider all effort levels

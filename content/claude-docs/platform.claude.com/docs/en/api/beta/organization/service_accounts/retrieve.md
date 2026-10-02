@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: cf0979b988787a765422de8a6a4cf490dadd5169ee21ee3c34ec6c14e62ae109
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3c89f692b1dd011de11ee153d44df82ec9089c6538f9b651e8631e98317b5a07
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

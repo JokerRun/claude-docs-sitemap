@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: cba952567c09c0965895ea703fd8100f0b1be31f676af4fbdf182cdb653a4b13
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: ff66c11f479e8cd222fdffa9c6da5e5f614b493e1b8874ae9d7b94779c7cf2a6
 ---
 
 ---
@@ -52,20 +52,20 @@ First, install Anthropic's [client SDK](https://platform.claude.com/docs/en/cli-
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.66.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.66.0")
+      implementation("com.anthropic:anthropic-java:2.67.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.67.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.66.0</version>
+          <version>2.67.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.66.0</version>
+          <version>2.67.0</version>
       </dependency>
       ```
 

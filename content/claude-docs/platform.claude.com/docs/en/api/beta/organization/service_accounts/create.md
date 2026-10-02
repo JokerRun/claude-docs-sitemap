@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: cd008d3bdd84d5bcb1a7916faca19d35b6e2e1d0a7344b4713a908a24e5f4877
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7db7fc0345a490dfea4a32df5a66b75f531b6eda7e41bedb7da257aefae87868
 ---
 
 ---
@@ -131,6 +131,8 @@ accounts.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

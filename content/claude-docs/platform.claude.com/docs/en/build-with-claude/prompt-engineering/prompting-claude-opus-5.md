@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 5ca7160dfcaebde62dc284ab23171b61d3360958abcbd2464eb02a8f582ca53d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: cb089946ebaa9500565b2326e8411a8a6f6c8d1a11c843155b91cc5743e00e83
 ---
 
 ---
@@ -108,3 +108,7 @@ When you use a tool, you may say a brief sentence first. If no tool can express 
 ```
 
 Instructions that call out thinking tags by name are less effective than the general form, so avoid naming them specifically.
+
+## Reasoning in the response
+
+Prompts, skills, and tool descriptions that ask Claude Opus 5 to write out its thinking or reasoning, verbatim or in a fixed format, may be declined with the `reasoning_extraction` [refusal category](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#refusal-response). Ask for a short explanation of the answer or a summary of the actions taken instead, and, if you need the reasoning, keep thinking on and read the [summarized thinking](https://platform.claude.com/docs/en/build-with-claude/thinking#summarized-thinking) blocks (`display: "summarized"`). See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).

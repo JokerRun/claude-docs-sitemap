@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: f81e942eebbab1793111cdb318de4f4c30cef80f72b03419ec3967429c6c90d7
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 625c7b9ef2f8354470a2379517c4cf82d71054454423fe06fcee06f69262f9fe
 ---
 
 ---
@@ -45,7 +45,7 @@ Get Messages Usage Report
 
   - `"1m"`
 
-- `context_window: optional array of "0-200k" or "200k-1M"`
+- `context_window: optional array of BetaAnalyticsContextWindow`
 
   Restrict usage returned to the specified context window(s).
 
@@ -81,7 +81,7 @@ Get Messages Usage Report
 
   - `"workspace_id"`
 
-- `inference_geos: optional array of "global" or "not_available" or "us"`
+- `inference_geos: optional array of BetaAnalyticsInferenceGeoFilter`
 
   Restrict usage returned to the specified inference geo(s). Use `not_available` for models that do not support specifying `inference_geo`.
 
@@ -247,6 +247,8 @@ Get Messages Usage Report
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ## Returns
 
 - `BetaMessagesUsageReport object`
@@ -293,7 +295,7 @@ Get Messages Usage Report
 
         The number of input tokens read from the cache.
 
-      - `context_window: "0-200k" or "200k-1M" or null`
+      - `context_window: BetaAnalyticsContextWindow or null`
 
         Context window used. `null` if not grouping by context window.
 
@@ -301,7 +303,7 @@ Get Messages Usage Report
 
         - `"200k-1M"`
 
-      - `inference_geo: "global" or "not_available" or "us" or null`
+      - `inference_geo: BetaAnalyticsInferenceGeoFilter or null`
 
         Inference geo used matching requests' `inference_geo` parameter if set, otherwise the workspace's `default_inference_geo`.
         For models that do not support specifying `inference_geo` the value is `"not_available"`. Always `null` if not grouping by inference geo.
@@ -320,7 +322,7 @@ Get Messages Usage Report
 
         The number of output tokens generated.
 
-      - `server_tool_use: object`
+      - `server_tool_use: BetaAnalyticsServerToolUse`
 
         Server-side tool usage metrics.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 9cac1daf82cfb743c2b3658e745bb084a5c032b44f29bbb484a724f31f65ec8f
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: cd9f308cd27b2d0a11943c46ca82e22e66ab9d987f3073f0d48828ef2033f41e
 ---
 
 ---
@@ -139,6 +139,8 @@ List work items in an environment.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

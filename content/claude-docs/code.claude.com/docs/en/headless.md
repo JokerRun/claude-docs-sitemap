@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d7fa0cbbe242527efcb44114ad4c1e7242d8326c0f460bf52fa1eb82609a5d2d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: a411aefc8f03483089bdf650335c0ce53a74b7f9c64d046623e1c1987df9290a
 ---
 
 > ## Documentation Index
@@ -64,6 +64,14 @@ In bare mode Claude has access to the Bash, file read, and file edit tools. Pass
 | MCP servers | `--mcp-config <file-or-json>` |
 | Custom agents | `--agents <json>` |
 | A plugin | `--plugin-dir <path>`, `--plugin-url <url>` |
+
+Bare mode also limits what happens while the session runs:
+
+* **MCP servers**: only servers supplied on the command line connect, for example with `--mcp-config`. In an interactive session, Claude Code also skips the automatic IDE connection unless you pass `--ide`.
+* **System reminders**: Claude gets your prompts and the tool results without the [system reminders](/docs/en/glossary#system-reminder) Claude Code would add alongside them. For example, Claude isn't told when a file it read earlier changes on disk, and it doesn't get the list of available skills, including skills from an `--add-dir` folder.
+* **Background tasks**: none run. A command that reaches its [timeout](/docs/en/tools-reference#timeout-and-output-limits) stops instead of [moving to the background](/docs/en/tools-reference#background-commands).
+
+Before v2.1.286, these limits held only partly: an interactive `--bare` session connected the MCP servers that a normal session would, every `--bare` session sent system reminders, and background tasks stayed available.
 
 <Note>
   `--bare` is the recommended mode for scripted and SDK calls, and will become the default for `-p` in a future release.

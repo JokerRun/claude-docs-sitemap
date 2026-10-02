@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-linux
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: f7bf024f7ce37928c102592ac8234ec52efda4b65f7981b42effb64f98e386e8
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 233ad12a2537e189d3205f16d022a9e90513adc96473e3599902eb1cc7cf8a8c
 ---
 
 > ## Documentation Index
@@ -151,6 +151,16 @@ If `apt` stops with `The following packages have unmet dependencies` or `Unsatis
 </h3>
 
 If `claude-desktop` exits with this message, you launched it as root. Log in as a regular user and launch it from there.
+
+### Your sign-in won't be saved on this device
+
+Claude Desktop saves your sign-in in your desktop's keyring, such as GNOME Keyring or KDE Wallet. If it can't reach an unlocked keyring, your sign-in isn't saved and you sign in again each time you launch the app. Pick the case that matches your system:
+
+* **No keyring installed, on a desktop other than KDE Plasma**: if you installed with `--no-install-recommends`, or on a minimal image that skips recommended packages, apt didn't install a keyring. Install GNOME Keyring with `sudo apt install gnome-keyring`.
+* **KDE Plasma with GNOME Keyring also installed**: KDE Wallet comes with the Plasma desktop. The two keyrings conflict, and Claude Desktop can show this notice even though KDE Wallet works. Remove the extra one with `sudo apt remove gnome-keyring`, then restart your computer.
+* **Keyring installed but locked**: unlock it.
+
+After the fix, restart the app and sign in. Then quit and launch it again to confirm the app opens with you still signed in.
 
 ### Cowork isn't available
 

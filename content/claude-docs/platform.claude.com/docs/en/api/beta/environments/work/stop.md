@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4af4efcb9d0a3bbbf2d8f49fd57cd52e99216025a6ea85952a81685758cccb1e
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: ea0cdc4456faf6853d9a12340edde205a1deafbf244a7956ba1187a0f42150f6
 ---
 
 ---
@@ -129,6 +129,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

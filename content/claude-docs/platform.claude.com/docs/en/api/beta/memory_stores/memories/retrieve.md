@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8b8dea57ff03f6bfe9b0361044273424bcead37c77298b2d2d1ab6688a14a6b2
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 5d7c352a2a90c454376bed3146cd6b307dd98b073615ca32d8c588efbad5fabe
 ---
 
 ---
@@ -145,6 +145,8 @@ Retrieve a memory
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

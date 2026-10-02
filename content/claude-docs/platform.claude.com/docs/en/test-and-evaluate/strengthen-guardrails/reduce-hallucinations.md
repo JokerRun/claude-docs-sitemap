@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-fetched_at: 2026-08-13T02:58:08.547465Z
-sha256: 6682502aad1f43b85911fa310212874afa496016c9feb669a988594b622d1aad
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 64257357e2479cec79d656c5cee8cf7e33574ee24484c0abc30e91d4adc24e27
 ---
 
 ---
@@ -61,7 +61,7 @@ Even the most advanced language models, like Claude, can sometimes generate text
 
 ## Advanced techniques
 
-* **Chain-of-thought verification**: Ask Claude to explain its reasoning step-by-step before giving a final answer. This can reveal faulty logic or assumptions.
+* **Chain-of-thought verification**: Use [thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) with `display: "summarized"`, and review the summarized reasoning in the `thinking` blocks when an answer looks wrong. This can reveal faulty logic or assumptions.
 
 * **Best-of-N verification**: Run Claude through the same prompt multiple times and compare the outputs. Inconsistencies across outputs could indicate hallucinations.
 

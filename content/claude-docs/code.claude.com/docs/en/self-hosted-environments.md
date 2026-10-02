@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: ec3fc5f32240b70024c1f31a5cf977f0d438f5a5db1375ee83cc0dcb365f5c9c
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 38d514a9e4ad64b5eb90522842a1a2b8530164fabc4fada3b3d961d9e5eec04c
 ---
 
 > ## Documentation Index
@@ -84,7 +84,7 @@ In API fields, token claims, and metric names, the environment appears as `pool`
 A runner serves one owner at a time. The first session a runner picks up locks the runner to that session's owner, and the runner then runs sessions only for that owner, up to a configured capacity. Who the owner is depends on how the session started:
 
 * **Sessions a user starts**: the owner is that user's account.
-* **Claude Tag channel sessions**: Claude runs them with no user account attached, so the owner is the [Claude Tag agent](https://claude.com/docs/claude-tag/concepts/glossary#agent-identity) that started the session. Every channel session that agent starts has the same owner, whoever sent the Slack message, so a runner locked to it serves sessions that different people started when you run it at a `--capacity` above one or with a positive `--drain-grace-sec`. A runner locked to a user never picks these up, and a runner locked to a Claude Tag agent never picks up a user's sessions.
+* **Claude Tag channel sessions**: Claude runs them with no user account attached, so the owner is the [Claude Tag agent](https://claude.com/docs/claude-tag/concepts/glossary#agent-identity) that started the session. Every channel session that agent starts has the same owner, whoever sent the Slack message, so a runner locked to it serves sessions that different people started when you run it at a `--capacity` above one or with a positive `--drain-grace-sec`.
 
 The minimum fleet size is therefore the number of owners you expect to be active at once, counting users and Claude Tag agents.
 

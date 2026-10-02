@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d56b548da94055c91878222c13cdaf4caaffd8143cb25a5ea8bfc7b565c0ac93
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: d471dc8a4b820422a397438c261da988ff703b50178a0b24085cf06c4dca50eb
 ---
 
 ---
@@ -125,6 +125,8 @@ Update an existing environment's configuration.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

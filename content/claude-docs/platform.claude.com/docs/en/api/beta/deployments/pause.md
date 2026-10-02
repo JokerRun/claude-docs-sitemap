@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d3d5a256a4100c3a150ec9127e776b3f509cb921992f3ea6fd847d093e400393
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 590ec9cef2518008130309713fb86df4f0d9951885b230b7479c4b34199b9e3e
 ---
 
 ---
@@ -127,6 +127,8 @@ Pause Deployment
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

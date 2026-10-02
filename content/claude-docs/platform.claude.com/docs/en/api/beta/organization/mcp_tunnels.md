@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6c04c5b1f27511894256c995365033f83686a2264a6a0fc428bbeed9efe36959
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: a749db0571acf8ffed7b81aa1305f08443984c3b5e1ece4807cc1a561e30277a
 ---
 
 ---
@@ -156,6 +156,8 @@ archived tunnels are excluded unless `include_archived` is set.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 
@@ -353,6 +355,8 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `BetaOrganizationTunnel object`
@@ -544,6 +548,8 @@ tunnel returns the existing record unchanged.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 
@@ -738,6 +744,8 @@ access logs.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `BetaOrganizationTunnelToken object`
@@ -902,6 +910,8 @@ restarted after rotation must use the new value. An optional
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Body parameters
 
@@ -1142,6 +1152,8 @@ holds at most two non-archived certificates.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Body parameters
 
 - `ca_certificate_pem: string`
@@ -1364,6 +1376,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `data: array of BetaOrganizationTunnelCertificate`
@@ -1564,6 +1578,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `BetaOrganizationTunnelCertificate object`
@@ -1758,6 +1774,8 @@ certificate is added.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Returns
 

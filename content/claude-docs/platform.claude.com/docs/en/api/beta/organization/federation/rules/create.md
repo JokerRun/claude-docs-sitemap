@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 24f96b363a75a7b5b3991dacedf3a6b10a18598e29bea7841cf0c7d91ec0658e
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 5045efb19e78402e4b50cb8e83b34222218ef26513bf4cfc5b1abb3eaa69de7a
 ---
 
 ---
@@ -137,6 +137,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

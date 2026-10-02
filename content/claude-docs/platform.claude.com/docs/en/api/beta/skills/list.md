@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c7eaac314a655cdc29a507b5a7d9e9d1b0a216b4c752472fde4c559953a39262
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3730a7e14f0eba535c147a96c26ec15a4dc01365d7a925ae3299da5fc4c78d8c
 ---
 
 ---
@@ -146,6 +146,8 @@ List Skills
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

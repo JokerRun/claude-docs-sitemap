@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 91c4917217d53b7d65cf978363e7f5bee591903fda15b6943988533846fcbfe7
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f2052eeb6266acfb8ed93995640bf013e78df4d071dddd08e1e1fdc9c5bb3e81
 ---
 
 ---
@@ -89,8 +89,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 * Endpoint sesi [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) telah keluar dari beta untuk sesi Cowork dan Claude Code. Lihat [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
 * Endpoint sesi lokal [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini juga mengembalikan transkrip sesi Claude Science (nilai `product_surface` `claude_science`) dan sesi Claude for Microsoft 365 di Excel, PowerPoint, Word, dan Outlook (nilai `product_surface` yang diawali dengan `office_agents`), dalam beta untuk organisasi Claude Enterprise, dengan Compliance Access Key Anda yang sudah ada dan scope `read:compliance_user_data`. Lihat [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions).
-
-- [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) kini tersedia di CLI `ant` dan SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby di bawah `client.beta.organization`. Cakupannya meliputi info organisasi, anggota, undangan, workspace dan anggota workspace, kunci API, "rate limits" (batas laju), akun layanan, penerbit dan aturan workload identity federation, serta kunci enkripsi yang dikelola pelanggan. Laporan penggunaan dan biaya serta endpoint manajemen pengguna dan analitik Claude Enterprise tetap hanya tersedia melalui curl. CLI dan SDK membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token OAuth `org:admin` dari `ANTHROPIC_AUTH_TOKEN`.
+* [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) kini tersedia di CLI `ant` dan SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby di bawah `client.beta.organization`. Cakupannya meliputi info organisasi, anggota, undangan, workspace dan anggota workspace, kunci API, "rate limits" (batas laju), akun layanan, penerbit dan aturan workload identity federation, serta kunci enkripsi yang dikelola pelanggan. Laporan penggunaan dan biaya serta endpoint manajemen pengguna dan analitik Claude Enterprise tetap hanya tersedia melalui curl. CLI dan SDK membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token OAuth `org:admin` dari `ANTHROPIC_AUTH_TOKEN`.
 
 ### 20 Agustus 2026
 

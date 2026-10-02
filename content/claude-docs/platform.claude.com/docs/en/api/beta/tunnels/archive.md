@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0ec34d8f3a8860c969e070cd9b04fa59422226297abb162b33f0047a5b92327a
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7b77a0d51f8c97ec5963bbb00e2764d2e1703306fc245ee1d2dbb14f6eee2819
 ---
 
 ---
@@ -129,6 +129,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

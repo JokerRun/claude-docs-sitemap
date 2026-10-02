@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c7b8ce99773aacdafb2186685db9894e07d64ae935fe604f37da85858349045a
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: e9b9e502a83877b6d988ab3cd72a819d10a600909d030f3819fde57692fffe9a
 ---
 
 ---
@@ -141,6 +141,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

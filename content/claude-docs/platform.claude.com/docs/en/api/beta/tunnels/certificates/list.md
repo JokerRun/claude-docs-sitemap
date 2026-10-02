@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: ddb804281d1feb3bc5a3ddde6974787f42060b25fca24a4592605672b45800ee
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1b64423b1f12c4302c309f4ac6f655fc1919dedeaacf079aec2dff82672b933a
 ---
 
 ---
@@ -145,6 +145,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

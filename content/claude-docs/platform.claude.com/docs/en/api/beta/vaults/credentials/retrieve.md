@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: bc22f59cebf232a79ac042804481165fb1cd673db3bb610c7d8a8fb11211df57
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 42b1c04bb730800ac507695ee2d886ed1608c2d7eff30eb07afd9f9297f77f55
 ---
 
 ---
@@ -131,6 +131,8 @@ Get Credential
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

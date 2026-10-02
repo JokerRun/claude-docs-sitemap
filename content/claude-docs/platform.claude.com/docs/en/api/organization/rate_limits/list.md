@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rate_limits/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 65689223b0aa046d10ddaa2f609aa677d1b9c2bf70d1c0a2d7aac88c59493e47
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 78e8d68511f9b781e9f2a39fb11274d272b6138793240c327dd7942ce68d71bf
 ---
 
 ---
@@ -17,8 +17,8 @@ url: https://platform.claude.com/docs/en/api/organization/rate_limits/list
 List Messages API rate limits for your organization.
 
 Each entry corresponds to one rate-limit group (either a model family
-or an API-surface category such as the Files API or Message Batches)
-and contains the set of limiter values that apply to it.
+or an API-surface category such as the Message Batches API or the web
+search tool) and contains the set of limiter values that apply to it.
 
 When `limit` is omitted, every matching entry is returned in a single
 page; when `limit` truncates the result, follow `next_page` to fetch

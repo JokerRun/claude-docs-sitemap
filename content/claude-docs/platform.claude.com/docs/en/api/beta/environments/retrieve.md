@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 84a97cb2c6ffa272508d37dcde37686ed23fd6ee25188ec9c8b9ef8649c41103
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 77d91a481aab4d3d870fed256590e607de671e2e822420d15bacb152e27f8997
 ---
 
 ---
@@ -125,6 +125,8 @@ Retrieve a specific environment by ID.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

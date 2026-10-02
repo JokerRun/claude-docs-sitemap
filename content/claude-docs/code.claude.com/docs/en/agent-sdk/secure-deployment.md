@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/secure-deployment
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: a238ef71d237f5f67668760380b331efaee7c037f03363466e50b8a5e249380d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 26003492e8324564878597e35710575c6f081d6c94d7ecb6e71e2e613234034d
 ---
 
 > ## Documentation Index
@@ -83,7 +83,7 @@ Different isolation technologies offer different tradeoffs between security stre
 
 ### Sandbox runtime
 
-For lightweight isolation without containers, [sandbox-runtime](https://github.com/anthropic-experimental/sandbox-runtime) enforces filesystem and network restrictions at the OS level.
+For lightweight isolation without containers, [sandbox-runtime](https://github.com/anthropics/sandbox-runtime) enforces filesystem and network restrictions at the OS level.
 
 The main advantage is simplicity: no Docker configuration, container images, or networking setup required. The proxy and filesystem restrictions are built in.
 
@@ -153,7 +153,7 @@ Here's what each option does:
 
 With `--network none`, the container has no network interfaces at all. The only way for the agent to reach the outside world is through the mounted Unix socket, which connects to a proxy running on the host. This proxy can enforce domain allowlists, inject credentials, and log all traffic.
 
-This is the same architecture used by [sandbox-runtime](https://github.com/anthropic-experimental/sandbox-runtime). Even if the agent is compromised via prompt injection, it cannot exfiltrate data to arbitrary servers. It can only communicate through the proxy, which controls what domains are reachable. For more details, see the [Claude Code sandboxing blog post](https://www.anthropic.com/engineering/claude-code-sandboxing).
+This is the same architecture used by [sandbox-runtime](https://github.com/anthropics/sandbox-runtime). Even if the agent is compromised via prompt injection, it cannot exfiltrate data to arbitrary servers. It can only communicate through the proxy, which controls what domains are reachable. For more details, see the [Claude Code sandboxing blog post](https://www.anthropic.com/engineering/claude-code-sandboxing).
 
 **Additional hardening options:**
 
@@ -346,7 +346,7 @@ If you want to review changes before persisting them, an overlay filesystem lets
 * [Claude Code security documentation](/docs/en/security)
 * [Hosting the Agent SDK](/docs/en/agent-sdk/hosting)
 * [Handling permissions](/docs/en/agent-sdk/permissions)
-* [Sandbox runtime](https://github.com/anthropic-experimental/sandbox-runtime)
+* [Sandbox runtime](https://github.com/anthropics/sandbox-runtime)
 * [The Lethal Trifecta for AI Agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
 * [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 * [Docker Security Best Practices](https://docs.docker.com/engine/security/)

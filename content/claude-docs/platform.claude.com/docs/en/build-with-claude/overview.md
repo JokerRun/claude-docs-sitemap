@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: fdcb76800f58cc44697c0471892a52cf0186f3b03516d0c1d4eddb3ecfde63fa
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f17e0a51d8f45a679fbe7f9bd9e6960cf0a3b0c501880a4a693c22ffc49f7958
 ---
 
 ---
@@ -58,7 +58,7 @@ The ZDR column indicates whether a feature is available under a Zero Data Retent
 | [Search results](https://platform.claude.com/docs/en/build-with-claude/search-results)              | Enable natural citations for RAG applications by providing search results with proper source attribution. Achieve web search-quality citations for custom knowledge bases and tools.                                                                                                                                                         | ZDR eligible                                                                                                          | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
 | [Server-side fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback) | Retry a refused request inside a single API call. Use the `"default"` mode to apply Anthropic's recommended fallback models, or name up to three models of your own; when the requested model declines, the API runs the next model in the chain on the same request. The `fallbacks` parameter is not available in the Message Batches API. | Not ZDR eligible\*                                                                                                    | <PlatformAvailability claudeApiBeta />                                                            |
 | [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)      | Guarantee schema conformance with two approaches: JSON outputs for structured data responses, and strict tool use for validated tool inputs.                                                                                                                                                                                                 | [ZDR eligible (qualified)](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#data-retention)\* | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
-| [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)                          | Enhanced reasoning capabilities for complex tasks, providing transparency into Claude's step-by-step thought process before delivering its final answer.                                                                                                                                                                                     | ZDR eligible                                                                                                          | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
+| [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)                          | Enhanced reasoning capabilities for complex tasks, with an optional summary of Claude's reasoning before its final answer.                                                                                                                                                                                                                   | ZDR eligible                                                                                                          | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi />                     |
 
 ## Tools
 

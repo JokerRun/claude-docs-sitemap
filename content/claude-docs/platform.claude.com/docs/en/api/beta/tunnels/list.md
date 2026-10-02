@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 06588e76d0fbb12b2bf9025b0b84f82b7abe3e2524b8ca8e0a49e20b5de68c65
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 0d3e50cce5c2302ea17eab0de8db4d37c21a4f64f4880c9c6f834d8f1b5cee69
 ---
 
 ---
@@ -139,6 +139,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

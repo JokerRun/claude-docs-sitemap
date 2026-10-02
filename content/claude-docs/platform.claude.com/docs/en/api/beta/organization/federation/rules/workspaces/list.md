@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 51c57aa2619cfe7a618fb9853bc75c2bfa27f988cd70615cd6c9a41e4374c6b1
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6b1772b2250109d693f1419f4d01295eba5b4d0724196091d5bf146ed7fe8633
 ---
 
 ---
@@ -147,6 +147,8 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

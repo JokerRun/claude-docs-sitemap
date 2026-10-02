@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 360db177e30e449622f94578296593383c05338ffff95bf136e93c14493d2dc2
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7ee645dbc97823b2e839daaaeef0ac2559b25732fb045bc0c52e3858a14f38be
 ---
 
 ---
@@ -154,6 +154,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

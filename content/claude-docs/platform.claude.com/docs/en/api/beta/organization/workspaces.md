@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8c351c8aa19284943a0ac6a2ec3afcdd3b8efdc4da58aa7b175b897ece99e71a
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6506c67bad005b6f1f74ac61b832f4608ecf7cfddda794e67e1820e0bef50ff3
 ---
 
 ---
@@ -300,6 +300,8 @@ Create Workspace
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Body parameters
 
@@ -2035,6 +2037,8 @@ omitted from the results.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -2231,6 +2235,8 @@ accounts cannot be added and are rejected.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -2445,6 +2451,8 @@ account returns 404.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 #### Returns
 
 - `BetaServiceAccountWorkspaceMember object`
@@ -2634,6 +2642,8 @@ rejected.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Body parameters
 
@@ -2841,6 +2851,8 @@ membership. Archived workspaces return 400.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 #### Returns
 

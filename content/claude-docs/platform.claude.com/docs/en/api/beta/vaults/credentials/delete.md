@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 69eaac5d0884a4f69197aac35cf7b8acacadc8993e7a29032de1fcbfed19ffbf
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3c3ba4b26c25ffb73cfa07784e9089d31f7a0d9318fb0eec0f9d72c14586f717
 ---
 
 ---
@@ -131,6 +131,8 @@ Delete Credential
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

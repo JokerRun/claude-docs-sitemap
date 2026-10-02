@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 56848ca89c65a1cc45c4153d7b13c4349b397a84fd291780ca7b7cbb98ec836f
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 8210c328c5c20502eaf94e21f753a5a5a1b57e74f8ec184e10c72aafefba5dc0
 ---
 
 ---
@@ -135,6 +135,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Body parameters
 
@@ -526,6 +528,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -826,6 +830,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 
@@ -1130,6 +1136,8 @@ session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Body parameters
 
@@ -1512,6 +1520,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 

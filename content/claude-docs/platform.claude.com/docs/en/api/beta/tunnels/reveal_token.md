@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 384077f2f096193aeddcc9bbe4dbf67a721fc2ee84a78def329ff0d59a256813
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: bd253fec9afe254b5b74f911a376b054403eca03d095dc69649f8f70cbceddc3
 ---
 
 ---
@@ -129,6 +129,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

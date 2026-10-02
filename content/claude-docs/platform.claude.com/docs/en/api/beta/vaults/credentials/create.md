@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 33e4d6c0917800e8633522d372bd395295cc13cb5794f85e47a1a188e6c836a2
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1a83e6923d64269a0fdec1cbf45e9d503d9c72e92f820098e09e93c002168884
 ---
 
 ---
@@ -127,6 +127,8 @@ Create Credential
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

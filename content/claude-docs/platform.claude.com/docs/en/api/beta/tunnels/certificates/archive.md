@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 96553f7ce06a28a6e99bb487ceca09b8538217a85884443dc8a61df9682a208f
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 7a3c978d223c669af9240bbec8b9be675b486017543861b184aba12e71e919fc
 ---
 
 ---
@@ -133,6 +133,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

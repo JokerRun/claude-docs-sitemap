@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 5c11a670f367f9b1abf98eaa6f290859c0916fb8878f118b07ac0f3286597400
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 3caec12f68daf3efdb3cd89f7f2db8dfdb4ecbe967785b118acdeeb8c27fb316
 ---
 
 ---
@@ -148,6 +148,8 @@ omitted from the results.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

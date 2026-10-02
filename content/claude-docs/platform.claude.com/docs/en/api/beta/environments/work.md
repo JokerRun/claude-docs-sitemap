@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 06e522b77f15442af51ba30de308e6016be9d9b3f6baa7feefb30d95c1ddda57
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 92b317741c1e9c4beda18beba92dd2b30f43c2092610c7b02284cfbd52ae17c7
 ---
 
 ---
@@ -131,6 +131,8 @@ Retrieve detailed information about a specific work item.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -386,6 +388,8 @@ Long poll for work items in the queue.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 - `"Anthropic-Worker-ID": optional string`
 
   Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -625,6 +629,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ### Returns
 
@@ -873,6 +879,8 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `BetaSelfHostedWorkHeartbeatResponse object`
@@ -1052,6 +1060,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1315,6 +1325,8 @@ List work items in an environment.
 
   - `"ce-plugins-2026-09-01"`
 
+  - `"spend-limit-reads-2026-09-26"`
+
 ### Returns
 
 - `BetaSelfHostedWorkListResponse object`
@@ -1559,6 +1571,8 @@ Update work item metadata with merge semantics.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1809,6 +1823,8 @@ Get statistics about the work queue for an environment.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

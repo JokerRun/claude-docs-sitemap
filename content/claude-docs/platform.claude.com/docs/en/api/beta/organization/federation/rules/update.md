@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 82fbb58c8df46df6edb1479e22851828bef3d5fd0417f4e265c4560613b3e854
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 8b44b094a25f977fb942f66a4afe5a6eebe38afe9283bcda2c87d31956cfdaf8
 ---
 
 ---
@@ -145,6 +145,8 @@ Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

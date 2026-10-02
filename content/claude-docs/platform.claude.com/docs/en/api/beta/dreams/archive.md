@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 7062dc65982a6327ded548582e9446ca0694f0ef2acd29d10ddb00152859c3a5
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 9c9612c55dff654fec8f7d1b84ca42ad304ba3599bceb580ec5657d7c391a121
 ---
 
 ---
@@ -131,6 +131,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

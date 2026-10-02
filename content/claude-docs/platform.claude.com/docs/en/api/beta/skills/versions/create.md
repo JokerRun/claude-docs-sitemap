@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 45ab8a0563bc71ddbde3520851ddeb4d9c631bf93139ece76e85e0f88f4db0fc
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: c0f2c523927e39ab611531cd08af02793976f869ba98eb365b45f4bf9626ed53
 ---
 
 ---
@@ -129,6 +129,8 @@ Create Skill Version
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

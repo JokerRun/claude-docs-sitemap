@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 7d46b7118139534cacfd4e02b8f0c470d3a3c1239db9fe031c0299ed45c4caf3
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 618844e31d02e6c15e725325a7a2cb116f6abc19cbe4efe200d169eee3d79959
 ---
 
 ---
@@ -56,7 +56,7 @@ Members can have different roles in each workspace, allowing fine-grained access
 * **Organization admins** automatically receive Workspace Admin access to all workspaces
 * **Organization billing members** automatically receive Workspace Billing access to all workspaces
 * **Organization users and developers** must be explicitly added to each workspace
-* **Service accounts** are added to workspaces from the service account's page in [Settings → Service accounts](https://platform.claude.com/settings/service-accounts) or from the workspace's **Service accounts** tab
+* **Service accounts** are added to workspaces in [Settings > Service accounts](https://platform.claude.com/settings/service-accounts): select **Add to workspace** in the account's menu or on its own page. To see the accounts in one workspace, filter the list by workspace.
 
 <Note>
   The Workspace Billing role cannot be manually assigned. It's inherited from having the organization billing role.

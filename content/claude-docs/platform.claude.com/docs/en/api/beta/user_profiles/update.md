@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b27c29a54944bf882f7517169dcf4d63615f343efc8be7937af02314a7cba874
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: b3c1fa85f7134391d0bcad5cfd8dcfe32bd30f696257f38cdcf0809fb2b75868
 ---
 
 ---
@@ -127,6 +127,8 @@ Update User Profile
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

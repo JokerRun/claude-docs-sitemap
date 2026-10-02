@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6b189762ed144d908785c21b0db86fa3b405a1a8f165ea71fe999fa565984937
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 00bc78f48f52ac6c2b44a7429fc78b678ae7ae5082014c4f5824590454723966
 ---
 
 ---
@@ -1055,8 +1055,8 @@ Every persisted event includes a `processed_at` timestamp set when the event fin
       var events = client.beta().sessions().events().list(
           session.id(),
           EventListParams.builder()
-              .addType("agent.tool_use")
-              .addType("agent.tool_result")
+              .addType(BetaManagedAgentsSessionEventType.AGENT_TOOL_USE)
+              .addType(BetaManagedAgentsSessionEventType.AGENT_TOOL_RESULT)
               .build());
       for (var event : events.data()) {
           event.agentToolUse().ifPresent(toolUse ->
@@ -2860,5 +2860,5 @@ With `ant beta:sessions connect`, you can open the same viewer from the `ant` CL
 * **Check session events:** Session errors are conveyed through the `session.error` event
 * **Review tool results:** Tool execution failures often explain unexpected agent behavior
 * **Track token usage:** Monitor token consumption to optimize prompts and reduce costs
-* **Use system prompts:** Add logging instructions to the system prompt to make the agent explain its reasoning
+* **Use system prompts:** Add logging instructions to the system prompt so the agent summarizes what it did and what it found
 * **Troubleshoot previews:** If a stream that opts in to event deltas doesn't behave as you expect, see [Troubleshoot previews](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#troubleshoot-previews)

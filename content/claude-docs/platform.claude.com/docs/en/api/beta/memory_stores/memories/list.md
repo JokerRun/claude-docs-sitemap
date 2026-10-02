@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 31c8f33b33d8dc7ab4427dac465ef84d72834ce2455932141373534c53ff08f9
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: dd8bcb561c668811c89de64510a0768633c058a4b3273393b85674a2c45397e2
 ---
 
 ---
@@ -161,6 +161,8 @@ List memories
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

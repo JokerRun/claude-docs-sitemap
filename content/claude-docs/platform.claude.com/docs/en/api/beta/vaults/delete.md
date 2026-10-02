@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 709bb618a440b603e25c22e74621fe09274a95115207fe899eca9ee4d0ade959
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: abd7340d685cb47b12b8c85fcfa2b5a4ccb664b7d1bd21476110ce680ae6a221
 ---
 
 ---
@@ -127,6 +127,8 @@ Delete Vault
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

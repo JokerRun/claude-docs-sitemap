@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: f64a3c2cf1a3ea211a57cadc8f06d1c714c4e15ccd03f55716a1d436f456fad6
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: f416f9381ece04a0d531c594c76eb237a5859fec02dd08e1457b8c38ffaca1a4
 ---
 
 ---
@@ -138,6 +138,8 @@ other scopes require a Console session.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

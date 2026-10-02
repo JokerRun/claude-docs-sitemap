@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4447126bf6b3339c1c1dd34ce3abcf51fab2a7647adea7463056f90a45b99b04
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: b59f2985d1206afc702625f8dd777df35401cce78c6e3b3747cb9533f8c75f05
 ---
 
 ---
@@ -135,6 +135,8 @@ Download a skill version's content as a zip archive.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

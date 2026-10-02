@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 372f46b3742ca67361400ed910b302c6a57a2b04dbcf70cfdb7d1725534b357d
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: a9f48f5463636ee5d3d2ece56c4702dcbbcb3d1b22fcc7614e30e62d126a58e1
 ---
 
 ---
@@ -135,6 +135,8 @@ Retrieve a single certificate registered on a tunnel by ID.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

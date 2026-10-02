@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 621a4b2f9e6f16c9ffaea6e65d56db64b42fe66368628fe29f671a53f0aa40de
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 1d2c57474c7b7abccb05ac82e6c63212ae0ebcb52490f6e9fb659bcfda48ae7e
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

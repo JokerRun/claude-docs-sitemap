@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 68100129729603069efcc8e312a0d1d0e8e59ed8ca58244a459d97690d972b8a
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 844ec83f8bd9aec4d78a17e59db069fae0cbdb2105b625ed71b21f78ea492281
 ---
 
 > ## Documentation Index
@@ -72,7 +72,7 @@ The [fast mode](/docs/en/fast-mode) availability check never appears in gateway 
 
 Stream inference responses. Claude Code reads the stream as it arrives, so if your gateway buffers complete responses before relaying them, Claude Code stalls.
 
-Deliver each response's full event sequence without dropping, duplicating, or reordering events. When an event references a content block whose `content_block_start` never arrived, or a block whose `content_block_stop` already arrived, Claude Code stops reading the stream at that event instead of applying it, so a duplicated `content_block_stop` can't run the same tool call twice. [The response above may be incomplete](/docs/en/errors#the-response-above-may-be-incomplete) describes what the user sees, under the `Part of the response never arrived` and `The response stream was malformed` variants.
+Deliver each response's full event sequence without dropping, duplicating, or reordering events. When an Amazon Bedrock guardrail blocks a reply, forward the events it sends unchanged, even when they reference a content block whose `content_block_stop` already arrived. [AWS Guardrails](/docs/en/amazon-bedrock#aws-guardrails) describes how that reply ends. When any other event references a content block whose `content_block_start` never arrived, or a block whose `content_block_stop` already arrived, Claude Code stops reading the stream at that event instead of applying it, so a duplicated `content_block_stop` can't run the same tool call twice. [The response above may be incomplete](/docs/en/errors#the-response-above-may-be-incomplete) describes what the user sees, under the `Part of the response never arrived` and `The response stream was malformed` variants.
 
 Relay each response through its final `message_delta` and `message_stop` events before ending the body. A body that ends after a `message_delta` carrying a `stop_reason`, with no content block still open and no content block event after that frame, counts as complete even when `message_stop` is missing. A body that your gateway ends cleanly any earlier, once a content block has started, is treated the same as a dropped connection: [Automatic retries](/docs/en/errors#automatic-retries) says when Claude Code re-issues the request, and [The response above may be incomplete](/docs/en/errors#the-response-above-may-be-incomplete) covers what it keeps once visible content has arrived. Claude Code keeps the `stop_reason` a `message_delta` delivers, so a later usage-only `message_delta` whose `delta` has `stop_reason: null` or no `stop_reason` key doesn't clear it.
 
@@ -279,7 +279,7 @@ To give a slow gateway longer, set [`CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT
 
 Claude Code sends the discovery request with both credential headers below and omits a header whose value doesn't resolve. Sending both headers requires Claude Code v2.1.248 or later. Earlier versions send only `Authorization` when `ANTHROPIC_AUTH_TOKEN` is set and only `x-api-key` otherwise.
 
-* `Authorization`: `ANTHROPIC_AUTH_TOKEN` as a bearer token, otherwise the [`apiKeyHelper`](/docs/en/llm-gateway-connect#rotate-credentials-with-apikeyhelper) value as a bearer token. In that case Claude Code waits for the helper to return before sending the request.
+* `Authorization`: `ANTHROPIC_AUTH_TOKEN` as a bearer token, otherwise the [`apiKeyHelper`](/docs/en/llm-gateway-connect#rotate-credentials-with-apikeyhelper) value as a bearer token.
 * `x-api-key`: the API key Claude Code resolved, such as `ANTHROPIC_API_KEY`. When a helper value is the only credential, this header carries it too, so the value arrives in both headers.
 
 Claude Code also sends any headers from `ANTHROPIC_CUSTOM_HEADERS`. When a custom header has a non-empty value, Claude Code sends it in place of a built-in header of the same name, matching names case-insensitively.

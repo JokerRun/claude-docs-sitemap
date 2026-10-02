@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c97b303b2afbeb50258639b3c5dd7b1e97cb25c6a7c78411685f98b3d16da056
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: c459546b2dcc08ba6cff753b23d2367bdd0be1a04c6a00a79134d5515b02957e
 ---
 
 ---
@@ -140,6 +140,8 @@ account returns 404.
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Returns
 

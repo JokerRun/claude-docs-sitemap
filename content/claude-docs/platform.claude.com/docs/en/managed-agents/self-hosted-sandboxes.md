@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: bc5b6675b8f84bcfab69e97259e4acfc9b0f4c81968678c6718bbff343949621
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 998b3e62d075b4028680a490197c71ebeb1050d78b8c8df64dde6a217cda338c
 ---
 
 ---
@@ -228,7 +228,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
             For Linux environments, download the release binary directly.
 
             ```bash
-            VERSION=1.36.0
+            VERSION=1.37.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -266,7 +266,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
 
         ```dockerfile
         FROM your-base-image
-        ARG ANT_VERSION=1.36.0
+        ARG ANT_VERSION=1.37.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a83c4b7416f5786c738ee71bbef05f0f12077db95c65867f6555ffca9eaa09d2
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 168873bb133962202823064292c09213eb7dc7cc5b641c10492c7ca53cf25443
 ---
 
 > ## Documentation Index
@@ -311,7 +311,7 @@ To run commands in the background, you can either:
 * Prompt Claude Code to run a command in the background
 * Press `Ctrl+B` to move a regular Bash tool invocation to the background. Tmux users must press `Ctrl+B` twice due to tmux's prefix key.
 
-When a command reaches its timeout before it finishes, Claude Code automatically [moves it to the background](/docs/en/tools-reference#foreground-commands-that-move-to-the-background) instead of stopping it, unless the command starts with `sleep`. To change how long commands run before that happens, set the [Bash timeout environment variables](/docs/en/tools-reference#timeout-and-output-limits).
+When a command reaches its timeout before it finishes, Claude Code automatically [moves it to the background](/docs/en/tools-reference#foreground-commands-that-move-to-the-background) instead of stopping it, unless the command starts with `sleep`. If you've turned background tasks off with [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](/docs/en/env-vars#variables) or by starting in [bare mode](/docs/en/headless#start-faster-with-bare-mode), the command stops at its timeout. To change the timeout, set the [Bash timeout environment variables](/docs/en/tools-reference#timeout-and-output-limits).
 
 **Key features:**
 
@@ -326,7 +326,7 @@ When a command reaches its timeout before it finishes, Claude Code automatically
 * Background Bash and PowerShell commands have a time limit, counted from the moment the command enters the background: 30 minutes, or the `timeout` Claude asks for when it starts a command in the background, up to a maximum of 2 hours. A command that moves to the background while it runs, for example with `Ctrl+B`, gets 30 minutes from the move. When a command reaches its limit, Claude Code stops it and tells Claude why, and Claude can start it again with a longer `timeout` if the work still needs it. To lengthen the limits, see [Raise the time limit for background commands](/docs/en/tools-reference#raise-the-time-limit-for-background-commands) in the tools reference
 * A background command that a foreground [subagent](/docs/en/sub-agents#run-subagents-in-foreground-or-background) started ends when that subagent's run ends, whether it finished, failed, or was interrupted; see [When a background command stops](/docs/en/tools-reference#when-a-background-command-stops) in the tools reference
 
-To disable all background task functionality, set the `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable to `1`. See [Environment variables](/docs/en/env-vars) for details.
+To disable all background task functionality, set the [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](/docs/en/env-vars#variables) environment variable to `1`. Starting in [bare mode](/docs/en/headless#start-faster-with-bare-mode) turns it off as well.
 
 **Common backgrounded commands:**
 
@@ -357,7 +357,7 @@ Shell mode:
 * Exit with `Escape`, `Backspace`, or `Ctrl+U` on an empty prompt
 * Pasting text that starts with `!` into an empty prompt enters shell mode automatically, matching typed `!` behavior
 
-Unless your session is one of those listed under [strict sandbox mode](/docs/en/sandboxing#the-unsandboxed-retry-escape-hatch), commands you type in shell mode run outside the [sandbox](/docs/en/sandboxing) even when you've enabled sandboxing, because the sandbox applies to the commands Claude runs.
+Unless your session is one of those listed under [strict sandbox mode](/docs/en/sandboxing#turn-off-the-retry-with-strict-sandbox-mode), commands you type in shell mode run outside the [sandbox](/docs/en/sandboxing) even when you've enabled sandboxing, because the sandbox applies to the commands Claude runs.
 
 Claude responds to the command output automatically once it lands in the transcript, so you can run `! npm test` and get an explanation of the failures without a second prompt. The response costs the same as sending a normal prompt. To restore the earlier behavior where the output is added to context without a response, set [`respondToBashCommands`](/docs/en/settings-reference#respondtobashcommands) to `false` in `settings.json`. Before v2.1.186, shell mode always added output to context without a response.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 66998e66ed8281f226dc45a58891d87e4464b7492e454f95d56cdcdcc87f7c5c
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: fe3fb25b031394900f9b6a8cb46cd281b177862e185a16ea21307f08ab5dd7b4
 ---
 
 ---
@@ -134,6 +134,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 ## Body parameters
 

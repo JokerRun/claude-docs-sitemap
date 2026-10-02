@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c2213f5949a3361d63b50ab2fa201dab4f7dadcab8d827daf6ef855e579cdaa1
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6bdd953e2a398df6a5a5185efa08ce8f47b28eea27dce2362e9695e17354d002
 ---
 
 ---
@@ -143,6 +143,8 @@ List Files
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

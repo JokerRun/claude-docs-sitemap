@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: e989a6ac7b7f9c77534d8284b65ae50fd0488e34c1cf00cc1a4dee2ec24510ba
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: bb2b2d78dd27a66b2fe41dea848ca9e943530b7eb40bb73337e9c2af6d478a47
 ---
 
 ---
@@ -129,6 +129,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 30f7a1abb35bb66596bac8c7933c30d481d56632d87c414404d4489c7c4805dd
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 783fc12f8b228dea53d4118937dc4b314249548a2f900cdf6a8e69da5c4bce07
 ---
 
 ---
@@ -35,7 +35,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     "name": "python-dev",
     "config": {
       "type": "cloud",
-      "networking": {"type": "unrestricted"}
+      "networking": {"type": "limited", "allow_package_managers": true}
     }
   }
   EOF
@@ -53,7 +53,8 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
       config:
         type: cloud
         networking:
-          type: unrestricted
+          type: limited
+          allow_package_managers: true
       ```
     </File>
 
@@ -65,7 +66,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
       name="python-dev",
       config={
           "type": "cloud",
-          "networking": {"type": "unrestricted"},
+          "networking": {"type": "limited", "allow_package_managers": True},
       },
   )
 
@@ -77,7 +78,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     name: "python-dev",
     config: {
       type: "cloud",
-      networking: { type: "unrestricted" },
+      networking: { type: "limited", allow_package_managers: true },
     },
   });
 
@@ -90,7 +91,10 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
       Name = "python-dev",
       Config = new BetaCloudConfigParams
       {
-          Networking = new BetaUnrestrictedNetwork(),
+          Networking = new BetaLimitedNetworkParams
+          {
+              AllowPackageManagers = true,
+          },
       },
   });
 
@@ -103,7 +107,9 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
   		OfCloud: &anthropic.BetaCloudConfigParams{
   			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-  				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+  				OfLimited: &anthropic.BetaLimitedNetworkParams{
+  					AllowPackageManagers: anthropic.Bool(true),
+  				},
   			},
   		},
   	},
@@ -119,7 +125,9 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
       .name("python-dev")
       .config(BetaCloudConfigParams.builder()
-          .networking(BetaUnrestrictedNetwork.builder().build())
+          .networking(BetaLimitedNetworkParams.builder()
+              .allowPackageManagers(true)
+              .build())
           .build())
       .build());
   IO.println("Environment ID: " + environment.id());
@@ -128,7 +136,10 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   ```php PHP
   $environment = $client->beta->environments->create(
       name: 'python-dev',
-      config: ['type' => 'cloud', 'networking' => ['type' => 'unrestricted']],
+      config: [
+          'type' => 'cloud',
+          'networking' => ['type' => 'limited', 'allow_package_managers' => true],
+      ],
   );
   echo "Environment ID: {$environment->id}\n";
   ```
@@ -138,7 +149,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     name: "python-dev",
     config: {
       type: "cloud",
-      networking: {type: "unrestricted"}
+      networking: {type: "limited", allow_package_managers: true}
     }
   )
 
@@ -612,25 +623,25 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
 
 <CodeGroup>
   ```bash cURL
-  # Daftar environment
+  # List environments
   curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Ambil environment tertentu
+  # Retrieve a specific environment
   curl -fsS "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  # Archive an environment (read-only, existing sessions continue)
   curl -fsS -X POST "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  # Delete an environment (only if no sessions reference it)
   curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -652,97 +663,97 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
   ```
 
   ```python Python
-  # Daftar environment
+  # List environments
   environments = client.beta.environments.list()
 
-  # Ambil environment tertentu
+  # Retrieve a specific environment
   env = client.beta.environments.retrieve(environment.id)
 
-  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  # Archive an environment (read-only, existing sessions continue)
   client.beta.environments.archive(environment.id)
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  # Delete an environment (only if no sessions reference it)
   client.beta.environments.delete(environment.id)
   ```
 
   ```typescript TypeScript
-  // Daftar environment
+  // List environments
   const environments = await client.beta.environments.list();
 
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   const env = await client.beta.environments.retrieve(environment.id);
 
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   await client.beta.environments.archive(environment.id);
 
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   await client.beta.environments.delete(environment.id);
   ```
 
   ```csharp C#
-  // Daftar environment
+  // List environments
   var environments = await client.Beta.Environments.List();
 
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   var env = await client.Beta.Environments.Retrieve(environment.ID);
 
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   await client.Beta.Environments.Archive(environment.ID);
 
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   await client.Beta.Environments.Delete(environment.ID);
   ```
 
   ```go Go
-  // Daftar environment
+  // List environments
   environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
   // ...
 
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
   // ...
 
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
   // ...
 
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
   ```
 
   ```java Java
-  // Daftar environment
+  // List environments
   var environments = client.beta().environments().list();
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   var env = client.beta().environments().retrieve(environment.id());
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   client.beta().environments().archive(environment.id());
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   client.beta().environments().delete(environment.id());
   ```
 
   ```php PHP
-  // Daftar environment
+  // List environments
   $environments = $client->beta->environments->list();
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   $env = $client->beta->environments->retrieve($environment->id);
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   $client->beta->environments->archive($environment->id);
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   $client->beta->environments->delete($environment->id);
   ```
 
   ```ruby Ruby
-  # Daftar environment
+  # List environments
   environments = client.beta.environments.list
 
-  # Ambil environment tertentu
+  # Retrieve a specific environment
   env = client.beta.environments.retrieve(environment.id)
 
-  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  # Archive an environment (read-only, existing sessions continue)
   client.beta.environments.archive(environment.id)
 
-  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  # Delete an environment (only if no sessions reference it)
   client.beta.environments.delete(environment.id)
   ```
 </CodeGroup>

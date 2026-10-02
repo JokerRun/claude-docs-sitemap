@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: a73c523fe7d9fd381f342b3275a0c1a804573c01cf7d0f00d15ba4c850dcb39b
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 8467b472e133e32d856d76d86ba9556e4592cab3a01f44f9518145da0c2875d7
 ---
 
 ---
@@ -123,6 +123,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

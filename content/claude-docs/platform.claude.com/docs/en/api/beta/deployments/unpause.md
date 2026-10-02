@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: edc7a5130585e68d51ba23f5800b8e06e904c906b5a7dc62330a3aef5f0a5a58
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: adde45c75e4b1051a730d8d8e738b8a82dc700dc5779d46fb599bdf892bb89a5
 ---
 
 ---
@@ -127,6 +127,8 @@ Unpause Deployment
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/context-window
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: d0f57f295f59e586cea1b35f73c197df96c2236d31b85286fbdf21bb90309665
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 6beaae83294f55c48b58daea16de7ef005648a3d8415863ac962facb9c5c50cd
 ---
 
 > ## Documentation Index
@@ -1635,7 +1635,7 @@ You can also act before the automatic pass runs:
 
 If you need a larger window rather than a smaller conversation, Fable models, Sonnet 5 and later, Opus 4.6 and later, and Sonnet 4.6 support a 1 million token context window. See [Extended context](/docs/en/model-config#extended-context) for availability by plan and how to select a `[1m]` model variant. Compaction works the same way at the larger limit.
 
-Sonnet 5.5 and Sonnet 5 run with the 1M context window and have no `[1m]` variant to select. See [Sonnet 5.5 and Sonnet 5 context window](/docs/en/model-config#sonnet-5-5-and-sonnet-5-context-window) for their auto-compaction thresholds and the LLM gateway exception.
+Sonnet 5.5 and Sonnet 5 run with the 1M context window and have no `[1m]` variant to select. See [Sonnet 5.5 and Sonnet 5 context window](/docs/en/model-config#sonnet-5-5-and-sonnet-5-context-window) for their auto-compaction thresholds, and [the context window behind a gateway](/docs/en/model-config#context-window-behind-a-gateway) for how Claude Code sizes the window when you set `ANTHROPIC_BASE_URL` to an [LLM gateway](/docs/en/llm-gateway).
 
 The point where automatic compaction runs depends on your model and configuration. See [Default auto-compact thresholds](/docs/en/model-config#default-auto-compact-thresholds) for the boundaries per model, and [Correct the window for a gateway or custom model ID](/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id) if Claude Code assumes the wrong window for your model ID, such as an [LLM gateway](/docs/en/llm-gateway) alias.
 

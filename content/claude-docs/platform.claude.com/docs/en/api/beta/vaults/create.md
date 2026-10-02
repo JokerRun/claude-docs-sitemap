@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b5f62fb366f6088a0f0683a72cddba223e379683a4df1eaef9d2a2d7576feddf
+fetched_at: 2026-10-02T02:24:19.323378Z
+sha256: 23f0279cea50bbefac332704287006e9bdfe8b9f731e622bbc3ed8f8c363db9b
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Vault
   - `"mcp-client-2026-09-15"`
 
   - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
 
 - `"anthropic-workspace-id": optional string`
 
