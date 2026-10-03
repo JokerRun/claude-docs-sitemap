@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2aa3f28d5ed260849dc508eb59d135d3ca3275f2ef7ee731e3247462b2863986
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 0deaa81ea57fec96f12f9c592a3ec6be720b63e40b4e2ebefb78520d2f8e238c
 ---
 
 > ## Documentation Index
@@ -206,8 +206,6 @@ The empty `matcher` fires on all notification types. To fire only on specific ev
 | `quota_auto_resume_disabled` | Claude Code ends its wait for a claude.ai usage limit without continuing your task: [`autoContinueAtUsageLimit`](/docs/en/settings-reference#autocontinueatusagelimit) turned off or the reset moved more than 24 hours away during a wait Claude Code started on its own, the continued task kept hitting the limit, or the continuation was blocked before it reached the model. Doesn't fire when you press `Esc` or `Ctrl+C`, or pick **Don't continue automatically** |
 
 Claude Code times `permission_prompt` differently in a terminal and in Claude Desktop, the VS Code extension, and other hosts that answer permission requests through the Agent SDK. See [when each notification type fires](/docs/en/hooks#notification) for both timings.
-
-The `agent_needs_input` and `agent_completed` matchers require Claude Code v2.1.198 or later.
 
 The `quota_auto_resume_fired`, `quota_auto_resume_stale`, and `quota_auto_resume_disabled` matchers require Claude Code v2.1.234 or later.
 
@@ -965,9 +963,7 @@ Keep these constraints in mind when designing hooks:
   * `agent`: 60 seconds.
   * [`SessionEnd`](/docs/en/hooks#sessionend) hooks of any type share a 1.5-second budget. If your settings set a longer per-hook `timeout`, Claude Code raises the budget to match, up to 60 seconds.
 * `PostToolUse` hooks can't undo actions since the tool has already executed.
-* `PermissionRequest` hooks fire when Claude Code is about to ask you for permission.
-  * In [non-interactive mode](/docs/en/headless) with the `-p` flag, that prompt only exists when the Agent SDK's [`canUseTool` callback](/docs/en/agent-sdk/permissions) supplies it. In plain `-p` runs or with `--permission-prompt-tool`, use `PreToolUse` hooks for automated permission decisions instead.
-  * Background subagents can't show a prompt in non-interactive mode. Claude Code still runs the hooks for their tool calls, and if no hook returns a decision, it denies the call. In an interactive session, background subagent prompts surface in your main session and the hooks fire as usual.
+* [`PermissionRequest`](/docs/en/hooks#permissionrequest) hooks fire when Claude Code is about to ask you for permission, or when it would otherwise auto-deny a call that can't prompt. In [non-interactive mode](/docs/en/headless) with the `-p` flag, they still run outside [`dontAsk` mode](/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode), and a call that no hook decides and nothing else can answer is denied.
 * `Stop` hooks fire whenever Claude finishes responding, not only at task completion. They don't fire on user interrupts. API errors fire [StopFailure](/docs/en/hooks#stopfailure) instead.
 * When multiple `PreToolUse` hooks return [`updatedInput`](/docs/en/hooks#pretooluse) to rewrite a tool's arguments, the last one to finish takes effect. Since hooks run in parallel, the order is non-deterministic. Avoid having more than one hook modify the same tool's input.
 
@@ -977,7 +973,7 @@ Keep these constraints in mind when designing hooks:
 
 The reverse is not true: a hook returning `"allow"` doesn't bypass deny rules from settings, and it can't suppress the prompt for MCP tools marked [`requiresUserInteraction`](/docs/en/mcp#require-approval-for-a-specific-tool) or for connector tools [your organization set to `ask`](/docs/en/mcp#organization-controls-on-connector-tools) in sessions where that setting reaches Claude Code. Hooks in settings files and in a plugin's `hooks/hooks.json` can tighten restrictions but not loosen them past what permission rules allow.
 
-A [mod](/docs/en/plugins/mods/overview) you install that hooks `tool.check` can approve a call that your `PreToolUse` hook blocked, unless the hook is in managed settings. [Extend permissions with hooks](/docs/en/permissions#extend-permissions-with-hooks) lists which rules hold over a mod.
+A [mod](/docs/en/plugins/mods/overview) you install that handles `tool.check` can approve a call that your `PreToolUse` hook blocked, unless the hook is in managed settings. [Extend permissions with hooks](/docs/en/permissions#extend-permissions-with-hooks) lists which rules hold over a mod.
 
 ### Hook not firing
 

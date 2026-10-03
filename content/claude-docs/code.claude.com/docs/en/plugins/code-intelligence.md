@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/code-intelligence
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 8e03db203421df4887d453023b40c0412402202431222aaf38aa6d84354aca98
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 54d9c2715a4be046254d140d4f3fdc00be190e7b719be9ebbf8e751c1cf80054
 ---
 
 > ## Documentation Index
@@ -57,7 +57,7 @@ A code intelligence plugin tells Claude Code which command starts the language s
   </Step>
 
   <Step title="Install the plugin">
-    To install the plugin listed for your language in the step 1 table, run `/plugin install` in a Claude Code session, replacing `typescript-lsp` with that plugin's name:
+    In the VS Code extension or the desktop app, follow [Install a plugin](/docs/en/plugins/install#install-a-plugin) instead of this step. In a terminal, start Claude Code by running `claude`, then enter this at its prompt, replacing `typescript-lsp` with the plugin the step 1 table lists for your language:
 
     ```
     /plugin install typescript-lsp@claude-plugins-official

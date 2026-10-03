@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: bee981032f3efa65fbc2553fa68a0fff0a7632f7ebcc90667d6ae2a14845350d
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 6d1ef96e6777b7673810ef6e9e040bbfe2d26d221517652b65c297b49953f34a
 ---
 
 ---
@@ -36,7 +36,7 @@ featureMetadata:
     Claude Platform on AWS: ga
     Amazon Bedrock:
       availability: ga
-      note: On Amazon Bedrock, structured outputs are available for Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5.
+      note: On Amazon Bedrock, structured outputs are available on the legacy [Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy) integration for Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5, and not on [Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock).
     Google Cloud: ga
     Microsoft Foundry: ga
 ---

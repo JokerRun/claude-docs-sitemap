@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: cd5465e3649e109ecbdaa0dffb133ac0caa211f1070a41508acb5fe9f858d24c
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 7beea8fae2478ab5a87ccbb734ceea56f7395851d42ceabcbfff8fadb5b552a8
 ---
 
 > ## Documentation Index
@@ -41,7 +41,7 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
       </Step>
 
       <Step title="Install the plugin">
-        In Claude Code, run:
+        Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 
         ```
         /plugin install telegram@claude-plugins-official
@@ -119,7 +119,7 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
       </Step>
 
       <Step title="Install the plugin">
-        In Claude Code, run:
+        Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 
         ```
         /plugin install discord@claude-plugins-official
@@ -184,7 +184,7 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
       </Step>
 
       <Step title="Install the plugin">
-        In Claude Code, run:
+        Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 
         ```
         /plugin install imessage@claude-plugins-official
@@ -241,7 +241,7 @@ To try the fakechat demo, you'll need:
 
 <Steps>
   <Step title="Install the fakechat channel plugin">
-    Start a Claude Code session and run the install command:
+    Start Claude Code by running `claude` in your terminal, then enter the install command at its prompt:
 
     ```text theme={null}
     /plugin install fakechat@claude-plugins-official

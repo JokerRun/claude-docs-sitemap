@@ -23,9 +23,9 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/accessibility | 2026-10-01 |  |
-| code | https://code.claude.com/docs/en/admin-setup | 2026-10-01 |  |
-| code | https://code.claude.com/docs/en/advisor | 2026-09-30 |  |
+| code | https://code.claude.com/docs/en/accessibility | 2026-10-03 |  |
+| code | https://code.claude.com/docs/en/admin-setup | 2026-10-02 |  |
+| code | https://code.claude.com/docs/en/advisor | 2026-10-02 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-10-01 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-09-22 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/configuration | 2026-09-22 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-09-25 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-09-04 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-09-28 |  |
-| ... | _(~1247 more rows)_ | | |
+| ... | _(~1252 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

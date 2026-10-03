@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 4a8ff60ca1dfb24badfb5310c14dc9d0ec989a5fabfad591569fd8012283f475
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 6f0e0077da235a4169e276b13b1b47c97e3a77b9a883eac2cc48ebe31bdfe44f
 ---
 
 ---
@@ -328,8 +328,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
                       workdir="/workspace",
                   )
                   task = asyncio.create_task(worker.run())
-                  # Membatalkan task, alih-alih mematikan proses, memungkinkan worker menghentikan
-                  # item pekerjaan yang sedang berjalan dan mengunggah file memori yang berubah sebelum keluar.
+                  # Cancelling the task, rather than killing the process, lets the worker stop its
+                  # in-flight work item and upload changed memory files before it exits.
                   loop = asyncio.get_running_loop()
                   for signum in (signal.SIGINT, signal.SIGTERM):
                       loop.add_signal_handler(signum, task.cancel)
@@ -348,8 +348,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           const environmentId = process.env.ANTHROPIC_ENVIRONMENT_ID!;
           const client = new Anthropic({ authToken: environmentKey });
           const controller = new AbortController();
-          // Membatalkan pada salah satu sinyal memungkinkan worker mengunggah file memori yang berubah dan menghapus
-          // direktori store-nya sebelum proses keluar.
+          // Aborting on either signal lets the worker upload changed memory files and remove its
+          // store directories before the process exits.
           process.once("SIGINT", () => controller.abort());
           process.once("SIGTERM", () => controller.abort());
 
@@ -449,14 +449,14 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           client = anthropic.AsyncAnthropic(
               auth_token=environment_key,
           )
-          # Dibatalkan oleh shutdown() agar work item yang sedang berjalan dapat mengunggah file memori yang berubah dan
-          # menghapus direktori store-nya sebelum proses berakhir.
+          # Cancelled by shutdown() so an in-flight work item can upload changed memory files and
+          # remove its store directories before the process exits.
           inflight: set[asyncio.Task[None]] = set()
 
 
-          # Await ini dari hook shutdown milik host, misalnya shutdown lifespan ASGI (kode setelah
-          # `yield` dalam lifespan FastAPI), yang dijalankan uvicorn saat SIGTERM. uvicorn membiarkan request terbuka
-          # selesai sebelum hook itu berjalan, jadi atur --timeout-graceful-shutdown untuk membatasi waktu tunggu.
+          # Await this from the host's shutdown hook, such as an ASGI lifespan shutdown (the code after
+          # `yield` in a FastAPI lifespan), which uvicorn runs on SIGTERM. uvicorn lets open requests
+          # finish before that hook runs, so set --timeout-graceful-shutdown to bound the wait.
           async def shutdown() -> None:
               for task in inflight:
                   task.cancel()
@@ -474,7 +474,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
               inflight.add(task)
               task.add_done_callback(inflight.discard)
               try:
-                  # Dilindungi (shielded): pengiriman yang terputus atau timeout tidak boleh membatalkan item; shutdown() yang melakukannya.
+                  # Shielded: a dropped or timed-out delivery must not cancel the item; shutdown() does.
                   await asyncio.shield(task)
               except asyncio.CancelledError:
                   return {"status": "shutting down"}, 503
@@ -495,7 +495,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
                       environment_id=environment_id,
                       session_id=work.data.id,
                       environment_key=environment_key,
-                      # Secret per sesi inilah yang memungkinkan worker me-mount memory store milik sesi tersebut.
+                      # The per-session secret is what lets the worker mount the session's memory stores.
                       work_secret=work.secret,
                   )
           ```
@@ -508,13 +508,13 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           const client = new Anthropic({
             authToken: environmentKey
           });
-          // Panggil shutdown.abort() dari handler SIGTERM/SIGINT milik host, bersamaan dengan menutup server,
-          // lalu tunggu panggilan handle() yang sedang berjalan sebelum keluar: abort memungkinkan item kerja yang berjalan
-          // mengunggah file memori yang berubah dan menghapus direktori store-nya terlebih dahulu.
+          // Call shutdown.abort() from the host's SIGTERM/SIGINT handler, alongside closing the server,
+          // then wait for in-flight handle() calls before exiting: the abort lets a running work item
+          // upload changed memory files and remove its store directories first.
           export const shutdown = new AbortController();
 
           export async function handle(req: Request): Promise<Response> {
-            // Jangan pernah mengakui pengiriman yang pekerjaannya tidak akan dijalankan di sini; 503 membuat pengirim mencoba lagi.
+            // Never acknowledge a delivery whose work will not run here; a 503 makes the sender retry.
             if (shutdown.signal.aborted) {
               return Response.json({ status: "shutting down" }, { status: 503 });
             }
@@ -543,12 +543,12 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
                 environmentId,
                 sessionId: work.data.id,
                 environmentKey,
-                // Secret per sesi inilah yang memungkinkan worker me-mount memory store milik sesi tersebut.
+                // The per-session secret is what lets the worker mount the session's memory stores.
                 workSecret: work.secret ?? undefined,
                 signal: shutdown.signal
               });
             }
-            // Poller dan handleItem kembali secara diam-diam saat abort, sehingga drain yang terpotong berakhir di sini.
+            // The poller and handleItem return quietly on abort, so a drain cut short lands here.
             if (shutdown.signal.aborted) {
               return Response.json({ status: "shutting down" }, { status: 503 });
             }
@@ -591,8 +591,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           	worker = environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
           		Workdir: "/workspace",
           	})
-          	// Dibatalkan pada SIGINT atau SIGTERM (diatur di main) agar work item yang sedang berjalan dapat
-          	// mengunggah file memori yang berubah dan menghapus direktori store-nya sebelum keluar.
+          	// Cancelled on SIGINT or SIGTERM (set in main) so an in-flight work item can
+          	// upload changed memory files and remove its store directories before exit.
           	shutdown context.Context
           )
 
@@ -612,10 +612,10 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           		return
           	}
 
-          	// Go SDK tidak menyediakan kemudahan RunOne: kuras item yang tertunda
-          	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
-          	// Lepaskan dari r.Context(): sesi dapat bertahan lebih lama dari batas waktu pengiriman webhook.
-          	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih pada SIGTERM.
+          	// The Go SDK does not provide a RunOne convenience: drain pending items
+          	// with WorkPoller and run each one with HandleItem.
+          	// Detach from r.Context(): the session can outlive the webhook delivery timeout.
+          	// The process-wide shutdown context still ends the item cleanly on SIGTERM.
           	ctx := shutdown
           	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
           		EnvironmentID:      environmentID,
@@ -633,7 +633,7 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           			EnvironmentID:  item.EnvironmentID,
           			SessionID:      item.Data.ID,
           			EnvironmentKey: environmentKey,
-          			// Secret per sesi inilah yang memungkinkan worker memasang memory store milik sesi.
+          			// The per-session secret is what lets the worker mount the session's memory stores.
           			WorkSecret: item.Secret,
           		}); err != nil {
           			slog.Error("handle work item", "work_id", item.ID, "err", err)
@@ -662,8 +662,8 @@ Pilih **always-on** untuk penyiapan paling sederhana: sebuah proses yang berjala
           			os.Exit(1)
           		}
           	}()
-          	// Saat ada sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler yang sedang berjalan,
-          	// dan karenanya teardown memori work item mereka, telah selesai.
+          	// On a signal, stop accepting deliveries and return only after in-flight
+          	// handlers, and therefore their work items' memory teardown, have finished.
           	<-ctx.Done()
           	if err := server.Shutdown(context.Background()); err != nil {
           		slog.Error("http shutdown", "err", err)
@@ -981,7 +981,7 @@ Komponen apa pun yang meluncurkan sandbox harus meneruskan `secret` milik work i
   async with AgentToolContext(
       workdir="/workspace", client=client, session_id=work.data.id
   ) as env:
-      # skills diunduh ke /workspace/skills/<name>/
+      # skills downloaded to /workspace/skills/<name>/
       tools = beta_agent_toolset_20260401(env)
   ```
 
@@ -1005,7 +1005,7 @@ Komponen apa pun yang meluncurkan sandbox harus meneruskan `secret` milik work i
   if err := env.SetupSkills(ctx, client, work.Data.ID); err != nil {
   	panic(err)
   }
-  // skills diunduh ke /workspace/skills/<name>/
+  // skills downloaded to /workspace/skills/<name>/
   tools := agenttoolset.BetaAgentToolset20260401(env)
   ```
 
@@ -1193,11 +1193,11 @@ Entrypoint `ant beta:worker run` yang ditampilkan di sana tidak me-mount memory 
   async def main() -> None:
       async with AsyncAnthropic(auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]) as client:
           worker = EnvironmentWorker(client, workdir="/workspace")
-          # Tanpa argumen, handle_item() membaca variabel ANTHROPIC_* yang diteruskan oleh
-          # skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
+          # With no arguments, handle_item() reads the ANTHROPIC_* variables the spawn
+          # script forwarded, including ANTHROPIC_WORK_SECRET.
           task = asyncio.create_task(worker.handle_item())
-          # Membatalkan task saat container dihentikan memungkinkan worker mengunggah
-          # file memori yang berubah dan menghapus direktori store sebelum keluar.
+          # Cancelling the task when the container is stopped lets the worker upload
+          # changed memory files and remove the store directories before it exits.
           loop = asyncio.get_running_loop()
           for signum in (signal.SIGINT, signal.SIGTERM):
               loop.add_signal_handler(signum, task.cancel)
@@ -1214,13 +1214,13 @@ Entrypoint `ant beta:worker run` yang ditampilkan di sana tidak me-mount memory 
 
   const client = new Anthropic({ authToken: process.env.ANTHROPIC_ENVIRONMENT_KEY });
   const controller = new AbortController();
-  // Membatalkan saat container dihentikan memungkinkan worker mengunggah file memori yang berubah
-  // dan menghapus direktori store sebelum keluar.
+  // Aborting when the container is stopped lets the worker upload changed memory
+  // files and remove the store directories before it exits.
   process.once("SIGTERM", () => controller.abort());
   process.once("SIGINT", () => controller.abort());
 
-  // Tanpa argumen, handleItem() membaca variabel ANTHROPIC_* yang diteruskan oleh skrip
-  // spawn, termasuk ANTHROPIC_WORK_SECRET.
+  // With no arguments, handleItem() reads the ANTHROPIC_* variables the spawn
+  // script forwarded, including ANTHROPIC_WORK_SECRET.
   await new EnvironmentWorker({
     client,
     workdir: "/workspace",
@@ -1248,8 +1248,8 @@ Entrypoint `ant beta:worker run` yang ditampilkan di sana tidak me-mount memory 
   )
 
   func main() {
-  	// Membatalkan context saat container dihentikan memungkinkan worker mengunggah
-  	// file memori yang berubah dan menghapus direktori store sebelum keluar.
+  	// Cancelling the context when the container is stopped lets the worker upload
+  	// changed memory files and remove the store directories before it exits.
   	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
   	defer stop()
 
@@ -1257,8 +1257,8 @@ Entrypoint `ant beta:worker run` yang ditampilkan di sana tidak me-mount memory 
   	worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
   		Workdir: "/workspace",
   	})
-  	// Dengan opsi bernilai nol, HandleItem membaca variabel ANTHROPIC_* yang diteruskan
-  	// oleh skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
+  	// With zero-value options, HandleItem reads the ANTHROPIC_* variables the spawn
+  	// script forwarded, including ANTHROPIC_WORK_SECRET.
   	if err := worker.HandleItem(ctx, environments.HandleItemOptions{}); err != nil {
   		log.Fatalf("worker: %v", err)
   	}
@@ -1422,7 +1422,7 @@ Worker mencatat kegagalan mount dan sinkronisasi latar belakang ke log alih-alih
       @beta_async_tool
       async def get_order_status(order_id: str) -> str:
           """Look up an order in the internal fulfillment system by order ID."""
-          # Berjalan di host worker: dapat memanggil apa pun yang bisa dijangkau sandbox.
+          # Runs on the worker host: call anything the sandbox can reach.
           return f"Order {order_id}: shipped"
 
 
@@ -1456,7 +1456,7 @@ Worker mencatat kegagalan mount dan sinkronisasi latar belakang ke log alih-alih
           properties: { order_id: { type: "string", description: "The order ID" } },
           required: ["order_id"]
         },
-        // Berjalan di host worker: panggil apa pun yang dapat dijangkau sandbox.
+        // Runs on the worker host: call anything the sandbox can reach.
         run: async ({ order_id }) => `Order ${order_id}: shipped`
       });
 
@@ -1518,7 +1518,7 @@ Worker mencatat kegagalan mount dan sinkronisasi latar belakang ke log alih-alih
       			},
       			Required: []string{"order_id"},
       		},
-      		// Berjalan di host worker: dapat memanggil apa pun yang bisa dijangkau sandbox.
+      		// Runs on the worker host: call anything the sandbox can reach.
       		func(ctx context.Context, input orderStatusInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
       			return anthropic.BetaToolResultBlockParamContentUnion{
       				OfText: &anthropic.BetaTextBlockParam{Text: "Order " + input.OrderID + ": shipped"},
@@ -1584,15 +1584,15 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       from anthropic import AsyncAnthropic
       from anthropic.types.beta import BetaManagedAgentsCustomToolParams
       from mcp import ClientSession, types
-      # Memerlukan mcp >= 1.24, yang mengganti nama streamablehttp_client menjadi streamable_http_client.
+      # Requires mcp >= 1.24, which renamed streamablehttp_client to streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
       MCP_SERVER_URL = "http://mcp.internal.example.com:8000/mcp"
 
 
       def to_custom_tool(tool: types.Tool) -> BetaManagedAgentsCustomToolParams:
-          # Field MCP dipetakan satu-ke-satu ke deklarasi alat kustom. Cast ini
-          # meneruskan dictionary skema ke parameter bertipe milik SDK tanpa perubahan.
+          # The MCP fields map one to one onto a custom tool declaration. The cast
+          # hands the schema dictionary to the SDK's typed parameter unchanged.
           return {
               "type": "custom",
               "name": tool.name,
@@ -1602,8 +1602,8 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
 
 
       async def main() -> None:
-          # Jalankan ini di tempat Anda membuat agen, bukan di host worker: skrip ini
-          # melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+          # Run this wherever you create agents, not on the worker host: it
+          # authenticates with your Claude API key (ANTHROPIC_API_KEY).
           async with (
               streamable_http_client(MCP_SERVER_URL) as (read, write, _),
               ClientSession(read, write) as mcp_session,
@@ -1632,8 +1632,8 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
 
       const MCP_SERVER_URL = "http://mcp.internal.example.com:8000/mcp";
 
-      // Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
-      // melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      // Run this wherever you create agents, not on the worker host: it
+      // authenticates with your Claude API key (ANTHROPIC_API_KEY).
       const client = new Anthropic();
 
       const mcpClient = new Client({ name: "declare-agent-tools", version: "1.0.0" });
@@ -1645,7 +1645,7 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
         model: "claude-opus-5-5",
         tools: [
           { type: "agent_toolset_20260401" },
-          // Field MCP dipetakan satu-ke-satu ke deklarasi alat kustom.
+          // The MCP fields map one to one onto a custom tool declaration.
           ...tools.map((tool) => ({
             type: "custom" as const,
             name: tool.name,
@@ -1679,10 +1679,10 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
 
       const mcpServerURL = "http://mcp.internal.example.com:8000/mcp"
 
-      // toCustomTool memetakan satu definisi alat MCP ke deklarasi alat kustom.
-      // Field-nya dipetakan satu ke satu: parameter bertipe membawa `properties` dan
-      // `required`, dan setiap kata kunci JSON Schema lain yang dikeluarkan server disalurkan di
-      // ExtraFields sehingga skema yang dideklarasikan cocok dengan skema server.
+      // toCustomTool maps one MCP tool definition onto a custom tool declaration.
+      // The fields map one to one: the typed parameter carries `properties` and
+      // `required`, and every other JSON Schema keyword the server emits travels in
+      // ExtraFields so the declared schema matches the server's schema.
       func toCustomTool(tool *mcpsdk.Tool) (anthropic.BetaAgentNewParamsToolUnion, error) {
       	raw, err := json.Marshal(tool.InputSchema)
       	if err != nil {
@@ -1697,7 +1697,7 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       	for keyword, value := range schema {
       		switch keyword {
       		case "type":
-      			// Tipe parameter selalu di-marshal sebagai "type": "object".
+      			// The parameter type always marshals "type": "object".
       		case "properties":
       			properties, _ := value.(map[string]any)
       			inputSchema.Properties = properties
@@ -1730,8 +1730,8 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       func main() {
       	ctx := context.Background()
 
-      	// Jalankan ini di mana pun Anda membuat agen, bukan di host worker: ini
-      	// mengautentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      	// Run this wherever you create agents, not on the worker host: it
+      	// authenticates with your Claude API key (ANTHROPIC_API_KEY).
       	client := anthropic.NewClient()
 
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "declare-agent-tools", Version: "1.0.0"}, nil)
@@ -1802,7 +1802,7 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       from anthropic.lib.tools.agent_toolset import beta_agent_toolset_20260401
       from anthropic.lib.tools.mcp import async_mcp_tool
       from mcp import ClientSession
-      # Memerlukan mcp >= 1.24, yang mengganti nama streamablehttp_client menjadi streamable_http_client.
+      # Requires mcp >= 1.24, which renamed streamablehttp_client to streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
       MCP_SERVER_URL = "http://mcp.internal.example.com:8000/mcp"
@@ -1811,9 +1811,9 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       async def main() -> None:
           environment_key = os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
           environment_id = os.environ["ANTHROPIC_ENVIRONMENT_ID"]
-          # Hubungkan ke server MCP sekali saat startup dan biarkan sesi tetap terbuka selama
-          # masa hidup worker. Timeout mengubah panggilan alat yang macet menjadi hasil
-          # error alih-alih panggilan yang terhenti.
+          # Connect to the MCP server once at startup and keep the session open for
+          # the life of the worker. The timeout turns a hung tool call into an error
+          # result instead of a stalled call.
           async with (
               streamable_http_client(MCP_SERVER_URL) as (read, write, _),
               ClientSession(read, write, read_timeout_seconds=timedelta(seconds=60)) as mcp_session,
@@ -1854,14 +1854,14 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
       const controller = new AbortController();
       process.once("SIGTERM", () => controller.abort());
 
-      // Hubungkan ke server MCP sekali saat startup dan pertahankan koneksi tetap terbuka
-      // selama worker berjalan.
+      // Connect to the MCP server once at startup and keep the connection open for
+      // the life of the worker.
       const mcpClient = new Client({ name: "sandbox-worker", version: "1.0.0" });
       await mcpClient.connect(new StreamableHTTPClientTransport(new URL(MCP_SERVER_URL)));
       const { tools } = await mcpClient.listTools();
 
-      // Tipe kembalian callTool dari MCP SDK masih menyertakan bentuk hasil lawas yang
-      // tidak diterima mcpTools; persempit tipenya. Hapus ini setelah MCPClientLike diperluas.
+      // The MCP SDK's callTool return type still includes a legacy result shape that
+      // mcpTools does not accept; narrow it. Drop this once MCPClientLike widens.
       const mcpClientForTools: MCPClientLike = {
         callTool: (params) => mcpClient.callTool(params) as Promise<MCPCallToolResultLike>
       };
@@ -1909,8 +1909,8 @@ Worker hanya menjawab alat yang didaftarkan kepadanya. Alat kustom yang dideklar
 
       	client := anthropic.NewClient(option.WithAuthToken(environmentKey))
 
-      	// Hubungkan ke server MCP sekali saat startup dan biarkan sesi tetap terbuka selama
-      	// worker berjalan.
+      	// Connect to the MCP server once at startup and keep the session open for
+      	// the life of the worker.
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "sandbox-worker", Version: "1.0.0"}, nil)
       	session, err := mcpClient.Connect(ctx, &mcpsdk.StreamableClientTransport{Endpoint: mcpServerURL}, nil)
       	if err != nil {

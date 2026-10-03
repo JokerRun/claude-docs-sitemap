@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 12b3957a0b8515862d3c7f7aa2437bb6fb29d36f2e66c303494741ec442f9c22
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 90726b4b1120f6b9ab6a83682b1c4cc06ab47e3bee097df2bf35d95a37b13665
 ---
 
 > ## Documentation Index
@@ -543,7 +543,7 @@ To surface a Mantle model in the `/model` picker, list its ID in `availableModel
 }
 ```
 
-Entries with the `anthropic.` prefix are added as custom picker options and routed to Mantle. Replace `anthropic.claude-haiku-4-5` with the model ID your account has been granted. See [Restrict model selection](/docs/en/model-config#restrict-model-selection) for how `availableModels` interacts with other model settings.
+Entries with the `anthropic.` prefix are added as custom picker options, and the ones that match the Mantle format are routed to Mantle. Replace `anthropic.claude-haiku-4-5` with the model ID your account has been granted. See [Restrict model selection](/docs/en/model-config#restrict-model-selection) for how `availableModels` interacts with other model settings.
 
 When both providers are active, `/status` shows `Amazon Bedrock + Amazon Bedrock (Mantle)`.
 

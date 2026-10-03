@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 41acd83f805ec3db053720b39f40654d4da4ceb929ebc26075ae06a902539f71
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: fe99e50e312feae327c1e16847bc5853c71aaf2755fa554f9014c9008850e2cb
 ---
 
 > ## Documentation Index
@@ -213,7 +213,7 @@ paths:
 - Include OpenAPI documentation comments
 ```
 
-Rules without a `paths` field are loaded unconditionally and apply to all files. Path-scoped rules trigger when Claude reads files matching the pattern, not on every tool use. Matching also works when Claude reaches a file through a symlinked path to the project directory, for example in a symlinked checkout.
+Rules without a `paths` field are loaded unconditionally and apply to all files. Path-scoped rules trigger when Claude uses the Read, Write, or Edit tool on a file matching the pattern, not on every tool use. Matching also works when Claude reaches a file through a symlinked path to the project directory, for example in a symlinked checkout.
 
 Use glob patterns in the `paths` field to match files by extension, directory, or any combination:
 
@@ -491,7 +491,16 @@ Claude doesn't save something every session. It decides what's worth remembering
 
 Auto memory is on by default in local sessions. Outside [Claude Tag](https://claude.com/docs/claude-tag/overview) sessions, a session in a [self-hosted environment](/docs/en/self-hosted-environments-configuration#how-each-session’s-config-is-assembled) runs with auto memory off by default.
 
-To toggle it, open `/memory` in a session and use the auto memory toggle, which saves `autoMemoryEnabled` to your user settings at `~/.claude/settings.json`. To turn it off for a single project, set `autoMemoryEnabled` in that project's settings:
+To toggle it, open `/memory` in a session and use the auto memory toggle, which saves `autoMemoryEnabled` to your user settings at `~/.claude/settings.json`.
+
+The toggle turns auto memory off but doesn't turn it back on in these sessions:
+
+* A [background session](/docs/en/agent-view)
+* A session that another Claude Code session started, such as when Claude runs `claude` through its Bash tool
+
+While auto memory is off there, the toggle reads `off · can't be turned on here; use a session started outside Claude Code`. To turn auto memory back on, run `claude` directly in your terminal and use the `/memory` toggle in that session.
+
+To turn it off for a single project, set `autoMemoryEnabled` in that project's settings:
 
 ```json theme={null}
 {

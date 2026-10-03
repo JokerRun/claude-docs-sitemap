@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 8a02dcfc9d3adfecfe195049243880dff5f797f52cca124e305ef6b0c9d49f05
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 9e0e427c509218a8eb811fd9bca80afe24d29649cf3dc8cd9dafe1f696582b0f
 ---
 
 > ## Documentation Index
@@ -191,7 +191,7 @@ Deny rules don't cover subprocesses that open files themselves. For the full pat
 
 In a large codebase, finding where a symbol is defined or used can cost many file reads and grep calls. [Code intelligence plugins](/docs/en/plugins/code-intelligence) connect Claude to a language server so it can jump to definitions, find references, and surface type errors directly instead of scanning the tree.
 
-The official marketplace has plugins for TypeScript, Python, Go, Rust, and other common languages. Run the command below inside a Claude Code session to install the TypeScript plugin:
+The official marketplace has plugins for TypeScript, Python, Go, Rust, and other common languages. In the VS Code extension or the desktop app, install one by following [Install a plugin](/docs/en/plugins/install#install-a-plugin). In a terminal, start Claude Code by running `claude`, then enter this at its prompt to install the TypeScript plugin:
 
 ```shell theme={null}
 /plugin install typescript-lsp@claude-plugins-official

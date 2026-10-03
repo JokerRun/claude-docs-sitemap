@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: c02fdbb4e308db53291b2636a822e3ced7361efcbe090035e02584a518bcaf66
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 373c5d592d50d3f406ab89d6d41010b6e52bdc03311abcba3805ddad537c0d41
 ---
 
 > ## Documentation Index
@@ -147,7 +147,7 @@ You can provide rich data to Claude in several ways:
 * **Reference files with `@`** instead of describing where code lives. Claude reads the file before responding.
 * **Paste images directly**. Copy/paste or drag and drop images into the prompt.
 * **Give URLs** for documentation and API references. Use `/permissions` to allowlist frequently-used domains.
-* **Pipe in data** by running `cat error.log | claude` to send file contents directly.
+* **Pipe in data** by running `cat error.log | claude -p "explain this error"` to send file contents directly.
 * **Let Claude fetch what it needs**. Tell Claude to pull context itself using Bash commands, MCP tools, or by reading files.
 
 ***

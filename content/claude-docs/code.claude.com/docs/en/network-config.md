@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 78b5100e3db19cce9f18247bbe4a650ec93a6a9590a681d50d84f6645a85a245
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 9f3792fc623b347b6cd594d30cd027f45defc69a96d5927302fa982111a8b982
 ---
 
 > ## Documentation Index
@@ -263,6 +263,10 @@ For self-hosted [GitHub Enterprise Server](/docs/en/github-enterprise-server) in
 ### Desktop and claude.ai
 
 The preceding table covers the standalone CLI. The Claude Desktop app and claude.ai in a browser load their application code and user content from additional Anthropic CDN hosts, including `assets-proxy.anthropic.com` and the other `*.claudeusercontent.com` origins that serve [artifacts](/docs/en/artifacts) in those apps. Allowing `claude.ai` while blocking those hosts produces a blank page rather than an error. See [network access requirements](/docs/en/desktop#network-access-requirements) on the Desktop page.
+
+Claude Desktop and claude.ai also render some tool results inside a conversation as interactive widgets, such as the [MCP Apps](https://claude.com/docs/connectors/building/mcp-apps/getting-started) some connectors provide. Those widgets load from generated subdomains of `claudemcpcontent.com`, so allow `*.claudemcpcontent.com` with the wildcard intact. If you block it, the rest of the app keeps working, but those widgets don't load.
+
+#### Third-party hosts for artifact fonts and libraries
 
 An [artifact](/docs/en/artifacts) that loads a typeface from [Google Fonts](/docs/en/artifacts#improve-the-visual-design) also requests `fonts.googleapis.com` and `fonts.gstatic.com`. Both hosts are optional. If you block them, artifacts render in fallback typefaces. Block with a fast rejection rather than a silent drop so the font request fails immediately instead of delaying the page's first render.
 

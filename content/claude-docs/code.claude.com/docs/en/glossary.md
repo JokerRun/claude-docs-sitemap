@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 12d7dde60bbf47e0501ac7aa5b12641b2d06b00e89ab7b89f2af90ac0f228761
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 13491643c25a857bcb6f334a422971873455cf60581b7f214269d582866beb06
 ---
 
 > ## Documentation Index
@@ -275,7 +275,7 @@ Learn more: [Remote Control](/docs/en/remote-control)
 
 ### Rules
 
-Modular instruction files in `.claude/rules/` that load alongside CLAUDE.md. A rule can be path-scoped with YAML `paths:` frontmatter so it only loads when Claude reads a matching file, keeping context lean until it's relevant.
+Modular instruction files in `.claude/rules/` that load alongside CLAUDE.md. A rule can be path-scoped with YAML `paths:` frontmatter so it only loads when Claude reads, writes, or edits a matching file, keeping context lean until it's relevant.
 
 Learn more: [Organize rules with `.claude/rules/`](/docs/en/memory#organize-rules-with-claude/rules/)
 

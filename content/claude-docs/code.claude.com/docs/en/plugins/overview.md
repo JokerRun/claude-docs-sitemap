@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/overview
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6174efaf5d62becb7303e87088e5777a7282755bf379115e39de79927681a7ab
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: eb8b9f92d75d42d777d3bdbc89273c2df881b6a3cf58afaa63418d55a70538f5
 ---
 
 > ## Documentation Index
@@ -16,10 +16,11 @@ sha256: 6174efaf5d62becb7303e87088e5777a7282755bf379115e39de79927681a7ab
 A Claude Code plugin is a directory of skills, agents, hooks, MCP servers, or other components that Claude Code installs and loads as one unit. Most plugins come from a marketplace, which is a catalog that lists plugins and where to fetch each one. You can also load a plugin from a folder someone gives you, or [build your own](/docs/en/plugins/create).
 
 <Note>
-  Start on claude.com instead if either of these describes you:
+  These cases are covered on other pages:
 
   * **You use claude.ai chat or Cowork and not Claude Code**: see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview)
   * **You built an MCP server and want it in Anthropic's directory**: see [Publish to the directory](https://claude.com/docs/directory/publish)
+  * **You want Claude Code inside VS Code or a JetBrains IDE**: that's the VS Code extension or the JetBrains plugin, not a Claude Code plugin. See [Use Claude Code in VS Code](/docs/en/vs-code) or [JetBrains IDEs](/docs/en/jetbrains)
 </Note>
 
 To try a plugin now, run `/plugin` in a Claude Code terminal session and install one from the **Discover** tab, which lists the plugins from your marketplaces. From there:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/authentication
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 5c6531e3e53e5743ee4ab5f43cc459d04517d8ca24b10e2539caca3e0d4f602e
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 214aff06820218a19504f7493b368919b1bd7f4f60b60549f069a99318f6a84c
 ---
 
 ---
@@ -136,7 +136,7 @@ If your API key isn't scoped to a workspace, you must specify the workspace ID i
 
 The [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api) accepts a personal key or service account key only if the key isn't scoped to a specific workspace.
 
-You can find a workspace's ID in the **ID** column of [Settings → Workspaces](https://platform.claude.com/settings/workspaces) in the Claude Console, or by calling the [List Workspaces](https://platform.claude.com/docs/en/api/beta/organization/workspaces/list) endpoint. List Workspaces omits the Default Workspace; its ID is in the `anthropic-workspace-id` [response header](https://platform.claude.com/docs/en/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) of any request that runs there.
+You can find a workspace's ID in the **ID** column of [Settings → Workspaces](https://platform.claude.com/settings/workspaces) in the Claude Console, or by calling the [List Workspaces](https://platform.claude.com/docs/en/api/beta/organization/workspaces/list) endpoint. List Workspaces includes the Default Workspace only when you pass `include_default=true`; its ID is also in the `anthropic-workspace-id` [response header](https://platform.claude.com/docs/en/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) of any request that runs there.
 
 <CodeGroup>
   ```bash cURL

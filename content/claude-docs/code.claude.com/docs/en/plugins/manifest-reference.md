@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 11f7672bd07924e48e288786df87f6782a597bab2ab7d540817739affa502c70
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 45289e551da96e9c4a3a5968b3bdcdd7fd766f0c735c019f60d71d06f28a58d1
 ---
 
 > ## Documentation Index
@@ -266,7 +266,9 @@ This map declares one command from a file and one from inline content:
 
 `hooks` takes a `.json` file path, an inline hooks object in the same shape as [`hooks` in `settings.json`](/docs/en/hooks#configuration), or an array mixing both. For hook events and handler fields, see the [hooks reference](/docs/en/hooks#hook-events).
 
-Claude Code merges whatever you declare with `hooks/hooks.json` when that file exists.
+A hooks file wraps the event map in a top-level `"hooks"` key, the shape [`hooks/hooks.json`](/docs/en/plugins/components#hooks) uses. A file that contains only the event map, without that wrapper, fails to load. An inline object is the event map itself, with no wrapper.
+
+Claude Code merges whatever you declare with `hooks/hooks.json` when that file exists. This array loads one hooks file and declares one inline `PostToolUse` hook:
 
 ```json theme={null}
 {
@@ -283,6 +285,23 @@ Claude Code merges whatever you declare with `hooks/hooks.json` when that file e
       ]
     }
   ]
+}
+```
+
+The file that array names carries the `"hooks"` wrapper around its own event map:
+
+```json config/extra-hooks.json theme={null}
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}\"/scripts/check-command.sh" }
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -323,6 +342,7 @@ Each server config is a strict object with these fields. An unknown key fails va
 | `workspaceFolder` | No | Workspace folder path for the server |
 | `startupTimeout` | No | Milliseconds to wait for startup, a positive integer |
 | `shutdownTimeout` | No | Milliseconds to wait for a graceful shutdown, a positive integer. When the timeout elapses, Claude Code terminates the server process. When unset, no timeout applies |
+| `requestTimeout` | No | Milliseconds to wait for the server to answer a request, a positive integer. Defaults to `60000`, so a request the server never answers fails after 60 seconds. Requires v2.1.288 or later |
 | `restartOnCrash` | No | Whether to restart the server after it crashes. Defaults to `true`. Set to `false` to leave a crashed server stopped instead of restarting it |
 | `maxRestarts` | No | Restart attempts before giving up, zero or more |
 | `diagnostics` | No | Whether to push diagnostics into context after edits. Defaults to `true` |
@@ -381,6 +401,8 @@ Every component path in a manifest is relative to the plugin root and must start
 
 * **`skills`**: also accepts `"."`. Both `"."` and `"./"` denote the plugin root. Before v2.1.221, `"."` failed manifest validation, so use `"./"` when the plugin must load on earlier versions
 * **`mcpServers`**: also accepts an `https://` bundle URL
+
+`experimental.evals` isn't a component path, so the rules in this section don't cover it, and `claude plugin eval` checks the value when it runs instead. It names a directory below the plugin root, such as `"quality/evals"`, with or without the `./` prefix. With an array, only the first entry is used. For what the value accepts and what happens with an unusable one, see [Use a different eval directory](/docs/en/plugin-evals#use-a-different-eval-directory).
 
 ### Containment and existence
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0422d2fc6c4d67cdb3bd6fe73cd35693b97c82cc3a703931896447852296e317
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: d366894636585b26f150e707dd0c26382408f7984c6a6d2fe168de59b2c3652c
 ---
 
 > ## Documentation Index
@@ -87,16 +87,19 @@ Fail-open only helps while your load balancer or orchestrator still routes traff
 
 ### Usage warnings in Claude Code
 
-Claude Code warns a developer as they approach their cap: once utilization passes 75%, and again past 95% of their most-consumed cap. When the gateway blocks a request, Claude Code shows the gateway's `429` message as is, including your `admin.blocked_message`.
+Claude Code warns a developer as they approach their cap: once utilization passes 75%, and again past 95% of their most-consumed cap. When the gateway blocks a request, Claude Code shows the gateway's `429` message as is, including your `admin.blocked_message`. It also shows the cap in `/usage` and passes it to the developer's [status line](/docs/en/statusline#spend-limit-fields) script.
 
-The warning works off response headers:
+Each display needs a minimum Claude Code version on the developer's machine and on the gateway server:
 
-* With v2.1.225 or later on the gateway server, each successful `/v1/messages` response for a developer who has a cap carries their own cap utilization and reset time in the `anthropic-ratelimit-unified-*` headers.
-* With v2.1.225 or later on the developer's machine as well, Claude Code reads the headers and shows the warning.
+| What the developer sees | Developer's machine | Gateway server |
+| :- | :- | :- |
+| Usage warnings at 75% and 95% | v2.1.225 or later | v2.1.225 or later |
+| A **Spend limit** bar in `/usage` with the percentage of their cap used and when it resets, and a `rate_limits.spend_limit` object in the status line input | v2.1.251 or later | v2.1.225 or later |
+| Their estimated spend and the cap in US dollars in the **Spend limit** bar, such as "\$271.40 / \$500.00 spent this month", and the same amounts plus the cap's period in the status line input | v2.1.284 or later | v2.1.284 or later |
 
-The headers always describe the developer's own cap: the gateway strips the upstream provider's rate-limit headers, which describe your shared quota, and never forwards them.
+The warnings and the percentage come from the `anthropic-ratelimit-unified-*` headers, which the gateway adds to each successful `/v1/messages` response for a developer who has a cap. The headers always describe the developer's own cap: the gateway strips the upstream provider's rate-limit headers, which describe your shared quota, and never forwards them.
 
-With v2.1.251 or later on the developer's machine, Claude Code also reads the same headers to show a **Spend limit** bar in `/usage`, with the percentage of their cap used and when it resets, and to add a `rate_limits.spend_limit` object to the [status line](/docs/en/statusline#rate-limit-usage) input. Claude Code shows both as a percentage rather than a dollar amount, and needs nothing newer than v2.1.225 on the gateway server.
+The spend a developer sees is the gateway's own [estimate](#how-requests-are-priced), the same figure it enforces the cap with, and not an amount from your provider's bill. Claude Code reads the dollar amounts with a separate request to the gateway. If you set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` on developers' machines, as [Compliance posture](/docs/en/claude-apps-gateway-deploy#compliance-posture) suggests, Claude Code skips that request. With that variable set, or with a gateway server older than v2.1.284, the bar and the status line stay percentage-only.
 
 ## Admin API reference
 

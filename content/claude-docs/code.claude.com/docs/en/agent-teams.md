@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6eeb28fa2297ed48d989d9d971008ef3cf2e62c733b58c06d260fa92da1f8c36
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: d18a41b9ddc4ecdf3668165265321fedfe9c9bbe96ea071d8fc0e6ef2dafb19b
 ---
 
 > ## Documentation Index
@@ -90,7 +90,7 @@ The lead's terminal lists teammates in the agent panel below the prompt input. F
 * **Enter**: open the selected teammate's transcript and message it directly
 * **Escape**: clear the selection. While you're viewing a teammate's transcript, Escape interrupts that teammate's current turn
 
-As of v2.1.199, an idle teammate's row stays in the panel while any teammate or subagent is still working, so you can select it to review its transcript or send it more work. Once every agent in the panel is idle, idle rows hide after 30 seconds and reappear on the teammate's next turn; the teammate stays running and addressable while hidden. In v2.1.181 through v2.1.198, an idle row hid 30 seconds after its own turn ended, even while other teammates were still working; idle rows are not hidden on versions before v2.1.181.
+An idle teammate's row stays in the panel while any teammate or subagent is still working, so you can select it to review its transcript or send it more work. Once every agent in the panel is idle, idle rows hide after 30 seconds and reappear on the teammate's next turn; the teammate stays running and addressable while hidden.
 
 When more than three teammates are idle at once, the rows beyond the first three collapse into a single row that counts the collapsed teammates, such as `2 idle agents` when five are idle. Select it and press Enter to expand the collapsed rows, or press Esc to collapse them again. Working teammates, failed teammates, and the teammate you're viewing always keep their own rows.
 

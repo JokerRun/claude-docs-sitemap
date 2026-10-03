@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-projects
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: f0904434d1cd08d676e598af7a009257cc1df6069db1c90dfd53523a5cd9d9be
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 2ea0917adb28500211236de1bd068f560d2db1ae8fb277ec234816c4705d3409
 ---
 
 > ## Documentation Index
@@ -443,7 +443,7 @@ Several Claude Code features let more than one session work at the same time, so
 
 ## Limitations
 
-* Projects are available at claude.ai/code, in the desktop app, and in the Claude mobile app, not in the terminal CLI, the VS Code extension, or the JetBrains plugin, and not through Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. The CLI's [`claude project`](/docs/en/cli-reference) command, which manages local Claude Code state for a directory, is unrelated.
+* Projects are available at claude.ai/code, in the desktop app, and in the Claude mobile app, not in the terminal CLI, the VS Code extension, or the JetBrains plugin, and not through Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry.
 * Project threads are [cloud sessions](/docs/en/claude-code-on-the-web), or sessions on your own machine through [Remote Control](/docs/en/remote-control), with Anthropic as the model provider in both cases. [Security](/docs/en/security) and [Data usage](/docs/en/data-usage) cover how cloud sessions are isolated and what's retained, and [Connection and security](/docs/en/remote-control#connection-and-security) covers how a thread on your machine connects and what's stored.
 * You can't add a session you started yourself on your machine to a project. A project reaches your machine only by [running a thread there through Remote Control](#run-a-thread-on-your-own-computer), and that section lists what it needs.
 * A cloud thread's sandbox pauses between turns and resumes when the thread continues. If the sandbox can't be resumed, the thread continues from a fresh clone, so uncommitted changes can be lost. On long tasks, ask Claude to commit and push work in progress.

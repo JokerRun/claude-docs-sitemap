@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: f0af0832d8fcda2e9e10a165b387ee70702bfb2d20246137b0e299875b1ab3f2
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: dc672233a2b41bc5ffb35d1a5138cfa229f12eaf28f1094861d4ee6237f129f4
 ---
 
 > ## Documentation Index
@@ -336,11 +336,7 @@ If your GitHub connection is missing or expired when a run is due, the routine s
 
 Each repository you add is cloned on every run. Claude starts from the repository's default branch unless your prompt specifies otherwise.
 
-Claude pushes its work to branches prefixed with `claude/`, which are always accepted. When your prompt directs Claude to push to another branch, Claude Code checks the push first and rejects it if any of the following is true:
-
-* The branch is protected on GitHub
-* Someone else has an open pull request from that branch
-* The branch carries commits authored by someone other than you
+Claude pushes its work to a branch prefixed with `claude/` unless your prompt directs it to push to another branch. To control which branches a run can push to, use branch protection rules or rulesets on GitHub. For runs on Anthropic-managed infrastructure, and for self-hosted runs that push through [Anthropic's git proxy](/docs/en/self-hosted-environments-deploy#use-the-anthropic-git-proxy), GitHub applies them to the GitHub access you connected, so a rule that access can bypass doesn't block a run's push. A self-hosted run that pushes with the git credentials your deployment provides is checked against those instead. See [Configure git](/docs/en/self-hosted-environments-deploy#configure-git).
 
 ### Connectors
 
@@ -374,7 +370,7 @@ To allow additional domains on one of your own environments, follow these steps.
   </Step>
 
   <Step title="Change the network access level">
-    In the **Edit cloud environment** dialog, change **Network access** to **Custom** and enter your domains in **Allowed domains**. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead for unrestricted access.
+    In the **Edit environment** dialog, change **Network access** to **Custom** and enter your domains in **Allowed domains**. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead for unrestricted access.
   </Step>
 
   <Step title="Save">

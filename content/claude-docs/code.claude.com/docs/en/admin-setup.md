@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 420395a327a9112f2c9ce878984ff25fbb25c2dccc7d3de25ee6cfb06666f80a
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 1a5b0f1700ee9e9ccaea692d79ef0033caf3669fd1585a295f321702ed55a8c7
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ Managed settings can lock down tools, sandbox execution, restrict MCP servers an
 If your members sign in through claude.ai or the Anthropic API and you're on a Claude Enterprise plan, you can also govern models from your organization's admin settings without deploying anything:
 
 * [Organization model restrictions](/docs/en/model-config#organization-model-restrictions): disable individual models. Enforced server-side.
-* [Organization default model](/docs/en/model-config#organization-default-model): set which model new sessions start on. Users can change it unless your organization enforces the default, which is available to a limited set of organizations; ask your Anthropic account team.
+* [Organization default model](/docs/en/model-config#organization-default-model): set which model new sessions start on. Members can still switch models. To return them to your default at launch, turn on the override that section describes. To limit which models they can pick, use [organization model restrictions](/docs/en/model-config#organization-model-restrictions).
 * [Organization effort limits](/docs/en/model-config#organization-effort-limits): cap effort levels per role. Enforced server-side.
 
 None of these controls reach sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or [Claude Platform on AWS](/docs/en/claude-platform-on-aws). On those providers, use managed settings instead: `availableModels` for restrictions, `model` for a default, and [`maxEffortLevel`](/docs/en/settings-reference#maxeffortlevel) for an effort cap.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: d7f6b2a386404daf773759224f76e7d129f24d9d4c7813ff1cfbe78d90a8d0b2
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 220a8a77259d62d37a604f94be3e6e3a80273cfd527c25a2768c4597836dcc0d
 ---
 
 > ## Documentation Index
@@ -113,11 +113,11 @@ Two of these decide whether you can add a credential, and two decide whether the
 
 #### Add a credential
 
-You add credentials one at a time from the editor of an environment that already exists. The dialog for a new environment doesn't offer them. There's no edit, either. To change a credential's hosts or value, delete it and add it again.
+You add credentials one at a time, and you can't edit a credential after you add it. To change a credential's hosts or value, delete it and add it again.
 
 <Steps>
   <Step title="Open the environment's API credentials">
-    [Open the environment for editing](#configure-your-environment) at [claude.ai/code](https://claude.ai/code). In the **Edit cloud environment** dialog, find **API credentials** below **Environment variables**. You see the credentials already on the environment, each with the hosts it applies to.
+    [Open the environment for editing](#configure-your-environment) at [claude.ai/code](https://claude.ai/code). In the **Edit environment** dialog, find the **API credentials** section. You see the credentials already on the environment, each with the hosts it applies to.
   </Step>
 
   <Step title="Add the credential">
@@ -246,7 +246,7 @@ In Anthropic-hosted environments, all GitHub operations go through a dedicated p
 
 * **Git credentials**: the git client inside the VM uses a scoped credential, which the proxy verifies and swaps for your actual GitHub token.
 * **API requests**: requests from the built-in GitHub tools, and from `gh` under the [`proxy-injected` placeholder](#work-with-github-issues-and-pull-requests), go out with your real credentials substituted.
-* **Push protection**: `git push` works only against the session's current working branch; cloning, fetching, and PR operations work normally.
+* **Push restrictions**: the proxy rejects branch deletions and pushes of anything other than a branch, such as a tag. It doesn't limit which branches a push can update. To do that, use branch protection rules or rulesets on GitHub.
 * **Repository scope**: GitHub API and release-asset requests reach only repositories attached to the session, so a setup script that downloads release assets from an unattached repository gets a 403.
 * **GraphQL restrictions**: the proxy serves only a pinned set of GraphQL operations for pull-request workflows. The proxy rejects everything else on the GraphQL endpoint with a 403 that says `This GraphQL query is not enabled for this session` and names the REST fallback, `gh api repos/{owner}/{repo}/...`. The restriction applies to every request through the proxy regardless of the credentials you supply, so a `GH_TOKEN` you set gets the same 403. Claude can't reach GitHub APIs that exist only in GraphQL, such as Projects v2, through the proxy.
 

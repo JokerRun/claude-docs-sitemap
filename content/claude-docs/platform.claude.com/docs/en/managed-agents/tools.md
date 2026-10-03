@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 706c3351fa5d85410e74cc8384d73447800436573deeb26ac139b556cbe3f0a2
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: aade93c4de05e2e95c5dd35966216328d99fd67cecd1e39778b153b04350a307
 ---
 
 ---
@@ -684,7 +684,7 @@ In addition to built-in tools, you can define custom tools. Custom tools are ana
 
 Each custom tool defines a contract: you specify what operations are available and what they return, and Claude determines when and how to call them. The model never executes anything on its own. It emits a structured request, your code runs the operation, and the result flows back into the conversation. See [Session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#handling-custom-tool-calls) for how to receive custom tool calls and return results during a session.
 
-If your sessions run in a self-hosted sandbox, the environment worker can [serve custom tools from your sandbox](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#serve-custom-tools-from-your-sandbox), including tools that wrap an MCP server inside your network.
+If your sessions run in a self-hosted sandbox, the environment worker can [serve custom tools from your sandbox](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-custom-tools), including tools that wrap an MCP server inside your network.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

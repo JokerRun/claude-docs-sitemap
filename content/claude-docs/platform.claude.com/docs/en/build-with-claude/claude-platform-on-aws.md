@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: fcf53c053fbb7ca887bfef9d65bc7cab6b80ccbebb5f260a5fd13932ed5457b5
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 71fc24b0ca9468c370ae001e748f0327370562d15a21cabbb8196cc736fcb360
 ---
 
 ---
@@ -570,7 +570,7 @@ See the [comparison table](https://platform.claude.com/docs/en/build-with-claude
 Session behavior on Claude Platform on AWS differs from first-party Claude Managed Agents in two ways:
 
 * **Autonomous-session reauthentication:** A session can run autonomously, without any [user events](https://platform.claude.com/docs/en/managed-agents/reference#event-types), for up to 6 hours. After 6 hours, the session requires reauthentication before it continues. To reauthenticate, send any user-role event to the session (see [Events and streaming](https://platform.claude.com/docs/en/managed-agents/events-and-streaming)). First-party Claude Managed Agents has no autonomous-session runtime limit.
-* **[Memory stores on self-hosted environments](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#use-memory-stores):** A session that runs on a self-hosted environment cannot attach memory stores; a session that includes one is rejected at creation. Sessions on cloud environments attach memory stores as usual. On first-party Claude Managed Agents, sessions on both cloud and self-hosted environments can attach memory stores.
+* **[Memory stores on self-hosted environments](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory):** A session that runs on a self-hosted environment cannot attach memory stores; a session that includes one is rejected at creation. Sessions on cloud environments attach memory stores as usual. On first-party Claude Managed Agents, sessions on both cloud and self-hosted environments can attach memory stores.
 
 ### Features not supported
 

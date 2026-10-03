@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-security
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d9b0d563cda6970ed47c1031b3e790d60408b7b543954ade8767abf691dee9b9
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: eae5d41a6b58ae1910979ea89f0fd1f8dcdd3fd7d618faddbb21ee0c39eb57f7
 ---
 
 > ## Documentation Index
@@ -41,7 +41,7 @@ On a third-party provider, the `sonnet` alias can resolve to a different version
 
 ## Install the plugin
 
-In a Claude Code session, install from the [official Anthropic marketplace](/docs/en/plugins/anthropic-marketplaces):
+In the VS Code extension or the desktop app, install it by following [Install a plugin](/docs/en/plugins/install#install-a-plugin). In a terminal, start Claude Code by running `claude`, then enter this at its prompt to install from the [official Anthropic marketplace](/docs/en/plugins/anthropic-marketplaces):
 
 ```text theme={null}
 /plugin install claude-security@claude-plugins-official

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 0387f49327f5a0e491663b48963d812397d5c4cc59824c680e06956947cc2ce2
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: ad949821ed8844f2f8829b48398361edb6c97628ec128571acc0730e4255489b
 ---
 
 > ## Documentation Index
@@ -108,6 +108,15 @@ An editor publishes new versions the same way you [update the artifact from anot
 When someone shares an artifact with you, you can have Claude read it: give Claude its URL, or attach it from [`/artifacts`](#find-an-artifact-again).
 
 Claude reads a page someone else wrote the way it reads a web page with [WebFetch](/docs/en/tools-reference#webfetch-tool-behavior): it gets a summary of what it asked about rather than the raw page, and the summary reports instructions written into the page instead of relaying them. Claude Code also saves the page's full source to a local file, which Claude can open when it needs the exact content, such as to republish the artifact as an [editor](#let-someone-edit-with-you).
+
+Claude Code asks for your approval before Claude reads the artifact in these cases, in addition to any prompt your permission mode or rules call for:
+
+* **Cloud session without network access**: for a [cloud environment](/docs/en/cloud-environments#access-levels), that's the **None** level. In [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode), the classifier can approve instead; in a [Cowork](https://claude.com/product/cowork) session, the approval is yours alone.
+* **Another organization's public artifact**: Claude Code asks you first, even in auto mode. Where Claude Code can't ask you, such as in `bypassPermissions` mode, Claude can't read the artifact. Claude can read these artifacts only while [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching) is on.
+* **Unconfirmed owner or network setting**: when Claude Code can't confirm who made the artifact, or can't confirm a cloud session's network setting, it asks, and your approval covers that one request.
+* **Plan mode, or feature-flag fetching turned off**: in [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode), or if you turned [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching) off, Claude Code asks before the Artifact tool reads an artifact someone else in your organization made.
+
+When Claude reads the artifact with WebFetch, WebFetch's own [prompting rules](/docs/en/tools-reference#webfetch-tool-behavior) still apply.
 
 ## Collect comments on an artifact
 
@@ -314,6 +323,7 @@ Each artifact is one self-contained page. Claude Code wraps the file you publish
 | Downloads | The page can't start a download itself. To let viewers save a file the page generates, Claude declares the downloads capability. See [Offer a file download](#offer-a-file-download). |
 | Single page | Relative links do not resolve, because nothing is deployed alongside the page. For multi-section content, Claude uses in-page anchors rather than separate files. |
 | Source file types | The published file must be `.html`, `.htm`, or `.md`, and must decode as UTF-8, or as little-endian UTF-16 by its byte-order mark. Markdown files render as styled document pages with syntax-highlighted code. A file that doesn't decode, or that contains the replacement character `U+FFFD`, is [refused with the line and column to fix](/docs/en/errors#the-source-file-is-not-valid-utf-8-text). |
+| Source location | A file at a path that names a network host is refused without being read. See [Not published: that file is on a network share](/docs/en/errors#not-published-that-file-is-on-a-network-share) for which paths are refused and the mapped-drive exception on Windows. |
 | Rendered size | The rendered page must be 16 MiB or smaller. Large embedded images are the usual cause when a publish fails for size. |
 
 Generating an artifact uses output tokens like any other response, and a styled page is more token-intensive than the same content as terminal text. Inline CSS, JavaScript for interactive controls, and especially images embedded as data URIs are the main contributors. To reduce an artifact's token cost:

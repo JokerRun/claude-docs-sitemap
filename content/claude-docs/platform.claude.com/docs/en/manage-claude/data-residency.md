@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1c61c948b73d4dd6822fd19ab77ab9d6e762a30a485770b597b6bcdf1faf14b4
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 3730a48d0d27e0db9ffb815817453c64e0f42e67c243d8a465ac9d6dd8bfb756
 ---
 
 ---
@@ -17,7 +17,7 @@ Data residency controls let you manage where your data is processed and stored. 
 * **Workspace geo:** Controls where data is stored at rest and where endpoint processing (such as image transcoding and code execution) happens. Configured at the workspace level in the [Claude Console](https://platform.claude.com).
 
 <Note>
-  [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) supports geographic pinning at the agent level: `inference_geo` on an [agent's model configuration](https://platform.claude.com/docs/en/managed-agents/agent-setup#pin-the-inference-geo) pins the geography that serves model requests for sessions running that agent, with [per-session overrides](https://platform.claude.com/docs/en/managed-agents/sessions#pin-the-inference-geo-for-a-session) at session create. Agents without a pin follow the workspace's default inference geo on each request. Managed Agents also respects the Workspace geo configured in Console, and with [self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes), tool execution and the sandbox filesystem stay on infrastructure you control; the contents of attached [memory stores](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#use-memory-stores) remain stored by Anthropic and are copied to your sandbox for the session.
+  [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) supports geographic pinning at the agent level: `inference_geo` on an [agent's model configuration](https://platform.claude.com/docs/en/managed-agents/agent-setup#pin-the-inference-geo) pins the geography that serves model requests for sessions running that agent, with [per-session overrides](https://platform.claude.com/docs/en/managed-agents/sessions#pin-the-inference-geo-for-a-session) at session create. Agents without a pin follow the workspace's default inference geo on each request. Managed Agents also respects the Workspace geo configured in Console, and with [self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes), tool execution and the sandbox filesystem stay on infrastructure you control; the contents of attached [memory stores](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory) remain stored by Anthropic and are copied to your sandbox for the session.
 </Note>
 
 ## Inference geo

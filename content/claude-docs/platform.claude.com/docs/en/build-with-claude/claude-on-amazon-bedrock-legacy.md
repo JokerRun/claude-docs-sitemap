@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: cf093bf1df4d83f8f648b64dded4690a4c5e38199a346435b00a9f59a77a9e8d
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 1e4c195dd9626b959b39b6f1ffa2adbda6fcb339b667ff3f484bc7e42831558a
 ---
 
 ---
@@ -738,7 +738,7 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
 * [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
 * [Citations](https://platform.claude.com/docs/en/build-with-claude/citations)
-* [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+* [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), for the models in the Amazon Bedrock note under its [Compatibility](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#compatibility) section
 
 ### Features not supported
 

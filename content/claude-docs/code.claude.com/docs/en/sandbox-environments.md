@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: cf4a16e4f0fc3ebb5b3649bd040327ec9b3a9ac67eea6e97714a50a7e5b3d719
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: 5966807613fd6d8ba1c8f8a8062a946adbc1c9b638c3465b71ac90aa41e57fb1
 ---
 
 > ## Documentation Index
@@ -154,7 +154,7 @@ You can run Claude Code in any Docker or OCI container image with your own netwo
 
 Several managed sandbox and remote execution services can host the container for you. The same checklist applies as for any container you operate: review what is mounted writable, what credentials and tokens are reachable inside it, and what the network egress policy allows.
 
-You can layer the built-in Bash sandbox inside the container for per-command restrictions. Unprivileged containers need the nested-sandbox setting described in [Sandboxing troubleshooting](/docs/en/sandboxing#troubleshooting).
+You can layer the built-in Bash sandbox inside the container for per-command restrictions. Unprivileged containers need `enableWeakerNestedSandbox`, described in [Bubblewrap fails to start inside a container](/docs/en/sandboxing#bubblewrap-fails-to-start-inside-a-container).
 
 ## Virtual machine
 

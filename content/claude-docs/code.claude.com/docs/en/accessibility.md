@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/accessibility
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: f58f2120c1d53963a530a1c653132f24361993433574c7cc3da77d897a9ebfba
+fetched_at: 2026-10-03T02:22:36.062836Z
+sha256: c0470c74dd15c77803d076d4639f9115b6a0f748c41c00cd0414f903ab7a84f5
 ---
 
 > ## Documentation Index
@@ -134,7 +134,7 @@ The bell is your terminal's standard alert. To silence it, change the bell setti
 Some behaviors aren't adapted for screen reader mode:
 
 * Screen reader mode doesn't turn on automatically when a screen reader is running.
-* Claude Code doesn't announce a permission mode change made in any way other than cycling with `Shift+Tab`, such as entering [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) from a command.
+* Claude Code doesn't announce a permission mode change you make with a command, such as entering [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) with `/plan`.
 * Attaching to a [background session](/docs/en/agent-view) with `claude attach` or from agent view enters the terminal's alternate screen, which has no native scrollback. This is the [same behavior as other attached sessions](/docs/en/fullscreen). To get back out, press Left Arrow on an empty prompt, or Ctrl+Z if a dialog has focus.
 * Claude Code announces costs in the summary it prints at exit, not per turn.
 * Screen reader mode doesn't change [non-interactive mode](/docs/en/headless) with the `-p` flag. Non-interactive mode already writes plain text and remains an alternative for scripting.
