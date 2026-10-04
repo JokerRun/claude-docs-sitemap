@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: fbd120e4a7cdd134384db121996cc3ff9a3c1614833a71883de57132d3daa159
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 374a68d5f25577467ef1a2128d7dbfc02aea941344ccd976dff3c1f61242c090
 ---
 
 > ## Documentation Index
@@ -157,7 +157,7 @@ The SDK provides hooks for different stages of agent execution. Some hooks are a
 | `PostToolUse` | Yes | Yes | Tool execution result | Log all file changes to audit trail |
 | `PostToolUseFailure` | Yes | Yes | Tool execution failure | Handle or log tool errors |
 | `PostToolBatch` | No | Yes | A full batch of tool calls resolves, once per batch before the next model call | Inject conventions once for the whole batch |
-| `UserPromptSubmit` | Yes | Yes | User prompt submission | Inject additional context into prompts |
+| [`UserPromptSubmit`](/docs/en/hooks#userpromptsubmit) | Yes | Yes | A prompt is submitted, including a turn Claude Code starts on its own | Inject additional context into prompts |
 | [`UserPromptExpansion`](/docs/en/hooks#userpromptexpansion) | No | Yes | A user-typed command, or an MCP prompt, expands into a prompt before it reaches Claude. Doesn't fire when Claude invokes a skill itself | Block a command from direct invocation or add context when a skill is typed |
 | `MessageDisplay` | No | Yes | An assistant message with text completes, once per message with the full message text | Redact or reformat the displayed text without changing the transcript |
 | `Stop` | Yes | Yes | Agent execution stop | Save session state before exit |

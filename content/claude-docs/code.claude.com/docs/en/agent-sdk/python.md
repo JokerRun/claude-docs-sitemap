@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b2fdb476033ed17f995cc3db8da14ab0c63e805725d1b7e3378f6726a5f02d8b
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: a8c7c841896a18ce5edd00c4c83c4bb613f8a86f6e3a3b778da30cb44b8b4262
 ---
 
 > ## Documentation Index
@@ -2030,7 +2030,7 @@ HookEvent = Literal[
     "PreToolUse",  # Called before tool execution
     "PostToolUse",  # Called after tool execution
     "PostToolUseFailure",  # Called when a tool execution fails
-    "UserPromptSubmit",  # Called when user submits a prompt
+    "UserPromptSubmit",  # Called when a prompt is submitted
     "Stop",  # Called when stopping execution
     "SubagentStop",  # Called when a subagent stops
     "PreCompact",  # Called before message compaction
@@ -2214,7 +2214,7 @@ class UserPromptSubmitHookInput(BaseHookInput):
 | Field | Type | Description |
 | :- | :- | :- |
 | `hook_event_name` | `Literal["UserPromptSubmit"]` | Always "UserPromptSubmit" |
-| `prompt` | `str` | The user's submitted prompt |
+| `prompt` | `str` | The submitted prompt |
 
 ### `StopHookInput`
 

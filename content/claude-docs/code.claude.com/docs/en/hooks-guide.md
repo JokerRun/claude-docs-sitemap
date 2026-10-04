@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 0deaa81ea57fec96f12f9c592a3ec6be720b63e40b4e2ebefb78520d2f8e238c
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 1cd8d9956c1526bd9142ec462903a950834d64aa94847bb0038ae7c13f798f81
 ---
 
 > ## Documentation Index
@@ -490,7 +490,7 @@ Claude Code fires hook events at specific points in its lifecycle. When an event
 | :- | :- |
 | `SessionStart` | When a session begins or resumes |
 | `Setup` | When you start Claude Code with `--init-only`, or with `--init` or `--maintenance` in `-p` mode. For one-time preparation in CI or scripts |
-| `UserPromptSubmit` | When you submit a prompt, before Claude processes it |
+| `UserPromptSubmit` | When a prompt is submitted, before Claude processes it. Also fires on [turns Claude Code starts on its own](/docs/en/hooks#userpromptsubmit) |
 | `UserPromptExpansion` | When a user-typed command expands into a prompt, before it reaches Claude. Can block the expansion |
 | `PreToolUse` | Before a tool call executes. Can block it |
 | `PermissionRequest` | When a tool call needs a permission decision |

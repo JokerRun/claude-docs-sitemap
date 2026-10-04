@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: c0e8760cb3057a2b44c40fcf8384b5c43f2896797e459611d1f5afbcab9fb243
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 49de997a83e412e86c4399ae873758b4f8c15b5c08ff44e24be4f2baca1d4e93
 ---
 
 > ## Documentation Index
@@ -246,7 +246,7 @@ function createSdkMcpServer(options: {
 | `options.version` | `string` | Optional version string |
 | `options.instructions` | `string` | Optional server instructions, returned from `initialize` and surfaced to the model as an MCP instructions block |
 | `options.tools` | `Array<SdkMcpToolDefinition>` | Array of tool definitions created with [`tool()`](#tool) |
-| `options.alwaysLoad` | `boolean` | When `true`, every tool from this server stays in the initial prompt and is never deferred behind [tool search](/docs/en/agent-sdk/tool-search). Combines with per-tool `alwaysLoad` in [`tool()`](#tool) |
+| `options.alwaysLoad` | `boolean` | When `true`, every tool from this server stays in the initial prompt instead of being deferred behind [tool search](/docs/en/agent-sdk/tool-search). Combines with per-tool `alwaysLoad` in [`tool()`](#tool) |
 | `options.timeout` | `number` | Timeout in milliseconds for this server's tool calls. Claude Code applies it to this server in place of [`MCP_TOOL_TIMEOUT`](/docs/en/env-vars). Pass a whole number of at least 1000. Claude Code ignores other values. Requires TypeScript Agent SDK v0.3.248 or later |
 
 ### `listSessions()`

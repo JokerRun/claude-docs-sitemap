@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/reference
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 1b36ec36ea956ad0b4d89efc90fdc9ea97fe343daa64eee9ef26f804023d30d8
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: a15322cce70a6fc91e2bc170b8d32401a525c2824f2ed65c46a1694823efd2cd
 ---
 
 > ## Documentation Index
@@ -62,7 +62,7 @@ Tool events fire around each tool call Claude makes, from the description Claude
 | :- | :- | :- |
 | [`tool.call`](/docs/en/plugins/mods/events#guard-or-change-a-tool-call) | A tool is about to run | `next(e)`, `{ deny: reason }`, or `{ result }` |
 | [`tool.check`](/docs/en/plugins/mods/events#where-settings-hooks-run-in-the-order) | Claude Code decides whether a tool call may run, after the `tool.call` and `PreToolUse` hooks. `next(e)` resolves to the decision the rules, the permission mode, and those hooks reached. | `{ decision }`, which is `allow`, `ask`, or `deny` |
-| `tool.describe` | Once for each tool, when its description is first sent to Claude | `{ description }` |
+| `tool.describe` | Once for each tool, when its description is first sent to Claude | `{ description }`, optionally with `isDeferred` set to `true` to put the tool behind [tool search](/docs/en/mcp#scale-with-mcp-tool-search) or `false` to load it upfront |
 
 ### Prompts and what Claude reads
 

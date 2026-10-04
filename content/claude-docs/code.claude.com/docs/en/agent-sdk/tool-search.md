@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 59f53ec1f3ee73a401e05fffb10715aa2ad0dfb5a406b07a36751cd70f599401
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 15e9328cc1f74edb24a883144f1f296f8ffa62176fb6c8494432ea7399a546f4
 ---
 
 > ## Documentation Index
@@ -55,7 +55,7 @@ The SDK also disables tool search when `ANTHROPIC_BASE_URL` points to a non-firs
 
 Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](/docs/en/env-vars) keeps tool search off. You can't override it by setting `ENABLE_TOOL_SEARCH` yourself. Your organization can keep tool search on through [managed settings](/docs/en/managed-settings), on Claude Code v2.1.227 or later. [Disable pre-release capabilities](/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) covers where the override applies and what the variable strips.
 
-Tool search applies to all registered tools, whether they come from remote MCP servers or [custom SDK MCP servers](/docs/en/agent-sdk/custom-tools). When you use `auto`, the SDK counts every definition that tool search can defer toward one combined threshold: each MCP tool that isn't marked [`alwaysLoad`](/docs/en/mcp#exempt-a-server-from-deferral), from any server, plus the built-in tools that load on demand. The SDK always loads core built-in tools such as Bash, Read, and Edit upfront and doesn't count them toward the threshold.
+Tool search applies to all registered tools, whether they come from remote MCP servers or [custom SDK MCP servers](/docs/en/agent-sdk/custom-tools). When you use `auto`, the SDK counts every definition that tool search can defer toward one combined threshold: each MCP tool that isn't marked [`alwaysLoad`](/docs/en/mcp#exempt-a-server-from-deferral), from any server, plus the built-in tools that load on demand. The SDK loads core built-in tools such as Bash, Read, and Edit upfront and doesn't count them toward the threshold. A [mod](/docs/en/plugins/mods/reference#tools) in one of your plugins can also defer a tool or load it upfront, which changes that count.
 
 Set the value in the `env` option on `query()`. In TypeScript, `env` replaces the subprocess environment, so spread `...process.env` to keep inherited variables. In Python, `env` is merged on top of the inherited environment. This example connects to a remote MCP server that exposes many tools, pre-approves all of them with a wildcard, and uses `auto:5` so tool search activates when the definitions it can defer reach 5% of the context window:
 

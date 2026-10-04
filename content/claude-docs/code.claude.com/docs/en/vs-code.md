@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: cafeb169a191777e85d948bde8a77b6bf152b7690ea39f20a7863408d64ae7e6
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: c7918aa89f66c775c60fd40a9e9ddfad8008ee18b0a3ffcf74cf314d05fa1711
 ---
 
 > ## Documentation Index
@@ -38,6 +38,8 @@ Click the link for your IDE to install directly:
 * [Install for Cursor](cursor:extension/anthropic.claude-code)
 
 Or in VS Code, press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux) to open the Extensions view, search for "Claude Code", and click **Install**.
+
+The extension's version number is the Claude Code version it bundles. For example, a feature that requires Claude Code v2.1.286 or later needs version 2.1.286 or later of the extension, which the Extensions view shows.
 
 The extension also installs in other VS Code forks like Devin Desktop or Kiro. Search for "Claude Code" in the editor's Extensions view, or install from the [Open VSX registry](https://open-vsx.org/extension/Anthropic/claude-code). If your editor can't install the extension, [install the CLI](/docs/en/quickstart) and run `claude` in its integrated terminal instead. The CLI works in any terminal.
 
@@ -158,6 +160,9 @@ The prompt box supports several features:
     If your organization's policy turns product feedback off, **Report a problem** doesn't appear in the menu, and `/bug` and `/feedback` show a `Feedback is turned off by your organization's policy or this environment's settings.` notice instead of opening the report. With Claude Code v2.1.284 or later, if you set the `DISABLE_FEEDBACK_COMMAND` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` environment variable, feedback is also turned off and opening the report shows that notice instead.
 * **Side questions**: type `/btw` followed by a question to ask about your session [without adding to the conversation](/docs/en/interactive-mode#side-questions-with-%2Fbtw). The answer opens in a panel beside the chat, where you can ask follow-up questions. The thread survives window reloads. Claude Code keeps the newest 20 exchanges and expires stored threads on the [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays) schedule, as long as Claude Code can [safely determine the retention period](/docs/en/claude-directory#cleaned-up-automatically). To clear a thread, click the trash icon in the panel. Requires Claude Code v2.1.227 or later.
 * **Copy a response**: hover over a response and click **Copy response** to copy it to your clipboard, or type `/copy` to copy the latest response. `/copy 2` copies the second-to-last. Requires Claude Code v2.1.277 or later.
+* **Bookmarks**: hover over a response and click **Bookmark response** to save it, or click **Remove bookmark** on a saved response to remove it.
+
+  To review saved responses, open the Bookmarks panel: click the bookmark icon at the top of the Claude Code panel, select **Bookmarks** in the Context section of the command menu, or type `/bookmarks`. Requires Claude Code v2.1.286 or later.
 * **Context indicator**: the prompt box shows how much of Claude's context window you're using. Claude automatically compacts when needed, or you can run `/compact` manually.
 * **Prompt cache clock**: a clock icon next to the context indicator estimates how much time the conversation's [prompt cache](/docs/en/prompt-caching) has left before it expires. It counts down from the cache's five-minute or one-hour [lifetime](/docs/en/prompt-caching#cache-lifetime), and each response that uses the cache restarts the countdown. Apart from compaction, the [actions that invalidate the cache](/docs/en/prompt-caching#actions-that-invalidate-the-cache) don't reset the clock, so it can still show minutes left after you switch models.
   * Until the countdown runs out, the icon shows the minutes left, such as **12m**.
@@ -170,6 +175,8 @@ The prompt box supports several features:
   The map also lists the session's other [background tasks](/docs/en/tools-reference#background-commands), such as background shell commands and [monitors](/docs/en/tools-reference#monitor-tool), below the agents. Click a row to open the task's card and stop it there.
 
   To open the map when no agent count is showing, such as when Claude has started a background shell but no subagents, type `/tasks` in the prompt box. Background tasks in the map and the typed `/tasks` require Claude Code v2.1.277 or later.
+
+  With Claude Code v2.1.286 or later, when you click **Stop** or press `Esc`, the current turn ends. Background agents keep running until they finish or you stop them from the map.
 * **Extended thinking**: lets Claude spend more time reasoning through complex problems. Toggle it on via the command menu (`/`). Claude's reasoning appears in the conversation as collapsed blocks: click a block to read it, or press `Ctrl+O` to expand or collapse every thinking block in the session. See [Extended thinking](/docs/en/model-config#extended-thinking) for details.
 * **Multi-line input**: press `Shift+Enter` to add a new line without sending. This also works in the "Other" free-text input of question dialogs.
 

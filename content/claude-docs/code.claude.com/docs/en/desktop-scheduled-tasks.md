@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: ea7ab57433561beab1c712e8f55910a12e3a8a786ed9a03c37d5dc2cf14aa47a
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 09b06688da8c5bd6216fd763505496d118d213f9949f488cd55f47d9bf76c9ef
 ---
 
 > ## Documentation Index
@@ -74,7 +74,7 @@ Scheduled tasks run on your machine. Desktop checks the schedule every minute wh
 
 When a task fires, you get a desktop notification and a new session appears under a **Scheduled** section in the sidebar. Open it to see what Claude did, review changes, or respond to permission prompts. Claude can edit files, run commands, create commits, and open pull requests, the same as in a session you start yourself, but can't send or receive [messages between your desktop sessions](/docs/en/desktop#work-across-sessions) through the desktop app's session surface.
 
-Tasks only run while the desktop app is running and your computer is awake. If your computer sleeps through a scheduled time, the run is skipped. To prevent idle-sleep, enable **Keep computer awake** in Settings under **Desktop app → General**. Closing the laptop lid still puts it to sleep. For tasks that need to run even when your computer is off, or that should trigger on an API call or GitHub event, create a remote [routine](/docs/en/routines) instead.
+Tasks only run while the desktop app is running and your computer is awake. If your computer sleeps through a scheduled time, the run is skipped. To prevent idle-sleep, turn on **Keep computer awake** in **Settings > This computer > System**. Closing the laptop lid still puts it to sleep. For tasks that need to run even when your computer is off, or that should trigger on an API call or GitHub event, create a remote [routine](/docs/en/routines) instead.
 
 ## Missed runs
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 99d8f33e2900b79168106d3660261cce901f9dcdf7c211f7fce2799f166e90c1
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: b6f713923d54225709fbe41175734fcb9af36a1ab4f6530910545db3f6542c3e
 ---
 
 > ## Documentation Index
@@ -64,7 +64,7 @@ The table lists every key Claude Code reads from `marketplace.json`. `name`, `ow
 
 | Field | Type | Description |
 | :- | :- | :- |
-| `name` | string | Marketplace identifier: letters, digits, `.`, `_`, and `-`, starting with a letter or digit, and no `..`. It forms the half after `@` of every [plugin id](/docs/en/plugins/loading#find-where-a-plugin-came-from) installed from the marketplace, so `claude plugin validate` fails other names. See [Reserved names](#reserved-names) |
+| `name` | string | Marketplace identifier: letters, digits, `.`, `_`, and `-`, starting with a letter or digit, and no `..`. `claude plugin validate` fails any other name, because Claude Code can't install plugins from a marketplace that uses one. Users type the name after `@` in a [plugin id](/docs/en/plugins/loading#find-where-a-plugin-came-from) such as `my-plugin@my-marketplace` when they install a plugin. See [Reserved names](#reserved-names) |
 | `owner` | object | Maintainer information. `name` is required; `email` and `url` are optional |
 | `plugins` | array | [Plugin entries](#plugin-entries). Each entry is validated on its own, so one invalid entry doesn't fail the marketplace |
 | `$schema` | string | JSON Schema URL for editor autocomplete. Ignored at load time |

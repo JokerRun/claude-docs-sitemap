@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/computer-use
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 7f22f5b44bbfa3ea19876bc831654550edc5689cb0e31616356c6f78994caec2
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: de3cc4cf15744a48add0e568373b7ea26a9bf51cd8b143a68c084c2977e1163c
 ---
 
 > ## Documentation Index
@@ -187,7 +187,7 @@ The CLI and Desktop surfaces share the same computer use engine, with a few diff
 | Feature | Desktop | CLI |
 | :- | :- | :- |
 | Platforms | macOS and Windows | macOS only |
-| Enable | Toggle in **Settings > General** (under **Desktop app**) | Enable `computer-use` in `/mcp` |
+| Enable | Toggle in **Settings > This computer > System** | Enable `computer-use` in `/mcp` |
 | Denied apps list | Configurable in Settings | Not yet available |
 | Auto-unhide toggle | Optional | Always on |
 | Dispatch integration | Dispatch-spawned sessions can use computer use | Not applicable |

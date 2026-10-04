@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 7beea8fae2478ab5a87ccbb734ceea56f7395851d42ceabcbfff8fadb5b552a8
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 4a76adc28db4d84f2cb29158a629c62afb859f5d880efe93fc3ba5e093b9bcfd
 ---
 
 > ## Documentation Index
@@ -344,7 +344,7 @@ By default, any plugin on the Anthropic-maintained allowlist can register as a c
 
 If you set an empty array, you block all channel plugins from the allowlist, but `--dangerously-load-development-channels` can still bypass that block for local testing. To block channels entirely including the development flag, leave `channelsEnabled` unset instead.
 
-This setting requires `channelsEnabled: true`. If a user passes a plugin to `--channels` that isn't on your list, Claude Code starts normally but the channel doesn't register, and the startup notice explains that the plugin isn't on the organization's approved list. If you set `MCP_PROTOCOL_NEGOTIATION` to `auto` on the v2 MCP client runtime, a channel can also fail to register because Claude Code [doesn't register a channel server that negotiates protocol revision 2026-07-28](/docs/en/mcp#push-messages-with-channels).
+This setting requires `channelsEnabled: true`. If a user passes a plugin to `--channels` that isn't on your list, Claude Code starts normally but the channel doesn't register, and the startup notice explains that the plugin isn't on the organization's approved list. On the v2 MCP client runtime, a channel can also fail to register because Claude Code [doesn't register a channel server that negotiates protocol revision 2026-07-28](/docs/en/mcp#push-messages-with-channels).
 
 ## Research preview
 

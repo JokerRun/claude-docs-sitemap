@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 6f437dec1458422f86e31b63700c8db678c566f421c10f59977d04ba70dd8047
+fetched_at: 2026-10-04T03:00:01.408900Z
+sha256: 48cd694336bc75fba8afad8b132eda4955393a8b896cc8b44596349db4f51af9
 ---
 
 > ## Documentation Index
@@ -724,7 +724,7 @@ For message-level reconstruction, each event class carries a key that matches a 
 
 #### User prompt event
 
-Logged when a user submits a prompt.
+Logged when a prompt is submitted, including on turns Claude Code starts on its own.
 
 **Event Name**: `claude_code.user_prompt`
 
