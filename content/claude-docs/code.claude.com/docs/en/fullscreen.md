@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: c582787d9735efbda071fe0d2984a56922fd785d611a2500544647381f926432
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: e5b770512b61fba6602c6df0e31ec631b961b5ba16a175958ba9fc5d3aec2add
 ---
 
 > ## Documentation Index
@@ -108,7 +108,7 @@ Fullscreen rendering captures mouse events and handles them inside Claude Code:
 * **Click the `↑ N more` or `↓ N more` row at the edge of a list** to jump to that end of the list without choosing an option. Requires Claude Code v2.1.286 or later.
 * **Click a collapsed tool result** to expand it and see the full output. Click again to collapse. The tool call and its result expand together. Only messages that have more to show are clickable.
   * Clicking also expands the output of a `!` shell command, whether an older truncated result or the live progress row while the command runs. Requires Claude Code v2.1.257 or later.
-  * Clicking also expands a dim `Message from @<sender>` line when the sender is a [teammate](/docs/en/agent-teams) or another agent running in your session. The line for a message from [one of your other sessions](/docs/en/cross-session-messaging#what-a-message-looks-like) also shows the message's first line and isn't clickable, so press `Ctrl+o` to read that one.
+  * Clicking also expands a dim `Message from @<sender>` line when the sender is a [teammate](/docs/en/agent-teams) or another agent running in your session.
 * **Hold `Cmd` on macOS, or `Ctrl` on Linux and Windows, and click a URL or file path** to open it. Plain `http://` and `https://` URLs open in your browser, and file paths in tool output, like the ones printed after an Edit or Write, open in your default application. A plain click without the modifier doesn't open links, matching native terminal behavior.
   * Claude Code renders a network (UNC) path, such as `\\server\share\file.ts`, as plain text with no link, because opening a network path can send your Windows credentials to the host it names.
   * Some macOS terminals forward `Cmd`+click to the running app instead of opening the link themselves, and the terminal mouse protocol has no way to encode the `Cmd` key, so Claude Code receives a plain click. In Ghostty, and in Warp on macOS, Claude Code detects this and lets a plain click on a link open it, and holding `Cmd` still works.

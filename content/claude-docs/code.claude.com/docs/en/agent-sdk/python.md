@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-04T03:00:01.408900Z
-sha256: a8c7c841896a18ce5edd00c4c83c4bb613f8a86f6e3a3b778da30cb44b8b4262
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 47c6a87b526520b4b5f9eb8795a09cae4430b33e2fed78a23501137e9a18cf86
 ---
 
 > ## Documentation Index
@@ -2546,6 +2546,7 @@ Launches a new agent to handle complex, multi-step tasks autonomously.
         "speed": str | None,
         "iterations": Any | None,
         "output_tokens_details": {"thinking_tokens": int | None} | None,
+        "fallback_credit": Any | None,
     },
     "toolStats": {  # Aggregate tool activity for the run
         "readCount": int,
@@ -2596,7 +2597,7 @@ Returns the result from the subagent. The output is discriminated on the `status
 
 On the `completed` variant, `resolvedModel` names the model the subagent started on, which can differ from the requested `model` input when [`availableModels`](/docs/en/model-config#restrict-model-selection) or another override applies. This field requires Claude Code v2.1.174 or later. On the `async_launched` variant, `resolvedModel` names the model in use when the agent moved to the background, so a swap that happened before backgrounding is reflected there. The `modelsUsed` field on both variants lists the models used in order, with consecutive repeats collapsed; it's set only when the model was swapped mid-run. `modelsUsed` and the backgrounding-time `resolvedModel` behavior require Claude Code v2.1.212 or later.
 
-Claude Code fills `usage` and `totalTokens` from the subagent's final API request, not from the whole run. When present, `thinking_tokens` under `output_tokens_details` in `usage` is the number of that request's output tokens that were thinking tokens. The `output_tokens_details` key requires Python SDK v0.2.136 or later, which bundles Claude Code v2.1.228.
+Claude Code fills `usage` and `totalTokens` from the subagent's final API request, not from the whole run. When present, `thinking_tokens` under `output_tokens_details` in `usage` is the number of that request's output tokens that were thinking tokens. The `output_tokens_details` key requires Python SDK v0.2.136 or later, which bundles Claude Code v2.1.228. The `fallback_credit` key requires Python SDK v0.2.162 or later, which bundles Claude Code v2.1.285.
 
 ### AskUserQuestion
 

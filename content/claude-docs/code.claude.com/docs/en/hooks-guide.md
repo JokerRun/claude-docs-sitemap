@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-10-04T03:00:01.408900Z
-sha256: 1cd8d9956c1526bd9142ec462903a950834d64aa94847bb0038ae7c13f798f81
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: addf370e321f65ba567fee6b002c473d6a4e09e83b0849a706ff464fd2b8e22e
 ---
 
 > ## Documentation Index
@@ -1012,7 +1012,7 @@ You edited a settings file but the hooks don't appear in the menu.
 
 Claude keeps working instead of stopping, then ends the turn with a warning that the Stop hook blocked too many consecutive times.
 
-Claude Code overrides a Stop hook after it blocks eight times in a row without progress. Your hook script needs to check whether it already triggered a continuation. Parse the `stop_hook_active` field from the JSON input and exit early if it's `true`:
+Claude Code overrides a Stop hook after it blocks eight times in a row with no tool call from Claude in between. Your hook script needs to check whether it already triggered a continuation. Parse the `stop_hook_active` field from the JSON input and exit early if it's `true`:
 
 ```bash theme={null}
 #!/bin/bash

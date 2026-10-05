@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 45289e551da96e9c4a3a5968b3bdcdd7fd766f0c735c019f60d71d06f28a58d1
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 6b735b8c7e2fb8f28d7e0e422f7c2524157f64597f6c6badf6613bb758e4ab0d
 ---
 
 > ## Documentation Index
@@ -192,7 +192,7 @@ For a marketplace-installed plugin, a `displayName` on the [marketplace entry](/
 
 ### `version`
 
-A version string, not checked against semver. Setting it pins the plugin to that version until you change it; see [Versions and updates](/docs/en/plugins/loading#versions-and-updates). A plugin with a [`command` source](/docs/en/plugins/marketplace-reference), a plugin from a [marketplace hosted on claude.ai](/docs/en/plugins/install#add-from-claude-ai), and a plugin [loaded in place](/docs/en/plugins/loading#find-plugins-on-disk) from a marketplace added as a local directory aren't pinned by this field.
+A version string, not checked against semver. Setting it pins the plugin to that version until you change it; see [Versions and updates](/docs/en/plugins/loading#versions-and-updates). A plugin with a [`command` source](/docs/en/plugins/marketplace-reference), a plugin from a [marketplace hosted on claude.ai](/docs/en/plugins/install#add-from-claude-ai), and a plugin [loaded in place](/docs/en/plugins/loading#find-plugins-on-disk) from a marketplace added from a local path aren't pinned by this field.
 
 ### `metadata`
 

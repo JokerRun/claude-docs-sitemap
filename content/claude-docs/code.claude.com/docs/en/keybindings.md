@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: e5a63c9828e1115f39fb368e31ec21c6212f068d3eca76116f0a03167a780ba1
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: ea0fa18b42e013af104d8676d92bee6a1500299c75b96ab095f5cc3ec3b26c31
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ Actions available in the `Chat` context:
 | `chat:cancel` | Escape | Cancel current input |
 | `chat:clearInput` | Ctrl+L | Force a full screen redraw, preserving input and conversation |
 | `chat:clearScreen` | Cmd+K | Same as `chat:clearInput`. See [Clear the conversation](/docs/en/fullscreen#clear-the-conversation) for how Cmd+K behaves on iTerm2 and Terminal.app |
-| `chat:killAgents` | Ctrl+X Ctrl+K | Stop all running [background subagents](/docs/en/sub-agents#run-subagents-in-foreground-or-background) in this session and turn off [artifact auto-replies](/docs/en/artifacts#let-claude-reply-to-comments-on-its-own) for the rest of it |
+| `chat:killAgents` | Ctrl+X Ctrl+K | Stop all running [background subagents](/docs/en/sub-agents#run-subagents-in-foreground-or-background) in this session and turn off [artifact auto-replies](/docs/en/artifacts#let-claude-reply-to-comments-on-its-own) for the rest of it. Press the shortcut twice within 3 seconds to confirm. You can press it while a background subagent's permission prompt is open |
 | `chat:cycleMode` | Shift+Tab\* | Cycle permission modes |
 | `chat:modelPicker` | Meta+P | Open model picker |
 | `chat:fastMode` | Meta+O | Toggle fast mode |
@@ -419,6 +419,10 @@ Actions available in the `Agents` context, which applies in [agent view](/docs/e
 | :- | :- | :- |
 | `agents:switchView` | Ctrl+S | Switch [session grouping](/docs/en/agent-view#organize-the-list) between state and directory |
 | `agents:togglePin` | Ctrl+T | [Pin or unpin](/docs/en/agent-view#organize-the-list) the selected session |
+| `agents:find` | Ctrl+F | Find sessions by name, with the [`n:` filter](/docs/en/agent-view#filter-sessions). Requires v2.1.288 or later |
+| `agents:rename` | Ctrl+R | [Rename](/docs/en/agent-view#organize-the-list) the selected session. Requires v2.1.288 or later |
+| `agents:previousGroup` | Ctrl+Up, Meta+Up | Jump to the previous [group header](/docs/en/agent-view#organize-the-list). Requires v2.1.288 or later |
+| `agents:nextGroup` | Ctrl+Down, Meta+Down | Jump to the next group header. Requires v2.1.288 or later |
 
 While agent view is open, Claude Code uses the `Agents` binding for any key the `Agents` context binds, and it ignores a `Chat` or `Global` binding on the same key. For example, pressing Ctrl+S in agent view switches the session grouping rather than triggering the default `chat:stash`.
 

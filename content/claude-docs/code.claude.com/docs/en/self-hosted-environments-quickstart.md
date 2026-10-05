@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-quickstart
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 2944aab4bfe71160eae2f2f6662910c16504ed13cb2e541da7c5264887000558
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 6d7e98136d9e1cbebfbd08ce363fc75ea7accb7e52b18b02d24711e4cab13db6
 ---
 
 > ## Documentation Index
@@ -112,7 +112,7 @@ Once a session is running on your environment, send it a follow-up from the `cla
 claude -p "your message" --cloud <session-id>
 ```
 
-For `<session-id>`, pass the bare `session_...` or `cse_...` ID or the session's claude.ai/code URL. A successful send prints `Sent to cloud session.` with the session ID and a view link. Accepted ID forms, JSON output, the account and policy requirements, and the error reference are on [Send follow-ups from the CLI](/docs/en/claude-code-on-the-web#send-follow-ups-from-the-cli), since the command works the same against Anthropic-hosted sessions.
+For `<session-id>`, pass the bare `session_...` or `cse_...` ID or the session's claude.ai/code URL. A successful send prints `Sent to cloud session.` with the session ID and a view link. Accepted ID forms, JSON output, and the account and policy requirements are on [Send follow-ups from the CLI](/docs/en/claude-code-on-the-web#send-follow-ups-from-the-cli), since the command works the same against Anthropic-hosted sessions.
 
 ## What's next
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 90726b4b1120f6b9ab6a83682b1c4cc06ab47e3bee097df2bf35d95a37b13665
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: f70f86302d503ca7eec913f74fd2d78fc005758100bf6539dea40399b0d02982
 ---
 
 > ## Documentation Index
@@ -366,6 +366,21 @@ When you start the session on a specific Sonnet or Opus version, for example wit
 Model aliases such as `opus` don't act as pins, and neither does a model ID Claude Code doesn't recognize, such as an application inference profile ARN.
 
 When these checks find a model your account can't invoke, Claude Code remembers the refusal on this machine for up to a day, and launches during that time skip the remembered model without asking Amazon Bedrock again. Claude Code checks a remembered refusal of a current default model again at launch once ten minutes have passed since the last check, so a default your administrator re-enables comes back. To turn the memory off, set [`CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORY=1`](/docs/en/env-vars).
+
+### When your organization enforces a model allowlist
+
+If you set [`enforceAvailableModels`](/docs/en/model-config#enforce-the-allowlist-for-the-default-model) in managed settings, the startup model checks use only models your `availableModels` list permits. This applies on the Amazon Bedrock Invoke API and requires Claude Code v2.1.287 or later. A list without `enforceAvailableModels` doesn't restrict these checks.
+
+The checks compare each entry with the inference profile ID they would send, including its [region prefix](#cross-region-inference-profile-prefixes), so write the list in those IDs. This example permits Opus 4.8 and Sonnet 4.5 for a deployment whose models resolve to `us.` profiles:
+
+```json theme={null}
+{
+  "availableModels": ["us.anthropic.claude-opus-4-8", "us.anthropic.claude-sonnet-4-5-20250929-v1:0"],
+  "enforceAvailableModels": true
+}
+```
+
+For aliases, version prefixes, and `modelOverrides` entries, see [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments).
 
 ### When a model is disabled mid-session
 

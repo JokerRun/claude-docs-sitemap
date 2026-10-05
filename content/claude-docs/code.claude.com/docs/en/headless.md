@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a411aefc8f03483089bdf650335c0ce53a74b7f9c64d046623e1c1987df9290a
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: e2213e785a9105847e0d2ad006f3885c35ded7b88f0db23ce708ea45c43a7fbc
 ---
 
 > ## Documentation Index
@@ -62,7 +62,7 @@ In bare mode Claude has access to the Bash, file read, and file edit tools. Pass
 | System prompt additions | `--append-system-prompt`, `--append-system-prompt-file` |
 | Settings | `--settings <file-or-json>` |
 | MCP servers | `--mcp-config <file-or-json>` |
-| Custom agents | `--agents <json>` |
+| [Custom agents](/docs/en/sub-agents#choose-the-subagent-scope) | `--agents <file-or-json>` |
 | A plugin | `--plugin-dir <path>`, `--plugin-url <url>` |
 
 Bare mode also limits what happens while the session runs:

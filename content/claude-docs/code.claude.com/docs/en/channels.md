@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-10-04T03:00:01.408900Z
-sha256: 4a76adc28db4d84f2cb29158a629c62afb859f5d880efe93fc3ba5e093b9bcfd
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 1c447daf525e8da4787ca53d6064591b2239448b689e2ff965a1c4f77e675524
 ---
 
 > ## Documentation Index
@@ -323,7 +323,7 @@ Pro and Max users without an organization skip these checks entirely: channels a
 
 ### Enable channels for your organization
 
-Enable channels for your organization from [**claude.ai → Admin settings → Claude Code → Channels**](https://claude.ai/admin-settings/claude-code), which requires the Owner role, or by setting `channelsEnabled` to `true` in managed settings.
+Enable channels for your organization from [**Organization settings > Claude Code > Channels**](https://claude.ai/admin-settings/claude-code), which requires the Owner role, or by setting `channelsEnabled` to `true` in managed settings.
 
 Once enabled, users in your organization can use `--channels` to opt channel servers into individual sessions. If the setting is disabled or unset, the MCP server still connects and its tools work, but channel messages won't arrive. A startup warning tells the user to have an admin enable the setting.
 

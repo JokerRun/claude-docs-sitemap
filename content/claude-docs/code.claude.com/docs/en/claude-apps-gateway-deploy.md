@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 747439be6b277193c1183b39ed0ce5b543646b70eb9b9b3fdd2bf03ce67c7f4c
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 823162001fb4943c9355ddf138a5468692a62707167ff66d763963b7fec67de8
 ---
 
 > ## Documentation Index
@@ -388,11 +388,18 @@ A developer's requests can fail with a `431` error after sign-in when the develo
 
 The gateway answers `431` when a request's headers total more than 256 KiB, or more than [`limits.max_request_header_bytes`](/docs/en/claude-apps-gateway-config#http-tuning) if you set it. It writes no log line or audit event for these requests. Gateway versions before v2.1.284 answer `431` above 16 KiB.
 
-What to change depends on your gateway's version and configuration:
+Start with the first of these that applies to your gateway:
 
 * **Gateway older than v2.1.284**: upgrade the gateway
 * **`limits.max_request_header_bytes` set**: raise the value or remove the key
 * **Neither applies, or `431` continues afterward**: have your IdP emit fewer groups. [Identity provider setup](#identity-provider-setup) covers how Okta, Microsoft Entra ID, and Google Workspace supply groups
+
+When you trim the groups claim, keep the groups you named in these settings, which decide a developer's access, policy, and spend caps:
+
+* **[`oidc.allowed_groups`](/docs/en/claude-apps-gateway-config#oidc)**: decides who can sign in
+* **[`admin.admin_groups`](/docs/en/claude-apps-gateway-config#admin)**: decides who can call the admin API with their gateway session
+* **`match.groups` in [`managed.policies`](/docs/en/claude-apps-gateway-config#managed)**: decides which policy applies to a developer
+* **`rbac_group` [spend caps](/docs/en/claude-apps-gateway-spend-limits)**: decide which group caps apply to a developer
 
 ## Related
 

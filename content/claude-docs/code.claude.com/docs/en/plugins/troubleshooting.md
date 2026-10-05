@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 9e866d912f19d0cb928aeca31610798cdae50ec0e0a23f3c185caab9bf065877
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 67deddb7fa107498ac657433af1a3e1e6d2608953fcc26bc94f2710dfd316298
 ---
 
 > ## Documentation Index
@@ -991,7 +991,7 @@ Your plugin's skill runs when you type its `/<plugin>:<skill>` command, but Clau
 
 Check these causes in order:
 
-* **The skill sets `disable-model-invocation: true`**: with that field set, only you can invoke the skill. The template skill in [Create your first plugin](/docs/en/plugins/create#create-your-first-plugin) sets it. Remove the line from a skill you want Claude to invoke on its own. [Control who invokes a skill](/docs/en/skills#control-who-invokes-a-skill) covers the field
+* **The skill sets `disable-model-invocation: true`**: the template skill in [Create your first plugin](/docs/en/plugins/create#create-your-first-plugin) sets it. Remove the line from a skill you want Claude to invoke on its own. [Control who invokes a skill](/docs/en/skills#control-who-invokes-a-skill) covers the field
 * **The description doesn't match how people ask**: work through the checks in [Skill not triggering](/docs/en/skills#skill-not-triggering)
 * **The description is truncated**: when many skills are installed, Claude Code shortens descriptions to fit the listing's character budget, which can strip the keywords Claude needs to match a request. See [Skill descriptions are cut short](/docs/en/skills#skill-descriptions-are-cut-short)
 

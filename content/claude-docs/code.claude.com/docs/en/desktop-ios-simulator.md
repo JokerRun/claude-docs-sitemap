@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-ios-simulator
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: d1188825238e8945469ad9ebbb2f499fcca89aae3a7a499881f8f9329493f65f
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 442848e98f4029de180a7d6a8c71f8dd3ee9b2c254e443d60afa2990fab16c0b
 ---
 
 > ## Documentation Index
@@ -91,7 +91,7 @@ The simulator pane is interactive, not only a viewer. While Claude works, or bet
 * Save a screenshot with **Cmd+S** or a screen recording with **Cmd+R**, using the pane's capture buttons or the shortcuts; the files are saved to your Desktop
 * Stop streaming a device without shutting it down by clicking **Detach simulator**, which returns the pane to its **Attach simulator** state
 
-The row under the device name tunes the video stream from the simulator. Lower **Frame rate** or **Resolution** if the pane strains your Mac, switch **Encoding** between H.264 and JPEG, or check **FPS** to display the frame rate the pane is receiving. These settings change how the pane displays the device, not how the app runs.
+To tune the video stream from the simulator, open the pane's **Display** menu. Lower **Frame rate** or **Resolution** if the pane strains your Mac. Both settings change how the pane displays the device, not how the app runs.
 
 You and Claude drive the same device, so your taps change the app state Claude sees. To have Claude check a specific screen, tap through to it, then ask. While Claude is driving the device, the pane shows a **Claude is using this device** badge above the screen; hold off tapping until the badge clears, so the result reflects the app rather than your input.
 

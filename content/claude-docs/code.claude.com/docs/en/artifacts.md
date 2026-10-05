@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: ad949821ed8844f2f8829b48398361edb6c97628ec128571acc0730e4255489b
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: ec975fc76ea111815cae525bd458f8e5fd5b2b9563740c8cfeb096ea0040dc55
 ---
 
 > ## Documentation Index
@@ -143,7 +143,7 @@ If Claude tells you it can't read comments, confirm your version, your session, 
 
 ### Let Claude reply to comments on its own
 
-After your session publishes an artifact, Claude Code watches that artifact for comments for as long as the session runs. When someone who can edit the artifact sends a comment to Claude, it reaches your session right away, and Claude can read the thread and reply without you asking.
+After your session publishes an artifact, Claude Code watches that artifact for comments. When someone who can edit the artifact sends a comment to Claude, it reaches your session right away, and Claude can read the thread and reply without you asking.
 
 You need Claude Code v2.1.228 or later. If you turned [feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching) off, Claude Code doesn't watch for comments.
 
@@ -160,6 +160,8 @@ Run `/tasks` to see each artifact your session is watching, listed as a live-upd
 * **Press Ctrl+C once at an idle prompt**: Claude pauses replying on every artifact your session is watching. Replies start again after you send your next message.
 * **Stop the task in `/tasks`**: Claude stops replying on that artifact until you ask it to resume replies there. Publishing the artifact again doesn't start replies again, and the stop still applies when you resume the session later.
 * **Press `Ctrl+X Ctrl+K` twice within 3 seconds**: the chord that [stops every running background subagent](/docs/en/interactive-mode#general-controls) also stops Claude from replying on every artifact for the rest of the session. Asking Claude to resume replies doesn't undo this stop.
+
+A watch that Claude Code started on its own can end after the artifact goes several hours without activity. To start the watch again, publish the artifact again or ask Claude to watch it.
 
 If the service that delivers comments becomes unavailable or stops answering, Claude Code keeps trying to reconnect for a while, then stops watching each artifact your session was watching.
 

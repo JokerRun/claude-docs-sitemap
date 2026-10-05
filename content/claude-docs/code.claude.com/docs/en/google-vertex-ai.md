@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a77013b97e6db137f9ce287ff40dc1456e7c184eee2ecfdd75fd5d77d437b1de
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 3fcbe20b73dc3388e1883390d43e36d44bfff513a0979976fac7e39eb8620774
 ---
 
 > ## Documentation Index
@@ -277,6 +277,21 @@ When you start the session on a specific Sonnet or Opus version, for example wit
 Model aliases such as `opus` don't act as pins, and neither does a model ID Claude Code doesn't recognize.
 
 When these checks find a model your project can't invoke, Claude Code remembers the refusal on this machine for up to a day, and launches during that time skip the remembered model without asking Agent Platform again. Claude Code checks a remembered refusal of a current default model again at launch once ten minutes have passed since the last check, so a default your administrator re-enables comes back. To turn the memory off, set [`CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORY=1`](/docs/en/env-vars).
+
+### When your organization enforces a model allowlist
+
+If you set [`enforceAvailableModels`](/docs/en/model-config#enforce-the-allowlist-for-the-default-model) in managed settings, the startup model checks use only models your `availableModels` list permits. This requires Claude Code v2.1.287 or later. A list without `enforceAvailableModels` doesn't restrict these checks.
+
+The checks compare each entry with the model ID they would send to Agent Platform, so write the list in those IDs. This example permits Opus 4.8 and Sonnet 4.5:
+
+```json theme={null}
+{
+  "availableModels": ["claude-opus-4-8", "claude-sonnet-4-5@20250929"],
+  "enforceAvailableModels": true
+}
+```
+
+For aliases, version prefixes, and `modelOverrides` entries, see [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments).
 
 ### When a model is disabled mid-session
 

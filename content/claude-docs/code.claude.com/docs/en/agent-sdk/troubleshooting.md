@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/troubleshooting
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 812632db7996257468829930b318be575e1bcd7e1091c7fbba0c58ab808036a3
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 8f14cbdd3a7b7e475fd042535bc9583221b3d5e92c470761211f0d9bdae8062e
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ Symptoms tied to a feature, such as a hook not firing or a skill not being used,
 | Symptom | Go to |
 | :- | :- |
 | Skills not found, a skill not being used, `Invalid skill name` error | [Skills troubleshooting](/docs/en/agent-sdk/skills#troubleshooting) |
-| MCP server shows `failed` status, tools not being called, connection timeouts, tool output that exceeds the maximum allowed tokens | [MCP troubleshooting](/docs/en/agent-sdk/mcp#troubleshooting) |
+| MCP server shows `failed` status, tools not being called, a tool missing from an SDK MCP server, connection timeouts, tool output that exceeds the maximum allowed tokens | [MCP troubleshooting](/docs/en/agent-sdk/mcp#troubleshooting) |
 | Plugin not loading, plugin skills not appearing | [Plugins troubleshooting](/docs/en/agent-sdk/plugins#troubleshooting) |
 | Claude not delegating to subagents, filesystem-based agents not loading | [Subagents troubleshooting](/docs/en/agent-sdk/subagents#troubleshooting) |
 | Checkpointing options not recognized, user messages without UUIDs, `No file checkpoint found`, `File rewinding is not enabled`, `ProcessTransport is not ready for writing` | [File checkpointing troubleshooting](/docs/en/agent-sdk/file-checkpointing#troubleshooting) |

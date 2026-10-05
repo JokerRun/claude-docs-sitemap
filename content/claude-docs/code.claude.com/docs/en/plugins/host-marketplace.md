@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c368ee810d18fffb258d843c9d6e9a9f769d425242da325f20f43c78ad87da2a
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 3d2da6cd5c3d8e35800c5b0a4a555c8ada09666cb6528092cd013056c4d7454c
 ---
 
 > ## Documentation Index
@@ -192,7 +192,7 @@ For what users see when an update reaches them, see [When auto-update runs](/doc
 
 To release a new version to users, change the plugin's `version`. Users get a new copy only when the plugin's computed version differs from the one they have. That version comes from `plugin.json` first, then from the marketplace entry, per [Versions and updates](/docs/en/plugins/loading#versions-and-updates).
 
-A plugin that users [load in place](/docs/en/plugins/loading#find-plugins-on-disk) from a marketplace they added as a local directory isn't controlled by `version`. It loads your current files at every session start, whatever its version string says.
+A plugin that users [load in place](/docs/en/plugins/loading#find-plugins-on-disk) from a marketplace they added from a local path isn't controlled by `version`. It loads your current files at every session start, whatever its version string says.
 
 For every install other than an in-place load or one from a `command` source, either increase `version` on each release or omit it:
 
@@ -262,7 +262,7 @@ To change the label users see in `/plugin` without breaking anything, set `displ
 
 ### Migrate users with a renames map
 
-When you must change a `name`, add a top-level `renames` map to `marketplace.json` so Claude Code migrates existing users instead of reporting [`Plugin "<name>" not found in marketplace`](/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace). Do the same when you remove an entry from `plugins`. Automatic migration requires Claude Code v2.1.193 or later.
+When you must change a `name`, add a top-level `renames` map to `marketplace.json` so Claude Code migrates existing users instead of reporting [`Plugin "<name>" not found in marketplace`](/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace). Do the same when you remove an entry from `plugins`.
 
 Map each former name to its current name, or to `null` when the plugin is gone. This marketplace renames `formatter` to `code-formatter` and records that `legacy-linter` was removed:
 

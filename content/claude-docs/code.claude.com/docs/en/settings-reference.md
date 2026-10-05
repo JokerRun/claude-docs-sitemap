@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 76582550507f251beaa3688cfb35ad09b0241935d4a16b11b3a09077d19a7e5c
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 85b12d6d5fda13fa8eed53ac0d23b0e4779df1d75853bcaba2f573840b1679a3
 ---
 
 > ## Documentation Index
@@ -979,6 +979,8 @@ The `/model` picker has a **Default** option, and [`default` model setting](/doc
 
 When your organization deploys any managed settings, Claude Code reads this key from the managed source alone and ignores it in your other files.
 
+For how this key applies to the startup model checks, see [Amazon Bedrock](/docs/en/amazon-bedrock#when-your-organization-enforces-a-model-allowlist) and [Google Cloud's Agent Platform](/docs/en/google-vertex-ai#when-your-organization-enforces-a-model-allowlist).
+
 * **Scope**: [`Any file`](#scopes)
 * **Type**: Boolean
   * `true`: when **Default** would resolve to a model outside `availableModels`, Claude Code resolves it to the first available model in the list
@@ -1458,7 +1460,7 @@ Send every Bash and PowerShell command through the auto mode classifier while au
 }
 ```
 
-See [Route all shell commands through the classifier](/docs/en/auto-mode-config#route-all-shell-commands-through-the-classifier). Requires Claude Code v2.1.193 or later.
+See [Route all shell commands through the classifier](/docs/en/auto-mode-config#route-all-shell-commands-through-the-classifier).
 
 ### `disableAutoMode`
 
@@ -2940,7 +2942,7 @@ This example turns off automatic compaction and routes API requests through a pr
 * [`CLAUDE_CODE_PROJECT_DIR_NAME`](/docs/en/sessions#name-the-project-directory-yourself), which Claude Code reads from the launch environment only, is ignored from every file; requires v2.1.234 or later.
 * [`CLAUDE_CODE_RESTRICTED`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, is ignored from every file.
 * [`CLAUDE_CODE_DISABLE_POWERSHELL_CMD_RM_DENY`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, is ignored from every file. The variable requires Claude Code v2.1.283 or later.
-* [`CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT` and `CLAUDE_CODE_DISABLE_SUBSTITUTION_RM_PROMPT`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, are ignored from every file.
+* [`CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT`, `CLAUDE_CODE_DISABLE_SUBSTITUTION_RM_PROMPT`, and `CLAUDE_CODE_DISABLE_INLINE_SHELL_RM_PROMPT`](/docs/en/env-vars#variables), which Claude Code reads from the launch environment only, are ignored from every file.
 
 ### `fileCheckpointingEnabled`
 

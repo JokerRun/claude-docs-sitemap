@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 373c5d592d50d3f406ab89d6d41010b6e52bdc03311abcba3805ddad537c0d41
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: f4c5d66cbd7e0b5cdbe448a94f93ba3cc143bace79fbeb511170fa417aeda526
 ---
 
 > ## Documentation Index
@@ -493,7 +493,7 @@ You can do something similar with tests: have one Claude write tests, then anoth
 ### Fan out across files
 
 <Tip>
-  Loop through tasks calling `claude -p` for each. Use `--allowedTools` to scope permissions for batch operations.
+  Loop through tasks calling `claude -p` for each. Use `--allowedTools` to pre-approve tools for batch operations.
 </Tip>
 
 For large migrations or analyses, you can distribute work across many parallel Claude invocations. Run [`/batch <instruction>`](/docs/en/commands#all-commands) to have Claude split the change across 5 to 30 subagents. Each subagent works in its own worktree. To drive the fan-out from your own script instead, loop over `claude -p`:
@@ -507,13 +507,14 @@ For large migrations or analyses, you can distribute work across many parallel C
     ```bash theme={null}
     for file in $(cat files.txt); do
       claude -p "Migrate $file from Python 2 to Python 3. Return OK or FAIL." \
-        --allowedTools "Edit,Bash(git commit *)"
+        --allowedTools "Edit,Bash(git commit *)" \
+        --permission-mode dontAsk
     done
     ```
   </Step>
 
   <Step title="Test on a few files, then run on all of them">
-    Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag restricts what Claude can do, which matters when you're running unattended.
+    Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag pre-approves the tools the migration needs, and [`--permission-mode dontAsk`](/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) denies anything else that would need approval, which matters when you're running unattended.
   </Step>
 </Steps>
 

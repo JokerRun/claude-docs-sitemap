@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cross-session-messaging
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: ce9f9a5663cd2fe6e752fbe5840788154407b16254a2b92f3b2bdc47b9d4baa2
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: acb3fe186690f15df260d149e1caf0c6c459061de3740db5f9b2c6fe89fbc4c6
 ---
 
 > ## Documentation Index
@@ -176,9 +176,10 @@ When session A messages session B, Claude Code tells B's Claude that the message
 
 When a message arrives, Claude Code shows it in the conversation as a dim one-line preview, and the preview line stays in the conversation afterward. The preview carries the sender's name and the first line of the message, cut with `…` when it's long, such as `› Message from @api-worker: Schema migration finished (ctrl+o to expand)`.
 
-Either of these shows you the full text:
+Any of these shows you the full text:
 
 * Press `Ctrl+O` to open the [transcript viewer](/docs/en/interactive-mode#transcript-viewer) and read the full text under the sender's session name.
+* In [fullscreen rendering](/docs/en/fullscreen#use-the-mouse), click a preview line that leaves part of the message out to expand it in place.
 * In a session started with [`--verbose`](/docs/en/cli-reference#cli-flags), Claude Code shows the full text instead of the preview.
 
 The preview shortens only what you see. Whether or not you expand it, Claude reads the full message.

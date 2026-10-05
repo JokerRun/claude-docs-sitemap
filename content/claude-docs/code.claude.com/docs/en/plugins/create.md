@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 233a682b350db28c7bf2c6a1eb5f689a6616f4b39dde4912a52e9b0c8be8ae53
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 80e0614a7420e367658cd43602865e1eb42a3dbe004595f9135272588519cff4
 ---
 
 > ## Documentation Index
@@ -103,7 +103,7 @@ Open a terminal in the directory where you want to keep the plugin, such as `~/p
     Greet the user warmly and ask how you can help them today.
     ```
 
-    The `disable-model-invocation: true` line means Claude doesn't run the skill on its own, so only you trigger it. Remove that line from a skill you want Claude to run on its own. The skill's command combines the plugin name and the skill's name, so you run this one as `/my-first-plugin:hello`. For the other frontmatter fields, see the [skill frontmatter reference](/docs/en/skills#frontmatter-reference).
+    The `disable-model-invocation: true` line means Claude doesn't run the skill on its own. Remove that line from a skill you want Claude to run on its own. The skill's command combines the plugin name and the skill's name, so you run this one as `/my-first-plugin:hello`. For the other frontmatter fields, see the [skill frontmatter reference](/docs/en/skills#frontmatter-reference).
   </Step>
 
   <Step title="Validate the plugin">
@@ -239,7 +239,7 @@ Your personal skills directory is `~/.claude/skills/`. Claude Code loads any fol
 
 #### Scaffold the plugin with `claude plugin init`
 
-`claude plugin init` writes a starter plugin under `~/.claude/skills/`. Requires Claude Code v2.1.157 or later. Scaffold one from your shell:
+`claude plugin init` writes a starter plugin under `~/.claude/skills/`. Scaffold one from your shell:
 
 ```bash theme={null}
 claude plugin init my-tool

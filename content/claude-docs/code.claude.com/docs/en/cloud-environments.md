@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 220a8a77259d62d37a604f94be3e6e3a80273cfd527c25a2768c4597836dcc0d
+fetched_at: 2026-10-05T02:32:29.186961Z
+sha256: 30e74a3bd544076123aaba8b0caad7b38d32021de3201a73ff468c8536ed5ae3
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ If you don't have an environment yet, onboarding sets up the **Default** environ
 
 * **CLI flows such as `/web-setup`**: create **Default** for you
 * **Web onboarding on Pro and Max**: creates **Default** for you
-* **Web onboarding on Team and Enterprise**: shows a **Create your first cloud environment** form unless an Owner has turned on [Quick web setup](/docs/en/claude-code-on-the-web#github-authentication-options); keep the form's defaults and click **Create & finish** to get the same **Default** environment
+* **Web onboarding on Team and Enterprise**: shows a **Create your first cloud environment** form unless an Owner has turned on [Quick setup](/docs/en/claude-code-on-the-web#quick-setup-for-team-and-enterprise); keep the form's defaults and click **Create & finish** to get the same **Default** environment
 
 **Default** carries no configuration of its own:
 
