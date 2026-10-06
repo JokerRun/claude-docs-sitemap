@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: 27085eb4613b063940387cf9a90c9b59d0cb96cf79e3888b30a0cdd0f865fbd2
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 79eff8a95984b3961a92a440542f5641139a3d189887aa0889ba3e14ca45372a
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ Usage by model:
 
 These totals reset when `/clear` starts a new session, so the next session's total cost starts at \$0. Before v2.1.211, they kept accumulating across `/clear` for the lifetime of the Claude Code process.
 
-For a response from the Claude API billed at the 1.1× [data residency rate](https://platform.claude.com/docs/en/about-claude/pricing#data-residency-pricing), Claude Code multiplies the list price of that response's tokens by 1.1 in the session cost figure. The same total appears in the [status line's cost field](/docs/en/statusline#cost-and-duration-tracking), and the multiplied figure also counts toward [`--max-budget-usd`](/docs/en/cli-reference#cli-flags). Before v2.1.239, Claude Code didn't apply the 1.1× to those responses, so the session cost figure was lower than the bill.
+For a response from the Claude API billed at the 1.1× [data residency rate](https://platform.claude.com/docs/en/about-claude/pricing#data-residency-pricing), Claude Code multiplies the list price of that response's tokens by 1.1 in the session cost figure. The same total appears in the [status line's cost field](/docs/en/statusline#cost-and-duration-tracking), and the multiplied figure also counts toward [`--max-budget-usd`](/docs/en/cli-reference#cli-flags).
 
 #### Prompt cache statistics
 

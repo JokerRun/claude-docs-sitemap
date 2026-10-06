@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c5b839d9c886ff3b5250841ab4532e056e88b628f8ec51fc1c0c5a0de2c4deb8
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 2e036f8d1a7a03578d59f0920e707bf3332bd1ddda79b04ee5f88f2704bb3d8e
 ---
 
 ---
@@ -418,7 +418,7 @@ Create Agent
 
 - `tools: optional array of BetaManagedAgentsAgentToolset20260401Params or BetaManagedAgentsMCPToolsetParams or BetaManagedAgentsCustomToolParams`
 
-  Tool configurations available to the agent. Maximum of 128 tools across all toolsets allowed.
+  Tool configurations available to the agent. Maximum of 256 tools across all toolsets allowed.
 
   - `BetaManagedAgentsAgentToolset20260401Params object`
 

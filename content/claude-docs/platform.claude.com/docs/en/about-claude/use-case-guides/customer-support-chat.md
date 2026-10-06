@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 72801cc1d2fed25f27cc853fe6d232cb8d12f73ce97183e34799c1f54501d399
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 8a50c5e3c0298210dc525f122dbbe6a59873a5b47439e80a7499e8878f51e37f
 ---
 
 ---
@@ -1154,7 +1154,7 @@ In complex scenarios, it may be helpful to consider additional strategies to imp
 
 When dealing with large amounts of static and dynamic context, including all information in the prompt can lead to high costs, slower response times, and reaching context window limits. In this scenario, implementing Retrieval Augmented Generation (RAG) techniques can improve performance and efficiency.
 
-By using [embedding models like Voyage](https://platform.claude.com/docs/en/build-with-claude/embeddings) to convert information into vector representations, you can create a more scalable and responsive system. This approach allows for dynamic retrieval of relevant information based on the current query, rather than including all possible context in every prompt.
+You can create a more scalable and responsive system by converting information into vector representations with [embedding models](https://platform.claude.com/docs/en/build-with-claude/embeddings), such as those from Voyage AI by MongoDB. This approach allows for dynamic retrieval of relevant information based on the current query, rather than including all possible context in every prompt.
 
 Implementing RAG for support use cases has been shown to increase accuracy, reduce response times, and reduce API costs in systems with extensive context requirements. See the [RAG recipe](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) for a worked example.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/admin
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 60262941b144133783f8d7a0aa4670a3cf7437d036666f367c960b329c7eb106
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 82cb03587626ab0e652bc66c47a0b8f403094212d292d9e7586f4106b65e0cff
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 60262941b144133783f8d7a0aa4670a3cf7437d036666f367c960b329c7eb106
 
 A [mod](/docs/en/plugins/mods/overview) is a plugin that runs code inside Claude Code with the permissions of the user who installed it. Mods aren't sandboxed. Through [managed settings](/docs/en/managed-settings), you decide whether mods run on your users' machines, which ones, and in what order. You can also install a mod of your own that watches or refuses what other mods do.
 
-This page is for the person who deploys managed settings for Claude Code, whether as a file, through MDM, or from the claude.ai admin console. Mods are on by default in Claude Code v2.1.287 and later. Start with the section that matches what you came to do:
+This page is for the person who deploys managed settings for Claude Code, whether as a file, through MDM, or from the claude.ai admin console. Mods are on by default in Claude Code v2.1.286 and later. Start with the section that matches what you came to do:
 
 * **Keep users' own mods out, with or without mods of your own**: [Stop user-installed mods from loading](#stop-user-installed-mods-from-loading)
 * **See what your users get when you change nothing**: [Know what happens by default](#know-what-happens-by-default)

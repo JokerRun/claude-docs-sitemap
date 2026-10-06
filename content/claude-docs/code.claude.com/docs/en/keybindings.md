@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: ea0fa18b42e013af104d8676d92bee6a1500299c75b96ab095f5cc3ec3b26c31
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: f5185a065e85f2802a7004527ca543812dd4a4abc7fd6219474f15275ff8cd77
 ---
 
 > ## Documentation Index
@@ -150,10 +150,10 @@ Actions available in the `Confirmation` context:
 | `confirm:no` | Escape | Decline action |
 | `confirm:previous` | Up | Previous option |
 | `confirm:next` | Down | Next option |
-| `confirm:nextField` | Tab | Next field |
-| `confirm:previousField` | (unbound) | Previous field |
+| `confirm:nextField` | Tab | In the `/fast` dialog, turn fast mode on or off |
+| `confirm:previousField` | (unbound) | Claude Code doesn't respond to this action, and a `keybindings.json` that names it remains valid |
 | `confirm:toggle` | Space | Toggle selection |
-| `confirm:cycleMode` | Shift+Tab\* | Cycle permission modes. On a file permission prompt, closes an open [comment field](/docs/en/permissions#add-a-comment-when-you-answer-a-permission-prompt); with no field open, selects the option that allows the action for the rest of the session, when the prompt offers that option |
+| `confirm:cycleMode` | Shift+Tab\* | On a file permission prompt, closes an open [comment field](/docs/en/permissions#add-a-comment-when-you-answer-a-permission-prompt); with no field open, selects the option that allows the action for the rest of the session, when the prompt offers that option |
 
 \*On Windows without VT mode (Node \<24.2.0/\<22.17.0, Bun \<1.2.23), defaults to Meta+M.
 
@@ -189,7 +189,7 @@ Actions available in the `Confirmation` context for permission dialogs:
 
 | Action | Default | Description |
 | :- | :- | :- |
-| `permission:toggleDebug` | (unbound) | Toggle permission debug info. The previous default of Ctrl+D was removed in v2.1.146 because it shadowed `app:exit` |
+| `permission:toggleDebug` | (unbound) | Claude Code doesn't respond to this action, and a `keybindings.json` that names it remains valid |
 
 ### Transcript actions
 
@@ -222,7 +222,7 @@ Actions available in the `Task` context:
 
 | Action | Default | Description |
 | :- | :- | :- |
-| `task:background` | Ctrl+B, Ctrl+X Ctrl+B | Background current task. The Ctrl+X Ctrl+B chord avoids the tmux prefix conflict |
+| `task:background` | Ctrl+B, Ctrl+X Ctrl+B | Background current task |
 
 ### Theme actions
 

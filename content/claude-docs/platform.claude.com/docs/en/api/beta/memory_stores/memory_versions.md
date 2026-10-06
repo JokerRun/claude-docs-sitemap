@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c330894be801dd89503fc67ec402846aaa3884a5e60d854a25fb5ba159b2ddc6
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 71e2eaede287c35c2abe6355958a5ac990d74d49790ef89ea8fcbf15480e1d8d
 ---
 
 ---
@@ -349,28 +349,28 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 {
   "data": [
     {
-      "id": "id",
-      "created_at": "2019-12-27T18:11:19.117Z",
-      "memory_id": "memory_id",
-      "memory_store_id": "memory_store_id",
+      "id": "memver_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "memory_id": "mem_011CZkZ9X2dpNyB6YbtxvB6e",
+      "memory_store_id": "memstore_01Wf3kQ8tZxB2mVr7HcJ4aNd",
       "operation": "created",
       "type": "memory_version",
-      "content": "content",
-      "content_sha256": "content_sha256",
-      "content_size_bytes": 0,
+      "content": null,
+      "content_sha256": "ba7936d94c84d948a2232088f78228f175df6a8353b2d5bc9228eee5794a0024",
+      "content_size_bytes": 28,
       "created_by": {
-        "session_id": "x",
+        "session_id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
         "type": "session_actor"
       },
-      "path": "path",
-      "redacted_at": "2019-12-27T18:11:19.117Z",
+      "path": "/preferences/formatting.md",
+      "redacted_at": null,
       "redacted_by": {
         "session_id": "x",
         "type": "session_actor"
       }
     }
   ],
-  "next_page": "next_page"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```
 

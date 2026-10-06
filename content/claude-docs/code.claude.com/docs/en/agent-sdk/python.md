@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: 47c6a87b526520b4b5f9eb8795a09cae4430b33e2fed78a23501137e9a18cf86
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 82586d48ca413b7451852ca548917a9ad066973f26c6186e0b8468d4be9c0e1e
 ---
 
 > ## Documentation Index
@@ -133,6 +133,29 @@ def tool(
        "required": ["text"],
    }
    ```
+
+3. **TypedDict class**: a typed schema whose `NotRequired` keys are left out of `required`.
+
+   * **Python 3.11 and later**: import `TypedDict` and `NotRequired` from `typing`.
+   * **Python 3.10**: `typing` has no `NotRequired`. Import `TypedDict` and `NotRequired` from `typing_extensions`, which the SDK installs on Python 3.10.
+
+   ```python theme={null}
+   from typing import Annotated, Any, NotRequired, TypedDict
+   from claude_agent_sdk import tool
+
+
+   class ForecastArgs(TypedDict):
+       latitude: Annotated[float, "Latitude coordinate"]
+       hours: NotRequired[Annotated[int, "How many hours of forecast to return"]]
+
+
+   @tool("get_forecast", "Get the hourly forecast for a location", ForecastArgs)
+   async def get_forecast(args: dict[str, Any]) -> dict[str, Any]:
+       hours = args.get("hours", 12)
+       return {"content": [{"type": "text", "text": f"{hours}-hour forecast for {args['latitude']}"}]}
+   ```
+
+In the simple mapping and TypedDict forms, wrap a type in `Annotated[type, "description"]` to set the field's description.
 
 #### Returns
 
@@ -1617,6 +1640,8 @@ class SystemMessage:
     subtype: str
     data: dict[str, Any]
 ```
+
+Subtypes that have no dataclass of their own arrive as `SystemMessage`. To follow the session between turns, set [`CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS=1`](/docs/en/env-vars#variables) and read `message.data["state"]` on each message whose `subtype` is `session_state_changed`. [`SDKSessionStateChangedMessage`](/docs/en/agent-sdk/typescript#sdksessionstatechangedmessage) lists the states it can carry. Iterate with `receive_messages()` to read them: `receive_response()` stops at the `ResultMessage`, and a `session_state_changed` message can follow that result.
 
 ### `ResultMessage`
 

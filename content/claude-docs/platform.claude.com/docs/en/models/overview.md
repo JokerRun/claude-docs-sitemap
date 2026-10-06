@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/overview
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 9d3c37c0d62e0d466d461fad29a3cba34e7ea54a1d313e2a2c025864acdfe7f3
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: f2ce40ab501de596b7441318d490895bda88c639eb2451123147eb7d14a1ea12
 ---
 
 ---
@@ -75,6 +75,8 @@ Once you've picked a model, [learn how to make your first API call](https://plat
 ## Using the Models API
 
 You can query model capabilities and token limits programmatically with the [Models API](https://platform.claude.com/docs/en/api/models/list). The response includes `max_input_tokens`, `max_tokens`, and a `capabilities` object for every available model.
+
+Each model in the response also has a `line` field, which names the model line it belongs to. Claude Opus 4.5 and Claude Opus 4.6 both report `opus`. Use `line` to group models, for example, in a model picker. `line` is `null` when a model belongs to no line. Read `line` instead of inferring it from the model's `id`. Anthropic might add more lines, so don't treat the set of values as fixed.
 
 ## Prompt and output performance
 

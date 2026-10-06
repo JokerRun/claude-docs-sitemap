@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 0165b6d9c34c4a5a746f13fa81058a71885e9a5b165a99a17bab6debd87e84ad
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 0067029979a320022bba25db2ebf35f774d04ed28596ac2b38834fa906dc6dec
 ---
 
 ---
@@ -8111,6 +8111,12 @@ List Workspaces
 - `include_archived: optional boolean`
 
   Whether to include Workspaces that have been archived in the response
+
+  default: false
+
+- `include_default: optional boolean`
+
+  Whether to include the organization's default Workspace in the response
 
   default: false
 
@@ -20149,15 +20155,21 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
     format: date-time
 
-  - `name: string`
+  - `display_name: string`
 
-    Name of the RBAC Role.
+    Name of the RBAC Role. For a role created by Anthropic, this name can differ from the label claude.ai shows, and Anthropic may change the name. To keep a lasting reference to a role, store its `id`.
 
   - `updated_at: string`
 
     RFC 3339 datetime string indicating when the RBAC Role was last updated.
 
     format: date-time
+
+  - `name: string`
+
+    **Deprecated**: Use `display_name` instead; `name` always has the same value.
+
+    Deprecated: use `display_name` instead. Name of the RBAC Role; always the same value as `display_name`.
 
 - `has_more: boolean`
 
@@ -20184,6 +20196,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles \
     {
       "id": "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s",
       "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_name": "Project Editor",
       "name": "Project Editor",
       "type": "rbac_role",
       "updated_at": "2024-10-30T23:58:27.427722Z"
@@ -20230,15 +20243,21 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
     format: date-time
 
-  - `name: string`
+  - `display_name: string`
 
-    Name of the RBAC Role.
+    Name of the RBAC Role. For a role created by Anthropic, this name can differ from the label claude.ai shows, and Anthropic may change the name. To keep a lasting reference to a role, store its `id`.
 
   - `updated_at: string`
 
     RFC 3339 datetime string indicating when the RBAC Role was last updated.
 
     format: date-time
+
+  - `name: string`
+
+    **Deprecated**: Use `display_name` instead; `name` always has the same value.
+
+    Deprecated: use `display_name` instead. Name of the RBAC Role; always the same value as `display_name`.
 
 #### Example
 
@@ -20254,6 +20273,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID \
 {
   "id": "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s",
   "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_name": "Project Editor",
   "name": "Project Editor",
   "type": "rbac_role",
   "updated_at": "2024-10-30T23:58:27.427722Z"

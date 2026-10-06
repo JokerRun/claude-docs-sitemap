@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: dd8bcb561c668811c89de64510a0768633c058a4b3273393b85674a2c45397e2
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: d0a9e85d0bca7616631e3d8fa01dd0bdea4ab7be7153e04e7118c4dc440db89f
 ---
 
 ---
@@ -253,18 +253,18 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories \
 {
   "data": [
     {
-      "id": "id",
-      "content_sha256": "content_sha256",
-      "content_size_bytes": 0,
-      "created_at": "2019-12-27T18:11:19.117Z",
-      "memory_store_id": "memory_store_id",
-      "memory_version_id": "memory_version_id",
-      "path": "path",
+      "id": "mem_011CZkZ9X2dpNyB6YbtxvB6e",
+      "content_sha256": "ba7936d94c84d948a2232088f78228f175df6a8353b2d5bc9228eee5794a0024",
+      "content_size_bytes": 28,
+      "created_at": "2026-03-15T10:00:00Z",
+      "memory_store_id": "memstore_01Wf3kQ8tZxB2mVr7HcJ4aNd",
+      "memory_version_id": "memver_011CZkZBJq5dWxk9fVLNcPht",
+      "path": "/preferences/formatting.md",
       "type": "memory",
-      "updated_at": "2019-12-27T18:11:19.117Z",
-      "content": "content"
+      "updated_at": "2026-03-15T10:00:00Z",
+      "content": null
     }
   ],
-  "next_page": "next_page"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

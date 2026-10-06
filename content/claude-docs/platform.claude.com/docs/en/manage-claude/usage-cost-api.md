@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 6fc4e69822630b64f7c97848c567d81bc06902a7789aec34f7436b3303280532
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 9ca93e3eef9e6befe55f637db344a54812a05ced3b8617e34e6ce37d75ceef1f
 ---
 
 ---
@@ -69,6 +69,10 @@ Leading observability platforms offer ready-to-use integrations for monitoring y
 
   <Card title="Honeycomb" icon="polygon" href="https://docs.honeycomb.io/integrations/anthropic-usage-monitoring/">
     Advanced querying and visualization through OpenTelemetry
+  </Card>
+
+  <Card title="Tempo" icon="chart" href="https://help.tempo.io/workforceintelligence/latest/connect-to-anthropic">
+    Usage and cost attribution to Jira work items
   </Card>
 
   <Card title="Vantage" icon="chart" href="https://docs.vantage.sh/connecting_anthropic">

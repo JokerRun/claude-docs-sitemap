@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 9eea09a50a66f5c7b236535a13351b157597375d5ff51ef92777b9291b261d80
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: f72b881d342e858ef7461be272e3bc1025bf6b8746351a910b550ba7e71cf564
 ---
 
 ---
@@ -280,6 +280,20 @@ The Models API response can be used to determine information about a specific mo
 
     A human-readable name for the model.
 
+  - `line: BetaModelLine or null`
+
+    The model line this model belongs to, such as `opus` for both Claude Opus 4.5 and Claude Opus 4.6. More lines may be added. `null` when the model belongs to no line; do not infer a line from the `id`.
+
+    - `"haiku"`
+
+    - `"sonnet"`
+
+    - `"opus"`
+
+    - `"fable"`
+
+    - `"mythos"`
+
   - `max_input_tokens: number or null`
 
     Maximum input context window size in tokens for this model.
@@ -373,6 +387,7 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
   },
   "created_at": "2026-07-24T00:00:00Z",
   "display_name": "Claude Opus 5",
+  "line": "haiku",
   "max_input_tokens": 0,
   "max_tokens": 0,
   "type": "model"

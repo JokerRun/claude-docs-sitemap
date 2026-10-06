@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0b52f0837081527e61638cc257147e58f49a19b078ed6fa7148d1567a8ee3c6e
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: a18b1248f449c0ccbd647fe32729ad060e7059a903a19a6b1cbd85e59b96a472
 ---
 
 ---
@@ -29,6 +29,12 @@ List Workspaces
 - `include_archived: optional boolean`
 
   Whether to include Workspaces that have been archived in the response
+
+  default: false
+
+- `include_default: optional boolean`
+
+  Whether to include the organization's default Workspace in the response
 
   default: false
 

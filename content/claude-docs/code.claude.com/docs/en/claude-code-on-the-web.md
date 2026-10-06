@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: da1cf7ade42864686a29eef728a347206a50937333b6c0510f3223ebae9a3057
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 3da4649062daedafd2435949427239ce2230418b79f15143a985c4244f83b08f
 ---
 
 > ## Documentation Index
@@ -67,7 +67,7 @@ In Anthropic-hosted environments, your GitHub credentials stay encrypted on Anth
 See [Connect from your terminal](/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough, including what `/web-setup` stores and how to remove it.
 
 <Note>
-  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled can't use `/web-setup` or other cloud session features.
+  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled, or with the [HIPAA configuration](/docs/en/hipaa-setup) applied, can't use `/web-setup` or other cloud session features.
 </Note>
 
 ### Quick setup for Team and Enterprise

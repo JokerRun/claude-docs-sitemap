@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: c6795fcde0049ae885949b1dfe3e4535983304ef6fc9f87ac2e0aba3a457fed4
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 2c4b5391d8ac1d53e5d3685b6bdc1857f8f0b39889982d020775bbbf46095819
 ---
 
 ---
@@ -97,10 +97,11 @@ Some features are turned off or substantially modified when CMEK is enabled. Thi
 * Chat search is disabled because chat titles and content are encrypted under your key. Members cannot search past chats, and the **Search and reference chats** toggle stays off, so Claude cannot search them either.
 * [Project knowledge search](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) (retrieval-augmented generation, or RAG) is disabled. Project knowledge loads directly into each conversation's context instead of being indexed and searched. As a result, a project can use substantially less knowledge than it could without CMEK. Knowledge beyond what can be loaded is left out of the conversation.
 * Claude Code on the web and Claude in Slack are unavailable: new sessions cannot be started and Claude in Slack declines requests, even if an admin turns these products on. Claude Code Desktop remains available for local sessions but is off unless an admin turns it on under [claude.ai > Organization settings > Claude Code](https://claude.ai/admin-settings/claude-code).
-* Artifacts cannot be shared publicly, only within your organization.
-* Certain analytics are degraded: admin analytics for claude.ai skills and connectors (under claude.ai/analytics/usage and through the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api)), Claude smart reports (under claude.ai/analytics/insights), and Claude Code contribution metrics (under claude.ai/analytics/claude-code).
+* Claude Code cannot [publish artifacts](https://code.claude.com/docs/en/artifacts#availability). However, artifacts made in chat or Cowork can be shared within your organization, but not publicly.
+* Certain analytics are disabled, regardless of admin settings: Claude smart reports (beta, under claude.ai/analytics/insights) and Claude Code contribution metrics from GitHub (beta, under claude.ai/analytics/claude-code). Admin analytics for skills and connectors, in the claude.ai analytics dashboard and through the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api), don't include usage in chat, and hide the names of custom skills, plugins, and connectors.
 * Organization data exports and audit log exports, both under [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), are disabled.
 * Response ratings (thumbs up and thumbs down on Claude's responses) are disabled.
+* [Skill and plugin security scanning](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-content-scanning) is unavailable: the setting cannot be turned on, and skills and plugins are installed without a scan.
 * The following beta and research preview features are unavailable in CMEK organizations, regardless of admin settings: Claude Design, Claude Slides, and Claude Docs in conversations and the **Artifacts** tab, and routines.
 
 ### Encrypted with Anthropic key

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/create
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: ca6fbdb779bf8866fc7c9d88ac81562a4eb71cffac63daafcda2a7cc06951326
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 5af9721d383c925896178547e1b5ae7cd844a8bb265c01591b757cb3ea1cb509
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ A mod is a Claude Code [plugin](/docs/en/plugins/overview) with an entry file, c
 If you haven't decided whether a mod is the right tool, read the [comparison on the overview](/docs/en/plugins/mods/overview#compare-mods-settings-hooks-skills-and-mcp-servers) first.
 
 <Note>
-  Mods require Claude Code v2.1.287 or later. In your shell, run `claude --version` to check. To see whether mods can load for you, see [Check whether mods can load](/docs/en/plugins/mods/troubleshoot#check-whether-mods-can-load).
+  Use Claude Code v2.1.287 or later. In your shell, run `claude --version` to check. To see whether mods can load for you, see [Check whether mods can load](/docs/en/plugins/mods/troubleshoot#check-whether-mods-can-load).
 </Note>
 
 ## Ask Claude for a mod

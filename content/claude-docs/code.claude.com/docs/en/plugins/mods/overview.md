@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/overview
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: c0eab8421cb53b3249152c7bd968f5d191cee127b2c5226356bca0c205c53384
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: f916076aeef31ff2e33fd23a833228d36d137cde1f72d2cfb77b5b7b9077d928
 ---
 
 > ## Documentation Index
@@ -101,7 +101,10 @@ The `hooks:` and `calls:` lines in the output list the events the mod handles an
 
 ## Turn mods on or off
 
-Mods require Claude Code v2.1.287 or later, and they're on by default. In your shell, run `claude --version` to check, and update Claude Code if yours is older.
+Mods are on by default. In the terminal, use Claude Code v2.1.287 or later. The Desktop app includes its own copy of Claude Code, and mods work there from v2.1.286. Check the version in the place you use mods:
+
+* **Terminal**: in your shell, run `claude --version`. If yours is older, [update Claude Code](/docs/en/setup#update-claude-code).
+* **Desktop app**: in a local session in the Code tab, enter `/status` and read the **Claude Code** row, which shows a version such as `2.1.286`. If yours is older, update the Desktop app.
 
 To turn mods off, choose how many to stop, and for how long. To turn them back on, undo the same change:
 

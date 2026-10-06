@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 77d92b813a467cb3feeb72d4ad8cfb774dc46cc33f144909c19bb29b66395441
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: fa4ad3a1c55d975dafebbba37b63e2c86686107a02310fe7252148db440b094d
 ---
 
 ---
@@ -424,7 +424,7 @@ Update Agent
 
 - `tools: optional array of BetaManagedAgentsAgentToolset20260401Params or BetaManagedAgentsMCPToolsetParams or BetaManagedAgentsCustomToolParams or null`
 
-  Tool configurations available to the agent. Full replacement. Omit to preserve; send empty array or null to clear. Maximum of 128 tools across all toolsets allowed.
+  Tool configurations available to the agent. Full replacement. Omit to preserve; send empty array or null to clear. Maximum of 256 tools across all toolsets allowed.
 
   - `BetaManagedAgentsAgentToolset20260401Params object`
 

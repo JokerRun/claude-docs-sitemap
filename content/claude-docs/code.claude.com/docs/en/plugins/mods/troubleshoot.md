@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/troubleshoot
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 229eec1b537c930491f589d61ea6d78397be851f2cf987cd83035d4e00c38f1b
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 91ba0cf111352b655ca93fb9fae1174d9e07b7f79675cd231f3c71c939f8487b
 ---
 
 > ## Documentation Index
@@ -41,11 +41,9 @@ An organization can also set `allowManagedModsOnly` to allow only its own mods, 
 
 Nothing the mod adds appears: no command, no drawing, and no change in behavior.
 
-### Your version is older than 2.1.287
+### Your version is too old
 
-`claude --version` prints a version older than 2.1.287. Your version predates mods being on by default.
-
-[Update Claude Code](/docs/en/setup#update-claude-code).
+See [which version to use and how to check yours](/docs/en/plugins/mods/overview#turn-mods-on-or-off).
 
 ### The `mods active` line doesn't name the mod
 

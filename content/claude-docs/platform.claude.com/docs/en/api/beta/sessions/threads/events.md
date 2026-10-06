@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: caa88e90dd00db8d623a152b76c4166dc011559625366648f912a52ad0e9b06b
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: e7122b87afa93ecf9dad3002f5677e6e77f8d968b105627ff305d58620c75b80
 ---
 
 ---
@@ -2594,9 +2594,20 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events
       ],
       "type": "user.message",
       "processed_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sevt_011CZkZHPq1jCdq5lbRTjiVnz",
+      "content": [
+        {
+          "text": "Let me look up order #1234 for you.",
+          "type": "text"
+        }
+      ],
+      "processed_at": "2026-03-15T10:00:00Z",
+      "type": "agent.message"
     }
   ],
-  "next_page": "next_page"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```
 

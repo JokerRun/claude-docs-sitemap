@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 71fc24b0ca9468c370ae001e748f0327370562d15a21cabbb8196cc736fcb360
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 4529ca903dfd97b83a806df82f7e4cfcc6fec18df1e37a2348bbcd8938471a55
 ---
 
 ---
@@ -312,20 +312,20 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:2.67.0")
-    implementation("com.anthropic:anthropic-java-aws:2.67.0")
+    implementation("com.anthropic:anthropic-java:2.68.0")
+    implementation("com.anthropic:anthropic-java-aws:2.68.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.67.0</version>
+      <version>2.68.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.67.0</version>
+      <version>2.68.0</version>
     </dependency>
     ```
   </Tab>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/claude-code-features
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: f30eb3fa7adf75f0b1ace14f7b29dc70a3f617b6930c9267f155d4776de5e66e
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 5e6cc2ab57f08333008146aad73d0e8e3a354f36cea77cad13022029095f2e6f
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ The `cwd` option determines where the SDK looks for project-level inputs. Projec
 | Project (root) | `<cwd>/CLAUDE.md` or `<cwd>/.claude/CLAUDE.md` | `settingSources` includes `"project"` |
 | Project rules | `<cwd>/.claude/rules/*.md` and `.claude/rules/*.md` in every parent directory | `settingSources` includes `"project"` |
 | Project (parent dirs) | `CLAUDE.md` files in directories above `cwd` | `settingSources` includes `"project"`, loaded at session start |
-| Project (child dirs) | `CLAUDE.md` files in subdirectories of `cwd` | `settingSources` includes `"project"`, loaded on demand when the agent reads a file in that subtree |
+| Project (child dirs) | `CLAUDE.md` files in subdirectories of `cwd` | `settingSources` includes `"project"`, loaded [on demand](/docs/en/memory#how-claude-md-files-load) |
 | Local | `<cwd>/CLAUDE.local.md` and `CLAUDE.local.md` in every parent directory | `settingSources` includes `"local"` |
 | User | `~/.claude/CLAUDE.md` | `settingSources` includes `"user"` |
 | User rules | `~/.claude/rules/*.md` | `settingSources` includes `"user"` |

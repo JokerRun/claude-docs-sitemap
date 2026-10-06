@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0e87312bf986dd2b70b72f0900f72921df44f1306217e8006607c33c3d74e1d6
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: e747bed0ea26ae4949f3927551d5b735c69d0791256ece26c7d7251d77e9687e
 ---
 
 > ## Documentation Index
@@ -225,7 +225,7 @@ File contents enter context only when Claude reads them, and reads append to the
 
 Your project-root and user-level CLAUDE.md files are read once at session start and held in memory. Editing them mid-session does not invalidate the cache, but the edit also doesn't apply. Claude keeps working with the version that was loaded at session start. The new content loads on the next `/clear`, `/compact`, or restart.
 
-[Nested CLAUDE.md files in subdirectories](/docs/en/memory) and [rules with `paths:` frontmatter](/docs/en/memory#path-specific-rules) load later, when Claude first reads a matching file. Editing one before it loads does take effect. After it loads, the content is part of the conversation history, so a mid-session edit doesn't retroactively change it.
+[Nested CLAUDE.md files in subdirectories](/docs/en/memory) and [rules with `paths:` frontmatter](/docs/en/memory#path-specific-rules) load later, on demand. Editing one yourself before it loads does take effect. After it loads, the content is part of the conversation history, so a mid-session edit doesn't retroactively change it.
 
 ### Changing permission mode
 

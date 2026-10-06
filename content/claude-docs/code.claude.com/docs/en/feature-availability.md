@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 755b2a0aea67aed81ab95363b69488d630cba0e5ded1c137b06921751075859e
+fetched_at: 2026-10-06T02:24:58.398995Z
+sha256: 07fc7b9d9774f94064a82ccf658270c4cbe48ec2ef0949e0c45aa69cba040b3e
 ---
 
 > ## Documentation Index
@@ -52,7 +52,8 @@ These have provider-specific differences:
 
 These require signing in with a claude.ai account and are not reachable with an Anthropic Console API key or from a third-party provider:
 
-* [Cloud sessions](/docs/en/claude-code-on-the-web), Claude Code on mobile, and [Claude Code in Slack](/docs/en/slack)
+* [Cloud sessions](/docs/en/claude-code-on-the-web) and Claude Code on mobile
+* [Claude Code in Slack](/docs/en/slack): Pro and Max plans
 * [Claude Code Desktop](/docs/en/desktop)
 * [Routines](/docs/en/routines) (`/schedule`)
 * [Ultrareview](/docs/en/ultrareview)
@@ -295,6 +296,8 @@ Each tab lists what is unavailable or partially supported on that provider, with
 ## Availability by subscription plan
 
 If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or an Anthropic Console API key, this section does not apply to you. When you sign in with a claude.ai account, your plan determines which of the features below are available.
+
+In Enterprise organizations with the [HIPAA configuration](/docs/en/hipaa-setup) applied, some features in this table are turned off.
 
 | Feature | Pro | Max | Team | Enterprise |
 | :- | :- | :- | :- | :- |
