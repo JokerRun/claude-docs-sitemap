@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: de466387a1630c6810305563617ce764c9e6ee2c361b82904ff8986e81a3b5ec
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: c8d2b69c9c29a2a499ebd21d08f3eaf30d7713f372288b1381a3495305817544
 ---
 
 ---
@@ -15,6 +15,8 @@ The Claude SDK provides a middleware (or interceptor) hook that lets you run cod
 
 ```mermaid
 sequenceDiagram
+    accTitle: How a request and its response pass through middleware
+    accDescr: Your code sends the request to Middleware A. Middleware A calls next(request) to pass it to Middleware B, and Middleware B calls next(request) to pass it to the SDK core. The SDK core sends the HTTP request to the Claude API and receives the HTTP response. The response returns through Middleware B, then Middleware A, to your code.
     autonumber
     participant App as Your code
     participant M1 as Middleware A

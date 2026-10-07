@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1cc840cc29b0e0fcc169730f60b729ba70e55c9b2d9561f2d48054b565310eaa
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: cd80e6f69a6704b47ebad5036af6b1613b263f25760c7bbb563368c0366d4b2f
 ---
 
 > ## Documentation Index
@@ -222,7 +222,7 @@ Suppose you need to add tests for uncovered code.
 
 Claude can generate tests that follow your project's existing patterns and conventions. When asking for tests, be specific about what behavior you want to verify. Claude examines your existing test files to match the style, frameworks, and assertion patterns already in use.
 
-For comprehensive coverage, ask Claude to identify edge cases you might have missed. Claude can analyze your code paths and suggest tests for error conditions, boundary values, and unexpected inputs that are easy to overlook.
+To improve coverage, ask Claude to identify edge cases you might have missed. Claude can analyze your code paths and suggest tests for error conditions, boundary values, and unexpected inputs that are often overlooked.
 
 ***
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: a5ea6a641a187c3201e3072a8d126be5b7bb2d4057bf8a82a30af3ef60d74316
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: f1dfbfb553654aa0dbcf4e799c41d71de7af5f838e84c0f1ff1bd016e6b1ea5f
 ---
 
 > ## Documentation Index
@@ -303,7 +303,7 @@ Create a `CLAUDE.md` file in your repository root to define code style guideline
 
 Grant the workflow only the permissions it needs, and review Claude's changes before merging.
 
-For comprehensive security guidance including permissions and authentication, see the [Claude Code Action security documentation](https://github.com/anthropics/claude-code-action/blob/main/docs/security.md).
+For security guidance including permissions and authentication, see the [Claude Code Action security documentation](https://github.com/anthropics/claude-code-action/blob/main/docs/security.md).
 
 ### Manage costs
 

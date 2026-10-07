@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: e4965cef4b484ff4c5b5542b8378fd875721a92d0547ac4ea82e57c7acd53382
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 29c1dc7514d0ca23621e5e0aadd284b2d15a150768903ff6b11b4ed784dc2b66
 ---
 
 > ## Documentation Index
@@ -731,6 +731,6 @@ For the file format, see [how to write subagent files](/docs/en/sub-agents#write
 
 ## Related documentation
 
-* [Claude Code subagents](/docs/en/sub-agents): comprehensive subagent documentation including filesystem-based definitions
+* [Claude Code subagents](/docs/en/sub-agents): subagent documentation including filesystem-based definitions
 * [Dynamic workflows](/docs/en/workflows): orchestrate many subagents from a script for jobs too large for one conversation
 * [SDK overview](/docs/en/agent-sdk/overview): getting started with the Claude Agent SDK

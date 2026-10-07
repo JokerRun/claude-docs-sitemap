@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 756bb4518de4246cc48f1f3efa0f15ef98d5afd3f691928e68049e5dcdce7551
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: cf869f4c734b4094b0eaacb308b79447c9ebd5587ec30e186fc54441e8b11147
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ Bundled skills are listed alongside built-in commands in the [commands reference
 
 ### Run and verify your app
 
-Three bundled skills work together to launch your app and confirm changes against the running app instead of just tests:
+Three bundled skills work together to launch your app and confirm changes against the running app instead of tests alone:
 
 | Skill | Purpose |
 | :- | :- |

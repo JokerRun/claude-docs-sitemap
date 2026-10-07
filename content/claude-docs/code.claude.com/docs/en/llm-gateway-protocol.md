@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: 4a230d4396c96ab32496e3758cc8d1593c1c9593e7234e54e492a264ca02109b
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 3fc23c8d58b77e43a3fffebb722112d760aa06b2e8c1574005de55dcffcd8624
 ---
 
 > ## Documentation Index
@@ -65,6 +65,8 @@ Match on the path, not the full URL:
 * The Google Cloud's Agent Platform method suffixes attach to the publisher model path, as in `/projects/{project}/locations/{location}/publishers/anthropic/models/{model}:streamRawPredict`
 
 A gateway also sees best-effort startup traffic it can reject without breaking anything. An Anthropic Messages-format gateway receives a `HEAD /api/hello` connection-warming probe, which Claude Code skips when an HTTP proxy or client certificate is configured. An Amazon Bedrock-format gateway receives a `GET /inference-profiles?type=SYSTEM_DEFINED` request and, when the configured model is an inference profile, `GET /inference-profiles/{profile}` lookups.
+
+Sessions that go through a gateway aren't eligible for the HIPAA configuration. [Check how developers sign in and connect](/docs/en/hipaa-setup#check-how-developers-sign-in-and-connect) lists which sign-in and connection methods are. See [The HIPAA configuration behind a gateway](/docs/en/llm-gateway-rollout#the-hipaa-configuration-behind-a-gateway).
 
 The [fast mode](/docs/en/fast-mode) availability check never appears in gateway logs: it calls `api.anthropic.com` directly rather than following `ANTHROPIC_BASE_URL`, so on a network that blocks direct egress to `api.anthropic.com`, fast mode can report a connectivity error while inference through the gateway keeps working. The [WebFetch domain safety check](/docs/en/data-usage#webfetch-domain-safety-check) also calls `api.anthropic.com` directly. [Use fast mode behind proxies and LLM gateways](/docs/en/fast-mode#use-fast-mode-behind-proxies-and-llm-gateways) covers the variables that restore it.
 

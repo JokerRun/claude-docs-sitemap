@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 530426cc1ab4ea7e9df9448cb243ce9021e60706e292cf4f3dccfada9dde0e88
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 9063dde472f1a4ee1efb06928b5189d938de00e17eaf9361c3e6dd4fceead5a3
 ---
 
 > ## Documentation Index
@@ -168,7 +168,7 @@ The steps below provision the full deployment with `aws` commands.
   </Step>
 
   <Step title="Provision Amazon RDS for PostgreSQL">
-    The instance runs in the private subnets with no public address and storage encryption on. The engine version is pinned to Postgres 16, which satisfies the gateway's supported floor of PostgreSQL 14 and guarantees the parameter-group family below matches the instance.
+    The instance runs Postgres 16 in the private subnets, with no public address and storage encryption on.
 
     First, create the subnet group that places the database in the private subnets, and a parameter group with `rds.force_ssl=1` so the server rejects plaintext connections. The engine version is pinned once because the parameter group's family must match the engine major version the instance runs:
 

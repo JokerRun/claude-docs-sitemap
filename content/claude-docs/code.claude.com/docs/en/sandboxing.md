@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: adc403541050e4fce2df74a54abde2628ae1241c58439b0f662e28a68c89f2e5
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 5cf6cdc79f6442a700cab2f3a1efc5b632d85dedf6722c094c1cde56aefaec7f
 ---
 
 > ## Documentation Index
@@ -991,6 +991,8 @@ The sandbox isolates shell commands and their child processes. [What runs outsid
 
 * **Computer use**: when Claude opens apps and controls your screen, it runs on your actual desktop rather than in an isolated environment. Per-app permission prompts gate each application. See [computer use in the CLI](/docs/en/computer-use) or [computer use in Desktop](/docs/en/desktop#let-claude-use-your-computer).
 * **Subagents**: [subagents](/docs/en/sub-agents) run in the same process as the parent session and use the same sandbox configuration. Bash commands inside a subagent are sandboxed when sandboxing is enabled in the parent session.
+* **Background sessions**: a [background session](/docs/en/agent-view) runs in its own process, and its Bash commands are sandboxed when [its settings](/docs/en/agent-view#settings-and-provider) enable sandboxing.
+* **A boundary around the whole process**: to put the processes in [What runs outside the sandbox](#what-runs-outside-the-sandbox) behind a boundary too, run Claude Code (local mode) inside the [sandbox runtime](/docs/en/sandbox-environments#sandbox-runtime) with a network allowlist limited to the hosts you approve, or in the [dev container](/docs/en/devcontainer) with its firewall script. For the background service and the sessions it hosts, see [Run Claude Code behind a corporate launcher](/docs/en/corporate-launcher).
 * **Mods**: a [mod](/docs/en/plugins/mods/overview) is a plugin that runs its own code inside Claude Code, and a process that a mod starts runs outside the sandbox. See [What a mod can reach](/docs/en/plugins/mods/overview#what-a-mod-can-reach).
 
 <Warning>
@@ -1000,7 +1002,7 @@ The sandbox isolates shell commands and their child processes. [What runs outsid
 ## See also
 
 * [Sandbox environments](/docs/en/sandbox-environments): compare the built-in sandbox with dev containers, containers, and VMs
-* [Security](/docs/en/security): comprehensive security features and best practices
+* [Security](/docs/en/security): security features and best practices
 * [Permissions](/docs/en/permissions): permission configuration and access control
 * [All settings](/docs/en/settings-reference): every settings key
 * [CLI reference](/docs/en/cli-reference): command-line options

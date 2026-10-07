@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6a99cce85b0cdae1006f271ea0eb066e758047676a6b8514e0116b5caa4fccff
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 6bc2d6096b2129545389255a3551fae839e628890a6c05753d1a8af827d9834b
 ---
 
 ---
@@ -863,7 +863,7 @@ When working with the `tool_choice` parameter, there are four possible options:
 This diagram illustrates how each option works:
 
 <Frame>
-  ![Diagram showing the four tool_choice options: auto, any, tool, and none](https://platform.claude.com/docs/images/tool_choice.png)
+  ![Diagram showing the four tool\_choice options: auto, any, tool, and none](https://platform.claude.com/docs/images/tool_choice.png)
 </Frame>
 
 Note that when you have `tool_choice` as `any` or `tool`, the API prefills the assistant message to force a tool to be used. This means that the models will not emit a natural language response or explanation before `tool_use` content blocks, even if explicitly asked to do so.

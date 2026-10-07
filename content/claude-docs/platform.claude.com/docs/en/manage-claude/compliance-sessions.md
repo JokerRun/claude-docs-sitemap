@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-sessions
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8e293f938cb38de790afa269de410505e699e3950b02fd2d8fbc9c15818deda7
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: b8a10be28344fc33724a68805066847b501dccc4b9609802a36237188b008f19
 ---
 
 ---
@@ -272,6 +272,10 @@ curl --fail-with-body -sS \
 The response embeds a `session` envelope alongside the paginated `data` array. The first record in this example is the marker that stands in for the request's system prompt; its `provenance` is described later in this section. On this endpoint `user.email_address` is always `null`: the messages endpoint does not resolve email addresses, so a `null` here does not mean the user's account was deleted. To attribute a session to an email address, join `user.id` against the [list endpoint](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-local-sessions) or the retrieve endpoint (`GET /v1/compliance/apps/sessions/local/{session_id}`).
 
 Messages are returned oldest first by default; pass `order=desc` to reverse. Pagination uses the same `page`/`next_page` scheme as the list endpoint, with a `limit` default of 100 and a max of 1,000. A page can end early when the response reaches its size limit, so a page with fewer than `limit` messages does not mean you have reached the end; keep paginating until `next_page` is `null`. Page cursors are bound to the session and sort order they were issued under, and a walk's cursors expire 24 hours after its first page: an expired cursor returns [400 Bad Request](https://platform.claude.com/docs/en/manage-claude/compliance-errors#400-bad-request) telling you to restart without the `page` parameter, and the restarted walk reflects the current retention boundary. A cursor issued for a different session or `order` also returns 400, as an invalid cursor.
+
+On a very large session, the messages endpoint can return a 400 for a page, with a message saying that the page is too large to read; see [Transcript page too large](https://platform.claude.com/docs/en/manage-claude/compliance-errors#transcript-page-too-large). Do not retry that request. If it used `order=desc`, read that session oldest first from its first page instead, with no `order` and no `page`, and set your client's request timeout to at least 5 minutes. If an oldest-first page returns the same error, that errors guide entry says what to do.
+
+On a very large session, the messages endpoint might also return a 429 whose `error.details.error_code` is `transcript_read_server_busy`. It does not mean that your organization exceeded a rate limit. Unlike the 400, retry it: wait the number of seconds in the `retry-after` header, then send the same request again, unchanged (with the same `page` value, if it had one). See [Server busy reading large transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-errors#server-busy-reading-large-transcripts).
 
 Each message carries a `role` (`user` or `assistant`) and a `content` array of `text`, `tool_use`, and `tool_result` blocks. It also carries a `model`: on an assistant turn captured from the Claude API this is the model that served the turn, and it is `null` on user messages and on any assistant message whose `provenance` is set, because client-asserted history and synthetic markers were not produced by a model and the serving model is unknown for unavailable content. A `text` block carries `text` and `truncated`. A `tool_use` block carries `id`, `name`, `input`, and `truncated`, where `input` is a JSON-encoded string rather than an object. A `tool_result` block carries `tool_use_id`, `name`, `is_error`, a `content` array of `text` entries, and `truncated`. MCP tool calls and results, and most server tool calls and results, are normalized into these same `tool_use` and `tool_result` shapes; any other block type appears as a `[<block type> content not shown]` placeholder. A message `id` is stable while the turn is retained. Every message reconstructed from the same inference call carries that call's timestamp, so consecutive messages often share a `created_at` value; preserve the returned order rather than re-sorting by timestamp.
 

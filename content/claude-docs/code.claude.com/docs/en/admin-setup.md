@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 39aa8ab520bc64d67dd6281640b38e31affaa764bda0e9ab32d92a06fe5d4dcc
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 91a15ff4f27ffbe7bc37fb9d8659e4cdbc9d71b0612f232fa89da1e238086c0f
 ---
 
 > ## Documentation Index
@@ -171,7 +171,7 @@ On Team, Enterprise, Claude API, and cloud provider plans, Anthropic doesn't tra
 | HIPAA configuration | For Claude for Enterprise organizations that have HIPAA enabled. Some Claude Code (local mode) features are turned off and others are off by default | [Set up Claude Code (local mode) for a HIPAA-ready organization](/docs/en/hipaa-setup) |
 | Security architecture | Network model, encryption, authentication, audit trail | [Security](/docs/en/security) |
 
-If you need request-level audit logging or to route traffic by data sensitivity, we recommend you place a gateway between developers and your provider: a self-hosted [Claude apps gateway](/docs/en/claude-apps-gateway) records a per-request audit log with IdP identity, or you can use another [LLM gateway](/docs/en/llm-gateway). Sessions that go through a gateway aren't eligible for the HIPAA configuration. [Check how developers sign in and connect](/docs/en/hipaa-setup#check-how-developers-sign-in-and-connect) lists the connections that are. For regulatory requirements and certifications, see [Legal and compliance](/docs/en/legal-and-compliance).
+If you need request-level audit logging or to route traffic by data sensitivity, we recommend you place a gateway between developers and your provider: a self-hosted [Claude apps gateway](/docs/en/claude-apps-gateway) records a per-request audit log with IdP identity, or you can use another [LLM gateway](/docs/en/llm-gateway). Sessions that go through a gateway aren't eligible for the HIPAA configuration. [Check how developers sign in and connect](/docs/en/hipaa-setup#check-how-developers-sign-in-and-connect) lists which sign-in and connection methods are. For regulatory requirements and certifications, see [Legal and compliance](/docs/en/legal-and-compliance).
 
 ## Verify and onboard
 

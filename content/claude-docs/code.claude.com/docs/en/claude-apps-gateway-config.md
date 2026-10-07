@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: 8e8cd8b149da145b85a03607bf3e677545af0686c63e3d1cebbb8dae1986e6fe
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: b4c90f883e0b0ea3d2de1b53ded7bf4f197e436b1c8f338be6793d377df1ff53
 ---
 
 > ## Documentation Index
@@ -151,8 +151,8 @@ With this configuration the gateway sends no secret. It authenticates to the IdP
 The gateway reads the key and certificate once at boot, so a changed file takes effect only after a restart. Rotate in this order so that no token request presents a certificate the IdP doesn't have:
 
 1. Upload the new certificate to the IdP alongside the old one.
-2. Replace the key and certificate files that `gateway.yaml` loads, then restart the gateway.
-3. Remove the old certificate from the IdP.
+2. Replace the key and certificate files that `gateway.yaml` loads, then restart the gateway. If you run several replicas, a [rolling restart](/docs/en/claude-apps-gateway-deploy#upgrades) works, because the IdP has both certificates until you remove the old one.
+3. After every replica has restarted, remove the old certificate from the IdP.
 
 #### IdP requests through a forward proxy
 
@@ -212,7 +212,7 @@ The `store` block points the gateway at its PostgreSQL database, which holds dev
 
 | Field | Required | Description |
 | - | - | - |
-| `postgres_url` | Yes | `postgres://` or `postgresql://` URL. Required: the device-grant rendezvous, where the browser callback writes and the polling CLI reads, needs cross-replica state. The gateway runs its own schema migrations at boot and on upgrade, so the role needs rights to create and alter tables on the target schema. See [Upgrades](/docs/en/claude-apps-gateway-deploy#upgrades) and [Postgres](/docs/en/claude-apps-gateway-deploy#postgres). |
+| `postgres_url` | Yes | `postgres://` or `postgresql://` URL with one host, not a comma-separated list. The gateway runs its own schema migrations at boot and on upgrade, so the role needs rights to create and alter tables on the target schema. See [Upgrades](/docs/en/claude-apps-gateway-deploy#upgrades) and [Postgres](/docs/en/claude-apps-gateway-deploy#postgres). |
 | `username` | No | Overrides the user in `postgres_url` |
 | `password` | No | Database credential. Set it here rather than in `postgres_url` so the credential stays out of the URL. Accepts any characters and takes precedence over URL credentials. |
 | `max_connections` | No | Postgres connection-pool size per replica. Default `5`, which is conservative and friendly to shared databases. With [spend limits](#admin) enabled, the hot path does a few operations per inference request, so raise it for a dedicated database under load, and keep replicas × this below the database's `max_connections`. |

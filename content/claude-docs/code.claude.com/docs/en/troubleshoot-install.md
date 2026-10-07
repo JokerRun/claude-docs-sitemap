@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: c7a86b614759e602cd3dc5a9f9a49c0197ace65ed955bb9d66eca8aaf03ab61f
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 0ce6bb5c7b0d9da5436d2f62e521bf102454cb2201b12116fd621ebf9f1d64f1
 ---
 
 > ## Documentation Index
@@ -964,7 +964,7 @@ These sections address login failures, OAuth errors, and token issues.
 
 ### Reset your login
 
-When login fails and the cause isn't obvious, a clean re-authentication resolves most cases:
+When login fails and the cause isn't clear, a clean re-authentication resolves most cases:
 
 1. Run `/logout` to sign out completely
 2. Close Claude Code

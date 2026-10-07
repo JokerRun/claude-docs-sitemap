@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 98698ee627de3ad233ed41d237c60c54140c123f4e4db8873f8b148859d5cc68
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 4fdd7a5e1bafee7bec593211719d99a864f16b87b8f78d7eb981e6575f3c9fb4
 ---
 
 > ## Documentation Index
@@ -1139,7 +1139,7 @@ The command runs once per refresh tick and receives all visible subagent rows as
 
 The per-task `model` field is the resolved model ID the task runs on. `contextWindowSize` is that model's context window in tokens, computed the same way as the main status line's `context_window.context_window_size`, so you can render a per-row percentage from `tokenCount`. Both fields require Claude Code v2.1.205 or later and are omitted for a task whose model isn't resolved yet.
 
-The per-task `effort` field is the reasoning effort set for that subagent, in its [definition frontmatter](/docs/en/sub-agents#supported-frontmatter-fields) or on the individual invocation. The value is either one of the effort level strings `low`, `medium`, `high`, `xhigh`, or `max`, or a numeric token budget. The field reports the configured value as written: if the model doesn't support that level, the effort Claude Code actually applies may differ. The field requires Claude Code v2.1.214 or later and is absent when the subagent inherits the session's effort level.
+The per-task `effort` field is the reasoning effort set for that subagent, in its [definition frontmatter](/docs/en/sub-agents#supported-frontmatter-fields) or on the individual invocation. The value is either one of the effort level strings `low`, `medium`, `high`, `xhigh`, or `max`, or a numeric token budget. The field reports the configured value as written: if the model doesn't support that level, the effort Claude Code actually applies may differ. The field requires Claude Code v2.1.214 or later and is absent when no level is set for the subagent.
 
 Write one JSON line to stdout per row you want to override, in the form `{"id": "<task id>", "content": "<row body>"}`. The `content` string is rendered as-is, including ANSI colors and OSC 8 hyperlinks. Omit a task's `id` to keep the default rendering for that row; emit an empty `content` string to hide it.
 

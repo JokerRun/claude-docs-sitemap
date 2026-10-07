@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 1a5c32a7ca21aad4138d4fc424a6d229528cf1e47bf77dc8005c03142ffb854e
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 51fa3843b74d799339207f0991c214b22136f305b2479cf4d90af2f674ac1a90
 ---
 
 > ## Documentation Index
@@ -98,7 +98,7 @@ The cause isn't the plugin command. Follow [Verify your PATH](/docs/en/troublesh
 
 You typed a plugin command you saw somewhere and got `Unknown command: /<name>` in a session, or `error: unknown command '<name>'` or `error: unknown option '<flag>'` from the `claude` binary in your shell.
 
-Several command spellings are in use that Claude Code doesn't have. The table below maps each one to the real command. The [plugin commands reference](/docs/en/plugins/cli-reference) lists every subcommand and flag.
+Several command spellings are in use that Claude Code doesn't have. The table below maps each one to the real command. The [plugin commands reference](/docs/en/plugins/cli-reference) lists the subcommands and their flags.
 
 | You typed | What Claude Code says | Use instead |
 | :- | :- | :- |

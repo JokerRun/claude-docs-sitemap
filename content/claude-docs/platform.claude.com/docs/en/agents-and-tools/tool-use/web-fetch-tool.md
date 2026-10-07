@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 12a1845fba2280100e54b8d4e8ed7c66a8f53ef553c066708da6479d023a1b7f
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: ef479dc5e2a0e25fee39d8004e26b6e8b243df5b6677fa3ccb3c4b58e784f228
 ---
 
 ---
@@ -455,7 +455,7 @@ The `max_uses` parameter limits the number of web fetches performed. Failed fetc
 
 For domain filtering with `allowed_domains` and `blocked_domains`, see [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-On [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), set these fields on the `web_fetch` entry of the agent toolset, where each listed domain must be a plain hostname with no path; see [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+On [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), set these fields on the `web_fetch` entry of the agent toolset, where each listed domain must be a plain hostname with no path; see [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions).
 
 ### Content limits
 
@@ -465,7 +465,7 @@ The `max_content_tokens` parameter limits the amount of content included in the 
   The `max_content_tokens` parameter limit is approximate. The actual number of input tokens used can vary by a small amount.
 </Note>
 
-On Claude Managed Agents, the `web_fetch` entry of the agent toolset also accepts `max_content_tokens`; see [Restrict web search and web fetch domains](https://platform.claude.com/docs/en/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+On Claude Managed Agents, the `web_fetch` entry of the agent toolset also accepts `max_content_tokens`; see the [web tool settings](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions#settings).
 
 ### Cache bypass
 

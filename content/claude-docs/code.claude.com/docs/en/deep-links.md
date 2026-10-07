@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 490b034d629d886bf9e8c825a93a2a5e9b91c18b858c3a4e4e36eb81802fdf8d
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: b88a8e378896996382a28c18bede535531d19160ab2ab08b9e92ba8af3f5e9a8
 ---
 
 > ## Documentation Index
@@ -185,7 +185,7 @@ The `xdg-open` command is part of the `xdg-utils` package, which minimal server 
 
 ### The link renders as plain text instead of being clickable
 
-Some Markdown renderers only allow `http` and `https` links and strip other URL schemes. GitHub does this in READMEs, issues, pull requests, and wikis: `[label](claude-cli://...)` renders as just `label`, with no link and the URL removed. On these platforms, put the deep link in a code block so readers can see the URL and paste it into their browser's address bar.
+Some Markdown renderers only allow `http` and `https` links and strip other URL schemes. GitHub does this in READMEs, issues, pull requests, and wikis: `[label](claude-cli://...)` renders as `label`, with no link and the URL removed. On these platforms, put the deep link in a code block so readers can see the URL and paste it into their browser's address bar.
 
 ### The session opens in my home directory instead of the repo
 

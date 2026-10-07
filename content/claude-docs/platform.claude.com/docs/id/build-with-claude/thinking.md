@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 223cf9d91d8607fc4f6b53750ea721a483576a20bb57b58c1a41c5546c6448ae
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 0e0b8f1df52ae992254b378ec690ad697c4c5d8d6af0a06244ce662c85affe32
 ---
 
 ---
@@ -23,7 +23,9 @@ Pemikiran memiliki biaya. Token yang dihabiskan Claude untuk bernalar ditagih se
 
 ## Cara kerja pemikiran
 
-![Diagram cara kerja pemikiran (thinking): Claude mengevaluasi permintaan dan memutuskan apakah akan berpikir di awal; dengan penggunaan alat (tool use), pemikiran dapat berulang di antara pemanggilan alat; satu respons mengembalikan blok thinking, lalu blok text](https://platform.claude.com/docs/images/how-thinking-works.svg)
+<Frame>
+  ![Diagram cara kerja pemikiran (thinking): Claude mengevaluasi permintaan dan memutuskan apakah akan berpikir di awal; dengan penggunaan alat (tool use), pemikiran dapat berulang di antara pemanggilan alat; satu respons mengembalikan blok thinking, lalu blok text](https://platform.claude.com/docs/images/how-thinking-works.svg)
+</Frame>
 
 Apakah Claude berpikir pada permintaan tertentu, dan seberapa dalam, bergantung pada konfigurasi pemikiran Anda dan kompleksitas permintaan.
 
@@ -540,7 +542,9 @@ Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran 
 
 Pemikiran dapat digunakan bersama [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`. Setelahnya, satu event `signature_delta` dikirim tepat sebelum `content_block_stop` milik blok tersebut. Blok teks kemudian di-stream seperti biasa.
 
-![Diagram urutan event streaming dengan thinking (pemikiran): thinking block (blok pemikiran) dibuka, thinking deltas (delta pemikiran) membawa teks hanya jika pengaturan display mengembalikan teks (summarized, atau updates untuk blok pembaruan progres), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+<Frame>
+  ![Diagram urutan event streaming dengan thinking (pemikiran): thinking block (blok pemikiran) dibuka, thinking deltas (delta pemikiran) membawa teks hanya jika pengaturan display mengembalikan teks (summarized, atau updates untuk blok pembaruan progres), satu signature delta (delta signature) menutup blok, lalu text deltas (delta teks) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+</Frame>
 
 Contoh-contoh berikut men-stream respons dengan pemikiran adaptif dan mencetak delta pemikiran serta delta teks begitu tiba:
 

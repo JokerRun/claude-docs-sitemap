@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 8f6eb83c882ae2a2430bc705cfadd1ca94f3d7e4ee3a1afb7f1be1475e242c10
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: b38c0cb899a8cbff7dd8e785fc7748fc5bb279bc50b3d99fd57f3344df52cfa0
 ---
 
 > ## Documentation Index
@@ -2108,7 +2108,7 @@ A `peer` origin identifies which agent sent the message: an in-process [teammate
 
 ## Hook Types
 
-For a comprehensive guide on using hooks with examples and common patterns, see the [Hooks guide](/docs/en/agent-sdk/hooks).
+For a guide on using hooks with examples and common patterns, see the [Hooks guide](/docs/en/agent-sdk/hooks).
 
 ### `HookEvent`
 
@@ -3068,7 +3068,7 @@ type GrepInput = {
 };
 ```
 
-Powerful search tool built on ripgrep with regex support.
+Search tool built on ripgrep with regex support.
 
 ### TaskStop
 

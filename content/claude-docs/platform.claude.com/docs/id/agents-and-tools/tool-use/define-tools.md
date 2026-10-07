@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 2cd513ef83b803584cfeebe472089601e69bdd5d5c0dd5a05929f34fc1baf235
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 8d504c19c3433a87fa56083122352f0d77fab916b0c5e2ba13fc24c018785ba5
 ---
 
 ---
@@ -861,7 +861,7 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 Diagram ini mengilustrasikan cara kerja setiap opsi:
 
 <Frame>
-  ![Diagram yang menunjukkan empat opsi tool_choice: auto, any, tool, dan none](https://platform.claude.com/docs/images/tool_choice.png)
+  ![Diagram yang menunjukkan empat opsi tool\_choice: auto, any, tool, dan none](https://platform.claude.com/docs/images/tool_choice.png)
 </Frame>
 
 Perhatikan bahwa ketika Anda menetapkan `tool_choice` sebagai `any` atau `tool`, API melakukan prefill pada pesan asisten untuk memaksa penggunaan alat. Ini berarti model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, meskipun diminta secara eksplisit untuk melakukannya.

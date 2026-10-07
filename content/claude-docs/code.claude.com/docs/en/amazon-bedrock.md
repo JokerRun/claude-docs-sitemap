@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: f70f86302d503ca7eec913f74fd2d78fc005758100bf6539dea40399b0d02982
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: d491624f78e60dfa230e3a3e1a3735d670a1c6e6167ecaec6ff26fc9b231f01a
 ---
 
 > ## Documentation Index
@@ -587,7 +587,9 @@ These variables are specific to the Mantle endpoint. See [Environment variables]
 
 ### Authentication loop with SSO and corporate proxies
 
-If browser tabs spawn repeatedly when using AWS SSO, remove the `awsAuthRefresh` setting from your [settings file](/docs/en/settings). This can occur when corporate VPNs or TLS inspection proxies interrupt the SSO browser flow. Claude Code treats the interrupted connection as an authentication failure, re-runs `awsAuthRefresh`, and loops indefinitely.
+If browser sign-in tabs keep opening when you use AWS SSO, remove the `awsAuthRefresh` setting from your [settings file](/docs/en/settings).
+
+The loop can occur when corporate VPNs or TLS inspection proxies interrupt the SSO browser flow. Claude Code treats the interrupted connection as an authentication failure. When a later request finds the credentials still expired, Claude Code re-runs `awsAuthRefresh`, which opens another tab.
 
 If your network environment interferes with automatic browser-based SSO flows, use `aws sso login` manually before starting Claude Code instead of relying on `awsAuthRefresh`.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: e2213e785a9105847e0d2ad006f3885c35ded7b88f0db23ce708ea45c43a7fbc
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 620ab6c85efd23581b3b31ba6daa44d00f83a562bb3f9892115a8d6902aad8c9
 ---
 
 > ## Documentation Index
@@ -193,7 +193,7 @@ The last line of the stream is a `result` message with the final response text, 
 
 If your consumer reads the stream slowly, Claude Code waits for the queued output to drain before exiting, scaling the wait with how much is still queued, capped at 30 seconds. Before v2.1.214 the exit wait was capped at about two seconds, which could cut off the end of a large response.
 
-The following example uses [jq](https://jqlang.org/) to filter for text deltas and display just the streaming text. The `-r` flag outputs raw strings (no quotes) and `-j` joins without newlines so tokens stream continuously:
+The following example uses [jq](https://jqlang.org/) to filter for text deltas and display only the streaming text. The `-r` flag outputs raw strings (no quotes) and `-j` joins without newlines so tokens stream continuously:
 
 ```bash theme={null}
 claude -p "Write a poem" --output-format stream-json --verbose --include-partial-messages | \

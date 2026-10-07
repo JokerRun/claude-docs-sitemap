@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 82586d48ca413b7451852ca548917a9ad066973f26c6186e0b8468d4be9c0e1e
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 3f46290b1247d4493558aad97bec5539e552eecbc8f84260c7326eea0c6dd895
 ---
 
 > ## Documentation Index
@@ -2079,7 +2079,7 @@ HookCallback = Callable[[HookInput, str | None, HookContext], Awaitable[HookJSON
 
 Parameters:
 
-* `input`: Strongly-typed hook input with discriminated unions based on `hook_event_name` (see [`HookInput`](#hookinput))
+* `input`: Strongly typed hook input with discriminated unions based on `hook_event_name` (see [`HookInput`](#hookinput))
 * `tool_use_id`: Optional tool use identifier (for tool-related hooks)
 * `context`: Hook context with additional information
 

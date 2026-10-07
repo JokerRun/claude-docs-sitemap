@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/overview
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: f2ce40ab501de596b7441318d490895bda88c639eb2451123147eb7d14a1ea12
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 1e65216d6e774a214db61e1ef6227b2acc9f65d17ca1980d78cef0cbb5bb4793
 ---
 
 ---
@@ -77,6 +77,8 @@ Once you've picked a model, [learn how to make your first API call](https://plat
 You can query model capabilities and token limits programmatically with the [Models API](https://platform.claude.com/docs/en/api/models/list). The response includes `max_input_tokens`, `max_tokens`, and a `capabilities` object for every available model.
 
 Each model in the response also has a `line` field, which names the model line it belongs to. Claude Opus 4.5 and Claude Opus 4.6 both report `opus`. Use `line` to group models, for example, in a model picker. `line` is `null` when a model belongs to no line. Read `line` instead of inferring it from the model's `id`. Anthropic might add more lines, so don't treat the set of values as fixed.
+
+Each model's `capabilities` object includes `thinking.types.disabled`, which reports whether the model accepts `thinking: {type: "disabled"}`, the setting that [turns thinking off](https://platform.claude.com/docs/en/build-with-claude/thinking#turning-thinking-off). `supported` is `false` when the model rejects `"disabled"` with a 400 error, and `true` on a model that doesn't support thinking. Even when `supported` is `true`, the API can still reject a `"disabled"` request for another reason. One such reason is an [effort](https://platform.claude.com/docs/en/build-with-claude/effort) level that the model doesn't allow with thinking off.
 
 ## Prompt and output performance
 

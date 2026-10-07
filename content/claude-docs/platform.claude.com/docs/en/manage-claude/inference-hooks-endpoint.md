@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: f6e1973f65ca7478b77d902b99d55ccd3512f3b80154e50f1f5be6bff092492b
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 00f26cff6b896e8b99782f4e7ceca6bf2f6d64d98b468e60235cf2209436e629
 ---
 
 ---
@@ -165,7 +165,7 @@ Every request carries these fixed headers, along with any [custom request header
 | `User-Agent`      | `anthropic-dlp/1`  |
 | `Accept-Encoding` | `identity`         |
 
-There are two hook events, told apart by the top-level `type` field. The prompt frame is sent once per governed inference request, before inference begins. The tool call frame is sent when a model response contains tool calls, before any of them runs, in organizations that have turned on **Validate tool calls**. Either way, Anthropic waits until your AI security server responds or the verdict timeout elapses.
+There are two hook events, told apart by the top-level `type` field. The prompt frame is sent once per governed inference request, before inference begins. The tool call frame is sent when a model response contains tool calls, before any of them runs, in organizations that have **Validate tool calls** on. Either way, Anthropic waits until your AI security server responds or the verdict timeout elapses.
 
 ## The prompt frame
 

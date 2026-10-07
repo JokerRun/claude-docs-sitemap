@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 74d988e2c69a8cfadb1fd87f4d37807eada486af3e175b7b81d2126e71c704fe
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: dd2f2a8c57b48f89d747b18fbb0c9667c38e1ae4df449a2db8f29cc46e5c3162
 ---
 
 ---
@@ -476,6 +476,8 @@ Claude Opus 5 also has thinking on by default and accepts `thinking: {type: "dis
 Claude Sonnet 5.5 also has thinking on by default, and it rejects `thinking: {type: "disabled"}` with a 400 error. To turn off up-front thinking, send `thinking: {type: "between_tools"}` instead. It's the lowest thinking setting on Claude Sonnet 5.5, and it's accepted at [effort](https://platform.claude.com/docs/en/build-with-claude/effort) `high` or below. The model still returns its [progress updates between tool calls](https://platform.claude.com/docs/en/build-with-claude/thinking#progress-updates). Without tools, the response contains only text, as with `disabled` on Claude Sonnet 5. See [Running without up-front thinking](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking) for prompting guidance.
 
 Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, and Claude Mythos Preview reject `thinking: {type: "disabled"}`. Thinking can't be turned off on these models.
+
+To check whether a model accepts `"disabled"` before you send a request, read its `capabilities.thinking.types.disabled.supported` value from the Models API. [Using the Models API](https://platform.claude.com/docs/en/models/overview#using-the-models-api) describes the field.
 
 If your model supports only extended thinking (see the [per-model configuration table](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting#supported-models)), configure it with `type: "enabled"` and a `budget_tokens` value instead. The [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) page covers that configuration. And if any thinking configuration comes back with a 400 error, [Troubleshooting thinking](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting) matches each error message to its fix.
 

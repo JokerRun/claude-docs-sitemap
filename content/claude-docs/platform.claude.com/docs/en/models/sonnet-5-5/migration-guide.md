@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 7db37f2b75ab87963cf72fce15a6e66672241b3632b358d764c9172876248a8c
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 423b7740889ddbb4545176070afbe5842e4b526023c4cd569825a0f43eb5ddb1
 ---
 
 ---
@@ -1220,7 +1220,7 @@ This model does not support assistant message prefill. The conversation must end
 
 Replace each prefill according to what it was for:
 
-* **Output format:** use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), or tools with enum fields for classification.
+* **Output format:** use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), or tools with enum fields for classification. On Amazon Bedrock, structured outputs aren't available for Claude Sonnet 5.5. There, describe the format in the prompt or use a tool without `strict`, and validate the output in your code.
 * **Preambles:** ask in the system prompt for a direct answer.
 * **Unwanted refusals:** clear instructions in the user message are usually enough.
 * **Continuations:** move them to the user message, for example "Your previous response was interrupted and ended with `[previous_response]`. Continue from where you left off."

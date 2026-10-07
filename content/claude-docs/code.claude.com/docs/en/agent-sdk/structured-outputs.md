@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/structured-outputs
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 69d551b2fd0fcbba983229b3f7bd7a8f042685255d77a15ad9b7456cf337f5aa
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: a51682a79191329968b165c9c623d846056188891bf5a71446a79e989002ca21
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 69d551b2fd0fcbba983229b3f7bd7a8f042685255d77a15ad9b7456cf337f5aa
 
 Structured outputs let you define the exact shape of data you want back from an agent. The agent can use any tools it needs to complete the task, and you still get validated JSON matching your schema at the end. Define a [JSON Schema](https://json-schema.org/understanding-json-schema/about) for the structure you need, and the SDK validates the output against it, re-prompting on mismatch. If validation does not succeed within the retry limit, the result is an error instead of structured data; see [Error handling](#error-handling).
 
-For full type safety, use [Zod](#type-safe-schemas-with-zod-and-pydantic) (TypeScript) or [Pydantic](#type-safe-schemas-with-zod-and-pydantic) (Python) to define your schema and get strongly-typed objects back.
+For full type safety, use [Zod](#type-safe-schemas-with-zod-and-pydantic) (TypeScript) or [Pydantic](#type-safe-schemas-with-zod-and-pydantic) (Python) to define your schema and get strongly typed objects back.
 
 ## Why structured outputs?
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 7b9cea573525e3009a8debea5322b9dff19a624e991faab9c8bbda2d34c24946
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 0dd2bfdabf0c9111a3bf8f44ebbc77ef8dae031072bda5bb28c63ce35e5cf2ed
 ---
 
 > ## Documentation Index
@@ -133,7 +133,7 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
     See the setup guides for [Amazon Bedrock](/docs/en/amazon-bedrock), [Claude Platform on AWS](/docs/en/claude-platform-on-aws), [Google Cloud's Agent Platform](/docs/en/google-vertex-ai), or [Microsoft Foundry](/docs/en/microsoft-foundry) for details.
 
     <Note>
-      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.
+      Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Use the API key authentication methods described in this document instead.
     </Note>
   </Step>
 </Steps>

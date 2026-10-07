@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: bc15d410ba53cba4bc1a23f9de0b8d2c180a4a7d7c319087b872208929c4f80c
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: 71cab8507f3e61c845c289ef2a7678efb4cf68d905488e64e5f2a28c8d9c7ee0
 ---
 
 ---
@@ -17,6 +17,8 @@ This pattern fits long-horizon agentic workloads (coding agents, computer use, m
 
 ```mermaid
 sequenceDiagram
+  accTitle: How the executor model consults the advisor model
+  accDescr: Your application sends a request with the advisor tool to the executor model, which begins the task. The executor emits a server_tool_use block, and Anthropic runs the advisor model server-side. The advisor reads the full transcript and returns strategic guidance in an advisor_tool_result. The executor continues, informed by the advice, and returns the response to your application.
   participant U as Your application
   participant E as Executor model
   participant A as Advisor model

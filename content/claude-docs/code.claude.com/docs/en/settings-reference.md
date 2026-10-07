@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 8cf4857edf4fef7a05b3d2f741af6079b23fae7082827fd22d0519bd733a1ace
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: f4f0cdc88e2cf36a1490741800dc34a9fdf90ddaa70c2c5848aac03cde90d53a
 ---
 
 > ## Documentation Index
@@ -4780,7 +4780,7 @@ This example stores the `api_endpoint` option for the `deployer` plugin from `ac
 }
 ```
 
-Built-in plugins store their options under the same key with an `@builtin` suffix. For example, the [**Project instructions**](/docs/en/memory#choose-which-instruction-files-load) setting that controls whether Claude Code reads `AGENTS.md` files is `pluginConfigs["agents-md@builtin"].options.instructionFiles`.
+Built-in plugins store their options under the same key with an `@builtin` suffix. For example, the [**Project instructions**](/docs/en/memory#choose-which-instruction-files-load) setting that controls whether Claude Code reads `AGENTS.md` files is `pluginConfigs["cc-plugin-agents-md@builtin"].options.instructionFiles`. Before v2.1.285, the plugin's ID was `agents-md@builtin`. Later versions read an entry under either ID.
 
 Claude Code ignores project and local entries because it substitutes these values into plugin hook, MCP, and LSP configurations, and a cloned repository must not be able to supply them. Before v2.1.207, project and local settings were also read.
 

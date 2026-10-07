@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 96941620133344f2c7f58fb41f098d7f4ecc0350ef218179175b4705d76d2de5
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: d0a7629b8a3b0c65031feea80a85c0036961f2ef840b7eda894d0ecf076a25c0
 ---
 
 ---
@@ -61,7 +61,9 @@ Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda k
 
 Pada permintaan berikutnya, tambahkan respons ke pesan Anda. API secara otomatis membuang semua blok konten sebelum blok `compaction`, dan melanjutkan percakapan dari ringkasan.
 
-![Compaction flow (alur pemadatan): ketika token input mencapai trigger (pemicu), Claude menulis ringkasan ke dalam blok compaction lalu melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
+<Frame>
+  ![Compaction flow (alur pemadatan): ketika token input mencapai trigger (pemicu), Claude menulis ringkasan ke dalam blok compaction lalu melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
+</Frame>
 
 ## Penggunaan dasar
 

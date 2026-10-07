@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 1d9b882a4c65600e09776126884ecba0b5ab6cdd678329167cb4fbb4d9ac8b83
+fetched_at: 2026-10-07T02:29:51.209198Z
+sha256: cf63463224500540b4828a7b5a8cf3bf10a50e0c613844f63a91d602de4a74ce
 ---
 
 ---
@@ -21,7 +21,7 @@ You need this page only when you build the retry yourself: over raw HTTP or with
 
 <Steps>
   <Step title="Opt in with the beta header">
-    Send the request that may be refused with the `anthropic-beta: fallback-credit-2026-07-01` header. The `server-side-fallback-2026-07-01` header also grants the same fields, and the earlier `fallback-credit-2026-06-01` header remains accepted and grants the same fields.
+    Send the request that may be refused with the `anthropic-beta: fallback-credit-2026-07-01` header. The `server-side-fallback-2026-07-01` header also grants the same fields, except on Amazon Bedrock and Google Cloud, which return a 400 error for that header. The earlier `fallback-credit-2026-06-01` header remains accepted and grants the same fields.
   </Step>
 
   <Step title="Read two fields from the refusal">
