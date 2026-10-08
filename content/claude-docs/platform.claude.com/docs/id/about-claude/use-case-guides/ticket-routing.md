@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 732c3ed9668396c1ca5e3cadf9bad04aed73a8cb6eaf37f96a1f6f2b0ea925c3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 92d556f72baade85b023a3ff3e6f6850f42a53fad04087b12ee58d74f6a5d0da
 ---
 
 ---
@@ -240,13 +240,13 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
 
 ### Pilih model Claude yang tepat
 
-Pilihan model bergantung pada trade-off antara biaya, akurasi, dan waktu respons.
+Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Banyak pelanggan menganggap `claude-haiku-4-5-20251001` sebagai model ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian materi yang mendalam atau volume kategori maksud yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/models/overview).
+Claude Haiku 5.5 (`claude-haiku-5-5`) cocok untuk perutean tiket: model ini adalah model terkini yang tercepat dan paling hemat biaya, dan pada effort `low` model ini menangani permintaan sederhana bervolume tinggi seperti klasifikasi. Jika masalah klasifikasi Anda memerlukan keahlian mendalam di bidang tertentu, volume kategori maksud yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/models/overview).
 
 ### Bangun prompt yang kuat
 
-Perutean tiket adalah jenis tugas klasifikasi. Claude menganalisis konten tiket dukungan dan mengklasifikasikannya ke dalam kategori yang telah ditentukan berdasarkan jenis masalah, urgensi, keahlian yang dibutuhkan, atau faktor relevan lainnya.
+Perutean tiket adalah jenis tugas klasifikasi. Claude menganalisis konten tiket dukungan dan mengklasifikasikannya ke dalam kategori yang telah ditentukan berdasarkan jenis masalah, urgensi, keahlian yang diperlukan, atau faktor relevan lainnya.
 
 Tulis prompt klasifikasi tiket. Prompt awal harus berisi konten permintaan pengguna dan mengembalikan penalaran serta maksudnya.
 
@@ -313,30 +313,34 @@ def classify_support_request(ticket_contents):
         """
 ```
 
+<Note>
+  Prompt ini ditulis untuk Claude Haiku 5.5, yang di sini berjalan pada effort `low`. Pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5, mintalah maksud dan ringkasan satu kalimat dari permintaan tersebut sebagai gantinya. Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
+</Note>
+
 Berikut adalah komponen utama dari prompt ini:
 
 * Template prompt adalah f-string Python, yang memungkinkan `ticket_contents` disisipkan ke dalam tag `<request>`.
-* Prompt memberi Claude peran yang terdefinisi dengan jelas sebagai sistem klasifikasi yang menganalisis konten tiket dengan cermat untuk menentukan maksud dan kebutuhan inti pelanggan.
+* Prompt memberikan Claude peran yang terdefinisi dengan jelas sebagai sistem klasifikasi yang menganalisis konten tiket dengan cermat untuk menentukan maksud dan kebutuhan inti pelanggan.
 * Prompt menginstruksikan Claude tentang format output yang tepat, dalam hal ini untuk memberikan penalaran dan analisisnya di dalam tag `<reasoning>`, diikuti oleh label klasifikasi yang sesuai di dalam tag `<intent>`.
 * Prompt menentukan kategori maksud yang valid: "Support, Feedback, Complaint", "Order Tracking", dan "Refund/Exchange".
 * Prompt menyertakan beberapa contoh (alias few-shot prompting) untuk mengilustrasikan bagaimana output harus diformat, yang meningkatkan akurasi dan konsistensi.
 
-Meminta Claude membagi responsnya ke dalam bagian tag XML terpisah memungkinkan Anda menggunakan regular expression untuk mengekstrak penalaran dan maksud dari output secara independen. Ini memungkinkan Anda membuat langkah selanjutnya yang terarah dalam alur kerja perutean tiket, seperti hanya menggunakan maksud untuk memutuskan kepada siapa tiket akan dirutekan.
+Meminta Claude membagi responsnya ke dalam bagian-bagian tag XML terpisah memungkinkan Anda menggunakan ekspresi reguler untuk mengekstrak penalaran dan maksud dari output secara independen. Hal ini memungkinkan Anda membuat langkah selanjutnya yang terarah dalam alur kerja perutean tiket, seperti hanya menggunakan maksud untuk memutuskan kepada siapa tiket akan dirutekan.
 
-### Deploy prompt Anda
+### Terapkan prompt Anda
 
-Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa men-deploy-nya dalam pengaturan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
+Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam lingkungan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
-Bangun struktur deployment. Mulailah dengan mendefinisikan signature metode untuk membungkus panggilan ke Claude. Perluas metode yang mulai Anda tulis sebelumnya, yang menerima `ticket_contents` sebagai input, sehingga sekarang mengembalikan tuple berisi `reasoning` dan `intent` sebagai output. Jika Anda memiliki otomatisasi yang sudah ada menggunakan ML tradisional, Anda sebaiknya mengikuti signature metode tersebut.
+Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk membungkus panggilan ke Claude. Perluas metode yang sudah mulai Anda tulis sebelumnya, yang menerima `ticket_contents` sebagai input, sehingga sekarang mengembalikan tuple berisi `reasoning` dan `intent` sebagai output. Jika Anda memiliki otomatisasi yang sudah ada menggunakan ML tradisional, sebaiknya Anda mengikuti signature metode tersebut.
 
 ```python Python
 import re
 
-# Buat instance klien Claude API
+# Buat instance klien API Claude
 client = anthropic.Anthropic()
 
 # Tetapkan model default
-DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+DEFAULT_MODEL = "claude-haiku-5-5"
 
 
 def classify_support_request(ticket_contents):
@@ -348,13 +352,16 @@ def classify_support_request(ticket_contents):
     # Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
     message = client.messages.create(
         model=DEFAULT_MODEL,
-        max_tokens=500,
+        max_tokens=2048,
+        output_config={"effort": "low"},
         messages=[{"role": "user", "content": classification_prompt}],
         stream=False,
     )
-    reasoning_and_intent = message.content[0].text
+    reasoning_and_intent = next(
+        (block.text for block in message.content if block.type == "text"), ""
+    )
 
-    # Gunakan pustaka regular expression Python untuk mengekstrak `reasoning`.
+    # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `reasoning`.
     reasoning_match = re.search(
         r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
     )
@@ -369,12 +376,12 @@ def classify_support_request(ticket_contents):
 
 Kode ini:
 
-* Membuat instance client menggunakan kunci API Anda.
+* Membuat instance klien menggunakan kunci API Anda.
 * Mendefinisikan fungsi `classify_support_request` yang menerima string `ticket_contents`.
-* Mengirim `ticket_contents` ke Claude untuk klasifikasi menggunakan `classification_prompt`.
+* Mengirim `ticket_contents` ke Claude untuk diklasifikasikan menggunakan `classification_prompt`.
 * Mengembalikan `reasoning` dan `intent` model yang diekstrak dari respons.
 
-Karena seluruh teks penalaran dan maksud harus dihasilkan sebelum diurai, contoh ini menetapkan `stream=False` (default).
+Karena seluruh teks penalaran dan maksud harus dihasilkan sebelum parsing, contoh ini menetapkan `stream=False` (nilai default).
 
 ***
 
@@ -386,23 +393,23 @@ Untuk menjalankan evaluasi, Anda memerlukan kasus uji untuk menjalankannya. Sisa
 
 ### Bangun fungsi evaluasi
 
-Contoh evaluasi untuk panduan ini mengukur performa Claude berdasarkan tiga metrik utama:
+Contoh evaluasi untuk panduan ini mengukur kinerja Claude berdasarkan tiga metrik utama:
 
 * Akurasi
 * Biaya per klasifikasi
 
-Anda mungkin perlu menilai Claude pada sumbu lain tergantung pada faktor apa yang penting bagi Anda.
+Anda mungkin perlu menilai Claude pada aspek lain tergantung pada faktor apa yang penting bagi Anda.
 
-Untuk menilai ini, pertama-tama modifikasi skrip untuk menambahkan fungsi yang membandingkan maksud yang diprediksi dengan maksud sebenarnya dan menghitung persentase prediksi yang benar. Kemudian tambahkan fungsionalitas perhitungan biaya dan pengukuran waktu.
+Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi yang membandingkan maksud yang diprediksi dengan maksud sebenarnya dan menghitung persentase prediksi yang benar. Kemudian tambahkan fungsionalitas perhitungan biaya dan pengukuran waktu.
 
 ```python Python
 import re
 
-# Buat instance klien Claude API
+# Buat instance klien API Claude
 client = anthropic.Anthropic()
 
-# Tetapkan model default
-DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+# Atur model default
+DEFAULT_MODEL = "claude-haiku-5-5"
 
 
 def classify_support_request(request, actual_intent):
@@ -414,19 +421,22 @@ def classify_support_request(request, actual_intent):
 
     message = client.messages.create(
         model=DEFAULT_MODEL,
-        max_tokens=500,
+        max_tokens=2048,
+        output_config={"effort": "low"},
         messages=[{"role": "user", "content": classification_prompt}],
     )
     usage = message.usage  # Get the usage statistics for the API call for how many input and output tokens were used.
-    reasoning_and_intent = message.content[0].text
+    reasoning_and_intent = next(
+        (block.text for block in message.content if block.type == "text"), ""
+    )
 
-    # Gunakan pustaka regular expression Python untuk mengekstrak `reasoning`.
+    # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `reasoning`.
     reasoning_match = re.search(
         r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
     )
     reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
 
-    # Dengan cara yang sama, ekstrak juga `intent`.
+    # Demikian pula, ekstrak juga `intent`.
     intent_match = re.search(r"<intent>(.*?)</intent>", reasoning_and_intent, re.DOTALL)
     intent = intent_match.group(1).strip() if intent_match else ""
 
@@ -459,18 +469,44 @@ Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi ta
 
 ### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori maksud
 
-Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah, yang berpotensi membuat prompt menjadi sulit dikelola. Sebagai alternatif, Anda dapat mempertimbangkan untuk menerapkan sistem klasifikasi hierarkis menggunakan campuran classifier.
+Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah, yang berpotensi membuat prompt menjadi sulit dikelola. Sebagai alternatif, Anda dapat mempertimbangkan untuk menerapkan sistem klasifikasi hierarkis menggunakan campuran pengklasifikasi.
 
 1. Atur maksud Anda dalam struktur pohon taksonomi.
-2. Buat serangkaian classifier di setiap tingkat pohon, yang memungkinkan pendekatan perutean berjenjang.
+2. Buat serangkaian pengklasifikasi di setiap tingkat pohon, yang memungkinkan pendekatan perutean bertingkat.
 
-Misalnya, Anda mungkin memiliki classifier tingkat atas yang secara luas mengkategorikan tiket ke dalam "Technical Issues," "Billing Questions," dan "General Inquiries." Masing-masing kategori ini kemudian dapat memiliki sub-classifier sendiri untuk lebih menyempurnakan klasifikasi.
+Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket ke dalam "Technical Issues", "Billing Questions", dan "General Inquiries". Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
 
-![Hierarki classifier yang merutekan tiket ke Technical Issues (Masalah Teknis), Billing Questions (Pertanyaan Penagihan), atau General Inquiries (Pertanyaan Umum), masing-masing dengan sub-classifier](https://platform.claude.com/docs/images/ticket-hierarchy.png)
+```mermaid
+---
+config:
+  flowchart:
+    nodeSpacing: 10
+    rankSpacing: 60
+    padding: 8
+    wrappingWidth: 300
+---
+flowchart LR
+  accTitle: Hierarchy of ticket classifiers
+  accDescr: Classifier hierarchy routing tickets to Technical Issues, Billing Questions, or General Inquiries, each with a sub-classifier
+  tickets[Support Tickets] --> technical[Technical Issues]
+  tickets --> billing[Billing Questions]
+  tickets --> general[General Inquiries]
+  technical --> software[Software Installation]
+  technical --> hardware[Hardware Troubleshooting]
+  technical --> network[Network Connectivity]
+  technical --> technicalMore[...]
+  billing --> invoice[Invoice Clarification]
+  billing --> payment[Payment Processing]
+  billing --> refund[Refund Requests]
+  general --> product[Product Information]
+  general --> order[Order Status]
+  general --> partnership[Partnership Opportunities]
+  general --> generalMore[...]
+```
 
-* **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, yang memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Ini dapat menghasilkan akurasi yang lebih baik dan penanganan permintaan pelanggan yang lebih bernuansa.
+* **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Hal ini dapat menghasilkan akurasi yang lebih baik dan penanganan permintaan pelanggan yang lebih bernuansa.
 
-* **Kekurangan - latensi yang meningkat:** Perlu diketahui bahwa beberapa classifier dapat menyebabkan peningkatan "latency" (latensi), dan Anthropic merekomendasikan untuk menerapkan pendekatan ini dengan model tercepat, Haiku.
+* **Kekurangan - "latency" (latensi) yang meningkat:** Perlu diketahui bahwa beberapa pengklasifikasi dapat menyebabkan peningkatan latensi, dan Anthropic merekomendasikan penerapan pendekatan ini dengan model tercepat, Haiku.
 
 ### Gunakan database vektor dan pengambilan pencarian kemiripan untuk menangani tiket yang sangat bervariasi
 

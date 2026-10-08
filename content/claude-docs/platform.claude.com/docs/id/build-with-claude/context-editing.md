@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: cbc132e187db77c5b742d1f982365bb140b23879ebe00fa5ff32677733a6b3d9
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2b0dc62f4f93b8792cd9fdbae3035e3e37408e80a85029fb3892bdff5ba863cb
 ---
 
 ---
@@ -53,12 +53,12 @@ Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ke
 <Tip>
   **Perilaku default:** Default bervariasi menurut kelas model.
 
-  | Kelas model      | Simpan semua thinking sebelumnya      | Simpan hanya thinking giliran terakhir |
-  | ---------------- | ------------------------------------- | -------------------------------------- |
-  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama    |
-  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 dan yang lebih lama  |
-  | Haiku            | (tidak ada)                           | Semua model hingga Claude Haiku 4.5    |
-  | Fable dan Mythos | Semua model                           | (tidak ada)                            |
+  | Kelas model      | Simpan semua thinking sebelumnya      | Simpan hanya thinking giliran terakhir             |
+  | ---------------- | ------------------------------------- | -------------------------------------------------- |
+  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama                |
+  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama |
+  | Haiku            | Claude Haiku 5.5 dan yang lebih baru  | Claude Haiku 4.5 dan yang lebih lama               |
+  | Fable dan Mythos | Semua model                           | (tidak ada)                                        |
 
   Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa tingkatan model, atur `keep` secara eksplisit daripada mengandalkan default per model.
 </Tip>
@@ -69,7 +69,7 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
-Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, manajemen konteks sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, manajemen konteks sisi server tidak pernah membatalkan validitas blok thinking. Pengeditan sisi klien pada giliran sebelumnya dapat membatalkan validitas blok thinking di setiap giliran asisten berikutnya. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, permintaan yang memutar ulang blok yang tidak valid akan ditolak kecuali Anda memilih untuk membuangnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
 ### Pengeditan konteks dan caching prompt
 
@@ -928,9 +928,9 @@ Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt se
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default            | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                              |
-| ---------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `keep`           | Spesifik per model | Menentukan berapa banyak giliran asisten terbaru dengan blok thinking yang dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok thinking. Opus 4.5+ dan Sonnet 4.6+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan semua Haiku: hanya giliran terakhir. |
+| Opsi konfigurasi | Default        | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `keep`           | Spesifik model | Menentukan berapa banyak giliran asisten terbaru dengan blok thinking yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok thinking. Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan Haiku hingga Claude Haiku 4.5: hanya giliran terakhir. |
 
 **Contoh konfigurasi:**
 
@@ -2531,7 +2531,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      // Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh konteks lebih banyak
+      // Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
       compactionControl: { enabled: true, contextTokenThreshold: 50000 }
     });
 
@@ -2574,7 +2574,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      # Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh konteks lebih banyak
+      # Nilai lebih rendah membuat pemadatan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
       compaction_control: { enabled: true, context_token_threshold: 50000 }
     )
 

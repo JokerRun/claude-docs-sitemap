@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 8efcbfcbdd1a2fc14a6c82577eb29fae799d32d0abd00747f2e1b285e16db57d
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 22052d906f7833f1140efa68d52c1d046d40eaaeb613c59812e6c9875fb4d681
 ---
 
 ---
@@ -30,7 +30,7 @@ Definisikan alat menggunakan helper SDK, lalu gunakan tool runner untuk menjalan
 
 Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebagai string atau sebagai blok konten (blok teks, gambar, atau dokumen), sehingga sebuah alat dapat mengembalikan hasil multimodal. String yang dikembalikan menjadi satu blok konten teks. Untuk mengembalikan data terstruktur, seperti objek JSON atau angka, enkode terlebih dahulu sebagai string.
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Gunakan decorator `@beta_tool` untuk mendefinisikan alat dengan type hint dan docstring.
 
@@ -600,7 +600,7 @@ Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runn
 
 Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir secara langsung:
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Gunakan `runner.until_done()` untuk mendapatkan pesan akhir.
 
@@ -804,6 +804,8 @@ Di dalam loop, Anda dapat membaca setiap pesan respons dan memodifikasi status r
 
 ```mermaid
 sequenceDiagram
+  accTitle: The tool runner loop
+  accDescr: In each iteration, the tool runner sends a request with the current state to the Messages API. It receives the response message and yields it to your code. Your loop body runs, then the tool runner resumes. If the message history is unchanged and there are tool calls, it appends the assistant message and the tool results and continues. If there are none, it exits the loop. If the message history changed, it uses your state unchanged.
   participant U as Your code
   participant TR as ToolRunner
   participant API as Messages API
@@ -830,7 +832,7 @@ Anda mengambil alih dengan memodifikasi pesan runner dari dalam badan loop. Meto
 
 Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop tetap dapat berakhir ketika tidak ada panggilan alat, dan berikan `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) untuk membatasi loop. Ketujuh SDK mendukung `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`).
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Gunakan `generate_tool_call_response()` untuk memeriksa atau menghitung hasil alat. Memanggil `append_messages()` di dalam loop memberi tahu runner bahwa Anda mengelola riwayat sendiri, jadi sertakan pesan asisten dan hasil alat dalam apa yang Anda tambahkan.
 
@@ -1113,7 +1115,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
 ### Manajemen konteks otomatis
 
-Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung "compaction" ([pemadatan](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk)) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas "context window" (jendela konteks). Kedua SDK telah menghentikan (deprecated) opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner di setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner Python, TypeScript, C#, Go, Java, PHP, dan Ruby memiliki helper `compact_before_next_turn()` (typescript, java, php: `compactBeforeNextTurn()`; csharp, go: `CompactBeforeNextTurn()`) untuk compaction sesuai permintaan. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, jangan keduanya.
+Untuk tugas agentik yang berjalan lama, tool runner TypeScript dan Ruby mendukung [compaction](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas jendela konteks. Kedua SDK telah menghentikan (deprecated) opsi sisi klien ini dan menggantinya dengan [compaction sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold), yang berfungsi dengan tool runner setiap SDK melalui parameter permintaan `context_management`. Python SDK (v1.0 dan yang lebih baru) serta tool runner Go, Java, C#, dan PHP tidak menyertakan compaction sisi klien. Tool runner memiliki helper `compact_before_next_turn()` (typescript, java, php: `compactBeforeNextTurn()`; csharp, go: `CompactBeforeNextTurn()`) untuk compaction sesuai permintaan. Lihat [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop). Gunakan helper tersebut atau edit compaction `context_management` pada runner, bukan keduanya.
 
 ### Men-debug eksekusi alat
 
@@ -1135,9 +1137,7 @@ Go, Ruby, C#, dan PHP SDK tidak membaca `ANTHROPIC_LOG`. Di luar Python, tidak a
 
 Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
 
-Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_response()` di Python, `generateToolResponse()` di TypeScript) untuk mencegat hasil alat dan memeriksa error sebelum dikirim ke Claude. SDK lainnya tidak mengekspos hook tersebut. Tab masing-masing menjelaskan alternatif terdekat:
-
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     ```python
     client = anthropic.Anthropic()
@@ -1166,6 +1166,14 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
         # Proses pesan seperti biasa
         print(message.content)
     ```
+
+    <Note>
+      Panggil 
+
+      `runner.generate_tool_call_response()`
+
+       di dalam loop untuk mendapatkan hasil alat dan memeriksanya untuk error sebelum runner mengirimkannya ke Claude.
+    </Note>
   </Tab>
 
   <Tab title="TypeScript">
@@ -1199,6 +1207,14 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
       console.log(message.content);
     }
     ```
+
+    <Note>
+      Panggil 
+
+      `runner.generateToolResponse()`
+
+       di dalam loop untuk mendapatkan hasil alat dan memeriksanya untuk error sebelum runner mengirimkannya ke Claude.
+    </Note>
   </Tab>
 
   <Tab title="C#">
@@ -1305,6 +1321,18 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
       break if message.stop_reason != :tool_use
     end
     ```
+
+    <Note>
+      Tool runner Ruby tidak memiliki hook yang mengembalikan hasil alat. Setelah 
+
+      `runner.next_message`
+
+       kembali, hasil alat tersebut merupakan entri terakhir di 
+
+      `runner.params[:messages]`
+
+      , jadi periksa di sana sebelum permintaan berikutnya mengirimkannya ke Claude.
+    </Note>
   </Tab>
 </Tabs>
 
@@ -1312,9 +1340,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat (`generate_tool_call_r
 
 Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` guna mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada hasil alat, atau untuk mentransformasi output alat.
 
-Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya di tempat bergantung pada SDK. Lihat komentar kode di setiap tab.
-
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     ```python
     client = anthropic.Anthropic()
@@ -1347,6 +1373,18 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
 
         print(message.content)
     ```
+
+    <Note>
+      Panggil 
+
+      `runner.generate_tool_call_response()`
+
+       untuk mendapatkan hasil alat, modifikasi hasil tersebut, lalu teruskan ke 
+
+      `runner.append_messages()`
+
+       agar runner tidak menambahkan hasil aslinya.
+    </Note>
   </Tab>
 
   <Tab title="TypeScript">
@@ -1380,6 +1418,14 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
       console.log(message.content);
     }
     ```
+
+    <Note>
+      Panggil 
+
+      `runner.generateToolResponse()`
+
+       untuk mendapatkan hasil alat, lalu modifikasi secara langsung. Runner menambahkan hasil yang telah dimodifikasi untuk Anda.
+    </Note>
   </Tab>
 
   <Tab title="C#">
@@ -1531,6 +1577,18 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
       break if message.stop_reason != :tool_use
     end
     ```
+
+    <Note>
+      Tool runner Ruby tidak memiliki hook yang mengembalikan hasil alat. Setelah 
+
+      `runner.next_message`
+
+       kembali, hasil alat tersebut merupakan entri terakhir di 
+
+      `runner.params[:messages]`
+
+      , jadi modifikasi di sana sebelum permintaan berikutnya mengirimkannya ke Claude.
+    </Note>
   </Tab>
 </Tabs>
 
@@ -1542,7 +1600,7 @@ Di Python dan TypeScript SDK, gunakan metode respons alat untuk mendapatkan hasi
 
 Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setiap iterasi menghasilkan objek stream yang dapat Anda iterasi untuk mendapatkan event.
 
-<Tabs>
+<Tabs exclude="shell">
   <Tab title="Python">
     Atur `stream=True` dan gunakan `get_final_message()` untuk mendapatkan pesan yang terakumulasi.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 5c4dafd77ccd1040945d2e5d2dae16bd9e1d382948d001b0713212a5537bee76
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2a845a68a9495dc54a58b13aad5ddac47dbff6f7d3e70b90f657ddda81f9d876
 ---
 
 ---
@@ -33,10 +33,10 @@ Halaman ini mendefinisikan istilah-istilah yang digunakan di seluruh dokumentasi
 
 Tunnel stack membutuhkan dua kredensial saat runtime: **token tunnel**, yang mengautentikasi koneksi keluar cloudflared, dan **sertifikat server** yang ditandatangani oleh CA yang terdaftar pada tunnel, yang disajikan proxy selama handshake inner TLS. Ada dua cara untuk menyediakannya, yang disajikan di seluruh panduan ini sebagai sepasang tab.
 
-| Mode                  | Bagaimana kredensial sampai ke stack                                                                                                                                                                                                                                                                                                                                                                              | Nama Helm chart                               | Label tab                       |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------- |
-| **Akses programatik** | Komponen setup melakukan autentikasi ke Tunnels API melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), mengambil token tunnel, membuat CA dan sertifikat server secara lokal, dan mendaftarkan CA tersebut. Tidak ada secret berumur panjang yang disalin secara manual. Memerlukan aturan federasi dengan scope `workspace:manage_tunnels`. | Managed mode (`setup.enabled: true`, default) | **With programmatic access**    |
-| **Manual**            | Anda menyalin token tunnel dari Claude Console, membuat CA dan sertifikat server sendiri (misalnya dengan `openssl`), mendaftarkan CA di Console, dan menyediakan token serta sertifikat ke stack sebagai secret. Tidak ada komponen setup yang berjalan.                                                                                                                                                         | External mode (`setup.enabled: false`)        | **Without programmatic access** |
+| Mode                  | Bagaimana kredensial sampai ke stack                                                                                                                                                                                                                                                                                                                                                                              | Nama Helm chart                               | Label tab                    |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ---------------------------- |
+| **Akses programatik** | Komponen setup melakukan autentikasi ke Tunnels API melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), mengambil token tunnel, membuat CA dan sertifikat server secara lokal, dan mendaftarkan CA tersebut. Tidak ada secret berumur panjang yang disalin secara manual. Memerlukan aturan federasi dengan scope `workspace:manage_tunnels`. | Managed mode (`setup.enabled: true`, default) | **Dengan akses programatik** |
+| **Manual**            | Anda menyalin token tunnel dari Claude Console, membuat CA dan sertifikat server sendiri (misalnya dengan `openssl`), mendaftarkan CA di Console, dan menyediakan token serta sertifikat ke stack sebagai secret. Tidak ada komponen setup yang berjalan.                                                                                                                                                         | External mode (`setup.enabled: false`)        | **Tanpa akses programatik**  |
 
 Mode-mode ini juga disebut sebagai **alur programatik** (the programmatic flow) dan **alur manual** (the manual flow) dalam panduan deployment.
 
@@ -53,6 +53,8 @@ Inner TLS membentang antara backend Anthropic dan proxy Anda. cloudflared dan tu
 
 ```mermaid
 sequenceDiagram
+  accTitle: How a request reaches an MCP server through a tunnel
+  accDescr: cloudflared, the proxy, and the upstream MCP server run inside your network. cloudflared opens an outbound connection on port 7844 to the tunnel edge on the Cloudflare network. The connection stays open, and no inbound port is opened. The Anthropic backend sends an MCP request to the tunnel edge over outer mTLS. The edge carries it over the open connection to cloudflared, which passes it to the proxy on localhost:8080. Inner TLS spans the Anthropic backend to the proxy and terminates at the proxy. The proxy routes the request by hostname to the upstream MCP server. The response returns along the same path, reversed.
   participant A as Anthropic<br/>backend
   participant E as Tunnel edge<br/>(Cloudflare network)
   participant C as cloudflared

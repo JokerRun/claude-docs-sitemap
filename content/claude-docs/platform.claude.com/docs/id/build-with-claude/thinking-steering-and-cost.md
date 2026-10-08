@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 8c17b65fd842d56b911d6d482392b8ece8f0fb6eed39f3631eb38073007fdcc0
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a88316c35544e335dfbff8aa0767b619708061e09ef743f1e44773aa1ec3b865
 ---
 
 ---
@@ -15,15 +15,15 @@ description: Arahkan seberapa sering dan seberapa dalam Claude berpikir dengan t
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Pemikiran Claude bersifat adaptif: model mengevaluasi setiap permintaan dan memutuskan sendiri apakah perlu berpikir dan seberapa banyak. Anda menetapkan maksud, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat yang menurutnya penalaran akan membantu.
+"Thinking" (pemikiran) Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan niat, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat yang menurut penilaiannya akan membantu.
 
 Hal ini membuat pemikiran sangat cocok untuk beban kerja yang mencampur permintaan sepele dan kompleks, serta untuk alur kerja agentik jangka panjang di mana jumlah penalaran yang tepat bervariasi dari satu langkah ke langkah lainnya.
 
-Untuk mempelajari cara mengaktifkan pemikiran, cara membaca output pemikiran, dan tentang [output pemikiran pada Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5), lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Halaman ini membahas bagaimana Claude memutuskan kapan harus berpikir, cara mengarahkan keputusan tersebut, serta mekanisme caching, biaya, dan harga yang mengikutinya.
+Untuk mempelajari cara mengaktifkan pemikiran, cara membaca output pemikiran, dan tentang [output pemikiran pada Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5), lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Halaman ini membahas bagaimana Claude menentukan kapan harus berpikir, cara mengarahkan pemikiran, serta mekanisme caching, biaya, dan harga yang mengikutinya.
 
-## Bagaimana Claude memutuskan kapan harus berpikir
+## Bagaimana Claude menentukan kapan harus berpikir
 
-Pemikiran bersifat opsional bagi model. Pada setiap permintaan, Claude menimbang kompleksitas input dan memutuskan apakah penalaran yang lebih dalam akan meningkatkan jawaban. Pertanyaan faktual sederhana mungkin mendapat respons langsung tanpa blok pemikiran sama sekali; soal matematika multilangkah atau tugas debugging yang rumit memicu penalaran yang lebih dalam.
+Pemikiran bersifat opsional bagi model. Pada setiap permintaan, Claude menimbang kompleksitas input dan menentukan apakah penalaran yang lebih dalam akan meningkatkan jawaban. Pertanyaan faktual sederhana mungkin mendapatkan respons langsung tanpa blok pemikiran sama sekali; soal matematika multilangkah atau tugas debugging yang rumit memicu penalaran yang lebih dalam.
 
 Keputusan ini terjadi per permintaan. Percakapan yang sama dapat berisi giliran dengan dan tanpa pemikiran, dan giliran di mana Claude memilih untuk tidak berpikir tidak berisi blok pemikiran. Jangan membangun logika aplikasi yang mengasumsikan setiap giliran asisten dimulai dengan blok pemikiran.
 
@@ -31,7 +31,7 @@ Kontrol utama atas keputusan ini adalah parameter [effort](https://platform.clau
 
 Jika Anda ingin Claude berpikir lebih jarang, turunkan tingkat effort sebelum beralih ke pengarahan berbasis prompt.
 
-Pemikiran juga berselang-seling dengan "tool use" (penggunaan alat) secara otomatis: Claude dapat berpikir di antara pemanggilan alat, merefleksikan setiap hasil alat sebelum memutuskan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
+Pemikiran juga berselang-seling dengan penggunaan alat secara otomatis: Claude dapat berpikir di antara pemanggilan alat, merefleksikan setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
 
 Untuk gambaran lengkap tentang bagaimana konfigurasi pemikiran dan parameter effort berinteraksi, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort).
 
@@ -50,15 +50,15 @@ Untuk panduan prompting yang lebih luas dengan pemikiran, lihat [memanfaatkan ke
 
 Effort adalah tuas pengarah utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering Claude berpikir dan seberapa dalam:
 
-| Tingkat effort                             | Perilaku pemikiran                                                                                                                       |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `max`                                      | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
-| `xhigh`                                    | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
-| `high` (default pada sebagian besar model) | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
-| `medium` (default pada Claude Opus 5.5)    | Claude menggunakan pemikiran moderat. Dapat melewatkan pemikiran untuk kueri sederhana.                                                  |
-| `low`                                      | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
+| Tingkat effort                                               | Perilaku pemikiran                                                                                                                       |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `max`                                                        | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
+| `xhigh`                                                      | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
+| `high` (default pada sebagian besar model)                   | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
+| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran moderat. Dapat melewatkan pemikiran untuk kueri sederhana.                                                  |
+| `low`                                                        | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
 
-Pada setiap tingkat, Claude memutuskan per permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
+Pada setiap tingkat, Claude menentukan per permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
 Tabel ini menjelaskan bagaimana setiap tingkat mengubah perilaku pemikiran. Untuk panduan tentang tingkat mana yang harus dipilih untuk beban kerja tertentu, termasuk rekomendasi per model, lihat [Kapan menyesuaikan parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort#when-to-adjust-the-effort-parameter) di halaman effort.
 

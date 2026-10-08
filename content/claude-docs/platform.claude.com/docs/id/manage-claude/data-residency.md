@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: bd59d640bf9373e82b243f71c52cd5f3987f6875b3f21b0b3ff8c5322e94431a
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 068d7a4bea9aeb4f944eee6f1e501ff2afbee28d1981c8ad36e82b6a61aac059
 ---
 
 ---
@@ -17,7 +17,7 @@ Kontrol "data residency" (residensi data) memungkinkan Anda mengelola di mana da
 * **Workspace geo:** Mengontrol di mana data disimpan saat diam (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com).
 
 <Note>
-  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-hosting sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
+  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penyematan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menyematkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [override per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penyematan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
 </Note>
 
 ## Inference geo
@@ -230,7 +230,7 @@ Objek `usage` pada respons menyertakan field `inference_geo` yang menunjukkan di
 
 ### Ketersediaan model
 
-Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, atau model yang lebih lama mengembalikan error 400.
+Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
 
 <Note>
   Parameter `inference_geo` tersedia di Claude API (pihak pertama) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Di Amazon Bedrock dan Google Cloud, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-hosting di Azure dapat menggunakan tipe deployment US Data Zone Standard, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).

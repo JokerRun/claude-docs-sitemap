@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e602d8d808256decb9960c670c3a8ef12bf91b4a9cc2e8d9bb0659a21e685692
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 187c377bbf4a8d0c2548b134b441a21c4be3a951cf06fb27e93d7df7d68f13a1
 ---
 
 ---
@@ -128,7 +128,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Error](https://
 
 `GET /v1/organizations/users` mengembalikan anggota organisasi, yang paling baru ditambahkan terlebih dahulu. Filter berdasarkan `email` untuk mencari anggota tertentu; pencocokannya tidak peka huruf besar-kecil dan mentoleransi varian umum dari alamat yang sama (misalnya, `jane+hiring@example.com` cocok dengan `jane@example.com`). Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List users](https://platform.claude.com/docs/id/api/beta/organization/users/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List users](https://platform.claude.com/docs/id/api/organization/users/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
@@ -140,7 +140,7 @@ curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
 
 `GET /v1/organizations/users/{user_id}` mengembalikan satu anggota berdasarkan ID. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get user](https://platform.claude.com/docs/id/api/beta/organization/users/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get user](https://platform.claude.com/docs/id/api/organization/users/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -152,7 +152,7 @@ curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQr
 
 `POST /v1/organizations/users/{user_id}` menetapkan peran anggota menjadi `user` atau `managed`. Anggota yang memegang peran administratif (`owner`, `membership_admin`, atau `primary_owner`) tidak dapat diubah melalui endpoint ini, dan peran administratif tidak dapat ditetapkan; keduanya mengembalikan 400 dan dikelola di pengaturan organisasi claude.ai. Jika penyedia identitas organisasi Anda mengelola peran (SSO lanjutan atau provisi SCIM lanjutan), pembaruan peran mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Update user](https://platform.claude.com/docs/id/api/beta/organization/users/update) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Update user](https://platform.claude.com/docs/id/api/organization/users/update) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -166,7 +166,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIj
 
 `DELETE /v1/organizations/users/{user_id}` menghapus anggota dari organisasi, mengembalikan seat yang dibeli yang mereka tempati ke kumpulan organisasi. Anggota yang memegang peran administratif tidak dapat dihapus melalui endpoint ini, dan jika penyedia identitas Anda mengelola keanggotaan (SCIM), penghapusan mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Remove user](https://platform.claude.com/docs/id/api/beta/organization/users/remove) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Remove user](https://platform.claude.com/docs/id/api/organization/users/remove) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -191,7 +191,7 @@ Pada paket yang mengambil anggota dari kumpulan seat terbatas, undangan secara o
 
 Field opsional `rbac_group_ids` mencantumkan grup (berdasarkan ID berawalan `rbac_group_`) yang akan ditetapkan kepada anggota ketika mereka menerima undangan. Menyertakan `rbac_group_ids` yang tidak kosong juga mengharuskan kunci membawa cakupan `write:rbac_groups`, karena penetapan grup dapat memberikan izin yang terlampir pada peran grup tersebut.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Create invite](https://platform.claude.com/docs/id/api/beta/organization/invites/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Create invite](https://platform.claude.com/docs/id/api/organization/invites/create) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
@@ -223,7 +223,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
 
 `GET /v1/organizations/invites` mengembalikan undangan organisasi, yang terbaru terlebih dahulu, mencakup status `pending`, `accepted`, dan `expired`; tidak ada filter status. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List invites](https://platform.claude.com/docs/id/api/beta/organization/invites/list) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List invites](https://platform.claude.com/docs/id/api/organization/invites/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
@@ -235,7 +235,7 @@ curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
 
 `GET /v1/organizations/invites/{invite_id}` mengembalikan satu undangan berdasarkan ID. Memerlukan cakupan `read:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Get invite](https://platform.claude.com/docs/id/api/beta/organization/invites/retrieve) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Get invite](https://platform.claude.com/docs/id/api/organization/invites/retrieve) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
@@ -247,7 +247,7 @@ curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCd
 
 `DELETE /v1/organizations/invites/{invite_id}` menarik undangan `pending`, menonaktifkan tautan dalam email undangan. Menarik undangan `accepted` mengembalikan 400 (hapus anggotanya sebagai gantinya); menarik undangan `expired` mengembalikan 400. Memerlukan cakupan `write:members`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Delete invite](https://platform.claude.com/docs/id/api/beta/organization/invites/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Delete invite](https://platform.claude.com/docs/id/api/organization/invites/delete) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
@@ -395,7 +395,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYz
 
 `POST /v1/organizations/rbac_groups/{rbac_group_id}/members` menambahkan anggota organisasi ke grup berdasarkan `user_id`. Pengguna harus sudah menjadi anggota salah satu organisasi enterprise Anda (jika tidak, permintaan akan mengembalikan 404), dan menambahkan seseorang yang sudah ada di grup akan mengembalikan 400. Untuk grup `scim`, keanggotaan dikelola di penyedia identitas Anda dan permintaan ini akan mengembalikan 400. Untuk menetapkan grup kepada seseorang yang belum bergabung, gunakan `rbac_group_ids` saat [pembuatan undangan](https://platform.claude.com/docs/id/manage-claude/user-management#create-an-invite) sebagai gantinya. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Add group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/add) di referensi API.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
@@ -420,7 +420,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_
 
 `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}` menghapus anggota dari grup; mereka tetap menjadi anggota organisasinya. Permintaan akan mengembalikan 404 jika pengguna bukan anggota grup, dan 400 untuk grup `scim`, yang keanggotaannya dikelola di penyedia identitas Anda. Memerlukan cakupan `write:rbac_groups`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/delete) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Remove group member](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/remove) di referensi API.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members/user_01AbCdEfGhIjKlMnOpQrSt" \

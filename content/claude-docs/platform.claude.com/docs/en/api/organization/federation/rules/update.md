@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0342a3cc363b7ffe293bff553399a61e6b753bbd7fd373fdd0b707dfe63c2cc7
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e8f4b04e5c95295fccc945ffa8efecbe7f7205db634a6502b889eeaa895d68a3
 ---
 
 ---
@@ -217,7 +217,7 @@ Console session.
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

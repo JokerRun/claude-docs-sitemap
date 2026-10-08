@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 4f1ba676f2c16d08af13d13a4eead10cf0153ecd07ecfa28a417cca45ba7ee27
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0437f76f5c0413ac10ed6c3f9a156b6336ea50e417772bc908dff071a0fb78e5
 ---
 
 ---
@@ -32,7 +32,9 @@ There are two hook events. `prompt` fires once per governed inference request, b
 
 The following diagram traces one example (a Cowork request where Claude also calls an O365 tool) to illustrate which parts of the flow are hooked. The hooked points are the diagram's steps 1, 2, and 3, where the prompt arrives, Claude calls the tool, and the tool result returns. At each one, your AI security server returns a verdict before the flow continues. Step 2 is hooked only with **Validate tool calls** on, and its one verdict covers all the tool calls in a response.
 
-![Flow diagram: the prompt, the tool call, and the tool result are each checked by the AI security server; the response is not](https://platform.claude.com/docs/images/inference-hooks-flow-2.svg)
+<Frame>
+  ![Flow diagram: the prompt, the tool call, and the tool result are each checked by the AI security server; the response is not](https://platform.claude.com/docs/images/inference-hooks-flow-2.svg)
+</Frame>
 
 A verdict is a small JSON object: `{"action": "allow"}` lets the request proceed, and a deny carries the user-facing reason. For the full verdict schema, see [Return a verdict](https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint#return-a-verdict).
 
@@ -84,9 +86,9 @@ Inference hooks are available to Claude Enterprise organizations. Configuring th
 
 One hook governs conversations across claude.ai, Cowork, Claude Code, and Claude Tag sessions in your Claude Enterprise organization, whether they run on the web, in the desktop or mobile apps, in the CLI, or in Slack. Inference hooks are not available on Amazon Bedrock or Google Cloud.
 
-Governed requests are the inference requests behind the user's conversation. Ancillary requests aren't sent to your endpoint. These include conversation title generation and a measurement that Anthropic runs on Claude's reply after Claude Tag has posted it in Slack. System prompts and tool definitions are never included in what is sent. Voice mode is not covered.
+Governed requests are the inference requests behind the user's conversation. Ancillary requests aren't sent to your endpoint. These include conversation title generation and a measurement that Anthropic runs on Claude's reply after Claude Tag has posted it in Slack. System prompts and tool definitions are never included in what is sent. In voice mode, prompts and tool calls are sent to your endpoint too, though a small share of tool calls isn't, so don't rely on inference hooks as your only control for voice. If your endpoint denies a request in voice mode, the voice call usually ends with a general error message, and your deny reason isn't shown.
 
-With **Validate tool calls** on, `tool_call` events may leave out calls to some of claude.ai's own tools, such as tools that suggest connectors or skills, give Claude the user's local time, or read the user's own past chats and saved memory. These calls and their results stay in the conversation, so the next `prompt` event from that conversation, if there is one, includes them.
+With **Validate tool calls** on, `tool_call` events may leave out calls to some of claude.ai's own tools, such as tools that list, search for, or suggest connectors, plugins, or skills, suggest starting research or turning on web search, search for other tools, switch to a larger model, end the chat, give Claude the user's local time, or read the user's own past chats and saved memory. These calls and their results stay in the conversation, so the next `prompt` event from that conversation, if there is one, includes them.
 
 Some features that Anthropic runs for your organization make model calls of their own. Your organization sees the results of those calls but not their transcripts. These calls aren't governed requests and aren't sent to your endpoint. They include the following:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 84810029c35022dd35af2e449e940a4daf459b022834d24c92cc4d47d2466132
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ac9f1ff46df2764ba64f34f8dba15a9a92353646d1f9c63d5e733de235b5e354
 ---
 
 ---
@@ -423,6 +423,8 @@ Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server da
 * Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya.
 
 [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP koordinator dan server MCP salinan `self`-nya.
+
+Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika koordinator, atau agen yang dapat menerima delegasinya, mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator yang mendelegasikan ke researcher tersebut:
 
@@ -1056,7 +1058,7 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
     <CodeGroup>
       ```bash cURL
-      # Interrupt the thread, then archive it
+      # Interupsi thread, lalu arsipkan
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -1490,8 +1492,8 @@ Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/
   ```
 
   ```bash CLI
-  # This workflow does not translate well to a one-off shell command.
-  # Use one of the SDK examples in this code group instead.
+  # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
+  # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
   ```
 
   ```python Python

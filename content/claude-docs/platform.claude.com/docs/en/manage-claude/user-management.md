@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 34a56e7b000defb40fdb5068930a3b06d89c37feee94b7dbced83a260e468a0b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 05259388cb8a7075ffe9646e3451a3e97ac1ed61c131d9490e1131d2cc0ad9ba
 ---
 
 ---
@@ -128,7 +128,7 @@ Error responses follow the standard shape documented in [Errors](https://platfor
 
 `GET /v1/organizations/users` returns the organization's members, most recently added first. Filter by `email` to look up a specific member; the match is case-insensitive and tolerates common variants of the same address (for example, `jane+hiring@example.com` matches `jane@example.com`). Requires the `read:members` scope.
 
-For complete parameter details and response schemas, see [List users](https://platform.claude.com/docs/en/api/beta/organization/users/list) in the API reference.
+For complete parameter details and response schemas, see [List users](https://platform.claude.com/docs/en/api/organization/users/list) in the API reference.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
@@ -140,7 +140,7 @@ curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
 
 `GET /v1/organizations/users/{user_id}` returns one member by ID. Requires the `read:members` scope.
 
-For complete parameter details and response schemas, see [Get user](https://platform.claude.com/docs/en/api/beta/organization/users/retrieve) in the API reference.
+For complete parameter details and response schemas, see [Get user](https://platform.claude.com/docs/en/api/organization/users/retrieve) in the API reference.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -152,7 +152,7 @@ curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQr
 
 `POST /v1/organizations/users/{user_id}` sets the member's role to `user` or `managed`. Members holding an administrative role (`owner`, `membership_admin`, or `primary_owner`) cannot be changed through this endpoint, and administrative roles cannot be assigned; both return 400 and are managed in claude.ai organization settings. If your organization's identity provider manages roles (advanced SSO or advanced SCIM provisioning), role updates return 400. Requires the `write:members` scope.
 
-For complete parameter details and response schemas, see [Update user](https://platform.claude.com/docs/en/api/beta/organization/users/update) in the API reference.
+For complete parameter details and response schemas, see [Update user](https://platform.claude.com/docs/en/api/organization/users/update) in the API reference.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -166,7 +166,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIj
 
 `DELETE /v1/organizations/users/{user_id}` removes the member from the organization, returning any purchased seat they occupied to the organization's pool. Members holding an administrative role cannot be removed through this endpoint, and if your identity provider manages membership (SCIM), removals return 400. Requires the `write:members` scope.
 
-For complete parameter details and response schemas, see [Remove user](https://platform.claude.com/docs/en/api/beta/organization/users/remove) in the API reference.
+For complete parameter details and response schemas, see [Remove user](https://platform.claude.com/docs/en/api/organization/users/remove) in the API reference.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
@@ -191,7 +191,7 @@ On plans that draw members from a finite seat pool, the invite automatically tak
 
 The optional `rbac_group_ids` field lists groups (by `rbac_group_`-prefixed ID) to assign to the member when they accept. Passing a non-empty `rbac_group_ids` additionally requires the key to carry the `write:rbac_groups` scope, because group assignment can grant the permissions attached to the group's roles.
 
-For complete parameter details and response schemas, see [Create invite](https://platform.claude.com/docs/en/api/beta/organization/invites/create) in the API reference.
+For complete parameter details and response schemas, see [Create invite](https://platform.claude.com/docs/en/api/organization/invites/create) in the API reference.
 
 ```bash cURL
 curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
@@ -223,7 +223,7 @@ curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
 
 `GET /v1/organizations/invites` returns the organization's invites, most recent first, across the `pending`, `accepted`, and `expired` states; there is no status filter. Requires the `read:members` scope.
 
-For complete parameter details and response schemas, see [List invites](https://platform.claude.com/docs/en/api/beta/organization/invites/list) in the API reference.
+For complete parameter details and response schemas, see [List invites](https://platform.claude.com/docs/en/api/organization/invites/list) in the API reference.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
@@ -235,7 +235,7 @@ curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
 
 `GET /v1/organizations/invites/{invite_id}` returns one invite by ID. Requires the `read:members` scope.
 
-For complete parameter details and response schemas, see [Get invite](https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve) in the API reference.
+For complete parameter details and response schemas, see [Get invite](https://platform.claude.com/docs/en/api/organization/invites/retrieve) in the API reference.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
@@ -247,7 +247,7 @@ curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCd
 
 `DELETE /v1/organizations/invites/{invite_id}` withdraws a `pending` invite, deactivating the link in the invitation email. Withdrawing an `accepted` invite returns 400 (remove the member instead); withdrawing an `expired` invite returns 400. Requires the `write:members` scope.
 
-For complete parameter details and response schemas, see [Delete invite](https://platform.claude.com/docs/en/api/beta/organization/invites/delete) in the API reference.
+For complete parameter details and response schemas, see [Delete invite](https://platform.claude.com/docs/en/api/organization/invites/delete) in the API reference.
 
 ```bash cURL
 curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \

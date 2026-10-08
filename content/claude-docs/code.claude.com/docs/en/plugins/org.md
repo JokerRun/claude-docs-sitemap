@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/org
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: e1348d89d6546ed32a542c7c32fbd4ebc60b56e19755ec174ee526f6231ef69b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 693654a82eb3a7b498adb664087b35c5ad0f6a45ef5a8bd12760498ee1bb0936
 ---
 
 > ## Documentation Index
@@ -199,7 +199,7 @@ The table lists each plugin policy key, what it enforces, and what it can't do.
 | `pluginTrustMessage` | Appends your text to the trust warning that `/plugin` shows before a plugin installs | Doesn't change the warning's own text |
 | `allowedChannelPlugins` | Replaces the default list of plugins allowed to push channel messages. Requires `channelsEnabled: true` | See [Restrict which channel plugins can run](/docs/en/channels#restrict-which-channel-plugins-can-run) |
 | [`CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL=1`](/docs/en/env-vars) | Stops interactive terminal sessions from auto-registering the official marketplace | Doesn't remove a marketplace already registered. The allowlist and blocklist gate the same auto-registration without it. A machine that started once with it set doesn't resume auto-registration after you unset it |
-| [`allowManagedModsOnly`](/docs/en/plugins/mods/admin#stop-user-installed-mods-from-loading) | Stops every installed [mod](/docs/en/plugins/mods/overview) that doesn't [count as your organization's](/docs/en/plugins/mods/admin#install-your-organizations-mods) from loading | Doesn't stop a plugin that contains a mod from installing. For that, use the marketplace keys in this table |
+| [`allowManagedModsOnly`](/docs/en/plugins/mods/admin#stop-user-installed-mods-from-loading) | Stops every installed [mod](/docs/en/plugins/mods/overview) that doesn't [count as your organization's](/docs/en/plugins/mods/admin#install-your-organizations-mods) from running its hooks | Doesn't stop a plugin that contains a mod from installing. For that, use the marketplace keys in this table |
 
 Every key in the table is a managed setting, apart from `enabledPlugins`, `syncClaudeAiPlugins`, `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL`, and `allowManagedModsOnly`:
 

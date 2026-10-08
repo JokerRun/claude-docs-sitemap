@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 82a3606260686ac03868064ed0295123ccf1414dd2ba279353d3bc3d48b4b2f0
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ba5059e01c7807dd9a3db905b87f657b13536a91b22fb2df9cd05d1ad4a2a6ea
 ---
 
 ---
@@ -38,7 +38,7 @@ is not creation order.
 
   Return only limits with these scope types. A Claude Console organization has `organization` and `workspace` limits; a Claude Enterprise organization has `organization`, `seat_tier`, `rbac_group`, `organization_service` and `user` limits. Omit for all.
 
-  maxItems: 6
+  maxItems: 100
 
   - `"organization"`
 

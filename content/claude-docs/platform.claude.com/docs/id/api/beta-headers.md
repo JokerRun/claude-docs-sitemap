@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: c921ea44b31f95e25da85fe0fb4b49dba7ecf0eac58c5710719470d8bc170536
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7a798353d59526dd0594b8bf9eeffded99ba5961a4b18a437bb087df8b33f559
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Akses fitur eksperimental sebelum menjadi bagian dari API standar d
 "Beta headers" (header beta) memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 <Info>
-  Setiap [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `beta` untuk memanggil API dengan fitur beta yang diaktifkan.
+  [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `client.beta` (python, typescript, ruby; csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) untuk memanggil API dengan fitur beta yang diaktifkan.
 </Info>
 
 ## Cara menggunakan header beta
@@ -31,7 +31,7 @@ content-type: application/json
 
 Dokumentasi setiap fitur menyebutkan nama beta persis yang harus dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
 
-Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) (pengeditan konteks) sebagai contoh. SDK menerima nama beta dalam parameter `betas` dan mengirimkan header `anthropic-beta` untuk Anda:
+Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sebagai contoh. SDK menerima nama beta melalui `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan mengirimkan header `anthropic-beta` untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -183,7 +183,16 @@ anthropic-beta: feature2
 anthropic-beta: feature3
 ```
 
-Saat menggunakan SDK, cantumkan setiap fitur dalam parameter `betas` (misalnya, `betas=["feature1", "feature2"]`). Dengan CLI, berikan satu flag `--beta` dengan nama-nama fitur yang dipisahkan koma (misalnya, `--beta feature1,feature2`). Anda juga dapat mengulangi flag tersebut (misalnya, `--beta feature1 --beta feature2`).
+Dengan SDK, cantumkan setiap fitur (misalnya, `betas=["feature1", "feature2"]` (python; typescript, ruby: `betas: ["feature1", "feature2"]`; php: `betas: ['feature1', 'feature2']`; csharp: `Betas = ["feature1", "feature2"]`; go: `Betas: []anthropic.AnthropicBeta{"feature1", "feature2"}`; java: `.addBeta("feature1").addBeta("feature2")`)). Dengan CLI, berikan satu flag `--beta` dengan nama-nama fitur yang dipisahkan koma (misalnya, `--beta feature1,feature2`). Anda juga dapat mengulang flag tersebut (misalnya, `--beta feature1 --beta feature2`).
+
+### Fitur beta di platform lain
+
+Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform menerima setiap beta. [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) menerima nama beta di header `anthropic-beta`, seperti halnya Claude API. Untuk mengirim beberapa beta, letakkan nama-namanya dalam satu header, dipisahkan dengan koma: Google Cloud hanya membaca satu header `anthropic-beta` dan mengabaikan sisanya, sehingga beta di header lainnya tidak berlaku.
+
+Di Amazon Bedrock, lokasi nama beta bergantung pada API yang Anda panggil:
+
+* [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint `bedrock-mantle`) menerimanya di header `anthropic-beta`.
+* [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) membacanya dari body permintaan, bukan dari header. Cantumkan di array `anthropic_beta` pada body, satu nama per elemen, misalnya `"anthropic_beta": ["feature1", "feature2"]`.
 
 ### Header khusus endpoint
 
@@ -195,9 +204,9 @@ Beberapa API beta dibatasi pada endpoint tertentu dan memerlukan header beta khu
 | `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
 | `/v1/memory_stores` dan sub-resource-nya         | `agent-memory-2026-07-22`   |
 
-Namespace `beta` pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), [Menggunakan memori agen](https://platform.claude.com/docs/id/managed-agents/memory), dan [referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
+Namespace `client.beta` (python, typescript, ruby; csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), [Menggunakan memori agen](https://platform.claude.com/docs/id/managed-agents/memory), dan [referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
 
-Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat digabungkan. Pada endpoint memory store, `agent-memory-2026-07-22` menggantikan `managed-agents-2026-04-01`: mengirim keduanya pada permintaan yang sama akan mengembalikan error `400`. SDK klien mengirimkan header yang benar untuk setiap endpoint secara otomatis.
+Header khusus endpoint yang berlaku untuk endpoint yang sama tidak selalu dapat digabungkan. Pada endpoint memory store, `agent-memory-2026-07-22` menggantikan `managed-agents-2026-04-01`: mengirim keduanya pada permintaan yang sama akan menghasilkan error `400`. SDK mengirimkan header yang benar untuk setiap endpoint secara otomatis.
 
 ### Konvensi penamaan versi
 
@@ -230,6 +239,6 @@ Untuk pembaruan fitur beta, lihat [catatan rilis](https://platform.claude.com/do
   </Card>
 
   <Card title="Ikhtisar API" icon="compass" href="https://platform.claude.com/docs/id/api/overview">
-    Jelajahi fitur-fitur Claude API, termasuk API yang saat ini dalam tahap beta.
+    Jelajahi fitur-fitur Claude API, termasuk API yang saat ini berstatus beta.
   </Card>
 </CardGroup>

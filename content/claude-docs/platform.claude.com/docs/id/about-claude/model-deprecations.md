@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6fec0186a7a1b13de757904b12e53ee8e92511b0e9236a3cd06d71ba7436ef90
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e36625832df45d735993b27a023417fde92d1f70750844f38e2771c7104e712c
 ---
 
 ---
@@ -94,6 +94,7 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 | claude-sonnet-4-5-20250929 | Deprecated    | September 30, 2026 | November 30, 2026                  |
 | claude-sonnet-4-20250514   | Retired       | April 14, 2026     | June 15, 2026                      |
 | claude-3-7-sonnet-20250219 | Retired       | October 28, 2025   | February 19, 2026                  |
+| claude-haiku-5-5           | Active        | N/A                | Not sooner than October 7, 2027    |
 | claude-haiku-4-5-20251001  | Active        | N/A                | Not sooner than October 15, 2026   |
 | claude-3-5-haiku-20241022  | Retired       | December 19, 2025  | February 19, 2026                  |
 | claude-3-haiku-20240307    | Retired       | February 19, 2026  | April 20, 2026                     |
@@ -101,6 +102,14 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 ## Riwayat penghentian
 
 Semua penghentian tercantum di bagian-bagian berikut, dengan pengumuman terbaru di urutan pertama.
+
+### 2026-09-30: Model Claude Sonnet 4.5
+
+Pada 30 September 2026, Anthropic memberi tahu developer yang menggunakan Claude Sonnet 4.5 tentang pensiunnya yang akan datang di Claude API.
+
+| Tanggal pensiun  | Model yang dihentikan        | Pengganti yang direkomendasikan |
+| ---------------- | ---------------------------- | ------------------------------- |
+| 30 November 2026 | `claude-sonnet-4-5-20250929` | `claude-sonnet-5-5`             |
 
 ### 2026-06-05: Model Claude Opus 4.1
 

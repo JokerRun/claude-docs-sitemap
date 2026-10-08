@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: d131c1dfcffd717f18f34ebd39bda6bb97d1521eda31f15628ade4e69c357280
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 306acbce0731d099f5e8ae5553c3e7ca8aecd4e6b0d1639b998cf8859d2d209b
 ---
 
 ---
@@ -83,9 +83,9 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
   </Tab>
 
   <Tab title="Event sistem">
-    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                              |
-    | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `system.message` | Menambahkan konteks tingkat sistem yang memiliki hak istimewa, yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, dan Claude Sonnet 5.5. Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
+    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                |
+    | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `system.message` | Menambahkan konteks tingkat sistem yang memiliki hak istimewa, yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
   <Tab title="Event deltas">
@@ -100,19 +100,7 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
 
 ## Worker self-hosted
 
-Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menggerakkan environment `self_hosted`. Lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) untuk menyiapkan environment, menjalankan worker, dan opsi helper SDK.
-
-| Flag                   | Deskripsi                                                                                                                                                                                         |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                       |
-| `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                      |
-| `--workdir`            | Direktori tempat skill diunduh dan alat membaca serta menulis file. Default-nya `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`.                                     |
-| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.                                         |
-| `--unrestricted-paths` | Mengizinkan alat file untuk membaca dan menulis path di luar `--workdir`. Pemeriksaan workdir adalah pagar pengaman untuk alat file saja, bukan sandbox; pemeriksaan ini tidak membatasi bash.    |
-| `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya `60s`. |
-| `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya `text`.                                                                                                              |
-
-Worker CLI tidak me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/memory): sesi yang melampirkannya tetap berjalan, tetapi agen tidak menemukan apa pun di `mount_path` store tersebut dan tidak ada perubahan yang disinkronkan kembali ke store. Untuk menggunakan memory store dalam sesi pada environment self-hosted, jalankan worker SDK sebagai gantinya; lihat [Menggunakan memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores).
+Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference) untuk flag CLI `ant beta:worker`, variabel lingkungan, path sistem file, dan opsi helper SDK dari worker bawaan yang menggerakkan environment `self_hosted`.
 
 ## Tipe server MCP yang didukung
 

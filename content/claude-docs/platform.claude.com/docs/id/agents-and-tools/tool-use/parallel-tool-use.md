@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: f1aaf3ee9d2417a3285ffd413238c62d848ce4fb386c97fd403b19daa9e8bd31
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a7e28baff50ba8f889d73e37e4b2fa6325ac02d219d9b5ea0ae1ecdb5d41d7b3
 ---
 
 ---
@@ -1138,7 +1138,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
 ### Tepat satu panggilan alat
 
-Saat tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
+Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4439922b94e023a222635db7b751230214343f3313be54c2bc840ef6b273097d
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ca978b08660c6bdc1368928384b09741e475e1013d02de09374830279d4c62dc
 ---
 
 ---
@@ -25,7 +25,7 @@ Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, li
 
 Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), serta secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#use-memory-stores) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; sebagai gantinya, lampirkan melalui API atau SDK.
+* Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), serta secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
 * Deployment juga memerlukan setidaknya satu event awal, yaitu `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi. Dalam file deployment untuk `ant apply`, teks di bawah frontmatter menjadi `user.message` tersebut.
 * Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah tingkat menit.
 
@@ -336,8 +336,8 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
   );
   await foreach (var run in runs.Paginate())
   {
-      // The Error union exposes .Message directly; the discriminator is read
-      // from .Json until a common .Type accessor is added.
+      // Union Error mengekspos .Message secara langsung; diskriminatornya dibaca
+      // dari .Json sampai accessor .Type yang umum ditambahkan.
       var outcome = run.SessionID ?? run.Error!.Json.GetProperty("type").GetString();
       Console.WriteLine($"{run.CreatedAt} {outcome}");
   }
@@ -365,8 +365,8 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
           DeploymentRunListParams.builder()
               .deploymentId(deployment.id())
               .build()).autoPager()) {
-      // The Error union does not yet expose common .type()/.message()
-      // accessors; .toString() includes both.
+      // Union Error belum mengekspos accessor umum .type()/.message();
+      // .toString() menyertakan keduanya.
       IO.println(run.createdAt() + " "
           + run.sessionId().orElseGet(() -> run.error().orElseThrow().toString()));
   }

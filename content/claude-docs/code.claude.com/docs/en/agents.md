@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agents
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 08921413654e592a59bb3a2755677cbcd0a9de5625d9359e4df3b99ec14a4bfd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 67874a4189558b75520e90509f497464c3712059ee156754bbb96bb1efd7a786
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ In every approach the workers are Claude sessions. To involve a different tool, 
 
 Three more tools support this work without being a way to run agents themselves:
 
-* [Worktrees](/docs/en/worktrees) give each session a separate git checkout, so parallel sessions never edit the same files. Use them for sessions you run yourself. A session you dispatch from agent view [moves into a worktree of its own before it edits files](/docs/en/agent-view#how-file-edits-are-isolated), and subagents you spawn can each get one too.
+* [Worktrees](/docs/en/worktrees) give each session a separate git checkout, so parallel sessions each edit their own copy of the files. Use them for sessions you run yourself. A session you dispatch from agent view [moves into a worktree of its own before it edits files](/docs/en/agent-view#how-file-edits-are-isolated), and subagents you spawn can each get one too.
 * [Cross-session messaging](/docs/en/cross-session-messaging) lets Claude list and message your other Claude Code sessions on this machine, on another machine, or [in the cloud](/docs/en/claude-code-on-the-web), so sessions you run yourself can pass findings and status between themselves.
 * [`/batch`](/docs/en/commands) is a [skill](/docs/en/skills) that has Claude split one large change into 5 to 30 worktree-isolated subagents. It's a packaged use of subagents and worktrees, not a separate coordination style.
 

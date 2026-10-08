@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 571d01905a657804d60fb11c5416ec63cca8d9dae46d8de1754e88d543a23050
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c809063756bdd173769da2ee9b98224c02399e863ed03e56b5c57711d569056f
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
 ## Ikhtisar
 
-Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seharga seperempat dari biaya sebelumnya, serta menghadirkan agentic coding jangka panjang yang lebih kuat, riset multilangkah, dan pekerjaan dokumen, spreadsheet, dan slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang berat dan pekerjaan agentic berjangka panjang, atau ketika eval Anda pada Claude Opus 5 dengan effort lebih tinggi masih belum memadai. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya untuk peserta [Project Glasswing](https://anthropic.com/glasswing).
+Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya, serta menghadirkan kemampuan yang lebih kuat untuk agentic coding jangka panjang, riset multilangkah, dan pekerjaan dokumen, spreadsheet, serta slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5.5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang menuntut dan pekerjaan agentic berjangka panjang, atau ketika eval Anda pada Claude Opus 5.5 dengan effort yang lebih tinggi masih belum memadai. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya kepada organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 
 Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompatibilitas: [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#forced-tool-use-is-not-supported), [model sebelumnya tidak dapat membaca blok thinking-nya](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#thinking-blocks-are-tied-to-the-model-that-produced-them), dan [mengedit giliran sebelumnya membatalkan blok thinking](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#editing-earlier-turns-invalidates-thinking-blocks). Lima perubahan bersifat tambahan: [effort per pesan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) (beta), [pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) (beta), [pembaruan progres yang dapat dibaca di antara pemanggilan alat](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#progress-updates-between-tool-calls-beta) (`display: "updates"`, beta), [harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing), dan [provenans konten](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#content-provenance).
 
@@ -31,20 +31,20 @@ Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompat
 
 ## Claude Fable 5.1 dan Claude Mythos 5.1
 
-[Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) menawarkan kemampuan yang sama hanya melalui undangan, sebagai bagian dari [Project Glasswing](https://anthropic.com/glasswing). Model ini memiliki spesifikasi dan harga yang sama dengan Claude Fable 5.1. Untuk mendapatkan akses, hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
+[Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Model ini memiliki spesifikasi dan harga yang sama dengan Claude Fable 5.1. Untuk meminta akses, ajukan permohonan ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
 
 ## Perbandingannya
 
-| Model                                                                               | Context | Max output | Price / MTok | Latency  | Thinking             | Default effort | Knowledge cutoff |
-| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------- | :------------------- | :------------- | :--------------- |
-| **Claude Fable 5.1** (this model)                                                   | 1M      | 128K       | $10 / $50    | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20     | Moderate | Adaptive (always on) | `medium`       | Jun 2026         |
-| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10     | Fast     | Adaptive             | `high`         | Jun 2026         |
-| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview)   | 200K    | 64K        | $1 / $5      | Fastest  | Extended             | —              | Feb 2025         |
+| Model                                                                               | Context | Max output | Price / MTok       | Latency  | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------- | :------------------- | :------------- | :--------------- |
+| **Claude Fable 5.1** (this model)                                                   | 1M      | 128K       | $10 / $50          | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Moderate | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Fast     | Adaptive             | `high`         | Jun 2026         |
+| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Fastest  | Adaptive             | `medium`       | Jun 2026         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
-* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
 * **Latency:** Comparative latency, relative to the current lineup, as published in the models overview. Actual latency depends on prompt length, output length, and thinking effort.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
@@ -104,12 +104,12 @@ Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompat
     Panduan prompting khusus model untuk pekerjaan jangka panjang dan agentik.
   </Card>
 
-  <Card title="Migrasi ke Claude Fable 5.1" icon="arrow-right" href="https://platform.claude.com/docs/id/models/fable-5-1/migration-guide">
+  <Card title="Panduan migrasi Claude Fable 5.1" icon="arrow-right" href="https://platform.claude.com/docs/id/models/fable-5-1/migration-guide">
     Apa yang berubah saat Anda beralih dari Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8.
   </Card>
 
   <Card title="Pemikiran yang dipertahankan" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking">
-    Kapan blok pemikiran model ini tetap dapat digunakan: lintas pergantian model dan lintas perubahan pada percakapan.
+    Kapan blok pemikiran model ini tetap dapat digunakan: saat berganti model dan saat terjadi perubahan pada percakapan.
   </Card>
 
   <Card title="Effort per pesan" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta">

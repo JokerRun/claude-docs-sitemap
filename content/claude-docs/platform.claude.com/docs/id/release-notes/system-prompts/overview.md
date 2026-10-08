@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 4ebd1586b6ca957bb2265c934d0ee572b8f18e538897c518127c5c37c1becf9c
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 275ee47a83d51436c8d2be6815e6470893324b1aaab12938198756244e7dd4ae
 ---
 
 ---
@@ -14,6 +14,8 @@ description: Lihat pembaruan pada prompt sistem inti di [claude.ai](https://clau
 Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan "system prompt" (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya. Mulai dari generasi Claude 4.6, setiap ID model merupakan [satu snapshot tetap](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions), sehingga model-model tersebut memiliki satu entri.
 
 <CardGroup cols={3}>
+  <Card id="claude-haiku-5-5" title="Claude Haiku 5.5" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-5-5" />
+
   <Card id="claude-sonnet-5-5" title="Claude Sonnet 5.5" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-5-5" />
 
   <Card id="claude-opus-5-5" title="Claude Opus 5.5" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-5-5" />

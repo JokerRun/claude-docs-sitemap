@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 9673fc00440cac3c4eed74eae96fac35968a3145ba2ff7b97f9dbdd60d9c22c7
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 439cc2ff7699712f634a30b9810275a741232fe1c8b8ed1c80014406138f14d5
 ---
 
 ---
 title: Kelola sumber daya sebagai kode dengan ant apply
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-description: Deklarasikan agen, lingkungan, skill, penyimpanan memori, dan deployment sebagai berkas di repositori Anda, lalu jaga agar sumber daya API tetap sinkron dengan berkas tersebut menggunakan ant apply.
+description: Deklarasikan agen, lingkungan, skill, penyimpanan memori, deployment, dan vault sebagai berkas di repositori Anda dan jaga agar sumber daya API tetap sinkron dengannya menggunakan ant apply.
 ---
 
-`ant apply` membuat dan memperbarui sumber daya Claude API dari berkas, yaitu agen, lingkungan, skill, penyimpanan memori, dan deployment. Berkas-berkas ini disimpan di repositori Anda dan perubahannya melewati proses peninjauan yang sama dengan kode Anda. Anda mendeskripsikan setiap sumber daya dalam sebuah berkas, menjalankan `ant apply`, lalu menyetujui "plan" (rencana) yang ditampilkannya. Setelah itu, Anda melakukan commit pada `claude-lock.json` yang ditulisnya agar eksekusi berikutnya memperbarui sumber daya yang sama, bukan membuat sumber daya baru.
+`ant apply` membuat dan memperbarui sumber daya Claude API dari berkas: agen, lingkungan, skill, penyimpanan memori, deployment, dan vault. Semuanya berada di repositori Anda dan berubah melalui proses review yang sama dengan kode Anda. Anda mendeskripsikan setiap sumber daya dalam sebuah berkas, menjalankan `ant apply`, dan menyetujui rencana yang ditampilkannya. Kemudian Anda melakukan commit pada `claude-lock.json` yang ditulisnya, sehingga eksekusi berikutnya memperbarui sumber daya yang sama alih-alih membuat yang baru.
 
 Untuk menginstal dan mengautentikasi CLI, lihat [panduan memulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). `ant apply` memerlukan CLI versi 1.30.0 atau yang lebih baru.
 
@@ -110,8 +110,9 @@ Anda juga dapat mendefinisikan sumber daya lain secara deklaratif sebagai berkas
 * Sebuah [penyimpanan memori](https://platform.claude.com/docs/id/managed-agents/memory) adalah berkas YAML di `memory_stores/`.
 * Sebuah [deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) adalah berkas Markdown di `deployments/`: frontmatter adalah body permintaan, dan teks prosa menjadi pesan yang memulai setiap sesi.
 * Sebuah [skill](https://platform.claude.com/docs/id/managed-agents/skills) adalah direktori dengan `SKILL.md` di root-nya, secara konvensional di bawah `skills/`, yang diunggah sebagai satu bundel.
+* Sebuah [vault](https://platform.claude.com/docs/id/managed-agents/vaults) adalah berkas YAML di `vaults/` yang bidangnya hanya `display_name` dan, secara opsional, `metadata`. Berkas vault memerlukan CLI versi 1.34.0 atau yang lebih baru.
 
-Sumber daya apa pun kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdown. Dalam Markdown, frontmatter adalah body permintaan, dan teks prosa mengisi bidang teks dari jenis sumber daya tersebut: `system` untuk agen, `description` untuk lingkungan atau penyimpanan memori, dan pesan pertama untuk deployment.
+Sumber daya apa pun kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdown. Dalam Markdown, frontmatter adalah body dan teks prosa mengisi bidang teks dari jenis tersebut: `system` milik agen, `description` milik lingkungan atau penyimpanan memori, pesan pertama milik deployment. Vault tidak memiliki bidang teks, sehingga `ant apply` menolak berkas Markdown vault yang memiliki prosa.
 
 Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut sebagai gantinya. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen lead mencantumkan `./reviewer.md` dalam daftar anggotanya, dan deployment menyebutkan agen, lingkungan, dan penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Proyek ini memiliki enam berkas:
 
@@ -163,11 +164,12 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
     ```yaml
     # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
     name: review-env
-    description: Cloud container with unrestricted networking for review sessions.
+    description: Cloud container with limited networking for review sessions.
     config:
       type: cloud
       networking:
-        type: unrestricted
+        type: limited
+        allow_package_managers: true
     ```
   </File>
 
@@ -216,8 +218,9 @@ Untuk menunjuk ke sumber daya yang tidak dikelola oleh berkas-berkas ini, tulisk
 Saat menelusuri sebuah direktori, `ant apply` menentukan jenis setiap berkas berdasarkan kriteria pertama yang cocok dari daftar berikut:
 
 1. Bidang `type` di tingkat teratas dalam berkas.
-2. Direktori yang langsung menampung berkas tersebut: `agents/`, `environments/`, `memory_stores/`, atau `deployments/`.
-3. Nama berkas yang diawali dengan nama jenisnya, seperti `environment_staging.md`.
+2. Direktori tempat berkas berada secara langsung: `agents/`, `environments/`, `memory_stores/`, `deployments/`, atau `vaults/`.
+3. Nama berkas yang diawali dengan jenisnya, seperti `environment_staging.md`.
+   * Vault adalah pengecualian: `ant apply` tidak mengambil jenis dari nama seperti `vault_staging.yaml`, karena alat lain menamai berkas rahasia mereka `vault.yml`. Simpan berkas vault di `vaults/` atau berikan `type: vault`.
 
 Berkas yang tidak cocok dengan kriteria mana pun, seperti README dan konfigurasi CI, akan dilewati kecuali Anda menyebutkannya di baris perintah. Berkas Markdown yang disebutkan secara eksplisit tetapi tidak cocok dengan kriteria mana pun diperlakukan sebagai agen. Sebaliknya, berkas YAML atau JSON yang disebutkan secara eksplisit tetapi tidak cocok akan menghasilkan error.
 

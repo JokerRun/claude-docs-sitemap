@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: acc3a81d482fc3bace77b88453a3c4c4460dc2e427255e0fb5fd628c3d24032d
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: d4ee7be3d55001004a1c22790608ad48a1643badb2087195ddbddec1acbbe5f0
 ---
 
 ---
@@ -120,7 +120,9 @@ Progressive disclosure ensures only relevant content occupies the context window
 
 Skills run in a code execution environment where Claude has filesystem access, bash commands, and code execution capabilities. Skills exist as directories on a virtual machine, and Claude interacts with them using the same bash commands you'd use to navigate files on your computer.
 
-![Agent Skills Architecture - showing how Skills integrate with the agent's configuration and virtual machine](https://platform.claude.com/docs/images/agent-skills-architecture.png)
+<Frame>
+  ![Agent Skills Architecture - showing how Skills integrate with the agent's configuration and virtual machine](https://platform.claude.com/docs/images/agent-skills-architecture.svg)
+</Frame>
 
 **How Claude accesses Skill content:**
 
@@ -142,7 +144,9 @@ Here's how Claude loads and uses the custom `pdf-processing` Skill from the earl
 4. **Claude determines:** Form filling is not needed, so FORMS.md is not read
 5. **Claude executes:** Uses instructions from SKILL.md to complete the task
 
-![Skills loading into context window - showing the progressive loading of skill metadata and content](https://platform.claude.com/docs/images/agent-skills-context-window.png)
+<Frame>
+  ![Skills loading into context window - showing the progressive loading of skill metadata and content](https://platform.claude.com/docs/images/agent-skills-context-window.svg)
+</Frame>
 
 ## Where Skills work
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 9e147af8f040ee81dc15ea3beb722887ca47fe852fe6a22a718308ddbd2414ca
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: b174a61f90af60f7f326babbc1d262e804a4aa2866dac91d645492775641c880
 ---
 
 ---
@@ -414,7 +414,7 @@ Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat 
 
 ### Percobaan ulang otomatis
 
-Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), dengan menunggu jeda yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
+Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), menunggu jeda yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
 
 ### Beralih kembali ke kecepatan standar
 

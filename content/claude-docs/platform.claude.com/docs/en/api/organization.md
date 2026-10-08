@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 107480a0adeafbb69d667835b500c09dde9582d2543a7e654a07899ec0ddaf05
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 395e632ef08a67a84f0df43d8704d870a9654a365ba28a934a5fa00236b735a0
 ---
 
 ---
@@ -2879,7 +2879,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3095,7 +3095,7 @@ unless `include_archived=true`.
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3301,7 +3301,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3592,7 +3592,7 @@ Console session.
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3799,7 +3799,7 @@ other scopes require a Console session.
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

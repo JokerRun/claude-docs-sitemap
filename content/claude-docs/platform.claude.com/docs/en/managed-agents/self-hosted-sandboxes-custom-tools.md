@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 93236ca9b9790632566c0efd58bd2d1e412dac336064ae6d2637293865e811bf
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4d68265a5d3b45113907908a5bf81ddb3f25e31388ab1d60df324ffec0d731c6
 ---
 
 ---
@@ -201,7 +201,7 @@ The environment key authorizes posting custom tool results, so your Claude API k
   </Step>
 </Steps>
 
-The worker answers only the tools registered with it. If a tool is declared on the agent but no worker or client serves it, the session pauses with a `requires_action` stop reason. It stays paused until something posts the result. See [Handling custom tool calls](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#handling-custom-tool-calls) for the event flow.
+The worker answers only the tools registered with it. If a tool is declared on the agent but no worker or client serves it, the session pauses with a `requires_action` stop reason. It stays paused until something posts the result. See [Answer tool calls that pause the session](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) for the event flow.
 
 ## Wrap an MCP server as custom tools
 

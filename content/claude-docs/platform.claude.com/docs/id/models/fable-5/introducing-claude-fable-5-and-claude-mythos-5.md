@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: 7234b074d239eb0c308218c6717571af45e0d49df5eec94aced91642b2b5b331
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 154edfba78a82b482333b742921f012a133a0786373f795bb4d97e2dbf0f8a6a
 ---
 
 ---
@@ -19,16 +19,16 @@ description: Kemampuan, perubahan API, dan ketersediaan Claude Fable 5 dan Claud
   Akses ke Claude Fable 5 dan Claude Mythos 5 telah dipulihkan. Lihat [pernyataan kami](https://www.anthropic.com/news/redeploying-fable-5) untuk informasi lebih lanjut.
 </Tip>
 
-Claude Fable 5 dibangun untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang. Claude Mythos 5 memiliki kemampuan yang sama dan hanya tersedia dalam rilis terbatas melalui [Project Glasswing](https://anthropic.com/glasswing).
+Claude Fable 5 dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang. Claude Mythos 5 memiliki kemampuan yang sama dan hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 
-Perubahan utama untuk integrasi: Claude Fable 5 menyertakan pengklasifikasi keamanan yang dapat menolak permintaan. Claude Mythos 5 tidak menyertakan pengklasifikasi ini. Jika integrasi Anda memanggil Claude Fable 5, rencanakan tiga perubahan: penanganan respons baru untuk penolakan, opsi fallback untuk mencoba ulang pada model Claude lain, dan aturan penagihan baru. [Penolakan, fallback, dan penagihan pada Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5#refusals-fallback-and-billing-on-claude-fable-5) merangkum ketiganya.
+Perubahan utama untuk integrasi: Claude Fable 5 menyertakan "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak permintaan. Jika integrasi Anda memanggil Claude Fable 5, rencanakan tiga perubahan: penanganan respons baru untuk penolakan, opsi "fallback" (cadangan) untuk mencoba ulang pada model Claude lain, dan aturan penagihan baru. [Penolakan, fallback, dan penagihan pada Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5#refusals-fallback-and-billing-on-claude-fable-5) merangkum ketiganya.
 
 ## Model
 
-| Model           | ID model API      | Deskripsi                                                                                                                                             |
-| --------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5  | `claude-fable-5`  | Dibangun untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang                                                                        |
-| Claude Mythos 5 | `claude-mythos-5` | Memiliki kemampuan yang sama dengan Claude Fable 5 tanpa pengklasifikasi keamanan. Tersedia melalui Project Glasswing. Penerus Claude Mythos Preview. |
+| Model           | ID model API      | Deskripsi                                                                                                                                                                                                                                                              |
+| --------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5  | `claude-fable-5`  | Dibangun untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang                                                                                                                                                                                         |
+| Claude Mythos 5 | `claude-mythos-5` | Memiliki kemampuan yang sama dengan Claude Fable 5. Hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Penerus Claude Mythos Preview. |
 
 Claude Fable 5 dan Claude Mythos 5 memiliki spesifikasi dan harga yang sama:
 
@@ -39,7 +39,7 @@ Untuk spesifikasi semua model saat ini, lihat [ikhtisar model](https://platform.
 
 ## Penolakan, fallback, dan penagihan pada Claude Fable 5
 
-Claude Fable 5 menyertakan pengklasifikasi keamanan yang dapat menolak permintaan tertentu. Claude Mythos 5 tidak menyertakan pengklasifikasi ini, sehingga bagian ini hanya berlaku untuk Claude Fable 5. Bagian-bagian berikut merangkum apa arti penolakan bagi integrasi Anda. Masing-masing menautkan ke panduan lengkapnya.
+Claude Fable 5 menyertakan pengklasifikasi keamanan yang dapat menolak permintaan tertentu. Bagian-bagian berikut merangkum arti penolakan bagi integrasi Anda. Masing-masing menautkan ke panduan lengkapnya.
 
 ### Penolakan
 
@@ -60,7 +60,7 @@ Penolakan yang tiba sebelum output apa pun ditagih jika termasuk dalam kategori 
 ## Ketersediaan
 
 * **Claude Fable 5** tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
-* **Claude Mythos 5** hanya ditawarkan kepada pelanggan yang disetujui dalam [Project Glasswing](https://anthropic.com/glasswing). Untuk akses, hubungi tim akun Anthropic, AWS, atau Google Cloud Anda. Pelanggan tanpa akses ke Claude Mythos 5 dapat menggunakan Claude Fable 5, yang tidak memerlukan persetujuan akses dan menawarkan kemampuan yang sama.
+* **Claude Mythos 5** hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Pelanggan tanpa akses ke Claude Mythos 5 dapat menggunakan Claude Fable 5, yang tidak memerlukan persetujuan akses dan menawarkan kemampuan yang sama.
 
 Claude Fable 5 dan Claude Mythos 5 memiliki retensi data 30 hari dan tidak tersedia dengan retensi data nol kecuali diizinkan secara tegas oleh Anthropic. Keduanya ditetapkan sebagai [Covered Models](https://support.claude.com/en/articles/15425695). Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 

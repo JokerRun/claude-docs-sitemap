@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-api-key
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 202edc8623f9410e5f03152e39c5b05190bcbc28e8cc54d4bb81d7fabfc4ca9a
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5321aeb233ce563fff7976ef0ee5398c27a5adc0d77a84eac54dbb1086f6d9c5
 ---
 
 ---
@@ -49,13 +49,13 @@ Atur kunci sebagai variabel lingkungan:
 export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirimkan kunci dalam header `x-api-key`. Jika kunci API Anda berfungsi di beberapa workspace, Anda juga harus mengirimkan header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirimkan kunci di header `x-api-key`. Jika kunci API Anda berfungsi di beberapa workspace, Anda juga harus mengirimkan header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
 
 Untuk membuat permintaan pertama Anda, ikuti [Quickstart](https://platform.claude.com/docs/id/get-started), dan lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) untuk gambaran lengkapnya, termasuk kredensial berumur pendek dengan Workload Identity Federation.
 
 ## Kunci API dan Admin API
 
-[Admin API](https://platform.claude.com/docs/id/api/beta/organization) mencakup endpoint untuk mengelola kunci API organisasi Anda secara terprogram, seperti [Retrieve API Key](https://platform.claude.com/docs/id/api/beta/organization/api_keys/retrieve) dan [List API Keys](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list). Endpoint ini ditujukan bagi admin organisasi yang mengotomatiskan pengelolaan kunci. Endpoint ini menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci pribadi maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu; kunci workspace tidak berfungsi di sana. Endpoint ini tidak pernah mengembalikan nilai rahasia kunci, hanya petunjuk yang sebagian disamarkan.
+[Admin API](https://platform.claude.com/docs/id/api/organization) menyertakan endpoint untuk mengelola kunci API organisasi Anda secara terprogram, seperti [Retrieve API Key](https://platform.claude.com/docs/id/api/organization/api_keys/retrieve) dan [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list). Endpoint ini ditujukan bagi admin organisasi yang mengotomatiskan pengelolaan kunci. Endpoint ini menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci pribadi maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu; kunci workspace tidak berfungsi di sana. Endpoint ini tidak pernah mengembalikan nilai rahasia kunci, hanya petunjuk yang sebagian disamarkan.
 
 <Note>
   Admin API tidak dapat memulihkan kunci yang hilang atau memberi Anda kunci untuk memanggil Claude API. Untuk mendapatkan kunci API yang dapat digunakan, buat kunci di [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console.

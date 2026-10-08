@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1ccce8ddef798c88996fba8702990414c5c9f455bc8171366885945317079054
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 40ca06e8d896fda98d005c685c8c32e6cab5c09c8780270003e569867ea64542
 ---
 
 ---
@@ -78,7 +78,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Instal SDK
 
-[Client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
 
 <Tabs>
   <Tab title="Python">
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.66.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.66.0")
+        implementation("com.anthropic:anthropic-java:2.69.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.69.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.66.0</version>
+            <version>2.69.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.66.0</version>
+            <version>2.69.0</version>
         </dependency>
         ```
       </Tab>
@@ -148,9 +148,9 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Membuat permintaan pertama Anda
 
-Endpoint mengikuti pola `https://bedrock-mantle.{region}.api.aws/anthropic/v1/messages`. Berbeda dengan integrasi berbasis `InvokeModel`, endpoint ini menggunakan streaming SSE standar dan bentuk body permintaan yang sama dengan API pihak pertama Anthropic.
+Endpoint mengikuti pola `https://bedrock-mantle.{region}.api.aws/anthropic/v1/messages`. Tidak seperti integrasi berbasis `InvokeModel`, endpoint ini menggunakan streaming SSE standar dan bentuk body permintaan yang sama dengan API pihak pertama Anthropic.
 
-SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS: argumen konstruktor, lalu variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`), lalu file konfigurasi AWS dan rantai kredensial (SSO, assumed role, ECS task role, IMDS).
+SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: argumen konstruktor, lalu variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`), lalu file konfigurasi AWS dan rantai kredensial (SSO, assumed role, ECS task role, IMDS).
 
 <Tabs>
   <Tab title="cURL">
@@ -332,27 +332,28 @@ SDK menyelesaikan kredensial dan region menggunakan urutan prioritas standar AWS
 </Tabs>
 
 <Tip>
-  Anda juga dapat menggunakan klien `Anthropic` standar: atur `base_url` ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key`. Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
+  Anda juga dapat membuat klien standar dengan `Anthropic` (python, typescript; go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.builder()`; csharp: `AnthropicClient`; php: `Anthropic\Client`; ruby: `Anthropic::Client`): atur `base_url` (python, ruby; typescript: `baseURL`; go: `option.WithBaseURL()`; java: `.baseUrl()`; csharp: `BaseUrl`; php: `baseUrl`) ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key` (python, ruby; typescript, php: `apiKey`; go: `option.WithAPIKey()`; java: `.apiKey()`; csharp: `ApiKey`). Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
 </Tip>
 
 ## Model yang didukung
 
 ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
-| Model                                                                           | Model ID                          | Access                                                                                              |
-| :------------------------------------------------------------------------------ | :-------------------------------- | :-------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.1                                                                | `anthropic.claude-fable-5-1`      | Open                                                                                                |
-| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))     | `anthropic.claude-mythos-5-1`     | Invitation only                                                                                     |
-| Claude Fable 5                                                                  | `anthropic.claude-fable-5`        | Open                                                                                                |
-| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))       | `anthropic.claude-mythos-5`       | Invitation only                                                                                     |
-| Claude Mythos Preview ([limited availability](https://anthropic.com/glasswing)) | `anthropic.claude-mythos-preview` | Invitation only                                                                                     |
-| Claude Opus 5.5                                                                 | `anthropic.claude-opus-5-5`       | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 5                                                                   | `anthropic.claude-opus-5`         | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 4.8                                                                 | `anthropic.claude-opus-4-8`       | Open                                                                                                |
-| Claude Opus 4.7                                                                 | `anthropic.claude-opus-4-7`       | Open                                                                                                |
-| Claude Sonnet 5.5                                                               | `anthropic.claude-sonnet-5-5`     | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Sonnet 5                                                                 | `anthropic.claude-sonnet-5`       | Open                                                                                                |
-| Claude Haiku 4.5                                                                | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
+| Model                                                                                       | Model ID                          | Access                                                                                              |
+| :------------------------------------------------------------------------------------------ | :-------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| Claude Fable 5.1                                                                            | `anthropic.claude-fable-5-1`      | Open                                                                                                |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-1`     | Active (verification required)                                                                      |
+| Claude Fable 5                                                                              | `anthropic.claude-fable-5`        | Open                                                                                                |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))   | `anthropic.claude-mythos-5`       | Active (verification required)                                                                      |
+| Claude Mythos Preview ([limited availability](https://anthropic.com/glasswing))             | `anthropic.claude-mythos-preview` | Invitation only                                                                                     |
+| Claude Opus 5.5                                                                             | `anthropic.claude-opus-5-5`       | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 5                                                                               | `anthropic.claude-opus-5`         | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 4.8                                                                             | `anthropic.claude-opus-4-8`       | Open                                                                                                |
+| Claude Opus 4.7                                                                             | `anthropic.claude-opus-4-7`       | Open                                                                                                |
+| Claude Sonnet 5.5                                                                           | `anthropic.claude-sonnet-5-5`     | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Sonnet 5                                                                             | `anthropic.claude-sonnet-5`       | Open                                                                                                |
+| Claude Haiku 5.5                                                                            | `anthropic.claude-haiku-5-5`      | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Haiku 4.5                                                                            | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
 Gunakan Claude Code 2.1.255 atau yang lebih baru dengan Claude Fable 5.1 di Amazon Bedrock, dan 2.1.280 atau yang lebih baru dengan Claude Opus 5.5; jalankan `claude update` untuk memperbarui.
 
@@ -387,40 +388,40 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 
 Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
-* **Global:** perutean dinamis ke seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
-* **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung satu region tanpa inference profile.
+* **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
+* **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan "[inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html)" (profil inferensi) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung ke satu region tanpa profil inferensi.
 
-Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya bersifat regional dan tersedia di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya bersifat regional dan tersedia di `us-east-1`.
 
-| Region AWS       | Lokasi                      | Jenis endpoint                 |
-| ---------------- | --------------------------- | ------------------------------ |
-| `af-south-1`     | Afrika (Cape Town)          | Global                         |
-| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, Hanya dalam region |
-| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                         |
-| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                     |
-| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                         |
-| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                         |
-| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                         |
-| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                     |
-| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                         |
-| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, Hanya dalam region |
-| `ca-central-1`   | Kanada (Tengah)             | Global, US                     |
-| `ca-west-1`      | Kanada Barat (Calgary)      | Global                         |
-| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                     |
-| `eu-central-2`   | Eropa (Zurich)              | Global, EU                     |
-| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, Hanya dalam region |
-| `eu-south-1`     | Eropa (Milan)               | Global, EU                     |
-| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                     |
-| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, Hanya dalam region |
-| `eu-west-2`      | Eropa (London)              | Global, EU                     |
-| `eu-west-3`      | Eropa (Paris)               | Global, EU                     |
-| `il-central-1`   | Israel (Tel Aviv)           | Global                         |
-| `me-central-1`   | Timur Tengah (UEA)          | Global                         |
-| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                         |
-| `us-east-1`      | AS Timur (N. Virginia)      | Global, US, Hanya dalam region |
-| `us-east-2`      | AS Timur (Ohio)             | Global, US, Hanya dalam region |
-| `us-west-1`      | AS Barat (N. California)    | Global, US                     |
-| `us-west-2`      | AS Barat (Oregon)           | Global, US, Hanya dalam region |
+| Region AWS       | Lokasi                      | Jenis endpoint             |
+| ---------------- | --------------------------- | -------------------------- |
+| `af-south-1`     | Afrika (Cape Town)          | Global                     |
+| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, In-region only |
+| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                     |
+| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                 |
+| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                     |
+| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                     |
+| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                     |
+| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                 |
+| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                     |
+| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, In-region only |
+| `ca-central-1`   | Kanada (Tengah)             | Global, US                 |
+| `ca-west-1`      | Kanada Barat (Calgary)      | Global                     |
+| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                 |
+| `eu-central-2`   | Eropa (Zurich)              | Global, EU                 |
+| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, In-region only |
+| `eu-south-1`     | Eropa (Milan)               | Global, EU                 |
+| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                 |
+| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, In-region only |
+| `eu-west-2`      | Eropa (London)              | Global, EU                 |
+| `eu-west-3`      | Eropa (Paris)               | Global, EU                 |
+| `il-central-1`   | Israel (Tel Aviv)           | Global                     |
+| `me-central-1`   | Timur Tengah (UEA)          | Global                     |
+| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                     |
+| `us-east-1`      | AS Timur (N. Virginia)      | Global, US, In-region only |
+| `us-east-2`      | AS Timur (Ohio)             | Global, US, In-region only |
+| `us-west-1`      | AS Barat (N. California)    | Global, US                 |
+| `us-west-2`      | AS Barat (Oregon)           | Global, US, In-region only |
 
 ## Kuota
 

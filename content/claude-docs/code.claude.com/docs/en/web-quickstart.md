@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: fce864d04b7c1c615b23b134565deaff1ec6b33dd1fd484dd6ea3993a2cde4dd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: bd5ce9d2441ee2cd8dc7b8c50c7e62b8d0d55f377f902d2602dac1de3dd5b128
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ Claude Code behaves the same everywhere. What changes is where the session runs 
 | **Uses your local config** | No, repo only | Yes | Yes |
 | **Requires GitHub** | Yes, or [bundle a local repo](/docs/en/claude-code-on-the-web#send-local-repositories-without-github) via `--cloud` | No | No |
 | **Keeps running if you disconnect** | Yes | No | While the session stays open on your machine |
-| **[Permission modes](/docs/en/permission-modes)** | Accept edits, Plan, Auto | All modes in the terminal; see [Switch permission modes](/docs/en/permission-modes#switch-permission-modes) for the IDE and Desktop app | Manual, Accept edits, or Plan from claude.ai and the mobile app |
+| **[Permission modes](/docs/en/permission-modes)** | Accept edits, Plan, Auto | All modes in the terminal; see [Switch permission modes](/docs/en/permission-modes#switch-permission-modes) for the IDE and Desktop app | Manual, Accept edits, Plan, or Auto from claude.ai and the mobile app |
 | **Network access** | Configurable per environment | Your machine's network | Your machine's network |
 
 See the [terminal quickstart](/docs/en/quickstart), [Desktop app](/docs/en/desktop), or [Remote Control](/docs/en/remote-control) docs to set up local sessions.
@@ -147,7 +147,7 @@ With GitHub connected and an environment created, you're ready to submit tasks.
   </Step>
 
   <Step title="Choose a permission mode">
-    The mode dropdown next to the input shows the mode the session will run in:
+    The [permission mode control](/docs/en/permission-modes#switch-permission-modes) shows the permission mode the session will run in:
 
     * **Auto**: a classifier reviews Claude's actions instead of asking you. Appears when your organization allows auto mode and the selected model supports it
     * **Accept edits**: Claude makes changes and pushes a branch without stopping for approval

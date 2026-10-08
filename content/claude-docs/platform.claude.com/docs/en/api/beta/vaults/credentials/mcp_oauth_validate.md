@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 4b24a5d62c3b8046e07acf506ef6c53780f0ef80bb02eda15fb1a0a0c85dd9e5
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2965cb4063a23e84609da8ca59dfc010ec57c07bc3670db041b9e2dd4e63601f
 ---
 
 ---
@@ -254,7 +254,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mc
 
 ```json
 {
-  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "has_refresh_token": true,
   "mcp_probe": {
     "http_response": {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 31bae3100cd5d9d181cfd2b989ff3a7702db4e3db262dc6b682662e14d7d039b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f2e28913d992c40c6a08489a4e4a409527d88cecfe997f8ed3d76cd8e2ba9706
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Mulai sesi routine Claude Code sesuai permintaan dengan mengirim pe
 
 Endpoint ini adalah titik masuk HTTP. Mengirim POST ke endpoint ini memulai eksekusi baru dari routine yang sudah ada dan mengembalikan ID sesi serta URL yang dihasilkan. Pemanggil yang umum adalah sistem peringatan, pipeline CI, dan alat internal yang perlu memulai sesi Claude Code secara terprogram.
 
-Memanggil endpoint ini memerlukan akun claude.ai dengan paket Pro, Max, Team, atau Enterprise dengan [Claude Code di web](https://code.claude.com/docs/id/claude-code-on-the-web) diaktifkan. Lakukan autentikasi dengan bearer token per-routine yang dibuat di UI web Claude Code, bukan dengan "API key" (kunci API) Claude.
+Memanggil endpoint ini memerlukan akun claude.ai dengan paket Pro, Max, Team, atau Enterprise yang telah mengaktifkan [Claude Code di web](https://code.claude.com/docs/id/claude-code-on-the-web). Lakukan autentikasi dengan "bearer token" (token pembawa) per routine yang dibuat di UI web Claude Code, bukan dengan kunci API Claude.
 
 ## Perbedaan dari Claude Platform
 

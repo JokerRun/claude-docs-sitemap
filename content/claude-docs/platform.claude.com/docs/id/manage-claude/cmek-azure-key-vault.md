@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 568e6d6c7edde169038809a04c5f213a103d6f3a0b26bae86b8d720308e4cc2e
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7fa8015090f7138b25c2111eb6925c223627de4dd9261197aedafef6a165ace7
 ---
 
 ---
@@ -35,10 +35,10 @@ Panduan ini memandu Anda mengonfigurasi kunci Azure Key Vault sebagai [customer-
 
 Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID aplikasi multitenant Anthropic dan nama tampilan. Nilai-nilai tersebut adalah:
 
-| Field                          | Value                                  |
-| ------------------------------ | -------------------------------------- |
-| Multitenant app client ID (US) | `8635ae1a-3e5d-44e8-a4ed-e0f614466f87` |
-| App display name               | `anthropic-cmek-client-us`             |
+| Field                               | Nilai                                  |
+| ----------------------------------- | -------------------------------------- |
+| Client ID aplikasi multitenant (US) | `8635ae1a-3e5d-44e8-a4ed-e0f614466f87` |
+| Nama tampilan aplikasi              | `anthropic-cmek-client-us`             |
 
 <Warning>
   Gunakan hanya client ID dan nama tampilan yang dipublikasikan ini. Jangan pernah mempercayai pengidentifikasi yang diberikan melalui email, chat, atau saluran onboarding apa pun.
@@ -83,7 +83,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Opsi `--tags` menambahkan tag organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Tag ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/beta/organization/retrieve). Gunakan UUID polos, bukan ID berawalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID dengan awalan `org_`.
     </Note>
 
     ```bash
@@ -210,7 +210,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```bash CLI
-              ant beta:organization:external-keys create <<'YAML'
+              ant organization:external-keys create <<'YAML'
               display_name: "<friendly-name>"
               geo: us
               provider_config:
@@ -224,7 +224,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```python Python
               client = anthropic.Anthropic()
 
-              external_key = client.beta.organization.external_keys.create(
+              external_key = client.organization.external_keys.create(
                   display_name="<friendly-name>",
                   geo="us",
                   provider_config={
@@ -242,7 +242,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```typescript TypeScript
               const client = new Anthropic();
 
-              const externalKey = await client.beta.organization.externalKeys.create({
+              const externalKey = await client.organization.externalKeys.create({
                 display_name: "<friendly-name>",
                 geo: "us",
                 provider_config: {
@@ -258,15 +258,15 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```csharp C#
-              using Anthropic.Models.Beta.Organization.ExternalKeys;
+              using Anthropic.Models.Organization.ExternalKeys;
 
               AnthropicClient client = new();
 
-              var externalKey = await client.Beta.Organization.ExternalKeys.Create(new()
+              var externalKey = await client.Organization.ExternalKeys.Create(new()
               {
                   DisplayName = "<friendly-name>",
                   Geo = Geo.Us,
-                  ProviderConfig = new BetaAzureExternalKeyConfigParam
+                  ProviderConfig = new AzureExternalKeyConfigParam
                   {
                       VaultUri = "https://<your-vault-name>.vault.azure.net/",
                       KeyName = "<your-key-name>",
@@ -281,11 +281,11 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```go Go
               client := anthropic.NewClient()
 
-              externalKey, err := client.Beta.Organization.ExternalKeys.New(context.Background(), anthropic.BetaOrganizationExternalKeyNewParams{
+              externalKey, err := client.Organization.ExternalKeys.New(context.Background(), anthropic.OrganizationExternalKeyNewParams{
               	DisplayName: anthropic.String("<friendly-name>"),
-              	Geo:         anthropic.BetaOrganizationExternalKeyNewParamsGeoUs,
-              	ProviderConfig: anthropic.BetaOrganizationExternalKeyNewParamsProviderConfigUnion{
-              		OfAzure: &anthropic.BetaAzureExternalKeyConfigParam{
+              	Geo:         anthropic.OrganizationExternalKeyNewParamsGeoUs,
+              	ProviderConfig: anthropic.OrganizationExternalKeyNewParamsProviderConfigUnion{
+              		OfAzure: &anthropic.AzureExternalKeyConfigParam{
               			VaultURI: "https://<your-vault-name>.vault.azure.net/",
               			KeyName:  "<your-key-name>",
               			TenantID: "<your-tenant-id>",
@@ -301,8 +301,8 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```java Java
-              import com.anthropic.models.beta.organization.externalkeys.BetaAzureExternalKeyConfigParam;
-              import com.anthropic.models.beta.organization.externalkeys.ExternalKeyCreateParams;
+              import com.anthropic.models.organization.externalkeys.AzureExternalKeyConfigParam;
+              import com.anthropic.models.organization.externalkeys.ExternalKeyCreateParams;
 
               void main() {
                   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -310,13 +310,13 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
                   var params = ExternalKeyCreateParams.builder()
                       .displayName("<friendly-name>")
                       .geo(ExternalKeyCreateParams.Geo.US)
-                      .providerConfig(BetaAzureExternalKeyConfigParam.builder()
+                      .providerConfig(AzureExternalKeyConfigParam.builder()
                           .vaultUri("https://<your-vault-name>.vault.azure.net/")
                           .keyName("<your-key-name>")
                           .tenantId("<your-tenant-id>")
                           .build())
                       .build();
-                  var externalKey = client.beta().organization().externalKeys().create(params);
+                  var externalKey = client.organization().externalKeys().create(params);
 
                   IO.println("id: " + externalKey.id());
                   IO.println("display_name: " + externalKey.displayName().orElseThrow());
@@ -324,12 +324,12 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```php PHP
-              use Anthropic\Beta\Organization\ExternalKeys\ExternalKeyCreateParams\Geo;
+              use Anthropic\Organization\ExternalKeys\ExternalKeyCreateParams\Geo;
               // ...
 
               $client = new Client();
 
-              $externalKey = $client->beta->organization->externalKeys->create(
+              $externalKey = $client->organization->externalKeys->create(
                   displayName: '<friendly-name>',
                   geo: Geo::US,
                   providerConfig: [
@@ -347,7 +347,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```ruby Ruby
               client = Anthropic::Client.new
 
-              external_key = client.beta.organization.external_keys.create(
+              external_key = client.organization.external_keys.create(
                 display_name: "<friendly-name>",
                 geo: :us,
                 provider_config: {
@@ -385,13 +385,13 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```bash CLI
-              ant beta:organization:external-keys validate --external-key-id "ekey_<id>"
+              ant organization:external-keys validate --external-key-id "ekey_<id>"
               ```
 
               ```python Python
               client = anthropic.Anthropic()
 
-              validation = client.beta.organization.external_keys.validate("ekey_<id>")
+              validation = client.organization.external_keys.validate("ekey_<id>")
 
               print(f"status: {validation.status}")
               print(f"error: {validation.error}")
@@ -400,7 +400,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```typescript TypeScript
               const client = new Anthropic();
 
-              const validation = await client.beta.organization.externalKeys.validate("ekey_<id>");
+              const validation = await client.organization.externalKeys.validate("ekey_<id>");
 
               console.log(`status: ${validation.status}`);
               console.log(`error: ${validation.error}`);
@@ -409,7 +409,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```csharp C#
               AnthropicClient client = new();
 
-              var validation = await client.Beta.Organization.ExternalKeys.Validate("ekey_<id>");
+              var validation = await client.Organization.ExternalKeys.Validate("ekey_<id>");
 
               Console.WriteLine($"status: {validation.Status.Raw()}");
               Console.WriteLine($"error: {validation.Error}");
@@ -418,7 +418,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```go Go
               client := anthropic.NewClient()
 
-              validation, err := client.Beta.Organization.ExternalKeys.Validate(context.Background(), "ekey_<id>")
+              validation, err := client.Organization.ExternalKeys.Validate(context.Background(), "ekey_<id>")
               if err != nil {
               	log.Fatal(err)
               }
@@ -430,7 +430,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```java Java
               AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-              var validation = client.beta().organization().externalKeys().validate("ekey_<id>");
+              var validation = client.organization().externalKeys().validate("ekey_<id>");
 
               IO.println("status: " + validation.status().asString());
               IO.println("error: " + validation.error().orElse(""));
@@ -439,7 +439,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```php PHP
               $client = new Client();
 
-              $validation = $client->beta->organization->externalKeys->validate(
+              $validation = $client->organization->externalKeys->validate(
                   externalKeyID: 'ekey_<id>',
               );
 
@@ -450,7 +450,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```ruby Ruby
               client = Anthropic::Client.new
 
-              validation = client.beta.organization.external_keys.validate("ekey_<id>")
+              validation = client.organization.external_keys.validate("ekey_<id>")
 
               puts "status: #{validation.status}"
               puts "error: #{validation.error}"
@@ -485,7 +485,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```bash CLI
-              ant beta:organization:workspaces update \
+              ant organization:workspaces update \
                 --workspace-id "<workspace-id>" \
                 --external-key-id "ekey_<id>"
               ```
@@ -493,7 +493,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```python Python
               client = anthropic.Anthropic()
 
-              workspace = client.beta.organization.workspaces.update(
+              workspace = client.organization.workspaces.update(
                   "<workspace-id>", external_key_id="ekey_<id>"
               )
 
@@ -504,7 +504,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```typescript TypeScript
               const client = new Anthropic();
 
-              const workspace = await client.beta.organization.workspaces.update("<workspace-id>", {
+              const workspace = await client.organization.workspaces.update("<workspace-id>", {
                 external_key_id: "ekey_<id>"
               });
 
@@ -515,7 +515,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```csharp C#
               AnthropicClient client = new();
 
-              var workspace = await client.Beta.Organization.Workspaces.Update("<workspace-id>", new()
+              var workspace = await client.Organization.Workspaces.Update("<workspace-id>", new()
               {
                   ExternalKeyID = "ekey_<id>"
               });
@@ -527,10 +527,10 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```go Go
               client := anthropic.NewClient()
 
-              workspace, err := client.Beta.Organization.Workspaces.Update(
+              workspace, err := client.Organization.Workspaces.Update(
               	context.Background(),
               	"<workspace-id>",
-              	anthropic.BetaOrganizationWorkspaceUpdateParams{
+              	anthropic.OrganizationWorkspaceUpdateParams{
               		ExternalKeyID: anthropic.String("ekey_<id>"),
               	},
               )
@@ -543,7 +543,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
 
               ```java Java
-              import com.anthropic.models.beta.organization.workspaces.WorkspaceUpdateParams;
+              import com.anthropic.models.organization.workspaces.WorkspaceUpdateParams;
 
               void main() {
                   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -551,7 +551,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
                   var params = WorkspaceUpdateParams.builder()
                       .externalKeyId("ekey_<id>")
                       .build();
-                  var workspace = client.beta().organization().workspaces().update("<workspace-id>", params);
+                  var workspace = client.organization().workspaces().update("<workspace-id>", params);
 
                   IO.println("id: " + workspace.id());
                   IO.println("external_key_id: " + workspace.externalKeyId().orElseThrow());
@@ -561,7 +561,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```php PHP
               $client = new Client();
 
-              $workspace = $client->beta->organization->workspaces->update(
+              $workspace = $client->organization->workspaces->update(
                   workspaceID: '<workspace-id>',
                   externalKeyID: 'ekey_<id>',
               );
@@ -573,7 +573,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```ruby Ruby
               client = Anthropic::Client.new
 
-              workspace = client.beta.organization.workspaces.update(
+              workspace = client.organization.workspaces.update(
                 "<workspace-id>",
                 external_key_id: "ekey_<id>"
               )

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 6e62f7dbfaa6e33535b0dd608deeab91adeb20ba27fc14c796f4f25d766e8906
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 287cd27655463735500ce45284c4c14a5f0e9f4fe423d6fd25cf02b6a9b784a5
 ---
 
 ---
@@ -52,11 +52,11 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
 
 <CardGroup cols={3}>
   <Card title="CloudZero" icon="chart" href="https://docs.cloudzero.com/docs/connections-anthropic">
-    Platform intelijen cloud untuk melacak dan memperkirakan biaya
+    Platform kecerdasan cloud untuk melacak dan memperkirakan biaya
   </Card>
 
   <Card title="Datadog" icon="chart" href="https://docs.datadoghq.com/integrations/anthropic/">
-    Observabilitas LLM dengan pelacakan dan pemantauan otomatis
+    Observabilitas LLM dengan tracing dan pemantauan otomatis
   </Card>
 
   <Card title="Grafana Cloud" icon="chart" href="https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-anthropic/">
@@ -69,6 +69,10 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
 
   <Card title="Honeycomb" icon="polygon" href="https://docs.honeycomb.io/integrations/anthropic-usage-monitoring/">
     Kueri dan visualisasi lanjutan melalui OpenTelemetry
+  </Card>
+
+  <Card title="Tempo" icon="chart" href="https://help.tempo.io/workforceintelligence/latest/connect-to-anthropic">
+    Atribusi penggunaan dan biaya ke item kerja Jira
   </Card>
 
   <Card title="Vantage" icon="chart" href="https://docs.vantage.sh/connecting_anthropic">
@@ -156,9 +160,9 @@ bucket_width=1d" \
 ```
 
 <Tip>
-  Untuk mengambil ID kunci API organisasi Anda, gunakan endpoint [List API Keys](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list).
+  Untuk mengambil ID kunci API organisasi Anda, gunakan endpoint [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list).
 
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list), atau temukan ID workspace organisasi Anda di Claude Console.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan ID workspace organisasi Anda di Claude Console.
 </Tip>
 
 #### Residensi data

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 5666dbd4c7c30cd058dbf82b4bba1094d7668e9f46a9871e9b6b3ac2eb7446bd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: acecbe15a4a51cf682075734f8732bb7ff6719a514c36ea0e691a3da59da2c59
 ---
 
 ---
@@ -34,6 +34,8 @@ Prompt Claude Fable 5 Anda yang sudah ada seharusnya berkinerja baik di Claude F
 
 <Note>
   Claude Fable 5.1 menjalankan pengklasifikasi keamanan dan dapat mengembalikan `stop_reason: "refusal"`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#refusals-fallback-and-billing) dan [Kurangi positif palsu safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#reduce-safeguard-false-positives).
+
+  Prompt, skill, dan deskripsi alat yang meminta model untuk menuliskan pemikiran atau penalarannya dapat ditolak dengan kategori `reasoning_extraction`. Sebagai gantinya, mintalah penjelasan singkat atau ringkasan tindakan yang diambil, atau baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) (`display: "summarized"`). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 </Note>
 
 ## Pertimbangkan semua tingkat effort

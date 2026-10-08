@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 5f505c20db331dd89528bc1812f1d75c27b7a0a0a0cbe89191731e2cd13593d4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 018daee2156136acb7f2bc03cf40cd403885e52a9ff8faea1de83dae89fdfaf2
 ---
 
 ---
@@ -330,7 +330,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 
 ### Role system dalam messages
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, dan Claude Sonnet 5.5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan mengikuti [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan mengikuti [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 

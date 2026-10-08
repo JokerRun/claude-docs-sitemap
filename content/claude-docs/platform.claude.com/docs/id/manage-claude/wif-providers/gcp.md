@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 0e2555c4e6bc9e72385cd8d891f694a6863b600a70bd1605f0c3a1dc6652757b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ab1335b61d50b7d0e562563bd8e56f339fbe2f75ea36291abd537535799fb222
 ---
 
 ---
@@ -133,7 +133,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 
 ## Memperoleh dan menggunakan token
 
-Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata, tukarkan di `POST /v1/oauth/token`, dan gunakan bearer token yang dikembalikan untuk memanggil Claude API. Setiap SDK Anthropic menangani pertukaran dan loop refresh untuk Anda ketika Anda meneruskan callable yang mengembalikan token identitas baru dari server metadata ke `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti yang ditunjukkan dalam contoh berikut.
+Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata, tukarkan di `POST /v1/oauth/token`, dan gunakan bearer token yang dikembalikan untuk memanggil Claude API. Claude SDK menangani pertukaran dan loop refresh untuk Anda ketika Anda meneruskan callable yang mengembalikan token identitas baru dari server metadata ke `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti yang ditunjukkan dalam contoh berikut.
 
 <CodeGroup>
   ```bash cURL
@@ -427,7 +427,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   ```
 </CodeGroup>
 
-Token identitas Google kedaluwarsa setelah kira-kira satu jam. SDK memanggil ulang token provider dan melakukan pertukaran ulang secara otomatis sebelum kedaluwarsa. Untuk skrip shell yang berjalan lebih lama dari `expires_in` token akses, lakukan refresh dengan timer dan ulangi pertukaran.
+Token identitas Google kedaluwarsa setelah sekitar satu jam. SDK memanggil ulang penyedia token dan melakukan pertukaran ulang secara otomatis sebelum kedaluwarsa. Untuk skrip shell yang berjalan lebih lama dari `expires_in` token akses, lakukan penyegaran dengan timer dan ulangi pertukarannya.
 
 ## Memverifikasi penyiapan
 

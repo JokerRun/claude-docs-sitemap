@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/model-deprecations
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: e40e945323b9c3706f636292509e54407561b23dbb19991b54e2a8905934e8d7
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 35dc7e935ec3e34cdf64ebc6ceb54171998cdb46907ec9a6d278b8761bb5fd65
 ---
 
 ---
@@ -94,6 +94,7 @@ Current and recently retired models are listed in the following table with their
 | claude-sonnet-4-5-20250929 | Deprecated    | September 30, 2026 | November 30, 2026                  |
 | claude-sonnet-4-20250514   | Retired       | April 14, 2026     | June 15, 2026                      |
 | claude-3-7-sonnet-20250219 | Retired       | October 28, 2025   | February 19, 2026                  |
+| claude-haiku-5-5           | Active        | N/A                | Not sooner than October 7, 2027    |
 | claude-haiku-4-5-20251001  | Active        | N/A                | Not sooner than October 15, 2026   |
 | claude-3-5-haiku-20241022  | Retired       | December 19, 2025  | February 19, 2026                  |
 | claude-3-haiku-20240307    | Retired       | February 19, 2026  | April 20, 2026                     |

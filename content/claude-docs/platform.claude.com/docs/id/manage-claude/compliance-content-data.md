@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 4949f6274836eba2c7fba09d25601ebc5054121bf43d0ef43cd91edf73c179d6
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e130874a91de9936f9d525854dfc61dfcaa72eba2b55d367790328dbccbc955b
 ---
 
 ---
@@ -31,7 +31,9 @@ Endpoint di halaman ini melakukan paginasi dengan dua cara; lihat [Paginasi hasi
 
 Gunakan [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk menelusuri metadata chat halaman demi halaman, lalu [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mengambil konten pesan lengkap dari satu chat.
 
-Endpoint daftar chat secara default menggunakan cakupan seluruh organisasi: hilangkan `user_ids[]` untuk menyertakan setiap chat di bawah organisasi induk Anda. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap mutakhir, karena satu loop berpaginasi akan menangkap chat baru, chat dengan pesan baru, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa perlu mengenumerasi pengguna terlebih dahulu. Permintaan berikut mencantumkan chat yang diperbarui sejak tanggal tertentu.
+Chat dalam pengalaman Claude terpadu dikembalikan oleh endpoint ini seperti chat lainnya: chat yang berlanjut dalam sesi di cloud dikembalikan sebagai satu chat. Pekerjaan yang dilakukan Claude di sana muncul di `content` setiap pesan sebagai blok `tool_use` (`name` dan `input` alat) dan blok `tool_result` (outputnya, dicocokkan dengan `tool_use_id`). Cakupan chat ini masih dalam tahap beta.
+
+Endpoint daftar chat secara default menggunakan cakupan seluruh organisasi: hilangkan `user_ids[]` untuk menyertakan setiap chat di bawah organisasi induk Anda. Tambahkan `order_by=updated_at` untuk mengurutkan berdasarkan waktu pembaruan terakhir. Kombinasi ini adalah cara yang direkomendasikan untuk mengekspor chat dan menjaga ekspor tetap terkini, karena satu loop paginasi menangkap chat baru, chat dengan pesan baru, dan chat yang dihapus di claude.ai untuk setiap pengguna tanpa harus mengenumerasi pengguna terlebih dahulu. Permintaan berikut mencantumkan chat yang diperbarui sejak tanggal tertentu.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
@@ -68,13 +70,13 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Hasil diurutkan secara menaik berdasarkan field `order_by`, dari yang terlama, dengan nilai yang sama diurutkan berdasarkan `id`. Paginasi menggunakan field kursor standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Memaginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju ke chat yang lebih baru, kirimkan kembali `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
+Hasil diurutkan secara menaik berdasarkan field `order_by`, yang terlama terlebih dahulu, dengan nilai yang sama diurutkan berdasarkan `id`. Paginasi menggunakan field kursor standar `first_id`/`last_id`/`has_more` yang dijelaskan di [Memaginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results). Untuk bergerak maju ke chat yang lebih baru, kirimkan kembali `last_id` dari respons sebagai `after_id` pada permintaan berikutnya.
 
-Penelusuran maju tersebut juga merupakan cara Anda menjaga ekspor tetap mutakhir di setiap eksekusi: simpan `last_id` dari halaman terakhir dan lanjutkan darinya sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, sebuah chat akan muncul kembali setelah kursor yang Anda simpan ketika chat tersebut menerima pesan baru, dipindahkan ke dalam atau keluar dari proyek, atau dihapus di claude.ai. Oleh karena itu, setiap eksekusi inkremental mengembalikan chat yang benar-benar baru sekaligus chat lama yang telah berubah dengan salah satu cara tersebut. Perubahan lain, seperti penggantian nama, tidak dijamin membuat chat muncul kembali. Proses hasil secara idempoten, dengan kunci berupa `id` chat, untuk menangani kemunculan ulang tersebut. Chat yang muncul kembali dengan `deleted_at` terisi tidak lagi memiliki konten untuk diambil, jadi perlakukan sebagai terhapus, bukan diperbarui.
+Penelusuran maju tersebut juga merupakan cara Anda menjaga ekspor tetap terkini di setiap eksekusi: simpan `last_id` dari halaman terakhir dan lanjutkan darinya sebagai `after_id` pada eksekusi berikutnya. Karena daftar diurutkan berdasarkan `updated_at`, sebuah chat muncul kembali setelah kursor yang Anda simpan ketika chat tersebut menerima pesan baru, dipindahkan ke dalam atau keluar dari proyek, atau dihapus di claude.ai. Oleh karena itu, setiap eksekusi inkremental mengembalikan chat yang benar-benar baru sekaligus chat lama yang telah berubah dengan salah satu cara tersebut. Pengeditan lain, seperti penggantian nama, tidak dijamin membuat chat muncul kembali. Proses hasil secara idempoten, dengan kunci `id` chat, untuk menangani kemunculan ulang tersebut. Chat yang kembali dengan `deleted_at` terisi tidak memiliki konten tersisa untuk diambil, jadi perlakukan sebagai terhapus, bukan diperbarui.
 
-Beberapa batasan berlaku untuk kueri seluruh organisasi ini. Kursor bersifat opaque dan terikat pada kunci pengurutan, sehingga `after_id` yang diterbitkan dengan satu nilai `order_by` akan ditolak dengan error 400 pada nilai lainnya. Batas filter waktu juga harus sesuai dengan kunci pengurutan: pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan `order_by=created_at` default. Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia. Lihat [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
+Beberapa batasan berlaku untuk kueri seluruh organisasi ini. Kursor bersifat opaque dan terikat pada kunci pengurutan, sehingga `after_id` yang diterbitkan di bawah satu nilai `order_by` akan ditolak dengan error 400 di bawah nilai lainnya. Batas filter waktu juga harus sesuai dengan kunci pengurutan: pasangkan batas `updated_at.*` dengan `order_by=updated_at`, dan batas `created_at.*` dengan default `order_by=created_at`. Paginasi mundur dengan `before_id` tidak didukung, dan filter `project_ids[]` tidak tersedia. Lihat [Mencantumkan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/list) untuk referensi filter lengkap.
 
-Untuk membatasi daftar ke pengguna tertentu (misalnya, "legal hold" (penahanan hukum) pada kustodian yang disebutkan namanya), kirimkan 1–10 nilai `user_ids[]`. Dapatkan ID tersebut dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (mengirimkan `order_by=updated_at` akan mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Pemfilteran berdasarkan `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini. Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah tidak digunakan lagi (deprecated) dan akan ditolak dengan error 400 setelah 2026-09-22; untuk menjaga kumpulan kustodian tetap mutakhir berdasarkan waktu pembaruan, jalankan penelusuran `order_by=updated_at` seluruh organisasi tanpa `user_ids[]` dan pilih chat milik kustodian dari hasilnya, serta gunakan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
+Untuk membatasi daftar ke pengguna tertentu (misalnya, "legal hold" (penahanan hukum) pada kustodian yang disebutkan namanya), kirimkan 1–10 nilai `user_ids[]`. Dapatkan ID dari [Mencantumkan pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users). Kueri yang difilter berdasarkan pengguna selalu diurutkan berdasarkan `created_at` (mengirimkan `order_by=updated_at` mengembalikan error 400) dan mendukung `after_id` maupun `before_id`. Pemfilteran berdasarkan `project_ids[]` hanya tersedia dalam bentuk yang difilter berdasarkan pengguna ini. Menggabungkan `user_ids[]` dengan batas `updated_at.*` apa pun sudah tidak digunakan lagi (deprecated) dan akan ditolak dengan error 400 setelah 2026-09-22; untuk menjaga kumpulan kustodian tetap terkini berdasarkan waktu pembaruan, jalankan penelusuran `order_by=updated_at` seluruh organisasi tanpa `user_ids[]` dan pilih chat para kustodian dari hasilnya, serta gunakan daftar yang difilter berdasarkan pengguna untuk ekspor yang diurutkan berdasarkan `created_at`.
 
 ```bash cURL
 curl --fail-with-body -sS -G \
@@ -86,7 +88,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "limit=100"
 ```
 
-Respons daftar hanya berisi metadata chat. Untuk mengambil konten chat yang sebenarnya, file yang dilampirkan, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan endpoint pesan untuk setiap ID chat:
+Respons daftar hanya memuat metadata chat. Untuk mengambil konten chat yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan endpoint pesan untuk setiap ID chat:
 
 ```bash cURL
 chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
@@ -97,7 +99,7 @@ curl --fail-with-body -sS \
   --header "anthropic-version: 2023-06-01"
 ```
 
-Endpoint pesan mengembalikan metadata chat beserta array `chat_messages` yang diurutkan berdasarkan `created_at`. Jika `limit` dihilangkan, seluruh kumpulan pesan dikembalikan dalam satu respons; kirimkan `limit`, `after_id`, atau `before_id` untuk menelusuri chat yang sangat panjang halaman demi halaman. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim; untuk pesan asisten, ini adalah waktu Claude selesai menghasilkan pesan. Setiap pesan berisi konten teksnya dan, jika ada, file yang diunggah (biasanya pada pesan pengguna), file yang dihasilkan alat, dan artifact yang dihasilkan atau diperbarui oleh asisten (biasanya pada pesan asisten):
+Endpoint pesan mengembalikan metadata chat ditambah array `chat_messages` yang diurutkan berdasarkan `created_at`. Ketika `limit` dihilangkan, seluruh kumpulan pesan dikembalikan dalam satu respons; kirimkan `limit`, `after_id`, atau `before_id` untuk menelusuri chat yang sangat panjang halaman demi halaman. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim; untuk pesan asisten, itu adalah waktu Claude selesai menghasilkan pesan. Setiap pesan memuat konten teksnya dan, jika ada, file yang diunggah (biasanya pada pesan pengguna), file yang dihasilkan alat, dan artifact yang dihasilkan atau diperbarui oleh asisten (biasanya pada pesan asisten):
 
 ```json Response
 {
@@ -284,20 +286,22 @@ curl --fail-with-body -sS -G \
   Setiap penghapusan yang berhasil bersifat permanen dan langsung berlaku. Tidak ada periode pemulihan.
 </Warning>
 
-Compliance API menyediakan endpoint penghapusan permanen untuk chat, file, dokumen proyek, dan seluruh proyek. Chat yang dihapus secara permanen tidak dapat dipulihkan dan tidak lagi muncul di respons daftar.
+Compliance API mengekspos endpoint penghapusan permanen untuk chat, file, dokumen proyek, dan seluruh proyek. Chat yang dihapus permanen tidak dapat dipulihkan, dan tidak lagi muncul di respons daftar setelahnya.
 
-* [Menghapus chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/delete): juga menghapus pesan-pesan chat dan semua file yang dilampirkan ke pesan tersebut.
+* [Menghapus chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/delete): juga menghapus pesan chat dan file apa pun yang dilampirkan ke pesan tersebut.
 * [Menghapus file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/delete): menangani file chat maupun file proyek.
 * [Menghapus dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/delete): menghapus satu dokumen proyek berdasarkan ID.
 * [Menghapus proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/delete): lihat [Melepaskan chat sebelum menghapus proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#detach-chats-before-deleting-a-project).
 
-Keempat endpoint memerlukan scope `delete:compliance_user_data`. Scope ini diberikan terpisah dari scope baca saat Compliance Access Key dibuat.
+Untuk chat dalam pengalaman Claude terpadu, [Menghapus chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/delete) juga menghapus sesi di cloud yang dimulai untuk chat tersebut. Endpoint ini tidak menghapus sesi yang dimulai oleh sesi-sesi tersebut.
 
-Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL-nya yang berbeda.
+Keempat endpoint memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah dari scope baca saat Compliance Access Key dibuat.
+
+Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL yang berubah.
 
 ```bash cURL
 # PERINGATAN: Operasi ini menghapus chat secara PERMANEN, beserta semua pesannya,
-# dan semua file terlampir. Penghapusan berlaku seketika dan tidak dapat dibatalkan. Operasi ini
+# dan semua file terlampir. Penghapusan terjadi seketika dan tidak dapat dibatalkan. Operasi ini
 # memerlukan scope `delete:compliance_user_data`, yang diberikan terpisah
 # dari `read:compliance_user_data` saat Compliance Access Key dibuat.
 # Pastikan Anda memiliki otorisasi eksplisit sebelum menjalankan ini.
@@ -317,7 +321,7 @@ curl --fail-with-body -sS -X DELETE \
 }
 ```
 
-Setiap penghapusan yang berhasil mengembalikan envelope konfirmasi kecil berisi `id` dan diskriminator `type`. Endpoint chat mengembalikan `claude_chat_deleted`. Periksa field `type` sebelum menganggap penghapusan telah terkonfirmasi. Untuk nilai `type` persis yang dikembalikan endpoint lainnya, lihat skema respons di halaman [referensi API](https://platform.claude.com/docs/id/api/compliance/apps) masing-masing endpoint penghapusan.
+Setiap penghapusan yang berhasil mengembalikan envelope konfirmasi kecil dengan `id` dan diskriminator `type`. Endpoint chat mengembalikan `claude_chat_deleted`; periksa field `type` sebelum menganggap penghapusan telah dikonfirmasi. Lihat skema respons di halaman [referensi API](https://platform.claude.com/docs/id/api/compliance/apps) setiap endpoint penghapusan untuk nilai `type` persis yang dikembalikan endpoint lainnya.
 
 ### Melepaskan chat sebelum menghapus proyek
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand
-fetched_at: 2026-09-30T02:26:19.798321Z
-sha256: 110248e50cc0ba9cc26ec9a0642a4cd4036f65e7b6e275f1403e981dfbe525ef
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: df0fba11a147d09b45bcfe1735c19fd2687666c71038ccc6883c99e105f8777e
 ---
 
 ---
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta

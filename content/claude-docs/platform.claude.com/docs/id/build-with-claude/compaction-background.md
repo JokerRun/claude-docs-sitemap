@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: a3b15a6792e64891d4c323b91ae9b6b11bced21133dafc328d92cde6ad095d2d
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 184597afaf0586fff193c9289f3a3a0150f47b4936649708d35935679c021748
 ---
 
 ---
@@ -48,7 +48,7 @@ Permintaan compaction dan blok yang dikembalikannya sama seperti dalam loop. Riw
 Sebagai contoh, jika permintaan compaction memuat pesan 1 hingga 5 dan percakapan bertambah dengan pesan 6 hingga 8 selama permintaan itu berjalan, setelah penukaran riwayat Anda adalah blok tersebut diikuti oleh pesan 6 hingga 8.
 
 <Frame>
-  ![Linimasa background compaction (pemadatan latar belakang): permintaan compaction dikirim dengan pesan 1 hingga 5 sementara percakapan berlanjut pada riwayat lengkapnya dan bertambah dengan pesan 6 hingga 8; saat blok tiba, blok tersebut menggantikan pesan 1 hingga 5 di bagian depan riwayat, dan riwayat menjadi blok tersebut diikuti oleh pesan 6 hingga 8](https://platform.claude.com/docs/images/compaction-background-timeline.svg)
+  ![Linimasa background compaction (pemadatan di latar belakang): permintaan compaction dikirim dengan pesan 1 hingga 5 sementara percakapan berlanjut pada riwayat lengkapnya dan bertambah dengan pesan 6 hingga 8; ketika blok tiba, blok tersebut menggantikan pesan 1 hingga 5 di bagian depan riwayat, dan riwayat menjadi blok tersebut diikuti oleh pesan 6 hingga 8](https://platform.claude.com/docs/images/compaction-background-timeline.svg)
 </Frame>
 
 Jika respons memiliki `stop_reason` lain, tidak ada ringkasan yang dihasilkan, dan hal ini dihitung sebagai kegagalan pada langkah 2. Pertahankan riwayat lengkap; [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) mencantumkan penyebabnya dan apa yang harus dilakukan untuk masing-masing.
@@ -57,7 +57,7 @@ Jika respons memiliki `stop_reason` lain, tidak ada ringkasan yang dihasilkan, d
 
 Permintaan compaction dihitung terhadap batas laju Anda seperti permintaan lainnya, dan selama permintaan itu berjalan, aplikasi Anda memiliki dua permintaan yang terbuka sekaligus. Percakapan terus bertambah pada riwayat lengkapnya hingga penukaran, jadi mulailah permintaan compaction selagi "context window" (jendela konteks) masih memiliki ruang untuk giliran-giliran yang tiba sementara itu.
 
-Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop) dengan permintaan compaction dipindahkan dari jalur percakapan. Program ini tidak memiliki versi PHP, karena contohnya bergantung pada menjalankan dua permintaan sekaligus. Baris yang disorot menunjukkan di mana program ini berbeda dari loop, dan daftar berikut membahasnya sesuai urutan program menjalankannya.
+Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop) dengan permintaan compaction dikeluarkan dari jalur percakapan. Baris yang disorot menunjukkan di mana program ini berbeda dari loop, dan daftar berikut membahasnya sesuai urutan program menjalankannya.
 
 <CodeGroup exclude="shell, php">
   ```python Python
@@ -474,6 +474,12 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
       client.close();
   }
   ```
+
+  <CodeGroupItem language="PHP">
+    <Note>
+      PHP SDK mengirim permintaan secara sinkron, sehingga tidak dapat menjalankan permintaan compaction di latar belakang sementara percakapan berlanjut.
+    </Note>
+  </CodeGroupItem>
 
   ```ruby Ruby
   client = Anthropic::Client.new

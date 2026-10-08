@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 70c26d10a651e0c63d410eaa56bd6fe816050887163cd9f7f0b74cbfac86b253
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 21a75243006bb9977491c1e7f3063df3820cdc94111fea5867dceb08c1246a04
 ---
 
 ---
@@ -292,7 +292,7 @@ Menggunakan memory tool memerlukan dua langkah:
 
 Balasan Claude terhadap permintaan seperti yang sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirim percakapan kembali sehingga Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
 
-Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop. Subclass `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal siap pakai, `BetaLocalFilesystemMemoryTool`. Permukaan helper dan tool-runner berada di namespace beta setiap SDK meskipun memory tool itu sendiri tidak memerlukan header beta. SDK Go dan Ruby tidak memiliki helper memori, jadi contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan dalam memori yang Anda ganti dengan penyimpanan Anda sendiri.
+Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-nya. Buat subclass dari `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal siap pakai, `BetaLocalFilesystemMemoryTool`. Helper dan tool runner berada di namespace beta SDK Anda meskipun memory tool itu sendiri tidak memerlukan header beta. SDK Go dan Ruby tidak memiliki helper memori, sehingga contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan dalam memori yang Anda ganti dengan penyimpanan Anda sendiri.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -758,7 +758,7 @@ Here're the files and directories up to 2 levels deep in {path}, excluding hidde
 * Mengecualikan item tersembunyi (file yang dimulai dengan `.`) dan `node_modules`
 * Menggunakan karakter tab antara ukuran dan path
 
-`view` pertama dari `/memories` pada penyimpanan kosong bukanlah kesalahan. Memory tool sistem file lokal SDK (`BetaLocalFilesystemMemoryTool`) membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti oleh satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
+`view` pertama terhadap `/memories` pada penyimpanan kosong bukanlah kesalahan. Jika SDK Anda menyertakan memory tool sistem file lokal, `BetaLocalFilesystemMemoryTool`, alat tersebut membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
 
 **Untuk file:** Kembalikan isi file dengan header dan nomor baris:
 

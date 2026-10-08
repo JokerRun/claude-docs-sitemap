@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0b2006a64a1b72510f5f97bdea4d4a8c0c46c7df7f1f593b1a6673563252f3cd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 91043f8b1036937d20b790fa4f3e8ca147b8f7aac16c98215a7a16f600a72a5c
 ---
 
 ---
@@ -49,13 +49,14 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
     ant apply vaults/service_accounts.yaml
     ```
 
-    <File filename="alice.vault.yaml">
+    <File filename="vaults/service_accounts.yaml">
       ```yaml
-      display_name: Alice
-      metadata:
-        external_user_id: usr_abc123
+      # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/vault.json
+      display_name: Service accounts
       ```
     </File>
+
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat vault dari `vaults/service_accounts.yaml`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Untuk melihat catatan vault, jalankan `ant beta:vaults retrieve`.
   </CodeGroupItem>
 
   ```python Python

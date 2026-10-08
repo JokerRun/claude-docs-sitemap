@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: dacae8c64f5320d9b39309091c5b1faee99aa05556e47a495224d6c09e31c1ac
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c6bbc9e18a3ae2ac73c6551dfd278893669f9b4ca55772118637a6ceb77647fd
 ---
 
 ---
@@ -118,7 +118,7 @@ Langkah-langkah Instal berikut ini mencatat di mana menambahkan route yang sesua
           Audience default chart adalah `api.anthropic.com` tanpa skema, tetapi formulir federation rule di Console menyarankan `https://api.anthropic.com`. Keduanya harus cocok byte demi byte atau autentikasi akan gagal. Atur audience rule ke `api.anthropic.com`, atau atur `api.wif.audience` di `values.yaml` ke `https://api.anthropic.com`.
         </Note>
 
-        Jika tunnel berada di workspace selain workspace default organisasi, tambahkan juga service account milik rule sebagai anggota workspace tersebut di bawah **Settings > Workspaces** (Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account).
+        Jika tunnel berada di workspace selain workspace default organisasi, [tambahkan juga service account rule tersebut ke workspace itu](https://platform.claude.com/docs/id/manage-claude/workspaces#role-inheritance) (Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account).
 
         Catat ID rule (`fdrl_...`); Anda akan mengaturnya sebagai `api.wif.federationRuleId`.
 

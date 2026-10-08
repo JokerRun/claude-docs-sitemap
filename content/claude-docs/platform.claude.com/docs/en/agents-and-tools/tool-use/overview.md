@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6de69c6b2f1b2fb5815e861aaf4e7e8ec6d4383c257664212cdf518d8ea82a3b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 1d7254e4d805dcf24e5d43caa1219835e378d532da7dd7256896eb456eefdc59
 ---
 
 ---
@@ -871,23 +871,24 @@ The additional tokens from tool use come from:
 
 When you use `tools`, the API also automatically includes a special system prompt for the model that enables tool use. The number of tool use tokens required for each model is listed in the following table (excluding the additional tokens listed earlier). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
 
-| Model                                                                                                                                 | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
-| :------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------- | :--------------------------------------- |
-| Claude Opus 5.5                                                                                                                       | 286 tokens                                |                                          |
-| Claude Opus 5                                                                                                                         | 286 tokens                                | 406 tokens                               |
-| Claude Opus 4.8                                                                                                                       | 290 tokens                                | 410 tokens                               |
-| Claude Opus 4.7                                                                                                                       | 675 tokens                                | 804 tokens                               |
-| Claude Opus 4.6                                                                                                                       | 497 tokens                                | 589 tokens                               |
-| Claude Opus 4.5                                                                                                                       | 496 tokens                                | 588 tokens                               |
-| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
-| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))                | 313 tokens                                | 315 tokens                               |
-| Claude Sonnet 5.5                                                                                                                     | 286 tokens                                |                                          |
-| Claude Sonnet 5                                                                                                                       | 354 tokens                                | 474 tokens                               |
-| Claude Sonnet 4.6                                                                                                                     | 497 tokens                                | 589 tokens                               |
-| Claude Sonnet 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |
-| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))  | 313 tokens                                | 315 tokens                               |
-| Claude Haiku 4.5                                                                                                                      | 496 tokens                                | 588 tokens                               |
-| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)) | 264 tokens                                | 355 tokens                               |
+| Model                                                                                                                                | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
+| :----------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |
+| Claude Opus 5.5                                                                                                                      | 286 tokens                                |                                          |
+| Claude Opus 5                                                                                                                        | 286 tokens                                | 406 tokens                               |
+| Claude Opus 4.8                                                                                                                      | 290 tokens                                | 410 tokens                               |
+| Claude Opus 4.7                                                                                                                      | 675 tokens                                | 804 tokens                               |
+| Claude Opus 4.6                                                                                                                      | 497 tokens                                | 589 tokens                               |
+| Claude Opus 4.5                                                                                                                      | 496 tokens                                | 588 tokens                               |
+| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
+| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))               | 313 tokens                                | 315 tokens                               |
+| Claude Sonnet 5.5                                                                                                                    | 286 tokens                                |                                          |
+| Claude Sonnet 5                                                                                                                      | 354 tokens                                | 474 tokens                               |
+| Claude Sonnet 4.6                                                                                                                    | 497 tokens                                | 589 tokens                               |
+| Claude Sonnet 4.5                                                                                                                    | 496 tokens                                | 588 tokens                               |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
+| Claude Haiku 5.5                                                                                                                     | 286 tokens                                | 406 tokens                               |
+| Claude Haiku 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |
+| Claude Haiku 3.5 ([retired, except on Google Cloud](https://platform.claude.com/docs/en/about-claude/model-deprecations))            | 264 tokens                                | 355 tokens                               |
 
 * **auto, none:** The count when tool\_choice is auto or none.
 * **any, tool:** The count when tool\_choice is any or tool.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: dbd500c853a960cdebb4b747170843b1a7e30a8452a555ff37f2c46e25071b84
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2450ad0810f2bb0d7fd356294094fa54def4ef34084390225d298f6adf5f44c3
 ---
 
 ---
@@ -22,7 +22,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
   <Tab title="cURL">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah ini membacanya dari `$ANTHROPIC_API_KEY`.
+        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah membacanya dari `$ANTHROPIC_API_KEY`.
 
         ```bash
         export ANTHROPIC_API_KEY="your-api-key-here"
@@ -85,7 +85,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         brew install anthropics/tap/ant
         ```
 
-        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan memulai cepat CLI.
+        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
       </Step>
 
       <Step title="Autentikasi">
@@ -443,7 +443,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.66.0")
+                implementation("com.anthropic:anthropic-java:2.69.0")
             }
 
             application {
@@ -469,7 +469,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.66.0</version>
+                  <version>2.69.0</version>
                 </dependency>
               </dependencies>
             </project>

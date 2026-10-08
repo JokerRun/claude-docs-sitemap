@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: ffc7949bc840a320693c4733867f27eabee1c22827c6b175cf3bffc9b6a6921c
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ab86ac3c2bab96b44d91b19839fc85f0be99e63285a91b24c8e78b567f7a25d9
 ---
 
 ---
@@ -686,11 +686,11 @@ Teruskan konfigurasi `tools` ini dalam permintaan pembuatan agen (tab CLI menamp
 
 Dengan kebijakan izin `auto`, server mengevaluasi setiap panggilan sebelum dijalankan. Karena evaluasi mempertimbangkan alat, input panggilan, dan konten sesi hingga titik tersebut, server dapat memperlakukan dua panggilan ke alat yang sama secara berbeda. Setiap panggilan memiliki salah satu dari tiga hasil:
 
-* **Panggilan dijalankan.** Ketika server menentukan bahwa panggilan tersebut aman, alat dijalankan seperti di bawah `always_allow`.
-* **Panggilan ditolak.** Ketika server mengevaluasi panggilan sebagai berisiko tinggi, alat tidak dijalankan. Agen menerima hasil alat berupa error dengan konten `Permission to use {tool_name} has been denied.` dan `is_error: true`. Sesi tetap berjalan, dan klien Anda tidak dapat membatalkan penolakan tersebut.
+* **Panggilan dijalankan.** Ketika server menentukan bahwa panggilan aman, alat berjalan seperti di bawah `always_allow`.
+* **Panggilan ditolak.** Ketika server mengevaluasi panggilan sebagai berisiko tinggi, alat tidak dijalankan. Agen menerima hasil alat berupa error dengan konten `Permission to use {tool_name} has been denied.` dan `is_error: true`. Sesi tetap berjalan, dan klien Anda tidak dapat menimpa penolakan tersebut.
 * **Panggilan dijeda untuk meminta persetujuan Anda.** Ketika server tidak mencapai keputusan, sesi dijeda seperti di bawah `always_ask`. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests).
 
-Untuk mengaktifkan `auto`, atur `permission_policy` ke `{"type": "auto"}`. Pengaturan ini ditempatkan di dua tempat yang sama seperti kebijakan lainnya: [`default_config`](https://platform.claude.com/docs/id/managed-agents/permission-policies#set-a-policy-for-a-toolset) milik toolset untuk seluruh toolset, atau [entri `configs`](https://platform.claude.com/docs/id/managed-agents/permission-policies#override-an-individual-tool-policy) untuk satu alat. Toolset agen dan toolset MCP sama-sama menerimanya. Tidak ada toolset yang menggunakan `auto` secara default.
+Untuk mengaktifkan `auto`, atur `permission_policy` ke `{"type": "auto"}`. Pengaturan ini ditempatkan di dua tempat yang sama seperti kebijakan lainnya: [`default_config`](https://platform.claude.com/docs/id/managed-agents/permission-policies#set-a-policy-for-a-toolset) sebuah toolset untuk seluruh toolset, atau [entri `configs`](https://platform.claude.com/docs/id/managed-agents/permission-policies#override-an-individual-tool-policy) untuk satu alat. Toolset agen dan toolset MCP sama-sama menerimanya. Tidak ada toolset yang menggunakan `auto` secara default.
 
 Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk toolset MCP `github`, serta menimpa `bash` menjadi `always_ask`:
 
@@ -1029,10 +1029,10 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   ```
 </CodeGroup>
 
-Apa yang Anda kirim dalam event `user.message` dihitung sebagai niat Anda, dan hal itu dapat membuat server mengizinkan panggilan yang sebaliknya akan ditolak. Server tidak membaca niat dari hasil alat, halaman web yang diambil, respons server MCP, atau pesan antar [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tool-permissions-and-custom-tools). Server menilai konten tersebut tetapi tidak menerima instruksi darinya. Server mengevaluasi beberapa panggilan sebagai berisiko tinggi terlepas dari siapa yang memintanya. Jika Anda meneruskan input pengguna akhir yang tidak tepercaya dalam event `user.message`, server juga membaca input tersebut sebagai niat Anda, dan input itu dapat membuat suatu panggilan diizinkan. Konfigurasikan `always_ask` pada alat yang tidak akan Anda biarkan dijalankan oleh pengguna akhir tersebut tanpa peninjauan.
+Apa yang Anda kirim dalam event `user.message` dihitung sebagai niat Anda, dan hal itu dapat membuat server mengizinkan panggilan yang tanpa itu akan ditolak. Server tidak membaca niat dari hasil alat, halaman web yang diambil, respons server MCP, atau pesan antar [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tool-permissions-and-custom-tools). Server menilai konten tersebut tetapi tidak menerima instruksi darinya. Server mengevaluasi beberapa panggilan sebagai berisiko tinggi terlepas dari siapa yang memintanya. Jika Anda meneruskan input pengguna akhir yang tidak tepercaya dalam event `user.message`, server juga membaca input tersebut sebagai niat Anda, dan input itu dapat membuat sebuah panggilan diizinkan. Konfigurasikan `always_ask` pada alat yang tidak akan Anda biarkan dijalankan oleh pengguna akhir tersebut tanpa peninjauan.
 
 <Warning>
-  `auto` bukanlah titik pemeriksaan oleh manusia. Jika server menentukan bahwa suatu panggilan aman, panggilan tersebut dijalankan sebelum ada yang melihatnya, dan efeknya mungkin tidak dapat dibatalkan. Jika seseorang harus meninjau panggilan suatu alat sebelum dijalankan, konfigurasikan `always_ask` pada alat tersebut.
+  `auto` bukanlah titik pemeriksaan manusia. Jika server menentukan bahwa sebuah panggilan aman, panggilan tersebut berjalan sebelum ada yang melihatnya, dan efeknya mungkin tidak dapat dibatalkan. Jika seseorang harus meninjau panggilan sebuah alat sebelum dijalankan, konfigurasikan `always_ask` pada alat tersebut.
 </Warning>
 
 ## Melihat bagaimana setiap panggilan dievaluasi

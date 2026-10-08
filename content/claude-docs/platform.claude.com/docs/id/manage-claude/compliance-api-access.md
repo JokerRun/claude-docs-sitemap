@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 9c374332d990ed5b2528dbeba5c9d19690c07fe63e049f42d924cc8f52342edf
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5e1f10ee21a0848f3d53e7de1cd271e18a85fd17c57976d79798937a1488b309
 ---
 
 ---
@@ -79,12 +79,14 @@ Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda,
   <Step title="Buat kunci">
     Klik **Create key**, beri nama kunci, dan pilih satu atau beberapa scope dari tabel berikut. Klik **Create**.
 
-    | Scope                         | Memberikan                                                                                                                                                                                                                |
+    | Cakupan                       | Memberikan                                                                                                                                                                                                                |
     | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `read:compliance_activities`  | Membaca Activity Feed. Kunci yang mencakup organisasi induk membaca peristiwa untuk organisasi induk dan semua organisasi tertaut.                                                                                        |
     | `read:compliance_user_data`   | Membaca chat, pesan, file, proyek, metadata dan transkrip sesi pengguna, pengguna organisasi, dan anggota grup                                                                                                            |
     | `delete:compliance_user_data` | Menghapus chat, file, dan proyek pengguna                                                                                                                                                                                 |
     | `read:compliance_org_data`    | Membaca metadata organisasi (nama, jenis, peran, dan grup) serta pengaturan efektif yang berlaku untuk organisasi di bawah organisasi induk. Daftar pengguna dan keanggotaan grup memerlukan `read:compliance_user_data`. |
+
+    Dengan Plugins API, `read:compliance_org_data` juga membaca inventaris plugin dan marketplace plugin organisasi Anda melalui Admin API, termasuk plugin pribadi anggota beserta file-filenya. Inventaris tersebut mengidentifikasi anggota: inventaris memuat ID pengguna setiap anggota yang memiliki atau membuat plugin, atau yang menerima plugin yang dibagikan secara individual, serta alamat email pembuat plugin selama mereka masih menjadi anggota; lihat [Membaca plugin dan marketplace plugin](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#read-plugins-and-plugin-marketplaces).
 
     Pilih kumpulan scope terkecil yang dibutuhkan integrasi Anda:
 

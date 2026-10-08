@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/budgets
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 5263257905db3948c0c5577ec9d2520f28c0f52ccaa1bf2f3e72e68d3444e5e1
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4798030505d7446d21d70aaf539aaff74e158d64b62618b4894981ccee21fada
 ---
 
 ---
@@ -384,7 +384,7 @@ The session object carries its `budget` and a `usage` object with the tracked sp
 
 The `session.usage` event is a snapshot of the session's cumulative usage and tracked list cost. It carries the session's token totals, `list_cost`, `active_seconds`, `server_tool_use` request counts (`web_search_requests`, priced into list cost per request, and `web_fetch_requests`, which reads `0` because web fetch requests carry no per-request charge and aren't metered), and an echo of the session's `budget`, or `null` when the session has none. It appears in the events list and the session stream. The session emits one immediately before it goes idle, whatever the stop reason, so a session that reaches its budget always emits one immediately before the budget-reached idle event.
 
-To read usage from the stream and the session object, see [Tracking usage](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#tracking-usage).
+To read usage from the stream and the session object, see [Track usage](https://platform.claude.com/docs/en/managed-agents/session-observability#track-usage).
 
 ## Budgets in multiagent sessions
 

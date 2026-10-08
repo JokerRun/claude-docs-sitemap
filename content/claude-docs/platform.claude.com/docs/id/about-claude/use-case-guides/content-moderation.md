@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 264b5465368fccae404efc430352b32667bd29de21fc53d1f2d9bdd274943163
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7b42f476a63358870875ecda0fab7231511a6de5628befa8169a98f7231913bb
 ---
 
 ---
@@ -328,7 +328,7 @@ Kategori tidak aman dapat disesuaikan agar sesuai dengan kebutuhan spesifik Anda
 
 ### Pilih model Claude yang tepat
 
-Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi pertimbangan, model yang lebih kecil seperti Claude Haiku 4.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah estimasi biaya untuk memoderasi teks bagi platform media sosial yang menerima satu miliar postingan per bulan:
+Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 5.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah perkiraan biaya untuk memoderasi teks bagi platform media sosial yang menerima satu miliar postingan per bulan:
 
 * **Ukuran konten**
 
@@ -343,11 +343,11 @@ Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya 
   * Token output per pesan yang ditandai: 50
   * Total token output: 1,5 miliar
 
-* **Estimasi biaya Claude Haiku 4.5**
+* **Perkiraan biaya Claude Haiku 5.5**
 
-  * Biaya token input: 28.600 MTok \* $1,00/MTok = $28.600 USD
-  * Biaya token output: 1.500 MTok \* $5,00/MTok = $7.500 USD
-  * Biaya bulanan: $28.600 + $7.500 = $36.100 USD
+  * Biaya token input: 28.600 MTok \* $0,10/MTok = $2.860 USD
+  * Biaya token output: 1.500 MTok \* $0,50/MTok = $750 USD
+  * Biaya bulanan: $2.860 + $750 = $3.610 USD
 
 * **Estimasi biaya Claude Opus 5**
 

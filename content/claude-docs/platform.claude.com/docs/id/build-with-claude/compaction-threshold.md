@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: d0a7629b8a3b0c65031feea80a85c0036961f2ef840b7eda894d0ecf076a25c0
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 00264b62dc99fb6a9896757a7d6927158251c0f04e2c1f6225663bf35cf63eb7
 ---
 
 ---
@@ -62,7 +62,7 @@ Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda k
 Pada permintaan berikutnya, tambahkan respons ke pesan Anda. API secara otomatis membuang semua blok konten sebelum blok `compaction`, dan melanjutkan percakapan dari ringkasan.
 
 <Frame>
-  ![Compaction flow (alur pemadatan): ketika token input mencapai trigger (pemicu), Claude menulis ringkasan ke dalam blok compaction lalu melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
+  ![Compaction flow (alur pemadatan): ketika token input mencapai trigger (pemicu), Claude menulis ringkasan ke dalam compaction block (blok compaction) dan melanjutkan](https://platform.claude.com/docs/images/compaction-flow.svg)
 </Frame>
 
 ## Penggunaan dasar
@@ -1720,7 +1720,7 @@ Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. A
 * Mempertahankan pesan asli dalam daftar Anda dan membiarkan API menangani penghapusan konten yang telah dipadatkan
 * Membuang pesan yang telah dipadatkan secara manual dan hanya menyertakan blok compaction dan seterusnya
 
-Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, blok thinking dari sebelum blok `compaction` tidak dibawa ke depan, sehingga ringkasan adalah satu-satunya yang dimiliki model tentang pekerjaan sebelumnya tersebut. Jika Anda menulis `instructions` sendiri, beri tahu model apa yang harus dipertahankan dalam ringkasan; lihat [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries).
+Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, blok thinking dari sebelum blok `compaction` tidak dibawa ke depan, sehingga ringkasan adalah satu-satunya yang dimiliki model dari pekerjaan sebelumnya tersebut. Jika Anda menulis `instructions` sendiri, beri tahu model apa yang harus dipertahankan dalam ringkasan; lihat [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries).
 
 ### Streaming
 
@@ -2904,7 +2904,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   ```
 </CodeGroup>
 
-Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, hapus blok `thinking` dan `redacted_thinking` dari setiap giliran asisten yang Anda sisipkan kembali setelah blok compaction, atau kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok-blok tersebut dihasilkan ketika riwayat lengkap masih ada, sehingga tidak lagi lolos [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Di mana pemeriksaan tersebut diberlakukan, permintaan lanjutan ditolak dengan error 400. Blok teks dan blok alat yang dipertahankan dapat tetap seperti apa adanya. Membiarkan API meringkas semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari masalah ini. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, hapus blok-blok tersebut sebagai gantinya.
+Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, hapus blok `thinking` dan `redacted_thinking` dari setiap giliran asisten yang Anda sisipkan kembali setelah blok compaction, atau kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok-blok tersebut dihasilkan ketika riwayat lengkap masih ada, sehingga tidak lagi lolos [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Di mana pemeriksaan tersebut diberlakukan, permintaan lanjutan ditolak dengan error 400. Blok teks dan blok alat yang dipertahankan dapat dibiarkan apa adanya. Membiarkan API meringkas semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari hal ini. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, hapus blok-blok tersebut sebagai gantinya. Pada Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`, jadi dengan `thinking: {"type": "disabled"}`, hapus blok-blok tersebut sebagai gantinya.
 
 Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) secara verbatim alih-alih meringkasnya:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 47bc7d4bc7e1f3016d2f9c219ce4d56c9ebb0b3aead91f67805dfdb359afe53f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9d51c72e7a45f9e5a2820ec8a0a9e4e8a1545df6b27181b18c1cbe17200638aa
 ---
 
 ---
@@ -55,13 +55,13 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Blok pemikiran terikat pada model dan percakapan
 
-Setiap "thinking block" (blok pemikiran) mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya blok dari sebagian model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. Tidak ada model lain yang membaca blok pemikiran Claude Sonnet 5.5.
+Setiap blok pemikiran mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya blok dari sebagian model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. Di Claude API dan Google Cloud, Claude Opus 5.5 membaca blok pemikiran Claude Sonnet 5.5; tidak ada model lain yang melakukannya.
 
-Jadi, percakapan yang berpindah dari Claude Sonnet 5 ke Claude Sonnet 5.5 mempertahankan penalarannya, sedangkan percakapan yang berpindah dari Claude Sonnet 5.5 ke model lain mana pun menjalankan giliran setelah peralihan tanpa penalaran tersebut. Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target, API membuangnya sebelum model melihatnya: permintaan berhasil, dan blok yang dibuang tidak ditagih. Dengan beta header `thinking-binding-controls-2026-08-01`, pembuangan tersebut dilaporkan dalam array `input_transformations` tingkat atas. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Jadi, percakapan yang berpindah dari Claude Sonnet 5 ke Claude Sonnet 5.5, atau dari Claude Sonnet 5.5 naik ke Claude Opus 5.5 di Claude API dan Google Cloud, mempertahankan penalarannya, dan perpindahan lain apa pun dari Claude Sonnet 5.5 menjalankan giliran setelah peralihan tanpa penalaran tersebut. Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target, API membuangnya sebelum model melihatnya: permintaan berhasil, dan blok yang dibuang tidak ditagih. Dengan beta header `thinking-binding-controls-2026-08-01`, pembuangan tersebut dilaporkan dalam array `input_transformations` tingkat atas. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
-API juga memeriksa apakah ada sesuatu sebelum blok pemikiran Claude Sonnet 5.5 yang telah berubah sejak blok tersebut dihasilkan: prompt `system`, `tools`, atau pesan sebelumnya. API menerapkan pemeriksaan tersebut secara default untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00.00 UTC, di Claude API, Amazon Bedrock, dan Google Cloud. Pada akun-akun tersebut, permintaan yang memutar ulang blok setelah perubahan semacam itu mengembalikan error 400. Untuk membuang blok yang terdampak sebagai gantinya, kirim beta header `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Pada akun yang lebih lama, mengatur field tersebut ke salah satu nilai akan mengikutsertakan permintaan. `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, pertahankan riwayat agar hanya ditambahkan (append-only), atau hapus blok pemikiran mulai dari giliran yang diedit dan seterusnya.
+API juga memeriksa apakah ada sesuatu sebelum blok pemikiran Claude Sonnet 5.5 yang telah berubah sejak blok tersebut dihasilkan: prompt `system`, `tools`, atau pesan sebelumnya. API memberlakukan pemeriksaan tersebut secara default untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, di Claude API, Amazon Bedrock, dan Google Cloud. Pada akun-akun tersebut, permintaan yang memutar ulang blok setelah perubahan semacam itu mengembalikan error 400. Untuk membuang blok yang terpengaruh sebagai gantinya, kirim beta header `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Pada akun yang lebih lama, mengatur field tersebut ke salah satu nilai akan mengikutsertakan permintaan. `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, pertahankan riwayat hanya-tambah (append-only), atau hapus blok pemikiran mulai dari giliran yang diedit dan seterusnya.
 
-Pertahankan percakapan agar hanya ditambahkan sehingga pemeriksaan tidak pernah gagal: ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih dengan pengeditan. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan [catatan tentang perubahan ini](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks) di panduan migrasi.
+Pertahankan percakapan hanya-tambah agar pemeriksaan tidak pernah gagal: ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih melakukan pengeditan. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan [catatan tentang perubahan ini](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks) di panduan migrasi.
 
 ### Alat computer use `computer_20251124` tidak didukung di Claude API dan Google Cloud
 
@@ -109,7 +109,7 @@ Semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/b
 
 ## Harga
 
-Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, termasuk tarif caching prompt dan pemrosesan batch. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk daftar lengkap, residensi data, dan harga alat.
+Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berbiaya $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk daftar lengkap, residensi data, dan harga alat.
 
 ## Ketersediaan
 
@@ -163,12 +163,12 @@ Perbarui ID model Anda:
 
 Kemudian periksa enam hal:
 
-1. Jika kode Anda mematikan pemikiran dengan `disabled`, kirim `between_tools` sebagai gantinya, pada effort `high` atau lebih rendah.
+1. Jika kode Anda mematikan pemikiran dengan `disabled`, kirim `between_tools` sebagai gantinya, pada effort `high` atau di bawahnya.
 2. Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
-3. Pertahankan percakapan agar hanya ditambahkan. Permintaan yang memutar ulang blok pemikiran Claude Sonnet 5.5 setelah pengeditan pada riwayat sebelumnya dapat mengembalikan error 400. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
+3. Pertahankan percakapan hanya-tambah. Permintaan yang memutar ulang blok pemikiran Claude Sonnet 5.5 setelah pengeditan pada riwayat sebelumnya dapat mengembalikan error 400. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
 4. Jika Anda menggunakan computer use melalui `computer_20251124` di Claude API atau Google Cloud, [pindah ke toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
 5. Jika Anda menggunakan alat advisor dengan advisor Claude Opus 4.8, Claude Opus 4.7, atau Claude Sonnet 5, [beralihlah ke advisor yang diterima Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
-6. Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `thinking.display` saat Anda menggunakan pemikiran adaptif. Dengan `between_tools`, teks tersebut dikembalikan tanpa pengaturan itu. Lihat [Teks di antara pemanggilan alat dikembalikan dalam blok pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls).
+6. Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `thinking.display` saat Anda menggunakan pemikiran adaptif. Dengan `between_tools`, teks tersebut dikembalikan tanpa pengaturan itu. Lihat [Teks di antara pemanggilan alat dikembalikan dalam blok thinking](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls).
 
 [Panduan migrasi](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide) berisi instruksi langkah demi langkah dari Claude Sonnet 5 dan model-model sebelumnya, serta daftar periksa lengkap.
 

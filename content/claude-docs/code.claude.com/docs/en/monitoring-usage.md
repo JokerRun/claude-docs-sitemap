@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 10be20a1dfe73098e6feaea6d074d12d2bb4647ff8193a53af68a5b5bd26ca59
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 416b73c6df32813e6bb795b67f9985910bd9e47543f032ad96a35052a7459d07
 ---
 
 > ## Documentation Index
@@ -524,7 +524,7 @@ To export telemetry from those sessions, set `CLAUDE_CODE_ENABLE_TELEMETRY` and 
 * **Server-managed settings**: add them to the `env` block of your organization's [server-managed settings](/docs/en/server-managed-settings). Claude Code fetches those settings at startup wherever [server-managed settings apply](/docs/en/model-config#surface-coverage), which includes your users' machines and cloud sessions other than Claude Tag channel sessions. Claude Tag sessions don't receive your server-managed settings, so this route doesn't configure them.
 * **The environment's variables**: add them to a cloud environment's [environment variables](/docs/en/cloud-environments#set-environment-variables) to configure only the sessions that run in that environment. This is the route that reaches Claude Tag sessions.
 
-Anyone who uses an environment can read its variables, so don't put a credential there, such as a collector token in `OTEL_EXPORTER_OTLP_HEADERS`. An [API credential](/docs/en/cloud-environments#add-api-credentials) on the environment doesn't help either, because Claude Code's own telemetry export is one of the [requests that never get the credential](/docs/en/cloud-environments#requests-that-never-get-the-credential). If your collector requires a credential, configure the whole export through server-managed settings instead, because when you set a credential there, [Claude Code removes endpoint variables set outside managed settings](#how-managed-settings-lock-the-otlp-destination).
+Anyone who uses an environment can read its variables, so don't put a credential there, such as a collector token in `OTEL_EXPORTER_OTLP_HEADERS`. A [network secret](/docs/en/cloud-environments#add-network-secrets) on the environment doesn't help either, because Claude Code's own telemetry export is one of the [requests that never get the secret](/docs/en/cloud-environments#requests-that-never-get-the-credential). If your collector requires a credential, configure the whole export through server-managed settings instead, because when you set a credential there, [Claude Code removes endpoint variables set outside managed settings](#how-managed-settings-lock-the-otlp-destination).
 
 Keep these constraints in mind when you configure telemetry for cloud sessions:
 

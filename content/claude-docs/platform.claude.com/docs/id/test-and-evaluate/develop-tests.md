@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2b9b29a57dd8ce6cbfa63fd759353818b78a44c8b2dcea30b560cb1801048069
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5573a23396aec3ea03a0f8fa573c7b77bee476e4f1c4c0e7c0ce9fdb3bccd89d
 ---
 
 ---
@@ -13,7 +13,9 @@ description: Tentukan kriteria keberhasilan yang terukur untuk aplikasi LLM Anda
 
 Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari "prompt engineering" (rekayasa prompt).
 
-![Diagram alur prompt engineering: kasus uji, prompt awal, pengujian dan penyempurnaan berulang, validasi akhir, rilis](https://platform.claude.com/docs/images/how-to-prompt-eng.png)
+<Frame>
+  ![Diagram alir prompt engineering (rekayasa prompt): test cases (kasus uji), preliminary prompt (prompt awal), iterative testing and refinement (pengujian dan penyempurnaan iteratif), final validation (validasi akhir), ship (rilis)](https://platform.claude.com/docs/images/how-to-prompt-eng.svg)
+</Frame>
 
 ## Tentukan kriteria keberhasilan Anda
 
@@ -2852,7 +2854,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     Suatu kasus penggunaan, atau bahkan kriteria keberhasilan spesifik untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi holistik.
   </Note>
 * **Empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan 'correct' atau 'incorrect', atau menilai dari skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
-* **Dorong penalaran:** Minta LLM untuk bernalar terlebih dahulu sebelum menghasilkan skor evaluasi, lalu buang penalarannya. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang membutuhkan penilaian kompleks.
+* **Dorong penalaran:** Gunakan model penilai dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif, sehingga model bernalar sebelum menghasilkan skor evaluasi. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
 
 <Accordion title="Contoh: Penilaian berbasis LLM">
   <CodeGroup exclude="shell">
@@ -2864,7 +2866,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
         return f"""Grade this answer based on the rubric:
         <rubric>{rubric}</rubric>
         <answer>{answer}</answer>
-        Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags."""
+        Output 'correct' or 'incorrect' in <result> tags."""
 
 
     def grade_completion(output, golden_answer):
@@ -2923,7 +2925,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
       return `Grade this answer based on the rubric:
     <rubric>${rubric}</rubric>
     <answer>${answer}</answer>
-    Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.`;
+    Output 'correct' or 'incorrect' in <result> tags.`;
     }
 
     async function gradeCompletion(output: string, goldenAnswer: string): Promise<string> {
@@ -2979,7 +2981,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
             Grade this answer based on the rubric:
             <rubric>{rubric}</rubric>
             <answer>{answer}</answer>
-            Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.
+            Output 'correct' or 'incorrect' in <result> tags.
             """;
     }
 
@@ -3060,7 +3062,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     	return fmt.Sprintf(`Grade this answer based on the rubric:
     <rubric>%s</rubric>
     <answer>%s</answer>
-    Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.`, rubric, answer)
+    Output 'correct' or 'incorrect' in <result> tags.`, rubric, answer)
     }
 
     func gradeCompletion(output, goldenAnswer string) string {
@@ -3141,7 +3143,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
             Grade this answer based on the rubric:
             <rubric>%s</rubric>
             <answer>%s</answer>
-            Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.""".formatted(rubric, answer);
+            Output 'correct' or 'incorrect' in <result> tags.""".formatted(rubric, answer);
     }
 
     String gradeCompletion(String output, String goldenAnswer) {
@@ -3184,7 +3186,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
         Grade this answer based on the rubric:
         <rubric>{$rubric}</rubric>
         <answer>{$answer}</answer>
-        Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.
+        Output 'correct' or 'incorrect' in <result> tags.
         PROMPT;
     }
 
@@ -3265,7 +3267,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
         Grade this answer based on the rubric:
         <rubric>#{rubric}</rubric>
         <answer>#{answer}</answer>
-        Think through your reasoning in <thinking> tags, then output 'correct' or 'incorrect' in <result> tags.
+        Output 'correct' or 'incorrect' in <result> tags.
       PROMPT
     end
 

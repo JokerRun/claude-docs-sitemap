@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: e9619905921dc61dede20cee84359ec510c85f19946f1691891a139b6443ba04
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e5634531ceeeee32ec53abf51c37cbcd5ff499fe4bf1be3b97780e2a52c85829
 ---
 
 ---
@@ -11,16 +11,16 @@ url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
 description: Ikhtisar fitur baru, perubahan yang merusak kompatibilitas, dan peningkatan kemampuan di Claude Fable 5.1 dan Claude Mythos 5.1.
 ---
 
-Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seharga seperempat dari biaya sebelumnya, serta menghadirkan agentic coding jangka panjang yang lebih kuat, riset multilangkah, dan pekerjaan dokumen, spreadsheet, dan slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang berat dan pekerjaan agentic berjangka panjang, atau ketika eval Anda pada Claude Opus 5 dengan effort lebih tinggi masih belum memadai. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya untuk peserta [Project Glasswing](https://anthropic.com/glasswing).
+Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya, serta menghadirkan kemampuan yang lebih kuat untuk agentic coding jangka panjang, riset multilangkah, dan pekerjaan dokumen, spreadsheet, serta slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5.5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang menuntut dan pekerjaan agentic berjangka panjang, atau ketika eval Anda pada Claude Opus 5.5 dengan effort yang lebih tinggi masih belum memadai. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya kepada organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 
 Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompatibilitas: [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#forced-tool-use-is-not-supported), [model sebelumnya tidak dapat membaca blok thinking-nya](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#thinking-blocks-are-tied-to-the-model-that-produced-them), dan [mengedit giliran sebelumnya membatalkan blok thinking](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#editing-earlier-turns-invalidates-thinking-blocks). Lima perubahan bersifat tambahan: [effort per pesan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) (beta), [pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) (beta), [pembaruan progres yang dapat dibaca di antara pemanggilan alat](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#progress-updates-between-tool-calls-beta) (`display: "updates"`, beta), [harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing), dan [provenans konten](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#content-provenance).
 
 ## Model
 
-| Model             | ID Claude API     | Deskripsi                                                                                     | Ketersediaan                                                       |
-| ----------------- | ----------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Claude Fable 5.1  | claude-fable-5-1  | Penerus Claude Fable 5, untuk agentic coding jangka panjang, pekerjaan pengetahuan, dan riset | Semua pelanggan, di Claude API dan platform mitra                  |
-| Claude Mythos 5.1 | claude-mythos-5-1 | Kemampuan yang sama dengan Claude Fable 5.1. Penerus Claude Mythos 5.                         | Hanya peserta [Project Glasswing](https://anthropic.com/glasswing) |
+| Model             | ID Claude API     | Deskripsi                                                                                     | Ketersediaan                                                                                                                                              |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5.1  | claude-fable-5-1  | Penerus Claude Fable 5, untuk agentic coding jangka panjang, pekerjaan pengetahuan, dan riset | Semua pelanggan, di Claude API dan platform mitra                                                                                                         |
+| Claude Mythos 5.1 | claude-mythos-5-1 | Kemampuan yang sama dengan Claude Fable 5.1. Penerus Claude Mythos 5.                         | Organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842) |
 
 Claude Fable 5.1 dan Claude Mythos 5.1 memiliki spesifikasi dan harga yang sama:
 
@@ -72,7 +72,7 @@ Agar pemikiran tetap valid sepanjang sesi yang panjang, perlakukan percakapan se
 
 ### Mengubah effort di tengah percakapan (beta)
 
-Di Claude Fable 5.1, Anda dapat mengubah tingkat ["effort" (upaya)](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan tanpa membatalkan prompt cache. Naikkan untuk langkah yang sulit dan turunkan untuk langkah rutin. Effort per pesan masih dalam tahap beta: sertakan beta header `mid-conversation-output-config-2026-07-01`. Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5 mendukungnya di Claude API dan Google Cloud.
+Di Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan tanpa membatalkan validitas cache prompt. Naikkan untuk langkah yang sulit dan turunkan untuk langkah rutin. Effort per pesan masih dalam beta: sertakan header beta `mid-conversation-output-config-2026-07-01`. Claude Fable 5.1 dan Claude Mythos 5.1 mendukungnya di Claude API, Google Cloud, dan Amazon Bedrock. Untuk menggunakannya dengan Claude Fable 5.1 melalui [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, kirim nilai tersebut dalam array `anthropic_beta` di body permintaan sebagai gantinya. Untuk model lain yang mendukungnya dan platform untuk masing-masing, lihat [Mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#changing-effort-mid-conversation).
 
 <CodeGroup>
   ```bash cURL
@@ -345,7 +345,7 @@ Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/e
 
 ### Pesan sistem dengan cakupan giliran (beta)
 
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dapat dibatasi cakupannya ke satu giliran. Atur `clear_at: "next_user_message"` pada pesan `role: "system"` dan teksnya membawa otoritas prompt sistem untuk giliran saat ini, lalu berhenti dirender setelah ada pesan `user` berikutnya. Pesan tersebut tetap berada di `messages` dan Anda terus mengirimkannya kembali kata demi kata, sehingga tidak ada yang berubah di bagian percakapan sebelumnya. [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok, [blok thinking setelahnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), dan pesan yang telah dibersihkan tidak memakan token input. Gunakan untuk pengingat per giliran dalam loop alat ("periksa kotak masuk Anda sebelum menjalankan kode lagi", "pengguna tidak dapat melihat output alat itu") alih-alih menyisipkan teks ke dalam riwayat dan menghapusnya pada permintaan berikutnya. Pesan sistem dengan cakupan giliran berada dalam beta: sertakan header beta `mid-conversation-system-clear-at-2026-08-21`. Lihat [Pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
+[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dapat dibatasi cakupannya ke satu giliran. Atur `clear_at: "next_user_message"` pada pesan `role: "system"` dan teksnya membawa otoritas prompt sistem untuk giliran saat ini, lalu berhenti dirender setelah ada pesan `user` berikutnya. Pesan tersebut tetap berada di `messages` dan Anda terus mengirimkannya kembali kata demi kata, sehingga tidak ada yang berubah di bagian percakapan sebelumnya. [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok, [blok thinking setelahnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), dan pesan yang telah dibersihkan tidak memakan token input. Gunakan untuk pengingat per giliran dalam loop alat ("periksa kotak masuk Anda sebelum menjalankan kode lagi", "pengguna tidak dapat melihat output alat itu") alih-alih menyisipkan teks ke dalam riwayat dan menghapusnya pada permintaan berikutnya. Pesan sistem dengan cakupan giliran berada dalam beta: sertakan header beta `mid-conversation-system-clear-at-2026-08-21`. Lihat [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
 
 ```json
 {
@@ -433,7 +433,7 @@ Claude Fable 5.1 tersedia di:
 * **Google Cloud:** [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), sebagai `claude-fable-5-1`.
 * **Microsoft Foundry:** [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), di infrastruktur Anthropic.
 
-Claude Mythos 5.1 hanya ditawarkan kepada pelanggan yang disetujui di [Project Glasswing](https://anthropic.com/glasswing). Untuk akses, hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
+Claude Mythos 5.1 hanya tersedia untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Untuk meminta akses, daftarlah ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
 
 Claude Fable 5.1 dan Claude Mythos 5.1 memiliki retensi data 30 hari dan tidak tersedia dengan zero data retention kecuali diizinkan secara tegas oleh Anthropic. Keduanya adalah [Covered Models](https://support.claude.com/en/articles/15425695), seperti Claude Fable 5 dan Claude Mythos 5. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 

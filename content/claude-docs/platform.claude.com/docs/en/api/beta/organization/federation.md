@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 748e6f24559a0e632af8f14bef586a4bfd6487cd4ea632e2179fd8e0d91c856e
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: b33fd96e2cc5f7c844dc931c4a62c27f20921d0d0579963e3df565fff997acbd
 ---
 
 ---
@@ -2016,7 +2016,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -2340,7 +2340,7 @@ unless `include_archived=true`.
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -2654,7 +2654,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3053,7 +3053,7 @@ Console session.
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 
@@ -3368,7 +3368,7 @@ other scopes require a Console session.
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

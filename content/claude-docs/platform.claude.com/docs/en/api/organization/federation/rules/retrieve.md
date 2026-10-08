@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: aad76d927b05de01ce6aa1adbf30bfa1fb0320e578557125bc7f66c7471fed67
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: dadc68b1c743f7cd42fc10253027ab5e15e9f9cf573cbe849671e3ec0293db8e
 ---
 
 ---
@@ -123,7 +123,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

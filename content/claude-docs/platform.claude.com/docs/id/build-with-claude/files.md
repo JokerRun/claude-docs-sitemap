@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 6077616b2aec2a307730957ab3404ec01839cb91559b46f0733a3c41228e78f5
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 60f60a0db87f36e496497894271023a39404b255101b23614026b42884b4e8d5
 ---
 
 ---
@@ -694,7 +694,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan paginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan maksimal 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya ketika diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi jumlah total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan "pagination" (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [paginasi otomatis](https://platform.claude.com/docs/id/api/overview#pagination). Contoh CLI membatasi total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL

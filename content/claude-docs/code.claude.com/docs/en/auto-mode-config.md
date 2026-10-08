@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 012057bef3bfdb529a32a26fa9eecc994cf498d6085750537f64ce32eb28792f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a8feb7dac2f2070bdb140462603d1c6ef3bc86560eff5ea4e8443792382aa3a7
 ---
 
 > ## Documentation Index
@@ -342,7 +342,7 @@ Both `defaults` and `config` print the four rule lists as a single JSON object, 
 }
 ```
 
-Get AI feedback on your custom `allow`, `soft_deny`, and `hard_deny` rules:
+Get AI feedback on your custom `allow`, `soft_deny`, `hard_deny`, and `environment` entries:
 
 ```bash theme={null}
 claude auto-mode critique

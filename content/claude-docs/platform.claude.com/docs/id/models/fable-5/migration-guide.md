@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/migration-guide
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: f837aa34260d58fdf78688289fca4056332bb2c460ec0ae804e677128fa6a534
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4f9d7bc0174a9a35e20a0082d74c8255f374faebd03345136b9ab46cd1ebe596
 ---
 
 ---
-title: Bermigrasi ke Claude Mythos 5 dan Claude Fable 5
+title: Panduan migrasi Claude Mythos 5 dan Claude Fable 5
 url: https://platform.claude.com/docs/id/models/fable-5/migration-guide
-description: "Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Mythos Preview, Claude Opus 5, atau Claude Opus 4.8: ID model, perubahan API, dan daftar periksa migrasi."
+description: Beralih ke Claude Mythos 5 dan Claude Fable 5 dari Claude Mythos Preview, Claude Opus 5, atau Claude Opus 4.8 dengan panduan migrasi ini. Panduan untuk mengaktifkan Claude Mythos 5 dan Claude Fable 5 mencakup ID model, perubahan API, dan daftar periksa migrasi.
 ---
 
 <Note>
@@ -25,7 +25,7 @@ description: "Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Mytho
   Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
 </Tip>
 
-[Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) dibangun untuk penalaran yang menuntut dan pekerjaan agentik berjangka panjang. [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide) dibangun di atasnya. Claude Fable 5 tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5](https://anthropic.com/glasswing) memiliki kemampuan yang sama dan hanya ditawarkan kepada pelanggan yang disetujui dalam Project Glasswing.
+[Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang. [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide) dibangun di atasnya. Claude Fable 5 tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) memiliki kemampuan yang sama dan hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 
 Pengaturan dasar yang dimiliki bersama oleh `claude-fable-5` dan `claude-mythos-5`:
 
@@ -37,15 +37,14 @@ Pengaturan dasar yang dimiliki bersama oleh `claude-fable-5` dan `claude-mythos-
 
 Perbedaan antara kedua model:
 
-* **Ketersediaan:** Claude Fable 5 tidak memerlukan persetujuan akses. Claude Mythos 5 hanya tersedia bagi pelanggan yang disetujui dalam [Project Glasswing](https://anthropic.com/glasswing).
-* **Pengklasifikasi keamanan:** Claude Fable 5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan dengan `stop_reason: "refusal"`. Claude Mythos 5 tidak menyertakan pengklasifikasi ini. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
+* **Ketersediaan:** Claude Fable 5 tidak memerlukan persetujuan akses. Claude Mythos 5 hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * **Priority Tier:** [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models) didukung pada Claude Fable 5 tetapi tidak pada Claude Mythos 5.
 
 ## Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Mythos Preview
 
-[Claude Mythos 5](https://anthropic.com/glasswing) adalah penerus dengan akses terbatas dari [Claude Mythos Preview](https://anthropic.com/glasswing), pratinjau riset khusus undangan. [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) menawarkan kemampuan yang sama dan tidak memerlukan persetujuan akses. Perubahan dalam bagian ini berlaku sama untuk kedua target.
+[Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) adalah penerus dengan akses terbatas dari [Claude Mythos Preview](https://anthropic.com/glasswing), pratinjau riset khusus undangan. [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) menawarkan kemampuan yang sama dan tidak memerlukan persetujuan akses. Perubahan di bagian ini berlaku sama untuk kedua target.
 
-Migrasi sebagian besar bersifat drop-in. Claude Mythos 5 dan Claude Fable 5 menggunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) yang sama dan pola ["tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) yang sama seperti Claude Mythos Preview, dan jumlah token kurang lebih tidak berubah karena ketiga model menggunakan tokenizer yang sama. Perubahan utama yang perlu diperiksa adalah fitur yang tidak lagi tersedia (tercantum di bagian berikutnya) dan output thinking. Jika Anda bermigrasi ke Claude Fable 5, rencanakan juga penanganan penolakan dari pengklasifikasi keamanan, yang tidak dimiliki Claude Mythos Preview dan Claude Mythos 5; lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
+Migrasi sebagian besar bersifat drop-in. Claude Mythos 5 dan Claude Fable 5 menggunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) yang sama dan pola ["tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) yang sama dengan Claude Mythos Preview, dan jumlah token kurang lebih tidak berubah karena ketiga model menggunakan tokenizer yang sama. Perubahan utama yang perlu diperiksa adalah fitur yang tidak lagi tersedia (tercantum di bagian berikutnya) dan output thinking. Jika Anda bermigrasi ke Claude Fable 5, rencanakan juga penanganan penolakan oleh pengklasifikasi keamanan; lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 
 Untuk jadwal penghentian Claude Mythos Preview, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
@@ -330,7 +329,7 @@ model = "claude-fable-5"  # After
 * Hapus `budget_tokens`. Parameter ini tidak memiliki pengganti langsung: thinking bersifat adaptif, dan parameter `effort` adalah kontrol tingkat output yang terpisah, bukan anggaran thinking.
 * Pastikan kode apa pun yang mem-parsing field `thinking` memperlakukannya hanya sebagai teks tampilan dan mengirimkan kembali blok thinking tanpa perubahan saat melanjutkan pada model yang sama. `thinking.display` secara default bernilai `"omitted"` di `claude-mythos-5` dan `claude-fable-5`, sama seperti di Claude Mythos Preview. Atur `display: "summarized"` untuk menerima ringkasan yang dapat dibaca. Lihat [Output thinking pada model Claude Fable dan Claude Mythos](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
 * Jika Anda memutar ulang riwayat percakapan pada model yang lebih lama, hapus terlebih dahulu blok `thinking` dan `redacted_thinking` dari giliran asisten sebelumnya. Blok thinking dari `claude-fable-5` dan `claude-mythos-5` hanya dapat dibaca oleh model yang menghasilkannya atau model yang lebih baru: model yang lebih lama mengabaikannya secara diam-diam, sedangkan Claude Fable 5.1 dan Claude Mythos 5.1 membacanya, jadi pertahankan blok tersebut saat Anda memindahkan percakapan ke model-model tersebut (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). Penghapusan menjaga permintaan ke model yang lebih lama tetap minimal dan seragam.
-* Jika Anda bermigrasi ke Claude Fable 5, tangani `stop_reason: "refusal"` dan baca field `stop_details.category`. Claude Fable 5 menjalankan pengklasifikasi keamanan yang tidak dimiliki Claude Mythos Preview dan Claude Mythos 5. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
+* Jika Anda bermigrasi ke Claude Fable 5, tangani `stop_reason: "refusal"` dan baca field `stop_details.category`. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 * Tetapkan ulang baseline jumlah token dan biaya pada beban kerja Anda sendiri. Jumlah token kurang lebih tidak berubah saat bermigrasi dari `claude-mythos-preview`.
 
 ## Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Opus 5
@@ -343,7 +342,7 @@ Claude Fable 5 dan Claude Mythos 5 menggunakan [Messages API](https://platform.c
 model = "claude-opus-5"  # Before
 model = "claude-fable-5"  # After
 
-# Atau, untuk model Project Glasswing dengan kemampuan yang sama:
+# Atau, untuk Claude Mythos 5, yang menawarkan kemampuan yang sama bagi organisasi terverifikasi:
 model = "claude-mythos-5"  # After
 ```
 
@@ -370,10 +369,10 @@ model = "claude-mythos-5"  # After
 ## Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Opus 4.8
 
 <Note>
-  Jika kode Anda menggunakan Claude Opus 4.7 atau yang lebih lama, terapkan terlebih dahulu bagian "dari" yang relevan di [Migrasi ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide) untuk perubahan tingkat API dari model Anda saat ini, lalu delta yang tersisa di bagian ini.
+  Jika kode Anda menggunakan Claude Opus 4.7 atau yang lebih lama, terapkan terlebih dahulu bagian "dari" yang relevan di [panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide) untuk perubahan tingkat API dari model Anda saat ini, lalu sisa perbedaan di bagian ini.
 </Note>
 
-Migrasi sebagian besar bersifat drop-in. Claude Fable 5 dan Claude Mythos 5 menggunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) yang sama dan pola [penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) yang sama seperti Claude Opus 4.8, dengan [jendela konteks 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) yang sama secara default dan [128k token output maksimum](https://platform.claude.com/docs/id/models/overview) yang sama. Jumlah token kurang lebih tidak berubah karena model-model tersebut menggunakan tokenizer yang sama. Perubahan utama yang perlu diperiksa adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif, output thinking, penolakan dari pengklasifikasi keamanan (hanya Claude Fable 5), dan harga.
+Migrasi sebagian besar bersifat drop-in. Claude Fable 5 dan Claude Mythos 5 menggunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) yang sama dan pola [penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) yang sama dengan Claude Opus 4.8, dengan [jendela konteks 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) yang sama secara default dan [128k token output maksimum](https://platform.claude.com/docs/id/models/overview) yang sama. Jumlah token kurang lebih tidak berubah karena model-model tersebut menggunakan tokenizer yang sama. Perubahan utama yang perlu diperiksa adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif, output thinking, penolakan oleh pengklasifikasi keamanan, dan harga.
 
 ### Perbarui nama model Anda
 
@@ -381,7 +380,7 @@ Migrasi sebagian besar bersifat drop-in. Claude Fable 5 dan Claude Mythos 5 meng
 model = "claude-opus-4-8"  # Before
 model = "claude-fable-5"  # After
 
-# Atau, untuk model Project Glasswing dengan kemampuan yang sama:
+# Atau, untuk Claude Mythos 5, yang menawarkan kemampuan yang sama bagi organisasi terverifikasi:
 model = "claude-mythos-5"  # After
 ```
 
@@ -685,7 +684,7 @@ Butir-butir dalam bagian ini menjelaskan perbedaan API dan perilaku yang perlu d
 
 4. **Output thinking:** Pada `claude-fable-5` dan `claude-mythos-5`, rantai pemikiran mentah tidak pernah dikembalikan, tetapi blok thinking tetap membawa teks ringkasan yang dapat dibaca ketika `thinking.display` diatur ke `summarized`. Kirimkan kembali blok thinking tanpa perubahan saat melanjutkan percakapan pada model yang sama. Lihat [Output thinking pada model Claude Fable dan Claude Mythos](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
 
-5. **Pengklasifikasi keamanan dan stop reason `refusal` (hanya Claude Fable 5):** `claude-fable-5` menjalankan pengklasifikasi keamanan pada permintaan dan selama pembuatan respons. Claude Mythos 5 tidak menyertakan pengklasifikasi ini. Ketika pengklasifikasi menolak permintaan, Messages API mengembalikan `stop_reason: "refusal"` sebagai respons HTTP 200 yang berhasil, bukan error. Field `stop_details.category` melaporkan pengklasifikasi mana yang terpicu, dengan kategori seperti `"cyber"`, `"bio"`, dan `"reasoning_extraction"`, atau `null` ketika penolakan tidak terpetakan ke kategori bernama apa pun. Lihat [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk daftar lengkapnya.
+5. **Pengklasifikasi keamanan dan stop reason `refusal`:** `claude-fable-5` menjalankan pengklasifikasi keamanan pada permintaan dan selama pembuatan respons. Ketika pengklasifikasi menolak permintaan, Messages API mengembalikan `stop_reason: "refusal"` sebagai respons HTTP 200 yang berhasil, bukan error. Field `stop_details.category` melaporkan pengklasifikasi mana yang terpicu, dengan kategori seperti `"cyber"`, `"bio"`, dan `"reasoning_extraction"`, atau `null` ketika penolakan tidak terkait dengan kategori bernama mana pun. Lihat [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk daftar lengkapnya.
 
    Penolakan yang tiba sebelum output apa pun ditagih jika kategorinya adalah `"bio"`, `"frontier_llm"`, atau `"reasoning_extraction"`. Penolakan sebelum output apa pun dalam kategori lain, atau dengan kategori `null`, tidak ditagih ([Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed)). Sebelum 24 September 2026, tidak ada penolakan sebelum output apa pun yang ditagih di Claude Fable 5. Ketika pengklasifikasi terpicu di tengah stream, input dan output yang sudah di-stream ditagih; buang output parsial tersebut.
 

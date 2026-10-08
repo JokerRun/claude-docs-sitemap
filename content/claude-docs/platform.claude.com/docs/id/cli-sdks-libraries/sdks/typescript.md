@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b38fd69084fe15de03d5f2ee2ae3ce2c5c6ec1a600723f5ce41c3a24cd146fc3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 54aff863780de6d862acf0e591d4266b89edf45a39ca027c957f02959b984695
 ---
 
 ---
@@ -147,7 +147,7 @@ Sebagai alternatif, Anda dapat menggunakan `client.messages.create({ ..., stream
 
 SDK ini menyediakan helper untuk memudahkan pembuatan dan menjalankan alat di Messages API. Anda dapat menggunakan skema Zod atau JSON Schema untuk mendeskripsikan input ke sebuah alat. Anda kemudian dapat menjalankan alat tersebut menggunakan metode `client.beta.messages.toolRunner()`. Metode ini menangani penerusan input yang dihasilkan oleh model yang dipilih ke alat yang tepat dan meneruskan hasilnya kembali ke model.
 
-Untuk detail lebih lanjut tentang "tool use" (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+Untuk detail lebih lanjut tentang "tool use" (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview). Untuk menjalankan alat browser use atau alat computer use dengan SDK ini, lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 
 ```typescript
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";

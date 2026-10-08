@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: d22b9935af5975c297aa81b6bebbfe48112edb6b8fb849b7b779a1cec6ef7e8a
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 54e09d44b1016bd807396214d45be1ef2cd47f67a5834461564b795bf6f019f1
 ---
 
 ---
@@ -121,7 +121,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](https:/
 
 `GET /v1/organizations/spend_limits/effective` mengembalikan satu baris per anggota saat ini, yang mencerminkan batas pengeluaran efektif setiap anggota, `source`-nya dalam hierarki cakupan, dan `period_to_date_spend` mereka. Memerlukan cakupan `read:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [List effective spend limits](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/list_effective) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [List effective spend limits](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/effective/list) di referensi API.
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
@@ -169,7 +169,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKl
 
 `POST /v1/organizations/spend_limits` menetapkan override batas pengeluaran per pengguna. Ini adalah upsert dengan kunci `(scope, period)`: menetapkan batas untuk pengguna dan periode yang sudah memilikinya akan menimpanya di tempat. Endpoint ini hanya menerima `scope.type: "user"`; default tingkat seat-tier, grup, dan organisasi dikonfigurasi di pengaturan claude.ai. Memerlukan cakupan `write:spend_limits`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/create) di referensi API.
+Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/set) di referensi API.
 
 ```bash cURL
 curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0fcab1aee2daddbcb5a2dd511bebc7b78c597e7610de2ea815c4c041de77a0dd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9f526b91d0fd171e9160f76a880d76666c406ecee18f91bfc5ac4df433c3c3c9
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.66.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.66.0")
+      implementation("com.anthropic:anthropic-java:2.69.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.69.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.66.0</version>
+          <version>2.69.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.66.0</version>
+          <version>2.69.0</version>
       </dependency>
       ```
 
@@ -125,9 +125,9 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Model                                                                                                 | Agent Platform API model ID  |
 | :---------------------------------------------------------------------------------------------------- | :--------------------------- |
 | Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
-| Claude Mythos 5.1 ([limited availability](https://anthropic.com/glasswing))                           | `claude-mythos-5-1`          |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                        | `claude-fable-5`             |
-| Claude Mythos 5 ([limited availability](https://anthropic.com/glasswing))                             | `claude-mythos-5`            |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`            |
 | Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                         | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
@@ -141,6 +141,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`          |
 | Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5@20250929` |
 | Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-sonnet-4@20250514`   |
+| Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`           |
 | Claude Haiku 4.5                                                                                      | `claude-haiku-4-5@20251001`  |
 | Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-3-5-haiku@20241022`  |
 
@@ -200,7 +201,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   const projectId = "MY_PROJECT_ID";
   const region = "global";
 
-  // Menggunakan alur standar `google-auth-library`.
+  // Melalui alur standar `google-auth-library`.
   const client = new AnthropicVertex({
     projectId,
     region
@@ -248,7 +249,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Menggunakan kredensial default Google Cloud
+  	// Menggunakan kredensial Google Cloud default
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
@@ -275,7 +276,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   import com.anthropic.vertex.backends.VertexBackend;
 
   void main() {
-      // Menggunakan kredensial default Google Cloud
+      // Menggunakan kredensial Google Cloud default
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(VertexBackend.fromEnv())
           .build();
@@ -300,7 +301,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   use Anthropic\Vertex;
 
   $client = Vertex\Client::fromEnvironment(
-      location: 'global',
+      region: 'global',
       projectId: 'MY_PROJECT_ID',
   );
 
@@ -335,7 +336,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
 Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Agent Platform](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
 
-Claude juga tersedia melalui [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
+Claude juga tersedia melalui [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
 ## Retensi data
 
@@ -376,7 +377,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) sebesar 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks sebesar 200k token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 (deprecated) dan Sonnet 4 (deprecated), memiliki jendela konteks 200k token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
@@ -386,12 +387,12 @@ Agent Platform menawarkan tiga jenis endpoint:
 
 * **Endpoint global:** Perutean dinamis untuk ketersediaan maksimum
 * **Endpoint multi-region:** Perutean dinamis dalam suatu wilayah geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
-* **Endpoint regional:** Perutean data yang terjamin melalui region geografis tertentu
+* **Endpoint regional:** Perutean data yang dijamin melalui region geografis tertentu
 
 Endpoint regional dan multi-region dikenakan premi harga 10% di atas endpoint global.
 
 <Note>
-  Ini hanya berlaku untuk Claude Sonnet 4.5 dan model-model mendatang. Model lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
+  Ini hanya berlaku untuk Claude Sonnet 4.5 (deprecated) dan model-model mendatang. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
 </Note>
 
 ### Kapan menggunakan setiap opsi
@@ -422,7 +423,7 @@ Endpoint regional dan multi-region dikenakan premi harga 10% di atas endpoint gl
 
 **Menggunakan endpoint global (direkomendasikan):**
 
-Atur parameter `region` (php: `location`) ke `"global"` saat menginisialisasi klien:
+Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 <CodeGroup>
   ```bash cURL
@@ -517,7 +518,7 @@ Atur parameter `region` (php: `location`) ke `"global"` saat menginisialisasi kl
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Menggunakan kredensial default Google Cloud
+  	// Menggunakan kredensial Google Cloud default
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
@@ -575,7 +576,7 @@ Atur parameter `region` (php: `location`) ke `"global"` saat menginisialisasi kl
   use Anthropic\Vertex;
 
   $client = Vertex\Client::fromEnvironment(
-      location: 'global',
+      region: 'global',
       projectId: 'MY_PROJECT_ID',
   );
 
@@ -611,7 +612,7 @@ Atur parameter `region` (php: `location`) ke `"global"` saat menginisialisasi kl
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` (php: `location`) ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan traffic ke berbagai region dalam wilayah geografis tersebut.
+Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di berbagai region dalam wilayah geografis tersebut.
 
 <CodeGroup>
   ```bash cURL
@@ -765,7 +766,7 @@ Atur parameter `region` (php: `location`) ke pengidentifikasi multi-region: `"us
   use Anthropic\Vertex;
 
   $client = Vertex\Client::fromEnvironment(
-      location: 'us', // Multi-region identifier: "us" or "eu"
+      region: 'us', // Multi-region identifier: "us" or "eu"
       projectId: 'MY_PROJECT_ID',
   );
 
@@ -800,11 +801,11 @@ Atur parameter `region` (php: `location`) ke pengidentifikasi multi-region: `"us
 
 **Menggunakan endpoint regional:**
 
-Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
+Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
 
 <CodeGroup>
   ```bash cURL
-  # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+  # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
   MODEL_ID=claude-sonnet-4-6
   LOCATION=us-east5 # Specify a specific region
   PROJECT_ID=MY_PROJECT_ID
@@ -832,7 +833,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+      # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
       model="claude-sonnet-4-6",
       max_tokens=100,
       messages=[
@@ -906,7 +907,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		// Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+  		// Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
   		Model:     anthropic.ModelClaudeSonnet4_6,
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
@@ -928,7 +929,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
   import com.google.auth.oauth2.GoogleCredentials;
 
   void main() throws Exception {
-      // Menggunakan kredensial Google Cloud default dengan region tertentu
+      // Menggunakan kredensial default Google Cloud dengan region tertentu
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(
               VertexBackend.builder()
@@ -943,7 +944,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru menggunakan endpoint global atau multi-region
+                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru memakai endpoint global atau multi-region
                   .model(Model.CLAUDE_SONNET_4_6)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")
@@ -960,7 +961,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
   use Anthropic\Vertex;
 
   $client = Vertex\Client::fromEnvironment(
-      location: 'us-east5',
+      region: 'us-east5',
       projectId: 'MY_PROJECT_ID',
   );
 
@@ -984,7 +985,7 @@ Tentukan region spesifik seperti `"us-east5"` atau `"europe-west1"`:
   )
 
   message = client.messages.create(
-    # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+    # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
     model: "claude-sonnet-4-6",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]

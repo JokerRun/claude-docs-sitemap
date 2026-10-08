@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 42b1c04bb730800ac507695ee2d886ed1608c2d7eff30eb07afd9f9297f77f55
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a7d2bbcac98736ab5eab040fe4e0c4d8e96398b778c673ad26e1b33321dbb5e0
 ---
 
 ---
@@ -307,7 +307,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "archived_at": null,
   "auth": {
     "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",

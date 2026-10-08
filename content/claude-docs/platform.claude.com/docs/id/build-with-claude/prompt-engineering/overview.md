@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 31a01b299b61efd21cfefa4a224a677f608f2f96e6f7d4e02fbfb26d7d4242da
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a2d05b03eb5514d1f3c483ca77ffb56a9bba10677beb9fbdba8c9d1e4051eff4
 ---
 
 ---
@@ -53,7 +53,7 @@ Jika Anda adalah pembelajar interaktif, Anda dapat memulai dengan tutorial inter
 
 <CardGroup cols={2}>
   <Card title="Tutorial prompting GitHub" icon="link" href="https://github.com/anthropics/prompt-eng-interactive-tutorial">
-    Tutorial penuh contoh yang mencakup konsep-konsep rekayasa prompt yang terdapat dalam dokumentasi.
+    Tutorial yang penuh contoh tentang dasar-dasar rekayasa prompt. Tutorial ini ditulis untuk model Claude 3, jadi ikuti Praktik terbaik prompting jika keduanya berbeda.
   </Card>
 
   <Card title="Tutorial prompting Google Sheets" icon="link" href="https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 6d1ef96e6777b7673810ef6e9e040bbfe2d26d221517652b65c297b49953f34a
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 482fa9f291ca36535099b70e84327c836d081a873140be04d675a51c46a0d839
 ---
 
 ---
@@ -30,6 +30,7 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929
     - claude-opus-4-5-20251101
+    - claude-haiku-5-5
     - claude-haiku-4-5-20251001
   supportedPlatforms:
     Claude API: ga

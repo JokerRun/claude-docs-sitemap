@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 106856bb5d1ffb18985a2f3429231c0e628b7ff823a9baa7590fa317a4202209
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2f7b075630ce65cd5b7c38a573d4f188c8bc4deaeacc3e7050c6de12be6193f3
 ---
 
 > ## Documentation Index
@@ -347,7 +347,7 @@ The review follows your `CLAUDE.md` like any Claude Code session, but it doesn't
 
 ### Tune effort and arguments
 
-Pass an [effort level](/docs/en/model-config#adjust-effort-level) to trade coverage for confidence. At `low` and `medium`, the review reports only the findings it's most confident in, so you see fewer false positives; `high` through `max` broaden coverage and may include findings the review is less sure about.
+Pass an [effort level](/docs/en/model-config#adjust-effort-level) to trade coverage for confidence. At `low`, the review reports the findings it's most confident in, so you see fewer false positives. From `medium` through `max`, the review broadens coverage.
 
 When you don't type a level, the review reuses the last level from `low` through `max` you typed, even in an earlier session, and Claude Code shows a notice such as `Reusing high effort, the level you typed last time`. Type a level, like `/code-review high`, to change what later runs reuse; a level you pass in a non-interactive `-p` run doesn't update it. `ultra` neither updates nor uses the remembered level. If you've never typed a level, the review uses the session's current effort. Before v2.1.223, a `/code-review` without a level always used the session's current effort.
 

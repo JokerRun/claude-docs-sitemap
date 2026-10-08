@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 8a50c5e3c0298210dc525f122dbbe6a59873a5b47439e80a7499e8878f51e37f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 204b17c05610ca63ecd4dd857f5195bfac0c51977e53b950b3257a8f18e2eb52
 ---
 
 ---
@@ -194,7 +194,7 @@ Here are criteria and benchmarks that can be used to evaluate the business impac
 
 The choice of model depends on the trade-offs between cost, accuracy, and response time.
 
-For customer support chat, Claude Opus 5 is well suited to balance intelligence, latency, and cost, including the most complex support scenarios that require deep reasoning across long, multi-step conversations. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, or long-context prompts, Claude Haiku 4.5 may be more suitable to optimize for latency.
+For customer support chat, Claude Opus 5 is well suited to balance intelligence, latency, and cost, including the most complex support scenarios that require deep reasoning across long, multi-step conversations. However, for instances where you have conversation flow with multiple prompts including RAG, tool use, or long-context prompts, Claude Haiku 5.5 may be more suitable to optimize for latency. [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) is its main control for speed: `low` is the fastest level, suited to chat and short tool tasks.
 
 ### Build a strong prompt
 

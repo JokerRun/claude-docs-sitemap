@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: d369453a45f35d076557ba3496b55b557f64e034e5b3b4d838ea6ff99bd875fa
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9bd9c7d679d151e2d1a158cc6235da9b87f7f96537081b548de5293299254c62
 ---
 
 ---
@@ -48,7 +48,7 @@ Pertimbangkan pemeriksaan kepatuhan anggaran untuk 20 karyawan: pendekatan tradi
   Untuk pembahasan lebih mendalam tentang biaya inferensi dan konteks yang diatasi oleh pemanggilan alat secara programatik, lihat [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use).
 </Tip>
 
-Pemanggilan alat secara programatik memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) dengan versi alat `code_execution_20260120` atau yang lebih baru.
+Pemanggilan alat secara programatik memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) dengan versi alat `code_execution_20260120` atau yang lebih baru. Untuk memeriksa apakah sebuah model mendukung pemanggilan alat secara programatik sebelum Anda mengirim permintaan, baca nilai `capabilities.code_execution.supported` model tersebut dari Models API. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan field tersebut.
 
 ## Mulai cepat
 

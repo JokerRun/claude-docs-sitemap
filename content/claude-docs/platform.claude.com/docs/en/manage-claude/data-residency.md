@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 3730a48d0d27e0db9ffb815817453c64e0f42e67c243d8a465ac9d6dd8bfb756
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f3a119c7a704957056ac7688ba57e3f12a7d0c7ed92733784aec24cf0edc8292
 ---
 
 ---
@@ -230,7 +230,7 @@ The response `usage` object includes an `inference_geo` field indicating where i
 
 ### Model availability
 
-The `inference_geo` parameter is supported on Claude 4.6 and later models. Requests with `inference_geo` on Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, or earlier models return a 400 error.
+The `inference_geo` parameter is supported on Claude 4.6 and later models. Requests with `inference_geo` on Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), Claude Haiku 4.5, or earlier models return a 400 error.
 
 <Note>
   The `inference_geo` parameter is available on the Claude API (first-party) and [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws). On Amazon Bedrock and Google Cloud, the inference region is determined by the endpoint URL or inference profile, so `inference_geo` is not applicable. On [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), `inference_geo` is likewise not applicable: deployments hosted on Azure can instead use the US Data Zone Standard deployment type, which keeps inference within the United States. The `inference_geo` parameter is also not available through the [OpenAI SDK compatibility endpoint](https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk).

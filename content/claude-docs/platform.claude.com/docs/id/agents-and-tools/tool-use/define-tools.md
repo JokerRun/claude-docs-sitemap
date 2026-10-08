@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 8d504c19c3433a87fa56083122352f0d77fab916b0c5e2ba13fc24c018785ba5
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 081568d02ec5c3a4f5c1f8e1272759f6e545ef489790b0c17784f53d1719d259
 ---
 
 ---
@@ -77,12 +77,12 @@ Here are the functions available in JSONSchema format:
 
 Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti panduan berikut:
 
-* **Berikan deskripsi yang sangat terperinci.** Ini adalah faktor yang paling penting dalam kinerja alat. Deskripsi Anda harus menjelaskan setiap detail tentang alat, termasuk:
+* **Berikan deskripsi yang sangat terperinci.** Ini sejauh ini merupakan faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan setiap detail tentang alat, termasuk:
 
   * Apa yang dilakukan alat
   * Kapan alat harus digunakan (dan kapan tidak)
   * Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
-  * Peringatan atau batasan penting apa pun, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam memutuskan kapan dan bagaimana menggunakannya. Targetkan setidaknya 3–4 kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
+  * Peringatan atau batasan penting apa pun, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Usahakan setidaknya 3–4 kalimat untuk setiap deskripsi alat, lebih banyak jika alatnya kompleks.
 
 * **Prioritaskan deskripsi, tetapi pertimbangkan penggunaan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan field `input_examples` untuk menyediakan contoh yang tervalidasi skema. Lihat [Menyediakan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
 
@@ -91,6 +91,8 @@ Untuk mendapatkan kinerja terbaik dari Claude saat menggunakan alat, ikuti pandu
 * **Gunakan namespace yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan layanannya (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 * **Rancang respons alat agar hanya mengembalikan informasi bersinyal tinggi.** Kembalikan pengenal yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menalar langkah berikutnya. Respons yang membengkak membuang konteks dan mempersulit Claude mengekstrak hal yang penting.
+
+* **Minta penjelasan, bukan penalaran.** Jika sebuah parameter menanyakan kepada Claude mengapa ia melakukan panggilan tersebut, mintalah penjelasan singkat atau bukti pendukung. Parameter yang meminta pemikiran model atau penalaran langkah demi langkah dapat menyebabkan penolakan `reasoning_extraction`. Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 <AccordionGroup>
   <Accordion title="Contoh deskripsi alat yang baik">
@@ -563,10 +565,10 @@ Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk 
 
 Tidak semua model dan pengaturan mendukung penggunaan alat paksa. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` gagal, sementara `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
 
-| Model atau pengaturan                                                                                                                                          | Batasan                                                                                                                  | Alternatif yang dapat digunakan                                                                                                                                                                                                                                                                                                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ["Extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat secara paksa (Claude Opus 5 mendukungnya dengan thinking aktif). Model pada baris berikutnya menolak penggunaan alat secara paksa, apa pun pengaturan thinking-nya                                                                                                       |
-| Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://anthropic.com/glasswing)                                                 | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika Anda memerlukan respons dalam bentuk JSON yang tetap. Prompt tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung |
+| Model atau pengaturan                                                                                                                         | Batasan                                                                                                                  | Alternatif yang dapat digunakan                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`)      | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat secara paksa (Claude Opus 5 dan Claude Haiku 5.5 mendukung hal ini dengan thinking aktif); model pada baris berikutnya menolak penggunaan alat secara paksa terlepas dari pengaturan thinking                                                                                  |
+| Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung |
 
 Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 
@@ -849,7 +851,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
 
 Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 
-* `auto` memungkinkan Claude memutuskan apakah akan memanggil alat yang disediakan atau tidak. Ini adalah nilai default ketika `tools` disediakan.
+* `auto` memungkinkan Claude menentukan apakah akan memanggil alat yang disediakan atau tidak. Ini adalah nilai default ketika `tools` disediakan.
 * `any` memberi tahu Claude bahwa ia harus menggunakan salah satu alat yang disediakan, tetapi tidak memaksa alat tertentu.
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun. Ini adalah nilai default ketika tidak ada `tools` yang disediakan.
@@ -861,7 +863,7 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 Diagram ini mengilustrasikan cara kerja setiap opsi:
 
 <Frame>
-  ![Diagram yang menunjukkan empat opsi tool\_choice: auto, any, tool, dan none](https://platform.claude.com/docs/images/tool_choice.png)
+  ![Diagram tiga opsi tool\_choice: auto (sebuah alat atau respons biasa), any (salah satu alat), dan tool (alat yang disebutkan namanya)](https://platform.claude.com/docs/images/tool_choice.svg)
 </Frame>
 
 Perhatikan bahwa ketika Anda menetapkan `tool_choice` sebagai `any` atau `tool`, API melakukan prefill pada pesan asisten untuk memaksa penggunaan alat. Ini berarti model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, meskipun diminta secara eksplisit untuk melakukannya.

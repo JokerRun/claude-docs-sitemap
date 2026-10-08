@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 37ab4931d53a652f6524b8fa99cb7a812612d3f6e1d387d4d3e2cc4ad3fec683
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f33dacf8e58f2595992909a2a5a7eebdbbcb1ff3b56aec7ea4d6ea8d700cb183
 ---
 
 ---
@@ -50,7 +50,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.36.0
+    VERSION=1.39.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -64,7 +64,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
   </Tab>
 
   <Tab title="Go">
-    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau lebih baru.
+    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/cmd/ant@latest
@@ -101,7 +101,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.66.0")
+    implementation("com.anthropic:anthropic-java:2.69.0")
     ```
   </Tab>
 
@@ -130,7 +130,7 @@ ant --version
   </Tab>
 </Tabs>
 
-Atur kunci API Anda sebagai variabel environment:
+Atur kunci API Anda sebagai "environment variable" (variabel lingkungan):
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key-here"
@@ -381,7 +381,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Buat environment">
-    Environment mendefinisikan sandbox tempat agen Anda berjalan.
+    Environment mendefinisikan "sandbox" (lingkungan terisolasi) tempat agen Anda berjalan. Environment ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts`](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di environment ini, karena environment ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts`.
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
@@ -676,8 +676,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
     <CodeGroup>
       ```bash cURL
-      # This workflow does not translate well to a one-off shell command.
-      # Use one of the SDK examples in this code group instead.
+      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
+      # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
       ```
 
       ```bash CLI
@@ -687,7 +687,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       ```python Python
       with client.beta.sessions.events.stream(session.id) as stream:
-          # Send the user message after the stream opens
+          # Kirim pesan pengguna setelah stream terbuka
           client.beta.sessions.events.send(
               session.id,
               events=[
@@ -703,7 +703,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
               ],
           )
 
-          # Process streaming events
+          # Proses event streaming
           for event in stream:
               match event.type:
                   case "agent.message":
@@ -720,7 +720,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```typescript TypeScript
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Send the user message after the stream opens
+      // Kirim pesan pengguna setelah stream terbuka
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -735,7 +735,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         ],
       });
 
-      // Process streaming events
+      // Proses event streaming
       loop: for await (const event of stream) {
         switch (event.type) {
           case "agent.message":
@@ -758,7 +758,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```csharp C#
       var stream = client.Beta.Sessions.Events.StreamStreaming(session.ID);
 
-      // Send the user message after the stream opens
+      // Kirim pesan pengguna setelah stream terbuka
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
           Events =
@@ -778,7 +778,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           ],
       });
 
-      // Process streaming events
+      // Proses event streaming
       await foreach (var ev in stream)
       {
           if (ev.Value is BetaManagedAgentsAgentMessageEvent message)
@@ -807,7 +807,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Send the user message after the stream opens
+      	// Kirim pesan pengguna setelah stream terbuka
       	_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
       		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
       			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
@@ -825,7 +825,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       		panic(err)
       	}
 
-      	// Process streaming events
+      	// Proses event streaming
       loop:
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {
@@ -849,7 +849,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Send the user message after the stream opens
+          // Kirim pesan pengguna setelah stream terbuka
           client.beta().sessions().events().send(session.id(), EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
                   .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
@@ -857,7 +857,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                   .build())
               .build());
 
-          // Process streaming events
+          // Proses event streaming
           loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
               switch (event.type().value()) {
@@ -875,7 +875,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Send the user message after the stream opens
+      // Kirim pesan pengguna setelah stream terbuka
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -888,7 +888,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           ],
       );
 
-      // Process streaming events
+      // Proses event streaming
       foreach ($stream as $event) {
           match (true) {
               $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent => array_walk(
@@ -908,7 +908,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Send the user message after the stream opens
+      # Kirim pesan pengguna setelah stream terbuka
       client.beta.sessions.events.send_(
         session.id,
         events: [{
@@ -917,7 +917,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         }]
       )
 
-      # Process streaming events
+      # Proses event streaming
       stream.each do |event|
         case event
         when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
@@ -928,7 +928,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           puts "\n\nAgent finished."
           break
         else
-          # ignore other event types
+          # abaikan tipe event lainnya
         end
       end
       ```

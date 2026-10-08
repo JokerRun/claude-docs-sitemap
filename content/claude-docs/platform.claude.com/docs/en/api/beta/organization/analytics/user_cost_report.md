@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_cost_report
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: f71312ea77ca3d26a36aeb5b43439cdfc4d7f4d701c1ff5e49cd1c97c87954a4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 09a45db6bd32d81d595207d6b865e96f53751b46e10781a69437086f30898ac0
 ---
 
 ---
@@ -362,7 +362,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case `data` is empty. Data beyond this watermark is incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours but not final until about 30 days after the usage date (late-arriving events, reconciliation adjustments).
+  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case `data` is empty. Data beyond this watermark is incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 

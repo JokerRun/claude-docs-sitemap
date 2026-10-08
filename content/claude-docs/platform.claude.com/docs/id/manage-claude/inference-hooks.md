@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3a5aac3f41781bd568e3155584854a7ddc35cf2682cc68544411d143a76f3528
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 6216a9dcdca5f440e7bc7beb93493f29041ce08512c248c5353f7e9ff77833fa
 ---
 
 ---
@@ -12,53 +12,39 @@ description: Kirim setiap prompt yang diatur ke server keamanan AI organisasi An
 ---
 
 <Note>
-  Inference hooks masih dalam tahap beta dan tersedia untuk organisasi Claude Enterprise. Untuk mengonfigurasinya, Anda memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
+  Inference hooks masih dalam versi beta dan tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 </Note>
 
-Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui "AI security server" (server keamanan AI) sebelum inferensi berjalan. Server ini adalah layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak. Permintaan yang ditolak tidak akan pernah sampai ke model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara langsung (inline), sementara developer membangun server keamanan AI yang mengevaluasi setiap permintaan.
+Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui "AI security server" (server keamanan AI), yaitu layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya, sebelum inferensi berjalan. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak; permintaan yang ditolak tidak pernah mencapai model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara inline, dan pengembang membangun server keamanan AI yang mengevaluasi setiap permintaan.
 
-Hook berjalan di server Anthropic, yaitu setelah permintaan meninggalkan klien dan sebelum model berjalan. Karena itu, hook berlaku secara seragam untuk setiap permintaan yang diatur, tanpa perlu memasang atau men-deploy apa pun di perangkat pengguna.
+Karena hook berjalan di server Anthropic, setelah permintaan meninggalkan klien dan sebelum model berjalan, hook ini berlaku secara seragam untuk setiap permintaan yang diatur, tanpa perlu menginstal atau menerapkan apa pun di perangkat pengguna.
 
-Saat ini, satu-satunya event hook adalah `prompt`. Event ini dipicu satu kali per permintaan inferensi yang diatur, sebelum inferensi dimulai. Penegakan di sisi respons direncanakan sebagai event di kemudian hari.
+Ada dua event hook. `prompt` dipicu sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. `tool_call` dipicu ketika respons Claude berisi panggilan alat, sebelum salah satunya dijalankan, di organisasi yang mengaktifkan **Validate tool calls**.
 
 ***
 
 ## Cara kerja Inference hooks
 
 1. Pengguna mengirimkan prompt pada permukaan yang diatur.
+2. Anthropic mengirimkan HTTPS `POST` ke endpoint server keamanan AI yang dikonfigurasi organisasi Anda. Body permintaan membawa transkrip percakapan, dan setiap permintaan ditandatangani sesuai spesifikasi [Standard Webhooks](https://www.standardwebhooks.com/) setelah organisasi Anda membuat signing secret-nya, sehingga server Anda dapat memverifikasi bahwa permintaan tersebut berasal dari Anthropic.
+3. Server keamanan AI Anda mengevaluasi konten dan merespons dengan putusan dalam batas waktu putusan yang dikonfigurasi organisasi Anda (5 detik secara default).
+4. Pada `allow`, inferensi berjalan normal. Pada `deny`, permintaan ditolak dan pengguna melihat pesan diblokir-oleh-kebijakan yang disusun dari dua bagian: alasan per permintaan yang diberikan server keamanan AI Anda di field `deny_reason` pada putusan, diikuti oleh pesan tetap yang dikonfigurasi administrator Anda (misalnya, siapa yang harus dihubungi atau di mana meminta pengecualian). Jika administrator Anda belum mengonfigurasinya, pesan default bawaan mengarahkan pengguna untuk menghubungi mereka. Setiap penolakan juga dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda.
 
-2. Anthropic mengirimkan HTTPS `POST` ke endpoint server keamanan AI yang dikonfigurasi organisasi Anda. Body permintaan berisi transkrip percakapan. Setelah organisasi Anda membuat signing secret, setiap permintaan ditandatangani sesuai spesifikasi [Standard Webhooks](https://www.standardwebhooks.com/), sehingga server Anda dapat memverifikasi bahwa permintaan tersebut berasal dari Anthropic.
+Diagram berikut menelusuri satu contoh (permintaan Cowork di mana Claude juga memanggil alat O365) untuk mengilustrasikan bagian mana dari alur yang di-hook. Titik yang di-hook adalah langkah 1, 2, dan 3 pada diagram, yaitu saat prompt tiba, Claude memanggil alat, dan hasil alat kembali. Di setiap titik, server keamanan AI Anda mengembalikan putusan sebelum alur berlanjut. Langkah 2 hanya di-hook jika **Validate tool calls** aktif, dan satu putusannya mencakup semua panggilan alat dalam sebuah respons.
 
-3. Server keamanan AI Anda mengevaluasi konten dan merespons dengan putusan dalam batas waktu putusan yang dikonfigurasi organisasi Anda (default 5 detik).
+<Frame>
+  ![Diagram alur: prompt, "tool call" (panggilan alat), dan "tool result" (hasil alat) masing-masing diperiksa oleh "AI security server" (server keamanan AI); "response" (respons) tidak diperiksa](https://platform.claude.com/docs/images/inference-hooks-flow-2.svg)
+</Frame>
 
-4. Jika putusannya `allow`, inferensi berjalan seperti biasa. Jika putusannya `deny`, permintaan ditolak dan pengguna melihat pesan diblokir-oleh-kebijakan yang tersusun dari dua bagian:
+Putusan adalah objek JSON kecil: `{"action": "allow"}` memungkinkan permintaan dilanjutkan, dan penolakan membawa alasan yang ditampilkan kepada pengguna. Untuk skema putusan lengkap, lihat [Mengembalikan putusan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#return-a-verdict).
 
-   * alasan per permintaan yang diberikan server keamanan AI Anda di field `deny_reason` pada putusan;
-   * pesan tetap yang dikonfigurasi administrator Anda (misalnya, siapa yang harus dihubungi atau di mana mengajukan pengecualian). Jika administrator belum mengonfigurasinya, pesan default bawaan akan mengarahkan pengguna untuk menghubungi mereka.
+Server keamanan AI Anda melihat apa yang dilihat pengguna: teks transkrip, panggilan alat beserta hasilnya, dan teks yang diekstrak dari lampiran. Server tersebut tidak pernah menerima byte file atau gambar mentah, prompt sistem, atau konteks internal Anthropic.
 
-   Setiap penolakan juga dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda.
+Sistem Inference hooks tidak menyimpan salinan konten prompt atau respons sendiri. Sistem ini hanya menyimpan konfigurasi hook Anda dan metadata tentang aktivitas hook, seperti putusan, stempel waktu, dan pengidentifikasi permintaan. Produk Claude yang Anda gunakan menyimpan prompt dan respons berdasarkan aturan retensi datanya sendiri, baik hook aktif maupun tidak. Misalnya, pesan yang diblokir oleh hook di claude.ai tetap ada dalam percakapan.
 
-Diagram berikut menelusuri satu contoh, yaitu permintaan Cowork di mana Claude juga memanggil alat O365, untuk menunjukkan bagian alur mana yang di-hook. Titik yang di-hook adalah langkah 1 dan 6 pada diagram, yaitu saat prompt tiba dan saat hasil alat kembali. Masing-masing memicu pertukaran validasi dengan server keamanan AI Anda, seperti yang ditunjukkan pada langkah 2–3 dan 7–8.
+Jika server keamanan AI Anda tidak dapat dijangkau, mengembalikan error, atau tidak merespons dalam batas waktu, pengaturan penanganan kegagalan organisasi Anda menentukan hasilnya: memblokir permintaan, atau mengizinkannya berlanjut tanpa pemeriksaan. Kegagalan berkelanjutan yang disebabkan oleh server Anda akan memicu "circuit breaker" (pemutus sirkuit): Anthropic berhenti menghubungi server tersebut dan menerapkan pengaturan penanganan kegagalan Anda ke setiap permintaan, lalu mengatur ulang pemutus secara otomatis setelah mendeteksi bahwa server Anda kembali mengembalikan putusan; lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
 
-![Diagram alur: "AI security server" (server keamanan AI) memvalidasi prompt dan "tool result" (hasil alat) sebelum inferensi dilanjutkan](https://platform.claude.com/docs/images/inference-hooks-flow.png)
-
-Putusan berupa objek JSON kecil. `{"action": "allow"}` mengizinkan permintaan dilanjutkan, sedangkan putusan tolak menyertakan alasan yang ditampilkan kepada pengguna. Untuk skema putusan lengkap, lihat [Mengembalikan putusan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#return-a-verdict).
-
-Server keamanan AI Anda melihat apa yang dilihat pengguna: teks transkrip, panggilan alat beserta hasilnya, dan teks yang diekstrak dari lampiran. Server ini tidak pernah menerima byte mentah file atau gambar, prompt sistem, maupun konteks internal Anthropic.
-
-Sistem Inference hooks tidak menyimpan salinan konten prompt atau respons. Sistem ini hanya menyimpan konfigurasi hook Anda dan metadata tentang aktivitas hook, seperti putusan, stempel waktu, dan pengidentifikasi permintaan. Produk Claude yang Anda gunakan menyimpan prompt dan respons sesuai aturan retensi datanya sendiri, baik hook aktif maupun tidak. Misalnya, pesan yang diblokir hook di claude.ai tetap ada di percakapan.
-
-Jika server keamanan AI Anda tidak dapat dijangkau, mengembalikan error, atau tidak merespons dalam batas waktu, pengaturan penanganan kegagalan organisasi Anda yang menentukan hasilnya: memblokir permintaan, atau mengizinkannya berjalan tanpa inspeksi.
-
-Kegagalan berkelanjutan yang disebabkan oleh server Anda akan memicu "circuit breaker" (pemutus sirkuit). Dalam kondisi ini, Anthropic berhenti menghubungi server Anda dan menerapkan pengaturan penanganan kegagalan Anda ke setiap permintaan. Pemutus sirkuit akan direset secara otomatis setelah Anthropic mendeteksi bahwa server Anda kembali mengembalikan putusan. Lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
-
-Penegakan dapat diluncurkan sesuai kecepatan Anda, sehingga tidak ada yang perlu diblokir sejak hari pertama. Tersedia tiga opsi:
-
-* "Shadow mode" (mode bayangan) mengamati putusan pada lalu lintas langsung tanpa memblokir apa pun.
-* "Rollout percentage" (persentase peluncuran) menginspeksi sebagian permintaan sesuai proporsi yang Anda pilih.
-* Pengecualian membebaskan anggota peran tertentu sepenuhnya.
-
-Lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
+Penegakan dapat diluncurkan sesuai kecepatan Anda, sehingga tidak ada yang harus diblokir pada hari pertama: "shadow mode" (mode bayangan) mengamati putusan pada lalu lintas langsung tanpa memblokir apa pun, persentase peluncuran memeriksa sebagian permintaan sesuai proporsi yang Anda pilih, dan pengecualian membebaskan anggota peran tertentu sepenuhnya. Lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 
 Untuk skema permintaan dan respons lengkap, verifikasi tanda tangan, dan detail operasional, lihat [Mengembangkan integrasi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint).
 
@@ -96,11 +82,19 @@ Langkah-langkahnya bergantung pada aplikasi:
 
 ## Ketersediaan
 
-Inference hooks tersedia untuk organisasi Claude Enterprise. Untuk mengonfigurasinya, Anda memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
+Inference hooks tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
 
-Satu hook mengatur percakapan di seluruh sesi claude.ai, Cowork, Claude Code, dan Claude Tag dalam organisasi Claude Enterprise Anda, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
+Satu hook mengatur percakapan di seluruh sesi claude.ai, Cowork, Claude Code, dan Claude Tag di organisasi Claude Enterprise Anda, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
 
-Permintaan yang diatur adalah permintaan inferensi di balik percakapan pengguna. Permintaan tambahan, seperti pembuatan judul percakapan, tidak dikirim ke endpoint Anda. Prompt sistem dan definisi alat juga tidak pernah disertakan dalam data yang dikirim. Mode suara tidak tercakup.
+Permintaan yang diatur adalah permintaan inferensi di balik percakapan pengguna. Permintaan tambahan tidak dikirim ke endpoint Anda. Ini termasuk pembuatan judul percakapan dan pengukuran yang dijalankan Anthropic pada balasan Claude setelah Claude Tag mempostingnya di Slack. Prompt sistem dan definisi alat tidak pernah disertakan dalam apa yang dikirim. Dalam mode suara, prompt dan panggilan alat juga dikirim ke endpoint Anda, meskipun sebagian kecil panggilan alat tidak dikirim, jadi jangan mengandalkan inference hooks sebagai satu-satunya kontrol Anda untuk suara. Jika endpoint Anda menolak permintaan dalam mode suara, panggilan suara biasanya berakhir dengan pesan error umum, dan alasan penolakan Anda tidak ditampilkan.
+
+Dengan **Validate tool calls** aktif, event `tool_call` mungkin tidak menyertakan panggilan ke beberapa alat milik claude.ai sendiri, seperti alat yang mencantumkan, mencari, atau menyarankan konektor, plugin, atau skill, menyarankan untuk memulai riset atau mengaktifkan pencarian web, mencari alat lain, beralih ke model yang lebih besar, mengakhiri chat, memberi Claude waktu lokal pengguna, atau membaca chat lama dan memori tersimpan milik pengguna sendiri. Pemanggilan ini beserta hasilnya tetap ada dalam percakapan, sehingga event `prompt` berikutnya dari percakapan tersebut, jika ada, akan menyertakannya.
+
+Beberapa fitur yang dijalankan Anthropic untuk organisasi Anda melakukan pemanggilan model sendiri. Organisasi Anda melihat hasil pemanggilan tersebut tetapi tidak melihat transkripnya. Pemanggilan ini bukan permintaan yang diatur dan tidak dikirim ke endpoint Anda. Fitur-fitur tersebut meliputi:
+
+* **Pemindaian Claude Security (beta).** [Claude Security](https://claude.com/product/claude-security) menjalankan pemindaian yang di-host pada repositori Anda yang terhubung. Sesi yang dibuka pengguna untuk memperbaiki temuan, serta plugin Claude Security di Claude Code, termasuk yang diatur.
+* **Code Review (pratinjau riset).** [Code Review](https://code.claude.com/docs/en/code-review) menjalankan tinjauan pada pull request GitHub Anda. Tinjauan yang dijalankan pengguna secara lokal di Claude Code dengan `/code-review` termasuk yang diatur.
+* **Smart reports (beta).** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda.
 
 ***
 

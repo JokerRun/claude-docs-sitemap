@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 4fa5613e24e6e034ad66ff8a8594bf100eb51422674416d7712775689ea47586
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f5106dc979c6dedd41d069ce37c8879aa7ece44c7416cae4f64d23a5238e6d6f
 ---
 
 ---
@@ -3130,6 +3130,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                           The model that will complete your prompt.
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                          - `"claude-haiku-5-5"`
+
+                            Fastest model for high-volume, real-time tasks
 
                           - `"claude-sonnet-5-5"`
 

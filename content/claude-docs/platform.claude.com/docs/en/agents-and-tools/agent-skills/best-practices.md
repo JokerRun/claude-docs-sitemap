@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-08-15T02:25:10.047250Z
-sha256: 542eee1e150ff7e2853099dd9e24b94626817d5a50ba50af4a4c35101a355f13
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 727f3fa1168eb1c33ce6a3cbfc94a02ef1dfd647388f6ca9daf7cb6294762f42
 ---
 
 ---
@@ -269,11 +269,15 @@ SKILL.md serves as an overview that points Claude to detailed materials as neede
 
 A basic Skill starts with just a SKILL.md file containing metadata and instructions:
 
-![Simple SKILL.md file showing YAML frontmatter and markdown body](https://platform.claude.com/docs/images/agent-skills-simple-file.png)
+<Frame>
+  ![Simple SKILL.md file showing YAML frontmatter and markdown body](https://platform.claude.com/docs/images/agent-skills-simple-file.svg)
+</Frame>
 
 As your Skill grows, you can bundle additional content that Claude loads only when needed:
 
-![Bundling additional reference files like reference.md and forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.png)
+<Frame>
+  ![Bundling additional reference files like reference.md and forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.svg)
+</Frame>
 
 The complete Skill directory structure might look like this:
 
@@ -944,7 +948,9 @@ Even if Claude could write a script, pre-made scripts offer advantages:
 * Save time (no code generation required)
 * Ensure consistency across uses
 
-![Bundling executable scripts alongside instruction files](https://platform.claude.com/docs/images/agent-skills-executable-scripts.png)
+<Frame>
+  ![Bundling executable scripts alongside instruction files](https://platform.claude.com/docs/images/agent-skills-executable-scripts.svg)
+</Frame>
 
 The preceding diagram shows how executable scripts work alongside instruction files. The instruction file (forms.md) references the script, and Claude can execute it without loading its contents into context.
 

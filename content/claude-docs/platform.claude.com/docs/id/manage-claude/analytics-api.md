@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 03d6a356ef9c7a22a31b9854381a429717cf27e4e6d6e6767a0c108c1a887d0c
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: fe868032ed6f9826a1ffe637d6e95b1a1f222121d9fa2d64b0ad2fe38d0ef2f6
 ---
 
 ---
@@ -90,7 +90,7 @@ Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 
 
 **Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia sekitar pukul 13:00–13:30 UTC pada hari berikutnya (jeda 1 hari). Sebelum itu, hari terbaru yang tersedia biasanya adalah dua hari sebelum tanggal UTC saat ini. Data tiba lebih lambat pada hari-hari ketika pipeline data hulu berjalan terlambat, dan kesegaran pastinya bervariasi per kueri. Jadi, alih-alih mengasumsikan waktu yang tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic. Hubungi dukungan jika kesenjangan tersebut berlanjut.
 
-**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya, tetapi dapat memerlukan waktu hingga 24 jam. Nilai untuk tanggal tertentu dapat direvisi hingga 30 hari seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi. Untuk total setingkat penagihan, kueri tanggal setidaknya 30 hari yang lalu.
+**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya tetapi dapat memakan waktu hingga 24 jam. Nilai dapat direvisi seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi, hingga sekitar 7 hari setelah akhir bulan kalender. Misalnya, nilai untuk 1 Oktober dapat berubah hingga sekitar 7 November. Untuk total setingkat penagihan, kueri hanya bulan-bulan yang berakhir setidaknya 7 hari yang lalu.
 
 <Note>
   Respons biaya dan penggunaan menyertakan timestamp `data_refreshed_at`. Ketika `ending_at` dihilangkan (default-nya adalah waktu saat ini), respons menyertakan ekor data setelah `data_refreshed_at` yang belum lengkap. Untuk hasil yang stabil di seluruh panggilan berulang, atur `ending_at` ke nilai pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya.

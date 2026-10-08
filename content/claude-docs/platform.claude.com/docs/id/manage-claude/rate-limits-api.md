@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f884d4335ad4761b18e05fd0375600fc7ba6fcb0f6ae42f7baf2a7a07314818b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 07862ed6910be81ce537ed9bf92072300ad21bd7bbb74af08fa1600c43064d5e
 ---
 
 ---
@@ -15,23 +15,23 @@ description: Kueri batas laju API organisasi Anda secara terprogram dengan Rate 
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Rate Limits API menyediakan akses terprogram ke batas laju yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama yang ditampilkan pada halaman [Rate limits](https://platform.claude.com/settings/limits) di Claude Console.
+Rate Limits API menyediakan akses terprogram ke "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Batas laju](https://platform.claude.com/settings/limits) di Claude Console.
 
 Gunakan API ini untuk:
 
-* **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini pada startup dan secara terjadwal alih-alih melakukan hardcode nilai yang bergeser ketika Anthropic menyesuaikannya.
-* **Menggerakkan peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) terhadap batas yang Anda konfigurasi.
+* **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini ketika startup dan secara terjadwal alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
+* **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) dengan batas yang telah Anda konfigurasi.
 * **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
 
 <Check>
   **Kredensial Admin API diperlukan.** Endpoint ini merupakan bagian dari Admin API. Anda dapat mengaksesnya menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci akun pribadi maupun akun layanan yang tidak dibatasi pada suatu workspace; kunci API workspace tidak dapat digunakan. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) untuk detailnya.
 </Check>
 
-Contoh SDK dan CLI pada halaman ini membangun klien default, yang membaca kunci API Admin dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK mengekspos endpoint ini sebagai `client.beta.organization.rate_limits` dan `client.beta.organization.workspaces.rate_limits`; metode list Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengikuti `next_page` untuk Anda, sementara contoh PHP, Ruby, dan curl membaca satu halaman.
+Contoh SDK dan CLI di halaman ini membuat klien default, yang membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK mengekspos endpoint ini sebagai `client.organization.rate_limits` (typescript: `client.organization.rateLimits`; csharp, go: `client.Organization.RateLimits`; java: `client.organization().rateLimits()`; php: `$client->organization->rateLimits`) dan `client.organization.workspaces.rate_limits` (typescript: `client.organization.workspaces.rateLimits`; csharp, go: `client.Organization.Workspaces.RateLimits`; java: `client.organization().workspaces().rateLimits()`; php: `$client->organization->workspaces->rateLimits`); metode list di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengikuti `next_page` untuk Anda, sedangkan contoh PHP, Ruby, dan curl membaca satu halaman.
 
 ## Mulai cepat
 
-Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
+Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -41,30 +41,30 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```
 
   ```bash CLI
-  ant beta:organization:rate-limits list
+  ant organization:rate-limits list
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.beta.organization.rate_limits.list()
+  rate_limits = client.organization.rate_limits.list()
 
-  for group in rate_limits:
-      models = f" ({', '.join(group.models)})" if group.models else ""
-      print(f"{group.group_type}{models}")
-      for limit in group.limits:
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
           print(f"  {limit.type}: {limit.value}")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.beta.organization.rateLimits.list();
+  const rateLimits = await client.organization.rateLimits.list();
 
-  for await (const group of rateLimits) {
-    const models = group.models ? ` (${group.models.join(", ")})` : "";
-    console.log(`${group.group_type}${models}`);
-    for (const limit of group.limits) {
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
       console.log(`  ${limit.type}: ${limit.value}`);
     }
   }
@@ -73,13 +73,13 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```csharp C#
   AnthropicClient client = new();
 
-  var rateLimits = await client.Beta.Organization.RateLimits.List();
+  var rateLimits = await client.Organization.RateLimits.List();
 
-  await foreach (var group in rateLimits.Paginate())
+  await foreach (var entry in rateLimits.Paginate())
   {
-      var models = group.Models is null ? "" : $" ({string.Join(", ", group.Models)})";
-      Console.WriteLine($"{group.GroupType.Raw()}{models}");
-      foreach (var limit in group.Limits)
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
       }
@@ -89,16 +89,16 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```go Go
   client := anthropic.NewClient()
 
-  rateLimits := client.Beta.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.BetaOrganizationRateLimitListParams{})
+  rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{})
 
   for rateLimits.Next() {
-  	group := rateLimits.Current()
+  	entry := rateLimits.Current()
   	models := ""
-  	if len(group.Models) > 0 {
-  		models = fmt.Sprintf(" (%s)", strings.Join(group.Models, ", "))
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
   	}
-  	fmt.Printf("%s%s\n", group.GroupType, models)
-  	for _, limit := range group.Limits {
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
   		fmt.Printf("  %s: %d\n", limit.Type, limit.Value)
   	}
   }
@@ -110,14 +110,14 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var rateLimits = client.beta().organization().rateLimits().list();
+  var rateLimits = client.organization().rateLimits().list();
 
-  for (var group : rateLimits.autoPager()) {
-      var models = group.models()
+  for (var entry : rateLimits.autoPager()) {
+      var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
           .orElse("");
-      IO.println(group.groupType().asString() + models);
-      for (var limit : group.limits()) {
+      IO.println(entry.group().type().asString() + models);
+      for (var limit : entry.limits()) {
           IO.println("  " + limit.type() + ": " + limit.value());
       }
   }
@@ -126,12 +126,12 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```php PHP
   $client = new Client();
 
-  $rateLimits = $client->beta->organization->rateLimits->list();
+  $rateLimits = $client->organization->rateLimits->list();
 
-  foreach ($rateLimits->data as $group) {
-      $models = $group->models ? ' (' . implode(', ', $group->models) . ')' : '';
-      echo "{$group->groupType}{$models}\n";
-      foreach ($group->limits as $limit) {
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
           echo "  {$limit->type}: {$limit->value}\n";
       }
   }
@@ -140,12 +140,12 @@ Daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rate_limits = client.beta.organization.rate_limits.list
+  rate_limits = client.organization.rate_limits.list
 
-  rate_limits.data.each do |group|
-    models = group.models ? " (#{group.models.join(", ")})" : ""
-    puts "#{group.group_type}#{models}"
-    group.limits.each do |limit|
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
       puts "  #{limit.type}: #{limit.value}"
     end
   end
@@ -158,14 +158,16 @@ Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapka
 
 ### Konsep utama
 
-* **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas, dan grup lain mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat web search.
-* **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk daftar nilai.
-* **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lain, `models` adalah `null`.
-* **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk bagaimana setiap limiter diukur dan diberlakukan.
+* **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat web search.
+* **Objek `group`:** Ada di setiap entri, objek ini mengidentifikasi grup batas laju tempat entri tersebut berlaku. Objek ini selalu memiliki `type`, yang merupakan salah satu nilai `group_type`, dan `id`, sebuah pengidentifikasi opak dengan awalan `rlg_`. Pada entri `model_group`, objek ini juga memiliki `display_name`, label Anthropic saat ini untuk grup tersebut, seperti `Claude Sonnet 4.x`. Label ini hanya untuk tampilan dan dapat berubah. Tipe grup lainnya tidak memiliki `display_name`.
+* **`id` di dalam `group`:** Sebuah grup memiliki `id` yang sama di setiap organisasi dan di setiap override workspace, dan tidak pernah berubah. Gunakan untuk mencocokkan entri antar organisasi atau dengan katalog Anda sendiri. `id` milik entri itu sendiri berbeda per organisasi, dan `models` berubah ketika Anthropic memindahkan model antar grup. Keduanya bukan kunci yang stabil untuk grup.
+* **`group_type`:** Sudah deprecated dan digantikan oleh `type` di dalam `group`. Field ini masih dikembalikan, selalu sama dengan nilai tersebut, dan tidak memiliki tanggal penghapusan. Parameter kueri `group_type` tidak deprecated. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk daftar nilainya.
+* **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
+* **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk cara setiap limiter diukur dan diberlakukan.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/beta/organization/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/organization/rate_limits/list).
 
-### Daftar semua batas laju organisasi
+### Menampilkan semua batas laju organisasi
 
 <CodeGroup>
   ```bash cURL
@@ -175,30 +177,30 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```
 
   ```bash CLI
-  ant beta:organization:rate-limits list
+  ant organization:rate-limits list
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.beta.organization.rate_limits.list()
+  rate_limits = client.organization.rate_limits.list()
 
-  for group in rate_limits:
-      models = f" ({', '.join(group.models)})" if group.models else ""
-      print(f"{group.group_type}{models}")
-      for limit in group.limits:
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
           print(f"  {limit.type}: {limit.value}")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.beta.organization.rateLimits.list();
+  const rateLimits = await client.organization.rateLimits.list();
 
-  for await (const group of rateLimits) {
-    const models = group.models ? ` (${group.models.join(", ")})` : "";
-    console.log(`${group.group_type}${models}`);
-    for (const limit of group.limits) {
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
       console.log(`  ${limit.type}: ${limit.value}`);
     }
   }
@@ -207,13 +209,13 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```csharp C#
   AnthropicClient client = new();
 
-  var rateLimits = await client.Beta.Organization.RateLimits.List();
+  var rateLimits = await client.Organization.RateLimits.List();
 
-  await foreach (var group in rateLimits.Paginate())
+  await foreach (var entry in rateLimits.Paginate())
   {
-      var models = group.Models is null ? "" : $" ({string.Join(", ", group.Models)})";
-      Console.WriteLine($"{group.GroupType.Raw()}{models}");
-      foreach (var limit in group.Limits)
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
       }
@@ -223,16 +225,16 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```go Go
   client := anthropic.NewClient()
 
-  rateLimits := client.Beta.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.BetaOrganizationRateLimitListParams{})
+  rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{})
 
   for rateLimits.Next() {
-  	group := rateLimits.Current()
+  	entry := rateLimits.Current()
   	models := ""
-  	if len(group.Models) > 0 {
-  		models = fmt.Sprintf(" (%s)", strings.Join(group.Models, ", "))
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
   	}
-  	fmt.Printf("%s%s\n", group.GroupType, models)
-  	for _, limit := range group.Limits {
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
   		fmt.Printf("  %s: %d\n", limit.Type, limit.Value)
   	}
   }
@@ -244,14 +246,14 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var rateLimits = client.beta().organization().rateLimits().list();
+  var rateLimits = client.organization().rateLimits().list();
 
-  for (var group : rateLimits.autoPager()) {
-      var models = group.models()
+  for (var entry : rateLimits.autoPager()) {
+      var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
           .orElse("");
-      IO.println(group.groupType().asString() + models);
-      for (var limit : group.limits()) {
+      IO.println(entry.group().type().asString() + models);
+      for (var limit : entry.limits()) {
           IO.println("  " + limit.type() + ": " + limit.value());
       }
   }
@@ -260,12 +262,12 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```php PHP
   $client = new Client();
 
-  $rateLimits = $client->beta->organization->rateLimits->list();
+  $rateLimits = $client->organization->rateLimits->list();
 
-  foreach ($rateLimits->data as $group) {
-      $models = $group->models ? ' (' . implode(', ', $group->models) . ')' : '';
-      echo "{$group->groupType}{$models}\n";
-      foreach ($group->limits as $limit) {
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
           echo "  {$limit->type}: {$limit->value}\n";
       }
   }
@@ -274,12 +276,12 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rate_limits = client.beta.organization.rate_limits.list
+  rate_limits = client.organization.rate_limits.list
 
-  rate_limits.data.each do |group|
-    models = group.models ? " (#{group.models.join(", ")})" : ""
-    puts "#{group.group_type}#{models}"
-    group.limits.each do |limit|
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
       puts "  #{limit.type}: #{limit.value}"
     end
   end
@@ -292,6 +294,11 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "type": "rate_limit",
       "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
+        "display_name": "Claude Opus 5.5"
+      },
       "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 4000 },
@@ -302,6 +309,11 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "type": "rate_limit",
       "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
+        "display_name": "Claude Opus 4.x"
+      },
       "models": [
         "claude-opus-4-5",
         "claude-opus-4-5-20251101",
@@ -318,6 +330,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "type": "rate_limit",
       "group_type": "batch",
+      "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
       "models": null,
       "limits": [{ "type": "enqueued_batch_requests", "value": 500000 }]
     }
@@ -326,9 +339,9 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 }
 ```
 
-### Cari batas untuk model tertentu
+### Mencari batas untuk model tertentu
 
-Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengembalikan hanya entri yang memuatnya:
+Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya mengembalikan entri yang memuatnya:
 
 <CodeGroup>
   ```bash cURL
@@ -338,30 +351,30 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
   ```
 
   ```bash CLI
-  ant beta:organization:rate-limits list --model claude-opus-5
+  ant organization:rate-limits list --model claude-opus-5
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.beta.organization.rate_limits.list(model="claude-opus-5")
+  rate_limits = client.organization.rate_limits.list(model="claude-opus-5")
 
-  for group in rate_limits:
-      models = f" ({', '.join(group.models)})" if group.models else ""
-      print(f"{group.group_type}{models}")
-      for limit in group.limits:
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
           print(f"  {limit.type}: {limit.value}")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.beta.organization.rateLimits.list({ model: "claude-opus-5" });
+  const rateLimits = await client.organization.rateLimits.list({ model: "claude-opus-5" });
 
-  for await (const group of rateLimits) {
-    const models = group.models ? ` (${group.models.join(", ")})` : "";
-    console.log(`${group.group_type}${models}`);
-    for (const limit of group.limits) {
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
       console.log(`  ${limit.type}: ${limit.value}`);
     }
   }
@@ -370,16 +383,16 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
   ```csharp C#
   AnthropicClient client = new();
 
-  var rateLimits = await client.Beta.Organization.RateLimits.List(new()
+  var rateLimits = await client.Organization.RateLimits.List(new()
   {
       Model = "claude-opus-5"
   });
 
-  await foreach (var group in rateLimits.Paginate())
+  await foreach (var entry in rateLimits.Paginate())
   {
-      var models = group.Models is null ? "" : $" ({string.Join(", ", group.Models)})";
-      Console.WriteLine($"{group.GroupType.Raw()}{models}");
-      foreach (var limit in group.Limits)
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
       }
@@ -389,18 +402,18 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
   ```go Go
   client := anthropic.NewClient()
 
-  rateLimits := client.Beta.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.BetaOrganizationRateLimitListParams{
+  rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{
   	Model: anthropic.String(anthropic.ModelClaudeOpus5),
   })
 
   for rateLimits.Next() {
-  	group := rateLimits.Current()
+  	entry := rateLimits.Current()
   	models := ""
-  	if len(group.Models) > 0 {
-  		models = fmt.Sprintf(" (%s)", strings.Join(group.Models, ", "))
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
   	}
-  	fmt.Printf("%s%s\n", group.GroupType, models)
-  	for _, limit := range group.Limits {
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
   		fmt.Printf("  %s: %d\n", limit.Type, limit.Value)
   	}
   }
@@ -410,7 +423,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.ratelimits.RateLimitListParams;
+  import com.anthropic.models.organization.ratelimits.RateLimitListParams;
   import com.anthropic.models.messages.Model;
 
   void main() {
@@ -419,14 +432,14 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
       var params = RateLimitListParams.builder()
           .model(Model.CLAUDE_OPUS_5.asString())
           .build();
-      var rateLimits = client.beta().organization().rateLimits().list(params);
+      var rateLimits = client.organization().rateLimits().list(params);
 
-      for (var group : rateLimits.autoPager()) {
-          var models = group.models()
+      for (var entry : rateLimits.autoPager()) {
+          var models = entry.models()
               .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
               .orElse("");
-          IO.println(group.groupType().asString() + models);
-          for (var limit : group.limits()) {
+          IO.println(entry.group().type().asString() + models);
+          for (var limit : entry.limits()) {
               IO.println("  " + limit.type() + ": " + limit.value());
           }
       }
@@ -438,14 +451,14 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
 
   $client = new Client();
 
-  $rateLimits = $client->beta->organization->rateLimits->list(
+  $rateLimits = $client->organization->rateLimits->list(
       model: Model::CLAUDE_OPUS_5->value,
   );
 
-  foreach ($rateLimits->data as $group) {
-      $models = $group->models ? ' (' . implode(', ', $group->models) . ')' : '';
-      echo "{$group->groupType}{$models}\n";
-      foreach ($group->limits as $limit) {
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
           echo "  {$limit->type}: {$limit->value}\n";
       }
   }
@@ -454,12 +467,12 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengem
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rate_limits = client.beta.organization.rate_limits.list(model: Anthropic::Model::CLAUDE_OPUS_5)
+  rate_limits = client.organization.rate_limits.list(model: Anthropic::Model::CLAUDE_OPUS_5)
 
-  rate_limits.data.each do |group|
-    models = group.models ? " (#{group.models.join(", ")})" : ""
-    puts "#{group.group_type}#{models}"
-    group.limits.each do |limit|
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
       puts "  #{limit.type}: #{limit.value}"
     end
   end
@@ -472,16 +485,16 @@ Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error
 
 Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace.
 
-Respons hanya menyertakan override, jadi apa pun yang hilang darinya diwarisi dari organisasi:
+Respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
-* Grup yang tidak ada dalam `data` sama sekali tidak memiliki override workspace. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan tidak terbatas).
-* Dalam grup yang ada, tipe limiter yang tidak ada dalam `limits[]` tidak memiliki override workspace untuk limiter tersebut. Workspace mewarisi nilai organisasi untuknya.
+* Grup yang tidak ada di `data` sama sekali tidak memiliki override workspace. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan tanpa batas).
+* Di dalam grup yang ada, tipe limiter yang tidak ada di `limits[]` tidak memiliki override workspace untuk limiter tersebut. Workspace mewarisi nilai organisasi untuknya.
 * Untuk setiap limiter yang ada, `org_limit` adalah nilai tingkat organisasi untuk limiter yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe limiter tersebut.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/beta/organization/workspaces/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, jadi tidak memiliki entri pada endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, sehingga tidak memiliki entri di endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
 </Tip>
 
 <CodeGroup>
@@ -492,35 +505,35 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces:rate-limits list \
+  ant organization:workspaces:rate-limits list \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.beta.organization.workspaces.rate_limits.list(
+  rate_limits = client.organization.workspaces.rate_limits.list(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
 
-  for group in rate_limits:
-      models = f" ({', '.join(group.models)})" if group.models else ""
-      print(f"{group.group_type}{models}")
-      for limit in group.limits:
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
           print(f"  {limit.type}: {limit.value}")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.beta.organization.workspaces.rateLimits.list(
+  const rateLimits = await client.organization.workspaces.rateLimits.list(
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
-  for await (const group of rateLimits) {
-    const models = group.models ? ` (${group.models.join(", ")})` : "";
-    console.log(`${group.group_type}${models}`);
-    for (const limit of group.limits) {
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
       console.log(`  ${limit.type}: ${limit.value}`);
     }
   }
@@ -529,15 +542,15 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```csharp C#
   AnthropicClient client = new();
 
-  var rateLimits = await client.Beta.Organization.Workspaces.RateLimits.List(
+  var rateLimits = await client.Organization.Workspaces.RateLimits.List(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
-  await foreach (var group in rateLimits.Paginate())
+  await foreach (var entry in rateLimits.Paginate())
   {
-      var models = group.Models is null ? "" : $" ({string.Join(", ", group.Models)})";
-      Console.WriteLine($"{group.GroupType.Raw()}{models}");
-      foreach (var limit in group.Limits)
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
       }
@@ -547,20 +560,20 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```go Go
   client := anthropic.NewClient()
 
-  rateLimits := client.Beta.Organization.Workspaces.RateLimits.ListAutoPaging(
+  rateLimits := client.Organization.Workspaces.RateLimits.ListAutoPaging(
   	context.Background(),
   	"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-  	anthropic.BetaOrganizationWorkspaceRateLimitListParams{},
+  	anthropic.OrganizationWorkspaceRateLimitListParams{},
   )
 
   for rateLimits.Next() {
-  	group := rateLimits.Current()
+  	entry := rateLimits.Current()
   	models := ""
-  	if len(group.Models) > 0 {
-  		models = fmt.Sprintf(" (%s)", strings.Join(group.Models, ", "))
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
   	}
-  	fmt.Printf("%s%s\n", group.GroupType, models)
-  	for _, limit := range group.Limits {
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
   		fmt.Printf("  %s: %d\n", limit.Type, limit.Value)
   	}
   }
@@ -572,15 +585,15 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var rateLimits = client.beta().organization().workspaces().rateLimits()
+  var rateLimits = client.organization().workspaces().rateLimits()
       .list("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ");
 
-  for (var group : rateLimits.autoPager()) {
-      var models = group.models()
+  for (var entry : rateLimits.autoPager()) {
+      var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
           .orElse("");
-      IO.println(group.groupType().asString() + models);
-      for (var limit : group.limits()) {
+      IO.println(entry.group().type().asString() + models);
+      for (var limit : entry.limits()) {
           IO.println("  " + limit.type() + ": " + limit.value());
       }
   }
@@ -589,14 +602,14 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```php PHP
   $client = new Client();
 
-  $rateLimits = $client->beta->organization->workspaces->rateLimits->list(
+  $rateLimits = $client->organization->workspaces->rateLimits->list(
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
-  foreach ($rateLimits->data as $group) {
-      $models = $group->models ? ' (' . implode(', ', $group->models) . ')' : '';
-      echo "{$group->groupType}{$models}\n";
-      foreach ($group->limits as $limit) {
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
           echo "  {$limit->type}: {$limit->value}\n";
       }
   }
@@ -606,12 +619,12 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   client = Anthropic::Client.new
 
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
-  rate_limits = client.beta.organization.workspaces.rate_limits.list(workspace_id)
+  rate_limits = client.organization.workspaces.rate_limits.list(workspace_id)
 
-  rate_limits.data.each do |group|
-    models = group.models ? " (#{group.models.join(", ")})" : ""
-    puts "#{group.group_type}#{models}"
-    group.limits.each do |limit|
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
       puts "  #{limit.type}: #{limit.value}"
     end
   end
@@ -624,6 +637,11 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
     {
       "type": "workspace_rate_limit",
       "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
+        "display_name": "Claude Opus 5.5"
+      },
       "models": ["claude-opus-5-5"],
       "limits": [
         { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },
@@ -633,6 +651,11 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
     {
       "type": "workspace_rate_limit",
       "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
+        "display_name": "Claude Opus 4.x"
+      },
       "models": [
         "claude-opus-4-5",
         "claude-opus-4-5-20251101",
@@ -662,50 +685,50 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   ```
 
   ```bash CLI
-  ant beta:organization:rate-limits list --group-type batch
+  ant organization:rate-limits list --group-type batch
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.beta.organization.rate_limits.list(group_type="batch")
+  rate_limits = client.organization.rate_limits.list(group_type="batch")
 
-  for group in rate_limits:
-      models = f" ({', '.join(group.models)})" if group.models else ""
-      print(f"{group.group_type}{models}")
-      for limit in group.limits:
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
           print(f"  {limit.type}: {limit.value}")
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.beta.organization.rateLimits.list({ group_type: "batch" });
+  const rateLimits = await client.organization.rateLimits.list({ group_type: "batch" });
 
-  for await (const group of rateLimits) {
-    const models = group.models ? ` (${group.models.join(", ")})` : "";
-    console.log(`${group.group_type}${models}`);
-    for (const limit of group.limits) {
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
       console.log(`  ${limit.type}: ${limit.value}`);
     }
   }
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Organization.RateLimits;
+  using Anthropic.Models.Organization.RateLimits;
 
   AnthropicClient client = new();
 
-  var rateLimits = await client.Beta.Organization.RateLimits.List(new()
+  var rateLimits = await client.Organization.RateLimits.List(new()
   {
       GroupType = GroupType.Batch
   });
 
-  await foreach (var group in rateLimits.Paginate())
+  await foreach (var entry in rateLimits.Paginate())
   {
-      var models = group.Models is null ? "" : $" ({string.Join(", ", group.Models)})";
-      Console.WriteLine($"{group.GroupType.Raw()}{models}");
-      foreach (var limit in group.Limits)
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
       }
@@ -715,18 +738,18 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   ```go Go
   client := anthropic.NewClient()
 
-  rateLimits := client.Beta.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.BetaOrganizationRateLimitListParams{
-  	GroupType: anthropic.BetaOrganizationRateLimitListParamsGroupTypeBatch,
+  rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{
+  	GroupType: anthropic.OrganizationRateLimitListParamsGroupTypeBatch,
   })
 
   for rateLimits.Next() {
-  	group := rateLimits.Current()
+  	entry := rateLimits.Current()
   	models := ""
-  	if len(group.Models) > 0 {
-  		models = fmt.Sprintf(" (%s)", strings.Join(group.Models, ", "))
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
   	}
-  	fmt.Printf("%s%s\n", group.GroupType, models)
-  	for _, limit := range group.Limits {
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
   		fmt.Printf("  %s: %d\n", limit.Type, limit.Value)
   	}
   }
@@ -736,7 +759,7 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.ratelimits.RateLimitListParams;
+  import com.anthropic.models.organization.ratelimits.RateLimitListParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -744,14 +767,14 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
       var params = RateLimitListParams.builder()
           .groupType(RateLimitListParams.GroupType.BATCH)
           .build();
-      var rateLimits = client.beta().organization().rateLimits().list(params);
+      var rateLimits = client.organization().rateLimits().list(params);
 
-      for (var group : rateLimits.autoPager()) {
-          var models = group.models()
+      for (var entry : rateLimits.autoPager()) {
+          var models = entry.models()
               .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
               .orElse("");
-          IO.println(group.groupType().asString() + models);
-          for (var limit : group.limits()) {
+          IO.println(entry.group().type().asString() + models);
+          for (var limit : entry.limits()) {
               IO.println("  " + limit.type() + ": " + limit.value());
           }
       }
@@ -759,19 +782,19 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   ```
 
   ```php PHP
-  use Anthropic\Beta\Organization\RateLimits\RateLimitListParams\GroupType;
+  use Anthropic\Organization\RateLimits\RateLimitListParams\GroupType;
   // ...
 
   $client = new Client();
 
-  $rateLimits = $client->beta->organization->rateLimits->list(
+  $rateLimits = $client->organization->rateLimits->list(
       groupType: GroupType::BATCH,
   );
 
-  foreach ($rateLimits->data as $group) {
-      $models = $group->models ? ' (' . implode(', ', $group->models) . ')' : '';
-      echo "{$group->groupType}{$models}\n";
-      foreach ($group->limits as $limit) {
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
           echo "  {$limit->type}: {$limit->value}\n";
       }
   }
@@ -780,12 +803,12 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rate_limits = client.beta.organization.rate_limits.list(group_type: :batch)
+  rate_limits = client.organization.rate_limits.list(group_type: :batch)
 
-  rate_limits.data.each do |group|
-    models = group.models ? " (#{group.models.join(", ")})" : ""
-    puts "#{group.group_type}#{models}"
-    group.limits.each do |limit|
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
       puts "  #{limit.type}: #{limit.value}"
     end
   end
@@ -816,6 +839,6 @@ Tidak. Untuk mengatur batas laju workspace, buka workspace di [Claude Console](h
 
 * [Batas laju](https://platform.claude.com/docs/id/api/rate-limits)
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/organization)
 * [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)

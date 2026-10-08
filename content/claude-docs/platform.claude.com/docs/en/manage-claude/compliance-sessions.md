@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-sessions
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: b8a10be28344fc33724a68805066847b501dccc4b9609802a36237188b008f19
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ed9823ac3df8509dc2b50fbd9a4179e81089ba51699e61df68e53d5c011f6374
 ---
 
 ---
@@ -355,6 +355,8 @@ A session is owned by either a user or an agent, never both. For user-owned sess
 `status` is one of `pending`, `active`, `paused`, `archived`, or `failed`. A session is `pending` while it is being provisioned; a `pending` session has no transcript yet, and the messages endpoint returns 404 for it until provisioning completes. Sessions that have been deleted are never returned.
 
 `product_surface` (string or `null`) identifies the product that created the session. The endpoint currently returns only sessions with `product_surface` of `cowork_remote`: Cowork sessions started on claude.ai web or mobile.
+
+To retrieve a chat in the unified Claude experience, including the part that ran in the cloud, use the chat endpoints ([Get chat messages](https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list)), not the remote session endpoints.
 
 <Note>
   **Build forward-compatible handlers.** Pass through unrecognized `status` and `product_surface` values, and ignore fields your handler does not expect, so your integration keeps working as new statuses and product surfaces ship.

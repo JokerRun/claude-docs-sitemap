@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: bd75068b864009b94a4092a9fceb403f18b532ac21cbd7b025cb5966a727c2da
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 8cf50ee864cfda88a693b76aeaeb41e18da72b8dcaf2eb4a8a3b26ce9c599c74
 ---
 
 ---
@@ -491,7 +491,7 @@ Kontrak akumulasinya sama seperti untuk streaming penggunaan alat standar, jadi 
 
 Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
-Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menanganinya untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kendali penuh atas cara input disusun.
+Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menangani hal ini untuk Anda. Gunakan pola manual ketika SDK Anda tidak memiliki helper atau ketika Anda menginginkan kontrol penuh atas cara input disusun.
 
 Kontrak akumulasinya:
 

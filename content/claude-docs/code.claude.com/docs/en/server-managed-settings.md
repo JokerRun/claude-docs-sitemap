@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: eff5f6adc69d3af4c91875f3ea939e28dfa9d7bf2fc74d494c0eebe111abe668
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0e968742d073dbdc3fb571db3e82cbd4a6e6b30c79c91f7a21252ebf65b6e95b
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ If your devices are enrolled in an MDM or endpoint management solution, endpoint
   <Step title="Open the admin console">
     In the claude.ai console, go to [**Organization settings > Claude Code > Managed settings**](https://claude.ai/admin-settings/claude-code).
 
-    If the link redirects you to a different Organization settings page instead of the Claude Code page, your account doesn't have the required role. Admin and other non-Owner roles can't view or edit managed settings, so ask an Owner or Primary Owner in your organization to make the change. See [Access control](#access-control).
+    In a Team or Enterprise organization, if the page says you don't have access, ask an [Owner or Primary Owner](#access-control) to make the change.
   </Step>
 
   <Step title="Define your settings">
@@ -138,7 +138,7 @@ Server-managed settings have the following limitations:
 
 ### Settings precedence
 
-Server-managed settings and [endpoint-managed settings](/docs/en/managed-settings#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](/docs/en/settings#settings-precedence). No other settings level can override them, including command line arguments, apart from the [exceptions to managed settings precedence](/docs/en/settings#exceptions-to-managed-settings-precedence).
+Server-managed settings and [endpoint-managed settings](/docs/en/managed-settings#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](/docs/en/settings#settings-precedence). A key you set here takes precedence over the same key in a user's own settings files or in a `--settings` value, apart from the [exceptions to managed settings precedence](/docs/en/settings#exceptions-to-managed-settings-precedence).
 
 Within the managed tier, Claude Code by default uses the first source that delivers at least one policy key, checking server-managed settings first and then endpoint-managed settings, apart from the [exception keys covered next](#per-key-exceptions-across-managed-sources). [How Claude Code combines managed sources](/docs/en/managed-settings#precedence-within-the-managed-tier) has the full ranking, the carve-out for the control keys, and the opt-in that applies every source.
 

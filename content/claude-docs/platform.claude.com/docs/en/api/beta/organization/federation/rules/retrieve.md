@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7f0a86f6a3a81d6eecf403ce4b352a16da786fb753fdd1520f1d5b3277bd7715
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 306ca46249460b3a258abac3f269fc209343b63c53b48128b333fc8175ea5fb6
 ---
 
 ---
@@ -231,7 +231,7 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3307cbca26bb2830e44da9d3018adbddc149e368322458ea3952e1a1e24fdcee
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4ad0d93422696aecf2ee505d8be76967a7f555a408405e9f8e7efdcec8627cdd
 ---
 
 ---
@@ -278,6 +278,8 @@ for message in runner:
 ```
 
 Pada setiap iterasi, sebuah permintaan API dibuat. Jika respons menyertakan panggilan ke salah satu alat yang diberikan, alat tersebut dipanggil secara otomatis, dan hasilnya dikembalikan langsung ke model pada iterasi berikutnya.
+
+Untuk menjalankan alat browser use atau alat computer use dengan SDK ini, lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 
 ## Batch pesan
 

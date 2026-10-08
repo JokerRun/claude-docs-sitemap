@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 00ce20928649ac652debf158499b88325a0c3ebd6f0b3d6c741662dfc99331a9
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5e87ca7e9af825ffe3e1fa61a13d6352fc138cabb107ddd15355aa7ee856da27
 ---
 
 ---
@@ -277,6 +277,19 @@ Array `api_keys` mendaftar setiap Compliance Access Key yang dikonfigurasi untuk
 Baris mencerminkan status yang ditegakkan, bukan konfigurasi yang terakhir disimpan: misalnya, `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan, `ip_allowlist_enabled` bernilai `true` hanya selama allowlist aktif dan memiliki setidaknya satu rentang aktif, dan `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode nonaktif.
 
 Respons mencerminkan status pada saat pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk status terselesaikan saat ini dan feed untuk mengaudit siapa yang mengubah apa, dan kapan.
+
+## Membaca plugin dan marketplace plugin
+
+Plugin dan marketplace plugin organisasi Anda merupakan bagian dari [Admin API](https://platform.claude.com/docs/id/manage-claude/plugins-api), bukan Compliance API, tetapi Compliance Access Key dengan `read:compliance_org_data` dapat memanggil endpoint baca Plugins API secara langsung:
+
+* Mencantumkan plugin dan mengambil sebuah plugin
+* Mencantumkan versi plugin, mengambil sebuah versi, dan mengunduh file suatu versi
+* Mencantumkan pengaturan instalasi plugin dan pembagiannya (shares)
+* Mencantumkan marketplace plugin dan mengambil sebuah marketplace
+
+Kirimkan header `anthropic-beta: ce-plugins-2026-09-01` pada setiap permintaan; tanpa header tersebut, endpoint ini mengembalikan [404 Not Found](https://platform.claude.com/docs/id/manage-claude/plugins-api#error-responses). Setiap panggilan membaca satu organisasi: kunci yang mencakup organisasi induk membaca organisasi tertaut tempat kunci tersebut dibuat kecuali Anda meneruskan parameter query `organization_id` (UUID organisasi tertaut atau ID-nya dengan awalan `org_`) untuk [membaca organisasi lain](https://platform.claude.com/docs/id/manage-claude/plugins-api#reading-another-organization-under-the-same-parent), dan kunci yang dibatasi pada satu organisasi hanya membaca organisasi tersebut. Panggilan ini dihitung terhadap [batas laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting) Admin API, bukan Compliance API.
+
+Membuat atau mengubah plugin, pengaturan instalasinya, atau pengaturan marketplace memerlukan kunci Admin API dengan `write:plugins`. Dari panggilan baca tersebut, hanya pengunduhan file plugin di marketplace pribadi anggota yang mencatat peristiwa [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) (`claude_plugin_archive_accessed`). Lihat [panduan Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api) untuk setiap endpoint, contoh permintaan, dan [peristiwa yang dicatat oleh API](https://platform.claude.com/docs/id/manage-claude/plugins-api#activity-feed-events).
 
 ## Langkah selanjutnya
 

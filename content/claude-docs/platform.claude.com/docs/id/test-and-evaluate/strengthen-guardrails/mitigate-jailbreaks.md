@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: e9b56b7069889a15fd83091362d7cceb93e9ef8b40df67b84ba709c37a271999
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7c10714fa14263c8c020eafbdb76ec836d4974c096c5ec5aa4ec87418e22c224
 ---
 
 ---
@@ -22,7 +22,7 @@ Serangan-serangan ini terbagi dalam dua kategori dengan model ancaman yang berbe
 
 Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk memanipulasi aplikasi Anda agar menghasilkan konten atau mengambil tindakan yang tidak Anda inginkan. Mitigasi berikut memperkuat pagar pengaman aplikasi Anda:
 
-* **Penyaringan harmlessness:** Gunakan model ringan seperti Claude Haiku 4.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi sederhana.
+* **Penyaringan harmlessness:** Gunakan model ringan seperti Claude Haiku 5.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) (output terstruktur) untuk membatasi respons menjadi klasifikasi sederhana. Claude Haiku 5.5 menjalankan [pengklasifikasi keamanan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) yang dapat menolak permintaan penyaringan itu sendiri, jadi perlakukan respons dengan `stop_reason: "refusal"` sebagai putusan berbahaya.
 
   <Accordion title="Contoh: Penyaringan harmlessness untuk moderasi konten">
     ```text User wrap
@@ -122,7 +122,7 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
 
 * **Batasi akses Claude ke data dan tindakan sensitif.** Terapkan prinsip hak akses minimum sehingga injeksi yang berhasil hanya dapat menimbulkan kerusakan minimal: jangan beri Claude akses ke rahasia yang tidak diperlukannya, jalankan alat di lingkungan sandbox, dan batasi cakupan izin sesempit mungkin.
 
-* **Saring output alat sebelum Claude bertindak berdasarkan output tersebut.** Terapkan pola penyaringan model ringan yang sama yang Anda gunakan untuk input pengguna pada konten yang dikembalikan alat Anda. Jalankan setiap alat, teruskan output mentahnya ke pemanggilan pengklasifikasi kecil dengan Claude Haiku 4.5, dan hanya kembalikan konten sebagai blok `tool_result` jika penyaringan melaporkan tidak ada upaya injeksi. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) sehingga putusan pengklasifikasi berupa nilai yang dapat diurai dan dapat dijadikan dasar percabangan oleh aplikasi Anda.
+* **Saring output alat sebelum Claude bertindak berdasarkan output tersebut.** Terapkan pola penyaringan model ringan yang sama yang Anda gunakan untuk input pengguna pada konten yang dikembalikan alat Anda. Jalankan setiap alat, teruskan output mentahnya ke pemanggilan pengklasifikasi kecil dengan Claude Haiku 5.5, dan hanya kembalikan konten sebagai blok `tool_result` jika penyaringan melaporkan tidak ada upaya injeksi. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) sehingga putusan pengklasifikasi berupa nilai yang dapat diurai dan dapat dijadikan dasar percabangan oleh aplikasi Anda.
 
   <Accordion title="Contoh: Penyaringan injeksi untuk output alat">
     ```text User wrap
@@ -154,7 +154,7 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
     }
     ```
 
-    Jika `injection_suspected` bernilai `true`, kembalikan error atau ringkasan yang telah dibersihkan dalam blok `tool_result` alih-alih konten mentah, dan pertimbangkan untuk menampilkan upaya tersebut kepada pengguna.
+    Jika `injection_suspected` bernilai `true`, kembalikan error atau ringkasan yang telah dibersihkan dalam blok `tool_result` alih-alih konten mentah, dan pertimbangkan untuk memberitahukan upaya tersebut kepada pengguna. Perlakukan respons `stop_reason: "refusal"` dari Claude Haiku 5.5 dengan cara yang sama: pengklasifikasi keamanannya dapat menolak permintaan penyaringan itu sendiri, sehingga tidak ada putusan yang dapat dibaca.
   </Accordion>
 
   Anda juga dapat menerapkan pola validasi input dari bagian sebelumnya pada hasil alat sebelum meneruskannya ke Claude.

@@ -1,23 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 008d7c126422d3987fcca41d65f4eedb0ebfeb18ed6b456f415aa8cfb1dc90cb
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e7265b87263c6661b97bf6e5ddaa055d00559a4d2d1611a977878ce906f70355
 ---
 
 ---
 title: Prompting Claude Sonnet 5
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-description: Perbedaan perilaku dan pola prompting untuk Claude Sonnet 5, mencakup effort, default adaptive thinking, penggunaan alat, dan migrasi dari Claude Sonnet 4.6.
+description: Perbedaan perilaku dan pola prompting untuk Claude Sonnet 5, mencakup effort, default adaptive thinking, dan penggunaan alat.
 ---
 
-Panduan ini membahas pola prompting yang khusus untuk Claude Sonnet 5. Untuk kemampuan model dan perubahan API, lihat [Yang baru di Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini membahas pola prompting yang khusus untuk Claude Sonnet 5. Untuk spesifikasi model, lihat [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Sonnet 5 memiliki kekuatan khusus dalam tugas coding dan agentik. Model ini berkinerja baik secara langsung pada prompt Claude Sonnet 4.6 yang sudah ada. Pola dalam panduan ini mencakup perilaku yang paling sering memerlukan penyesuaian.
-
-<Note>
-  Untuk perubahan parameter API saat bermigrasi dari Claude Sonnet 4.6 (adaptive thinking aktif secara default, parameter sampling tidak diterima, pemikiran diperpanjang manual dihapus, dan tokenizer baru), lihat [panduan migrasi](https://platform.claude.com/docs/id/models/sonnet-5/migration-guide#migrating-from-claude-sonnet-4-6-to-claude-sonnet-5).
-</Note>
 
 ## Panjang respons dan verbositas
 
@@ -64,7 +60,7 @@ Sebaliknya, jika Anda menjalankan beban kerja berat pada `medium` dan melihat pe
 Pemikiran diperpanjang manual (`thinking: {type: "enabled", budget_tokens: N}`) tidak didukung pada Claude Sonnet 5 dan mengembalikan error 400. Fitur ini sudah tidak direkomendasikan (deprecated) pada Claude Sonnet 4.6 dan kini dihapus. Gunakan adaptive thinking dengan parameter effort sebagai gantinya.
 
 <Note>
-  Jika Anda menjalankan Claude Sonnet 5 pada effort `high`, `xhigh`, atau `max`, sisakan ruang dalam `max_tokens` agar model memiliki ruang untuk thinking dan pemanggilan alat. Pada tugas panjang, adaptive thinking dapat menggunakan porsi besar dari anggaran; jika anggarannya ketat, Anda mungkin melihat respons yang hampir seluruhnya berupa thinking diikuti jawaban yang terpotong dan `stop_reason: "max_tokens"`. Menaikkan `max_tokens` atau menurunkan ke effort `medium` akan menyelesaikan masalah ini. Karena Claude Sonnet 5 menggunakan [tokenizer baru](https://platform.claude.com/docs/id/models/sonnet-5/whats-new-sonnet-5#new-tokenizer) yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama, batas `max_tokens` yang disesuaikan untuk Claude Sonnet 4.6 mungkin memotong output yang setara. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja.
+  Jika Anda menjalankan Claude Sonnet 5 dengan effort `high`, `xhigh`, atau `max`, sisakan ruang pada `max_tokens` agar model memiliki ruang untuk pemikiran dan pemanggilan alat. Pada tugas yang panjang, adaptive thinking dapat menggunakan sebagian besar anggaran; jika anggarannya ketat, Anda mungkin melihat respons yang hampir seluruhnya berupa pemikiran diikuti oleh jawaban yang terpotong dan `stop_reason: "max_tokens"`. Menaikkan `max_tokens` atau menurunkan ke effort `medium` akan mengatasi hal ini. Karena Claude Sonnet 5 menggunakan tokenizer baru yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama, batas `max_tokens` yang disesuaikan untuk Claude Sonnet 4.6 dapat memotong output yang setara. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja.
 </Note>
 
 ## Pemicuan penggunaan alat

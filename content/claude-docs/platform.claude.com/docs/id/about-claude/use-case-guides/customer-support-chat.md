@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d5ec8abfe48adb622e546c412a8cc1f2a180d466747dec9a404dd832b19832dc
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: e2275c938e26cdae67a1761c8a331a707c434c664baecaffb36c1777202d9ff2
 ---
 
 ---
@@ -1154,7 +1154,7 @@ Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi ta
 
 Saat menangani konteks statis dan dinamis dalam jumlah besar, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan tercapainya batas "context window" (jendela konteks). Dalam skenario ini, mengimplementasikan teknik "Retrieval Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
 
-Dengan menggunakan [model embedding seperti Voyage](https://platform.claude.com/docs/id/build-with-claude/embeddings) untuk mengonversi informasi menjadi representasi vektor, Anda dapat membuat sistem yang lebih dapat diskalakan dan responsif. Pendekatan ini memungkinkan pengambilan dinamis informasi yang relevan berdasarkan pertanyaan saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
+Anda dapat membuat sistem yang lebih skalabel dan responsif dengan mengonversi informasi menjadi representasi vektor menggunakan [model embedding](https://platform.claude.com/docs/id/build-with-claude/embeddings), seperti yang berasal dari Voyage AI by MongoDB. Pendekatan ini memungkinkan pengambilan informasi relevan secara dinamis berdasarkan pertanyaan saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
 
 Mengimplementasikan RAG untuk kasus penggunaan dukungan telah terbukti meningkatkan akurasi, mengurangi waktu respons, dan mengurangi biaya API dalam sistem dengan kebutuhan konteks yang ekstensif. Lihat [resep RAG](https://platform.claude.com/cookbook/capabilities-retrieval-augmented-generation-guide) untuk contoh yang sudah dikerjakan.
 

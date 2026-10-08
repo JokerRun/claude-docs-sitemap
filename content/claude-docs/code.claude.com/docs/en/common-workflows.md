@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: cd80e6f69a6704b47ebad5036af6b1613b263f25760c7bbb563368c0366d4b2f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: baf23e2966963735ccd63aa35a4a5d1a97eedec8f794c4f3742adcf13806cfd7
 ---
 
 > ## Documentation Index
@@ -374,7 +374,7 @@ Use @ to quickly include files or directories without waiting for Claude to read
     Explain the logic in @src/utils/auth.js
     ```
 
-    This includes the full content of the file in the conversation.
+    This includes the content of the file in the conversation when it fits the [Read tool](/docs/en/tools-reference#read-tool-behavior)'s token limit, 25,000 tokens by default. A text file larger than 256KB isn't included.
   </Step>
 
   <Step title="Reference a directory">

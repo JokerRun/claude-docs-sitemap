@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 34497fb2e868393f49261685f51ca61fcb85fab785093ac2734326ce1a371ce3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ce9b174d26f6c50b1ab761cc8174369858dc46432ad01d150bfff402d88a5dbb
 ---
 
 ---
@@ -278,6 +278,8 @@ for message in runner:
 ```
 
 On every iteration, an API request is made. If the response includes a call to one of the given tools, the tool is automatically called, and the result is returned directly to the model in the next iteration.
+
+To run the browser use tool or the computer use tool with this SDK, see [Browser and computer use with the SDK toolsets](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk).
 
 ## Message batches
 

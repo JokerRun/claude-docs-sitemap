@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_usage_report/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 9a3643f794f8b9d64dde838d7fcc116b3c08745d47495b0856ec5a24a2543376
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 070a18120b97fab1d77537f67d0ee3636ed14a77c4c6b85e853e40d5b622472f
 ---
 
 ---
@@ -362,7 +362,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case `data` is empty. Data beyond this watermark is incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours but not final until about 30 days after the usage date (late-arriving events, reconciliation adjustments).
+  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case `data` is empty. Data beyond this watermark is incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 

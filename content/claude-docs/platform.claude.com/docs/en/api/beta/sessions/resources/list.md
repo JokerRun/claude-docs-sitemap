@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 4e5b25ee9c59eef5f8ada19fb05c95d44ed2e2404956d4bad0e84060fc720d95
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 676539b42e7d21d377f20c15ac2e6166720ee51438cff3f03d97f4f1c546bb07
 ---
 
 ---
@@ -281,7 +281,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
       "updated_at": "2026-03-15T10:00:00Z"
     },
     {
-      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "id": "sesrsc_011CZkZCKr6eXym1gWMPdQiu",
       "created_at": "2026-03-15T10:00:00Z",
       "mount_path": "/workspace/example-repo",
       "type": "github_repository",

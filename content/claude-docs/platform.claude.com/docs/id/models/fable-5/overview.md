@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: ba88bc05b9626f412c8343086a05b4f703b28780ffb2e955b6c8106e8abc02de
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: fb60c2569fea0f3a308b9b8cd2f125cc016b17f5abd04754fcbe816e489cc2b2
 ---
 
 ---
@@ -23,21 +23,21 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
 ## Fable vs. Mythos
 
-[Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) ditawarkan secara terpisah, hanya dengan undangan, untuk alur kerja keamanan siber defensif sebagai bagian dari [Project Glasswing](https://anthropic.com/glasswing). Model ini berbagi spesifikasi dan harga Claude Fable 5; Claude Fable 5 menyertakan pengklasifikasi keamanan yang dapat menolak permintaan, dan Claude Mythos 5 tidak. Untuk akses, hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
+[Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) ditawarkan secara terpisah untuk alur kerja keamanan siber defensif dan hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Model ini memiliki spesifikasi dan harga yang sama dengan Claude Fable 5.
 
 ## Bagaimana perbandingannya dengan lineup saat ini
 
-| Model                                                                               | Context | Max output | Price / MTok | Thinking             | Default effort | Knowledge cutoff |
-| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jun 2026         |
-| **Claude Fable 5** (this model)                                                     | 1M      | 128K       | $10 / $50    | Adaptive (always on) | `high`         | Jan 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20     | Adaptive (always on) | `medium`       | Jun 2026         |
-| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10     | Adaptive             | `high`         | Jun 2026         |
-| [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview)   | 200K    | 64K        | $1 / $5      | Extended             | —              | Feb 2025         |
+| Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50          | Adaptive (always on) | `high`         | Jun 2026         |
+| **Claude Fable 5** (this model)                                                     | 1M      | 128K       | $10 / $50          | Adaptive (always on) | `high`         | Jan 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Adaptive             | `high`         | Jun 2026         |
+| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Adaptive             | `medium`       | Jun 2026         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
-* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
 * **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: f10fb087e58bea88b6a53f5e047b123e907a4bc642dc6a68670625ccef7e92df
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a22a8905a1f88b7da76287e20d1a353395c8325aa91a06f562f681141d4e2938
 ---
 
 ---
@@ -50,7 +50,7 @@ This guide walks you through creating an agent, setting up an environment, start
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.38.0
+    VERSION=1.39.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -101,7 +101,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.68.0")
+    implementation("com.anthropic:anthropic-java:2.69.0")
     ```
   </Tab>
 
@@ -381,7 +381,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Create an environment">
-    An environment defines the sandbox where your agent runs. This one uses `limited` [networking](https://platform.claude.com/docs/en/managed-agents/environments#networking) with package managers allowed, so code running in the sandbox can reach public [package registries and code hosts](https://platform.claude.com/docs/en/managed-agents/environments#package-manager-hosts) and no other sites. Web search and web fetch run outside the sandbox and are not affected.
+    An environment defines the sandbox where your agent runs. This one uses `limited` [networking](https://platform.claude.com/docs/en/managed-agents/environments#networking) with package managers allowed, so code running in the sandbox can reach public [package registries and code hosts](https://platform.claude.com/docs/en/managed-agents/environments#package-manager-hosts). Web search and web fetch run outside the sandbox, and this quickstart does not need them. With `limited` networking, the [`allowed_hosts` list](https://platform.claude.com/docs/en/managed-agents/environments#networking) applies to them too. They return no pages or search results in this environment, because it lists no hosts. For your own agent, list the hosts it needs in `allowed_hosts`.
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>

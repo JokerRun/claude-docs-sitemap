@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 5a7800b86fe06c8bb8966c7dbf4d0bf0608d71e05fc95aa9f81d5b2f4fc23e42
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4d8a5ed2a88bafd741d64d9f8a8ef877ec9eaee92546b7fca34d8297c12610f6
 ---
 
 ---
@@ -87,7 +87,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   - `product_surface: string or null`
 
-    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine); `claude_code` (Claude Code); `claude_science` (Claude Science); `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat); `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word` or `office_agents/outlook` (Claude for Microsoft 365, by app); `office_agents/google_docs`, `office_agents/google_sheets` or `office_agents/google_slides` (the Claude add-ins for Google Docs, Google Sheets, and Google Slides, by app); or `office_agents` alone (Claude for Microsoft 365 or one of the Google add-ins, app not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
   - `truncated: boolean`
 
@@ -192,7 +192,7 @@ inference call has aged out returns 404.
 
 - `product_surface: string or null`
 
-  The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+  The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine); `claude_code` (Claude Code); `claude_science` (Claude Science); `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat); `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word` or `office_agents/outlook` (Claude for Microsoft 365, by app); `office_agents/google_docs`, `office_agents/google_sheets` or `office_agents/google_slides` (the Claude add-ins for Google Docs, Google Sheets, and Google Slides, by app); or `office_agents` alone (Claude for Microsoft 365 or one of the Google add-ins, app not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
 - `truncated: boolean`
 
@@ -505,7 +505,7 @@ response header.
 
   - `product_surface: string or null`
 
-    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat), or one of `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, and `office_agents/outlook` (Claude for Microsoft 365, by app; `office_agents` alone when the app is not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
+    The product the session ran in: `cowork` (Cowork in Claude Desktop on the user's machine); `claude_code` (Claude Code); `claude_science` (Claude Science); `claude_in_chrome` (the Claude in Chrome browser extension's built-in chat); `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word` or `office_agents/outlook` (Claude for Microsoft 365, by app); `office_agents/google_docs`, `office_agents/google_sheets` or `office_agents/google_slides` (the Claude add-ins for Google Docs, Google Sheets, and Google Slides, by app); or `office_agents` alone (Claude for Microsoft 365 or one of the Google add-ins, app not identified). New values appear as coverage expands; treat unrecognized values as opaque. `null` when the surface was not recorded.
 
   - `truncated: boolean`
 

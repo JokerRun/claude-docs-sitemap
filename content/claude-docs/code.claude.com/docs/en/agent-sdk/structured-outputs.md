@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/structured-outputs
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: a51682a79191329968b165c9c623d846056188891bf5a71446a79e989002ca21
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 66c2e8bec15c512f8809209271e17535daeb6af92c7854f7c04f57d3986fcaee
 ---
 
 > ## Documentation Index
@@ -63,7 +63,7 @@ Consider a recipe app where an agent searches the web and brings back recipes. W
 
 To use structured outputs, define a [JSON Schema](https://json-schema.org/understanding-json-schema/about) describing the shape of data you want, then pass it to `query()` via the `outputFormat` option (TypeScript) or `output_format` option (Python). When the agent finishes, the result message includes a `structured_output` field with validated data matching your schema.
 
-The example below asks the agent to research Anthropic and return the company name, year founded, and headquarters as structured output.
+Before running the examples on this page, install the Claude Agent SDK by following the [quickstart](/docs/en/agent-sdk/quickstart#setup). The example below asks the agent to research Anthropic and return the company name, year founded, and headquarters as structured output.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -385,7 +385,7 @@ The schema includes optional fields (`author` and `date`) since git blame inform
 
 ## Error handling
 
-Structured output generation can fail when the agent cannot produce valid JSON matching your schema. This typically happens when the schema is too complex for the task, the task itself is ambiguous, or the agent hits its retry limit trying to fix validation errors. It can also happen without any validation failure: a [model fallback](/docs/en/model-config#automatic-model-fallback) can retract an already-completed output mid-stream, and if no retry replaces it the run ends with the same error. Check the `errors` list on the result message to tell the two causes apart before debugging your schema.
+Structured output generation can fail when the agent cannot produce valid JSON matching your schema. This typically happens when the schema is too complex for the task, the task itself is ambiguous, or the agent hits its retry limit trying to fix validation errors. It can also happen without any validation failure: a [model fallback](/docs/en/model-config#automatic-model-fallback) can retract an already-completed output mid-stream, and if no retry replaces it the run ends with the same error. Check the `errors` list on the error result message to tell the two causes apart before debugging your schema.
 
 When an error occurs, the result message has a `subtype` indicating what went wrong:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 30fe8a75f9560e027e29d1f6144e8cad5792bdccd5d8ae5f68b1e15362c256a1
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 75b86614d272fd364f09823732031cc7b15ffec967b58c65c519d525674eec78
 ---
 
 ---
@@ -56,7 +56,7 @@ Satu issuer dapat memiliki banyak aturan: satu per tim, namespace, atau tingkat 
 
 1. **IdP Anda menerbitkan JWT ke workload.** Di sebagian besar platform, ini bersifat ambient: token service-account terproyeksi Kubernetes, server metadata Google Cloud, Azure IMDS, atau endpoint OIDC GitHub Actions. Klaim `iss` pada JWT mengidentifikasi penyedia, dan klaim `sub` serta klaim lainnya mengidentifikasi workload spesifik.
 2. **SDK menukar JWT dengan token akses Anthropic.** SDK mengirim JWT ke `POST /v1/oauth/token` menggunakan grant `jwt-bearer` [RFC 7523](https://www.rfc-editor.org/rfc/rfc7523). Anthropic memverifikasi JWT terhadap JWKS milik issuer dan kondisi pencocokan pada aturan federasi, lalu mengembalikan token `sk-ant-oat01-...` berumur pendek yang bertindak atas nama service account target aturan tersebut.
-3. **SDK mengirim token pada setiap permintaan dan memperbaruinya sebelum kedaluwarsa.** Kode aplikasi Anda membuat klien tanpa `api_key` dan memanggil API seperti biasa. SDK menjalankan ulang pertukaran sebelum token kedaluwarsa.
+3. **SDK mengirimkan token pada setiap permintaan dan memperbaruinya sebelum kedaluwarsa.** Kode aplikasi Anda membuat klien tanpa kunci API dan memanggil API seperti biasa. SDK menjalankan ulang pertukaran sebelum token kedaluwarsa.
 
 ## Menyiapkan federasi
 
@@ -86,11 +86,11 @@ Wizard **Connect workload** membuat ketiga sumber daya (issuer, service account,
   </Step>
 </Steps>
 
-Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [referensi API Service accounts](https://platform.claude.com/docs/id/api/beta/organization/service_accounts), [referensi API Federation issuers](https://platform.claude.com/docs/id/api/beta/organization/federation/issuers), dan [referensi API Federation rules](https://platform.claude.com/docs/id/api/beta/organization/federation/rules) untuk detail parameter lengkap dan skema respons.
+Untuk mengelola sumber daya ini secara terprogram, lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api) untuk panduan curl, atau lihat [referensi API Service accounts](https://platform.claude.com/docs/id/api/organization/service_accounts), [referensi API Federation issuers](https://platform.claude.com/docs/id/api/organization/federation/issuers), dan [referensi API Federation rules](https://platform.claude.com/docs/id/api/organization/federation/rules) untuk detail parameter lengkap dan skema respons.
 
 ## Autentikasi dari workload Anda
 
-Dengan federasi terkonfigurasi, workload Anda menukar JWT yang diterbitkan IdP dengan token Anthropic saat runtime. SDK menangani pertukaran dan siklus pembaruan untuk Anda. Tab cURL menunjukkan pertukaran HTTP yang mendasarinya untuk skrip shell, debugging, atau bahasa tanpa dukungan SDK.
+Setelah federasi dikonfigurasi, workload Anda menukar JWT yang diterbitkan IdP dengan token Anthropic saat runtime. SDK menangani pertukaran dan siklus pembaruan untuk Anda. Tab cURL menunjukkan pertukaran HTTP yang mendasarinya untuk skrip shell, debugging, atau bahasa tanpa dukungan SDK.
 
 ### Membuat klien SDK
 
@@ -361,7 +361,7 @@ Untuk mengalihkan workload yang ada dari kunci API statis ke federasi tanpa down
 
 Masa berlaku token Anthropic yang dicetak adalah nilai terkecil dari (a) `token_lifetime_seconds` pada aturan (default 3.600 detik) dan (b) dua kali sisa masa berlaku JWT IdP yang Anda sajikan. Hasilnya tidak pernah kurang dari 60 detik. Batas kedua mencegah token Anthropic bertahan lebih lama dari identitas hulu asalnya melebihi margin kecil.
 
-SDK menyimpan token dalam cache dan memperbaruinya dengan jadwal dua tingkat yang dimodelkan dari `botocore`:
+SDK menyimpan token dalam cache dan memperbaruinya dengan jadwal dua tingkat yang dimodelkan berdasarkan `botocore`:
 
 * **Pembaruan anjuran (advisory refresh)** pada waktu kedaluwarsa dikurangi 120 detik. SDK mencoba pertukaran baru. Jika endpoint token tidak dapat dijangkau, SDK terus menyajikan token dalam cache, yang masih berlaku selama kira-kira 90 detik lagi.
 * **Pembaruan wajib (mandatory refresh)** pada waktu kedaluwarsa dikurangi 30 detik. Pertukaran yang gagal pada titik ini memunculkan error. Token dalam cache terlalu dekat dengan kedaluwarsa untuk dianggap aman.
@@ -408,5 +408,5 @@ Setiap panduan membahas dari mana JWT berasal di platform tersebut, seperti apa 
 
 * [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api): membuat issuer, service account, dan aturan dari infrastructure as code
 * [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, skema file profil, aturan validasi, dan kode error
-* [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication): semua opsi autentikasi di seluruh SDK Anthropic
+* [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication): semua opsi autentikasi SDK
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

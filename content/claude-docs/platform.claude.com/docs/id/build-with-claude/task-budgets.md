@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 4c2b89e92379b5c38ceb1fba060c6ddee5559466bf456abd04c41c5a02da1e77
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5155b2152f6721ba4f82be8803be6e4d89124e4b6c07a2ef4609eecc197426c3
 ---
 
 ---
@@ -256,14 +256,14 @@ Objek `task_budget` memiliki tiga field:
 
 ## Cara kerja hitung mundur anggaran
 
-Claude melihat penanda hitung mundur anggaran yang disisipkan di sisi server sepanjang percakapan. Penanda ini menunjukkan berapa banyak token yang tersisa dalam loop agentik saat ini dan diperbarui seiring model menghasilkan pemikiran, pemanggilan alat, dan output, serta saat model memproses hasil alat. Claude menggunakan sinyal ini untuk mengatur kecepatannya dan menyelesaikan dengan baik seiring anggaran terpakai.
+Claude melihat penanda hitung mundur anggaran yang disisipkan di sisi server di sepanjang percakapan. Penanda tersebut menunjukkan berapa banyak token yang tersisa dalam loop agentik saat ini dan diperbarui saat model menghasilkan pemikiran, pemanggilan alat, dan output, serta saat model memproses hasil alat. Claude menggunakan sinyal ini untuk mengatur kecepatannya dan menyelesaikan tugas dengan baik seiring anggaran terpakai.
 
 <Note>
-  **Hitung mundur hanya terlihat oleh model.** Respons API tidak menyertakan field sisa anggaran: tidak ada informasi `task_budget` dalam objek `usage` pada respons, dan SDK tidak memiliki accessor untuknya. Untuk melacak pengeluaran di sisi klien, jumlahkan penggunaan token di seluruh permintaan dalam loop Anda seperti ditunjukkan di [Ukur penggunaan Anda saat ini](https://platform.claude.com/docs/id/build-with-claude/task-budgets#measure-your-current-usage), atau teruskan angka Anda sendiri dengan `remaining` saat [membawa anggaran melewati compaction](https://platform.claude.com/docs/id/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
+  **Hitung mundur hanya terlihat oleh model.** Respons API tidak menyertakan field sisa anggaran: tidak ada informasi `task_budget` dalam objek `usage` respons, dan SDK tidak memiliki accessor untuknya. Untuk melacak pengeluaran di sisi klien, jumlahkan penggunaan token di seluruh permintaan dalam loop Anda seperti yang ditunjukkan di [Ukur penggunaan Anda saat ini](https://platform.claude.com/docs/id/build-with-claude/task-budgets#measure-your-current-usage), atau teruskan angka Anda sendiri dengan `remaining` saat [membawa anggaran melewati compaction](https://platform.claude.com/docs/id/build-with-claude/task-budgets#carrying-a-budget-across-compaction-with-remaining).
 </Note>
 
 <Warning>
-  **Hitung mundur mencerminkan token yang telah diproses Claude dalam loop agentik saat ini, bukan token yang Anda kirim ulang di antara permintaan.** Jika klien Anda mengirimkan seluruh riwayat percakapan pada setiap permintaan lanjutan, jumlah token di sisi klien Anda mungkin berbeda dari anggaran yang dilacak Claude. Jika Anda juga mengurangi `remaining` sambil mengirim ulang seluruh riwayat, model akan melihat anggaran yang dilaporkan lebih kecil dari seharusnya dan hitung mundur turun lebih cepat dari yang semestinya, sehingga Claude menyelesaikan tugas lebih awal daripada yang sebenarnya diizinkan oleh anggaran. Tetapkan anggaran yang longgar dan biarkan model mengatur dirinya sendiri berdasarkan hitung mundur, alih-alih mencoba menirunya di sisi klien.
+  **Hitung mundur mencerminkan token yang telah diproses Claude dalam loop agentik saat ini, bukan token yang Anda kirim ulang di antara permintaan.** Jika klien Anda mengirim seluruh riwayat percakapan pada setiap permintaan lanjutan, jumlah token di sisi klien Anda mungkin berbeda dari anggaran yang dilacak Claude. Jika Anda juga mengurangi `remaining` sambil mengirim ulang seluruh riwayat, model melihat anggaran yang dilaporkan lebih rendah dan hitung mundur turun lebih cepat dari seharusnya, sehingga Claude menyelesaikan tugas lebih awal daripada yang sebenarnya diizinkan anggaran. Tetapkan anggaran yang longgar dan biarkan model mengatur dirinya sendiri terhadap hitung mundur, alih-alih mencoba mencerminkannya di sisi klien.
 </Warning>
 
 ### Apa yang dihitung sebagai satu giliran
@@ -650,33 +650,34 @@ Nilai minimum `task_budget.total` yang diterima adalah **20.000 token** pada set
 
 ## Dukungan fitur
 
-| Model             | Dukungan                                     |
-| ----------------- | -------------------------------------------- |
-| Claude Fable 5.1  | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Mythos 5.1 | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Opus 5.5   | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Opus 5     | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Fable 5    | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Mythos 5   | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Sonnet 5.5 | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Sonnet 5   | Tidak didukung                               |
-| Claude Opus 4.8   | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Opus 4.7   | Beta (atur header `task-budgets-2026-03-13`) |
-| Claude Opus 4.6   | Tidak didukung                               |
-| Claude Sonnet 4.6 | Tidak didukung                               |
-| Claude Haiku 4.5  | Tidak didukung                               |
+| Model             | Dukungan                                         |
+| ----------------- | ------------------------------------------------ |
+| Claude Fable 5.1  | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Mythos 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 5.5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 5     | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Fable 5    | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Mythos 5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Sonnet 5.5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Sonnet 5   | Tidak didukung                                   |
+| Claude Haiku 5.5  | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.8   | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.7   | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.6   | Tidak didukung                                   |
+| Claude Sonnet 4.6 | Tidak didukung                                   |
+| Claude Haiku 4.5  | Tidak didukung                                   |
 
-Anggaran tugas tidak didukung pada [Claude Code](https://code.claude.com/docs/id/overview) atau permukaan Cowork. Gunakan anggaran tugas secara langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
+Anggaran tugas tidak didukung di [Claude Code](https://code.claude.com/docs/id/overview) atau permukaan Cowork. Gunakan anggaran tugas secara langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
 
 ## Langkah selanjutnya
 
 <CardGroup>
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol seberapa teliti Claude bernalar tentang setiap langkah dalam loop agentik.
+    Kontrol seberapa menyeluruh Claude bernalar tentang setiap langkah dalam loop agentik.
   </Card>
 
-  <Card title="Adaptive thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Biarkan Claude memutuskan kapan dan seberapa banyak menggunakan pemikiran diperpanjang.
+  <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
+    Biarkan Claude menentukan kapan dan seberapa banyak menggunakan pemikiran diperpanjang.
   </Card>
 
   <Card title="Compaction" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/build-with-claude/compaction">
@@ -684,6 +685,6 @@ Anggaran tugas tidak didukung pada [Claude Code](https://code.claude.com/docs/id
   </Card>
 
   <Card title="Caching prompt" icon="database" href="https://platform.claude.com/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching prefiks prompt.
+    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching pada prefiks prompt.
   </Card>
 </CardGroup>

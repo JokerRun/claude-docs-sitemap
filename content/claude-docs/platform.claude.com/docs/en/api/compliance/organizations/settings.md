@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-09-25T02:20:28.349481Z
-sha256: d97b8a999feda07ad702bd96594147bf98b36221186a8cff78fda70b0632e008
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0f1abe6c48620788e88fdf364b01e296d2c24c96161efd6c2c236c82392fce9c
 ---
 
 ---
@@ -102,7 +102,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: boolean
 
-    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 59 more`
+    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 60 more`
 
       - `"access_transparency_enabled"`
 
@@ -115,6 +115,8 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"artifact_connectors_enabled"`
 
       - `"ask_your_org_enabled"`
+
+      - `"chat_cowork_unified_enabled"`
 
       - `"chat_enabled"`
 
@@ -467,7 +469,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         default: boolean
 
-      - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 59 more`
+      - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 60 more`
 
         - `"access_transparency_enabled"`
 
@@ -480,6 +482,8 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
         - `"artifact_connectors_enabled"`
 
         - `"ask_your_org_enabled"`
+
+        - `"chat_cowork_unified_enabled"`
 
         - `"chat_enabled"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 043e7f80cbc75a8f38239dafeba9f2a6d885d3a41bb6e02854a0bf81229786b8
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0c9791c39a8b26b89887820b4ad877ccc76c652fa3d9deb3372478332884f6ac
 ---
 
 ---
@@ -239,7 +239,7 @@ other scopes require a Console session.
 
   - `target: BetaServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

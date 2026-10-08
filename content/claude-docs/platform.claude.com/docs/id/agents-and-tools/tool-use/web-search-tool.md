@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 37f09b615c9d9db4db16c078c455b348d87bffe31b212cc2738728e799a1afc3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 1d45831db29d0e6340c5e45f98e80048f24065a39dbcad38c09549d3e87fd576
 ---
 
 ---
@@ -34,6 +34,8 @@ Contoh-contoh di halaman ini menggunakan `web_search_20250305` untuk pencarian d
 Untuk kelayakan Zero Data Retention pencarian web dan konfigurasi `allowed_callers` terkait, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
 Untuk dukungan model, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
+
+Untuk memeriksa apakah suatu model menerima pencarian web sebelum Anda mengirim permintaan, baca nilai `capabilities.server_tools.web_search.supported` dari Models API. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan field tersebut.
 
 ## Cara kerja pencarian web
 
@@ -244,7 +246,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/capabilities), tempat administrator juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan yang menyertakan alat ini akan gagal dengan `invalid_request_error` 400 yang menyatakan bahwa pencarian web tidak diaktifkan, alih-alih [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
 </Note>
 
-Pengaturan tingkat organisasi di Claude Console ini hanya berlaku untuk permintaan Messages API. Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) hanya menggunakan daftar `allowed_domains` dan `blocked_domains` per alat pada toolset agen; lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Pengaturan tingkat organisasi di Claude Console ini hanya berlaku untuk permintaan Messages API. Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) menggunakan daftar `allowed_domains` dan `blocked_domains` per alat pada toolset agen sebagai gantinya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions). Untuk sesi di environment cloud dengan jaringan `limited`, `allowed_hosts` milik environment tersebut juga berlaku untuk `web_search` dan `web_fetch`; lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking). Daftar per alat membatasi alat-alat ini lebih lanjut, di dalam host yang diizinkan oleh `allowed_hosts`.
 
 Sediakan alat pencarian web dalam permintaan API Anda:
 
@@ -455,7 +457,7 @@ Sediakan `allowed_domains` atau `blocked_domains`, bukan keduanya. Jika perminta
 
 Untuk aturan pemfilteran domain selengkapnya, lihat [Pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) di panduan Alat server.
 
-Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_search` di toolset agen; lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_search` di toolset agen; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 ### Lokalisasi
 
@@ -467,7 +469,7 @@ Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasa
 * `country`: Kode negara dua huruf [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). API menolak kode negara yang tidak didukung dengan error 400.
 * `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
-Di Claude Managed Agents, entri `web_search` pada toolset agen menerima objek `user_location` dengan field yang sama. API menolak kode `country` yang tidak didukung dengan error 400 saat Anda membuat atau memperbarui agen, atau saat Anda membuat atau memperbarui sesi yang menyediakan pengaturan tersebut. Lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di Claude Managed Agents, entri `web_search` pada toolset agen menerima objek `user_location` dengan field yang sama. API menolak kode `country` yang tidak didukung dengan error 400 saat Anda membuat atau memperbarui agen, atau saat Anda membuat atau memperbarui sesi yang menyertakan pengaturan tersebut. Lihat [pengaturan alat web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings).
 
 ### Penyertaan respons
 

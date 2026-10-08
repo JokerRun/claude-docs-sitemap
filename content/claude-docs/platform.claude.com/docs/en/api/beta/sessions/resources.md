@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: e835136330c5fa639df191bfaa7aedc43e15e36926eb4d73d94bd1bc1c591d27
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c93fc26ba9032b5d731edc7b9c238d6f8dea55c18a14376f79df5bc8c6c3d4bf
 ---
 
 ---
@@ -475,7 +475,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources \
       "updated_at": "2026-03-15T10:00:00Z"
     },
     {
-      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "id": "sesrsc_011CZkZCKr6eXym1gWMPdQiu",
       "created_at": "2026-03-15T10:00:00Z",
       "mount_path": "/workspace/example-repo",
       "type": "github_repository",
@@ -734,7 +734,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
 ```json
 {
-  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "id": "sesrsc_011CZkZCKr6eXym1gWMPdQiu",
   "created_at": "2026-03-15T10:00:00Z",
   "mount_path": "/workspace/example-repo",
   "type": "github_repository",
@@ -1002,7 +1002,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
 
 ```json
 {
-  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "id": "sesrsc_011CZkZCKr6eXym1gWMPdQiu",
   "created_at": "2026-03-15T10:00:00Z",
   "mount_path": "/workspace/example-repo",
   "type": "github_repository",

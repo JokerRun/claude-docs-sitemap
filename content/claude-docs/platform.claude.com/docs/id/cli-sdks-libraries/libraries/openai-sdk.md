@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 99e4f151f98a1984b375d50191a367de005c6d1a88fcaf4b6edfa7a21dc57e82
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 01e4a6fee754eb4937c5978467afd5fa83877c53d200855aee241eb31bdf132e
 ---
 
 ---
@@ -210,7 +210,7 @@ Sebagian besar input ke OpenAI SDK jelas terpetakan langsung ke parameter API An
 
 ### Dukungan thinking
 
-Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude memutuskan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; "extended thinking" (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama. Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan proses berpikir Claude secara terperinci. Untuk fitur thinking lengkap, termasuk akses ke output penalaran langkah demi langkah Claude, gunakan Claude API native.
+Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude menentukan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; "extended thinking" (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama (legacy). Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan thinking Claude. Untuk fitur thinking lengkap, termasuk [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), gunakan Claude API native.
 
 <CodeGroup exclude="shell">
   ```python Python

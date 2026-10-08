@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 87b85ae63557c5c32c1185b7a81d7f0736cd05f358503b3b368c50f30f299b57
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 74b45c5ebfc49de198c40669da32df19446c1ff86cc38417c999cd9d4f3c0cb1
 ---
 
 ---
@@ -14,7 +14,10 @@ description: Instal alat baris perintah ant, lakukan autentikasi, dan kirim perm
 CLI `ant` menyediakan akses ke Claude API dari terminal Anda. Setiap sumber daya API diekspos sebagai subperintah, dengan pemformatan output, pemfilteran respons, dan input file YAML atau JSON.
 
 <Frame caption="CLI ant sedang beraksi.">
-  [](https://platform.claude.com/docs/videos/ant-cli-demo.webm)
+  <video aria-label="Rekaman layar CLI ant yang berjalan di terminal.">
+    <source src="https://platform.claude.com/docs/videos/ant-cli-demo.webm" type="video/webm" />
+    <source src="https://platform.claude.com/docs/videos/ant-cli-demo.mp4" type="video/mp4" />
+  </video>
 </Frame>
 
 Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis tangan, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. Alat ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan secara otomatis melakukan paginasi pada endpoint daftar.
@@ -36,7 +39,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.36.0
+    VERSION=1.39.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;

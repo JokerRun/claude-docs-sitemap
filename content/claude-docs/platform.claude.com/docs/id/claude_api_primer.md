@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 192399895d7fae18019fabd2876c7a2d2f52ff6a727ee41537a03c16207652db
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7a0e9b3f804842e69a4b7f16ae799715d263f1eb61ef45c5c7716997c9fbd7f7
 ---
 
 ---
@@ -23,7 +23,8 @@ Step up for the hardest long-running agentic and research tasks, at 2.5x Claude 
 Previous Opus model: Claude Opus 5: claude-opus-5
 Smart model: Claude Sonnet 5.5: claude-sonnet-5-5
 Previous Sonnet model: Claude Sonnet 5: claude-sonnet-5
-For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
+For fast, cost-effective tasks: Claude Haiku 5.5: claude-haiku-5-5
+Previous Haiku model: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ```
 
 ## Memanggil API
@@ -245,22 +246,23 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
 ## Thinking
 
-Thinking terkadang dapat membantu Claude dalam tugas yang sangat sulit. Mekanisme saat ini adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) (`thinking: {"type": "adaptive"}`): Claude memutuskan kapan dan seberapa banyak harus berpikir, dan Anda mengarahkan kedalaman pemikiran dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Adaptive thinking didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
+Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanisme saat ini adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) (`thinking: {"type": "adaptive"}`): Claude menentukan kapan dan seberapa banyak berpikir, dan Anda mengarahkan kedalaman thinking dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Adaptive thinking didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
 
-Temperature harus diatur ke 1 (atau dibiarkan tidak diatur) setiap kali thinking diaktifkan, pada semua model. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, `temperature` sudah tidak digunakan lagi (deprecated) dan hanya nilai default-nya yang diterima, bahkan ketika thinking nonaktif.
+Temperature harus diatur ke 1 (atau dibiarkan tidak diatur) setiap kali thinking diaktifkan, pada semua model. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, `temperature` sudah usang (deprecated) dan hanya nilai default-nya yang diterima, bahkan ketika thinking nonaktif.
 
 Thinking didukung pada model-model berikut:
 
-* Claude Opus 5.5 (`claude-opus-5-5`, hanya pemikiran adaptif, selalu aktif)
-* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya pemikiran adaptif, aktif secara default)
-* Claude Opus 5 (claude-opus-5, hanya pemikiran adaptif, aktif secara default)
-* Claude Sonnet 5 (`claude-sonnet-5`, hanya pemikiran adaptif, aktif secara default)
-* Claude Opus 4.8 (claude-opus-4-8, hanya pemikiran adaptif)
-* Claude Opus 4.7 (`claude-opus-4-7`, hanya pemikiran adaptif)
-* Claude Opus 4.6 (`claude-opus-4-6`, pemikiran adaptif atau pemikiran manual lama)
-* Claude Sonnet 4.6 (`claude-sonnet-4-6`, pemikiran adaptif atau pemikiran manual lama)
+* Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
+* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya adaptive thinking, aktif secara default)
+* Claude Haiku 5.5 (`claude-haiku-5-5`, hanya adaptive thinking, aktif secara default)
+* Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
+* Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
+* Claude Opus 4.8 (claude-opus-4-8, hanya adaptive thinking)
+* Claude Opus 4.7 (`claude-opus-4-7`, hanya adaptive thinking)
+* Claude Opus 4.6 (`claude-opus-4-6`, adaptive thinking atau pemikiran manual lama)
+* Claude Sonnet 4.6 (`claude-sonnet-4-6`, adaptive thinking atau pemikiran manual lama)
 * Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya pemikiran manual lama)
-* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, hanya pemikiran manual lama)
+* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations), hanya pemikiran manual lama)
 * Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya pemikiran manual lama)
 
 <Note>
@@ -451,7 +453,7 @@ Batasan penting:
 
 ### Interleaved thinking
 
-"Interleaved thinking" (pemikiran berselang-seling) memungkinkan Claude untuk berpikir di antara pemanggilan alat, bernalar tentang hasil alat sebelum memutuskan langkah berikutnya.
+"Interleaved thinking" (pemikiran berselang-seling) memungkinkan Claude untuk berpikir di antara pemanggilan alat, bernalar tentang hasil alat sebelum menentukan langkah berikutnya.
 
 <Info>
   Pada model dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), interleaved thinking diaktifkan secara otomatis. Tidak diperlukan header beta. Sonnet 4.6 mendukung header beta `interleaved-thinking-2025-05-14` dengan pemikiran diperpanjang manual maupun adaptive thinking.
@@ -551,7 +553,7 @@ Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 
   ```
 </CodeGroup>
 
-Dengan interleaved thinking dan HANYA dengan interleaved thinking (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam hal ini mewakili total anggaran di seluruh blok thinking dalam satu giliran assistant.
+Dengan interleaved thinking dan HANYA dengan interleaved thinking (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam kasus ini mewakili total anggaran di seluruh blok thinking dalam satu giliran asisten.
 
 ## Penggunaan alat
 
@@ -634,33 +636,11 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun.
 
-Pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude cocok dengan `input_schema` alat tersebut. Lihat [Penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 ### Output JSON
 
 Alat tidak harus berupa fungsi klien. Anda dapat menggunakan alat kapan pun Anda ingin model mengembalikan output JSON yang mengikuti skema yang disediakan.
-
-### Chain of thought
-
-Saat menggunakan alat, Claude sering menunjukkan "chain of thought" (rantai pemikiran)-nya, yaitu penalaran langkah demi langkah yang digunakannya untuk memecah masalah dan menentukan alat mana yang akan digunakan.
-
-```json
-{
-  "role": "assistant",
-  "content": [
-    {
-      "type": "text",
-      "text": "<thinking>To answer this question, I will: 1. Use the get_weather tool to get the current weather in San Francisco. 2. Use the get_time tool to get the current time in the America/Los_Angeles timezone, which covers San Francisco, CA.</thinking>"
-    },
-    {
-      "type": "tool_use",
-      "id": "toolu_01A09q90qw90lq917835lq9",
-      "name": "get_weather",
-      "input": { "location": "San Francisco, CA" }
-    }
-  ]
-}
-```
 
 ### Penggunaan alat paralel
 
@@ -672,15 +652,29 @@ Secara default, Claude dapat menggunakan beberapa alat untuk menjawab kueri peng
 
 Respons memiliki `stop_reason` berupa `tool_use` dan satu atau lebih blok konten `tool_use` yang mencakup:
 
-* `id`: Pengidentifikasi unik untuk blok penggunaan alat ini.
+* `id`: Pengidentifikasi unik untuk blok penggunaan alat tertentu ini.
 * `name`: Nama alat yang digunakan.
-* `input`: Objek yang berisi input yang dikirimkan ke alat.
+* `input`: Objek yang berisi input yang diteruskan ke alat.
+
+```json
+{
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "toolu_01A09q90qw90lq917835lq9",
+      "name": "get_weather",
+      "input": { "location": "San Francisco, CA" }
+    }
+  ]
+}
+```
 
 Ketika Anda menerima respons penggunaan alat, Anda harus:
 
 1. Mengekstrak `name`, `id`, dan `input` dari blok `tool_use`.
-2. Menjalankan alat yang sebenarnya di basis kode Anda yang sesuai dengan nama alat tersebut.
-3. Melanjutkan percakapan dengan mengirim pesan baru berisi `tool_result`:
+2. Menjalankan alat sebenarnya di basis kode Anda yang sesuai dengan nama alat tersebut.
+3. Melanjutkan percakapan dengan mengirimkan pesan baru dengan `tool_result`:
 
 ```json
 {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: fb4f54d3ea4c3d0aa23407b4d50d08f934b435fea6987d891843775ed0459b34
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: eb2e5afaa26dd330086e1cf010dd4c90269c72bc3314ec153260d8ebc13aef6b
 ---
 
 ---
@@ -259,7 +259,7 @@ Batasan:
 
 ## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
+Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat-alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
 
 Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 
@@ -297,6 +297,8 @@ Ketika output alat MCP melebihi 100.000 karakter (sekitar 25.000 token), output 
 ## Menyediakan autentikasi saat pembuatan sesi
 
 Saat memulai sesi, teruskan `vault_ids` untuk menyediakan kredensial bagi server MCP Anda. Vault adalah kumpulan kredensial yang Anda daftarkan sekali dan referensikan berdasarkan ID. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mengelola kredensial.
+
+Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 <CodeGroup>
   ```bash cURL
@@ -391,7 +393,7 @@ Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial ya
 
 ### Menangani kegagalan koneksi dan autentikasi
 
-Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dimungkinkan. Sebuah event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dipancarkan dengan `mcp_server_name` dari server yang terdampak dan sebuah `retry_status`:
+Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di bagian [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dipancarkan dengan `mcp_server_name` dari server yang terdampak dan sebuah `retry_status`:
 
 | Jenis error                       | Arti                                                                                                                                                                                                        |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

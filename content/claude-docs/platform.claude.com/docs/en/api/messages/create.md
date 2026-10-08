@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 506fb34a2035640b2b13d3f0cf3fc628db1c004f512f72a0f47cee34e7ec349f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0e112197c6450d358301001cdf041d4a5e5029ffee27f3996c2acd9e3402f6ca
 ---
 
 ---
@@ -1079,6 +1079,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `"claude-haiku-5-5"`
+
+    Fastest model for high-volume, real-time tasks
 
   - `"claude-sonnet-5-5"`
 
@@ -3924,6 +3928,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-haiku-5-5"`
+
+      Fastest model for high-volume, real-time tasks
 
     - `"claude-sonnet-5-5"`
 

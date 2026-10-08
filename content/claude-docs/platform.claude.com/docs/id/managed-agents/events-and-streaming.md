@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 588d9c8dedb0ef09a9dbc47d32e5c633475063a1a1a4b599c7ac27dbeb1a9480
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 066e2c2a682c00756710d1f9f23eff6e0513b0996e33519e04408ae44a55f7ed
 ---
 
 ---
@@ -189,8 +189,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
 
     <CodeGroup>
       ```bash cURL
-      # Agent is currently analyzing a file...
-      # Interrupt with a new direction:
+      # Agen sedang menganalisis sebuah file...
+      # Interupsi dengan arahan baru:
       curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -212,8 +212,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```bash CLI
-      # Agent is currently analyzing a file...
-      # Interrupt with a new direction:
+      # Agen sedang menganalisis sebuah file...
+      # Interupsi dengan arahan baru:
       ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
       events:
         - type: user.interrupt
@@ -225,8 +225,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```python Python
-      # Agent is currently analyzing a file...
-      # Interrupt with a new direction:
+      # Agen sedang menganalisis sebuah file...
+      # Interupsi dengan arahan baru:
       client.beta.sessions.events.send(
           session.id,
           events=[
@@ -245,8 +245,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```typescript TypeScript
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       await client.beta.sessions.events.send(session.id, {
         events: [
           { type: "user.interrupt" },
@@ -264,8 +264,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```csharp C#
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
           Events =
@@ -291,8 +291,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```go Go
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
       	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
       		{
@@ -318,8 +318,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```java Java
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       client.beta().sessions().events().send(
           session.id(),
           EventSendParams.builder()
@@ -334,8 +334,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```php PHP
-      // Agent is currently analyzing a file...
-      // Interrupt with a new direction:
+      // Agen sedang menganalisis sebuah file...
+      // Interupsi dengan arahan baru:
       $client->beta->sessions->events->send(
           $session->id,
           events: [
@@ -354,8 +354,8 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```ruby Ruby
-      # Agent is currently analyzing a file...
-      # Interrupt with a new direction:
+      # Agen sedang menganalisis sebuah file...
+      # Interupsi dengan arahan baru:
       client.beta.sessions.events.send_(
         session.id,
         events: [
@@ -611,7 +611,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```
 
       ```php PHP
-      // Open the stream first, then send the user message
+      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
       $stream = $client->beta->sessions->events->streamStream($session->id);
       $client->beta->sessions->events->send(
           $session->id,
@@ -871,13 +871,13 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang diteta
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Stream is open and buffering. List history before tailing live.
+      // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       $seenEventIds = [];
       foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
           $seenEventIds[$event->id] = true;
       }
 
-      // Tail live events, skipping anything already seen
+      // Ikuti event langsung, lewati apa pun yang sudah terlihat
       foreach ($stream as $event) {
           if (isset($seenEventIds[$event->id])) {
               continue;
@@ -1950,7 +1950,7 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
     case "$stop_reason" in
       requires_action)
         while IFS= read -r event_id; do
-          # Execute the tool and send the result back
+          # Jalankan alat dan kirim hasilnya kembali
           result=$(call_tool "$event_id")
           jq -n --arg id "$event_id" --arg result "$result" \
             '{events: [{type: "user.custom_tool_result", custom_tool_use_id: $id, content: [{type: "text", text: $result}]}]}' |
@@ -1972,8 +1972,8 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
   ```
 
   ```bash CLI
-  # This workflow does not translate well to a one-off shell command.
-  # Use one of the SDK examples in this code group instead.
+  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
+  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
   ```
 
   ```python Python
@@ -1983,11 +1983,11 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
               match stop_reason.type:
                   case "requires_action":
                       for event_id in stop_reason.event_ids:
-                          # Look up the custom tool use event and execute it
+                          # Cari event custom tool use dan jalankan
                           tool_event = events_by_id[event_id]
                           result = call_tool(tool_event.name, tool_event.input)
 
-                          # Send the result back
+                          # Kirim hasilnya kembali
                           client.beta.sessions.events.send(
                               session.id,
                               events=[
@@ -2011,12 +2011,12 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
     if (event.stop_reason.type !== "requires_action") continue;
 
     for (const eventId of event.stop_reason.event_ids) {
-      // Look up the custom tool use event and execute it
+      // Cari event custom tool use dan jalankan
       const toolEvent = eventsById.get(eventId);
       if (!toolEvent) continue;
       const result = await callTool(toolEvent.name, toolEvent.input);
 
-      // Send the result back
+      // Kirim hasilnya kembali
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -2039,11 +2039,11 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
       {
           foreach (var eventId in requiresAction.EventIds)
           {
-              // Look up the custom tool use event and execute it
+              // Cari event penggunaan alat kustom dan jalankan
               var toolEvent = eventsById[eventId];
               var result = await CallTool(toolEvent.Name, toolEvent.Input);
 
-              // Send the result back
+              // Kirim hasilnya kembali
               await client.Beta.Sessions.Events.Send(session.ID, new()
               {
                   Events =
@@ -2085,10 +2085,10 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Look up the custom tool use event and execute it
+  				// Cari event custom tool use dan jalankan
   				toolEvent := eventsByID[eventID]
   				result := callTool(toolEvent.Name, toolEvent.Input)
-  				// Send the result back
+  				// Kirim hasilnya kembali
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
@@ -2124,11 +2124,11 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
           .filter(stopReason -> stopReason.isRequiresAction())
           .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
           .forEach(eventId -> {
-              // Look up the custom tool use event and execute it
+              // Cari event custom tool use dan jalankan
               var toolEvent = eventsById.get(eventId);
               var result = callTool(toolEvent.name(), toolEvent.input());
 
-              // Send the result back
+              // Kirim hasilnya kembali
               client.beta().sessions().events().send(
                   session.id(),
                   EventSendParams.builder()
@@ -2150,11 +2150,11 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
           switch (true) {
               case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
                   foreach ($event->stopReason->eventIDs as $eventId) {
-                      // Look up the custom tool use event and execute it
+                      // Cari event penggunaan alat kustom lalu jalankan
                       $toolEvent = $eventsById[$eventId];
                       $result = callTool($toolEvent->name, $toolEvent->input);
 
-                      // Send the result back
+                      // Kirim hasilnya kembali
                       $client->beta->sessions->events->send(
                           $session->id,
                           events: [
@@ -2182,10 +2182,10 @@ Ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-
       case stop_reason
       when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
         stop_reason.event_ids.each do |event_id|
-          # Look up the custom tool use event and execute it
+          # Cari event penggunaan custom tool lalu jalankan
           tool_event = events_by_id[event_id]
           result = call_tool.call(tool_event.name, tool_event.input)
-          # Send the result back
+          # Kirim hasilnya kembali
           client.beta.sessions.events.send_(
             session.id,
             events: [
@@ -2249,7 +2249,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
     case "$stop_reason" in
       requires_action)
         while IFS= read -r event_id; do
-          # Approve the pending tool call
+          # Setujui panggilan alat yang tertunda
           jq -n --arg id "$event_id" \
             '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
             curl --fail-with-body -sS \
@@ -2270,8 +2270,8 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
   ```
 
   ```bash CLI
-  # This workflow does not translate well to a one-off shell command.
-  # Use one of the SDK examples in this code group instead.
+  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
+  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
   ```
 
   ```python Python
@@ -2281,7 +2281,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
               match stop_reason.type:
                   case "requires_action":
                       for event_id in stop_reason.event_ids:
-                          # Approve the pending tool call
+                          # Setujui panggilan alat yang tertunda
                           client.beta.sessions.events.send(
                               session.id,
                               events=[
@@ -2305,7 +2305,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
     if (event.stop_reason.type !== "requires_action") continue;
 
     for (const eventId of event.stop_reason.event_ids) {
-      // Approve the pending tool call
+      // Setujui panggilan alat yang tertunda
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -2328,7 +2328,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
       {
           foreach (var eventId in requiresAction.EventIds)
           {
-              // Approve the pending tool call
+              // Setujui panggilan alat yang tertunda
               await client.Beta.Sessions.Events.Send(session.ID, new()
               {
                   Events =
@@ -2363,7 +2363,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Approve the pending tool call
+  				// Setujui panggilan alat yang tertunda
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
@@ -2393,7 +2393,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
           .takeWhile(stopReason -> !stopReason.isEndTurn())
           .filter(stopReason -> stopReason.isRequiresAction())
           .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
-          // Approve each pending tool call
+          // Setujui setiap panggilan alat yang tertunda
           .forEach(toolUseId -> client.beta().sessions().events().send(
               session.id(),
               EventSendParams.builder()
@@ -2414,7 +2414,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
           switch (true) {
               case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
                   foreach ($event->stopReason->eventIDs as $eventId) {
-                      // Approve the pending tool call
+                      // Setujui panggilan alat yang tertunda
                       $client->beta->sessions->events->send(
                           $session->id,
                           events: [
@@ -2442,7 +2442,7 @@ Setiap event `agent.tool_use` dan `agent.mcp_tool_use` membawa `evaluated_permis
       case stop_reason
       when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
         stop_reason.event_ids.each do |event_id|
-          # Approve the pending tool call
+          # Setujui panggilan alat yang tertunda
           client.beta.sessions.events.send_(
             session.id,
             events: [
@@ -2470,7 +2470,7 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
 
 <CodeGroup>
   ```bash cURL
-  # In production, pass the stored ID of the session you want to resume.
+  # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -2491,7 +2491,7 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```bash CLI
-  # In production, pass the stored ID of the session you want to resume.
+  # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
   ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
   events:
     - type: user.message
@@ -2502,8 +2502,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```python Python
-  # Resume a previously created session by sending it a new user.message event.
-  # In production, pass the stored ID of the session you want to resume.
+  # Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message baru.
+  # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
   client.beta.sessions.events.send(
       session.id,
       events=[
@@ -2521,8 +2521,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```typescript TypeScript
-  // Resume a previously created session by sending it a new user event.
-  // In production, pass the stored ID of the session you want to resume.
+  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event pengguna baru.
+  // Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
   await client.beta.sessions.events.send(session.id, {
     events: [
       {
@@ -2539,8 +2539,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```csharp C#
-  // Resume a previously created session by ID. In production, pass the
-  // session ID you stored when the session was created.
+  // Lanjutkan sesi yang dibuat sebelumnya berdasarkan ID. Di produksi, berikan
+  // ID sesi yang Anda simpan saat sesi dibuat.
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -2562,8 +2562,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```go Go
-  // Resume a previously created session by sending it a new user.message
-  // event. In production, pass the stored ID of the session to resume.
+  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message
+  // baru. Di produksi, berikan ID tersimpan dari sesi yang akan dilanjutkan.
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
@@ -2582,8 +2582,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```java Java
-  // Resume a previously created session by ID. In production, pass the
-  // session ID you stored when the session was created.
+  // Lanjutkan sesi yang dibuat sebelumnya berdasarkan ID. Di produksi, teruskan
+  // ID sesi yang Anda simpan saat sesi dibuat.
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
@@ -2595,8 +2595,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```php PHP
-  // Resume a previously created session by sending it a new user.message event.
-  // In production, pass the session ID you stored when the session was created.
+  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message baru.
+  // Di produksi, berikan ID sesi yang Anda simpan saat sesi dibuat.
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -2614,8 +2614,8 @@ Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti bias
   ```
 
   ```ruby Ruby
-  # Resuming a session is just sending the next event to it. In production,
-  # pass the session ID you stored when the session was created.
+  # Melanjutkan sesi cukup dengan mengirim event berikutnya ke sesi tersebut. Di produksi,
+  # teruskan ID sesi yang Anda simpan saat sesi dibuat.
   client.beta.sessions.events.send_(
     session.id,
     events: [
@@ -2647,7 +2647,7 @@ Tidak ada event yang melanjutkan sesi yang dijeda di batasnya. Sebagai gantinya,
 ### Mengirim pesan sistem
 
 <Note>
-  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, dan Claude Sonnet 5.5. Jika model utama agen tidak mendukung penyisipan sistem di tengah percakapan, event akan ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
+  `system.message` didukung oleh Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event tersebut ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
 </Note>
 
 Kirim event `system.message` untuk memberi agen konteks tingkat sistem yang diistimewakan yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Tidak seperti field `system` pada definisi agen (yang menetapkan prompt sistem tingkat atas), konten `system.message` ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"` alih-alih menggantikan prompt tersebut. Gunakan ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.
@@ -2860,5 +2860,5 @@ Dengan `ant beta:sessions connect`, Anda dapat membuka penampil yang sama dari C
 * **Periksa event sesi:** Error sesi disampaikan melalui event `session.error`
 * **Tinjau hasil alat:** Kegagalan eksekusi alat sering kali menjelaskan perilaku agen yang tidak terduga
 * **Lacak penggunaan token:** Pantau konsumsi token untuk mengoptimalkan prompt dan mengurangi biaya
-* **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen menjelaskan penalarannya
+* **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen merangkum apa yang dilakukannya dan apa yang ditemukannya
 * **Pecahkan masalah pratinjau:** Jika stream yang memilih ikut serta dalam delta event tidak berperilaku seperti yang Anda harapkan, lihat [Pecahkan masalah pratinjau](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#troubleshoot-previews)

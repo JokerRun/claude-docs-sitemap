@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: df112a5992b3dedb2c04a524afc535e75a6f521f2e53aef1ff1b20303c377c81
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f9f70258789501a29b1bd0334b4ba7180d405b93adbc38f3714390d8e1c0089d
 ---
 
 ---
@@ -86,7 +86,7 @@ Untuk menjalankan Claude Sonnet 5.5 tanpa pemikiran di awal, kirim `thinking: {"
 
 ## Tugas penalaran dengan output JSON
 
-Bagian ini berlaku ketika Anda meminta Claude Sonnet 5.5 memberikan jawaban JSON untuk tugas yang memerlukan beberapa langkah penyelesaian. Contohnya termasuk menjumlahkan angka dari dokumen, menerapkan aturan, atau mengurutkan item. Pada tugas seperti ini, model sering menjawab tanpa berpikir terlebih dahulu, terutama pada effort `low` dan `medium`. Apa yang membantu bergantung pada cara Anda meminta JSON. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-outputs) (output terstruktur) jika tersedia. Teks respons kemudian berupa JSON yang sesuai dengan skema Anda, sehingga tidak ada yang perlu di-parse.
+Bagian ini berlaku ketika Anda meminta Claude Sonnet 5.5 memberikan jawaban JSON untuk tugas yang memerlukan beberapa langkah penalaran. Contohnya termasuk menjumlahkan angka dari dokumen, menerapkan aturan, atau mengurutkan item. Pada tugas seperti ini, model sering menjawab tanpa berpikir terlebih dahulu, terutama pada effort `low` dan `medium`. Apa yang membantu bergantung pada cara Anda meminta JSON. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) (output terstruktur) jika tersedia. Teks respons kemudian berupa JSON yang sesuai dengan skema Anda, sehingga tidak ada yang perlu di-parse.
 
 Dengan output terstruktur, teks respons hanya berisi JSON, sehingga model hanya dapat menyelesaikan masalah dalam pemikirannya. Ketika model melewatkan pemikiran, akurasinya pada tugas ini dapat menurun. Perubahan berikut membantu menjaga akurasi tetap tinggi.
 
@@ -183,4 +183,4 @@ Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati organisasi Anda, Anda
 
 Jika Anda mengaktifkan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (beta), fitur ini mencoba ulang penolakan `cyber` dan `frontier_llm` pada Claude Sonnet 5. Fitur ini tidak mencoba ulang penolakan `bio`, `reasoning_extraction`, atau `general_harms`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#refusals-fallback-and-billing).
 
-Jika prompt Anda meminta model untuk menyertakan penalarannya dalam respons, hapus instruksi tersebut, karena instruksi itu memicu penolakan `reasoning_extraction`. Dengan pemikiran adaptif, baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) sebagai gantinya (`display: "summarized"`).
+Jika prompt Anda meminta model untuk menyertakan penalarannya dalam respons, hapus instruksi tersebut, karena instruksi itu mengundang penolakan `reasoning_extraction`. Dengan pemikiran adaptif, baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) sebagai gantinya (`display: "summarized"`). Anda tetap dapat meminta penjelasan singkat tentang jawaban atau ringkasan tindakan yang diambil; lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).

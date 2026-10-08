@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-library
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: ac17e02c9de1aa83c8f8c0a15c80058f77f78c7fac45886279c240af95251c7f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4cb8c142ce146d497a3a829fccf4ea50fe14d12c2a73557733c6713a4f71f2d7
 ---
 
 > ## Documentation Index
@@ -1349,7 +1349,7 @@ export const text = {
   },
   "review-your-changes-before": {
     title: "Review your changes before you commit",
-    teaches: "Catch problems while they're still cheap to fix. Claude reads the changed files in full, not just the diff lines, so it spots issues a quick self-review misses.",
+    teaches: "Catch problems while they take less work to fix. Claude reads the changed files in full, not just the diff lines, so it spots issues a quick self-review misses.",
     next: "Run `/code-review` for the same check in one command",
     prompt: "review my uncommitted changes and flag anything that looks risky before I commit"
   },

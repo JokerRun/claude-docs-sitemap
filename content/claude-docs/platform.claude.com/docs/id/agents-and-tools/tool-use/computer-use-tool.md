@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 9637419fcabdb664e0cca1c1efb7144c87e2f76f6564ea8a95bfdeee74dcead3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f8bd03030a3a42443ac7ba7765040f49c093072ea21446cf8a1110ad6b150991
 ---
 
 ---
@@ -32,7 +32,7 @@ featureMetadata:
     Microsoft Foundry: beta
   details:
     - Di Claude API dan Google Cloud, model Claude 5.5 dan yang lebih baru mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
-    - Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 menerima versi alat `computer_20251124` yang lebih lama seperti halnya Claude Opus 5 dan Claude Sonnet 5.
+    - Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 menerima versi alat `computer_20251124` yang lebih lama sebagaimana Claude Opus 5 dan Claude Sonnet 5.
     - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
@@ -40,6 +40,8 @@ featureMetadata:
 Claude dapat berinteraksi dengan lingkungan komputer melalui alat "computer use" (penggunaan komputer), yang menyediakan kemampuan tangkapan layar serta kendali mouse/keyboard untuk interaksi desktop secara otonom.
 
 Alat penggunaan komputer adalah sebuah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) (toolset klien) yang didefinisikan oleh Anthropic: satu entri `{"type": "computer_toolset_20260801"}` dalam `tools` memberi Claude 17 alat anggota seperti `screenshot`, `left_click`, `type`, dan `zoom`, dan aplikasi Anda menjalankan setiap panggilan di lingkungan yang Anda kendalikan. Alat ini saat ini belum tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools). Panggilan Claude berupa blok `tool_use` yang `name`-nya adalah nama anggota dan yang membawa `"toolset_name": "computer"`, sering kali beberapa per giliran (sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
+
+SDK Python dan TypeScript menyertakan kelas yang meneruskan panggilan-panggilan ini ke kode desktop Anda dan meminta persetujuan melalui callback Anda. Lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset).
 
 Untuk tugas yang tetap berada di dalam halaman web, [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) lebih cocok: alat anggotanya membaca dan bertindak pada halaman itu sendiri, dan tidak memerlukan lingkungan desktop penuh.
 
@@ -324,26 +326,26 @@ Aplikasi Anda menjalankan setiap panggilan secara berurutan di lingkungan Anda s
 ## Cara kerja penggunaan komputer
 
 <Steps>
-  <Step title="Berikan Claude alat penggunaan komputer dan prompt pengguna" icon="tool">
+  <Step title="Berikan Claude alat penggunaan komputer dan prompt pengguna">
     * Tambahkan toolset penggunaan komputer (dan secara opsional alat lain) ke array `tools` dari permintaan API Anda.
     * Sertakan prompt pengguna yang memerlukan interaksi desktop, misalnya, "Simpan gambar kucing ke desktop saya."
   </Step>
 
-  <Step title="Claude merespons dengan panggilan alat anggota" icon="wrench">
-    * Claude menilai apakah bertindak pada desktop dapat membantu menjawab pertanyaan pengguna.
-    * Jika ya, Claude merespons dengan satu atau lebih blok `tool_use` anggota, seperti `screenshot`, `left_click`, atau `type`, masing-masing membawa `"toolset_name": "computer"`. Respons dengan beberapa blok ini adalah sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions).
-    * Respons API memiliki `stop_reason` berupa `tool_use`, yang menandakan permintaan penggunaan alat.
+  <Step title="Claude merespons dengan panggilan alat anggota">
+    * Claude menilai apakah bertindak di desktop dapat membantu menjawab kueri pengguna.
+    * Jika ya, Claude merespons dengan satu atau lebih blok `tool_use` anggota, seperti `screenshot`, `left_click`, atau `type`, masing-masing membawa `"toolset_name": "computer"`. Respons dengan beberapa blok seperti ini adalah sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions).
+    * Respons API memiliki `stop_reason` bernilai `tool_use`, yang menandakan permintaan penggunaan alat.
   </Step>
 
-  <Step title="Jalankan panggilan secara berurutan dan kembalikan hasilnya" icon="computer">
-    * Iterasi setiap blok `tool_use` dalam respons, secara berurutan. Untuk masing-masing, lakukan dispatch berdasarkan `name` anggota bersama `toolset_name`, dan lakukan tindakan tersebut dengan `input` blok pada container atau mesin virtual Anda.
-    * Lanjutkan percakapan dengan pesan `user` baru yang berisi satu blok `tool_result` per blok `tool_use`, dicocokkan berdasarkan `tool_use_id` dan masing-masing menyertakan `"toolset_name": "computer"`. Kembalikan gambar untuk `screenshot` dan `zoom`; teks singkat seperti `OK` sudah cukup untuk tindakan lainnya.
-    * Jika suatu tindakan gagal, kembalikan `is_error: true` untuk blok tersebut dan jawab sisa batch seperti yang dijelaskan dalam [Aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions).
+  <Step title="Jalankan panggilan secara berurutan dan kembalikan hasilnya">
+    * Iterasi setiap blok `tool_use` dalam respons, secara berurutan. Untuk masing-masing, lakukan dispatch berdasarkan `name` anggota bersama dengan `toolset_name`, dan lakukan aksi tersebut dengan `input` blok itu di container atau mesin virtual Anda.
+    * Lanjutkan percakapan dengan pesan `user` baru yang berisi satu blok `tool_result` per blok `tool_use`, dicocokkan berdasarkan `tool_use_id` dan masing-masing menggemakan `"toolset_name": "computer"`. Kembalikan gambar untuk `screenshot` dan `zoom`; teks singkat seperti `OK` sudah cukup untuk aksi lainnya.
+    * Jika sebuah aksi gagal, kembalikan `is_error: true` untuk blok tersebut dan jawab sisa batch seperti yang dijelaskan di [Aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions).
   </Step>
 
-  <Step title="Claude melanjutkan hingga tugas selesai" icon="arrows-clockwise">
-    * Claude menganalisis hasil alat untuk menentukan apakah diperlukan tindakan lebih lanjut atau tugas telah selesai.
-    * Jika Claude menentukan bahwa diperlukan tindakan lebih lanjut, Claude merespons dengan `stop_reason` `tool_use` lainnya dan Anda harus kembali ke langkah 3.
+  <Step title="Claude melanjutkan hingga tugas selesai">
+    * Claude menganalisis hasil alat untuk menentukan apakah diperlukan lebih banyak aksi atau tugas telah selesai.
+    * Jika Claude menentukan bahwa diperlukan lebih banyak aksi, Claude merespons dengan `stop_reason` `tool_use` lainnya dan Anda harus kembali ke langkah 3.
     * Jika tidak, Claude mengembalikan respons teks kepada pengguna.
   </Step>
 </Steps>
@@ -440,7 +442,7 @@ Kembalikan satu blok `tool_result` untuk setiap blok `tool_use`, dicocokkan berd
 
 Claude kemudian melihat tindakan mana yang berhasil, mana yang gagal, dan mana yang dilewati, lalu merencanakan ulang pada giliran berikutnya. Permintaan yang membiarkan blok `tool_use` mana pun dalam batch tidak terjawab akan ditolak dengan `invalid_request_error`, sehingga loop agen yang hanya membaca blok pertama akan gagal pada panggilan berikutnya. Jika aplikasi Anda meminta manusia untuk mengonfirmasi tindakan yang berdampak, lakukan pemeriksaan itu sebelum setiap blok dijalankan, karena sebuah batch dapat menyelesaikan tindakan multilangkah dalam satu giliran.
 
-Claude biasanya mengakhiri batch dengan `screenshot` agar dapat mengamati hasilnya sebelum memutuskan apa yang harus dilakukan selanjutnya. Ketika batch tidak diakhiri dengan tangkapan layar, aplikasi Anda dapat melampirkan tangkapan layar sebagai blok `image` tambahan pada hasil terakhir dalam batch sehingga Claude selalu melihat keadaan layar saat ini, yang menghemat satu perjalanan bolak-balik dibandingkan menunggu Claude memintanya. Anda juga dapat meminta Claude melalui prompt untuk mengakhiri setiap batch dengan tangkapan layar (lihat [Optimalkan kinerja model dengan prompting](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#optimize-model-performance-with-prompting)).
+Claude biasanya mengakhiri batch dengan `screenshot` agar dapat mengamati hasilnya sebelum menentukan apa yang harus dilakukan selanjutnya. Ketika sebuah batch tidak diakhiri dengan screenshot, aplikasi Anda dapat melampirkan screenshot sebagai blok `image` tambahan pada hasil terakhir dalam batch sehingga Claude selalu melihat keadaan layar saat ini, yang menghemat satu round trip dibandingkan menunggu Claude memintanya. Anda juga dapat memberi prompt kepada Claude untuk mengakhiri setiap batch dengan screenshot (lihat [Optimalkan kinerja model dengan prompting](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#optimize-model-performance-with-prompting)).
 
 ### Lingkungan komputasi
 
@@ -723,7 +725,7 @@ Loop berlanjut hingga Claude merespons tanpa meminta alat apa pun (tugas selesai
 ### Optimalkan kinerja model dengan prompting
 
 1. Tentukan tugas yang sederhana dan terdefinisi dengan baik serta berikan instruksi eksplisit untuk setiap langkah.
-2. Claude terkadang mengasumsikan hasil dari tindakannya tanpa secara eksplisit memeriksa hasilnya. Untuk mencegah hal ini, Anda dapat memberi prompt kepada Claude dengan `After each step, take a screenshot and carefully evaluate if you have achieved the right outcome. Explicitly show your thinking: "I have evaluated step X..." If not correct, try again. Only when you confirm a step was executed correctly should you move on to the next one.`
+2. Claude terkadang mengasumsikan hasil dari aksinya tanpa secara eksplisit memeriksa hasilnya. Untuk mencegah hal ini, Anda dapat memberi prompt kepada Claude dengan `After each step, take a screenshot and carefully evaluate if you have achieved the right outcome. State in one sentence what the screenshot shows and whether the step succeeded. If it didn't, try again. Only when you confirm a step was executed correctly should you move on to the next one.`
 3. Beberapa elemen UI (seperti dropdown dan scrollbar) mungkin sulit dimanipulasi oleh Claude menggunakan gerakan mouse. Jika Anda mengalami hal ini, coba beri prompt kepada model untuk menggunakan pintasan keyboard.
 4. Untuk tugas atau interaksi UI yang berulang, sertakan contoh tangkapan layar dan panggilan alat dari hasil yang berhasil dalam prompt Anda.
 5. Jika Anda memerlukan model untuk login, berikan nama pengguna dan kata sandi dalam prompt Anda di dalam tag XML seperti `<robot_credentials>`. Menggunakan penggunaan komputer dalam aplikasi yang memerlukan login meningkatkan risiko hasil buruk akibat prompt injection. Tinjau [Mitigasi jailbreak dan prompt injection](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) sebelum memberikan kredensial login kepada model.
@@ -1836,7 +1838,7 @@ Agar [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prom
 
 * Tempatkan satu breakpoint `cache_control` setelah prompt sistem dan definisi alat, dan hingga tiga lagi pada blok `tool_result` terakhir dari masing-masing giliran terbaru, lalu geser posisinya setiap giliran. Dalam sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda pada beberapa blok berfungsi sebagai satu breakpoint tetapi masing-masing tetap dihitung terhadap batas empat, jadi gunakan satu per giliran.
 * Pangkas screenshot lama secara *batch*, bukan satu per giliran. Menghapus satu screenshot setiap giliran akan mengubah prefiks setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga screenshot terakhir dan memangkas setiap 25 giliran, sehingga prefiks tetap identik byte demi byte di antara peristiwa pemangkasan; jika screenshot Anda melebihi 2000 px pada salah satu sisi, pilih interval yang menjaga setiap permintaan memuat 20 gambar atau kurang.
-* Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, hindari pemangkasan di sisi klien: menghapus screenshot sebelumnya [membatalkan setiap blok thinking setelahnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap permintaan yang masih memuat giliran-giliran tersebut. Sebagai gantinya, ubah ukuran screenshot menjadi 2000 px atau kurang per sisi, dan gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk menghapus screenshot lama dari konteks. Jika Anda harus memangkas, tetapkan [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu; setelah setiap pemangkasan, Claude melanjutkan tanpa thinking yang dihasilkan sejak screenshot yang dipangkas, pada permintaan tersebut dan setiap permintaan berikutnya. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, pertahankan riwayat agar hanya ditambahkan (append-only), atau hapus blok thinking mulai dari giliran yang diedit.
+* Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, hindari pemangkasan di sisi klien: menghapus screenshot sebelumnya [membatalkan setiap blok thinking setelahnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap permintaan yang masih membawa giliran tersebut. Sebagai gantinya, ubah ukuran screenshot menjadi 2000 px atau kurang per sisi, dan gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk menghapus screenshot lama dari konteks. Jika Anda harus memangkas, tetapkan [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu; setelah setiap pemangkasan, Claude melanjutkan tanpa thinking yang dihasilkan sejak screenshot yang dipangkas, pada permintaan tersebut dan setiap permintaan berikutnya. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, pertahankan riwayat sebagai append-only, atau hapus blok thinking mulai dari giliran yang diedit. Pada Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`; dengan `thinking: {"type": "disabled"}`, pertahankan riwayat sebagai append-only, atau hapus blok thinking mulai dari giliran yang diedit.
 
 ### Mendiagnosis masalah klik
 
@@ -2123,9 +2125,9 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 ## Migrasi dari `computer_20251124`
 
-Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan beta header-nya, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Model Claude 5.5 dan yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 tetap menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
+Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 tetap menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
 
-1. **Hapus header beta.** Buang `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Di SDK, hapus parameter `betas` dan panggil Messages API melalui klien standar alih-alih namespace beta.
+1. **Hapus header beta.** Hilangkan `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Dengan SDK, hapus `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan panggil Messages API melalui klien standar, bukan namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.
 3. **Pilih apakah zoom tetap diaktifkan.** Zoom diaktifkan secara default pada toolset, sedangkan `enable_zoom` default-nya `false`. Jika lingkungan Anda tidak mengimplementasikan zoom, tambahkan `"configs": {"zoom": {"enabled": false}}` untuk mempertahankan perilaku sebelumnya; jika tidak, implementasikan (lihat [Aksi yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#available-actions)).
 4. **Tangani setiap blok dalam satu giliran.** Perbarui loop agen Anda untuk mengiterasi setiap blok `tool_use` dalam respons alih-alih hanya membaca yang pertama, dan untuk melakukan dispatch berdasarkan `name` blok bersama dengan `toolset_name` alih-alih berdasarkan `input.action`. Input anggota tidak lagi berisi field `action`; field lainnya tidak berubah.
@@ -2181,12 +2183,12 @@ Pasangan berikut menunjukkan blok `tool_use` sebelum dan sesudah perubahan. Nama
 
 ## Versi alat sebelumnya
 
-Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan dalam [referensi Messages API beta](https://platform.claude.com/docs/id/api/beta/messages/create). Di SDK, teruskan header melalui parameter `betas` dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau editor teks dalam permintaan yang sama.
+Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang sudah ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan di [referensi beta Messages API](https://platform.claude.com/docs/id/api/beta/messages/create). Dengan SDK, teruskan header melalui `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau text editor dalam permintaan yang sama.
 
-| Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                        | Parameter                                                                     |
-| ------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5 dan Claude Sonnet 5.5                                                                                                                                                                                          | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
-| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameter                                                                     |
+| ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5 dan Claude Sonnet 5.5                                                                                                                                                                                                                                                                                        | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
 ***
 
@@ -2232,8 +2234,12 @@ Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.co
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
+  <Card title="Penggunaan browser dan komputer dengan toolset SDK" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset">
+    Tulis driver desktop dalam Python atau TypeScript. SDK menjalankan loop dan callback persetujuan yang Anda berikan.
+  </Card>
+
   <Card title="Pemecahan masalah penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use">
-    Perbaiki kesalahan penggunaan alat yang paling umum dengan tabel diagnostik gejala-ke-perbaikan.
+    Perbaiki kesalahan penggunaan alat yang paling umum dengan tabel diagnostik dari gejala ke perbaikan.
   </Card>
 
   <Card title="Implementasi referensi" icon="github-logo" href="https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo">
@@ -2245,7 +2251,7 @@ Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.co
   </Card>
 
   <Card title="Praktik terbaik secara mendetail" icon="book" href="https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude">
-    Rekomendasi yang telah diuji benchmark untuk resolusi, upaya thinking, dan manajemen konteks
+    Rekomendasi yang telah di-benchmark untuk resolusi, effort thinking, dan manajemen konteks
   </Card>
 
   <Card title="Alat browser use" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">

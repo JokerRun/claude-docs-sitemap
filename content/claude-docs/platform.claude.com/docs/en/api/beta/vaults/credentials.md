@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 8d6ffaff0d9fb6e5d4dc272951034de361a918fd6842651be76a8bc788c9eb70
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 88dda66d133b872df137814640190ca756b5cfff897ef63590f734939a7082a7
 ---
 
 ---
@@ -491,7 +491,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "archived_at": null,
   "auth": {
     "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
@@ -823,7 +823,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
 {
   "data": [
     {
-      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
       "archived_at": null,
       "auth": {
         "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
@@ -1140,7 +1140,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "archived_at": null,
   "auth": {
     "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
@@ -1593,7 +1593,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "archived_at": null,
   "auth": {
     "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
@@ -1766,7 +1766,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "type": "vault_credential_deleted"
 }
 ```
@@ -2069,7 +2069,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/ar
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "archived_at": null,
   "auth": {
     "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
@@ -2330,7 +2330,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mc
 
 ```json
 {
-  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "has_refresh_token": true,
   "mcp_probe": {
     "http_response": {

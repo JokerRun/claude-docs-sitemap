@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 06878e30f835739dde873e76f73ef5c1c8f37ef690df7db2eb38bd0fa463fbb7
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9a5380942cd4dd687ce606f133a459cf56032afe5ac8ed25b84cd78219882e4e
 ---
 
 ---
@@ -26,49 +26,36 @@ Anda memerlukan:
 
 ## Menyiapkan Inference hooks
 
-Ada tiga status penegakan:
-
-* **off** (nonaktif): **Enforce verdicts** dimatikan. Server keamanan AI Anda tidak pernah dihubungi dan prompt tidak diperiksa.
-* **shadow** (bayangan): **Enforce verdicts** diaktifkan dengan **Mode** diatur ke **Shadow mode**. Server keamanan AI Anda menerima prompt dan mengembalikan putusan, tetapi tidak ada yang diblokir.
-* **enforcing** (menegakkan): **Enforce verdicts** diaktifkan dengan **Mode** diatur ke **Allow the request** atau **Block the request**. Putusan tolak akan memblokir permintaan.
-
-Langkah-langkah berikut membawa konfigurasi baru dari status off ke enforcing.
+Ada tiga status penegakan: **off** (**Enforce verdicts** nonaktif: server keamanan AI Anda tidak pernah dihubungi dan prompt tidak diperiksa), **shadow** (**Enforce verdicts** aktif dengan **Mode** diatur ke **Shadow mode**: server keamanan AI Anda menerima prompt dan mengembalikan putusan, dan tidak ada yang diblokir), dan **enforcing** (**Enforce verdicts** aktif dengan **Mode** diatur ke **Allow the request** atau **Block the request**: putusan tolak akan memblokir permintaan). Langkah-langkah berikut membawa konfigurasi baru dari off ke enforcing.
 
 <Steps>
   <Step title="Izinkan Inference hooks untuk organisasi Anda">
-    Buka claude.ai > **Organization settings** > **Data and privacy**, lalu temukan bagian **Inference hooks**. Aktifkan **Allow for your organization**.
+    Buka claude.ai > **Organization settings** > **Data and privacy** dan temukan bagian **Inference hooks**. Aktifkan **Allow for your organization**.
 
-    Mengaktifkan opsi ini akan membuka halaman pengaturan Inference hooks dan selalu memaksa **Enforce verdicts** dalam keadaan nonaktif. Dengan demikian, mengizinkan fitur ini tidak pernah memulai pemeriksaan dengan sendirinya. Bahkan konfigurasi yang sebelumnya sudah menegakkan putusan tetap tidak diperiksa hingga Anda mengaktifkan kembali **Enforce verdicts** pada langkah terakhir.
+    Mengaktifkan ini akan membuka halaman pengaturan Inference hooks dan selalu memaksa **Enforce verdicts** nonaktif, sehingga mengizinkan fitur ini tidak pernah memulai pemeriksaan dengan sendirinya: bahkan konfigurasi yang sebelumnya memiliki penegakan aktif tetap tidak diperiksa hingga Anda mengaktifkan kembali **Enforce verdicts** pada langkah terakhir.
   </Step>
 
   <Step title="Buka halaman pengaturan Inference hooks">
-    Masih di **Data and privacy**, buka bagian **Inference hooks** untuk masuk ke halaman pengaturan Inference hooks. Halaman ini berada di bawah Data and privacy, bukan sebagai entri tersendiri di navigasi pengaturan, sehingga breadcrumb-nya bertuliskan **Data and privacy / Inference hooks**. Selama Anda belum menyimpan endpoint, halaman ini menampilkan peringatan bahwa prompt belum diperiksa, dan **Enforce verdicts** tetap nonaktif dengan lencana **Requires endpoint**.
+    Masih di **Data and privacy**, buka bagian **Inference hooks** untuk mencapai halaman pengaturan Inference hooks. Halaman ini berada di bawah Data and privacy alih-alih sebagai entri tersendiri di navigasi pengaturan, sehingga breadcrumb-nya berbunyi **Data and privacy / Inference hooks**. Hingga Anda menyimpan endpoint, halaman ini memperingatkan bahwa prompt belum diperiksa, dan **Enforce verdicts** tetap nonaktif dengan lencana **Requires endpoint**.
   </Step>
 
   <Step title="Konfigurasikan endpoint Anda">
-    Klik **Configure** untuk membuka dialog **Set up endpoint**, lalu masukkan **Endpoint URL**, yaitu URL `https://` yang menerima permintaan putusan. Hanya URL `https://` yang diterima.
+    Klik **Configure** untuk membuka dialog **Set up endpoint** dan masukkan **Endpoint URL**: URL `https://` yang menerima permintaan putusan. Hanya URL `https://` yang diterima.
 
-    Pada tahap ini, dialog tidak meminta informasi lain. Header permintaan kustom diatur pada langkah 5, dan penanganan kegagalan pada langkah 6. Klik **Next** untuk menyimpan. Setelah endpoint tersimpan, tombol tersebut berubah menjadi **Edit**.
+    Dialog ini tidak meminta hal lain pada tahap ini: header permintaan kustom ada di langkah 5, dan penanganan kegagalan di langkah 6. Klik **Next** untuk menyimpan. Setelah endpoint disimpan, tombol tersebut berbunyi **Edit**.
   </Step>
 
   <Step title="Simpan signing secret Anda">
-    Penyimpanan pertama akan membuat "signing secret" (rahasia penandatanganan) webhook Anda dan menampilkannya satu kali saja. Salin dan simpan rahasia tersebut dengan aman sebelum mengklik **Next**. Rahasia ini tidak dapat diambil kembali nanti; Anda hanya dapat [merotasinya](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#rotate-your-signing-secret).
+    Penyimpanan pertama menghasilkan webhook signing secret Anda dan menampilkannya satu kali. Salin dan simpan dengan aman sebelum mengklik **Next**: secret tidak dapat diambil kembali nanti, hanya dapat [dirotasi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#rotate-your-signing-secret).
 
-    Server keamanan AI Anda menggunakan rahasia ini untuk memverifikasi tanda tangan pada setiap permintaan yang diterimanya, termasuk uji koneksi pada langkah berikutnya. Untuk prosedur verifikasinya, lihat [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature).
+    Server keamanan AI Anda menggunakan secret ini untuk memverifikasi tanda tangan pada setiap permintaan yang diterimanya, termasuk uji koneksi pada langkah berikutnya. Untuk prosedur verifikasi, lihat [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature).
   </Step>
 
   <Step title="Tambahkan header permintaan dan uji koneksi">
     Mengklik **Next** pada dialog signing secret akan membuka kembali dialog endpoint, kini dengan dua kontrol tambahan:
 
-    * **Custom request headers:** hingga 16 header statis yang dikirim bersama setiap permintaan putusan agar server keamanan AI Anda dapat mengautentikasi pemanggil.
-
-      * Nilai header disimpan dalam keadaan terenkripsi dan tidak pernah ditampilkan lagi. Setelah disimpan, hanya nama header yang ditampilkan.
-      * Karena nilainya hanya dapat ditulis, setiap perubahan pada header mengharuskan Anda memasukkan ulang semua nilai sebelum menyimpan.
-      * Mengubah URL endpoint akan menghapus semua nilai header yang tersimpan agar kredensial Anda tidak pernah terkirim ke tujuan baru. Masukkan kembali nilai-nilai tersebut setelah mengubah URL.
-      * Nama header harus menggunakan karakter token HTTP standar, dengan `-` alih-alih `_`. Nama header juga tidak boleh bentrok dengan nama yang dicadangkan, yaitu header pembingkaian permintaan seperti `Content-*` dan `Host`, header proxy dan cookie, header alamat klien seperti `X-Forwarded-*`, header tanda tangan `webhook-*`, serta prefiks `X-Anthropic-*`.
-      * Nilai header harus berupa ASCII yang dapat dicetak.
-
-    * **Test connection:** Claude mengirimkan prompt uji sintetis ke URL dan header yang saat ini ada di formulir, bukan nilai yang tersimpan. Karena itu, masukkan ulang nilai header yang tersimpan sebelum menguji. Jika berhasil, hasilnya menunjukkan apakah server keamanan AI Anda mengembalikan putusan izinkan atau tolak untuk prompt uji tersebut. Dengan begitu, Anda dapat mengetahui jika server Anda secara default menolak semua permintaan sebelum Anda mulai menegakkan putusan.
+    * **Custom request headers:** hingga 16 header statis yang dikirim bersama setiap permintaan putusan agar server keamanan AI Anda dapat mengautentikasi pemanggil. Nilai header disimpan dalam keadaan terenkripsi dan tidak pernah ditampilkan lagi; setelah disimpan, hanya nama header yang ditampilkan. Karena nilainya hanya dapat ditulis, menyimpan perubahan apa pun pada header mengharuskan Anda memasukkan ulang setiap nilai. Mengubah URL endpoint akan menghapus semua nilai header yang tersimpan sehingga kredensial Anda tidak pernah dikirim ke tujuan baru; masukkan ulang nilai tersebut setelah perubahan URL. Nama header harus menggunakan karakter token HTTP standar dengan `-` alih-alih `_`, dan tidak boleh bertabrakan dengan nama yang dicadangkan (header pembingkaian permintaan seperti `Content-*` dan `Host`, header proxy dan cookie, header alamat klien seperti `X-Forwarded-*`, header tanda tangan `webhook-*`, dan prefiks `X-Anthropic-*`). Nilai harus berupa ASCII yang dapat dicetak.
+    * **Test connection:** Claude mengirimkan prompt uji sintetis ke URL dan header yang saat ini ada di formulir, bukan nilai yang tersimpan, jadi masukkan ulang nilai header yang tersimpan sebelum menguji. Jika berhasil, hasilnya melaporkan apakah server keamanan AI Anda mengembalikan putusan izinkan atau tolak untuk prompt uji tersebut, yang akan mengungkap default tolak-semua sebelum Anda mulai menegakkan.
 
     Klik **Save** untuk menyimpan header yang Anda masukkan.
 
@@ -77,58 +64,53 @@ Langkah-langkah berikut membawa konfigurasi baru dari status off ke enforcing.
     | Hasil                      | Yang perlu diperiksa                                                                                                                                               |
     | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
     | URL ditolak                | URL gagal dalam pemeriksaan struktural. Gunakan URL `https://` pada port 443.                                                                                      |
-    | IP privat atau internal    | Host di-resolve ke alamat privat atau internal. Gunakan host yang dapat dirutekan secara publik.                                                                   |
+    | IP privat atau internal    | Host URL adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Gunakan host yang dapat dirutekan secara publik.                                    |
     | Timeout                    | Server keamanan AI tidak mengembalikan putusan dalam batas waktu.                                                                                                  |
-    | Kesalahan transport        | Resolusi DNS, TLS handshake, atau koneksi gagal.                                                                                                                   |
-    | Status selain 200          | Server keamanan AI merespons dengan status selain 200. Putusan harus dikembalikan sebagai HTTP 200; pengalihan tidak diikuti dan dihitung sebagai kegagalan.       |
-    | Respons tidak dapat diurai | Server keamanan AI merespons, tetapi isi responsnya bukan putusan yang valid.                                                                                      |
+    | Kesalahan transport        | Resolusi DNS, TLS handshake, atau koneksi gagal, atau hostname di-resolve ke alamat privat.                                                                        |
+    | Status non-200             | Server keamanan AI merespons dengan status selain 200. Putusan harus dikembalikan sebagai HTTP 200; pengalihan tidak diikuti dan dihitung sebagai kegagalan.       |
+    | Respons tidak dapat diurai | Server keamanan AI merespons, tetapi body-nya bukan putusan yang valid.                                                                                            |
     | Signing secret diperlukan  | Organisasi Anda tidak memiliki signing secret, sehingga uji akan dikirim tanpa tanda tangan. Klik **Generate secret** di bawah **Request signing**, lalu uji lagi. |
   </Step>
 
   <Step title="Pilih penanganan kegagalan dan batas waktu">
-    Di bawah **Failure handling**, atur **Mode** untuk menentukan apa yang terjadi saat server keamanan AI tidak dapat dijangkau atau putusan melewati batas waktu:
+    Di bawah **Failure handling**, atur **Mode** untuk memilih apa yang terjadi saat server keamanan AI tidak dapat dijangkau atau putusan melewati batas waktu:
 
     * **Block the request:** hentikan inferensi ketika server keamanan AI Anda tidak dapat memberikan putusan ("fail closed", gagal tertutup).
     * **Allow the request:** biarkan permintaan diteruskan ke model tanpa pemeriksaan ("fail open", gagal terbuka).
 
-    Opsi ketiga pada dropdown, **Shadow mode**, adalah alat untuk peluncuran bertahap, bukan kebijakan kegagalan; lihat [Shadow mode](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#shadow-mode).
+    Opsi ketiga pada dropdown, **Shadow mode**, adalah alat peluncuran, bukan kebijakan kegagalan; lihat [Shadow mode](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#shadow-mode).
 
-    Kemudian atur **Prompt verdict timeout (ms)** dengan nilai 1 hingga 10.000 ms (default 5.000 ms). Batas waktu ini mencakup seluruh pertukaran, dan putusan yang lebih lambat dihitung sebagai server yang tidak dapat dijangkau. Karena itu, atur nilai terendah yang dapat dipenuhi server Anda secara andal.
+    Kemudian atur **Prompt verdict timeout (ms)**: 1 hingga 10.000ms, dengan default 5.000ms. Anggaran waktu ini mencakup seluruh pertukaran, dan putusan yang lebih lambat dihitung sebagai server yang tidak dapat dijangkau, jadi atur nilai terendah yang dapat dipenuhi server Anda secara andal.
 
-    Perubahan di bagian ini langsung tersimpan saat Anda membuatnya. Pada penyimpanan pertama, nilai default-nya adalah **Allow the request** dan 5.000 ms.
+    Perubahan di bagian ini tersimpan saat Anda membuatnya. Pada penyimpanan pertama, default-nya adalah **Allow the request** dan 5.000ms.
   </Step>
 
-  <Step title="Pilih persentase peluncuran bertahap">
-    Di bawah **Rollout**, atur **Requests inspected (%)** untuk menjalankan pemeriksaan pada sebagian persentase permintaan selama Anda menyiapkan server keamanan AI Anda. Nilainya berkisar dari 0 hingga 100: 100 memeriksa semua permintaan, dan 0 menonaktifkan pemeriksaan.
+  <Step title="Pilih persentase peluncuran">
+    Di bawah **Rollout**, atur **Requests inspected (%)** untuk menjalankan pemeriksaan pada sebagian persentase permintaan selama Anda menyiapkan server keamanan AI Anda. Nilainya berkisar dari 0 hingga 100: 100 memeriksa semuanya, dan 0 menonaktifkan pemeriksaan.
 
-    Pengundian dilakukan satu kali untuk setiap giliran percakapan, sehingga satu percakapan dapat diperiksa sebagian di antara giliran-gilirannya. Permintaan di luar persentase sampel diteruskan tanpa pemeriksaan, bahkan ketika penanganan kegagalan diatur ke **Block the request**.
+    Setiap permintaan diundi satu kali untuk seluruh giliran percakapannya, sehingga satu percakapan dapat diperiksa sebagian di berbagai giliran. Permintaan di luar persentase sampel diteruskan tanpa pemeriksaan, bahkan ketika penanganan kegagalan diatur ke **Block the request**.
   </Step>
 
   <Step title="Aktifkan Enforce verdicts">
-    Jika Anda ingin mengevaluasi putusan terhadap lalu lintas nyata tanpa memblokir siapa pun terlebih dahulu, atur **Mode** ke **Shadow mode** (langkah 6) sebelum mengaktifkan penegakan; lihat [Shadow mode](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#shadow-mode).
+    Untuk mengevaluasi putusan terhadap lalu lintas langsung tanpa memblokir siapa pun pada awalnya, atur **Mode** ke **Shadow mode** (langkah 6) sebelum mengaktifkan penegakan; lihat [Shadow mode](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#shadow-mode).
 
-    Aktifkan **Enforce verdicts** agar setiap prompt yang diatur oleh Inference hooks harus menunggu putusan server keamanan AI Anda sebelum diproses Claude. Lalu konfirmasikan di dialog, yang menampilkan kembali pilihan penanganan kegagalan Anda. Perubahan ini memerlukan waktu sekitar satu menit untuk mencapai semua server Anthropic; permintaan yang sedang berjalan akan diselesaikan dengan pengaturan lama. Menonaktifkannya akan menghentikan pengiriman prompt ke server keamanan AI Anda, juga dalam waktu sekitar satu menit, dan konfigurasi Anda tetap tersimpan.
+    Aktifkan **Enforce verdicts** untuk membuat Claude bergantung pada putusan server keamanan AI Anda untuk setiap prompt yang diatur, lalu konfirmasikan di dialog, yang menyatakan kembali pilihan penanganan kegagalan Anda. Tunggu sekitar satu menit agar perubahan mencapai setiap server Anthropic; permintaan yang sedang berjalan diselesaikan dengan pengaturan lama. Menonaktifkannya akan menghentikan pengiriman prompt ke server keamanan AI Anda, juga dalam waktu sekitar satu menit; konfigurasi Anda tetap disimpan.
+
+    **Validate tool calls**, di bawah **Enforce verdicts**, juga mengirimkan panggilan alat dalam setiap respons Claude ke server keamanan AI Anda dan menunggu putusannya sebelum panggilan alat tersebut dijalankan; lihat [Frame tool call](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#the-tool-call-frame). Opsi ini aktif secara default pada konfigurasi baru. Opsi ini tidak berpengaruh selama **Enforce verdicts** nonaktif, dan perubahan padanya memerlukan sekitar satu menit untuk mencapai setiap server Anthropic, sama seperti **Enforce verdicts**.
   </Step>
 </Steps>
 
 ## Shadow mode
 
-"Shadow mode" (mode bayangan) menjalankan hook Anda terhadap lalu lintas nyata tanpa memblokir apa pun. Server keamanan AI Anda menerima prompt yang diatur dan mengembalikan putusan persis seperti saat menegakkan putusan, tetapi tidak ada yang diblokir. Setiap permintaan tetap diteruskan ke model, bahkan ketika server Anda menolaknya atau tidak dapat dijangkau, dan pengguna akhir tidak melihat apa pun. Gunakan mode ini untuk menyempurnakan kebijakan Anda berdasarkan lalu lintas nyata organisasi Anda sebelum mulai menegakkan putusan.
+Shadow mode menjalankan hook Anda terhadap lalu lintas langsung tanpa memblokir apa pun. Server keamanan AI Anda menerima prompt yang diatur dan mengembalikan putusan persis seperti saat menegakkan, tetapi tidak ada yang diblokir: setiap permintaan diteruskan ke model, bahkan ketika server Anda menolaknya atau tidak dapat dijangkau, dan pengguna akhir tidak melihat apa pun. Gunakan mode ini untuk menyetel kebijakan Anda terhadap lalu lintas nyata organisasi Anda sebelum mulai menegakkan. Dengan **Validate tool calls** aktif, server Anda juga menerima frame tool call dalam shadow mode, dan tidak ada panggilan alat yang diblokir.
 
-Untuk menggunakan shadow mode, atur **Mode** ke **Shadow mode** di bawah **Failure handling**, lalu aktifkan **Enforce verdicts** agar prompt dikirim ke server keamanan AI Anda. Selama mode ini aktif, halaman pengaturan menampilkan lencana **Shadow mode — not blocking**. Untuk keluar dari shadow mode, atur **Mode** kembali ke **Allow the request** atau **Block the request**. Putusan akan kembali ditegakkan selama penegakan aktif.
+Untuk menggunakan shadow mode, atur **Mode** ke **Shadow mode** di bawah **Failure handling**, lalu aktifkan **Enforce verdicts** agar prompt mengalir ke server keamanan AI Anda. Selama aktif, halaman pengaturan menampilkan lencana **Shadow mode — not blocking**. Untuk keluar dari shadow mode, atur **Mode** kembali ke **Allow the request** atau **Block the request**; putusan ditegakkan kembali setelah penegakan aktif.
 
 ## Pengecualian
 
-Di bawah **Exclusions**, pilih peran yang anggotanya tidak dicakup oleh Inference hooks. Prompt dari anggota peran tersebut tidak pernah dikirim ke server keamanan AI Anda.
+Di bawah **Exclusions**, pilih peran yang anggotanya tidak dicakup oleh Inference hooks: prompt mereka tidak pernah dikirim ke server keamanan AI Anda. Hanya peran kustom yang dibuat organisasi Anda yang dapat dikecualikan; peran bawaan tidak ditawarkan. Pilih peran tersebut di pemilih peran, yang placeholder-nya berbunyi **Select roles to exclude**, dan kelola siapa yang memegang setiap peran dari halaman admin peran (**Manage roles**); mengubah pengecualian memerlukan izin manajemen identitas. Daftar ini kosong secara default, dan tanpa peran yang dikecualikan, setiap permintaan yang diatur akan diperiksa.
 
-* Hanya peran kustom yang dibuat oleh organisasi Anda yang dapat dikecualikan; peran bawaan tidak tersedia sebagai pilihan.
-* Pilih peran di pemilih peran, yang placeholder-nya bertuliskan **Select roles to exclude**.
-* Kelola siapa yang memegang setiap peran dari halaman admin peran (**Manage roles**).
-* Mengubah pengecualian memerlukan izin manajemen identitas.
-
-Daftar ini kosong secara default. Jika tidak ada peran yang dikecualikan, setiap permintaan yang diatur akan diperiksa.
-
-Pengecualian berlaku untuk sesi interaktif pengguna; lalu lintas yang diautentikasi dengan kredensial mesin selalu diperiksa. Perubahan pada daftar pengecualian dicatat dalam jejak audit.
+Pengecualian berlaku untuk sesi interaktif pengguna. Perubahan pada daftar pengecualian dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda sebagai perubahan izin peran (`rbac_role_permission_added` dan `rbac_role_permission_removed`).
 
 ## Pesan kustom untuk prompt yang diblokir
 
@@ -138,17 +120,29 @@ Pesan akhir terdiri dari `deny_reason` per permintaan dari server keamanan AI An
 
 ## Memantau server keamanan AI Anda
 
-Area kesehatan endpoint di halaman pengaturan Inference hooks menampilkan:
+Area kesehatan endpoint pada halaman pengaturan Inference hooks menampilkan:
 
-* **Endpoint status:** Healthy, Tripped, atau Not enforcing. Sebelum endpoint disimpan, statusnya Not configured.
-* **Failures per minute:** rata-rata kegagalan webhook selama dua menit terakhir.
-* **Block rate:** penolakan sebagai proporsi dari putusan server keamanan AI Anda, ditampilkan selama persentase peluncuran bertahap di bawah 100.
-* **Circuit breaker tripped:** kapan pemutus sirkuit terakhir kali terpicu, jika pernah.
-* **Recent errors:** setiap entri hanya berisi stempel waktu, jenis kesalahan, dan alasan satu baris. Entri tidak pernah menyertakan konten permintaan atau URL endpoint Anda.
+* **Endpoint status:** Healthy, Tripped, Not enforcing, atau Not configured sebelum endpoint disimpan.
+* **Failures per minute:** kegagalan webhook selama dua menit terakhir, dirata-ratakan.
+* **Block rate:** penolakan sebagai proporsi dari putusan server keamanan AI Anda, ditampilkan selama persentase peluncuran di bawah 100.
+* **Circuit breaker tripped:** kapan breaker terakhir kali terpicu, jika pernah.
+* **Recent errors:** setiap entri menunjukkan kapan kegagalan terjadi, jenis kesalahan, dan kategori. Kategorinya adalah `webhook_error` untuk masalah pada endpoint Anda atau koneksi ke endpoint tersebut, atau `relay_error` untuk kegagalan di dalam sistem Anthropic. Entri tidak pernah menyertakan konten permintaan atau URL endpoint Anda. Daftar ini menyimpan 10 kegagalan terbaru dan dikosongkan satu jam setelah kegagalan terakhir.
 
-Panel ini bersifat upaya terbaik (best-effort). Jika Anthropic tidak dapat membaca penghitungnya, panel menampilkan nol kegagalan dan tidak ada kesalahan, alih-alih menampilkan kesalahannya sendiri. Jadi, panel yang tampak sehat belum tentu membuktikan bahwa server keamanan AI Anda sehat.
+Jenis kesalahan di **Recent errors** berarti:
 
-**Failures per minute** menghitung setiap kegagalan, termasuk kesalahan jaringan dan DNS yang tidak pernah memicu pemutus sirkuit. Karena itu, nilainya bisa tinggi sementara **Circuit breaker tripped** tetap kosong.
+| Kesalahan yang ditampilkan                           | Artinya                                                                                                                                                                                                                                                              | Dihitung untuk circuit breaker |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `DlpWebhookTimeoutError` · `webhook_error`           | Server keamanan AI Anda tidak mengembalikan putusan dalam **Prompt verdict timeout (ms)** yang Anda atur.                                                                                                                                                            | Ya                             |
+| `DlpWebhookStatusError` · `webhook_error`            | Server keamanan AI Anda menjawab dengan status HTTP selain 200, seperti pengalihan.                                                                                                                                                                                  | Ya                             |
+| `DlpWebhookResponseError` · `webhook_error`          | Server keamanan AI Anda menjawab 200, tetapi body-nya bukan putusan yang valid atau lebih besar dari 64 KiB.                                                                                                                                                         | Ya                             |
+| `DlpWebhookTransportError` · `webhook_error`         | Koneksi gagal atau terputus sebelum jawaban lengkap tiba: misalnya, hostname tidak dapat di-resolve atau di-resolve ke alamat privat, koneksi ditolak atau di-reset, atau TLS handshake gagal. Masalah jaringan di sisi Anthropic juga dapat muncul dengan cara ini. | Tidak                          |
+| `DlpWebhookDisallowedAddressError` · `webhook_error` | Host URL endpoint adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Hostname yang di-resolve ke alamat seperti itu ditampilkan sebagai kesalahan transport.                                                                                      | Ya                             |
+| `DlpWebhookBlockedError` · `webhook_error`           | URL endpoint bukan URL `https://` pada port 443, atau tidak dapat diurai, sehingga tidak ada permintaan yang dikirim.                                                                                                                                                | Tidak                          |
+| `DlpWebhookRelayError` · `relay_error`               | Kegagalan terjadi di dalam sistem Anthropic, dan server keamanan AI Anda biasanya tidak dihubungi.                                                                                                                                                                   | Tidak                          |
+
+Dalam shadow mode, tidak ada kesalahan yang dihitung untuk circuit breaker.
+
+Panel ini bersifat upaya terbaik (best-effort): jika Anthropic tidak dapat membaca penghitung, panel menampilkan nol kegagalan dan tidak ada kesalahan alih-alih menampilkan kesalahannya sendiri, sehingga panel yang tampak sehat bukanlah bukti tersendiri bahwa server keamanan AI Anda sehat. **Failures per minute** menghitung setiap kegagalan, termasuk kesalahan jaringan dan DNS yang tidak pernah memicu circuit breaker, sehingga nilainya bisa tinggi sementara **Circuit breaker tripped** tetap kosong.
 
 ## Circuit breaker
 
@@ -182,14 +176,7 @@ Permintaan yang ditandatangani dengan rahasia sebelumnya masih dapat tiba sesaat
 
 ## Jejak audit
 
-Aktivitas Inference hooks dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda, meliputi:
-
-* perubahan konfigurasi,
-* penolakan,
-* pemicuan pemutus sirkuit, dan
-* permintaan yang diteruskan tanpa pemeriksaan berdasarkan pengaturan penanganan kegagalan Anda.
-
-Selama pemutus sirkuit terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat; aktivitas pemicuan menjadi catatan feed untuk periode tersebut. Catatan penolakan memuat pengidentifikasi yang memungkinkan Anda mencocokkan setiap penolakan dengan catatan terkait di sistem Anda sendiri.
+Aktivitas Inference hooks dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda: perubahan konfigurasi, penolakan, pemicuan circuit breaker, dan permintaan yang diteruskan tanpa pemeriksaan karena tidak ada putusan yang dapat diperoleh. Jenis terakhir tersebut hanya dicatat selama **Enforce verdicts** aktif dan **Mode** adalah **Allow the request**. Alasannya adalah `endpoint_timeout`, `endpoint_error` untuk masalah lain apa pun saat memanggil server keamanan AI Anda, atau `internal_error` untuk kegagalan di sisi Anthropic. Di bawah **Block the request** atau **Shadow mode**, permintaan yang gagal tidak dicatat secara individual. Pemulihan otomatis circuit breaker tidak dicatat dalam mode apa pun. Selama circuit breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat; aktivitas pemicuan adalah catatan feed untuk rentang waktu tersebut. Catatan penolakan membawa pengidentifikasi yang memungkinkan Anda menggabungkan setiap penolakan dengan catatan yang sesuai di sistem Anda sendiri.
 
 ## Menonaktifkan Inference hooks
 

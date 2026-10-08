@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 5a6444703d1efd6ef0f1f620f03667ad10c72a862539160516369fd1073cf2f1
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: cd239915dfd6c5255f2e63ac65b717eab6b0b4ea9b7d76f3f0bbd72d00b23f7a
 ---
 
 ---
@@ -65,9 +65,9 @@ Setelah Anda mencapai batas pengeluaran tingkat Anda, penggunaan API dijeda hing
 }
 ```
 
-* Tipe error-nya adalah `rate_limit_error`, sama seperti untuk batas laju, tetapi responsnya tidak memiliki header `retry-after`. Percobaan ulang, termasuk percobaan ulang otomatis dari SDK, akan gagal hingga akses dilanjutkan.
-* Pada Messages API, `error.details.error_code` bernilai `enforced_spend_limit_reached`. Gunakan nilai ini untuk membedakan respons ini dari batas laju.
-* Berpindah ke tingkat yang lebih tinggi akan memulihkan akses; lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
+* Tipe error-nya adalah `rate_limit_error`, sama seperti untuk batas laju, tetapi respons tidak memiliki header `retry-after`. Mencoba ulang, termasuk percobaan ulang otomatis SDK, akan gagal hingga akses dipulihkan.
+* Pada Messages API, `error.details.error_code` bernilai `enforced_spend_limit_reached`. Gunakan ini untuk membedakan respons ini dari batas laju.
+* Berpindah ke tingkat yang lebih tinggi memulihkan akses; lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 
 ### Menetapkan batas pengeluaran Anda sendiri
 
@@ -101,9 +101,9 @@ Batas laju untuk Messages API diukur dalam permintaan per menit (RPM), token inp
 
 ### ITPM yang sadar cache
 
-Banyak penyedia API menggunakan batas gabungan "tokens per minute" (token per menit), atau TPM, yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang terlihat pada awalnya.
+Banyak penyedia API menggunakan batas gabungan "tokens per minute" (token per menit), atau TPM, yang dapat mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
 
-Batas laju ITPM diestimasi di awal setiap permintaan, dan estimasi tersebut disesuaikan selama permintaan berlangsung untuk mencerminkan jumlah token input aktual yang digunakan.
+Batas laju ITPM diperkirakan di awal setiap permintaan, dan perkiraan tersebut disesuaikan selama permintaan untuk mencerminkan jumlah token input aktual yang digunakan.
 
 Berikut yang dihitung terhadap ITPM:
 
@@ -120,25 +120,25 @@ Berikut yang dihitung terhadap ITPM:
 
   Ini berarti ketika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda. Misalnya, dengan dokumen yang di-cache sebesar 200k token dan pertanyaan pengguna sebesar 50 token, Anda akan melihat `input_tokens: 50` meskipun total inputnya adalah 200.050 token.
 
-  Untuk keperluan batas laju pada sebagian besar model, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, sehingga [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) menjadi cara yang efektif untuk meningkatkan throughput efektif Anda.
+  Untuk keperluan batas laju pada sebagian besar model, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, menjadikan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) cara yang efektif untuk meningkatkan throughput efektif Anda.
 </Note>
 
-**Contoh:** Dengan batas 2.000.000 ITPM dan tingkat cache hit 80%, Anda dapat secara efektif memproses 10.000.000 total token input per menit (2 juta tidak di-cache + 8 juta di-cache), karena token yang di-cache tidak dihitung terhadap batas laju Anda.
+**Contoh:** Dengan batas 2.000.000 ITPM dan tingkat cache hit 80%, Anda secara efektif dapat memproses total 10.000.000 token input per menit (2M tidak di-cache + 8M di-cache), karena token yang di-cache tidak dihitung terhadap batas laju Anda.
 
 <Note>
-  Claude Haiku 3.5 (ditandai dengan catatan kaki 4 dalam tabel batas laju berikut) juga menghitung `cache_read_input_tokens` terhadap batas laju ITPM.
+  Claude Haiku 3.5 (ditandai dengan catatan kaki 4 pada tabel batas laju berikut) juga menghitung `cache_read_input_tokens` terhadap batas laju ITPM.
 
-  Untuk semua model lainnya, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan [tarif pembacaan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), sebagian kecil dari harga input dasar. Ini berarti Anda dapat mencapai throughput efektif yang jauh lebih tinggi dengan menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+  Untuk semua model lainnya, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan [tarif baca cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), sebagian kecil dari harga input dasar. Ini berarti Anda dapat mencapai throughput efektif yang jauh lebih tinggi dengan menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 </Note>
 
 Untuk memaksimalkan batas laju Anda, cache konten yang berulang seperti instruksi sistem dan prompt, dokumen konteks besar, definisi alat, dan riwayat percakapan; lihat [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panduan. Dengan caching yang efektif, Anda dapat meningkatkan throughput aktual Anda secara substansial tanpa menaikkan batas laju Anda. Pantau tingkat cache hit Anda di [halaman Usage](https://platform.claude.com/usage) untuk menyempurnakan strategi caching Anda.
 
-Batas laju OTPM dievaluasi secara real time saat token output dihasilkan, hanya menghitung token aktual yang dihasilkan. Parameter `max_tokens` tidak diperhitungkan dalam kalkulasi batas laju OTPM, sehingga tidak ada kerugian batas laju dalam menetapkan nilai `max_tokens` yang lebih tinggi.
+Batas laju OTPM dievaluasi secara real time saat token output dihasilkan, dengan hanya menghitung token aktual yang dihasilkan. Parameter `max_tokens` tidak diperhitungkan dalam kalkulasi batas laju OTPM, sehingga tidak ada kerugian terkait batas laju jika menetapkan nilai `max_tokens` yang lebih tinggi.
 
-Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda dapat menggunakan model yang berbeda hingga batas masing-masing secara bersamaan. Anda dapat memeriksa batas laju dan perilaku Anda saat ini di halaman [Rate limits](https://platform.claude.com/settings/limits) di Claude Console, atau membaca batas yang dikonfigurasi secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
+Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda dapat menggunakan model yang berbeda hingga batasnya masing-masing secara bersamaan. Anda dapat memeriksa batas laju dan perilaku Anda saat ini di halaman [Rate limits](https://platform.claude.com/settings/limits) di Claude Console, atau membaca batas yang dikonfigurasi secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
 
 <Note>
-  Batas laju saat ini dibagi bersama di semua nilai `inference_geo`. Permintaan dengan `inference_geo: "us"` dan `inference_geo: "global"` mengambil dari pool batas laju yang sama.
+  Batas laju saat ini dibagikan di semua nilai `inference_geo`. Permintaan dengan `inference_geo: "us"` dan `inference_geo: "global"` mengambil dari kumpulan batas laju yang sama.
 </Note>
 
 <Tabs>
@@ -152,6 +152,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Sonnet 5.5                                                                                                                         | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Sonnet 5                                                                                                                           | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Sonnet 4.x3                                                                                                                        | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Haiku 5.5                                                                                                                          | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Haiku 4.5                                                                                                                          | 1.000                               | 2.000.000                             | 400.000                                |
     | Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 1.000                               | 100.0004                              | 20.000                                 |
   </Tab>
@@ -166,6 +167,7 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Sonnet 5.5                                                                                                                         | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Sonnet 5                                                                                                                           | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Sonnet 4.x3                                                                                                                        | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Haiku 5.5                                                                                                                          | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Haiku 4.5                                                                                                                          | 5.000                               | 5.000.000                             | 1.000.000                              |
     | Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 2.000                               | 200.0004                              | 40.000                                 |
   </Tab>
@@ -180,20 +182,21 @@ Batas laju diterapkan secara terpisah untuk setiap model; oleh karena itu Anda d
     | Claude Sonnet 5.5                                                                                                                         | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Sonnet 5                                                                                                                           | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Sonnet 4.x3                                                                                                                        | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Haiku 5.5                                                                                                                          | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Haiku 4.5                                                                                                                          | 10.000                              | 10.000.000                            | 2.000.000                              |
     | Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 4.000                               | 400.0004                              | 80.000                                 |
   </Tab>
 
   <Tab title="Tingkat Custom">
-    Jika Anda memerlukan batas yang lebih tinggi daripada tingkat Scale, hubungi tim penjualan melalui halaman [Rate limits](https://platform.claude.com/settings/limits) di Claude Console.
+    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Rate limits](https://platform.claude.com/settings/limits) di Claude Console.
   </Tab>
 </Tabs>
 
 *1 Batas laju Fable adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Fable 5.1 dan Claude Fable 5. Claude Mythos 5.1 dan Claude Mythos 5 berbagi batas gabungan terpisah dengan ketentuan yang sama.*
 
-*2 Batas laju Opus adalah batas total yang berlaku untuk gabungan lalu lintas di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan tidak termasuk dalam kelompok gabungan ini.*
+*2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.*
 
-*3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk gabungan lalu lintas di Sonnet 4.6 dan Sonnet 4.5. Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan tidak termasuk dalam kelompok gabungan ini.*
+*3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.*
 
 *4 Batas ini menghitung `cache_read_input_tokens` terhadap penggunaan ITPM.*
 
@@ -271,7 +274,7 @@ Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang l
 
 ## Menetapkan batas yang lebih rendah untuk Workspace
 
-Untuk informasi lebih lanjut tentang workspace, lihat [Workspaces](https://platform.claude.com/docs/id/manage-claude/workspaces).
+Untuk informasi lebih lanjut tentang workspace, lihat [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces).
 
 Untuk melindungi Workspace di Organisasi Anda dari potensi penggunaan berlebih, Anda dapat menetapkan batas pengeluaran dan batas laju kustom per Workspace.
 

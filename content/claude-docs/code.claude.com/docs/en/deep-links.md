@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: b88a8e378896996382a28c18bede535531d19160ab2ab08b9e92ba8af3f5e9a8
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: d038e60fdd2ffd7bd5695ffb8d9d933f837a3468ce5ec1f4167c241db660ad59
 ---
 
 > ## Documentation Index
@@ -167,11 +167,15 @@ Claude Code registers the `claude-cli://` handler with your operating system on 
 
 The handler launches Claude Code in a detected terminal emulator. On macOS, Claude Code remembers the terminal from your most recent interactive session and reuses it, supporting iTerm2, Ghostty, kitty, Alacritty, WezTerm, and Terminal.app. On Linux it honors the `$TERMINAL` environment variable, then `x-terminal-emulator`, then a list of common emulators. On Windows it prefers Windows Terminal, then PowerShell, then `cmd.exe`.
 
-To prevent registration entirely, set [`disableDeepLinkRegistration`](/docs/en/settings-reference#disabledeeplinkregistration) to `"disable"` in `settings.json`. To enforce this across an organization so users cannot re-enable it, set it in [managed settings](/docs/en/server-managed-settings) instead.
+To prevent registration entirely, set [`disableDeepLinkRegistration`](/docs/en/settings-reference#disabledeeplinkregistration) to `"disable"` in `settings.json`. To enforce this across an organization so users cannot re-enable it, set it in [managed settings](/docs/en/server-managed-settings) instead. Claude Code's `disableDeepLinkRegistration` setting covers `claude-cli://` links only.
 
 ## Open a VS Code tab instead of a terminal
 
 The VS Code extension registers its own handler at `vscode://anthropic.claude-code/open`, which opens a Claude Code editor tab rather than a terminal window. See [Launch a VS Code tab from other tools](/docs/en/vs-code#launch-a-vs-code-tab-from-other-tools) for that URL's parameters.
+
+## Open a Claude Desktop session on an SSH connection
+
+Claude Desktop handles its own `claude://` links. To open a Desktop session on a remote machine over SSH, see [Open an SSH session from a link](/docs/en/desktop#open-an-ssh-session-from-a-link).
 
 ## Troubleshooting
 

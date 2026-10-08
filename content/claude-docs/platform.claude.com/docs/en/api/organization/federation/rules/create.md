@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 48057ec380961c960a44b26785f8272824c0bdef91db35554f9a879a38402088
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 2be75eee9686edb4bef35f95340fa45353f215c9dd64030a23f8c33038182436
 ---
 
 ---
@@ -213,7 +213,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   - `target: ServiceAccountTarget`
 
-    Identity that tokens minted via this rule act as. Currently always a `service_account` target.
+    What this rule targets. Check `type` before reading the other fields. Tokens minted via a rule whose target `type` is `service_account` act as that service account.
 
     - `type: "service_account"`
 

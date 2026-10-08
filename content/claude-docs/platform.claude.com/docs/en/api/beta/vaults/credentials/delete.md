@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 3c3ba4b26c25ffb73cfa07784e9089d31f7a0d9318fb0eec0f9d72c14586f717
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 67cf90a1e600112e705891a2fa7e7da0eb006d33491e47f770d3d72581fd40dc
 ---
 
 ---
@@ -166,7 +166,7 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
 
 ```json
 {
-  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "type": "vault_credential_deleted"
 }
 ```

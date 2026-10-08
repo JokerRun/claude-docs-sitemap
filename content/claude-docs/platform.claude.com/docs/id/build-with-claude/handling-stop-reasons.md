@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: bb975cc3ed4844e1c08311e42d32fc61ff4cd019b56b1575caacfa7444a16f35
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4a72982822a4107cb42344eedfec1a207656151af095686351e03f1d6fe27452
 ---
 
 ---
@@ -1948,19 +1948,19 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 </CodeGroup>
 
 <Tip>
-  Jika Anda sering menemui alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
 Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
-Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, baik di sisi server maupun di klien Anda. Jika Anda membangun sendiri percobaan ulang dari Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
+Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, atau Claude Haiku 5.5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Jika Anda membangun sendiri percobaan ulang dari Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
 
 ### model\_context\_window\_exceeded
 
 Claude berhenti karena mencapai batas "context window" (jendela konteks) model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
 
 <Note>
-  Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` pada SDK, sehingga contoh-contoh berikut memanggil `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model yang lebih lama, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
+  Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` (csharp, go: `Beta`; java: `beta()`) SDK, sehingga contoh-contoh berikut memanggil `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 (tidak digunakan lagi) dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model yang lebih lama, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
 </Note>
 
 <CodeGroup>

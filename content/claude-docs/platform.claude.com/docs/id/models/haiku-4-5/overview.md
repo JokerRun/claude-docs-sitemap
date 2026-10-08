@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: e08343253bd31da890c6f03efd274436b20a560b3f2c4a82aa715d6928979c3e
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 98a8154170118355f308d37fa41e0b42889dcbc1b7651bb572d7d0d957998bb3
 ---
 
 ---
@@ -11,29 +11,29 @@ url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
 description: "Sekilas tentang Claude Haiku 4.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
 ---
 
-**Latest.** Released October 15, 2025.
+**Legacy.** Released October 15, 2025.
 
-The fastest model with near-frontier intelligence
+Although Claude Haiku 4.5 is still available, you should consider migrating to Claude Haiku 5.5 for improved performance. [See Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) · [Migrate to Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide)
 
 Model ID: `claude-haiku-4-5-20251001`
 
 Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTok · Output pricing: $5 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-haiku-4-5) · [Migration guide](https://platform.claude.com/docs/id/models/haiku-4-5/migration-guide)
+[Announcement](https://www.anthropic.com/news/claude-haiku-4-5)
 
 ## Perbandingannya
 
-| Model                                                                               | Context | Max output | Price / MTok | Latency  | Thinking             | Default effort | Knowledge cutoff |
-| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------- | :------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50    | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20     | Moderate | Adaptive (always on) | `medium`       | Jun 2026         |
-| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10     | Fast     | Adaptive             | `high`         | Jun 2026         |
-| **Claude Haiku 4.5** (this model)                                                   | 200K    | 64K        | $1 / $5      | Fastest  | Extended             | —              | Feb 2025         |
+| Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50          | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Adaptive             | `high`         | Jun 2026         |
+| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Adaptive             | `medium`       | Jun 2026         |
+| **Claude Haiku 4.5** (this model)                                                   | 200K    | 64K        | $1 / $5            | Extended             | —              | Feb 2025         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
-* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
-* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5). See Pricing for the full list.
-* **Latency:** Comparative latency, relative to the current lineup, as published in the models overview. Actual latency depends on prompt length, output length, and thinking effort.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
 * **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.
@@ -73,7 +73,6 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 | Max output                                                                              | 64K tokens             |
 | [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)              | Extended               |
 | [Default effort](https://platform.claude.com/docs/id/build-with-claude/effort)          | Not supported          |
-| Comparative latency                                                                     | Fastest                |
 | Input → output                                                                          | Text and images → text |
 | Reliable knowledge cutoff                                                               | Feb 2025               |
 | Training data cutoff                                                                    | Jul 2025               |
@@ -82,7 +81,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 
 | Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | :---------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Released                                                                      | October 15, 2025                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Retirement                                                                    | Not sooner than October 15, 2026                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
@@ -96,6 +95,14 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 ## Sumber daya
 
 <CardGroup cols={3}>
+  <Card title="Migrasi ke Claude Haiku 5.5" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide">
+    Apa yang berubah saat beralih dari Claude Haiku 4.5 ke Claude Haiku 5.5.
+  </Card>
+
+  <Card title="Claude Haiku 5.5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/haiku-5-5/overview">
+    Model Haiku saat ini: ikhtisar, spesifikasi, dan sumber daya.
+  </Card>
+
   <Card title="Pemikiran diperpanjang" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking">
     Claude Haiku 4.5 mendukung pemikiran diperpanjang manual dengan `budget_tokens`.
   </Card>
@@ -105,7 +112,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
   </Card>
 
   <Card title="Mengurangi latensi" icon="gauge" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency">
-    Teknik yang cocok dipadukan dengan model tercepat dalam jajaran ini.
+    Teknik yang cocok dipadukan dengan model yang cepat dan berbiaya rendah.
   </Card>
 </CardGroup>
 

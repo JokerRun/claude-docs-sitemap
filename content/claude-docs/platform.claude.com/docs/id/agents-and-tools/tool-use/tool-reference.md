@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ae5deb10a376daf407cf1405a537d055d9e4c6c7f39ff40b452a880cf79e7426
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c8cbbb5e3f418fbe9ba990ae8dab62e97c9f1a3068453a516a1fde5ca3f94edb
 ---
 
 ---
@@ -31,7 +31,7 @@ Anthropic menyediakan dua jenis alat: **alat server** yang dieksekusi di infrast
 | [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) | `computer_toolset_20260801` `computer_20251124` `computer_20250124`                 | Klien    | Tidak ada `computer-use-2025-11-24` `computer-use-2025-01-24`       |
 | [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)   | `browser_toolset_20260801`                                                          | Klien    | Tidak ada                                                           |
 
-Untuk kompatibilitas model, lihat halaman masing-masing alat. Model yang didukung bervariasi menurut alat dan versi alat.
+Untuk kompatibilitas model, lihat halaman masing-masing alat. Model yang didukung bervariasi menurut alat dan versi alat. Untuk memeriksa dari kode Anda apakah suatu model menerima pencarian web atau eksekusi kode, lihat [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api).
 
 <Note>
   Nilai `type` pencarian alat juga menerima alias tanpa tanggal: `tool_search_tool_regex` dan `tool_search_tool_bm25`. Alias ini mengarah ke versi bertanggal terbaru.

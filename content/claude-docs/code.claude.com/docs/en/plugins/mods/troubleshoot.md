@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/troubleshoot
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 91ba0cf111352b655ca93fb9fae1174d9e07b7f79675cd231f3c71c939f8487b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 0c14ca52689d7016ee171bfd2469db89c885d8b33860af8e86f7271935d20bfb
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ To check whether your setup lets mods load at all, without installing one, run `
 | `hooks modules are turned off here` | A setting is blocking your mods: `disableAllHooks` in your own settings, or your organization's policy |
 | `hooks modules are turned off in this process` | Anthropic has turned installed mods off remotely. No setting on your machine turns them back on. |
 
-An organization can also set `allowManagedModsOnly` to allow only its own mods, which this command doesn't report. In that case a mod you install doesn't load, and [a message says why](/docs/en/plugins/mods/troubleshoot#messages-from-the-built-in-guard).
+An organization can also set `allowManagedModsOnly` to allow only its own mods, which this command doesn't report. In that case Claude Code refuses a mod you install, and [a message says why](/docs/en/plugins/mods/troubleshoot#messages-from-the-built-in-guard).
 
 ## The mod doesn't load
 
@@ -77,7 +77,7 @@ On a machine with managed settings, or for a user signed in with a Team or Enter
 
 | Message contains | What it means | Where it appears |
 | :- | :- | :- |
-| `mods are limited to your organization's by policy (allowManagedModsOnly)` | Your organization allows only [its own mods](/docs/en/plugins/mods/admin#install-your-organizations-mods), so yours wasn't loaded | The debug log, and the transcript in a [session that hot-reloads a plugin directory](#find-out-why-a-mod-does-nothing) |
+| `mods are limited to your organization's by policy (allowManagedModsOnly)` | Your organization allows only [its own mods](/docs/en/plugins/mods/admin#install-your-organizations-mods), so yours was refused | The debug log, and the transcript in a [session that hot-reloads a plugin directory](#find-out-why-a-mod-does-nothing) |
 | `tried to lift a deny rule in your settings` | Your mod's [`tool.check`](/docs/en/plugins/mods/reference#tools) hook approved a call that a `deny` rule refuses. The call stays denied. | The transcript and the debug log, once for each mod in a session. In a `claude -p` run, the debug log only. |
 | `the deny rules in your settings could not be checked for this call, so it is refused` | The guard failed while checking a call that a mod approved, so it refused the call | The reason Claude reads for the denied call |
 

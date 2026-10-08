@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a5a79dda83b0cb2894b9f230fb84e97d2c3642b42f2e1fb6965fbb99b6875fc3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a42ad9a42665f62fa15b12187a2fa56c327f7e9c58f7e7a8a4c0137e4643c202
 ---
 
 ---
@@ -167,7 +167,7 @@ The dream produces another **output memory store**, separate from the input. The
   ```
 </CodeGroup>
 
-Dreaming inputs include the pre-existing memory store and an array of sessions. The selected model runs the dreaming pipeline. During the research preview, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process. See [Steer with instructions](https://platform.claude.com/docs/en/managed-agents/dreams#steer-with-instructions).
+Dreaming inputs include the pre-existing memory store and an array of sessions. The selected model runs the dreaming pipeline. During the research preview, `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process. See [Steer with instructions](https://platform.claude.com/docs/en/managed-agents/dreams#steer-with-instructions).
 
 The response is the full `dream` resource with `status: "pending"`:
 
@@ -661,10 +661,10 @@ Dreams are billed at standard API token rates for the model you select; `usage` 
 
 ## Limits
 
-| Limit                 | Value                                                                                                           |
-| --------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Sessions per dream    | 100                                                                                                             |
-| `instructions` length | 4,096 characters                                                                                                |
-| Supported models      | `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, `claude-sonnet-4-6` |
+| Limit                 | Value                                                                                                                                                                       |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sessions per dream    | 100                                                                                                                                                                         |
+| `instructions` length | 4,096 characters                                                                                                                                                            |
+| Supported models      | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
 Default rate limits apply to dream creation while this feature is in research preview. [Contact support](https://support.claude.com) if you need higher limits.

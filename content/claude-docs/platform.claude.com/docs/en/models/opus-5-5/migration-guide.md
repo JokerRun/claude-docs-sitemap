@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 6ec738f7f68ebdcdd07812fb2201ea4f8290157633f2305f8826201ba74a383c
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ad598cce4d680466abe6cae61a00c38abef9e553a8f55e984740be7f70d3ff0b
 ---
 
 ---
-title: Migrating to Claude Opus 5.5
+title: Claude Opus 5.5 migration guide
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-description: "Migrate to Claude Opus 5.5 from earlier Opus models or Claude Sonnet 5: request settings that return errors, thinking blocks in every response, and a checklist for each starting model."
+description: Switch to Claude Opus 5.5 from earlier Opus models or Claude Sonnet 5 with this migration guide. The guidance to enable Claude Opus 5.5 includes request settings that return errors, thinking blocks in every response, and a checklist for each starting model.
 ---
 
 <Note>

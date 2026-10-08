@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 74cdd2740771f5f437be01cab81cfdefacf07f2a141a08bd5d6a87d1793cbed0
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 61b4798ea30d512a7a0048eb74c7b1015f275911c43455535cf3ce3bbb966be5
 ---
 
 ---
@@ -32,7 +32,7 @@ Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://plat
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sebuah sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal pada sesi dan tidak disebarkan kembali ke agen yang mendasarinya. `allowed_domains` dan `blocked_domains` yang diperbarui berlaku untuk sisa sesi.
+Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#change-the-lists-mid-session), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak diteruskan kembali ke agen yang mendasarinya. `allowed_domains` dan `blocked_domains` yang diperbarui berlaku untuk sisa sesi.
 
 Hanya `tools` dan `mcp_servers` milik agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency)-nya, juga tidak dapat berubah di tengah sesi: tetapkan pin saat Anda menyimpan agen, atau tetapkan atau hapus pin tersebut untuk satu sesi dengan override `model` saat Anda membuatnya. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#sending-system-messages).
 

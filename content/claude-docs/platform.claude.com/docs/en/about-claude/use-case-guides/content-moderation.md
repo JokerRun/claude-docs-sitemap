@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 3dce0826e8f5602e48fc0da0d2e8bbead3b2b03e98db0b49e5db02d0f1e32c55
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 704d1c6da29b155df289276443f8828371e93272fe7dc17879997b55a0306b60
 ---
 
 ---
@@ -328,7 +328,7 @@ The unsafe categories can be customized to fit your specific needs. For example,
 
 ### Select the right Claude model
 
-When selecting a model, it’s important to consider the size of your data. If costs are a concern, a smaller model such as Claude Haiku 4.5 is an excellent choice because of its cost-effectiveness. The following is an estimate of the cost to moderate text for a social media platform that receives one billion posts per month:
+When selecting a model, it’s important to consider the size of your data. If costs are a concern, a smaller model such as Claude Haiku 5.5 is an excellent choice because of its cost-effectiveness. The following is an estimate of the cost to moderate text for a social media platform that receives one billion posts per month:
 
 * **Content size**
 
@@ -343,11 +343,11 @@ When selecting a model, it’s important to consider the size of your data. If c
   * Output tokens per flagged message: 50
   * Total output tokens: 1.5B
 
-* **Claude Haiku 4.5 estimated cost**
+* **Claude Haiku 5.5 estimated cost**
 
-  * Input token cost: 28,600 MTok \* $1.00/MTok = $28,600 USD
-  * Output token cost: 1,500 MTok \* $5.00/MTok = $7,500 USD
-  * Monthly cost: $28,600 + $7,500 = $36,100 USD
+  * Input token cost: 28,600 MTok \* $0.10/MTok = $2,860 USD
+  * Output token cost: 1,500 MTok \* $0.50/MTok = $750 USD
+  * Monthly cost: $2,860 + $750 = $3,610 USD
 
 * **Claude Opus 5 estimated cost**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 8c2ed995fbb56c8f9984b9da98bb249367d39249d80edf6f51eadcc935ec6fdd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c474f9d82ff808e5f1fb7cd7d0987d624fbf3ba6365d492862abe48bf07fb1f4
 ---
 
 ---
@@ -87,7 +87,7 @@ Gunakan jalur ini ketika workload Anda berjalan di VM, VM Scale Set, App Service
     }
     ```
 
-    | Claim | Nilai                                                                                                                                                                                    | Cocokkan ini ketika                                                                                                                                                                                                        |
+    | Klaim | Nilai                                                                                                                                                                                    | Cocokkan ini ketika                                                                                                                                                                                                        |
     | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `oid` | Object ID managed identity, identik dengan `sub`                                                                                                                                         | Anda ingin mengotorisasi satu managed identity tertentu. Ini adalah default; rule di [Konfigurasikan Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#configure-anthropic) mencocokkannya. |
     | `azp` | Client ID identitas pemanggil                                                                                                                                                            | Anda ingin mengotorisasi setiap workload yang berbagi satu app registration. Untuk managed identity, `azp` unik untuk identitas tersebut, sehingga setara dengan `oid`.                                                    |
@@ -148,7 +148,7 @@ Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat
 
 ### Peroleh dan gunakan token
 
-Saat runtime, workload Anda mengambil token Entra-nya, menukarkannya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Setiap Anthropic SDK menangani pertukaran dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
+Saat runtime, workload Anda mengambil token Entra-nya, menukarkannya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Claude SDK menangani pertukaran dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
 
 Sampel mengambil token managed identity dari endpoint token platform: IMDS pada VM dan VM Scale Sets, atau layanan `IDENTITY_ENDPOINT` pada App Service, Functions, dan Container Apps. Ganti `<APP_ID>` dalam nilai resource `api://<APP_ID>` dengan client ID app registration audience dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience).
 
@@ -768,7 +768,7 @@ Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat
 
 ### Peroleh dan gunakan token
 
-Saat runtime, pod melakukan pertukaran dua lompatan: pod mengirim token yang diproyeksikan Kubernetes (file di `AZURE_FEDERATED_TOKEN_FILE`) ke endpoint token Entra sebagai assertion `client_credentials` terfederasi, lalu menukarkan access token Entra yang dihasilkan di `POST /v1/oauth/token`. Setiap Anthropic SDK menangani pertukaran kedua dan loop refresh ketika Anda meneruskan pengambilan token Entra ke `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
+Saat runtime, pod melakukan pertukaran dua lompatan: pod mengirim token yang diproyeksikan Kubernetes (file di `AZURE_FEDERATED_TOKEN_FILE`) ke endpoint token Entra sebagai assertion `client_credentials` terfederasi, lalu menukarkan access token Entra yang dihasilkan di `POST /v1/oauth/token`. Claude SDK menangani pertukaran kedua dan loop refresh ketika Anda meneruskan pengambilan token Entra ke `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`), seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
 
 Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app registration audience dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience); scope `api://<APP_ID>/.default` meminta Entra untuk token yang dialamatkan ke audience tersebut. `$AZURE_CLIENT_ID` adalah client ID managed identity, diinjeksikan oleh webhook, dan mengidentifikasi pemanggil. Jangan menukar satu dengan yang lain.
 

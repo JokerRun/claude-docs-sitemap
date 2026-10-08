@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 54f9104f0c26780fcc85108b3e24f0b721d1700f3206d52672a209ef7fd5cc10
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a4519eb37931e29e05cc2d294097f54f61a7642f79a344eeb21374bbcb0bd9f8
 ---
 
 ---
@@ -393,7 +393,7 @@ Credentials are matched by URL, so the vault must contain a credential whose `mc
 
 ### Handle connection and authentication failures
 
-Session creation does not validate MCP connectivity or credentials. It does check each declared server's host against the environment's networking: with a `limited` environment, session creation fails with a 400 error when a host is not allowed, as described under [Provide authentication at session creation](https://platform.claude.com/docs/en/managed-agents/mcp-connector#provide-authentication-at-session-creation). If an MCP server is unreachable or rejects the supplied credential, the session still starts and interaction remains possible. A [`session.error`](https://platform.claude.com/docs/en/managed-agents/events-and-streaming) event is emitted with the `mcp_server_name` of the affected server and a `retry_status`:
+Session creation does not validate MCP connectivity or credentials. It does check each declared server's host against the environment's networking: with a `limited` environment, session creation fails with a 400 error when a host is not allowed, as described under [Provide authentication at session creation](https://platform.claude.com/docs/en/managed-agents/mcp-connector#provide-authentication-at-session-creation). If an MCP server is unreachable or rejects the supplied credential, the session still starts and interaction remains possible. A [`session.error`](https://platform.claude.com/docs/en/managed-agents/reference#event-types) event is emitted with the `mcp_server_name` of the affected server and a `retry_status`:
 
 | Error type                        | Meaning                                                                                                                                                                                                      |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

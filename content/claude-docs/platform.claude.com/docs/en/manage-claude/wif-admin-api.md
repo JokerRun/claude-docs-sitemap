@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: a6bf6ba9b6e9570d58e1ed4ed2e6235ed6c8a393650365be5dc07de7c10fd816
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ab7d79dd1320d9a59232d00986e7338e940cf9f3970a39558170f085a8565459
 ---
 
 ---
@@ -76,7 +76,7 @@ For the operations a workload-minted token can and cannot perform, see [Permissi
 
 All endpoints live under `https://api.anthropic.com/v1/organizations/`. Every request to the federation and service-account endpoints needs the API version header and the bearer token:
 
-In the SDKs these endpoints are `client.beta.organization.service_accounts`, `client.beta.organization.federation.issuers`, and `client.beta.organization.federation.rules` (`ant beta:organization:service-accounts`, `federation:issuers`, and `federation:rules` in the CLI). The SDK and CLI examples construct the default client, which sends the bearer token from `ANTHROPIC_AUTH_TOKEN`, or, in an automated workload, performs the federation exchange itself as described in [Bootstrap a workload to manage WIF](https://platform.claude.com/docs/en/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif). SDK list methods fetch further pages on demand, so `limit` sets the page size; the PHP and Ruby examples read one page.
+In the SDKs these endpoints are `client.organization.service_accounts` (typescript: `client.organization.serviceAccounts`; csharp, go: `client.Organization.ServiceAccounts`; java: `client.organization().serviceAccounts()`; php: `$client->organization->serviceAccounts`), `client.organization.federation.issuers` (csharp, go: `client.Organization.Federation.Issuers`; java: `client.organization().federation().issuers()`; php: `$client->organization->federation->issuers`), and `client.organization.federation.rules` (csharp, go: `client.Organization.Federation.Rules`; java: `client.organization().federation().rules()`; php: `$client->organization->federation->rules`) (`ant organization:service-accounts`, `federation:issuers`, and `federation:rules` in the CLI). The SDK and CLI examples construct the default client, which sends the bearer token from `ANTHROPIC_AUTH_TOKEN`, or, in an automated workload, performs the federation exchange itself as described in [Bootstrap a workload to manage WIF](https://platform.claude.com/docs/en/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif). SDK list methods fetch further pages on demand, so `limit` sets the page size; the PHP and Ruby examples read one page.
 
 <CodeGroup>
   ```bash cURL
@@ -86,13 +86,13 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```
 
   ```bash CLI
-  ant beta:organization:service-accounts list
+  ant organization:service-accounts list
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  service_accounts = client.beta.organization.service_accounts.list()
+  service_accounts = client.organization.service_accounts.list()
 
   for service_account in service_accounts:
       print(f"{service_account.id}: {service_account.name}")
@@ -101,7 +101,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```typescript TypeScript
   const client = new Anthropic();
 
-  for await (const serviceAccount of client.beta.organization.serviceAccounts.list()) {
+  for await (const serviceAccount of client.organization.serviceAccounts.list()) {
     console.log(`${serviceAccount.id}: ${serviceAccount.name}`);
   }
   ```
@@ -109,7 +109,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```csharp C#
   AnthropicClient client = new();
 
-  var page = await client.Beta.Organization.ServiceAccounts.List();
+  var page = await client.Organization.ServiceAccounts.List();
 
   await foreach (var serviceAccount in page.Paginate())
   {
@@ -120,7 +120,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```go Go
   client := anthropic.NewClient()
 
-  serviceAccounts := client.Beta.Organization.ServiceAccounts.ListAutoPaging(context.Background(), anthropic.BetaOrganizationServiceAccountListParams{})
+  serviceAccounts := client.Organization.ServiceAccounts.ListAutoPaging(context.Background(), anthropic.OrganizationServiceAccountListParams{})
 
   for serviceAccounts.Next() {
   	serviceAccount := serviceAccounts.Current()
@@ -134,7 +134,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var serviceAccounts = client.beta().organization().serviceAccounts().list();
+  var serviceAccounts = client.organization().serviceAccounts().list();
 
   for (var serviceAccount : serviceAccounts.autoPager()) {
       IO.println(serviceAccount.id() + ": " + serviceAccount.name());
@@ -144,7 +144,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```php PHP
   $client = new Client();
 
-  $serviceAccounts = $client->beta->organization->serviceAccounts->list();
+  $serviceAccounts = $client->organization->serviceAccounts->list();
 
   foreach ($serviceAccounts->getItems() as $serviceAccount) {
       echo "{$serviceAccount->id}: {$serviceAccount->name}\n";
@@ -154,7 +154,7 @@ In the SDKs these endpoints are `client.beta.organization.service_accounts`, `cl
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  service_accounts = client.beta.organization.service_accounts.list
+  service_accounts = client.organization.service_accounts.list
 
   service_accounts.data.each do |service_account|
     puts "#{service_account.id}: #{service_account.name}"
@@ -183,7 +183,7 @@ Create a service account:
   ```
 
   ```bash CLI
-  ant beta:organization:service-accounts create \
+  ant organization:service-accounts create \
     --name inference-worker \
     --organization-role developer
   ```
@@ -191,7 +191,7 @@ Create a service account:
   ```python Python
   client = anthropic.Anthropic()
 
-  service_account = client.beta.organization.service_accounts.create(
+  service_account = client.organization.service_accounts.create(
       name="inference-worker", organization_role="developer"
   )
 
@@ -202,7 +202,7 @@ Create a service account:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const serviceAccount = await client.beta.organization.serviceAccounts.create({
+  const serviceAccount = await client.organization.serviceAccounts.create({
     name: "inference-worker",
     organization_role: "developer"
   });
@@ -212,11 +212,11 @@ Create a service account:
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Organization.ServiceAccounts;
+  using Anthropic.Models.Organization.ServiceAccounts;
 
   AnthropicClient client = new();
 
-  var serviceAccount = await client.Beta.Organization.ServiceAccounts.Create(new()
+  var serviceAccount = await client.Organization.ServiceAccounts.Create(new()
   {
       Name = "inference-worker",
       OrganizationRole = OrganizationRole.Developer
@@ -229,9 +229,9 @@ Create a service account:
   ```go Go
   client := anthropic.NewClient()
 
-  serviceAccount, err := client.Beta.Organization.ServiceAccounts.New(context.Background(), anthropic.BetaOrganizationServiceAccountNewParams{
+  serviceAccount, err := client.Organization.ServiceAccounts.New(context.Background(), anthropic.OrganizationServiceAccountNewParams{
   	Name:             "inference-worker",
-  	OrganizationRole: anthropic.BetaOrganizationServiceAccountNewParamsOrganizationRoleDeveloper,
+  	OrganizationRole: anthropic.OrganizationServiceAccountNewParamsOrganizationRoleDeveloper,
   })
   if err != nil {
   	log.Fatal(err)
@@ -242,7 +242,7 @@ Create a service account:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.serviceaccounts.ServiceAccountCreateParams;
+  import com.anthropic.models.organization.serviceaccounts.ServiceAccountCreateParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -251,7 +251,7 @@ Create a service account:
           .name("inference-worker")
           .organizationRole(ServiceAccountCreateParams.OrganizationRole.DEVELOPER)
           .build();
-      var serviceAccount = client.beta().organization().serviceAccounts().create(params);
+      var serviceAccount = client.organization().serviceAccounts().create(params);
 
       IO.println("id: " + serviceAccount.id());
       IO.println("name: " + serviceAccount.name());
@@ -259,12 +259,12 @@ Create a service account:
   ```
 
   ```php PHP
-  use Anthropic\Beta\Organization\ServiceAccounts\ServiceAccountCreateParams\OrganizationRole;
+  use Anthropic\Organization\ServiceAccounts\ServiceAccountCreateParams\OrganizationRole;
   // ...
 
   $client = new Client();
 
-  $serviceAccount = $client->beta->organization->serviceAccounts->create(
+  $serviceAccount = $client->organization->serviceAccounts->create(
       name: 'inference-worker',
       organizationRole: OrganizationRole::DEVELOPER,
   );
@@ -276,7 +276,7 @@ Create a service account:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  service_account = client.beta.organization.service_accounts.create(
+  service_account = client.organization.service_accounts.create(
     name: "inference-worker",
     organization_role: :developer
   )
@@ -296,13 +296,13 @@ List service accounts:
   ```
 
   ```bash CLI
-  ant beta:organization:service-accounts list --limit 20
+  ant organization:service-accounts list --limit 20
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  service_accounts = client.beta.organization.service_accounts.list(limit=20)
+  service_accounts = client.organization.service_accounts.list(limit=20)
 
   for service_account in service_accounts:
       print(f"{service_account.id}: {service_account.name}")
@@ -311,7 +311,7 @@ List service accounts:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  for await (const serviceAccount of client.beta.organization.serviceAccounts.list({
+  for await (const serviceAccount of client.organization.serviceAccounts.list({
     limit: 20
   })) {
     console.log(`${serviceAccount.id}: ${serviceAccount.name}`);
@@ -321,7 +321,7 @@ List service accounts:
   ```csharp C#
   AnthropicClient client = new();
 
-  var page = await client.Beta.Organization.ServiceAccounts.List(new() { Limit = 20 });
+  var page = await client.Organization.ServiceAccounts.List(new() { Limit = 20 });
 
   await foreach (var serviceAccount in page.Paginate())
   {
@@ -332,7 +332,7 @@ List service accounts:
   ```go Go
   client := anthropic.NewClient()
 
-  serviceAccounts := client.Beta.Organization.ServiceAccounts.ListAutoPaging(context.Background(), anthropic.BetaOrganizationServiceAccountListParams{
+  serviceAccounts := client.Organization.ServiceAccounts.ListAutoPaging(context.Background(), anthropic.OrganizationServiceAccountListParams{
   	Limit: anthropic.Int(20),
   })
 
@@ -346,7 +346,7 @@ List service accounts:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.serviceaccounts.ServiceAccountListParams;
+  import com.anthropic.models.organization.serviceaccounts.ServiceAccountListParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -354,7 +354,7 @@ List service accounts:
       var params = ServiceAccountListParams.builder()
           .limit(20)
           .build();
-      var serviceAccounts = client.beta().organization().serviceAccounts().list(params);
+      var serviceAccounts = client.organization().serviceAccounts().list(params);
 
       for (var serviceAccount : serviceAccounts.autoPager()) {
           IO.println(serviceAccount.id() + ": " + serviceAccount.name());
@@ -365,7 +365,7 @@ List service accounts:
   ```php PHP
   $client = new Client();
 
-  $serviceAccounts = $client->beta->organization->serviceAccounts->list(limit: 20);
+  $serviceAccounts = $client->organization->serviceAccounts->list(limit: 20);
 
   foreach ($serviceAccounts->getItems() as $serviceAccount) {
       echo "{$serviceAccount->id}: {$serviceAccount->name}\n";
@@ -375,7 +375,7 @@ List service accounts:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  service_accounts = client.beta.organization.service_accounts.list(limit: 20)
+  service_accounts = client.organization.service_accounts.list(limit: 20)
 
   service_accounts.data.each do |service_account|
     puts "#{service_account.id}: #{service_account.name}"
@@ -393,13 +393,13 @@ Archive a service account:
   ```
 
   ```bash CLI
-  ant beta:organization:service-accounts archive svac_01ABCDEFabcdef0123456789XY
+  ant organization:service-accounts archive svac_01ABCDEFabcdef0123456789XY
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  service_account = client.beta.organization.service_accounts.archive(
+  service_account = client.organization.service_accounts.archive(
       "svac_01ABCDEFabcdef0123456789XY"
   )
 
@@ -410,7 +410,7 @@ Archive a service account:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const serviceAccount = await client.beta.organization.serviceAccounts.archive(
+  const serviceAccount = await client.organization.serviceAccounts.archive(
     "svac_01ABCDEFabcdef0123456789XY"
   );
 
@@ -421,7 +421,7 @@ Archive a service account:
   ```csharp C#
   AnthropicClient client = new();
 
-  var serviceAccount = await client.Beta.Organization.ServiceAccounts.Archive(
+  var serviceAccount = await client.Organization.ServiceAccounts.Archive(
       "svac_01ABCDEFabcdef0123456789XY"
   );
 
@@ -432,10 +432,9 @@ Archive a service account:
   ```go Go
   client := anthropic.NewClient()
 
-  serviceAccount, err := client.Beta.Organization.ServiceAccounts.Archive(
+  serviceAccount, err := client.Organization.ServiceAccounts.Archive(
   	context.Background(),
   	"svac_01ABCDEFabcdef0123456789XY",
-  	anthropic.BetaOrganizationServiceAccountArchiveParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -448,7 +447,7 @@ Archive a service account:
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var serviceAccount = client.beta().organization().serviceAccounts()
+  var serviceAccount = client.organization().serviceAccounts()
       .archive("svac_01ABCDEFabcdef0123456789XY");
 
   IO.println("id: " + serviceAccount.id());
@@ -458,7 +457,7 @@ Archive a service account:
   ```php PHP
   $client = new Client();
 
-  $serviceAccount = $client->beta->organization->serviceAccounts->archive(
+  $serviceAccount = $client->organization->serviceAccounts->archive(
       serviceAccountID: 'svac_01ABCDEFabcdef0123456789XY',
   );
 
@@ -470,7 +469,7 @@ Archive a service account:
   client = Anthropic::Client.new
 
   service_account_id = "svac_01ABCDEFabcdef0123456789XY"
-  service_account = client.beta.organization.service_accounts.archive(service_account_id)
+  service_account = client.organization.service_accounts.archive(service_account_id)
 
   puts "id: #{service_account.id}"
   puts "archived_at: #{service_account.archived_at}"
@@ -492,7 +491,7 @@ The create endpoint returns the new service account:
 
 To read or update a single service account, use `GET` and `POST` on `/v1/organizations/service_accounts/{service_account_id}`. A service account must be a member of a workspace before federated tokens can act in it. Every service account has an implicit membership in your organization's default workspace; add explicit memberships for other workspaces with `GET`, `POST`, and `DELETE` on `/v1/organizations/service_accounts/{service_account_id}/workspaces`, where `DELETE` targets `.../workspaces/{workspace_id}`.
 
-For complete parameter details and response schemas, see the [Service accounts API reference](https://platform.claude.com/docs/en/api/beta/organization/service_accounts).
+For complete parameter details and response schemas, see the [Service accounts API reference](https://platform.claude.com/docs/en/api/organization/service_accounts).
 
 ## Federation issuers
 
@@ -520,7 +519,7 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```
 
   ```bash CLI
-  ant beta:organization:federation:issuers create \
+  ant organization:federation:issuers create \
     --name github-actions \
     --issuer-url https://token.actions.githubusercontent.com \
     --jwks '{type: discovery}'
@@ -529,7 +528,7 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```python Python
   client = anthropic.Anthropic()
 
-  issuer = client.beta.organization.federation.issuers.create(
+  issuer = client.organization.federation.issuers.create(
       name="github-actions",
       issuer_url="https://token.actions.githubusercontent.com",
       jwks={"type": "discovery"},
@@ -543,7 +542,7 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const issuer = await client.beta.organization.federation.issuers.create({
+  const issuer = await client.organization.federation.issuers.create({
     name: "github-actions",
     issuer_url: "https://token.actions.githubusercontent.com",
     jwks: { type: "discovery" }
@@ -555,15 +554,15 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Organization.Federation.Issuers;
+  using Anthropic.Models.Organization.Federation.Issuers;
 
   AnthropicClient client = new();
 
-  var issuer = await client.Beta.Organization.Federation.Issuers.Create(new()
+  var issuer = await client.Organization.Federation.Issuers.Create(new()
   {
       Name = "github-actions",
       IssuerUrl = "https://token.actions.githubusercontent.com",
-      Jwks = new BetaJwksDiscovery()
+      Jwks = new JwksDiscovery()
   });
 
   Console.WriteLine($"id: {issuer.ID}");
@@ -574,11 +573,11 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```go Go
   client := anthropic.NewClient()
 
-  issuer, err := client.Beta.Organization.Federation.Issuers.New(context.Background(), anthropic.BetaOrganizationFederationIssuerNewParams{
+  issuer, err := client.Organization.Federation.Issuers.New(context.Background(), anthropic.OrganizationFederationIssuerNewParams{
   	Name:      "github-actions",
   	IssuerURL: "https://token.actions.githubusercontent.com",
-  	JWKS: anthropic.BetaOrganizationFederationIssuerNewParamsJWKSUnion{
-  		OfDiscovery: &anthropic.BetaJWKSDiscoveryParam{},
+  	JWKS: anthropic.OrganizationFederationIssuerNewParamsJWKSUnion{
+  		OfDiscovery: &anthropic.JWKSDiscoveryParam{},
   	},
   })
   if err != nil {
@@ -591,8 +590,8 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.federation.issuers.BetaJwksDiscovery;
-  import com.anthropic.models.beta.organization.federation.issuers.IssuerCreateParams;
+  import com.anthropic.models.organization.federation.issuers.JwksDiscovery;
+  import com.anthropic.models.organization.federation.issuers.IssuerCreateParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -600,9 +599,9 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
       var params = IssuerCreateParams.builder()
           .name("github-actions")
           .issuerUrl("https://token.actions.githubusercontent.com")
-          .jwks(BetaJwksDiscovery.builder().build())
+          .jwks(JwksDiscovery.builder().build())
           .build();
-      var issuer = client.beta().organization().federation().issuers().create(params);
+      var issuer = client.organization().federation().issuers().create(params);
 
       IO.println("id: " + issuer.id());
       IO.println("name: " + issuer.name());
@@ -613,7 +612,7 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```php PHP
   $client = new Client();
 
-  $issuer = $client->beta->organization->federation->issuers->create(
+  $issuer = $client->organization->federation->issuers->create(
       name: 'github-actions',
       issuerURL: 'https://token.actions.githubusercontent.com',
       jwks: ['type' => 'discovery'],
@@ -627,7 +626,7 @@ Register an issuer. This example registers GitHub Actions with JWKS discovery:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  issuer = client.beta.organization.federation.issuers.create(
+  issuer = client.organization.federation.issuers.create(
     name: "github-actions",
     issuer_url: "https://token.actions.githubusercontent.com",
     jwks: {type: :discovery}
@@ -649,13 +648,13 @@ List issuers:
   ```
 
   ```bash CLI
-  ant beta:organization:federation:issuers list --limit 20
+  ant organization:federation:issuers list --limit 20
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  issuers = client.beta.organization.federation.issuers.list(limit=20)
+  issuers = client.organization.federation.issuers.list(limit=20)
 
   for issuer in issuers:
       print(f"{issuer.id}: {issuer.name}")
@@ -664,7 +663,7 @@ List issuers:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  for await (const issuer of client.beta.organization.federation.issuers.list({ limit: 20 })) {
+  for await (const issuer of client.organization.federation.issuers.list({ limit: 20 })) {
     console.log(`${issuer.id}: ${issuer.name}`);
   }
   ```
@@ -672,7 +671,7 @@ List issuers:
   ```csharp C#
   AnthropicClient client = new();
 
-  var page = await client.Beta.Organization.Federation.Issuers.List(new() { Limit = 20 });
+  var page = await client.Organization.Federation.Issuers.List(new() { Limit = 20 });
 
   await foreach (var issuer in page.Paginate())
   {
@@ -683,7 +682,7 @@ List issuers:
   ```go Go
   client := anthropic.NewClient()
 
-  issuers := client.Beta.Organization.Federation.Issuers.ListAutoPaging(context.Background(), anthropic.BetaOrganizationFederationIssuerListParams{
+  issuers := client.Organization.Federation.Issuers.ListAutoPaging(context.Background(), anthropic.OrganizationFederationIssuerListParams{
   	Limit: anthropic.Int(20),
   })
 
@@ -697,7 +696,7 @@ List issuers:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.federation.issuers.IssuerListParams;
+  import com.anthropic.models.organization.federation.issuers.IssuerListParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -705,7 +704,7 @@ List issuers:
       var params = IssuerListParams.builder()
           .limit(20)
           .build();
-      var issuers = client.beta().organization().federation().issuers().list(params);
+      var issuers = client.organization().federation().issuers().list(params);
 
       for (var issuer : issuers.autoPager()) {
           IO.println(issuer.id() + ": " + issuer.name());
@@ -716,7 +715,7 @@ List issuers:
   ```php PHP
   $client = new Client();
 
-  $issuers = $client->beta->organization->federation->issuers->list(limit: 20);
+  $issuers = $client->organization->federation->issuers->list(limit: 20);
 
   foreach ($issuers->getItems() as $issuer) {
       echo "{$issuer->id}: {$issuer->name}\n";
@@ -726,7 +725,7 @@ List issuers:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  issuers = client.beta.organization.federation.issuers.list(limit: 20)
+  issuers = client.organization.federation.issuers.list(limit: 20)
 
   issuers.data.each do |issuer|
     puts "#{issuer.id}: #{issuer.name}"
@@ -744,14 +743,14 @@ Archive an issuer:
   ```
 
   ```bash CLI
-  ant beta:organization:federation:issuers archive \
+  ant organization:federation:issuers archive \
     --federation-issuer-id fdis_01ABCDEFabcdef0123456789XY
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  issuer = client.beta.organization.federation.issuers.archive(
+  issuer = client.organization.federation.issuers.archive(
       "fdis_01ABCDEFabcdef0123456789XY"
   )
 
@@ -762,7 +761,7 @@ Archive an issuer:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const issuer = await client.beta.organization.federation.issuers.archive(
+  const issuer = await client.organization.federation.issuers.archive(
     "fdis_01ABCDEFabcdef0123456789XY"
   );
 
@@ -773,7 +772,7 @@ Archive an issuer:
   ```csharp C#
   AnthropicClient client = new();
 
-  var issuer = await client.Beta.Organization.Federation.Issuers.Archive(
+  var issuer = await client.Organization.Federation.Issuers.Archive(
       "fdis_01ABCDEFabcdef0123456789XY"
   );
 
@@ -784,10 +783,9 @@ Archive an issuer:
   ```go Go
   client := anthropic.NewClient()
 
-  issuer, err := client.Beta.Organization.Federation.Issuers.Archive(
+  issuer, err := client.Organization.Federation.Issuers.Archive(
   	context.Background(),
   	"fdis_01ABCDEFabcdef0123456789XY",
-  	anthropic.BetaOrganizationFederationIssuerArchiveParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -800,7 +798,7 @@ Archive an issuer:
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var issuer = client.beta().organization().federation().issuers()
+  var issuer = client.organization().federation().issuers()
       .archive("fdis_01ABCDEFabcdef0123456789XY");
 
   IO.println("id: " + issuer.id());
@@ -810,7 +808,7 @@ Archive an issuer:
   ```php PHP
   $client = new Client();
 
-  $issuer = $client->beta->organization->federation->issuers->archive(
+  $issuer = $client->organization->federation->issuers->archive(
       federationIssuerID: 'fdis_01ABCDEFabcdef0123456789XY',
   );
 
@@ -822,7 +820,7 @@ Archive an issuer:
   client = Anthropic::Client.new
 
   issuer_id = "fdis_01ABCDEFabcdef0123456789XY"
-  issuer = client.beta.organization.federation.issuers.archive(issuer_id)
+  issuer = client.organization.federation.issuers.archive(issuer_id)
 
   puts "id: #{issuer.id}"
   puts "archived_at: #{issuer.archived_at}"
@@ -831,7 +829,7 @@ Archive an issuer:
 
 To read or update a single issuer, use `GET` and `POST` on `/v1/organizations/federation_issuers/{issuer_id}`. An OAuth caller cannot update an issuer that backs a rule whose `oauth_scope` is anything other than `workspace:developer` or `workspace:inference`; see [Permissions and constraints](https://platform.claude.com/docs/en/manage-claude/wif-admin-api#permissions-and-constraints).
 
-For complete parameter details and response schemas, see the [Federation issuers API reference](https://platform.claude.com/docs/en/api/beta/organization/federation/issuers).
+For complete parameter details and response schemas, see the [Federation issuers API reference](https://platform.claude.com/docs/en/api/organization/federation/issuers).
 
 ## Federation rules
 
@@ -863,7 +861,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```
 
   ```bash CLI
-  ant beta:organization:federation:rules create <<'YAML'
+  ant organization:federation:rules create <<'YAML'
   name: gha-deploy
   issuer_id: fdis_01ABCDEFabcdef0123456789XY
   match:
@@ -882,7 +880,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```python Python
   client = anthropic.Anthropic()
 
-  rule = client.beta.organization.federation.rules.create(
+  rule = client.organization.federation.rules.create(
       name="gha-deploy",
       issuer_id="fdis_01ABCDEFabcdef0123456789XY",
       match={
@@ -905,7 +903,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rule = await client.beta.organization.federation.rules.create({
+  const rule = await client.organization.federation.rules.create({
     name: "gha-deploy",
     issuer_id: "fdis_01ABCDEFabcdef0123456789XY",
     match: {
@@ -928,7 +926,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```csharp C#
   AnthropicClient client = new();
 
-  var rule = await client.Beta.Organization.Federation.Rules.Create(new()
+  var rule = await client.Organization.Federation.Rules.Create(new()
   {
       Name = "gha-deploy",
       IssuerID = "fdis_01ABCDEFabcdef0123456789XY",
@@ -950,14 +948,14 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```go Go
   client := anthropic.NewClient()
 
-  rule, err := client.Beta.Organization.Federation.Rules.New(context.Background(), anthropic.BetaOrganizationFederationRuleNewParams{
+  rule, err := client.Organization.Federation.Rules.New(context.Background(), anthropic.OrganizationFederationRuleNewParams{
   	Name:     "gha-deploy",
   	IssuerID: "fdis_01ABCDEFabcdef0123456789XY",
-  	Match: anthropic.BetaFederationRuleMatchParam{
+  	Match: anthropic.FederationRuleMatchParam{
   		SubjectPrefix: anthropic.String("repo:my-org/my-repo:ref:refs/heads/main"),
   		Claims:        map[string]string{"repository_owner": "my-org"},
   	},
-  	Target: anthropic.BetaServiceAccountTargetParam{
+  	Target: anthropic.ServiceAccountTargetParam{
   		ServiceAccountID: "svac_01ABCDEFabcdef0123456789XY",
   	},
   	WorkspaceID:          anthropic.String("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"),
@@ -974,16 +972,16 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
 
   ```java Java
   import com.anthropic.core.JsonValue;
-  import com.anthropic.models.beta.organization.federation.rules.BetaFederationRuleMatch;
-  import com.anthropic.models.beta.organization.federation.rules.BetaServiceAccountTarget;
-  import com.anthropic.models.beta.organization.federation.rules.RuleCreateParams;
+  import com.anthropic.models.organization.federation.rules.FederationRuleMatch;
+  import com.anthropic.models.organization.federation.rules.ServiceAccountTarget;
+  import com.anthropic.models.organization.federation.rules.RuleCreateParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      var match = BetaFederationRuleMatch.builder()
+      var match = FederationRuleMatch.builder()
           .subjectPrefix("repo:my-org/my-repo:ref:refs/heads/main")
-          .claims(BetaFederationRuleMatch.Claims.builder()
+          .claims(FederationRuleMatch.Claims.builder()
               .putAdditionalProperty("repository_owner", JsonValue.from("my-org"))
               .build())
           .build();
@@ -991,12 +989,12 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
           .name("gha-deploy")
           .issuerId("fdis_01ABCDEFabcdef0123456789XY")
           .match(match)
-          .target(BetaServiceAccountTarget.of("svac_01ABCDEFabcdef0123456789XY"))
+          .target(ServiceAccountTarget.of("svac_01ABCDEFabcdef0123456789XY"))
           .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
           .oauthScope("workspace:developer")
           .tokenLifetimeSeconds(600)
           .build();
-      var rule = client.beta().organization().federation().rules().create(params);
+      var rule = client.organization().federation().rules().create(params);
 
       IO.println("id: " + rule.id());
       IO.println("name: " + rule.name());
@@ -1006,7 +1004,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```php PHP
   $client = new Client();
 
-  $rule = $client->beta->organization->federation->rules->create(
+  $rule = $client->organization->federation->rules->create(
       name: 'gha-deploy',
       issuerID: 'fdis_01ABCDEFabcdef0123456789XY',
       match: [
@@ -1029,7 +1027,7 @@ Create a rule. This example lets GitHub Actions deploys from the main branch act
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rule = client.beta.organization.federation.rules.create(
+  rule = client.organization.federation.rules.create(
     name: "gha-deploy",
     issuer_id: "fdis_01ABCDEFabcdef0123456789XY",
     match: {
@@ -1060,14 +1058,14 @@ List rules, optionally filtered by issuer:
   ```
 
   ```bash CLI
-  ant beta:organization:federation:rules list \
+  ant organization:federation:rules list \
     --issuer-id fdis_01ABCDEFabcdef0123456789XY
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rules = client.beta.organization.federation.rules.list(
+  rules = client.organization.federation.rules.list(
       issuer_id="fdis_01ABCDEFabcdef0123456789XY"
   )
 
@@ -1078,7 +1076,7 @@ List rules, optionally filtered by issuer:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  for await (const rule of client.beta.organization.federation.rules.list({
+  for await (const rule of client.organization.federation.rules.list({
     issuer_id: "fdis_01ABCDEFabcdef0123456789XY"
   })) {
     console.log(`${rule.id}: ${rule.name}`);
@@ -1088,7 +1086,7 @@ List rules, optionally filtered by issuer:
   ```csharp C#
   AnthropicClient client = new();
 
-  var page = await client.Beta.Organization.Federation.Rules.List(new()
+  var page = await client.Organization.Federation.Rules.List(new()
   {
       IssuerID = "fdis_01ABCDEFabcdef0123456789XY"
   });
@@ -1102,7 +1100,7 @@ List rules, optionally filtered by issuer:
   ```go Go
   client := anthropic.NewClient()
 
-  rules := client.Beta.Organization.Federation.Rules.ListAutoPaging(context.Background(), anthropic.BetaOrganizationFederationRuleListParams{
+  rules := client.Organization.Federation.Rules.ListAutoPaging(context.Background(), anthropic.OrganizationFederationRuleListParams{
   	IssuerID: anthropic.String("fdis_01ABCDEFabcdef0123456789XY"),
   })
 
@@ -1116,7 +1114,7 @@ List rules, optionally filtered by issuer:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.federation.rules.RuleListParams;
+  import com.anthropic.models.organization.federation.rules.RuleListParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -1124,7 +1122,7 @@ List rules, optionally filtered by issuer:
       var params = RuleListParams.builder()
           .issuerId("fdis_01ABCDEFabcdef0123456789XY")
           .build();
-      var rules = client.beta().organization().federation().rules().list(params);
+      var rules = client.organization().federation().rules().list(params);
 
       for (var rule : rules.autoPager()) {
           IO.println(rule.id() + ": " + rule.name());
@@ -1135,7 +1133,7 @@ List rules, optionally filtered by issuer:
   ```php PHP
   $client = new Client();
 
-  $rules = $client->beta->organization->federation->rules->list(
+  $rules = $client->organization->federation->rules->list(
       issuerID: 'fdis_01ABCDEFabcdef0123456789XY',
   );
 
@@ -1147,7 +1145,7 @@ List rules, optionally filtered by issuer:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rules = client.beta.organization.federation.rules.list(
+  rules = client.organization.federation.rules.list(
     issuer_id: "fdis_01ABCDEFabcdef0123456789XY"
   )
 
@@ -1167,16 +1165,14 @@ Archive a rule:
   ```
 
   ```bash CLI
-  ant beta:organization:federation:rules archive \
+  ant organization:federation:rules archive \
     --federation-rule-id fdrl_01ABCDEFabcdef0123456789XY
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rule = client.beta.organization.federation.rules.archive(
-      "fdrl_01ABCDEFabcdef0123456789XY"
-  )
+  rule = client.organization.federation.rules.archive("fdrl_01ABCDEFabcdef0123456789XY")
 
   print(f"id: {rule.id}")
   print(f"archived_at: {rule.archived_at}")
@@ -1185,7 +1181,7 @@ Archive a rule:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rule = await client.beta.organization.federation.rules.archive(
+  const rule = await client.organization.federation.rules.archive(
     "fdrl_01ABCDEFabcdef0123456789XY"
   );
 
@@ -1196,7 +1192,7 @@ Archive a rule:
   ```csharp C#
   AnthropicClient client = new();
 
-  var rule = await client.Beta.Organization.Federation.Rules.Archive(
+  var rule = await client.Organization.Federation.Rules.Archive(
       "fdrl_01ABCDEFabcdef0123456789XY"
   );
 
@@ -1207,10 +1203,9 @@ Archive a rule:
   ```go Go
   client := anthropic.NewClient()
 
-  rule, err := client.Beta.Organization.Federation.Rules.Archive(
+  rule, err := client.Organization.Federation.Rules.Archive(
   	context.Background(),
   	"fdrl_01ABCDEFabcdef0123456789XY",
-  	anthropic.BetaOrganizationFederationRuleArchiveParams{},
   )
   if err != nil {
   	log.Fatal(err)
@@ -1223,7 +1218,7 @@ Archive a rule:
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var rule = client.beta().organization().federation().rules()
+  var rule = client.organization().federation().rules()
       .archive("fdrl_01ABCDEFabcdef0123456789XY");
 
   IO.println("id: " + rule.id());
@@ -1233,7 +1228,7 @@ Archive a rule:
   ```php PHP
   $client = new Client();
 
-  $rule = $client->beta->organization->federation->rules->archive(
+  $rule = $client->organization->federation->rules->archive(
       federationRuleID: 'fdrl_01ABCDEFabcdef0123456789XY',
   );
 
@@ -1245,7 +1240,7 @@ Archive a rule:
   client = Anthropic::Client.new
 
   rule_id = "fdrl_01ABCDEFabcdef0123456789XY"
-  rule = client.beta.organization.federation.rules.archive(rule_id)
+  rule = client.organization.federation.rules.archive(rule_id)
 
   puts "id: #{rule.id}"
   puts "archived_at: #{rule.archived_at}"
@@ -1263,7 +1258,7 @@ The list endpoint returns a page of rules and the cursor for the next page:
 
 To read or update a single rule, use `GET` and `POST` on `/v1/organizations/federation_rules/{rule_id}`. To manage the workspaces a rule can mint tokens in, use `GET` and `POST` on `/v1/organizations/federation_rules/{rule_id}/workspaces`, and `DELETE` on `/v1/organizations/federation_rules/{rule_id}/workspaces/{workspace_id}`.
 
-For complete parameter details and response schemas, see the [Federation rules API reference](https://platform.claude.com/docs/en/api/beta/organization/federation/rules).
+For complete parameter details and response schemas, see the [Federation rules API reference](https://platform.claude.com/docs/en/api/organization/federation/rules).
 
 ## Permissions and constraints
 
@@ -1286,4 +1281,4 @@ Archiving is a soft delete and is idempotent: archiving an already-archived reso
 * [Workload Identity Federation](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation): concepts and the Console setup walkthrough
 * [WIF reference](https://platform.claude.com/docs/en/manage-claude/wif-reference): environment variables, validation rules, OAuth scopes, and error codes
 * [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api): the rest of the organization management surface
-* [Admin API reference](https://platform.claude.com/docs/en/api/beta/organization): generated request and response schemas for every Admin API endpoint
+* [Admin API reference](https://platform.claude.com/docs/en/api/organization): generated request and response schemas for the service account and federation endpoints

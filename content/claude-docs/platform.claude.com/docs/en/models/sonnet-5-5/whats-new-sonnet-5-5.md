@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 730565e4d74148cdb132e4074d6427291af1e0588ed856080f1b238de94819bc
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: d9a5e8a73d032553bf7d6a6e35648e542da0c2080bded854f4224b409088d938
 ---
 
 ---
@@ -109,7 +109,7 @@ Everything in [Refusals and fallback](https://platform.claude.com/docs/en/build-
 
 ## Pricing
 
-Claude Sonnet 5.5 has the same prices as Claude Sonnet 5, including prompt caching and batch processing rates. See [Pricing](https://platform.claude.com/docs/en/about-claude/pricing) for the full list, data residency, and tool pricing.
+Claude Sonnet 5.5 has the same prices as Claude Sonnet 5, except for prompt cache reads, which cost $0.10 USD per million tokens, half the Claude Sonnet 5 rate. See [Pricing](https://platform.claude.com/docs/en/about-claude/pricing) for the full list, data residency, and tool pricing.
 
 ## Availability
 

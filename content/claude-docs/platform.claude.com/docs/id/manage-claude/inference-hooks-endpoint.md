@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 36d35e87d7420221f832b2d4b3e0a61200ff496fa756fd95f7f4f0e51a8fd4f5
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: db3b320ecc28b74ddf10b027a0af9ecefcb19cd43aa2fcbae8ac7db0ad69d884
 ---
 
 ---
@@ -153,18 +153,11 @@ Integrasi paling sederhana yang berfungsi adalah server yang membaca setiap perm
 
 ## Menerima permintaan
 
-Anthropic mengirimkan `POST` HTTPS ke URL yang dikonfigurasi oleh administrator Anda. Seluruh URL yang dikonfigurasi merupakan endpoint. Tidak ada sufiks path yang tetap, jadi Anda bebas memilih path yang sesuai dengan server Anda.
+Anthropic mengirimkan HTTPS `POST` ke URL yang dikonfigurasi oleh administrator Anda. Seluruh URL yang dikonfigurasi adalah endpoint-nya: tidak ada sufiks path tetap, jadi pilih path apa pun yang sesuai dengan server Anda.
 
-Host server keamanan AI Anda di lokasi yang dapat dijangkau Anthropic, dengan ketentuan berikut:
+Host server keamanan AI Anda di tempat yang dapat dijangkau Anthropic: URL `https://` pada port 443, pada host yang dapat dirutekan secara publik (rentang privat, loopback, dan carrier-grade NAT ditolak saat koneksi), dengan sertifikat yang tervalidasi terhadap trust store CA publik, dan merespons tanpa redirect. Host harus memiliki alamat IPv4, yang digunakan Anthropic bahkan ketika host juga memiliki alamat IPv6; URL yang host-nya adalah `localhost` atau alamat IPv6 akan ditolak. URL yang dikonfigurasi harus merupakan tujuan akhir. Host reverse-tunnel (ngrok dan layanan tunnel serupa) tidak didukung: kebijakan jaringan Anthropic memblokirnya. Host server Anda pada domain yang Anda kendalikan. [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) membahas cara administrator Anda menetapkan dan menguji URL.
 
-* Menggunakan URL `https://` pada port 443.
-* Berada di host yang dapat dirutekan secara publik. Rentang privat, loopback, dan carrier-grade NAT ditolak saat koneksi dibuat.
-* Memiliki sertifikat yang tervalidasi terhadap penyimpanan kepercayaan CA publik.
-* Merespons tanpa pengalihan (redirect).
-
-URL yang dikonfigurasi harus merupakan tujuan akhir. Host reverse-tunnel (ngrok dan layanan tunnel serupa) tidak didukung karena diblokir oleh kebijakan jaringan Anthropic. Host server Anda di domain yang Anda kendalikan. [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) menjelaskan cara administrator Anda menetapkan dan menguji URL tersebut.
-
-Setiap permintaan membawa header tetap berikut. Selain itu, permintaan juga membawa [header permintaan kustom](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) yang dikonfigurasi administrator Anda. Setelah organisasi Anda memiliki rahasia penandatanganan, permintaan juga membawa header tanda tangan `webhook-*` yang dijelaskan di [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature).
+Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaan kustom](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) apa pun yang dikonfigurasi administrator Anda dan, setelah organisasi Anda memiliki signing secret, header tanda tangan `webhook-*` yang dijelaskan di [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature):
 
 | Header            | Nilai              |
 | ----------------- | ------------------ |
@@ -172,23 +165,23 @@ Setiap permintaan membawa header tetap berikut. Selain itu, permintaan juga memb
 | `User-Agent`      | `anthropic-dlp/1`  |
 | `Accept-Encoding` | `identity`         |
 
-Saat ini hanya ada satu event hook, yaitu prompt frame. Event ini dikirim satu kali untuk setiap permintaan inferensi yang diatur, sebelum inferensi dimulai. Anthropic menahan permintaan hingga server keamanan AI Anda merespons atau batas waktu putusan habis.
+Ada dua event hook, yang dibedakan oleh field `type` tingkat atas. Frame prompt dikirim sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. Frame tool call dikirim ketika respons model berisi panggilan alat, sebelum salah satunya dijalankan, di organisasi yang mengaktifkan **Validate tool calls**. Dalam kedua kasus, Anthropic menunggu hingga server keamanan AI Anda merespons atau batas waktu putusan habis.
 
-## Prompt frame
+## Frame prompt
 
 Body permintaan adalah objek JSON dengan field berikut:
 
-| Field        | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                       |
-| ------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`       | string           | Event hook. Saat ini selalu `"prompt"`. Jenis event lain akan diperkenalkan di masa mendatang, jadi tangani nilai yang tidak dikenali dengan baik (lihat [Kompatibilitas ke depan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#forward-compatibility)).                          |
-| `request_id` | string           | Pengidentifikasi opak per panggilan inferensi untuk korelasi. Nilainya sama dengan header `webhook-id`.                                                                                                                                                                                                         |
-| `tenant_id`  | string atau null | Pengidentifikasi opak untuk organisasi pemilik permintaan.                                                                                                                                                                                                                                                      |
-| `actor`      | object           | Prinsipal yang menjadi atribusi permintaan, dibedakan berdasarkan `type` (saat ini hanya nilai `"user"` yang dikirim). Berisi `id` (pengidentifikasi bertag yang stabil di seluruh permintaan untuk akun yang sama) dan `email_address` (jika tersedia). `id` dan `email_address` keduanya dapat bernilai null. |
-| `source`     | object           | Aplikasi asal: `application` (lihat [Nilai source](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#source-values)).                                                                                                                                                                  |
-| `messages`   | array            | Transkrip percakapan hingga titik inferensi. Lihat [Blok konten](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#content-blocks).                                                                                                                                                    |
-| `session_id` | string atau null | Pengidentifikasi percakapan opak, jika ada. Jangan mem-parse nilai ini. Untuk Claude Code, nilai ini adalah pengidentifikasi sesi yang dinyatakan oleh klien secara best-effort.                                                                                                                                |
-| `model`      | string atau null | Pengidentifikasi model publik untuk permintaan ini, jika tersedia.                                                                                                                                                                                                                                              |
-| `metadata`   | object           | Map ekstensi cadangan dari kunci string ke nilai string, yang saat ini dikirim dalam keadaan kosong. Jangan mengandalkan isinya. Server Anda harus tetap berfungsi baik saat field ini tidak ada, saat ada, maupun saat berisi kunci apa pun.                                                                   |
+| Field        | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `type`       | string           | Event hook: `"prompt"` atau `"tool_call"` (lihat [Frame tool call](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#the-tool-call-frame)). Tipe event lain akan diperkenalkan di masa mendatang, jadi tangani nilai yang tidak dikenali dengan baik (lihat [Kompatibilitas ke depan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#forward-compatibility)). |
+| `request_id` | string           | Pengidentifikasi opaque per frame untuk korelasi. Sama dengan header `webhook-id`.                                                                                                                                                                                                                                                                                                                                 |
+| `tenant_id`  | string atau null | Pengidentifikasi opaque untuk organisasi pemilik permintaan.                                                                                                                                                                                                                                                                                                                                                       |
+| `actor`      | object           | Principal yang menjadi atribusi permintaan, dibedakan berdasarkan `type` (`"user"` adalah satu-satunya nilai yang dikirim saat ini): `id` (pengidentifikasi bertag, stabil di seluruh permintaan untuk akun yang sama) dan `email_address` (jika tersedia). Baik `id` maupun `email_address` dapat bernilai null.                                                                                                  |
+| `source`     | object           | Aplikasi asal: `application` (lihat [Nilai source](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#source-values)).                                                                                                                                                                                                                                                                     |
+| `messages`   | array            | Transkrip percakapan hingga titik inferensi. Lihat [Blok konten](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#content-blocks).                                                                                                                                                                                                                                                       |
+| `session_id` | string atau null | Pengidentifikasi percakapan opaque, jika ada. Jangan mem-parse-nya. Untuk Claude Code, ini adalah pengidentifikasi sesi best-effort yang dinyatakan oleh klien.                                                                                                                                                                                                                                                    |
+| `model`      | string atau null | Pengidentifikasi model publik untuk permintaan ini, jika tersedia.                                                                                                                                                                                                                                                                                                                                                 |
+| `metadata`   | object           | Map ekstensi cadangan dari kunci string ke nilai string, yang saat ini dikirim kosong. Jangan mengandalkan isinya, dan pastikan server Anda tetap berfungsi baik saat field ini tidak ada, saat ada, maupun saat berisi kunci apa pun.                                                                                                                                                                             |
 
 Contoh body permintaan:
 
@@ -231,18 +224,18 @@ Contoh body permintaan:
 
 ### Blok konten
 
-Setiap entri dalam `messages` memiliki `role` bernilai `user` atau `assistant`. Hasil alat muncul di bawah role `user`, sesuai dengan model konten Messages API publik. Setiap entri juga memiliki array `content` berisi blok yang dibedakan berdasarkan `type`:
+Setiap entri di `messages` memiliki `role` berupa `user` atau `assistant` (hasil alat muncul di bawah role `user`, sesuai dengan model konten Messages API publik) dan array `content` berisi blok yang dibedakan berdasarkan `type`:
 
-| `type` blok   | Field                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `text`        | `text`: konten teks.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `tool_use`    | `id`: pengidentifikasi yang dirujuk oleh hasil alat yang bersesuaian. `tool_name`: nama alat. `input`: argumen yang diteruskan model ke alat.                                                                                                                                                                                                                                                                                                         |
-| `tool_result` | `content`: output alat sebagai teks, dengan bagian-bagiannya digabungkan menggunakan baris baru. Bagian biner seperti gambar diganti dengan penanda placeholder, dan byte mentah tidak pernah dikirim. `is_error`: apakah panggilan alat gagal. `tool_name`: nama alat, sehingga kebijakan dapat menggunakan identitas alat sebagai kondisi tanpa perlu merujuk silang ke blok sebelumnya. `tool_use_id`: `id` dari blok `tool_use` yang bersesuaian. |
-| `attachment`  | `file_name`: nama file atau path asli. `media_type`: tipe media lampiran. `size_bytes`: ukuran file asli. `text`: konten teks lampiran jika tersedia, seperti teks dokumen yang diekstrak, transkrip audio, atau metadata tautan. Byte mentah lampiran tidak pernah dikirim.                                                                                                                                                                          |
+| Blok `type`   | Field                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`        | `text`: konten teks.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `tool_use`    | `id`: pengidentifikasi yang dirujuk oleh hasil alat yang cocok. `tool_name`: nama alat. `input`: argumen yang diteruskan model ke alat. `tool_info`: hanya pada frame tool call (dihilangkan di tempat lain, tidak pernah `null`), objek yang menyatakan siapa yang menjalankan atau menyediakan alat; lihat [Frame tool call](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#the-tool-call-frame). |
+| `tool_result` | `content`: output alat sebagai teks, dengan bagian-bagian digabungkan oleh baris baru; bagian biner seperti gambar diganti dengan penanda placeholder, dan byte mentah tidak pernah dikirim. `is_error`: apakah panggilan alat gagal. `tool_name`: nama alat, sehingga kebijakan dapat mengondisikan pada identitas alat tanpa merujuk silang ke blok sebelumnya. `tool_use_id`: `id` dari blok `tool_use` yang cocok.          |
+| `attachment`  | `file_name`: nama file atau path asli. `media_type`: media type lampiran. `size_bytes`: ukuran file asli. `text`: konten teks lampiran jika tersedia, seperti teks dokumen yang diekstrak, transkrip audio, atau metadata tautan. Byte mentah lampiran tidak pernah dikirim.                                                                                                                                                    |
 
-Sebagian besar field ini dapat bernilai `null` jika nilainya tidak diketahui. Pengecualiannya adalah `type`, `text` pada blok `text`, serta `content` dan `is_error` pada blok `tool_result`. Misalnya, gambar dikirim sebagai blok `attachment` dengan `file_name` dan `text` bernilai `null`.
+Selain `type`, `text` pada blok `text`, serta `content` dan `is_error` pada blok `tool_result`, field mana pun dapat bernilai `null` ketika nilainya tidak diketahui; misalnya, gambar tiba sebagai blok `attachment` dengan `file_name` dan `text` bernilai `null`.
 
-Blok dengan `type` yang tidak Anda kenali merupakan tambahan yang kompatibel ke depan. Satu-satunya field yang dijamin ada pada blok tersebut adalah `type`. Kebijakan Anda boleh memeriksa field lain yang ada, tetapi tidak boleh menolak permintaan karena tipe yang tidak dikenali.
+Blok dengan `type` yang tidak Anda kenali adalah tambahan yang kompatibel ke depan. Satu-satunya field yang dijamin adalah `type`; kebijakan Anda boleh memeriksa field lain apa pun yang ada, tetapi tidak boleh menolak permintaan karena tipe yang tidak dikenali.
 
 ### Isi transkrip
 
@@ -254,13 +247,125 @@ Transkrip dikirim tanpa dipotong, sehingga percakapan panjang dengan lampiran be
 
 ### Nilai source
 
-`source.application` adalah string terbuka, bukan enum tertutup. Nilai yang umum adalah `claude-ai`, `claude-code`, dan `cowork`. [Uji koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) dan [pemeriksaan pemulihan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker) otomatis circuit breaker menggunakan `config-test`. Nilai baru dapat muncul, dan server Anda tidak boleh menolak permintaan karena nilai yang tidak dikenalinya.
+`source.application` adalah string terbuka, bukan enum tertutup. Nilai umum adalah `claude-ai`, `claude-code`, dan `cowork`; [uji koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) dan [pemeriksaan pemulihan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker) circuit breaker otomatis menggunakan `config-test`. Nilai baru dapat muncul, dan server Anda tidak boleh menolak permintaan karena nilai yang tidak dikenalinya.
 
-Perlakukan `source.application` sebagai metadata perutean yang bersifat anjuran, bukan batas kepercayaan. Jangan mendasarkan keputusan kebijakan yang kritis bagi keamanan hanya pada nilai ini.
+Perlakukan `source.application` sebagai metadata routing yang bersifat saran, bukan batas kepercayaan: jangan mendasarkan keputusan kebijakan yang kritis bagi keamanan hanya padanya.
+
+## Frame tool call
+
+Ketika Claude menghasilkan panggilan alat, Anthropic mengirimkan satu frame tool call yang mencantumkannya. Panggilan ke beberapa alat milik claude.ai sendiri mungkin dihilangkan, dan respons yang semua panggilan alatnya dihilangkan tidak menghasilkan frame tool call; lihat [Ketersediaan](https://platform.claude.com/docs/id/manage-claude/inference-hooks#availability). Satu putusan mencakup seluruh frame: Anda tidak dapat mengizinkan sebagian panggilan alat dan menolak yang lain. Frame dikirim ke endpoint yang sama dengan frame prompt, dengan header, tanda tangan, dan field tingkat atas yang sama. Panggilan alat yang dibuat oleh kode yang dijalankan Claude di alat code execution dikirim dengan cara yang sama, dalam frame tool call terpisah, sebelum dijalankan.
+
+Frame ini berbeda dari frame prompt dalam tiga hal:
+
+* `type` adalah `"tool_call"`.
+* `messages` hanya berisi pesan terbaru, yaitu pesan `assistant` yang baru saja dihasilkan Claude: blok `text` apa pun dan satu blok `tool_use` per panggilan alat yang dicantumkan frame, dalam urutan yang dihasilkan model. Percakapan sebelumnya dihilangkan, karena frame prompt yang dikirim sebelum panggilan model tersebut sudah membawanya. Baca entri terakhir dari `messages`, karena protokol nantinya dapat menambahkan pesan sebelumnya di depannya.
+* Setiap blok `tool_use` membawa objek `tool_info` yang menyatakan siapa yang menjalankan atau menyediakan alat.
+
+Jika `session_id` ditetapkan, nilainya sama pada kedua frame. Frame tool call memiliki `request_id` sendiri, yang bersifat opaque seperti milik frame prompt.
+
+`tool_info` menyatakan siapa yang menjalankan atau menyediakan alat, bukan apa yang dapat dijangkau alat tersebut. Ini adalah salah satu dari empat jenis, yang dibedakan oleh field `type`-nya, dan setiap jenis membawa field-nya sendiri. Anthropic mengirimkan jenis pertama dari berikut ini yang sesuai dengan alat. Jenis baru dapat muncul: terima `type` yang tidak Anda kenali, dan untuk jenis seperti itu andalkan hanya `type`.
+
+Field opsional yang tidak berlaku akan dihilangkan, tidak pernah `null`, sehingga `tool_info` bisa hanya berupa `{"type": "client"}`. `tool_name` dipilih oleh siapa pun yang mendefinisikan alat, dan `toolset_name` milik server oleh siapa pun yang menulis permintaan, jadi jangan perlakukan keduanya sebagai batas kepercayaan.
+
+### Alat platform
+
+Alat platform adalah alat yang dijalankan oleh Claude API itu sendiri saat melayani permintaan, seperti web search atau code execution.
+
+| Field          | Ada      | Deskripsi                                                                                                              |
+| -------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `type`         | Selalu   | `"platform"`                                                                                                           |
+| `tool_type`    | Selalu   | Tipe alat berversi, seperti `web_search_20250305`. Cocokkan secara persis; jangan mem-parse nama atau tanggal darinya. |
+| `toolset_name` | Opsional | Grup alat tempat alat tersebut berada.                                                                                 |
+
+### Alat aplikasi
+
+Alat aplikasi adalah alat yang disediakan sendiri oleh aplikasi Anthropic yang membuat permintaan, seperti alat milik claude.ai sendiri.
+
+| Field          | Ada      | Deskripsi                              |
+| -------------- | -------- | -------------------------------------- |
+| `type`         | Selalu   | `"application"`                        |
+| `toolset_name` | Opsional | Grup alat tempat alat tersebut berada. |
+
+### Alat pihak ketiga
+
+Alat pihak ketiga adalah alat pada server yang diketahui Anthropic, seperti konektor claude.ai atau server MCP yang disebutkan permintaan di `mcp_servers`. Ini tidak berarti Anthropic telah memeriksa server tersebut.
+
+| Field             | Ada                      | Deskripsi                                                                                                                                                                        |
+| ----------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`            | Selalu                   | `"third_party"`                                                                                                                                                                  |
+| `toolset_name`    | Opsional                 | Nama yang diberikan permintaan kepada server.                                                                                                                                    |
+| `origin`          | Opsional                 | Skema, host, dan port non-default dari URL server. Ini dapat berupa alamat privat atau lokal, termasuk `localhost`. `origin` yang tidak ada berarti tidak diketahui, bukan aman. |
+| `verified_origin` | Setiap kali `origin` ada | `true` hanya ketika server Anthropic sendiri yang terhubung ke server tersebut. Perlakukan `false` sebagai origin yang belum dikonfirmasi Anthropic.                             |
+
+Blok `tool_use` untuk alat pada server MCP yang dinamai `crm` oleh permintaan di `mcp_servers`:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01GhIjKlMnOpQrStUvWxYzAb",
+  "tool_name": "crm_search",
+  "input": {
+    "query": "accounts renewing in Q4"
+  },
+  "tool_info": {
+    "type": "third_party",
+    "toolset_name": "crm",
+    "origin": "https://mcp.crm.example.com",
+    "verified_origin": true
+  }
+}
+```
+
+### Alat klien
+
+Alat klien adalah alat lainnya, biasanya alat yang dijalankan oleh aplikasi yang memanggil Claude. Alat yang didefinisikan Anthropic tetapi dijalankan oleh aplikasi pemanggil, seperti bash atau computer use, juga merupakan alat klien, dan membawa tipe berversinya di `tool_type`. Panggilan ke alat yang tidak dideklarasikan oleh permintaan juga merupakan `"client"`.
+
+Alat pada server MCP yang dihubungkan Claude Code secara langsung dari komputer pengguna, seperti server MCP lokal, adalah alat klien. `tool_info`-nya adalah `{"type": "client"}`, dan `tool_name`-nya adalah nama yang diberikan Claude Code, dalam bentuk `mcp__<server>__<tool>`.
+
+Deny menghentikan panggilan sebelum Claude Code menjalankannya. Pertukaran antara Claude Code dan server lokal tidak melewati Anthropic, sehingga server keamanan AI Anda hanya melihat hasil alat ketika Claude Code mengirimkannya kembali. Teksnya kemudian berada di blok `tool_result` pada frame prompt berikutnya.
+
+| Field          | Ada      | Deskripsi                                                                                                                                                       |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`         | Selalu   | `"client"`                                                                                                                                                      |
+| `tool_type`    | Opsional | Tipe alat berversi, seperti `bash_20250124`, ketika Anthropic mendefinisikan alat tersebut. Cocokkan secara persis; jangan mem-parse nama atau tanggal darinya. |
+| `toolset_name` | Opsional | Grup alat tempat alat tersebut berada, seperti `browser`.                                                                                                       |
+
+Blok `tool_use` untuk alat yang dideklarasikan oleh aplikasi pemanggil:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01AbCdEfGhIjKlMnOpQrStUv",
+  "tool_name": "read_file",
+  "input": {
+    "path": "reports/q3.txt"
+  },
+  "tool_info": {
+    "type": "client"
+  }
+}
+```
+
+Blok `tool_use` untuk bash, yang didefinisikan Anthropic dan dijalankan oleh aplikasi pemanggil:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01HiJkLmNoPqRsTuVwXyZaBc",
+  "tool_name": "bash",
+  "input": {
+    "command": "ls -la reports/"
+  },
+  "tool_info": {
+    "type": "client",
+    "tool_type": "bash_20250124"
+  }
+}
+```
 
 ## Mengembalikan putusan
 
-Untuk kedua hasil, respons dengan HTTP 200 dan body putusan JSON. Field `action` menentukan hasilnya. Untuk mengizinkan permintaan:
+Respons dengan HTTP 200 dan body putusan JSON untuk kedua hasil; field `action` yang membedakannya. Untuk mengizinkan permintaan:
 
 ```json
 {
@@ -278,20 +383,22 @@ Untuk menolaknya:
 }
 ```
 
-| Field          | Batasan                                                                         | Semantik                                                                                                                                                                                                                                                                                                                                                                    |
-| -------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`       | `"allow"` atau `"deny"`; wajib                                                  | `allow` mengizinkan inferensi berlanjut; `deny` menolaknya.                                                                                                                                                                                                                                                                                                                 |
-| `deny_reason`  | string atau null; maksimal 500 karakter, nilai yang lebih panjang akan dipotong | Ditampilkan kepada pengguna akhir saat `action` bernilai `deny`; diabaikan pada `allow`.                                                                                                                                                                                                                                                                                    |
-| `reference_id` | string atau null; maksimal 50 karakter dari `[A-Za-z0-9._:/-]`                  | Pengidentifikasi milik Anda sendiri untuk evaluasi ini. Nilai ini dicatat pada [aktivitas kepatuhan](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) `inference_hooks_request_denied` untuk penolakan tersebut dan tidak pernah ditampilkan kepada pengguna akhir. Jaga agar tetap opak: jangan sertakan konten permintaan maupun data pribadi. |
+| Field          | Batasan                                                                    | Semantik                                                                                                                                                                                                                                                                                                                                               |
+| -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `action`       | `"allow"` atau `"deny"`; wajib                                             | `allow` membiarkan inferensi berlanjut; `deny` menolaknya.                                                                                                                                                                                                                                                                                             |
+| `deny_reason`  | string atau null; maksimal 500 karakter, nilai yang lebih panjang dipotong | Ditampilkan kepada pengguna akhir ketika `action` adalah `deny`; diabaikan pada `allow`.                                                                                                                                                                                                                                                               |
+| `reference_id` | string atau null; maksimal 50 karakter dari `[A-Za-z0-9._:/-]`             | Pengidentifikasi Anda sendiri untuk evaluasi ini. Dicatat pada [aktivitas kepatuhan](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) `inference_hooks_request_denied` milik penolakan tersebut dan tidak pernah ditampilkan kepada pengguna akhir. Jaga agar tetap opaque: tanpa konten permintaan dan tanpa data pribadi. |
 
-Putusan deny tidak pernah dibuang karena masalah format. `deny_reason` yang terlalu panjang akan dipotong, `reference_id` yang formatnya salah akan dibuang tanpa pemberitahuan, dan `action` tetap dihormati.
+Deny tidak pernah dibuang karena masalah format: `deny_reason` yang terlalu panjang dipotong, `reference_id` yang salah format dibuang secara diam-diam, dan `action` tetap dihormati.
 
-Hal sebaliknya tidak berlaku. Respons apa pun selain HTTP 200 dengan putusan yang dapat di-parse dianggap sebagai kegagalan webhook. Dalam kasus ini, [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda yang berlaku, bukan putusan. Secara khusus:
+Kebalikannya tidak berlaku. Apa pun selain HTTP 200 dengan putusan yang dapat di-parse adalah kegagalan webhook, dan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda yang berlaku alih-alih putusan. Secara khusus:
 
 * Jangan menandakan deny dengan status error. Respons non-200 adalah kegagalan, bukan deny.
 * Nilai `action` apa pun selain `allow` atau `deny` diperlakukan sebagai kegagalan webhook.
 
-Anthropic membaca paling banyak 64 KiB dari body respons, dan body tersebut harus tidak terkompresi. Pengalihan tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body putusan diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya di samping field yang didokumentasikan di sini.
+Anthropic membaca maksimal 64 KiB dari body respons, dan body harus tidak terkompresi. Redirect tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body putusan diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya di samping field yang didokumentasikan di sini.
+
+Frame tool call menggunakan body putusan yang sama, dan setiap aturan di bagian ini berlaku untuknya tanpa perubahan. `allow` membiarkan panggilan alat berjalan dan respons berlanjut; `deny` menghentikan semuanya dan mengakhiri respons dengan error yang sama seperti prompt yang ditolak, termasuk `deny_reason` Anda. Teks yang sudah dikirim sebelum panggilan alat pertama tidak ditarik kembali.
 
 ## Memverifikasi tanda tangan
 
@@ -691,9 +798,9 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
 
 ### Batas waktu dan percobaan ulang
 
-Administrator Anda menetapkan batas waktu putusan antara 1 dan 10.000ms (default 5.000ms). Batas waktu ini mencakup seluruh pertukaran: koneksi, TLS handshake, permintaan, dan respons.
+Administrator Anda menetapkan batas waktu putusan antara 1 dan 10.000ms (default 5.000ms). Anggaran waktu ini mencakup seluruh pertukaran: koneksi, TLS handshake, permintaan, dan respons. Batas waktu yang sama berlaku untuk frame tool call.
 
-Anthropic mencoba ulang tepat satu kali setelah jeda 100ms, dan hanya jika upaya koneksi gagal. Percobaan ulang menggunakan batas waktu yang sama serta membawa `webhook-id` dan tanda tangan yang sama. Setelah server keamanan AI Anda merespons, pertukaran tidak akan pernah dicoba ulang.
+Anthropic mencoba ulang tepat satu kali, setelah jeda 100ms, dan hanya ketika upaya koneksi gagal. Percobaan ulang berbagi anggaran batas waktu yang sama dan membawa `webhook-id` serta tanda tangan yang sama. Setelah server keamanan AI Anda merespons, pertukaran tidak pernah dicoba ulang.
 
 ### Kegagalan webhook
 
@@ -708,20 +815,17 @@ Kegagalan webhook tidak pernah menjadi deny. Sebagai gantinya, pengaturan [penan
 
 ### Circuit breaker
 
-Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu "circuit breaker" (pemutus sirkuit) yang menghentikan penegakan. Anthropic berhenti menghubungi server Anda, dan penanganan kegagalan berlaku untuk setiap permintaan.
+Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu circuit breaker yang menghentikan penegakan: Anthropic berhenti menghubungi server Anda, dan penanganan kegagalan berlaku untuk setiap permintaan.
 
-Mulai 10 menit setelah circuit breaker terpicu, Anthropic memeriksa apakah server Anda telah pulih. Paling sering sekitar sekali per menit, Anthropic mengirimkan permintaan uji sintetis yang sama dengan yang dikirim oleh **Test connection** (`source.application` bernilai `config-test`). Permintaan ini ditandatangani seperti permintaan lainnya dan tidak membawa konten pengguna. Respons permintaan tersebut seperti biasa:
+Mulai 10 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pulih: paling sering sekitar sekali per menit, Anthropic mengirimkan ke server Anda permintaan uji sintetis yang sama dengan yang dikirim **Test connection** (`source.application` adalah `config-test`), ditandatangani seperti permintaan lainnya dan tidak membawa konten pengguna. Respons seperti biasa. Putusan yang valid, allow atau deny, mereset breaker dan penegakan dilanjutkan; kegagalan webhook membuat breaker tetap terpicu, dan pemeriksaan berlanjut. Administrator juga dapat mereset breaker kapan saja, dan perubahan konfigurasi oleh administrator menghentikan pemeriksaan otomatis; lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
 
-* Putusan yang valid, baik allow maupun deny, akan mereset circuit breaker dan penegakan dilanjutkan.
-* Kegagalan webhook membuat circuit breaker tetap terpicu, dan pemeriksaan terus berlanjut.
+Frame prompt dan frame tool call berbagi satu circuit breaker, dan kegagalan pada salah satunya dihitung terhadapnya.
 
-Administrator juga dapat mereset circuit breaker kapan saja, dan perubahan konfigurasi oleh administrator akan menghentikan pemeriksaan otomatis. Lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
-
-Setiap kali circuit breaker terpicu, kejadian tersebut dicatat sebagai satu aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Selama circuit breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat. Karena itu, aktivitas pemicu tersebut adalah satu-satunya catatan di feed untuk periode saat circuit breaker terpicu.
+Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), satu aktivitas per pemicuan. Selama breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat, sehingga aktivitas pemicuan adalah satu-satunya catatan feed untuk periode terpicu tersebut.
 
 ### Latensi
 
-Penegakan menambahkan waktu bolak-balik server keamanan AI Anda ke "latency" (latensi) setiap permintaan yang diatur di organisasi Anda. Jaga agar putusan tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
+Penegakan menambahkan waktu bolak-balik server keamanan AI Anda ke "latency" (latensi) setiap permintaan yang diatur di organisasi Anda. Dengan **Validate tool calls** aktif, respons yang menghasilkan frame tool call juga menunggu putusannya, termasuk dalam shadow mode. Jaga agar putusan tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
 
 ### Alamat IP sumber
 
@@ -729,17 +833,18 @@ Permintaan ke server keamanan AI Anda berasal dari `160.79.106.0/24`, yang merup
 
 ## Kompatibilitas ke depan
 
-Protokol ini berkembang tanpa merusak server yang ditulis dengan benar. Server Anda harus mengabaikan:
+Protokol berkembang tanpa merusak server yang ditulis dengan benar. Server Anda harus mengabaikan:
 
-* Field tingkat atas yang tidak dikenal pada prompt frame.
-* Kunci yang tidak dikenal dalam `metadata`.
-* Nilai `source.application` yang baru.
-* Nilai `actor.type` yang baru. `actor` adalah union yang dibedakan berdasarkan `type`, dan `"user"` adalah satu-satunya jenis yang dikirim saat ini. Jenis di masa mendatang hanya menjamin bahwa `type` ada.
+* Field tingkat atas yang tidak dikenal pada kedua frame.
+* Kunci yang tidak dikenal di `metadata`.
+* Nilai `source.application` baru.
+* Nilai `actor.type` baru. `actor` adalah union yang dibedakan berdasarkan `type`, dan `"user"` adalah satu-satunya jenis yang dikirim saat ini; jenis di masa mendatang hanya menjamin bahwa `type` ada.
 * Blok konten dengan `type` yang tidak dikenali.
+* Pesan dengan `role` selain `user` atau `assistant`, yang mungkin ditambahkan pada revisi berikutnya.
 
-Jangan pernah menolak permintaan karena tipe blok atau field yang tidak dikenali. Baca field yang Anda ketahui dan lewati sisanya.
+Jangan pernah menolak permintaan karena tipe blok atau field yang tidak dikenali; baca field yang Anda ketahui dan lewati sisanya.
 
-Jenis event hook lain akan diperkenalkan di masa mendatang. Jenis event baru tidak dapat ditangani hanya dengan melewati field, karena permintaan tetap memerlukan putusan. Jika `type` tingkat atas bernilai sesuatu yang tidak Anda kenali, kembalikan putusan allow, bukan status error. Respons error merupakan [kegagalan webhook](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#webhook-failures), dan kegagalan yang berkelanjutan akan memicu [circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker).
+Tipe event hook lain akan diperkenalkan di masa mendatang. Tipe event baru adalah tambahan yang tidak dapat ditangani server Anda dengan sekadar melewati field: permintaan tetap memerlukan putusan. Ketika `type` tingkat atas adalah nilai yang tidak Anda kenali, kembalikan putusan allow alih-alih status error; respons error adalah [kegagalan webhook](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#webhook-failures), dan kegagalan berkelanjutan memicu [circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#circuit-breaker).
 
 ## Merancang integrasi Anda
 

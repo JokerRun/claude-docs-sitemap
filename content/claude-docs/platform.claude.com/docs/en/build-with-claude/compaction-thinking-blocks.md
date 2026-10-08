@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: db8b2fa00c022f5fd21b7e9f76037d047590c78d0d5441737b66c9dacfb25c9f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a87debcf0db5de9c8e07a0bf57686b958e5e77e697fd402298510db730478a42
 ---
 
 ---
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4397e6ca3d58cb60b87f573ea9bb987381f9abc4be6b38a4a574479bd08c2cb1
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: d0b432de0371dcf2fe8370f8c013ae1a9131e78061bd102358a44e2153b1e65e
 ---
 
 ---
@@ -21,23 +21,23 @@ Claude mampu bekerja dalam banyak bahasa di luar yang diuji dalam tabel berikut.
 
 Tabel berikut menunjukkan skor evaluasi "zero-shot chain-of-thought" (rantai pemikiran tanpa contoh) untuk model Claude di berbagai bahasa, dinyatakan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
 
-| Bahasa                                 | Claude Sonnet 4.51 | Claude Haiku 4.51 |
-| -------------------------------------- | ------------------ | ----------------- |
-| Inggris (acuan dasar, ditetapkan 100%) | 100%               | 100%              |
-| Spanyol                                | 98,2%              | 96,4%             |
-| Portugis (Brasil)                      | 97,8%              | 96,1%             |
-| Italia                                 | 97,9%              | 96,0%             |
-| Prancis                                | 97,5%              | 95,7%             |
-| Indonesia                              | 97,3%              | 94,2%             |
-| Jerman                                 | 97,0%              | 94,3%             |
-| Arab                                   | 97,2%              | 92,5%             |
-| Tionghoa (Sederhana)                   | 96,9%              | 94,2%             |
-| Korea                                  | 96,7%              | 93,3%             |
-| Jepang                                 | 96,8%              | 93,5%             |
-| Hindi                                  | 96,7%              | 92,4%             |
-| Bengali                                | 95,4%              | 90,4%             |
-| Swahili                                | 91,1%              | 78,3%             |
-| Yoruba                                 | 79,7%              | 52,7%             |
+| Bahasa                                 | Claude Sonnet 4.5 (deprecated)1 | Claude Haiku 4.51 |
+| -------------------------------------- | ------------------------------- | ----------------- |
+| Inggris (acuan dasar, ditetapkan 100%) | 100%                            | 100%              |
+| Spanyol                                | 98,2%                           | 96,4%             |
+| Portugis (Brasil)                      | 97,8%                           | 96,1%             |
+| Italia                                 | 97,9%                           | 96,0%             |
+| Prancis                                | 97,5%                           | 95,7%             |
+| Indonesia                              | 97,3%                           | 94,2%             |
+| Jerman                                 | 97,0%                           | 94,3%             |
+| Arab                                   | 97,2%                           | 92,5%             |
+| Tionghoa (Sederhana)                   | 96,9%                           | 94,2%             |
+| Korea                                  | 96,7%                           | 93,3%             |
+| Jepang                                 | 96,8%                           | 93,5%             |
+| Hindi                                  | 96,7%                           | 92,4%             |
+| Bengali                                | 95,4%                           | 90,4%             |
+| Swahili                                | 91,1%                           | 78,3%             |
+| Yoruba                                 | 79,7%                           | 52,7%             |
 
 1 Dengan [extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) (pemikiran diperpanjang).
 

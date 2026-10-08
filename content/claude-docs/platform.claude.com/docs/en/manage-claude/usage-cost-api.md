@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 9ca93e3eef9e6befe55f637db344a54812a05ced3b8617e34e6ce37d75ceef1f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4e8c9658637916235ef0b8433e36ec494a2be519ad72f2c923470c7f80274231
 ---
 
 ---
@@ -160,9 +160,9 @@ bucket_width=1d" \
 ```
 
 <Tip>
-  To retrieve your organization's API key IDs, use the [List API Keys](https://platform.claude.com/docs/en/api/beta/organization/api_keys/list) endpoint.
+  To retrieve your organization's API key IDs, use the [List API Keys](https://platform.claude.com/docs/en/api/organization/api_keys/list) endpoint.
 
-  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/beta/organization/workspaces/list) endpoint, or find your organization's workspace IDs in the Claude Console.
+  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint, or find your organization's workspace IDs in the Claude Console.
 </Tip>
 
 #### Data residency

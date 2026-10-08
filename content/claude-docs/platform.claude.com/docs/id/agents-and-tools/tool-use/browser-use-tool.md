@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 3f42742254d8d1aab908e1ba4a5ee3a164147cb53ccc7a54f122bc9bb1ef6b51
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 60b8d897b7b89ed358f44248c3c2a315b1a26f1f6d2c5c000e06febf0b962be5
 ---
 
 ---
@@ -35,6 +35,8 @@ featureMetadata:
 Alat browser use memungkinkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang dijalankan oleh aplikasi Anda. Claude bekerja dengan halaman melalui strukturnya ("accessibility tree" (pohon aksesibilitas), elemen, formulir, dan tab) sekaligus melalui screenshot dan koordinat viewport.
 
 Alat ini adalah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) yang didefinisikan oleh Anthropic: satu entri `browser_toolset_20260801` di `tools` memberi Claude 27 alat anggota secara default, seperti `navigate`, `read_page`, `left_click`, dan `screenshot`, ditambah empat lagi saat Anda [mengaktifkannya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools). Aplikasi Anda menjalankan setiap panggilan menggunakan otomatisasi browsernya sendiri; tidak ada yang dijalankan di sisi Anthropic. Alat ini saat ini tidak tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools).
+
+SDK Python dan TypeScript menyertakan sebuah kelas yang meneruskan panggilan-panggilan ini ke kode browser Anda, menjalankan kebijakan URL dan file yang Anda tetapkan, dan meminta persetujuan melalui callback Anda. Lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 
 Pilih browser use ketika tugas tetap berada di dalam halaman web dan berarti bertindak pada halaman tersebut, atau ketika halaman membangun kontennya dengan JavaScript. Ketika tugas memerlukan seluruh desktop, gunakan [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), yang bekerja hanya melalui screenshot dan koordinat. Untuk membaca halaman yang dapat Anda tunjukkan kepada Claude, atau menemukan sumber di web, [alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) dan [alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) lebih ringan. Keduanya adalah [server tools](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang dijalankan API untuk Anda, tanpa browser yang perlu dioperasikan.
 
@@ -292,24 +294,24 @@ Claude kini memegang referensi yang dapat ditindaklanjutinya, sehingga pada gili
 Browser use berjalan sebagai "agent loop" (loop agen) di aplikasi Anda: Claude mengembalikan panggilan alat anggota, executor Anda menjalankannya pada browser, dan Anda mengembalikan hasilnya hingga Claude menjawab dalam bentuk teks.
 
 <Steps>
-  <Step title="Berikan Claude alat penggunaan browser dan prompt pengguna" icon="tool">
+  <Step title="Berikan Claude alat penggunaan browser dan prompt pengguna">
     * Tambahkan entri `browser_toolset_20260801`, dan secara opsional alat lain, ke permintaan API Anda.
-    * Sertakan prompt pengguna yang memerlukan pekerjaan dengan halaman web, misalnya, "Buka example.com/docs dan beri tahu saya cara memulai."
+    * Sertakan prompt pengguna yang memerlukan kerja dengan halaman web, misalnya, "Buka example.com/docs dan beri tahu saya cara memulai."
   </Step>
 
-  <Step title="Claude merespons dengan panggilan alat anggota" icon="wrench">
+  <Step title="Claude merespons dengan panggilan alat anggota">
     * Claude mengembalikan satu atau lebih blok `tool_use` dalam satu giliran asisten; beberapa blok dalam satu giliran membentuk tindakan batch, misalnya, `left_click`, lalu `type`, lalu `key`.
     * `name` setiap blok adalah nama anggota, masing-masing membawa `"toolset_name": "browser"`, dan `input` hanya berisi parameter anggota tersebut, tanpa field `action`. `stop_reason` respons adalah `tool_use`.
   </Step>
 
-  <Step title="Jalankan panggilan secara berurutan dan kembalikan hasilnya" icon="browser">
-    * Iterasi setiap blok `tool_use` dalam `response.content` (jangan berasumsi hanya ada satu) dan jalankan secara berurutan, sesuai urutan kemunculannya, karena panggilan selanjutnya biasanya bergantung pada panggilan sebelumnya.
-    * Kembalikan satu `tool_result` per blok dalam pesan `user` baru, dicocokkan berdasarkan `tool_use_id`, dan gemakan `"toolset_name": "browser"` pada masing-masing. Setiap panggilan harus dijawab atau permintaan berikutnya akan ditolak.
-    * Jika sebuah panggilan gagal, kembalikan `is_error: true` dengan deskripsi teks untuk blok tersebut, lalu terapkan aturan penghentian di [Tindakan batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) pada setiap blok selanjutnya dalam giliran tersebut.
+  <Step title="Jalankan panggilan secara berurutan dan kembalikan hasilnya">
+    * Iterasi setiap blok `tool_use` di `response.content` (jangan berasumsi hanya ada tepat satu) dan jalankan secara berurutan, sesuai urutan kemunculannya, karena panggilan selanjutnya biasanya bergantung pada panggilan sebelumnya.
+    * Kembalikan satu `tool_result` per blok dalam pesan `user` baru, dicocokkan dengan `tool_use_id`, dan gemakan `"toolset_name": "browser"` pada masing-masing. Setiap panggilan harus dijawab atau permintaan berikutnya akan ditolak.
+    * Jika sebuah panggilan gagal, kembalikan `is_error: true` dengan deskripsi teks untuk blok tersebut, lalu terapkan aturan penghentian di [Tindakan batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) ke setiap blok berikutnya dalam giliran tersebut.
   </Step>
 
-  <Step title="Claude melanjutkan hingga tugas selesai" icon="arrows-clockwise">
-    * Claude membaca hasilnya (teks halaman, pohon aksesibilitas, tangkapan layar, status tab) dan, jika membutuhkan lebih banyak, mengembalikan panggilan anggota lebih lanjut, yang membawa Anda kembali ke langkah 3.
+  <Step title="Claude melanjutkan hingga tugas selesai">
+    * Claude membaca hasilnya (teks halaman, pohon aksesibilitas, screenshot, status tab) dan, jika membutuhkan lebih banyak, mengembalikan panggilan anggota lebih lanjut, yang membawa Anda kembali ke langkah 3.
     * Jika tidak, Claude mengembalikan respons teks kepada pengguna.
   </Step>
 </Steps>
@@ -1589,7 +1591,11 @@ Sesi browser, unduhan, dan file yang diunggah tetap berada di lingkungan Anda; s
 
 ## Langkah selanjutnya
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
+  <Card title="Penggunaan browser dan komputer dengan toolset SDK" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk">
+    Tulis driver browser dalam Python atau TypeScript. SDK menjalankan loop dan pemeriksaan yang Anda konfigurasikan.
+  </Card>
+
   <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Berikan Claude kendali atas desktop penuh ketika tugas keluar dari browser; panduan implementasinya juga berlaku untuk eksekutor browser.
   </Card>

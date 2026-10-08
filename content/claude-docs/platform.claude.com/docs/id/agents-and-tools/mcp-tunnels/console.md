@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 6cfbbc07d7d2038654dfa640c26c826136732959906378ab23c18071afecf7b7
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 91ea7413fb8bf01bacc6ed15b977c96859969cbb2b479f0aacd42b1b8e1b27bc
 ---
 
 ---
@@ -46,7 +46,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
     1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti cluster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di bawah **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
     2. **Aturan federasi dengan scope `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
-    3. **Service account milik aturan tersebut ditambahkan ke workspace ini.** Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace dari service account. Jika Anda membuat tunnel di workspace selain workspace default organisasi, tambahkan service account di bawah **Settings > Workspaces** dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
+    3. **Service account dari aturan tersebut ditambahkan ke workspace ini.** Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account. Jika Anda membuat tunnel di workspace selain workspace default organisasi, [tambahkan service account ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#role-inheritance) dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
 
     Melewati langkah ini didukung sepenuhnya; kedua panduan deploy memiliki tab **Without programmatic access**.
   </Step>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 3fe7e9f6ae900c08e7f4c201cb8a0cdd9e2ebb3261a9f90ececf28ac37842fc4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: eb0e5452112bff1036dfd6f2c4bcda810f7cb14d64e326796c5d5a784b5c8142
 ---
 
 ---
@@ -184,6 +184,15 @@ anthropic-beta: feature3
 ```
 
 With the SDK, list each feature (for example, `betas=["feature1", "feature2"]` (python; typescript, ruby: `betas: ["feature1", "feature2"]`; php: `betas: ['feature1', 'feature2']`; csharp: `Betas = ["feature1", "feature2"]`; go: `Betas: []anthropic.AnthropicBeta{"feature1", "feature2"}`; java: `.addBeta("feature1").addBeta("feature2")`)). With the CLI, pass a single `--beta` flag with the feature names separated by commas (for example, `--beta feature1,feature2`). You can also repeat the flag (for example, `--beta feature1 --beta feature2`).
+
+### Beta features on other platforms
+
+Beta names are the same on every platform that accepts them, but not every platform accepts every beta. [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), and [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) take beta names in the `anthropic-beta` header, as the Claude API does. To send several betas, put their names in one header, separated by commas: Google Cloud reads only one `anthropic-beta` header and ignores the rest, so betas in the others don't take effect.
+
+On Amazon Bedrock, where beta names go depends on the API you call:
+
+* [Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) (`bedrock-mantle` endpoints) takes them in the `anthropic-beta` header.
+* The [InvokeModel API](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy) reads them from the request body, not from a header. List them in the body's `anthropic_beta` array, one name per element, for example `"anthropic_beta": ["feature1", "feature2"]`.
 
 ### Endpoint-specific headers
 

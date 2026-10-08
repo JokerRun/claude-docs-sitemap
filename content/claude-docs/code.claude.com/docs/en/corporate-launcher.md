@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/corporate-launcher
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: 3e10814e1ec535d3343f1158b378bf11edafe20e49f682c227c7c21c4a957ecb
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a7829135c9df58125fd347c0e798d346d8ca4dd617c5488623b96d8baf4b374e
 ---
 
 > ## Documentation Index
@@ -125,6 +125,7 @@ When the launcher can't run, Claude Code refuses to start the process instead of
 * **Reach `exec` within about three seconds each time the launcher runs.** A cold background dispatch runs the launcher twice in series before the first byte of output, so do slow work such as a single sign-on exchange lazily or from a cache.
 * **Tolerate being invoked from inside itself.** Claude Code applies the launcher to every nested self-spawn, so a launcher that acquires an exclusive resource must detect that it already holds it.
 * **Don't write to the terminal before Claude Code starts.** Anything printed before the `exec` is reported as the crash cause if the session dies before initializing.
+* **Don't depend on how arguments are spelled.** A flag's value can arrive as its own argument, `--flag value`, or joined to the flag, `--flag=value`. Which form a flag uses can change between versions.
 
 ### Format of the launcher value
 

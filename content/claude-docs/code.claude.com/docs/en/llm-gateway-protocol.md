@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 3fc23c8d58b77e43a3fffebb722112d760aa06b2e8c1574005de55dcffcd8624
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 030da238a27c1e9b0bcb4af34429f3ac2f1603b0c321b0809c5b353adb2fa41e
 ---
 
 > ## Documentation Index
@@ -183,7 +183,7 @@ Claude Code reads these response headers to detect stalled streams, to decide wh
 
 | Header | What to return and why |
 | :- | :- |
-| `content-type` | Return `text/event-stream` on streamed Anthropic Messages-format responses, and `application/vnd.amazon.eventstream`, unmodified, on Amazon Bedrock-format responses, where [a different type fails the request](/docs/en/amazon-bedrock#streaming-errors-behind-a-gateway-or-proxy). [Streaming](#streaming) lists which connections run stall detection on these streams |
+| `content-type` | Return `text/event-stream` on streamed Anthropic Messages-format responses, and `application/vnd.amazon.eventstream`, unmodified, on Amazon Bedrock-format responses, where [a different type fails the request](/docs/en/amazon-bedrock#streaming-errors-behind-a-gateway-or-proxy) |
 | `retry-after` | Return integer seconds rather than an HTTP date. Claude Code waits at least that long before the next [automatic retry](/docs/en/errors#automatic-retries), and outside [`CLAUDE_CODE_RETRY_WATCHDOG`](/docs/en/env-vars) sessions a value above 60 stops the retries and shows the error at once |
 | `x-should-retry` | Pass the upstream's value through unchanged. Claude Code reads this header as one input when deciding whether to retry a failed request: `true` marks the response retryable and `false` marks it not retryable. For retry counts, backoff, and which failures Claude Code retries, see [automatic retries](/docs/en/errors#automatic-retries) |
 | `anthropic-ratelimit-unified-*` | Forward the upstream's values unchanged on every response. Claude Code reads them on successful responses to show usage against plan limits to developers signed in with claude.ai, and on a `429` to tell a plan limit or spend cap from a temporary throttle; see [usage limits](/docs/en/errors#usage-limits) |

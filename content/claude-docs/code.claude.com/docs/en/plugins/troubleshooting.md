@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 51fa3843b74d799339207f0991c214b22136f305b2479cf4d90af2f674ac1a90
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 06d9882e59b3d0915a384074a360014e032e152613e0de5196b0c2e06da6cf89
 ---
 
 > ## Documentation Index
@@ -24,6 +24,7 @@ Use this page whether you install plugins, build them, host a marketplace, or ad
 
   * **Why scopes, the cache, and precedence behave the way they do**: read [Plugin loading reference](/docs/en/plugins/loading)
   * **Looking up a flag, field, or command**: use the [plugin commands reference](/docs/en/plugins/cli-reference), the [manifest reference](/docs/en/plugins/manifest-reference), or the [marketplace reference](/docs/en/plugins/marketplace-reference)
+  * **A `hooks module not loaded` or `hooks module did not load` message**: the plugin is a [mod](/docs/en/plugins/mods/overview), so read [The mod doesn't load](/docs/en/plugins/mods/troubleshoot#the-mod-doesn’t-load)
 </Note>
 
 Search for the exact message you saw. Each message is listed under the stage that produces it, which isn't always the command you ran. For example, an install can fail because a marketplace is missing, so that message is under [Add a marketplace](#add-a-marketplace).

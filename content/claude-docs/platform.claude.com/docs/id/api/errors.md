@@ -1,51 +1,51 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 9ab97d576603155f6438438af77791c3f769441af70cc125fee42036a3542ef2
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ba56b40200800b6bbae880108baab46398f51dd5240870f7fcd01faa341b28d1
 ---
 
 ---
 title: Error Claude API
 url: https://platform.claude.com/docs/id/api/errors
-description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan Claude API, serta tangani error dengan exception bertipe dari SDK.
+description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
 ---
 
 ## Error HTTP
 
 API mengikuti format kode error HTTP yang dapat diprediksi:
 
-* 400 - `invalid_request_error`: Ada masalah pada format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace. Pengecualiannya adalah batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429.
+* 400 - `invalid_request_error`: Terdapat masalah pada format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace, kecuali batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429 sebagai gantinya.
 
-* 401 - `authentication_error`: Ada masalah pada ["API key" (kunci API)](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, sudah dicabut, atau sudah kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Di Claude Platform on AWS, error ini juga dapat menandakan masalah pada kredensial AWS atau tanda tangan SigV4 Anda.
+* 401 - `authentication_error`: Terdapat masalah pada [kunci API](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, telah dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Di Claude Platform on AWS, ini juga dapat menunjukkan masalah pada kredensial AWS atau tanda tangan SigV4 Anda.
 
-* 402 - `billing_error`: Ada masalah pada informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
+* 402 - `billing_error`: Terdapat masalah pada informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
 
-* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa pengaturan akses dan workspace organisasi Anda di [Claude Console](https://platform.claude.com).
+* 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa akses organisasi dan pengaturan workspace Anda di [Claude Console](https://platform.claude.com).
 
 * 404 - `not_found_error`: Sumber daya yang diminta tidak ditemukan. Periksa path endpoint dan ID sumber daya apa pun di URL permintaan.
 
-* 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya diubah secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba kirim ulang permintaan.
+* 409 - `conflict_error`: Permintaan bertentangan dengan status sumber daya saat ini. Misalnya, sumber daya dimodifikasi secara bersamaan, atau nilai yang harus unik sudah digunakan. Selesaikan konflik tersebut, lalu coba ulang permintaan.
 
 * 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk batas maksimum per endpoint.
 
-* 429 - `rate_limit_error`: Organisasi Anda telah mencapai ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan untuk tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal sampai akses dipulihkan. Lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
+* 429 - `rate_limit_error`: Organisasi Anda telah mencapai ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba kirim ulang permintaan dengan "exponential backoff" (penundaan eksponensial). Jika error terus terjadi, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan "exponential backoff" (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
-* 504 - `timeout_error`: Waktu permintaan habis saat sedang diproses. Pertimbangkan untuk menggunakan [Messages API streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
+* 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. Pertimbangkan untuk menggunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
 * 529 - `overloaded_error`: API sedang kelebihan beban untuk sementara.
 
   <Warning>
-    Error 529 dapat terjadi ketika API mengalami lalu lintas tinggi di seluruh pengguna.
+    Error 529 dapat terjadi ketika API mengalami lalu lintas tinggi dari seluruh pengguna.
 
-    Dalam kasus yang jarang, jika organisasi Anda mengalami peningkatan penggunaan yang tajam, Anda mungkin melihat error 429 karena batas akselerasi pada API. Untuk menghindari batas akselerasi, tingkatkan lalu lintas Anda secara bertahap dan pertahankan pola penggunaan yang konsisten.
+    Dalam kasus yang jarang terjadi, jika organisasi Anda mengalami peningkatan penggunaan yang tajam, Anda mungkin melihat error 429 karena batas akselerasi pada API. Untuk menghindari batas akselerasi, tingkatkan lalu lintas Anda secara bertahap dan pertahankan pola penggunaan yang konsisten.
   </Warning>
 
-SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, sebanyak dua kali secara default, dan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
+SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
 
-Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui server-sent events (SSE), error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
+Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui "server-sent events" (peristiwa yang dikirim server), atau SSE, error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
 
 ## Batas ukuran permintaan
 
@@ -79,7 +79,7 @@ Sesuai dengan kebijakan [pembuatan versi](https://platform.claude.com/docs/id/ap
 
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Nama kelas dan namespace-nya berbeda di setiap bahasa. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (python; typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK hanya memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`, sehingga Anda perlu membuat percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dan tangani kelas yang paling spesifik terlebih dahulu. Setiap halaman SDK mendokumentasikan hierarki exception lengkapnya:
+SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (python; typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`: lakukan percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Halaman SDK Anda mendokumentasikan hierarki exception secara lengkap:
 
 * [Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 
@@ -262,15 +262,15 @@ Untuk contoh ID permintaan Claude Platform on AWS dalam bahasa lain, lihat [ID p
 ## Permintaan panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) untuk permintaan yang berjalan lama, terutama yang lebih dari 10 menit.
+  Pertimbangkan untuk menggunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) untuk permintaan yang berjalan lama, terutama yang lebih dari 10 menit.
 </Warning>
 
-Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [streaming Messages API](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create):
+Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) atau [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create):
 
-* Beberapa jaringan mungkin memutus koneksi yang menganggur setelah jangka waktu yang bervariasi, yang dapat menyebabkan permintaan gagal atau timeout tanpa menerima respons dari Anthropic.
-* Jaringan berbeda-beda dalam keandalannya. [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) dapat membantu Anda mengelola risiko masalah jaringan dengan memungkinkan Anda melakukan polling hasil alih-alih memerlukan koneksi jaringan yang tidak terputus.
+* Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu yang bervariasi, yang dapat menyebabkan permintaan gagal atau mengalami timeout tanpa menerima respons dari Anthropic.
+* Keandalan jaringan berbeda-beda. [Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create) dapat membantu Anda mengelola risiko masalah jaringan dengan memungkinkan Anda melakukan polling untuk hasil alih-alih memerlukan koneksi jaringan yang tidak terputus.
 
-Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi menganggur pada beberapa jaringan.
+Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi idle pada beberapa jaringan.
 
 [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
 
@@ -436,7 +436,7 @@ Lihat [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude
 
 ### Prefill tidak didukung
 
-Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung prefill pesan asisten. Mengirim permintaan dengan pesan asisten terakhir yang di-prefill ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
+Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung "prefill" (pengisian awal) pesan asisten. Mengirim permintaan dengan pesan asisten terakhir yang di-prefill ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
 
 ```json
 {
@@ -448,7 +448,7 @@ Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthr
 }
 ```
 
-Sebagai gantinya, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi "system prompt" (prompt sistem), atau [`output_config.format`](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-outputs).
+Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, instruksi prompt sistem, atau [`output_config.format`](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#usage) sebagai gantinya.
 
 ### Blok thinking tidak dapat dimodifikasi
 
@@ -482,7 +482,7 @@ Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini
 
 ### Thinking tidak dapat dinonaktifkan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://anthropic.com/glasswing), Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), Claude Opus 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -497,10 +497,10 @@ Pada Claude Mythos Preview, satu-satunya model di antara model-model ini yang me
 Pada Claude Sonnet 5.5, thinking tidak dapat diatur ke `disabled`. Gunakan `thinking: {"type": "between_tools"}` untuk pengaturan thinking terendah, yang menonaktifkan thinking di awal. Mengirim `thinking: {"type": "disabled"}` akan mengembalikan 400 `invalid_request_error` dengan pesan ini:
 
 ```text wrap
-"thinking.type.disabled" is not supported for this model. Use "thinking.type.between_tools" for the lowest thinking setting, or "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
+To turn thinking off on this model, send "thinking": {"type": "between_tools"} instead of {"type": "disabled"}. The model does not think before responding. The short updates it writes between tool calls come back as thinking blocks.
 ```
 
-Pada ["effort" (upaya)](https://platform.claude.com/docs/id/build-with-claude/effort) `xhigh` atau `max`, permintaan dengan `between_tools` juga mengembalikan 400 `invalid_request_error`. Pesannya menyatakan bahwa thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal:
+Pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `xhigh` atau `max`, permintaan dengan `between_tools` juga mengembalikan 400 `invalid_request_error`. Pesannya menyatakan bahwa thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal:
 
 ```text wrap
 output_config.effort 'xhigh' is not supported when thinking is disabled on this model. Use effort 'high' or below, or enable thinking.
@@ -512,6 +512,8 @@ Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output
 messages.N: output_config.effort 'low' differs from the 'high' in effect before it; effort cannot change when thinking is disabled on this model. Use effort 'high', or enable thinking.
 ```
 
+Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama seperti yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku, permintaan akan mengembalikan 400 `invalid_request_error` dengan pesan yang sesuai di atas.
+
 Dalam kedua pesan tersebut, "enable thinking" berarti pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort per giliran, gunakan pemikiran adaptif.
 
 Mengirim `thinking: {"type": "between_tools"}` ke model apa pun selain Claude Sonnet 5.5 akan mengembalikan 400 `invalid_request_error`:
@@ -522,31 +524,31 @@ Mengirim `thinking: {"type": "between_tools"}` ke model apa pun selain Claude So
 
 Untuk perbaikannya, lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-between-tools), yang membahas error `between_tools` dan effort.
 
-Hilangkan parameter `thinking`, dan permintaan akan berjalan dengan adaptive thinking. Agar konten thinking tidak muncul dalam respons tanpa menonaktifkan thinking, tetapkan `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
+Hilangkan parameter `thinking` dan permintaan akan berjalan dengan pemikiran adaptif. Untuk menjaga konten thinking agar tidak muncul di respons tanpa menonaktifkan thinking, atur `display: "omitted"` pada konfigurasi thinking. Lihat [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-disabled).
 
 ### Penggunaan alat paksa tidak didukung
 
-Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://anthropic.com/glasswing) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu model ini, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
+Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu model ini, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 tool_choice: type "tool" and "any" are not supported for this model.
 ```
 
-`tool_choice: {"type": "auto"}` (default) dan `{"type": "none"}` diterima. Gunakan `auto` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjaga input alat tetap valid terhadap skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda memerlukan respons itu sendiri dalam bentuk JSON yang tetap. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
+`tool_choice: {"type": "auto"}` (default) dan `{"type": "none"}` diterima. Gunakan `auto` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjaga input alat tetap valid sesuai skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons itu sendiri dalam bentuk JSON yang tetap. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
 
 ### Versi alat computer use tidak didukung
 
-Di Claude API dan Google Cloud, Claude Opus 5.5 dan Claude Sonnet 5.5 mendukung ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirimkan entri `tools` dengan jenis `computer_20251124` yang lebih lama (beserta header beta alat tersebut) ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pesan tersebut menyebutkan jenis yang ditolak, lalu mencantumkan jenis alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
+Di Claude API dan Google Cloud, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` bertipe `computer_20251124` yang lebih lama (dengan header beta alat tersebut) ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa beta header dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Model-model sebelumnya yang mendukung toolset tersebut tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5 dan Claude Sonnet 5.5 di Amazon Bedrock.
+API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Model-model sebelumnya yang mendukung toolset tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5 dan Claude Sonnet 5.5 di Amazon Bedrock.
 
 ### Blok thinking tidak lagi cocok dengan percakapan
 
-Pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"error"`, blok yang diputar ulang dengan riwayat sebelumnya yang telah berubah akan ditolak dengan 400 `invalid_request_error` (dengan `"drop_block"`, API membuang blok tersebut dan permintaan berhasil). Pesan diawali dengan posisi blok pertama yang gagal:
+Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk permintaan apa pun yang mengatur `thinking.block_binding.prefix_mismatch_behavior` ke `"error"`, blok yang diputar ulang dengan riwayat sebelumnya yang telah berubah akan ditolak dengan 400 `invalid_request_error` (dengan `"drop_block"`, API membuang blok tersebut dan permintaan berhasil). Pesannya diawali dengan posisi blok pertama yang gagal:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".

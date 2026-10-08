@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 783fc12f8b228dea53d4118937dc4b314249548a2f900cdf6a8e69da5c4bce07
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: cc11775d88f0f62f1efdf7b1196a9d2ea88830434d7d2fd09ff3d60a96cd0149
 ---
 
 ---
@@ -157,7 +157,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   ```
 </CodeGroup>
 
-Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu dengan lainnya.
+Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu sama lain. Contoh ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga sandbox dapat menjangkau registri paket dan host kode. Agar sandbox dapat menjangkau host lain, tambahkan host tersebut ke `allowed_hosts`.
 
 ## Menggunakan environment dalam sesi
 
@@ -260,7 +260,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
         "pip": ["pandas", "numpy", "scikit-learn"],
         "npm": ["express"]
       },
-      "networking": {"type": "unrestricted"}
+      "networking": {"type": "limited", "allow_package_managers": true}
     }
   }
   EOF
@@ -285,7 +285,8 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
           npm:
             - express
         networking:
-          type: unrestricted
+          type: limited
+          allow_package_managers: true
       ```
     </File>
   </CodeGroupItem>
@@ -299,7 +300,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
               "pip": ["pandas", "numpy", "scikit-learn"],
               "npm": ["express"],
           },
-          "networking": {"type": "unrestricted"},
+          "networking": {"type": "limited", "allow_package_managers": True},
       },
   )
   ```
@@ -313,7 +314,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
         pip: ["pandas", "numpy", "scikit-learn"],
         npm: ["express"]
       },
-      networking: { type: "unrestricted" }
+      networking: { type: "limited", allow_package_managers: true }
     }
   });
   ```
@@ -331,7 +332,10 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
               Pip = ["pandas", "numpy", "scikit-learn"],
               Npm = ["express"],
           },
-          Networking = new BetaUnrestrictedNetwork(),
+          Networking = new BetaLimitedNetworkParams
+          {
+              AllowPackageManagers = true,
+          },
       },
   });
   ```
@@ -346,7 +350,9 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
   				Npm: []string{"express"},
   			},
   			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-  				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+  				OfLimited: &anthropic.BetaLimitedNetworkParams{
+  					AllowPackageManagers: anthropic.Bool(true),
+  				},
   			},
   		},
   	},
@@ -368,7 +374,9 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
               .pip(List.of("pandas", "numpy", "scikit-learn"))
               .npm(List.of("express"))
               .build())
-          .networking(BetaUnrestrictedNetwork.builder().build())
+          .networking(BetaLimitedNetworkParams.builder()
+              .allowPackageManagers(true)
+              .build())
           .build())
       .build());
   ```
@@ -382,7 +390,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
               'pip' => ['pandas', 'numpy', 'scikit-learn'],
               'npm' => ['express'],
           ],
-          'networking' => ['type' => 'unrestricted'],
+          'networking' => ['type' => 'limited', 'allow_package_managers' => true],
       ],
   );
   ```
@@ -396,7 +404,7 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
         pip: %w[pandas numpy scikit-learn],
         npm: %w[express]
       },
-      networking: {type: "unrestricted"}
+      networking: {type: "limited", allow_package_managers: true}
     }
   )
   ```
@@ -415,12 +423,18 @@ Package manager yang didukung:
 
 ### Jaringan
 
-Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi alat `web_search` atau `web_fetch`, yang berjalan di server Anthropic; untuk membatasi situs yang dapat dijangkau alat-alat tersebut, atur `allowed_domains` atau `blocked_domains` pada entri alat tersebut di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Field `networking` mengontrol akses jaringan keluar (outbound) sandbox.
 
-| Mode           | Deskripsi                                                                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk blocklist keamanan umum. Ini adalah default.                                                                                 |
-| `limited`      | Membatasi akses jaringan sandbox ke host yang ada di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
+Dengan jaringan `limited`, `allowed_hosts` juga berlaku untuk alat `web_search` dan `web_fetch`, yang berjalan di server Anthropic. Panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` mengembalikan hasil error kepada agen. `web_search` menghilangkan hasil dari host yang tidak cocok dengan `allowed_hosts`. `allow_package_managers` dan `allow_mcp_servers` tidak menambahkan host apa pun untuk alat-alat ini. Ketika `allowed_hosts` tidak mencantumkan host apa pun, tidak ada panggilan `web_fetch` atau `web_search` yang mengembalikan halaman atau hasil pencarian. Host yang Anda tambahkan ke `allowed_hosts` untuk alat-alat ini juga terbuka bagi sandbox. Jaringan `unrestricted` dan environment self-hosted tidak membatasi alat-alat ini. Untuk membatasinya lebih lanjut, atur `allowed_domains` atau `blocked_domains` pada entri alat di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+
+| Mode           | Deskripsi                                                                                                                                                                                                                                                       |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `limited`      | Membatasi akses jaringan sandbox ke host di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. Gunakan mode ini kecuali agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Sebelum Anda menggunakannya, baca [Risiko jaringan tanpa batasan](https://platform.claude.com/docs/id/managed-agents/environments#risks-of-unrestricted-networking).                    |
+
+<Note>
+  Atur `networking` secara eksplisit dalam permintaan API; permintaan pembuatan yang menghilangkannya akan mendapatkan `unrestricted`. Formulir Claude Console untuk membuat environment dimulai dengan **Limited** terpilih dan tidak ada hal lain yang diizinkan.
+</Note>
 
 Contoh berikut membuat environment dengan jaringan `limited`:
 
@@ -583,14 +597,16 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 </CodeGroup>
 
 <Info>
-  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
+
+Dengan jaringan `limited` dan tanpa field lain yang diatur, tidak ada host yang diizinkan. File, memory store, dan repositori GitHub yang Anda lampirkan ke sesi tetap tersedia. Ketika permintaan dari sandbox pada port 80 atau 443 ditolak karena host-nya tidak diizinkan, responsnya adalah 403 yang menyebutkan host yang diblokir.
 
 Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
-* `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`.
-* `allow_package_managers` mengizinkan akses keluar ke sekumpulan registry paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts`. Lihat [Host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages`; jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registry tercantum di `allowed_hosts`.
+* `allowed_hosts` menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path. Hostname tanpa wildcard hanya cocok dengan host yang persis sama: `example.com` tidak cocok dengan `www.example.com`. `*.example.com` cocok dengan setiap subdomain dari `example.com`, tetapi tidak dengan `example.com` itu sendiri.
+* `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`. Selama nilainya `false`, pembuatan sesi gagal dengan error 400 jika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts`. Hal yang sama berlaku untuk [agen yang dapat menerima delegasi tugas darinya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk memperbaikinya, tambahkan host ke `allowed_hosts` atau atur `allow_mcp_servers` ke `true`.
+* `allow_package_managers` mengizinkan akses keluar ke sekumpulan registri paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts`. Lihat [Host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages`; jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registri tercantum di `allowed_hosts`.
 
 #### Host package manager
 
@@ -613,6 +629,32 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
   Akses jaringan diberikan per host, bukan per operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika environment tidak menentukan `packages`, sebagai gantinya Anda dapat membiarkan `allow_package_managers` tetap bernilai `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts`.
 </Warning>
 
+#### Risiko jaringan tanpa batasan
+
+Dengan jaringan `unrestricted`, kode di sandbox dapat mengirim permintaan ke host mana pun di internet, kecuali host yang ada di daftar blokir keamanan umum. Sebelum Anda memilih mode ini, pertimbangkan apa yang dapat dilakukan agen dengan akses tersebut:
+
+* **Agen dapat mengubah hal-hal di situs eksternal, tidak hanya membacanya:** Alat `bash` dapat mengirim permintaan apa pun. Agen dapat mengirim data, mengirimkan formulir, memanggil API, dan menjalankan skrip yang mengubah data di situs eksternal. Bahkan permintaan yang hanya mengambil URL dapat mengubah data di beberapa situs.
+* **Tidak ada yang menjeda permintaan ini secara default:** [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) default toolset agen adalah `always_allow`, sehingga perintah `bash` berjalan tanpa persetujuan.
+* **Apa pun di sandbox dapat keluar darinya:** Ini termasuk file, output alat, dan kredensial atau rahasia apa pun yang Anda masukkan ke sandbox.
+* **Konten yang diambil dapat mengarahkan agen:** Halaman web, respons API, dan konten lain yang dibaca agen dapat berisi instruksi (prompt injection) yang mengubah apa yang dilakukannya selanjutnya.
+* **Agen bertindak atas nama Anda:** Tindakannya dapat melanggar ketentuan layanan suatu situs, atau membuat akun dan catatan di sana.
+* **Perilaku model bukanlah kontrol keamanan:** Agen dapat bertindak di situs eksternal dengan cara yang tidak Anda minta, termasuk mencoba ulang dengan cara berbeda setelah situs memblokir permintaan. Gunakan pengaturan jaringan dan kebijakan izin untuk membatasi apa yang dapat dilakukannya.
+* **Daftar blokir keamanan bukanlah daftar izin (allowlist):** Daftar ini tidak membatasi situs lain mana yang dijangkau agen, atau apa yang dilakukan agen di situs tersebut.
+
+Untuk mengurangi risiko ini, gunakan jaringan `limited` dengan daftar host yang eksplisit. Nilai `networking` berikut mengizinkan `api.example.com`, ditambah [host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk agen yang memasang paket:
+
+```json
+{
+  "type": "limited",
+  "allowed_hosts": ["api.example.com"],
+  "allow_package_managers": true
+}
+```
+
+Agen yang hanya menggunakan alat `web_search` dan `web_fetch` tidak memerlukan jaringan `unrestricted` jika Anda dapat mencantumkan situs yang dibutuhkannya. Dengan jaringan `limited`, `allowed_hosts` juga berlaku untuk alat-alat tersebut (lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking)), jadi cantumkan situs-situs tersebut di `allowed_hosts`. Mencantumkannya juga di `allowed_domains` milik `web_search` membuatnya mencari di situs-situs tersebut. Host yang Anda tambahkan ke `allowed_hosts` juga terbuka bagi sandbox. Untuk membatasi alat-alat tersebut lebih lanjut, lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+
+Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. Dalam hal ini, jauhkan rahasia dan file sensitif dari sandbox, dan berikan agen hanya kredensial yang dibutuhkan tugas tersebut. Pertimbangkan untuk mengatur kebijakan izin alat `bash` ke `always_ask` atau `auto`, dan [pantau event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+
 ## Siklus hidup environment
 
 * Environment tetap ada hingga diarsipkan atau dihapus secara eksplisit.
@@ -623,25 +665,25 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
 
 <CodeGroup>
   ```bash cURL
-  # List environments
+  # Daftar environment
   curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   curl -fsS "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   curl -fsS -X POST "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -663,97 +705,97 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
   ```
 
   ```python Python
-  # List environments
+  # Daftar environment
   environments = client.beta.environments.list()
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   env = client.beta.environments.retrieve(environment.id)
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   client.beta.environments.archive(environment.id)
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   client.beta.environments.delete(environment.id)
   ```
 
   ```typescript TypeScript
-  // List environments
+  // Daftar environment
   const environments = await client.beta.environments.list();
 
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   const env = await client.beta.environments.retrieve(environment.id);
 
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   await client.beta.environments.archive(environment.id);
 
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   await client.beta.environments.delete(environment.id);
   ```
 
   ```csharp C#
-  // List environments
+  // Daftar environment
   var environments = await client.Beta.Environments.List();
 
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   var env = await client.Beta.Environments.Retrieve(environment.ID);
 
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   await client.Beta.Environments.Archive(environment.ID);
 
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   await client.Beta.Environments.Delete(environment.ID);
   ```
 
   ```go Go
-  // List environments
+  // Daftar environment
   environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
   // ...
 
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
   // ...
 
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
   // ...
 
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
   ```
 
   ```java Java
-  // List environments
+  // Daftar environment
   var environments = client.beta().environments().list();
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   var env = client.beta().environments().retrieve(environment.id());
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   client.beta().environments().archive(environment.id());
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   client.beta().environments().delete(environment.id());
   ```
 
   ```php PHP
-  // List environments
+  // Daftar environment
   $environments = $client->beta->environments->list();
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   $env = $client->beta->environments->retrieve($environment->id);
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   $client->beta->environments->archive($environment->id);
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   $client->beta->environments->delete($environment->id);
   ```
 
   ```ruby Ruby
-  # List environments
+  # Daftar environment
   environments = client.beta.environments.list
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   env = client.beta.environments.retrieve(environment.id)
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   client.beta.environments.archive(environment.id)
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   client.beta.environments.delete(environment.id)
   ```
 </CodeGroup>

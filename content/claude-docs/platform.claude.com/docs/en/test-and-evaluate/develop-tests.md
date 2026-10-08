@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a30524c91f1c78dcefc3c01a56b62eb19a39603ac135f234f90841c6c6c1391f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9595415bca0e95a928e87a6a6631467782ebbe828a63701281845ae28673f616
 ---
 
 ---
@@ -13,7 +13,9 @@ description: Define measurable success criteria for your LLM application and bui
 
 Building a successful LLM-based application starts with clearly defining your success criteria and then designing evaluations to measure performance against them. This cycle is central to prompt engineering.
 
-![Flowchart of prompt engineering: test cases, preliminary prompt, iterative testing and refinement, final validation, ship](https://platform.claude.com/docs/images/how-to-prompt-eng.png)
+<Frame>
+  ![Flowchart of prompt engineering: test cases, preliminary prompt, iterative testing and refinement, final validation, ship](https://platform.claude.com/docs/images/how-to-prompt-eng.svg)
+</Frame>
 
 ## Define your success criteria
 

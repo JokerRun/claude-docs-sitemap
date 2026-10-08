@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 56a5deeee05b03dcab744f223dd5294937aae2212d18c506e3a4e46a3164bff9
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c41fe984f1b9785b44821d598abd1267950c6e2652ffd24465cabd6c48014902
 ---
 
 ---
@@ -36,37 +36,40 @@ Untuk pemahaman yang lebih mendalam tentang istilah-istilah ini, lihat [glosariu
 
 Salah satu cara paling langsung untuk mengurangi latensi adalah memilih model yang sesuai untuk kasus penggunaan Anda. Anthropic menawarkan [berbagai model](https://platform.claude.com/docs/id/models/overview) dengan kemampuan dan karakteristik kinerja yang berbeda. Pertimbangkan kebutuhan spesifik Anda dan pilih model yang paling sesuai dengan kebutuhan Anda dalam hal kecepatan dan kualitas output.
 
-Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan waktu respons tercepat sambil tetap mempertahankan kecerdasan yang tinggi:
+Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan waktu respons tercepat sambil tetap mempertahankan kecerdasan yang tinggi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan dan biaya. Lihat [Gunakan effort untuk mengontrol thinking](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking). Contoh berikut menjalankannya pada `low`, tingkat termurah dan tercepat, serta menyisakan ruang di `max_tokens` untuk pemikiran:
 
 <CodeGroup>
   ```bash cURL
-  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-haiku-4-5",
-      "max_tokens": 100,
+      "model": "claude-haiku-5-5",
+      "max_tokens": 1024,
+      "output_config": {"effort": "low"},
       "messages": [{"role": "user", "content": "Summarize this customer feedback in 2 sentences: [feedback text]"}]
     }'
   ```
 
   ```bash CLI
-  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   ant messages create \
-    --model claude-haiku-4-5 \
-    --max-tokens 100 \
+    --model claude-haiku-5-5 \
+    --max-tokens 1024 \
+    --output-config '{effort: low}' \
     --message '{"role": "user", "content": "Summarize this customer feedback in 2 sentences: [feedback text]"}'
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   message = client.messages.create(
-      model="claude-haiku-4-5",
-      max_tokens=100,
+      model="claude-haiku-5-5",
+      max_tokens=1024,
+      output_config={"effort": "low"},
       messages=[
           {
               "role": "user",
@@ -74,16 +77,17 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan wakt
           }
       ],
   )
-  print(message.content[0].text)
+  print(next(block.text for block in message.content if block.type == "text"))
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   const message = await client.messages.create({
-    model: "claude-haiku-4-5",
-    max_tokens: 100,
+    model: "claude-haiku-5-5",
+    max_tokens: 1024,
+    output_config: { effort: "low" },
     messages: [
       {
         role: "user",
@@ -98,11 +102,12 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan wakt
   ```csharp C#
   AnthropicClient client = new();
 
-  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeHaiku4_5,
-      MaxTokens = 100,
+      Model = Model.ClaudeHaiku5_5,
+      MaxTokens = 1024,
+      OutputConfig = new() { Effort = Effort.Low },
       Messages = [
           new()
           {
@@ -112,17 +117,26 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan wakt
       ]
   };
   var message = await client.Messages.Create(parameters);
-  message.Content[0].TryPickText(out var textBlock);
-  Console.WriteLine(textBlock?.Text);
+  foreach (var block in message.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+          break;
+      }
+  }
   ```
 
   ```go Go
   client := anthropic.NewClient()
 
-  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeHaiku4_5,
-  	MaxTokens: 100,
+  	Model:     anthropic.ModelClaudeHaiku5_5,
+  	MaxTokens: 1024,
+  	OutputConfig: anthropic.OutputConfigParam{
+  		Effort: anthropic.OutputConfigEffortLow,
+  	},
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Summarize this customer feedback in 2 sentences: [feedback text]")),
   	},
@@ -130,44 +144,63 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 4.5** menawarkan wakt
   if err != nil {
   	log.Fatal(err)
   }
-  fmt.Println(message.Content[0].Text)
+  for _, block := range message.Content {
+  	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  		fmt.Println(textBlock.Text)
+  		break
+  	}
+  }
   ```
 
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_HAIKU_4_5)
-      .maxTokens(100L)
+      .model(Model.CLAUDE_HAIKU_5_5)
+      .maxTokens(1024L)
+      .outputConfig(OutputConfig.builder()
+          .effort(OutputConfig.Effort.LOW)
+          .build())
       .addUserMessage("Summarize this customer feedback in 2 sentences: [feedback text]")
       .build();
   Message message = client.messages().create(params);
-  IO.println(message.content().get(0).text().map(TextBlock::text).orElse(""));
+  IO.println(message.content().stream()
+      .flatMap(block -> block.text().stream())
+      .map(TextBlock::text)
+      .findFirst()
+      .orElse(""));
   ```
 
   ```php PHP
   $client = new Client();
 
-  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  // Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   $message = $client->messages->create(
-      maxTokens: 100,
+      maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Summarize this customer feedback in 2 sentences: [feedback text]']],
-      model: 'claude-haiku-4-5',
+      model: 'claude-haiku-5-5',
+      outputConfig: ['effort' => 'low'],
   );
-  echo $message->content[0]->text;
+  foreach ($message->content as $block) {
+      if ($block->type === 'text') {
+          echo $block->text;
+          break;
+      }
+  }
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 4.5
+  # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   message = client.messages.create(
-    model: "claude-haiku-4-5",
-    max_tokens: 100,
+    model: "claude-haiku-5-5",
+    max_tokens: 1024,
+    output_config: { effort: :low },
     messages: [{ role: "user", content: "Summarize this customer feedback in 2 sentences: [feedback text]" }]
   )
-  puts message.content.first.text
+  puts message.content.find { |block| block.type == :text }&.text
   ```
 </CodeGroup>
 
@@ -196,7 +229,7 @@ Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
      token, respons akan terpotong, mungkin di tengah kalimat atau di tengah kata, sehingga ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan dan biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
   </Note>
-* **Bereksperimen dengan temperature:** [Parameter](https://platform.claude.com/docs/id/api/messages/create) `temperature` mengontrol keacakan output. Nilai yang lebih rendah (misalnya, 0,2) terkadang dapat menghasilkan respons yang lebih terfokus dan lebih pendek, sedangkan nilai yang lebih tinggi (misalnya, 0,8) mungkin menghasilkan output yang lebih beragam tetapi berpotensi lebih panjang.
+* **Bereksperimen dengan temperature:** [Parameter](https://platform.claude.com/docs/id/api/messages/create) `temperature` mengontrol keacakan output. Nilai yang lebih rendah (misalnya, 0,2) terkadang dapat menghasilkan respons yang lebih terfokus dan lebih pendek, sedangkan nilai yang lebih tinggi (misalnya, 0,8) mungkin menghasilkan output yang lebih beragam tetapi berpotensi lebih panjang. Claude Haiku 5.5 hanya menerima `temperature` default dan mengembalikan error 400 untuk nilai lainnya, jadi turunkan [effort](https://platform.claude.com/docs/id/build-with-claude/effort)-nya sebagai gantinya.
 
 Menemukan keseimbangan yang tepat antara kejelasan prompt, kualitas output, dan jumlah token mungkin memerlukan beberapa eksperimen.
 

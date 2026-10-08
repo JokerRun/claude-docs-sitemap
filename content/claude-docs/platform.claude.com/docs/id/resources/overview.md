@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 652c8101a864d32e9374c82e05ae026a01581c4b964b59b47f93e343a34ea789
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 8b15a78fb7691e140a8cfb1fb845eb1afd4d3af8e8882b16180cec2b6acaf69a
 ---
 
 ---
@@ -12,6 +12,10 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
 ---
 
 <CardGroup cols={3}>
+  <Card title="Kartu Sistem Claude Haiku 5.5" icon="file" href="https://www.anthropic.com/document/claude-haiku-5-5-system-card">
+    Dokumentasi terperinci tentang Claude Haiku 5.5.
+  </Card>
+
   <Card title="Kartu Sistem Claude Opus 5.5" icon="file" href="https://www.anthropic.com/claude-opus-5-5-system-card">
     Dokumentasi terperinci tentang Claude Opus 5.5.
   </Card>
@@ -81,7 +85,7 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
   </Card>
 
   <Card title="Kartu Model Claude 3" icon="file" href="https://www.anthropic.com/claude-3-model-card">
-    Dokumentasi terperinci tentang model Claude 3, termasuk adendum 3.5 terbaru.
+    Dokumentasi terperinci tentang model Claude 3 termasuk adendum 3.5 terbaru.
   </Card>
 
   <Card title="Kartu Model Claude 2" icon="file" href="https://www.anthropic.com/claude-2-model-card">

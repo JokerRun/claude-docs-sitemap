@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: d8f07a3d3faf1fdff0757f2a24220f8c1f20b8bc944a96ed1354a9490c6e2942
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 5cb693fbc2359bca147a5b843a447e9500aec9f52596f82139116d7b5f964984
 ---
 
 ---
@@ -23,7 +23,8 @@ Step up for the hardest long-running agentic and research tasks, at 2.5x Claude 
 Previous Opus model: Claude Opus 5: claude-opus-5
 Smart model: Claude Sonnet 5.5: claude-sonnet-5-5
 Previous Sonnet model: Claude Sonnet 5: claude-sonnet-5
-For fast, cost-effective tasks: Claude Haiku 4.5: claude-haiku-4-5-20251001
+For fast, cost-effective tasks: Claude Haiku 5.5: claude-haiku-5-5
+Previous Haiku model: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ```
 
 ## Calling the API
@@ -245,7 +246,7 @@ Claude can read both text and images in requests. Both `base64` and `url` source
 
 ## Thinking
 
-Thinking can sometimes help Claude with very hard tasks. The current mechanism is [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) (`thinking: {"type": "adaptive"}`): Claude decides when and how much to think, and you steer thinking depth with the [`effort`](https://platform.claude.com/docs/en/build-with-claude/effort) parameter rather than a token budget. Adaptive thinking is supported on Claude 4.6 and later models and Claude Mythos Preview. On Claude 5 models and Claude Mythos Preview, thinking is on by default when the `thinking` parameter is omitted.
+Thinking can sometimes help Claude with very hard tasks. The current mechanism is [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) (`thinking: {"type": "adaptive"}`): Claude determines when and how much to think, and you steer thinking depth with the [`effort`](https://platform.claude.com/docs/en/build-with-claude/effort) parameter rather than a token budget. Adaptive thinking is supported on Claude 4.6 and later models and Claude Mythos Preview. On Claude 5 models and Claude Mythos Preview, thinking is on by default when the `thinking` parameter is omitted.
 
 Temperature must be set to 1 (or left unset) whenever thinking is enabled, on all models. On Claude 4.7 and later models and Claude Mythos Preview, `temperature` is deprecated and only its default value is accepted, even when thinking is off.
 
@@ -253,6 +254,7 @@ Thinking is supported in the following models:
 
 * Claude Opus 5.5 (`claude-opus-5-5`, adaptive thinking only, always on)
 * Claude Sonnet 5.5 (`claude-sonnet-5-5`, adaptive thinking only, on by default)
+* Claude Haiku 5.5 (`claude-haiku-5-5`, adaptive thinking only, on by default)
 * Claude Opus 5 (claude-opus-5, adaptive thinking only, on by default)
 * Claude Sonnet 5 (`claude-sonnet-5`, adaptive thinking only, on by default)
 * Claude Opus 4.8 (claude-opus-4-8, adaptive thinking only)
@@ -260,7 +262,7 @@ Thinking is supported in the following models:
 * Claude Opus 4.6 (`claude-opus-4-6`, adaptive or legacy manual thinking)
 * Claude Sonnet 4.6 (`claude-sonnet-4-6`, adaptive or legacy manual thinking)
 * Claude Opus 4.5 (`claude-opus-4-5-20251101`, legacy manual thinking only)
-* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, legacy manual thinking only)
+* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [deprecated](https://platform.claude.com/docs/en/about-claude/model-deprecations), legacy manual thinking only)
 * Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, legacy manual thinking only)
 
 <Note>
@@ -451,7 +453,7 @@ Important limitations:
 
 ### Interleaved thinking
 
-Interleaved thinking enables Claude to think between tool calls, reasoning about tool results before deciding the next step.
+Interleaved thinking enables Claude to think between tool calls, reasoning about tool results before determining the next step.
 
 <Info>
   On models with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), interleaved thinking is automatically enabled. No beta header is needed. Sonnet 4.6 supports both the `interleaved-thinking-2025-05-14` beta header with manual extended thinking and adaptive thinking.

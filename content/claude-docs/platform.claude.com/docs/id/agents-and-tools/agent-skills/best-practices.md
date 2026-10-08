@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ac51c35de333f2665c8c54bf39fc85dccb04bf6ff19ae53b9522dea2933ca907
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 4ad22dea07b659f3da09e9e298265a711417f81e4841a2b5617534dace614187
 ---
 
 ---
@@ -269,11 +269,15 @@ SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci
 
 Skill dasar dimulai hanya dengan file SKILL.md yang berisi metadata dan instruksi:
 
-![File SKILL.md sederhana yang menampilkan YAML frontmatter dan isi markdown](https://platform.claude.com/docs/images/agent-skills-simple-file.png)
+<Frame>
+  ![File SKILL.md sederhana yang menampilkan YAML frontmatter dan isi markdown](https://platform.claude.com/docs/images/agent-skills-simple-file.svg)
+</Frame>
 
 Seiring berkembangnya Skill Anda, Anda dapat membundel konten tambahan yang dimuat Claude hanya saat diperlukan:
 
-![Membundel file referensi tambahan seperti reference.md dan forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.png)
+<Frame>
+  ![Membundel file referensi tambahan seperti reference.md dan forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.svg)
+</Frame>
 
 Struktur direktori Skill yang lengkap mungkin terlihat seperti ini:
 
@@ -944,7 +948,9 @@ Bahkan jika Claude dapat menulis skrip, skrip yang sudah dibuat sebelumnya menaw
 * Menghemat waktu (tidak perlu pembuatan kode)
 * Memastikan konsistensi di seluruh penggunaan
 
-![Membundel skrip yang dapat dieksekusi bersama file instruksi](https://platform.claude.com/docs/images/agent-skills-executable-scripts.png)
+<Frame>
+  ![Membundel skrip yang dapat dieksekusi bersama file instruksi](https://platform.claude.com/docs/images/agent-skills-executable-scripts.svg)
+</Frame>
 
 Diagram di atas menunjukkan bagaimana "executable scripts" (skrip yang dapat dieksekusi) bekerja bersama file instruksi. File instruksi (forms.md) merujuk skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.
 

@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: a2f9270b254956c649bf66ed975b567866292a721c0a04b77eb8aaddf569a8e4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 6ec03343c5c345b321881ca12fce4ffca0c9d1bb97e1f39f56a57115fa683fd1
 ---
 
 ---
-title: Workspaces
+title: Workspace
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
 description: Atur kunci API, kelola akses tim, dan kendalikan biaya dengan workspaces.
 ---
@@ -21,7 +21,7 @@ Karakteristik utama:
 
 * **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`)
 * **Maksimum 100 workspaces** per organisasi secara default (workspaces yang diarsipkan tidak dihitung); hubungi tim akun Anda jika Anda membutuhkan lebih banyak
-* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/beta/organization/workspaces/retrieve)), tetapi muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list) hanya ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya menampilkan `null` untuk `workspace_id`-nya, seperti halnya kunci API semua-workspaces (bidang `scope` kunci API membedakannya; untuk kunci yang terikat ke Default Workspace, kunci tersebut membawa ID yang sebenarnya)
+* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya menampilkan `null` untuk `workspace_id`-nya, begitu pula kunci API untuk semua workspace (field `scope` pada kunci API membedakan keduanya; untuk kunci yang terikat ke Default Workspace, field tersebut memuat ID yang sebenarnya)
 * **Kunci API** dapat dicakupkan ke satu workspace. Dalam hal ini, kunci tersebut hanya dapat mengakses sumber daya dalam workspace tersebut. Beberapa kunci API dapat diberikan izin di beberapa workspaces, dan menyediakan [header ID workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) untuk mengakses sumber daya dalam workspace tersebut
 
 ### Workspace Claude Code
@@ -148,7 +148,7 @@ Kelola workspaces secara terprogram menggunakan [Admin API](https://platform.cla
   Endpoint Admin API menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu. Kunci workspace tidak berfungsi di sana. Lihat [Authentication](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
 </Note>
 
-Contoh SDK dan CLI berikut membangun klien default, yang membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`; SDK mengekspos endpoint ini di bawah `client.beta.organization.workspaces`. Metode list SDK mengambil halaman lebih lanjut sesuai permintaan, jadi `limit` menetapkan ukuran halaman; contoh PHP, Ruby, dan curl mengembalikan satu halaman.
+Contoh SDK dan CLI berikut membuat klien default, yang membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`; SDK mengekspos endpoint ini di bawah `client.organization.workspaces` (csharp, go: `client.Organization.Workspaces`; java: `client.organization().workspaces()`; php: `$client->organization->workspaces`). Metode list pada SDK mengambil halaman berikutnya sesuai kebutuhan, sehingga `limit` menetapkan ukuran halaman; contoh PHP, Ruby, dan curl mengembalikan satu halaman.
 
 Membuat workspace:
 
@@ -162,13 +162,13 @@ Membuat workspace:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces create --name Production
+  ant organization:workspaces create --name Production
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  workspace = client.beta.organization.workspaces.create(name="Production")
+  workspace = client.organization.workspaces.create(name="Production")
 
   print(f"id: {workspace.id}")
   print(f"name: {workspace.name}")
@@ -177,7 +177,7 @@ Membuat workspace:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const workspace = await client.beta.organization.workspaces.create({ name: "Production" });
+  const workspace = await client.organization.workspaces.create({ name: "Production" });
 
   console.log(`id: ${workspace.id}`);
   console.log(`name: ${workspace.name}`);
@@ -186,7 +186,7 @@ Membuat workspace:
   ```csharp C#
   AnthropicClient client = new();
 
-  var workspace = await client.Beta.Organization.Workspaces.Create(new()
+  var workspace = await client.Organization.Workspaces.Create(new()
   {
       Name = "Production"
   });
@@ -198,7 +198,7 @@ Membuat workspace:
   ```go Go
   client := anthropic.NewClient()
 
-  workspace, err := client.Beta.Organization.Workspaces.New(context.Background(), anthropic.BetaOrganizationWorkspaceNewParams{
+  workspace, err := client.Organization.Workspaces.New(context.Background(), anthropic.OrganizationWorkspaceNewParams{
   	Name: "Production",
   })
   if err != nil {
@@ -210,7 +210,7 @@ Membuat workspace:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.workspaces.WorkspaceCreateParams;
+  import com.anthropic.models.organization.workspaces.WorkspaceCreateParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -218,7 +218,7 @@ Membuat workspace:
       var params = WorkspaceCreateParams.builder()
           .name("Production")
           .build();
-      var workspace = client.beta().organization().workspaces().create(params);
+      var workspace = client.organization().workspaces().create(params);
 
       IO.println("id: " + workspace.id());
       IO.println("name: " + workspace.name());
@@ -228,7 +228,7 @@ Membuat workspace:
   ```php PHP
   $client = new Client();
 
-  $workspace = $client->beta->organization->workspaces->create(
+  $workspace = $client->organization->workspaces->create(
       name: 'Production',
   );
 
@@ -239,7 +239,7 @@ Membuat workspace:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  workspace = client.beta.organization.workspaces.create(name: "Production")
+  workspace = client.organization.workspaces.create(name: "Production")
 
   puts "id: #{workspace.id}"
   puts "name: #{workspace.name}"
@@ -256,13 +256,13 @@ Mendaftar workspaces:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces list --limit 10 --include-archived=false
+  ant organization:workspaces list --limit 10 --include-archived=false
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  workspaces = client.beta.organization.workspaces.list(limit=10, include_archived=False)
+  workspaces = client.organization.workspaces.list(limit=10, include_archived=False)
 
   for workspace in workspaces:
       print(f"{workspace.id}: {workspace.name}")
@@ -271,7 +271,7 @@ Mendaftar workspaces:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const workspaces = await client.beta.organization.workspaces.list({
+  const workspaces = await client.organization.workspaces.list({
     limit: 10,
     include_archived: false
   });
@@ -284,7 +284,7 @@ Mendaftar workspaces:
   ```csharp C#
   AnthropicClient client = new();
 
-  var workspaces = await client.Beta.Organization.Workspaces.List(new()
+  var workspaces = await client.Organization.Workspaces.List(new()
   {
       Limit = 10,
       IncludeArchived = false
@@ -299,7 +299,7 @@ Mendaftar workspaces:
   ```go Go
   client := anthropic.NewClient()
 
-  workspaces := client.Beta.Organization.Workspaces.ListAutoPaging(context.Background(), anthropic.BetaOrganizationWorkspaceListParams{
+  workspaces := client.Organization.Workspaces.ListAutoPaging(context.Background(), anthropic.OrganizationWorkspaceListParams{
   	Limit:           anthropic.Int(10),
   	IncludeArchived: anthropic.Bool(false),
   })
@@ -314,7 +314,7 @@ Mendaftar workspaces:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.workspaces.WorkspaceListParams;
+  import com.anthropic.models.organization.workspaces.WorkspaceListParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -323,7 +323,7 @@ Mendaftar workspaces:
           .limit(10)
           .includeArchived(false)
           .build();
-      var workspaces = client.beta().organization().workspaces().list(params);
+      var workspaces = client.organization().workspaces().list(params);
 
       for (var workspace : workspaces.autoPager()) {
           IO.println(workspace.id() + ": " + workspace.name());
@@ -334,7 +334,7 @@ Mendaftar workspaces:
   ```php PHP
   $client = new Client();
 
-  $workspaces = $client->beta->organization->workspaces->list(
+  $workspaces = $client->organization->workspaces->list(
       limit: 10,
       includeArchived: false,
   );
@@ -347,7 +347,7 @@ Mendaftar workspaces:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  workspaces = client.beta.organization.workspaces.list(limit: 10, include_archived: false)
+  workspaces = client.organization.workspaces.list(limit: 10, include_archived: false)
 
   workspaces.data.each do |workspace|
     puts "#{workspace.id}: #{workspace.name}"
@@ -365,15 +365,13 @@ Mengarsipkan workspace:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces archive --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
+  ant organization:workspaces archive --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  workspace = client.beta.organization.workspaces.archive(
-      "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
-  )
+  workspace = client.organization.workspaces.archive("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
 
   print(f"id: {workspace.id}")
   print(f"archived_at: {workspace.archived_at}")
@@ -382,7 +380,7 @@ Mengarsipkan workspace:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const workspace = await client.beta.organization.workspaces.archive(
+  const workspace = await client.organization.workspaces.archive(
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
@@ -393,7 +391,7 @@ Mengarsipkan workspace:
   ```csharp C#
   AnthropicClient client = new();
 
-  var workspace = await client.Beta.Organization.Workspaces.Archive(
+  var workspace = await client.Organization.Workspaces.Archive(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
@@ -404,7 +402,7 @@ Mengarsipkan workspace:
   ```go Go
   client := anthropic.NewClient()
 
-  workspace, err := client.Beta.Organization.Workspaces.Archive(context.Background(), "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
+  workspace, err := client.Organization.Workspaces.Archive(context.Background(), "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
   if err != nil {
   	log.Fatal(err)
   }
@@ -416,7 +414,7 @@ Mengarsipkan workspace:
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var workspace = client.beta().organization().workspaces()
+  var workspace = client.organization().workspaces()
       .archive("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ");
 
   IO.println("id: " + workspace.id());
@@ -426,7 +424,7 @@ Mengarsipkan workspace:
   ```php PHP
   $client = new Client();
 
-  $workspace = $client->beta->organization->workspaces->archive(
+  $workspace = $client->organization->workspaces->archive(
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
@@ -438,14 +436,14 @@ Mengarsipkan workspace:
   client = Anthropic::Client.new
 
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
-  workspace = client.beta.organization.workspaces.archive(workspace_id)
+  workspace = client.organization.workspaces.archive(workspace_id)
 
   puts "id: #{workspace.id}"
   puts "archived_at: #{workspace.archived_at}"
   ```
 </CodeGroup>
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspaces API](https://platform.claude.com/docs/id/api/beta/organization/workspaces/retrieve).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
 
 ### Mengelola anggota workspace
 
@@ -464,7 +462,7 @@ Menambahkan anggota ke workspace:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces:members add \
+  ant organization:workspaces:members add \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
     --workspace-role workspace_developer
@@ -473,7 +471,7 @@ Menambahkan anggota ke workspace:
   ```python Python
   client = anthropic.Anthropic()
 
-  member = client.beta.organization.workspaces.members.add(
+  member = client.organization.workspaces.members.add(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       user_id="user_01XyDMpzjS89pFZXqSFUBDr6",
       workspace_role="workspace_developer",
@@ -486,7 +484,7 @@ Menambahkan anggota ke workspace:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const member = await client.beta.organization.workspaces.members.add(
+  const member = await client.organization.workspaces.members.add(
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
     {
       user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
@@ -499,16 +497,16 @@ Menambahkan anggota ke workspace:
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Organization.Workspaces;
+  using Anthropic.Models.Organization.Workspaces;
 
   AnthropicClient client = new();
 
-  var member = await client.Beta.Organization.Workspaces.Members.Add(
+  var member = await client.Organization.Workspaces.Members.Add(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       new()
       {
           UserID = "user_01XyDMpzjS89pFZXqSFUBDr6",
-          WorkspaceRole = BetaNoBillingWorkspaceRole.WorkspaceDeveloper
+          WorkspaceRole = NoBillingWorkspaceRole.WorkspaceDeveloper
       }
   );
 
@@ -519,12 +517,12 @@ Menambahkan anggota ke workspace:
   ```go Go
   client := anthropic.NewClient()
 
-  member, err := client.Beta.Organization.Workspaces.Members.Add(
+  member, err := client.Organization.Workspaces.Members.Add(
   	context.Background(),
   	"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-  	anthropic.BetaOrganizationWorkspaceMemberAddParams{
+  	anthropic.OrganizationWorkspaceMemberAddParams{
   		UserID:        "user_01XyDMpzjS89pFZXqSFUBDr6",
-  		WorkspaceRole: anthropic.BetaNoBillingWorkspaceRoleWorkspaceDeveloper,
+  		WorkspaceRole: anthropic.NoBillingWorkspaceRoleWorkspaceDeveloper,
   	},
   )
   if err != nil {
@@ -536,17 +534,17 @@ Menambahkan anggota ke workspace:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.workspaces.BetaNoBillingWorkspaceRole;
-  import com.anthropic.models.beta.organization.workspaces.members.MemberAddParams;
+  import com.anthropic.models.organization.workspaces.NoBillingWorkspaceRole;
+  import com.anthropic.models.organization.workspaces.members.MemberAddParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = MemberAddParams.builder()
           .userId("user_01XyDMpzjS89pFZXqSFUBDr6")
-          .workspaceRole(BetaNoBillingWorkspaceRole.WORKSPACE_DEVELOPER)
+          .workspaceRole(NoBillingWorkspaceRole.WORKSPACE_DEVELOPER)
           .build();
-      var member = client.beta().organization().workspaces().members()
+      var member = client.organization().workspaces().members()
           .add("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ", params);
 
       IO.println("user_id: " + member.userId());
@@ -555,12 +553,12 @@ Menambahkan anggota ke workspace:
   ```
 
   ```php PHP
-  use Anthropic\Beta\Organization\Workspaces\NoBillingWorkspaceRole;
+  use Anthropic\Organization\Workspaces\NoBillingWorkspaceRole;
   // ...
 
   $client = new Client();
 
-  $member = $client->beta->organization->workspaces->members->add(
+  $member = $client->organization->workspaces->members->add(
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
       userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
       workspaceRole: NoBillingWorkspaceRole::WORKSPACE_DEVELOPER,
@@ -574,7 +572,7 @@ Menambahkan anggota ke workspace:
   client = Anthropic::Client.new
 
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
-  member = client.beta.organization.workspaces.members.add(
+  member = client.organization.workspaces.members.add(
     workspace_id,
     user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
     workspace_role: :workspace_developer
@@ -597,7 +595,7 @@ Memperbarui peran anggota:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces:members update \
+  ant organization:workspaces:members update \
     --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --workspace-role workspace_admin
@@ -606,7 +604,7 @@ Memperbarui peran anggota:
   ```python Python
   client = anthropic.Anthropic()
 
-  member = client.beta.organization.workspaces.members.update(
+  member = client.organization.workspaces.members.update(
       "user_01XyDMpzjS89pFZXqSFUBDr6",
       workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       workspace_role="workspace_admin",
@@ -619,7 +617,7 @@ Memperbarui peran anggota:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const member = await client.beta.organization.workspaces.members.update(
+  const member = await client.organization.workspaces.members.update(
     "user_01XyDMpzjS89pFZXqSFUBDr6",
     {
       workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
@@ -632,16 +630,16 @@ Memperbarui peran anggota:
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Organization.Workspaces;
+  using Anthropic.Models.Organization.Workspaces;
 
   AnthropicClient client = new();
 
-  var member = await client.Beta.Organization.Workspaces.Members.Update(
+  var member = await client.Organization.Workspaces.Members.Update(
       "user_01XyDMpzjS89pFZXqSFUBDr6",
       new()
       {
           WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-          WorkspaceRole = BetaWorkspaceRole.WorkspaceAdmin
+          WorkspaceRole = WorkspaceRole.WorkspaceAdmin
       }
   );
 
@@ -652,12 +650,12 @@ Memperbarui peran anggota:
   ```go Go
   client := anthropic.NewClient()
 
-  member, err := client.Beta.Organization.Workspaces.Members.Update(
+  member, err := client.Organization.Workspaces.Members.Update(
   	context.Background(),
   	"user_01XyDMpzjS89pFZXqSFUBDr6",
-  	anthropic.BetaOrganizationWorkspaceMemberUpdateParams{
+  	anthropic.OrganizationWorkspaceMemberUpdateParams{
   		WorkspaceID:   "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-  		WorkspaceRole: anthropic.BetaWorkspaceRoleWorkspaceAdmin,
+  		WorkspaceRole: anthropic.WorkspaceRoleWorkspaceAdmin,
   	},
   )
   if err != nil {
@@ -669,17 +667,17 @@ Memperbarui peran anggota:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.workspaces.BetaWorkspaceRole;
-  import com.anthropic.models.beta.organization.workspaces.members.MemberUpdateParams;
+  import com.anthropic.models.organization.workspaces.WorkspaceRole;
+  import com.anthropic.models.organization.workspaces.members.MemberUpdateParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = MemberUpdateParams.builder()
           .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
-          .workspaceRole(BetaWorkspaceRole.WORKSPACE_ADMIN)
+          .workspaceRole(WorkspaceRole.WORKSPACE_ADMIN)
           .build();
-      var member = client.beta().organization().workspaces().members()
+      var member = client.organization().workspaces().members()
           .update("user_01XyDMpzjS89pFZXqSFUBDr6", params);
 
       IO.println("user_id: " + member.userId());
@@ -688,12 +686,12 @@ Memperbarui peran anggota:
   ```
 
   ```php PHP
-  use Anthropic\Beta\Organization\Workspaces\WorkspaceRole;
+  use Anthropic\Organization\Workspaces\WorkspaceRole;
   // ...
 
   $client = new Client();
 
-  $member = $client->beta->organization->workspaces->members->update(
+  $member = $client->organization->workspaces->members->update(
       userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
       workspaceRole: WorkspaceRole::WORKSPACE_ADMIN,
@@ -707,7 +705,7 @@ Memperbarui peran anggota:
   client = Anthropic::Client.new
 
   user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
-  member = client.beta.organization.workspaces.members.update(
+  member = client.organization.workspaces.members.update(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
     workspace_role: :workspace_admin
@@ -728,7 +726,7 @@ Menghapus anggota dari workspace:
   ```
 
   ```bash CLI
-  ant beta:organization:workspaces:members remove \
+  ant organization:workspaces:members remove \
     --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
@@ -736,7 +734,7 @@ Menghapus anggota dari workspace:
   ```python Python
   client = anthropic.Anthropic()
 
-  removed_member = client.beta.organization.workspaces.members.remove(
+  removed_member = client.organization.workspaces.members.remove(
       "user_01XyDMpzjS89pFZXqSFUBDr6",
       workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   )
@@ -747,7 +745,7 @@ Menghapus anggota dari workspace:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const removedMember = await client.beta.organization.workspaces.members.remove(
+  const removedMember = await client.organization.workspaces.members.remove(
     "user_01XyDMpzjS89pFZXqSFUBDr6",
     { workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
@@ -758,7 +756,7 @@ Menghapus anggota dari workspace:
   ```csharp C#
   AnthropicClient client = new();
 
-  var removedMember = await client.Beta.Organization.Workspaces.Members.Remove(
+  var removedMember = await client.Organization.Workspaces.Members.Remove(
       "user_01XyDMpzjS89pFZXqSFUBDr6",
       new() { WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
@@ -769,10 +767,10 @@ Menghapus anggota dari workspace:
   ```go Go
   client := anthropic.NewClient()
 
-  removedMember, err := client.Beta.Organization.Workspaces.Members.Remove(
+  removedMember, err := client.Organization.Workspaces.Members.Remove(
   	context.Background(),
   	"user_01XyDMpzjS89pFZXqSFUBDr6",
-  	anthropic.BetaOrganizationWorkspaceMemberRemoveParams{
+  	anthropic.OrganizationWorkspaceMemberRemoveParams{
   		WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   	},
   )
@@ -784,7 +782,7 @@ Menghapus anggota dari workspace:
   ```
 
   ```java Java
-  import com.anthropic.models.beta.organization.workspaces.members.MemberRemoveParams;
+  import com.anthropic.models.organization.workspaces.members.MemberRemoveParams;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -792,7 +790,7 @@ Menghapus anggota dari workspace:
       var params = MemberRemoveParams.builder()
           .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
           .build();
-      var removedMember = client.beta().organization().workspaces().members()
+      var removedMember = client.organization().workspaces().members()
           .remove("user_01XyDMpzjS89pFZXqSFUBDr6", params);
 
       IO.println("user_id: " + removedMember.userId());
@@ -802,7 +800,7 @@ Menghapus anggota dari workspace:
   ```php PHP
   $client = new Client();
 
-  $removedMember = $client->beta->organization->workspaces->members->remove(
+  $removedMember = $client->organization->workspaces->members->remove(
       userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
@@ -814,7 +812,7 @@ Menghapus anggota dari workspace:
   client = Anthropic::Client.new
 
   user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
-  removed_member = client.beta.organization.workspaces.members.remove(
+  removed_member = client.organization.workspaces.members.remove(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
@@ -823,7 +821,7 @@ Menghapus anggota dari workspace:
   ```
 </CodeGroup>
 
-Untuk detail parameter lengkap, lihat [referensi Workspace Members API](https://platform.claude.com/docs/id/api/beta/organization/workspaces/members/retrieve).
+Untuk detail parameter lengkap, lihat [referensi API Workspace Members](https://platform.claude.com/docs/id/api/organization/workspaces/members/retrieve).
 
 ## Kunci API dan pencakupan sumber daya
 
@@ -843,7 +841,7 @@ Beberapa sumber daya dikelola secara berbeda:
 * **[MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview)** dikelola dengan token OAuth `workspace:manage_tunnels` yang diperoleh melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), bukan kunci API. Tunnels dibuat di workspace, dan daftar **MCP tunnels** Console serta pemilih server Managed Agent menampilkan tunnels di workspace saat ini saja; batas 10 tunnels aktif berlaku di seluruh organisasi. Pengelolaan tunnel memerlukan peran dengan izin pengelolaan tunnel; developer organisasi dapat melihat tetapi tidak mengubahnya.
 * **Workspaces** itu sendiri dan **anggota organisasi** dikelola di tingkat organisasi melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu.
 
-Untuk mencari ID workspace organisasi Anda, panggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan Default Workspace) atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces).
+Untuk mencari ID workspace organisasi Anda, panggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan Default Workspace) atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces).
 
 <Note>
   [Prompt caches](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Amazon Bedrock dan Google Cloud, prompt caches diisolasi per organisasi.
@@ -1015,7 +1013,7 @@ Dengan ID workspace dari respons, Anda dapat:
 
 * Mengonfirmasi penggunaan, biaya, dan [batas laju](https://platform.claude.com/docs/id/api/rate-limits) workspace mana yang dihitung oleh permintaan tersebut
 * Mencocokkannya dengan bidang `workspace_id` dalam laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) dan pada objek [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) seperti kunci API (keduanya melaporkan `null` untuk Default Workspace, seperti halnya kunci API untuk kunci semua-workspaces; bidang `scope` kunci API membedakan keduanya dan, untuk kunci yang terikat ke satu workspace, membawa ID workspace yang sebenarnya)
-* Memeriksa apakah itu ID Default Workspace Anda dengan meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/beta/organization/workspaces/retrieve) dengan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys): Default Workspace kembali dengan `"name": "Default"`, meskipun [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list) menghilangkannya kecuali Anda meneruskan `include_default=true`
+* Memeriksa apakah itu ID Default Workspace Anda dengan meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys): Default Workspace dikembalikan dengan `"name": "Default"`, meskipun [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) menghilangkannya kecuali Anda meneruskan `include_default=true`
 * Membuka workspace tersebut di [Console](https://platform.claude.com/settings/workspaces) untuk menemukan sumber daya permintaan, seperti sesi, file, message batches, dan skills
 
 ## Batas workspace
@@ -1106,7 +1104,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 
 <AccordionGroup>
   <Accordion title="Apa itu Default Workspace?">
-    Setiap organisasi memiliki "Default Workspace" yang tidak dapat diganti nama, diarsipkan, atau dihapus. Seperti setiap workspace, ia memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/beta/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/beta/organization/workspaces/update). Ia tidak memiliki daftar anggotanya sendiri, karena akses ke sana mengikuti peran organisasi setiap anggota. Ia muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list) hanya ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya yang menjadi miliknya menampilkan `null` untuk `workspace_id`, seperti halnya kunci API semua-workspaces; bidang `scope` kunci API membedakan keduanya dan, untuk kunci yang menjadi milik Default Workspace, membawa ID yang sebenarnya.
+    Setiap organisasi memiliki "Default Workspace" yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya yang dimilikinya menampilkan `null` untuk `workspace_id`, begitu pula kunci API untuk semua workspace; field `scope` pada kunci API membedakan keduanya dan, untuk kunci yang dimiliki oleh Default Workspace, memuat ID sebenarnya.
   </Accordion>
 
   <Accordion title="Apa itu workspace Claude Code?">
@@ -1145,6 +1143,6 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 ## Lihat juga
 
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
-* [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
+* [Referensi Admin API](https://platform.claude.com/docs/id/api/organization)
 * [Batas laju](https://platform.claude.com/docs/id/api/rate-limits)
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)

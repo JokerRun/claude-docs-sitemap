@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 254dae6fe3d2416e4fadd9f834c755d3118cfb067ee85cb5be2e7251094af658
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 1540b4f11c90da331040a39a04e21ac95e49d2492d9ba871ed4929947718ae31
 ---
 
 ---
@@ -172,7 +172,7 @@ Buatlah sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` 
 
 ## Memperoleh dan menggunakan token
 
-SDK Anthropic dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau memanggil SPIFFE Workload API secara langsung melalui callable penyedia token. Jalur file adalah integrasi paling sederhana dan berfungsi di setiap bahasa SDK. Jalur callable menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
+Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau memanggil SPIFFE Workload API secara langsung melalui callable penyedia token. Jalur file adalah integrasi paling sederhana dan berfungsi di setiap bahasa SDK. Jalur callable menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
 
 <Tabs>
   <Tab title="Berbasis file dengan spiffe-helper">

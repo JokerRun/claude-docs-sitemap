@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 763e0fb219eb40aa45e0bbf87874c2b7381ccb6f78c83c8dc322453305db47de
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 628eae266b9fe1f809b36f70a1904673d42efdda8c753f56d7d50dd248efeab8
 ---
 
 ---
@@ -64,6 +64,8 @@ Tidak satu pun dari ketiga versi alat memerlukan header `anthropic-beta`. Header
 Contoh-contoh di halaman ini menggunakan `code_execution_20250825`, yang mencakup operasi Bash dan file yang didemonstrasikan dan berperilaku sama di setiap model yang didukung; gunakan `code_execution_20260120` atau yang lebih baru jika Anda memerlukan pemanggilan alat terprogram atau persistensi status REPL. Alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
 
 Versi alat yang lebih lama tidak dijamin tetap kompatibel dengan model yang lebih baru. Saat Anda mengadopsi model baru, periksa [Versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) dan [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility), dan utamakan versi alat terbaru yang didukung integrasi Anda.
+
+Untuk memeriksa apakah suatu model menerima alat eksekusi kode sebelum Anda mengirim permintaan, baca nilai `capabilities.server_tools.code_execution.supported` dari Models API. Jangan gunakan nilai tingkat atas `capabilities.code_execution` untuk keperluan ini. Nilai tersebut melaporkan apakah kode yang berjalan di alat ini dapat memanggil alat lain dalam permintaan Anda, seperti pada pemanggilan alat terprogram. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan kedua field tersebut.
 
 <Note>
   Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version) untuk bermigrasi darinya.

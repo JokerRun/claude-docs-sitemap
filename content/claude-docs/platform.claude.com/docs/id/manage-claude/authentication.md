@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 1706188a8fe3e1c71a8cc415e5c51b2ff4caf63589785598e3adbf814dcd45e0
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 8b8bdf099255cb18bef83408c5d3fb1d1b1e854990cbab15c91a01adf8db08d7
 ---
 
 ---
@@ -55,7 +55,7 @@ content-type: application/json
 
 Header lawas `x-api-key: YOUR_API_KEY` masih didukung sebagai pengganti `Authorization`.
 
-Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Pada [halaman kunci API](https://platform.claude.com/settings/keys), **Disable** dapat dibalik (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sementara **Delete** bersifat permanen: kunci diarsipkan dan masih muncul di [List API Keys](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
+Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di [halaman kunci API](https://platform.claude.com/settings/keys), **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan tetap muncul di [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
 
 <CodeGroup>
   ```bash cURL
@@ -136,7 +136,7 @@ Jika kunci API Anda tidak dibatasi cakupannya ke workspace, Anda harus menentuka
 
 [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima kunci pribadi atau kunci akun layanan hanya jika kunci tersebut tidak dibatasi cakupannya ke workspace tertentu.
 
-Anda dapat menemukan ID workspace di kolom **ID** dari [Settings → Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/beta/organization/workspaces/list). List Workspaces menyertakan Default Workspace hanya ketika Anda meneruskan `include_default=true`; ID-nya juga ada di [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari permintaan apa pun yang berjalan di sana.
+Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list). List Workspaces menyertakan Default Workspace hanya ketika Anda meneruskan `include_default=true`; ID-nya juga ada di [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari setiap permintaan yang berjalan di sana.
 
 <CodeGroup>
   ```bash cURL
@@ -341,7 +341,7 @@ Anthropic mengirim email kepada pembuat kunci saat kedaluwarsa mendekat: 7 hari 
 
 Setelah kunci kedaluwarsa, permintaan yang dibuat dengannya mengembalikan `401 authentication_error`. Buat kunci baru untuk memulihkan akses; kunci yang kedaluwarsa tidak dapat diaktifkan kembali.
 
-Tabel kunci API Console menampilkan kedaluwarsa setiap kunci, dan Admin API melaporkan timestamp `expires_at` setiap kunci pada endpoint [List API Keys](https://platform.claude.com/docs/id/api/beta/organization/api_keys/list) dan [Retrieve API Key](https://platform.claude.com/docs/id/api/beta/organization/api_keys/retrieve), sehingga Anda dapat mengaudit dan merotasi kunci sebelum kedaluwarsa. Field ini `null` untuk kunci tanpa kedaluwarsa.
+Tabel kunci API di Console menampilkan masa kedaluwarsa setiap kunci, dan Admin API melaporkan timestamp `expires_at` setiap kunci pada endpoint [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dan [Retrieve API Key](https://platform.claude.com/docs/id/api/organization/api_keys/retrieve), sehingga Anda dapat mengaudit dan merotasi kunci sebelum kedaluwarsa. Field ini bernilai `null` untuk kunci tanpa masa kedaluwarsa.
 
 Kedaluwarsa membatasi masa pakai kredensial yang bocor, tetapi bukan pengganti kebersihan rahasia. Terlepas dari kedaluwarsa, simpan kunci di secrets manager dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor.
 

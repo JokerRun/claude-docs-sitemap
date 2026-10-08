@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6d5df44595df5c6ab1e1aa80635846df8029bdeee90fb19782f1e7374621f9f9
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c234dd4763f092c1a2141cbfe7fe5e231e887260124fd526a8e3b71b2437340a
 ---
 
 ---
@@ -303,7 +303,7 @@ key with the `read:analytics` scope.
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours but not final until about 30 days after the usage date (late-arriving events, reconciliation adjustments).
+  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 

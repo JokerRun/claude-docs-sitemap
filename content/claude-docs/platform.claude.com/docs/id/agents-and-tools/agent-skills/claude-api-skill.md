@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1ad9c373169f5d0325b60ee5a3224ddab56676d10fa007ad7c2a60f558b9e6e8
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 45926ead31626728ac5be75fccb5132f8d72c8077b39f61a19a01088e60f6f25
 ---
 
 ---
@@ -33,7 +33,8 @@ Saat dipicu, skill ini membekali Claude dengan:
 * **Pola streaming:** Detail implementasi untuk membangun UI chat dan menangani tampilan inkremental
 * **Pemrosesan batch:** Pemrosesan batch offline dengan biaya 50%
 * **Caching prompt:** Desain stabilitas prefiks, penempatan breakpoint, dan audit terhadap penyebab invalidasi diam-diam
-* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
+* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
+* **Migrasi preserved thinking:** Menemukan, mengukur, dan memperbaiki pengeditan riwayat yang membuat blok `thinking` tidak valid, tersedia melalui subperintah `/claude-api preserved-thinking-migration`
 * **Informasi model terkini:** ID model, ukuran "context window" (jendela konteks), dan harga
 * **Kesalahan umum:** Panduan terperinci untuk menghindari kesalahan yang sering terjadi saat berintegrasi dengan API
 
@@ -127,7 +128,7 @@ Skill ini menangani:
 * **Deteksi platform cloud**, mempertahankan format ID model khusus platform (misalnya, prefiks `anthropic.` di Amazon Bedrock) dan melewati perubahan untuk fitur yang tidak tersedia di platform yang dioperasikan mitra
 * **Perubahan parameter yang merusak kompatibilitas**, seperti menghapus `temperature`, `top_p`, dan `top_k` untuk Claude Opus 4.8 dan Claude Opus 4.7, serta mengonversi `thinking: {type: "enabled", budget_tokens: N}` menjadi `thinking: {type: "adaptive"}`
 * **Penggantian prefill**, mengonversi pola prefill pesan asisten menjadi [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika memungkinkan
-* **Pembersihan beta header**, menghapus beta header yang tidak diperlukan oleh model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create` ke `client.messages.create`
+* **Pembersihan header beta**, menghapus header beta yang tidak diperlukan oleh model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create()` (python, typescript, ruby; go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; csharp: `client.Beta.Messages.Create()`; php: `$client->beta->messages->create()`) ke `client.messages.create()` (python, typescript, ruby; go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`)
 * **Kalibrasi effort**, merekomendasikan titik awal `output_config.effort` untuk model target (misalnya, nilai default `high` pada Claude Opus 5, dan `xhigh` untuk kasus penggunaan coding dan agentik pada Claude Opus 4.8 dan Claude Opus 4.7)
 * **Penyetelan perilaku prompt**, menandai prompt terkait kontrol panjang, pemicuan alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
 * **Penanganan default yang berubah diam-diam**, mengaktifkan kembali ringkasan pemikiran (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
@@ -135,7 +136,27 @@ Skill ini menangani:
 
 Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/"rate limit" (batas laju)).
 
-Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Bermigrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Bermigrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Bermigrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), dan [Bermigrasi ke Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
+Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
+
+## Memeriksa integrasi untuk preserved thinking
+
+[Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjaga blok `thinking` tetap valid hanya selama prompt `system`, `tools`, dan pesan-pesan sebelumnya tidak berubah. Untuk menemukan dan memperbaiki tempat-tempat di mana kode Anda mengedit riwayat tersebut, buka repositori yang membangun permintaan Anda dan panggil subperintah `preserved-thinking-migration`:
+
+```text wrap
+/claude-api preserved-thinking-migration
+```
+
+Skill ini bekerja melalui lima langkah:
+
+1. **Cakupan:** Memeriksa apakah integrasi Anda terpengaruh, lalu mengirim tiga permintaan uji untuk mengonfirmasi bahwa API melaporkan pengeditan yang disengaja.
+2. **Temukan:** Merekam beberapa sesi multi-giliran milik Anda sendiri, membandingkan (diff) permintaan yang berurutan, dan mencantumkan setiap tempat kode Anda mengedit prefiks.
+3. **Ukur:** Memutar ulang sesi dengan `"drop_block"` dan melaporkan percakapan mana yang kehilangan blok `thinking`, pada giliran mana, dan mengapa.
+4. **Perbaiki:** Mengganti satu pengeditan pada satu waktu dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits), dan mengukur lagi setelah setiap perubahan.
+5. **Laporkan:** Merangkum setiap penyebab, perubahan yang dilakukan untuknya, serta jumlah sebelum dan sesudahnya.
+
+Jika proyek Anda memiliki eval, skill ini juga membandingkan skor dan penggunaan token dengan dan tanpa blok `thinking` yang dibuang.
+
+Permintaan uji dan pemutaran ulang adalah permintaan Messages API sungguhan, yang ditagih sesuai tarif normal model. Setiap pemutaran ulang hanya meminta beberapa token output dan menetapkan `tool_choice` ke `none`, sehingga tidak ada alat yang dijalankan. Skill ini menyebutkan biayanya dan meminta persetujuan Anda sebelum mengirimkannya.
 
 ## Menyiapkan Managed Agent
 

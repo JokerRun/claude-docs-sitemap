@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 348f41470f221f68a6ada4e220fb70692aeada05db68241617fa22a0787ff788
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c4ed944c9b81c90b01fc8acddf0de00a1c56ef9ae8fd47e67da8f94384755201
 ---
 
 ---
@@ -419,7 +419,7 @@ with Claude"
     * [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
     * [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) (`claude-opus-5-5`) — New — *For long-running agentic coding and knowledge work* — Complex projects · Agents · Coding
     * [Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/overview) (`claude-sonnet-5-5`) — New — *The best combination of speed and intelligence* — Everyday tasks · Writing · Cost-efficient
-    * [Claude Haiku 4.5](https://platform.claude.com/docs/en/models/haiku-4-5/overview) (`claude-haiku-4-5`) — *The fastest model with near-frontier intelligence* — Fastest · Lowest cost · High volume
+    * [Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview) (`claude-haiku-5-5`) — New — *For high-volume, latency-sensitive tasks such as classification, extraction, and routing* — Fastest · Lowest cost · High volume
   </HomeSection>
 
   <HomeSection last>

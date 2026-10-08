@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ab11b9476086b891ecdfb459e58b72bb7f8469c3615a5d4ee4d84e3be00dd326
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 695ed6e7420bd9e96949f30755838ebfbf6c93a7497e705da8aa79e8c9bc087d
 ---
 
 ---
@@ -973,7 +973,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events \
 {
   "data": [
     {
-      "id": "sevt_011CZkZGOp0iBcp4kaQSihUmy",
+      "id": "sevt_011CZkZGPp1iBcp4kaQSihUm",
       "content": [
         {
           "text": "Where is my order #1234?",

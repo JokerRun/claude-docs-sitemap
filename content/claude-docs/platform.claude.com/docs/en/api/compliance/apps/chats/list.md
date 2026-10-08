@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f635a2567d7c7d5b8144a06ef4f88b1ef1f4f98895a8012679fd1002fd45f9fd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c5fbf0fb95e84ece30d05c743c6501dd0741643603dfda2546e26bc0491787b1
 ---
 
 ---
@@ -160,7 +160,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   - `name: string`
 
-    Chat name/title
+    Chat name. Empty when `deleted_at` is set.
 
   - `organization_uuid: string`
 

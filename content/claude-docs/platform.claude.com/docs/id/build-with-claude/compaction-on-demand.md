@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: fcd72eb4f4ec6ebcb0a99657cde7162e38c974dd30d467ae12f9c74661a15cd3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a49aa1e237d6338e9077a3630e83884c290e1f665c1248f7c934e5a02c66b48e
 ---
 
 ---
@@ -43,7 +43,7 @@ Permintaan compaction terpisah dari giliran percakapan Anda. Anda mengirim perca
 Sejak saat itu, blok tersebut menggantikan pesan-pesan yang diringkasnya. Blok ditempatkan pertama di `messages`, pesan-pesan yang diringkas dihapus, dan giliran Anda berikutnya menyusul setelahnya. Claude melihat ringkasan di tempat pesan-pesan tersebut sebelumnya berada.
 
 <Frame>
-  ![On-demand compaction (pemadatan sesuai permintaan): permintaan yang membawa empat pesan dan parameter compaction mengembalikan satu compaction block (blok compaction) tanpa balasan; pada permintaan berikutnya blok tersebut ditempatkan pertama di messages menggantikan keempat pesan itu, diikuti oleh giliran user berikutnya](https://platform.claude.com/docs/images/compaction-on-demand-swap.svg)
+  ![On-demand compaction (pemadatan sesuai permintaan): permintaan yang membawa empat pesan dan parameter compaction mengembalikan satu compaction block (blok compaction) tanpa balasan; pada permintaan berikutnya blok tersebut ditempatkan pertama di messages menggantikan keempat pesan itu, diikuti giliran user (pengguna) berikutnya](https://platform.claude.com/docs/images/compaction-on-demand-swap.svg)
 </Frame>
 
 ## Meminta ringkasan

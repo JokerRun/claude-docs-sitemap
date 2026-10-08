@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 955af831718cbb2799dd5be9a7ec8a55d6b62b5cc76c4686c694a466a6a6199b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 105a5f73250ba853bc55e2bc35065ce73795780e067e94630d8ea53c00e153ee
 ---
 
 ---
@@ -3132,6 +3132,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                           The model that will complete your prompt.
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                          - `"claude-haiku-5-5"`
+
+                            Fastest model for high-volume, real-time tasks
 
                           - `"claude-sonnet-5-5"`
 
@@ -8320,6 +8324,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                          - `"claude-haiku-5-5"`
+
+                            Fastest model for high-volume, real-time tasks
+
                           - `"claude-sonnet-5-5"`
 
                             Efficient model for coding and agents
@@ -12551,6 +12559,10 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                          - `"claude-haiku-5-5"`
+
+                            Fastest model for high-volume, real-time tasks
+
                           - `"claude-sonnet-5-5"`
 
                             Efficient model for coding and agents
@@ -16553,6 +16565,10 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                        - `"claude-haiku-5-5"`
+
+                          Fastest model for high-volume, real-time tasks
+
                         - `"claude-sonnet-5-5"`
 
                           Efficient model for coding and agents
@@ -20506,6 +20522,10 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
                       The model that will complete your prompt.
 
                       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                      - `"claude-haiku-5-5"`
+
+                        Fastest model for high-volume, real-time tasks
 
                       - `"claude-sonnet-5-5"`
 

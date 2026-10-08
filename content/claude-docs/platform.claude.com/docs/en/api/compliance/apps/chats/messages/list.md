@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 78ac1e99de95d715b7de54c83bf5a07e54239a68666b2b908874ccb89e5edc1b
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: eaed95bcf63bc1965d48ad775e018fa4e560531b7aa8e62af793a1324ca87008
 ---
 
 ---
@@ -362,7 +362,7 @@ Retrieves message history and file metadata for a specific chat.
 
 - `name: string`
 
-  Chat name
+  Chat name. Empty when `deleted_at` is set.
 
 - `organization_uuid: string`
 

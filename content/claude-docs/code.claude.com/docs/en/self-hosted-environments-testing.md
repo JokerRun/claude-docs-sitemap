@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-testing
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: ec0e10267aae564160ca9d007bf408bab76db11a6d253a29b0b802fa02289b70
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 235d97cb2b558d12841bed920447f6ba3f83665e23db8b219645677290456d18
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ The flag takes precedence over the [`remote.defaultEnvironmentId`](/docs/en/sett
 
 ## Example script
 
-The script below runs the full loop against `$CLAUDE_TEST_ENVIRONMENT_ID`, your test environment's `ccpool_...` ID, shown in the environment's detail dialog on the admin page or returned by the [create-environment call](#create-a-dedicated-test-environment), and asserts on a sentinel phrase in each reply. Run it from a git checkout of the repository you want the session to work in, after starting a runner on this host with the capture hook installed and `E2E_REPLY_DIR` exported.
+The script below runs the full loop against `$CLAUDE_TEST_ENVIRONMENT_ID`, your test environment's `ccpool_...` ID, shown in the environment's detail dialog on the admin page or returned by the [create-environment call](#create-a-dedicated-test-environment), and asserts on a sentinel phrase in each reply. Run it from a git checkout of the repository you want the session to work in, after starting a runner on this host with the capture hook installed and `E2E_REPLY_DIR` exported. First sign in with a claude.ai account on the machine that runs the script, as [Authenticate from CI](#authenticate-from-ci) describes. Without that sign-in, the first dispatch fails with an error such as `Unable to get organization UUID for cloud session creation`.
 
 ```bash theme={null}
 #!/usr/bin/env bash

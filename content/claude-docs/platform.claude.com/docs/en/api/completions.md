@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2adadc470525fec22cc2effa9c42989c38ce3564327e23a10f257ebb62854d90
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 7459fb76fce82604fe24bc5a9cacf13cf831a714993ab86665e55f46cf97fa1e
 ---
 
 ---
@@ -15,6 +15,8 @@ url: https://platform.claude.com/docs/en/api/completions
 ## Create a Text Completion
 
 **POST** `/v1/complete`
+
+**Deprecated**: Use the [Messages API](https://platform.claude.com/docs/en/api/messages/create) instead.
 
 [Legacy] Create a Text Completion.
 
@@ -153,6 +155,10 @@ Future models and features will not be compatible with Text Completions. See our
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `"claude-haiku-5-5"`
+
+    Fastest model for high-volume, real-time tasks
 
   - `"claude-sonnet-5-5"`
 
@@ -350,6 +356,10 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-haiku-5-5"`
+
+      Fastest model for high-volume, real-time tasks
+
     - `"claude-sonnet-5-5"`
 
       Efficient model for coding and agents
@@ -502,6 +512,10 @@ curl https://api.anthropic.com/v1/complete \
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-haiku-5-5"`
+
+      Fastest model for high-volume, real-time tasks
 
     - `"claude-sonnet-5-5"`
 

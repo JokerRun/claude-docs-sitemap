@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 0f117902bd6b334d8830e30106477605a82cd0e9de12da608d2182cd024a9ade
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: c188d4ef5e7886a47ebfbfd83092071e61fa62647dcf7d397642febb35ff4a24
 ---
 
 ---
@@ -1195,7 +1195,7 @@ Untuk penjelasan detail tentang alur OAuth, lihat [bagian Authorization](https:/
 
 ## Helper MCP sisi klien
 
-Jika Anda mengelola koneksi klien MCP Anda sendiri (misalnya, dengan server stdio lokal, prompt MCP, atau resource MCP), SDK menyediakan fungsi helper yang mengonversi antara tipe MCP dan tipe Claude API. Ini menghilangkan kode konversi manual saat menggunakan MCP SDK untuk bahasa Anda (misalnya, [TypeScript MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)) bersama Anthropic SDK.
+Jika Anda mengelola koneksi klien MCP sendiri (misalnya, dengan server stdio lokal, prompt MCP, atau resource MCP), SDK menyediakan fungsi helper yang mengonversi antara tipe MCP dan tipe Claude API. Ini menghilangkan kode konversi manual saat menggunakan MCP SDK untuk bahasa Anda (misalnya, [TypeScript MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)) bersama dengan Anthropic SDK.
 
 <Note>
   Gunakan [parameter API `mcp_servers`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#using-the-mcp-connector-in-the-messages-api) ketika Anda memiliki server jarak jauh yang dapat diakses melalui URL dan hanya memerlukan dukungan alat. Gunakan helper sisi klien ketika Anda memerlukan server lokal, prompt, resource, atau kontrol lebih atas koneksi dengan SDK dasar.
@@ -1221,7 +1221,7 @@ Instal Anthropic SDK dan MCP SDK:
   </Tab>
 
   <Tab title="C#">
-    Helper berada dalam paket terpisah `Anthropic.Mcp`; klien MCP itu sendiri berasal dari [paket ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) resmi:
+    Helper berada di paket terpisah `Anthropic.Mcp`; klien MCP itu sendiri berasal dari [paket ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) resmi:
 
     ```bash
     dotnet add package Anthropic.Mcp
@@ -1230,7 +1230,7 @@ Instal Anthropic SDK dan MCP SDK:
   </Tab>
 
   <Tab title="Go">
-    Helper berada dalam subpaket `mcp` dari Go SDK, yang dibangun di atas [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk):
+    Helper berada di subpaket `mcp` dari Go SDK, yang dibangun di atas [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk):
 
     ```bash
     go get github.com/anthropics/anthropic-sdk-go/mcp
@@ -1243,8 +1243,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.66.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.66.0")
+        implementation("com.anthropic:anthropic-java:2.69.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.69.0")
         ```
       </Tab>
 
@@ -1253,12 +1253,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.66.0</version>
+            <version>2.69.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.66.0</version>
+            <version>2.69.0</version>
         </dependency>
         ```
       </Tab>
@@ -1333,14 +1333,12 @@ Impor helper untuk bahasa Anda:
   ```
 </CodeGroup>
 
-Nama helper dan signature persisnya mengikuti konvensi masing-masing bahasa; tabel ini menunjukkan bentuk TypeScript:
-
-| Helper                           | Deskripsi                                                                                               |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `mcpTools(tools, mcpClient)`     | Mengonversi alat MCP menjadi alat Claude API untuk digunakan dengan `client.beta.messages.toolRunner()` |
-| `mcpMessages(messages)`          | Mengonversi pesan prompt MCP ke format pesan Claude API                                                 |
-| `mcpResourceToContent(resource)` | Mengonversi resource MCP menjadi blok konten Claude API                                                 |
-| `mcpResourceToFile(resource)`    | Mengonversi resource MCP menjadi objek file untuk diunggah                                              |
+| Helper                                                                                                                                                                                                                                                                                                                             | Deskripsi                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `async_mcp_tool(tool, mcp_client)` (python; typescript: `mcpTools(tools, mcpClient)`; csharp: `BetaMcp.ListToolsAsync(mcpClient)`; go: `mcp.NewBetaTools(tools, session)`; java: `BetaMcp.mcpTools(tools, mcpClient)`; php: `BetaMcp::tools($tools, $mcp)`; ruby: `Anthropic::Mcp.tools(tools, mcp_client)`)                       | Mengonversi alat MCP menjadi alat Claude API untuk digunakan dengan `client.beta.messages.tool_runner()` (python, ruby; typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`) |
+| `mcp_message(message)` (python; typescript: `mcpMessages(messages)`; csharp: `BetaMcp.Messages(messages)`; go: `mcp.ToMessage(message)`; java: `BetaMcp.mcpMessages(messages)`; php: `BetaMcp::message($message)`; ruby: `Anthropic::Mcp.message(message)`)                                                                        | Mengonversi pesan prompt MCP ke format pesan Claude API                                                                                                                                                                                                                                                                                                        |
+| `mcp_resource_to_content(resource)` (python; typescript: `mcpResourceToContent(resource)`; csharp: `BetaMcp.ResourceToContent(resource)`; go: `mcp.ResourceToBlock(resource)`; java: `BetaMcp.mcpResourceContents(resource)`; php: `BetaMcp::resourceToContent($resource)`; ruby: `Anthropic::Mcp.resource_to_contents(resource)`) | Mengonversi resource MCP menjadi blok konten Claude API                                                                                                                                                                                                                                                                                                        |
+| `mcp_resource_to_file(resource)` (python; typescript: `mcpResourceToFile(resource)`; csharp: `BetaMcp.ResourceToFile(resource)`; go: `mcp.ResourceToFile(resource)`; java: `BetaMcp.mcpResourceFiles(resource)`; php: `BetaMcp::resourceToFile($resource)`; ruby: `Anthropic::Mcp.resource_to_files(resource)`)                    | Mengonversi resource MCP menjadi objek file untuk diunggah                                                                                                                                                                                                                                                                                                     |
 
 ### Menggunakan alat MCP
 
@@ -2052,11 +2050,11 @@ Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah deprecated,
 
 ## Versi deprecated: mcp-client-2025-04-04
 
-<Note type="warning">
+<Warning>
   Versi ini sudah deprecated. Migrasikan ke `mcp-client-2025-11-20` menggunakan [panduan migrasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#migration-guide) sebelumnya.
-</Note>
+</Warning>
 
-Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung dalam definisi server MCP:
+Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung di definisi server MCP:
 
 ```json
 {

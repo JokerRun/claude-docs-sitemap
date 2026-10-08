@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: e2b18454d274fc1147b8690678f0a0108e7724e6e04a0d7c1a99287f0504d8bd
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 9fd24e93240c2b21f48b4bc9a3f76e79cee58004eb49bf9c9f7a28b6404ec041
 ---
 
 > ## Documentation Index
@@ -457,6 +457,7 @@ The table maps marketplace-level messages to the field each is about.
 | `Claude Code cannot install plugin "x". Each part of a plugin id (plugin@marketplace) may use only the letters a-z and A-Z, digits, ".", "_" and "-", and must start with a letter or digit. Change this entry's "name".` | Error | `plugins[i].name` |
 | `Duplicate plugin name "x" found in marketplace` | Error | Two entries share a `name` |
 | `plugins.i.source: Invalid input` | Error | The entry's `source` matches no type. See [Invalid input on a source](#invalid-input-on-a-source) |
+| `plugins.i.source: Invalid string: must start with "./"` | Error | A relative-path `source` without the leading `./`. Before v2.1.285, this mistake printed `Invalid input` instead |
 | `plugins[i].source: Path contains "..": <path>` | Error | A relative `source` that escapes the marketplace root |
 | `source.source: 'unsupported' is a parse-time placeholder and cannot be authored` | Error | `plugins[i].source` |
 | `Plugin "x" sets headersHelper but is not "strict": false` | Error | `plugins[i].headersHelper`, on an `archive` entry |
@@ -481,10 +482,11 @@ The table maps marketplace-level messages to the field each is about.
 
 `Invalid input` on a `source` means the object matched no source type. Check for these causes:
 
-* A relative path that doesn't start with `./`, other than `"."` or a [bare name under `metadata.pluginRoot`](#relative-path-plugin-source)
 * An `npm` `package` containing `..`
 * A `source` type that isn't one of the [plugin sources](#plugin-sources)
 * A known type with a required field missing or of the wrong type, such as `github` without `repo`
+
+A relative path that doesn't start with `./`, other than `"."` or a [bare name under `metadata.pluginRoot`](#relative-path-plugin-source), fails with `Invalid string: must start with "./"`. Before v2.1.285, it printed `Invalid input` like the causes above.
 
 ### Failures that validation doesn't catch
 

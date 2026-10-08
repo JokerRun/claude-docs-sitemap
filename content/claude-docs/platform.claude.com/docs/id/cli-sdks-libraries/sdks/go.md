@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 781fce3cf81ba54bb5c08a3630a2ca9542a8a927bcae4b02874118c9cd7427e1
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: fd6f4c4f25299fb96de645d5a89ed907374f03f91ca7815f28d6dcf42d6a5493
 ---
 
 ---
@@ -651,6 +651,7 @@ Untuk middleware permintaan (`option.WithMiddleware`) dan mengganti `http.Client
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
 
 Go SDK mendukung platform berikut:
@@ -658,7 +659,7 @@ Go SDK mendukung platform berikut:
 * **Agent Platform:** `import "github.com/anthropics/anthropic-sdk-go/vertex"`. Gunakan `vertex.WithGoogleAuth(ctx, region, projectID)` atau `vertex.WithCredentials(ctx, region, projectID, creds)`.
 * **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/bedrock"`. Gunakan `bedrock.NewMantleClient` untuk endpoint Bedrock Messages-API (streaming melalui SSE), atau `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (jalur `bedrock-runtime`). Mengimpor paket `bedrock` secara global mendaftarkan decoder untuk `application/vnd.amazon.eventstream` dengan lapisan streaming SDK (melalui paket `init()`). Ini berlaku baik Anda menggunakan jalur `bedrock-runtime` `WithConfig`/`WithLoadDefaultConfig` atau `NewMantleClient`.
 * **Claude Platform di AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"`. Gunakan `anthropicaws.NewClient(ctx, cfg)` dengan nilai `anthropicaws.ClientConfig` untuk membangun klien; atur `WorkspaceID` pada config atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Alias impor `anthropicaws` menghindari tabrakan nama dengan `github.com/aws/aws-sdk-go-v2/aws` ketika keduanya diimpor. Tersedia dalam beta.
-* **Foundry:** Saat ini tidak didukung dalam Go SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
+* **Foundry:** `import "github.com/anthropics/anthropic-sdk-go/foundry"`. Gunakan `foundry.NewClient(cfg)` dengan nilai `foundry.ClientConfig` untuk membangun klien; atur `APIKey` (atau `AzureADTokenProvider` untuk Microsoft Entra ID) dan `Resource` pada config, atau variabel lingkungan `ANTHROPIC_FOUNDRY_API_KEY` dan `ANTHROPIC_FOUNDRY_RESOURCE`.
 
 Gunakan `bedrock.NewMantleClient` untuk proyek baru; `bedrock.WithLoadDefaultConfig`/`WithConfig` tetap ada untuk aplikasi yang sudah ada yang menggunakan Bedrock `InvokeModel` API.
 

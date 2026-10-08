@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/gallery
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 578125e9858345de0844cc9efc2056393a7a8fdb9e78f8bfa8203ed089a2d975
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: f450fdb56c59295a7f037441b288dd3054a1aafd41390b5e948c4e5d41988963
 ---
 
 > ## Documentation Index
@@ -383,6 +383,14 @@ In the terminal, a pane that returns only an `Svg` opens empty. To draw somethin
 ### `Image` and `Client`
 
 Two more elements have no sample here. `Image` draws a PNG or raw pixels in the terminal. `Client` is a region that a second file of yours draws, for animation and pointer input. The [elements reference](/docs/en/plugins/mods/reference#elements) lists their props.
+
+Unless Claude Code detects that the terminal draws kitty graphics protocol images with Unicode placeholders, the user sees an `Image`'s `alt` text, dimmed, in place of the picture. Write `alt` text that stands on its own. Detection runs at startup: it succeeds in kitty 0.28 or later and in Ghostty, once the terminal answers Claude Code's graphics query, and fails in these cases:
+
+* **Other terminals**: any terminal that isn't one of those two, or that doesn't answer the query.
+* **tmux and screen**: a session running inside tmux or screen, in any terminal, kitty and Ghostty included.
+* **Background sessions**: every [background session](/docs/en/agent-view), whatever terminal it's attached from.
+
+If your mod's users see the dimmed text in a terminal that does draw those placeholder images, they can set [`CLAUDE_CODE_FORCE_TERMINAL_IMAGES`](/docs/en/env-vars) to `1`, which skips detection. Inside tmux or screen that doesn't help: the `alt` text goes away, and Claude Code sends the picture without wrapping it for tmux or screen passthrough.
 
 ## See where a mod can draw
 

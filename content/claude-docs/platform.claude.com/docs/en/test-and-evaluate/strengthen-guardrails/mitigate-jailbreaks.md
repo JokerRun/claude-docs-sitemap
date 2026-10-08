@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 5543541f08a4e6569693a952bfec8cc5b1eaee078d22e63f99087aeee254dc1f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 61ee75848886c04c17fa521b813073846bc4adcbbac1f829685316f8bde577eb
 ---
 
 ---
@@ -22,7 +22,7 @@ These attacks fall into two categories with different threat models:
 
 In this threat model, a user is deliberately crafting inputs to manipulate your application into producing content or taking actions you don't want it to. These mitigations strengthen your application's guardrails:
 
-* **Harmlessness screens:** Use a lightweight model like Claude Haiku 4.5 to pre-screen user input before it reaches your main conversation. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) to constrain the response to a simple classification.
+* **Harmlessness screens:** Use a lightweight model like Claude Haiku 5.5 to pre-screen user input before it reaches your main conversation. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) to constrain the response to a simple classification. Claude Haiku 5.5 runs [safety classifiers](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback) that can decline the screening request itself, so treat a response with `stop_reason: "refusal"` as a harmful verdict.
 
   <Accordion title="Example: Harmlessness screen for content moderation">
     ```text User wrap
@@ -122,7 +122,7 @@ Structure your application so that Claude can reliably distinguish untrusted con
 
 * **Limit Claude's access to sensitive data and actions.** Apply the principle of least privilege so that a successful injection can do minimal damage: don't give Claude access to secrets it doesn't need, run tools in sandboxed environments, and scope permissions as narrowly as possible.
 
-* **Screen tool outputs before Claude acts on them.** Apply the same lightweight-model screening pattern you use for user input to the content your tools return. Run each tool, pass its raw output to a small classifier call with Claude Haiku 4.5, and only return the content as a `tool_result` block if the screen reports no injection attempt. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) so the classifier's verdict is a parseable value your application can branch on.
+* **Screen tool outputs before Claude acts on them.** Apply the same lightweight-model screening pattern you use for user input to the content your tools return. Run each tool, pass its raw output to a small classifier call with Claude Haiku 5.5, and only return the content as a `tool_result` block if the screen reports no injection attempt. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) so the classifier's verdict is a parseable value your application can branch on.
 
   <Accordion title="Example: Injection screen for tool output">
     ```text User wrap
@@ -154,7 +154,7 @@ Structure your application so that Claude can reliably distinguish untrusted con
     }
     ```
 
-    If `injection_suspected` is `true`, return an error or a stripped summary in the `tool_result` block instead of the raw content, and consider surfacing the attempt to the user.
+    If `injection_suspected` is `true`, return an error or a stripped summary in the `tool_result` block instead of the raw content, and consider surfacing the attempt to the user. Treat a `stop_reason: "refusal"` response from Claude Haiku 5.5 the same way: its safety classifiers can decline the screening request itself, which leaves no verdict to read.
   </Accordion>
 
   You can also apply the input-validation patterns from the previous section to tool results before passing them to Claude.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 271213b496489dae50fcfe459877f7e533639a73761664eafb3640a641f3040a
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: cde8b13b365436a2901e5a0bb9dd27f440708ea733ffd968889acc25a55578a6
 ---
 
 > ## Documentation Index
@@ -302,7 +302,7 @@ These are the most frequently encountered errors and how to resolve them:
 
 | Error | Cause | Fix |
 | - | - | - |
-| "Browser extension is not connected" | Native messaging host cannot reach the extension, or your organization's IP allowlist rejects the connection to `bridge.claudeusercontent.com` | Restart Chrome and Claude Code, then run `/chrome` to reconnect. If your organization uses IP allowlisting and the error persists, see [Organization IP allowlists and proxy egress](/docs/en/network-config#organization-ip-allowlists-and-proxy-egress) |
+| "Browser extension is not connected" | Native messaging host cannot reach the extension, or your organization's IP allowlist rejects the connection to `bridge.claudeusercontent.com` | Check that the extension is signed in to the same claude.ai account as Claude Code, restart Chrome and Claude Code, then run `/chrome` to reconnect. If your organization uses IP allowlisting and the error persists, see [Organization IP allowlists and proxy egress](/docs/en/network-config#organization-ip-allowlists-and-proxy-egress) |
 | Extension shows "Not detected" in `/chrome` | Chrome extension is not installed or is disabled | Install or enable the extension in `chrome://extensions` |
 | "No tab available" | Claude tried to act before a tab was ready | Ask Claude to create a new tab and retry |
 | "Receiving end does not exist" | Extension service worker went idle | Run `/chrome` and select "Reconnect extension" |

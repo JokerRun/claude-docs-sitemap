@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: af0d1fadae38bd90e543fe8d20208131915e5637a4f70858c5411453d11fd8e3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: a04aed3430b9ac0a65becc6d6a19d61ac14f498eb7727e6c25fce392d279851e
 ---
 
 ---
@@ -145,7 +145,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
 ## Mendapatkan pesan akhir tanpa menangani event
 
-Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming secara internal sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mewajibkan streaming untuk menghindari timeout HTTP.
+Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming secara internal sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `client.messages.create()` (python, typescript, ruby; go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`). Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
@@ -202,13 +202,9 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
       Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
   };
 
-  var fullText = "";
-  await foreach (var msg in client.Messages.CreateStreaming(parameters))
-  {
-      fullText += msg;
-  }
-
-  Console.WriteLine(fullText);
+  // Untuk juga menangani event saat tiba, teruskan MessageContentAggregator ke CollectAsync() sebagai gantinya.
+  var message = await client.Messages.CreateStreaming(parameters).Aggregate();
+  Console.WriteLine(message);
   ```
 
   ```go Go
@@ -261,6 +257,8 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   ```
 
   ```php PHP
+  use Anthropic\Lib\Streaming\MessageAccumulator;
+
   $client = new Client();
 
   $stream = $client->messages->createStream(
@@ -271,14 +269,12 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
       model: 'claude-opus-5-5',
   );
 
-  $fullText = '';
+  $accumulator = MessageAccumulator::forMessages();
   foreach ($stream as $event) {
-      if ($event->type === 'content_block_delta' && $event->delta->type === 'text_delta') {
-          $fullText .= $event->delta->text;
-      }
+      $accumulator->accumulate($event);
   }
 
-  echo $fullText;
+  echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;
   ```
 
   ```ruby Ruby
@@ -296,7 +292,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   ```
 </CodeGroup>
 
-Pemanggilan `.stream()` menjaga koneksi HTTP tetap hidup dengan server-sent events, lalu `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, lakukan await pada metode ekstensi `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau teruskan `MessageContentAggregator` ke `.CollectAsync()` untuk melakukan agregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di PHP SDK, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
+Panggilan `.stream()` (java: `.createStreaming()`; csharp: `.CreateStreaming()`; go: `.NewStreaming()`; php: `->createStream()`) menjaga koneksi HTTP tetap hidup dengan server-sent events, lalu helper akumulasi pesan milik SDK, `stream.get_final_message()` (typescript: `stream.finalMessage()`; ruby: `stream.accumulated_message`; csharp: `.Aggregate()`; go: `message.Accumulate(event)`; java, php: `MessageAccumulator`), mengumpulkan semua event menjadi objek `Message` lengkap.
 
 ## Jenis event
 
@@ -347,7 +343,7 @@ data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", 
 
 Delta untuk blok konten `tool_use` berkaitan dengan pembaruan pada field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta berupa *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
 
-Anda dapat mengakumulasi delta string dan mem-parse JSON setelah menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parse.
+Anda dapat mengakumulasi delta string dan mem-parse JSON setelah menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [helper streaming](https://platform.claude.com/docs/id/build-with-claude/streaming#streaming-with-sdks) milik SDK. Di Python dan TypeScript SDK, helper ini juga memberi Anda akses ke `input` yang telah di-parse secara bertahap, seiring proses streaming.
 
 Delta blok konten `tool_use` terlihat seperti:
 

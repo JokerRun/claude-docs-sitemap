@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 790be67fd2cd54a7ee6574f42b7ea35597aea3446fba4660111518bb1308e3a4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: ff697dfbe3141d48b4589dbe98b0acc99fb71f446429eac33f977b9aedd23dde
 ---
 
 ---
@@ -455,7 +455,7 @@ Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Fetch yang gagal
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field-field ini pada entri `web_fetch` di toolset agen. Setiap domain yang dicantumkan harus berupa hostname biasa tanpa path. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_fetch` dari toolset agen, di mana setiap domain yang tercantum harus berupa hostname biasa tanpa path; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 ### Batas konten
 
@@ -465,7 +465,7 @@ Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam kon
   Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input yang benar-benar digunakan dapat sedikit berbeda.
 </Note>
 
-Di Claude Managed Agents, entri `web_fetch` di toolset agen juga menerima `max_content_tokens`. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools#restrict-web-search-and-web-fetch-domains).
+Di Claude Managed Agents, entri `web_fetch` dari toolset agen juga menerima `max_content_tokens`; lihat [pengaturan alat web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings).
 
 ### Bypass cache
 

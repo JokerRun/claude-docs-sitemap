@@ -1,0 +1,60 @@
+---
+source: platform
+url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 60e16c5e123f866b70ee3aa1858e530e6c5a27a9a885ae042c7d9f73d5f7d374
+---
+
+---
+title: Yang baru di Claude Haiku 5.5
+url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
+description: Ikhtisar kemampuan baru, perubahan yang merusak kompatibilitas, dan perubahan perilaku di Claude Haiku 5.5, dengan tautan ke panduan setiap fitur dan ke panduan migrasi untuk perubahan kode.
+---
+
+Claude Haiku 5.5 dibuat untuk pekerjaan bervolume tinggi yang sensitif terhadap "latency" (latensi) seperti klasifikasi, perutean, ekstraksi, dan tugas subagen. Model ini mendukung "adaptive thinking" (pemikiran adaptif) dengan parameter effort, "context window" (jendela konteks) 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30% lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
+
+Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
+
+## Ringkasan perubahan dari Claude Haiku 4.5
+
+Setiap baris menyebutkan satu perubahan, apakah perubahan tersebut baru, berubah, atau merusak kompatibilitas, dan apa yang harus dilakukan kode Anda.
+
+| Perubahan                                                                                                                                                        | Jenis                  | Tindakan yang diperlukan                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [Pemikiran adaptif dan effort](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#adaptive-thinking-and-effort)                            | Baru                   | Opsional: atur `effort` untuk menyeimbangkan kualitas respons dengan kecepatan dan biaya.                                            |
+| [Jendela konteks dan output yang lebih besar](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#larger-context-window-and-output)         | Baru                   | Tidak ada. Nilai `max_tokens` yang ada tetap valid, tetapi token pemikiran dihitung terhadapnya.                                     |
+| [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)                                                               | Baru                   | Tidak ada. Tersedia di Claude API dan Google Cloud.                                                                                  |
+| [Pengklasifikasi keamanan dapat menolak permintaan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)                | Baru                   | Tangani `stop_reason: "refusal"` di klien Anda. Fallback sisi server tidak tersedia.                                                 |
+| [Pemikiran diperpanjang manual mengembalikan error](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking)                     | Merusak kompatibilitas | Ganti `budget_tokens` dengan pemikiran adaptif.                                                                                      |
+| [Parameter sampling non-default mengembalikan error](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters)            | Merusak kompatibilitas | Hilangkan `temperature`, `top_p`, dan `top_k`.                                                                                       |
+| [Prefill pesan asisten mengembalikan error](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill)                      | Merusak kompatibilitas | Akhiri `messages` dengan giliran pengguna.                                                                                           |
+| [Computer use memerlukan toolset di Claude API dan Google Cloud](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset)      | Merusak kompatibilitas | Ganti `computer_20250124` dengan `computer_toolset_20260801`.                                                                        |
+| [Mengubah giliran sebelumnya membatalkan blok pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)      | Merusak kompatibilitas | Pertahankan percakapan hanya-tambah (append-only) jika Anda mengirim kembali blok pemikiran.                                         |
+| [Respons dapat dimulai dengan blok pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#responses-can-begin-with-thinking-blocks) | Berubah                | Pilih blok konten berdasarkan `type`, bukan berdasarkan posisi.                                                                      |
+| [Teks pemikiran dihilangkan secara default](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking)                             | Berubah                | Untuk menerima pemikiran yang diringkas, atur `thinking.display` ke `"summarized"`.                                                  |
+| [Teks yang sama dihitung sebagai lebih banyak token](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#same-text-counts-as-more-tokens)   | Berubah                | Hitung ulang prompt dan tinjau kembali `max_tokens` serta estimasi biaya.                                                            |
+| [Memutar ulang blok pemikiran lintas akun](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#replaying-thinking-blocks-across-accounts)   | Berubah                | Jika Anda memutar ulang percakapan tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. |
+
+## Kemampuan baru
+
+### Pemikiran adaptif dan effort
+
+Dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), Claude Haiku 5.5 memutuskan kapan dan seberapa banyak berpikir. Pemikiran adaptif aktif secara default. Meskipun Anda masih dapat menonaktifkan pemikiran dengan `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya, cara yang lebih baik untuk menyeimbangkan kualitas respons dengan kecepatan dan biaya adalah menggunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+
+### Jendela konteks dan output yang lebih besar
+
+Claude Haiku 5.5 memiliki [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) 1M token dan mengembalikan hingga 128k token output, naik dari 200k dan 64k pada Claude Haiku 4.5. Nilai `max_tokens` yang ada tetap valid, tetapi token pemikiran dihitung terhadap `max_tokens`, sehingga batas yang kecil dapat berhenti setelah blok `thinking` dan sebelum teks apa pun. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
+
+## Perubahan perilaku
+
+### Respons dapat dimulai dengan blok pemikiran
+
+Pemikiran adaptif aktif secara default, sehingga respons dapat dimulai dengan satu atau lebih blok `thinking` bahkan ketika permintaan tidak menyebutkan pemikiran. Kode yang membaca blok konten pertama sebagai jawaban perlu memilih blok berdasarkan field `type`-nya. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking) di panduan migrasi.
+
+### Teks yang sama dihitung sebagai lebih banyak token
+
+Claude Haiku 5.5 menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya. Seperti semua model yang menggunakan tokenizer ini, teks input yang sama menghasilkan sekitar 30% lebih banyak token pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Peningkatan pastinya bergantung pada konten. Bentuk permintaan dan respons tidak bergantung pada tokenizer, tetapi apa pun yang Anda ukur atau anggarkan dalam token akan berubah. Lihat [Hitung ulang token](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#recount-tokens) di panduan migrasi.
+
+### Memutar ulang blok pemikiran lintas akun
+
+Blok pemikiran dari Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Hal ini hanya penting jika Anda menyimpan percakapan dan memutarnya ulang melalui akun yang berbeda. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).

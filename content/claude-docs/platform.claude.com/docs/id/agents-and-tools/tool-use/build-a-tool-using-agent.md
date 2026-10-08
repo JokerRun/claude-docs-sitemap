@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: d0832c11ddd4098a5e9d1f29643e743d1c2f089dcf4176f10513a26cd5e8ecd3
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: b5a8f5f7e21c1d60e96c8a90d05c1b46d9fbb4f8a9a3b9241d6d3bc2570c1aa4
 ---
 
 ---
@@ -4025,10 +4025,6 @@ Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude m
 Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, lalu mengulanginya. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, teruskan daftarnya ke `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
 
 Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah ini menunjukkan bentuk idiomatis untuk setiap bahasa.
-
-<Note>
-  Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Lihat [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) untuk referensi lengkapnya. Tab cURL dan CLI menampilkan catatan alih-alih kode; pertahankan loop Cincin 4 untuk skrip berbasis curl atau CLI.
-</Note>
 
 <CodeGroup>
   ```bash cURL

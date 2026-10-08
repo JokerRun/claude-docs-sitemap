@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 20d9dda65e244f3f4d4c5d389e6e096610572dc54032f03960703792fa5b324f
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: b7a3dc8e94374e4ab2b1302d1065502f9efb8a7d3630918aaf43537851af3f42
 ---
 
 ---
@@ -61,7 +61,7 @@ Bahkan model bahasa paling canggih, seperti Claude, terkadang dapat menghasilkan
 
 ## Teknik lanjutan
 
-* **Verifikasi chain-of-thought**: Minta Claude untuk menjelaskan penalarannya langkah demi langkah sebelum memberikan jawaban akhir. Ini dapat mengungkap logika atau asumsi yang keliru.
+* **Verifikasi chain-of-thought**: Gunakan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan `display: "summarized"`, dan tinjau penalaran yang dirangkum dalam blok `thinking` ketika sebuah jawaban terlihat salah. Ini dapat mengungkap logika atau asumsi yang keliru.
 
 * **Verifikasi best-of-N**: Jalankan Claude dengan prompt yang sama beberapa kali dan bandingkan outputnya. Ketidakkonsistenan antar output dapat mengindikasikan halusinasi.
 

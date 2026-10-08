@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: dd170c06ae43634b6c36926e390fc7154333e33b3b2ed3cff55ca047fc542878
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 3018876d5a188060e78b944cf152fb2757a63f7721a345a32aff05d1b2ad7138
 ---
 
 ---
@@ -1067,6 +1067,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `"claude-haiku-5-5"`
+
+    Fastest model for high-volume, real-time tasks
 
   - `"claude-sonnet-5-5"`
 

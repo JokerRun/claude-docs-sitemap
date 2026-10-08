@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3a8be2539c7e4a96794a30e3873f8e3ee5fd9c1ad34939741cb87e73a94c3e56
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: bef2e69f03b1b8feca8b3f5c2f6521f2244e9c6459765009bb835a967a469d58
 ---
 
 ---
@@ -162,7 +162,7 @@ no time filter) with the default `order_by`. `user_ids[]` with
 
   - `name: string`
 
-    Chat name/title
+    Chat name. Empty when `deleted_at` is set.
 
   - `organization_uuid: string`
 
@@ -324,7 +324,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID \
 
   - `name: string`
 
-    Chat name/title
+    Chat name. Empty when `deleted_at` is set.
 
   - `organization_uuid: string`
 
@@ -728,7 +728,7 @@ Retrieves message history and file metadata for a specific chat.
 
 - `name: string`
 
-  Chat name
+  Chat name. Empty when `deleted_at` is set.
 
 - `organization_uuid: string`
 

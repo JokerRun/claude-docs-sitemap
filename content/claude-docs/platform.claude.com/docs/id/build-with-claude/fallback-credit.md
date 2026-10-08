@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 84f9de4c48d790b0ebcf1ab8e64002ba6e15f211a45d1abb8310090ccd934bd4
+fetched_at: 2026-10-08T02:28:25.993144Z
+sha256: 3b10c6ccd399a9c02cf11dff53fafbd2d4198bb52e59e0ac6d4a5d613443f468
 ---
 
 ---
@@ -21,7 +21,7 @@ Anda memerlukan halaman ini hanya jika Anda membangun percobaan ulang sendiri: m
 
 <Steps>
   <Step title="Ikut serta dengan header beta">
-    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, dan header sebelumnya `fallback-credit-2026-06-01` tetap diterima dan memberikan field yang sama.
+    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, kecuali di Amazon Bedrock dan Google Cloud, yang mengembalikan error 400 untuk header tersebut. Header `fallback-credit-2026-06-01` yang lebih lama tetap diterima dan memberikan field yang sama.
   </Step>
 
   <Step title="Baca dua field dari penolakan">
@@ -634,7 +634,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
 </Accordion>
 
 <Accordion title="Ketika fallback_has_prefill_claim tidak ada">
-  Field ini bernilai `null` hanya ketika token juga `null`, sehingga nilai yang Anda amati saat memegang token tidak pernah `null`. Field ini masih bisa tidak ada (`None` di SDK bertipe) di Amazon Bedrock, Google Cloud, dan Microsoft Foundry selama dukungan mereka untuk field ini diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui, bukan sebagai `false`. Coba bentuk pesan-asisten-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected), yang kembali ke body tanpa perubahan.
+  Field ini tidak memiliki nilai hanya ketika token juga tidak memiliki nilai, sehingga selama Anda memegang token, field ini memiliki nilai, kecuali di Amazon Bedrock, Google Cloud, dan Microsoft Foundry, di mana field ini masih bisa tidak ada selama dukungan mereka untuk field tersebut diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false` (python: `False`). Coba bentuk pesan-asisten-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected), yang beralih ke body tanpa perubahan.
 </Accordion>
 
 <Accordion title="Menyalin content dari respons yang ditolak">
