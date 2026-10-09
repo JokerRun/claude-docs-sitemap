@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 00264b62dc99fb6a9896757a7d6927158251c0f04e2c1f6225663bf35cf63eb7
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: ceece1da4580b14d4a9e8a43cd99bf37e5e6e224e793a12db4608d95d350dda1
 ---
 
 ---
@@ -29,6 +29,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta

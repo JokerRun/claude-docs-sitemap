@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 3b980ab5c11785aad4ef9105ac073b8a410cdb0d2280c1ea98e28887eb2a3a4d
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: f1c415f9a96b5ef7b7498c794b2fdb1a9d12f83522355372257b4cd96308a48f
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ Claude Code applies four checks:
 * **Git redirects**: Claude Code blocks a Bash or Monitor command that redirects git into the main checkout. The redirect can come through `git -C`, `--git-dir`, a `GIT_DIR` or `GIT_WORK_TREE` variable, or a `cd` into the main checkout before running git.
 * **Command shape**: Claude Code blocks a Bash or Monitor command when it can't verify from the command text that any git the command runs stays inside the worktree. That happens, for example, when the command name is computed at runtime, when the syntax can't be parsed, or when an expansion such as `${!name}` or `${ command; }` could run a command the text doesn't spell out. Claude Code tells Claude how to rewrite the refused command, such as splitting it into plain, separate commands. You can't turn this check off.
 
-These checks read the path an edit targets, the directory a command runs in, and the text of the command. None of them tracks which files a shell command writes, so a command that writes into the main checkout without running git there, such as `cp` or a shell redirect, isn't refused by them. Claude Code treats that command like any other shell command, so whether it runs or prompts you depends on your [permission mode](/docs/en/permission-modes) and rules.
+These checks read the path an edit targets, the directory a command runs in, and the text of the command. None of them tracks which files a shell command writes, so a command that writes into the main checkout without running git there, such as `cp` or a shell redirect, isn't refused by them. Claude Code treats that command like any other shell command under your [permissions](/docs/en/permissions) and [sandboxing](/docs/en/sandboxing) settings.
 
 The checks apply to the repository you launched Claude Code from. They also cover the main checkout a linked worktree is linked from. For PowerShell commands, Claude Code applies only the working-directory check.
 

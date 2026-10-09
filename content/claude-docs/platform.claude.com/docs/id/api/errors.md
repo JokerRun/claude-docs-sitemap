@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ba56b40200800b6bbae880108baab46398f51dd5240870f7fcd01faa341b28d1
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 71b0b662fe31830e4c00c5ada15d31fa3c1462c4fbe2a9241975f05efbba707e
 ---
 
 ---
@@ -512,7 +512,7 @@ Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output
 messages.N: output_config.effort 'low' differs from the 'high' in effect before it; effort cannot change when thinking is disabled on this model. Use effort 'high', or enable thinking.
 ```
 
-Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama seperti yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku, permintaan akan mengembalikan 400 `invalid_request_error` dengan pesan yang sesuai di atas.
+Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang berlaku, permintaan akan mengembalikan error 400 `invalid_request_error` dengan pesan yang sesuai seperti yang ditunjukkan sebelumnya.
 
 Dalam kedua pesan tersebut, "enable thinking" berarti pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort per giliran, gunakan pemikiran adaptif.
 

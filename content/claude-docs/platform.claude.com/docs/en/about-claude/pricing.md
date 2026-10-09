@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e3b617a13c2b0c7719ce7f5aa71995c4af7b8825c7869aae7aa5a9e1927cabcf
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: c7839126109bc538fa84e674e91fe1410458ae22337f1b53632d7c0ad454ddfd
 ---
 
 ---
@@ -228,7 +228,7 @@ For more information about batch processing, see [Batch processing](https://plat
 
 Claude 4.6 and later models (except Claude Haiku 5.5) and [Claude Mythos Preview](https://anthropic.com/glasswing) include the full [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) at standard pricing. (A 900k-token request is billed at the same per-token rate as a 9k-token request.) Prompt caching and batch processing discounts apply at standard rates across the full context window.
 
-Claude Haiku 5.5 is priced by prompt length: a prompt of over 100,000 tokens pays higher prices. [Model pricing](https://platform.claude.com/docs/en/about-claude/pricing#model-pricing) and [Batch processing](https://platform.claude.com/docs/en/about-claude/pricing#batch-processing) list both sets of prices.
+Claude Haiku 5.5 is priced by prompt length: a request whose prompt is over 100,000 tokens pays higher prices. A request's prompt length counts all of its input tokens, including cache reads and cache writes. Each request is priced on its own: a request over the threshold pays the higher prices even when part of its prompt is a cache hit, and earlier requests keep the prices they were billed at. [Model pricing](https://platform.claude.com/docs/en/about-claude/pricing#model-pricing) and [Batch processing](https://platform.claude.com/docs/en/about-claude/pricing#batch-processing) list both sets of prices.
 
 ### Tool use pricing
 
@@ -512,7 +512,7 @@ For enterprise customers with specific needs:
 * Dedicated support
 * Custom terms
 
-Contact the sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or through the [Claude Console](https://platform.claude.com/settings/limits) to discuss enterprise pricing options.
+Contact the sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or through the [Claude Console](https://platform.claude.com/usage/limits) to discuss enterprise pricing options.
 
 ## Billing and payment
 

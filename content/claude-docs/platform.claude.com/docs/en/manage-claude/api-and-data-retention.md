@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c45b4c95445a462b56f52c22fa16cb1bfbcfeac1d8b3065a014da90641e341a8
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 40900400de1749c16e6867957e7ec4c1c91afd8b15dc0447133ca616e98cabce
 ---
 
 ---
@@ -150,7 +150,7 @@ Organizations with a ZDR arrangement can make these models available in a specif
 
 <Steps>
   <Step title="Open the workspace's privacy controls">
-    In [Claude Console > Settings > Workspaces](https://platform.claude.com/settings/workspaces), select the workspace and open its **Privacy controls** tab.
+    In [Claude Console > Settings > Workspaces](https://platform.claude.com/settings/workspaces), select the workspace. In the panel that opens, click **Security** to open the workspace's Security page. Under **Data retention**, click **Manage in Privacy controls**.
   </Step>
 
   <Step title="Turn on 30-day data retention">

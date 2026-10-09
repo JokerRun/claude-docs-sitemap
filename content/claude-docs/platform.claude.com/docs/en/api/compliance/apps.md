@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 17107e037d59e47051182ccfb27ad900741bcd1d6bbe95f7c54f7029df6edd29
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: c65c588b74cbf7abb48aa7a42ba494bad9d108e422704b0865356be105026bea
 ---
 
 ---
@@ -251,6 +251,11 @@ curl https://api.anthropic.com/v1/compliance/apps/chats \
 
 Permanently deletes a chat and all associated messages and
 files. This is a destructive operation that cannot be undone.
+
+A chat's remote sessions are deleted first. If that deletion cannot be
+confirmed, the request returns a 503 with error code
+`chat_delete_remote_sessions_unconfirmed` and leaves the chat unchanged.
+You can retry the request.
 
 #### Path parameters
 

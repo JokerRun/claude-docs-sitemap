@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 76b1f38ffcedd51317eeee50f2ba7472cc404c3e3a66405c425e6aef0f1fd86b
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 98209baf78fc0ea1c262434b2ee444f4d8a8cca075bcf3ad35254d42fb71582e
 ---
 
 > ## Documentation Index
@@ -197,7 +197,7 @@ Organization-level controls and usage visibility.
     <tr>
       <td>[Server-managed settings](/docs/en/server-managed-settings)</td>
       <td>✓ (Team and Enterprise)</td>
-      <td>✓ (Team and Enterprise)</td>
+      <td>See [Platform availability](/docs/en/server-managed-settings#platform-availability)</td>
       <td>✗</td>
       <td>✗</td>
       <td>✗</td>
@@ -288,7 +288,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
   <Tab title="Anthropic Console">
     **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription).
 
-    Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](/docs/en/fast-mode) requires [provisioned access](/docs/en/fast-mode#enable-fast-mode-for-your-organization). [Server-managed settings](/docs/en/server-managed-settings) are also available when your API key belongs to a Team or Enterprise organization.
+    Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](/docs/en/fast-mode) requires [provisioned access](/docs/en/fast-mode#enable-fast-mode-for-your-organization). [Server-managed settings](/docs/en/server-managed-settings) that you configure in a claude.ai Team or Enterprise organization don't reach a session that authenticates with a Console API key. See [Platform availability](/docs/en/server-managed-settings#platform-availability) for how to cover those sessions.
   </Tab>
 </Tabs>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b28aa2e2a0a22d56522e262c3121a121c7bef3b7d98ce6e689018ff70a2b8043
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: b9d2d4bed9d87733fe3ce36e2702383f68c0761766209e7efd832cd016187df2
 ---
 
 ---
@@ -96,7 +96,7 @@ Lihat panduan tentang [menetapkan kriteria keberhasilan](https://platform.claude
 
 ### Pilih model Claude yang tepat
 
-Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 5 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini yang memerlukan akurasi tinggi. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 4.5.
+Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 5 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini di mana akurasi tinggi diperlukan. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 5.5.
 
 Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk meringkas 1.000 perjanjian sewa-ulang menggunakan model Opus dan Haiku:
 
@@ -108,32 +108,48 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
 
 * **Perkiraan token**
 
-  * Token input: 86 juta (dengan asumsi 1 token per 3,5 karakter)
-  * Token output per ringkasan: 350
-  * Total token output: 350.000
+  * Token input: 108 juta, sekitar 108.000 per perjanjian (sekitar 1 token per 2,8 karakter, rasio yang ditunjukkan oleh ketiga model pada contoh perjanjian dalam panduan ini)
+  * Token output per ringkasan, termasuk token pemikiran apa pun, yang ditagih sebagai output: sekitar 4.800 pada Claude Opus 5, 2.000 pada Claude Opus 4.8, dan 3.100 pada Claude Haiku 5.5
+  * Total token output: 4,8 juta pada Claude Opus 5, 2,0 juta pada Claude Opus 4.8, dan 3,1 juta pada Claude Haiku 5.5
 
 * **Perkiraan biaya Claude Opus 5**
 
-  * Biaya token input: 86 MTok \* $5,00/MTok = $430,00 USD
-  * Biaya token output: 0,35 MTok \* $25,00/MTok = $8,75 USD
-  * Total biaya: $430,00 + $8,75 = $438,75 USD
+  * Biaya token input: 108 MTok \* $5,00/MTok = $540,00 USD
+  * Biaya token output: 4,8 MTok \* $25,00/MTok = $120,00 USD
+  * Total biaya: $540,00 + $120,00 = $660,00 USD
 
 * **Perkiraan biaya Claude Opus 4.8**
 
-  * Biaya token input: 86 MTok \* $5,00/MTok = $430,00 USD
-  * Biaya token output: 0,35 MTok \* $25,00/MTok = $8,75 USD
-  * Total biaya: $430,00 + $8,75 = $438,75 USD
+  * Biaya token input: 108 MTok \* $5,00/MTok = $540,00 USD
+  * Biaya token output: 2,0 MTok \* $25,00/MTok = $50,00 USD
+  * Total biaya: $540,00 + $50,00 = $590,00 USD
 
-* **Perkiraan biaya Claude Haiku 4.5**
+* **Perkiraan biaya Claude Haiku 5.5**, dengan harganya untuk prompt di atas 100.000 token
 
-  * Biaya token input: 86 MTok \* $1,00/MTok = $86,00 USD
-  * Biaya token output: 0,35 MTok \* $5,00/MTok = $1,75 USD
-  * Total biaya: $86,00 + $1,75 = $87,75 USD
+  * Biaya token input: 108 MTok \* $0,50/MTok = $54,00 USD
+  * Biaya token output: 3,1 MTok \* $2,50/MTok = $7,75 USD
+  * Total biaya: $54,00 + $7,75 = $61,75 USD
 
 <Tip>
-  Biaya aktual mungkin berbeda dari perkiraan ini. Perkiraan ini didasarkan pada contoh yang disorot di bagian 
+  Biaya aktual mungkin berbeda dari perkiraan ini. Jumlah token berasal dari menjalankan contoh di bagian 
 
   [Buat prompt yang kuat](https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization#build-a-strong-prompt)
+
+   pada contoh perjanjian dalam panduan ini, sekitar 105.000 token input, dan panjang output bervariasi tergantung dokumen dan dari satu eksekusi ke eksekusi lainnya. Setiap perjanjian di sini adalah satu prompt berukuran sekitar 108.000 token, melebihi ambang batas 100.000 token dari 
+
+  [harga prompt panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)
+
+   Claude Haiku 5.5. Dokumen yang prompt-nya tetap pada atau di bawah 100.000 token dikenakan $0,10/MTok untuk input dan $0,50/MTok untuk output. Untuk melihat harga mana yang berlaku, hitung token dokumen Anda dengan 
+
+  [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
+
+   dan 
+
+  `model`
+
+   diatur ke 
+
+  `claude-haiku-5-5`
 
   .
 </Tip>
@@ -195,9 +211,9 @@ client = anthropic.Anthropic()
 
 
 def summarize_document(
-    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
 ):
-    # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    # Format detail yang akan diekstrak agar ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
 
     # Minta model untuk merangkum perjanjian sewa ulang (sublease)
@@ -302,9 +318,9 @@ def chunk_text(text, chunk_size=20000):
 
 
 def summarize_long_document(
-    text, details_to_extract, model="claude-opus-5-5", max_tokens=1000
+    text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
 ):
-    # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    # Format detail yang akan diekstrak agar ditempatkan dalam konteks prompt
     details_to_extract_str = "\n".join(details_to_extract)
 
     # Iterasi setiap chunk dan ringkas masing-masing

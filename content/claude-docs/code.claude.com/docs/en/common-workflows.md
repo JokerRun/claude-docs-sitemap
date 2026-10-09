@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: baf23e2966963735ccd63aa35a4a5d1a97eedec8f794c4f3742adcf13806cfd7
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: d47e2306d6eaee7b404c46aa0d287c3fe6d94a4b193f27bc5528b0b9d48c5c15
 ---
 
 > ## Documentation Index
@@ -425,7 +425,7 @@ Pick a scheduling option based on where you want the task to run:
 
 ### Ask Claude about its capabilities
 
-Claude has built-in access to its documentation and can answer questions about its own features and limitations.
+Claude can answer questions about its own features and limitations. It looks up the answers in the current Claude Code documentation, so they aren't limited to the version you're running.
 
 #### Example questions
 
@@ -460,7 +460,6 @@ what are the limitations of Claude Code?
 <Tip>
   Tips:
 
-  * Claude always has access to the latest Claude Code documentation, regardless of the version you're using
   * Ask specific questions to get detailed answers
   * Claude can explain complex features like MCP integration, enterprise configurations, and advanced workflows
 </Tip>

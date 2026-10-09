@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 61b4798ea30d512a7a0048eb74c7b1015f275911c43455535cf3ce3bbb966be5
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: b32a42750a78563819646ff6b2590a9c9a829bf0c0ef95a9f24924588a24c21f
 ---
 
 ---
@@ -34,11 +34,11 @@ Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://plat
 
 Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#change-the-lists-mid-session), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak diteruskan kembali ke agen yang mendasarinya. `allowed_domains` dan `blocked_domains` yang diperbarui berlaku untuk sisa sesi.
 
-Hanya `tools` dan `mcp_servers` milik agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency)-nya, juga tidak dapat berubah di tengah sesi: tetapkan pin saat Anda menyimpan agen, atau tetapkan atau hapus pin tersebut untuk satu sesi dengan override `model` saat Anda membuatnya. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda masih dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#sending-system-messages).
+Hanya `tools` dan `mcp_servers` milik agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency)-nya, juga tidak dapat diubah di tengah sesi: tetapkan pin saat Anda menyimpan agen, atau tetapkan atau hapus pin untuk satu sesi dengan override `model` saat Anda membuatnya. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda tetap dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-system-messages).
 
 Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, ubah array-nya, lalu `POST` kembali.
 
-Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Sesi harus dalam status `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
 <CodeGroup>
   ```bash cURL
@@ -540,7 +540,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
 <CodeGroup>
   ```bash cURL
@@ -589,7 +589,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terkaitnya. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terkaitnya. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
 
 Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama sistem file-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi. File output yang ditulis di akhir giliran terakhir dapat memerlukan beberapa detik setelah sesi menjadi idle untuk muncul di [daftar file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files), jadi periksa terlebih dahulu bahwa file yang Anda harapkan sudah terdaftar.
 

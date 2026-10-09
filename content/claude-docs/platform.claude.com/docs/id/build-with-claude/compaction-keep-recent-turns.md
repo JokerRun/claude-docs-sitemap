@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 6a9aae34d3d4e13a5b6389565438ca2aec1150d72e61f5efe73ff2863e966297
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 1921e3d1befea987c49e97e499cdc7a799cc5dbb5f98b4c98fab0847394bef6f
 ---
 
 ---
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta

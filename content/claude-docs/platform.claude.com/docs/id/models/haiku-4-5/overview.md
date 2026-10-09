@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 98a8154170118355f308d37fa41e0b42889dcbc1b7651bb572d7d0d957998bb3
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 1bd04905c6969623132cb7b2beec611abdca64019772df4afab312371258d2b6
 ---
 
 ---
 title: Claude Haiku 4.5
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-description: "Sekilas tentang Claude Haiku 4.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
+description: "Referensi Claude Haiku 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Haiku 4.5 adalah model lama; Claude Haiku 5.5 adalah model Haiku saat ini."
 ---
 
 **Legacy.** Released October 15, 2025.
@@ -21,7 +21,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 
 [Announcement](https://www.anthropic.com/news/claude-haiku-4-5)
 
-## Perbandingannya
+## Perbandingannya dengan jajaran model saat ini
 
 | Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
 | :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |

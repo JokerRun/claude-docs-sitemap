@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: dfb14b1df8166b727342bbc8518a8b397435a9695d0ed8d248f98d51a70b6102
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: b544c3e2f36c8e50a5b89782effad37d98cbe998b46244792fe5e13e1d8f6487
 ---
 
 ---
@@ -167,7 +167,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   ```
 </CodeGroup>
 
-Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming. Selama pratinjau riset, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional memberikan `instructions` untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
+Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming. Selama pratinjau riset, `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
 
 Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
@@ -661,10 +661,10 @@ Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usag
 
 ## Batas
 
-| Batas                  | Nilai                                                                                                           |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Sesi per dream         | 100                                                                                                             |
-| Panjang `instructions` | 4.096 karakter                                                                                                  |
-| Model yang didukung    | `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, `claude-sonnet-4-6` |
+| Batas                  | Nilai                                                                                                                                                                       |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sesi per dream         | 100                                                                                                                                                                         |
+| Panjang `instructions` | 4.096 karakter                                                                                                                                                              |
+| Model yang didukung    | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
 Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam pratinjau riset. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.

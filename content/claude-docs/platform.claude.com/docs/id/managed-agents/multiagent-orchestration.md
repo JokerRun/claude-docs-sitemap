@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ac9f1ff46df2764ba64f34f8dba15a9a92353646d1f9c63d5e733de235b5e354
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 04bbd911ca39d31fd610fc20de742a2b7f016e91fa98e85a0f31b4057376c2d7
 ---
 
 ---
@@ -1196,7 +1196,7 @@ Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `
 
 Event penting diproksikan ke primary thread. Namun, Anda mungkin masih ingin menyelidiki penalaran dan panggilan alat dari agen tertentu. Untuk melakukannya, lakukan streaming atau cantumkan event dari session thread yang terkait.
 
-Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya mempratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event session thread](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
+Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya menampilkan pratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event thread sesi](https://platform.claude.com/docs/id/managed-agents/event-deltas#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
 
 <Tabs>
   <Tab title="Streaming event thread sesi">

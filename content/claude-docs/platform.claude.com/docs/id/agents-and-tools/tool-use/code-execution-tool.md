@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 628eae266b9fe1f809b36f70a1904673d42efdda8c753f56d7d50dd248efeab8
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: bfeeaba7996e0b8a3fe0c9d27595f3a503d0c494b630c56566e71a71a0767695
 ---
 
 ---
@@ -27,6 +27,7 @@ featureMetadata:
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929
+    - claude-haiku-5-5
     - claude-haiku-4-5-20251001
   supportedPlatforms:
     Claude API: ga

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 60b8d897b7b89ed358f44248c3c2a315b1a26f1f6d2c5c000e06febf0b962be5
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 173047702e004e0d2ec0d9fb02ba11864d5173836b25eddf57b2f739daf5a234
 ---
 
 ---
@@ -24,6 +24,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-opus-4-8
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: not available

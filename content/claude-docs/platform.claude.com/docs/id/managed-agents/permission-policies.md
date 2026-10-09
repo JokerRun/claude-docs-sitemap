@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ab86ac3c2bab96b44d91b19839fc85f0be99e63285a91b24c8e78b567f7a25d9
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: d128009ba6bfbe384bd780be15fb1956ef925837546fcde27f08025ea8f19744
 ---
 
 ---
@@ -1086,11 +1086,29 @@ Panggilan alat dievaluasi menjadi `ask` di bawah kebijakan `always_ask`, atau di
 3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
 4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` Anda.
 
+Misalnya, panggilan `bash` yang dijeda di bawah kebijakan `always_ask` muncul di stream sebagai berikut:
+
+```json
+{
+  "type": "agent.tool_use",
+  "id": "sevt_01def...",
+  "name": "bash",
+  "input": {
+    "command": "pip install -r requirements.txt"
+  },
+  "evaluated_permission": "ask",
+  "evaluation": {
+    "type": "always_ask"
+  },
+  "processed_at": "2026-03-25T14:01:45Z"
+}
+```
+
 Jika Anda mengirim `user.tool_confirmation` untuk event yang `evaluated_permission`-nya bukan `ask`, API menolaknya dengan error 400. Hal ini termasuk panggilan yang ditolak server di bawah `auto`: klien Anda tidak dapat membatalkannya.
 
 Untuk menjawab secara interaktif, gunakan `ant beta:sessions connect`, yang menampilkan panggilan yang sedang menunggu dan mengirim event ini ketika Anda mengizinkan atau menolaknya. Lihat [Menghubungkan ke sesi Managed Agents dari terminal Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect#follow-and-steer-the-session).
 
-Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event dalam panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
+Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#stream-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
 <CodeGroup>
   ```bash cURL
@@ -1345,7 +1363,7 @@ Dalam contoh berikut, ID event tool-use berasal dari array `stop_reason.event_id
 
 ## Alat kustom
 
-Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
+Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur lengkapnya.
 
 ## Langkah selanjutnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: fe868032ed6f9826a1ffe637d6e95b1a1f222121d9fa2d64b0ad2fe38d0ef2f6
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 93742a6c0f6c3895b247189c88e346ed36502060b61f81251f8f9239c879209e
 ---
 
 ---
@@ -77,7 +77,7 @@ Claude Enterprise Analytics API tersedia untuk organisasi Claude Enterprise. Dat
 
 Claude Enterprise Analytics API menyediakan:
 
-* **Aktivitas pengguna:** metrik harian per pengguna di seluruh chat (percakapan, pesan, proyek, file, artifact), Claude Code (sesi, commit, pull request, baris kode, tindakan alat), dan produk Claude lainnya
+* **Aktivitas pengguna:** metrik harian per pengguna di seluruh chat (percakapan, pesan, proyek, file, artifact), Claude Code (sesi, commit, pull request, baris kode, tindakan alat), Chat and Cowork unified (aktivitas chat dan sesi Cowork), serta produk Claude lainnya
 * **Ringkasan aktivitas:** pengguna aktif harian, mingguan, dan bulanan tingkat organisasi, jumlah seat, dan undangan yang tertunda
 * **Penggunaan proyek, skill, dan konektor:** rincian adopsi untuk proyek chat, skill, dan konektor
 * **Laporan biaya dan penggunaan:** penggunaan token dan biaya per pengguna dan tingkat organisasi dari waktu ke waktu (paket Enterprise berbasis penggunaan)
@@ -100,7 +100,19 @@ Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 
 
 **Pengguna aktif.** Seorang pengguna dihitung aktif untuk suatu hari jika salah satu dari hal berikut benar: mereka mengirim setidaknya satu pesan chat di Claude, mereka memiliki setidaknya satu sesi Claude Code (lokal atau jarak jauh) yang terkait dengan organisasi Claude Enterprise Anda yang mencakup penggunaan alat atau aktivitas git, atau mereka memiliki setidaknya satu sesi Cowork dengan penggunaan alat atau aktivitas pesan.
 
-**Blok metrik per produk.** Objek metrik per produk (misalnya, metrik Office Agent atau Cowork pada catatan aktivitas pengguna) selalu ada di setiap catatan. Organisasi tanpa penggunaan produk tersebut akan melihat nilai yang semuanya nol, bukan `null`.
+**Chat and Cowork unified (beta).** Chat and Cowork unified membawa fitur-fitur Cowork ke dalam chat claude.ai. Sebagian besar aktivitas di Chat and Cowork unified dilaporkan di bawah nilai produk `chat_cowork_unified`, bukan `chat` atau `cowork`.
+
+Dalam aktivitas pengguna serta dalam penggunaan skill, konektor, dan plugin, penggunaan ini muncul di objek `chat_cowork_unified_metrics`. Dalam ringkasan aktivitas, penggunaan ini dihitung dalam `chat_cowork_unified_daily_active_user_count`, `chat_cowork_unified_weekly_active_user_count`, dan `chat_cowork_unified_monthly_active_user_count`.
+
+Seiring semakin banyak pengguna mulai menggunakan Chat and Cowork unified, penggunaan berpindah dari angka chat dan Cowork Anda ke angka-angka baru ini. Penggunaan dari hari-hari sebelum seorang pengguna mulai menggunakan Chat and Cowork unified tetap berada di bawah chat atau Cowork. Angka di seluruh organisasi, seperti total penggunaan token, total biaya, dan jumlah pengguna aktif keseluruhan, tidak berubah. Laporan biaya dan penggunaan yang difilter berdasarkan produk tidak menyertakan penggunaan Chat and Cowork unified kecuali `products[]` menyertakan `chat_cowork_unified`.
+
+Sebagian aktivitas dari pengguna Chat and Cowork unified, seperti mode suara, masih dapat dilaporkan di bawah chat atau Cowork. Aktivitas seorang pengguna juga dapat terbagi antar produk pada hari mereka mulai menggunakan Chat and Cowork unified. Hal yang sama berlaku pada hari fitur tersebut dinonaktifkan untuk mereka. Cara pembagian aktivitas tidak dijamin.
+
+Seorang pengguna dapat muncul baik dalam hitungan chat atau Cowork maupun dalam hitungan Chat and Cowork unified. Hal ini dapat terjadi pada hari ketika mereka menggunakan Chat and Cowork unified dan sebagian aktivitas mereka masih dilaporkan di bawah chat atau Cowork. Hitungan mingguan dan bulanan dapat menyertakan mereka di keduanya ketika jendela waktu memiliki aktivitas dari kedua jenis, bahkan pada hari yang berbeda. Misalnya, jendela waktu tersebut mungkin mencakup hari-hari sebelum dan sesudah mereka mulai menggunakan Chat and Cowork unified.
+
+Ketika Anda memfilter aktivitas pengguna berdasarkan proyek, aktivitas proyek setiap hari hanya dihitung di satu tempat. Jika seorang pengguna mengirim pesan chat di Chat and Cowork unified pada hari itu, semua aktivitas proyek mereka dihitung dalam `chat_cowork_unified_metrics.chat`. Jika tidak, aktivitas tersebut dihitung dalam `chat_metrics`.
+
+**Blok metrik per produk.** Objek metrik per produk (misalnya, metrik Office Agent atau Cowork pada catatan aktivitas pengguna) selalu ada di setiap catatan. Organisasi tanpa penggunaan produk tersebut akan melihat nilai yang semuanya nol, bukan `null`. Pengecualiannya adalah Chat and Cowork unified: pada deployment yang tidak menawarkannya, field-nya dihilangkan dari respons.
 
 **Nama konektor.** Nama konektor dinormalisasi di seluruh sumber. Misalnya, `Atlassian MCP server`, `mcp-atlassian`, dan `atlassian_MCP` semuanya muncul sebagai `atlassian` di endpoint penggunaan konektor.
 

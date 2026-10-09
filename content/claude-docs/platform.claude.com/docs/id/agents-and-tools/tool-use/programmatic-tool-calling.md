@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9bd9c7d679d151e2d1a158cc6235da9b87f7f96537081b548de5293299254c62
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 344856c50edde82b1b58b11dcf9af3b64a4837b92243c2bb8eb9b72dd7eb84e0
 ---
 
 ---
@@ -27,6 +27,7 @@ featureMetadata:
     - claude-sonnet-5
     - claude-sonnet-4-6
     - claude-sonnet-4-5-20250929
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga

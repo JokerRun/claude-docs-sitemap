@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c008dc8436b2c3a8f4314c05e934c9c542a03e16b7b1aab347e1bc71bbbff191
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 562b98b27c1f0734cf423613d042c34661b9af1aeea5298d0baf149e012e7c4f
 ---
 
 ---
@@ -617,7 +617,7 @@ Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/bu
 * 4.096 token untuk Claude Opus 4.6 dan Claude Opus 4.5
 * 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 * 4.096 token untuk Claude Haiku 4.5
-* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
+* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 
 Batas minimum ini berlaku di setiap platform tempat masing-masing model tersedia.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4ee5d2090256966ff383ab8e133b81204352d3cd01d9bc88346c172c0d80a5ff
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: ce990fc9201a6767a8939dcb1788ccd4572c3eec56301043365341937f99df64
 ---
 
 ---
@@ -87,8 +87,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.69.0")
-        implementation("com.anthropic:anthropic-java-foundry:2.69.0")
+        implementation("com.anthropic:anthropic-java:2.70.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.70.0")
 
         // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
         implementation("com.azure:azure-identity:1.18.3")
@@ -100,12 +100,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.69.0</version>
+            <version>2.70.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.69.0</version>
+            <version>2.70.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>

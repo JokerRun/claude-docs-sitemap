@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ec3b81471d6efb0ff4bff72a6c98d4bfbdd13d49f44676ee8150c850a038f77b
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 75daf4286c5e2e21028a164a79485ccd96ff3e57684c5137b57d869e54d7a711
 ---
 
 > ## Documentation Index
@@ -317,9 +317,11 @@ For details, see [Google Cloud's Agent Platform IAM documentation](https://cloud
 
 ## 1M token context window
 
-Claude Sonnet 5, Opus 4.6 and later, and Sonnet 4.6 support the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) on Google Cloud's Agent Platform. Sonnet 5 always runs with the 1M window, with no `[1m]` variant to select. For the other models, Claude Code automatically enables the extended context window when you select a 1M model variant.
+Fable models, Sonnet 5 and later, and Opus 4.7 and later run with the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) by default on Google Cloud's Agent Platform, with no `[1m]` suffix needed. To keep a 200K window instead, set [`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`](/docs/en/model-config#turn-off-1m-context).
 
-The [setup wizard](#sign-in-with-agent-platform) offers a 1M context option when it pins models. To enable it for a manually pinned model instead, append `[1m]` to the model ID. See [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments) for details, including how to use the 1M window without changing the pin.
+Opus 4.6 and Sonnet 4.6 reach the 1M window when you select their `[1m]` variant. The [setup wizard](#sign-in-with-agent-platform) offers a 1M context option when it pins models. To enable it for a manually pinned model instead, append `[1m]` to the model ID. See [Pin models for third-party deployments](/docs/en/model-config#pin-models-for-third-party-deployments) for details, including how to use the 1M window without changing the pin.
+
+Before v2.1.287, the Fable models and Opus 4.7 and later ran with a 200K window by default on Google Cloud's Agent Platform and reached the 1M window through a `[1m]` suffix.
 
 ## Troubleshooting
 

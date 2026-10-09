@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 399d4b9f973c2b98a7442a5970052e643cbbb662ddf436001b5c68cb8ca16314
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 858eee886a28219bb34a2f25f812822ab156623125b754f5ef546b97c5c7dedf
 ---
 
 > ## Documentation Index
@@ -551,7 +551,7 @@ VS Code reads `initialPermissionMode` from your user settings and ignores worksp
 | `attachOpenFile` | `true` | Add the file that is open in the editor to your messages and show it in the prompt box. When off, only your selected text is added. Requires Claude Code v2.1.271 or later |
 | `useCtrlEnterToSend` | `false` | Use Ctrl/Cmd+Enter instead of Enter to send prompts |
 | `scrollToBottomOnSend` | `true` | Scroll the conversation to the bottom when you send a message. When off, the conversation stays where you left it. Requires Claude Code v2.1.275 or later |
-| `showMessageTimestamps` | `false` | Show when each message was sent. A date line marks where the day changes. Requires Claude Code v2.1.284 or later |
+| `showMessageTimestamps` | `true` | Show when each message was sent. A date line marks where the day changes. Requires Claude Code v2.1.284 or later. Before v2.1.290, the default was `false` |
 | `enableNewConversationShortcut` | `false` | Enable Cmd/Ctrl+N to start a new conversation |
 | `enableReopenClosedSessionShortcut` | `true` | Use Cmd/Ctrl+Shift+T to reopen the most recently closed Claude session tab. When the last closed tab wasn't a Claude session, the shortcut runs VS Code's normal reopen-closed-editor command instead. |
 | `archiveInactiveSessions` | `14` | [Archive a session automatically](#resume-past-conversations) after this many days without activity: `1`, `2`, `7`, or `14`. Set `0` to turn it off. Requires Claude Code v2.1.265 or later |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 122b065227f63905c8417644d8bffcd3375236e2f8b8c4e1d66ef651c617957c
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: cb03f1b79427b89be38758f36f36c6f290e9d2b253cc0e26a2616fc12bb8778f
 ---
 
 > ## Documentation Index
@@ -91,6 +91,8 @@ To start one of the skill's workflows, type a subcommand after the skill name at
 | `migrate` | Update your existing Claude API code to a newer model | Earlier than v2.1.221 |
 | `upgrade` | Move your project's Anthropic SDK dependency across a major version, currently the Python `anthropic` package from 0.x to 1.x | v2.1.236 or later |
 | `managed-agents-onboard` | Walk through creating a new Managed Agent | Earlier than v2.1.221 |
+| `managed-agents-onboard <url>` | Build the Managed Agent that the page at the URL describes, such as a page in the [Managed Agents docs](https://platform.claude.com/docs/en/managed-agents/overview) | v2.1.290 or later |
+| `managed-agents-onboard <quickstart-name>` | Build one of the Console's quickstart templates, such as `deep-researcher`. If you give one word that isn't a template name, Claude lists the valid names | v2.1.290 or later |
 | `prompt-audit` | Flag instructions written for older models in your prompts, skills, and tool descriptions and propose fixes as a diff | v2.1.221 or later |
 | `cost-optimize` | Profile where your project's Claude API spend goes and propose savings from options such as prompt caching, trimming unneeded input and output tokens, batch processing, effort, and model choice, one change at a time | v2.1.247 or later |
 | `build-eval` | Build an eval set for your Claude-powered app | v2.1.259 or later |

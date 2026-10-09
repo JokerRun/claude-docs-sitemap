@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 184597afaf0586fff193c9289f3a3a0150f47b4936649708d35935679c021748
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 4f827d5b6b6f2927bc3b57e20819bb50ac10ed16027a42c217827443fefef20f
 ---
 
 ---
@@ -26,6 +26,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 60e16c5e123f866b70ee3aa1858e530e6c5a27a9a885ae042c7d9f73d5f7d374
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 2dc973cdfca5161ca74cac3afa0d9eddc9c5f21aecbf0463328a1a8ad1f6b9e2
 ---
 
 ---
@@ -39,7 +39,7 @@ Setiap baris menyebutkan satu perubahan, apakah perubahan tersebut baru, berubah
 
 ### Pemikiran adaptif dan effort
 
-Dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), Claude Haiku 5.5 memutuskan kapan dan seberapa banyak berpikir. Pemikiran adaptif aktif secara default. Meskipun Anda masih dapat menonaktifkan pemikiran dengan `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya, cara yang lebih baik untuk menyeimbangkan kualitas respons dengan kecepatan dan biaya adalah menggunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+Dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), Claude Haiku 5.5 menentukan kapan dan seberapa banyak harus berpikir. Pemikiran adaptif aktif secara default. Meskipun Anda masih dapat menonaktifkan pemikiran dengan `thinking: {"type": "disabled"}` pada effort `high` atau lebih rendah, cara yang lebih baik untuk menyeimbangkan kualitas respons dengan kecepatan dan biaya adalah menggunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 
 ### Jendela konteks dan output yang lebih besar
 

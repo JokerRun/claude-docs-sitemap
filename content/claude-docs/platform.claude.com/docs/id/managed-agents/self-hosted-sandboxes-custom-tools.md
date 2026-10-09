@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 0cfc28f498c38158fcffe7d1e75603841fe124c3cd35a7bfe8bea80de885a845
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 7d3719a519ea70a3840fc52e05e86f71f6e38dea5f610404dd6d1fdca4f19b56
 ---
 
 ---
@@ -201,7 +201,7 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
   </Step>
 </Steps>
 
-Worker hanya menjawab alat yang didaftarkan padanya. Jika sebuah alat dideklarasikan pada agen tetapi tidak ada worker atau klien yang melayaninya, sesi akan dijeda dengan alasan berhenti `requires_action`. Sesi tetap dijeda sampai ada sesuatu yang mengirimkan hasilnya. Lihat [Menangani pemanggilan alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur event-nya.
+Worker hanya menjawab alat yang didaftarkan padanya. Jika sebuah alat dideklarasikan pada agen tetapi tidak ada worker atau klien yang melayaninya, sesi akan dijeda dengan alasan berhenti `requires_action`. Sesi tetap dijeda hingga ada sesuatu yang mengirimkan hasilnya. Lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur event-nya.
 
 ## Membungkus server MCP sebagai alat kustom
 

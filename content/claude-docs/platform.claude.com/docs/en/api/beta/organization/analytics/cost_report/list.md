@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost_report/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8c8bc06c77c63392e1d1b9f44180f388c7c2c360709cb9beb78a53046e0cadfb
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 84e92ff517eec02242fa610958883fda50a5e709ae9e3b89a48939a32dea652b
 ---
 
 ---
@@ -143,6 +143,8 @@ Requires an API key with the `read:analytics` scope.
 
   - `"chat"`
 
+  - `"chat_cowork_unified"`
+
   - `"claude-tag"`
 
   - `"claude_code"`
@@ -263,7 +265,7 @@ Requires an API key with the `read:analytics` scope.
 
     - `product: string or null`
 
-      Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, and `claude-tag`. `claude-tag` is Claude Tag, the Claude product in Slack. Some unattributed usage is reported as "other".
+      Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only on deployments that offer Chat and Cowork unified. Some unattributed usage is reported as "other".
 
     - `rbac_group_id: string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: bb3666c53dc7505f0bac9be012090b0d90c900142833d800aaed34203b56bc89
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 41e9970c2a237b86765c3a95e326c6c78000f878cc782d3f2dacae48151067fa
 ---
 
 > ## Documentation Index
@@ -220,27 +220,19 @@ there's a bug where users can submit empty forms - fix it
 
 ## Step 7: Test out other common workflows
 
-There are a number of ways to work with Claude:
-
-**Refactor code**
+Try a few more prompts. You can ask Claude to refactor code, write tests, update documentation, or review your changes:
 
 ```text wrap theme={null}
 refactor the authentication module to use async/await instead of callbacks
 ```
 
-**Write tests**
-
 ```text wrap theme={null}
 write unit tests for the calculator functions
 ```
 
-**Update documentation**
-
 ```text wrap theme={null}
 update the README with installation instructions
 ```
-
-**Code review**
 
 ```text wrap theme={null}
 review my changes and suggest improvements
@@ -252,9 +244,11 @@ review my changes and suggest improvements
 
 ## Essential commands
 
-Here are the most important commands for daily use. Shell commands run from your terminal to start or resume Claude Code. Session commands run inside Claude Code after it starts.
+Here are the most important commands for daily use, grouped by where you run them.
 
-**Shell commands**
+### Shell commands
+
+Run these from your terminal to start or resume Claude Code.
 
 | Command | What it does | Example |
 | - | - | - |
@@ -264,7 +258,11 @@ Here are the most important commands for daily use. Shell commands run from your
 | `claude -c` | Continue most recent conversation in current directory | `claude -c` |
 | `claude -r` | Resume a previous conversation | `claude -r` |
 
-**Session commands**
+See the [CLI reference](/docs/en/cli-reference) for the complete list of shell commands.
+
+### Session commands
+
+Run these inside Claude Code after it starts.
 
 | Command | What it does | Example |
 | - | - | - |
@@ -272,7 +270,7 @@ Here are the most important commands for daily use. Shell commands run from your
 | `/help` | Show available commands | `/help` |
 | `/exit` or Ctrl+D twice | Exit Claude Code | `/exit` |
 
-See the [CLI reference](/docs/en/cli-reference) for the complete list of shell commands and the [commands reference](/docs/en/commands) for the complete list of session commands.
+See the [commands reference](/docs/en/commands) for the complete list of session commands.
 
 ## Pro tips for beginners
 

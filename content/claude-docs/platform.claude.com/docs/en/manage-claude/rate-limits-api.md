@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 5b033c2ec13094b74808dd904dc3e119e427594fd8ee9986e28ffc2de5cade0b
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 58b04637baf13f1b16a7816af09a161236bd13b7b6a09347311242270272f35f
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Programmatically query your organization's API rate limits with the
   **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
 </Tip>
 
-The Rate Limits API provides programmatic access to the rate limits configured for your organization and its workspaces. This is the same information shown on the [Rate limits](https://platform.claude.com/settings/limits) page in the Claude Console.
+The Rate Limits API provides programmatic access to the rate limits configured for your organization and its workspaces. This is the same information shown on the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console.
 
 Use this API to:
 
@@ -833,7 +833,7 @@ The workspace has no override for that group and inherits the organization-level
 
 ### Can I update rate limits with this API?
 
-No. To set workspace rate limits, open the workspace in the [Claude Console](https://platform.claude.com/settings/workspaces) and use the **Rate limits** tab.
+No. To set workspace rate limits, go to the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console, select the workspace from the **Workspace** dropdown menu, and click **Edit** next to a model.
 
 ## See also
 

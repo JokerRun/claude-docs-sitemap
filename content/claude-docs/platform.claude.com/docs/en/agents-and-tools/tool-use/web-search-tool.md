@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a4da566af8b5a34ec63bda9e04b2742558fbf74fe7167cdaaa1fb1526d980fc2
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 5ad1d200fc48f0496f3e210ec57dd8bc3725b47a58d1080a86748827b6718559
 ---
 
 ---
@@ -657,7 +657,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 You can include the web search tool in the [Messages Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing). Web search tool calls through the Messages Batches API are priced the same as those in regular Messages API requests.
 
-To protect shared capacity, the Batches API throttles web search requests per organization, so large batches with many searches might take longer to complete. You can see your organization's web search rate limit on the [Rate limits](https://platform.claude.com/settings/limits) page in the Claude Console. To request a higher limit, contact sales from that page.
+To protect shared capacity, the Batches API throttles web search requests per organization, so large batches with many searches might take longer to complete. You can see your organization's web search rate limit on the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console. To request a higher limit, contact sales from that page.
 
 ## Usage and pricing
 

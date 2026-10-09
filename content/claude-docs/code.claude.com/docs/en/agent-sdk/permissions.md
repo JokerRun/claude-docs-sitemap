@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ebe15d4c985593c7fcc34f3906eb1f6fd88e764de9aa912ed30343a71e8273a4
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: ec423d3a6942db8cb27d7456d8ffb130d6623b82fad95ee0a48e74f7244c4025
 ---
 
 > ## Documentation Index
@@ -145,7 +145,7 @@ The SDK supports these permission modes:
 | `auto` | Model-classified approvals | A model classifier reviews actions such as shell commands and network requests, allowing or blocking each one it reviews. See [Auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for availability and the decision order |
 
 <Warning>
-  **Subagent inheritance:** A subagent runs in the parent session's permission mode unless you set `permissionMode` on its [`AgentDefinition`](/docs/en/agent-sdk/typescript#agentdefinition) and the parent session is in `default`, `dontAsk`, or `plan` mode. Even then, Claude Code never applies a `"bypassPermissions"` value. A subagent runs in `bypassPermissions` mode only when the parent session itself does. The `bypassPermissions` exception requires Claude Code v2.1.267 or later.
+  **Subagent inheritance:** A subagent runs in the parent session's permission mode unless you set `permissionMode` on its [`AgentDefinition`](/docs/en/agent-sdk/typescript#agentdefinition) and the parent session is in `default`, `dontAsk`, or `plan` mode. Even then, Claude Code never applies a `"bypassPermissions"` value, and applies an `"auto"` value only when [auto mode is available](/docs/en/permission-modes#eliminate-prompts-with-auto-mode) to that subagent. A subagent runs in `bypassPermissions` mode only when the parent session itself does. The `bypassPermissions` exception requires Claude Code v2.1.267 or later.
 
   Subagents may have different system prompts and less constrained behavior than your main agent, so inheriting `bypassPermissions` grants them full, autonomous system access. The [actions no mode auto-approves](/docs/en/permission-modes#actions-no-mode-auto-approves) still apply.
 </Warning>

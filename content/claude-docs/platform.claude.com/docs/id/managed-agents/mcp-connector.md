@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: eb2e5afaa26dd330086e1cf010dd4c90269c72bc3314ec153260d8ebc13aef6b
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 58198f1618c3949d2fe8c7d7302081bbde78a244fbf9b7608200cdefe46c2651
 ---
 
 ---
@@ -393,7 +393,7 @@ Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial ya
 
 ### Menangani kegagalan koneksi dan autentikasi
 
-Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di bagian [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) dipancarkan dengan `mcp_server_name` dari server yang terdampak dan sebuah `retry_status`:
+Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) dipancarkan dengan `mcp_server_name` dari server yang terdampak dan sebuah `retry_status`:
 
 | Jenis error                       | Arti                                                                                                                                                                                                        |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

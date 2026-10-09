@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: bd5ce9d2441ee2cd8dc7b8c50c7e62b8d0d55f377f902d2602dac1de3dd5b128
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: cd755f3fd2c0975538a52c91b6ec6b4b5a6dd7d78cd9327e3924696ebd6cae89
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ sha256: bd5ce9d2441ee2cd8dc7b8c50c7e62b8d0d55f377f902d2602dac1de3dd5b128
 
 A cloud session runs Claude Code on cloud infrastructure instead of your machine, Anthropic-managed by default. This quickstart starts one from [claude.ai/code](https://claude.ai/code) in your browser. You can also start one from the Claude mobile app, the Desktop app, or your terminal with `claude --cloud`.
 
-You'll need a GitHub repository to [get started](#connect-github). Claude clones it into an isolated virtual machine, makes changes, and pushes a branch for you to review. Sessions persist across devices, so a task you start on your laptop is ready to review from your phone later.
+You'll need a GitHub repository to [get started](#connect-github). Claude clones it into an isolated virtual machine, makes changes, and pushes a branch for you to review. Sessions persist across devices, so a task you start on your laptop is ready to review from your phone later. Each session counts toward your plan's usage limits alongside the rest of your Claude and Claude Code usage, and there's no separate charge for the cloud VM.
 
 Cloud sessions work well for:
 

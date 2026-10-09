@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/cli-reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8a7eda4b382ba2ea4abc99c3c02ddfa4adfb515ee967d975031c1ecd1c49b231
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: c2346f30a836617b4d415699d77365e18e5c78cfc21ea967fe4d4f11e89c333d
 ---
 
 > ## Documentation Index
@@ -92,6 +92,7 @@ Most plugins install without a prompt. For a plugin whose marketplace entry [run
 | `-y, --yes` | Accept the displayed install command without the `Run this command now?` prompt. Ignored when the command runs inside a Claude Code session, such as from the Bash tool or a hook. Requires Claude Code v2.1.229 or later |
 | `--accept-command <sha256>` | Accept the displayed install command whose `sha256` a previous [`--json` run](#plugin-json-result) reported in `shownCommand`, in place of `-y`. Can't be combined with `-y`. See [Accept a displayed install command](#accept-a-displayed-install-command). Requires Claude Code v2.1.271 or later |
 | `--json` | Print the result as one JSON object on the last line of stdout instead of the human-readable message, for use in scripts. See [JSON result format](#plugin-json-result). Requires Claude Code v2.1.268 or later |
+| `--marketplace <source>` | Install `<plugin>`, given by its bare name, from the marketplace at `<source>`, adding the marketplace first if you haven't added it yet. See [Add a marketplace and install in one command](/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command). Requires Claude Code v2.1.292 or later |
 
 Run `claude plugin install --help` in your shell to see every option your version supports.
 

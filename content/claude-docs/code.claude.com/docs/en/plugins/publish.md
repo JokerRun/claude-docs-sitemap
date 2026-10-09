@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/publish
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: 92c66235f389b61deb4fa976f0e6395c478c4053b0db0e08be65a2b8b309951c
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: b18b9af74c656b6ad9513e65d1f8941389d4bad39ecab178a166eb083785741a
 ---
 
 > ## Documentation Index
@@ -120,6 +120,7 @@ Tell your users to add the marketplace and then install the plugin from their sh
 * Add the marketplace once: `claude plugin marketplace add your-org/your-marketplace`, where the argument is a GitHub `owner/repo` shorthand, a URL, or a path
 * Install the plugin: `claude plugin install deploy-helper@your-marketplace`
 * Or do both from inside a session: `/plugin install deploy-helper --marketplace your-org/your-marketplace`. Requires Claude Code v2.1.275 or later. See [Add a marketplace and install in one command](/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command)
+* Or do both from the shell in one command: `claude plugin install deploy-helper --marketplace your-org/your-marketplace`. Requires Claude Code v2.1.292 or later
 
 ### Ship updates to users
 

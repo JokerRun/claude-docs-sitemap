@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c41fe984f1b9785b44821d598abd1267950c6e2652ffd24465cabd6c48014902
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 86bf8875f0a95901157ea1f4468549a53164a8cfcb7e66138e9069c72e9f72f4
 ---
 
 ---
 title: Mengurangi latensi
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-description: Kurangi latensi respons Claude dengan memilih model yang lebih cepat seperti Claude Haiku 4.5, memangkas token prompt dan output, serta melakukan streaming respons.
+description: Kurangi latensi respons Claude dengan memilih model yang lebih cepat seperti Claude Haiku 5.5, memangkas token prompt dan output, serta melakukan streaming respons.
 ---
 
 "Latency" (latensi) mengacu pada waktu yang diperlukan model untuk memproses prompt dan menghasilkan output. Latensi dapat dipengaruhi oleh berbagai faktor, seperti ukuran model, kompleksitas prompt, serta infrastruktur dasar yang mendukung model dan titik interaksi.

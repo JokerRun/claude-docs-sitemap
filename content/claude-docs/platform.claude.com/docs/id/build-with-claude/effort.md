@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 094e6efd1f248a106079be690f42cfb4008035563c40bfa6c59e955002c56e81
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 8e172499927ce0b81072256df5c1b83d84cbc28b6bcf7f34b265480332c3ab80
 ---
 
 ---
@@ -29,6 +29,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga

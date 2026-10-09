@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1f3546fb0390b17ee93dbda9072b0ca32eb186356add0ca10f8e7c6f248f0fe5
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 872ba004e1626fb775ad7133ef5977bd58d44e527509b9418e9fe57e9a1543b0
 ---
 
 ---
@@ -170,7 +170,7 @@ API menerapkan batas laju dan batas pengeluaran untuk mencegah penyalahgunaan da
 * **Batas pengeluaran**: Biaya bulanan maksimum untuk penggunaan API
 * **Batas laju**: Jumlah maksimum permintaan per menit (RPM) dan token per menit (TPM)
 
-Anda dapat melihat batas laju Anda di halaman [Batas laju](https://platform.claude.com/settings/limits) dan batas pengeluaran Anda di halaman [Penagihan](https://platform.claude.com/settings/billing) di Console. Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request rate limit increase** di halaman Batas laju.
+Anda dapat melihat batas laju Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) dan batas pengeluaran Anda di halaman [Penagihan](https://platform.claude.com/settings/billing) di Console. Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request tier increase** di halaman Batas laju.
 
 Untuk informasi terperinci tentang batas, tingkatan, dan algoritma token bucket yang digunakan untuk pembatasan laju, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
 

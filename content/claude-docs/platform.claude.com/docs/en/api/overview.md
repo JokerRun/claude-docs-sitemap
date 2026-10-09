@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 20047f700dbb6bb903f39aa2b5235e8545f37badc2b1eb100b135023b08daf96
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 56b2a39bfcafe6f10efa7b5b3c81e4ba129d124998d67b278dbce8daaac607bf
 ---
 
 ---
@@ -170,7 +170,7 @@ The API enforces rate limits and spend limits to prevent misuse and manage capac
 * **Spend limits**: Maximum monthly cost for API usage
 * **Rate limits**: Maximum number of requests per minute (RPM) and tokens per minute (TPM)
 
-You can view your rate limits on the [Rate limits](https://platform.claude.com/settings/limits) page and your spend limits on the [Billing](https://platform.claude.com/settings/billing) page in the Console. For higher rate limits or a higher monthly spend cap, use **Request rate limit increase** on the Rate limits page.
+You can view your rate limits on the [Rate limits](https://platform.claude.com/usage/limits) page and your spend limits on the [Billing](https://platform.claude.com/settings/billing) page in the Console. For higher rate limits or a higher monthly spend cap, use **Request tier increase** on the Rate limits page.
 
 For detailed information about limits, tiers, and the token bucket algorithm used for rate limiting, see [Rate limits](https://platform.claude.com/docs/en/api/rate-limits).
 

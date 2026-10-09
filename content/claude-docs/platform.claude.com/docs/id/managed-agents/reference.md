@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 306acbce0731d099f5e8ae5553c3e7ca8aecd4e6b0d1639b998cf8859d2d209b
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 1ab5e7777177e6bdac3bc7d2d7c9da1216c40f8ea5fc7693b3ce11c03f58fec1
 ---
 
 ---
@@ -83,13 +83,13 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
   </Tab>
 
   <Tab title="Event sistem">
-    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                |
-    | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `system.message` | Menambahkan konteks tingkat sistem yang memiliki hak istimewa, yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Didukung pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
+    | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                       |
+    | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `system.message` | Menambahkan konteks tingkat sistem yang memiliki hak istimewa, yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Untuk model yang menerimanya, lihat [Model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models). Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
   <Tab title="Event deltas">
-    Event delta adalah event pratinjau yang hanya tersedia di stream. Event ini dikeluarkan pada koneksi stream (tingkat sesi atau per thread) yang memilih ikut serta dengan parameter `event_deltas[]`, dan tidak pernah dipersistenkan ke riwayat event sesi. Lihat [Event delta](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#event-deltas) untuk cara ikut serta, mengakumulasi, dan merekonsiliasinya.
+    Event delta adalah event pratinjau khusus stream. Event ini dikeluarkan pada koneksi stream (tingkat sesi atau per thread) yang memilih ikut serta dengan parameter `event_deltas[]`, dan tidak pernah dipersistenkan ke riwayat event sesi. Lihat [Pratinjau respons dengan event delta](https://platform.claude.com/docs/id/managed-agents/event-deltas) untuk cara ikut serta, mengakumulasi, dan merekonsiliasinya.
 
     | Tipe          | Deskripsi                                                                                                                                                   |
     | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

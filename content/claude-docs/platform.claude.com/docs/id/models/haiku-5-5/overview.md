@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a349d472c0d34e88bf864ce0947c720ededc54eb194683b1333fa8696bfbad74
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 126e849d662f5fc5b70a6adf1c5bc4a37c777e13758e5ef6f1aeaae9ff4218fd
 ---
 
 ---
@@ -113,7 +113,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Claude Haiku 5.5 memutuskan kapan dan seberapa banyak berpikir. Arahkan kedalamannya dengan `effort`.
+    Claude Haiku 5.5 menentukan kapan dan seberapa banyak berpikir. Arahkan kedalamannya dengan `effort`.
   </Card>
 
   <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">

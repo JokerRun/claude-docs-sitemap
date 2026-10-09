@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: fb833e49e31f1c07a537198e91f710db516c7da9a880311e85bbe62642eabc97
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 29c645bf8fe412d7714c9e318f36faea959ac8b70adf16b11a35108ee213a216
 ---
 
 ---
@@ -468,16 +468,6 @@ Jika caching prompt aktif dan 40.000 dari token input merupakan pembacaan cache:
 | Runtime sesi                    | 1,0 jam × $0,08               | $0,08      |
 | **Total**                       |                               | **$0,525** |
 
-<Note>
-  Contoh perhitungan untuk memproses 10.000 tiket dukungan:
-
-  * Rata-rata \~3.700 token per percakapan
-  * Menggunakan Claude Haiku 4.5 dengan harga $1/MTok input, $5/MTok output
-  * Total biaya: \~$37,00 per 10.000 tiket
-</Note>
-
-Untuk panduan terperinci tentang perhitungan ini, lihat [panduan agen dukungan pelanggan](https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat).
-
 ## Pertimbangan harga tambahan
 
 ### Strategi optimasi biaya
@@ -522,7 +512,7 @@ Untuk pelanggan enterprise dengan kebutuhan khusus:
 * Dukungan khusus
 * Ketentuan khusus
 
-Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Claude Console](https://platform.claude.com/settings/limits) untuk mendiskusikan opsi harga enterprise.
+Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Claude Console](https://platform.claude.com/usage/limits) untuk mendiskusikan opsi harga enterprise.
 
 ## Penagihan dan pembayaran
 

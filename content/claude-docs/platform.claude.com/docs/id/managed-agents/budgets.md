@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 66576de24d78a91c8fb8d99660624d0340825e5fee735325ee0692a44275c24d
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: c5986977aaaa0a4b7385cc5afdcc1852e0211f83b31895424c7dcb25be43b413
 ---
 
 ---
@@ -384,7 +384,7 @@ Objek sesi membawa `budget` miliknya dan objek `usage` dengan pengeluaran yang d
 
 Event `session.usage` adalah snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Event ini membawa total token sesi, `list_cost`, `active_seconds`, jumlah permintaan `server_tool_use` (`web_search_requests`, yang dihitung ke dalam biaya daftar per permintaan, dan `web_fetch_requests`, yang bernilai `0` karena permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur), serta salinan `budget` sesi, atau `null` jika sesi tidak memilikinya. Event ini muncul dalam daftar event dan stream sesi. Sesi memancarkan satu event ini tepat sebelum menjadi idle, apa pun alasan berhentinya, sehingga sesi yang mencapai anggarannya selalu memancarkan satu event ini tepat sebelum event idle budget-reached.
 
-Untuk membaca penggunaan dari stream dan objek sesi, lihat [Melacak penggunaan](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tracking-usage).
+Untuk membaca penggunaan dari stream dan objek sesi, lihat [Melacak penggunaan](https://platform.claude.com/docs/id/managed-agents/session-observability#track-usage).
 
 ## Anggaran dalam sesi multiagen
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a333ffa4b88707fa0f301ea32f8cf8fd7c4170f7aa7c8820a4d63803f54a08d2
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 99479236fa57aa039f208d0c75ac9a8045d874f32af53599c4aeb20ac5499196
 ---
 
 ---
@@ -312,20 +312,20 @@ Klien membaca `AWS_REGION` dari lingkungan jika Anda tidak mengatur `aws_region`
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:2.69.0")
-    implementation("com.anthropic:anthropic-java-aws:2.69.0")
+    implementation("com.anthropic:anthropic-java:2.70.0")
+    implementation("com.anthropic:anthropic-java-aws:2.70.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.69.0</version>
+      <version>2.70.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.69.0</version>
+      <version>2.70.0</version>
     </dependency>
     ```
   </Tab>
@@ -840,7 +840,7 @@ Claude Console tidak mendukung perpindahan organisasi untuk Claude Platform on A
 
 Organisasi di Claude Platform on AWS ditempatkan pada tier Start. Anthropic mengelola batas laju secara langsung, bukan melalui sistem kuota AWS.
 
-Organisasi di Claude Platform on AWS dapat berpindah ke tier penggunaan yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Alur layanan mandiri **Request rate limit increase** di Claude Console tidak tersedia: halaman Rate limits akan mengarahkan Anda ke perwakilan akun Anthropic Anda sebagai gantinya.
+Organisasi di Claude Platform on AWS dapat berpindah ke tier penggunaan yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Alur swalayan **Request tier increase** di Claude Console tidak tersedia: halaman Rate limits mengarahkan Anda ke perwakilan akun Anthropic Anda sebagai gantinya.
 
 Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com). Sertakan hal-hal berikut dalam permintaan Anda:
 

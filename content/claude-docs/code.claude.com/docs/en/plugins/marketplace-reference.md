@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9fd24e93240c2b21f48b4bc9a3f76e79cee58004eb49bf9c9f7a28b6404ec041
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 32fa7bebd1cbdbea5e2622f9adacf396c20b50c3912e8ac9f7b753967378f183
 ---
 
 > ## Documentation Index
@@ -55,6 +55,7 @@ You can't give your marketplace any of the following names:
 * **Names Claude Code uses for plugins that don't come from a marketplace**: `inline` for plugins loaded with [`--plugin-dir`](/docs/en/cli-reference), `builtin` for built-in plugins, `skills-dir` for plugins auto-loaded from [`.claude/skills/`](/docs/en/skills), and `synced` for plugins synced from your claude.ai account. `claude-plugin-test` is also reserved. `skills-dir` also appears as `{"source": "skills-dir"}` in `strictKnownMarketplaces` and `blockedMarketplaces`, described under [Source values valid only in policy lists](#source-values-valid-only-in-policy-lists).
 * **`npm`, `pip`, `uv`, `cargo`, `github`, and `gh`**: reserved in any casing. This check requires Claude Code v2.1.275 or later.
 * **Names starting with `claudeai-`**: reserved for marketplaces hosted on claude.ai. `claude plugin marketplace add` refuses any other marketplace that uses one with `Cannot add marketplace "<name>": names starting with "claudeai-" are reserved for marketplaces hosted on claude.ai`.
+* **The download folder of a registered GitHub marketplace, `<owner>-<repo>`**: Claude Code downloads a marketplace added from a `github` source such as `acme/x-tools` through a folder named `acme-x-tools`, whatever that marketplace's own `name` is. While that marketplace is registered under a name other than `acme-x-tools`, `claude plugin marketplace add` refuses a different marketplace named `acme-x-tools` after downloading it, and reports `Can't use the marketplace name "acme-x-tools"`. This check requires Claude Code v2.1.290 or later.
 
 When a registered marketplace stops loading because its name imitates an official one, `claude plugin list` and `/plugin` report `Claude Code refuses the marketplace name "<name>"`. The message tells you to remove the marketplace. Removing it also uninstalls its plugins and deletes their saved data. This named refusal message requires Claude Code v2.1.282 or later.
 

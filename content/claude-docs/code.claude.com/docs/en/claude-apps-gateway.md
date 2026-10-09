@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 10234d58f2fa894b339b7d4a747cf96b990cc4d965985410a908848d86f85cfe
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: f344b39ad31438caf4aee51f307b0807300a5f9bd167fa76d5e97c07de6412fa
 ---
 
 > ## Documentation Index
@@ -296,7 +296,7 @@ A developer can't set this up manually. The login picker has no gateway option, 
 
 ### Allow a gateway on public address space you own
 
-Some organizations number their internal network from a public IPv4 block they own, such as a carrier's own address space or a legacy `/8`, so their gateway can't have a private address. List those blocks in the `gatewayInternalNetworks` managed setting. `/login` then accepts a gateway inside a listed block when the developer's machine connects to it from an address inside the same block. This requires Claude Code v2.1.268 or later on the developer machine; earlier versions ignore the key and apply the private-address rule.
+Some organizations number their internal network from a public IPv4 block they own, such as a carrier's own address space or a legacy `/8`, so their gateway has no private address. List those blocks in the `gatewayInternalNetworks` managed setting. `/login` then accepts a gateway inside a listed block when the developer's machine connects to it from an address inside the same block. This requires Claude Code v2.1.268 or later on the developer machine; earlier versions ignore the key and apply the private-address rule.
 
 <Warning>
   `gatewayInternalNetworks` is for internal networks that happen to be numbered from public address space. It doesn't make it safe to expose a gateway to the internet: a trusted gateway can push settings that run commands on developer machines.
@@ -492,6 +492,7 @@ The gateway delivers the [`anthropic-beta`](https://platform.claude.com/docs/en/
 | Feature | Status | Notes |
 | - | - | - |
 | Inference forwarding (Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, Microsoft Foundry, Anthropic) | Available | With per-upstream model translation and failover. The Amazon Bedrock upstream uses the `bedrock-runtime` endpoint and the AWS default credential chain. The [Amazon Bedrock Mantle upstream](/docs/en/claude-apps-gateway-config#amazon-bedrock-mantle-endpoint) requires Claude Code v2.1.283 or later on the gateway server, and the [Claude Platform on AWS upstream](/docs/en/claude-apps-gateway-config#claude-platform-on-aws) requires v2.1.198 or later. |
+| 1M token context window | Available | Fable models, Sonnet 5 and later, and Opus 4.7 and later run with the 1M window by default; see [Extended context](/docs/en/model-config#extended-context). The 1M default for the Fable and Opus models requires Claude Code v2.1.287 or later on the developer machine |
 | Model access and managed settings by IdP group | Available | Model access is enforced server-side; managed settings are delivered per IdP group and applied by the CLI at the [managed settings tier](/docs/en/settings#settings-precedence) |
 | Claude Desktop | Available with opt-in | The gateway serves Claude Desktop's configuration at `/user/bootstrap` once a policy [opts in with a `desktop` key](/docs/en/claude-apps-gateway-config#claude-desktop-overlay), and Claude Desktop sends model requests from its Cowork and Code tabs, and from the Chat tab when you enable it, through the gateway. To turn on the Chat tab, see [Connect Claude Desktop](#connect-claude-desktop). Requires Claude Code v2.1.203 or later on the gateway server. |
 | Telemetry fan-out (OTLP/HTTP) | Available | Identity-stamped per export; both protobuf and JSON encodings |

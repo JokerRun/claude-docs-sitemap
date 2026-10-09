@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e54d2db2e08544fa57ff832f2b889222bb2385cb1f8b66be02e40f0803a9f698
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 362c84d1d56e794bad1e1ce204d5ab8c75cb7ccc677e71f2d866e478fbe50229
 ---
 
 ---
@@ -1416,7 +1416,7 @@ Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** pada halaman [Rate limits](https://platform.claude.com/settings/limits).
+Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits).
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |

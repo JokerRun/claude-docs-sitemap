@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 6ec03343c5c345b321881ca12fce4ffca0c9d1bb97e1f39f56a57115fa683fd1
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 189524558f181981016dfaccf806faedf9c9cd5cd3378454c262fde0a2525c25
 ---
 
 ---
@@ -32,7 +32,7 @@ Workspace Claude Code menjaga lalu lintas Claude Code terpisah dari beban kerja 
 
 * Claude Code mencetak kunci API per-pengguna di workspace ini saat masuk. Anda tidak dapat membuat kunci di dalamnya secara manual dari Console.
 * Kunci Claude Code berhenti bekerja jika pemiliknya dihapus dari workspace atau organisasi, tidak seperti kunci workspace.
-* Penggunaan Claude Code dibatasi lajunya secara terpisah, dan admin dapat membatasi bagiannya dari batas organisasi di bawah [Settings > Workspaces](https://platform.claude.com/settings/workspaces).
+* Penggunaan Claude Code dibatasi lajunya secara terpisah, dan admin dapat membatasi porsinya dari batas organisasi di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console.
 * Ini adalah satu-satunya workspace yang mendukung batas pengeluaran bulanan per-pengguna.
 
 <Warning>
@@ -88,12 +88,12 @@ Buat dan kelola workspaces di [Claude Console](https://platform.claude.com/setti
   </Step>
 
   <Step title="Buat workspace">
-    Klik **Create** untuk menyelesaikan.
+    Klik **Create workspace** untuk menyelesaikan.
   </Step>
 </Steps>
 
 <Tip>
-  Untuk beralih antar workspaces di Console, gunakan pemilih **Workspaces** di sudut kiri atas.
+  Untuk beralih antar workspace di Console, keluar dari Settings dan gunakan pemilih workspace di bagian atas sidebar.
 </Tip>
 
 #### Mengedit detail workspace
@@ -101,7 +101,7 @@ Buat dan kelola workspaces di [Claude Console](https://platform.claude.com/setti
 Untuk mengubah nama atau warna workspace:
 
 1. Pilih workspace dari daftar.
-2. Klik menu elipsis (**...**) dan pilih **Edit details**.
+2. Buka menu **More actions** (tiga titik) dan pilih **Edit details**.
 3. Perbarui nama atau warna dan simpan perubahan Anda.
 
 <Note>
@@ -110,12 +110,16 @@ Untuk mengubah nama atau warna workspace:
 
 #### Menambahkan anggota ke workspace
 
-1. Navigasikan ke tab **Members** workspace.
-2. Klik **Add to Workspace**.
-3. Pilih anggota organisasi dan tetapkan [peran workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#workspace-roles-and-permissions) kepada mereka.
-4. Konfirmasikan penambahan.
+1. Di Claude Console, buka halaman [Members](https://platform.claude.com/settings/members).
+2. Klik **Add to workspace**.
+3. Pilih workspace, anggota organisasi yang akan ditambahkan, dan [peran workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#workspace-roles-and-permissions) mereka.
+4. Klik **Add to workspace** untuk mengonfirmasi.
 
-Untuk menghapus anggota, klik ikon tempat sampah di sebelah nama mereka.
+#### Menghapus anggota dari workspace
+
+1. Di halaman [Members](https://platform.claude.com/settings/members), pilih workspace dari menu dropdown **Workspace**. Jika menu tersebut menampilkan **All**, **Remove member** justru akan menghapus anggota dari organisasi Anda.
+2. Di ujung baris anggota, buka menu **More actions** (tiga titik) dan pilih **Remove member**.
+3. Klik **Remove** untuk mengonfirmasi.
 
 <Note>
   Admin organisasi dan anggota penagihan tidak dapat dihapus dari workspaces selama mereka memegang peran organisasi tersebut.
@@ -123,14 +127,14 @@ Untuk menghapus anggota, klik ikon tempat sampah di sebelah nama mereka.
 
 #### Menetapkan batas workspace
 
-Pengaturan setiap workspace membagi ini ke dalam dua tab:
+Anda menetapkan batas laju dan batas pengeluaran workspace di tempat yang berbeda:
 
-* **Rate limits:** Di tab **Rate limits**, tetapkan batas per tingkat model untuk permintaan per menit, token input, atau token output
-* **Spend limits:** Di tab **Spend limits**, batasi pengeluaran bulanan dan konfigurasikan peringatan ketika pengeluaran mencapai ambang batas tertentu
+* **Rate limits:** Di halaman [Rate limits](https://platform.claude.com/usage/limits), pilih workspace dari menu dropdown **Workspace** dan klik **Edit** di samping model untuk menetapkan batas permintaan per menit, token input, atau token output.
+* **Spend limits:** Pilih workspace di bawah [Settings > Workspaces](https://platform.claude.com/settings/workspaces). Di panel yang terbuka, klik **Spend limits** untuk membatasi pengeluaran bulanan dan mengonfigurasi peringatan ketika pengeluaran mencapai ambang batas tertentu.
 
 #### Mengarsipkan workspace
 
-Untuk mengarsipkan workspace, klik menu elipsis (**...**) dan pilih **Archive**. Pengarsipan:
+Untuk mengarsipkan workspace, buka menu **More actions** (tiga titik) dan pilih **Archive workspace**. Pengarsipan:
 
 * Mempertahankan data historis untuk pelaporan
 * Menonaktifkan workspace dan mengarsipkan setiap kunci API yang dibuat untuknya
@@ -1024,8 +1028,8 @@ Anda dapat menetapkan batas pengeluaran dan batas laju khusus untuk setiap works
 
 Anda dapat menetapkan batas workspace lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
 
-* **Spend limits:** Batasi pengeluaran bulanan untuk workspace. Tetapkan ini di tab pengaturan **Spend limits** workspace di [Claude Console](https://platform.claude.com/settings/workspaces).
-* **Rate limits:** Batasi permintaan per menit, token input per menit, atau token output per menit. Tetapkan ini di tab pengaturan **Rate limits** workspace di [Claude Console](https://platform.claude.com/settings/workspaces).
+* **Spend limits:** Batasi pengeluaran bulanan untuk workspace. Untuk menetapkannya, pilih workspace di bawah [Settings > Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console. Di panel yang terbuka, klik **Spend limits**.
+* **Rate limits:** Batasi permintaan per menit, token input per menit, atau token output per menit. Untuk menetapkannya, buka halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace**, dan klik **Edit** di samping model.
 
 <Note>
   - Anda tidak dapat menetapkan batas pada Default Workspace

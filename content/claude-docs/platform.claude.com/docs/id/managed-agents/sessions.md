@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4deb0ab0a0d243cfbeee544fc47cfe25aaf0092dc3ce151379e97ea4757ac971
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 168a010aaec192107cb0982437134968138492f3d118bd505fd7ea17906a73b7
 ---
 
 ---
@@ -450,7 +450,7 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
 
 Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada deployment terjadwal, `initial_events` milik sesi tidak menerima `system.message`.
 
-Setiap event di `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) segera setelah pembuatan. Aturan konten per event juga sama dengan endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
+Setiap event di dalam `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-events) segera setelah pembuatan. Aturan konten per event juga sama dengan yang berlaku pada endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
 
 Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 

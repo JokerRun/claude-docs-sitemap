@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-evals
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 24f8eb91e783918ddfecf163d319e45d26c27b224c16fde775a5b92b4d4471e3
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 943a63ef6fd88dd8c6451e344436b44e4294bf0f92f2047a784a1fd9c4b9f51d
 ---
 
 > ## Documentation Index
@@ -353,7 +353,7 @@ Most of the time you run `claude plugin eval .` from the plugin root, which runs
 | :- | :- |
 | A plugin's root directory, such as `.` | Every case under its eval directory, with that plugin loaded |
 | A single `prompt.md` or `case.yaml` file | That case, with its enclosing plugin loaded |
-| An installed plugin by name, `name` or `name@marketplace` | The cases in the installed copy's eval directory, with the installed copy loaded. Results are written under `./evals/results/` in your current directory, or `./<dir>/results/` with `--eval-dir` |
+| An installed plugin by name, `name` or `name@marketplace` | The plugin and the cases in its eval directory, read [in place or from the installed copy](/docs/en/plugins/loading#in-place-and-copied-plugins). Results are written under `./evals/results/` in your current directory, or `./<dir>/results/` with `--eval-dir` |
 | `name@skills-dir` | The same, for a [skills-directory plugin](/docs/en/plugins/loading#plugins-shared-through-a-repository) |
 | Omitted | The current directory as a path |
 

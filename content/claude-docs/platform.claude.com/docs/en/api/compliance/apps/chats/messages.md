@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: b15ec32742f0e23d7031e63f814013bcd70ab005bdb4e374ebc238a9ee485be4
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 16ede5ec69cd5037169c975152fd5868d0894f146a29321f6a72d6bfeb248b10
 ---
 
 ---
@@ -478,6 +478,9 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 - `MessageListResponse object`
 
   A single message in a chat conversation.
+
+  When the chat's `deleted_at` is set, `content` is an empty list and `files`,
+  `generated_files` and `artifacts` are null.
 
   - `id: string`
 

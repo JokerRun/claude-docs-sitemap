@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: cf6f82a06b22944d7a5270af99b9564fa4f704704242e2a6ecf90cb6767f30f1
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 96e629ae8c807128c1da8372362ccc0168b419f045cb7d8b4a180aff20513b57
 ---
 
 ---
@@ -16,6 +16,11 @@ url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
 
 Permanently deletes a chat and all associated messages and
 files. This is a destructive operation that cannot be undone.
+
+A chat's remote sessions are deleted first. If that deletion cannot be
+confirmed, the request returns a 503 with error code
+`chat_delete_remote_sessions_unconfirmed` and leaves the chat unchanged.
+You can retry the request.
 
 ## Path parameters
 

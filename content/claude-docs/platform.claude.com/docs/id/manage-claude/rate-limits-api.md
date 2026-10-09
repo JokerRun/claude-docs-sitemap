@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 07862ed6910be81ce537ed9bf92072300ad21bd7bbb74af08fa1600c43064d5e
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 14e8f38904895b7cda8e8a2ed65bea2397cda31d59523839694914c12327ba9c
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Kueri batas laju API organisasi Anda secara terprogram dengan Rate 
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Rate Limits API menyediakan akses terprogram ke "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Batas laju](https://platform.claude.com/settings/limits) di Claude Console.
+Rate Limits API menyediakan akses terprogram ke "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
 
 Gunakan API ini untuk:
 
@@ -833,7 +833,7 @@ Workspace tidak memiliki override untuk grup tersebut dan mewarisi batas tingkat
 
 ### Bisakah saya memperbarui batas laju dengan API ini?
 
-Tidak. Untuk mengatur batas laju workspace, buka workspace di [Claude Console](https://platform.claude.com/settings/workspaces) dan gunakan tab **Rate limits**.
+Tidak. Untuk mengatur batas laju workspace, buka halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
 
 ## Lihat juga
 

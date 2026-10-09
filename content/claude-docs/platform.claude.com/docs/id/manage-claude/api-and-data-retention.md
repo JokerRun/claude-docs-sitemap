@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2d95ce4dacc42372417421e12ec511b164d19d7bd6140bff7e0f5e1ac57e823a
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 25be92702290913c823b3f26d168731dc5c63e5b9bbd8687cc05d3c998dabb5a
 ---
 
 ---
@@ -150,7 +150,7 @@ Organisasi dengan pengaturan ZDR dapat membuat model-model ini tersedia di works
 
 <Steps>
   <Step title="Buka kontrol privasi workspace">
-    Di [Claude Console > Settings > Workspaces](https://platform.claude.com/settings/workspaces), pilih workspace dan buka tab **Privacy controls**-nya.
+    Di [Claude Console > Settings > Workspaces](https://platform.claude.com/settings/workspaces), pilih workspace. Di panel yang terbuka, klik **Security** untuk membuka halaman Security workspace. Di bawah **Data retention**, klik **Manage in Privacy controls**.
   </Step>
 
   <Step title="Aktifkan retensi data 30 hari">

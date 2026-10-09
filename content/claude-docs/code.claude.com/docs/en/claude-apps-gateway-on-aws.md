@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 9063dde472f1a4ee1efb06928b5189d938de00e17eaf9361c3e6dd4fceead5a3
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: ce3befd2578d3b71036bdf36157dbbc72dd128e61c17f84ec31e6b8ac93375e9
 ---
 
 > ## Documentation Index
@@ -509,7 +509,7 @@ For gateway boot and login errors, see the platform-agnostic [troubleshooting ta
 
 ## Telemetry
 
-The gateway gives you per-developer usage metrics without any per-machine OTEL configuration. Claude Code emits OpenTelemetry (OTLP) metrics, logs, and opt-in traces; [Monitoring usage](/docs/en/monitoring-usage) covers everything the CLI reports. In sessions signed in through `/login`, the CLI stamps each export with the authenticated IdP identity attributes `user.id`, `user.email`, and `user.groups`, so usage rolls up per developer.
+The gateway gives you per-developer usage metrics without any per-machine OTEL configuration. Claude Code emits OpenTelemetry (OTLP) metrics, logs, and opt-in traces; [Monitoring usage](/docs/en/monitoring-usage) covers everything the CLI reports. In sessions signed in through `/login`, the CLI [stamps each export](/docs/en/monitoring-usage#standard-attributes) with the authenticated IdP identity attributes `user.id`, `user.email`, and `user.groups`, so usage rolls up per developer.
 
 The gateway itself is an authenticated OTLP relay. Set [`telemetry.forward_to`](/docs/en/claude-apps-gateway-config#telemetry) together with `listen.public_url`, and it pushes the OTEL exporter settings to every connected client and forwards their OTLP traffic verbatim to each destination you list. Each destination opts into metrics, logs, and traces independently, and the default is metrics only; see the [`telemetry` reference](/docs/en/claude-apps-gateway-config#telemetry) for the per-signal fields and their sensitivity tradeoffs. The gateway doesn't buffer, aggregate, or store telemetry, so where the data lands is entirely the collector's exporter configuration.
 

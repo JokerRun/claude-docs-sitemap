@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1d45831db29d0e6340c5e45f98e80048f24065a39dbcad38c09549d3e87fd576
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 1b0680cf3d4529f00c5917747cebc432c1f527fd9d942b01823f7a85fac3497c
 ---
 
 ---
@@ -657,7 +657,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenai harga yang sama dengan panggilan dalam permintaan Messages API biasa.
 
-Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web per organisasi, sehingga batch besar dengan banyak pencarian mungkin membutuhkan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Batas laju](https://platform.claude.com/settings/limits) di Claude Console. Untuk meminta batas yang lebih tinggi, hubungi tim penjualan dari halaman tersebut.
+Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web per organisasi, sehingga batch besar dengan banyak pencarian mungkin membutuhkan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Untuk meminta batas yang lebih tinggi, hubungi tim penjualan dari halaman tersebut.
 
 ## Penggunaan dan harga
 

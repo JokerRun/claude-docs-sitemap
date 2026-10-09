@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: afaddf09c556a05a2f1e3dab139970d7bdfcb73bb7c6ce37a204733d181b1c69
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 034cd79aef4bfafac89de7de55086e283c68f1391ddacd64f5b7afcaeecc63c2
 ---
 
 > ## Documentation Index
@@ -221,7 +221,7 @@ Learn more: [Run Claude Code programmatically](/docs/en/headless)
 
 ### Output style
 
-A configuration that changes the instructions Claude Code gives Claude, to set response behavior, tone, or format. Unlike [CLAUDE.md](#claude-md), which adds project context alongside Claude Code's default instructions, a custom output style can replace the default software engineering instructions.
+A configuration that changes the instructions Claude Code gives Claude, to set response behavior, tone, or format. Unlike [CLAUDE.md](#claude-md), which adds project context alongside Claude Code's default instructions, a custom output style adds its own instructions and can leave out the default software engineering instructions.
 
 Learn more: [Output styles](/docs/en/output-styles)
 
@@ -382,7 +382,7 @@ Learn more: [Give Claude a way to verify its work](/docs/en/best-practices#give-
 
 ### Worktree isolation
 
-An isolation mode that runs Claude in a separate git worktree under `.claude/worktrees/`, enabled with the `-w` flag or `isolation: worktree` in subagent config. Changes stay on a separate branch in a separate directory, so parallel agents don't overwrite each other's files.
+An isolation mode that runs Claude in a separate git worktree under `.claude/worktrees/`, enabled with the `-w` flag or `isolation: worktree` in subagent config. Changes stay on a separate branch in a separate directory, so parallel agents each edit their own copy of the files.
 
 Learn more: [Run parallel sessions with git worktrees](/docs/en/worktrees)
 

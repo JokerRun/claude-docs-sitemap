@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ef9a969e136e06600e98d28e717dc39e97a5fc74d67ea0426f2a9d0b82109975
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 49449b0fdac136df45e56250b724e7772e5361464dd166fb7fc1749313726675
 ---
 
 > ## Documentation Index
@@ -136,8 +136,6 @@ After you sign in without a key, you have a profile instead of a stored API key:
 * **Which profile it writes**: Claude Code writes the profile named by `ANTHROPIC_PROFILE`, or your active profile, or `default`. If that profile is a federation profile, Claude Code refuses the sign-in instead of overwriting it
 * **What it signs you out of**: Claude Code signs you out of any claude.ai login stored on the machine
 * **How to undo it**: run `/logout`, which removes and revokes the credential this sign-in wrote
-
-If your organization uses [server-managed settings](/docs/en/server-managed-settings), they apply to this sign-in on Claude Code v2.1.257 or later.
 
 Everything else about profiles applies to this sign-in, including where it ranks against your other credentials, the `Profile` row you get in `/status`, and the features that need a claude.ai login. See [Anthropic profiles and federation credentials](#anthropic-profiles-and-federation-credentials).
 

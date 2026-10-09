@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 03970f8051360fa668753c6f8d3ee16b502465d41e0c152caf80228cb750ea77
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: ca9be79ee0109cb34ffd61eb814e1194c3eaab6ca571ba21101ea2235845f545
 ---
 
 ---
 title: Penolakan dan fallback
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-description: Bagaimana model Claude Fable, model Claude Opus, dan Claude Sonnet 5.5 mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
+description: Bagaimana model Claude Fable, model Claude Opus, Claude Sonnet 5.5, dan Claude Haiku 5.5 mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
 ---
 
 Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menyertakan "safety classifier" (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika hal itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. `stop_details.category` pada respons tersebut menyebutkan area kebijakannya (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Anda biasanya masih bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali "refusal" (penolakan) dan cara menyiapkan percobaan ulang tersebut.

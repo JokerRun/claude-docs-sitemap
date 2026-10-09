@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ba5059e01c7807dd9a3db905b87f657b13536a91b22fb2df9cd05d1ad4a2a6ea
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 0b38c2dfb1248d7a3d1bcef95b32d44739df25ae7c1d57d3dd8dbfb1e7002eb0
 ---
 
 ---
@@ -20,7 +20,8 @@ A Claude Console organization's limits come in an order that is stable across
 pages. A Claude Enterprise organization's are grouped by scope type,
 in the order `organization`, `seat_tier`, `rbac_group`,
 `organization_service`, `user`; within a type they come in a fixed order that
-is not creation order.
+is not creation order. Listing Claude Console limits is in an early access
+preview. To request access, contact your Anthropic account team.
 
 ## Query parameters
 

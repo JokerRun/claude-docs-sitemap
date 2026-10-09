@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: b42da7cdfad64a183dd145390a972a00568e10938d8cabb615e7f5c6f0dffcdd
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: 77073968df75bf31e4828c9c57564bb229d06bc2750faae580c7ee423b5103db
 ---
 
 ---
@@ -61,20 +61,20 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.69.0")
-      implementation("com.anthropic:anthropic-java-bedrock:2.69.0")
+      implementation("com.anthropic:anthropic-java:2.70.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.70.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.69.0</version>
+          <version>2.70.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.69.0</version>
+          <version>2.70.0</version>
       </dependency>
       ```
 

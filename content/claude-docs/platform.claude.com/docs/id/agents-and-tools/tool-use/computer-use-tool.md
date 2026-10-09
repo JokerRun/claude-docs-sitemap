@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f8bd03030a3a42443ac7ba7765040f49c093072ea21446cf8a1110ad6b150991
+fetched_at: 2026-10-09T02:29:51.005508Z
+sha256: c3ab1ad548aa1ba98f9805e213efb7e9d0f448a9856cac8b8c2ec2b2ca6a01f9
 ---
 
 ---
@@ -24,6 +24,7 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-sonnet-5
     - claude-opus-4-8
+    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: beta
