@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 61db0d29b2bca12d624dbee0537acc84345b5031fce91a1c5f5261e326856a1c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7d678f74d91c73d8c87ba6720ced10d39d4397f26f4393af4442ce6c948c5e96
 ---
 
 ---
@@ -23,6 +23,14 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 - `federation_issuer_id: string`
 
   ID of the federation issuer.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

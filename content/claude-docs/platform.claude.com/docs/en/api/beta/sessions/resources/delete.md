@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 5d903654b9906ab7146802e9c2dc169ae87a5f81bda8c20d4e6530aa2b969b45
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 83c7cf307f49bb6fa1aa6491d5afb542cc6d854cfabb5513ffd4007d241ad7fe
 ---
 
 ---
@@ -23,6 +23,8 @@ Delete Session Resource
 - `resource_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

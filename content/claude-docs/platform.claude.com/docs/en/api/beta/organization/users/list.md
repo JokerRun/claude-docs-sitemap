@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 09c2586cb035f1531d14d1681138ba1bbd56b50874f1a7aa1b23869e09abc0aa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0add1bb6d6ed1b594a9ccdae1a3356d51a99d0aa735e8b0fe5fc00a4b4809571
 ---
 
 ---
@@ -45,6 +45,14 @@ List the organization's members.
   Filter to items whose `role` equals one of the supplied values. Repeatable; values are OR'ed together.
 
   Accepted values depend on the organization type: Console and API organizations accept `user`, `developer`, `billing`, `admin`, and `claude_code_user`; Claude Enterprise organizations accept `user`, `owner`, `primary_owner`, `membership_admin`, and `managed`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 179fef85958d2b87af783ac57e632fd4fc2e8bbeb537d9b33d874c891473d27f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0e3167fd06d77d651b51b446a11a04f7919962815ce88514051aed8385f4de15
 ---
 
 ---
@@ -34,6 +34,12 @@ rejected.
   ID of the service account.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -265,6 +271,12 @@ page to recover.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -466,6 +478,12 @@ to the implicit `workspace_user` membership. Archived workspaces return
   ID of the workspace.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

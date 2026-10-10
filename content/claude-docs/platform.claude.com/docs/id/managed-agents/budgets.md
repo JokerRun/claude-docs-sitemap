@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: c5986977aaaa0a4b7385cc5afdcc1852e0211f83b31895424c7dcb25be43b413
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d43b7048492044d98cefcae196c4f1b890217d6af2df5910bca76bf4babb928d
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-"Session budget" (anggaran sesi) adalah batas atas pengeluaran ketat opsional yang Anda tetapkan saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Platform secara terus-menerus menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik (**list cost** atau biaya daftar sesi) dan berhenti mengeluarkan permintaan model baru setelah biaya tersebut mencapai anggaran. Permintaan yang sedang berjalan saat batas terlampaui tetap diselesaikan, sehingga biaya daftar akhir dapat berakhir [sedikit melewati anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Sesi yang mencapai anggarannya akan dijeda dan menjadi [idle](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) alih-alih dihentikan; mengubah atau menghapus anggaran akan melanjutkan pekerjaannya secara otomatis. Deployment menerima anggaran yang sama dan menerapkannya ke setiap sesi yang dimulainya; lihat [Anggaran pada deployment](https://platform.claude.com/docs/id/managed-agents/budgets#budgets-on-deployments).
+"Session budget" (anggaran sesi) adalah batas atas pengeluaran ketat opsional yang Anda tetapkan saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Platform secara terus-menerus menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik (**list cost** atau biaya daftar sesi) dan berhenti mengeluarkan permintaan model baru setelah biaya tersebut mencapai anggaran. Permintaan yang sedang berjalan saat batas terlampaui tetap diselesaikan, sehingga biaya daftar akhir dapat berakhir [sedikit melewati anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Sesi yang mencapai anggarannya akan dijeda dan menjadi [idle](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) alih-alih dihentikan; mengubah atau menghapus anggaran akan melanjutkan pekerjaan yang dijeda oleh anggaran tersebut. Deployment menerima anggaran yang sama dan menerapkannya ke setiap sesi yang dimulainya; lihat [Anggaran pada deployment](https://platform.claude.com/docs/id/managed-agents/budgets#budgets-on-deployments).
 
 ## Menetapkan anggaran saat pembuatan sesi
 
@@ -160,8 +160,8 @@ Anggaran hanya dapat dilampirkan saat sesi dibuat. Menambahkan anggaran ke sesi 
 Platform menghitung harga apa yang dikonsumsi sesi, secara terus-menerus, berdasarkan tarif daftar publik:
 
 * **Token model**, berdasarkan harga daftar setiap model yang dilayani
-* **Pencarian web**, seharga $10 per 1.000 pencarian
-* **Waktu berjalan sesi**, seharga $0,08 per jam
+* **Pencarian web**, seharga $10 USD per 1.000 pencarian
+* **Waktu berjalan sesi**, seharga $0,08 USD per jam
 
 Total dolar berjalan ini adalah **biaya daftar** (list cost) sesi, dan inilah yang dibandingkan dengan anggaran. Biaya daftar bukanlah harga kontrak Anda: jika organisasi Anda telah menegosiasikan diskon, sesi mencapai batasnya ketika total harga daftar mencapainya, dan pengeluaran yang ditagihkan kepada Anda mungkin lebih rendah dari batas tersebut.
 
@@ -177,6 +177,8 @@ Sesi yang mencapai anggarannya menjadi idle dengan `stop_reason` bernilai `budge
 2. Event [`session.usage`](https://platform.claude.com/docs/id/managed-agents/budgets#monitor-spend) dengan penggunaan kumulatif dan biaya daftar sesi.
 3. Event `session.status_idle` dengan `stop_reason` bernilai `budget_reached`. Event usage selalu langsung mendahului event idle ini.
 
+Jika ada [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits) yang terbuka, setiap eksekusi yang belum idle juga mendapatkan event `workflow_run.status_idle`.
+
 Thread yang permintaan terakhirnya melewati batas sekaligus menyelesaikan gilirannya melaporkan `end_turn` pada event `session.thread_status_idle` miliknya sendiri, sementara sesi tetap melaporkan `budget_reached`; perlakukan `stop_reason` tingkat sesi sebagai sinyal bahwa sesi dijeda pada anggarannya.
 
 ### Event yang diterima pada batas
@@ -190,11 +192,15 @@ Selama sesi berada pada atau melebihi anggarannya, sesi hanya menerima event yan
 
 Event apa pun yang akan memulai pekerjaan baru, seperti `user.message`, ditolak dengan error 400 yang menyebutkan daftar ini. Hasil yang diselesaikan dicatat tanpa memicu permintaan model baru; sesi tetap dijeda pada anggarannya.
 
-`user.interrupt` yang dikirim saat sesi dijeda pada anggarannya (semua thread dijeda pada batas) diterima dan diabaikan: event tersebut tidak muncul dalam daftar event dan tidak mengubah apa pun. Ubah atau hapus anggaran untuk melanjutkan.
+`user.interrupt` yang dikirim saat sesi dijeda pada anggarannya (semua thread dijeda pada batas) diterima, dan event tersebut tidak muncul dalam daftar event. Event ini tidak menghentikan thread mana pun, karena setiap thread sudah dijeda. Ubah atau hapus anggaran untuk melanjutkan.
+
+Jika sesi memiliki [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open) yang terbuka, interupsi tersebut dapat menjedanya, seperti halnya interupsi pada waktu lain mana pun. Eksekusi yang dijeda oleh interupsi tidak dilanjutkan ketika Anda mengubah atau menghapus anggaran. Untuk melanjutkannya, ubah atau hapus anggaran, lalu kirim `user.message` yang meminta agen melanjutkan eksekusinya.
 
 ## Melanjutkan sesi yang mencapai anggarannya
 
-Ubah atau hapus anggaran dengan pembaruan sesi. Pembaruan yang diterima akan melanjutkan pekerjaan sesi yang dijeda secara otomatis; tidak diperlukan tindakan klien lebih lanjut.
+Ubah atau hapus anggaran dengan pembaruan sesi. Pembaruan yang diterima akan secara otomatis melanjutkan pekerjaan yang dijeda oleh anggaran; tidak diperlukan tindakan klien lebih lanjut.
+
+Setiap [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits) yang dijeda oleh anggaran juga mendapatkan event `workflow_run.status_running`. Eksekusi yang dijeda oleh interupsi, bahkan interupsi yang dikirim saat sesi berada pada anggarannya, tetap dijeda dan tidak mendapatkan event `workflow_run.status_running` dari pembaruan tersebut. Untuk melanjutkannya, kirim `user.message` yang meminta agen melanjutkan eksekusinya. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 ### Mengubah anggaran
 
@@ -308,7 +314,7 @@ Perbarui sesi dengan `max_list_cost` baru. Nilai baru dapat lebih tinggi atau le
 
 ### Menghapus anggaran
 
-Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan sesi yang dijeda dilanjutkan, dan event `session.updated` yang dihasilkan membawa `budget` bernilai `null`.
+Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan yang dijeda oleh anggaran dilanjutkan, dan event `session.updated` yang dihasilkan membawa `budget` bernilai `null`.
 
 <CodeGroup>
   ```bash cURL
@@ -409,7 +415,7 @@ Batas disalin ke setiap sesi yang dimulai deployment, sehingga batas tersebut me
 
 ## Model tanpa harga daftar
 
-Anggaran hanya dapat melacak konsumsi yang dapat dihitung harganya oleh platform. Membuat sesi beranggaran yang agennya, atau agen maupun advisor mana pun pada [daftar multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)-nya, menggunakan model tanpa harga daftar publik akan ditolak dengan error 400 yang menyatakan bahwa tidak ada harga daftar yang tersedia untuk model tersebut.
+Anggaran hanya dapat melacak konsumsi yang dapat dihitung harganya oleh platform. Membuat sesi beranggaran yang agennya, atau agen mana pun yang tercantum dalam `subagents.predefined_agents` atau `workflows.predefined_agents`, atau advisor yang ditetapkan dalam [konfigurasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration)-nya, menggunakan model tanpa harga daftar publik akan ditolak dengan error 400 yang menyatakan bahwa tidak ada harga daftar yang tersedia untuk model tersebut.
 
 Jika penggunaan sesi beranggaran kemudian mencakup model tanpa harga daftar, anggaran tidak dapat lagi mengukur pengeluaran sesi: sesi dapat dijeda dengan `stop_reason` bernilai `budget_reached`, dan mengubah anggaran akan ditolak. Hapus anggaran untuk melanjutkan sesi.
 

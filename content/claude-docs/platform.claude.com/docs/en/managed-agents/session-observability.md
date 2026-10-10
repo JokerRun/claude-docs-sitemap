@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-observability
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 076581ef7fb5973cba5726179dedd63bba7ec1eebc7322f194cee83c30e58584
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c9835baee4387fc8e63772d6832c435c4a161b9348a0ddbf25eab2f1ebe73b65
 ---
 
 ---
@@ -86,7 +86,7 @@ The session's `stats` object has its own `active_seconds`, which sums each threa
 
 ### Per-thread usage
 
-Each [session thread](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration)'s own `usage` carries `list_cost` and `active_seconds` too. Per-thread figures are rounded independently and exclude the session's running-time cost, so they don't sum exactly to the session's `list_cost`. The session figure is the authoritative one.
+Each [session thread](https://platform.claude.com/docs/en/managed-agents/session-threads)'s own `usage` carries `list_cost` and `active_seconds` too. Per-thread figures are rounded independently and exclude the session's running-time cost, so they don't sum exactly to the session's `list_cost`. The session figure is the authoritative one.
 
 ### Read usage from the stream
 

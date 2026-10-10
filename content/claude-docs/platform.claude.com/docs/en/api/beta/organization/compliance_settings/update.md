@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/update
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 43c97bf549672c1bc800e6e34dfe4473cab71451e3a52d27b3ec8a4c17f9af12
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c47a4e750b27b8181d4edcaccac463e2a137c48ebe9973a8a480c9ddb87a4cd3
 ---
 
 ---
@@ -28,6 +28,14 @@ the Compliance API, which serves its activity events, so such
 provisioning (including re-runs) re-enables the Compliance API even
 after a `disabled` request. Automated provisioning never disables
 compliance settings.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

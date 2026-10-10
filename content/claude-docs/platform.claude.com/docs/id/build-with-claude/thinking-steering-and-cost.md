@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a88316c35544e335dfbff8aa0767b619708061e09ef743f1e44773aa1ec3b865
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 24d4b5bf88abdbebe1b331f1e6c694221a7570b0f372ad441c222396407c9d82
 ---
 
 ---
@@ -43,6 +43,10 @@ Gunakan kedua tuas ini bersama-sama dalam urutan berikut:
 
 1. Tetapkan tingkat effort yang sesuai dengan keseimbangan default antara kualitas dan latensi pada beban kerja Anda.
 2. Tambahkan panduan prompt hanya jika pemicuan pemikiran Claude masih belum sesuai dengan kebutuhan Anda pada tingkat tersebut.
+
+<Note>
+  Untuk mendapatkan lebih sedikit pemikiran pada Claude Sonnet 5.5 dan Claude Haiku 5.5, turunkan tingkat effort. Meminta Claude Sonnet 5.5 di prompt sistem untuk berpikir lebih sedikit tidak secara andal mengurangi pemikirannya, dan dalam pengujian Anthropic, memberi tahu Claude Haiku 5.5 di prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Lihat [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort) dan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
+</Note>
 
 Untuk panduan prompting yang lebih luas dengan pemikiran, lihat [memanfaatkan kemampuan pemikiran dan pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
 
@@ -95,9 +99,11 @@ Efektivitas pengarahan dapat sensitif terhadap pilihan kata yang tepat. Jika sat
 
 ### Pengarahan per pesan
 
-Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, secara independen dari prompt sistem. Menambahkan `"Please think hard before responding."` ke pesan pengguna mendorong Claude untuk berpikir pada giliran tersebut; `"Answer directly without deliberating."` menekannya.
+Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas dari prompt sistem. Menambahkan `"Please think hard before responding."` ke pesan pengguna mendorong Claude untuk berpikir pada giliran tersebut; `"Answer directly without deliberating."` mencegahnya.
 
-Pengarahan per pesan berguna ketika hanya sebagian permintaan dalam percakapan yang memerlukan penalaran diperpanjang. Harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa penekan pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
+Pengarahan per pesan berguna ketika hanya sebagian permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
+
+Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Di Claude API dan Google Cloud, jalankan giliran rutin pada model tersebut dengan lebih sedikit pemikiran menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
 
 ### Verifikasi pengarahan pada beban kerja Anda
 
@@ -127,7 +133,7 @@ Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang sebaiknya Anda
 
 Permintaan berurutan yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan "prompt caching" (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang telah diselesaikan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke default model setara dengan menghilangkannya dan tidak merusak cache.
 
-Konsekuensi praktisnya: pilih satu konfigurasi pemikiran dan satu tingkat effort per percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior): panduan yang ditambahkan ke pesan pengguna terbaru membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan konfigurasi atau effort tidak.
+Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas per percakapan dan pertahankan. Jika beberapa giliran membutuhkan lebih banyak atau lebih sedikit pemikiran, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
 
 Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran yang dapat Anda jalankan sendiri:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 2491e871bb36f7c7ca30c958665725dabd089fe916ab623df760ae69457491c9
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d2bd1d053647eb20a49cd0ff625e468a7188210eb371d67c8802ad0314eb026f
 ---
 
 ---
@@ -94,7 +94,7 @@ ClaudeLanguageModel(name: model, auth: auth)
 
 ### Effort
 
-Tetapkan [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per permintaan milik framework. Tingkat reasoning bernama milik framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, teruskan tingkat reasoning kustom yang menyebutkan effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. API menggunakan default `high` ketika tidak ada effort yang dikirim:
+Tetapkan [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per permintaan dari framework. Tingkat reasoning bernama dari framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, berikan tingkat reasoning kustom yang menyebutkan effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. Ketika tidak ada effort yang dikirim, API menggunakan tingkat default model, yang berbeda-beda per model (lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels)):
 
 ```swift
 ClaudeLanguageModel(name: .opus5_5, auth: auth, fixedEffort: .xhigh)

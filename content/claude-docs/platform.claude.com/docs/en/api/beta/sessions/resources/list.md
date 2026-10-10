@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 676539b42e7d21d377f20c15ac2e6166720ee51438cff3f03d97f4f1c546bb07
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 233bbc0b162995fe2efb88cbc099b3842c43943f1f28b042b78b4e45a2c6e91c
 ---
 
 ---
@@ -33,6 +33,8 @@ List Session Resources
   Opaque cursor from a previous response's `next_page` field.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 22e6f47ec797bccb56b715796fe71faec27001353fd483e375df1261e3a0a954
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b044eca237d1c1aedc0cba8b723b864df19d1cee64179bd0834aa52df181beb6
 ---
 
 ---
@@ -31,6 +31,12 @@ restarted after rotation must use the new value. An optional
   ID of the Tunnel.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

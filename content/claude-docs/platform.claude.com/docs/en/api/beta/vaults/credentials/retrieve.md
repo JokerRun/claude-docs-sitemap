@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a7d2bbcac98736ab5eab040fe4e0c4d8e96398b778c673ad26e1b33321dbb5e0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 27e185eadb35ffbaefd870f7da8a1d3cc8ba9263a52b875b217c0ea1a4eef7ef
 ---
 
 ---
@@ -27,6 +27,8 @@ Get Credential
   Unique identifier of the credential to retrieve.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries/list
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 71df15ddd72c0c1f3b1348855681abaf0a1710753cba4073894e508329b19f9c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e00f7d66ae86a093db342f6a0969543e512d172a252f5facc79ef1ffec16f356
 ---
 
 ---
@@ -56,6 +56,14 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page` field. `next_page` is currently always null, so there is never a cursor to send.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

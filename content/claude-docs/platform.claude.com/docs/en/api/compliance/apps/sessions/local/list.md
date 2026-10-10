@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c4299bc6fb367ad15b63872a3b8c6d60bab47454035992a6b87d99cdfcaccae0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6f47befd6ca8d74177e711be3e772c6f6f5363a914a90e0cfb3067b794695ca3
 ---
 
 ---
@@ -54,6 +54,12 @@ forward-only via `next_page`; there is no reverse cursor.
     format: date-time
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

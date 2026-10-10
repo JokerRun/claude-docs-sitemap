@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6bdd953e2a398df6a5a5185efa08ce8f47b28eea27dce2362e9695e17354d002
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a24de41f136b85981066456c3a2662ecc342f7f47179e059d1685fc75faf4d8a
 ---
 
 ---
@@ -39,6 +39,12 @@ List Files
   Filter by scope ID. Only returns files associated with the specified scope (e.g., a session ID).
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

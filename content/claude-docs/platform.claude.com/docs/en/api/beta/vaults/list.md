@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 8e8ae429d51005d076efcb76b4274c128cb202a7433ab7c8cce9c47e742ba686
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4ecaf38d5f86dc988700c1fb8fcaa601fe24a19eb8cf31479d94f3d19bbefda0
 ---
 
 ---
@@ -33,6 +33,8 @@ List Vaults
   Opaque pagination token from a previous `list_vaults` response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

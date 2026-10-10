@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: cca39da37a16d427497e8e423d85a594ead08d8624f14e98d8c34cb13acd99fa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: dd231da87e85be3e80654ef7aec05611f580c3a758806b90ebfd64b5aaeac9a5
 ---
 
 ---
@@ -109,8 +109,8 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.70.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.70.0")
+        implementation("com.anthropic:anthropic-java:2.71.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.71.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.70.0</version>
+            <version>2.71.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.70.0</version>
+            <version>2.71.0</version>
         </dependency>
         ```
       </Tab>
@@ -355,7 +355,7 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 | Claude Haiku 5.5                                                                            | `anthropic.claude-haiku-5-5`      | [See Access](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Haiku 4.5                                                                            | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
-Use Claude Code 2.1.255 or later with Claude Fable 5.1 on Amazon Bedrock, and 2.1.280 or later with Claude Opus 5.5; run `claude update` to upgrade.
+Use Claude Code 2.1.255 or later with Claude Fable 5.1 on Amazon Bedrock, and 2.1.280 or later with Claude Opus 5.5 and Claude Haiku 5.5; run `claude update` to upgrade.
 
 <Tip>
   Upgrading to a newer Claude model? In Claude Code, run `/claude-api migrate` to apply model ID swaps and breaking parameter changes across your codebase. The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform. See [Migrating to a newer Claude model](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).

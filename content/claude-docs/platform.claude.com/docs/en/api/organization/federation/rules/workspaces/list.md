@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 2de8b8ebfe2c0c3a1c100bb069a1cf65c72ce27ed867faa55c8932a937b577b5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 26fedfacd2b4c84ad165990db8008c4c40890bc454dec9e3136341dedf3972e6
 ---
 
 ---
@@ -41,6 +41,14 @@ rules with `applies_to_all_workspaces` or a legacy single
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

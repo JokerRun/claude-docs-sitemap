@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 3a43fda26f50c2b62bd7827699bb0542bf40df8556499d08443fee4b0de2d19d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6130ad83b44bbc5c7f703563dc2a968427bdf0c1b343f3debac883fa2f936854
 ---
 
 > ## Documentation Index
@@ -124,6 +124,12 @@ ResultMessage - final result
 ```
 
 Without partial messages enabled, you receive all message types except `StreamEvent`. Common types include `SystemMessage` (session initialization), `AssistantMessage` (complete content blocks), `ResultMessage` (final result), and a compact boundary message indicating when conversation history was compacted (`SDKCompactBoundaryMessage` in TypeScript; `SystemMessage` with subtype `"compact_boundary"` in Python).
+
+### Handle a stream that's cut off
+
+If a stream is cut off mid-message, such as when you interrupt the turn or the connection drops, you still receive that message's `message_stop` before the turn ends. A cut text or thinking block also gets its `content_block_stop`. A cut tool call doesn't, so if `message_stop` arrives while a tool call's block is still open, treat that call's input as incomplete.
+
+Before Claude Code v2.1.290, a cut stream could end the turn without `message_stop`, so a reply you render from stream events could stay shown as in progress. The TypeScript Agent SDK bundles Claude Code v2.1.290 or later from v0.3.290, and the Python Agent SDK from v0.2.164. If a reply stays shown as in progress after the turn ends, update the SDK.
 
 ## Stream tool calls
 

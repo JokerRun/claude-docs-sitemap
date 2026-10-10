@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d30a81644d659aaa185d8cb648de062768d8e4861f71908a6f0cfea796efccf1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5c8e12e2ea1ac3ca7be37521099ab57322066704dbb9a1113b616523e1f2ff75
 ---
 
 ---
@@ -27,6 +27,12 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   ID of the Message Batch.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 
@@ -949,11 +955,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           - `"claude-haiku-4-5"`
 
-            Fastest model with near-frontier intelligence
-
           - `"claude-haiku-4-5-20251001"`
-
-            Fastest model with near-frontier intelligence
 
           - `"claude-opus-4-5"`
 

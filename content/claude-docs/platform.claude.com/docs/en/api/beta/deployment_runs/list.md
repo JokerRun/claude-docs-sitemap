@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 86a87a759ac5207238389ee794cf731983b060a92df79b230619b7bc8d52d456
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d9fd8cdd6430a2aad70b27428f177d3dc8f916541890c5792769a045895183d9
 ---
 
 ---
@@ -73,6 +73,8 @@ List Deployment Runs
     The run was started manually by creating a session directly against the deployment.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

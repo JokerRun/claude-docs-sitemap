@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ce0ea1a372efdf71f1a8b2022893cdcf1d9e7b4c8dade7fe9c69c561a5261cfa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9beb07465bb405c835d7a8fb7f823c95d7e4391f26851d05c9b1c4e05f0dd0fe
 ---
 
 ---
@@ -37,6 +37,8 @@ Create a memory
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 83bb2e7bf860c95a1696ecfae09deda8f69b0fa667dd82fd1cc9e057d882367b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cf940dc50f5be13440117064ac206a3c780cafba00d147f9c12820f41118f934
 ---
 
 ---
@@ -17,6 +17,8 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
 Create User Profile
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

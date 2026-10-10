@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: d805748a42dd5642d407819bddca7e2520ab34e9c204f8590693562ea021086f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 21dd80b02133970c0425fa183a8b7bb8a1dcf9217cd89417306878e794bd60a1
 ---
 
 ---
@@ -23,6 +23,8 @@ Delete a memory store
   ID of the memory store to permanently delete (a `memstore_...` identifier). Required. Deletion cascades to all memories and memory versions in the store and cannot be undone.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

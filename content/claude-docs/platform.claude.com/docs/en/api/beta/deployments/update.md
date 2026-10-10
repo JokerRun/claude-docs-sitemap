@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6ba00c64f011586a33a0095ce08b423b69bd6d3937052acd55c9bf12584bdf9d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ab16312d8fad882ebebb7a534aaed76424f89d8d55700463ff6ffe719fb911b1
 ---
 
 ---
@@ -23,6 +23,8 @@ Update Deployment
   Unique identifier of the deployment to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

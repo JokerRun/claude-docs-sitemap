@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: abd7340d685cb47b12b8c85fcfa2b5a4ccb664b7d1bd21476110ce680ae6a221
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1cb32777c390b7f205404f5c35173864c2e545c66fc1991ab405085b6c07eb3b
 ---
 
 ---
@@ -23,6 +23,8 @@ Delete Vault
   Unique identifier of the vault to delete.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

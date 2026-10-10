@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: bffc8a40a0673b3d7f8fff7bad03f9f6b637d658dcf4c24cb71af3b155c3c373
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9b3277f03389b15b85294411630bd90ac6752b75afb0e6f823a5c44fb21027df
 ---
 
 ---
@@ -30,7 +30,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Amazon Bedrock: not available
     Google Cloud: beta
     Microsoft Foundry: beta
 ---
@@ -65,7 +64,7 @@ Untuk mengubah `system` atau `tools` tanpa membuat thinking yang dipertahankan m
 
 Untuk menambahkan instruksi atau mengubah alat yang tersedia tanpa menyentuh `system` atau `tools`, tambahkan perubahan tersebut ke `messages`, seperti yang dijelaskan dalam [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits).
 
-Pesan sistem di tengah percakapan yang berada di dalam giliran yang diringkas juga ikut diringkas, sehingga instruksi teks di dalamnya berhenti berlaku setelah pertukaran. Agar salah satunya tetap berlaku, nyatakan kembali dalam pesan `role: "system"` tepat setelah giliran `user` baru pertama yang mengikuti giliran yang dipertahankan. Perubahan alat di dalam giliran tersebut terbawa dengan sendirinya ketika permintaan compaction juga membawa `inline-tools-2026-09-15`: blok yang dikembalikan mencatat efek bersihnya dalam field `tool_changes`, jadi kirim kembali blok tersebut tanpa modifikasi. Jika blok tidak memiliki field `tool_changes`, nyatakan kembali perubahan alat tersebut dengan cara yang sama. Pesan sistem yang ditempatkan di antara blok dan giliran yang dipertahankan akan merusak thinking di dalam giliran tersebut.
+Pesan sistem di tengah percakapan di dalam giliran yang diringkas juga ikut diringkas, sehingga instruksi teksnya berhenti berlaku setelah pertukaran. Level [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) yang ditetapkannya juga tidak terbawa: hingga pesan berikutnya menetapkan level, giliran berjalan pada `output_config.effort` tingkat atas permintaan, atau default model jika Anda tidak menetapkannya. Untuk menjaga instruksi atau level effort tetap berlaku, nyatakan kembali dalam pesan `role: "system"` tepat setelah giliran `user` baru pertama yang mengikuti giliran yang dipertahankan. Perubahan alat di dalam giliran tersebut terbawa dengan sendirinya ketika permintaan compaction juga membawa `inline-tools-2026-09-15`: blok yang dikembalikan mencatat efek bersihnya dalam field `tool_changes`, jadi kirim kembali blok tersebut tanpa modifikasi. Jika blok tidak memiliki field `tool_changes`, nyatakan kembali perubahan alat tersebut dengan cara yang sama. Pesan sistem yang ditempatkan di antara blok dan giliran yang dipertahankan akan merusak thinking-nya.
 
 ## Memeriksa bahwa thinking yang dipertahankan tetap valid
 
@@ -710,4 +709,4 @@ Thinking blocks in the kept turn: 1
 Dropped thinking blocks: 0
 ```
 
-Di produksi, `"drop_block"` membuat permintaan tetap berhasil ketika suatu syarat tidak terpenuhi, dan melaporkan setiap blok yang dibuang dalam `input_transformations` dengan `reason: "prefix_binding_mismatch"`. Entri yang `path`-nya berada dalam giliran yang dipertahankan berarti thinking pada giliran tersebut tidak lagi valid. [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang dibuang dan cara memasang peringatan untuknya.
+Di produksi, `"drop_block"` membuat permintaan tetap berhasil ketika suatu syarat tidak terpenuhi, dan melaporkan setiap blok yang dibuang dalam `input_transformations` dengan `reason: "prefix_binding_mismatch"`. Entri yang `path`-nya berada dalam giliran yang dipertahankan berarti thinking giliran tersebut tidak lagi valid. [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang dibuang dan cara membuat peringatan untuknya. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Permintaan yang menetapkannya dengan `thinking: {"type": "between_tools"}` pada Claude Sonnet 5.5, atau dengan `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, mengembalikan error 400. Pada permintaan tersebut, pastikan setiap syarat terpenuhi, atau hapus blok `thinking` dan `redacted_thinking` dari giliran yang dipertahankan.

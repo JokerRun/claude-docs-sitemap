@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 9c9612c55dff654fec8f7d1b84ca42ad304ba3599bceb580ec5657d7c391a121
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 356d4b7348e6e5200ac421dadf3a6e5c48452c4e90e25bd43277b33d23475571
 ---
 
 ---
@@ -27,6 +27,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   The ID of the dream to archive (`drm_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/download
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 4dbb1ef82ecc8c72911e5ecf9c59c9899cf12e1a6f22f74c73a527535dccd087
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a0842ec41218a1bc514f931a8c39f620238b6082d881eb4a9770b24d5b52c1b4
 ---
 
 ---
@@ -23,6 +23,12 @@ Downloads the binary content of a file the assistant created via tool use.
   The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

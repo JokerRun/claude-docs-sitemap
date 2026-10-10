@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2cdb9ae479320adb0a7426a1fa7e7bb00016115c0c29110f9d390109fc414e5f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5c17fbb9483c086d3f8a5d4d0be921d867097ff1f29367638ead2e3771b880c4
 ---
 
 ---
@@ -32,6 +32,12 @@ holds at most two non-archived certificates.
   ID of the Tunnel.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

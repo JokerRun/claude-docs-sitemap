@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 3b10c6ccd399a9c02cf11dff53fafbd2d4198bb52e59e0ac6d4a5d613443f468
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6c5589c5a7bb5ff0eda568da8c703ecbe6588c50429d928090588e68b38ea8e8
 ---
 
 ---
@@ -569,9 +569,9 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
 
 ## Di mana fitur ini berfungsi
 
-Kredit fallback berada dalam tahap beta di Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry. Penolakan di [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing) tidak menerbitkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang diteruskan pada permintaan batch diterima tetapi diabaikan.
+Kredit fallback tersedia dalam versi beta di Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry. Penolakan dalam [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing) tidak menghasilkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang diteruskan pada permintaan batch diterima tetapi diabaikan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis cache prompt model fallback.
 
-Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan untuk model yang menolak. Untuk Claude Fable 5.1 dan Claude Fable 5, target tersebut adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`).
+Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang menolak. Untuk Claude Fable 5.1, Claude Fable 5, dan Claude Opus 5.5, targetnya adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`). Untuk Claude Opus 5, targetnya adalah Claude Opus 4.8. Untuk Claude Sonnet 5.5, targetnya adalah Claude Sonnet 5 (`claude-sonnet-5`).
 
 <Accordion title="Mencari target fallback yang diizinkan secara terprogram">
   Di Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](https://platform.claude.com/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar ini belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.

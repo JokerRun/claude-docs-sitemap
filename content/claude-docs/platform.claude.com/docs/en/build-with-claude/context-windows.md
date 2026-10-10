@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9076cb9dc2afb6622fc327e2a684d54cc080b8a37710fa78f8d3c9decbee46ab
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7d790a0e38c0fce064361fb56418b16cf108bce2b64d294b098624b97739a036
 ---
 
 ---
@@ -149,7 +149,7 @@ If your conversations regularly approach context window limits, use [server-side
 For more specialized needs, [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) offers additional strategies:
 
 * **Tool result clearing:** Clear old tool results in agentic workflows
-* **Thinking block clearing:** Manage thinking blocks when you use extended thinking
+* **Thinking block clearing:** Manage thinking blocks from earlier turns
 
 Cached prompt prefixes still occupy the context window: [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) changes what you pay for those tokens, not whether they count.
 

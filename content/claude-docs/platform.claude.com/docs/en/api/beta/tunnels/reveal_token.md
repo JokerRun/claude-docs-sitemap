@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: bd253fec9afe254b5b74f911a376b054403eca03d095dc69649f8f70cbceddc3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d01cdc795c9044f7c452deee311f79e74eee4c54926933255f35fb5ed27a81ca
 ---
 
 ---
@@ -25,6 +25,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
   ID of the tunnel (`tnl_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

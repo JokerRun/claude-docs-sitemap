@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b93e1856c0f8cf4006d2aa44177115731ea2430c3358c451812c47967631e843
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3fb8f059498236c89832e153c59569973f46818f36c091cccdb5bcd8b8b8eef5
 ---
 
 ---
@@ -23,6 +23,8 @@ By default the dream writes its result to a new memory store and doesn't change 
 See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#create-a-dream) to learn more about creating dreams.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -603,6 +605,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1015,6 +1019,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1421,6 +1427,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   The ID of the dream to cancel (`drm_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -1829,6 +1837,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   The ID of the dream to archive (`drm_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

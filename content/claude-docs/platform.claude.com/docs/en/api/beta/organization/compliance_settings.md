@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 1bed86fd8a527bd24761b94afb134de1a244425b6011dd590f713288331a10a7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: df534cf17bdaf5811a8c6d4074c564eef9a035a6e3cfd00ca44354778584876b
 ---
 
 ---
@@ -22,6 +22,14 @@ Compliance Settings is a singleton resource: there is exactly one per
 organization, addressed without an identifier. The `state` field reflects
 whether the Compliance API is enabled. An organization with a parent
 organization reads the state inherited from the parent's configuration.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -84,6 +92,14 @@ the Compliance API, which serves its activity events, so such
 provisioning (including re-runs) re-enables the Compliance API even
 after a `disabled` request. Automated provisioning never disables
 compliance settings.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 1ba3a28bd4e805e542bf71968ca2985f4acc04dfec18d08d39da1e33a575dfb8
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c165556a3fd47e66f60441c7f240b26b942ee5c38fa9db415f894eedfaafdd3d
 ---
 
 ---
@@ -21,7 +21,7 @@ Halaman ini menelusuri perjalanan bolak-balik "tool use" (penggunaan alat) dua g
 
 Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
 
-* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat mengembalikan error dengan "extended thinking" (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`); adaptive thinking mendukung penggunaan alat yang dipaksakan.
+* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan "extended thinking" (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Adaptive thinking mendukung penggunaan alat yang dipaksakan, kecuali pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
 * [Pertahankan satu konfigurasi thinking per giliran asisten](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
 * [Kirim kembali blok thinking secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok thinking dari pesan asisten harus ikut dikembalikan bersamanya.
 * [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau menyaring blok `redacted_thinking` akan memicu error 400.

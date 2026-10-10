@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 29c645bf8fe412d7714c9e318f36faea959ac8b70adf16b11a35108ee213a216
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 8f2c8263b9d5615c4d79712039c7af85071e00efe95f2f14b535a369dc504198
 ---
 
 ---
@@ -75,7 +75,7 @@ Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/bu
   Mulai dari Claude Sonnet 4.5, Haiku 4.5, dan Opus 4.5:
 
   * **Bedrock** menawarkan dua jenis endpoint: endpoint global (perutean dinamis untuk ketersediaan maksimum) dan endpoint regional (perutean data yang dijamin melalui wilayah geografis tertentu).
-  * **Google Cloud** menawarkan tiga jenis endpoint: endpoint global, endpoint multi-region (perutean dinamis dalam suatu area geografis), dan endpoint regional.
+  * **Google Cloud** menawarkan endpoint global dan endpoint multi-region (perutean dinamis dalam suatu area geografis) untuk model-model ini, serta endpoint regional untuk Claude Sonnet 4.6 dan model sebelumnya.
 
   Endpoint regional dan multi-region dikenakan premi 10% di atas endpoint global. Claude API (pihak pertama) bersifat global secara default; untuk opsi residensi data pihak pertama dan harganya, lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing).
 
@@ -164,7 +164,7 @@ Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching 
 
 ### Harga residensi data
 
-Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Perutean global (default) menggunakan harga standar.
+Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)). Perutean global (default) menggunakan harga standar.
 
 Ini berlaku untuk Claude API (pihak pertama) dan Claude Platform on AWS. Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra (Bedrock dan Google Cloud) memiliki harga regional tersendiri. Lihat [Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model yang lebih lama tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model ini akan mengembalikan error 400.
 
@@ -228,7 +228,7 @@ Untuk informasi lebih lanjut tentang pemrosesan batch, lihat [Pemrosesan batch](
 
 Model Claude 4.6 dan yang lebih baru (kecuali Claude Haiku 5.5) serta [Claude Mythos Preview](https://anthropic.com/glasswing) menyertakan [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) penuh dengan harga standar. (Permintaan 900k token ditagih dengan tarif per token yang sama dengan permintaan 9k token.) Diskon caching prompt dan pemrosesan batch berlaku dengan tarif standar di seluruh jendela konteks.
 
-Claude Haiku 5.5 diberi harga berdasarkan panjang prompt: prompt dengan lebih dari 100.000 token dikenakan harga yang lebih tinggi. [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing) dan [Pemrosesan batch](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing) mencantumkan kedua set harga tersebut.
+Claude Haiku 5.5 diberi harga berdasarkan panjang prompt: permintaan yang prompt-nya melebihi 100.000 token membayar harga yang lebih tinggi. Panjang prompt suatu permintaan menghitung semua token inputnya, termasuk pembacaan cache dan penulisan cache. Setiap permintaan diberi harga secara terpisah: permintaan yang melebihi ambang batas membayar harga yang lebih tinggi meskipun sebagian prompt-nya merupakan cache hit, dan permintaan sebelumnya tetap dengan harga yang telah ditagihkan. [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing) dan [Pemrosesan batch](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing) mencantumkan kedua set harga tersebut.
 
 ### Harga penggunaan alat
 
@@ -283,10 +283,10 @@ Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik "tool use"
 
 Definisi alat bash menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) per model yang berlaku setiap kali ada alat yang disertakan.
 
-| Model                                                    | Token input tambahan |
-| -------------------------------------------------------- | -------------------- |
-| Claude Opus 5, Claude Opus 4.8, dan Claude Opus 4.7      | 325 token            |
-| Claude Opus 4.6, Claude Sonnet 4.6, dan versi sebelumnya | 244 token            |
+| Model                                                            | Token input tambahan |
+| ---------------------------------------------------------------- | -------------------- |
+| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token            |
+| Model Claude 4.6 dan yang lebih lama                             | 244 token            |
 
 Token tambahan dikonsumsi oleh:
 
@@ -327,9 +327,10 @@ Alat editor teks menggunakan struktur harga yang sama dengan alat lain yang digu
 
 Selain token dasar, token input tambahan berikut diperlukan untuk alat editor teks:
 
-| Alat                                | Token input tambahan |
-| ----------------------------------- | -------------------- |
-| `text_editor_20250429` (Claude 4.x) | 700 token            |
+| Alat                                                                                      | Token input tambahan |
+| ----------------------------------------------------------------------------------------- | -------------------- |
+| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token            |
+| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama)                             | 745 token            |
 
 Lihat [harga penggunaan alat](https://platform.claude.com/docs/id/about-claude/pricing#tool-use-pricing) untuk detail harga lengkap.
 
@@ -387,7 +388,7 @@ Contoh penggunaan token untuk konten umum:
 
 Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat penggunaan komputer:
 
-**Overhead definisi toolset:** Mendeklarasikan `computer_toolset_20260801` dengan anggota defaultnya menambahkan sekitar 4.500 token input ke sebuah permintaan (sekitar 4.520 pada Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8, serta sekitar 4.590 pada Claude Sonnet 5), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Menonaktifkan `zoom` dengan `configs` menghapus sekitar 410 dari token tersebut. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+**Overhead definisi toolset:** Mendeklarasikan `computer_toolset_20260801` dengan anggota default-nya menambahkan sekitar 4.500 token input ke sebuah permintaan (sekitar 4.590 pada Claude Sonnet 5 dan sekitar 4.520 pada model lain yang didukung), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Menonaktifkan `zoom` dengan `configs` menghapus sekitar 410 dari token tersebut. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 **Versi alat sebelumnya:** Angka-angka berikut berlaku untuk versi alat `computer_20251124` dan `computer_20250124`, bukan untuk `computer_toolset_20260801`:
 
@@ -407,7 +408,7 @@ Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.co
 
 Penggunaan browser mengikuti [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat penggunaan browser:
 
-**Overhead definisi toolset:** Mendeklarasikan `browser_toolset_20260801` dengan anggota defaultnya menambahkan sekitar 6.600 token input ke sebuah permintaan (sekitar 6.610 pada Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8, serta sekitar 6.670 pada Claude Sonnet 5), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Mengaktifkan keempat anggota opsional menambahkan sekitar 880 token, dan menonaktifkan anggota dengan `configs` mengurangi jumlahnya. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+**Overhead definisi toolset:** Mendeklarasikan `browser_toolset_20260801` dengan anggota default-nya menambahkan sekitar 6.600 token input ke sebuah permintaan (sekitar 6.670 pada Claude Sonnet 5 dan sekitar 6.610 pada model lain yang didukung), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Mengaktifkan keempat anggota opsional menambahkan sekitar 880 token, dan menonaktifkan anggota dengan `configs` mengurangi jumlahnya. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 **Konsumsi token tambahan:**
 
@@ -525,7 +526,7 @@ Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau 
 
 ### Bagaimana penggunaan token dihitung?
 
-Token adalah potongan teks yang diproses oleh model. Sebagai perkiraan kasar, 1 token kira-kira setara dengan 4 karakter atau 0,75 kata dalam bahasa Inggris. Jumlah pastinya bervariasi menurut bahasa dan jenis konten.
+Token adalah potongan teks yang diproses oleh model. Berapa banyak token yang dihasilkan oleh teks yang sama bergantung pada tokenizer model, bahasa, dan jenis konten. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru yang menghasilkan sekitar 30 persen lebih banyak token untuk teks yang sama dibandingkan model sebelumnya. Untuk melihat berapa banyak token yang digunakan suatu permintaan pada model tertentu, hitunglah dengan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) dan ID model tersebut.
 
 ### Apakah ada tingkat gratis atau uji coba?
 

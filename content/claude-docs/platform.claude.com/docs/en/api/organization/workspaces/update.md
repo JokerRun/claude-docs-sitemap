@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d2a205ccb45933778abcd194f90a575c6237f68041bbea14553ab8d5249944bb
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e9843d1a59443c417d87bb1e14b39fb4d1e4d6cddb71ac6f0c5e2d18b006ee5e
 ---
 
 ---
@@ -19,6 +19,14 @@ Update Workspace
 ## Path parameters
 
 - `workspace_id: string`
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 
@@ -70,7 +78,7 @@ Update Workspace
 
   Name of the Workspace.
 
-  minLength: 1, maxLength: 40
+  minLength: 1, maxLength: 255
 
 - `tags: optional map[string] or null`
 

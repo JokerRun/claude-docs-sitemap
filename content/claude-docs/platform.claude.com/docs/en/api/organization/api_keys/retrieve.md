@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/api_keys/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 334d3b687dd12e43cd47e1b7b2c1ce18d1d2352d2d90b28289a5e1acf2bc12fc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0df529e5e7a02f6ae264e7966e3e9f789f0d30574c99e4a345892184745ac55d
 ---
 
 ---
@@ -21,6 +21,14 @@ Retrieve information about a single API key in your organization, looked up by i
 - `api_key_id: string`
 
   ID of the API key.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

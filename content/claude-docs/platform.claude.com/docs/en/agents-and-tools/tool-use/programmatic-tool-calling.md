@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: cf6ed45ff661ceeacd1a3d1a8607239a503c9608ae99bb8ff466c9295d544405
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f9d0e8f804fcbfb1c5afaf167a67efc6c65b8d19d2cdebf0e2f8f3fb9e99d1e5
 ---
 
 ---
@@ -31,8 +31,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock: not available
-    Google Cloud: not available
     Microsoft Foundry:
       availability: ga
       note: On [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), programmatic tool calling requires a [Hosted on Anthropic deployment](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).

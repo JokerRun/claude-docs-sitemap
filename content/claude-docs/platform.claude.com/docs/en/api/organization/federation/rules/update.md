@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/update
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e8f4b04e5c95295fccc945ffa8efecbe7f7205db634a6502b889eeaa895d68a3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1711239d2d247e5c4bb8eb13213c79ec900ee4cf9c9639cb3e14b156c9f583aa
 ---
 
 ---
@@ -39,6 +39,14 @@ Console session.
 - `federation_rule_id: string`
 
   ID of the federation rule to update.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

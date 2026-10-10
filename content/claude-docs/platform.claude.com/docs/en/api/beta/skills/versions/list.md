@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 544a5f19f26e71540ebc9c9ca408e07556cd652d6104205f592368d1a20008de
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 668cf291319b70916e220a14f663dd7f00a0f8fd37237c9864305b06d9f0eb7a
 ---
 
 ---
@@ -39,6 +39,12 @@ List Skill Versions
   Optionally set to the `next_page` token from the previous response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

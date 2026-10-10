@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: f0e997d1a8455da9a9a09dfd272c77d08f8d50c1a0ae73204e591ba78d0255ce
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 43f0f5c9872269237d8b7bf24c717284131eb2a9ab886f48b052a69fb26dda1b
 ---
 
 ---
@@ -55,6 +55,14 @@ List the organization's invites.
   - `"expired"`
 
   - `"pending"`
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 5f2e697b545d881bd0692dcf19d190cfa6991d445520649171cce4270b78381d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6dac4a60e4aeb5477b3942a946b50230731e4d8a8fc770f574f3482a200d6311
 ---
 
 ---
@@ -23,6 +23,14 @@ Retrieve a service account by its ID (`svac_...`).
 - `service_account_id: string`
 
   ID of the service account.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

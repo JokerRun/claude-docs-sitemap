@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 37ac4ca3cccc13a681cb9e3436cacb82968abce89992a225bce77df19f42f23e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 02c244546d9be50a9dad395f1f62d29948187065c51984ceeab9be5230aa934c
 ---
 
 ---
@@ -93,6 +93,8 @@ List memory versions
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

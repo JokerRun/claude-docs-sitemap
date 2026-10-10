@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2dbf9ec970204dc947902321ee4f41ab46117ef103c90d9168fc6c94ce550215
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b0e3788711c3d9f6f77d97a5931a2a59ff8546f57aea92aa151606750edfaf82
 ---
 
 ---
@@ -17,6 +17,12 @@ url: https://platform.claude.com/docs/en/api/beta/skills/create
 Create Skill
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

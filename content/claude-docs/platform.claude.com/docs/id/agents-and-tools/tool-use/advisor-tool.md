@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 22a5a52a1e1ce275b9c5bbfc91e9235e05c0cd4be19678fe84af47c67b18a30d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 46f8e637296accd3bccc54254b8882ec82cc8714adf45277d3a92af954b4db4e
 ---
 
 ---
@@ -742,7 +742,7 @@ Respons dapat berakhir dengan `stop_reason: "pause_turn"` saat panggilan advisor
 
 ### Dorongan di tengah percakapan untuk executor yang jarang memanggil
 
-Jika executor Haiku belum memanggil advisor pada giliran asisten pertamanya, tambahkan pengingat singkat sebagai pesan pengguna tambahan sebelum giliran asisten kedua. Dalam evaluasi perilaku internal Anthropic, hal ini meningkatkan tingkat kelulusan tugas sekitar 7 poin persentase pada executor Haiku. Pada executor Sonnet, dorongan teks biasa tidak memiliki efek terukur dalam pengujian Anthropic. Pertimbangan waktu panggilan berikut ini sangat relevan untuk Sonnet. Jangan terapkan dorongan ini pada executor Opus: Pada Opus, dorongan ini sedikit menurunkan tingkat kelulusan.
+Jika executor Haiku belum memanggil advisor pada giliran asisten pertamanya, tambahkan pengingat singkat sebagai pesan pengguna tambahan sebelum giliran asisten kedua. Dalam evaluasi perilaku internal Anthropic pada executor Claude Haiku 4.5, hal ini meningkatkan tingkat kelulusan tugas sekitar 7 poin persentase. Pada executor Sonnet, dorongan teks biasa tidak memiliki efek terukur dalam pengujian Anthropic. Pertimbangan waktu panggilan berikut sangat relevan untuk Sonnet. Jangan terapkan dorongan pada executor Opus: Pada Opus, dorongan sedikit menurunkan tingkat kelulusan.
 
 Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model memahami tugas tetapi sebelum model berkomitmen pada suatu pendekatan.
 
@@ -782,7 +782,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   for turn in range(1, MAX_TURNS + 1):
       response = client.beta.messages.create(
-          model="claude-haiku-4-5",
+          model="claude-haiku-5-5",
           max_tokens=4096,
           betas=["advisor-tool-2026-03-01"],
           tools=tools,
@@ -793,10 +793,10 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
           block.type == "server_tool_use" and block.name == "advisor"
           for block in response.content
       )
-      if response.stop_reason == "end_turn":
-          break
       if response.stop_reason == "pause_turn":
           continue  # server tool pending; re-send to let the API complete it
+      if response.stop_reason != "tool_use":
+          break  # end_turn, or a stop such as max_tokens that needs handling (see below)
 
       results = run_your_tools(response.content)  # list of tool_result blocks
       if results:
@@ -839,7 +839,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   for (let turn = 1; turn <= MAX_TURNS; turn++) {
     const response = await client.beta.messages.create({
-      model: "claude-haiku-4-5",
+      model: "claude-haiku-5-5",
       max_tokens: 4096,
       betas: ["advisor-tool-2026-03-01"],
       tools,
@@ -851,11 +851,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       response.content.some(
         (block) => block.type === "server_tool_use" && block.name === "advisor"
       );
-    if (response.stop_reason === "end_turn") {
-      break;
-    }
     if (response.stop_reason === "pause_turn") {
       continue; // server tool pending; re-send to let the API complete it
+    }
+    if (response.stop_reason !== "tool_use") {
+      break; // end_turn, or a stop such as max_tokens that needs handling (see below)
     }
 
     const results = runYourTools(response.content); // list of tool_result blocks
@@ -913,7 +913,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   {
       var response = await client.Beta.Messages.Create(new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeHaiku4_5,
+          Model = Messages::Model.ClaudeHaiku5_5,
           MaxTokens = 4096,
           Tools = tools,
           Messages = messages,
@@ -930,13 +930,13 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
               block.TryPickServerToolUse(out var serverToolUse)
               && serverToolUse.Name.Value() == Name.Advisor
           );
-      if (response.StopReason == BetaStopReason.EndTurn)
-      {
-          break;
-      }
       if (response.StopReason == BetaStopReason.PauseTurn)
       {
           continue; // server tool pending; re-send to let the API complete it
+      }
+      if (response.StopReason != BetaStopReason.ToolUse)
+      {
+          break; // end_turn, or a stop such as max_tokens that needs handling (see below)
       }
 
       var results = RunYourTools(response.Content); // list of tool_result blocks
@@ -989,7 +989,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   	for turn := 1; turn <= maxTurns; turn++ {
   		response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  			Model:     anthropic.ModelClaudeHaiku4_5,
+  			Model:     anthropic.ModelClaudeHaiku5_5,
   			MaxTokens: 4096,
   			Tools:     tools,
   			Messages:  messages,
@@ -1008,11 +1008,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   				advisorCalled = true
   			}
   		}
-  		if response.StopReason == anthropic.BetaStopReasonEndTurn {
-  			break
-  		}
   		if response.StopReason == anthropic.BetaStopReasonPauseTurn {
   			continue // server tool pending; re-send to let the API complete it
+  		}
+  		if response.StopReason != anthropic.BetaStopReasonToolUse {
+  			break // end_turn, or a stop such as max_tokens that needs handling (see below)
   		}
 
   		results := runYourTools(response.Content) // list of tool_result blocks
@@ -1083,7 +1083,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
       for (int turn = 1; turn <= MAX_TURNS; turn++) {
           BetaMessage response = client.beta().messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_HAIKU_4_5)
+              .model(Model.CLAUDE_HAIKU_5_5)
               .maxTokens(4096L)
               .tools(tools)
               .messages(messages)
@@ -1099,11 +1099,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
                   block.isServerToolUse()
                       && block.asServerToolUse().name().equals(BetaServerToolUseBlock.Name.ADVISOR));
           BetaStopReason stopReason = response.stopReason().orElse(null);
-          if (BetaStopReason.END_TURN.equals(stopReason)) {
-              break;
-          }
           if (BetaStopReason.PAUSE_TURN.equals(stopReason)) {
               continue; // server tool pending; re-send to let the API complete it
+          }
+          if (!BetaStopReason.TOOL_USE.equals(stopReason)) {
+              break; // end_turn, or a stop such as max_tokens that needs handling (see below)
           }
 
           List<BetaContentBlockParam> results = runYourTools(response.content()); // list of tool_result blocks
@@ -1161,7 +1161,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       $response = $client->beta->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-haiku-4-5',
+          model: 'claude-haiku-5-5',
           tools: $tools,
           betas: ['advisor-tool-2026-03-01'],
       );
@@ -1171,11 +1171,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
               $advisorCalled = true;
           }
       }
-      if ($response->stopReason === 'end_turn') {
-          break;
-      }
       if ($response->stopReason === 'pause_turn') {
           continue; // server tool pending; re-send to let the API complete it
+      }
+      if ($response->stopReason !== 'tool_use') {
+          break; // end_turn, or a stop such as max_tokens that needs handling (see below)
       }
 
       $results = runYourTools($response->content); // list of tool_result blocks
@@ -1217,7 +1217,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   (1..MAX_TURNS).each do |turn|
     response = client.beta.messages.create(
-      model: "claude-haiku-4-5",
+      model: "claude-haiku-5-5",
       max_tokens: 4096,
       tools: tools,
       messages: messages,
@@ -1227,8 +1227,8 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
     advisor_called ||= response.content.any? do |block|
       block.type == :server_tool_use && block.name == :advisor
     end
-    break if response.stop_reason == :end_turn
     next if response.stop_reason == :pause_turn # server tool pending; re-send to let the API complete it
+    break unless response.stop_reason == :tool_use # end_turn, or a stop such as max_tokens that needs handling (see below)
 
     results = run_your_tools(response.content) # list of tool_result blocks
     messages << { role: "user", content: results } unless results.empty?
@@ -1238,11 +1238,13 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   ```
 </CodeGroup>
 
-Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna yang berurutan adalah valid. Dalam pengujian Anthropic pada executor Haiku dan Sonnet, keduanya berperilaku setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
+Loop berakhir pada alasan berhenti apa pun selain `tool_use` atau `pause_turn`. Jika `max_tokens` memotong respons, hapus giliran asisten yang terpotong dari `messages` dan [coba lagi dengan `max_tokens` yang lebih tinggi](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens). Jika giliran tersebut tidak berisi blok `tool_use`, Anda dapat mempertahankannya dan [melanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses) dengan pesan pengguna baru. Mengirim ulang giliran asisten yang terpotong sebagai pesan terakhir merupakan [prefill](https://platform.claude.com/docs/id/api/errors#prefill-not-supported), yang ditolak oleh Claude 4.6 dan model yang lebih baru.
+
+Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna yang berurutan adalah valid. Dalam pengujian Anthropic pada executor Claude Haiku 4.5 dan Sonnet, keduanya berperilaku setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
 
 **Kompromi:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` menjadi 3 agar tugas dua giliran selesai sebelum dorongan dipicu, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pembatasan ("gunakan advisor hanya untuk ketidakpastian yang sesungguhnya"), lewati dorongan sepenuhnya, karena kedua instruksi tersebut saling bertentangan.
 
-Dorongan teks biasa sangat menonjol pada executor Haiku dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Haiku) dari percobaan yang didorong dalam pengujian Anthropic langsung memanggil advisor pada giliran 2. Jika hal itu terjadi sebelum executor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan yang waktunya lebih tepat di kemudian hari. Ukur giliran panggilan pertama dasar executor Anda sebelum menambahkan dorongan. Jika executor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, tetapkan `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan pada giliran 2 pada beban kerja di mana panggilan pertama dasar terjadi pada giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas sebesar 3 hingga 4 poin persentase. Pada beban kerja browsing di mana tingkat panggilan dasar adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa mengorbankan kinerja tugas.
+Dorongan teks biasa sangat menonjol pada executor Claude Haiku 4.5 dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Claude Haiku 4.5) dari percobaan yang didorong dalam pengujian Anthropic langsung memanggil advisor pada giliran 2. Jika hal itu terjadi sebelum executor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan selanjutnya yang waktunya lebih tepat. Ukur giliran panggilan pertama baseline executor Anda sebelum menambahkan dorongan. Jika executor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, tetapkan `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan pada giliran 2 pada beban kerja di mana panggilan pertama baseline terjadi pada giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas sebesar 3 hingga 4 poin persentase. Pada beban kerja browsing di mana tingkat panggilan baseline adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa mengorbankan kinerja tugas.
 
 Untuk memaksa konsultasi pada permintaan tertentu alih-alih memberikan dorongan, tetapkan `tool_choice` ke `{"type": "tool", "name": "advisor"}`, dengan tunduk pada batasan dalam [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Memaksa penggunaan alat tidak dapat digabungkan dengan pemikiran diperpanjang manual (`thinking: {type: "enabled"}`): API mengembalikan `400 invalid_request_error` jika Anda mengaktifkan keduanya. Adaptive thinking mendukung penggunaan alat yang dipaksakan. Executor Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 menolak tipe `tool_choice` `tool` dan `any`, jadi gunakan dorongan prompt pada model-model tersebut.
 
@@ -1408,7 +1410,7 @@ Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu 
 **Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan untuk seluruh percakapan. Menonaktifkan dan mengaktifkannya kembali di tengah percakapan menyebabkan cache miss.
 
 <Warning>
-  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Ini hanya penurunan dari sisi biaya. Kualitas saran tidak terpengaruh. Ketika pemikiran diperpanjang diaktifkan tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus/Sonnet sebelumnya dan model Haiku hingga Claude Haiku 4.5, sedangkan pada Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5 defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
+  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Ini hanya penurunan dari sisi biaya. Kualitas saran tidak terpengaruh. Saat thinking aktif tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus dan Sonnet sebelumnya serta pada model Haiku hingga Claude Haiku 4.5; pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, serta Claude Haiku 5.5, defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
 </Warning>
 
 ## Menggabungkan dengan alat lain
@@ -1841,7 +1843,7 @@ Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on 
 
 ## Advisor di Claude Managed Agents
 
-Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) juga mendukung advisor, yang dikonfigurasi sebagai bagian dari agen, bukan sebagai definisi alat: tambahkan entri `{"type": "advisor", "model": ...}` ke roster multiagen milik agen, dan thread utama sesi dapat berkonsultasi dengan model tersebut di tengah giliran. Entri roster tidak menerima opsi `max_uses`, `max_tokens`, atau `caching`, dan saran dikirimkan sebagai event thread pada aliran event sesi, bukan sebagai blok `advisor_tool_result` dalam respons. Lihat [Memberi sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) juga mendukung advisor, yang dikonfigurasi sebagai bagian dari agen, bukan sebagai definisi alat: atur `"advisor": {"type": "enabled", "model": ...}` di blok `multiagent` milik agen, dan thread utama sesi dapat berkonsultasi dengan model tersebut di tengah giliran. Pengaturan tersebut tidak menerima opsi `max_uses`, `max_tokens`, atau `caching`, dan saran dikirimkan sebagai event thread pada aliran event sesi, bukan sebagai blok `advisor_tool_result` dalam respons. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
 ## Langkah selanjutnya
 

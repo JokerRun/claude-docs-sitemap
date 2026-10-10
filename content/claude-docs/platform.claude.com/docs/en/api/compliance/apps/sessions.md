@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4d8a5ed2a88bafd741d64d9f8a8ef877ec9eaee92546b7fca34d8297c12610f6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2442c54f5063258fc1b38a75f0c397a53e30490e55481b72c01d3bd42b642193
 ---
 
 ---
@@ -58,6 +58,12 @@ forward-only via `next_page`; there is no reverse cursor.
     format: date-time
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -167,6 +173,12 @@ inference call has aged out returns 404.
 - `local_session_id: string`
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -310,6 +322,12 @@ response header.
   default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -661,6 +679,12 @@ retrieve the next page, and stop when `next_page` is null.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Returns
@@ -830,6 +854,12 @@ malformed session identifier returns 400.
   default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

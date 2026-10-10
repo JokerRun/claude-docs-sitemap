@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6951a4548fe998411938bbafb3ad7c824d472b31ff0706d94d01ba3f92f3471e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f11eab8567c96d6552caa9f7e0e07731b7cb8a4e50108c0d3d3413d60373029c
 ---
 
 ---
@@ -23,6 +23,8 @@ Archive a memory store
   ID of the memory store to archive (a `memstore_...` identifier). Required. Archiving is one-way and idempotent; archived stores cannot be unarchived. Enumerate IDs via `GET /v1/memory_stores`.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 85635ea7688b880acba7ce1e67fff291096e47d200fb77eda655c6cd5673b0e0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0ad0854b2d0b56e10c8e08d27f17ea119cf61267adaade5b51fa114c726b67ef
 ---
 
 ---
@@ -46,6 +46,12 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

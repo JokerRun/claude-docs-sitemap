@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ca9be79ee0109cb34ffd61eb814e1194c3eaab6ca571ba21101ea2235845f545
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1ff180f6599b8b8ff9ae4c3b99c46984398c6dde7b6550f21008f5285e0bf5c7
 ---
 
 ---
@@ -22,7 +22,7 @@ Halaman terkait:
 * [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware): helper SDK yang membungkus semua ini.
 * [Cookbook fallback dan penagihan](https://platform.claude.com/cookbook/fable-5-fallback-billing-guide): contoh lengkap dari awal hingga akhir.
 
-Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"default"`, dan API mencoba ulang permintaan yang ditolak pada model fallback yang direkomendasikan Anthropic untuk kategori penolakannya. Untuk kategori tanpa fallback yang direkomendasikan, penolakan tetap berlaku.
+Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"default"`, dan API akan mencoba ulang permintaan yang ditolak pada model fallback yang direkomendasikan Anthropic untuk kategori penolakannya. Untuk kategori tanpa fallback yang direkomendasikan, penolakan tetap berlaku. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi untuk model tersebut gunakan [fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) atau [tulis percobaan ulang sendiri](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#manual-retry).
 
 <CodeGroup>
   ```bash cURL
@@ -218,7 +218,7 @@ Aturan penagihan ini berlaku di setiap platform: Claude API, Amazon Bedrock, Cla
 
 **Penolakan di tengah stream:** Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal.
 
-**Fallback:** Saat Anda menggunakan fallback, penolakan yang memicunya ditagih, selain permintaan fallback itu sendiri, jika penolakan tersebut terjadi di tengah stream atau termasuk dalam salah satu kategori yang ditagih. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengompensasi cache miss prompt pada permintaan fallback, sehingga Anda tidak membayar untuk meng-cache percakapan dua kali. Untuk cara fallback sisi server melaporkan setiap percobaan, lihat [Penagihan dan batas laju](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#billing-and-rate-limits).
+**Fallback:** Saat Anda menggunakan fallback, penolakan yang memicunya ditagih, selain permintaan fallback itu sendiri, jika penolakan tersebut terjadi di tengah stream atau termasuk dalam salah satu kategori yang ditagih. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengompensasi cache miss prompt pada permintaan fallback, sehingga Anda tidak membayar untuk meng-cache percakapan dua kali. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga fallback setelahnya membayar biaya penuh untuk menulis prompt cache model fallback. Untuk cara fallback sisi server melaporkan setiap percobaan, lihat [Penagihan dan batas laju](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#billing-and-rate-limits).
 
 Kategori yang ditagih dapat berubah seiring Anthropic terus mengukur dan menyempurnakan tingkat positif palsu pengamanannya. Kolom **Ditagih sebelum output apa pun** dalam [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) mencantumkan kategori yang ditagih.
 
@@ -232,7 +232,7 @@ Ada tiga cara untuk mencoba ulang permintaan yang ditolak pada model lain. Cara 
 | Platform apa pun, menggunakan SDK Anthropic    | [Middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback)                                                                                                 | Konfigurasi sekali pada klien. Percobaan ulang terjadi secara otomatis. |
 | HTTP mentah atau logika percobaan ulang kustom | [Percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#manual-retry) dengan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) | Kontrol penuh. Kredit fallback menekan biaya.                           |
 
-Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
+Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri. Claude Haiku 5.5 tidak memiliki fallback sisi server maupun kredit fallback, jadi gunakan middleware SDK atau percobaan ulang manual.
 
 ## Fallback sisi server
 
@@ -783,7 +783,7 @@ Sticky routing berlaku untuk permintaan streaming maupun non-streaming. Pada per
 
 ## Fallback sisi klien dengan middleware SDK
 
-SDK menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihitung ulang harganya tanpa penyiapan per permintaan.
+SDK menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihitung ulang harganya tanpa penyiapan per permintaan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis prompt cache model fallback.
 
 ### Menyiapkannya
 
@@ -1135,7 +1135,7 @@ Teruskan `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddle
 
 * Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak akan meneruskan permintaan ke entri berikutnya.
 * Ketika setiap model dalam daftar telah menolak, middleware mengembalikan penolakan terakhir (respons penolakan dari model terakhir) alih-alih memunculkan error.
-* Blok thinking dari Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang [dipertahankan hanya untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5 untuk setiap model fallback kecuali Claude Opus 5.5 di Claude API dan Google Cloud.
+* Blok thinking dari Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, Claude Haiku 5.5, atau Claude Fable 5 diteruskan tanpa perubahan. Setiap percobaan ulang mengirim ulang body permintaan asli Anda, dan satu-satunya blok yang dihapus middleware dari riwayat percakapan pada permintaan berikutnya adalah blok batas `fallback` yang ditambahkannya sendiri. Model fallback tidak dapat membaca blok Claude Fable 5.1, yang hanya [dibaca oleh Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5 untuk setiap model fallback kecuali Claude Opus 5.5 di Claude API dan Google Cloud. Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok Claude Haiku 5.5 di Claude API dan Google Cloud, dan API membuangnya untuk model fallback yang tidak dapat membacanya.
 * Respons yang dilayani melalui middleware menyertakan blok konten `fallback` di setiap batas model, sama seperti respons fallback sisi server. Middleware mengelola blok-blok tersebut untuk Anda pada permintaan berikutnya.
 * Model yang menerima permintaan dicatat di `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tersebut tetap terkunci pada model itu alih-alih bertanya lagi ke model yang menolak.
 
@@ -1155,7 +1155,7 @@ Melalui HTTP mentah atau dengan logika percobaan ulang kustom, implementasikan p
   <Step title="Kirim ulang pada model fallback">
     Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Jika permintaan yang ditolak mengirim `thinking: {"type": "between_tools"}`, ubah `thinking` terlebih dahulu: hanya Claude Sonnet 5.5 yang menerima nilai tersebut, jadi hilangkan `thinking` atau atur nilai yang diterima model fallback. [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dengan header `2026-07-01` melakukan perubahan ini untuk Anda ketika beralih ke Claude Sonnet 5. Model lain biasanya dapat melayani permintaan yang ditolak oleh Claude Fable 5.1 atau Claude Fable 5. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit):
 
-    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap di tempatnya atau menghapusnya untuk menghemat token input. Model fallback biasanya tidak dapat menggunakannya dalam kedua kasus: model tersebut mengabaikan blok Claude Fable 5, dan blok Claude Fable 5.1 [dipertahankan hanya untuk model tersebut atau yang lebih baru](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), sehingga API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5 untuk setiap model fallback kecuali Claude Opus 5.5 di Claude API dan Google Cloud.
+    * **Tidak menukarkan kredit:** Anda dapat membiarkan blok `thinking` dan `redacted_thinking` sebelumnya tetap di tempatnya atau menghapusnya untuk menghemat token input. Model fallback biasanya tidak dapat menggunakannya dalam kedua kasus: hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang [membaca blok Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-for-model), dan hanya kedua model tersebut, Claude Fable 5, dan Claude Mythos 5 yang membaca blok Claude Fable 5, sehingga untuk model fallback lainnya API membuangnya. API juga membuang blok Claude Opus 5.5 untuk setiap model fallback kecuali Claude Fable 5.1 dan Claude Mythos 5.1 (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). API juga membuang blok Claude Sonnet 5.5 untuk setiap model fallback kecuali Claude Opus 5.5 di Claude API dan Google Cloud. Percobaan ulang setelah penolakan Claude Haiku 5.5 selalu termasuk dalam kasus ini. Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok Claude Haiku 5.5 di Claude API dan Google Cloud, jadi biarkan blok tersebut tetap di tempatnya ketika Anda beralih ke salah satu model tersebut di sana. Untuk model fallback yang tidak dapat membacanya, API membuangnya tanpa menagihnya.
     * **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan persis. Server menangani blok thinking dari model sebelumnya saat penukaran, jadi jangan menghapusnya (lihat [Field yang harus cocok dengan permintaan yang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#reference)).
   </Step>
 
@@ -1164,7 +1164,7 @@ Melalui HTTP mentah atau dengan logika percobaan ulang kustom, implementasikan p
   </Step>
 </Steps>
 
-Percobaan ulang manual menulis prompt cache model fallback dari awal, yang biayanya lebih mahal daripada membaca cache yang sudah ada. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya tersebut; tukarkan kredit itu pada setiap percobaan ulang yang Anda bangun sendiri. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya menulis cache model fallback dengan harga penuh.
+Percobaan ulang manual menulis prompt cache model fallback dari awal, yang biayanya lebih tinggi daripada membaca cache yang sudah ada. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya tersebut; tukarkan kredit itu pada setiap percobaan ulang yang Anda bangun sendiri. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis prompt cache model fallback.
 
 ## Penolakan dalam Message Batches
 
@@ -1173,8 +1173,9 @@ Permintaan yang ditolak dalam [Message Batch](https://platform.claude.com/docs/i
 Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertakan `fallbacks` menghasilkan hasil error per-item). Untuk mencoba ulang item batch yang ditolak:
 
 1. Kumpulkan item yang ditolak dari hasil.
-2. Hapus blok thinking Claude Fable 5.1 atau Claude Fable 5 dari riwayat multi-giliran apa pun.
-3. Kirim ulang pada model fallback sebagai batch baru atau sebagai permintaan langsung.
+2. Biarkan blok thinking dalam riwayat multi-giliran tetap di tempatnya, atau hapus untuk menghemat token input. Untuk model fallback yang tidak dapat membacanya, API membuangnya tanpa menagihnya, seperti pada [percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#manual-retry).
+3. Jika item yang ditolak mengirim `thinking: {"type": "between_tools"}`, hilangkan `thinking` atau atur nilai yang diterima model fallback. Hanya Claude Sonnet 5.5 yang menerima `between_tools`.
+4. Kirim ulang item tersebut pada model fallback sebagai batch baru atau sebagai permintaan langsung.
 
 ## Kesalahan umum
 

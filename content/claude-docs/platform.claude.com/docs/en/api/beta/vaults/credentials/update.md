@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 23723a14b2c923fa55255d1ad44b2a7b8b5eea5d7e69a1e285ab6a8f6f876422
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c829df4d3e219ccc82c6bf9bd461f862e26d59915009977b7ebf11f035ee7bf5
 ---
 
 ---
@@ -27,6 +27,8 @@ Update Credential
   Unique identifier of the credential to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

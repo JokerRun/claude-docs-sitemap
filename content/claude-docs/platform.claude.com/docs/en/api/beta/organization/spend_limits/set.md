@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: b34a6707c2f0e512070ff47a8c8ffc5c2f589f6ab2c9c02e3fed25bf1643feef
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1751b1629a8df84e25c9c92eda13aa60d8548bc0c608ce22222cb7f65b06cc5f
 ---
 
 ---
@@ -25,6 +25,12 @@ limits is in an early access preview. To request access, contact your
 Anthropic account team.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

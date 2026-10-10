@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ded9062aa23dfb201c569fa0ca6f6946973e5b611ae0e838251868b27360e754
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0921b91174fe007e36a5f4386e4c8ff252e135265db6ff6a481c5bb8e38f9785
 ---
 
 ---
@@ -1927,10 +1927,10 @@ Selain isolasi, tambahkan kontrol berikut:
 
 Definisi alat bash menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) per model yang berlaku setiap kali ada alat yang disertakan.
 
-| Model                                                    | Token input tambahan |
-| -------------------------------------------------------- | -------------------- |
-| Claude Opus 5, Claude Opus 4.8, dan Claude Opus 4.7      | 325 token            |
-| Claude Opus 4.6, Claude Sonnet 4.6, dan versi sebelumnya | 244 token            |
+| Model                                                            | Token input tambahan |
+| ---------------------------------------------------------------- | -------------------- |
+| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token            |
+| Model Claude 4.6 dan yang lebih lama                             | 244 token            |
 
 Token tambahan dikonsumsi oleh:
 

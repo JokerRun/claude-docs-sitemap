@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 1e4f6986396093131314d91f8a55e1dbb4e0c15ba388d30aa15fd246583727c7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6491016668187687b37a0a25c597dc9a9fddca01bac9816e9b78e294ec283f15
 ---
 
 ---
@@ -21,6 +21,14 @@ Get Workspace
 - `workspace_id: string`
 
   ID of the Workspace.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

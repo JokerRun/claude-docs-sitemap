@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 23f0279cea50bbefac332704287006e9bdfe8b9f731e622bbc3ed8f8c363db9b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b1c0bf628152977c5ecbbc8dd6417a636dd6841ce9167031592703549084d405
 ---
 
 ---
@@ -17,6 +17,8 @@ url: https://platform.claude.com/docs/en/api/beta/vaults/create
 Create Vault
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

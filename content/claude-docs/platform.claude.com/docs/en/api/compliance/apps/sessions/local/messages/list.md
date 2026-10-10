@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: daacce4400213dd5c84aae7cd5d1ba1ddc6e79a273ac8da8c6a22d5d3d23b37b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ec81345c40c87eea7fb02ec8ebec585bf88e0456f156572a2e53eedf4aae2ab8
 ---
 
 ---
@@ -70,6 +70,12 @@ response header.
   default: 10000, minimum: -1, maximum: 2147483647
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: dfd5e53e466805de25157fcaa6a38cad4a21417b0a01b05f12ee81f07ffc935c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 07aaa9dc1bcaa230d55645570cd6a603992794ce25545dcb74675e5fba4f881d
 ---
 
 ---
@@ -57,6 +57,14 @@ the remaining entries.
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

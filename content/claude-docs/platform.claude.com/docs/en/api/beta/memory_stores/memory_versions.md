@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 71e2eaede287c35c2abe6355958a5ac990d74d49790ef89ea8fcbf15480e1d8d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 184654d28d17100135e5410adfc3e51a3e05b6090aafd11640e5ebb59b8d5bf6
 ---
 
 ---
@@ -95,6 +95,8 @@ List memory versions
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -406,6 +408,8 @@ Retrieve a memory version
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -692,6 +696,8 @@ Redact a memory version
   The ID of the memory version to redact (`memver_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

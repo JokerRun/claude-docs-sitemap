@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a5e0d9a85785631ccfd01e6043df1031279b375f697f3b1b5d7b598a96e76534
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b66b6488419855de22d9df035d651ee5bdad276c7c9adfb64f6cfb8c84e93ab0
 ---
 
 ---
@@ -23,6 +23,8 @@ Update a memory store
   ID of the memory store to update (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`. Updating an archived store returns 400.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

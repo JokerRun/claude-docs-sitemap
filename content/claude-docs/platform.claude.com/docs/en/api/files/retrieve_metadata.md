@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/retrieve_metadata
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 07a04d437d1ad23e5220d272ba5ee9b2d9a192c5d8223afa42f9d21295992f18
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9c5b0fa5ed8d640e1bd3a7efc8723041c7b0524a9f8df9d28240d5078c334187
 ---
 
 ---
@@ -23,6 +23,12 @@ Get File Metadata
   ID of the File.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

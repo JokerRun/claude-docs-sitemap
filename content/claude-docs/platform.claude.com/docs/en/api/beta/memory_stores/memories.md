@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 281dd0d3f36500bad1663d4b3c489cd1b6e9abc9e0715f14c7a5adf696397fe6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fe946f569069e3436ff43f86c20413a4e820e92aa8cd48a8326a0abad79ab20a
 ---
 
 ---
@@ -39,6 +39,8 @@ Create a memory
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -293,6 +295,8 @@ List memories
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -536,6 +540,8 @@ Retrieve a memory
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -755,6 +761,8 @@ Update a memory
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -993,6 +1001,8 @@ Delete a memory
   If the hashes differ, the request fails with HTTP status 409 and nothing is deleted.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 553533d009cd3a4263335d9da6592717dd2a2419777a66b7f268cf9b88660414
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e5b3990c757984347d57a7b406d25cb925f8e22cbe33718f36fb895cfa07b03c
 ---
 
 ---
@@ -21,6 +21,8 @@ Delete Session
 - `session_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

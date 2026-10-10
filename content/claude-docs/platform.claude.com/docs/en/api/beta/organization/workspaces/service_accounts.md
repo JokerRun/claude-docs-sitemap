@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 18a2b4f5ae0e0bd795ac16c24c52e88e6a3905cc127b59bf4714be981cbd447e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 33e1fac9ef6c01847910fc2d38f4f5926680e82ba50914d734e1011929b4d0cf
 ---
 
 ---
@@ -46,6 +46,12 @@ omitted from the results.
   Opaque cursor from a previous response's `next_page`.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -245,6 +251,12 @@ accounts cannot be added and are rejected.
   ID of the workspace.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -461,6 +473,12 @@ account returns 404.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -652,6 +670,12 @@ rejected.
   ID of the service account.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -861,6 +885,12 @@ membership. Archived workspaces return 400.
   ID of the service account.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

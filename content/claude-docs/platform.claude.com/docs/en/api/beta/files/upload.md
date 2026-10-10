@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 42560a881a31db23ce361c575024abc488ea77aa7229515fce38a8f306333f35
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d874b5e745f7bf100efcc7d7468f962ae8d4904bfb5692cc3c4df5da7ab1413c
 ---
 
 ---
@@ -17,6 +17,12 @@ url: https://platform.claude.com/docs/en/api/beta/files/upload
 Upload File
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a9f48f5463636ee5d3d2ece56c4702dcbbcb3d1b22fcc7614e30e62d126a58e1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f51bf0b5895810f58b1e8dbe344c374e3ed33a7ecf4acea3dfcf4313b0398f85
 ---
 
 ---
@@ -31,6 +31,12 @@ Retrieve a single certificate registered on a tunnel by ID.
   ID of the Tunnel Certificate.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

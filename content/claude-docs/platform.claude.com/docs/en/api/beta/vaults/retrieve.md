@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 5db19d133ea514e10183663ed1c69e15d280f97c822f063068413151d121abda
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 88aa26fe7451f5ad3503720fc71bc736ae195b8d66ae7d1f301452966a72e62b
 ---
 
 ---
@@ -23,6 +23,8 @@ Get Vault
   Unique identifier of the vault to retrieve.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

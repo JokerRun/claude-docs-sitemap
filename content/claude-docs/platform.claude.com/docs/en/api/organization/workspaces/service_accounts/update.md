@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 698c965349ba465dd6740cfac131f21ed53df2c8a4765ce052132e3a82e63cfe
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b0edd80ff35274b7f97f80da97c4e9ec1f44f63360c61de48876ffb51ddc001f
 ---
 
 ---
@@ -34,6 +34,14 @@ rejected.
 - `service_account_id: string`
 
   ID of the service account.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/create
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d373fcb2db61d41971439d6b07556fc919a163c4b652e70f1fb9b9a137b63804
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9b820aecef3fba43b845f65ec662278a086de4188b59138fcad11b2410241f67
 ---
 
 > ## Documentation Index
@@ -276,7 +276,7 @@ Files Claude saves during its turn reload when the turn ends, so you can try `/t
   Get type definitions for your version
 </h3>
 
-Each time Claude Code loads or reloads a mod from a directory you pass to `--plugin-dir`, or a mod [Claude wrote for you](#ask-claude-for-a-mod), it writes TypeScript declaration files, ending in `.d.ts`, into `.claude-plugin/types/` inside the mod's directory. They describe the exact events, mods API methods, and elements in the Claude Code version you're running, so your editor can autocomplete and type-check your hooks. To browse the declarations online, read [`mods/types/claude-code.d.ts`](https://github.com/anthropics/claude-code/blob/main/mods/types/claude-code.d.ts) in the Claude Code repository, whose first line names the version that wrote it. The directory holds these files:
+When Claude Code loads a mod from `--plugin-dir` in an interactive session, or a mod [Claude wrote for you](#ask-claude-for-a-mod), it writes TypeScript declaration files into the mod's `.claude-plugin/types/` directory. They describe the exact events, mods API methods, and elements in the Claude Code version you're running, so your editor can autocomplete and type-check your hooks. The directory holds these files:
 
 | Path | What it declares |
 | :- | :- |

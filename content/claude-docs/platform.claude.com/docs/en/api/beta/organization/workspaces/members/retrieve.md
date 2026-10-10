@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 8f0b2f2c2b062d1079cd40cc9881327960fe0beb0b4ed764f21c1f8f431dab18
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5de9bf41e47beabdf1f24880a94048f60aaf801a367e0ea7735dc334339642a0
 ---
 
 ---
@@ -25,6 +25,14 @@ Get Workspace Member
 - `user_id: string`
 
   ID of the User.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

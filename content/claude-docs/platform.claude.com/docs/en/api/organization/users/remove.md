@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/remove
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: ec4656f4059c3590f39147972b8a00b11066379e607ab0ef316c92719df0db5e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 64b5d03b5048ed198c9482f35a398ecb9954648f8885ec89a3f700bc438de889
 ---
 
 ---
@@ -21,6 +21,14 @@ Remove a member from the organization.
 - `user_id: string`
 
   ID of the User.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3a1c1bd019798cce9133f047313aef96f331fd8abc18e737b785d0ec9b003b2b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6f026f35dc53cd32be8cd24b20bd377785ba042585e0c18b3564c7a275eff0d3
 ---
 
 ---
@@ -85,6 +85,12 @@ retrieve the next page, and stop when `next_page` is null.
   maxItems: 10
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -327,6 +333,12 @@ malformed session identifier returns 400.
   default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 67cf90a1e600112e705891a2fa7e7da0eb006d33491e47f770d3d72581fd40dc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9f088e5f5fdc7cbf5e7f211d3943816254fa976164ca0dd0d0a8cffc06468785
 ---
 
 ---
@@ -27,6 +27,8 @@ Delete Credential
   Unique identifier of the credential to delete.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

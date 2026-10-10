@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: c3ab1ad548aa1ba98f9805e213efb7e9d0f448a9856cac8b8c2ec2b2ca6a01f9
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 923c2b724c71c78dbd5bfc2dbe35c10bd1f4f5219b092ea8b4224e4a2bd08955
 ---
 
 ---
@@ -32,9 +32,9 @@ featureMetadata:
     Google Cloud: ga
     Microsoft Foundry: beta
   details:
-    - Di Claude API dan Google Cloud, model Claude 5.5 dan yang lebih baru mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat `computer_20251124` yang lebih lama. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
-    - Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 menerima versi alat `computer_20251124` yang lebih lama sebagaimana Claude Opus 5 dan Claude Sonnet 5.
-    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat `computer_20251124` yang lebih lama, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
+    - Di Claude API dan Google Cloud, model Claude 5.5 dan yang lebih baru mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat sebelumnya `computer_20251124` dan `computer_20250124`. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk berpindah dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) dalam panduan migrasi Claude Haiku 5.5.
+    - Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima versi alat sebelumnya `computer_20251124` sebagaimana Claude Opus 5 dan Claude Sonnet 5.
+    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat sebelumnya `computer_20251124`, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
 
@@ -2126,7 +2126,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 ## Migrasi dari `computer_20251124`
 
-Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5 dan Claude Sonnet 5.5 tetap menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
+Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
 
 1. **Hapus header beta.** Hilangkan `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Dengan SDK, hapus `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan panggil Messages API melalui klien standar, bukan namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.
@@ -2188,7 +2188,7 @@ Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk inte
 
 | Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameter                                                                     |
 | ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5 dan Claude Sonnet 5.5                                                                                                                                                                                                                                                                                        | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5                                                                                                                                                                                                                                                                     | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 | `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
 ***
@@ -2216,7 +2216,7 @@ Karena aplikasi Anda mengontrol di mana dan bagaimana data computer use disimpan
 
 Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat penggunaan komputer:
 
-**Overhead definisi toolset:** Mendeklarasikan `computer_toolset_20260801` dengan anggota defaultnya menambahkan sekitar 4.500 token input ke sebuah permintaan (sekitar 4.520 pada Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8, serta sekitar 4.590 pada Claude Sonnet 5), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Menonaktifkan `zoom` dengan `configs` menghapus sekitar 410 dari token tersebut. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+**Overhead definisi toolset:** Mendeklarasikan `computer_toolset_20260801` dengan anggota default-nya menambahkan sekitar 4.500 token input ke sebuah permintaan (sekitar 4.590 pada Claude Sonnet 5 dan sekitar 4.520 pada model lain yang didukung), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Menonaktifkan `zoom` dengan `configs` menghapus sekitar 410 dari token tersebut. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 **Versi alat sebelumnya:** Angka-angka berikut berlaku untuk versi alat `computer_20251124` dan `computer_20250124`, bukan untuk `computer_toolset_20260801`:
 

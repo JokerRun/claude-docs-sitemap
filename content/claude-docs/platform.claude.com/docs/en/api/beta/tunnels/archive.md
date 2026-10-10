@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7b77a0d51f8c97ec5963bbb00e2764d2e1703306fc245ee1d2dbb14f6eee2819
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d1d8fbcecd9cc0992bb5a0fc32aae5f546bc44f9859f41f4a98090536ec9ccdc
 ---
 
 ---
@@ -25,6 +25,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
   ID of the tunnel (`tnl_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

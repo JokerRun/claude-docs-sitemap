@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: f0dd333592a4ee35341c8bff54d05078881928223a4e88aa476269ece968114e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 453602715894397d4faccdfcfb6b83d510fe69ff0074c23b003cf821ebef7962
 ---
 
 ---
@@ -747,7 +747,7 @@ Event `session.status_idle` berarti agen telah berhenti dan sedang menunggu inpu
 | `requires_action`  | Satu atau lebih panggilan alat memerlukan jawaban dari Anda, seperti panggilan alat kustom atau permintaan konfirmasi.                                    | [Jawab setiap panggilan alat yang memblokir](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session).        |
 | `budget_reached`   | Biaya daftar yang dilacak sesi telah mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets).                                  | [Ubah atau hapus anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget).                                                 |
 
-Tidak ada event yang dapat melanjutkan sesi yang dijeda karena mencapai anggarannya. Pekerjaan yang dijeda akan dilanjutkan secara otomatis ketika Anda mengubah anggaran ke nilai di atas biaya daftar yang telah terpakai, atau menghapusnya. Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk event yang menandai jeda dan event yang masih diterima sesi.
+Tidak ada event yang Anda kirim yang dapat melanjutkan sesi yang dijeda pada anggarannya. Pekerjaan yang dijeda oleh anggaran akan dilanjutkan secara otomatis ketika Anda mengubah anggaran ke nilai di atas biaya daftar yang telah terpakai, atau menghapusnya. Ketika pekerjaan dilanjutkan, sesi memancarkan event `workflow_run.status_running` untuk setiap [eksekusi workflow yang dijeda oleh anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits). Eksekusi yang dijeda oleh interupsi tetap dijeda; lihat [Melanjutkan sesi yang mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk event yang menandai jeda dan event yang masih diterima oleh sesi.
 
 ## Menjawab panggilan alat yang menjeda sesi
 
@@ -755,14 +755,20 @@ Sesi dijeda ketika agen memanggil [alat kustom](https://platform.claude.com/docs
 
 1. Sesi memancarkan panggilan alat sebagai event `agent.custom_tool_use`, `agent.tool_use`, atau `agent.mcp_tool_use`.
 2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
-3. Untuk setiap ID event yang memblokir, kirim event [`user.custom_tool_result`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result) atau [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#confirm-a-tool-call).
+3. Untuk setiap ID event yang memblokir, kirim event [`user.custom_tool_result`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result) atau [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#confirm-a-tool-call). Hasil alat kustom tidak perlu menunggu langkah 2.
 4. Setelah semua event yang memblokir diselesaikan, sesi kembali ke status `running`.
 
-Dalam sesi multiagen, event yang memblokir dari subagen juga diposting ke thread utama. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tool-permissions-and-custom-tools).
+Dalam sesi multiagen, event yang memblokir dari subagen juga diposting ke thread utama. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
 
 ### Mengembalikan hasil alat kustom
 
 Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut di sistem Anda. Kemudian kirim event `user.custom_tool_result`, dengan meneruskan ID event di parameter `custom_tool_use_id` beserta konten hasilnya.
+
+Anda dapat mengirim hasil segera setelah event `agent.custom_tool_use` tiba, tanpa menunggu `session.status_idle`. Sesi tetap memancarkan `session.status_idle` dengan alasan berhenti `requires_action` untuk panggilan tersebut, dan klien Anda dapat mengabaikannya. Hasil kedua untuk panggilan yang sama akan diterima dan tidak berpengaruh apa pun.
+
+Ketika Anda [menyambung kembali](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reconnect-without-missing-events) ke sesi yang dijeda, `stop_reason.event_ids` pada event `session.status_idle` terbaru mencantumkan panggilan yang perlu dijawab.
+
+Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
 
 <CodeGroup>
   ```bash cURL
@@ -777,25 +783,24 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
   while IFS= read -r -u "$stream_fd" line; do
     [[ $line == data:* ]] || continue
     event_json="${line#data: }"
-    stop_reason=$(jq -r 'select(.type == "session.status_idle") | .stop_reason.type // empty' <<<"$event_json")
-    case "$stop_reason" in
-      requires_action)
-        while IFS= read -r event_id; do
-          # Jalankan alat dan kirim hasilnya kembali
-          result=$(call_tool "$event_id")
-          jq -n --arg id "$event_id" --arg result "$result" \
-            '{events: [{type: "user.custom_tool_result", custom_tool_use_id: $id, content: [{type: "text", text: $result}]}]}' |
-            curl --fail-with-body -sS \
-              "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-              -H "x-api-key: $ANTHROPIC_API_KEY" \
-              -H "anthropic-version: 2023-06-01" \
-              -H "anthropic-beta: managed-agents-2026-04-01" \
-              -H "content-type: application/json" \
-              -d @-
-        done < <(jq -r '.stop_reason.event_ids[]' <<<"$event_json")
+    case $(jq -r '.type' <<<"$event_json") in
+      agent.custom_tool_use)
+        # Jalankan alat dan kirim hasilnya kembali
+        result=$(call_tool "$(jq -r '.name' <<<"$event_json")" "$(jq -c '.input' <<<"$event_json")")
+        jq --arg result "$result" \
+          '{events: [{type: "user.custom_tool_result", custom_tool_use_id: .id, content: [{type: "text", text: $result}]}]}' <<<"$event_json" |
+          curl --fail-with-body -sS \
+            "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-beta: managed-agents-2026-04-01" \
+            -H "content-type: application/json" \
+            -d @-
         ;;
-      end_turn)
-        break
+      session.status_idle)
+        if [[ $(jq -r '.stop_reason.type' <<<"$event_json") == end_turn ]]; then
+          break
+        fi
         ;;
     esac
   done
@@ -810,53 +815,51 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
   ```python Python
   with client.beta.sessions.events.stream(session.id) as stream:
       for event in stream:
-          if event.type == "session.status_idle" and (stop_reason := event.stop_reason):
-              match stop_reason.type:
-                  case "requires_action":
-                      for event_id in stop_reason.event_ids:
-                          # Cari event custom tool use dan jalankan
-                          tool_event = events_by_id[event_id]
-                          result = call_tool(tool_event.name, tool_event.input)
+          match event.type:
+              case "agent.custom_tool_use":
+                  # Jalankan alat
+                  result = call_tool(event.name, event.input)
 
-                          # Kirim hasilnya kembali
-                          client.beta.sessions.events.send(
-                              session.id,
-                              events=[
-                                  {
-                                      "type": "user.custom_tool_result",
-                                      "custom_tool_use_id": event_id,
-                                      "content": [{"type": "text", "text": result}],
-                                  },
-                              ],
-                          )
-                  case "end_turn":
+                  # Kirim hasilnya kembali
+                  client.beta.sessions.events.send(
+                      session.id,
+                      events=[
+                          {
+                              "type": "user.custom_tool_result",
+                              "custom_tool_use_id": event.id,
+                              "content": [{"type": "text", "text": result}],
+                          },
+                      ],
+                  )
+              case "session.status_idle":
+                  if event.stop_reason and event.stop_reason.type == "end_turn":
                       break
   ```
 
   ```typescript TypeScript
   const stream = await client.beta.sessions.events.stream(session.id);
 
-  for await (const event of stream) {
-    if (event.type !== "session.status_idle") continue;
-    if (event.stop_reason.type === "end_turn") break;
-    if (event.stop_reason.type !== "requires_action") continue;
+  loop: for await (const event of stream) {
+    switch (event.type) {
+      case "agent.custom_tool_use": {
+        // Jalankan alat
+        const result = await callTool(event.name, event.input);
 
-    for (const eventId of event.stop_reason.event_ids) {
-      // Cari event custom tool use dan jalankan
-      const toolEvent = eventsById.get(eventId);
-      if (!toolEvent) continue;
-      const result = await callTool(toolEvent.name, toolEvent.input);
-
-      // Kirim hasilnya kembali
-      await client.beta.sessions.events.send(session.id, {
-        events: [
-          {
-            type: "user.custom_tool_result",
-            custom_tool_use_id: eventId,
-            content: [{ type: "text", text: result }],
-          },
-        ],
-      });
+        // Kirim hasilnya kembali
+        await client.beta.sessions.events.send(session.id, {
+          events: [
+            {
+              type: "user.custom_tool_result",
+              custom_tool_use_id: event.id,
+              content: [{ type: "text", text: result }],
+            },
+          ],
+        });
+        break;
+      }
+      case "session.status_idle":
+        if (event.stop_reason.type === "end_turn") break loop;
+        break;
     }
   }
   ```
@@ -864,39 +867,34 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
   ```csharp C#
   await foreach (var streamEvent in client.Beta.Sessions.Events.StreamStreaming(session.ID))
   {
-      if (streamEvent.Value is not BetaManagedAgentsSessionStatusIdleEvent idle) continue;
-
-      if (idle.StopReason?.Value is BetaManagedAgentsSessionRequiresAction requiresAction)
+      if (streamEvent.Value is BetaManagedAgentsAgentCustomToolUseEvent toolUse)
       {
-          foreach (var eventId in requiresAction.EventIds)
-          {
-              // Cari event penggunaan alat kustom dan jalankan
-              var toolEvent = eventsById[eventId];
-              var result = await CallTool(toolEvent.Name, toolEvent.Input);
+          // Jalankan alat
+          var result = await CallTool(toolUse.Name, toolUse.Input);
 
-              // Kirim hasilnya kembali
-              await client.Beta.Sessions.Events.Send(session.ID, new()
-              {
-                  Events =
-                  [
-                      new BetaManagedAgentsUserCustomToolResultEventParams
-                      {
-                          Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
-                          CustomToolUseID = eventId,
-                          Content =
-                          [
-                              new BetaManagedAgentsTextBlock
-                              {
-                                  Type = BetaManagedAgentsTextBlockType.Text,
-                                  Text = result,
-                              },
-                          ],
-                      },
-                  ],
-              });
-          }
+          // Kirim hasilnya kembali
+          await client.Beta.Sessions.Events.Send(session.ID, new()
+          {
+              Events =
+              [
+                  new BetaManagedAgentsUserCustomToolResultEventParams
+                  {
+                      Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
+                      CustomToolUseID = toolUse.ID,
+                      Content =
+                      [
+                          new BetaManagedAgentsTextBlock
+                          {
+                              Type = BetaManagedAgentsTextBlockType.Text,
+                              Text = result,
+                          },
+                      ],
+                  },
+              ],
+          });
       }
-      else if (idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
+      else if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent idle
+          && idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
       {
           break;
       }
@@ -909,36 +907,31 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
 
   loop:
   	for stream.Next() {
-  		event, ok := stream.Current().AsAny().(anthropic.BetaManagedAgentsSessionStatusIdleEvent)
-  		if !ok {
-  			continue
-  		}
-  		switch stopReason := event.StopReason.AsAny().(type) {
-  		case anthropic.BetaManagedAgentsSessionRequiresAction:
-  			for _, eventID := range stopReason.EventIDs {
-  				// Cari event custom tool use dan jalankan
-  				toolEvent := eventsByID[eventID]
-  				result := callTool(toolEvent.Name, toolEvent.Input)
-  				// Kirim hasilnya kembali
-  				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-  					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
-  						OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
-  							Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
-  							CustomToolUseID: eventID,
-  							Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
-  								OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  									Type: anthropic.BetaManagedAgentsTextBlockTypeText,
-  									Text: result,
-  								},
-  							}},
-  						},
-  					}},
-  				}); err != nil {
-  					panic(err)
-  				}
+  		switch event := stream.Current().AsAny().(type) {
+  		case anthropic.BetaManagedAgentsAgentCustomToolUseEvent:
+  			// Jalankan alat
+  			result := callTool(event.Name, event.Input)
+  			// Kirim hasilnya kembali
+  			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  				Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+  					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
+  						Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
+  						CustomToolUseID: event.ID,
+  						Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
+  							OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+  								Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+  								Text: result,
+  							},
+  						}},
+  					},
+  				}},
+  			}); err != nil {
+  				panic(err)
   			}
-  		case anthropic.BetaManagedAgentsSessionEndTurn:
-  			break loop
+  		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
+  			if _, ok := event.StopReason.AsAny().(anthropic.BetaManagedAgentsSessionEndTurn); ok {
+  				break loop
+  			}
   		}
   	}
   	if err := stream.Err(); err != nil {
@@ -948,28 +941,32 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
 
   ```java Java
   try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-      stream.stream()
-          .filter(BetaManagedAgentsStreamSessionEvents::isSessionStatusIdle)
-          .map(idleEvent -> idleEvent.asSessionStatusIdle().stopReason())
-          .takeWhile(stopReason -> !stopReason.isEndTurn())
-          .filter(stopReason -> stopReason.isRequiresAction())
-          .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
-          .forEach(eventId -> {
-              // Cari event custom tool use dan jalankan
-              var toolEvent = eventsById.get(eventId);
-              var result = callTool(toolEvent.name(), toolEvent.input());
+      loop:
+      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+          switch (event.type().value()) {
+              case AGENT_CUSTOM_TOOL_USE -> {
+                  // Jalankan alat
+                  var toolUse = event.asAgentCustomToolUse();
+                  var result = callTool(toolUse.name(), toolUse.input());
 
-              // Kirim hasilnya kembali
-              client.beta().sessions().events().send(
-                  session.id(),
-                  EventSendParams.builder()
-                      .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                          .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
-                          .customToolUseId(eventId)
-                          .addTextContent(result)
-                          .build())
-                      .build());
-          });
+                  // Kirim hasilnya kembali
+                  client.beta().sessions().events().send(
+                      session.id(),
+                      EventSendParams.builder()
+                          .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
+                              .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
+                              .customToolUseId(toolUse.id())
+                              .addTextContent(result)
+                              .build())
+                          .build());
+              }
+              case SESSION_STATUS_IDLE -> {
+                  if (event.asSessionStatusIdle().stopReason().isEndTurn()) {
+                      break loop;
+                  }
+              }
+          }
+      }
   }
   ```
 
@@ -977,30 +974,28 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
   $stream = $client->beta->sessions->events->streamStream($session->id);
 
   foreach ($stream as $event) {
-      if ($event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent && $event->stopReason) {
-          switch (true) {
-              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
-                  foreach ($event->stopReason->eventIDs as $eventId) {
-                      // Cari event penggunaan alat kustom lalu jalankan
-                      $toolEvent = $eventsById[$eventId];
-                      $result = callTool($toolEvent->name, $toolEvent->input);
+      switch (true) {
+          case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentCustomToolUseEvent:
+              // Jalankan alat
+              $result = callTool($event->name, $event->input);
 
-                      // Kirim hasilnya kembali
-                      $client->beta->sessions->events->send(
-                          $session->id,
-                          events: [
-                              [
-                                  'type' => 'user.custom_tool_result',
-                                  'custom_tool_use_id' => $eventId,
-                                  'content' => [['type' => 'text', 'text' => $result]],
-                              ],
-                          ],
-                      );
-                  }
-                  break;
-              case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionEndTurn:
+              // Kirim hasilnya kembali
+              $client->beta->sessions->events->send(
+                  $session->id,
+                  events: [
+                      [
+                          'type' => 'user.custom_tool_result',
+                          'custom_tool_use_id' => $event->id,
+                          'content' => [['type' => 'text', 'text' => $result]],
+                      ],
+                  ],
+              );
+              break;
+          case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionStatusIdleEvent:
+              if ($event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionEndTurn) {
                   break 2;
-          }
+              }
+              break;
       }
   }
   ```
@@ -1008,33 +1003,28 @@ Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat tersebut
   ```ruby Ruby
   client.beta.sessions.events.stream_events(session.id).each do |event|
     case event
+    when Anthropic::Beta::Sessions::BetaManagedAgentsAgentCustomToolUseEvent
+      # Jalankan alat
+      result = call_tool.call(event.name, event.input)
+      # Kirim hasilnya kembali
+      client.beta.sessions.events.send_(
+        session.id,
+        events: [
+          {
+            type: "user.custom_tool_result",
+            custom_tool_use_id: event.id,
+            content: [{type: "text", text: result}]
+          }
+        ]
+      )
     when Anthropic::Beta::Sessions::BetaManagedAgentsSessionStatusIdleEvent
-      stop_reason = event.stop_reason
-      case stop_reason
-      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
-        stop_reason.event_ids.each do |event_id|
-          # Cari event penggunaan custom tool lalu jalankan
-          tool_event = events_by_id[event_id]
-          result = call_tool.call(tool_event.name, tool_event.input)
-          # Kirim hasilnya kembali
-          client.beta.sessions.events.send_(
-            session.id,
-            events: [
-              {
-                type: "user.custom_tool_result",
-                custom_tool_use_id: event_id,
-                content: [{type: "text", text: result}]
-              }
-            ]
-          )
-        end
-      when Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn
-        break
-      end
+      break if event.stop_reason.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn)
     end
   end
   ```
 </CodeGroup>
+
+Jika agen memiliki [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat kustom dapat tiba saat sesi tetap `running`. Event idle `requires_action` hanya tiba ketika tidak ada satu pun [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang sedang bekerja. Jangan menunggunya: jawab setiap panggilan ketika event `agent.custom_tool_use`-nya tiba. Contoh di [Mengikuti eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menunjukkan caranya.
 
 ### Mengonfirmasi panggilan alat
 
@@ -1267,6 +1257,8 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   end
   ```
 </CodeGroup>
+
+Contoh sebelumnya menyetujui setiap panggilan setelah sesi menjadi idle. Jika agen memiliki [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat dapat menunggu konfirmasi Anda saat sesi tetap `running`. Jangan menunggu event idle: ketika event `agent.tool_use` atau `agent.mcp_tool_use` tiba dengan [`evaluated_permission`](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated) bernilai `ask`, jawablah. Contoh di [Mengikuti eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menjawab panggilan alat kustom dengan cara ini, dan pengantarnya menjelaskan cara menambahkan konfirmasi.
 
 ## Melanjutkan sesi yang idle
 
@@ -1634,7 +1626,7 @@ Panggilan tersebut kembali segera setelah event dimasukkan ke antrean. Interupsi
 2. Event `user.interrupt` muncul di aliran, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`.
 3. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
 
-`stop_reason.type` dari event idle adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya.
+`stop_reason.type` dari event idle adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya. Jika ada eksekusi workflow yang terbuka, interupsi tidak mengakhiri satu pun di antaranya. Eksekusi yang sedang berjalan dapat membuat sesi tetap `running`, sehingga event `session.status_idle` pada langkah 2 mungkin tidak tiba. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 ## Mendaftar event sebelumnya
 

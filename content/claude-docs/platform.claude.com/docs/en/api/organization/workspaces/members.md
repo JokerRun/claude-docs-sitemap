@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/members
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 55a2ca19b4084716903313a54bcbff9660476e8f69716b90f78950978505e22c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ea92eb5fed4efe64f581eb59d076747c59fa7e42724348647b116f0c1b0a59a5
 ---
 
 ---
@@ -41,6 +41,14 @@ List Workspace Members
   Defaults to `20`. Ranges from `1` to `1000`.
 
   default: 20, minimum: 1, maximum: 1000
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -125,6 +133,14 @@ Create Workspace Member
 - `workspace_id: string`
 
   ID of the Workspace.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -218,6 +234,14 @@ Get Workspace Member
 
   ID of the User.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `WorkspaceMember object`
@@ -286,6 +310,14 @@ Update Workspace Member
 - `user_id: string`
 
   ID of the User.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -375,6 +407,14 @@ Delete Workspace Member
 - `user_id: string`
 
   ID of the User.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

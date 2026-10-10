@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: adde45c75e4b1051a730d8d8e738b8a82dc700dc5779d46fb599bdf892bb89a5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: de00b64d997f8c0c99844be3a7efdcb44fb293d9d77f3ce4e359a18a430fe0de
 ---
 
 ---
@@ -23,6 +23,8 @@ Unpause Deployment
   Unique identifier of the deployment to unpause.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

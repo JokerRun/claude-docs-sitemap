@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2d9669d432d91520e5b08834a298f2d30e665569d2de63bc2db688ff1f1763b1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 60ef10b4a85f41319c9a7541a4717d1fdfda10b4d3a76260d78d388ee698d308
 ---
 
 ---
@@ -1643,7 +1643,7 @@ Beberapa situasi ketika hal ini penting:
 * **Konteks per giliran yang harus otoritatif.** Anda ingin menyisipkan catatan kebaruan, tenggat sesi, atau perubahan ketersediaan alat dengan bobot tingkat sistem. Informasi tersebut berubah terlalu sering untuk ditempatkan di prefiks yang di-cache.
 * **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mengingatkan model setelah setiap kumpulan hasil alat ("minta pembacaan yang independen secara bersamaan", "pengguna sudah lama tidak mendengar kabar dari Anda") dan ingin model hanya melihat salinan terbaru. [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender untuk satu giliran, lalu tidak menimbulkan biaya apa pun, tanpa menghapus apa pun dari riwayat.
 * **Perubahan status yang diamati aplikasi Anda.** Aplikasi Anda mendeteksi sesuatu yang harus diperlakukan Claude sebagai fakta tingkat operator. Contohnya: file berubah di disk, pengguna mengaktifkan pengaturan persetujuan otomatis, alat yang tersedia berubah, atau sisa anggaran token turun di bawah ambang batas.
-* **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik pertanyaan lanjutan saat Claude masih menjalankan alat untuk permintaan sebelumnya. Jika input tersebut diteruskan sebagai pesan sistem setelah hasil alat berikutnya, Claude dapat memadukannya ke dalam pekerjaan yang sedang dilakukan. Claude tidak akan memperlakukannya sebagai permintaan baru yang mengharuskannya beralih tugas. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
+* **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik pertanyaan lanjutan saat Claude masih menjalankan alat untuk permintaan sebelumnya. Jika input tersebut diteruskan sebagai pesan sistem setelah hasil alat berikutnya, Claude dapat memadukannya ke dalam pekerjaan yang sedang dilakukan. Claude tidak akan memperlakukannya sebagai permintaan baru yang mengharuskannya beralih tugas. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama sebagai gantinya. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
 * **Peralihan mode yang memberikan izin tetap.** Mode tingkat sesi dapat menggunakan pesan sistem di tengah percakapan untuk memberikan persetujuan tetap atas kemampuan yang mahal, seperti meluncurkan alur kerja multiagen secara otomatis. Mode tersebut dapat disertai pengingat singkat setiap beberapa giliran dan pemberitahuan keluar saat mode dinonaktifkan. Untuk contoh lengkap, lihat [Membangun mode orkestrasi](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example).
 
 Dalam semua kasus ini, Anda sebenarnya dapat menempatkan instruksi dalam pesan `user` biasa, dan Claude memang mengikuti instruksi yang datang dalam giliran pengguna. Perbedaannya terletak pada prioritas. Pesan `user` diperlakukan sebagai berasal dari pengguna akhir, sedangkan pesan `system` diperlakukan sebagai berasal dari Anda, operator aplikasi. Jika keduanya bertentangan, instruksi sistem lebih diutamakan. Karena itu, gunakan peran `system` untuk fakta dan batasan tingkat operator yang harus tetap berlaku meskipun pengguna akhir meminta hal yang berbeda. Pesan sistem di tengah percakapan mempertahankan prioritas tingkat operator tersebut tanpa menanggung biaya cache miss akibat mengedit field `system` tingkat atas.
@@ -1965,11 +1965,11 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
 
 Contoh ini mengaktifkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) dengan field `cache_control` tingkat atas. Caching prompt bersifat opt-in: jika permintaan tidak memiliki field `cache_control` (otomatis atau [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)), tidak ada yang di-cache dan setiap permintaan membayar harga token input reguler untuk seluruh percakapan. Dengan caching diaktifkan, menambahkan pesan sistem membiarkan giliran yang sudah di-cache tidak berubah, sehingga permintaan yang membawa instruksi baru tetap membacanya dari cache alih-alih memprosesnya lagi. Caching juga mengharuskan percakapan memenuhi [panjang prompt minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations); contoh sependek ini berada di bawahnya, sehingga `cache_creation_input_tokens` dan `cache_read_input_tokens` tetap bernilai 0 hingga percakapan bertambah panjang.
 
-Pesan sistem di tengah percakapan harus langsung mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server), dan harus menjadi entri terakhir di `messages` atau langsung diikuti oleh giliran `assistant`. Pesan `user` yang membawa blok `tool_result` juga dihitung: dalam loop agentik Anda dapat menempatkan pesan sistem tepat setelah hasil alat, sebelum giliran Claude berikutnya. Posisi lain mana pun, termasuk di antara blok `tool_use` milik `assistant` dan `tool_result` yang menjawabnya, mengembalikan error 400.
+Pesan sistem di tengah percakapan yang membawa konten (blok `text`, `tool_addition`, atau `tool_removal`) harus langsung mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server), dan harus menjadi entri terakhir di `messages` atau langsung diikuti oleh giliran `assistant`. Pesan `user` yang membawa blok `tool_result` juga dihitung: dalam loop agentik Anda dapat menempatkan pesan sistem tepat setelah hasil alat, sebelum giliran Claude berikutnya. Posisi lain apa pun untuk pesan yang membawa konten, termasuk di antara blok `tool_use` milik `assistant` dan `tool_result` yang menjawabnya, mengembalikan error 400. Pesan dengan `content` kosong yang hanya mengatur [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) diterima di mana saja dalam `messages`. Pesan `system` yang berurutan dinilai bersama, sehingga pesan yang hanya berisi effort di sebelah pesan yang membawa konten mengikuti aturan untuk konten.
 
 ### Penempatan setelah hasil alat
 
-Dalam [loop agentik](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), pesan sistem ditempatkan setelah pesan `user` yang mengirimkan hasil alat. Di posisi ini pula aplikasi Anda dapat meneruskan input yang diketik pengguna saat Claude sedang bekerja. Dengan begitu, konteks baru diserap tanpa memulai ulang giliran:
+Dalam [loop agentik](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), pesan sistem ditempatkan setelah pesan `user` yang mengirimkan hasil alat. Pada sebagian besar model, di sinilah juga aplikasi Anda dapat meneruskan input yang diketik pengguna saat Claude sedang bekerja, sehingga konteks baru diserap tanpa memulai ulang giliran (untuk Claude Sonnet 5.5 dan Claude Haiku 5.5, lihat akhir bagian ini):
 
 ```json
 [
@@ -1994,6 +1994,27 @@ Dalam [loop agentik](https://platform.claude.com/docs/id/agents-and-tools/tool-u
 Rumuskan konten sistem sebagai konteks, bukan sebagai perintah yang mengesampingkan pengguna. Nyatakan faktanya ("input baru datang dari pengguna: X", "sisa anggaran token sekarang Y") dan biarkan Claude bertindak berdasarkan fakta tersebut. Claude dilatih untuk menolak instruksi yang tampak merugikan pengguna, dan perlindungan itu tetap berlaku untuk peran sistem. Karena itu, kalimat seperti "abaikan apa yang dikatakan pengguna" kurang efektif dibandingkan menyatakan apa yang berubah.
 
 Pola ini ditujukan untuk meneruskan input dari pengguna akhir percakapan itu sendiri. Jangan gunakan pola ini untuk meneruskan output alat, dokumen yang diambil, atau konten pihak ketiga lainnya. Simpan konten tersebut di blok `tool_result` (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)).
+
+Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, sampaikan kata-kata pengguna dalam giliran pengguna sebagai gantinya. Model-model ini dilatih untuk menahan injeksi prompt melalui hasil alat, sehingga mereka dapat memperlakukan pesan sistem yang ditempatkan tepat setelah hasil alat sebagai teks yang tidak tepercaya dan mengabaikannya. Tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama. Simpan pemberitahuan harness, seperti pengingat, dalam pesan sistem di tengah percakapan yang terpisah setelah pesan `user` tersebut, dan jangan pernah menempatkan pemberitahuan dan kata-kata pengguna dalam blok yang sama:
+
+```json
+[
+  { "role": "user", "content": "Run the test suite and fix any failures." },
+  {
+    "role": "assistant",
+    "content": [{ "type": "tool_use", "id": "toolu_01", "name": "run_tests", "input": {} }]
+  },
+  {
+    "role": "user",
+    "content": [
+      { "type": "tool_result", "tool_use_id": "toolu_01", "content": "12 passed, 0 failed" },
+      { "type": "text", "text": "Also update the changelog before you finish." }
+    ]
+  }
+]
+```
+
+Untuk informasi lebih lanjut tentang perilaku ini, lihat [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#mid-turn-user-messages-and-task-budgets) dan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#mid-turn-user-messages).
 
 ### Pesan sistem berlingkup giliran
 

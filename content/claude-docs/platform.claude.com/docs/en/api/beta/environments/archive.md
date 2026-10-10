@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 96aed9b0e796e39df392f4e9913c19d9f1938e51136d67fd6fee73462b33fcdc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 99e125a5db3f36da66b599b55d7d7cb1b4ee5f82a72c156c4fca0d36372262ee
 ---
 
 ---
@@ -21,6 +21,12 @@ Archive an environment by ID. Archived environments cannot be used to create new
 - `environment_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

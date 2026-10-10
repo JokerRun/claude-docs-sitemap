@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 6827e7cbf644ca28bbc1f1f4fda52a3f4835a049825e6c62487b78611847fcaa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ef9fadaba6e7bc8b124d76517cd9274328d25345c0227febd6c41a2343a3244a
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.70.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.70.0")
+      implementation("com.anthropic:anthropic-java:2.71.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.71.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.70.0</version>
+          <version>2.71.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.70.0</version>
+          <version>2.71.0</version>
       </dependency>
       ```
 
@@ -76,10 +76,17 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
       import com.anthropic.models.messages.MessageCreateParams;
       import com.anthropic.models.messages.Model;
       import com.anthropic.vertex.backends.VertexBackend;
+      import com.google.auth.oauth2.GoogleCredentials;
 
-      void main() {
+      void main() throws Exception {
           AnthropicClient client = AnthropicOkHttpClient.builder()
-              .backend(VertexBackend.fromEnv())
+              .backend(
+                  VertexBackend.builder()
+                      .googleCredentials(GoogleCredentials.getApplicationDefault())
+                      .region("global")
+                      .project("MY_PROJECT_ID")
+                      .build()
+              )
               .build();
 
           MessageCreateParams params = MessageCreateParams.builder()
@@ -274,11 +281,17 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   import com.anthropic.models.messages.MessageCreateParams;
   import com.anthropic.models.messages.Model;
   import com.anthropic.vertex.backends.VertexBackend;
+  import com.google.auth.oauth2.GoogleCredentials;
 
-  void main() {
-      // Menggunakan kredensial Google Cloud default
+  void main() throws Exception {
       AnthropicClient client = AnthropicOkHttpClient.builder()
-          .backend(VertexBackend.fromEnv())
+          .backend(
+              VertexBackend.builder()
+                  .googleCredentials(GoogleCredentials.getApplicationDefault())
+                  .region("global")
+                  .project("MY_PROJECT_ID")
+                  .build()
+          )
           .build();
 
       Message message = client
@@ -545,7 +558,6 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   import com.google.auth.oauth2.GoogleCredentials;
 
   void main() throws Exception {
-      // Menggunakan kredensial Google Cloud default
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(
               VertexBackend.builder()
@@ -929,7 +941,6 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
   import com.google.auth.oauth2.GoogleCredentials;
 
   void main() throws Exception {
-      // Menggunakan kredensial default Google Cloud dengan region tertentu
       AnthropicClient client = AnthropicOkHttpClient.builder()
           .backend(
               VertexBackend.builder()

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: d128009ba6bfbe384bd780be15fb1956ef925837546fcde27f08025ea8f19744
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c5b9c26f384a03561fa1a58f692d02819b9107899595362bd9b75418007bc485
 ---
 
 ---
@@ -1029,7 +1029,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   ```
 </CodeGroup>
 
-Apa yang Anda kirim dalam event `user.message` dihitung sebagai niat Anda, dan hal itu dapat membuat server mengizinkan panggilan yang tanpa itu akan ditolak. Server tidak membaca niat dari hasil alat, halaman web yang diambil, respons server MCP, atau pesan antar [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tool-permissions-and-custom-tools). Server menilai konten tersebut tetapi tidak menerima instruksi darinya. Server mengevaluasi beberapa panggilan sebagai berisiko tinggi terlepas dari siapa yang memintanya. Jika Anda meneruskan input pengguna akhir yang tidak tepercaya dalam event `user.message`, server juga membaca input tersebut sebagai niat Anda, dan input itu dapat membuat sebuah panggilan diizinkan. Konfigurasikan `always_ask` pada alat yang tidak akan Anda biarkan dijalankan oleh pengguna akhir tersebut tanpa peninjauan.
+Apa yang Anda kirim dalam event `user.message` dihitung sebagai niat Anda, dan hal itu dapat membuat server mengizinkan panggilan yang tanpa itu akan ditolak. Server tidak membaca niat dari hasil alat, halaman web yang diambil, respons server MCP, atau pesan antar [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools). Server menilai konten tersebut tetapi tidak menerima instruksi darinya. Server mengevaluasi beberapa panggilan sebagai berisiko tinggi terlepas dari siapa yang meminta. Jika Anda meneruskan input pengguna akhir yang tidak tepercaya dalam event `user.message`, server juga membaca input tersebut sebagai niat Anda, dan input itu dapat membuat sebuah panggilan diizinkan. Konfigurasikan `always_ask` pada alat yang tidak akan Anda biarkan dijalankan oleh pengguna akhir tersebut tanpa peninjauan.
 
 <Warning>
   `auto` bukanlah titik pemeriksaan manusia. Jika server menentukan bahwa sebuah panggilan aman, panggilan tersebut berjalan sebelum ada yang melihatnya, dan efeknya mungkin tidak dapat dibatalkan. Jika seseorang harus meninjau panggilan sebuah alat sebelum dijalankan, konfigurasikan `always_ask` pada alat tersebut.
@@ -1082,7 +1082,7 @@ Tulis klien Anda agar dapat menoleransi `evaluation.type` atau `reason_code` yan
 Panggilan alat dievaluasi menjadi `ask` di bawah kebijakan `always_ask`, atau di bawah `auto` ketika server tidak mencapai keputusan. Ketika hal itu terjadi:
 
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir terdapat dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu.
+2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu. Panggilan dari thread sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) mencapai klien Anda di aliran utama. Selama ada hal lain dalam sesi yang sedang bekerja, sesi dapat tetap `running` dan tidak mengirim `session.status_idle`, jadi tanggapi event penggunaan alat itu sendiri. Panggilan hanya menunggu hingga eksekusi selesai dengan thread tersebut atau eksekusi berakhir. Sebuah interupsi mungkin membuatnya tetap menunggu, jadi izinkan atau tolak sendiri.
 3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
 4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak berjalan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` Anda.
 

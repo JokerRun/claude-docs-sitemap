@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hipaa-setup
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: f445bad7f0d8915dabbf9568c1ced22bf9b070e3c0055bfc2648571153490007
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3e5ce923330f7c04d495acdd06fa329fc966343298dc33bed0f6db04983e05cf
 ---
 
 > ## Documentation Index
@@ -131,6 +131,8 @@ The following sample sets four keys that you could add to the [managed settings]
   "cleanupPeriodDays": 30
 }
 ```
+
+For a fuller `managed-settings.json` with sandboxing, a network allowlist, credential protections, and local data retention, see `settings-hipaa.json` and `README-hipaa.md` in the [settings examples repository](https://github.com/anthropics/claude-code/tree/main/examples/settings).
 
 #### What each key does
 
@@ -273,6 +275,7 @@ Removing a developer's seat or account deletes nothing on their computer, and `/
 
 * [Set up Cowork (local mode) for a HIPAA-ready organization](https://claude.com/docs/cowork/hipaa-setup)
 * [Deploy managed settings](/docs/en/managed-settings)
+* [HIPAA settings example](https://github.com/anthropics/claude-code/tree/main/examples/settings)
 * [Enterprise network configuration](/docs/en/network-config)
 * [Zero data retention](/docs/en/zero-data-retention)
 * [Legal and compliance](/docs/en/legal-and-compliance)

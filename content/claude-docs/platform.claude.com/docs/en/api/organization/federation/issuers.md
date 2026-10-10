@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4ab24633cdd61b40af9cdcb2ad0566ccc297737c4951ec1703d29a5586c086bc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 221eecc6b7de56c9d5d8fe823c1754159e0e718550acc1a4842f95a512f1051a
 ---
 
 ---
@@ -29,6 +29,14 @@ URL), or `inline` (provide a static key set). When `jwks.type` is
 publicly reachable over HTTPS so Anthropic can fetch the discovery
 document; for `explicit_url` and `inline` modes the issuer URL is only
 matched as the JWT's `iss` claim and is not fetched.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -314,6 +322,14 @@ Archived issuers are excluded unless `include_archived=true`.
 
   Opaque cursor from a previous response's `next_page`.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `data: array of FederationIssuer`
@@ -508,6 +524,14 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 - `federation_issuer_id: string`
 
   ID of the federation issuer.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -706,6 +730,14 @@ session.
 - `federation_issuer_id: string`
 
   ID of the federation issuer to update.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -982,6 +1014,14 @@ issuer cannot be changed), or recreate them against another issuer.
 - `federation_issuer_id: string`
 
   ID of the federation issuer to archive.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

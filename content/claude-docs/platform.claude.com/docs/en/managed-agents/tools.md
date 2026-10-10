@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 4f9c8be97d55c0007135e74558ab9c07c766b6d07e2ad5b60de6e71ff5efddc6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 8c4aaa4b3a43acaa1b34ded8341a8805592b93f980f5053659397d2c93d5564c
 ---
 
 ---
@@ -504,6 +504,8 @@ The following example creates an agent with the built-in toolset and one custom 
   )
   ```
 </CodeGroup>
+
+A custom tool's name can't start with `mcp__` or `ant__`, or match the name of a built-in agent tool. A request that breaks this rule returns a 400 error. An agent that already has a custom tool whose name starts with `ant__` accepts an update only if the update sends `tools` without that name, so rename or remove the tool in your next update. A new session is refused with a 400 error if such a tool is on its agent (after any [overrides](https://platform.claude.com/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session)), on an agent in `subagents.predefined_agents`, or on an agent in `workflows.predefined_agents`. Sessions that already exist aren't affected.
 
 The agent calls its custom tools during a session. To receive the calls and return results, see [Session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#handling-custom-tool-calls).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2be75eee9686edb4bef35f95340fa45353f215c9dd64030a23f8c33038182436
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c7adf5d90de3f0301d91776b68e72970bfab0f1f26dc69ec6bf6a42617542206
 ---
 
 ---
@@ -31,6 +31,14 @@ identity-bearing claim, a tenant-pinning subject prefix (such as
 identity claims (e.g. `claims.repository_owner`). OAuth callers may only
 manage rules whose `oauth_scope` is `workspace:developer` or
 `workspace:inference`; other scopes require a Console session.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

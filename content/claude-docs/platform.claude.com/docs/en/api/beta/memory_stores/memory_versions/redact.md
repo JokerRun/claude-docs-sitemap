@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 435772ba0fa801904bbab8d3128c978dd5627b6a984c1517b92b530ebbbcbb27
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4abca6c32670d79026a4718d9b1a7e1b8078f9936f55bf2362448a23d10febf9
 ---
 
 ---
@@ -27,6 +27,8 @@ Redact a memory version
   The ID of the memory version to redact (`memver_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

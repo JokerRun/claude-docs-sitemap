@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/cancel
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 666f1b3b6aa1f0fb1fee18ae979730a97d70e600367228b2a0872e49774b467c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 49f028042c3975a3f39ac9164d11d53cf7cebae899e4126ecbaa52bfbd3084fb
 ---
 
 ---
@@ -27,6 +27,12 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   ID of the Message Batch.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c81d1726af11ce83dcdaf012b35e54bc13fee1cefa9b3ba0863881c9842ae1b0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e20da6c813a605d665a4ef49e87b31f8082788faca2281df7456cbed97b0219f
 ---
 
 ---
@@ -23,6 +23,8 @@ Get Deployment
   Unique identifier of the deployment.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

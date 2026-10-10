@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 4a255c7a4a6192ccc1bc8b2b3b1a7997666afd01f31805c76b26d26f847a3f43
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 953ad39937ce1c04f02c34d6abd0649098fb369abe3a15cd4be426756772586b
 ---
 
 ---
@@ -25,6 +25,8 @@ Fetches a tunnel by ID.
   ID of the tunnel (`tnl_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 50a33bc8e91e523170e48541f5b33436250397d3d8e6e7d6a56e3a9ec87fcf91
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4b4fe2511a17636266f61d646ec0f16fc48e3bfbee44fc6e86b013705be3aa0d
 ---
 
 ---
@@ -851,7 +851,7 @@ Contoh ini menandai setiap alat dalam daftar sebagai strict. Sebuah permintaan d
 
 ### Blok thinking terikat pada model dan percakapan
 
-Claude Sonnet 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca oleh model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Claude Sonnet 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Google Cloud, dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
 Setiap blok thinking Claude Sonnet 5.5 juga ditandatangani atas percakapan sebelumnya. Untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, API memberlakukan hal ini secara default, di Claude API, Amazon Bedrock, dan Google Cloud. Pada akun tersebut, permintaan yang memutar ulang blok setelah pengeditan riwayat sebelumnya mengembalikan error 400. Pertahankan percakapan agar hanya ditambahkan, dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Blok thinking yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
@@ -870,7 +870,7 @@ Kode yang sudah mengirimkan toolset tidak memerlukan perubahan. [Migrasi dari `c
 
 ### Alat advisor menerima lebih sedikit advisor
 
-Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool), executor Claude Sonnet 5.5 memerlukan salah satu advisor berikut: Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5, Claude Fable 5.1, Claude Mythos 5, atau Claude Mythos 5.1. Advisor Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 mengembalikan error 400. Saran dikembalikan dalam bentuk terenkripsi sebagai blok `advisor_redacted_result`, sehingga teksnya tidak dapat dibaca dalam respons. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility).
+Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool), executor Claude Sonnet 5.5 memerlukan salah satu advisor berikut: Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5, Claude Fable 5.1, Claude Mythos 5, atau Claude Mythos 5.1. Advisor Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 mengembalikan error 400. Saran dikembalikan dalam bentuk terenkripsi sebagai blok `advisor_redacted_result`, sehingga teksnya tidak dapat dibaca dalam respons. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility).
 
 ### Teks di antara pemanggilan alat dikembalikan dalam blok thinking
 

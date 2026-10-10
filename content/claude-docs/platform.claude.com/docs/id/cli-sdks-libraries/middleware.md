@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4fac787add14e1cddda5ba062b621126dad3d1dd8c087dd2fbec1a9b2f16b79d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 79880dc20a5af6c0dfecca52f239cd692aa315ed22f1f2aa144b97ee4fb04ef4
 ---
 
 ---
@@ -184,4 +184,4 @@ SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau "
 
 ## Middleware bawaan
 
-SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak Claude Fable 5 pada model fallback. Lihat [Mendeteksi dan mencoba ulang pada model fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) untuk penyiapan dan contoh per bahasa.
+SDK menyertakan middleware refusal-fallback yang secara otomatis mencoba ulang permintaan yang ditolak Claude (`stop_reason: "refusal"`) pada model fallback. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) mencantumkan model-model yang pengklasifikasi keamanannya dapat menolak permintaan, dan [Mendeteksi dan mencoba ulang pada model fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) membahas penyiapan serta contoh untuk setiap bahasa.

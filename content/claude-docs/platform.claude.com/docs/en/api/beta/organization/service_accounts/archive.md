@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: f7c1bfebcac54143656cc27892cf01ad1e440b489d8f388a4d92c10082ba8f23
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 623dc62a7a8fcc99f55d9af0892fe4ad361185e3dd977c994ecf0d1d992e9851
 ---
 
 ---
@@ -30,6 +30,12 @@ those rules first or change their target to another service account.
   ID of the service account to archive.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/activities/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: afb24b4382fc8fe6abbf349c386135b1583887ce73cbcdd5bb271db291e8b353
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a5b32563c9259d3a8e4054a98b1932ecf6df57476a005006073c1766fbdfc964
 ---
 
 ---
@@ -4279,6 +4279,12 @@ compliance activities that can be filtered by various criteria.
   Alias for `actor_ids[]`, for consistency with other compliance routes. If both are provided, the lists are merged.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -83840,7 +83846,7 @@ compliance activities that can be filtered by various criteria.
 
         - `user_agent: optional string or null`
 
-    - `updates: array of Name or Capabilities or RedactContent or 100 more`
+    - `updates: array of Name or Capabilities or RedactContent or 101 more`
 
       - `Name object`
 
@@ -85686,6 +85692,22 @@ compliance activities that can be filtered by various criteria.
         - `type: optional "artifact_type_docs_enabled"`
 
           default: artifact_type_docs_enabled
+
+        - `current_value: optional boolean or null`
+
+          Setting value immediately after this change
+
+        - `previous_value: optional boolean or null`
+
+          Setting value immediately before this change. Null means the setting had not been set for the organization, so the plan default applied.
+
+      - `ArtifactTypeMotionEnabled object`
+
+        The setting that lets members create Motion, one of Anthropic's built-in Artifact types, was changed for the organization.
+
+        - `type: optional "artifact_type_motion_enabled"`
+
+          default: artifact_type_motion_enabled
 
         - `current_value: optional boolean or null`
 

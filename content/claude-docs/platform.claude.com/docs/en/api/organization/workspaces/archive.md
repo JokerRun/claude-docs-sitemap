@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 2a97b04ef97dc544a350a94f98c894dbd42038f558fa64d443320a1222bd29bd
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 727408ba385db8f5dcc407fadbe8e58ea46462533b56f219defe6c26791d96c2
 ---
 
 ---
@@ -19,6 +19,14 @@ Archive Workspace
 ## Path parameters
 
 - `workspace_id: string`
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

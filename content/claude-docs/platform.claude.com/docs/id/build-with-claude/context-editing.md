@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2b0dc62f4f93b8792cd9fdbae3035e3e37408e80a85029fb3892bdff5ba863cb
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5ab9d1af563743e28a54db16c040c7a8aae5c80d9589b0998c00b4625b880364
 ---
 
 ---
@@ -24,7 +24,7 @@ description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya de
 "Context editing" (pengeditan konteks) memungkinkan Anda membersihkan konten tertentu secara selektif dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini adalah tentang mengkurasi secara aktif apa yang dilihat Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
 * **Pembersihan hasil alat** - Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
-* **Pembersihan blok thinking** - Untuk mengelola blok thinking saat menggunakan "extended thinking" (pemikiran diperpanjang), dengan opsi untuk mempertahankan thinking terbaru demi kesinambungan konteks
+* **Pembersihan blok thinking** - Untuk mengelola blok thinking dari giliran sebelumnya, dengan opsi untuk mempertahankan thinking terbaru demi kesinambungan konteks
 * **Kompaksi SDK sisi klien** - Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (kompaksi sisi server umumnya lebih disarankan)
 
 | Pendekatan      | Tempat berjalan | Strategi                                                                                                  | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -48,7 +48,7 @@ Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam uruta
 
 ### Pembersihan blok thinking
 
-Strategi `clear_thinking_20251015` mengelola blok `thinking` dalam percakapan ketika pemikiran diperpanjang diaktifkan. Strategi ini memberi Anda kontrol atas pelestarian thinking: Anda dapat memilih untuk menyimpan lebih banyak blok thinking guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
+Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asisten sebelumnya. Strategi ini memberi Anda kontrol atas pelestarian thinking: Anda dapat memilih untuk menyimpan lebih banyak blok thinking guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
 
 <Tip>
   **Perilaku default:** Default bervariasi menurut kelas model.
@@ -703,7 +703,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
 
 ## Penggunaan pembersihan blok thinking
 
-Aktifkan pembersihan blok thinking untuk mengelola konteks dan caching prompt secara efektif ketika pemikiran diperpanjang diaktifkan:
+Gunakan pembersihan blok thinking untuk mengelola konteks dan caching prompt dalam percakapan yang membawa blok thinking dari giliran sebelumnya:
 
 <CodeGroup>
   ```bash cURL

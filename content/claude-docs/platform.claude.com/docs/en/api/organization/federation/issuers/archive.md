@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/archive
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: ea823f27a56728ad201402ee72f0e3d529100cff6aad2a151967d5d5f8f85304
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3c5c42086a547f570751d4ee625da6dc177ddb6dfd3469fdd79884de43d52476
 ---
 
 ---
@@ -28,6 +28,14 @@ issuer cannot be changed), or recreate them against another issuer.
 - `federation_issuer_id: string`
 
   ID of the federation issuer to archive.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

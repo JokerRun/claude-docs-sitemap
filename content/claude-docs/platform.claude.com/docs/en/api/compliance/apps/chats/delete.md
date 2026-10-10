@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/delete
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 96e629ae8c807128c1da8372362ccc0168b419f045cb7d8b4a180aff20513b57
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 05c3e04a43e384e1352070ba6f4f8ed5a85e1eeac651d39225047850ae13a351
 ---
 
 ---
@@ -29,6 +29,12 @@ You can retry the request.
   The chat ID (tagged ID, e.g., claude_chat_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

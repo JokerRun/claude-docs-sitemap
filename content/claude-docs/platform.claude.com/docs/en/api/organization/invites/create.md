@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 0fdd4e5468f7e597f1ffc601c05a2746bec4a228daa458d776ea784d8114f5a6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b4028a08840ecb48d4da237748f59d305f0639563858bb9a6fa505b46aef635b
 ---
 
 ---
@@ -17,6 +17,14 @@ url: https://platform.claude.com/docs/en/api/organization/invites/create
 Invite a user to join the organization by email.
 
 On plans that draw members from a finite pool of purchased seats, the invite automatically consumes a seat from the lowest tier with availability; there is no seat-tier parameter. When no seat is free the request fails with a 400 error rather than purchasing a seat.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

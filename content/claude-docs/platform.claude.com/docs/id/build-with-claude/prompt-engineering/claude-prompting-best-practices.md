@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4380e14166abe49c509e4b8f5918aecef98661990216b84d0886632fd13b53f5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 57aa7e5c4c5bd23a890ef32f5b6e0547b3330786985bc26a34be9233113256c7
 ---
 
 ---
@@ -781,7 +781,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 </CodeGroup>
 
-Jika Anda tidak menggunakan pemikiran diperpanjang, tidak ada perubahan yang diperlukan. Pada Claude Opus 4.6 hingga Claude Opus 4.8 dan Claude Sonnet 4.6, pemikiran nonaktif ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5, pemikiran aktif secara default ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5 dan Claude Haiku 5.5, Anda dapat menonaktifkannya hanya pada effort `high` atau lebih rendah. Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `between_tools`, yang diterima pada effort `high` atau lebih rendah. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5.5, pemikiran selalu aktif, terlepas dari apakah Anda mengatur parameter `thinking` atau tidak.
+Jika Anda tidak menggunakan pemikiran diperpanjang, Anda tidak perlu menambahkan parameter `thinking`. Pada Claude Opus 4.6 hingga Claude Opus 4.8 dan Claude Sonnet 4.6, pemikiran nonaktif ketika Anda menghilangkan parameter `thinking`. Pada Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5, pemikiran aktif secara default ketika Anda menghilangkan parameter `thinking`, sehingga respons dapat dimulai dengan blok `thinking`. Pilih blok konten berdasarkan `type` alih-alih berdasarkan posisi, dan sisakan ruang di `max_tokens` untuk pemikiran. Pada Claude Opus 5 dan Claude Haiku 5.5, Anda dapat menonaktifkannya hanya pada effort `high` atau lebih rendah. Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `between_tools`, yang diterima pada effort `high` atau lebih rendah. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5.5, pemikiran selalu aktif, terlepas dari apakah Anda menetapkan parameter `thinking` atau tidak.
 
 * **Utamakan instruksi umum daripada langkah-langkah preskriptif.** Prompt seperti "think thoroughly" sering menghasilkan penalaran yang lebih baik daripada rencana langkah demi langkah yang ditulis tangan. Penalaran Claude sering kali melampaui apa yang akan ditetapkan oleh manusia.
 * **Contoh multishot berfungsi dengan thinking.** Contoh yang sudah dikerjakan dalam prompt Anda membentuk cara Claude mendekati masalah serupa dalam blok thinking-nya sendiri. Sajikan setiap contoh sebagai masalah, metode yang diterapkan, dan jawaban yang diharapkan.
@@ -1084,7 +1084,7 @@ Saat bermigrasi ke model Claude saat ini dari generasi sebelumnya:
 
 3. **Minta fitur spesifik secara eksplisit:** Animasi dan elemen interaktif harus diminta secara eksplisit jika diinginkan.
 
-4. **Perbarui konfigurasi thinking:** Model Claude 4.6 menggunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`) alih-alih thinking manual dengan `budget_tokens`. Gunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) untuk mengontrol kedalaman thinking.
+4. **Perbarui konfigurasi thinking:** Claude 4.6 dan model yang lebih baru menggunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`) alih-alih thinking manual dengan `budget_tokens`. Pada Claude 4.7 dan model yang lebih baru, mengatur `budget_tokens` menghasilkan error 400. Gunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) untuk mengontrol kedalaman thinking.
 
 5. **Beralih dari respons yang diisi sebelumnya:** Respons yang diisi sebelumnya (prefill) pada giliran asisten terakhir tidak lagi didukung mulai dari model Claude 4.6 dan Claude Mythos Preview. Lihat [Bermigrasi dari respons prefill](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#migrating-away-from-prefilled-responses) untuk panduan terperinci tentang alternatifnya.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 344856c50edde82b1b58b11dcf9af3b64a4837b92243c2bb8eb9b72dd7eb84e0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 81755f40232b95328b6601f3a20859d8fed3b932e980d267f48b806dc03568f3
 ---
 
 ---
@@ -31,8 +31,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock: not available
-    Google Cloud: not available
     Microsoft Foundry:
       availability: ga
       note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat terprogram memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).

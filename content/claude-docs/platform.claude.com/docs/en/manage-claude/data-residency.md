@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f3a119c7a704957056ac7688ba57e3f12a7d0c7ed92733784aec24cf0edc8292
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3fb1b9169f6b6d0fcf1e68884091ef40f61e62e44be0a67dd92ac906f503632c
 ---
 
 ---
@@ -263,7 +263,7 @@ To set workspace geo, create a new workspace in the [Console](https://platform.c
 
 Data residency pricing varies by model generation:
 
-* **Claude 4.6 and later models:** US-only inference (`inference_geo: "us"`) is priced at 1.1x the standard rate across all token pricing categories (input tokens, output tokens, cache writes, and cache reads).
+* **Claude 4.6 and later models:** US-only inference (`inference_geo: "us"`) is priced at 1.1x the standard rate across all token pricing categories (input tokens, output tokens, cache writes, and cache reads). On Claude Haiku 5.5, the multiplier also applies to the higher prices for prompts over 100,000 tokens (see [Long context pricing](https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing)).
 * **Global routing** (`inference_geo: "global"`): Standard pricing applies.
 * **Older models:** Don't support `inference_geo` (see [Model availability](https://platform.claude.com/docs/en/manage-claude/data-residency#model-availability)); standard pricing applies. Requests that include the parameter return a 400 error.
 

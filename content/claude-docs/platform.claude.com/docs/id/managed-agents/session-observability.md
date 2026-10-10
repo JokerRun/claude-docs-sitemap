@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ac713fee4c5b4f6937cfdacbdd8f62389f028ad8a2eecdcf90b91c5b1d950d6d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 46ff9e73451724130941f4cfbb90e63752163808e1e4a1c94c56b9ed396e3d77
 ---
 
 ---
@@ -86,7 +86,7 @@ Objek `stats` sesi memiliki `active_seconds` sendiri, yang menjumlahkan waktu ak
 
 ### Penggunaan per thread
 
-`usage` milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) juga memuat `list_cost` dan `active_seconds`. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi. Angka sesi adalah angka yang otoritatif.
+`usage` milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) juga memuat `list_cost` dan `active_seconds`. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi. Angka sesi adalah angka yang otoritatif.
 
 ### Membaca penggunaan dari stream
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/effective/list
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 2aa03e04f0f93c065d6ba15baf3655fad1cc4f44e84d22c97fbe70707c9469a9
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 52853d6ec11e5c8edd051171ac067d23eb276353677b15e013a6a2e4ff79d359
 ---
 
 ---
@@ -51,6 +51,14 @@ contact your Anthropic account team.
   Restrict the report to these members, by tagged user ID (`user_...`). At most 100 entries.
 
   maxItems: 100
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2321ecf6759a158693b08e020a50117b12c6f28d345ee9a0c2c42816b57cf6d7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5596c4072a73dedfbb30c60a0657870366a42ff68ea3b6fb2008985c2901673f
 ---
 
 ---
@@ -29,6 +29,8 @@ Fetches a tunnel certificate by ID.
   ID of the certificate (`tcrt_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

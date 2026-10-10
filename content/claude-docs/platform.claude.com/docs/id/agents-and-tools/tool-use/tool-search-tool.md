@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 3de24409eb59c470d9af6bc72b0ab733799d9c9e66517da237ffb5220d29eda2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5c8ca70f71ecd7dc3eb5a36fc81cf3a8f48807a00977ad82205af3a4c4e07ba3
 ---
 
 ---
@@ -55,6 +55,7 @@ Kedua varian tool search tersedia pada model-model berikut:
 | Claude Opus 5.5 (claude-opus-5-5)                                                                                                            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 5 (claude-opus-5)                                                                                                                | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Sonnet 5.5 (claude-sonnet-5-5)                                                                                                        | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Sonnet 5 (claude-sonnet-5)                                                                                                            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Haiku 5.5 (claude-haiku-5-5)                                                                                                          | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.8 (claude-opus-4-8)                                                                                                            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.7 (claude-opus-4-7)                                                                                                            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |

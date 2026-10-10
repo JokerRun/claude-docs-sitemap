@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 3c96753b6c6ff7263a6338690633bfdd5dc20b4fa17f2e80206a618e1cce2fec
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7e9bb8061ba5d57b3ce253eb5b5501651f97c767363441d63f9d1a419db6688f
 ---
 
 ---
@@ -21,6 +21,12 @@ Get statistics about the work queue for an environment.
 - `environment_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

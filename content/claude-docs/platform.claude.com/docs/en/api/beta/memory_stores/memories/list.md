@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: d0a9e85d0bca7616631e3d8fa01dd0bdea4ab7be7153e04e7118c4dc440db89f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e6de38a2c0eb9c7098565d3d1d294cd25401a243936212cb757257c4a8bab7e1
 ---
 
 ---
@@ -57,6 +57,8 @@ List memories
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

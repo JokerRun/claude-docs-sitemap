@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e182448d0c773af28191e33a129499fe44f61d3cdcc0afdd3ea8a0689301bc59
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2937bedeb324241b23138c48cc0e13e63e97876f776bfc7f360f02518340ef8d
 ---
 
 ---
@@ -42,6 +42,14 @@ unless `include_archived=true`.
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

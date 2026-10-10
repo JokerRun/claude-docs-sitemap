@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 77d91a481aab4d3d870fed256590e607de671e2e822420d15bacb152e27f8997
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2c47a28647e8053c1e977f7cdc4d4450cba52ed31b8de8c039427138232ade40
 ---
 
 ---
@@ -21,6 +21,12 @@ Retrieve a specific environment by ID.
 - `environment_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

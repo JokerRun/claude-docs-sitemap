@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c237c898ca2b80a1bdc9eb7db16c1def00bb601bc8a7746e54ae2c2329330723
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 85defef37151c89e7a4281f21fa2351f8f05a9afc623bf3c1e338753326ccd92
 ---
 
 ---
@@ -17,6 +17,8 @@ url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
 Create a memory store
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

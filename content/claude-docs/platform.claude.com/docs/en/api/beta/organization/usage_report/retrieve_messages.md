@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 625c7b9ef2f8354470a2379517c4cf82d71054454423fe06fcee06f69262f9fe
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 70bd3dc8da0c6da4488452de8cfe423f80c5acaab29fb19f199954cbb977598a
 ---
 
 ---
@@ -142,6 +142,12 @@ Get Messages Usage Report
   Restrict usage returned to the specified workspace ID(s).
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

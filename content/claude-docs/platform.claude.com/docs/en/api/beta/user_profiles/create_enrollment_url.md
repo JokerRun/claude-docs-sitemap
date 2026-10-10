@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 67d74cc469ae65bfec5e211daaf343ebd764f2d8daabbfbf28f43940366b8a37
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 41c57d177e5774fa345218457bbdd8e2172c2d414c88d90681c52aeaed590877
 ---
 
 ---
@@ -23,6 +23,8 @@ Create Enrollment URL
   The ID of the user profile to create an enrollment URL for (`uprof_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

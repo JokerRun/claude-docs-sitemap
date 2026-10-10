@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8b1364ec6d7049a9ab927b88a309310e3f2ea8f05e91fdac23a6161eed399266
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f24ac987ec2b58fd0414b8313211cabce283ef3f5598c0268dbf71a853b78968
 ---
 
 ---
@@ -23,6 +23,8 @@ Create Credential
   Identifier of the vault to create the credential in.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

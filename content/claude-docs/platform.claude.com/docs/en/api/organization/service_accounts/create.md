@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/create
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: e2b3c614eb64cb094afa7ad352406d95bd0708046747698b11443ac226f5da81
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 107b57ee529674d06fd6ad228eba53d39c6841d6bf508a2dbc5ae38433be950f
 ---
 
 ---
@@ -25,6 +25,14 @@ target's `organization_role` is `admin`. Creating an `admin`-role service
 account requires an interactive credential (a user OAuth token or a
 Console session) — a workload may only create `developer`-role service
 accounts.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

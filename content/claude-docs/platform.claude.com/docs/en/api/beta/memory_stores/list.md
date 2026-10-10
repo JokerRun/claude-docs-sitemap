@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 446b16d15211cf6bc6f89125dec130889510bdfa64ab27ec69efd73ed9cf0077
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 32d2e365fb316bffd3c5c9f646e1444fb9b9240b0377c57d18368391b967d174
 ---
 
 ---
@@ -45,6 +45,8 @@ List memory stores
   Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

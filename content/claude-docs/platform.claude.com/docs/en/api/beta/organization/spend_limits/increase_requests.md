@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 21f9c679e80d4432f92a863a1c8f4c5702714b79efb7ce218e270ec0e601009d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 72244c127593a827f36f1f12d15335a5471710bbcc9ce0619e5c89f287ba08d0
 ---
 
 ---
@@ -44,6 +44,14 @@ Requests whose requester is no longer a member are excluded.
   - `"denied"`
 
   - `"pending"`
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -324,6 +332,14 @@ requester at the request's period.
 
   ID of the spend limit increase request.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `BetaSpendLimitIncreaseRequest object`
@@ -597,6 +613,14 @@ the member was blocked on. Anthropic emails the requester unless
 - `spend_limit_increase_request_id: string`
 
   ID of the spend limit increase request.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -964,6 +988,14 @@ Idempotent on `denied`; denying an already-`approved` request returns
 - `spend_limit_increase_request_id: string`
 
   ID of the spend limit increase request.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 

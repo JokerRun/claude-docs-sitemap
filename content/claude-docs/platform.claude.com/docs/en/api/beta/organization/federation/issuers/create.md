@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7a951821a4f87597d1452cc847afc94ef6886aa33e26a629c64c6038e03d03e1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1811fc87219d5fbf6c0d13098e6d00b03bb7010c5d8d30a6a5e30cfde7ca00c8
 ---
 
 ---
@@ -29,6 +29,12 @@ document; for `explicit_url` and `inline` modes the issuer URL is only
 matched as the JWT's `iss` claim and is not fetched.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 1921e3d1befea987c49e97e499cdc7a799cc5dbb5f98b4c98fab0847394bef6f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3ae37497598fd3d64440d30300be4cf7aa71bc29061e9385de2225d746f74ca5
 ---
 
 ---
@@ -30,7 +30,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Amazon Bedrock: not available
     Google Cloud: beta
     Microsoft Foundry: beta
 ---

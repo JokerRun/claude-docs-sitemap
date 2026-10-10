@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: fe3fb25b031394900f9b6a8cb46cd281b177862e185a16ea21307f08ab5dd7b4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ba1ab2230d26df5bc670b585e31e779030cd522f7765d2c4664e65040c7ee11b
 ---
 
 ---
@@ -30,6 +30,12 @@ interactive credential (a user OAuth token or a Console session).
   ID of the service account to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

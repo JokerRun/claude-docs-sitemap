@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 946d441d633fe3f2ec3cc62612354edfaa3bb55a1407c750a44f1465101692e4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ffe534484c92ad96e808f7d17e4db01eaf4ba146105f60b332af23900518d1b4
 ---
 
 ---
@@ -50,7 +50,7 @@ Pada level tertentu, Claude Opus 5.5 cenderung berpikir lebih banyak per giliran
 * Gunakan `xhigh` dan `max` hanya untuk pekerjaan di mana Anda telah mengukur adanya peningkatan kualitas.
 * Untuk mendapatkan thinking yang lebih sedikit, turunkan level effort terlebih dahulu. Menurunkan effort mengurangi thinking, dan bersamanya biaya dan latensi, secara lebih andal daripada instruksi prompt.
 
-Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk menjalankan giliran individual pada level yang berbeda, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang mempertahankan cache.
+Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya.
 
 ## Prompt yang ditulis untuk thinking yang dinonaktifkan
 

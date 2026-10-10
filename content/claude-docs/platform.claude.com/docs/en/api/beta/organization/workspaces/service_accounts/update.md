@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 27e1e9b0f0461c616079615efcc9d1dd338226c8cf5edea1f585b89e0a5428e3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 44c877c63bac3c5bbcc65a73906b846e99756fed1f3bd5e2a10a99d804910831
 ---
 
 ---
@@ -36,6 +36,12 @@ rejected.
   ID of the service account.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

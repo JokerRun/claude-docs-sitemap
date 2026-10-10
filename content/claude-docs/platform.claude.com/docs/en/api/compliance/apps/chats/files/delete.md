@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: cda0637dc6452a7601765d5f40b2e1c4822242cc069b663413df9d21e6a4bc9c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fc2fc82e4e78662740e9d21590d0533f96d5dc59d8303ef6c3d8e4ec70e8cc0e
 ---
 
 ---
@@ -24,6 +24,12 @@ operation that cannot be undone.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

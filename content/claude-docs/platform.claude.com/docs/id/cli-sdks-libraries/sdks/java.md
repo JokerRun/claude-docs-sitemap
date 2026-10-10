@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: cce837c90c5b17e280cdb3b18766f2fadabf3d48c294d6f3c76de0bed1b21701
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a51db4fdab30421f11a4298d27a60e426ae457435381c2195360a8680fb51589
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.70.0")
+    implementation("com.anthropic:anthropic-java:2.71.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.70.0</version>
+        <version>2.71.0</version>
     </dependency>
     ```
   </Tab>
@@ -697,7 +697,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   Pertimbangkan untuk menggunakan [streaming](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#streaming) untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Hindari menetapkan nilai `maxTokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang menganggur setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) tanpa menerima respons dari Anthropic. SDK secara berkala melakukan ping ke API untuk menjaga koneksi tetap hidup dan mengurangi dampak jaringan semacam ini.
+Hindari menetapkan nilai `maxTokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) tanpa menerima respons dari Anthropic. SDK secara berkala melakukan ping ke API untuk menjaga koneksi tetap hidup dan mengurangi dampak jaringan semacam ini.
 
 SDK melempar error jika permintaan non-streaming diperkirakan memakan waktu lebih dari 10 menit. Menggunakan [metode streaming](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#streaming) atau [menimpa timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) di tingkat klien atau permintaan akan menonaktifkan error tersebut.
 
@@ -1084,7 +1084,7 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
 
 Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan implementasi `Backend` khusus platform:
 
-* **Agent Platform:** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.fromEnv()` atau `VertexBackend.builder()`.
+* **Agent Platform:** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.builder()` atau `VertexBackend.fromEnv()`. `fromEnv()` membaca `CLOUD_ML_REGION` dan `ANTHROPIC_VERTEX_PROJECT_ID` serta menggunakan Application Default Credentials.
 * **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Gunakan `BedrockMantleBackend.fromEnv()` atau `BedrockMantleBackend.builder()` untuk endpoint Bedrock Messages-API, atau `BedrockBackend.fromEnv()` / `BedrockBackend.builder()` (jalur `bedrock-runtime`).
 * **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Gunakan `AwsBackend.fromEnv()` (membaca `ANTHROPIC_AWS_WORKSPACE_ID` dan rantai region/kredensial default AWS) atau `AwsBackend.builder()`. Tersedia dalam beta.
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Gunakan `FoundryBackend.fromEnv()` atau `FoundryBackend.builder()`.

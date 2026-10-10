@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/add
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 33231fdb7e0561abd3cb8436ee09af9e2e83926e5d4090e0af8a7a1ecfe542f1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 79fc787b88f1cacec1b05f582d3bde4c42860f7bf65aba859aa9241d6e5bdf8d
 ---
 
 ---
@@ -32,6 +32,14 @@ other scopes require a Console session.
 - `federation_rule_id: string`
 
   ID of the federation rule.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

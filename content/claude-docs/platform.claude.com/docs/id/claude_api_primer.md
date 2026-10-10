@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7a0e9b3f804842e69a4b7f16ae799715d263f1eb61ef45c5c7716997c9fbd7f7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c8358be524ebdf4c0d61f5feec3b6b619ab557602c8391842f8e503f30ca564b
 ---
 
 ---
@@ -246,14 +246,14 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
 ## Thinking
 
-Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanisme saat ini adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) (`thinking: {"type": "adaptive"}`): Claude menentukan kapan dan seberapa banyak berpikir, dan Anda mengarahkan kedalaman thinking dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Adaptive thinking didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
+Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanisme saat ini adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) (`thinking: {"type": "adaptive"}`): Claude menentukan kapan dan seberapa banyak berpikir, dan Anda mengarahkan kedalaman thinking dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Adaptive thinking didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan yang lebih baru serta Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
 
 Temperature harus diatur ke 1 (atau dibiarkan tidak diatur) setiap kali thinking diaktifkan, pada semua model. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, `temperature` sudah usang (deprecated) dan hanya nilai default-nya yang diterima, bahkan ketika thinking nonaktif.
 
 Thinking didukung pada model-model berikut:
 
 * Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
-* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya adaptive thinking, aktif secara default)
+* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya adaptive thinking, aktif secara default; `thinking: {"type": "disabled"}` mengembalikan error 400, jadi kirim `thinking: {"type": "between_tools"}` untuk menonaktifkan thinking di awal)
 * Claude Haiku 5.5 (`claude-haiku-5-5`, hanya adaptive thinking, aktif secara default)
 * Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
 * Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
@@ -322,7 +322,7 @@ Thinking dapat digunakan bersama "tool use" (penggunaan alat), memungkinkan Clau
 
 Batasan penting:
 
-1. **Batasan pilihan alat:** Hanya mendukung `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}`.
+1. **Batasan pilihan alat:** Dengan pemikiran diperpanjang manual (`thinking: {"type": "enabled"}`), hanya `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}` yang didukung. Adaptive thinking menerima penggunaan alat yang dipaksakan, kecuali pada model yang tercantum di bawah [Memaksa penggunaan alat](https://platform.claude.com/docs/id/claude_api_primer#forcing-tool-use). Jika diterima, pemanggilan alat yang dipaksakan akan melewati thinking: respons dimulai dengan pemanggilan alat dan tidak memiliki blok `thinking`.
 2. **Mempertahankan blok thinking:** Selama penggunaan alat, Anda harus mengirimkan kembali blok `thinking` ke API untuk pesan assistant terakhir.
 
 ### Mempertahankan blok thinking

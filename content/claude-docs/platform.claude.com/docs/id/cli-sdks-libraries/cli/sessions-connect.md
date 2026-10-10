@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 79c10971a1028dcd7568ea8ea7c1dcdc12974df4e650624b8f2164c6bc7417a4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 1d30e524b53c96795c1e034dba5c08c8ac97636e66f6f8006fe45007b0db6a08
 ---
 
 ---
@@ -29,7 +29,7 @@ Tekan Ctrl+C untuk memutuskan koneksi. Sesi tetap berjalan, dan menghubungkan ke
 
 ## Mengikuti dan mengarahkan sesi
 
-Tampilan terminal menampilkan percakapan secara langsung: pesan dan panggilan alat, beserta durasi dan hasil setiap panggilan. Bilah status menunjukkan apakah sesi sedang berjalan, idle, atau menunggu persetujuan Anda. Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), tampilan mengikuti thread utama sesi, yang mencakup pesan yang dipertukarkan koordinator dengan agen-agen yang didelegasikannya.
+Tampilan terminal menampilkan percakapan secara langsung: pesan dan panggilan alat, beserta durasi dan hasil setiap panggilan. Bilah status menunjukkan apakah sesi sedang berjalan, idle, atau menunggu persetujuan Anda. Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), tampilan mengikuti thread utama sesi, yang mencakup pesan yang dipertukarkan antara agen yang dijalankan oleh sesi dan agen-agen yang menerima delegasi darinya.
 
 | Tombol             | Tindakan                                                                                                                                           |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |

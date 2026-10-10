@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ce3befd2578d3b71036bdf36157dbbc72dd128e61c17f84ec31e6b8ac93375e9
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 406be9b95710c035b61b4312b7ed6acaca3248a0c63200d16428023cdba6414b
 ---
 
 > ## Documentation Index
@@ -477,7 +477,7 @@ The steps below provision the full deployment with `aws` commands.
   </Step>
 
   <Step title="Push the gateway URL to developer machines">
-    The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Set `forceLoginMethod` and `forceLoginGatewayUrl` in the [managed settings file](/docs/en/claude-apps-gateway#set-the-gateway-url) you deploy to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
+    The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Deploy the full [managed settings snippet](/docs/en/claude-apps-gateway#set-the-gateway-url), with `forceLoginMethod`, `forceLoginGatewayUrl`, and the `parentSettingsBehavior: "merge"` opt-in, to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
   </Step>
 </Steps>
 

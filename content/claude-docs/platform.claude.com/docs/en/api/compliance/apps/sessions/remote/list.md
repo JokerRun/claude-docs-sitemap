@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: cacb9dfbd931a79bf2ebc117156f2cd21314b0395da97caa940b7147fd8ff114
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f57aab468ccc62d1e87143acf21e8382eec182092b71c6e5610753aff5801e6a
 ---
 
 ---
@@ -83,6 +83,12 @@ retrieve the next page, and stop when `next_page` is null.
   maxItems: 10
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

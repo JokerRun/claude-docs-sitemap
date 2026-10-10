@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: a3b989381f5f04af591713d83942808553977dc4d315b9a2f39e71df68c30cd5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fe17b0ad3a92aab2b6ce91bce941ba6723b5e734099259ed8b9dfa891a1ee67f
 ---
 
 > ## Documentation Index
@@ -29,7 +29,9 @@ Migrating from the OpenAI Agents SDK instead? The [OpenAI Agents SDK migration r
 
 ## Migration Steps
 
-### For TypeScript/JavaScript Projects
+<span id="for-typescript/javascript-projects" />
+
+### Migrate a TypeScript or JavaScript project
 
 **1. Uninstall the old package:**
 
@@ -63,7 +65,9 @@ If `@anthropic-ai/claude-code` is still listed in your `package.json`, replace i
 
 Make any code changes needed to complete the migration.
 
-### For Python Projects
+<span id="for-python-projects" />
+
+### Migrate a Python project
 
 **1. Uninstall the old package:**
 

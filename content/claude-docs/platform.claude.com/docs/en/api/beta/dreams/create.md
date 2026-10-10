@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b96f8ca7f69de041555dadc558e2e50b7d904753b9abc133f97d806a43252699
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 529afdf2993e12e5354c8f4224406c4cd3545ca3665e18e91f9939a0842a2506
 ---
 
 ---
@@ -21,6 +21,8 @@ By default the dream writes its result to a new memory store and doesn't change 
 See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#create-a-dream) to learn more about creating dreams.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

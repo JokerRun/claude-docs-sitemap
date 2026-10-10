@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 068d7a4bea9aeb4f944eee6f1e501ff2afbee28d1981c8ad36e82b6a61aac059
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fe9ed53799ec42a541de23398e678bf9265c98b6cab21698ffe5924844b204cd
 ---
 
 ---
@@ -263,7 +263,7 @@ Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platfor
 
 Harga residensi data bervariasi menurut generasi model:
 
-* **Model Claude 4.6 dan yang lebih baru:** Inferensi khusus AS (`inference_geo: "us"`) dikenakan harga 1,1x tarif standar di semua kategori harga token (token input, token output, penulisan cache, dan pembacaan cache).
+* **Model Claude 4.6 dan yang lebih baru:** Inferensi khusus AS (`inference_geo: "us"`) dikenakan harga 1,1x tarif standar di semua kategori harga token (token input, token output, penulisan cache, dan pembacaan cache). Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)).
 * **Perutean global** (`inference_geo: "global"`): Harga standar berlaku.
 * **Model lama:** Tidak mendukung `inference_geo` (lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability)); harga standar berlaku. Permintaan yang menyertakan parameter ini mengembalikan error 400.
 

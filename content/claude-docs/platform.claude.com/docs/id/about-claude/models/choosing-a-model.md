@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 47c3d144c471e21d1cb514d95fc40423af8806828292e6e839513405d4b89619
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 609c0d3794a914cdc88799dbd5c5a5c831e50ef01bf07965313727860b5d39f9
 ---
 
 ---
@@ -18,7 +18,7 @@ Saat memilih model Claude, pertimbangkan untuk terlebih dahulu mengevaluasi fakt
 * **Kemampuan:** Fitur atau kemampuan spesifik apa yang Anda perlukan dari model untuk memenuhi kebutuhan Anda?
 * **Kecepatan:** Seberapa cepat model perlu merespons dalam aplikasi Anda? Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 mendukung [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) (pratinjau riset), yang memberikan kecepatan output hingga 2,5x lebih tinggi dengan harga premium.
 * **Biaya:** Berapa anggaran Anda untuk penggunaan pengembangan maupun produksi?
-* **Effort:** Beberapa model Claude mendukung [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang menukar kecerdasan dengan "latency" (latensi) dan biaya dalam satu model. Menyetel effort sering kali merupakan pengungkit yang lebih baik daripada berganti model. Pada Claude Fable 5.1 dan Claude Opus 5, mulailah dengan nilai default (`high`) dan sesuaikan naik atau turun berdasarkan eval Anda. Pada Claude Opus 5.5 dan Claude Haiku 5.5, nilai default-nya adalah `medium`; mulailah dari sana dan sesuaikan dengan cara yang sama. Pada Claude Opus 4.8 dan Claude Opus 4.7, tingkat effort `xhigh`, di antara `high` dan `max`, adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
+* **Effort:** Beberapa model Claude mendukung [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang menukar kecerdasan dengan "latency" (latensi) dan biaya dalam satu model. Menyetel effort sering kali merupakan pengungkit yang lebih baik daripada berganti model. Pada Claude Fable 5.1, Claude Opus 5, dan Claude Sonnet 5.5, mulailah dengan nilai default (`high`) dan sesuaikan naik atau turun berdasarkan eval Anda. Pada Claude Opus 5.5 dan Claude Haiku 5.5, nilai default-nya adalah `medium`; mulailah dari sana dan sesuaikan dengan cara yang sama. Pada Claude Opus 4.8 dan Claude Opus 4.7, tingkat effort `xhigh`, yang berada di antara `high` dan `max`, adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
 
 ***
 
@@ -116,6 +116,10 @@ Strategi multi-model memasangkan model berbiaya lebih rendah dengan model fronti
 
   <Card title="Yang baru di Claude Sonnet 5.5" icon="sparkle" href="https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5">
     Model Sonnet terbaru: perubahan yang merusak kompatibilitas, fitur baru, dan perbedaan perilaku
+  </Card>
+
+  <Card title="Yang baru di Claude Haiku 5.5" icon="sparkle" href="https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5">
+    Model Haiku terbaru: perubahan yang merusak kompatibilitas, fitur baru, dan perbedaan perilaku
   </Card>
 
   <Card title="Mulai membangun" icon="code" href="https://platform.claude.com/docs/id/get-started">

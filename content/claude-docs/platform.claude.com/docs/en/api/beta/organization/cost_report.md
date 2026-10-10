@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2768d2c1a810e6a82c1053a60a331f9391eec1626436e435f3bafa9bc91f6d18
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2cd386b02894eee4a61916b156346d134011954f52f49c6defaab6da6ee60641
 ---
 
 ---
@@ -58,6 +58,12 @@ Get Cost Report
   Optionally set to the `next_page` token from the previous response.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

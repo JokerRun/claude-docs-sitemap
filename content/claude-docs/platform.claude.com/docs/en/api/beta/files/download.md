@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b95a4997deab1035efbbece0ec26a43410637e61d6742281411bcf301d6822db
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 217df48e3eeb0f22700f95535fc737f7c96a0bca2d3055b941e6cee92c690f95
 ---
 
 ---
@@ -23,6 +23,12 @@ Download File
   ID of the File.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

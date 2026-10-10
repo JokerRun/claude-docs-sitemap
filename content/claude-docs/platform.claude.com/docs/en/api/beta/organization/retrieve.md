@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: 6217256f61e293c671bf3392c1bcbb2d0fb1f932d8919b9096d89ce3489c84c4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 832e0a1132e55f368d0724b6dfd7f96f7f48353ea3bccebd72216053960be37d
 ---
 
 ---
@@ -15,6 +15,14 @@ url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
 **GET** `/v1/organizations/me`
 
 Retrieve information about the organization associated with the authenticated API key.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 23322094215e566ee0792f598b4baea176c87ff89c67dd413f90580000de17de
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ee1210b56801882ee48ae5774517736dba916d171006ae4c3209fecaf567fa47
 ---
 
 ---
@@ -61,6 +61,8 @@ List Deployments
     The deployment is paused. Autonomous triggers are suppressed; manual runs are still permitted.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: bcfca26bd14544c728034258c29f6232fce165ea48ad5037dab335b4809c76bc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 77d7169e47e5c6e0983fa0d4f7b3aad4ee87fdd1a9144df04755fe930fae2a0c
 ---
 
 ---
@@ -149,7 +149,7 @@ Jika percakapan Anda secara rutin mendekati batas jendela konteks, gunakan [comp
 Untuk kebutuhan yang lebih khusus, [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) menawarkan strategi tambahan:
 
 * **Pembersihan hasil alat:** Bersihkan hasil alat lama dalam alur kerja agentik
-* **Pembersihan blok thinking:** Kelola blok thinking saat Anda menggunakan pemikiran diperpanjang
+* **Pembersihan blok thinking:** Kelola blok thinking dari giliran sebelumnya
 
 Prefiks prompt yang di-cache tetap menempati jendela konteks: [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) mengubah berapa yang Anda bayar untuk token tersebut, bukan apakah token tersebut diperhitungkan.
 

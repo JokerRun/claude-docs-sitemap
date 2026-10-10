@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2df00fc798e538b8706070bde627e94046c9d8ae5d4e3f9da1a88af329e7a8e0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e56f9b421425d91012d5ccc5836f790ea4c8bef93531290ebd4b9948e04b4a9b
 ---
 
 ---
@@ -23,6 +23,8 @@ Archive Vault
   Unique identifier of the vault to archive.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

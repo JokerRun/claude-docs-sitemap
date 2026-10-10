@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: b222e59947b2975aacb6cacd9069719d4c23faacae655a38e93b284db4934e94
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 011d8f182352b3cb8005f6a3f73c105e156e1413fe83482a4d0e1db7b589bab5
 ---
 
 ---
@@ -25,6 +25,12 @@ The Models API response can be used to determine information about a specific mo
   Model identifier or alias.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

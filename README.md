@@ -35,10 +35,10 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-09-29 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-10-07 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-09-28 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-10-05 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-10-06 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-10-09 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-10-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-10-08 |  |
-| ... | _(~1273 more rows)_ | | |
+| ... | _(~1277 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

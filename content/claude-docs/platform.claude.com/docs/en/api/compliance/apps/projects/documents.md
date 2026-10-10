@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e70a8dc35408455173b0e409c53f6d7742db15c38ac4d84e7badc8fdf6b4b573
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b85fc26ddedb42f00541afb8c2a2cec6e5f6547bcc70b27f19ea9c8d4723a8d8
 ---
 
 ---
@@ -25,6 +25,12 @@ Get detailed information for a specific project document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -101,6 +107,12 @@ consumer can dedupe or match hashes without downloading every document.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -191,6 +203,12 @@ Hard-deletes the project document permanently.
   The document ID (tagged ID, e.g., claude_proj_doc_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

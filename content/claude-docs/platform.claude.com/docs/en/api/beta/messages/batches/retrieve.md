@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: be0202930b796a39b69777dc03d47284718c3fa2360d0e4bb8bcdfe8e6c3ac75
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3b3c8229efc89627ca40a2225174c588d11cf133ac65e735449f6beb096be596
 ---
 
 ---
@@ -25,6 +25,12 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   ID of the Message Batch.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

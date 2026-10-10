@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ac1621fdfbf00fc676eadd69ae0dbbf637e53c172bcb4bd6feb2e043a5617fe4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cb9e044e053d5407021e7e3e149fe48d5e65f5bbf5257431dcfaf0557820f85b
 ---
 
 ---
@@ -59,6 +59,14 @@ can be broken out per product, per member, or per RBAC group via
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page` field. Only valid with `group_by[]` — the ungrouped cube is never paginated.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

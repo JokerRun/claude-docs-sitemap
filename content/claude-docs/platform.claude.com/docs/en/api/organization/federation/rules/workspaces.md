@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: b45b11d15c5554d14eedc8e88b0cfa12667858bf2327b008b39330beca36a7cb
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6846fb198eacfc514cda3169009aa0695bf0d13bdd75fb3ad1b91079e7e4cfe4
 ---
 
 ---
@@ -34,6 +34,14 @@ other scopes require a Console session.
 - `federation_rule_id: string`
 
   ID of the federation rule.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -128,6 +136,14 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   Opaque cursor from a previous response's `next_page`.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `data: array of FederationRuleWorkspace`
@@ -210,6 +226,14 @@ Console session.
 - `workspace_id: string`
 
   ID of the workspace to disable for.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

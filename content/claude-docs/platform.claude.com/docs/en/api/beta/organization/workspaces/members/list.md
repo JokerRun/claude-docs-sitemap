@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 3a00c8f7e224c20af603b6d56f3fbf5c7fdb1b13da79074807e84833aff070f6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 382cad13f9cfadd4d9affbdd28fd19fa9d77d6b7d6e899831aeef0516f75d579
 ---
 
 ---
@@ -39,6 +39,14 @@ List Workspace Members
   Defaults to `20`. Ranges from `1` to `1000`.
 
   default: 20, minimum: 1, maximum: 1000
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

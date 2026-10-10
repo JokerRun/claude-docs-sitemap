@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: cb87934de168ba09c857fc417abdafbb46ad278bc1da03abf9e1dbaeba93f4df
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cfc543222276f94a8423dca348e4156d040df4e6b9359226f6352f30ae179286
 ---
 
 ---
@@ -23,6 +23,12 @@ Get Compliance Group
   The group ID (tagged ID, e.g., rbac_group_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

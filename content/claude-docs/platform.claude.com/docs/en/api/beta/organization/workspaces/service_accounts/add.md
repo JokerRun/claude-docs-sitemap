@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 6f43de1fb4cd66ef7487086f8f65ce6e53e8a4d50df28f71a23b1d311a22602b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2a21d4a9362ec07b150e0d5b145c2fff6db4bdac29676258776c2d8b2a362c07
 ---
 
 ---
@@ -34,6 +34,12 @@ accounts cannot be added and are rejected.
   ID of the workspace.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 2eba1009caf275f157dc72fa6fab798f90b17e20d0d15cb925a3f838105a0423
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9a46390fef17bd6158ed594090f08dd6368b7f748adaeb1c27d068a20e97384c
 ---
 
 > ## Documentation Index
@@ -54,11 +54,15 @@ Claude Code works with any paid Claude subscription (Pro, Max, Team, or Enterpri
 
 ## Usage
 
-### From your IDE
+<span id="from-your-ide" />
+
+### Run Claude Code from your IDE
 
 Run `claude` from your IDE's integrated terminal, and all integration features will be active.
 
-### From external terminals
+<span id="from-external-terminals" />
+
+### Connect from an external terminal
 
 Use the `/ide` command in any external terminal to connect Claude Code to your JetBrains IDE and activate all features:
 

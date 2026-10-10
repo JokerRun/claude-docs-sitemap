@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ba6b1c395f0cb304f4e23b8c32aba21a7f8441331869b1b02c348ff3d27c6731
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: be0cb72b94bffcb96d4431ee6e3374f0cbf40caa078ff61dca118c479dbddf34
 ---
 
 ---
@@ -50,6 +50,12 @@ archived tunnels are excluded unless `include_archived` is set.
   Workspace ID; omit to list tunnels across all Workspaces.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

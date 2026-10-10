@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 748e5e4aa21f4ac3dba101483b7c0f1b2cca03603f84c49239229c9614f6a7f1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 79973d36ef00561706d236ee36b32518cc81aae452a3e833b7f7dc6976eb4fe9
 ---
 
 ---
@@ -23,6 +23,8 @@ Update Session Resource
 - `resource_id: string`
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

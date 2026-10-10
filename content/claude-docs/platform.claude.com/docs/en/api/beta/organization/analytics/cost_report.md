@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost_report
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 0879fe1b93dd65f3419b98cd4cb5e21478dc240b9302a136fe3feda31f565a37
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 279994b4239ec81cdb89166b1e5643414f27379908d0fd883b967ed969a6972e
 ---
 
 ---
@@ -186,6 +186,14 @@ Requires an API key with the `read:analytics` scope.
   Filter to specific users by tagged user ID.
 
   maxItems: 100
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

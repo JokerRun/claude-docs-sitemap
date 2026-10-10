@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/validate
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 6da9fd37ffd10b17392da5ff71ed9a066b70eeea0c3410ec439320284ebc2ba3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fa5fcaa14acfab538dd71b6410220b5851910b3e1d55b75988aad408d249a67f
 ---
 
 ---
@@ -28,6 +28,14 @@ message if it failed or timed out.
   ID of the External Key.
 
   maxLength: 2048
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

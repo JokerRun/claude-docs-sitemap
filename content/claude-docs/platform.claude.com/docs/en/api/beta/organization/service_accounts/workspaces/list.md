@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ff758b71d13806fc6672f60e20bef1422b4721ecebe92f561cfd73de2852c79f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c31dc8342c2754c65bcef3e23140558752533da69cb3c1ff9ba80a0ec707fdac
 ---
 
 ---
@@ -51,6 +51,12 @@ page to recover.
   Opaque cursor from a previous response's `next_page`.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: cb03f1b79427b89be38758f36f36c6f290e9d2b253cc0e26a2616fc12bb8778f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3a4428d15e821c576506d6a870844f8a9744cc69f85a63bd563e159b00eb0b11
 ---
 
 > ## Documentation Index
@@ -226,7 +226,7 @@ When two skills share a directory or file name, where each one came from decides
 
 If a skill exists only in `~/.claude/skills/` on your machine, Claude Code reports that the skill was not found when a [routine](/docs/en/routines) invokes it, because each routine run starts as a fresh cloud session. To make a personal skill available in these sessions:
 
-* For Cowork and cloud sessions, enable the skill for your claude.ai account.
+* For Cowork and cloud sessions, enable the skill for your claude.ai account. [Some sessions in a self-hosted environment](/docs/en/self-hosted-environments-configuration#how-each-session’s-config-is-assembled) don't load your account's skills.
 * For cloud sessions, you can instead commit the skill to the repository's `.claude/skills/`. Plugins declared in the repository's `.claude/settings.json` and plugins enabled only in your user settings [don't load in cloud sessions](/docs/en/cloud-environments#what-carries-over-from-your-setup).
 
 [Desktop scheduled tasks](/docs/en/desktop-scheduled-tasks) run locally on your machine, so they do load `~/.claude/skills/`.

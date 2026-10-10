@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 023e118e0b6c6380632653e4687290f8f35a4c9b7c76f93c0f3a82a53ecb26ed
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e8141a3c8bea19074459abec2be23d926fa702d9330987edc626e2fd482e33e9
 ---
 
 ---
@@ -16,10 +16,6 @@ featureMetadata:
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
   supportedPlatforms:
     Claude API: ga
-    Claude Platform on AWS: not available
-    Amazon Bedrock: not available
-    Google Cloud: not available
-    Microsoft Foundry: not available
 ---
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam "system prompt" (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 3c89f692b1dd011de11ee153d44df82ec9089c6538f9b651e8631e98317b5a07
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: dc44fc744d4a01021a5fa5bb51ab6bd7ba9410cb2b3be6609dddc5fbe233332c
 ---
 
 ---
@@ -25,6 +25,12 @@ Retrieve a service account by its ID (`svac_...`).
   ID of the service account.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

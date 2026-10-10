@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 168a010aaec192107cb0982437134968138492f3d118bd505fd7ea17906a73b7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 76b88ad2950078757921eeb40d9649b2fd14cf9d59302bb9fea1d2383cf4fe66
 ---
 
 ---
@@ -497,7 +497,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     "agent": {
       "type": "agent_with_overrides",
       "id": "$AGENT_ID",
-      "model": {"id": "claude-sonnet-5"},
+      "model": {"id": "claude-sonnet-5-5"},
       "system": null
     },
     "environment_id": "$ENVIRONMENT_ID"
@@ -513,7 +513,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     type: agent_with_overrides
     id: $AGENT_ID
     model:
-      id: claude-sonnet-5
+      id: claude-sonnet-5-5
     system: null
   environment_id: $ENVIRONMENT_ID
   YAML
@@ -524,7 +524,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       agent={
           "type": "agent_with_overrides",
           "id": agent.id,
-          "model": {"id": "claude-sonnet-5"},
+          "model": {"id": "claude-sonnet-5-5"},
           "system": None,  # clear the agent's system prompt for this session
       },
       environment_id=environment.id,
@@ -539,7 +539,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     agent: {
       type: "agent_with_overrides",
       id: agent.id,
-      model: { id: "claude-sonnet-5" },
+      model: { id: "claude-sonnet-5-5" },
       system: null // clear the agent's system prompt for this session
     },
     environment_id: environment.id
@@ -558,7 +558,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
           ID = agent.ID,
           Model = new BetaManagedAgentsModelConfigParams
           {
-              ID = BetaManagedAgentsModel.ClaudeSonnet5,
+              ID = BetaManagedAgentsModel.ClaudeSonnet5_5,
           },
           System = null, // clear the agent's system prompt for this session
       },
@@ -576,7 +576,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
   			ID:   agent.ID,
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
-  				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5,
+  				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5_5,
   			},
   			// Kosongkan prompt sistem agen untuk sesi ini.
   			System: param.Null[string](),
@@ -598,7 +598,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
           .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
           .id(agent.id())
           .model(BetaManagedAgentsModelConfigParams.builder()
-              .id(BetaManagedAgentsModel.CLAUDE_SONNET_5)
+              .id(BetaManagedAgentsModel.CLAUDE_SONNET_5_5)
               .build())
           .system((String) null) // clear the agent's system prompt for this session
           .build())
@@ -613,7 +613,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   $overrides = BetaManagedAgentsAgentWithOverridesParams::with(
       id: $agent->id,
       type: 'agent_with_overrides',
-      model: ['id' => 'claude-sonnet-5'],
+      model: ['id' => 'claude-sonnet-5-5'],
   );
   // Kosongkan prompt sistem untuk sesi ini. Akses array penting di sini:
   // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
@@ -635,7 +635,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     agent: Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams.new(
       type: :agent_with_overrides,
       id: agent.id,
-      model: {id: "claude-sonnet-5"},
+      model: {id: "claude-sonnet-5-5"},
       system_: nil
     ),
     environment_id: environment.id

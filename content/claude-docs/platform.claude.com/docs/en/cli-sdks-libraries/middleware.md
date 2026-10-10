@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: c8d2b69c9c29a2a499ebd21d08f3eaf30d7713f372288b1381a3495305817544
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 91783ff5257b90d6f3961b7661bbb521f446e1727b3ec5b7bd7f0214ebc38786
 ---
 
 ---
@@ -184,4 +184,4 @@ The SDK also accepts a custom HTTP client (for proxy configuration, custom TLS, 
 
 ## Built-in middleware
 
-The SDK ships a refusal-fallback middleware that automatically retries requests Claude Fable 5 declines on a fallback model. See [Detect and retry on a fallback model](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) for setup and per-language examples.
+The SDK ships a refusal-fallback middleware that automatically retries a request Claude declines (`stop_reason: "refusal"`) on a fallback model. [Refusals and fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback) lists the models whose safety classifiers can decline requests, and [Detect and retry on a fallback model](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) covers setup and per-language examples.

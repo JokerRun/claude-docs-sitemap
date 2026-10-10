@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 590ec9cef2518008130309713fb86df4f0d9951885b230b7479c4b34199b9e3e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b13f78dd3c04026e73eb702578fff61f1e18974ab0ac329b0303625864ca8dc5
 ---
 
 ---
@@ -23,6 +23,8 @@ Pause Deployment
   Unique identifier of the deployment to pause.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

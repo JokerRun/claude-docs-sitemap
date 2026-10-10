@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 36960ca5b458739507bf8dadba657fac755e4f1cda35c1157055399ff9693797
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b6ebbbd66ce8abbceb11e5b23034d88854517f1dca1ef2271ab7ac099617e439
 ---
 
 ---
@@ -23,6 +23,8 @@ Run Deployment Now
   Unique identifier of the deployment to run.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

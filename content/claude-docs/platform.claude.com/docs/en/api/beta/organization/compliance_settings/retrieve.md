@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings/retrieve
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: fe547749530134fc9c6db4f74d28a7a43faef5e72e237a4f35094ca8f50e4907
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 493bdc5fad59c537236e76239d35ac18e82ed50f3d366b5c3d90bfd94444b854
 ---
 
 ---
@@ -20,6 +20,14 @@ Compliance Settings is a singleton resource: there is exactly one per
 organization, addressed without an identifier. The `state` field reflects
 whether the Compliance API is enabled. An organization with a parent
 organization reads the state inherited from the parent's configuration.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

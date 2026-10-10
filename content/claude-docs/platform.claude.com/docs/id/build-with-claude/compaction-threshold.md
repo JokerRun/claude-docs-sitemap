@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ceece1da4580b14d4a9e8a43cd99bf37e5e6e224e793a12db4608d95d350dda1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3ff8b526cb3b835093777f2b02376515090f466d4ffc2f17592ffd2a738d4b98
 ---
 
 ---
@@ -2907,7 +2907,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
 Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, hapus blok `thinking` dan `redacted_thinking` dari setiap giliran asisten yang Anda sisipkan kembali setelah blok compaction, atau kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok-blok tersebut dihasilkan ketika riwayat lengkap masih ada, sehingga tidak lagi lolos [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Di mana pemeriksaan tersebut diberlakukan, permintaan lanjutan ditolak dengan error 400. Blok teks dan blok alat yang dipertahankan dapat dibiarkan apa adanya. Membiarkan API meringkas semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari hal ini. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, hapus blok-blok tersebut sebagai gantinya. Pada Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`, jadi dengan `thinking: {"type": "disabled"}`, hapus blok-blok tersebut sebagai gantinya.
 
-Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) secara verbatim alih-alih meringkasnya:
+Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) alih-alih meringkasnya. Contoh ini mempertahankan blok teks dan blok alatnya tanpa perubahan, menghapus blok `thinking` dan `redacted_thinking` dari giliran asisten yang dipertahankan, dan membuang giliran tersebut jika tidak ada lagi yang tersisa:
 
 <CodeGroup>
   ```bash cURL
@@ -2993,14 +2993,28 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           },
       )
 
-      # Periksa apakah compaction (pemadatan) terjadi dan dijeda
+      # Periksa apakah compaction terjadi dan dijeda
       if response.stop_reason == "compaction":
           # Ambil blok compaction dari respons
           compaction_block = response.content[0]
 
           # Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
-          # dengan menyertakannya setelah blok compaction
-          preserved_messages = messages[-3:] if len(messages) >= 3 else messages
+          # dengan menyertakannya setelah blok compaction, tanpa blok thinking
+          # ; giliran asisten yang tidak tersisa kontennya akan dibuang
+          preserved_messages = [
+              {
+                  **message,
+                  "content": [
+                      block
+                      for block in message["content"]
+                      if block.type not in ("thinking", "redacted_thinking")
+                  ],
+              }
+              if message["role"] == "assistant"
+              else message
+              for message in messages[-3:]
+          ]
+          preserved_messages = [m for m in preserved_messages if m["content"]]
 
           # Bangun daftar pesan baru: compaction + pesan yang dipertahankan
           new_assistant_content = [compaction_block]
@@ -3017,7 +3031,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               context_management={"edits": [{"type": "compact_20260112"}]},
           )
 
-          # Perbarui daftar pesan agar mencerminkan compaction
+          # Perbarui daftar pesan untuk mencerminkan compaction
           messages.clear()
           messages.extend(messages_after_compaction)
 
@@ -3032,7 +3046,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   print(chat("Help me build a Python web scraper"))
   print(chat("Add support for JavaScript-rendered pages"))
   print(chat("Now add rate limiting and error handling"))
-  # Terus panggil chat() selama percakapan masih membutuhkannya
+  # Terus panggil chat() selama percakapan membutuhkannya
   ```
 
   ```typescript TypeScript
@@ -3059,16 +3073,29 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     });
 
-    // Periksa apakah compaction (pemadatan) terjadi dan dijeda
+    // Periksa apakah compaction terjadi dan dijeda
     if (response.stop_reason === "compaction") {
       // Ambil blok compaction dari respons
       const compactionBlock = response.content[0];
 
       // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
-      // dengan menyertakannya setelah blok compaction
-      const preservedMessages = messages.length >= 3 ? messages.slice(-3) : [...messages];
+      // dengan menyertakannya setelah blok compaction, tanpa blok thinking;
+      // giliran asisten yang tidak tersisa kontennya akan dibuang
+      const preservedMessages = messages
+        .slice(-3)
+        .map((message) =>
+          message.role === "assistant" && Array.isArray(message.content)
+            ? {
+                ...message,
+                content: message.content.filter(
+                  (block) => block.type !== "thinking" && block.type !== "redacted_thinking"
+                )
+              }
+            : message
+        )
+        .filter((message) => message.content.length > 0);
 
-      // Buat daftar pesan baru: compaction + pesan yang dipertahankan
+      // Bangun daftar pesan baru: compaction + pesan yang dipertahankan
       const messagesAfterCompaction: Anthropic.Beta.Messages.BetaMessageParam[] = [
         { role: "assistant", content: [compactionBlock] },
         ...preservedMessages
@@ -3085,7 +3112,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
         }
       });
 
-      // Perbarui daftar pesan agar mencerminkan compaction
+      // Perbarui daftar pesan untuk mencerminkan compaction
       messages = messagesAfterCompaction;
     }
 
@@ -3137,9 +3164,21 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           if (!response.Content[0].TryPickCompaction(out _))
               throw new InvalidOperationException("Expected compaction block");
 
-          var preserved = messages.Count >= 3
-              ? messages.Skip(messages.Count - 3).ToList()
-              : new List<BetaMessageParam>(messages);
+          // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
+          // tanpa blok thinking; giliran asisten yang kosong akan dibuang
+          var preserved = messages
+              .Skip(Math.Max(0, messages.Count - 3))
+              .Select(message => message.Content.TryPickBetaContentBlockParams(out var blocks)
+                  ? new BetaMessageParam
+                  {
+                      Role = message.Role,
+                      Content = blocks
+                          .Where(block => block.Type.GetString() is not ("thinking" or "redacted_thinking"))
+                          .ToList()
+                  }
+                  : message)
+              .Where(message => !message.Content.TryPickBetaContentBlockParams(out var blocks) || blocks.Count > 0)
+              .ToList();
 
           var messagesAfterCompaction = new List<BetaMessageParam>
           {
@@ -3222,11 +3261,21 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   	if response.StopReason == "compaction" {
   		compactionParam := response.Content[0].ToParam()
 
+  		// Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
+  		// tanpa blok thinking; giliran asisten yang kosong akan dibuang
   		var preserved []anthropic.BetaMessageParam
-  		if len(messages) >= 3 {
-  			preserved = messages[len(messages)-3:]
-  		} else {
-  			preserved = messages
+  		for _, message := range messages[max(0, len(messages)-3):] {
+  			var content []anthropic.BetaContentBlockParamUnion
+  			for _, block := range message.Content {
+  				if block.OfThinking == nil && block.OfRedactedThinking == nil {
+  					content = append(content, block)
+  				}
+  			}
+  			if len(content) == 0 {
+  				continue
+  			}
+  			message.Content = content
+  			preserved = append(preserved, message)
   		}
 
   		messagesAfterCompaction := []anthropic.BetaMessageParam{
@@ -3301,20 +3350,32 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           BetaMessage response = client.beta().messages().create(params);
 
-          // Periksa apakah compaction terjadi dan dijeda
+          // Periksa apakah compaction (pemadatan) terjadi dan dijeda
           if (response.stopReason().isPresent()
                   && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
-              // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
-              List<BetaMessageParam> preservedMessages = messages.size() >= 3
-                  ? new ArrayList<>(messages.subList(messages.size() - 3, messages.size()))
-                  : new ArrayList<>(messages);
+              // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
+              // tanpa blok thinking; giliran asisten yang kosong akan dibuang
+              List<BetaMessageParam> preservedMessages = new ArrayList<>();
+              for (BetaMessageParam message : messages.subList(Math.max(0, messages.size() - 3), messages.size())) {
+                  if (message.content().isBetaContentBlockParams()) {
+                      message = message.toBuilder()
+                          .contentOfBetaContentBlockParams(message.content().asBetaContentBlockParams().stream()
+                              .filter(block -> !block.isThinking() && !block.isRedactedThinking())
+                              .toList())
+                          .build();
+                      if (message.content().asBetaContentBlockParams().isEmpty()) {
+                          continue;
+                      }
+                  }
+                  preservedMessages.add(message);
+              }
 
               // Bangun daftar pesan baru: compaction + pesan yang dipertahankan
               List<BetaMessageParam> messagesAfterCompaction = new ArrayList<>();
               messagesAfterCompaction.add(response.toParam());
               messagesAfterCompaction.addAll(preservedMessages);
 
-              // Lanjutkan permintaan dengan konteks yang telah dipadatkan + pesan yang dipertahankan
+              // Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
               MessageCreateParams continueParams = MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
                   .model("claude-opus-5-5")
@@ -3375,9 +3436,17 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       if ($response->stopReason === 'compaction') {
           $compactionBlock = $response->content[0];
 
-          $preserved = count($messages) >= 3
-              ? array_slice($messages, -3)
-              : $messages;
+          // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
+          // tanpa blok thinking; giliran asisten yang kosong akan dibuang
+          $preserved = array_values(array_filter(array_map(
+              fn($message) => $message['role'] === 'assistant'
+                  ? array_merge($message, ['content' => array_values(array_filter(
+                      $message['content'],
+                      fn($block) => !in_array($block->type, ['thinking', 'redacted_thinking'], true)
+                  ))])
+                  : $message,
+              array_slice($messages, -3)
+          ), fn($message) => $message['content'] !== []));
 
           $messagesAfterCompaction = array_merge(
               [['role' => 'assistant', 'content' => [$compactionBlock]]],
@@ -3438,7 +3507,13 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
     if response.stop_reason == :compaction
       compaction_block = response.content[0]
 
-      preserved = messages.length >= 3 ? messages[-3..-1] : messages.dup
+      # Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
+      # tanpa blok thinking; giliran asisten yang kosong akan dibuang
+      preserved = messages.last(3).map do |message|
+        next message unless message[:role] == "assistant"
+
+        message.merge(content: message[:content].reject { |block| %i[thinking redacted_thinking].include?(block.type) })
+      end.reject { |message| message[:content].empty? }
 
       messages_after_compaction = [
         { role: "assistant", content: [compaction_block] }

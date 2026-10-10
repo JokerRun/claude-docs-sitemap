@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 2e3cad145d21fd5286efed44b96f86a4bd3bb17777be6e23a4e9a44740af66d3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e02f49fa5d552c3171d23bf117fedff098f34b333145912682411f250e9795d9
 ---
 
 ---
@@ -27,6 +27,12 @@ download the bytes.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -108,6 +114,12 @@ operation that cannot be undone.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 ### Returns
@@ -153,6 +165,12 @@ Downloads the binary content of a file referenced in chat messages.
   The file ID (tagged ID, e.g., claude_file_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

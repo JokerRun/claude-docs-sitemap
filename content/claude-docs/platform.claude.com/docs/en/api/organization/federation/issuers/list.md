@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 5f18a2009624cb4794129ce6cf41727d3496b80b43a2d3750fa5d332ccb0b183
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: adf1ebac51f6ec771a8909b0448b25feadb9dd8f18103228c481386bbd2c5a06
 ---
 
 ---
@@ -37,6 +37,14 @@ Archived issuers are excluded unless `include_archived=true`.
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

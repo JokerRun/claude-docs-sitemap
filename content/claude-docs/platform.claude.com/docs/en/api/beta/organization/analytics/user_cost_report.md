@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_cost_report
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 95ea268d32787a90dc1a99d69680b6195a6dc31b0ca2e2ec94d68d86a5a82899
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ad34baca6646d5b9cc9585d687bd42975765524f5b6cf245d2db0d82a474524d
 ---
 
 ---
@@ -213,6 +213,14 @@ organizations on a Claude Enterprise plan. Requires an API key with the
   Filter to specific users by tagged user ID.
 
   maxItems: 100
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 8e172499927ce0b81072256df5c1b83d84cbc28b6bcf7f34b265480332c3ab80
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2ded395ab495533b6283a8eb7a5dff44f42ceae2aa779db1f446f27bb527afc6
 ---
 
 ---
@@ -346,7 +346,7 @@ Sonnet 4.6 secara default menggunakan effort `high`. Atur effort secara eksplisi
 
 ### Tingkat effort yang direkomendasikan untuk Claude Haiku 5.5
 
-Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default di Claude API dan di Claude Code. Effort adalah kontrol utama untuk seberapa banyak model berpikir, dan bersamanya kualitas, latensi, dan biaya. **Mulailah dengan `medium`** untuk sebagian besar pekerjaan, termasuk coding agentik. Gunakan `low`, tingkat termurah dan tercepat, untuk chat, tugas alat singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih mungkin melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada `low`. Gunakan `high` untuk pekerjaan pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas, dan bandingkan dengan Claude Sonnet 5.5 dalam hal kinerja, biaya, dan kecepatan. Thinking aktif secara default dan dihitung terhadap `max_tokens`, jadi sisakan ruang untuknya. Lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
+Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya. Effort adalah kontrol utama untuk seberapa banyak model berpikir, dan bersamaan dengan itu kualitas, latensi, dan biaya. **Mulailah dengan `medium`** untuk sebagian besar pekerjaan, termasuk coding agentik. Gunakan `low`, tingkat termurah dan tercepat, untuk chat, tugas alat singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih cenderung melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada `low`. Gunakan `high` untuk pekerjaan pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas, dan bandingkan dengan Claude Sonnet 5.5 dalam hal kinerja, biaya, dan kecepatan. Thinking aktif secara default dan dihitung terhadap `max_tokens`, jadi sisakan ruang untuknya. Lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
 
 Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan adaptive thinking di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
 
@@ -388,7 +388,7 @@ Effort per pesan masih dalam tahap beta. Di Claude API dan [Google Cloud](https:
 
 Tanpa nilai beta, `output_config` per pesan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`, di mana `N` adalah indeks pesan `system` dalam `messages`. Dengan nilai beta, model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Di Amazon Bedrock, model-model tersebut dan Claude Opus 5 mengembalikan error `Extra inputs are not permitted` sebagai gantinya. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}` dan pada Claude Haiku 5.5 dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
 
-Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru dalam `output_config.effort`. Tingkat baru berlaku mulai dari giliran `user` berikutnya dan bertahan hingga pesan selanjutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefiks yang di-cache tetap cocok.
+Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru dalam `output_config.effort`. Jika ditempatkan langsung setelah giliran `user` dengan input baru, pesan ini mengatur tingkat untuk balasan Claude pada giliran tersebut. Jika ditempatkan di tempat lain, seperti di antara giliran `assistant` dan giliran `user` berikutnya seperti pada contoh berikut, pesan ini berlaku mulai dari giliran `user` berikutnya dengan input baru. Giliran `user` yang hanya berisi blok `tool_result` tidak dihitung sebagai input baru, sehingga perubahan yang ditempatkan setelahnya dalam loop penggunaan alat menunggu giliran `user` berikutnya dengan input baru. Tingkat baru kemudian berlaku hingga pesan selanjutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefiks yang di-cache tetap cocok.
 
 Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut rutin:
 
@@ -661,7 +661,7 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
 
 Pesan sistem yang hanya berisi effort tidak membawa teks, sehingga [aturan penempatan untuk pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations) tidak berlaku. Pesan ini dapat muncul di mana saja dalam `messages`, termasuk sebagai entri pertama atau di antara giliran `assistant` dan giliran `user` berikutnya. Nilainya adalah nama tingkat (`low`, `medium`, `high`, `xhigh`, dan `max`).
 
-Pada Claude Fable 5.1, utamakan bentuk ini daripada mengubah nilai tingkat atas di antara permintaan. Perubahan tingkat atas memulai ulang cache dan juga mengarahkan model dengan kurang andal: balasan sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengannya.
+Utamakan bentuk ini daripada mengubah nilai tingkat atas di antara permintaan. Perubahan tingkat atas memulai ulang cache dan, pada Claude Fable 5.1, juga mengarahkan model dengan kurang andal: balasan sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengannya.
 
 ### Effort tingkat atas pada permintaan berikutnya
 

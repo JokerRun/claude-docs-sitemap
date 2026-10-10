@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c25f6572f3dd0d5e0256c2b12c62bbd5f1052c1563d4c9b648ae65f8a8bbb778
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 78fb5069b480c59c0977897444f3187163134bd300b4547ba62eeb8a14dd09cb
 ---
 
 ---
@@ -23,6 +23,12 @@ The Text Completions API is a legacy API. We recommend using the [Messages API](
 Future models and features will not be compatible with Text Completions. See our [migration guide](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) for guidance in migrating from Text Completions to Messages.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 
@@ -208,11 +214,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `"claude-haiku-4-5"`
 
-    Fastest model with near-frontier intelligence
-
   - `"claude-haiku-4-5-20251001"`
-
-    Fastest model with near-frontier intelligence
 
   - `"claude-opus-4-5"`
 
@@ -408,11 +410,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `"claude-haiku-4-5"`
 
-      Fastest model with near-frontier intelligence
-
     - `"claude-haiku-4-5-20251001"`
-
-      Fastest model with near-frontier intelligence
 
     - `"claude-opus-4-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 168228011acea0083114ad81699a50b44ced47080e9787bfaf8d36677b4325a2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 24b27e4a8bbcf94b65a8c5d8eb065cd0bee51a861b71e193c6b54d523879f2ab
 ---
 
 ---
@@ -33,6 +33,12 @@ Returns organizations sorted by creation date in ascending order. Use
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

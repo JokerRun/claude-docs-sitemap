@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 2916a152355da5fd9686bfde10d2204949583314f785c24a9c99dd5058e877d5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e28968cad3ea1810c889f80c73e4127190fefd37541a8d99f0da2113c168b10a
 ---
 
 ---
@@ -23,6 +23,12 @@ Get detailed information for a specific project.
   The project ID (tagged ID, e.g., claude_proj_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

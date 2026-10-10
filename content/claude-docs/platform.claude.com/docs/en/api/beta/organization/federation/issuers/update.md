@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 5298a622cc1536470fa49bfa177f01e017dda5ef3ce8680e17d9a96e7e495510
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9813d8452fab5149c058c5568abfff574ff7b2f1aaa1d9b6a4551d464f61ef71
 ---
 
 ---
@@ -32,6 +32,12 @@ session.
   ID of the federation issuer to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 427cc5168bd0d2075a8117c431484764b8119833d0ccd8e194c843ddc98357ec
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2011cebeb1877d95826caca317eb9c0354f8cc7b35cfb009131ec92e6f793b57
 ---
 
 ---
@@ -32,6 +32,12 @@ access logs.
   ID of the Tunnel.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

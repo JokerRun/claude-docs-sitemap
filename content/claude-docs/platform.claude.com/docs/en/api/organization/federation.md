@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 47331ec9b38070ca1a24738078749d0988ff681ede6194021f2a10fcae0628d8
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b617fd9b2179cd898dca26e6c8cc18381ae69712c6b8dfe774f6db94670f1996
 ---
 
 ---
@@ -31,6 +31,14 @@ URL), or `inline` (provide a static key set). When `jwks.type` is
 publicly reachable over HTTPS so Anthropic can fetch the discovery
 document; for `explicit_url` and `inline` modes the issuer URL is only
 matched as the JWT's `iss` claim and is not fetched.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Body parameters
 
@@ -316,6 +324,14 @@ Archived issuers are excluded unless `include_archived=true`.
 
   Opaque cursor from a previous response's `next_page`.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Returns
 
 - `data: array of FederationIssuer`
@@ -510,6 +526,14 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 - `federation_issuer_id: string`
 
   ID of the federation issuer.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Returns
 
@@ -708,6 +732,14 @@ session.
 - `federation_issuer_id: string`
 
   ID of the federation issuer to update.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Body parameters
 
@@ -985,6 +1017,14 @@ issuer cannot be changed), or recreate them against another issuer.
 
   ID of the federation issuer to archive.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Returns
 
 - `FederationIssuer object`
@@ -1186,6 +1226,14 @@ identity-bearing claim, a tenant-pinning subject prefix (such as
 identity claims (e.g. `claims.repository_owner`). OAuth callers may only
 manage rules whose `oauth_scope` is `workspace:developer` or
 `workspace:inference`; other scopes require a Console session.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Body parameters
 
@@ -1496,6 +1544,14 @@ unless `include_archived=true`.
 
   Opaque cursor from a previous response's `next_page`.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Returns
 
 - `data: array of FederationRule`
@@ -1690,6 +1746,14 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 - `federation_rule_id: string`
 
   ID of the federation rule.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Returns
 
@@ -1903,6 +1967,14 @@ Console session.
 - `federation_rule_id: string`
 
   ID of the federation rule to update.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Body parameters
 
@@ -2189,6 +2261,14 @@ other scopes require a Console session.
 
   ID of the federation rule to archive.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Returns
 
 - `FederationRule object`
@@ -2398,6 +2478,14 @@ other scopes require a Console session.
 
   ID of the federation rule.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -2491,6 +2579,14 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   Opaque cursor from a previous response's `next_page`.
 
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 #### Returns
 
 - `data: array of FederationRuleWorkspace`
@@ -2573,6 +2669,14 @@ Console session.
 - `workspace_id: string`
 
   ID of the workspace to disable for.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Returns
 

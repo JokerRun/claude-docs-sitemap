@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c855905cbdb6e1cd08e76f177b5f639cf55b7ca79fb07cef221046cdf7d7bbf1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 23dc7130d2837cfbff7d37e21740ffb65714e3baecb919afca0d4a8dc9430c36
 ---
 
 ---
@@ -504,6 +504,8 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   )
   ```
 </CodeGroup>
+
+Nama alat kustom tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Agen yang sudah memiliki alat kustom dengan nama yang diawali `ant__` hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` tanpa nama itu, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen di `subagents.predefined_agents`, atau pada agen di `workflows.predefined_agents`. Sesi yang sudah ada tidak terpengaruh.
 
 Agen memanggil alat kustomnya selama sesi. Untuk menerima panggilan dan mengembalikan hasil, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 1bd04905c6969623132cb7b2beec611abdca64019772df4afab312371258d2b6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6fae6ac8cdbcb23bfc8a3982b415ee0a6b82a9d7b8f0f9d0c26c2f0533e6aab7
 ---
 
 ---
@@ -105,14 +105,6 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 
   <Card title="Pemikiran diperpanjang" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking">
     Claude Haiku 4.5 mendukung pemikiran diperpanjang manual dengan `budget_tokens`.
-  </Card>
-
-  <Card title="Memilih model" icon="scales" href="https://platform.claude.com/docs/id/about-claude/models/choosing-a-model">
-    Kapan memulai dengan mengutamakan efisiensi menggunakan Haiku dan kapan beralih ke model yang lebih besar.
-  </Card>
-
-  <Card title="Mengurangi latensi" icon="gauge" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency">
-    Teknik yang cocok dipadukan dengan model yang cepat dan berbiaya rendah.
   </Card>
 </CardGroup>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: b39d4cc6a76953a59051d145ae8038a22353675a7183a97b5a37d396cc081aca
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0eceb89ec861730ed96cbe1f1a6f16dc5b170080c5d0c01de95e8d103c0e8633
 ---
 
 ---
@@ -41,6 +41,12 @@ Console session.
   ID of the federation rule to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

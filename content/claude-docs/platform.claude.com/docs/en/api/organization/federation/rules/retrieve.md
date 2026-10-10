@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/retrieve
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: dadc68b1c743f7cd42fc10253027ab5e15e9f9cf573cbe849671e3ec0293db8e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: bd151b84d99022e4cbb437c75170b6ef26739047d14d48b0947d6890876d6d9f
 ---
 
 ---
@@ -23,6 +23,14 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 - `federation_rule_id: string`
 
   ID of the federation rule.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

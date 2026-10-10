@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/list
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 21e88c9da377a72bc5a5e6605eee16228d497de9da87a6fda94f878d436da71a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2bac4f9e8661d09a694fcff101c31ca17083d020f1c533d0185f64e087baa4cd
 ---
 
 ---
@@ -45,6 +45,14 @@ List Workspaces
   Defaults to `20`. Ranges from `1` to `1000`.
 
   default: 20, minimum: 1, maximum: 1000
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

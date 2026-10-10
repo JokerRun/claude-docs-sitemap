@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 148420a10469a7b1ec7c10973ced5b3ae2f67d423844d72fbb4b7fe5596b26a3
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2a5f910d7208d06c41f5124012708bf461da16a8f3d7138fca469ed5c315f21a
 ---
 
 ---
@@ -24,6 +24,14 @@ requester at the request's period.
 - `spend_limit_increase_request_id: string`
 
   ID of the spend limit increase request.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

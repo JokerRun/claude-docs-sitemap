@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 71b0b662fe31830e4c00c5ada15d31fa3c1462c4fbe2a9241975f05efbba707e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 521b2c57b551daaa425d00c41053b0df6dfcebb8f1b17791ee1e478a248493bf
 ---
 
 ---
@@ -514,7 +514,7 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang berlaku, permintaan akan mengembalikan error 400 `invalid_request_error` dengan pesan yang sesuai seperti yang ditunjukkan sebelumnya.
 
-Dalam kedua pesan tersebut, "enable thinking" berarti pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort per giliran, gunakan pemikiran adaptif.
+Dalam kedua pesan tersebut, "enable thinking" berarti adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 dan Claude Haiku 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
 
 Mengirim `thinking: {"type": "between_tools"}` ke model apa pun selain Claude Sonnet 5.5 akan mengembalikan 400 `invalid_request_error`:
 
@@ -538,13 +538,13 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Versi alat computer use tidak didukung
 
-Di Claude API dan Google Cloud, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` bertipe `computer_20251124` yang lebih lama (dengan header beta alat tersebut) ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
+Di Claude API dan Google Cloud, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` bertipe `computer_20251124` atau `computer_20250124` yang lebih lama, dengan header beta alat tersebut, ke salah satu model ini akan mengembalikan error 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Model-model sebelumnya yang mendukung toolset tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5 dan Claude Sonnet 5.5 di Amazon Bedrock.
+API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5. Model-model sebelumnya yang mendukung toolset tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Amazon Bedrock.
 
 ### Blok thinking tidak lagi cocok dengan percakapan
 
@@ -554,7 +554,7 @@ Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5,
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Tanpa header beta `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan header itu. Pertahankan riwayat percakapan agar hanya ditambahkan (append-only), atau kirim header beta dengan `prefix_mismatch_behavior: "drop_block"` untuk membuang blok dan melanjutkan. Pada Claude Sonnet 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools`, pertahankan riwayat agar append-only, atau hapus blok thinking mulai dari giliran yang diedit dan seterusnya. Blok dari model yang tidak dapat dibaca oleh model target akan dibuang alih-alih ditolak. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature).
+Tanpa header beta `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan header itu. Jaga riwayat percakapan agar hanya ditambahkan (append-only), atau kirim header beta dengan `prefix_mismatch_behavior: "drop_block"` untuk membuang blok dan melanjutkan. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, jaga riwayat tetap append-only, atau hapus blok thinking mulai dari giliran yang diedit dan seterusnya. Blok dari model yang tidak dapat dibaca oleh model target akan dibuang alih-alih ditolak. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [Pemecahan masalah thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature).
 
 Mengirim `thinking.block_binding` tanpa [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01` akan mengembalikan 400 `invalid_request_error` yang pesannya diakhiri dengan:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/publish
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: b18b9af74c656b6ad9513e65d1f8941389d4bad39ecab178a166eb083785741a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9d4dc32f6cd4f29aff651686d8ef32900a67e70ceae45f20ebf0311ddda80a02
 ---
 
 > ## Documentation Index
@@ -105,7 +105,7 @@ To publish from the plugin's own repository, save the marketplace file beside `p
 }
 ```
 
-In your shell, run `claude plugin validate .` in the repository to check the file before you push.
+In your shell, run `claude plugin validate .` in the repository before you push. For what the run checks, see [Validate a directory](/docs/en/plugins/cli-reference#validate-a-directory).
 
 [Create a marketplace](/docs/en/plugins/create-marketplace) covers the layout with several plugins in one repository.
 

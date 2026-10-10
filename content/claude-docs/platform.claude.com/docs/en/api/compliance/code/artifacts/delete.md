@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: d0149689337d03145aa896148017437b6f68e68b8a698dae7abff4b9d1de308e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0918e65a345f435cbf20cc41325fcb32680ac7e8d4ce2e0c0dc9be6a7fa06420
 ---
 
 ---
@@ -30,6 +30,12 @@ Artifact.
   The Artifact ID (tagged ID, e.g., cart_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

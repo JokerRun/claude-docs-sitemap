@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 88dda66d133b872df137814640190ca756b5cfff897ef63590f734939a7082a7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d3383b2c70f932f7969d93d27863000dca4f3fcc3653ab369ab7bf3dee23592c
 ---
 
 ---
@@ -25,6 +25,8 @@ Create Credential
   Identifier of the vault to create the credential in.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -538,6 +540,8 @@ List Credentials
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -861,6 +865,8 @@ Get Credential
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1174,6 +1180,8 @@ Update Credential
   Unique identifier of the credential to update.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -1628,6 +1636,8 @@ Delete Credential
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1788,6 +1798,8 @@ Archive Credential
   Unique identifier of the credential to archive.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -2103,6 +2115,8 @@ Validate Credential
   Unique identifier of the credential to validate.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

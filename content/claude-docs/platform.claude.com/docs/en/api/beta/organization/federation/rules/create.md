@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: dcf363c9b0f600523a29cc7597cdeebd899cae2019ac211ed92aeeab3e0dbd94
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cbaef341bed5c6c6179f184bf671f7b316cf9c373760f354aebbc16e62f6d4a0
 ---
 
 ---
@@ -33,6 +33,12 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 `workspace:inference`; other scopes require a Console session.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

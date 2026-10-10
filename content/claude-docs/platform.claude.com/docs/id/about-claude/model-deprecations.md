@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e36625832df45d735993b27a023417fde92d1f70750844f38e2771c7104e712c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 40e2154235e313d9bc89886efa988eec16fb03c44febc35651f326327004fc5e
 ---
 
 ---
@@ -133,7 +133,7 @@ Pada 14 April 2026, Anthropic memberi tahu developer yang menggunakan model Clau
 
 | Tanggal pensiun | Model yang dihentikan      | Pengganti yang direkomendasikan |
 | --------------- | -------------------------- | ------------------------------- |
-| 15 Juni 2026    | `claude-sonnet-4-20250514` | `claude-sonnet-4-6`             |
+| 15 Juni 2026    | `claude-sonnet-4-20250514` | `claude-sonnet-5-5`             |
 | 15 Juni 2026    | `claude-opus-4-20250514`   | `claude-opus-4-8`               |
 
 ### 2026-02-19: Model Claude Haiku 3
@@ -170,7 +170,7 @@ Pada 28 Oktober 2025, Anthropic memberi tahu developer yang menggunakan model Cl
 
 | Tanggal pensiun  | Model yang dihentikan        | Pengganti yang direkomendasikan |
 | ---------------- | ---------------------------- | ------------------------------- |
-| 19 Februari 2026 | `claude-3-7-sonnet-20250219` | `claude-sonnet-4-6`             |
+| 19 Februari 2026 | `claude-3-7-sonnet-20250219` | `claude-sonnet-5-5`             |
 
 ### 2025-08-13: Model Claude Sonnet 3.5
 
@@ -182,8 +182,8 @@ Pada 13 Agustus 2025, Anthropic memberi tahu developer yang menggunakan model Cl
 
 | Tanggal pensiun | Model yang dihentikan        | Pengganti yang direkomendasikan |
 | --------------- | ---------------------------- | ------------------------------- |
-| 28 Oktober 2025 | `claude-3-5-sonnet-20240620` | `claude-sonnet-4-6`             |
-| 28 Oktober 2025 | `claude-3-5-sonnet-20241022` | `claude-sonnet-4-6`             |
+| 28 Oktober 2025 | `claude-3-5-sonnet-20240620` | `claude-sonnet-5-5`             |
+| 28 Oktober 2025 | `claude-3-5-sonnet-20241022` | `claude-sonnet-5-5`             |
 
 ### 2025-06-30: Model Claude Opus 3
 
@@ -209,7 +209,7 @@ Pada 21 Januari 2025, Anthropic memberi tahu developer yang menggunakan model Cl
 | --------------- | -------------------------- | ------------------------------- |
 | 21 Juli 2025    | `claude-2.0`               | `claude-opus-4-8`               |
 | 21 Juli 2025    | `claude-2.1`               | `claude-opus-4-8`               |
-| 21 Juli 2025    | `claude-3-sonnet-20240229` | `claude-sonnet-4-6`             |
+| 21 Juli 2025    | `claude-3-sonnet-20240229` | `claude-sonnet-5-5`             |
 
 ### 2024-09-04: Model Claude 1 dan Instant
 
@@ -233,8 +233,8 @@ Pada 4 September 2024, Anthropic memberi tahu developer yang menggunakan model C
 
 Anthropic sesekali menghentikan parameter permintaan yang tidak lagi berlaku untuk model saat ini. Cara API memperlakukan parameter yang dihentikan bergantung pada modelnya, seperti yang ditunjukkan tabel berikut. Sebagian besar SDK mempertahankan parameter yang dihentikan dalam tipe permintaannya sehingga kode yang ada tetap lolos pemeriksaan tipe. Python SDK (v1.0 dan yang lebih baru) menghapus `temperature`, `top_p`, dan `top_k`, sehingga meneruskannya akan memunculkan `TypeError`.
 
-| Parameter                       | Status                                           | Perilaku                                                                                                                                                             | Pengganti yang direkomendasikan                                                                                                                                           |
-| ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `temperature`, `top_p`, `top_k` | Dihentikan (Claude Opus 4.7 dan yang lebih baru) | Mengembalikan error 400 ketika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk memandu perilaku model. |
+| Parameter                       | Status                                            | Perilaku                                                                                                                                                           | Pengganti yang direkomendasikan                                                                                                                                               |
+| ------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `temperature`, `top_p`, `top_k` | Dihentikan (model Claude 4.7 dan yang lebih baru) | Mengembalikan error 400 jika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
 
 Untuk langkah-langkah migrasi, lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).

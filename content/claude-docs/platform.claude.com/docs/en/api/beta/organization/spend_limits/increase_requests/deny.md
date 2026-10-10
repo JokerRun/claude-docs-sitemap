@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 4bdd4f24b3c55e4bc5fea8923766c8182e3d83a15cfa36390dc94f1d816f6d19
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 281e920cddce9d3c5024a28d5fc5ec7d50447bdff18a4fdb875f54dc0b7f5f67
 ---
 
 ---
@@ -24,6 +24,14 @@ Idempotent on `denied`; denying an already-`approved` request returns
 - `spend_limit_increase_request_id: string`
 
   ID of the spend limit increase request.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

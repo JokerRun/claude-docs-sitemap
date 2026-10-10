@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 1b64423b1f12c4302c309f4ac6f655fc1919dedeaacf079aec2dff82672b933a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5067bd448f1fc9b92323b538ca3b2f6a9a878a02c9120da8d995bdf617ad34db
 ---
 
 ---
@@ -41,6 +41,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
   Opaque pagination cursor from a previous `list_tunnel_certificates` response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

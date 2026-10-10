@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: dfdbda89264897327d270a0a75ffd94becb6e6db360f6f975086a008f7c30bbd
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6d76f277e68101da168479fda45f065e270c06e004f17bdf17d6b35589914006
 ---
 
 ---
@@ -229,7 +229,7 @@ Here are some tips to help you optimize your prompts and outputs:
 
      tokens, the response will be cut off, perhaps mid-sentence or mid-word, so this is a blunt technique that might require post-processing and is usually most appropriate for multiple choice or short answer responses where the answer comes right at the beginning.
   </Note>
-* **Experiment with temperature:** The `temperature` [parameter](https://platform.claude.com/docs/en/api/messages/create) controls the randomness of the output. Lower values (for example, 0.2) can sometimes lead to more focused and shorter responses, while higher values (for example, 0.8) might result in more diverse but potentially longer outputs. Claude Haiku 5.5 accepts only the default `temperature` and returns a 400 error for any other value, so lower its [effort](https://platform.claude.com/docs/en/build-with-claude/effort) instead.
+* **Experiment with temperature:** The `temperature` [parameter](https://platform.claude.com/docs/en/api/messages/create) controls the randomness of the output. Lower values (for example, 0.2) can sometimes lead to more focused and shorter responses, while higher values (for example, 0.8) might result in more diverse but potentially longer outputs. Claude 4.7 and later models and Claude Mythos Preview accept only the default `temperature` and return a 400 error for any other value, so on those models lower [effort](https://platform.claude.com/docs/en/build-with-claude/effort) instead.
 
 Finding the right balance among prompt clarity, output quality, and token count might require some experimentation.
 

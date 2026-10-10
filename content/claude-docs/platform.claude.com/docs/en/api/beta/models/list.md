@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: f30388c7158a9dd0467ffd140eab6c71c6d90e1a550b792536a1b88910ce3489
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 38db6959a986b45427f61b97c3239da3d31fd88a523c4880687d2e368c6330f0
 ---
 
 ---
@@ -49,6 +49,12 @@ The Models API response can be used to determine which models are available for 
   default: 20, minimum: 1, maximum: 1000
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

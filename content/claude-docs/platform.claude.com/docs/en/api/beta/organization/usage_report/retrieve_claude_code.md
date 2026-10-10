@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: e33c7ab88916888c3824d35265dde70c851545059ede49b0b3efeacc4ada6d86
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3da1e992e2944bdf6617da2c74882dda0054ec13702d517a003b9718426c0ddb
 ---
 
 ---
@@ -34,6 +34,14 @@ Enables organizations to analyze developer productivity and build custom dashboa
 - `page: optional string`
 
   Opaque cursor token from previous response's `next_page` field.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

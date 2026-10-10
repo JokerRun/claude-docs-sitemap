@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 50c45cf4e3251e46602513fdd27d1b7203bb99a7a5759b31066737b2e14c3f40
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: bb5ff430cd3b0460c91b5b9f250250111b7bb009544cf47314e6a66468d0f58d
 ---
 
 ---
@@ -17,6 +17,14 @@ url: https://platform.claude.com/docs/en/api/beta/organization/external_keys
 **POST** `/v1/organizations/external_keys`
 
 Create an external key config owned by the caller's organization.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -244,6 +252,14 @@ Results are ordered by creation time (newest first). Use the
 
   Opaque cursor from a previous response's `next_page`.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `data: array of BetaExternalKey`
@@ -392,6 +408,14 @@ Retrieve a single external key config in the caller's organization by ID.
   ID of the External Key.
 
   maxLength: 2048
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -542,6 +566,14 @@ encrypted data requires the original key identity to decrypt.
   ID of the External Key.
 
   maxLength: 2048
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -759,6 +791,14 @@ The request is rejected if any workspace still references this config.
 
   maxLength: 2048
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `type: "external_key_deleted"`
@@ -805,6 +845,14 @@ message if it failed or timed out.
   ID of the External Key.
 
   maxLength: 2048
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

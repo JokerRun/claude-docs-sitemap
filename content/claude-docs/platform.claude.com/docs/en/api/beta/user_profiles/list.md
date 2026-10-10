@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 395456a55b5d81c377b68000d0d2ded2045916cab0509a0e562da935432a7a3a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d11507e68eb4cc02c1aec46fff042e9c714ff5ba9ce43f1fa14173fe230fdd65
 ---
 
 ---
@@ -55,6 +55,8 @@ List User Profiles
   Leave it out to get the first page.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

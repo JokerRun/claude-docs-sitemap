@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/glossary
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: df335eaa0daa002bf56d53aeb342dd01661ab01b1fe22a41c4eb072f07dfe6e5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f6bbc0adf08c2815a458199a098b2eda59ccec6c5cbfbefd79e90c5b0e6b05c5
 ---
 
 ---
@@ -69,4 +69,4 @@ Pengguna mungkin menemui non-determinisme dalam API. Bahkan dengan temperature d
 
 ## Tokens
 
-Token adalah unit individual terkecil dari model bahasa, dan dapat berupa kata, subkata, karakter, atau bahkan byte (dalam kasus Unicode). Untuk Claude, satu token kira-kira mewakili 3,5 karakter bahasa Inggris, meskipun jumlah pastinya dapat bervariasi tergantung pada bahasa yang digunakan. Token biasanya tersembunyi saat berinteraksi dengan model bahasa pada tingkat "teks" tetapi menjadi relevan saat memeriksa input dan output yang tepat dari model bahasa. Ketika Claude diberi teks untuk dievaluasi, teks tersebut (yang terdiri dari serangkaian karakter) dikodekan menjadi serangkaian token untuk diproses oleh model. Token yang lebih besar memungkinkan efisiensi data selama inferensi dan pretraining (dan digunakan bila memungkinkan), sementara token yang lebih kecil memungkinkan model menangani kata-kata yang tidak umum atau belum pernah dilihat sebelumnya. Pilihan metode tokenisasi dapat memengaruhi kinerja model, ukuran kosakata, dan kemampuan untuk menangani kata-kata di luar kosakata.
+"Tokens" (token) adalah unit individual terkecil dari model bahasa, dan dapat berupa kata, subkata, karakter, atau bahkan byte (dalam kasus Unicode). Untuk Claude, jumlah karakter yang diwakili oleh sebuah token bergantung pada model dan bahasanya. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan "tokenizer" (pemecah token) yang lebih baru yang menghasilkan sekitar 30 persen lebih banyak token untuk teks yang sama dibandingkan model sebelumnya, di mana satu token mewakili sekitar 3,5 karakter bahasa Inggris. Untuk mendapatkan jumlah yang tepat, gunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) dengan model yang Anda rencanakan untuk digunakan. Token biasanya tersembunyi saat berinteraksi dengan model bahasa pada tingkat "teks" tetapi menjadi relevan saat memeriksa input dan output yang tepat dari model bahasa. Ketika Claude diberikan teks untuk dievaluasi, teks tersebut (yang terdiri dari serangkaian karakter) dikodekan menjadi serangkaian token untuk diproses oleh model. Token yang lebih besar memungkinkan efisiensi data selama inferensi dan pretraining (dan digunakan bila memungkinkan), sementara token yang lebih kecil memungkinkan model untuk menangani kata-kata yang tidak umum atau belum pernah dilihat sebelumnya. Pilihan metode tokenisasi dapat memengaruhi kinerja model, ukuran kosakata, dan kemampuan untuk menangani kata-kata di luar kosakata.

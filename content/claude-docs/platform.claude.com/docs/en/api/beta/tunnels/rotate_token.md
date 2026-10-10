@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: bb2b2d78dd27a66b2fe41dea848ca9e943530b7eb40bb73337e9c2af6d478a47
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7674fe2e4bf5e1c6fae6011952672d366186206c04e1dd6c3cf552e013d1eb8b
 ---
 
 ---
@@ -25,6 +25,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   ID of the tunnel (`tnl_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

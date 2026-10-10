@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ec7a3856eaadac035aade921cef0664a94eaa8e8257fad6e6e1f6a02f5294f37
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0729739e3857a30041e12b2abfbd88cca48232c4f942f3e21b4e639aab37b995
 ---
 
 ---
@@ -23,6 +23,8 @@ Archive Deployment
   Unique identifier of the deployment to archive.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

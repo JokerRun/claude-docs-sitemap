@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7777028a8ecaac477f90b7aa82c37ee97c47fcd02b3d1d40d08229c349a0f9ca
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 63dc5f40e7487c91f0c3c93a20144f829d3fae071f3c849f165e6a48506c0cc6
 ---
 
 ---
@@ -63,7 +63,7 @@ Lihat [Blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/
 | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Claude menolak bertindak berdasarkan hasil alat, atau meminta pengguna mengonfirmasi instruksi yang berasal darinya | Instruksi Anda sendiri dikirimkan di dalam konten `tool_result` | Claude dilatih untuk memperlakukan instruksi di dalam hasil alat sebagai konten pihak ketiga yang berpotensi tidak tepercaya. Pindahkan instruksi Anda keluar dari hasil alat: kirimkan dalam giliran `user` setelah blok `tool_result`, atau, pada model yang didukung, dalam [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Jaga agar hasil alat hanya berisi data. Lihat [Memitigasi jailbreak dan prompt injection](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection). |
 
-## Perbedaan escaping JSON (Opus 4.6+)
+## Perbedaan escaping JSON antar versi model
 
 | Gejala                                                                 | Penyebab                                                    | Perbaikan                                                                                                                        |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |

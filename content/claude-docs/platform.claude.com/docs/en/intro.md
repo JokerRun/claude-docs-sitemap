@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8a45e0ab4025efd5ad88453e62db71a6543135ed71daedbc6341c272f862a516
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4fa5e65e09ae215da2e18c7b9435b928178f7dce8e055ec4ea9cd05a44683a9f
 ---
 
 ---
@@ -67,7 +67,7 @@ Follow these steps to go from zero to a working Claude integration.
   </Step>
 
   <Step title="Explore features and tools">
-    Discover what Claude can do: extended thinking, web search, file handling, structured outputs, and more.
+    Discover what Claude can do: thinking, web search, file handling, structured outputs, and more.
 
     [Browse the features overview](https://platform.claude.com/docs/en/build-with-claude/overview)
   </Step>

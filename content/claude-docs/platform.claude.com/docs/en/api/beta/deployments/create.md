@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 845f3b1252d0afa4c832f15a3751c980dd742bfba4c82168e66fa5ff04421ce0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b9dce54dd52a022b004d05f93164e881b2e43c1ad529e3507a7e40a2ab9c93ec
 ---
 
 ---
@@ -17,6 +17,8 @@ url: https://platform.claude.com/docs/en/api/beta/deployments/create
 Create Deployment
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

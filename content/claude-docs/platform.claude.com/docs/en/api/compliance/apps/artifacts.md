@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: 55a461b7b08df074a3bcd87657db852a7da16d92195a2280198784ae3c0417ce
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9b9cfae7d14970c15e001422554e3f346a259ade20dbd2bc6e437a2447620a6d
 ---
 
 ---
@@ -30,6 +30,12 @@ without downloading every artifact.
   The artifact version ID (tagged ID, e.g., claude_artifact_version_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -107,6 +113,12 @@ Returns the full text content of the artifact version.
   The artifact version ID (tagged ID, e.g., claude_artifact_version_abc123)
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

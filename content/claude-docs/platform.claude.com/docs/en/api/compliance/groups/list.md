@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 75cbadfb669d10074aefa6094eb7c43c5624f5db44471c89827cbb322440d42c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: df4bd115cfec3b4661f8696389aa4e397a4e5054a0a30ec554d99b69e7a691aa
 ---
 
 ---
@@ -35,6 +35,12 @@ List Compliance Groups
   Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

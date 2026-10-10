@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 024670fab6d3cf69f6274fa0c0ac0b1f18637effb43c085d6010490426d7086d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 8ef682d0d4113518f7f586a3127588a9bd01e76b655188dfa3e9f248086006f5
 ---
 
 ---
@@ -31,6 +31,12 @@ Get Skill Version
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

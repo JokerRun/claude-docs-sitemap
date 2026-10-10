@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 40c5cf516a2e68869ed419684879dfcbbb0d7cf948a80d3dd9232f45e7e0a87a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e843fd2c7db6806b05698da7b43380daabb8212865ce43ba90e45473740ba667
 ---
 
 ---
@@ -51,6 +51,12 @@ The Models API response can be used to determine which models are available for 
   default: 20, minimum: 1, maximum: 1000
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 
@@ -494,6 +500,12 @@ The Models API response can be used to determine information about a specific mo
   Model identifier or alias.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

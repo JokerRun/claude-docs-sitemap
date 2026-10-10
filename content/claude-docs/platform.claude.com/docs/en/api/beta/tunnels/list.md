@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 0d3e50cce5c2302ea17eab0de8db4d37c21a4f64f4880c9c6f834d8f1b5cee69
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: adb793b78d4dcda7b205fb1e6f4989599167b90d0e5e9fdfc83f0bd9710fa64a
 ---
 
 ---
@@ -35,6 +35,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
   Opaque pagination cursor from a previous `list_tunnels` response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

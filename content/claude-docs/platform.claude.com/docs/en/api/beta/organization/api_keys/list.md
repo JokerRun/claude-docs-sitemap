@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: af7174f3e9d6b0519c7b01f48abf003b4431a61af9b29eababf1695ba1bfecad
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6bb6c7be9c1421a578f0d3fee61f9a97a00f0fef94a39af79bfb118bfa4e4e6e
 ---
 
 ---
@@ -53,6 +53,14 @@ List API Keys
 - `workspace_id: optional string`
 
   Filter by Workspace ID.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

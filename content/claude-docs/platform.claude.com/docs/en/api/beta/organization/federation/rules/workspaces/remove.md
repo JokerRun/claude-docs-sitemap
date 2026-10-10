@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7698e22c59558948736d2f8ce60eeff843942ec16f37a54ab93507e40771daca
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 367469be8b20dd8e18e7e53ebd88a5dbdcfd040e88673fc34ccf276eed34b705
 ---
 
 ---
@@ -34,6 +34,12 @@ Console session.
   ID of the workspace to disable for.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

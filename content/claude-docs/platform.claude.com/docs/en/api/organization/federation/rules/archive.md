@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/archive
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 46875db93555c4f068204d000895d27430676bd6009980e70b32e7dfd42535fe
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e6b206c36d607c47daa9df61663a6f553bf7654764793ada2505c08097b9a406
 ---
 
 ---
@@ -31,6 +31,14 @@ other scopes require a Console session.
 - `federation_rule_id: string`
 
   ID of the federation rule to archive.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: db9e132ed2999f02a8e629ed73f336ddb7fd942a9c9b3e88e9da9d4e6294b06a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 114ba36f8bf89a0827bcb92fe94c6df44490a8ea3fe8c28bd4f66ee30d74477b
 ---
 
 ---
@@ -39,6 +39,14 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -125,6 +133,14 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   ID of the RBAC Group.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Body parameters
 
 - `user_id: string`
@@ -209,6 +225,14 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 - `user_id: string`
 
   ID of the User.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

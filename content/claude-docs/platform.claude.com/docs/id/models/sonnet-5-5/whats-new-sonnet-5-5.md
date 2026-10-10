@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9d51c72e7a45f9e5a2820ec8a0a9e4e8a1545df6b27181b18c1cbe17200638aa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ed3a4405b254d2e1c228d0cd779d9ad56f0545ee9a947e0db249db28dbf510ab
 ---
 
 ---
@@ -17,7 +17,7 @@ Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. 
 * [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
 * [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
 * [Di Claude API dan Google Cloud, alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
-* [Alat advisor menolak Claude Opus 4.8, Claude Opus 4.7, dan Claude Sonnet 5 sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
+* [Alat advisor menolak Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5 sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
 
 Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). Aplikasi yang melakukan streaming teks tersebut kepada penggunanya akan menjadi senyap di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks, atau mematikan pemikiran di awal dengan `between_tools`.
 
@@ -55,7 +55,7 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Blok pemikiran terikat pada model dan percakapan
 
-Setiap blok pemikiran mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya blok dari sebagian model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. Di Claude API dan Google Cloud, Claude Opus 5.5 membaca blok pemikiran Claude Sonnet 5.5; tidak ada model lain yang melakukannya.
+Setiap blok pemikiran mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya blok dari sebagian model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, serta, di Claude API dan Google Cloud, dari Claude Haiku 5.5, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. Di Claude API dan Google Cloud, Claude Opus 5.5 membaca blok pemikiran Claude Sonnet 5.5; tidak ada model lain yang melakukannya.
 
 Jadi, percakapan yang berpindah dari Claude Sonnet 5 ke Claude Sonnet 5.5, atau dari Claude Sonnet 5.5 naik ke Claude Opus 5.5 di Claude API dan Google Cloud, mempertahankan penalarannya, dan perpindahan lain apa pun dari Claude Sonnet 5.5 menjalankan giliran setelah peralihan tanpa penalaran tersebut. Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target, API membuangnya sebelum model melihatnya: permintaan berhasil, dan blok yang dibuang tidak ditagih. Dengan beta header `thinking-binding-controls-2026-08-01`, pembuangan tersebut dilaporkan dalam array `input_transformations` tingkat atas. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
@@ -77,7 +77,7 @@ Untuk memindahkan integrasi yang sudah ada di Claude API atau Google Cloud, ikut
 
 ### Beberapa pasangan alat advisor tidak didukung
 
-Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) (beta), executor Claude Sonnet 5.5 memerlukan Claude Mythos 5.1, Claude Fable 5.1, Claude Mythos 5, Claude Fable 5, Claude Opus 5.5, atau Claude Opus 5 sebagai advisor-nya, atau Claude Sonnet 5.5 itu sendiri. Advisor Claude Opus 4.8, Claude Opus 4.7, dan Claude Sonnet 5 berfungsi dengan executor Claude Sonnet 5, tetapi dengan executor Claude Sonnet 5.5 mereka mengembalikan 400 `invalid_request_error`. Setiap advisor yang diterima Claude Sonnet 5.5 mengembalikan sarannya dalam bentuk terenkripsi, sebagai blok `advisor_redacted_result`, sehingga klien Anda tidak dapat membaca teks saran tersebut. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) dan [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor.
+Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) (beta), executor Claude Sonnet 5.5 memerlukan Claude Mythos 5.1, Claude Fable 5.1, Claude Mythos 5, Claude Fable 5, Claude Opus 5.5, atau Claude Opus 5 sebagai advisor-nya, atau Claude Sonnet 5.5 itu sendiri. Advisor Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5 berfungsi dengan executor Claude Sonnet 5, tetapi dengan executor Claude Sonnet 5.5 mereka mengembalikan 400 `invalid_request_error`. Setiap advisor yang diterima Claude Sonnet 5.5 mengembalikan sarannya dalam bentuk terenkripsi, sebagai blok `advisor_redacted_result`, sehingga klien Anda tidak dapat membaca teks saran tersebut. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) dan [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor.
 
 ## Dukungan fitur
 
@@ -109,7 +109,7 @@ Semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/b
 
 ## Harga
 
-Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berbiaya $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk daftar lengkap, residensi data, dan harga alat.
+Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berharga $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk daftar lengkap, residensi data, dan harga alat.
 
 ## Ketersediaan
 
@@ -167,7 +167,7 @@ Kemudian periksa enam hal:
 2. Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 3. Pertahankan percakapan hanya-tambah. Permintaan yang memutar ulang blok pemikiran Claude Sonnet 5.5 setelah pengeditan pada riwayat sebelumnya dapat mengembalikan error 400. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
 4. Jika Anda menggunakan computer use melalui `computer_20251124` di Claude API atau Google Cloud, [pindah ke toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
-5. Jika Anda menggunakan alat advisor dengan advisor Claude Opus 4.8, Claude Opus 4.7, atau Claude Sonnet 5, [beralihlah ke advisor yang diterima Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
+5. Jika Anda menggunakan alat advisor dengan advisor Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, atau Claude Haiku 5.5, [beralihlah ke advisor yang diterima Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
 6. Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `thinking.display` saat Anda menggunakan pemikiran adaptif. Dengan `between_tools`, teks tersebut dikembalikan tanpa pengaturan itu. Lihat [Teks di antara pemanggilan alat dikembalikan dalam blok thinking](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls).
 
 [Panduan migrasi](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide) berisi instruksi langkah demi langkah dari Claude Sonnet 5 dan model-model sebelumnya, serta daftar periksa lengkap.

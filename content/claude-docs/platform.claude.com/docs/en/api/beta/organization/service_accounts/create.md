@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7db7fc0345a490dfea4a32df5a66b75f531b6eda7e41bedb7da257aefae87868
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 34789de488b6ef6d0e4863dc406cd6a66b6a7bbc592f72477f5710722db8ad32
 ---
 
 ---
@@ -27,6 +27,12 @@ Console session) — a workload may only create `developer`-role service
 accounts.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: e6cc2ece26be3ed11e05d1b073cd122378c9e5b580f5340f2e47adfb4b0c0e3f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 11e2e82f1511c82aabf12ec3f454fcf749193ab593f7435377dcd6b9907f6b01
 ---
 
 ---
@@ -33,6 +33,14 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -121,6 +129,14 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 - `rbac_role_id: string`
 
   ID of the RBAC Role.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 
@@ -250,6 +266,14 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b14e86c0d270ad78ffee4cd590bc1eb725cd89f64dc5cc9d25c61fc08cbd5664
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b51576189dcd9fcf674ec0970c5ddfd3de9ea5497a2181047ad6cb40484ead0b
 ---
 
 ---
@@ -41,6 +41,8 @@ Update a memory
     Return the object with `content` populated. On list endpoints, `view=full` caps `limit` at 20.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

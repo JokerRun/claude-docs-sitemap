@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/list
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: e192a5e2c1184c4085513effc3ad8b9062a6f4fd13b01e4e25395256569e9b6c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a200b2d680b45db5e88465a0316a83662ba64d03f5f3e946a4c5809be0a292d1
 ---
 
 ---
@@ -39,6 +39,14 @@ archived service accounts.
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

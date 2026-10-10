@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1c637f92f01d19e9a86aaa241dea5681dd489713007ab6292b7e29a01a6b93c8
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 96e8940446c799cda83e2301e389049613904b07884e2bcfad9c189203c27e00
 ---
 
 ---
@@ -391,7 +391,7 @@ menjadi:
 }
 ```
 
-`effort: "high"` sesuai dengan default API; nilai ini muncul di sini hanya untuk menunjukkan di mana kontrol kedalaman kini berada, dan menghilangkannya menghasilkan perilaku yang identik.
+`effort: "high"` adalah default pada Claude Sonnet 4.6, sehingga menghilangkannya di sini menghasilkan perilaku yang identik; ini hanya ditampilkan untuk menunjukkan di mana kontrol kedalaman berada dalam mode adaptif. Claude Opus 5.5 dan Claude Haiku 5.5 memiliki default `"medium"`, dan model lain yang mendukung effort memiliki default `"high"` (lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels)).
 
 Perkirakan adanya perbedaan perilaku, bukan sekadar perubahan sintaks. Dengan anggaran tetap, Claude berpikir pada setiap permintaan. Dengan pemikiran adaptif, Claude menentukan apakah dan seberapa banyak berpikir pada setiap permintaan, dan pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah, Claude dapat melewatkan pemikiran sepenuhnya pada input yang mudah. Anda juga dapat menghapus header beta `interleaved-thinking-2025-05-14` setelah bermigrasi: pemikiran adaptif berselang-seling secara otomatis, dan Claude API mengabaikan header tersebut pada model-model ini. Preservasi blok pemikiran juga berubah: Claude Opus 4.5 dan model bernomor 4.6 ke atas menyimpan blok pemikiran dari giliran sebelumnya dalam konteks dan menagihnya sebagai input, sedangkan Claude Sonnet 4.5 (deprecated), Claude Haiku 4.5, dan model sebelumnya menghapusnya; lihat [preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
 

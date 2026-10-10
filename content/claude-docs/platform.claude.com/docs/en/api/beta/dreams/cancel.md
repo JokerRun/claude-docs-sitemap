@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2891e4709afe84843ebc99443ec25c22db1986d978e3696aaa8acf074ac4028b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: fea4ba111470813f004ff4e7c29230ecbe763ef1dac2fd5309564e3e56c63215
 ---
 
 ---
@@ -27,6 +27,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   The ID of the dream to cancel (`drm_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

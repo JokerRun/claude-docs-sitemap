@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/workspaces/remove
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: fa59e66e9be9aff0e5effe98311f810fe00ec374eb0ba094220c802fc64bc10b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f5e9f55b467a2b636e009f65b774a6d4b66c72bad1aec2273a8e675b4b75dbb3
 ---
 
 ---
@@ -35,6 +35,14 @@ to the implicit `workspace_user` membership. Archived workspaces return
 - `workspace_id: string`
 
   ID of the workspace.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

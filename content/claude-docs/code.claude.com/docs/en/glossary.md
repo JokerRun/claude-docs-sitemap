@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 034cd79aef4bfafac89de7de55086e283c68f1391ddacd64f5b7afcaeecc63c2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4835bb8cff3ee5737c5641622270972ef4e4188e814660783cbea03185a58937
 ---
 
 > ## Documentation Index
@@ -350,7 +350,7 @@ Learn more: [Context Claude Code adds outside the system prompt](/docs/en/agent-
 
 A command, `/teleport`, that pulls a cloud Claude Code session into your local terminal. Claude fetches the branch, loads the conversation history, and resumes from the cloud session's last state. The reverse direction is `--cloud`, which sends a local task to run in the cloud.
 
-Learn more: [From cloud to terminal](/docs/en/claude-code-on-the-web#from-cloud-to-terminal)
+Learn more: [Continue a cloud session in your terminal](/docs/en/claude-code-on-the-web#from-cloud-to-terminal)
 
 ### Tool
 

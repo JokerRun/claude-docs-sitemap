@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: aca052b1068c35d6789937b7d3cc7c0e4daa792ad0dd423d2226de93ced3729a
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: ae3acfab6dd40713b0c09e69c856f121e378dfc1cf690dfbf775d6c524d2ae05
 ---
 
 ---
@@ -2245,9 +2245,10 @@ Alat editor teks menggunakan struktur harga yang sama dengan alat lain yang digu
 
 Selain token dasar, token input tambahan berikut diperlukan untuk alat editor teks:
 
-| Alat                                | Token input tambahan |
-| ----------------------------------- | -------------------- |
-| `text_editor_20250429` (Claude 4.x) | 700 token            |
+| Alat                                                                                      | Token input tambahan |
+| ----------------------------------------------------------------------------------------- | -------------------- |
+| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token            |
+| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama)                             | 745 token            |
 
 Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing).
 

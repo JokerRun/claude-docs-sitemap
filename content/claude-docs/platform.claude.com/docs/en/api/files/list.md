@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 4bd49a066e5abf7ce4cbf5e11d83ba3f5d5224909a86f79438292b7a068fc116
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: aaf1467145d615a5639742036e7051a6f80fc69c5d503985b9d3b24a4b23e405
 ---
 
 ---
@@ -35,6 +35,12 @@ List Files
   Opaque page cursor returned in a prior list response's `next_page`. Prefixed `page_`.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

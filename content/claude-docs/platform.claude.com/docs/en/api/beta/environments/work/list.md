@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: cd9f308cd27b2d0a11943c46ca82e22e66ab9d987f3073f0d48828ef2033f41e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9ec74963701419763e7b09c3c717d40167fdc471de0e39307db8a98d7db207d4
 ---
 
 ---
@@ -35,6 +35,12 @@ List work items in an environment.
   Opaque cursor from previous response for pagination
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

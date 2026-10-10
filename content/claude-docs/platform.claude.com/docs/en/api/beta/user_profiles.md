@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: bd0100a923fd4a03ce0040abe41a17d5e5f35a2fa3987e5bdee1a754ee7bb207
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3e6681b62cb5192201b39eb997e0dd0e44c1c3f3d24cd381a3a97c2973276a3a
 ---
 
 ---
@@ -19,6 +19,8 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles
 Create User Profile
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -445,6 +447,8 @@ List User Profiles
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -743,6 +747,8 @@ Get User Profile
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1033,6 +1039,8 @@ Update User Profile
   The ID of the user profile to update (`uprof_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -1424,6 +1432,8 @@ Create Enrollment URL
   The ID of the user profile to create an enrollment URL for (`uprof_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

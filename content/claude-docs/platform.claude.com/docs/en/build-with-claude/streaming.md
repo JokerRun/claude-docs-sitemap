@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 2ac3217c9d40f87c9758d0083b668c5b3ba9506a4f1d78e3209fea4383ba12a2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a02a5bb2e5a36cbfab5dfdf4067606f7980eccc2cfd754155fd45469be47d20a
 ---
 
 ---
 title: Streaming messages
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-description: Stream Messages API responses incrementally with server-sent events, including text, tool use, and extended thinking deltas.
+description: Stream Messages API responses incrementally with server-sent events, including text, tool use, and thinking deltas.
 ---
 
 When creating a Message, you can set `"stream": true` to incrementally stream the response using [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
@@ -1514,7 +1514,7 @@ For Claude 4.6 and later models, the same capture-and-resume strategy applies, b
 ### Error recovery best practices
 
 1. **Use SDK features:** Leverage the SDK's built-in message accumulation and error handling capabilities.
-2. **Handle content types:** Be aware that messages can contain multiple content blocks (`text`, `tool_use`, `thinking`). Tool use and extended thinking blocks cannot be partially recovered. You can resume streaming from the most recent text block.
+2. **Handle content types:** Be aware that messages can contain multiple content blocks (`text`, `tool_use`, `thinking`). Tool use and thinking blocks cannot be partially recovered. You can resume streaming from the most recent text block.
 
 ## Next steps
 

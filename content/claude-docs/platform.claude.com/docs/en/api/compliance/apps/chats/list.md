@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c5fbf0fb95e84ece30d05c743c6501dd0741643603dfda2546e26bc0491787b1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f1cf54fb1fbf10c337399a0d56b20c4a754b1cf1c45de5d0a98c0c20c02d689c
 ---
 
 ---
@@ -125,6 +125,12 @@ no time filter) with the default `order_by`. `user_ids[]` with
   maxItems: 10
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

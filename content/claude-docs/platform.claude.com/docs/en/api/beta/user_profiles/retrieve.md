@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: afd0be712cc4da3a5d58fed29e96600d09725f97a3830adf974c2d5998ee7a89
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6ef3e42a3fc7cddffa398bc6fb665314bcfd90d0569187d5db564e5439d60c84
 ---
 
 ---
@@ -23,6 +23,8 @@ Get User Profile
   The ID of the user profile to get (`uprof_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

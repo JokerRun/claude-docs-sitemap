@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a44121ae5e801f70fbe00bda98b7b07413094f1181967fac7732ce716a5f457f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a919daeeb9ecd63dcbe8545c53cf54d460a3e1f22c451f561fc88cad9d3e28f8
 ---
 
 ---
@@ -144,6 +144,12 @@ Get Messages Usage Report
   Restrict usage returned to the specified workspace ID(s).
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -443,6 +449,14 @@ Enables organizations to analyze developer productivity and build custom dashboa
 - `page: optional string`
 
   Opaque cursor token from previous response's `next_page` field.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

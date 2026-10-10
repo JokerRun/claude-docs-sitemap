@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b3c1fa85f7134391d0bcad5cfd8dcfe32bd30f696257f38cdcf0809fb2b75868
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a59189eced486cdcdb599521ff7c89b3014fe911e8438459b46d61966d7641a2
 ---
 
 ---
@@ -23,6 +23,8 @@ Update User Profile
   The ID of the user profile to update (`uprof_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

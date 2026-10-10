@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 538d77ce4810df308c63cdf482f867addca86fd8d9720af3918395ff41e80e81
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cf17f379c74f077fa54aba5960708fbb468c54a78611c97d55dc83ca8d49212a
 ---
 
 ---
@@ -19,6 +19,14 @@ url: https://platform.claude.com/docs/en/api/organization/invites
 Invite a user to join the organization by email.
 
 On plans that draw members from a finite pool of purchased seats, the invite automatically consumes a seat from the lowest tier with availability; there is no seat-tier parameter. When no seat is free the request fails with a 400 error rather than purchasing a seat.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -203,6 +211,14 @@ List the organization's invites.
 
   - `"pending"`
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `data: array of OrganizationInvite`
@@ -336,6 +352,14 @@ Retrieve an invite by ID.
 
   ID of the Invite.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `OrganizationInvite object`
@@ -449,6 +473,14 @@ Delete a pending invite.
 - `invite_id: string`
 
   ID of the Invite.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

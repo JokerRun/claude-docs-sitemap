@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 578f91d93b3705d6cd82f2f52f0b30ae0e379e57d6a8b7a094a1cdb7714cd1ff
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9b3ed9b41473a8fa700fdbeeec792b67aedf27a53d4e57f3e4fb0d05c8cf8997
 ---
 
 ---
@@ -30,7 +30,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Amazon Bedrock: not available
     Google Cloud: beta
     Microsoft Foundry: beta
 ---
@@ -840,7 +839,7 @@ Anda kini memiliki loop yang berfungsi untuk melakukan compaction pada percakapa
 
 * **Compaction ambang batas dan pengeditan konteks.** Anda tidak dapat mengirim `compaction` dan `context_management` dalam permintaan yang sama. Compaction ambang batas (`compact_20260112`) tidak dapat berjalan pada permintaan yang membawa blok bertanda tangan.
 * **Caching prompt.** `cache_control` pada blok menempatkan breakpoint setelah ringkasan.
-* **Pesan sistem dan perubahan alat di tengah percakapan.** Pesan `role: "system"` di dalam rentang yang diringkas juga ikut diringkas, sehingga instruksi teksnya tidak lagi berlaku setelah blok menggantikannya. Jika suatu instruksi masih penting, nyatakan kembali dalam pesan `role: "system"`. Kirim pesan tersebut tepat setelah giliran `user` baru Anda berikutnya, dan biarkan pesan itu tetap ada di riwayat Anda sejak saat itu. Untuk [perubahan alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), dan untuk posisi pesan tersebut ketika Anda mempertahankan giliran setelah blok, lihat [Mengubah prompt sistem atau alat](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#change-the-system-prompt-or-tools).
+* **Pesan sistem di tengah percakapan dan perubahan alat.** Pesan `role: "system"` di dalam rentang yang diringkas juga ikut diringkas, sehingga instruksi teksnya tidak lagi berlaku setelah blok menggantikannya. Level [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) yang diatur oleh pesan tersebut juga tidak terbawa: hingga pesan berikutnya mengatur level, giliran berjalan dengan `output_config.effort` tingkat atas dari permintaan, atau default model jika Anda tidak mengaturnya. Jika sebuah instruksi atau level effort masih penting, nyatakan lagi dalam pesan `role: "system"`. Kirim pesan itu tepat setelah giliran `user` baru Anda berikutnya, dan biarkan tetap ada di riwayat Anda sejak saat itu. Untuk [perubahan alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), dan untuk posisi pesan tersebut ketika Anda mempertahankan giliran setelah blok, lihat [Mengubah prompt sistem atau alat](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#change-the-system-prompt-or-tools).
 * **Anggaran tugas.** Jangan kirim nilai `remaining` dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (`output_config.task_budget.remaining`) bersama `compaction` atau pada permintaan yang membawa blok. Melakukannya akan mengembalikan error 400.
 * **Penghitungan token.** Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) mengabaikan parameter `compaction`.
 * **Konten yang tidak dapat dibawa oleh ringkasan.** Gambar, dokumen, blok `container_upload`, dan URL yang diambil di dalam pesan yang diringkas akan hilang setelah blok menggantikannya. Nyatakan ulang atau unggah ulang apa pun yang masih dibutuhkan oleh giliran berikutnya.

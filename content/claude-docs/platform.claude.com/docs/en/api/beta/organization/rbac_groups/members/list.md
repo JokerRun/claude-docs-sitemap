@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 8e9b919996eaa310fd868819f866f2977fd0fbdad7d29a8460b92c318742f2c2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d5558b481dd727a110394383fdab158ead25d74b1749c3da55b031c18daa254e
 ---
 
 ---
@@ -37,6 +37,14 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 - `page: optional string`
 
   Optionally set to the `next_page` token from the previous response.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

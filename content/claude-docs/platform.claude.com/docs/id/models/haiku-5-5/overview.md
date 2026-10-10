@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 126e849d662f5fc5b70a6adf1c5bc4a37c777e13758e5ef6f1aeaae9ff4218fd
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7332cf86e0d9ed8b7a3669d520b45b982db397872b1e4d1ddc3c8dbabc5164cf
 ---
 
 ---
@@ -97,8 +97,9 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
 ## Hal yang perlu diketahui
 
 * "Adaptive thinking" (pemikiran adaptif) aktif secara default. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
-* Hilangkan `temperature`, `top_p`, dan `top_k`, karena nilai non-default untuk salah satunya akan mengembalikan error 400.
+* Hilangkan `temperature`, `top_p`, dan `top_k`. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters) untuk nilai-nilai yang menghasilkan error 400.
 * Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Haiku 5.5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
+* Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya
@@ -117,7 +118,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
   </Card>
 
   <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
-    1M token. Cara jendela dihitung dan dikelola.
+    Bagaimana jendela konteks dihitung dan dikelola.
   </Card>
 </CardGroup>
 

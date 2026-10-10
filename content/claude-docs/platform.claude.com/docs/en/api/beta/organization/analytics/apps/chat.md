@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/apps/chat
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 087383a16b4f674cfb712c54060c097bed4ed2d8d0644661fefc143ab930354c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4d499e2039491fb87dfc0e384ae2a6ec22cd28dc40e62a2f6820882bab70c19e
 ---
 
 ---
@@ -83,6 +83,14 @@ plan. Requires an API key with the `read:analytics` scope.
   UTC date in YYYY-MM-DD format. Start of a date range (inclusive). Enables rollup mode: one row per entity aggregated over the whole range — addable counters are summed across days, and a distinct count is never summed where summing could double-count (a field's range value is recomputed exactly over the window, approximate via HLL with typical error under 2%, null, or — for the creation-event counts, whose per-day values cannot overlap — a per-day sum that is itself exact; each field's own description says which). Use either `date` or `starting_date`, not both. Data is typically available with a 1-day lag (varies by query; the error for a too-recent date names the latest available day) and may be revised by a few percent over the following days. No earlier than 2026-01-01.
 
   format: date
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 #### Returns
 

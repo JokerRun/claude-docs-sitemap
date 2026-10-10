@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 173047702e004e0d2ec0d9fb02ba11864d5173836b25eddf57b2f739daf5a234
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f74bfd21220fe920690546fae0ace6fc20c1d38807ccbe201ffcae14b92a432b
 ---
 
 ---
@@ -27,10 +27,7 @@ featureMetadata:
     - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
-    Claude Platform on AWS: not available
-    Amazon Bedrock: not available
     Google Cloud: ga
-    Microsoft Foundry: not available
 ---
 
 Alat browser use memungkinkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang dijalankan oleh aplikasi Anda. Claude bekerja dengan halaman melalui strukturnya ("accessibility tree" (pohon aksesibilitas), elemen, formulir, dan tab) sekaligus melalui screenshot dan koordinat viewport.
@@ -1577,7 +1574,7 @@ API memvalidasi entri toolset dan setiap blok `tool_use` dan `tool_result` anggo
 
 Penggunaan browser mengikuti [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) standar. Saat menggunakan alat penggunaan browser:
 
-**Overhead definisi toolset:** Mendeklarasikan `browser_toolset_20260801` dengan anggota defaultnya menambahkan sekitar 6.600 token input ke sebuah permintaan (sekitar 6.610 pada Claude Fable 5, Claude Mythos 5, Claude Opus 5, dan Claude Opus 4.8, serta sekitar 6.670 pada Claude Sonnet 5), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Mengaktifkan keempat anggota opsional menambahkan sekitar 880 token, dan menonaktifkan anggota dengan `configs` mengurangi jumlahnya. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+**Overhead definisi toolset:** Mendeklarasikan `browser_toolset_20260801` dengan anggota default-nya menambahkan sekitar 6.600 token input ke sebuah permintaan (sekitar 6.670 pada Claude Sonnet 5 dan sekitar 6.610 pada model lain yang didukung), yang mencakup definisi alat anggota dan prompt sistem penggunaan alat. Mengaktifkan keempat anggota opsional menambahkan sekitar 880 token, dan menonaktifkan anggota dengan `configs` mengurangi jumlahnya. Jumlah pasti untuk sebuah permintaan dilaporkan dalam `usage` respons, dan Anda dapat memperkirakannya terlebih dahulu dengan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 **Konsumsi token tambahan:**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c93fc26ba9032b5d731edc7b9c238d6f8dea55c18a14376f79df5bc8c6c3d4bf
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 65944758bc5d9c4f45e146f26c19be175bc5c8ef327126cda2f54978d68de2d9
 ---
 
 ---
@@ -23,6 +23,8 @@ Add Session Resource
 - `session_id: string`
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -227,6 +229,8 @@ List Session Resources
   Opaque cursor from a previous response's `next_page` field.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -505,6 +509,8 @@ Get Session Resource
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -760,6 +766,8 @@ Update Session Resource
 - `resource_id: string`
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -1028,6 +1036,8 @@ Delete Session Resource
 - `resource_id: string`
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

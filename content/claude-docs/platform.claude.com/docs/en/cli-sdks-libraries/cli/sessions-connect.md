@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 424b483b9d235f78a687e01b1432309d6dcd59335d9e1d11e265847ded5dc38b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e8560de9ce7a70c170f00d6995f92d0484364243da50e7b6d6ff71bc5b8230b0
 ---
 
 ---
@@ -29,7 +29,7 @@ Press Ctrl+C to detach. The session keeps running, and connecting again loads it
 
 ## Follow and steer the session
 
-The terminal view shows the conversation live: messages and tool calls, with each call's duration and outcome. A status bar shows whether the session is running, idle, or waiting for your approval. In [multiagent](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration) sessions, the view follows the session's primary thread, which includes the messages the coordinator exchanges with the agents it delegates to.
+The terminal view shows the conversation live: messages and tool calls, with each call's duration and outcome. A status bar shows whether the session is running, idle, or waiting for your approval. In [multiagent](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration) sessions, the view follows the session's primary thread, which includes the messages exchanged between the agent that the session runs and the agents it delegates to.
 
 | Key                | Action                                                                                                                     |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |

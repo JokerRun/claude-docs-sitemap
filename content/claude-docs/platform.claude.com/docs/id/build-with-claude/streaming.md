@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a04aed3430b9ac0a65becc6d6a19d61ac14f498eb7727e6c25fce392d279851e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e84eb7d21a821670b50ddee64293bc9affd43226a6b820d8cfcf2d868777ff5c
 ---
 
 ---
 title: Streaming pesan
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-description: Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+description: Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran.
 ---
 
 Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakukan streaming respons secara bertahap menggunakan [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).
@@ -1514,7 +1514,7 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 ### Praktik terbaik pemulihan error
 
 1. **Gunakan fitur SDK:** Manfaatkan kemampuan akumulasi pesan dan penanganan error bawaan SDK.
-2. **Tangani jenis konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks terbaru.
+2. **Tangani jenis konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks terbaru.
 
 ## Langkah selanjutnya
 

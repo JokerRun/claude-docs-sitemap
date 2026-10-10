@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 2356c6ef24636bccaef0ac790d33801c70a3acfe6c0962034b1fd65c9e7909c7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f58cae5501425a5a91c06494b3352853e0f8fe5a65aca25a065b9978c1d2ae8f
 ---
 
 ---
@@ -19,6 +19,8 @@ url: https://platform.claude.com/docs/en/api/beta/deployments
 Create Deployment
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -1204,6 +1206,8 @@ List Deployments
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -1935,6 +1939,8 @@ Get Deployment
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -2656,6 +2662,8 @@ Update Deployment
   Unique identifier of the deployment to update.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -3789,6 +3797,8 @@ Archive Deployment
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -4512,6 +4522,8 @@ Run Deployment Now
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -4896,6 +4908,8 @@ Pause Deployment
   Unique identifier of the deployment to pause.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -5619,6 +5633,8 @@ Unpause Deployment
   Unique identifier of the deployment to unpause.
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

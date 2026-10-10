@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: acdecf5c57c6a0f6e0c2b4d3ea7e67b7a269602d86be0e223ba60625b5b6966e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5209de116d9c5274d687cd44d09d2e0ce9b4ceca35c40856f0a1192a558f3924
 ---
 
 ---
@@ -27,6 +27,12 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   ID of the Message Batch.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

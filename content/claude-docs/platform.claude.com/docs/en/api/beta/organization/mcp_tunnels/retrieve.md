@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 9c4fca387cd0a5681a94410e3e682a27f5de104ff4d8ccfc13367c50f9e57a43
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5abc3d8002129162b6ca8224f32aeb2ee7af025b0546fb14460b8d4adc3c8f8a
 ---
 
 ---
@@ -27,6 +27,12 @@ Retrieve a single tunnel in the caller's organization by ID.
   ID of the Tunnel.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

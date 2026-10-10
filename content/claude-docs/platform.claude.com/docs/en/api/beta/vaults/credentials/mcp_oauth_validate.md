@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2965cb4063a23e84609da8ca59dfc010ec57c07bc3670db041b9e2dd4e63601f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: af1f6efd2180c78964b4330f880a797e02f0d4f5df76549e49f868d816fc185b
 ---
 
 ---
@@ -27,6 +27,8 @@ Validate Credential
   Unique identifier of the credential to validate.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

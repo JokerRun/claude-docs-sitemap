@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/delete
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 9da962f777a7120a6b80445c6cda318df9b6a374aad9e61b8536aa7ce3304486
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a0d5b7f5e2da621ef842b27fb9a79351566d2802c3b0d2494c7fef87fd48fa29
 ---
 
 ---
@@ -23,6 +23,12 @@ Delete File
   ID of the File.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

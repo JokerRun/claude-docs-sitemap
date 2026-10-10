@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 3a011aca5aa667a58410617fa7eb97b039c00429f8fc55aa9fc5e498ae4853ce
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3eea47c92ffadda53b5e9a7f13e0c557d731ccba42c9f7e7b38c84d9117f7044
 ---
 
 ---
@@ -21,6 +21,14 @@ Retrieve a spend limit by ID.
 - `spend_limit_id: string`
 
   ID of the Spend Limit.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

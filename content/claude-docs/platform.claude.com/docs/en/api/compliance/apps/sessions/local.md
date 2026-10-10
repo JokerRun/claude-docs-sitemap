@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c4c5c9b59b27ad19eeb734c312541c86c20b96147ab0acd3d0fe90deeb07ade1
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 3b41543b5afefd22c1ca3269ba5c4cba541d0fe57348468eeacffb0704a624fd
 ---
 
 ---
@@ -56,6 +56,12 @@ forward-only via `next_page`; there is no reverse cursor.
     format: date-time
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -165,6 +171,12 @@ inference call has aged out returns 404.
 - `local_session_id: string`
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 
@@ -424,6 +436,12 @@ response header.
   default: 10000, minimum: -1, maximum: 2147483647
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

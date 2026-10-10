@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 101c9710b07a8d1c0816e5c6b5dda927decaf77a40eece3495f4680c97b7c792
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6a618a8f484d16733c9068d7bc8d3f9355aa69b78cd8082cdcea712749c8938b
 ---
 
 ---
@@ -17,6 +17,12 @@ url: https://platform.claude.com/docs/en/api/files/upload
 Upload File
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-workspace-id": optional string`
 

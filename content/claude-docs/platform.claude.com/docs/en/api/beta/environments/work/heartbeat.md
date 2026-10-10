@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 97d245057e2c25e5e8b0e53eca35d7570f290aaa267fda379cd6e6c8d5de48e5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: cd962860235720a918e05d5889d8d653bc1e42bf18861c4f71b848b36a59044f
 ---
 
 ---
@@ -35,6 +35,12 @@ Record a heartbeat for a work item to maintain the lease.
   Expected last_heartbeat for conditional update (optimistic concurrency). Use literal 'NO_HEARTBEAT' to claim an unclaimed lease (first heartbeat). For subsequent heartbeats, echo the server's previous last_heartbeat value exactly. Returns 412 Precondition Failed if the actual value doesn't match.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

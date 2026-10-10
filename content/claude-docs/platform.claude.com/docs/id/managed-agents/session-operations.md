@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: b32a42750a78563819646ff6b2590a9c9a829bf0c0ef95a9f24924588a24c21f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d61f48a90ad31c7080e7bd7e7b495391dfd16324802d174dd5e3ae8f9b20a5d8
 ---
 
 ---
@@ -23,12 +23,12 @@ Setelah sebuah sesi ada, gunakan operasi-operasi ini untuk membaca, memperbarui,
 
 Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk siklus hidup sesi.
 
-| Status         | Deskripsi                                                                                                                                                                       |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` dimulai dalam status `idle`.                                  |
-| `running`      | Agen sedang aktif mengeksekusi.                                                                                                                                                 |
-| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                                                     |
-| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan maupun karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya menjadi `idle`, bukan `terminated`. |
+| Status         | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` dimulai dalam status `idle`. Sebuah sesi dapat berstatus `idle` saat sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) masih terbuka, sehingga `idle` saja tidak berarti pekerjaan telah selesai. Lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done). |
+| `running`      | Agen sedang aktif mengeksekusi.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan maupun karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya menjadi `idle`, bukan `terminated`.                                                                                                                                                                                                                                                                                                                                             |
 
 ## Memperbarui konfigurasi agen
 
@@ -38,7 +38,7 @@ Hanya `tools` dan `mcp_servers` milik agen yang dapat berubah setelah sesi dibua
 
 Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, ubah array-nya, lalu `POST` kembali.
 
-Sesi harus dalam status `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat sesi sedang berjalan, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`. Jika sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) terbuka, baik sedang berjalan maupun dijeda, pembaruan akan mengembalikan kesalahan 400, bahkan ketika sesi berstatus `idle`. Interupsi tidak mengakhiri eksekusi, sehingga pembaruan tetap gagal setelah Anda menginterupsi sesi. Kirimkan `user.message` yang [meminta agen untuk menghentikan eksekusinya](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open), atau tunggu hingga setiap eksekusi berakhir.
 
 <CodeGroup>
   ```bash cURL
@@ -540,7 +540,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi yang berstatus `running` tidak dapat diarsipkan; untuk mengarsipkannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`. Jika sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) terbuka, pengarsipan mungkin mengembalikan kesalahan 400, bahkan ketika sesi berstatus `idle`, atau mungkin berhasil dan mengakhiri eksekusi tersebut. Sebelum Anda mengarsipkan, kirimkan `user.message` yang [meminta agen untuk menghentikan eksekusinya](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open), atau tunggu hingga setiap eksekusi berakhir. Kemudian arsipkan sesi setelah berstatus `idle`.
 
 <CodeGroup>
   ```bash cURL
@@ -589,7 +589,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghilangkan secara permanen catatan, event, dan sandbox terkaitnya. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`.
+Hapus sesi untuk menghapus secara permanen catatan, event, dan sandbox terkaitnya. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`. Jika sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) terbuka, penghapusan mungkin mengembalikan kesalahan 400, bahkan ketika sesi berstatus `idle`, atau mungkin berhasil. Setelah penghapusan berhasil, tidak ada event `workflow_run` yang melaporkan berakhirnya eksekusi milik sesi tersebut. Sebelum Anda menghapus, kirimkan `user.message` yang [meminta agen untuk menghentikan eksekusinya](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open), atau tunggu hingga setiap eksekusi berakhir. Kemudian hapus sesi setelah berstatus `idle`.
 
 Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama sistem file-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi. File output yang ditulis di akhir giliran terakhir dapat memerlukan beberapa detik setelah sesi menjadi idle untuk muncul di [daftar file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files), jadi periksa terlebih dahulu bahwa file yang Anda harapkan sudah terdaftar.
 

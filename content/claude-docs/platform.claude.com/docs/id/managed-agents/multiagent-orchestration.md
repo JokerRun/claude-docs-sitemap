@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 04bbd911ca39d31fd610fc20de742a2b7f016e91fa98e85a0f31b4057376c2d7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 196cfa93a5bbb32c8d1caff2e96dd4cb9e3d6f6adbdd0dad63b5206387d0764e
 ---
 
 ---
@@ -21,13 +21,78 @@ Orkestrasi multiagen memungkinkan satu agen berkoordinasi dengan agen lain untuk
 
 Tidak yakin apakah pengaturan multiagen cocok untuk masalah Anda? Lihat [kapan menggunakan sistem multiagen (dan kapan tidak)](https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them).
 
-## Cara kerjanya
+## Serahkan pekerjaan ke agen lain
 
-Semua agen berbagi sandbox, filesystem, dan [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) yang sama, tetapi setiap agen berjalan dalam **session thread** (thread sesi) miliknya sendiri, yaitu aliran event yang terisolasi konteksnya dengan riwayat percakapannya sendiri. Koordinator melaporkan aktivitas di **primary thread** (thread utama), yang sama dengan [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) tingkat sesi; thread tambahan dibuat saat runtime ketika koordinator mendelegasikan pekerjaan.
+Agen yang dijalankan oleh sebuah sesi dapat menyerahkan pekerjaan ke agen lain dengan dua cara. Dengan **subagents** (subagen), agen mendelegasikan tugas sendiri dan membaca apa yang dilaporkan setiap subagen. Dengan **dynamic workflows** (alur kerja dinamis), agen menulis sebuah workflow: program yang menjalankan banyak agen di latar belakang dan menggabungkan hasilnya. Agen juga dapat berkonsultasi dengan model **advisor** (penasihat) untuk mendapatkan panduan sementara ia mengerjakan pekerjaannya sendiri.
 
-Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang dipanggilnya sebelumnya, dan agen tersebut mempertahankan semua hal dari giliran sebelumnya.
+Anda menentukan mana di antara ini yang dapat digunakan agen, dan agen menentukan kapan menggunakannya. Untuk memandu pilihan tersebut, beri tahu agen dalam prompt sistemnya kapan harus menggunakan eksekusi workflow. Lihat [Beri tahu agen kapan menggunakan eksekusi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#tell-the-agent-when-to-use-a-run). Anda juga dapat membatasi agen hanya pada agen-agen yang Anda cantumkan.
 
-Setiap agen menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill. [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) tingkat sesi adalah pengecualian; override tersebut berlaku untuk koordinator dan salinan `self`-nya. Alat, server MCP, dan konteks tidak dibagikan.
+Dengan subagen, agen itu sendiri yang menentukan apa yang terjadi selanjutnya. [Thread subagen](https://platform.claude.com/docs/id/managed-agents/session-threads) tetap tersedia hingga Anda mengarsipkannya, sehingga agen dapat mengirimkan pesan lanjutan kepadanya. Dengan alur kerja dinamis, Claude menulis program untuk mengorkestrasi agen tanpa keterlibatan langsung Claude. Konteks dan hasil diteruskan secara terprogram dari satu agen ke agen lain, sehingga thread sesi utama bebas untuk berkomunikasi dengan pengguna dan memeriksa satu atau beberapa workflow yang sedang berjalan untuk melaporkan kemajuan. Agen tidak dapat mengirim pesan lanjutan ke thread milik sebuah eksekusi, dan server mengarsipkan masing-masing thread tersebut paling lambat saat eksekusinya berakhir.
+
+| Pendekatan                                                                                                                           | Apa yang terjadi                                                                                                                                                                                                                                                                                      | Gunakan ketika                                                                                                                                                                                                                                     | Pertimbangkan                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#delegate-to-subagents)                         | Agen mendelegasikan tugas ke subagennya. Setiap subagen bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) miliknya sendiri, yang dapat Anda cantumkan dan stream.                                                                                          | Agen perlu menindaklanjuti subagen setelah subagen melapor, atau agen membutuhkan spesialis yang Anda cantumkan, dengan prompt sistem dan alat mereka sendiri.                                                                                     | Delegasi hanya sedalam satu tingkat, dan sebuah sesi dapat memiliki paling banyak 25 thread anak sekaligus, termasuk yang idle. Thread advisor dan thread milik eksekusi workflow tidak dihitung.                                                                                                                                                                 |
+| [Alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows)                  | Agen menulis sebuah workflow: program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan hasilnya. Server menjalankannya di latar belakang sebagai satu eksekusi workflow, yang dapat Anda ikuti. Workflow mendefinisikan agen-agennya atau memilihnya dari daftar yang Anda berikan. | Sebagian besar pekerjaan yang membutuhkan lebih dari satu agen: pekerjaan dengan banyak bagian, pekerjaan paralel, atau tugas panjang yang sebaiknya selesai lebih cepat. Contohnya adalah audit, migrasi, riset mendalam, dan pemeriksaan silang. | Setiap agen dalam sebuah eksekusi menggunakan token, jadi tetapkan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk membatasi pengeluaran sesi, termasuk eksekusi. Beri tahu agen dalam prompt sistemnya kapan harus menggunakan eksekusi. Anda mengikuti eksekusi berdasarkan fase-fasenya dan dapat membaca setiap thread-nya. |
+| [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) | [Thread utama](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#how-it-works) sesi berkonsultasi dengan model advisor di tengah giliran untuk mendapatkan panduan, seperti merencanakan pendekatan atau meninjau pekerjaan, dan tetap mengerjakan pekerjaannya sendiri.    | Satu agen sebaiknya mengerjakan pekerjaan, dengan penilaian model advisor pada momen-momen penting seperti perencanaan atau tinjauan akhir.                                                                                                        | Hanya thread utama yang dapat berkonsultasi dengan advisor, dan konsultasi ditagih sesuai tarif model advisor.                                                                                                                                                                                                                                                    |
+
+Anda mengatur ini di blok `multiagent` pada definisi agen, yang memiliki sebuah `type`. Dengan tipe `multiagent_20261001`, sebuah agen dapat menggunakan ketiganya bersama-sama, dan Anda dapat mengaktifkan atau menonaktifkan masing-masing. Secara default, `subagents` dan `workflows` keduanya diaktifkan. `subagents` dan `workflows` masing-masing memiliki `inline_agents` yang diaktifkan, yaitu pengaturan untuk [agen yang didefinisikan sendiri oleh agen atau workflow](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents):
+
+```json
+{
+  "multiagent": { "type": "multiagent_20261001" }
+}
+```
+
+Untuk mengatur agen mana yang dapat dipanggil oleh agen, lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents). Untuk menonaktifkan sebuah pengaturan, lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows).
+
+## Agen predefined dan inline
+
+Setiap subagen, dan setiap agen dalam sebuah eksekusi workflow, adalah salah satu dari dua jenis:
+
+* **Agen predefined (agen yang telah ditentukan sebelumnya):** Agen yang telah Anda [buat](https://platform.claude.com/docs/id/managed-agents/agent-setup), dan yang Anda cantumkan di blok `multiagent`. Agen ini menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill.
+* **Agen inline:** Agen yang tidak disimpan. Agen yang dijalankan sesi, atau sebuah workflow, mendefinisikannya saat membagikan pekerjaan. Agen ini menggunakan model, alat, server MCP, dan skill milik agen tersebut.
+
+Kedua jenis berfungsi di bawah `subagents` dan di bawah `workflows`:
+
+| Jenis agen | Di bawah `subagents`                                                                                                      | Di bawah `workflows`                                                                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Predefined | Agen dapat mendelegasikan ke agen-agen yang Anda cantumkan di `subagents.predefined_agents`.                              | Sebuah workflow dapat menggunakan agen-agen yang Anda cantumkan di `workflows.predefined_agents`.                                                               |
+| Inline     | Agen dapat mendefinisikan agen inline saat mendelegasikan. `subagents.inline_agents` mengaktifkan atau menonaktifkan ini. | Sebuah workflow dapat mendefinisikan agen inline, dan menulis prompt sistem untuk masing-masing. `workflows.inline_agents` mengaktifkan atau menonaktifkan ini. |
+
+`subagents.predefined_agents` dan `workflows.predefined_agents` adalah dua daftar terpisah. Agen di satu daftar tidak ditambahkan ke daftar lainnya. Kedua daftar kosong secara default. Entri di salah satu daftar mengambil salah satu bentuk berikut:
+
+* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika tidak ada `version` yang ditentukan, referensi disematkan ke versi terbaru agen saat agen yang mencantumkannya dibuat, atau saat sebuah pembaruan mengirimkan daftar tersebut.
+* `{"type": "agent", "id": agent.id, "version": agent.version}` menyematkan versi agen tertentu.
+* `agent.id` saja, sebagai string, adalah singkatan dari `{"type": "agent", "id": agent.id}`.
+* `{"type": "self"}` mencantumkan agen itu sendiri, sehingga salinan dirinya dapat mengerjakan pekerjaan. Jika sesi dibuat dengan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session), override tersebut juga berlaku untuk salinan-salinan ini. Entri yang direferensikan berdasarkan ID tidak terpengaruh.
+
+Aturan untuk entri-entri ini, dan untuk agen yang disebutkannya, berlaku untuk kedua daftar. Lihat [Cantumkan subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#list-the-subagents).
+
+Agen inline aktif secara default di bawah kedua pengaturan. Untuk hanya mengizinkan agen yang Anda cantumkan, atur `inline_agents` ke `{"type": "disabled"}` di bawah `subagents`, di bawah `workflows`, atau di bawah keduanya. Pengaturan dengan agen inline dinonaktifkan memerlukan setidaknya satu agen dalam daftar `predefined_agents`-nya. Dengan daftar kosong, permintaan gagal dengan error 400. Pada pembaruan, server memeriksa pengaturan sebagaimana adanya setelah pembaruan.
+
+Agen berikut hanya mengizinkan agen yang dicantumkannya. Agen ini dapat mendelegasikan ke satu agen dan ke salinan dirinya sendiri, dan sebuah workflow dapat menggunakan versi 2 dari agen lain:
+
+```json
+{
+  "multiagent": {
+    "type": "multiagent_20261001",
+    "subagents": {
+      "type": "enabled",
+      "inline_agents": { "type": "disabled" },
+      "predefined_agents": ["agent_01J8XkN5uT3vHpLqRfWdY2", { "type": "self" }]
+    },
+    "workflows": {
+      "type": "enabled",
+      "inline_agents": { "type": "disabled" },
+      "predefined_agents": [
+        { "type": "agent", "id": "agent_01Lm4cV8yQ2tNs7XbKdR5h", "version": 2 }
+      ]
+    }
+  }
+}
+```
+
+## Delegasikan ke subagen
 
 ### Apa yang perlu didelegasikan
 
@@ -35,17 +100,25 @@ Koordinasi multiagen paling cocok untuk tugas kompleks yang memerlukan pekerjaan
 
 Pola yang bekerja dengan baik:
 
-* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan minta koordinator mensintesis hasilnya.
-* **Spesialisasi:** Arahkan ke agen dengan prompt sistem dan alat yang berfokus pada domain tertentu, seperti agen keamanan atau agen dokumentasi, daripada membebani satu agen dengan semua kemampuan.
-* **Eskalasi:** Konsultasikan dengan agen atau model yang lebih mumpuni untuk sebagian subtugas yang kompleks.
+* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan minta agen menyintesis hasilnya.
+* **Spesialisasi:** Rutekan ke agen dengan prompt sistem dan alat yang berfokus pada domain, seperti agen keamanan atau agen dokumentasi, alih-alih membebani satu agen dengan setiap kemampuan.
+* **Eskalasi:** Konsultasikan dengan agen atau model yang lebih mampu untuk sebagian subtugas yang kompleks. Untuk berkonsultasi dengan model, [berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
-## Konfigurasikan koordinator
+### Cara kerjanya
 
-Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `multiagent` untuk mendeklarasikan daftar (roster) agen yang dapat didelegasikan oleh koordinator:
+Semua agen berbagi sandbox, sistem file, dan [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) yang sama, tetapi setiap agen berjalan di **session thread** (thread sesi) miliknya sendiri, yaitu aliran event dengan konteks terisolasi yang memiliki riwayat percakapannya sendiri. Agen yang dijalankan sesi melaporkan aktivitas di **primary thread** (thread utama), yang merupakan [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) tingkat sesi. Thread tambahan dibuat saat runtime ketika agen mendelegasikan pekerjaan. Sebuah eksekusi workflow juga membuat thread.
+
+Thread subagen bersifat persisten. Agen dapat mengirim tindak lanjut ke subagen yang dipanggilnya sebelumnya, dan subagen tersebut mempertahankan semua hal dari giliran-giliran sebelumnya.
+
+Konfigurasi mana yang digunakan subagen bergantung pada apakah ia merupakan [agen predefined atau inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents). [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) tingkat sesi berlaku untuk agen yang dijalankan sesi dan untuk salinan `self`-nya. Setiap agen mempertahankan riwayat percakapannya sendiri.
+
+### Cantumkan subagen
+
+Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `subagents.predefined_agents` di blok `multiagent` untuk mencantumkan agen-agen yang dapat menjadi tujuan delegasinya:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  coordinator=$(curl -fsS https://api.anthropic.com/v1/agents \
+  lead_agent=$(curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -61,11 +134,14 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
       }
     ],
     "multiagent": {
-      "type": "coordinator",
-      "agents": [
-        {"type": "agent", "id": "$REVIEWER_AGENT_ID"},
-        {"type": "agent", "id": "$TEST_WRITER_AGENT_ID"}
-      ]
+      "type": "multiagent_20261001",
+      "subagents": {
+        "type": "enabled",
+        "predefined_agents": [
+          {"type": "agent", "id": "$REVIEWER_AGENT_ID"},
+          {"type": "agent", "id": "$TEST_WRITER_AGENT_ID"}
+        ]
+      }
     }
   }
   EOF
@@ -74,32 +150,42 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
 
   <CodeGroupItem>
     ```bash CLI
+    # Buat subagent, lalu baca ID-nya dari lockfile.
+    ant apply reviewer.md test-writer.md
+    REVIEWER_AGENT_ID=$(jq -er '.resources["./reviewer.md"].id' claude-lock.json)
+    TEST_WRITER_AGENT_ID=$(jq -er '.resources["./test-writer.md"].id' claude-lock.json)
+
+    # Tulis definisi agent, dengan mencantumkan setiap subagent berdasarkan ID.
+    cat > engineering-lead.md <<EOF
+    ---
+    name: Engineering Lead
+    model: claude-opus-5-5
+    tools:
+      - type: agent_toolset_20260401
+    multiagent:
+      type: multiagent_20261001
+      subagents:
+        type: enabled
+        predefined_agents:
+          - type: agent
+            id: $REVIEWER_AGENT_ID
+          - type: agent
+            id: $TEST_WRITER_AGENT_ID
+    ---
+
+    You coordinate engineering work. Delegate code review to the reviewer agent
+    and test writing to the test agent.
+    EOF
+
+    # Buat agent.
     ant apply engineering-lead.md reviewer.md test-writer.md
     ```
-
-    <File filename="engineering-lead.md">
-      ```markdown
-      ---
-      name: Engineering Lead
-      model: claude-opus-5-5
-      tools:
-        - type: agent_toolset_20260401
-      multiagent:
-        type: coordinator
-        agents: # paths: ant apply substitutes {type: agent, id, version}
-          - ./reviewer.md
-          - ./test-writer.md
-      ---
-
-      You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.
-      ```
-    </File>
 
     <File filename="reviewer.md">
       ```markdown
       ---
       name: reviewer
-      model: claude-haiku-4-5
+      model: claude-haiku-5-5
       ---
 
       You are a code reviewer.
@@ -110,7 +196,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
       ```markdown
       ---
       name: test-writer
-      model: claude-haiku-4-5
+      model: claude-haiku-5-5
       ---
 
       You write unit tests.
@@ -119,7 +205,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   </CodeGroupItem>
 
   ```python Python
-  coordinator = client.beta.agents.create(
+  lead_agent = client.beta.agents.create(
       name="Engineering Lead",
       model="claude-opus-5-5",
       system="You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
@@ -127,34 +213,40 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
           {"type": "agent_toolset_20260401"},
       ],
       multiagent={
-          "type": "coordinator",
-          "agents": [
-              {"type": "agent", "id": reviewer_agent.id},
-              {"type": "agent", "id": test_writer_agent.id},
-          ],
+          "type": "multiagent_20261001",
+          "subagents": {
+              "type": "enabled",
+              "predefined_agents": [
+                  {"type": "agent", "id": reviewer_agent.id},
+                  {"type": "agent", "id": test_writer_agent.id},
+              ],
+          },
       },
   )
   ```
 
   ```typescript TypeScript
-  const coordinator = await client.beta.agents.create({
+  const leadAgent = await client.beta.agents.create({
     name: "Engineering Lead",
     model: "claude-opus-5-5",
     system:
       "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools: [{ type: "agent_toolset_20260401" }],
     multiagent: {
-      type: "coordinator",
-      agents: [
-        { type: "agent", id: reviewerAgent.id },
-        { type: "agent", id: testWriterAgent.id },
-      ],
+      type: "multiagent_20261001",
+      subagents: {
+        type: "enabled",
+        predefined_agents: [
+          { type: "agent", id: reviewerAgent.id },
+          { type: "agent", id: testWriterAgent.id },
+        ],
+      },
     },
   });
   ```
 
   ```csharp C#
-  var coordinator = await client.Beta.Agents.Create(new()
+  var leadAgent = await client.Beta.Agents.Create(new()
   {
       Name = "Engineering Lead",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
@@ -166,16 +258,18 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
               Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           },
       ],
-      Multiagent = new BetaManagedAgentsMultiagentParams
+      Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
-          Type = BetaManagedAgentsMultiagentParamsType.Coordinator,
-          Agents = [reviewerAgent.ID, testWriterAgent.ID],
+          Subagents = new BetaManagedAgentsMultiagentSubagentsEnabledParams
+          {
+              PredefinedAgents = [reviewerAgent.ID, testWriterAgent.ID],
+          },
       },
   });
   ```
 
   ```go Go
-  coordinator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  leadAgent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name:   "Engineering Lead",
   	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
   	System: anthropic.String("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent."),
@@ -184,11 +278,16 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   		},
   	}},
-  	Multiagent: anthropic.BetaManagedAgentsMultiagentParams{
-  		Type: anthropic.BetaManagedAgentsMultiagentParamsTypeCoordinator,
-  		Agents: []anthropic.BetaManagedAgentsMultiagentRosterEntryParamsUnion{
-  			{OfString: anthropic.String(reviewerAgent.ID)},
-  			{OfString: anthropic.String(testWriterAgent.ID)},
+  	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
+  		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
+  			Subagents: anthropic.BetaManagedAgentsMultiagentSubagentsParamsUnion{
+  				OfEnabled: &anthropic.BetaManagedAgentsMultiagentSubagentsEnabledParams{
+  					PredefinedAgents: []anthropic.BetaManagedAgentsMultiagentPredefinedAgentParamsUnion{
+  						{OfString: anthropic.String(reviewerAgent.ID)},
+  						{OfString: anthropic.String(testWriterAgent.ID)},
+  					},
+  				},
+  			},
   		},
   	},
   })
@@ -198,7 +297,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   ```
 
   ```java Java
-  var coordinator = client.beta().agents().create(
+  var leadAgent = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("Engineering Lead")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
@@ -208,15 +307,16 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
                   .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
                   .build()
           )
-          .multiagent(BetaManagedAgentsMultiagentParams.builder()
-              .type(BetaManagedAgentsMultiagentParams.Type.COORDINATOR)
-              .addAgent(BetaManagedAgentsAgentParams.builder()
-                  .type(BetaManagedAgentsAgentParams.Type.AGENT)
-                  .id(reviewerAgent.id())
-                  .build())
-              .addAgent(BetaManagedAgentsAgentParams.builder()
-                  .type(BetaManagedAgentsAgentParams.Type.AGENT)
-                  .id(testWriterAgent.id())
+          .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
+              .subagents(BetaManagedAgentsMultiagentSubagentsEnabledParams.builder()
+                  .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
+                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
+                      .id(reviewerAgent.id())
+                      .build())
+                  .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
+                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
+                      .id(testWriterAgent.id())
+                      .build())
                   .build())
               .build())
           .build()
@@ -224,7 +324,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   ```
 
   ```php PHP
-  $coordinator = $client->beta->agents->create(
+  $leadAgent = $client->beta->agents->create(
       name: 'Engineering Lead',
       model: 'claude-opus-5-5',
       system: 'You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.',
@@ -232,17 +332,20 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
           ['type' => 'agent_toolset_20260401'],
       ],
       multiagent: [
-          'type' => 'coordinator',
-          'agents' => [
-              ['type' => 'agent', 'id' => $reviewerAgent->id],
-              ['type' => 'agent', 'id' => $testWriterAgent->id],
+          'type' => 'multiagent_20261001',
+          'subagents' => [
+              'type' => 'enabled',
+              'predefined_agents' => [
+                  ['type' => 'agent', 'id' => $reviewerAgent->id],
+                  ['type' => 'agent', 'id' => $testWriterAgent->id],
+              ],
           ],
       ],
   );
   ```
 
   ```ruby Ruby
-  coordinator = client.beta.agents.create(
+  lead_agent = client.beta.agents.create(
     name: "Engineering Lead",
     model: "claude-opus-5-5",
     system: "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
@@ -250,91 +353,35 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
       {type: "agent_toolset_20260401"}
     ],
     multiagent: {
-      type: "coordinator",
-      agents: [
-        {type: "agent", id: reviewer_agent.id},
-        {type: "agent", id: test_writer_agent.id}
-      ]
+      type: "multiagent_20261001",
+      subagents: {
+        type: "enabled",
+        predefined_agents: [
+          {type: "agent", id: reviewer_agent.id},
+          {type: "agent", id: test_writer_agent.id}
+        ]
+      }
     }
   )
   ```
 </CodeGroup>
 
-`multiagent.agents` dapat menerima salah satu dari berikut ini:
+Agen juga dapat mendelegasikan ke agen inline kecuali Anda menonaktifkannya. Untuk pengaturan tersebut, dan untuk bentuk-bentuk yang dapat diambil oleh entri `subagents.predefined_agents`, lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
 
-* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika `version` tidak ditentukan, referensi disematkan ke versi terbaru agen tersebut pada saat koordinator dibuat.
-* `{"type": "agent", "id": agent.id, "version": agent.version}` menyematkan versi agen tertentu.
-* `{"type": "self"}` memungkinkan koordinator membuat salinan dirinya sendiri. Jika sesi dibuat dengan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session), override tersebut juga berlaku untuk salinan ini; entri roster yang direferensikan berdasarkan ID tidak terpengaruh.
-* `{"type": "advisor", "model": "<model id>"}` memberikan primary thread sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Maksimal satu entri advisor per roster. Lihat [Berikan sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+`"advisor": {"type": "enabled", "model": "<model id>"}` memberi thread utama sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Advisor adalah pengaturan di blok `multiagent`, bukan entri dalam daftar ini. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
-Dalam file agen [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) (tab CLI), entri roster juga dapat berupa path ke file agen lain, seperti `./reviewer.md`. Apply akan membuat agen tersebut terlebih dahulu, lalu mengganti path dengan referensi `{"type": "agent", "id": ..., "version": ...}` yang disematkan.
+Alur kerja dinamis juga diaktifkan secara default dengan tipe ini, sehingga agen ini dapat merencanakan pekerjaan besar yang menjalankan banyak agen di latar belakang. Untuk menonaktifkannya, atau untuk mencantumkan agen yang dapat digunakan workflow, lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows).
 
-Konfigurasi koordinator, termasuk roster `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diselesaikan pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) agar roster-nya mereferensikan versi tersebut.
+Aturan berikut berlaku untuk agen yang Anda cantumkan di `subagents.predefined_agents`, dan juga untuk agen yang Anda cantumkan di `workflows.predefined_agents`:
 
-Koordinator hanya dapat mendelegasikan ke satu tingkat agen; mereferensikan agen yang memiliki roster `multiagent.agents` sendiri akan menggagalkan permintaan pembuatan atau pembaruan dengan kesalahan validasi. Maksimal 20 agen unik dapat dicantumkan dalam `multiagent.agents`, tetapi koordinator dapat memanggil beberapa salinan dari setiap agen.
+* **Penyematan:** Konfigurasi agen, termasuk daftar `subagents.predefined_agents`-nya, diambil snapshot-nya saat agen dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diresolusi saat itu dan tidak mengambil pembaruan selanjutnya pada definisinya. Pembaruan yang tidak mengirimkan daftar tersebut mempertahankan versi yang sudah disematkan. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) sehingga daftar `subagents.predefined_agents`-nya mereferensikan versi tersebut.
+* **Satu tingkat:** Agen hanya dapat mendelegasikan ke satu tingkat agen. Mereferensikan agen lain yang memiliki `multiagent` yang diatur akan membuat permintaan pembuatan atau pembaruan gagal dengan error validasi 400.
+* **Hingga 20 agen:** `subagents.predefined_agents` dapat mencantumkan hingga 20 agen unik. Batas ini berlaku per daftar: `workflows.predefined_agents` juga dapat mencantumkan hingga 20. Agen dapat memanggil beberapa salinan dari setiap agen, dalam [batas thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi.
+* **Geografi inferensi:** Agen dan setiap agen yang Anda cantumkan, di `subagents.predefined_agents` atau di `workflows.predefined_agents`, harus menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) yang sama (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), atau tidak satu pun dari mereka boleh menyematkannya. Ketidakcocokan di salah satu daftar ditolak dengan error validasi 400. Pemeriksaan tersebut dijalankan baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan.
 
-Ketika agen menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sematan koordinator dan sematan setiap anggota roster harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur. Roster yang tidak cocok ditolak dengan kesalahan validasi 400, baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan tersebut.
+### Buat sesi
 
-### Berikan sesi sebuah advisor
-
-Entri advisor dalam `multiagent.agents` memberikan primary thread sesi sebuah **advisor** (penasihat): model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum selesai. Entri ini memiliki tepat dua field, `type` dan `model`:
-
-```bash cURL
-curl -fsS https://api.anthropic.com/v1/agents \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "name": "Backend engineer",
-    "model": "claude-sonnet-5",
-    "system": "You implement backend features end to end. Consult the advisor before major backend design decisions.",
-    "multiagent": {
-      "type": "coordinator",
-      "agents": [
-        {"type": "advisor", "model": "claude-opus-5-5"}
-      ]
-    }
-  }'
-```
-
-Sebuah roster dapat berisi maksimal satu entri advisor, bersama dengan bentuk roster lainnya. Entri ini menempati nama roster yang dicadangkan `anthropic.advisor`: roster yang mencantumkan entri advisor sekaligus anggota yang secara harfiah bernama `anthropic.advisor` ditolak dengan kesalahan validasi 400. Dalam respons, entri advisor ditampilkan terakhir dalam roster terlepas dari posisi saat dikirimkan.
-
-Model advisor harus memenuhi batas kemampuan minimum, dan model agen itu sendiri tidak boleh lebih mumpuni daripada advisor-nya; model dengan kemampuan setara dapat dipasangkan. Pasangan yang tidak valid ditolak dengan kesalahan validasi 400 saat agen disimpan. Pasangan yang valid mengikuti tabel [kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor.
-
-Advisor juga tersedia sebagai [alat server pada Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan pengiriman: entri roster tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran tiba melalui event thread alih-alih blok `advisor_tool_result`.
-
-#### Cara kerja konsultasi
-
-Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang mengakhiri dirinya sendiri saat konsultasi selesai, dan saran dikirimkan ke primary thread sebagai event `agent.thread_message_received`. Sebuah konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama cadangan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name`, dan pengiriman saran membawanya sebagai `from_agent_name`), biasanya dalam urutan ini:
-
-1. `session.thread_created`
-2. `session.thread_status_running`
-3. `agent.thread_message_received` (saran)
-4. `session.thread_status_idle` (`stop_reason: end_turn`)
-5. `session.thread_status_terminated`
-
-Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform alih-alih dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Pengiriman saran (event 3) tidak dijamin tiba sebelum event idle dan terminated dari thread advisor, jadi jangan perlakukan event tersebut sebagai sinyal bahwa saran sudah dikirimkan.
-
-Apakah klien Anda dapat membaca saran tersebut bergantung pada kebijakan model advisor, dan ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor Messages API. Model advisor yang mengembalikan hasil plaintext di sana mengirimkan saran sebagai konten teks yang dapat dibaca di sini; model advisor yang mengembalikan hasil yang disunting (redacted) di sana mengirimkan placeholder `[{"type": "redacted"}]` sebagai konten pesan di setiap permukaan klien, sementara agen itu sendiri tetap membaca saran lengkap di sisi server. Dalam contoh sebelumnya, Claude Opus 5 adalah advisor dengan hasil redacted, sehingga klien Anda melihat placeholder sementara agen membaca saran lengkap; pilih Claude Opus 4.8 sebagai advisor jika Anda ingin saran dapat dibaca di aliran event. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang berisi blok tersebut ditolak dengan kesalahan validasi 400.
-
-Konsultasi yang gagal atau terinterupsi tidak pernah menggagalkan giliran agen: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi mengakhiri thread advisor tanpa saran yang dikirimkan; `user.interrupt` dengan `session_thread_id` milik thread advisor hanya membatalkan konsultasi tersebut.
-
-#### Thread advisor
-
-Advisor bukan agen roster: ia tidak terlihat oleh alat `list_agents` koordinator, tidak dapat dikirimi pesan dengan `send_to_agent`, dan hanya primary thread sesi yang dapat berkonsultasi dengannya. Agen roster tidak dapat.
-
-Thread advisor dikecualikan dari batas thread bersamaan. Thread ini muncul dalam [daftar thread](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#threads) sesi dengan `agent` diatur ke bentuk advisor persis seperti yang dikonfigurasi (`{"type": "advisor", "model": ...}`) dan `parent_thread_id` diatur ke primary thread.
-
-Caching prompt di sisi advisor bersifat otomatis; tidak ada yang perlu dikonfigurasi. Konsultasi ditagih dengan tarif model advisor, dan tokennya muncul dalam penggunaan thread advisor dan dalam total penggunaan sesi.
-
-#### Menghapus advisor
-
-Untuk menghapus advisor, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dengan roster yang tidak lagi menyertakan entri advisor. Jika advisor adalah satu-satunya entri roster, kosongkan roster sepenuhnya dengan mengatur `"multiagent": null`.
-
-## Buat sesi
-
-Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen dalam roster-nya sesuai kebutuhan.
+Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda cantumkan di `subagents.predefined_agents` sesuai kebutuhan. Agen juga dapat mendelegasikan ke [agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) kecuali Anda menonaktifkannya.
 
 <CodeGroup>
   ```bash cURL
@@ -345,7 +392,7 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
     -H "content-type: application/json" \
     -d @- <<EOF
   {
-    "agent": "$COORDINATOR_ID",
+    "agent": "$LEAD_AGENT_ID",
     "environment_id": "$ENVIRONMENT_ID"
   }
   EOF
@@ -355,20 +402,20 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
 
   ```bash CLI
   ant beta:sessions create \
-    --agent "$COORDINATOR_ID" \
+    --agent "$LEAD_AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID"
   ```
 
   ```python Python
   session = client.beta.sessions.create(
-      agent=coordinator.id,
+      agent=lead_agent.id,
       environment_id=environment.id,
   )
   ```
 
   ```typescript TypeScript
   const session = await client.beta.sessions.create({
-    agent: coordinator.id,
+    agent: leadAgent.id,
     environment_id: environment.id,
   });
   ```
@@ -376,7 +423,7 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
   ```csharp C#
   var session = await client.Beta.Sessions.Create(new()
   {
-      Agent = coordinator.ID,
+      Agent = leadAgent.ID,
       EnvironmentID = environment.ID,
   });
   ```
@@ -384,7 +431,7 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
   ```go Go
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
-  		OfString: anthropic.String(coordinator.ID),
+  		OfString: anthropic.String(leadAgent.ID),
   	},
   	EnvironmentID: environment.ID,
   })
@@ -395,59 +442,62 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
 
   ```java Java
   var session = client.beta().sessions().create(SessionCreateParams.builder()
-      .agent(coordinator.id())
+      .agent(leadAgent.id())
       .environmentId(environment.id())
       .build());
   ```
 
   ```php PHP
   $session = $client->beta->sessions->create(
-      agent: $coordinator->id,
+      agent: $leadAgent->id,
       environmentID: $environment->id,
   );
   ```
 
   ```ruby Ruby
   session = client.beta.sessions.create(
-    agent: coordinator.id,
+    agent: lead_agent.id,
     environment_id: environment.id
   )
   ```
 </CodeGroup>
 
-## Hubungkan agen ke server MCP
+### Hubungkan agen ke server MCP
 
-Server MCP memiliki cakupan agen (setiap definisi agen mendeklarasikan server dan alatnya sendiri), sedangkan kredensial vault memiliki cakupan sesi (`vault_ids` yang diteruskan saat pembuatan sesi berlaku untuk setiap thread). Dua implikasi untuk integrasi Anda:
+Server MCP memiliki cakupan agen: setiap definisi agen mendeklarasikan server dan alatnya sendiri. Agen inline tidak memiliki definisi agen, sehingga ia menggunakan server MCP dan alat milik agen yang dijalankan sesi. Kredensial vault memiliki cakupan sesi: `vault_ids` yang diteruskan saat pembuatan sesi berlaku untuk setiap thread. Dua implikasi untuk integrasi Anda:
 
 * Untuk mengautentikasi server MCP, sertakan kredensial vault untuk setiap server MCP yang digunakan di semua agen.
-* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya.
+* Untuk membatasi akses sebuah agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya. Anda tidak dapat membatasi agen inline dengan cara ini. Untuk hanya mengizinkan agen yang Anda cantumkan, nonaktifkan `inline_agents` di `subagents` dan `workflows`, dan cantumkan setidaknya satu agen di masing-masing. Lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
 
-[Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP koordinator dan server MCP salinan `self`-nya.
+[Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP milik agen yang dijalankan sesi dan milik salinan `self`-nya.
 
-Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika koordinator, atau agen yang dapat menerima delegasinya, mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
+Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen, atau agen yang Anda cantumkan di `subagents.predefined_agents` atau `workflows.predefined_agents`, mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
-Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator yang mendelegasikan ke researcher tersebut:
+Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelegasikan ke researcher:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   research_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<'EOF' | jq -er '.id'
   {
     "name": "researcher",
-    "model": "claude-haiku-4-5",
+    "model": "claude-haiku-5-5",
     "mcp_servers": [{"type": "url", "name": "github", "url": "https://api.githubcopilot.com/mcp/"}],
     "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
   }
   EOF
   )
 
-  coordinator_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<EOF | jq -er '.id'
+  lead_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data @- <<EOF | jq -er '.id'
   {
-    "name": "coordinator",
+    "name": "lead",
     "model": "claude-opus-5-5",
     "tools": [{"type": "agent_toolset_20260401"}],
     "multiagent": {
-      "type": "coordinator",
-      "agents": [{"type": "agent", "id": "$research_agent_id"}]
+      "type": "multiagent_20261001",
+      "subagents": {
+        "type": "enabled",
+        "predefined_agents": [{"type": "agent", "id": "$research_agent_id"}]
+      }
     }
   }
   EOF
@@ -456,29 +506,36 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
 
   <CodeGroupItem>
     ```bash CLI
-    ant apply coordinator.md researcher.md
-    ```
+    # Buat researcher, lalu baca ID-nya dari lockfile.
+    ant apply researcher.md
+    research_agent_id=$(jq -er '.resources["./researcher.md"].id' claude-lock.json)
 
-    <File filename="coordinator.md">
-      ```markdown
-      ---
-      name: coordinator
-      model: claude-opus-5-5
-      tools:
-        - type: agent_toolset_20260401
-      multiagent:
-        type: coordinator
-        agents: # path: ant apply substitutes {type: agent, id, version}
-          - ./researcher.md
-      ---
-      ```
-    </File>
+    # Tulis definisi agen, dengan mencantumkan researcher berdasarkan ID.
+    cat > lead.md <<EOF
+    ---
+    name: lead
+    model: claude-opus-5-5
+    tools:
+      - type: agent_toolset_20260401
+    multiagent:
+      type: multiagent_20261001
+      subagents:
+        type: enabled
+        predefined_agents:
+          - type: agent
+            id: $research_agent_id
+    ---
+    EOF
+
+    # Buat agen.
+    ant apply lead.md researcher.md
+    ```
 
     <File filename="researcher.md">
       ```markdown
       ---
       name: researcher
-      model: claude-haiku-4-5
+      model: claude-haiku-5-5
       mcp_servers:
         - type: url
           name: github
@@ -494,20 +551,23 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   ```python Python
   research_agent = client.beta.agents.create(
       name="researcher",
-      model="claude-haiku-4-5",
+      model="claude-haiku-5-5",
       mcp_servers=[
           {"type": "url", "name": "github", "url": "https://api.githubcopilot.com/mcp/"},
       ],
       tools=[{"type": "mcp_toolset", "mcp_server_name": "github"}],
   )
 
-  coordinator = client.beta.agents.create(
-      name="coordinator",
+  lead_agent = client.beta.agents.create(
+      name="lead",
       model="claude-opus-5-5",
       tools=[{"type": "agent_toolset_20260401"}],
       multiagent={
-          "type": "coordinator",
-          "agents": [{"type": "agent", "id": research_agent.id}],
+          "type": "multiagent_20261001",
+          "subagents": {
+              "type": "enabled",
+              "predefined_agents": [{"type": "agent", "id": research_agent.id}],
+          },
       },
   )
   ```
@@ -515,20 +575,23 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   ```typescript TypeScript
   const researchAgent = await client.beta.agents.create({
     name: "researcher",
-    model: "claude-haiku-4-5",
+    model: "claude-haiku-5-5",
     mcp_servers: [
       { type: "url", name: "github", url: "https://api.githubcopilot.com/mcp/" },
     ],
     tools: [{ type: "mcp_toolset", mcp_server_name: "github" }],
   });
 
-  const coordinator = await client.beta.agents.create({
-    name: "coordinator",
+  const leadAgent = await client.beta.agents.create({
+    name: "lead",
     model: "claude-opus-5-5",
     tools: [{ type: "agent_toolset_20260401" }],
     multiagent: {
-      type: "coordinator",
-      agents: [{ type: "agent", id: researchAgent.id }],
+      type: "multiagent_20261001",
+      subagents: {
+        type: "enabled",
+        predefined_agents: [{ type: "agent", id: researchAgent.id }],
+      },
     },
   });
   ```
@@ -537,7 +600,7 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   var researchAgent = await client.Beta.Agents.Create(new()
   {
       Name = "researcher",
-      Model = BetaManagedAgentsModel.ClaudeHaiku4_5,
+      Model = BetaManagedAgentsModel.ClaudeHaiku5_5,
       McpServers =
       [
           new()
@@ -557,9 +620,9 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
       ],
   });
 
-  var coordinator = await client.Beta.Agents.Create(new()
+  var leadAgent = await client.Beta.Agents.Create(new()
   {
-      Name = "coordinator",
+      Name = "lead",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
@@ -568,17 +631,19 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
               Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           },
       ],
-      Multiagent = new()
+      Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
-          Type = BetaManagedAgentsMultiagentParamsType.Coordinator,
-          Agents =
-          [
-              new BetaManagedAgentsAgentParams
-              {
-                  Type = BetaManagedAgentsAgentParamsType.Agent,
-                  ID = researchAgent.ID,
-              },
-          ],
+          Subagents = new BetaManagedAgentsMultiagentSubagentsEnabledParams
+          {
+              PredefinedAgents =
+              [
+                  new BetaManagedAgentsAgentParams
+                  {
+                      Type = BetaManagedAgentsAgentParamsType.Agent,
+                      ID = researchAgent.ID,
+                  },
+              ],
+          },
       },
   });
   ```
@@ -586,7 +651,7 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   ```go Go
   researcher, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name:  "researcher",
-  	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeHaiku4_5},
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeHaiku5_5},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   		Name: "github",
@@ -603,22 +668,27 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   	panic(err)
   }
 
-  coordinator, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
-  	Name:  "coordinator",
+  leadAgent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name:  "lead",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
   			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   		},
   	}},
-  	Multiagent: anthropic.BetaManagedAgentsMultiagentParams{
-  		Type: anthropic.BetaManagedAgentsMultiagentParamsTypeCoordinator,
-  		Agents: []anthropic.BetaManagedAgentsMultiagentRosterEntryParamsUnion{{
-  			OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
-  				Type: anthropic.BetaManagedAgentsAgentParamsTypeAgent,
-  				ID:   researcher.ID,
+  	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
+  		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
+  			Subagents: anthropic.BetaManagedAgentsMultiagentSubagentsParamsUnion{
+  				OfEnabled: &anthropic.BetaManagedAgentsMultiagentSubagentsEnabledParams{
+  					PredefinedAgents: []anthropic.BetaManagedAgentsMultiagentPredefinedAgentParamsUnion{{
+  						OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
+  							Type: anthropic.BetaManagedAgentsAgentParamsTypeAgent,
+  							ID:   researcher.ID,
+  						},
+  					}},
+  				},
   			},
-  		}},
+  		},
   	},
   })
   if err != nil {
@@ -630,7 +700,7 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   var researcher = client.beta().agents().create(
       AgentCreateParams.builder()
           .name("researcher")
-          .model(BetaManagedAgentsModel.CLAUDE_HAIKU_4_5)
+          .model(BetaManagedAgentsModel.CLAUDE_HAIKU_5_5)
           .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
               .name("github")
               .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
@@ -643,18 +713,19 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
           .build()
   );
 
-  var coordinator = client.beta().agents().create(
+  var leadAgent = client.beta().agents().create(
       AgentCreateParams.builder()
-          .name("coordinator")
+          .name("lead")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
               .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .build())
-          .multiagent(BetaManagedAgentsMultiagentParams.builder()
-              .type(BetaManagedAgentsMultiagentParams.Type.COORDINATOR)
-              .addAgent(BetaManagedAgentsAgentParams.builder()
-                  .type(BetaManagedAgentsAgentParams.Type.AGENT)
-                  .id(researcher.id())
+          .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
+              .subagents(BetaManagedAgentsMultiagentSubagentsEnabledParams.builder()
+                  .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
+                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
+                      .id(researcher.id())
+                      .build())
                   .build())
               .build())
           .build()
@@ -664,7 +735,7 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   ```php PHP
   $researchAgent = $client->beta->agents->create(
       name: 'researcher',
-      model: 'claude-haiku-4-5',
+      model: 'claude-haiku-5-5',
       mcpServers: [
           ['type' => 'url', 'name' => 'github', 'url' => 'https://api.githubcopilot.com/mcp/'],
       ],
@@ -673,16 +744,19 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
       ],
   );
 
-  $coordinator = $client->beta->agents->create(
-      name: 'coordinator',
+  $leadAgent = $client->beta->agents->create(
+      name: 'lead',
       model: 'claude-opus-5-5',
       tools: [
           ['type' => 'agent_toolset_20260401'],
       ],
       multiagent: [
-          'type' => 'coordinator',
-          'agents' => [
-              ['type' => 'agent', 'id' => $researchAgent->id],
+          'type' => 'multiagent_20261001',
+          'subagents' => [
+              'type' => 'enabled',
+              'predefined_agents' => [
+                  ['type' => 'agent', 'id' => $researchAgent->id],
+              ],
           ],
       ],
   );
@@ -691,7 +765,7 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
   ```ruby Ruby
   research_agent = client.beta.agents.create(
     name: "researcher",
-    model: "claude-haiku-4-5",
+    model: "claude-haiku-5-5",
     mcp_servers: [
       {type: "url", name: "github", url: "https://api.githubcopilot.com/mcp/"}
     ],
@@ -700,17 +774,20 @@ Buat agen researcher, yang mendeklarasikan server MCP GitHub, dan koordinator ya
     ]
   )
 
-  coordinator = client.beta.agents.create(
-    name: "coordinator",
+  lead_agent = client.beta.agents.create(
+    name: "lead",
     model: "claude-opus-5-5",
     tools: [
       {type: "agent_toolset_20260401"}
     ],
     multiagent: {
-      type: "coordinator",
-      agents: [
-        {type: "agent", id: research_agent.id}
-      ]
+      type: "multiagent_20261001",
+      subagents: {
+        type: "enabled",
+        predefined_agents: [
+          {type: "agent", id: research_agent.id}
+        ]
+      }
     }
   )
   ```
@@ -722,7 +799,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   ```bash cURL
   session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data @- <<EOF | jq -er '.id'
   {
-    "agent": "$coordinator_id",
+    "agent": "$lead_agent_id",
     "environment_id": "$environment_id",
     "vault_ids": ["$vault_id"]
   }
@@ -733,7 +810,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```bash CLI
   session_id=$(ant beta:sessions create \
-    --agent "$coordinator_id" \
+    --agent "$lead_agent_id" \
     --environment-id "$environment_id" \
     --vault-id "$vault_id" \
     --transform id --raw-output)
@@ -742,7 +819,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```python Python
   session = client.beta.sessions.create(
-      agent=coordinator.id,
+      agent=lead_agent.id,
       environment_id=environment.id,
       vault_ids=[vault.id],
   )
@@ -751,7 +828,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```typescript TypeScript
   const session = await client.beta.sessions.create({
-    agent: coordinator.id,
+    agent: leadAgent.id,
     environment_id: environment.id,
     vault_ids: [vault.id],
   });
@@ -761,7 +838,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   ```csharp C#
   var session = await client.Beta.Sessions.Create(new()
   {
-      Agent = coordinator.ID,
+      Agent = leadAgent.ID,
       EnvironmentID = environment.ID,
       VaultIds = [vault.ID],
   });
@@ -771,7 +848,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   ```go Go
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
-  		OfString: anthropic.String(coordinator.ID),
+  		OfString: anthropic.String(leadAgent.ID),
   	},
   	EnvironmentID: environment.ID,
   	VaultIDs:      []string{vault.ID},
@@ -784,7 +861,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```java Java
   var session = client.beta().sessions().create(SessionCreateParams.builder()
-      .agent(coordinator.id())
+      .agent(leadAgent.id())
       .environmentId(environment.id())
       .vaultIds(List.of(vault.id()))
       .build());
@@ -793,7 +870,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```php PHP
   $session = $client->beta->sessions->create(
-      agent: $coordinator->id,
+      agent: $leadAgent->id,
       environmentID: $environment->id,
       vaultIDs: [$vault->id],
   );
@@ -802,7 +879,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
   ```ruby Ruby
   session = client.beta.sessions.create(
-    agent: coordinator.id,
+    agent: lead_agent.id,
     environment_id: environment.id,
     vault_ids: [vault.id]
   )
@@ -810,784 +887,475 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   ```
 </CodeGroup>
 
-Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehingga koordinator tidak memiliki akses. `vault_ids` sesi menyediakan kredensial GitHub ke thread researcher.
+Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehingga agen yang dijalankan sesi tidak memiliki akses. `vault_ids` sesi menyediakan kredensial GitHub ke thread researcher.
 
 <Tip>
-  Jika panggilan MCP agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` kredensial merujuk ke server yang sama dengan `mcp_servers[].url` agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host dijadikan huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar-kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
+  Jika panggilan MCP sebuah agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` kredensial merujuk ke server yang sama dengan `mcp_servers[].url` milik agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar-kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
 </Tip>
 
-## Thread
+### Thread
 
-**Aliran event tingkat sesi** (`/v1/sessions/{session_id}/events/stream`) dianggap sebagai **primary thread**, yang berisi tampilan ringkas dari semua aktivitas di semua thread. Anda tidak melihat aktivitas lengkap dari subagen, tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
+Thread sesi setiap agen memiliki aliran event-nya sendiri. Untuk mencantumkan, menginterupsi, atau mengarsipkan thread, membaca event-nya, dan menangani izin alat di seluruh thread, lihat [Thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads).
 
-**Session thread** adalah tempat Anda menelusuri aktivitas agen tertentu.
+## Alur kerja dinamis
 
-`status` sesi adalah agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi keseluruhan juga `running`.
+Dengan alur kerja dinamis, sebuah agen dapat mengerjakan pekerjaan dengan banyak bagian, seperti meninjau ratusan dokumen atau memeriksa silang banyak sumber. Agen menulis sebuah **workflow**: program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan apa yang mereka kembalikan. Server menjalankannya di latar belakang sebagai **workflow run** (eksekusi workflow), sementara agen terus bekerja atau mengakhiri gilirannya. Anda mengaktifkan atau menonaktifkan alur kerja dinamis dengan pengaturan `workflows` di blok `multiagent` agen. Agen-agen dalam sebuah eksekusi dapat bekerja pada saat yang sama, sehingga tugas panjang dapat selesai lebih cepat dibandingkan jika satu agen mengerjakan setiap bagian secara bergiliran.
 
-[Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) adalah satu batas bersama untuk semua thread dalam sesi. Saat batas tercapai, thread berhenti sementara secara independen, dan biaya setiap thread dihitung berdasarkan model yang dilayani oleh thread itu sendiri.
+* **Bagaimana eksekusi dimulai:** Anda mendeskripsikan pekerjaan dalam sebuah `user.message`. Dari situ, agen menentukan apakah dan kapan memulai eksekusi, sehingga tidak ada panggilan API tambahan. Sebagai gantinya, Anda memengaruhi keputusan agen dengan mendeskripsikan kapan menggunakan eksekusi di `user.message` atau di prompt sistem agen. (Kebijakan izin berlaku untuk alat yang dipanggil oleh agen-agen dalam eksekusi, bukan untuk memulai eksekusi.)
+* **Agen mana yang digunakannya:** [Agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) yang didefinisikan workflow, agen predefined yang Anda cantumkan di `workflows.predefined_agents`, atau keduanya. Jika Anda tidak mencantumkan satu pun, workflow mendefinisikan semuanya. Agen inline menggunakan model milik agen yang dijalankan sesi. Agar sebuah eksekusi dapat menggunakan model lain untuk sebagian agennya, buat mereka sebagai agen dan cantumkan di `workflows.predefined_agents`.
+* **Bagaimana Anda mengikutinya:** Event eksekusi tiba di aliran event sesi, dan setiap agen dalam eksekusi bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang dapat Anda cantumkan, baca, dan stream. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) untuk event, interupsi, batas, dan [apa yang ditampilkan thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
 
-<Note>
-  Maksimal 25 thread bersamaan didukung. Koordinator dapat memanggil beberapa salinan dari satu agen dalam roster, sehingga membuat beberapa thread yang terkait dengan satu `agent`. Thread konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dikecualikan dari batas ini.
-</Note>
+### Aktifkan alur kerja dinamis
 
-<Tabs>
-  <Tab title="Daftar thread">
-    Cantumkan semua thread yang terkait dengan sesi sebagai berikut:
+Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `multiagent.type` ke `"multiagent_20261001"` dan aktifkan `workflows`. Alur kerja dinamis dan pendelegasian (`subagents`) sama-sama aktif secara default dengan tipe ini. Untuk alur kerja dinamis saja, tambahkan `"subagents": {"type": "disabled"}`.
 
-    <CodeGroup>
-      ```bash cURL
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        | jq -r '.data[] | "[\(.agent.name)] \(.status)"'
-      ```
+Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara memindahkan agen ke tipe ini](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#move-from-the-coordinator-type).
 
-      ```bash CLI
-      ant beta:sessions:threads list --session-id "$SESSION_ID"
-      ```
-
-      ```python Python
-      for thread in client.beta.sessions.threads.list(session.id):
-          print(f"[{thread.agent.name}] {thread.status}")
-      ```
-
-      ```typescript TypeScript
-      for await (const thread of client.beta.sessions.threads.list(session.id)) {
-        const name = thread.agent.type === "agent" ? thread.agent.name : "advisor";
-        console.log(`[${name}] ${thread.status}`);
-      }
-      ```
-
-      ```csharp C#
-      await foreach (var thread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
-      {
-          Console.WriteLine($"[{thread.Agent.Name}] {thread.Status}");
-      }
-      ```
-
-      ```go Go
-      threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
-      for threads.Next() {
-      	thread := threads.Current()
-      	fmt.Printf("[%s] %s\n", thread.Agent.Name, thread.Status)
-      }
-      if err := threads.Err(); err != nil {
-      	panic(err)
-      }
-      ```
-
-      ```java Java
-      for (var thread : client.beta().sessions().threads().list(session.id()).autoPager()) {
-          var name = thread.agent().isAgent() ? thread.agent().asAgent().name() : "advisor";
-          IO.println("[" + name + "] " + thread.status());
-      }
-      ```
-
-      ```php PHP
-      foreach ($client->beta->sessions->threads->list($session->id)->pagingEachItem() as $thread) {
-          echo "[{$thread->agent->name}] {$thread->status}\n";
-      }
-      ```
-
-      ```ruby Ruby
-      client.beta.sessions.threads.list(session.id).auto_paging_each do |thread|
-        puts "[#{thread.agent.name}] #{thread.status}"
-      end
-      ```
-    </CodeGroup>
-
-    Daftar lengkap mencakup primary thread. `parent_thread_id` bernilai null untuk primary thread.
-  </Tab>
-
-  <Tab title="Interupsi session thread">
-    Kirim `user.interrupt` dengan `session_thread_id` untuk menghentikan thread tertentu. Menghilangkan `session_thread_id` akan menginterupsi setiap thread yang tidak diarsipkan dalam sesi, termasuk primary thread.
-
-    <CodeGroup>
-      ```bash cURL
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
-      ```
-
-      ```bash CLI
-      ant beta:sessions:events send \
-        --session-id "$SESSION_ID" \
-        --event "{type: user.interrupt, session_thread_id: $THREAD_ID}"
-      ```
-
-      ```python Python
-      client.beta.sessions.events.send(
-          session.id,
-          events=[{"type": "user.interrupt", "session_thread_id": thread.id}],
-      )
-      ```
-
-      ```typescript TypeScript
-      await client.beta.sessions.events.send(session.id, {
-        events: [{ type: "user.interrupt", session_thread_id: thread.id }],
-      });
-      ```
-
-      ```csharp C#
-      await client.Beta.Sessions.Events.Send(session.ID, new()
-      {
-          Events =
-          [
-              new BetaManagedAgentsUserInterruptEventParams
-              {
-                  Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-                  SessionThreadID = thread.ID,
-              },
-          ],
-      });
-      ```
-
-      ```go Go
-      if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-      	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
-      		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-      			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
-      			SessionThreadID: anthropic.String(thread.ID),
-      		},
-      	}},
-      }); err != nil {
-      	panic(err)
-      }
-      ```
-
-      ```java Java
-      client.beta().sessions().events().send(
-          session.id(),
-          EventSendParams.builder()
-              .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-                  .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
-                  .sessionThreadId(thread.id())
-                  .build())
-              .build());
-      ```
-
-      ```php PHP
-      $client->beta->sessions->events->send(
-          $session->id,
-          events: [
-              ['type' => 'user.interrupt', 'session_thread_id' => $thread->id],
-          ],
-      );
-      ```
-
-      ```ruby Ruby
-      client.beta.sessions.events.send_(
-        session.id,
-        events: [{type: "user.interrupt", session_thread_id: thread.id}]
-      )
-      ```
-    </CodeGroup>
-
-    Terhadap thread anak yang terblokir pada `requires_action`, interupsi menutup setiap panggilan alat yang tertunda dengan hasil alat berupa kesalahan ("Tool execution was interrupted before completion. Please retry.") dan memancarkan ulang `session.thread_status_idle` dengan `stop_reason: end_turn` secara langsung; model tidak di-sampling. Terhadap thread yang sudah berstatus `idle`, interupsi tidak melakukan apa pun (no-op).
-  </Tab>
-
-  <Tab title="Arsipkan session thread">
-    Secara opsional, arsipkan session thread ketika telah menyelesaikan pekerjaannya. Ini membebaskan satu thread dari batas 25 thread.
-
-    <CodeGroup>
-      ```bash cURL
-      curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01"
-      ```
-
-      ```bash CLI
-      ant beta:sessions:threads archive \
-        --session-id "$SESSION_ID" \
-        --thread-id "$THREAD_ID"
-      ```
-
-      ```python Python
-      archived = client.beta.sessions.threads.archive(thread.id, session_id=session.id)
-      print(archived.status, archived.archived_at)
-      ```
-
-      ```typescript TypeScript
-      const archived = await client.beta.sessions.threads.archive(thread.id, {
-        session_id: session.id,
-      });
-      console.log(archived.status, archived.archived_at);
-      ```
-
-      ```csharp C#
-      var archived = await client.Beta.Sessions.Threads.Archive(thread.ID, new() { SessionID = session.ID });
-      Console.WriteLine($"{archived.Status} {archived.ArchivedAt}");
-      ```
-
-      ```go Go
-      archived, err := client.Beta.Sessions.Threads.Archive(ctx, thread.ID, anthropic.BetaSessionThreadArchiveParams{
-      	SessionID: session.ID,
-      })
-      if err != nil {
-      	panic(err)
-      }
-      fmt.Println(archived.Status, archived.ArchivedAt)
-      ```
-
-      ```java Java
-      var archived = client.beta().sessions().threads().archive(
-          thread.id(),
-          ThreadArchiveParams.builder()
-              .sessionId(session.id())
-              .build());
-      IO.println(archived.status() + " " + archived.archivedAt().orElseThrow());
-      ```
-
-      ```php PHP
-      $archived = $client->beta->sessions->threads->archive($thread->id, sessionID: $session->id);
-      echo "{$archived->status} {$archived->archivedAt->format(DATE_ATOM)}\n";
-      ```
-
-      ```ruby Ruby
-      archived = client.beta.sessions.threads.archive(thread.id, session_id: session.id)
-      puts "#{archived.status} #{archived.archived_at}"
-      ```
-    </CodeGroup>
-
-    Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang terparkir pada `requires_action` dihitung sebagai idle dan dapat diarsipkan secara langsung; hanya thread yang sedang berjalan yang harus diinterupsi terlebih dahulu:
-
-    <CodeGroup>
-      ```bash cURL
-      # Interupsi thread, lalu arsipkan
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
-
-      curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01"
-      ```
-
-      ```bash CLI
-      ant beta:sessions:events send \
-        --session-id "$SESSION_ID" \
-        --event "{type: user.interrupt, session_thread_id: $THREAD_ID}"
-
-      ant beta:sessions:threads archive \
-        --session-id "$SESSION_ID" \
-        --thread-id "$THREAD_ID"
-      ```
-
-      ```python Python
-      client.beta.sessions.events.send(
-          session.id,
-          events=[{"type": "user.interrupt", "session_thread_id": thread.id}],
-      )
-      archived = client.beta.sessions.threads.archive(thread.id, session_id=session.id)
-      print(archived.status, archived.archived_at)
-      ```
-
-      ```typescript TypeScript
-      await client.beta.sessions.events.send(session.id, {
-        events: [{ type: "user.interrupt", session_thread_id: thread.id }],
-      });
-      const archived = await client.beta.sessions.threads.archive(thread.id, {
-        session_id: session.id,
-      });
-      console.log(archived.status, archived.archived_at);
-      ```
-
-      ```csharp C#
-      await client.Beta.Sessions.Events.Send(session.ID, new()
-      {
-          Events =
-          [
-              new BetaManagedAgentsUserInterruptEventParams
-              {
-                  Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-                  SessionThreadID = thread.ID,
-              },
-          ],
-      });
-      archived = await client.Beta.Sessions.Threads.Archive(thread.ID, new() { SessionID = session.ID });
-      Console.WriteLine($"{archived.Status} {archived.ArchivedAt}");
-      ```
-
-      ```go Go
-      if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-      	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
-      		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-      			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
-      			SessionThreadID: anthropic.String(thread.ID),
-      		},
-      	}},
-      }); err != nil {
-      	panic(err)
-      }
-
-      archived, err := client.Beta.Sessions.Threads.Archive(ctx, thread.ID, anthropic.BetaSessionThreadArchiveParams{
-      	SessionID: session.ID,
-      })
-      if err != nil {
-      	panic(err)
-      }
-      fmt.Println(archived.Status, archived.ArchivedAt)
-      ```
-
-      ```java Java
-      client.beta().sessions().events().send(
-          session.id(),
-          EventSendParams.builder()
-              .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-                  .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
-                  .sessionThreadId(thread.id())
-                  .build())
-              .build());
-
-      archived = client.beta().sessions().threads().archive(
-          thread.id(),
-          ThreadArchiveParams.builder()
-              .sessionId(session.id())
-              .build());
-      IO.println(archived.status() + " " + archived.archivedAt().orElseThrow());
-      ```
-
-      ```php PHP
-      $client->beta->sessions->events->send(
-          $session->id,
-          events: [['type' => 'user.interrupt', 'session_thread_id' => $thread->id]],
-      );
-      $archived = $client->beta->sessions->threads->archive($thread->id, sessionID: $session->id);
-      echo "{$archived->status} {$archived->archivedAt->format(DATE_ATOM)}\n";
-      ```
-
-      ```ruby Ruby
-      client.beta.sessions.events.send_(
-        session.id,
-        events: [{type: "user.interrupt", session_thread_id: thread.id}]
-      )
-      archived = client.beta.sessions.threads.archive(thread.id, session_id: session.id)
-      puts "#{archived.status} #{archived.archived_at}"
-      ```
-    </CodeGroup>
-  </Tab>
-</Tabs>
-
-### Event primary thread
-
-Event-event ini menampilkan aktivitas multiagen pada primary thread di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread tempat event tersebut muncul: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirim pesan. Tugas yang didelegasikan koordinator, misalnya, tiba di aliran milik thread anak sebagai event `agent.thread_message_received`.
-
-| Tipe                               | Deskripsi                                                                                                                                               |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `session.thread_created`           | Sebuah thread dibuat. Mencakup `session_thread_id` dan `agent_name`.                                                                                    |
-| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                        |
-| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti.                                   |
-| `session.thread_status_terminated` | Sebuah thread diarsipkan atau mengalami kesalahan terminal.                                                                                             |
-| `agent.thread_message_received`    | Pada primary thread, sebuah agen mengirim laporan atau pertanyaan ke koordinator. Mencakup `from_session_thread_id`, `from_agent_name`, dan `content`.  |
-| `agent.thread_message_sent`        | Pada primary thread, koordinator mengirim tugas atau pesan tindak lanjut ke agen lain. Mencakup `to_session_thread_id`, `to_agent_name`, dan `content`. |
-
-Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor` (sebagai `agent_name` pada event siklus hidup thread dan `from_agent_name` pada pengiriman saran); lihat [Berikan sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
-
-### Event session thread
-
-Event penting diproksikan ke primary thread. Namun, Anda mungkin masih ingin menyelidiki penalaran dan panggilan alat dari agen tertentu. Untuk melakukannya, lakukan streaming atau cantumkan event dari session thread yang terkait.
-
-Setiap session thread memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya menampilkan pratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event thread sesi](https://platform.claude.com/docs/id/managed-agents/event-deltas#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
-
-<Tabs>
-  <Tab title="Streaming event thread sesi">
-    <CodeGroup>
-      ```bash cURL
-      curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" |
-        while IFS= read -r line; do
-          [[ $line == data:* ]] || continue
-          json=${line#data: }
-          case $(jq -r '.type' <<<"$json") in
-            agent.message)
-              printf '%s' "$(jq -j '.content[] | select(.type == "text") | .text' <<<"$json")"
-              ;;
-            session.thread_status_idle)
-              break
-              ;;
-          esac
-        done
-      ```
-
-      ```bash CLI
-      ant beta:sessions:threads:events stream \
-        --session-id "$SESSION_ID" \
-        --thread-id "$THREAD_ID"
-      ```
-
-      ```python Python
-      with client.beta.sessions.threads.events.stream(
-          thread.id,
-          session_id=session.id,
-      ) as stream:
-          for event in stream:
-              match event.type:
-                  case "agent.message":
-                      for block in event.content:
-                          if block.type == "text":
-                              print(block.text, end="")
-                  case "session.thread_status_idle":
-                      break
-      ```
-
-      ```typescript TypeScript
-      const stream = await client.beta.sessions.threads.events.stream(thread.id, {
-        session_id: session.id,
-      });
-
-      loop: for await (const event of stream) {
-        switch (event.type) {
-          case "agent.message":
-            for (const block of event.content) {
-              if (block.type === "text") {
-                process.stdout.write(block.text);
-              }
-            }
-            break;
-          case "session.thread_status_idle":
-            break loop;
-        }
-      }
-      ```
-
-      ```csharp C#
-      await foreach (var evt in client.Beta.Sessions.Threads.Events.StreamStreaming(thread.ID, new() { SessionID = session.ID }))
-      {
-          if (evt.Value is BetaManagedAgentsAgentMessageEvent message)
-          {
-              foreach (var block in message.Content)
-              {
-                  if (block.Type == "text")
-                  {
-                      Console.Write(block.Text);
-                  }
-              }
-          }
-          else if (evt.Value is BetaManagedAgentsSessionThreadStatusIdleEvent)
-          {
-              break;
-          }
-      }
-      ```
-
-      ```go Go
-      	stream := client.Beta.Sessions.Threads.Events.StreamEvents(ctx, thread.ID, anthropic.BetaSessionThreadEventStreamParams{
-      		SessionID: session.ID,
-      	})
-      	defer stream.Close()
-
-      loop:
-      	for stream.Next() {
-      		event := stream.Current()
-      		switch event.Type {
-      		case "agent.message":
-      			for _, block := range event.AsAgentMessage().Content {
-      				if block.Type == "text" {
-      					fmt.Print(block.Text)
-      				}
-      			}
-      		case "session.thread_status_idle":
-      			break loop
-      		}
-      	}
-      	if err := stream.Err(); err != nil {
-      		panic(err)
-      	}
-      ```
-
-      ```java Java
-      try (var streamResponse = client.beta().sessions().threads().events().streamStreaming(
-          thread.id(),
-          EventStreamParams.builder().sessionId(session.id()).build()
-      )) {
-          loop:
-          for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
-              switch (event.type().value()) {
-                  case AGENT_MESSAGE -> {
-                      for (var block : event.asAgentMessage().content()) {
-                          block.text().ifPresent(textBlock -> IO.print(textBlock.text()));
-                      }
-                  }
-                  case SESSION_THREAD_STATUS_IDLE -> {
-                      break loop;
-                  }
-              }
-          }
-      }
-      ```
-
-      ```php PHP
-      $stream = $client->beta->sessions->threads->events->streamStream(
-          $thread->id,
-          sessionID: $session->id,
-      );
-
-      foreach ($stream as $event) {
-          switch (true) {
-              case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentMessageEvent:
-                  foreach ($event->content as $block) {
-                      if ($block instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock) {
-                          echo $block->text;
-                      }
-                  }
-                  break;
-              case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionThreadStatusIdleEvent:
-                  break 2;
-          }
-      }
-      ```
-
-      ```ruby Ruby
-      client.beta.sessions.threads.events.stream_events(thread.id, session_id: session.id).each do |event|
-        case event
-        when Anthropic::Beta::Sessions::BetaManagedAgentsAgentMessageEvent
-          event.content.each do |block|
-            print block.text if block.is_a?(Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock)
-          end
-        when Anthropic::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent
-          break
-        end
-      end
-      ```
-    </CodeGroup>
-  </Tab>
-
-  <Tab title="Daftar event session thread">
-    Cantumkan semua event session thread yang telah lalu untuk mengambil riwayat lengkap.
-
-    <CodeGroup>
-      ```bash cURL
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
-      ```
-
-      ```bash CLI
-      ant beta:sessions:threads:events list \
-        --session-id "$SESSION_ID" \
-        --thread-id "$THREAD_ID"
-      ```
-
-      ```python Python
-      for event in client.beta.sessions.threads.events.list(
-          thread.id,
-          session_id=session.id,
-      ):
-          print(f"[{event.type}] {event.processed_at}")
-      ```
-
-      ```typescript TypeScript
-      for await (const event of client.beta.sessions.threads.events.list(thread.id, {
-        session_id: session.id,
-      })) {
-        console.log(`[${event.type}] ${event.processed_at}`);
-      }
-      ```
-
-      ```csharp C#
-      var page = await client.Beta.Sessions.Threads.Events.List(thread.ID, new() { SessionID = session.ID });
-      await foreach (var evt in page.Paginate())
-      {
-          Console.WriteLine($"[{evt.Type}] {evt.ProcessedAt}");
-      }
-      ```
-
-      ```go Go
-      pager := client.Beta.Sessions.Threads.Events.ListAutoPaging(ctx, thread.ID, anthropic.BetaSessionThreadEventListParams{
-      	SessionID: session.ID,
-      })
-      for pager.Next() {
-      	event := pager.Current()
-      	fmt.Printf("[%s] %s\n", event.Type, event.ProcessedAt)
-      }
-      if err := pager.Err(); err != nil {
-      	panic(err)
-      }
-      ```
-
-      ```java Java
-      for (var event : client.beta().sessions().threads().events().list(
-              thread.id(),
-              EventListParams.builder().sessionId(session.id()).build()
-          ).autoPager()) {
-          var type = event._json().orElseThrow() instanceof JsonObject json
-              ? json.values().get("type").asStringOrThrow()
-              : "unknown";
-          var processedAt = event.processedAt().map(OffsetDateTime::toString).orElse("pending");
-          IO.println("[" + type + "] " + processedAt);
-      }
-      ```
-
-      ```php PHP
-      foreach (
-          $client->beta->sessions->threads->events->list(
-              $thread->id,
-              sessionID: $session->id,
-          )->pagingEachItem() as $event
-      ) {
-          echo "[{$event->type}] {$event->processedAt->format(DATE_RFC3339)}\n";
-      }
-      ```
-
-      ```ruby Ruby
-      client.beta.sessions.threads.events.list(
-        thread.id,
-        session_id: session.id
-      ).auto_paging_each do |event|
-        puts "[#{event.type}] #{event.processed_at}"
-      end
-      ```
-    </CodeGroup>
-  </Tab>
-</Tabs>
-
-### Izin alat dan alat kustom
-
-Jika subagen membutuhkan sesuatu dari klien Anda, seperti [izin](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk menjalankan panggilan alat atau [hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls), event tersebut juga diposting ke **thread utama** dengan `session_thread_id` yang mengidentifikasi thread sesi asalnya. Panggilan alat memerlukan izin Anda jika menggunakan `always_ask`, atau jika menggunakan [`auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) dan server tidak dapat mengambil keputusan.
-
-```json
-{
-  "type": "session.thread_status_idle",
-  "id": "sevt_01ABC...",
-  "session_thread_id": "sth_01DEF...",
-  "agent_name": "code-reviewer",
-  "stop_reason": {
-    "type": "requires_action",
-    "event_ids": ["sevt_01XYZ..."]
-  }
-}
-```
-
-Posting `user.tool_confirmation` (dengan `tool_use_id`) atau `user.custom_tool_result` (dengan `custom_tool_use_id`); server merutekan respons ke thread yang benar secara otomatis.
-
-Dengan `auto`, event `user.message` Anda dapat membuat server mengizinkan panggilan yang seharusnya ditolak. Namun, tidak ada apa pun di thread subagen yang dianggap sebagai maksud Anda: klien Anda tidak memposting pesan apa pun di sana, dan pesan koordinator kepada subagen tidak diperhitungkan. Ketika server menolak panggilan dengan `auto`, tidak ada yang diposting ke thread utama. Event dan hasil alat berupa error hanya muncul di [aliran thread](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#session-thread-events) milik subagen itu sendiri, dan subagen tetap berjalan.
-
-Contoh berikut memperluas [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation) untuk merutekan balasan. Pola yang sama berlaku untuk `user.custom_tool_result`.
-
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  while IFS= read -r event_id; do
-    jq -n --arg id "$event_id" \
-      '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d @-
-  done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
+  curl -fsS https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<'EOF'
+  {
+    "name": "Contract Reviewer",
+    "model": "claude-opus-5-5",
+    "system": "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+    "tools": [{"type": "agent_toolset_20260401"}],
+    "multiagent": {"type": "multiagent_20261001", "workflows": {"type": "enabled"}}
+  }
+  EOF
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-  # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
-  ```
+  <CodeGroupItem>
+    ```bash CLI
+    ant apply contract-reviewer.md
+    ```
+
+    <File filename="contract-reviewer.md">
+      ```markdown
+      ---
+      name: Contract Reviewer
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: multiagent_20261001
+        workflows:
+          type: enabled
+      ---
+
+      You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.
+      ```
+    </File>
+  </CodeGroupItem>
 
   ```python Python
-  for event_id in stop.event_ids:
-      client.beta.sessions.events.send(
-          session.id,
-          events=[
-              {
-                  "type": "user.tool_confirmation",
-                  "tool_use_id": event_id,
-                  "result": "allow",
-              }
-          ],
-      )
+  agent = client.beta.agents.create(
+      name="Contract Reviewer",
+      model="claude-opus-5-5",
+      system="You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+      tools=[{"type": "agent_toolset_20260401"}],
+      multiagent={"type": "multiagent_20261001", "workflows": {"type": "enabled"}},
+  )
   ```
 
   ```typescript TypeScript
-  for (const eventId of stop.event_ids) {
-    await client.beta.sessions.events.send(session.id, {
-      events: [
-        {
-          type: "user.tool_confirmation",
-          tool_use_id: eventId,
-          result: "allow",
-        },
-      ],
-    });
-  }
+  const agent = await client.beta.agents.create({
+    name: "Contract Reviewer",
+    model: "claude-opus-5-5",
+    system:
+      "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+    tools: [{ type: "agent_toolset_20260401" }],
+    multiagent: { type: "multiagent_20261001", workflows: { type: "enabled" } },
+  });
   ```
 
   ```csharp C#
-  foreach (var eventId in requiresAction.EventIds)
+  var agent = await client.Beta.Agents.Create(new()
   {
-      await client.Beta.Sessions.Events.Send(session.ID, new()
+      Name = "Contract Reviewer",
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
+      System = "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+      Tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
+          },
+      ],
+      // Kelas konfigurasi menetapkan tipe untuk Anda.
+      Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
-          Events =
-          [
-              new BetaManagedAgentsUserToolConfirmationEventParams
-              {
-                  Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
-                  ToolUseID = eventId,
-                  Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
-              },
-          ],
-      });
-  }
+          Workflows = new BetaManagedAgentsMultiagentWorkflowsEnabledParams(),
+      },
+  });
   ```
 
   ```go Go
-  for _, eventID := range stopReason.EventIDs {
-  	params := anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  		Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
-  		ToolUseID: eventID,
-  		Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
-  	}
-  	if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-  		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{OfUserToolConfirmation: &params}},
-  	}); err != nil {
-  		panic(err)
-  	}
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name:   "Contract Reviewer",
+  	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
+  	System: anthropic.String("You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run."),
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  		},
+  	}},
+  	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
+  		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
+  			Workflows: anthropic.BetaManagedAgentsMultiagentWorkflowsParamsUnion{
+  				OfEnabled: &anthropic.BetaManagedAgentsMultiagentWorkflowsEnabledParams{},
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
   }
   ```
 
   ```java Java
-  for (var eventId : pendingToolUseIds) {
-      client.beta().sessions().events().send(
-          session.id(),
-          EventSendParams.builder()
-              .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .toolUseId(eventId)
-                  .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
-                  .build())
-              .build()
-      );
-  }
+  var agent = client.beta().agents().create(
+      AgentCreateParams.builder()
+          .name("Contract Reviewer")
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
+          .system("You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.")
+          .addTool(
+              BetaManagedAgentsAgentToolset20260401Params.builder()
+                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                  .build()
+          )
+          // Kelas konfigurasi menetapkan tipe untuk Anda.
+          .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
+              .workflows(BetaManagedAgentsMultiagentWorkflowsEnabledParams.builder().build())
+              .build())
+          .build()
+  );
   ```
 
   ```php PHP
-  foreach ($event->stopReason->eventIDs as $eventId) {
-      $client->beta->sessions->events->send($session->id, events: [[
-          'type' => 'user.tool_confirmation',
-          'tool_use_id' => $eventId,
-          'result' => 'allow',
-      ]]);
-  }
+  $agent = $client->beta->agents->create(
+      name: 'Contract Reviewer',
+      model: 'claude-opus-5-5',
+      system: "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+      tools: [
+          ['type' => 'agent_toolset_20260401'],
+      ],
+      multiagent: ['type' => 'multiagent_20261001', 'workflows' => ['type' => 'enabled']],
+  );
   ```
 
   ```ruby Ruby
-  event_ids.each do |event_id|
-    client.beta.sessions.events.send_(session.id, events: [{
-      type: "user.tool_confirmation",
-      tool_use_id: event_id,
-      result: "allow"
-    }])
-  end
+  agent = client.beta.agents.create(
+    name: "Contract Reviewer",
+    model: "claude-opus-5-5",
+    system_: "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
+    tools: [
+      {type: "agent_toolset_20260401"}
+    ],
+    multiagent: {type: "multiagent_20261001", workflows: {type: "enabled"}}
+  )
   ```
 </CodeGroup>
+
+Agar workflow dapat menggunakan agen yang sudah Anda buat, cantumkan agen-agen tersebut di `workflows.predefined_agents`. Pengaturan `subagents` dan `advisor` ditempatkan di blok `multiagent` yang sama. Untuk mencantumkan subagen, lihat [Delegasikan ke subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#delegate-to-subagents). Untuk mengatur advisor, lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor). Agen ini memungkinkan workflow menggunakan satu agen yang Anda buat, mencantumkan dua subagen, dan memiliki advisor:
+
+```json
+{
+  "multiagent": {
+    "type": "multiagent_20261001",
+    "workflows": {
+      "type": "enabled",
+      "predefined_agents": [{ "type": "agent", "id": "agent_01Lm4cV8yQ2tNs7XbKdR5h" }]
+    },
+    "subagents": {
+      "type": "enabled",
+      "predefined_agents": [
+        { "type": "agent", "id": "agent_01J8XkN5uT3vHpLqRfWdY2" },
+        { "type": "agent", "id": "agent_01HqR2k7vXbZ9mNpL3wYcT" }
+      ]
+    },
+    "advisor": { "type": "enabled", "model": "claude-opus-5-5" }
+  }
+}
+```
+
+Setiap pengaturan diaktifkan atau dinonaktifkan secara terpisah:
+
+| Pengaturan  | Apa yang diaktifkannya                                                                            | Agen ditempatkan di                      | Default  |
+| ----------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------- |
+| `workflows` | Alur kerja dinamis                                                                                | `workflows.predefined_agents`, hingga 20 | Aktif    |
+| `subagents` | Pendelegasian ke subagen: agen yang Anda cantumkan, dan agen yang didefinisikan sendiri oleh agen | `subagents.predefined_agents`, hingga 20 | Aktif    |
+| `advisor`   | Model advisor                                                                                     | Tidak ada. Atur `model`.                 | Nonaktif |
+
+Untuk mengetahui apa yang dimasukkan ke setiap daftar, dan cara mengizinkan hanya agen yang Anda cantumkan, lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
+
+Perhatikan hal-hal berikut:
+
+* **Pembaruan:** Pembaruan yang mempertahankan tipe `multiagent_20261001` hanya mengubah apa yang dikirimkannya:
+
+  * Pengaturan atau field yang tidak Anda sertakan mempertahankan nilai tersimpannya.
+  * Pengaturan atau field yang Anda kirim sebagai `null` mengambil nilai default-nya, begitu pula semua yang ada di dalamnya, apa pun yang telah Anda simpan.
+  * Daftar `predefined_agents` yang Anda kirim menggantikan daftar yang tersimpan.
+  * Pengaturan yang Anda kirim dengan `type` yang berbeda menggantikan pengaturan yang tersimpan, dan field yang tidak Anda sertakan di dalamnya mengambil nilai default-nya.
+  * Setiap objek yang Anda kirim memerlukan `type`-nya, dan `advisor` yang aktif memerlukan `model`-nya.
+
+* **Menonaktifkannya:** Atur `workflows` ke `{"type": "disabled"}`. Pengaturan ini tetap nonaktif hingga ada pembaruan yang mengaktifkannya kembali. Mengirim `null` akan mengaktifkannya, karena default-nya adalah aktif. Hal yang sama berlaku untuk `subagents`.
+
+* **Sesi yang sudah ada:** Sesi menyalin pengaturan saat sesi dibuat, sehingga mengubah agen di kemudian hari tidak mengubah sesi yang sudah ada.
+
+* **Agen yang dapat Anda cantumkan:** Agen yang memiliki pengaturan `multiagent` tidak dapat dicantumkan sebagai subagen dari agen lain, atau di `workflows.predefined_agents` milik agen lain. Agen dapat mencantumkan dirinya sendiri di salah satu daftar dengan `{"type": "self"}`, yang akan terbaca kembali sebagai `id` dan `version` miliknya sendiri.
+
+* **Nama alat:** Prefiks `ant__` dicadangkan. Jika agen Anda sudah memiliki alat kustom yang namanya diawali dengan `ant__`, setiap pembaruan akan gagal dengan error 400 hingga Anda mengirim `tools` tanpa nama tersebut. Sesi baru juga ditolak dengan error 400 jika agennya, atau agen di salah satu daftar, memiliki alat seperti itu. Ganti nama atau hapus alat tersebut dalam pembaruan yang sama yang mengaktifkan alur kerja dinamis. Lihat [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).
+
+* **Anggaran:** Atur [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) saat Anda membuat sesi untuk membatasi pengeluaran sesi, termasuk eksekusi; Anda tidak dapat menambahkannya ke sesi yang sudah ada. Eksekusi dijeda saat sesi mencapai anggaran, dan eksekusi yang dijeda oleh anggaran akan dilanjutkan saat Anda menaikkan atau menghapusnya, kecuali jika eksekusi tersebut juga dijeda oleh interupsi. Lihat [Anggaran dan batas](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits).
+
+### Beri tahu agen kapan menggunakan eksekusi
+
+Mengaktifkan alur kerja dinamis memberi agen kemampuan untuk memulai eksekusi workflow. Agen menentukan kapan harus memulainya. Untuk memandu pilihan tersebut, tambahkan instruksi seperti berikut ke prompt sistem agen. Agen peninjau kontrak di [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows) menggunakan prompt sistem ini:
+
+```text wrap
+You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.
+```
+
+Untuk menyesuaikannya, sebutkan tugas-tugas dalam domain agen Anda yang memerlukan eksekusi, serta tugas-tugas kecil yang harus dikerjakan sendiri oleh agen. Anda juga dapat memandu cara eksekusi mengerjakan pekerjaan, seperti dalam contoh-contoh berikut:
+
+* **Cara membagi pekerjaan:** "Dalam sebuah eksekusi, gunakan satu agen per kontrak. Kemudian minta agen kedua meninjau setiap kontrak, bukan hanya kontrak yang menurut agen pertama bermasalah, dan mencari apa yang terlewat oleh agen pertama. Apa pun yang gagal dalam peninjauan dikerjakan ulang dan ditinjau kembali."
+* **Apa yang harus dilakukan saat agen gagal:** "Satu agen yang gagal tidak boleh membuat eksekusi gagal. Jika agen gagal membaca sebuah kontrak, cantumkan kontrak tersebut sebagai tidak tercakup."
+* **Batas waktu:** "Berikan eksekusi batas waktu satu jam."
+
+Batasi eksekusi hanya untuk tugas-tugas yang memerlukannya, karena setiap agen dalam eksekusi menggunakan token.
+
+Kemudian [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions) dengan agen tersebut, seperti yang Anda lakukan dengan agen mana pun, dan jelaskan pekerjaannya dalam `user.message`. Anda juga dapat meminta eksekusi dalam pesan tersebut.
+
+Untuk event eksekusi, menginterupsi sesi dengan eksekusi yang masih terbuka, apa yang berubah selama eksekusi terbuka, serta anggaran dan batas, lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs).
+
+## Berikan advisor pada sesi
+
+Pengaturan `advisor` yang aktif di blok `multiagent` milik agen memberikan thread utama sesi sebuah **advisor** (penasihat): model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum menyelesaikannya. Pengaturan ini nonaktif secara default. Untuk mengaktifkannya, atur `advisor` ke `{"type": "enabled", "model": "..."}`, yang memiliki tepat dua field, `type` dan `model`:
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  curl -fsS https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Backend engineer",
+      "model": "claude-sonnet-5",
+      "system": "You implement backend features end to end. Consult the advisor before major backend design decisions.",
+      "multiagent": {
+        "type": "multiagent_20261001",
+        "advisor": {"type": "enabled", "model": "claude-opus-5-5"}
+      }
+    }'
+  ```
+
+  <CodeGroupItem>
+    ```bash CLI
+    ant apply backend-engineer.md
+    ```
+
+    <File filename="backend-engineer.md">
+      ```markdown
+      ---
+      name: Backend engineer
+      model: claude-sonnet-5
+      multiagent:
+        type: multiagent_20261001
+        advisor:
+          type: enabled
+          model: claude-opus-5-5
+      ---
+
+      You implement backend features end to end. Consult the advisor before major backend design decisions.
+      ```
+    </File>
+  </CodeGroupItem>
+
+  ```python Python
+  agent = client.beta.agents.create(
+      name="Backend engineer",
+      model="claude-sonnet-5",
+      system="You implement backend features end to end. Consult the advisor before major backend design decisions.",
+      multiagent={
+          "type": "multiagent_20261001",
+          "advisor": {"type": "enabled", "model": "claude-opus-5-5"},
+      },
+  )
+  print(agent.id)
+  ```
+
+  ```typescript TypeScript
+  const agent = await client.beta.agents.create({
+    name: "Backend engineer",
+    model: "claude-sonnet-5",
+    system:
+      "You implement backend features end to end. Consult the advisor before major backend design decisions.",
+    multiagent: {
+      type: "multiagent_20261001",
+      advisor: { type: "enabled", model: "claude-opus-5-5" },
+    },
+  });
+  console.log(agent.id);
+  ```
+
+  ```csharp C#
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "Backend engineer",
+      Model = BetaManagedAgentsModel.ClaudeSonnet5,
+      System = "You implement backend features end to end. Consult the advisor before major backend design decisions.",
+      Multiagent = new BetaManagedAgentsMultiagent20261001Params
+      {
+          Advisor = new BetaManagedAgentsMultiagentAdvisorEnabledParams { Model = "claude-opus-5-5" },
+      },
+  });
+  Console.WriteLine(agent.ID);
+  ```
+
+  ```go Go
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name:   "Backend engineer",
+  	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeSonnet5},
+  	System: anthropic.String("You implement backend features end to end. Consult the advisor before major backend design decisions."),
+  	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
+  		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
+  			Advisor: anthropic.BetaManagedAgentsMultiagentAdvisorParamsUnion{
+  				OfEnabled: &anthropic.BetaManagedAgentsMultiagentAdvisorEnabledParams{
+  					Model: "claude-opus-5-5",
+  				},
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  fmt.Println(agent.ID)
+  ```
+
+  ```java Java
+  var agent = client.beta().agents().create(
+      AgentCreateParams.builder()
+          .name("Backend engineer")
+          .model(BetaManagedAgentsModel.CLAUDE_SONNET_5)
+          .system("You implement backend features end to end. Consult the advisor before major backend design decisions.")
+          .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
+              .advisor(BetaManagedAgentsMultiagentAdvisorEnabledParams.builder()
+                  .model("claude-opus-5-5")
+                  .build())
+              .build())
+          .build()
+  );
+  IO.println(agent.id());
+  ```
+
+  ```php PHP
+  $agent = $client->beta->agents->create(
+      name: 'Backend engineer',
+      model: 'claude-sonnet-5',
+      system: 'You implement backend features end to end. Consult the advisor before major backend design decisions.',
+      multiagent: [
+          'type' => 'multiagent_20261001',
+          'advisor' => ['type' => 'enabled', 'model' => 'claude-opus-5-5'],
+      ],
+  );
+  echo $agent->id, PHP_EOL;
+  ```
+
+  ```ruby Ruby
+  agent = client.beta.agents.create(
+    name: "Backend engineer",
+    model: "claude-sonnet-5",
+    system_: "You implement backend features end to end. Consult the advisor before major backend design decisions.",
+    multiagent: {
+      type: "multiagent_20261001",
+      advisor: {type: "enabled", model: "claude-opus-5-5"}
+    }
+  )
+  puts agent.id
+  ```
+</CodeGroup>
+
+Contoh ini hanya mengatur `advisor`. Dua pengaturan lainnya, `subagents` dan `workflows`, mempertahankan nilai default-nya, sehingga keduanya aktif, dan agen juga dapat mendelegasikan ke agen inline serta memulai eksekusi workflow. Untuk agen yang berkonsultasi dengan advisor dan mengerjakan semua pekerjaan sendiri, atur keduanya ke `{"type": "disabled"}`.
+
+Anda tidak dapat mencantumkan advisor di `subagents.predefined_agents` atau `workflows.predefined_agents`. `advisor` yang aktif mencadangkan nama `anthropic.advisor`. Selama advisor aktif, tidak satu pun dari kedua daftar tersebut dapat memuat agen yang secara harfiah bernama `anthropic.advisor`: permintaan akan ditolak dengan error validasi 400.
+
+Model advisor harus memenuhi batas kemampuan minimum, dan model milik agen itu sendiri tidak boleh lebih mampu daripada advisor-nya; model dengan kemampuan yang setara dapat dipasangkan. Pasangan yang tidak valid ditolak dengan error validasi 400 saat agen disimpan, dan sekali lagi saat sesi dibuat. Pasangan tersebut juga diperiksa saat setiap konsultasi dimulai: jika sudah tidak valid, konsultasi tersebut gagal dan sesi tetap berlanjut. Pasangan yang valid mengikuti tabel [kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) pada alat advisor.
+
+Advisor juga tersedia sebagai [alat server di Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan penyampaian: pengaturan `advisor` tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran disampaikan melalui event thread, bukan blok `advisor_tool_result`.
+
+### Cara kerja konsultasi
+
+Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang menghentikan dirinya sendiri saat konsultasi selesai, dan saran disampaikan ke thread utama sebagai event `agent.thread_message_received`. Konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama cadangan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name`, dan penyampaian saran membawanya sebagai `from_agent_name`), biasanya dalam urutan berikut:
+
+1. `session.thread_created`
+2. `session.thread_status_running`
+3. `agent.thread_message_received` (saran)
+4. `session.thread_status_idle` (`stop_reason: end_turn`)
+5. `session.thread_status_terminated`
+
+Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform, bukan dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Penyampaian saran (event 3) tidak dijamin tiba sebelum event idle dan terminated milik thread advisor, jadi jangan perlakukan event-event tersebut sebagai sinyal bahwa saran sudah disampaikan.
+
+Apakah klien Anda dapat membaca saran bergantung pada kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor di Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menyampaikan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menyampaikan placeholder `[{"type": "redacted"}]` di setiap permukaan klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Claude Opus 5 dan Claude Opus 5.5 mengembalikan hasil yang disunting, sehingga dengan salah satu dari keduanya klien Anda hanya melihat placeholder. Untuk membaca saran di aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan model dapat berubah tanpa perubahan pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang mengembalikan hasil yang disunting; lihat [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang memuat blok tersebut ditolak dengan error validasi 400.
+
+Konsultasi yang gagal atau terinterupsi tidak pernah membuat giliran agen gagal: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi akan menghentikan thread advisor tanpa saran yang disampaikan; `user.interrupt` dengan `session_thread_id` milik thread advisor hanya membatalkan konsultasi tersebut.
+
+### Thread advisor
+
+Advisor bukan subagen. Alat `list_agents` milik agen tidak menampilkannya, dan `send_to_agent`, yang mengirimkan pesan lanjutan ke subagen, tidak dapat menjangkaunya. Hanya thread utama sesi yang dapat berkonsultasi dengannya; subagen tidak dapat.
+
+Thread advisor dikecualikan dari batas 25 thread anak. Thread ini muncul di [daftar thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi. `agent`-nya berbentuk advisor, `{"type": "advisor", "model": ...}`, dengan model yang Anda konfigurasikan, dan `parent_thread_id`-nya adalah thread utama.
+
+Caching prompt di sisi advisor berlangsung otomatis; tidak ada yang perlu dikonfigurasi. Konsultasi ditagih sesuai tarif model advisor, dan token-nya muncul di penggunaan thread advisor serta di total penggunaan sesi. Konsultasi juga dihitung terhadap [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets), dengan harga daftar model advisor. Setiap konsultasi mengirimkan percakapan thread utama sejauh ini kepada advisor, sehingga konsultasi di akhir sesi yang panjang menggunakan lebih banyak token input.
+
+### Menghapus advisor
+
+Untuk menghapus advisor, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dengan `advisor` diatur ke `{"type": "disabled"}`. Pada agen yang sudah memiliki tipe `multiagent_20261001`, pengaturan yang tidak disertakan dalam pembaruan mempertahankan nilai tersimpannya, sehingga Anda tidak perlu mengirim `subagents` atau `workflows` lagi. Dengan alasan yang sama, pembaruan yang tidak menyertakan `advisor` akan mempertahankan advisor. Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara memindahkan agen ke tipe ini](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#move-from-the-coordinator-type).
+
+## Pindah dari tipe `coordinator`
+
+Seperti `multiagent_20261001`, tipe `coordinator` memungkinkan agen mendelegasikan ke subagen yang Anda cantumkan dan berkonsultasi dengan model advisor. Dengan tipe `coordinator`, agen tidak dapat memulai eksekusi workflow atau mendefinisikan subagen sendiri. API menerima kedua tipe tersebut.
+
+Untuk memindahkan agen ke `multiagent_20261001`, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dengan blok `multiagent` bertipe tersebut:
+
+1. Atur `type` ke `"multiagent_20261001"`.
+2. Cantumkan agen-agen yang dapat dipanggil oleh agen di `subagents.predefined_agents`. Entri-entrinya mempertahankan bentuk yang dimilikinya saat ini.
+3. Jika agen memiliki advisor, atur `advisor` ke `{"type": "enabled", "model": "..."}` dengan model advisor tersebut.
+4. Kirim seluruh blok dalam satu pembaruan.
+
+Sebagai contoh, blok ini memberikan agen dua subagen dan satu advisor:
+
+```json
+{
+  "multiagent": {
+    "type": "multiagent_20261001",
+    "subagents": {
+      "type": "enabled",
+      "predefined_agents": [
+        { "type": "agent", "id": "agent_01J8XkN5uT3vHpLqRfWdY2" },
+        { "type": "agent", "id": "agent_01HqR2k7vXbZ9mNpL3wYcT" }
+      ]
+    },
+    "advisor": { "type": "enabled", "model": "claude-opus-5-5" }
+  }
+}
+```
+
+Blok tersebut tidak menyertakan `workflows` dan `subagents.inline_agents`, sehingga keduanya mengambil nilai default-nya dan aktif. Agen yang dipindahkan juga dapat memulai eksekusi workflow dan mendefinisikan subagen sendiri. Untuk menjaga salah satunya tetap nonaktif, atur ke `{"type": "disabled"}` dalam pembaruan yang sama. Lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows) dan [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
+
+Jika agen memiliki advisor dan tidak memiliki subagen, atur `subagents` ke `{"type": "disabled"}` untuk menjaga pendelegasian tetap nonaktif. Permintaan yang menonaktifkan `subagents.inline_agents` dan tidak mencantumkan agen apa pun akan gagal dengan error 400.
+
+Pembaruan menggantikan seluruh blok `multiagent`, jadi kirim kembali daftar agen dan advisor, seperti yang dilakukan contoh tersebut. Apa yang tidak Anda sertakan akan mengambil nilai default-nya:
+
+* **`subagents.predefined_agents`:** Daftarnya kosong, sehingga agen kehilangan subagen yang telah Anda cantumkan.
+* **`advisor`:** Advisor dinonaktifkan.
+
+Setelah agen memiliki tipe `multiagent_20261001`, pengaturan yang tidak disertakan dalam pembaruan berikutnya mempertahankan nilai tersimpannya.
+
+Pembaruan tidak mengubah sesi yang sudah ada. Untuk menggunakan blok yang baru, buat sesi setelah pembaruan.

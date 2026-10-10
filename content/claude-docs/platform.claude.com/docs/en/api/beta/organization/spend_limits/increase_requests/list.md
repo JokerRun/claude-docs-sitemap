@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a9ffcf7e2db126b055103befb44d49ee6b1f27abdbbc6cce2128b027aa2bd16b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a9569aee9e3b629bd5bc2aa16a9f9417dfbb4ef3e8929fc0d771b1563ed2dcbc
 ---
 
 ---
@@ -42,6 +42,14 @@ Requests whose requester is no longer a member are excluded.
   - `"denied"`
 
   - `"pending"`
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

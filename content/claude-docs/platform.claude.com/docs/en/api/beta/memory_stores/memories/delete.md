@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 1b0887c727bb1cac2b59ac8c6a28b64099036a958515a4acbd34b972c33681aa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2bc8fa3ea29e6e05387c125a48a1a37752bbded213789d76b54888ffe90c20e0
 ---
 
 ---
@@ -35,6 +35,8 @@ Delete a memory
   If the hashes differ, the request fails with HTTP status 409 and nothing is deleted.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

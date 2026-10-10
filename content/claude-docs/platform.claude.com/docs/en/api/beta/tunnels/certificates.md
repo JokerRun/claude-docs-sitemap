@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 681ca360d49b5f2cce39f6e1d304c1e110dc9824536ead1c1afe2bbeb090fcaa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 75447e6f984e4cc7c597a905883d042875644fbec60aeedf489b97ed7cec52f2
 ---
 
 ---
@@ -27,6 +27,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   ID of the tunnel (`tnl_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -233,6 +235,8 @@ Fetches a tunnel certificate by ID.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -438,6 +442,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -639,6 +645,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   ID of the certificate to archive (`tcrt_...`).
 
 ### Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

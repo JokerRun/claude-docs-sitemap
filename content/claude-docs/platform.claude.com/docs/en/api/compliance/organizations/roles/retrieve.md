@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: ba22285f7ff96013a6cf9c0985707d05bebb7deb462dd51fcd786a701a5ffe56
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a479fc98e134afaa71bbfdcb17bae81d192e3fa33a1d924f5d36667515a6fdf0
 ---
 
 ---
@@ -27,6 +27,12 @@ Get Compliance Role
   The role ID (tagged ID, e.g., rbac_role_abc123)
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

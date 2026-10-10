@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: d09119347bc24ea29503d4dd4fdfd26105a498d2abda26cd3edc371d34a51e26
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5c1ad2935b61b751e1f49a767f998496a4b6ee184159e976885c3005c8707b78
 ---
 
 ---
@@ -34,6 +34,14 @@ account returns 404.
 - `service_account_id: string`
 
   ID of the service account.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

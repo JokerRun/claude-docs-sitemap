@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 70c8181b90ea5cb1820252bac2fe6ac9ca29a02aaee0402a3526d84cbe4cb333
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a680e4248e5bbb641cbc20095fdba5a776ecd551156ff27aaaa794249b55cc4c
 ---
 
 ---
@@ -25,6 +25,12 @@ Delete Skill
   The format and length of IDs may change over time.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

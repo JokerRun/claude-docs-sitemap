@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 6aaacb2cbd7bdd634024c706a33cae5d1ab55b3bc3d0e4b0875ecab331712338
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 6718453066e5b7a5ee49e5c751fc6e75f17214705057ca8b23c1f00aa1e6bc73
 ---
 
 ---
@@ -25,6 +25,12 @@ The Models API response can be used to determine information about a specific mo
   Model identifier or alias.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

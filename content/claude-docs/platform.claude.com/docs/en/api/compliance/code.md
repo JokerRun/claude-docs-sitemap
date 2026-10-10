@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 77b35bd53a4360b64ed65aefc6dee10fcd9771627eae9108ab344585b012063b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d08ed24abb87d7e6c041cbb36f99a99b4bb4ec631193b5ab91e6df69feefecd6
 ---
 
 ---
@@ -83,6 +83,12 @@ returned.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Returns
@@ -95,15 +101,17 @@ returned.
 
     Artifact identifier (tagged ID)
 
-  - `artifact_type: "claude_design" or "claude_design_systems" or "claude_docs" or 3 more`
+  - `artifact_type: "claude_design" or "claude_design_systems" or "claude_docs" or 4 more`
 
-    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design) or `claude_design_systems` (a design system). `other` is an Artifact made from a built-in type this list does not name yet.
+    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design), `claude_design_systems` (a design system) or `claude_motion` (Motion). `other` is an Artifact made from a built-in type this list does not name yet.
 
     - `"claude_design"`
 
     - `"claude_design_systems"`
 
     - `"claude_docs"`
+
+    - `"claude_motion"`
 
     - `"claude_slides"`
 
@@ -250,6 +258,12 @@ only for identity-stored content; validate against it when present.
 
 #### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"x-api-key": optional string`
 
 #### Example
@@ -280,6 +294,12 @@ Artifact.
   The Artifact ID (tagged ID, e.g., cart_abc123)
 
 #### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"x-api-key": optional string`
 

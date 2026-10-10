@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report/list
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: d8d4f986dc264cb9745d63c7506a8627d124f4b597b5a29830c3d8a71b477f53
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 789c769e446bb0aa71860078fc49584b5cdf035fcc958694ee1defb93bf14a0f
 ---
 
 ---
@@ -180,6 +180,14 @@ key with the `read:analytics` scope.
   Filter to specific users by tagged user ID.
 
   maxItems: 100
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

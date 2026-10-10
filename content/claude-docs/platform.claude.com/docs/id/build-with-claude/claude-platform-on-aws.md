@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 99479236fa57aa039f208d0c75ac9a8045d874f32af53599c4aeb20ac5499196
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 908def19e7c08bccff029b4d7dcbc4856b518404973679727929ceb05083af3f
 ---
 
 ---
@@ -312,20 +312,20 @@ Klien membaca `AWS_REGION` dari lingkungan jika Anda tidak mengatur `aws_region`
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:2.70.0")
-    implementation("com.anthropic:anthropic-java-aws:2.70.0")
+    implementation("com.anthropic:anthropic-java:2.71.0")
+    implementation("com.anthropic:anthropic-java-aws:2.71.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.70.0</version>
+      <version>2.71.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.70.0</version>
+      <version>2.71.0</version>
     </dependency>
     ```
   </Tab>
@@ -394,7 +394,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
-      "model": "claude-sonnet-5",
+      "model": "claude-sonnet-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello!"}
@@ -411,7 +411,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   ant messages create \
     --base-url https://aws-external-anthropic.us-west-2.api.aws \
     --workspace-id "$ANTHROPIC_AWS_WORKSPACE_ID" \
-    --model claude-sonnet-5 \
+    --model claude-sonnet-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello!"}' \
     --transform content
@@ -423,7 +423,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   client = AnthropicAWS()
 
   message = client.messages.create(
-      model="claude-sonnet-5",
+      model="claude-sonnet-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   )
@@ -436,7 +436,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   const client = new AnthropicAws();
 
   const message = await client.messages.create({
-    model: "claude-sonnet-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   });
@@ -451,7 +451,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet5,
+      Model = Model.ClaudeSonnet5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }]
   });
@@ -466,7 +466,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   }
 
   message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet5,
+  	Model:     anthropic.ModelClaudeSonnet5_5,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -494,7 +494,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
 
       Message message = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_SONNET_5)
+              .model(Model.CLAUDE_SONNET_5_5)
               .maxTokens(1024)
               .addUserMessage("Hello!")
               .build()
@@ -510,7 +510,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-5',
+      model: 'claude-sonnet-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello!']],
   );
@@ -524,7 +524,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   client = Anthropic::AWSClient.new
 
   message = client.messages.create(
-    model: "claude-sonnet-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   )
@@ -553,8 +553,8 @@ Claude Platform di AWS menggunakan endpoint Claude API secara langsung, yang ber
 * **Fitur beta:** Teruskan header `anthropic-beta` standar untuk mengakses fitur beta, sama seperti yang Anda lakukan dengan Claude API.
 * **Agent Skills:** Gunakan [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) bawaan dan kustom dengan parameter `container.skills` yang sama seperti Claude API. Semua Skills bawaan (PowerPoint, Excel, Word, PDF) langsung berfungsi.
 * **Eksekusi kode:** Jalankan kode di sandbox terkelola Anthropic menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
-* **Penggunaan alat:** Computer use dan semua [kemampuan penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) lainnya tersedia.
-* **Pemikiran diperpanjang:** Aktifkan "extended thinking" (pemikiran diperpanjang) dengan parameter yang sama seperti Claude API.
+* **Penggunaan alat:** Semua [kemampuan "tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) tersedia kecuali toolset computer use dan browser use; lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
+* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan, pada model yang mendukungnya, ["extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) berfungsi dengan parameter yang sama seperti Claude API.
 * **Streaming:** Dukungan streaming SSE penuh untuk respons real-time.
 * **Pemrosesan batch:** Kirim permintaan batch untuk beban kerja throughput tinggi.
 * **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan "prompt caching" (caching prompt) (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
@@ -578,7 +578,7 @@ Perilaku sesi di Claude Platform on AWS berbeda dari Claude Managed Agents pihak
 Kemampuan berikut saat ini tidak tersedia di Claude Platform di AWS:
 
 * **Kesiapan HIPAA:** Program siap-HIPAA Anthropic tidak tersedia. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-* **Toolset computer use dan browser use:** `computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Claude Platform di AWS. Versi alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) beta tetap tersedia.
+* **Toolset computer use dan browser use:** `computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Claude Platform on AWS. Versi alat computer use beta tetap tersedia untuk model yang tercantum di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 
 - **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) dan endpoint external key (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek); kunci divalidasi saat dilampirkan ke workspace, bukan melalui endpoint validate) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju) saat ini tidak tersedia. Lihat data penggunaan dan biaya di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console) sebagai gantinya. AWS IAM mengelola keanggotaan organisasi.
 - **Manajemen anggota workspace:** Menambahkan atau menghapus pengguna dari workspace individual tidak tersedia. Kebijakan AWS IAM pada ARN workspace mengontrol akses.
@@ -617,7 +617,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
-      "model": "claude-sonnet-5",
+      "model": "claude-sonnet-5-5",
       "max_tokens": 1024,
       "inference_geo": "us",
       "messages": [
@@ -635,7 +635,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
   ant messages create \
     --base-url https://aws-external-anthropic.us-west-2.api.aws \
     --workspace-id "$ANTHROPIC_AWS_WORKSPACE_ID" \
-    --model claude-sonnet-5 \
+    --model claude-sonnet-5-5 \
     --max-tokens 1024 \
     --inference-geo us \
     --message '{role: user, content: "Hello!"}' \
@@ -647,7 +647,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
 
   client = AnthropicAWS()
   message = client.messages.create(
-      model="claude-sonnet-5",
+      model="claude-sonnet-5-5",
       max_tokens=1024,
       inference_geo="us",
       messages=[{"role": "user", "content": "Hello!"}],
@@ -659,7 +659,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
   import AnthropicAws from "@anthropic-ai/aws-sdk";
   const client = new AnthropicAws();
   const message = await client.messages.create({
-    model: "claude-sonnet-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 1024,
     inference_geo: "us",
     messages: [{ role: "user", content: "Hello!" }]
@@ -675,7 +675,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet5,
+      Model = Model.ClaudeSonnet5_5,
       MaxTokens = 1024,
       InferenceGeo = "us",
       Messages = [new() { Role = Role.User, Content = "Hello!" }]
@@ -691,7 +691,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
   }
 
   message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  	Model:        anthropic.ModelClaudeSonnet5,
+  	Model:        anthropic.ModelClaudeSonnet5_5,
   	MaxTokens:    1024,
   	InferenceGeo: anthropic.String("us"),
   	Messages: []anthropic.MessageParam{
@@ -720,7 +720,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
 
       Message message = client.messages().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_SONNET_5)
+              .model(Model.CLAUDE_SONNET_5_5)
               .maxTokens(1024)
               .inferenceGeo("us")
               .addUserMessage("Hello!")
@@ -737,7 +737,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-5',
+      model: 'claude-sonnet-5-5',
       maxTokens: 1024,
       inferenceGeo: 'us',
       messages: [['role' => 'user', 'content' => 'Hello!']],
@@ -752,7 +752,7 @@ Atur geografi inferensi per permintaan dengan parameter `inference_geo`:
   client = Anthropic::AWSClient.new
 
   message = client.messages.create(
-    model: "claude-sonnet-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 1024,
     inference_geo: "us",
     messages: [{ role: "user", content: "Hello!" }]
@@ -893,7 +893,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
-      "model": "claude-sonnet-5",
+      "model": "claude-sonnet-5-5",
       "max_tokens": 1024,
       "messages": [
         {"role": "user", "content": "Hello!"}
@@ -912,7 +912,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
   client = AnthropicAWS()
 
   response = client.messages.with_raw_response.create(
-      model="claude-sonnet-5",
+      model="claude-sonnet-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello!"}],
   )
@@ -931,7 +931,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
 
   const { data: message, response } = await client.messages
     .create({
-      model: "claude-sonnet-5",
+      model: "claude-sonnet-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello!" }]
     })
@@ -950,7 +950,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
 
   var response = await client.WithRawResponse.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet5,
+      Model = Model.ClaudeSonnet5_5,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello!" }]
   });
@@ -970,7 +970,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
   message, err := client.Messages.New(
   	context.Background(),
   	anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeSonnet5,
+  		Model:     anthropic.ModelClaudeSonnet5_5,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello!")),
@@ -1003,7 +1003,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
 
       HttpResponseFor<Message> response = client.messages().withRawResponse().create(
           MessageCreateParams.builder()
-              .model(Model.CLAUDE_SONNET_5)
+              .model(Model.CLAUDE_SONNET_5_5)
               .maxTokens(1024)
               .addUserMessage("Hello!")
               .build()
@@ -1021,7 +1021,7 @@ Setiap respons menyertakan dua ID permintaan dalam header respons:
   $client = new Client();
 
   $response = $client->messages->raw->create(
-      model: 'claude-sonnet-5',
+      model: 'claude-sonnet-5-5',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello!']],
   );

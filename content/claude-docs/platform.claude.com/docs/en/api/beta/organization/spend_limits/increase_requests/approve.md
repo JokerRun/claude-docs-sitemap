@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: c0e9eb86267c8822c6e77bd4965a07e4f60c476d3f0da384d5aa3d63654c05a5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 2d0c9934fc85986a24b510298335e3438d98f88b21322a9efae0f2c844f905d8
 ---
 
 ---
@@ -26,6 +26,14 @@ the member was blocked on. Anthropic emails the requester unless
 - `spend_limit_increase_request_id: string`
 
   ID of the spend limit increase request.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

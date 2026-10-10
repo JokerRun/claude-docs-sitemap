@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: ab996bec959f0f6d07b726e39d5e78c5c3f9e63282f74de9f41863e2ba9240ba
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: bc1b9ad717635253644e92a24fee9385b8ef38a942d4fecf7bf27939491a556d
 ---
 
 ---
@@ -34,6 +34,12 @@ holds at most two non-archived certificates.
   ID of the Tunnel.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 
@@ -259,6 +265,12 @@ Archived certificates are excluded unless `include_archived` is set.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
@@ -461,6 +473,12 @@ Retrieve a single certificate registered on a tunnel by ID.
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `mcp-tunnels-2026-05-19` in this header.
@@ -657,6 +675,12 @@ certificate is added.
   ID of the Tunnel Certificate.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": array of AnthropicBeta`
 

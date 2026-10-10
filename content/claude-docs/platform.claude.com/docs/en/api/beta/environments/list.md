@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: dc0b890067affecdb4f1aa33911c4f310646eaa3984e162fa1b0b81c19fa4c0c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a7e8133e0d12989769f3638e1dadbcdb78858924660a0e895cefb4e39087cf0b
 ---
 
 ---
@@ -35,6 +35,12 @@ List environments with pagination support.
   Opaque cursor from previous response for pagination. Pass the `next_page` value from the previous response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

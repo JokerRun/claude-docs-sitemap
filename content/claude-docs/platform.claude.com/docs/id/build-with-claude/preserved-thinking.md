@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e88316b9d7cf8fa167c3d964e3aec0e8662d225b0b09359f0cf586cf95ab8be7
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 69f88920510836d5caba79c4c18f50e0470f59595a459e9a73b711533af14355
 ---
 
 ---
@@ -41,14 +41,16 @@ Periksa juga integrasi Anda jika integrasi tersebut mengirim blok pemikiran Clau
 
 ## Beralih model di tengah percakapan
 
-Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran yang dihasilkan oleh satu sama lain dan oleh model Claude sebelumnya. Tidak ada model sebelumnya yang membaca blok pemikiran dari Claude Fable 5.1 atau Claude Mythos 5.1.
+Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran yang dihasilkan oleh satu sama lain dan oleh model Claude sebelumnya. Tidak ada model lain yang membaca blok pemikiran dari Claude Fable 5.1 atau Claude Mythos 5.1.
 
 Claude Opus 5.5 membaca blok pemikiran dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos. Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran dari Claude Opus 5.5; tidak ada model lain yang melakukannya. Jadi percakapan yang berpindah dari Claude Opus 5 ke Claude Opus 5.5 mempertahankan penalarannya, begitu pula percakapan yang berpindah dari Claude Opus 5.5 naik ke Claude Fable 5.1 atau Claude Mythos 5.1 di Claude API. Percakapan yang berpindah dari Claude Fable 5.1 atau Claude Mythos 5.1 ke Claude Opus 5.5, atau dari Claude Opus 5.5 ke model apa pun selain kedua model tersebut, menjalankan giliran setelah peralihan tanpa penalaran model sebelumnya. Blok-blok tersebut dibuang, bukan ditolak, seperti yang dijelaskan nanti di bagian ini.
 
 Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Google Cloud, dari Claude Haiku 5.5, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable atau Claude Mythos mana pun. Di Claude API dan Google Cloud, Claude Opus 5.5 membaca blok pemikiran dari Claude Sonnet 5.5; tidak ada model lain yang melakukannya. Jadi percakapan yang berpindah dari Claude Sonnet 5 ke Claude Sonnet 5.5 mempertahankan penalarannya, begitu pula percakapan yang berpindah dari Claude Sonnet 5.5 naik ke Claude Opus 5.5 di Claude API dan Google Cloud. Percakapan yang berpindah ke Claude Sonnet 5.5 dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable atau Claude Mythos menjalankan giliran setelah peralihan tanpa penalaran model sebelumnya. Begitu pula perpindahan lain apa pun dari Claude Sonnet 5.5, misalnya [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) ke Claude Sonnet 5.
 
+Claude Haiku 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable atau Claude Mythos mana pun. Di Claude API dan Google Cloud, Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok pemikiran dari Claude Haiku 5.5; tidak ada model lain yang melakukannya. Jadi percakapan yang berpindah dari Claude Haiku 4.5 ke Claude Haiku 5.5 mempertahankan penalarannya, begitu pula percakapan yang berpindah dari Claude Haiku 5.5 naik ke Claude Opus 5.5 atau Claude Sonnet 5.5 di Claude API dan Google Cloud. Percakapan yang berpindah ke Claude Haiku 5.5 dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable atau Claude Mythos menjalankan giliran setelah peralihan tanpa penalaran model sebelumnya, begitu pula perpindahan lain apa pun dari Claude Haiku 5.5.
+
 * **Percakapan yang berpindah ke Claude Fable 5.1 dari model sebelumnya, atau dari Claude Opus 5.5 di Claude API, mempertahankan penalarannya.** Blok pemikiran model sebelumnya tetap dapat dibaca, sehingga model berpikir seperti biasa sejak giliran pertama setelah peralihan.
-* **Percakapan yang berpindah turun ke model sebelumnya kehilangan penalaran Claude Fable 5.1 untuk permintaan tersebut.** Hal ini terjadi ketika router mengirim giliran ke model yang lebih murah, setelah [fallback penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), atau selama [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca sebelum prompt mencapai model. Blok tersebut tidak ditagih dan tidak dihitung dalam `input_tokens`.
+* **Percakapan yang berpindah dari Claude Fable 5.1 ke model apa pun selain Claude Mythos 5.1 kehilangan penalaran Claude Fable 5.1 untuk permintaan tersebut.** Hal ini terjadi ketika router mengirim giliran ke model yang lebih murah, setelah [fallback penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), atau selama [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca sebelum prompt mencapai model. Blok tersebut tidak ditagih dan tidak dihitung dalam `input_tokens`.
 
 Tetap kirim riwayat lengkap pada setiap permintaan, termasuk blok pemikiran, dan biarkan API membuang apa yang tidak dapat dibaca oleh model saat ini. API tidak pernah mengedit array `messages` Anda, sehingga blok yang dibuang tetap ada dalam riwayat Anda. Ketika riwayat yang sama kembali ke Claude Fable 5.1, bloknya dapat dibaca lagi, bersama dengan pemikiran model sebelumnya. Penalaran hilang secara permanen hanya jika klien Anda sendiri yang menghapus blok tersebut, misalnya harness yang menghapus pemikiran saat peralihan model atau membangun ulang riwayat dari apa yang digunakan setiap model.
 
@@ -1266,7 +1268,7 @@ Platform lain yang menawarkan beta ini menggunakan nama yang sama. Untuk mengiri
 
 Simpan array `content` dari setiap respons dan kirim kembali tanpa perubahan sebagai giliran asisten: setiap jenis blok, dalam urutan yang diterima, termasuk blok `thinking` yang field `thinking`-nya kosong. Serializer yang membuang jenis blok yang tidak dikenal, membuang field kosong, atau mengurutkan ulang blok akan mengedit prefiks untuk setiap giliran berikutnya.
 
-Pada Claude Fable 5.1 dan Claude Haiku 5.5, field `thinking` kosong secara default dan `signature` membawa penalaran, sehingga serializer yang melewati blok kosong akan menghapus pemikiran. Jika serializer menghapus semuanya, tidak ada yang gagal dan model kehilangan penalaran sebelumnya pada setiap giliran. Jika Anda mem-parsing stream sendiri, pertahankan blok tersebut bahkan ketika tidak ada teks pemikiran yang tiba: blok terbuka, menerima `signature`-nya dalam event `signature_delta`, dan tertutup. Blok yang dikirim kembali dengan `signature` kosong akan gagal.
+Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, field `thinking` kosong secara default dan `signature` membawa penalaran, sehingga serializer yang melewati blok kosong akan menghapus pemikiran. Jika serializer menghapus semuanya, tidak ada yang gagal dan model kehilangan penalaran sebelumnya pada setiap giliran. Jika Anda mem-parsing stream sendiri, pertahankan blok tersebut bahkan ketika tidak ada teks pemikiran yang tiba: blok terbuka, menerima `signature`-nya dalam event `signature_delta`, dan tertutup. Blok yang dikirim kembali dengan `signature` kosong akan gagal.
 
 ### Menambahkan instruksi dengan pesan sistem di tengah percakapan
 
@@ -1424,13 +1426,13 @@ Pesan `role: "system"` yang membawa blok-blok ini menjadi bagian dari prefiks un
 
 ### Ubah effort dengan `output_config` per pesan
 
-Mengubah `output_config.effort` tingkat atas di antara permintaan tidak membuat pemikiran menjadi tidak valid, karena effort bukan bagian dari prefiks. Namun, mengubah effort tingkat atas memang memulai ulang cache prompt. Pada Claude Fable 5.1 dan pada Claude Haiku 5.5 dengan pemikiran adaptif, gunakan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) sebagai gantinya: tambahkan pesan `role: "system"` dengan `content` kosong dan level yang baru. Ini memerlukan header beta `mid-conversation-output-config-2026-07-01`.
+Mengubah `output_config.effort` tingkat atas di antara permintaan tidak membuat pemikiran menjadi tidak valid, karena effort bukan bagian dari prefiks. Namun, mengubah effort tingkat atas memang memulai ulang cache prompt. Jika model dan platform mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta), gunakan itu sebagai gantinya: tambahkan pesan `role: "system"` dengan `content` kosong dan level yang baru. Ini memerlukan header beta `mid-conversation-output-config-2026-07-01`. Pada Claude Haiku 5.5, effort per pesan tersedia di Claude API dan Google Cloud serta memerlukan pemikiran adaptif.
 
 ```json
 { "role": "system", "content": [], "output_config": { "effort": "low" } }
 ```
 
-Level baru berlaku mulai giliran `user` berikutnya. Setelah dikirim, pesan tersebut menjadi bagian dari `messages` dan karenanya menjadi bagian dari prefiks untuk pemikiran berikutnya: biarkan di tempatnya pada permintaan-permintaan selanjutnya, dan tambahkan pesan lain untuk mengubah effort lagi.
+Kapan level baru mulai berlaku bergantung pada tempat Anda meletakkan pesan tersebut. Tepat setelah pesan `user` dengan input baru, level baru dimulai dengan balasan Claude terhadap pesan itu. Di tempat lain, seperti setelah pesan `assistant` atau setelah pesan `user` yang hanya berisi blok `tool_result`, level baru dimulai dengan pesan `user` berikutnya yang berisi input baru, sehingga loop alat yang sedang berjalan tetap menggunakan level saat ini sampai saat itu. Setelah dikirim, pesan tersebut menjadi bagian dari `messages` dan karenanya bagian dari prefiks untuk pemikiran berikutnya: biarkan tetap di tempatnya pada permintaan-permintaan selanjutnya, dan tambahkan pesan lain untuk mengubah effort lagi.
 
 ### Memangkas konteks di server
 
@@ -1724,7 +1726,7 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
   </Accordion>
 
   <Accordion title="Apakah mengubah effort atau pengaturan thinking lainnya di antara permintaan membuat thinking sebelumnya tidak valid?">
-    Tidak. `output_config.effort`, `max_tokens`, dan konfigurasi `thinking` bukan bagian dari prefiks yang diperiksa, yang hanya mencakup `system`, `tools`, dan `messages`. Perubahan effort tingkat atas membuat sebagian besar cache prompt tidak valid. Pada Claude Fable 5.1 dan pada Claude Haiku 5.5 dengan pemikiran adaptif, perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#effort-changes) mempertahankan cache prompt dan digunakan sebagai level effort baru sampai diubah lagi.
+    Tidak. `output_config.effort`, `max_tokens`, dan konfigurasi `thinking` bukan bagian dari prefiks yang diperiksa, yang hanya mencakup `system`, `tools`, dan `messages`. Perubahan effort tingkat atas membuat sebagian besar cache prompt tidak valid. Jika model dan platform mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#effort-changes), perubahan effort per pesan mempertahankan cache prompt dan digunakan sebagai level effort baru hingga diubah lagi.
   </Accordion>
 
   <Accordion title="Daftar alat saya berubah di tengah sesi. Bagaimana cara menghindari percakapan menjadi tidak valid?">

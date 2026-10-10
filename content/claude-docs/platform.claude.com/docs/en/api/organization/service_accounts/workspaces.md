@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/workspaces
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: fc30be6bce260ebaf32c6c0d741a920a2674e544558d4dd038f2f58e58f971a6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4b5266da37aea87cdbe558b8bee6d51caa51515264cba87b7750201119e848cd
 ---
 
 ---
@@ -32,6 +32,14 @@ rejected.
 - `service_account_id: string`
 
   ID of the service account.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Body parameters
 
@@ -155,6 +163,14 @@ page to recover.
 
   Opaque cursor from a previous response's `next_page`.
 
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 ### Returns
 
 - `data: array of ServiceAccountWorkspaceMember`
@@ -248,6 +264,14 @@ to the implicit `workspace_user` membership. Archived workspaces return
 - `workspace_id: string`
 
   ID of the workspace.
+
+### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ### Returns
 

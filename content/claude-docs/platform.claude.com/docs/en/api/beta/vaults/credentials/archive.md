@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4ed2f6f199f27a4e396b8c88a355f1a842c826f6ec4b75d3708e46806ed09fc2
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c0a6c6cb319afbad1c2b535c3c0d28df4321feb369ebefda2d8117abd83c1e72
 ---
 
 ---
@@ -27,6 +27,8 @@ Archive Credential
   Unique identifier of the credential to archive.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

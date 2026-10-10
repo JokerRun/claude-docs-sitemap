@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: fa0dd362f253307055622b0d41c0ffd8a25b8f6b878d36ce9187d8705f8516fc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5bc02ebc33815a8ac869ee683e2874358e1e789fa1a335ca731640df0bbeef65
 ---
 
 ---
@@ -30,6 +30,14 @@ Results are ordered by creation time (newest first). Use the
 - `page: optional string`
 
   Opaque cursor from a previous response's `next_page`.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 8b04be7a2551482b3312935d7e764a834282a3899db73d704e1b73af16d49f4c
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 184356d8376c31dbdeef5dcc517341e80eebfa0a70cf197ff76e134bdbe1a61e
 ---
 
 ---
@@ -27,6 +27,14 @@ encrypted data requires the original key identity to decrypt.
   ID of the External Key.
 
   maxLength: 2048
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

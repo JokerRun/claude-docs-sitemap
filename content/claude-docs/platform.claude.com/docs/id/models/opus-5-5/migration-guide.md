@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d7a4e4e31c4a7c5a3ef9e313e53a2fd9e97e2fea87d3b1f2f988950de9e6a5f6
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e837453fefb5308d97b2bf682c1e733f25d0c2238a63ced3682ab75653560576
 ---
 
 ---
@@ -293,7 +293,7 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhentilah setelah grup yang 
 * Atur `effort` secara eksplisit: defaultnya adalah `medium`, sedangkan default Claude Opus 5 adalah `high`.
 * Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah penggunaan alat ketat atau output terstruktur, atau dengan `auto` saja di Amazon Bedrock.
 * Jika Anda menggunakan computer use di Claude API atau Google Cloud, deklarasikan `computer_toolset_20260801` (tanpa header beta) alih-alih `computer_20251124` dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, tetap gunakan `computer_20251124`; periksa bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use untuk platform lain.
-* Jika router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model lain, perkirakan model tersebut berjalan tanpa blok thinking Claude Opus 5.5 (Claude Fable 5.1 dan Claude Mythos 5.1 di Claude API adalah pengecualian dan mempertahankannya). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos.
+* Jika router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model lain, perkirakan model tersebut akan berjalan tanpa blok thinking Claude Opus 5.5 (Claude Fable 5.1 dan Claude Mythos 5.1 di Claude API adalah pengecualian dan mempertahankannya). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos.
 * Baca blok konten berdasarkan `type`, dan kirimkan kembali blok `thinking` tanpa modifikasi dalam loop penggunaan alat.
 * Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `display: "updates"` (beta) atau `"summarized"` dan tampilkan blok `thinking` yang tidak kosong.
 * Jika kode Anda mengedit giliran sebelumnya, prompt `system`, atau `tools` di tengah percakapan, ikuti [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
@@ -891,7 +891,7 @@ Sesudah:
 
 #### Blok thinking terikat pada model dan percakapan
 
-Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok thinking Claude Opus 5.5; tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun menjalankan giliran tersebut tanpa blok itu. Sebaliknya, Claude Opus 5.5 membaca blok thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos. Pertahankan percakapan agar hanya ditambahkan (append-only, tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok tetap valid; Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Penegakannya sama dengan Claude Fable 5.1 di setiap platform: untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, memutar ulang blok thinking setelah pengeditan seperti itu mengembalikan error 400 secara default. Tidak ada perubahan kode untuk integrasi append-only. Lihat [Blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
+Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok thinking Claude Opus 5.5; tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun menjalankan giliran tersebut tanpa blok itu. Ke arah sebaliknya, Claude Opus 5.5 membaca blok thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos. Pertahankan percakapan agar hanya ditambahkan (append-only, tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok tetap valid; Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Penegakannya sama dengan Claude Fable 5.1 di setiap platform: untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, memutar ulang blok thinking setelah pengeditan semacam itu mengembalikan error 400 secara default. Tidak ada perubahan kode untuk integrasi append-only. Lihat [Blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
 
 #### Alat computer use `computer_20251124` tidak didukung di Claude API dan Google Cloud
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 30f0288071323129faae1dfe254b5fda2d41ba0cb5c90e3e966c412780288dfa
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: bc3d2adadcc8e1677d3e3c7df2a59676dd325a040be8997c701ef053a3ff57dc
 ---
 
 ---
@@ -391,7 +391,7 @@ becomes:
 }
 ```
 
-`effort: "high"` matches the API default; it appears here only to show where the depth control now lives, and omitting it produces identical behavior.
+`effort: "high"` is the default on Claude Sonnet 4.6, so omitting it here produces identical behavior; it appears only to show where the depth control lives in adaptive mode. Claude Opus 5.5 and Claude Haiku 5.5 default to `"medium"`, and other models that support effort default to `"high"` (see [Effort levels](https://platform.claude.com/docs/en/build-with-claude/effort#effort-levels)).
 
 Expect a behavioral difference, not just a syntax change. With a fixed budget, Claude thinks on every request. With adaptive thinking, Claude determines whether and how much to think on each request, and at lower [effort](https://platform.claude.com/docs/en/build-with-claude/effort) settings it may skip thinking entirely on easy inputs. You can also remove the `interleaved-thinking-2025-05-14` beta header after migrating: adaptive thinking interleaves automatically, and the Claude API ignores the header on these models. Thinking block preservation changes too: Claude Opus 4.5 and models numbered 4.6 and higher keep prior turns' thinking blocks in context and bill them as input, where Claude Sonnet 4.5 (deprecated), Claude Haiku 4.5, and earlier models stripped them; see [thinking block preservation by model](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-block-preservation-by-model).
 

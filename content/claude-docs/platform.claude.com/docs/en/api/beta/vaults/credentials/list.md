@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9b8eadc4cff5b7f43cbb0d83980ce2d8d55b1bd07591ebc3c0226821cc85de4e
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5fdef2e8a4eb4e1c3a6b4afca4c32486d33759393ebea29acf1af0362db22814
 ---
 
 ---
@@ -39,6 +39,8 @@ List Credentials
   Opaque pagination token from a previous `list_credentials` response.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 229a09799ffc4428e324e9fd6114af7114eaa3d94a295d639b19469cb8367c2b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: c2b1b301928e007286792bef6c7a9f5131d09c4f2157df0ede8583e7901e6e1a
 ---
 
 ---
@@ -470,28 +470,28 @@ Untuk melanjutkan sesi:
 
 ## Sesi multiagen dan berbasis outcome
 
-Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diberlakukan secara bersamaan. Agen dalam roster koordinator terikat oleh tiga set daftar:
+Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diberlakukan secara bersamaan. Agen yang tercantum dalam `subagents.predefined_agents` terikat oleh tiga set daftar:
 
 * `allowed_domains` dan `blocked_domains` miliknya sendiri
 * Milik agen mana pun yang memanggilnya
-* Daftar koordinator saat ini
+* Daftar saat ini dari agen yang dijalankan oleh sesi
 
 Pengaturan digabungkan sebagai berikut:
 
-| Pengaturan                            | Cara penggabungannya                                                                                                                                                                                                              |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_domains`                     | Alat dapat menjangkau sebuah host hanya jika setiap daftar mencakupnya.                                                                                                                                                           |
-| `blocked_domains`                     | Daftar-daftar dijumlahkan.                                                                                                                                                                                                        |
-| `max_content_tokens`, `user_location` | Tidak digabungkan. Sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika ditetapkan. Jika tidak, thread menggunakan nilai dari agen yang memanggilnya, dan jika tidak ada juga, konfigurasi koordinator saat ini. |
+| Pengaturan                            | Cara penggabungannya                                                                                                                                                                                                             |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowed_domains`                     | Alat dapat menjangkau sebuah host hanya jika setiap daftar mencakupnya.                                                                                                                                                          |
+| `blocked_domains`                     | Daftar-daftar dijumlahkan.                                                                                                                                                                                                       |
+| `max_content_tokens`, `user_location` | Tidak digabungkan. Sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika ditetapkan. Jika tidak, thread menggunakan nilai dari agen yang memanggilnya, dan jika tidak juga, konfigurasi saat ini dari agen sesi. |
 
-Dengan demikian, agen roster dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya:
+Oleh karena itu, agen yang tercantum dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya:
 
-* Agen roster yang menetapkan `blocked_domains` mempertahankan `allowed_domains` milik koordinator dan memblokir host-host tersebut di dalamnya.
-* Agen roster yang menetapkan `allowed_domains` miliknya sendiri hanya dapat menjangkau host yang dicakup oleh daftarnya dan daftar koordinator.
+* Agen tercantum yang menetapkan `blocked_domains` tetap menggunakan `allowed_domains` dari agen sesi dan memblokir host tersebut di dalamnya.
+* Agen tercantum yang menetapkan `allowed_domains` sendiri hanya dapat menjangkau host yang tercakup baik oleh daftarnya maupun daftar agen sesi.
 
-Entri roster `{"type": "self"}` tidak memiliki pengaturan web sendiri dan mengikuti pengaturan koordinator saat ini.
+Entri `{"type": "self"}` dalam `subagents.predefined_agents` tidak memiliki pengaturan web sendiri dan mengikuti pengaturan saat ini dari agen sesi.
 
-Jika daftar `allowed_domains` yang digabungkan tidak memiliki domain yang sama, alat tetap tersedia bagi agen tersebut tetapi setiap panggilan gagal. Setiap panggilan mengembalikan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan. Deskripsi alat juga memberi tahu model hal yang sama. Untuk menghindari hal ini, pastikan `allowed_domains` setiap agen roster berada di dalam daftar milik koordinator.
+Jika daftar `allowed_domains` yang digabungkan tidak memiliki domain yang sama, alat tetap tersedia bagi agen tersebut tetapi setiap panggilan gagal. Setiap panggilan mengembalikan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan. Deskripsi alat juga memberi tahu model hal yang sama. Untuk menghindari hal ini, pastikan `allowed_domains` setiap agen tercantum berada di dalam `allowed_domains` agen sesi.
 
 Grader dalam [sesi berbasis outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) berjalan tanpa `web_search` dan `web_fetch`, terlepas dari pengaturan ini.
 
@@ -499,7 +499,7 @@ Grader dalam [sesi berbasis outcome](https://platform.claude.com/docs/id/managed
 
 Anda dapat mengubah daftar pada sesi yang sedang idle dengan [memperbarui alatnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration). Daftar baru berlaku untuk sisa sesi.
 
-Dalam sesi multiagen, setiap thread menerapkan daftar baru mulai dari giliran berikutnya. Pembaruan tidak mengubah daftar milik agen roster itu sendiri. Daftar tersebut tetap seperti yang ditetapkan oleh definisi agen saat sesi dibuat.
+Dalam sesi multiagen, setiap thread menerapkan daftar baru mulai dari giliran berikutnya. Untuk agen yang tercantum dalam `subagents.predefined_agents`, pembaruan tidak mengubah daftar milik agen itu sendiri. Daftar tersebut tetap seperti yang ditetapkan oleh definisi agen saat sesi dibuat.
 
 ## Perbedaan dari alat Messages API
 

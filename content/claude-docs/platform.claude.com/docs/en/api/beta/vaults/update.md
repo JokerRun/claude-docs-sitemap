@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 20a37853527a048ceb7a4ddeab63d91fcbefa0d77fd9a5ea5c3e92d38eebfbe5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 0ebbf7a887d617c710d91c3a50fa032c45055a75ee465184a1ac975c6b4c367b
 ---
 
 ---
@@ -23,6 +23,8 @@ Update Vault
   Unique identifier of the vault to update.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 93cc515e9869139339909bc3fcea7e10b6cd3187a6baa4d08398ae68382bcd1d
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f650f76d8972472ce66470770f48b2e39d5bc15fe2e9ed1b0ad8e01304896c8a
 ---
 
 ---
@@ -31,6 +31,12 @@ Delete Skill Version
   Requests carrying the `skills-2025-10-02` beta header address versions by their Unix epoch timestamp instead (e.g., "1759178010641129").
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

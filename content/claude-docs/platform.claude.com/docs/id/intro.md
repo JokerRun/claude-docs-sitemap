@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c4e264a08547c3ff3e16e3bb4beb5096de6853acab1e49039e81c9f20c2bae24
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: b787925a0d290995f8bf2035a4d6c515a3673a951c3c25273407e54d39062dc3
 ---
 
 ---
@@ -67,7 +67,7 @@ Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi 
   </Step>
 
   <Step title="Jelajahi fitur dan alat">
-    Temukan apa yang dapat dilakukan Claude: "extended thinking" (pemikiran diperpanjang), pencarian web, penanganan file, output terstruktur, dan banyak lagi.
+    Temukan apa yang dapat dilakukan Claude: "thinking" (pemikiran), pencarian web, penanganan file, output terstruktur, dan banyak lagi.
 
     [Telusuri ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview)
   </Step>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ab0ab47892ecd2b9fc1b5eb01d0588711fcf1e16228590a6f721b09b2a7e8682
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 15d5129206acb559cd3dd6be48391ee5ce084f5ae9c71b5151155ec86fbaa5a4
 ---
 
 ---
@@ -26,7 +26,9 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 * Permintaan mengembalikan `stop_reason: "refusal"`: [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals)
 
 <Note>
-  Untuk lima perubahan API yang bersifat breaking saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
+  Untuk perubahan API yang bersifat breaking saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
+
+  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Google Cloud, sebagai gantinya Anda dapat [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
 </Note>
 
 ## Gunakan effort untuk mengontrol thinking
@@ -34,7 +36,7 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk seberapa banyak Claude Haiku 5.5 berpikir. Effort menggantikan anggaran thinking (`budget_tokens`) yang digunakan Claude Haiku 4.5, sehingga tidak ada pengaturan lama yang perlu dibawa. Bandingkan dua atau tiga tingkat berikut pada eval Anda sendiri:
 
 * `low` adalah tingkat termurah dan tercepat. Gunakan untuk chat, tugas alat yang singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih mungkin melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada tingkat ini.
-* `medium` adalah default di Claude API dan di Claude Code. Mulailah dari sini untuk sebagian besar pekerjaan, termasuk coding agentik.
+* `medium` adalah default. Mulailah dari sini untuk sebagian besar pekerjaan, termasuk coding agentik.
 * `high` cocok untuk pekerjaan berbasis pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat.
 * `xhigh` dan `max` ditujukan untuk pekerjaan di mana peningkatan kualitas pada eval Anda sepadan dengan biayanya. Thinking dan balasan menjadi jauh lebih panjang pada tingkat ini, jadi jalankan juga eval Anda pada Claude Sonnet 5.5 dan bandingkan kinerja, biaya, dan kecepatannya.
 
@@ -43,7 +45,7 @@ Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking beke
 * Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
 * Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Dalam pengujian Anthropic, meminta model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat mematikan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan mengembalikan error 400.
 * Pada effort `xhigh` dalam chat multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Untuk menjalankan giliran tertentu pada tingkat yang berbeda, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dimatikan, perubahan effort per pesan mengembalikan error 400.
+* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Google Cloud, Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dimatikan, perubahan effort per pesan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 
@@ -52,6 +54,8 @@ Saat Anda memberikan alat pencarian kepada Claude Haiku 5.5, berikan juga tangga
 ```text wrap
 The current date is {{current_date}}.
 ```
+
+Render tanggal sekali, saat percakapan dimulai, dan kirim `system` dan `tools` yang sama pada setiap permintaan berikutnya dalam percakapan tersebut (lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)). Ketika percakapan berlanjut pada hari berikutnya, [berikan tanggal baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context) sebagai gantinya.
 
 Model juga terkadang memerlukan dorongan tambahan untuk melakukan pencarian. Hal ini paling sering terjadi pada effort `low` dan dengan prompt sistem yang panjang. Untuk memperbaikinya, tambahkan teks ini tepat setelah tanggal:
 

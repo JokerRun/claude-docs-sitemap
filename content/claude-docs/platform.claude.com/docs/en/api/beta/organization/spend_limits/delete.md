@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete
-fetched_at: 2026-09-19T02:20:35.649299Z
-sha256: a8d41c000044f5708301f8f2ebc22bd39075711d1c389592475d5c9b40bfe79f
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5932be114d2aa7d7ad0d8366685b6de791dbcfc7a5c40dc33fb4a0ccf2fbe09d
 ---
 
 ---
@@ -27,6 +27,14 @@ workspace limits. Deleting them through the API is in an early access preview.
 - `spend_limit_id: string`
 
   ID of the Spend Limit.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

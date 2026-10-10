@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 0cc9b5d4f23f97b9e12888b257089797cfd43599f2a4ea3c5c83792046b8bded
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 4f415e500ba49de700ab00b158905d5d19995bd7830d01904de917da0e3e3f2d
 ---
 
 ---
@@ -497,7 +497,7 @@ The following example starts a session that overrides the model and clears the s
     "agent": {
       "type": "agent_with_overrides",
       "id": "$AGENT_ID",
-      "model": {"id": "claude-sonnet-5"},
+      "model": {"id": "claude-sonnet-5-5"},
       "system": null
     },
     "environment_id": "$ENVIRONMENT_ID"
@@ -513,7 +513,7 @@ The following example starts a session that overrides the model and clears the s
     type: agent_with_overrides
     id: $AGENT_ID
     model:
-      id: claude-sonnet-5
+      id: claude-sonnet-5-5
     system: null
   environment_id: $ENVIRONMENT_ID
   YAML
@@ -524,7 +524,7 @@ The following example starts a session that overrides the model and clears the s
       agent={
           "type": "agent_with_overrides",
           "id": agent.id,
-          "model": {"id": "claude-sonnet-5"},
+          "model": {"id": "claude-sonnet-5-5"},
           "system": None,  # clear the agent's system prompt for this session
       },
       environment_id=environment.id,
@@ -539,7 +539,7 @@ The following example starts a session that overrides the model and clears the s
     agent: {
       type: "agent_with_overrides",
       id: agent.id,
-      model: { id: "claude-sonnet-5" },
+      model: { id: "claude-sonnet-5-5" },
       system: null // clear the agent's system prompt for this session
     },
     environment_id: environment.id
@@ -558,7 +558,7 @@ The following example starts a session that overrides the model and clears the s
           ID = agent.ID,
           Model = new BetaManagedAgentsModelConfigParams
           {
-              ID = BetaManagedAgentsModel.ClaudeSonnet5,
+              ID = BetaManagedAgentsModel.ClaudeSonnet5_5,
           },
           System = null, // clear the agent's system prompt for this session
       },
@@ -576,7 +576,7 @@ The following example starts a session that overrides the model and clears the s
   			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
   			ID:   agent.ID,
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
-  				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5,
+  				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5_5,
   			},
   			// Clear the agent's system prompt for this session.
   			System: param.Null[string](),
@@ -598,7 +598,7 @@ The following example starts a session that overrides the model and clears the s
           .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
           .id(agent.id())
           .model(BetaManagedAgentsModelConfigParams.builder()
-              .id(BetaManagedAgentsModel.CLAUDE_SONNET_5)
+              .id(BetaManagedAgentsModel.CLAUDE_SONNET_5_5)
               .build())
           .system((String) null) // clear the agent's system prompt for this session
           .build())
@@ -613,7 +613,7 @@ The following example starts a session that overrides the model and clears the s
   $overrides = BetaManagedAgentsAgentWithOverridesParams::with(
       id: $agent->id,
       type: 'agent_with_overrides',
-      model: ['id' => 'claude-sonnet-5'],
+      model: ['id' => 'claude-sonnet-5-5'],
   );
   // Clear the system prompt for this session. Array access is load-bearing here:
   // create() strips nulls from raw arrays and ::with() treats null args as omitted.
@@ -635,7 +635,7 @@ The following example starts a session that overrides the model and clears the s
     agent: Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams.new(
       type: :agent_with_overrides,
       id: agent.id,
-      model: {id: "claude-sonnet-5"},
+      model: {id: "claude-sonnet-5-5"},
       system_: nil
     ),
     environment_id: environment.id

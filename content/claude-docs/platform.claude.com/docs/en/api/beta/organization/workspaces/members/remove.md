@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/remove
-fetched_at: 2026-09-11T02:21:44.680579Z
-sha256: d66b140abdb859dc7fcb24128c237930c80e91cff786fde9f3ae65da769d3270
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 9a8cf60c24509021de2e900c2a1655d3eabed91d11d1c04d9c6ca1094aa47649
 ---
 
 ---
@@ -25,6 +25,14 @@ Delete Workspace Member
 - `user_id: string`
 
   ID of the User.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

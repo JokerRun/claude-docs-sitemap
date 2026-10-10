@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 7a3c978d223c669af9240bbec8b9be675b486017543861b184aba12e71e919fc
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 87f59b29d918571b7a325dcd76e2ba0cedc6e0ea502a7d6176b3db42d7f148c7
 ---
 
 ---
@@ -29,6 +29,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   ID of the certificate to archive (`tcrt_...`).
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

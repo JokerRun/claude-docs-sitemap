@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/members/update
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: afb810181e27bae93662f72999dc87139d373ac0545239f0971817a09b020e07
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 7dc5f7049a2f1e2680a740fedc30d990e3869638b9d9cb261cf9cc885ca8ab90
 ---
 
 ---
@@ -25,6 +25,14 @@ Update Workspace Member
 - `user_id: string`
 
   ID of the User.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

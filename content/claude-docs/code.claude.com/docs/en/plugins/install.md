@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: f7d27a9ea4ec6f24238e122f35ccaa16869e1bf672be1521db8b31e50f91a4ed
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 36f80c095b64fc5cea98684dfe6592ff428d928a26c09371bf4f9ba4c7644edd
 ---
 
 > ## Documentation Index
@@ -250,6 +250,8 @@ claude plugin install deploy-helper --marketplace your-org/plugins
 ```
 
 The shell command adds the marketplace without a confirmation step. A marketplace you've already added from that source is reused. A new one is added under the same [organization policy checks](/docs/en/plugins/org#restrict-what-users-can-install) as `claude plugin marketplace add`, and is declared in your user settings even when you pass `--scope project`.
+
+If you haven't added that marketplace yet, the command prints `Successfully added marketplace: <name> (declared in user settings)` and then [installs the plugin](#install-from-your-shell).
 
 ### Add a private marketplace
 

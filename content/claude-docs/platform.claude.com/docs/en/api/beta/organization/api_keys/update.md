@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/update
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 79aed6eefc7b3d985d91d9ab3f3788df7925ec449a289d686ca03b17e7b1df72
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: bf4b6fd2b6ac85ae62ce084907867c940d1f1411fecf3c9a65cee901e953f600
 ---
 
 ---
@@ -21,6 +21,14 @@ Update API Key
 - `api_key_id: string`
 
   ID of the API key.
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Body parameters
 

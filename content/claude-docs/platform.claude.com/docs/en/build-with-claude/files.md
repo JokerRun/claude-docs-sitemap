@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 4e140ae506c1ad545d49a64f6a439c0ce9d85fcb0890bc01304a16d48a517cb0
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: a02fe8fd8b7527ff8fae381a76913cde75c4005993ef97b2e05d4035a8353697
 ---
 
 ---
@@ -15,8 +15,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock: not available
-    Google Cloud: not available
     Microsoft Foundry:
       availability: ga
       note: On [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), the Files API requires a [Hosted on Anthropic deployment](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).

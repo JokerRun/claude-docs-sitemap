@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: e7cc2f3984ec09fa073e1e1debc05da735498331c00d5a764bdb394cffdfacb5
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: d0901e4db5f5c05bd9ba19595bda0ad81ef6cb4c079fc010ac85c1bdcd554212
 ---
 
 ---
@@ -17,6 +17,12 @@ url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
 Create Workspace
 
 ## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -130,7 +136,7 @@ Create Workspace
 
   Name of the Workspace.
 
-  minLength: 1, maxLength: 40
+  minLength: 1, maxLength: 255
 
 - `data_residency: optional BetaDataResidencyCreateConfig or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/delete
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 3bc2e43b3dad9def6da0ef8831e756489aa175741e9d4511b82ca660b1e9c640
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 5ae749de7b2714b3f02473323ceefa685ac1a5168683307db26d3d7560ced043
 ---
 
 ---
@@ -25,6 +25,14 @@ The request is rejected if any workspace still references this config.
   ID of the External Key.
 
   maxLength: 2048
+
+## Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 ## Returns
 

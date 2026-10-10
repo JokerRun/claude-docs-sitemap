@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: ad5992b56ad21feacc06ec51a9d5585a5140aefe8ca755da21ee91e8510839dd
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 395aded42a84f940097864db56aecd27d66af031821e37898d66e1f26dd24268
 ---
 
 ---
@@ -197,7 +197,7 @@ Panduan mulai cepat ini menjalankan satu worker always-on dengan CLI `ant`, meng
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=1.39.1
+        VERSION=1.40.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;

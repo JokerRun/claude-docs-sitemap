@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 786c8aec2ab3731d4ae858ac3cd8aaf3b3b029b35a63b833e96798d9181bc8d4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 71ae9bad68db4ced31056940d3a804be7d5805674c1d6200be2521a5c5c59401
 ---
 
 ---
@@ -36,6 +36,12 @@ other scopes require a Console session.
   ID of the federation rule.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -238,6 +244,12 @@ rules with `applies_to_all_workspaces` or a legacy single
 
 ### Headers
 
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
   Optional header to specify the beta version(s) you want to use.
@@ -428,6 +440,12 @@ Console session.
   ID of the workspace to disable for.
 
 ### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

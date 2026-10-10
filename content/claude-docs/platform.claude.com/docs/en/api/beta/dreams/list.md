@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 9ae5803c397ea965593e81859e43e587e23c63c47151e31175f65677fc82746b
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: 98787f1d1e1f4f47f8d442d3d5af32fb4fa6d18b66f31660973bf290a3e107b9
 ---
 
 ---
@@ -85,6 +85,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
     If `outputs` references a memory store, that memory store keeps what the dream wrote. `usage` can keep changing after the cancel.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

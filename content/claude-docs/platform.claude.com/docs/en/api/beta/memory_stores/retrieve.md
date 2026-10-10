@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b507c7f372cf71f4b38152d41b9bdf8411c92defb4420b9094e9fa962ebe2ab4
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: f5d351d996a7189b08d2d139893cdf55eef33624afb05de56e02afd1b257b9bd
 ---
 
 ---
@@ -23,6 +23,8 @@ Retrieve a memory store
   ID of the memory store to retrieve (a `memstore_...` identifier). Required. Enumerate IDs via `GET /v1/memory_stores`.
 
 ## Headers
+
+- `"anthropic-version": optional string`
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

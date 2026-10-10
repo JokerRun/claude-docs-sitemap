@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: bfeeaba7996e0b8a3fe0c9d27595f3a503d0c494b630c56566e71a71a0767695
+fetched_at: 2026-10-10T02:28:27.766834Z
+sha256: e5611c8c52e1f375db8977de6dfb21a4042161cfca89521c2dda36b1e75c5478
 ---
 
 ---
@@ -32,8 +32,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock: not available
-    Google Cloud: not available
     Microsoft Foundry:
       availability: ga
       note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), eksekusi kode memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
