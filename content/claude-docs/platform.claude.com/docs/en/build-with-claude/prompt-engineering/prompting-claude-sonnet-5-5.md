@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 34eb77362c09e24e4921750be608d3fab68e1aa2cb423db55922c6174305fcb1
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 6886cdd2625b73be5bd74420e31c3a050c1c52b8073b9bebe15f4dcf33e44f91
 ---
 
 ---
@@ -179,7 +179,7 @@ Claude Sonnet 5.5 runs safety classifiers that can decline a request. A decline 
 * `reasoning_extraction`: the request asks the model to reproduce its internal reasoning in the response text.
 * `general_harms`: the request falls under another usage-policy area. Benign work can also trigger this category.
 
-If the `bio` classifier blocks your organization's life sciences work, you can apply to the [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
+If the `cyber` classifier blocks your organization's legitimate security work, you can apply to the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). If the `bio` classifier blocks your organization's life sciences work, you can apply to the [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
 
 If you turn on [server-side fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback) (beta), it retries `cyber` and `frontier_llm` declines on Claude Sonnet 5. It doesn't retry `bio`, `reasoning_extraction`, or `general_harms` declines. See [Refusals, fallback, and billing](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#refusals-fallback-and-billing).
 

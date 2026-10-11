@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: fb60c2569fea0f3a308b9b8cd2f125cc016b17f5abd04754fcbe816e489cc2b2
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: a41dbe08cc86d3d269b8531535f6c929b667e814e67ed5d774ef0e7ab6a99b4a
 ---
 
 ---
@@ -13,13 +13,13 @@ description: "Referensi Claude Fable 5: status siklus hidup, ID model di setiap 
 
 **Legacy.** Released June 9, 2026.
 
-Although Claude Fable 5 is still available, you should consider migrating to Claude Fable 5.1 for improved performance. [See Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) · [Migrate to Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-fable-5-to-claude-fable-5-1)
+Although Claude Fable 5 is still available, you should consider migrating to Claude Fable 5.1. [See Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) · [Migrate to Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-fable-5-to-claude-fable-5-1)
 
 Model ID: `claude-fable-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [What’s new](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5)
+[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5)
 
 ## Fable vs. Mythos
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-6/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 93ad630b38028ea6b8edaaf7fc0424c802fc1244a8ff6cd4197a5e8760f8969b
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: a33395d083fba265f7706d509bd07bc173a22cb45f666fb39b56dbc3b49b6e10
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Referensi Claude Sonnet 4.6: status siklus hidup, ID model di seti
 
 **Legacy.** Released February 17, 2026.
 
-Although Claude Sonnet 4.6 is still available, you should consider migrating to Claude Sonnet 5.5 for improved performance. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-4-6)
+Although Claude Sonnet 4.6 is still available, you should consider migrating to Claude Sonnet 5.5. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-4-6)
 
 Model ID: `claude-sonnet-4-6`
 

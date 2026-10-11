@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-deploy
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 93e1b9d7abbe86be80642facc6013684c02f4c374047477dd237c5793cfc44d8
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 0b725ffac50476d2c04502b3b64e03ce37b57abe42f96bb4fedd90e074a7f6e6
 ---
 
 > ## Documentation Index
@@ -195,6 +195,8 @@ The git proxy is off unless you [turn it on](#turn-the-anthropic-git-proxy-on). 
 In exchange, the git proxy limits what the runner supports and changes what it needs:
 
 * **github.com only**: Anthropic serves a session only when all of its repositories are on github.com, and the git proxy doesn't support GitHub Enterprise Server yet. On a runner with the git proxy, a session with a repository on another git host [fails to start](#when-anthropic-doesnt-serve-a-session).
+* **Credentials for the session's repositories only**: Anthropic supplies git credentials for the repositories that are part of the session, not for other repositories on the same git host. A private submodule, a dependency that your package manager fetches with git, or a plugin marketplace in another repository gets no credential from Anthropic. Ask the people who create sessions to [add every repository](/docs/en/web-quickstart#start-a-task) a session needs when they create it.
+* **Branch pushes only**: a push that deletes a branch fails, and so does a push to any other kind of ref, such as a tag. For which branches a push can update, see [GitHub proxy](/docs/en/cloud-environments#github-proxy).
 * **Connected GitHub accounts**: the person who created a user session must have connected GitHub on claude.ai, or the session [doesn't start](#creator-has-no-github-connection).
 * **`--capacity 1`**: the git proxy requires one session per runner process, so run more replicas for parallelism. [Turn the Anthropic git proxy on](#turn-the-anthropic-git-proxy-on) lists the requirements.
 * **Replaced global git config**: the runner [deletes and replaces the global git config](#git-proxy-replaces-global-git-config) of the user it runs as. Run it as a dedicated user or in a container.

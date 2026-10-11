@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-6/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 92d13ac225dbb6ac009beb8817bba9a926d0b93d023ec60d9a2deefda5f6ca8e
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 342b2754b55742bd766949b1318d4fb63d5dfd78170ac7175a3f96f9a9abab50
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Referensi Claude Opus 4.6: status siklus hidup, ID model di setiap
 
 **Legacy.** Released February 5, 2026.
 
-Although Claude Opus 4.6 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46)
+Although Claude Opus 4.6 is still available, you should consider migrating to Claude Opus 5.5. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46)
 
 Model ID: `claude-opus-4-6`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8ee8806f2183fc83439d9d71564b274ce021b2c20ea54afec2be0581ea77dafb
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: f1e8f6fdee70ecbf5271d21f3dc34a8edf80b20dd2ad6a57cb729fa713fb3ab9
 ---
 
 > ## Documentation Index
@@ -258,6 +258,27 @@ Give the marketplace a name that fits that rule, then add it again:
 * **Someone else hosts it**: ask the owner to change the name
 
 Before v2.1.295, Claude Code reported the add in this example as successful.
+
+<h3 id="claude-code-reserves-this-name">
+  `Cannot add marketplace "<name>": Claude Code reserves this name and cannot register a marketplace under it`
+</h3>
+
+You added a marketplace, and the [`name`](/docs/en/plugins/marketplace-reference#top-level-fields) in its `marketplace.json` is one of the member names that every JavaScript object has, such as `constructor`, `toString`, or `valueOf`. Claude Code reserves those names, so it refuses the add and registers nothing. [Reserved names](/docs/en/plugins/marketplace-reference#reserved-names) lists them.
+
+In this example, the marketplace is named `constructor`:
+
+```text theme={null}
+Cannot add marketplace "constructor": Claude Code reserves this name and cannot register a marketplace under it. The name is set by "name" in the marketplace's marketplace.json; ask its maintainer to change it.
+```
+
+If a settings file declares the marketplace under [`extraKnownMarketplaces`](/docs/en/settings-reference#extraknownmarketplaces), Claude Code's attempt to add it at startup fails the same way, and the message appears on the **Errors** tab in `/plugin`.
+
+Give the marketplace another name, then add it again:
+
+* **You own the marketplace**: change `name` in `marketplace.json`
+* **Someone else hosts it**: ask the owner to change the name
+
+Before v2.1.296, adding such a marketplace failed with an internal error in place of this message.
 
 <h3 id="ssh-authentication-failed-or-https-authentication-failed">
   `SSH authentication failed` or `HTTPS authentication failed`
@@ -898,7 +919,7 @@ If that message shows the plugin's path cut off at a space, apply the [unquoted 
 
 #### Hook loads but never fires
 
-If a hook loads without error but never fires, check its definition and then watch it run:
+If a hook loads without error but never fires, first run `/plugin` in your session and open the plugin's details. A note there that begins `Its hooks.json hooks do not run` means another enabled plugin with the same name registered its hooks instead, and [Hooks when two enabled plugins share a name](/docs/en/plugins/loading#hooks-when-two-enabled-plugins-share-a-name) says which copy that is and how to switch. Otherwise, check the hook's definition and then watch it run:
 
 <Steps>
   <Step title="Check the event name">

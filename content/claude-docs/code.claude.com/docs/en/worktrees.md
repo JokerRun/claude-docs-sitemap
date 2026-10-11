@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: f1c415f9a96b5ef7b7498c794b2fdb1a9d12f83522355372257b4cd96308a48f
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 7eb175c40d8bee8f98a0bb6745067ba9f61c1d5163c5438515c24018742362ad
 ---
 
 > ## Documentation Index
@@ -245,7 +245,9 @@ A worktree gets its own files and branch, but it shares the following with the m
 
   The same read-through covers `.claude/agents` and `.claude/commands`. For skills, the read-through requires Claude Code v2.1.277 or later.
 
-All of these apply whether you create the worktree with `--worktree`, with `git worktree add`, or through the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions).
+All of these apply whether you create the worktree with `--worktree` or with `git worktree add`.
+
+In a worktree session that you start from the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions), Claude Code reads project configuration such as settings, hooks, skills, agents, commands, and [`.mcp.json`](/docs/en/mcp#project-scope) servers from the main checkout's root rather than from the worktree. Hook commands run in that root, and `${CLAUDE_PROJECT_DIR}` points at it. To reach the files Claude is working on, read the worktree's path from the hook's [`cwd` input field](/docs/en/hooks#common-input-fields). `CLAUDE.md` files and `.claude/rules/` still load from the worktree.
 
 ## Manage worktrees manually
 

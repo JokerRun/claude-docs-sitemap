@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a386e066dc797b6dd4400a2c7ebe56c1dc4acb1c8e18f18a2938f5da4c70c3ff
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 7b088d6a76213eb5c5810f86568017d2ef6b5b08f0f44c4fa374b9f1dd3919a9
 ---
 
 ---
@@ -64,12 +64,10 @@ List all threads associated with a session as follows:
   ```
 
   ```csharp C#
-  await foreach (var thread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
+  await foreach (var sessionThread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
   {
-      var label = thread.Agent.TryPickBetaManagedAgentsSessionThread(out var agent)
-          ? agent.Name
-          : thread.Agent.Json.GetProperty("type").GetString();
-      Console.WriteLine($"[{label}] {thread.Status.Raw()}");
+      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Json.GetProperty("type").GetString();
+      Console.WriteLine($"[{label}] {sessionThread.Status.Raw()}");
   }
   ```
 
@@ -493,9 +491,9 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
           {
               foreach (var block in message.Content)
               {
-                  if (block.Type == "text")
+                  if (block.Value is BetaManagedAgentsTextBlock textBlock)
                   {
-                      Console.Write(block.Text);
+                      Console.Write(textBlock.Text);
                   }
               }
           }
@@ -626,7 +624,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
       var page = await client.Beta.Sessions.Threads.Events.List(thread.ID, new() { SessionID = session.ID });
       await foreach (var evt in page.Paginate())
       {
-          Console.WriteLine($"[{evt.Type}] {evt.ProcessedAt}");
+          Console.WriteLine($"[{evt.Json.GetProperty("type").GetString()}] {evt.ProcessedAt}");
       }
       ```
 

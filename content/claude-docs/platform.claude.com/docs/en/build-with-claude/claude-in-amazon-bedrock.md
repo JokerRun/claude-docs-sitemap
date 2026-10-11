@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: dd231da87e85be3e80654ef7aec05611f580c3a758806b90ebfd64b5aaeac9a5
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 902ceed37cfdf5d28cb08871655194ca1ac538a9f35b71f9354a1f8f6a72ac20
 ---
 
 ---
@@ -355,7 +355,7 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 | Claude Haiku 5.5                                                                            | `anthropic.claude-haiku-5-5`      | [See Access](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Haiku 4.5                                                                            | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
-Use Claude Code 2.1.255 or later with Claude Fable 5.1 on Amazon Bedrock, and 2.1.280 or later with Claude Opus 5.5 and Claude Haiku 5.5; run `claude update` to upgrade.
+Use the latest version of Claude Code with Claude in Amazon Bedrock; run `claude update` to upgrade.
 
 <Tip>
   Upgrading to a newer Claude model? In Claude Code, run `/claude-api migrate` to apply model ID swaps and breaking parameter changes across your codebase. The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform. See [Migrating to a newer Claude model](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).

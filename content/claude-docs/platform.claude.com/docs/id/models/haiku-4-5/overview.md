@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6fae6ac8cdbcb23bfc8a3982b415ee0a6b82a9d7b8f0f9d0c26c2f0533e6aab7
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 1fe897c635947589bdfcee298e3fb6f54e7a29f02dc2ab149ed49700f0842b78
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Referensi Claude Haiku 4.5: status siklus hidup, ID model di setia
 
 **Legacy.** Released October 15, 2025.
 
-Although Claude Haiku 4.5 is still available, you should consider migrating to Claude Haiku 5.5 for improved performance. [See Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) · [Migrate to Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide)
+Although Claude Haiku 4.5 is still available, you should consider migrating to Claude Haiku 5.5. [See Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) · [Migrate to Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide)
 
 Model ID: `claude-haiku-4-5-20251001`
 

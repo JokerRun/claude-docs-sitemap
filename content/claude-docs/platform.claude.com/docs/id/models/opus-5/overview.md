@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a6a6b8e33c4985c00b18b932fee513fe53b0dc6496505525d31fcdfc660b207e
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: f05d960f3ce1ad243d18832ae195eea7e48ddd418e3dd40cd4c7b3fa1f51e7b8
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Referensi Claude Opus 5: status siklus hidup, ID model di setiap p
 
 **Legacy.** Released July 24, 2026.
 
-Although Claude Opus 5 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5)
+Although Claude Opus 5 is still available, you should consider migrating to Claude Opus 5.5. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5)
 
 Model ID: `claude-opus-5`
 

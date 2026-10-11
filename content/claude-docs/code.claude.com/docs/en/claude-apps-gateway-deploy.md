@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e015f168e9366b40ca9ecd582983a06601a227916626f9fa7c6fc6c2b2e630e3
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 3a567d6df5f8dbd4b40f96bec154311cec351db61dc2d1592f9abb45e089be9b
 ---
 
 > ## Documentation Index
@@ -128,7 +128,7 @@ For a complete worked example on Google Cloud, covering Cloud Run or GKE, Cloud 
 
 ### Push the gateway URL to developer machines
 
-Once the gateway is serving, push `forceLoginMethod`, `forceLoginGatewayUrl`, and `parentSettingsBehavior: "merge"` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly. Without this, `/login` shows the standard account picker with no gateway option.
+Once the gateway is serving, push `forceLoginMethod`, `forceLoginGatewayUrl`, and `parentSettingsBehavior: "merge"` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly.
 
 Once you deploy the keys, Claude Code stops using a leftover API key or claude.ai login on the machine, so plan the push together with your sign-in instructions. [Administrator policy requires a Cloud gateway sign-in](/docs/en/errors#administrator-policy-requires-a-cloud-gateway-sign-in) describes the messages developers see.
 

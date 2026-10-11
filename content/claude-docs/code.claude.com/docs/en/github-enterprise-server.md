@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 7cb1ea0543d2e2d024f014572f6aaab5316d0b3aba73dba1399fecc89f198b1b
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 6e59e5065fdceb98ebbacb86ee860d930dcbe1e633b75f7bf1e8029b5fd821bd
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ The table below shows which Claude Code features support GHES and any difference
 | Claude Security | ✅ Supported | Available in public beta for Enterprise plans at [claude.ai/security](https://claude.ai/security) |
 | Teleport sessions | ✅ Supported | Move sessions between cloud and terminal with `--teleport` |
 | Plugin marketplaces | ✅ Supported | Credential requirements differ by surface. See [Plugin marketplaces on GHES](#plugin-marketplaces-on-ghes) |
-| Contribution metrics | ✅ Supported | Delivered via webhooks to the [analytics dashboard](/docs/en/analytics) |
+| Contribution metrics | ❌ Not supported | Requires repositories hosted on github.com. The [analytics dashboard](/docs/en/analytics) still shows usage metrics for work in GHES repositories |
 | GitHub Actions | ✅ Supported | Requires manual workflow setup; `/install-github-app` is github.com only |
 | GitHub MCP server | ❌ Not supported | The GitHub MCP server does not work with GHES instances |
 
@@ -59,14 +59,14 @@ The guided setup generates a GitHub App manifest and redirects you to your GHES 
     From the GitHub App page on your GHES instance, install the app on the repositories or organizations you want Claude to access. You can start with a subset and add more later.
   </Step>
 
-  <Step title="Enable features">
-    Go to [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) and enable [Code Review](/docs/en/code-review#set-up-code-review) and [contribution metrics](/docs/en/analytics#enable-contribution-metrics) for your GHES repositories using the same configuration as github.com.
+  <Step title="Enable Code Review">
+    Go to [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) and enable [Code Review](/docs/en/code-review#set-up-code-review) for your GHES repositories using the same configuration as github.com.
   </Step>
 </Steps>
 
 ### GitHub App permissions
 
-The manifest configures the GitHub App with the permissions and webhook events below, which together cover cloud sessions, Code Review, Claude Security, plugin marketplaces, and contribution metrics:
+The manifest configures the GitHub App with the permissions and webhook events below, which together cover cloud sessions, Code Review, Claude Security, and plugin marketplaces:
 
 | Permission | Access | Used for |
 | :- | :- | :- |
@@ -239,6 +239,6 @@ These pages cover the features referenced throughout this guide in more depth:
 * [Use Claude Code in the cloud](/docs/en/claude-code-on-the-web): run Claude Code sessions on cloud infrastructure
 * [Code Review](/docs/en/code-review): automated PR reviews
 * [Plugin marketplaces](/docs/en/plugins/host-marketplace): build and distribute plugin catalogs
-* [Analytics](/docs/en/analytics): track usage and contribution metrics
+* [Analytics](/docs/en/analytics): track Claude Code usage across your organization
 * [Managed settings](/docs/en/settings): organization-wide policy configuration
 * [Network configuration](/docs/en/network-config): firewall and IP allowlist requirements

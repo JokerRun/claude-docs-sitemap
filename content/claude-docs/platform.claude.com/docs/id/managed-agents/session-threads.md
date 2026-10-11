@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1ad97d767239be74cf989b6f382b191a73c4ab8412f324dc043167c2823e3bdc
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 902b5064757d6a7fec75c134ded35d8f4ee9e963d989c8e4576482c0b50b104b
 ---
 
 ---
@@ -64,12 +64,10 @@ Cantumkan semua thread yang terkait dengan sebuah sesi sebagai berikut:
   ```
 
   ```csharp C#
-  await foreach (var thread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
+  await foreach (var sessionThread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
   {
-      var label = thread.Agent.TryPickBetaManagedAgentsSessionThread(out var agent)
-          ? agent.Name
-          : thread.Agent.Json.GetProperty("type").GetString();
-      Console.WriteLine($"[{label}] {thread.Status.Raw()}");
+      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Json.GetProperty("type").GetString();
+      Console.WriteLine($"[{label}] {sessionThread.Status.Raw()}");
   }
   ```
 
@@ -493,9 +491,9 @@ Aliran thread tidak memutar ulang event sebelumnya. Tepat setelah `session.threa
           {
               foreach (var block in message.Content)
               {
-                  if (block.Type == "text")
+                  if (block.Value is BetaManagedAgentsTextBlock textBlock)
                   {
-                      Console.Write(block.Text);
+                      Console.Write(textBlock.Text);
                   }
               }
           }
@@ -626,7 +624,7 @@ Aliran thread tidak memutar ulang event sebelumnya. Tepat setelah `session.threa
       var page = await client.Beta.Sessions.Threads.Events.List(thread.ID, new() { SessionID = session.ID });
       await foreach (var evt in page.Paginate())
       {
-          Console.WriteLine($"[{evt.Type}] {evt.ProcessedAt}");
+          Console.WriteLine($"[{evt.Json.GetProperty("type").GetString()}] {evt.ProcessedAt}");
       }
       ```
 

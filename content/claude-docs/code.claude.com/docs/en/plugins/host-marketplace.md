@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b7d397a8393137fd3a4e630140b48282d2d0d492ce220a853a44a1896a4900d9
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: c7cd5187df8cb7c483d478716b727376310f33e8d417dd5e027188c3be9c4dbc
 ---
 
 > ## Documentation Index
@@ -131,7 +131,9 @@ Users without a git-host account can add a marketplace you serve as a `marketpla
 These entry sources need no git account:
 
 * **`archive`**: a zip downloaded over HTTPS. Users need neither `git` nor an account, only network access to the URL. Requires Claude Code v2.1.224 or later. Pin each archive with `sha256` so Claude Code refuses a changed download. To send credentials with the download, see [Authenticate archive downloads](#authenticate-archive-downloads).
-* **A public git repository**: Claude Code clones a public `url` or `git-subdir` source over HTTPS without credentials when the entry gives an `https://` URL. For a `github` source, or a `git-subdir` source written as `owner/repo`, users without a GitHub SSH key set `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1`.
+* **A public git repository**: Claude Code clones a public `url` or `git-subdir` source over HTTPS without credentials when the entry gives an `https://` URL. For a `github` source, or a `git-subdir` source written as `owner/repo`, tell users without a GitHub SSH key to set `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1`.
+
+Keep `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` in your instructions even if `claude plugin install` succeeds without it from the shell on a machine with no SSH key. For a `github` source, that command can fall back to HTTPS on its own, printing `SSH not configured, cloning via HTTPS`. Installs from `/plugin` inside a session and plugin updates don't fall back, so without the variable they fail for users who have no GitHub SSH key.
 
 For a team on one network, a `directory` marketplace on a shared filesystem also works without git accounts. Users need only read access to the path.
 

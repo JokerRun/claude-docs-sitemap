@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f2953b067b70792b976ad546edd6610fa2bcec2f2df92c88ae7687cc7efa1056
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 03b9cf2c15f7af63289b2c998c88b82f4986dc02341797dc1ae2d6226f51ab95
 ---
 
 > ## Documentation Index
@@ -407,7 +407,7 @@ To confirm the block, register the callback under `PreToolUse` with a `Write|Edi
 
 ### Auto-approve specific tools
 
-By default, the agent may prompt for permission before using certain tools. This example auto-approves read-only filesystem tools (Read, Glob, Grep) by returning `permissionDecision: 'allow'`, letting them run without user confirmation while leaving all other tools subject to normal permission checks:
+By default, the agent may prompt for permission before using certain tools. This example auto-approves read-only filesystem tools (Read, Glob, Grep) by returning `permissionDecision: 'allow'`, letting them run without user confirmation, apart from reads from [network paths](/docs/en/permissions#network-paths), while leaving all other tools subject to normal permission checks:
 
 <CodeGroup>
   ```python Python theme={null}

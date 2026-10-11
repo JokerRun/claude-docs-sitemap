@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/components
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d6e29a83e653ddb855c42be1ce8bcac953075dda88b8f710bd88784105a97006
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 37a3ce71801730ffdc22cd5e9dcac29f0dab259f395df772af953e192fd888ba
 ---
 
 > ## Documentation Index
@@ -778,6 +778,8 @@ Save the script at `scripts/format.sh` and make it executable.
 Load the plugin and ask Claude to edit a file. A `PostToolUse` hook that exits 0 shows nothing in the transcript, so confirm it ran with [debug logging](/docs/en/hooks#debug-hooks) or by what the script itself changes.
 
 Hooks in `hooks/hooks.json` and in the `hooks` manifest key both load. For every event and its payload, see [Hook events](/docs/en/hooks#hook-events).
+
+When another enabled plugin has the same name, one of the two registers its `hooks/hooks.json` hooks and the other's are left out. See [Hooks when two enabled plugins share a name](/docs/en/plugins/loading#hooks-when-two-enabled-plugins-share-a-name) for which one, and for the note in `/plugin` that tells you.
 
 To write hooks as JavaScript functions that run inside Claude Code and can draw in its interface, list a module file under a `modules` key in the same `hooks/hooks.json`. A plugin with one is a mod. See [Create a mod](/docs/en/plugins/mods/create).
 

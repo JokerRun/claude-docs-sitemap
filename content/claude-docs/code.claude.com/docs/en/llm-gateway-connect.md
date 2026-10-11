@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 724c93d403bdb8520290d6969de2e9c07cb17b0dd8f16ed803fb70af3d6242e1
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 8736c5614c170cdc9d05c228492fcf925da7e073d592a324968e9de217ffd0b6
 ---
 
 > ## Documentation Index
@@ -274,7 +274,7 @@ The [Agent SDK](/docs/en/agent-sdk/overview) has no gateway-specific options; it
 
 [Claude Code in Slack](/docs/en/slack) and [cloud sessions](/docs/en/claude-code-on-the-web) aren't part of a gateway deployment. Gateway variables set in a cloud session's environment configuration are not applied. If your traffic must stay on the gateway, don't enable these surfaces for those users.
 
-[Remote Control](/docs/en/remote-control) and [voice dictation](/docs/en/voice-dictation) both rely on a claude.ai identity: Remote Control to pair a live session with your account, and voice dictation to reach the claude.ai transcription endpoint. They are unavailable while `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or an `apiKeyHelper` is active. Remote Control is also disabled while `ANTHROPIC_BASE_URL` points at a non-Anthropic host, so signing in with claude.ai isn't enough on its own. Before v2.1.196, a non-Anthropic base URL didn't block Remote Control.
+[Remote Control](/docs/en/remote-control) and [voice dictation](/docs/en/voice-dictation) both rely on a claude.ai identity: Remote Control to pair a live session with your account, and voice dictation to reach the claude.ai transcription endpoint. They are unavailable while `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or an `apiKeyHelper` is active. Remote Control is also disabled while `ANTHROPIC_BASE_URL` points at a non-Anthropic host, so signing in with claude.ai isn't enough on its own.
 
 To restore either feature, log in with claude.ai and unset the gateway variables that feature checks. The Remote Control section of `claude doctor` names what is currently blocking Remote Control.
 

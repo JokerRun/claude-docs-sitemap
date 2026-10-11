@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 49449b0fdac136df45e56250b724e7772e5361464dd166fb7fc1749313726675
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: ba0465bf8626b56d86c1d8122f0b1bf5f41b2a121952c7a10e819a9ddcb475a7
 ---
 
 > ## Documentation Index
@@ -93,7 +93,7 @@ For organizations that prefer API-based billing, you can set up access through t
   <Step title="Add users">
     You can add users through either method:
 
-    * Bulk invite users from within the Console: Settings -> Members -> Invite
+    * Bulk invite users from the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members): click **Invite**
     * [Set up SSO](https://support.claude.com/en/articles/13132885-setting-up-single-sign-on-sso)
   </Step>
 

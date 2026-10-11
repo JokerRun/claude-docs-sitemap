@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5ff91e984209d80ef1117106cbdd7f062a4a12cd01087944adc4b3d89dfb6a70
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 7182fe84b548df18d417df2ec1384883847678a63135c9f8438a10c699c8c99f
 ---
 
 > ## Documentation Index
@@ -1143,7 +1143,7 @@ If you see `OAuth error: Invalid code. Please make sure the full code was copied
 If you see `API Error: 403 Request not allowed` after logging in:
 
 * **Claude Pro/Max users**: verify your subscription is active at [claude.ai/settings](https://claude.ai/settings)
-* **Anthropic Console users**: confirm your account has the "Claude Code" or "Developer" role. Admins assign this in the Anthropic Console under Settings → Members.
+* **Anthropic Console users**: confirm your account has the "Claude Code" or "Developer" role. Admins assign this on the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members).
 * **Behind a proxy**: corporate proxies can interfere with API requests. See [network configuration](/docs/en/network-config) for proxy setup.
 
 ### Claude Code access has not been granted for this account

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-4-8/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: dfd6c920c8e9882719e72a9bd912a95bacc4712d757ea58c3dddc23b34c405af
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 98460998b3f13e36e3b92297449981386fa68b7a35c5d443dcad7aea63b7376a
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Claude Opus 4.8 reference: lifecycle status, model IDs on every pl
 
 **Legacy.** Released May 28, 2026.
 
-Although Claude Opus 4.8 is still available, you should consider migrating to Claude Opus 5.5 for improved performance. [See Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8)
+Although Claude Opus 4.8 is still available, you should consider migrating to Claude Opus 5.5. [See Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8)
 
 Model ID: `claude-opus-4-8`
 

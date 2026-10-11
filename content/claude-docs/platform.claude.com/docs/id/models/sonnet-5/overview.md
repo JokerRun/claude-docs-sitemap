@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1c859d64425bafe9916820ece4b2639e4f5e02399ae16d3372f9d8fe75c93d97
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 2ed03f863ee6dfcf67eee83928c8a8872912194ff5c80a5833fcb34a90133f66
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Referensi Claude Sonnet 5: status siklus hidup, ID model di setiap
 
 **Legacy.** Released June 30, 2026.
 
-Although Claude Sonnet 5 is still available, you should consider migrating to Claude Sonnet 5.5 for improved performance. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5)
+Although Claude Sonnet 5 is still available, you should consider migrating to Claude Sonnet 5.5. [See Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) · [Migrate to Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5)
 
 Model ID: `claude-sonnet-5`
 

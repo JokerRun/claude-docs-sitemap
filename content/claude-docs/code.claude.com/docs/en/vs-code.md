@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6311bb85d407a293bbe649f0f42c17683aa0bb63ac63aaaefe52f75aa938fc36
+fetched_at: 2026-10-11T02:30:48.003848Z
+sha256: 707d0adea02c6e267f532eb893d683164e4f9193fdac6d03463443abf92b73b6
 ---
 
 > ## Documentation Index
@@ -230,10 +230,11 @@ By default, a session with no activity for 14 days moves to **Archived sessions*
 
 To restore an archived session, expand **Archived sessions** and click **Unarchive session**. To restore every archived session at once, hover over the **Archived sessions** header in the sessions list in the Activity Bar and click its unarchive icon, which requires Claude Code v2.1.277 or later. Before v2.1.257, the action was **Delete session**, which hid a session with no way to restore it. Sessions you deleted then appear under **Archived sessions** after you upgrade.
 
-When the conversation you resume ended in plan mode, Claude Code restores plan mode. Requires Claude Code v2.1.246 or later. Claude Code doesn't restore it in two cases:
+When the conversation you resume ended in plan mode, Claude Code restores plan mode. Requires Claude Code v2.1.246 or later. Claude Code doesn't restore it in these cases:
 
 * The extension [chooses the starting permission mode](/docs/en/permission-modes#switch-permission-modes) from `claudeCode.initialPermissionMode` or a pick that carries over from an earlier conversation
 * You have `claudeCode.claudeProcessWrapper` configured
+* A [deny rule](/docs/en/permissions#manage-permissions) removes the [`ExitPlanMode`](/docs/en/tools-reference) tool
 
 ### Resume cloud sessions from Claude.ai
 
