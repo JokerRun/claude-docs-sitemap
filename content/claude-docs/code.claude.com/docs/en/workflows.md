@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: b1744631cc1a078733827e65ea69fe3c182abe9958f6b5e2ef210473a2dc5260
+fetched_at: 2026-10-12T02:38:08.121687Z
+sha256: 994709b9dfc318c1eac7fb5af1fb90aabaaf3eb7af5782a6be4ff9fae720aab4
 ---
 
 > ## Documentation Index
@@ -384,6 +384,8 @@ When you stop a run, it stays in the task panel while any of its agents' process
 
 Resume a paused run from `/workflows` by selecting it and pressing `p`. For a run you stopped, ask Claude to relaunch the workflow with the same script. If agents from the stopped run haven't exited yet, Claude Code refuses the relaunch until they have, so a second copy of those agents can't run alongside them.
 
+#### Which agents run again
+
 Claude Code replays the run in the order agents started, and each agent either returns its saved result or runs again:
 
 * **Completed**: returns its saved result. The first agent whose prompt differs from the previous run, because you edited the script or an earlier agent returned something different, runs again, and so does every agent after it, even ones that completed.
@@ -391,6 +393,10 @@ Claude Code replays the run in the order agents started, and each agent either r
 * **Failed**: runs again, and so does every agent that started after it, even ones that completed. Stopping one agent alone, by selecting it in [`/workflows`](#watch-the-run) and pressing `x`, counts as failing.
 
 That last case means a failure in the middle of a fan-out reruns work that already finished. If a script starts A, B, C, and D in that order and B fails, relaunching returns A from cache and runs B, C, and D again.
+
+If you edit a script that started A, B, C, and D so that it starts A, C, B, and D, the second agent to start is now C, where the previous run started B. Relaunching returns A from cache and runs C, B, and D again.
+
+#### Resume after you leave the session
 
 You can resume a run within the same Claude Code session. What happens to a running workflow when you leave the session depends on how you leave:
 

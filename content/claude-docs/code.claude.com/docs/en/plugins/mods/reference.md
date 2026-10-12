@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/reference
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: da442642a2f73be64e881d27d99c15202c37ed7361b2766be6366a0c20efb378
+fetched_at: 2026-10-12T02:38:08.121687Z
+sha256: 662a6a6066a0dade433e1c52e410b300240ea9ccd01b96b79dfa6876be40a71c
 ---
 
 > ## Documentation Index
@@ -83,6 +83,7 @@ Prompt events cover the text the user types and the text Claude Code sends to Cl
 | [`prompt.submit`](/docs/en/plugins/mods/events#rewrite-or-add-to-a-prompt) | A prompt is submitted | `next({ ...e, text })`, `next({ ...e, context })`, or `{ drop: reason }` |
 | `prompt.fill`, `prompt.suggest` | Text is about to go into the prompt box as a draft, or as a dim suggestion | `next(e)` with changed text |
 | `prompt.edit` | The user edits the prompt box | `next(e)` |
+| `prompt.autocomplete` | The user types in the prompt box and a word ends at the cursor. `e.token` is that word. Claude Code doesn't wait for the hook: its own autocomplete rows show first. | `{ suggestions }`, a list of `{ text, label, description }` rows shown below Claude Code's own. Choosing a row writes its `text` over the word. |
 | `prompt.compose` | Claude Code renders a system prompt | `{ sections }`, a list of `{ id, text, scope }` in the order they're sent |
 | [`prompt.section`](/docs/en/plugins/mods/events#rewrite-or-add-to-a-prompt) | Once for each named section of the system prompt. `e.name` is the section's `id` in `prompt.compose`. | `{ text }`, or `{ text: null }` to omit the section |
 | [`prompt.context`](/docs/en/plugins/mods/events#rewrite-or-add-to-a-prompt) | Once for each conversation, for the context sent with the first message | `{ blocks }` |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4579abb32500b673240f1045fb82687036b6c6b0bbc71e2722119383ad2f256d
+fetched_at: 2026-10-12T02:38:08.121687Z
+sha256: fd8373a1beb80e97ae4eeeec9e82954b26032aaf36fc19611b804b33f2c15b30
 ---
 
 ---
@@ -110,7 +110,7 @@ The pattern relies on two guarantees:
 
 ### SDK accumulator helpers
 
-Each SDK's helper handles the `index` bookkeeping. The Go, Java, Ruby, and C# helpers also key the accumulating preview by the event's `id`. With the Python, TypeScript, and PHP helpers, keep that map yourself and fold each delta into the entry for its `id`.
+Each SDK's helper handles the `index` (java, php; csharp, go: `Index`) bookkeeping. The Go, Java, Ruby, and C# helpers also key the accumulating preview by the event's `id` (java, php; csharp, go: `ID`). With the Python, TypeScript, and PHP helpers, keep that map yourself and fold each delta into the entry for its `id` (java, php; csharp, go: `ID`).
 
 The following examples opt in to `agent.message` previews and reconcile them with the buffered event:
 

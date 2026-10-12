@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 64687fdf1daa39cc1643a3fed1394047f2188ff05c158a518a705bad3da57a1c
+fetched_at: 2026-10-12T02:38:08.121687Z
+sha256: 68ba41f2910e92c9450761a411a1c4b196762496457371f8d233077f6de5d30e
 ---
 
 > ## Documentation Index
@@ -687,6 +687,7 @@ These checks still apply:
 * Content-scoped ask rules like `Bash(git push *)` still force a prompt
 * Explicit deny rules still apply
 * `rm` or `rmdir` commands that target a [critical path](/docs/en/permission-modes#critical-paths) still go through the regular permission flow
+* Other sandboxed commands can go through the regular permission flow too, as [Auto-allow mode](/docs/en/sandboxing#auto-allow-mode) describes
 
 Commands that won't run sandboxed, such as excluded commands, respect the bare `Bash` ask rule as usual. See [sandbox modes](/docs/en/sandboxing#sandbox-modes) to change this behavior.
 

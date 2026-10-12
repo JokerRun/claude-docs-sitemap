@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: fdfc7c104df5e97e90298956fcaffde68a673bd607df833f622147332d853d6a
+fetched_at: 2026-10-12T02:38:08.121687Z
+sha256: 4f4bca5c46ea26db7653076516f6e29ada41ad853b7b63c37484943b02d65a00
 ---
 
 > ## Documentation Index
@@ -84,6 +84,17 @@ When you have a spend limit, the row appears as soon as usage credits are on and
 #### When the usage request fails
 
 When the request for your plan limits fails, most often because the usage endpoint is rate limited, `/usage` shows the last usage bars it loaded on this machine within the past 60 minutes, along with a `Showing last-known usage` note stating how long ago that data was fetched. Press `r` to retry; a successful retry replaces the last-known bars with fresh data. Without a snapshot from the past 60 minutes, `/usage` reports that the usage endpoint is rate limited and offers the same retry shortcut. Before v2.1.208, a rate-limited request in a session that hadn't loaded usage yet always showed the error with no bars.
+
+### Read the token count beside the spinner
+
+While Claude works in the main conversation, the line beside the spinner can end with an elapsed time and a token count, as in `Deciphering… (10m 27s · ↓ 5.5k tokens)`. It is a live, approximate count of the output the current turn has produced so far. The arrow beside the count points down while output arrives or tools run.
+
+* **What it covers**: output the turn generates, such as the text and tool calls Claude streams back, its thinking, and the output of subagents that run in the [foreground](/docs/en/sub-agents#run-subagents-in-foreground-or-background)
+* **What it leaves out**: what Claude Code sends to the model, so your prompt, the conversation history, and the rest of your context don't move it
+* **When it resets**: at the start of each turn, and when Claude Code [compacts the conversation](/docs/en/prompt-caching#compacting-the-conversation)
+* **When it stays hidden**: until output starts arriving, when the row is too narrow to fit it, and in [screen reader mode](/docs/en/accessibility)
+
+It won't match the `Usage by model` output figures in the `/usage` Session block, which add up the whole session rather than one turn. It also differs from the token count [verbose mode adds](/docs/en/statusline#notifications-share-the-status-line-row), because that count measures the size of your context rather than one turn's output.
 
 ### Analyze your usage patterns
 
