@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9595415bca0e95a928e87a6a6631467782ebbe828a63701281845ae28673f616
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: a9c8e419d43f3f92f5f33da2e334ee6029d2c10c7d24a0488a112244ccb2667b
 ---
 
 ---
@@ -105,10 +105,10 @@ Here are some criteria that might be important for your use case. This list is n
 Most use cases need multidimensional evaluation along several success criteria.
 
 <Accordion title="Example multidimensional criteria for sentiment analysis">
-  |      | Criteria                                                                                                                                                                                                                                                           |
-  | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | Bad  | The model should classify sentiments well                                                                                                                                                                                                                          |
-  | Good | On a held-out test set of 10,000 diverse Twitter posts, the sentiment analysis model should achieve: - an F1 score of at least 0.85 - 99.5% of outputs are non-toxic - 90% of errors would cause inconvenience, not egregious error\* - 95% response time \< 200ms |
+  |      | Criteria                                                                                                                                                                                                                                                                               |
+  | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Bad  | The model should classify sentiments well                                                                                                                                                                                                                                              |
+  | Good | On a held-out test set of 10,000 diverse Twitter posts, the sentiment analysis model should achieve:<br />- an F1 score of at least 0.85<br />- 99.5% of outputs are non-toxic<br />- 90% of errors would cause inconvenience, not egregious error\*<br />- 95% response time \< 200ms |
 
   \*In reality, you would also define what "inconvenience" and "egregious" mean.
 </Accordion>
@@ -1556,7 +1556,7 @@ Most use cases need multidimensional evaluation along several success criteria.
           );
           $scoreText = trim(contentText($response));
           if (filter_var($scoreText, FILTER_VALIDATE_INT) === false) {
-              throw new RuntimeException("Unexpected rating from grader: {$scoreText}");
+              throw new \RuntimeException("Unexpected rating from grader: {$scoreText}");
           }
           return (int) $scoreText;
       }
@@ -2726,7 +2726,7 @@ Most use cases need multidimensional evaluation along several success criteria.
           );
           $scoreText = trim(contentText($response));
           if (filter_var($scoreText, FILTER_VALIDATE_INT) === false) {
-              throw new RuntimeException("Unexpected rating from grader: {$scoreText}");
+              throw new \RuntimeException("Unexpected rating from grader: {$scoreText}");
           }
           return (int) $scoreText;
       }

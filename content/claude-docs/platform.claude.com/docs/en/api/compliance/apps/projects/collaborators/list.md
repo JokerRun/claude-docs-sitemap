@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 449e8964d51d8a89adab2ca1f16962194fc6f14ec20ee8c40ead01be6b4cf335
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: a413ce373087b73d869117c324583747e0d3bdd56460aac5badfa398c000dffe
 ---
 
 ---
@@ -45,7 +45,7 @@ role.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

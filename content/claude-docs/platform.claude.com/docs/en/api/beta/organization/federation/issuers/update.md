@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9813d8452fab5149c058c5568abfff574ff7b2f1aaa1d9b6a4551d464f61ef71
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: d748d019ce6529ddd5645cec38334066c56f578c6e54c9ba297bd6de759f4b8d
 ---
 
 ---
@@ -14,7 +14,7 @@ url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuer
 
 **POST** `/v1/organizations/federation_issuers/{federation_issuer_id}`
 
-**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api?sdk_languages=http).
 
 Partially update a federation issuer.
 
@@ -37,7 +37,7 @@ session.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

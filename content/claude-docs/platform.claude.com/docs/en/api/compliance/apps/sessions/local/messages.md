@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5aca3ec3d23cc6b57cea579c12c15fcdab56d1a169e1187c71697eb2b359ce2d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 6d4cbd6916c034ced467daa965c4fb962b9a37c9fbe8cfa58acc74e149fc2998
 ---
 
 ---
@@ -77,7 +77,7 @@ response header.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

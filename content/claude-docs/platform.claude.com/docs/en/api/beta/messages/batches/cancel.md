@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 131b1b91da5cf8162d356866362d548548ed910e19109f55d54543604edb29f5
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 5c526d143a569c93f0af2e2f0696feed191f544e9dcfd8374167e5fcd21c9da7
 ---
 
 ---
@@ -18,7 +18,7 @@ Batches may be canceled any time before processing ends. Once cancellation is in
 
 The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were non-interruptible.
 
-Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing?sdk_languages=http)
 
 ## Path parameters
 
@@ -32,7 +32,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

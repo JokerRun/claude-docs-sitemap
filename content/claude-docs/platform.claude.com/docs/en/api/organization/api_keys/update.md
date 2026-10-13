@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/api_keys/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: fa461e8437c58229b735f0e6eb70bdb334431d7a17d3261fef7df3c201d8d912
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: cfa245b93c3daa2da2fe45e8ab9681f3cf388b4affa6b821cb1b9b3a78efffba
 ---
 
 ---
@@ -28,7 +28,7 @@ Update API Key
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

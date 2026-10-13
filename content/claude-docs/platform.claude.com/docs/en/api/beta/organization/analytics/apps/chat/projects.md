@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/apps/chat/projects
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 90366fabee03c00716148519c4a0daee6665c985918062a9ed9067872b56fe97
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ac25d55de45797f2dc51181c78950cd5b81c21982d9efb145078eefbc8637eb6
 ---
 
 ---
@@ -88,7 +88,7 @@ plan. Requires an API key with the `read:analytics` scope.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: f74bfd21220fe920690546fae0ace6fc20c1d38807ccbe201ffcae14b92a432b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 1a001c9a5a253017bc004e2a6088fb182bb1bec1c1a9fc02a6b48ad1c3d4c987
 ---
 
 ---
@@ -680,7 +680,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
           'type' => typeText($input['text']),
           'screenshot' => captureScreenshot(),
           // Tangani aksi lain sesuai kebutuhan
-          default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
+          default => throw new \RuntimeException("Unknown or unimplemented member: {$name}"),
       };
   }
   ```
@@ -1013,7 +1013,7 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
           try {
               // Executor nyata juga mengembalikan blok browser_state pada hasil navigasi dan manajemen tab
               $toolResults[] = [...$result, 'content' => handleBrowserAction($block->name, $block->input)];
-          } catch (Throwable $e) {
+          } catch (\Throwable $e) {
               $failed = true;
               $toolResults[] = [...$result, 'content' => 'Error: ' . $e->getMessage(), 'is_error' => true];
           }

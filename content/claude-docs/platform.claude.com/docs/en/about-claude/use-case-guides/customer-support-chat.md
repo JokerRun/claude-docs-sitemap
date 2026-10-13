@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 204b17c05610ca63ecd4dd857f5195bfac0c51977e53b950b3257a8f18e2eb52
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: dc50d6ba910669fb29db15b5be83959e75221f1218441fe68e2d5eaf97be6224
 ---
 
 ---
@@ -994,7 +994,7 @@ The class should have two main methods: one that calls the API to generate a mes
                   static fn ($block): bool => $block instanceof TextBlock,
               );
               if (!$firstBlock instanceof TextBlock) {
-                  throw new RuntimeException('An error occurred: Unexpected response type');
+                  throw new \RuntimeException('An error occurred: Unexpected response type');
               }
 
               $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
@@ -1009,7 +1009,7 @@ The class should have two main methods: one that calls the API to generate a mes
               return $firstBlock->text;
           }
 
-          throw new RuntimeException('An error occurred: Unexpected response type');
+          throw new \RuntimeException('An error occurred: Unexpected response type');
       }
 
       /**
@@ -1023,7 +1023,7 @@ The class should have two main methods: one that calls the API to generate a mes
               return sprintf('Quote generated: $%.2f per month', $premium);
           }
 
-          throw new RuntimeException('An unexpected tool was used');
+          throw new \RuntimeException('An unexpected tool was used');
       }
   }
   ```

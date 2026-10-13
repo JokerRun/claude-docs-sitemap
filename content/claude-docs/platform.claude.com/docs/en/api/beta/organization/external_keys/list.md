@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5bc02ebc33815a8ac869ee683e2874358e1e789fa1a335ca731640df0bbeef65
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e624f263165c92521b6f566b8e2d269fb042a18d1146896a99016cf36bf17107
 ---
 
 ---
@@ -37,7 +37,7 @@ Results are ordered by creation time (newest first). Use the
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

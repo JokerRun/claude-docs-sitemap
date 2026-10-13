@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 382edfbae5bf3002bef7a99aef85f71d4f1738b385581ef60745c0f58522e920
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ea81b480cb08cc0952039032ffa6dfb0f68fe86e72be1178adf885b9b26abdd3
 ---
 
 ---
@@ -30,7 +30,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

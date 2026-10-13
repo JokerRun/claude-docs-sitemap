@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 5573a23396aec3ea03a0f8fa573c7b77bee476e4f1c4c0e7c0ce9fdb3bccd89d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: d051d66773154d2aa49b42d55f6203a2ea522af93487b9223de0c749f1a9064d
 ---
 
 ---
@@ -105,10 +105,10 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
 Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beberapa kriteria keberhasilan.
 
 <Accordion title="Contoh kriteria multidimensi untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                                               |
-  | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                    |
-  | Baik  | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai: - skor F1 minimal 0,85 - 99,5% output tidak toksik - 90% kesalahan hanya menyebabkan ketidaknyamanan, bukan kesalahan fatal\* - 95% waktu respons \< 200ms |
+  |       | Kriteria                                                                                                                                                                                                                                                                                   |
+  | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                        |
+  | Baik  | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
 
   \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti "ketidaknyamanan" dan "fatal".
 </Accordion>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6e15d72f65aeb9238af3084c897400f0ebbbc412e0fa150f31f90f0a2b51ef1b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 9813e36c9aa5895c6fcc8e55d0da0dae0ce29e9f6f9a143c4d313f3425addb26
 ---
 
 ---
@@ -30,7 +30,7 @@ download the bytes.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

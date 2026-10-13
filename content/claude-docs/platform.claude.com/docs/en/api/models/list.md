@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e20ae1e3177bb7e995ef07741dca865591d5b07576e3634906f582c69bc1909a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: acde7d65208b6d8b47cfce36b16c268126519ad484a6bdeb2ce657f8a0d490f7
 ---
 
 ---
@@ -54,7 +54,7 @@ The Models API response can be used to determine which models are available for 
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 
@@ -392,7 +392,7 @@ curl https://api.anthropic.com/v1/models \
 {
   "data": [
     {
-      "id": "claude-opus-5",
+      "id": "claude-opus-5-5",
       "capabilities": {
         "batch": {
           "supported": true
@@ -466,9 +466,9 @@ curl https://api.anthropic.com/v1/models \
           }
         }
       },
-      "created_at": "2026-07-24T00:00:00Z",
+      "created_at": "2026-09-21T00:00:00Z",
       "deprecated_at": "2019-12-27T18:11:19.117Z",
-      "display_name": "Claude Opus 5",
+      "display_name": "Claude Opus 5.5",
       "lifecycle": "active",
       "line": "haiku",
       "max_input_tokens": 0,

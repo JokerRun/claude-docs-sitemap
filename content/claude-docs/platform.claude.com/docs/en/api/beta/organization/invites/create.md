@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9260ada895c84ed83fc5e8db3b657bc40c3c6dec605d14af822e0140fcf2b4f0
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 61ff0952e542283eeea905ddec6213ccfc074748f903977103863da89338fcc4
 ---
 
 ---
@@ -24,7 +24,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

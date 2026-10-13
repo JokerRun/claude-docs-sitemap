@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b6f54e908b391c0742d1ae73f4e300dd24414f0e9f306f19d0376c6600d838e4
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 7eaaef09e11bc3425a5457d99dac56cc2d0778b8964813cd59c220d51fa80dce
 ---
 
 ---
@@ -26,7 +26,7 @@ Update Workspace
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

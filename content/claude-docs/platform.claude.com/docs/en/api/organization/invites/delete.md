@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 96b7e96427df931c0d793e9ce774c2bc710794233158da61296923f1e451f9a2
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 53eda4a96df14ed8057a77e5e17c40e3445a7b5e80e513011dc7768b3299eccd
 ---
 
 ---
@@ -28,7 +28,7 @@ Delete a pending invite.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

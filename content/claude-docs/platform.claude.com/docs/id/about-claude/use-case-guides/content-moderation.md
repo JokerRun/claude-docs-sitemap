@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7b42f476a63358870875ecda0fab7231511a6de5628befa8169a98f7231913bb
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 4123134a5f21181cabdabbd35a31583cb3507d9039eb9d1a98331e1d7ba88ab3
 ---
 
 ---
@@ -788,7 +788,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
       // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
       // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Ekstrak status pelanggaran dari hasil penilaian
@@ -1341,7 +1341,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
       // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
       // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Ekstrak tingkat risiko, kategori yang dilanggar, dan penjelasan dari hasil penilaian
@@ -2081,7 +2081,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
       // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
       // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Ekstrak status pelanggaran dari hasil penilaian
@@ -2656,7 +2656,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
       // Parse respons JSON dari Claude. SDK mendekode setiap blok konten
       // ke kelas konkretnya, jadi cari TextBlock sebelum membaca teksnya.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
 
       return json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
   };

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/retrieve_metadata
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9c5b0fa5ed8d640e1bd3a7efc8723041c7b0524a9f8df9d28240d5078c334187
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 71b7a8059ded279ab44dfbf3c04da9847dbb24f1989fd48ae9f7085d69db6dd9
 ---
 
 ---
@@ -28,7 +28,7 @@ Get File Metadata
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_usage_report/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 107430f9d1d601c0323b0d05f8b87489bf06670fe1cf1120e408c4a2b4e87723
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 3b7d5786fad119188404d84aaf4970cde09c61aee1c04c4b04c77284c6e0787d
 ---
 
 ---
@@ -218,7 +218,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 
@@ -318,7 +318,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
   - `model: string or null`
 
-    Model that produced the usage or cost, as a model name in the form the `models[]` filter accepts (for example, `claude-opus-5`). Null unless `model` is in `group_by[]`; it can also be null on grouped rows whose usage or cost is not attributed to a specific model, such as code execution.
+    Model that produced the usage or cost, as a model name in the form the `models[]` filter accepts (for example, `claude-opus-5-5`). Null unless `model` is in `group_by[]`; it can also be null on grouped rows whose usage or cost is not attributed to a specific model, such as code execution.
 
   - `output_tokens: number`
 
@@ -420,7 +420,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
       "context_window": "0-200k",
       "ending_at": "2019-12-27T18:11:19.117Z",
       "inference_geo": "global",
-      "model": "claude-opus-5",
+      "model": "claude-opus-5-5",
       "output_tokens": 891000,
       "product": "chat",
       "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",

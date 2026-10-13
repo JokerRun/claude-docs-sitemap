@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 02692c4f9f37e97bbf7c7f63968c5c4ad8b70dec89a5fe8b4c64bf86eed43734
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f367865b48587567f4b26d187094bfefe6319a361ae7e618b83ecbd16eb81096
 ---
 
 ---
@@ -22,7 +22,7 @@ Create an external key config owned by the caller's organization.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

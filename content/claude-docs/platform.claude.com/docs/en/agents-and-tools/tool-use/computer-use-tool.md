@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8190f2377674b29b1870821ba9b19412c42979c669f5267988181b2d43738534
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 20f325e192d1a46ee7a918808fb0913ab19a838623edd7df163fe95967e61628
 ---
 
 ---
@@ -1222,7 +1222,7 @@ The computer use tool is implemented as a schema-less tool. When using this tool
               'left_click' => clickAt($input['coordinate'] ?? null),
               'type' => typeText($input['text']),
               // Handle other actions as needed
-              default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
+              default => throw new \RuntimeException("Unknown or unimplemented member: {$name}"),
           };
       }
       ```
@@ -1541,7 +1541,7 @@ The computer use tool is implemented as a schema-less tool. When using this tool
               try {
                   // A string, or the image block list that screenshot returns
                   $toolResults[] = [...$result, 'content' => handleComputerAction($block->name, $block->input)];
-              } catch (Throwable $e) {
+              } catch (\Throwable $e) {
                   $failed = true;
                   $toolResults[] = [...$result, 'content' => 'Error: ' . $e->getMessage(), 'is_error' => true];
               }

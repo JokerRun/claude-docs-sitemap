@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 0b0b64ef62796c25e5e8990ff94c66b36e29d515679ea471e6e18abd774e6f2c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 25e846804a054fdd74d2908ab90ba97e31ce18552721962e3c6df6cd643c0d60
 ---
 
 ---
@@ -994,7 +994,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                   static fn ($block): bool => $block instanceof TextBlock,
               );
               if (!$firstBlock instanceof TextBlock) {
-                  throw new RuntimeException('An error occurred: Unexpected response type');
+                  throw new \RuntimeException('An error occurred: Unexpected response type');
               }
 
               $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
@@ -1009,7 +1009,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
               return $firstBlock->text;
           }
 
-          throw new RuntimeException('An error occurred: Unexpected response type');
+          throw new \RuntimeException('An error occurred: Unexpected response type');
       }
 
       /**
@@ -1023,7 +1023,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
               return sprintf('Quote generated: $%.2f per month', $premium);
           }
 
-          throw new RuntimeException('An unexpected tool was used');
+          throw new \RuntimeException('An unexpected tool was used');
       }
   }
   ```

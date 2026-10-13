@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 3b99cc1806fd202b7b242e2a306ccd6b13dbb42b06e5d444fffc5ec003ea0262
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: dd5debe6799eb2369397710a7c1830177a0b4f4cd1c0ca6f0c604ba05283b863
 ---
 
 ---
@@ -32,7 +32,7 @@ The request is rejected if any workspace still references this config.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

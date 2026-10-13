@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1fc609269a45fbe9a0e70643bfeec1eec139995366013be7cc82b0bbf90d6317
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 4ed74aad03bddc70e9e3898d22fe575cddcb3db73d2ac8366a48bd56b0516708
 ---
 
 ---
 title: Definisikan agen Anda
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-description: Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi.
+description: Buat konfigurasi agen yang dapat digunakan ulang dan memiliki versi.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -17,31 +17,31 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, "system prompt" (prompt sistem), alat, server MCP, dan skill yang membentuk bagaimana Claude berperilaku selama sesi.
+Agen adalah konfigurasi yang dapat digunakan ulang dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, prompt sistem, alat, server MCP, dan skill yang membentuk perilaku Claude selama sesi.
 
-Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensikan berdasarkan ID setiap kali Anda [memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Agen memiliki versi dan lebih mudah dikelola di banyak sesi.
+Buat agen sekali sebagai sumber daya yang dapat digunakan ulang dan rujuk agen tersebut berdasarkan ID setiap kali Anda [memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Agen memiliki versi dan lebih mudah dikelola di banyak sesi.
 
-## Field konfigurasi agen
+## Bidang konfigurasi agen
 
-| Field         | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | Wajib. Nama agen yang mudah dibaca manusia.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `model`       | Wajib. [Model](https://platform.claude.com/docs/id/models/overview) Claude yang menjalankan agen. Menerima string ID model atau objek, misalnya `{"id": "claude-opus-5"}`. Model Claude 4.5 dan yang lebih baru didukung. Bentuk objek juga menerima field `speed`, `effort`, dan `inference_geo`; lihat tips di bawah [Membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent), [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels), dan [Menyematkan inference geo](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo). |
-| `system`      | [Prompt sistem](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) yang mendefinisikan perilaku dan persona agen. Prompt sistem berbeda dari [pesan pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types), yang seharusnya mendeskripsikan pekerjaan yang akan dilakukan.                                                                                                                                                                                                                                                           |
-| `tools`       | Alat yang tersedia untuk agen. Menggabungkan [alat agen bawaan](https://platform.claude.com/docs/id/managed-agents/tools), [alat MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector), dan [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).                                                                                                                                                                                                                                                                                                                                          |
-| `mcp_servers` | [Server MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) yang menyediakan kemampuan pihak ketiga yang terstandar.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `skills`      | [Skill](https://platform.claude.com/docs/id/managed-agents/skills) yang menyediakan konteks khusus domain dengan pengungkapan progresif.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `multiagent`  | Memungkinkan agen menyerahkan pekerjaan kepada agen lain, sebagai subagen atau dalam [alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows), dan secara opsional berkonsultasi dengan model [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor). Dengan tipe `multiagent_20261001`, alur kerja dinamis aktif kecuali Anda menonaktifkannya. Lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration).                                                          |
-| `description` | Deskripsi tentang apa yang dilakukan agen.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `metadata`    | Pasangan key-value arbitrer untuk pelacakan Anda sendiri.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Bidang                                                                          | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` (java, php; csharp, go: `Name`)                                          | Wajib. Nama agen yang mudah dibaca manusia.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `model` (java, php; csharp, go: `Model`)                                        | Wajib. [Model](https://platform.claude.com/docs/id/models/overview) Claude yang menjalankan agen. Menerima string ID model atau objek, misalnya `{"id": "claude-opus-5"}`. Model Claude 4.5 dan yang lebih baru didukung. Bentuk objek juga menerima bidang `speed`, `effort`, dan `inference_geo`; lihat tips di bawah [Buat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent), [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels), dan [Sematkan geo inferensi](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo). |
+| `system` (java, php; csharp, go: `System`; ruby: `system_`)                     | "System prompt" (prompt sistem) yang [mendefinisikan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) perilaku dan persona agen. Prompt sistem berbeda dari [pesan pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types), yang seharusnya menjelaskan pekerjaan yang harus dilakukan.                                                                                                                                                                                                                                       |
+| `tools` (java, php; csharp, go: `Tools`)                                        | Alat yang tersedia untuk agen. Menggabungkan [alat agen bawaan](https://platform.claude.com/docs/id/managed-agents/tools), [alat MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector), dan [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).                                                                                                                                                                                                                                                                                                                                     |
+| `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) | [Server MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) yang menyediakan kemampuan pihak ketiga yang terstandar.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `skills` (java, php; csharp, go: `Skills`)                                      | [Skill](https://platform.claude.com/docs/id/managed-agents/skills) yang menyediakan konteks khusus domain dengan pengungkapan progresif.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `multiagent` (java, php; csharp, go: `Multiagent`)                              | Memungkinkan agen menyerahkan pekerjaan ke agen lain, sebagai subagen atau dalam [alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows), dan secara opsional berkonsultasi dengan model [penasihat](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor). Dengan tipe `multiagent_20261001`, alur kerja dinamis aktif kecuali Anda menonaktifkannya. Lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration).                                                       |
+| `description` (java, php; csharp, go: `Description`)                            | Deskripsi tentang apa yang dilakukan agen.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `metadata` (java, php; csharp, go: `Metadata`)                                  | Pasangan kunci-nilai bebas untuk pelacakan Anda sendiri.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-Anda juga dapat menimpa `model`, `system`, `tools`, `mcp_servers`, dan `skills` untuk satu sesi tanpa mengubah agen. Penimpaan `model` menggantikan objek `model` milik agen secara keseluruhan, sehingga `effort` milik agen tidak ikut terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` di dalam objek `model` pada penimpaan tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
+Anda juga dapat menimpa `model` (java, php; csharp, go: `Model`), `system` (java, php; csharp, go: `System`; ruby: `system_`), `tools` (java, php; csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), dan `skills` (java, php; csharp, go: `Skills`) untuk satu sesi tanpa mengubah agen. Penimpaan `model` (java, php; csharp, go: `Model`) menggantikan objek `model` (java, php; csharp, go: `Model`) milik agen secara penuh, sehingga `effort` (java, php; csharp, go: `Effort`) milik agen sendiri tidak terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` (java, php; csharp, go: `Effort`) di dalam objek `model` (java, php; csharp, go: `Model`) penimpaan tersebut. Lihat [Menimpa konfigurasi agen untuk sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session).
 
-## Membuat agen
+## Buat agen
 
 Contoh berikut mendefinisikan agen coding yang menggunakan Claude Opus 5 dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
 
-Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda belum menyiapkannya, [quickstart](https://platform.claude.com/docs/id/managed-agents/quickstart#install-the-cli) mencakup instalasi dan penyiapan klien.
+Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda belum menyiapkannya, [quickstart](https://platform.claude.com/docs/id/managed-agents/quickstart#install-the-cli) membahas instalasi dan penyiapan klien.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -79,7 +79,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       ```
     </File>
 
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dari `coding-assistant.md`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui agen ini alih-alih membuat yang kedua.
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dari `coding-assistant.md`, mencetak ID-nya, dan mencatatnya di `claude-lock.json`. Commit `claude-lock.json` agar `ant apply` berikutnya memperbarui agen ini alih-alih membuat agen kedua.
   </CodeGroupItem>
 
   ```python Python
@@ -174,7 +174,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```
 </CodeGroup>
 
-Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `version`, `created_at`, `updated_at`, dan `archived_at`, serta mengisi field `model` yang Anda hilangkan, seperti `effort`, dengan nilai defaultnya. `version` dimulai dari 1 dan bertambah setiap kali pembaruan mengubah agen.
+Respons menggemakan konfigurasi Anda dan menambahkan bidang `id`, `type`, `version`, `created_at`, `updated_at`, dan `archived_at`, serta mengisi bidang `model` yang Anda hilangkan, seperti `effort`, dengan nilai default-nya. `version` dimulai dari 1 dan bertambah setiap kali pembaruan mengubah agen.
 
 ```json
 {
@@ -207,21 +207,21 @@ Respons menggemakan konfigurasi Anda dan menambahkan field `id`, `type`, `versio
 }
 ```
 
-`default_config` pada toolset menunjukkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) defaultnya, `always_allow`, yang berlaku kecuali Anda mengonfigurasinya.
+`default_config` pada toolset menunjukkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) default-nya, `always_allow`, yang berlaku kecuali Anda mengonfigurasinya.
 
 <Tip>
-  Untuk menggunakan Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8 dengan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode), berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "speed": "fast"}`. Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) pada halaman mode cepat.
+  Untuk menggunakan Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8 dengan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode), berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "speed": "fast"}`. Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) di halaman mode cepat.
 </Tip>
 
 <Tip>
-  Untuk menetapkan tingkat effort model, teruskan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "effort": "high"}`. Field `effort` menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui apa yang dilakukan setiap tingkat.
+  Untuk mengatur tingkat effort model, berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5", "effort": "high"}`. Bidang `effort` menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui fungsi setiap tingkat.
 </Tip>
 
-### Menyematkan inference geo
+### Sematkan geo inferensi
 
-Seperti `speed` dan `effort`, `inference_geo` ditetapkan melalui bentuk objek dari `model`: teruskan `model` sebagai objek dan tetapkan `inference_geo` bersama `id`. Field ini menerima `"us"` atau `"global"`. Ketika tidak ditetapkan, setiap permintaan model mengikuti inference geo default workspace pada saat permintaan dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
+Seperti `speed` (java, php; csharp, go: `Speed`) dan `effort` (java, php; csharp, go: `Effort`), `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) diatur melalui bentuk objek dari `model` (java, php; csharp, go: `Model`): berikan `model` (java, php; csharp, go: `Model`) sebagai objek dan atur `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) bersama `id` (java, php; csharp, go: `ID`). Bidang ini menerima `"us"` atau `"global"`. Jika tidak diatur, setiap permintaan model mengikuti geo inferensi default workspace pada saat permintaan dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
 
-Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_geo` dari objek `model` milik agen:
+Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dari objek `model` (java, php; csharp, go: `Model`) milik agen:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -353,15 +353,15 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   ```
 </CodeGroup>
 
-Penyematan `inference_geo` divalidasi terhadap [`allowed_inference_geos`](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) milik workspace ketika agen disimpan, ketika sesi dibuat darinya, dan pada setiap giliran yang dilayani sesi. Jika allowlist workspace menyempit sehingga penyematan tidak lagi diizinkan, sesi baru tidak dapat dibuat dari agen tersebut dan sesi yang sedang berjalan menolak giliran selanjutnya; penyematan tidak pernah dikecualikan, karena workspace mengandalkannya untuk kepatuhan dan residensi data.
+Penyematan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) divalidasi terhadap [`allowed_inference_geos`](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) milik workspace saat agen disimpan, saat sesi dibuat darinya, dan pada setiap giliran yang dilayani sesi. Jika daftar izin workspace dipersempit sehingga suatu penyematan tidak lagi diizinkan, sesi baru tidak dapat dibuat dari agen tersebut dan sesi yang sedang berjalan menolak giliran berikutnya; penyematan tidak pernah dikecualikan, karena workspace mengandalkannya untuk kepatuhan dan residensi data.
 
-Mengatur `inference_geo` pada model yang tidak mendukung penyematan inferensi geografis akan mengembalikan error 400; lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability) untuk model yang mendukungnya. Dalam konfigurasi `multiagent`, penyematan agen dan penyematan setiap agen yang tercantum dalam `subagents.predefined_agents` atau `workflows.predefined_agents` harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur; lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk mengubah atau menghapus penyematan nanti, perbarui objek `model` milik agen; memberikan `model` tanpa `inference_geo` akan menghapusnya, seperti dijelaskan di bawah [Semantik pembaruan](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-semantics).
+Mengatur `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) pada model yang tidak mendukung penyematan inferensi geografis akan mengembalikan error 400; lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability) untuk model yang mendukungnya. Dalam konfigurasi `multiagent` (java, php; csharp, go: `Multiagent`), penyematan agen dan penyematan setiap agen yang tercantum dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (java, php; csharp, go: `Subagents`) atau `workflows` (java, php; csharp, go: `Workflows`) harus semuanya diatur ke nilai yang sama atau semuanya tidak diatur; lihat [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk mengubah atau menghapus penyematan nanti, perbarui objek `model` (java, php; csharp, go: `Model`) milik agen; memberikan `model` (java, php; csharp, go: `Model`) tanpa `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) akan menghapusnya, seperti dijelaskan di bawah [Semantik pembaruan](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-semantics).
 
-## Memperbarui agen
+## Perbarui agen
 
-Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Field `version` bersifat opsional: sediakan untuk optimistic concurrency (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir menang). Pembaruan pada agen yang diarsipkan ditolak.
+Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Bidang `version` (java, php; csharp, go: `Version`) bersifat opsional: berikan untuk konkurensi optimistis (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir yang menang). Pembaruan pada agen yang diarsipkan akan ditolak.
 
-Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan `version` untuk Anda.
+Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `version` untuk Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -474,9 +474,9 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply akan memberikan 
   ```
 </CodeGroup>
 
-Contoh sebelumnya menyediakan `version` dari respons pembuatan, sehingga pembaruan hanya diterapkan jika tidak ada hal lain yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
+Contoh sebelumnya memberikan `version` dari respons pembuatan, sehingga pembaruan hanya diterapkan jika tidak ada hal lain yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` dari permintaan:
 
-<CodeGroup exclude="shell:CLI, python, typescript, csharp, go, java, php, ruby">
+<CodeGroup>
   ```bash cURL
   updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -489,37 +489,251 @@ Contoh sebelumnya menyediakan `version` dari respons pembuatan, sehingga pembaru
 
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
+
+  ```bash CLI
+  ant beta:agents update \
+    --agent-id "$AGENT_ID" \
+    --description "Writes and reviews code."
+  ```
+
+  ```python Python
+  unconditional_agent = client.beta.agents.update(
+      agent.id,
+      description="Writes and reviews code.",
+  )
+
+  print(f"New version: {unconditional_agent.version}")
+  ```
+
+  ```typescript TypeScript
+  const unconditionalAgent = await client.beta.agents.update(agent.id, {
+    description: "Writes and reviews code.",
+  });
+
+  console.log(`New version: ${unconditionalAgent.version}`);
+  ```
+
+  ```csharp C#
+  var unconditionalAgent = await client.Beta.Agents.Update(agent.ID, new()
+  {
+      Description = "Writes and reviews code.",
+  });
+
+  Console.WriteLine($"New version: {unconditionalAgent.Version}");
+  ```
+
+  ```go Go
+  unconditionalAgent, err := client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
+  	Description: anthropic.String("Writes and reviews code."),
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  fmt.Printf("New version: %d\n", unconditionalAgent.Version)
+  ```
+
+  ```java Java
+  var unconditionalAgent = client.beta().agents().update(
+      agent.id(),
+      AgentUpdateParams.builder()
+          .description("Writes and reviews code.")
+          .build()
+  );
+
+  IO.println("New version: " + unconditionalAgent.version());
+  ```
+
+  ```php PHP
+  $unconditionalAgent = $client->beta->agents->update(
+      $agent->id,
+      description: 'Writes and reviews code.',
+  );
+
+  echo "New version: {$unconditionalAgent->version}\n";
+  ```
+
+  ```ruby Ruby
+  unconditional_agent = client.beta.agents.update(
+    agent.id,
+    description: "Writes and reviews code."
+  )
+
+  puts "New version: #{unconditional_agent.version}"
+  ```
 </CodeGroup>
 
 ### Semantik pembaruan
 
-* **`version`** bersifat opsional dan harus minimal 1 ketika disediakan. Ketika disediakan, permintaan mengembalikan 409 jika tidak cocok dengan versi agen saat ini, bahkan ketika field yang Anda kirim sudah cocok dengan nilai yang tersimpan; baca ulang agen dan coba lagi. Ketika dihilangkan, pembaruan diterapkan tanpa syarat dan pembaruan terbaru secara diam-diam menggantikan pembaruan bersamaan lainnya, tanpa error bagi kedua pemanggil. Menyediakan `version` adalah default yang direkomendasikan untuk pemanggil interaktif, dan menghilangkannya cocok untuk loop apply deklaratif, seperti job CI yang menyinkronkan definisi agen yang di-check-in, di mana loop tersebut memiliki agen.
+* **`version` (java, php; csharp, go: `Version`)** bersifat opsional dan harus minimal 1 jika diberikan. Jika diberikan, permintaan mengembalikan 409 jika tidak cocok dengan versi agen saat ini, bahkan ketika bidang yang Anda kirim sudah cocok dengan nilai yang tersimpan; baca ulang agen dan coba lagi. Jika dihilangkan, pembaruan diterapkan tanpa syarat dan pembaruan terbaru secara diam-diam menggantikan pembaruan bersamaan lainnya, tanpa error bagi pemanggil mana pun. Memberikan `version` (java, php; csharp, go: `Version`) adalah default yang direkomendasikan untuk pemanggil interaktif, dan menghilangkannya cocok untuk loop apply deklaratif, seperti job CI yang menyinkronkan definisi agen yang di-check-in, di mana loop tersebut memiliki agen.
 
-* **Field yang dihilangkan dipertahankan.** Anda hanya perlu menyertakan field yang ingin Anda ubah.
+* **Bidang yang dihilangkan dipertahankan.** Anda hanya perlu menyertakan bidang yang ingin Anda ubah.
 
-* **Field skalar** (`model`, `system`, `name`, `description`) diganti dengan nilai baru. `system` dan `description` dapat dihapus dengan meneruskan `null`. `model` dan `name` bersifat wajib dan tidak dapat dihapus. Di dalam objek `model` yang Anda sediakan, `effort` adalah satu-satunya pengecualian: jika `id` model tidak berubah, menghilangkan `effort` membiarkan tingkat effort yang tersimpan tidak berubah. Jika Anda mengubah `id` model, `effort` yang dihilangkan direset ke default model baru. Field `model` lainnya diganti bersama objeknya: menyediakan `model` tanpa `inference_geo` menghapus penyematan inference geo agen.
+* **Bidang skalar** (`model` (java, php; csharp, go: `Model`), `system` (java, php; csharp, go: `System`; ruby: `system_`), `name` (java, php; csharp, go: `Name`), `description` (java, php; csharp, go: `Description`)) diganti dengan nilai baru. `system` (java, php; csharp, go: `System`; ruby: `system_`) dan `description` (java, php; csharp, go: `Description`) dapat dihapus dengan memberikan `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `param.Null[string]()`; php: `requestOptions: ['extraBodyParams' => ['system' => null, 'description' => null]]`). `model` (java, php; csharp, go: `Model`) dan `name` (java, php; csharp, go: `Name`) bersifat wajib dan tidak dapat dihapus. Di dalam objek `model` (java, php; csharp, go: `Model`) yang Anda berikan, `effort` (java, php; csharp, go: `Effort`) adalah satu-satunya pengecualian: jika `id` (java, php; csharp, go: `ID`) model tidak berubah, menghilangkan `effort` (java, php; csharp, go: `Effort`) membuat tingkat effort yang tersimpan tidak berubah. Jika Anda mengubah `id` (java, php; csharp, go: `ID`) model, `effort` (java, php; csharp, go: `Effort`) yang dihilangkan akan direset ke default model baru. Bidang `model` (java, php; csharp, go: `Model`) lainnya diganti bersama objeknya: memberikan `model` (java, php; csharp, go: `Model`) tanpa `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) akan menghapus penyematan geo inferensi agen.
 
-* **Field array** (`tools`, `mcp_servers`, `skills`) diganti sepenuhnya oleh array baru. Untuk menghapus field array seluruhnya, teruskan `null` atau array kosong.
+* **Bidang array** (`tools` (java, php; csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), `skills` (java, php; csharp, go: `Skills`)) sepenuhnya diganti oleh array baru. Untuk menghapus bidang array sepenuhnya, berikan `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `param.NullSlice[[]anthropic.BetaAgentUpdateParamsToolUnion]()`; php: `requestOptions: ['extraBodyParams' => ['mcp_servers' => null]]`) atau array kosong.
 
-* **`multiagent`** digabungkan ke dalam blok yang tersimpan tingkat demi tingkat ketika pembaruan mempertahankan tipe `multiagent_20261001`. Pengaturan yang Anda hilangkan mempertahankan nilai tersimpannya, dan daftar `predefined_agents` yang Anda kirim menggantikan daftar yang tersimpan. Pembaruan lain apa pun yang mengirim `multiagent` menggantikan blok yang tersimpan secara keseluruhan, dan pengaturan yang dihilangkannya mengambil nilai default. Berikan `"multiagent": null` untuk menghapus seluruh blok. Di dalam blok, `null` mereset pengaturan ke default-nya, sehingga `"workflows": null` mengaktifkan alur kerja dinamis. Lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows).
+* **`multiagent` (java, php; csharp, go: `Multiagent`)** digabungkan ke dalam blok yang tersimpan tingkat demi tingkat ketika pembaruan mempertahankan tipe `multiagent_20261001`. Pengaturan yang Anda hilangkan mempertahankan nilai tersimpannya, dan daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) yang Anda kirim menggantikan daftar yang tersimpan. Pembaruan lain apa pun yang mengirim `multiagent` (java, php; csharp, go: `Multiagent`) menggantikan blok yang tersimpan secara keseluruhan, dan pengaturan yang dihilangkannya mengambil nilai default. Berikan `"multiagent": null` (python: `multiagent=None`; typescript: `multiagent: null`; ruby: `multiagent: nil`; go: `Multiagent: param.NullStruct[anthropic.BetaManagedAgentsMultiagentParamsUnion]()`; java: `.multiagent(Optional.empty())`; csharp: `Multiagent = null`; php: `requestOptions: ['extraBodyParams' => ['multiagent' => null]]`) untuk menghapus seluruh blok. Di dalam blok, `null` mereset pengaturan ke default-nya, sehingga mengatur `workflows` (java, php; csharp, go: `Workflows`) ke `null` akan mengaktifkan alur kerja dinamis. Lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows).
 
-* **Metadata** digabungkan pada tingkat key. Key yang Anda sediakan ditambahkan atau diperbarui. Key yang Anda hilangkan dipertahankan. Untuk menghapus key tertentu, tetapkan nilainya ke `null`.
+* **Metadata** digabungkan pada tingkat kunci. Kunci yang Anda berikan ditambahkan atau diperbarui. Kunci yang Anda hilangkan dipertahankan. Untuk menghapus kunci tertentu, atur nilainya ke `null`.
 
 * **Deteksi no-op.** Jika pembaruan tidak menghasilkan perubahan relatif terhadap versi saat ini, tidak ada versi baru yang dibuat dan versi yang ada dikembalikan.
 
-* **Daftar `predefined_agents` milik agen lain tidak diperbarui.** Agen yang mencantumkan agen ini dalam `subagents.predefined_agents` atau `workflows.predefined_agents` mempertahankan versi yang disematkan saat agen tersebut dibuat atau saat pembaruan terakhir mengirim daftar tersebut, bahkan jika referensinya menghilangkan `version`. Untuk mendelegasikan ke versi baru, [perbarui agen yang mencantumkannya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#list-the-subagents) sehingga daftar tersebut mereferensikan versi baru.
+* **Daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) milik agen lain tidak diperbarui.** Agen yang mencantumkan agen ini dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (java, php; csharp, go: `Subagents`) atau `workflows` (java, php; csharp, go: `Workflows`) mempertahankan versi yang disematkan saat agen tersebut dibuat atau saat pembaruan terakhir mengirim daftar itu, bahkan jika referensinya menghilangkan `version` (java, php; csharp, go: `Version`). Untuk mendelegasikan ke versi baru, [perbarui agen yang mencantumkannya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#list-the-subagents) sehingga daftar tersebut merujuk ke versi baru.
+
+Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (java, php; csharp, go: `Metadata`), dan mengatur `workflows` (java, php; csharp, go: `Workflows`) ke `null`, yang mengaktifkan alur kerja dinamis:
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  cleared_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "description": null,
+      "metadata": {"team": null},
+      "multiagent": {"type": "multiagent_20261001", "workflows": null}
+    }')
+
+  echo "Description: $(jq -r '.description' <<< "$cleared_agent")"
+  ```
+
+  <CodeGroupItem>
+    ```bash CLI
+    ant apply code-reviewer.md
+    ```
+
+    <File filename="code-reviewer.md">
+      ```markdown
+      ---
+      name: Code Reviewer
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+      metadata:
+        owner: docs
+      multiagent:
+        type: multiagent_20261001
+        workflows: null
+      ---
+
+      You are a helpful coding agent.
+      ```
+    </File>
+
+    File tersebut tidak lagi memiliki `description` atau kunci `team`, sehingga `ant apply` mengirim `null` untuk keduanya. Menghapus pengaturan di dalam `multiagent` mempertahankan nilai tersimpannya, sehingga file tersebut mengatur `workflows` ke `null`.
+  </CodeGroupItem>
+
+  ```python Python
+  cleared_agent = client.beta.agents.update(
+      agent.id,
+      description=None,
+      metadata={"team": None},
+      multiagent={"type": "multiagent_20261001", "workflows": None},
+  )
+
+  print(f"Description: {cleared_agent.description}")
+  ```
+
+  ```typescript TypeScript
+  const clearedAgent = await client.beta.agents.update(agent.id, {
+    description: null,
+    metadata: { team: null },
+    multiagent: { type: "multiagent_20261001", workflows: null },
+  });
+
+  console.log(`Description: ${clearedAgent.description}`);
+  ```
+
+  ```csharp C#
+  var clearedAgent = await client.Beta.Agents.Update(agent.ID, new()
+  {
+      Description = null,
+      Metadata = new Dictionary<string, string?> { ["team"] = null },
+      Multiagent = new BetaManagedAgentsMultiagent20261001Params { Workflows = null },
+  });
+
+  Console.WriteLine($"Description: {clearedAgent.Description}");
+  ```
+
+  ```go Go
+  // Metadata adalah map[string]string, jadi kirim null untuk team sebagai opsi request.
+  clearedAgent, err := client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
+  	Description: param.Null[string](),
+  	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
+  		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
+  			Workflows: param.NullStruct[anthropic.BetaManagedAgentsMultiagentWorkflowsParamsUnion](),
+  		},
+  	},
+  }, option.WithJSONSet("metadata.team", nil))
+  if err != nil {
+  	panic(err)
+  }
+
+  fmt.Printf("Description: %q\n", clearedAgent.Description)
+  ```
+
+  ```java Java
+  var clearedAgent = client.beta().agents().update(
+      agent.id(),
+      AgentUpdateParams.builder()
+          .description(Optional.empty())
+          .metadata(
+              AgentUpdateParams.Metadata.builder()
+                  .putAdditionalProperty("team", JsonValue.from(null))
+                  .build()
+          )
+          .multiagent(
+              BetaManagedAgentsMultiagent20261001Params.builder()
+                  .workflows(Optional.empty())
+                  .build()
+          )
+          .build()
+  );
+
+  IO.println("Description: " + clearedAgent.description().orElse(null));
+  ```
+
+  ```php PHP
+  // update() membuang argumen null, jadi teruskan nilai null di extraBodyParams.
+  $clearedAgent = $client->beta->agents->update(
+      $agent->id,
+      requestOptions: [
+          'extraBodyParams' => [
+              'description' => null,
+              'metadata' => ['team' => null],
+              'multiagent' => ['type' => 'multiagent_20261001', 'workflows' => null],
+          ],
+      ],
+  );
+
+  echo 'Description: ' . json_encode($clearedAgent->description) . "\n";
+  ```
+
+  ```ruby Ruby
+  cleared_agent = client.beta.agents.update(
+    agent.id,
+    description: nil,
+    metadata: {team: nil},
+    multiagent: {type: :multiagent_20261001, workflows: nil}
+  )
+
+  puts "Description: #{cleared_agent.description.inspect}"
+  ```
+</CodeGroup>
 
 ## Siklus hidup agen
 
-| Operasi          | Perilaku                                                                                                      |
-| ---------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Perbarui**     | Menghasilkan versi agen baru ketika konfigurasi berubah.                                                      |
-| **Daftar versi** | Mengembalikan riwayat versi lengkap sehingga Anda dapat melacak perubahan dari waktu ke waktu.                |
-| **Arsipkan**     | Membuat agen menjadi read-only. Sesi baru tidak dapat mereferensikannya, tetapi sesi yang ada terus berjalan. |
+| Operasi           | Perilaku                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| **Update**        | Menghasilkan versi agen baru ketika konfigurasi berubah.                                                |
+| **List versions** | Mengembalikan riwayat versi lengkap sehingga Anda dapat melacak perubahan dari waktu ke waktu.          |
+| **Archive**       | Membuat agen menjadi hanya-baca. Sesi baru tidak dapat merujuknya, tetapi sesi yang ada tetap berjalan. |
 
 ### Daftar versi
 
-Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari waktu ke waktu. Hasil dipaginasi, dan contoh SDK mengambil setiap halaman secara otomatis.
+Ambil riwayat versi lengkap untuk melacak bagaimana agen berubah dari waktu ke waktu. Hasil dipaginasi, dan contoh SDK mengambil setiap halaman secara otomatis.
 
 <CodeGroup>
   ```bash cURL
@@ -572,7 +786,7 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari wakt
 
   ```php PHP
   foreach ($client->beta->agents->versions->list($agent->id)->pagingEachItem() as $version) {
-      echo "Version {$version->version}: {$version->updatedAt->format(DateTimeInterface::ATOM)}\n";
+      echo "Version {$version->version}: {$version->updatedAt->format(\DateTimeInterface::ATOM)}\n";
   }
   ```
 
@@ -583,9 +797,9 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari wakt
   ```
 </CodeGroup>
 
-### Mengarsipkan agen
+### Arsipkan agen
 
-Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen tersebut. Respons menetapkan `archived_at` ke timestamp pengarsipan.
+Pengarsipan membuat agen menjadi hanya-baca dan tidak dapat dibatalkan. Sesi yang ada tetap berjalan, tetapi sesi baru tidak dapat merujuk agen tersebut. Respons mengatur `archived_at` (java, php: `archivedAt`; csharp, go: `ArchivedAt`) ke timestamp pengarsipan.
 
 <CodeGroup>
   ```bash cURL
@@ -633,7 +847,7 @@ Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang
   ```php PHP
   $archived = $client->beta->agents->archive($agent->id);
 
-  echo "Archived at: {$archived->archivedAt->format(DateTimeInterface::ATOM)}\n";
+  echo "Archived at: {$archived->archivedAt->format(\DateTimeInterface::ATOM)}\n";
   ```
 
   ```ruby Ruby
@@ -650,10 +864,10 @@ Pengarsipan membuat agen menjadi read-only dan tidak dapat dibatalkan. Sesi yang
   </Card>
 
   <Card title="Skill" icon="graduation-cap" href="https://platform.claude.com/docs/id/managed-agents/skills">
-    Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda untuk alur kerja khusus domain.
+    Lampirkan keahlian berbasis sistem file yang dapat digunakan ulang ke agen Anda untuk alur kerja khusus domain.
   </Card>
 
-  <Card title="Memulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">
+  <Card title="Mulai sesi" icon="play" href="https://platform.claude.com/docs/id/managed-agents/sessions">
     Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
   </Card>
 

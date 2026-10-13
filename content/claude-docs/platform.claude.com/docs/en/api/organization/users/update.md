@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1a65c3694d9d5fd6432313fae3282a37a9a04b1f1a9c12aebf25bf2076ea9ea3
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 8205a8d3fb733d486f40e5b00d6da6ec45babfddba892fb21a45d8da1e7a36c4
 ---
 
 ---
@@ -28,7 +28,7 @@ Update a member's organization role.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 70ad6d9a4103be53eb1620d6228ef35e55b21bd22c4bfa479e3e49809d6960c0
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 186f56f443f45bbdf55a5246682447de1b742eb1d78c5f021e26894397853bd0
 ---
 
 ---
@@ -28,7 +28,7 @@ Delete File
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

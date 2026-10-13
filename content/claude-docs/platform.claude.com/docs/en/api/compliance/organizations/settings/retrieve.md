@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0f90b83f459f2c08a5cb599086cc9d027602bb4cf70861f2819750e6c9ad8c81
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 79fe1717801eecf9bc87de6ca1ac2f11c4197e4230d62e6a8e6476dd975172ae
 ---
 
 ---
@@ -44,7 +44,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

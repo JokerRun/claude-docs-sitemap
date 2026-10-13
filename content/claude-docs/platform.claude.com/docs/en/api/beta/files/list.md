@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a24de41f136b85981066456c3a2662ecc342f7f47179e059d1685fc75faf4d8a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 057efd5479945c4af966a5ca405aeafed920f24c525bd3a5f0096085b6862372
 ---
 
 ---
@@ -44,7 +44,7 @@ List Files
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

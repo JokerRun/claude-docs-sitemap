@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 26fedfacd2b4c84ad165990db8008c4c40890bc454dec9e3136341dedf3972e6
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: dc43b9cab8fa3b23812a918f7b3595af3cf312ba0cb1f51b30e047617a98fb9b
 ---
 
 ---
@@ -14,7 +14,7 @@ url: https://platform.claude.com/docs/en/api/organization/federation/rules/works
 
 **GET** `/v1/organizations/federation_rules/{federation_rule_id}/workspaces`
 
-**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api?sdk_languages=http).
 
 List workspaces where this federation rule is enabled.
 
@@ -48,7 +48,7 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 76b88ad2950078757921eeb40d9649b2fd14cf9d59302bb9fea1d2383cf4fe66
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 87481e24c58dcf0940b4adc41c0cd1fd72191899b71b2eacfe01837904a64a93
 ---
 
 ---
@@ -17,11 +17,11 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Sesi adalah instans agen di dalam sebuah environment (lingkungan). Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [environment](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).
+Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`)](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).
 
 ## Membuat sesi
 
-Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya berversi; meneruskan ID `agent` sebagai string akan membuat sesi dengan versi agen terbaru.
+Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya yang memiliki versi; meneruskan ID `agent` (java, php; csharp, go: `Agent`) sebagai string akan membuat sesi dengan versi agen terbaru.
 
 <CodeGroup>
   ```bash cURL
@@ -100,7 +100,7 @@ Sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya bervers
   ```
 </CodeGroup>
 
-Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol dengan tepat versi mana yang berjalan dan melakukan peluncuran bertahap versi baru secara independen.
+Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol secara tepat versi mana yang berjalan dan melakukan peluncuran bertahap versi baru secara independen.
 
 <CodeGroup>
   ```bash cURL
@@ -198,9 +198,9 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
 
 ### Mengisi sesi dengan event awal
 
-Anda dapat membuat sesi dan memulai pekerjaannya dalam satu panggilan. `initial_events` adalah array opsional berisi [event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) awal yang dikirim ke sesi saat pembuatan, diproses secara berurutan. Array ini mendukung event `user.message` dan [`user.define_outcome`](https://platform.claude.com/docs/id/managed-agents/define-outcomes), serta menerima maksimum 50 event. Daftar yang tidak kosong akan memulai loop agen dalam panggilan yang sama: sesi dibuat langsung dalam status `running`, tanpa permintaan lebih lanjut.
+Anda dapat membuat sesi dan memulai pekerjaannya dalam satu panggilan. `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) adalah array opsional berisi [event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) awal yang dikirim ke sesi saat pembuatan, diproses secara berurutan. Array ini mendukung event `user.message` dan [`user.define_outcome`](https://platform.claude.com/docs/id/managed-agents/define-outcomes), serta menerima maksimal 50 event. Daftar yang tidak kosong akan memulai loop agen dalam panggilan yang sama: sesi dibuat langsung dalam status `running`, tanpa permintaan lebih lanjut.
 
-Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
+Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`):
 
 <CodeGroup>
   ```bash cURL
@@ -415,8 +415,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
       ],
   );
 
-  // initial_events tidak digemakan pada respons create; baca kembali
-  // dari daftar event sesi.
+  // initial_events are not echoed on the create response; read them back
+  // from the session's event list.
   $seededEvents = $client->beta->sessions->events->list($seededSession->id);
   foreach ($seededEvents->getItems() as $event) {
       if ($event->type === 'user.message') {
@@ -448,40 +448,40 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events`:
   ```
 </CodeGroup>
 
-Tidak ada tipe event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` pada deployment terjadwal, `initial_events` milik sesi tidak menerima `system.message`.
+Tidak ada jenis event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) pada deployment terjadwal, `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) milik sesi tidak menerima `system.message`.
 
-Setiap event di dalam `initial_events` divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-events) segera setelah pembuatan. Aturan konten per event juga sama dengan yang berlaku pada endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
+Setiap event di `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-events) segera setelah pembuatan. Aturan konten per event juga sama seperti pada endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
 
 Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 
-| Kondisi                                                                                                                                               | Status |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| Lebih dari satu event `user.define_outcome`                                                                                                           | 400    |
-| Event `user.define_outcome` tanpa `rubric`                                                                                                            | 400    |
-| Lebih dari 100 [blok konten `document`](https://platform.claude.com/docs/id/build-with-claude/files#document-blocks) bersumber file di seluruh daftar | 400    |
-| Body permintaan lebih dari 32 MB                                                                                                                      | 413    |
+| Kondisi                                                                                                                                                         | Status |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Lebih dari satu event `user.define_outcome`                                                                                                                     | 400    |
+| Event `user.define_outcome` tanpa `rubric`                                                                                                                      | 400    |
+| Lebih dari 100 [blok konten `document`](https://platform.claude.com/docs/id/build-with-claude/files#document-blocks) yang bersumber dari file di seluruh daftar | 400    |
+| Body permintaan lebih dari 32 MB                                                                                                                                | 413    |
 
-Event `user.define_outcome` di `initial_events` diterima dengan kondisi yang sama seperti mengirimkannya ke sesi yang sudah ada; lihat [Mendefinisikan outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes).
+Event `user.define_outcome` di `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) diterima dengan kondisi yang sama seperti mengirimkannya ke sesi yang sudah ada; lihat [Mendefinisikan hasil](https://platform.claude.com/docs/id/managed-agents/define-outcomes).
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override (penimpaan). Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi agen baru. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` (java, php; csharp, go: `Agent`) dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` (java, php; csharp, go: `ID`) agen serta secara opsional `version` (java, php; csharp, go: `Version`) (hilangkan `version` (java, php; csharp, go: `Version`) untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model` (java, php; csharp, go: `Model`), `system` (java, php; csharp, go: `System`; ruby: `system_`), `tools` (java, php; csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), atau `skills` (java, php; csharp, go: `Skills`) dengan nilai yang harus digunakan sesi.
 
 Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
 
-* **Atur field ke `null`, atau ke array kosong untuk field daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` dan `skills`. Ada tiga pengecualian:
+* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` (java, php; csharp, go: `System`; ruby: `system_`) dan `skills` (java, php; csharp, go: `Skills`). Ada tiga pengecualian:
 
-  * `model` tidak pernah dapat dikosongkan. Sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
-  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif sesi tidak kosong, karena skills memerlukan alat `read`. Selain itu, `tools: null` dan `tools: []` mengosongkan field tersebut.
-  * Mengosongkan `mcp_servers` mengembalikan error 400 ketika `tools` efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers`.
+  * `model` tidak pernah dapat dikosongkan. Sesi selalu memerlukan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
+  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` (java, php; csharp, go: `Skills`) efektif sesi tidak kosong, karena skill memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+  * Mengosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mengembalikan error 400 ketika `tools` (java, php; csharp, go: `Tools`) efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` (java, php; csharp, go: `Tools`) dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`).
 
-* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` menggantikan objek `model` agen secara penuh, sehingga `effort` milik agen tidak ikut terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` di dalam objek `model` pada override. Tingkat yang tidak didukung model akan mengembalikan error 400, dan override `model` tanpa `effort` berjalan pada tingkat effort default model tersebut.
+* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` (java, php; csharp, go: `Tools`) harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` (java, php; csharp, go: `Model`) menggantikan objek `model` (java, php; csharp, go: `Model`) agen secara penuh, sehingga `effort` (java, php; csharp, go: `Effort`) milik agen sendiri tidak terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` (java, php; csharp, go: `Effort`) di dalam objek `model` (java, php; csharp, go: `Model`) override. Tingkat yang tidak didukung model mengembalikan error 400, dan override `model` (java, php; csharp, go: `Model`) tanpa `effort` (java, php; csharp, go: `Effort`) berjalan pada tingkat effort default model tersebut.
 
-Override hanya berlaku untuk sesi yang Anda buat. Override tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
+Override hanya berlaku untuk sesi yang Anda buat. Override tidak mengubah sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 
-Dalam respons, objek `agent` mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda menelusuri sesi kembali ke agen dasarnya.
+Dalam respons, objek `agent` (java, php; csharp, go: `Agent`) mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` (java, php; csharp, go: `ID`) dan `version` (java, php; csharp, go: `Version`)-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
 
 Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
@@ -615,15 +615,15 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       type: 'agent_with_overrides',
       model: ['id' => 'claude-sonnet-5-5'],
   );
-  // Kosongkan prompt sistem untuk sesi ini. Akses array penting di sini:
-  // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
+  // Clear the system prompt for this session. Array access is load-bearing here:
+  // create() strips nulls from raw arrays and ::with() treats null args as omitted.
   $overrides['system'] = null;
 
   $overrideSession = $client->beta->sessions->create(
       agent: $overrides,
       environmentID: $environment->id,
   );
-  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   echo "Model: {$overrideSession->agent->model->id}\n";
   echo 'System: ' . ($overrideSession->agent->system ?? 'null') . "\n";
   ```
@@ -648,9 +648,9 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 #### Menyematkan geo inferensi untuk sebuah sesi
 
-Karena override `model` menggantikan objek `model` agen secara penuh, override tersebut juga mengatur atau mengosongkan pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya mengosongkan pin agen sehingga sesi mengikuti `default_inference_geo` workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` workspace saat sesi dibuat.
+Karena override `model` (java, php; csharp, go: `Model`) menggantikan objek `model` (java, php; csharp, go: `Model`) agen secara penuh, override tersebut juga mengatur atau mengosongkan penyematan [geo inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya akan mengosongkan penyematan agen sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
 
-Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, menyematkan permintaan model sesi ke inferensi US dengan menyertakan `inference_geo` dalam override `model`, dan mencetak nilai yang dikembalikan dalam `agent.model` pada respons:
+Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (java, php; csharp, go: `Model`), dan mencetak nilai yang dikembalikan di `agent.model` (java, php; csharp, go: `Agent.Model`) pada respons:
 
 <CodeGroup>
   ```bash cURL
@@ -807,33 +807,140 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki pin geo, meny
 
 ### Menetapkan anggaran sesi
 
-Untuk membatasi berapa banyak yang dapat dibelanjakan sebuah sesi, teruskan objek `budget` opsional saat Anda membuatnya. Anggaran adalah batas atas yang ketat pada list cost (biaya daftar) sesi: platform menghargai semua yang dikonsumsi sesi dengan tarif daftar publik, dan sesi berhenti mengeluarkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost`. Atur `type` ke `limit` dan berikan `max_list_cost` sebuah `amount` dan `currency`. `amount` adalah bilangan bulat dalam sen AS yang ditulis sebagai string, seperti `"2500"` untuk $25,00; API menerima string alih-alih angka sehingga tidak ada pembulatan floating-point yang pernah diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi dijeda dan menjadi idle dengan stop reason `budget_reached`. Batas ini diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya diselesaikan terlebih dahulu dan list cost akhir sesi dapat berakhir [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
+Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (java, php; csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak pada biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengirim permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). Atur `type` (java, php; csharp, go: `Type`) ke `limit` dan berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (java, php; csharp, go: `Amount`) dan `currency` (java, php; csharp, go: `Currency`). `amount` (java, php; csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga tidak pernah ada pembulatan floating-point yang diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi akan dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
 
-Contoh berikut membuat sesi dengan anggaran $25,00; respons mengembalikan `budget` pada sumber daya sesi:
+Contoh berikut membuat sesi dengan anggaran $1,25:
 
-```bash cURL
-curl -fsSL https://api.anthropic.com/v1/sessions \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d @- <<EOF
-{
-  "agent": "$AGENT_ID",
-  "environment_id": "$ENVIRONMENT_ID",
-  "budget": {
-    "type": "limit",
-    "max_list_cost": {"amount": "2500", "currency": "USD"}
+<CodeGroup>
+  ```bash cURL
+  curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<EOF
+  {
+    "agent": "$AGENT_ID",
+    "environment_id": "$ENVIRONMENT_ID",
+    "budget": {
+      "type": "limit",
+      "max_list_cost": {"amount": "125", "currency": "USD"}
+    }
   }
-}
-EOF
-```
+  EOF
+  ```
 
-Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk mengetahui cara kerja pemberlakuan, apa yang dihitung ke dalam list cost, dan bagaimana anggaran berperilaku dalam sesi multiagen.
+  ```bash CLI
+  # Biarkan jumlah tetap dalam tanda kutip agar dikirim sebagai string, bukan angka.
+  ant beta:sessions create \
+    --agent "$AGENT_ID" \
+    --environment-id "$ENVIRONMENT_ID" \
+    --budget '{type: limit, max_list_cost: {amount: "125", currency: USD}}'
+  ```
+
+  ```python Python
+  session = client.beta.sessions.create(
+      agent=agent.id,
+      environment_id=environment.id,
+      budget={
+          "type": "limit",
+          "max_list_cost": {"amount": "125", "currency": "USD"},
+      },
+  )
+  print(session.id, session.budget.max_list_cost.amount)  # sesn_01... 125
+  ```
+
+  ```typescript TypeScript
+  const session = await client.beta.sessions.create({
+    agent: agent.id,
+    environment_id: environment.id,
+    budget: {
+      type: "limit",
+      max_list_cost: { amount: "125", currency: "USD" }
+    }
+  });
+  console.log(session.id, session.budget?.max_list_cost.amount); // sesn_01... 125
+  ```
+
+  ```csharp C#
+  var session = await client.Beta.Sessions.Create(new()
+  {
+      Agent = agent.ID,
+      EnvironmentID = environment.ID,
+      Budget = new()
+      {
+          Type = BetaManagedAgentsBudgetLimitType.Limit,
+          MaxListCost = new() { Amount = "125", Currency = BetaCurrency.Usd },
+      },
+  });
+  Console.WriteLine($"{session.ID} {session.Budget?.MaxListCost.Amount}");  // sesn_01... 125
+  ```
+
+  ```go Go
+  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
+  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
+  		OfString: anthropic.String(agent.ID),
+  	},
+  	EnvironmentID: environment.ID,
+  	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
+  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
+  		MaxListCost: anthropic.BetaMonetaryAmountParam{
+  			Amount:   "125",
+  			Currency: anthropic.BetaCurrencyUsd,
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  fmt.Println(session.ID, session.Budget.MaxListCost.Amount) // sesn_01... 125
+  ```
+
+  ```java Java
+  var session = client.beta().sessions().create(SessionCreateParams.builder()
+      .agent(agent.id())
+      .environmentId(environment.id())
+      .budget(BetaManagedAgentsBudgetLimit.builder()
+          .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
+          .maxListCost(BetaMonetaryAmount.builder()
+              .amount("125")
+              .currency(BetaCurrency.USD)
+              .build())
+          .build())
+      .build());
+  IO.println(session.id() + " " + session.budget().orElseThrow().maxListCost().amount());  // sesn_01... 125
+  ```
+
+  ```php PHP
+  $session = $client->beta->sessions->create(
+      agent: $agent->id,
+      environmentID: $environment->id,
+      budget: [
+          'type' => 'limit',
+          'max_list_cost' => ['amount' => '125', 'currency' => 'USD'],
+      ],
+  );
+  echo "{$session->id} {$session->budget->maxListCost->amount}\n"; // sesn_01... 125
+  ```
+
+  ```ruby Ruby
+  session = client.beta.sessions.create(
+    agent: agent.id,
+    environment_id: environment.id,
+    budget: {
+      type: "limit",
+      max_list_cost: {amount: "125", currency: "USD"}
+    }
+  )
+  puts "#{session.id} #{session.budget.max_list_cost.amount}" # sesn_01... 125
+  ```
+</CodeGroup>
+
+Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk cara kerja penegakan, apa saja yang dihitung dalam biaya daftar, dan bagaimana anggaran berperilaku dalam sesi multiagen.
 
 ## Autentikasi MCP melalui vault
 
-Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth tersimpan. Anthropic mengelola refresh token atas nama Anda. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk mengetahui cara membuat vault dan mendaftarkan kredensial.
+Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth tersimpan. Anthropic mengelola penyegaran token atas nama Anda. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
 
 <CodeGroup>
   ```bash cURL
@@ -925,7 +1032,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai diprovisikan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
+Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox lingkungan mulai disiapkan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyertakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup>
   ```bash cURL
@@ -1057,9 +1164,9 @@ Membuat sesi tanpa `initial_events` akan mendaftarkan sesi tetapi tidak memulai 
   ```
 </CodeGroup>
 
-Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk mengetahui cara melakukan streaming respons agen dan menangani konfirmasi alat.
+Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) untuk cara melakukan streaming respons agen dan menangani konfirmasi alat.
 
-Lihat [Status sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) untuk mengetahui status-status yang dilalui sebuah sesi.
+Lihat [Status sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#session-statuses) untuk status-status yang dilalui sebuah sesi.
 
 ## Langkah selanjutnya
 

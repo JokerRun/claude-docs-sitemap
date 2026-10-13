@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c7adf5d90de3f0301d91776b68e72970bfab0f1f26dc69ec6bf6a42617542206
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c3a2719f127993592c695ec88f33d6b8752cd0bfac36be4cfff439e6e065e4e0
 ---
 
 ---
@@ -14,7 +14,7 @@ url: https://platform.claude.com/docs/en/api/organization/federation/rules/creat
 
 **POST** `/v1/organizations/federation_rules`
 
-**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](/docs/en/manage-claude/wif-admin-api).
+**Requires an OAuth access token with the `org:admin` scope**, from `ant auth login --scope org:admin` or a workload identity federation rule; Admin API keys are not accepted. See [Manage WIF with the Admin API](https://platform.claude.com/docs/en/manage-claude/wif-admin-api?sdk_languages=http).
 
 Create a federation rule owned by your organization.
 
@@ -38,7 +38,7 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

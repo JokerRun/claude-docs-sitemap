@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: e15f3ef9828abc4e26fa34f784fc13f35fd0f9dca2a0c0eed38a8d18ab73daa8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 536334cc2d3d662f18eab2b289e5fef4e8358a5c83c6dafc77493b99fb579e95
 ---
 
 ---
@@ -79,8 +79,8 @@ foreach ($stream as $event) {
 Streaming requires an HTTP client that returns the response body incrementally. When Guzzle is the discovered PSR-18 client, the SDK configures it for streaming automatically. With a buffering client, the `foreach` loop yields every event at once when the response completes instead of incrementally; if you observe that symptom, install Guzzle or supply a streaming-capable PSR-18 client through the `streamingTransporter` request option:
 
 ```php
-$client = new Anthropic\Client(
-  requestOptions: Anthropic\RequestOptions::with(streamingTransporter: $myStreamingClient),
+$client = new \Anthropic\Client(
+  requestOptions: \Anthropic\RequestOptions::with(streamingTransporter: $myStreamingClient),
 );
 ```
 
@@ -167,8 +167,10 @@ foreach ($page->getItems() as $item) {
   echo $item->id, PHP_EOL;
 }
 // make additional network requests to fetch items from all pages, including and after the current page
+// ...
 foreach ($page->pagingEachItem() as $item) {
   echo $item->id, PHP_EOL;
+// ...
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 114ba36f8bf89a0827bcb92fe94c6df44490a8ea3fe8c28bd4f66ee30d74477b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 92da2969c4b1af844f59eb8dc75648dc53f5a10a848bc03ef17a137da206712d
 ---
 
 ---
@@ -46,7 +46,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -139,7 +139,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Body parameters
 
@@ -232,7 +232,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 

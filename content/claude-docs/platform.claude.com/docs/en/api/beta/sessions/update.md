@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 32e5294dbd451fe7111cf8dfdf1ca4fa0b11a577aac62da9ee29245d0ba61c01
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 7b0d6d12f4d8c2c20739f9c7a8ba379c055ed3fe7f08955d45dba0aaaa68a832
 ---
 
 ---
@@ -1857,7 +1857,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
       }
     ],
     "model": {
-      "id": "claude-opus-5",
+      "id": "claude-opus-5-5",
       "effort": {
         "type": "low"
       },
@@ -1877,7 +1877,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
             }
           ],
           "model": {
-            "id": "claude-opus-5",
+            "id": "claude-opus-5-5",
             "effort": {
               "type": "low"
             },

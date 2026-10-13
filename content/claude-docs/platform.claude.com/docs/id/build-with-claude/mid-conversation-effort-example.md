@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d5cb92e66c4c2896f4e54340c8473380c6e938ad63a1f61c92b579699aa3e4a7
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 198bf1d2ab4d1f3e18102056eb2fdeb9fec36250743649a10958c359a84a5c04
 ---
 
 ---
@@ -1238,7 +1238,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   if (DOC_TEST_MODE) {
       $workDir = sys_get_temp_dir() . '/orchestration-' . bin2hex(random_bytes(8));
       if (!mkdir($workDir, 0700)) {
-          throw new RuntimeException("could not create working directory {$workDir}");
+          throw new \RuntimeException("could not create working directory {$workDir}");
       }
       file_put_contents(
           $workDir . '/sample.py',
@@ -1783,7 +1783,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
    */
   function drainMessageStream(iterable $events): array
   {
-      $stringValue = fn ($value) => $value instanceof BackedEnum ? $value->value : $value;
+      $stringValue = fn ($value) => $value instanceof \BackedEnum ? $value->value : $value;
       $blocks = [];
       $jsonBuffers = [];
       $stopReason = null;
@@ -2708,7 +2708,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       if (is_string($raw)) {
           try {
               $raw = json_decode($raw, true, flags: JSON_THROW_ON_ERROR);
-          } catch (JsonException) {
+          } catch (\JsonException) {
               $raw = str_contains($raw, "\n") ? explode("\n", $raw) : [$raw];
           }
       }
@@ -2753,7 +2753,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       $runOne = function (string $prompt) use ($client, $model): string {
           try {
               return journaled($prompt, fn () => runSubagent($client, $model, $prompt));
-          } catch (Throwable $error) {
+          } catch (\Throwable $error) {
               // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan keseluruhan proses.
               return '(subagent failed: ' . $error::class . ': ' . $error->getMessage() . ')';
           }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: da1a738b6fa832a865d3a8dbd74a070c6f93b9b22e9f1ca16da375f95da0213f
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 9477a11947c8230b6e2152410e04c650598e2b0c4fc89aed65f8ef47b15ac466
 ---
 
 ---
@@ -54,7 +54,7 @@ List the organization's members.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -166,7 +166,7 @@ Retrieve a member of the organization by user ID.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -259,7 +259,7 @@ Update a member's organization role.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Body parameters
 
@@ -374,7 +374,7 @@ Remove a member from the organization.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 

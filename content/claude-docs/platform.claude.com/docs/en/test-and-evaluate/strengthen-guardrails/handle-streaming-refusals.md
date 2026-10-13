@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 2e6d939fc92b683913116c364c3673131618bbfbfa24e766089434b4b2eaf23d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c1be48d1127d29ff914b27d5408fefa1c750b66cd88cec90539b401b3052f987
 ---
 
 ---
@@ -287,7 +287,7 @@ Here's how to detect and handle streaming refusals in your application:
               break;
           }
       }
-  } catch (Exception $e) {
+  } catch (\Exception $e) {
       echo "Error: " . $e->getMessage() . "\n";
   }
   ```

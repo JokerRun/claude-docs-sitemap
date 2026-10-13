@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: cd962860235720a918e05d5889d8d653bc1e42bf18861c4f71b848b36a59044f
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 70838f8ea571f8bbd5f9f3b818c009fbf1a4d4b095a7614515588f886ec1411a
 ---
 
 ---
@@ -40,7 +40,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

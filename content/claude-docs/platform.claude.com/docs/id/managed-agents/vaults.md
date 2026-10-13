@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 91043f8b1036937d20b790fa4f3e8ca147b8f7aac16c98215a7a16f600a72a5c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c6bc3293c0ff4d8ba5b253df254b65dd1a36d079ef26d2f9a4ecca1f32c1633c
 ---
 
 ---
@@ -331,7 +331,7 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
               type: 'mcp_oauth',
               mcpServerURL: 'https://mcp.slack.com/mcp',
               accessToken: 'xoxp-...',
-              expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+              expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
               refresh: ManagedAgentsMCPOAuthRefreshParams::with(
                   tokenEndpoint: 'https://slack.com/api/oauth.v2.user.access',
                   clientID: '1234567890.0987654321',
@@ -965,7 +965,7 @@ Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `inject
       auth: ManagedAgentsMCPOAuthUpdateParams::with(
           type: 'mcp_oauth',
           accessToken: 'xoxp-new-...',
-          expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+          expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
           refresh: ManagedAgentsMCPOAuthRefreshUpdateParams::with(refreshToken: 'xoxe-1-new-...'),
       ),
   );

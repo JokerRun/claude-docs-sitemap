@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: f4adc395396c1c330bab2c8cc5b80524c3c8ba9863c57de74a26f2d0e2b1cd1f
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f73fdac5ea2ebad1a48ad5fcb6eba9b3b26fcb40963bd349401515f041316d34
 ---
 
 ---
@@ -26,7 +26,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

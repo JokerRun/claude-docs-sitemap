@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/approve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 2d0c9934fc85986a24b510298335e3438d98f88b21322a9efae0f2c844f905d8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 82aa8085009976f02ba8712837696ecf7877ae0bad012614b3149aa7dc65c327
 ---
 
 ---
@@ -33,7 +33,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 
@@ -159,7 +159,7 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `is_enabled: boolean`
 
-    Read-only. `false` when extra usage is switched off for this organization (`organization` limit) or for this member (`user` limit); `amount` is kept and applies again when it's switched back on. Always `true` for other limits.
+    Read-only. `false` when extra usage is switched off for this organization (`organization` limit); `amount` is kept and applies again when it's switched back on. Always `true` for other limits.
 
   - `period: BetaSpendLimitPeriod`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 704d1c6da29b155df289276443f8828371e93272fe7dc17879997b55a0306b60
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: a2558f849b54c15dc53b6a3f17d3c0e74dfc7b0050e55df8577ecc82888b3f68
 ---
 
 ---
@@ -788,7 +788,7 @@ To use Claude for content moderation, Claude must understand the moderation requ
       // Parse the JSON response from Claude. The SDK decodes each content block
       // into its concrete class, so find the TextBlock before reading the text.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Extract the violation status from the assessment
@@ -1341,7 +1341,7 @@ One additional consideration is that instead of treating content moderation as a
       // Parse the JSON response from Claude. The SDK decodes each content block
       // into its concrete class, so find the TextBlock before reading the text.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Extract the risk level, violated categories, and explanation from the assessment
@@ -2081,7 +2081,7 @@ In addition to listing the unsafe categories in the prompt, further improvements
       // Parse the JSON response from Claude. The SDK decodes each content block
       // into its concrete class, so find the TextBlock before reading the text.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
       $assessment = json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
 
       // Extract the violation status from the assessment
@@ -2656,7 +2656,7 @@ To reduce costs in situations where real-time moderation isn't necessary, consid
       // Parse the JSON response from Claude. The SDK decodes each content block
       // into its concrete class, so find the TextBlock before reading the text.
       $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
-          ?? throw new RuntimeException('Expected a text block in the response.');
+          ?? throw new \RuntimeException('Expected a text block in the response.');
 
       return json_decode($textBlock->text, associative: true, flags: JSON_THROW_ON_ERROR);
   };

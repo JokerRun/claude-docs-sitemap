@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 673d690d6bbb2ab41b78a4e92a49f88a80a299284cfd5495a4a0e26cb38a9d8c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e18dfc28056cad996f8004e5602bab60e91c829a0ccebaaa739c12fc37774261
 ---
 
 ---
@@ -74,7 +74,7 @@ the remaining entries.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

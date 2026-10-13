@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e95849d088a252d09fd8aba2b0025872eacaa9970d9194b748a64542ed89cdc0
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: dd5ee7385825d1b9a5ad5e12fd070c72a10934b35df379df8ea626aa4f9d7a51
 ---
 
 ---
@@ -36,7 +36,7 @@ Get Skill Version
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 

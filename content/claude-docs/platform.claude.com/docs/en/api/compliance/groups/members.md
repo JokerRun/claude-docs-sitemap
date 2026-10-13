@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 88964354475db4f1e7313c651873cb8ad6382516e3851f210adb3b51f883b811
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: eecfa7d7432664cb97d2b151748a6e9d38150a4757f15bd77158a772604110db
 ---
 
 ---
@@ -42,7 +42,7 @@ List Compliance Group Members
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

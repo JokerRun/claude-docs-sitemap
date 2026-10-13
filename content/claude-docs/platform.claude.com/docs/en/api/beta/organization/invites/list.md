@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 43f0f5c9872269237d8b7bf24c717284131eb2a9ab886f48b052a69fb26dda1b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 576b23c779dbf0dd5b677c2312d6faa9db144a6032fdbde791fe4a295db8b756
 ---
 
 ---
@@ -62,7 +62,7 @@ List the organization's invites.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

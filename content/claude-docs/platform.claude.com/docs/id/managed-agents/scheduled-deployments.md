@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 93c24389bb881876841dd31a8c57a5f2bf7a9f3087bf36b065287451e4fb3e3e
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 24abf11eefbb170e6c57019c2266cba28db7015abe64491dc9422ac06b0fd3cc
 ---
 
 ---
@@ -17,17 +17,17 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga tugas dapat diselesaikan dalam irama yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
+**Scheduled deployment** (deployment terjadwal) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga tugas dapat diselesaikan dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
-Untuk konteks peluncuran dan contoh apa yang dijalankan tim secara terjadwal, lihat [deployment terjadwal dan vault di Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
+Untuk konteks peluncuran dan contoh hal-hal yang dijalankan tim secara terjadwal, lihat [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
 
 ## Membuat deployment terjadwal
 
-Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
+Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain `schedule` (java, php; csharp, go: `Schedule`).
 
 * Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), serta secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
 * Deployment juga memerlukan setidaknya satu event awal, yaitu `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi. Dalam file deployment untuk `ant apply`, teks di bawah frontmatter menjadi `user.message` tersebut.
-* Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah tingkat menit.
+* Di dalam `schedule` (java, php; csharp, go: `Schedule`), Anda mendefinisikan `expression` (java, php; csharp, go: `Expression`) cron dan `timezone` (java, php; csharp, go: `Timezone`). Granularitas maksimum yang didukung adalah tingkat menit.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -234,7 +234,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   ```
 </CodeGroup>
 
-Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu eksekusi berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah ditetapkan dengan benar.
+Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi waktu-waktu pemicuan berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
 
 ```json
 {
@@ -255,7 +255,7 @@ Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi
 }
 ```
 
-Timestamp eksekusi mendatang mencerminkan jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, eksekusi aktual menerapkan jitter hingga 15% dari interval antar eksekusi, dengan minimum 5 detik dan maksimum 9 menit.
+Timestamp eksekusi mendatang mencerminkan jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, eksekusi aktual menerapkan "jitter" (variasi waktu acak) hingga 15% dari interval antar-eksekusi, dengan minimum 5 detik dan maksimum 9 menit.
 
 Maksimum **1.000 deployment terjadwal** didukung per organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
 
@@ -265,43 +265,159 @@ Lihat [referensi Create Deployment](https://platform.claude.com/docs/id/api/beta
 
 * **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
 * **Timezone:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
-* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dijalankan pada pukul 20.00 waktu setempat terlepas dari apakah EST atau EDT yang sedang berlaku.
+* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dipicu pada pukul 20.00 waktu lokal terlepas dari apakah EST atau EDT sedang berlaku.
 
 <Note>
-  Waktu jam dinding yang tidak ada pada hari pemajuan jam (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari pemunduran jam dijalankan dua kali. Jadwalkan di luar rentang pukul 1–3 pagi waktu setempat, atau gunakan UTC, jika eksekusi yang terlewat atau duplikat tidak dapat diterima.
+  Waktu jam dinding yang tidak ada pada hari pergeseran maju (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari pergeseran mundur akan dipicu dua kali. Jadwalkan di luar rentang pukul 1–3 pagi waktu lokal, atau gunakan UTC, jika eksekusi yang terlewat atau ganda tidak dapat diterima.
 </Note>
 
-### Menetapkan anggaran pada setiap eksekusi
+### Menetapkan anggaran untuk setiap eksekusi
 
-Teruskan objek `budget` opsional saat Anda membuat atau memperbarui deployment. Objek ini memiliki bentuk yang sama dengan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Deployment menyalin batas tersebut ke setiap sesi yang dimulainya, sehingga anggaran membatasi setiap eksekusi secara terpisah alih-alih bertindak sebagai plafon kumulatif di seluruh eksekusi: deployment dengan batas `"2000"` dapat membelanjakan hingga sekitar $20 pada setiap eksekusi.
+Teruskan objek opsional `budget` (java, php; csharp, go: `Budget`) saat Anda membuat atau memperbarui deployment. Objek ini memiliki bentuk yang sama dengan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets). Deployment menyalin batas tersebut ke setiap sesi yang dimulainya, sehingga anggaran membatasi setiap eksekusi secara terpisah alih-alih bertindak sebagai batas kumulatif di seluruh eksekusi: deployment dengan batas `"2000"` dapat menghabiskan hingga sekitar $20 pada setiap eksekusi.
 
-Sesi yang dimulai oleh deployment berperilaku persis seperti sesi beranggaran lainnya: sesi tersebut dijeda dengan `budget_reached` ketika biaya daftarnya sendiri [mencapai batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Mengubah anggaran deployment berlaku untuk eksekusi yang dimulai setelahnya; sesi yang sudah berjalan mempertahankan batas yang dimilikinya saat dimulai, yang dapat Anda [ubah melalui sesi itu sendiri](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget). Tidak seperti anggaran sesi, anggaran deployment dapat dihapus dengan `"budget": null` dan ditetapkan kembali nanti.
+Sesi yang dimulai oleh deployment berperilaku persis seperti sesi beranggaran lainnya: sesi dijeda dengan `budget_reached` ketika biaya daftarnya sendiri [mencapai batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Mengubah anggaran deployment berlaku untuk eksekusi yang dimulai setelahnya; sesi yang sudah berjalan mempertahankan batas yang digunakannya saat dimulai, yang dapat Anda [ubah melalui sesi itu sendiri](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget). Tidak seperti anggaran sesi, anggaran deployment dapat dihapus dengan `"budget": null` (python: `budget=None`; typescript: `budget: null`; ruby: `budget: nil`; go: `Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam]()`; java: `.budget(Optional.empty())`; csharp: `Budget = null`; php: `requestOptions: ['extraBodyParams' => ['budget' => null]]`; cli: `--budget null`) dan ditetapkan kembali nanti.
 
 Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
 
-```bash cURL
-curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID?beta=true" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d @- <<'EOF'
-{
-  "budget": {
-    "type": "limit",
-    "max_list_cost": {"amount": "2000", "currency": "USD"}
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  curl --fail-with-body -sS "https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID?beta=true" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<'EOF'
+  {
+    "budget": {
+      "type": "limit",
+      "max_list_cost": {"amount": "2000", "currency": "USD"}
+    }
   }
-}
-EOF
-```
+  EOF
+  ```
+
+  <CodeGroupItem>
+    ```bash CLI
+    ant apply deployment.md
+    ```
+
+    <File filename="deployment.md">
+      ```markdown
+      ---
+      name: Weekly compliance scan
+      agent: agent_011CYm1BLqPXpQRk5khsSXrs
+      environment_id: env_01595EKxaaTTGwwY3kyXdtbs
+      schedule:
+        type: cron
+        expression: "0 20 * * 5"
+        timezone: America/New_York
+      budget:
+        type: limit
+        max_list_cost:
+          amount: "2000"
+          currency: USD
+      ---
+
+      Run the weekly compliance scan.
+      ```
+    </File>
+  </CodeGroupItem>
+
+  ```python Python
+  updated_deployment = client.beta.deployments.update(
+      deployment.id,
+      budget={
+          "type": "limit",
+          "max_list_cost": {"amount": "2000", "currency": "USD"},
+      },
+  )
+  print(updated_deployment.budget.max_list_cost.amount)  # 2000
+  ```
+
+  ```typescript TypeScript
+  const updatedDeployment = await client.beta.deployments.update(deployment.id, {
+    budget: {
+      type: "limit",
+      max_list_cost: { amount: "2000", currency: "USD" },
+    },
+  });
+  console.log(updatedDeployment.budget?.max_list_cost.amount); // 2000
+  ```
+
+  ```csharp C#
+  var updatedDeployment = await client.Beta.Deployments.Update(deployment.ID, new()
+  {
+      Budget = new()
+      {
+          Type = BetaManagedAgentsBudgetLimitType.Limit,
+          MaxListCost = new() { Amount = "2000", Currency = BetaCurrency.Usd },
+      },
+  });
+  Console.WriteLine(updatedDeployment.Budget?.MaxListCost.Amount);  // 2000
+  ```
+
+  ```go Go
+  updatedDeployment, err := client.Beta.Deployments.Update(ctx, deployment.ID, anthropic.BetaDeploymentUpdateParams{
+  	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
+  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
+  		MaxListCost: anthropic.BetaMonetaryAmountParam{
+  			Amount:   "2000",
+  			Currency: anthropic.BetaCurrencyUsd,
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  fmt.Println(updatedDeployment.Budget.MaxListCost.Amount) // 2000
+  ```
+
+  ```java Java
+  var updatedDeployment = client.beta().deployments().update(
+      deployment.id(),
+      DeploymentUpdateParams.builder()
+          .budget(BetaManagedAgentsBudgetLimit.builder()
+              .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
+              .maxListCost(BetaMonetaryAmount.builder()
+                  .amount("2000")
+                  .currency(BetaCurrency.USD)
+                  .build())
+              .build())
+          .build()
+  );
+  IO.println(updatedDeployment.budget().orElseThrow().maxListCost().amount());  // 2000
+  ```
+
+  ```php PHP
+  $updatedDeployment = $client->beta->deployments->update(
+      $deployment->id,
+      budget: [
+          'type' => 'limit',
+          'max_list_cost' => ['amount' => '2000', 'currency' => 'USD'],
+      ],
+  );
+  echo "{$updatedDeployment->budget->maxListCost->amount}\n"; // 2000
+  ```
+
+  ```ruby Ruby
+  updated_deployment = client.beta.deployments.update(
+    deployment.id,
+    budget: {
+      type: "limit",
+      max_list_cost: {amount: "2000", currency: "USD"}
+    }
+  )
+  puts updated_deployment.budget.max_list_cost.amount # 2000
+  ```
+</CodeGroup>
 
 ## Eksekusi deployment
 
-Deployment dapat gagal dipicu karena berbagai alasan: misalnya, jika resource `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run** (eksekusi deployment), yang memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
+Deployment dapat gagal dipicu karena berbagai alasan: misalnya, jika resource `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run** (eksekusi deployment), sehingga Anda dapat melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
 
-Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
+Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang berhasil berisi `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`) terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
 
-Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
+Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berikut:
 
 <CodeGroup>
   ```bash cURL
@@ -390,7 +506,7 @@ Daftarkan semua eksekusi deployment untuk sebuah deployment sebagai berikut:
   ```
 </CodeGroup>
 
-Anda juga dapat memfilter eksekusi deployment yang memiliki error:
+Anda juga dapat memfilter eksekusi deployment yang mengalami error:
 
 <CodeGroup>
   ```bash cURL
@@ -476,7 +592,7 @@ Anda juga dapat memfilter eksekusi deployment yang memiliki error:
   ```
 </CodeGroup>
 
-Eksekusi yang gagal mencakup `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat [referensi List Deployment Runs](https://platform.claude.com/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
+Eksekusi yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat [referensi List Deployment Runs](https://platform.claude.com/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
 
 ```json
 {
@@ -494,13 +610,13 @@ Eksekusi yang gagal mencakup `error` dengan `type` yang menjelaskan mengapa pemb
 }
 ```
 
-Untuk mengambil satu eksekusi berdasarkan ID, panggil [`GET /v1/deployment_runs/{deployment_run_id}`](https://platform.claude.com/docs/id/api/beta/deployment_runs/retrieve). Sebuah [event webhook `deployment_run`](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types) membawa ID eksekusi sebagai `data.id`-nya.
+Untuk mengambil satu eksekusi berdasarkan ID, panggil [`GET /v1/deployment_runs/{deployment_run_id}`](https://platform.claude.com/docs/id/api/beta/deployment_runs/retrieve). [Event webhook `deployment_run`](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types) membawa ID eksekusi sebagai `data.id`-nya.
 
 ## Mengelola siklus hidup deployment
 
 Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab Deployment events.
 
-**Pause** menekan pemicu terjadwal untuk ke depannya; sesi yang sedang berjalan dari eksekusi deployment sebelumnya tetap dieksekusi. Eksekusi manual melalui endpoint `run` masih diizinkan saat dijeda. Menjeda menetapkan `paused_reason` ke `{"type": "manual"}`; melanjutkan akan menghapusnya.
+**Pause** (jeda) menghentikan pemicu terjadwal mulai saat itu dan seterusnya; sesi yang sedang berjalan dari eksekusi deployment sebelumnya tetap dieksekusi. Eksekusi manual melalui endpoint `run` tetap diizinkan selama dijeda. Menjeda akan mengatur `paused_reason` menjadi `{"type": "manual"}`; melanjutkan akan menghapusnya.
 
 <CodeGroup>
   ```bash cURL
@@ -545,7 +661,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
   ```
 </CodeGroup>
 
-**Unpause** melanjutkan jadwal dari kejadian terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang.
+**Unpause** (lanjutkan) melanjutkan jadwal dari kemunculan terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang.
 
 <CodeGroup>
   ```bash cURL
@@ -590,7 +706,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
   ```
 </CodeGroup>
 
-**Archive**, tidak seperti **pause**, bersifat terminal: jadwal berakhir dan deployment tidak dapat dimodifikasi.
+**Archive** (arsipkan), tidak seperti **pause**, bersifat final: jadwal berakhir dan deployment tidak dapat dimodifikasi.
 
 <CodeGroup>
   ```bash cURL
@@ -635,15 +751,15 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
   ```
 </CodeGroup>
 
-### Perilaku kegagalan
+### Perilaku saat gagal
 
-Respons batas laju pembuatan sesi langsung dicatat sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal akan mencoba lagi pada kejadian terjadwal berikutnya. Batas laju pada panggilan API yang mendasari di dalam sesi ditangani oleh sesi itu sendiri.
+Respons batas laju pembuatan sesi langsung dicatat sebagai eksekusi `session_rate_limited_error` tanpa percobaan ulang; jadwal akan mencoba lagi pada kemunculan terjadwal berikutnya. Batas laju pada panggilan API yang mendasarinya di dalam sesi ditangani oleh sesi itu sendiri.
 
-Jika agen dari sebuah deployment telah diarsipkan, deployment tersebut secara otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan secara otomatis mengarsipkan deployment. Dalam kedua kasus tersebut, tidak ada eksekusi deployment yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi gagal dengan `error.type: "agent_archived_error"` dan deployment secara otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkannya. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku dengan cara yang sama: pemicu mencatat eksekusi gagal dan deployment secara otomatis dijeda. `paused_reason.error.type` milik deployment mencerminkan `error.type` dari eksekusi yang gagal.
+Jika agen sebuah deployment telah diarsipkan, deployment tersebut otomatis diarsipkan dalam operasi yang sama. Jika agen telah dihapus, pemicu terjadwal berikutnya mendeteksi agen yang hilang dan secara otomatis mengarsipkan deployment. Dalam kedua kasus, tidak ada eksekusi deployment yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat eksekusi gagal dengan `error.type: "agent_archived_error"` dan deployment otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkannya. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku sama: pemicu mencatat eksekusi gagal dan deployment otomatis dijeda. `paused_reason.error.type` milik deployment mencerminkan `error.type` dari eksekusi yang gagal.
 
 ## Memicu eksekusi manual
 
-Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini langsung membuat sesi dan menulis eksekusi deployment dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
+Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https://platform.claude.com/docs/id/api/beta/deployments/run). Ini langsung membuat sesi dan menulis eksekusi deployment dengan `trigger_context.type: "manual"`. Hal ini memungkinkan Anda menguji deployment sebelum menerapkan jadwal.
 
 <CodeGroup>
   ```bash cURL

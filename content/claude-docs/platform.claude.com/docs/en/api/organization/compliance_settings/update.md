@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/compliance_settings/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1c1030fb6b48766b811b57ac5e48e00086d18e580af07b69b5f32b5756c84999
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: a6a61fc9b9146aef1300c704409fe547644ee5b6a2cd4a63b021744c280c557a
 ---
 
 ---
@@ -35,7 +35,7 @@ compliance settings.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

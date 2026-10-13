@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8465656f1cf529d6fd954cb6c415bd44154a76fe7c524a61c9e7b53aca85a6e8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 5d1efbbf2ba8708f86853e33e8b7310a07405092242c85ebfc5fb99391cb00ba
 ---
 
 ---
@@ -40,7 +40,7 @@ List Compliance Roles
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

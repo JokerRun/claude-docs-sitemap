@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 294a6f484522031c48370ac2613afd32893e6abe6305dea5302fe4a078d12c93
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: cd87dcf9783a9054ec10ad2860eceea8b69c86f7ab917daae4ccd64e04fdc000
 ---
 
 ---
@@ -954,7 +954,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
         "foo": "bar"
       },
       "model": {
-        "id": "claude-opus-5",
+        "id": "claude-opus-5-5",
         "effort": {
           "type": "low"
         },

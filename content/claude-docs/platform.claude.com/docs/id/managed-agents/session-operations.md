@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d61f48a90ad31c7080e7bd7e7b495391dfd16324802d174dd5e3ae8f9b20a5d8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 07966248e192d596e8c0a45d58fda89c525247b4ac000dbedc0185395c5236b3
 ---
 
 ---
@@ -481,12 +481,12 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```
 
   ```php PHP
-  // Halaman 1: prevPage bernilai null karena tidak ada yang mendahului halaman pertama.
+  // Page 1: prevPage is null because nothing precedes the first page.
   $firstPage = $client->beta->sessions->list(agentID: $agent->id, limit: 1);
   echo 'Page 1 prev_page: ' . ($firstPage->prevPage ?? 'null') . "\n";
   echo 'Page 1 next_page: ' . ($firstPage->nextPage ?? 'null') . "\n";
 
-  // Maju: kirim kembali nextPage sebagai kursor `page` untuk mengambil halaman 2.
+  // Advance: pass nextPage back as the `page` cursor to fetch page 2.
   $secondPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -496,7 +496,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
       echo "Page 2: {$listedSession->id}: {$listedSession->status}\n";
   }
 
-  // Mundur: prevPage halaman 2 adalah kursor untuk halaman sebelumnya.
+  // Go back: page 2's prevPage is the cursor for the page before it.
   $previousPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -505,7 +505,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   foreach ($previousPage->getItems() as $listedSession) {
       echo "Back to page 1: {$listedSession->id}: {$listedSession->status}\n";
   }
-  // Untuk iterasi maju saja, $page->pagingEachItem() menghasilkan setiap sesi di semua halaman.
+  // For forward-only iteration, $page->pagingEachItem() yields every session across pages.
   ```
 
   ```ruby Ruby

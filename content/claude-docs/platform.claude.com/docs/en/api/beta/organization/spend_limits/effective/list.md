@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/effective/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 52853d6ec11e5c8edd051171ac067d23eb276353677b15e013a6a2e4ff79d359
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 4faa073a17cf933f054d278688818a1bf63f772f18f6248983664c2059bc4af9
 ---
 
 ---
@@ -18,9 +18,9 @@ List each member's effective spend limit and period-to-date spend.
 
 Returns one row per (member, period) the member resolves a spend limit
 for, with the `source` scope the spend limit was inherited from.
-Paginates by member, so a member's periods never split across pages. Listing
-Claude Console limits is in an early access preview. To request access,
-contact your Anthropic account team.
+Paginates by member, so a member's periods never split across pages.
+Supported for Claude Enterprise organizations only, not for Claude Console
+organizations.
 
 ## Query parameters
 
@@ -58,7 +58,7 @@ contact your Anthropic account team.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

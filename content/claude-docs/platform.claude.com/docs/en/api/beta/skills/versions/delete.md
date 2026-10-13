@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: f650f76d8972472ce66470770f48b2e39d5bc15fe2e9ed1b0ad8e01304896c8a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 4aa78fc82ad0197310a46197e8d25b9da91e3b0b78dc3606016b7d819474620e
 ---
 
 ---
@@ -36,7 +36,7 @@ Delete Skill Version
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

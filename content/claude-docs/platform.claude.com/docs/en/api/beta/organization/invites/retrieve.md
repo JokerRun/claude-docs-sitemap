@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 460aa4b463df6f90de1264904f80a3936f51cfe0b715c78f753451fd280d463a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c06b07033c2d7cc4d820c62974de20fcb129521d925be6e2adddc3a952334b10
 ---
 
 ---
@@ -28,7 +28,7 @@ Retrieve an invite by ID.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

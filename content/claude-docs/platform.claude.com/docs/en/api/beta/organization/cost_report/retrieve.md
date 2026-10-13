@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c1c835f11bef78ce1cc704ad6a313469f1a5c0c5a51eb035fa310aab92f697ae
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 0339ffce5d16f3506b234f1c0e46f1411da1857009e2534f025d6c186ad305fb
 ---
 
 ---
@@ -61,7 +61,7 @@ Get Cost Report
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -295,9 +295,9 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
           "context_window": "0-200k",
           "cost_type": "tokens",
           "currency": "USD",
-          "description": "Claude Opus 5 Usage - Input Tokens",
+          "description": "Claude Opus 5.5 Usage - Input Tokens",
           "inference_geo": "global",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "service_tier": "standard",
           "token_type": "cache_creation.ephemeral_1h_input_tokens",
           "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"

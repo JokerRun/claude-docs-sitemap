@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a814ca6b2b791fa23f5c6dc57ea6ed69adb6e56c403642ac917437876ea39691
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: d8c029d4259a8ce9a15c32550b15c3eb6755babff0d8b35972d6535ce75bd5af
 ---
 
 ---
@@ -64,7 +64,7 @@ can be broken out per product, per member, or per RBAC group via
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

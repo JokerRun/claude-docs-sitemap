@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a7e8133e0d12989769f3638e1dadbcdb78858924660a0e895cefb4e39087cf0b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 5ecc23ee03da49beeac18f224029de3059e2b4e3471333da9c1f50e3d7c21ce6
 ---
 
 ---
@@ -40,7 +40,7 @@ List environments with pagination support.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

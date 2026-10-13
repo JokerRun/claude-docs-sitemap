@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: cd9740649f7211cb6ae9e20a5902d07e2bce94e765e978bee761b05f479b2aa8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 190649f5bcec71f63236d89e5202ff89de039d7a4731b8dab889e5dc5f70f7cf
 ---
 
 ---
@@ -47,7 +47,7 @@ List Skills
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

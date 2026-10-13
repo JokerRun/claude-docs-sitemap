@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 764f2bd91998b7233b2363cabe5d041bc471c71cc759c62338ac75bc333c0d9d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 81cf8a3e99ed1b111b878b6bcc45c687862a9e44cb196497d0781c75d5a6226a
 ---
 
 ---
@@ -82,7 +82,7 @@ the `read:analytics` scope.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

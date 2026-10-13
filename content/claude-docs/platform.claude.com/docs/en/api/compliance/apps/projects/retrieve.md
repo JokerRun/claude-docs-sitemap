@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e28968cad3ea1810c889f80c73e4127190fefd37541a8d99f0da2113c168b10a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 37f5c8b4f44ab7edfd8bbf76a183092c4d516b022b5a61732ca9f2f0c4d88932
 ---
 
 ---
@@ -28,7 +28,7 @@ Get detailed information for a specific project.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

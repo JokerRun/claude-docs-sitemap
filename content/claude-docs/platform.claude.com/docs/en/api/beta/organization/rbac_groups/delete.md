@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 7196e789f14ce0d6d448f6b6334c496d6fbf010367df7b47c44838b594f9597a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 5dc17216a15bcf167cb553b441e7c8940d89c4a207eac3f09a293b405fc5e0f7
 ---
 
 ---
@@ -30,7 +30,7 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

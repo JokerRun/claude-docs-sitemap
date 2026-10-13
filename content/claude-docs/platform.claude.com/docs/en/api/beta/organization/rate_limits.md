@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d3d7ef2da17c4a1bb3c93871245427675157f761311eda72cf9f7c1cf6ed25fc
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: aa9b881230c81fa6dee1662c07329619179b9d85c5b73b2e229de0c5f89ecd4d
 ---
 
 ---
@@ -66,7 +66,7 @@ the remaining entries.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 

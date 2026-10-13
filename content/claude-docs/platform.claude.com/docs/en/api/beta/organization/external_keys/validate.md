@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5f40765f104e05e78ebad05e972fa361b1139c99982250ad1e85e8c962283088
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: cfd07ea16526eb76b8e9396fb2115aaeafaf01ad4474a3612dd2c55fb71fed26
 ---
 
 ---
@@ -35,7 +35,7 @@ message if it failed or timed out.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e0a881bc44f9f9b3e1eb1803408ee84c8e0b1895d5b61653495f1a914d18cfc5
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 95334d058cc64a3c12e1c20ca2d25db8ffdc910d056118721dd335f1724c805f
 ---
 
 ---
@@ -28,7 +28,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

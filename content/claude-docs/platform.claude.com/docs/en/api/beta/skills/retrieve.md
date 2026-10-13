@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d1b5f2caa88ce61d4b68255268caca01e48eb668bdacb54ed307ad4a0ac71854
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f21a8bf286ce9713ac103c3cd34a217f494c9b1c6f7a238cd6297da1979c025e
 ---
 
 ---
@@ -30,7 +30,7 @@ Get Skill
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

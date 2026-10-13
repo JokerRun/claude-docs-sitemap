@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a919daeeb9ecd63dcbe8545c53cf54d460a3e1f22c451f561fc88cad9d3e28f8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 9bf0ce41ed127626fe67b8c1fb3592dc4da6317101ea18fe8d0f61ec82dab2ee
 ---
 
 ---
@@ -149,7 +149,7 @@ Get Messages Usage Report
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -406,7 +406,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
           "cache_read_input_tokens": 200,
           "context_window": "0-200k",
           "inference_geo": "global",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "output_tokens": 500,
           "server_tool_use": {
             "web_search_requests": 10
@@ -456,7 +456,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -650,7 +650,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 186,
             "currency": "USD"
           },
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "tokens": {
             "cache_creation": 2340,
             "cache_read": 8790,
@@ -663,7 +663,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 42,
             "currency": "USD"
           },
-          "model": "claude-sonnet-5",
+          "model": "claude-sonnet-5-5",
           "tokens": {
             "cache_creation": 890,
             "cache_read": 3420,

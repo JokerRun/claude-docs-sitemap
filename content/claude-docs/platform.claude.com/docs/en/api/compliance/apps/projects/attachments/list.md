@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 690dfa36ea323940ad5fef2686ce98f4945f589f51cdf5aed19c46bb36dfc3e3
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 78c4b5fd338039444b3cd1831197473c8357015e46b87ad2ecde42232815c1e2
 ---
 
 ---
@@ -49,7 +49,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

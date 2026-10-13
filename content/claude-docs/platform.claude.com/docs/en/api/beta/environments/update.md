@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 74fdeae8e7bc5b80c6fb75795bf6a4e1def1c187eba445b3de21b3606ec99c13
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 6a0d786ff6405e15ea0b6d6e27c80f34f8bb8d18a0d0205f31380b3f19361cd6
 ---
 
 ---
@@ -26,7 +26,7 @@ Update an existing environment's configuration.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

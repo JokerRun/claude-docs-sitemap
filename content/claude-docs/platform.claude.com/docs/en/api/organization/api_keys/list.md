@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/api_keys/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: dd59edfb9b45a6836233c0fc984485667530c12cec17e638af54d02467924be2
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 34d9551619b3ef13cfd20e9b6ab75befa79bcdc24d66f7fbbcdae9b8ed82f8d2
 ---
 
 ---
@@ -60,7 +60,7 @@ List API Keys
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

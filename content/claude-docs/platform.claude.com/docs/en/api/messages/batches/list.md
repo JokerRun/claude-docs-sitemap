@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 17a28f39347249b456d0869ad3fb1ec387c812da31623774e2b5098d86643ad9
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 4b3dd44a6d1d7e1a42ab8203557dbbbcdbdee000f14e4a27c10a1f86bccbc766
 ---
 
 ---
@@ -16,7 +16,7 @@ url: https://platform.claude.com/docs/en/api/messages/batches/list
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing?sdk_languages=http)
 
 ## Query parameters
 
@@ -42,7 +42,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 

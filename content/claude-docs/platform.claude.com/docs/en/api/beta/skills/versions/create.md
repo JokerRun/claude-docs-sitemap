@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: cf224a4137f9aa5fdfc0fa67b05890feafbeef4f945317b844dbe394535aae8b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: eaf4c35921e12d461b3862606d17f97bfa7f05a6dc7fd372850ed290e9846697
 ---
 
 ---
@@ -30,7 +30,7 @@ Create Skill Version
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

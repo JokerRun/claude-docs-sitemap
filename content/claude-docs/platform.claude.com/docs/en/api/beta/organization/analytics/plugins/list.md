@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1c497c678096e8a6bbe3102481701817e48a3e9212124441f7862c2919d83855
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 625259c060072ce5220a00eaa778ec94c4251e47cb88f37671e5d680e9f5ee51
 ---
 
 ---
@@ -94,7 +94,7 @@ range-rollup mode like `/skills`.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

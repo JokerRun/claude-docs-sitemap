@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0add1bb6d6ed1b594a9ccdae1a3356d51a99d0aa735e8b0fe5fc00a4b4809571
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 2cbd6ba4c6806dd327387e6e54d6d89406f03d8c6704b5c5351938063c1c9992
 ---
 
 ---
@@ -52,7 +52,7 @@ List the organization's members.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

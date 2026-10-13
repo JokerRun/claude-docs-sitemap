@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d217ad573657dc4d7be58c21507d5ad961d29446bc34806d123a65deb5aff505
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c4c9707bfaa2296bb1de518a2e80ebd29b6f7c17be3c077e4828e6438a59c513
 ---
 
 ---
@@ -27,10 +27,10 @@ Context editing allows you to selectively clear specific content from conversati
 * **Thinking block clearing** - For managing thinking blocks from earlier turns, with options to preserve recent thinking for context continuity
 * **Client-side SDK compaction** - An SDK-based alternative for summary-based context management (server-side compaction is generally preferred)
 
-| Approach        | Where it runs | Strategies                                                                                            | How it works                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------------- | ------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Server-side** | API           | Tool result clearing (`clear_tool_uses_20250919`) Thinking block clearing (`clear_thinking_20251015`) | Applied before the prompt reaches Claude. Clears specific content from conversation history. Each strategy can be configured independently.                                                                                                                                                                                                                                                                 |
-| **Client-side** | SDK           | Compaction                                                                                            | Available in [TypeScript and Ruby SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) when using [`tool_runner`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner). Generates a summary and replaces full conversation history. See [Client-side compaction](https://platform.claude.com/docs/en/build-with-claude/context-editing#client-side-compaction-sdk). |
+| Approach        | Where it runs | Strategies                                                                                                 | How it works                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------- | ------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Server-side** | API           | Tool result clearing (`clear_tool_uses_20250919`)<br />Thinking block clearing (`clear_thinking_20251015`) | Applied before the prompt reaches Claude. Clears specific content from conversation history. Each strategy can be configured independently.                                                                                                                                                                                                                                                                 |
+| **Client-side** | SDK           | Compaction                                                                                                 | Available in [TypeScript and Ruby SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) when using [`tool_runner`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner). Generates a summary and replaces full conversation history. See [Client-side compaction](https://platform.claude.com/docs/en/build-with-claude/context-editing#client-side-compaction-sdk). |
 
 ## Server-side strategies
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d08ed24abb87d7e6c041cbb36f99a99b4bb4ec631193b5ab91e6df69feefecd6
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 11e973fdff0b5744f60380dec195a15c31179343627d4c391cb2b3993f056fe1
 ---
 
 ---
@@ -87,7 +87,7 @@ returned.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -262,7 +262,7 @@ only for identity-stored content; validate against it when present.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -299,7 +299,7 @@ Artifact.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

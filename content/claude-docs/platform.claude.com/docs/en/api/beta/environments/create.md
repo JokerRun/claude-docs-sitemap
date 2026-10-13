@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 919a5458b9bb093a72b768b60e064ba49c8e58f561a17d83f3fa964a08c0f82a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: a5538c0f3c1f01421e74d0b5701cabb006b00bfa56bcb8836316f83e4b249ae6
 ---
 
 ---
@@ -22,7 +22,7 @@ Create a new environment with the specified configuration.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

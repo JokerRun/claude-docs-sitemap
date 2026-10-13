@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 187c377bbf4a8d0c2548b134b441a21c4be3a951cf06fb27e93d7df7d68f13a1
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 69ce58aa8eee6786ef854071e5442e74d7736437429ff5be6b320bcb62c161ef
 ---
 
 ---
@@ -42,13 +42,13 @@ Anggota dan undangan adalah endpoint yang sama untuk kedua jenis organisasi; hal
 
 Halaman ini membahas lima sumber daya:
 
-| Sumber daya      | Endpoint                                                                                                                                                                                                                                 | Digunakan untuk                                                                                                                    |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **Anggota**      | `GET /v1/organizations/users` `GET /v1/organizations/users/{user_id}` `POST /v1/organizations/users/{user_id}` `DELETE /v1/organizations/users/{user_id}`                                                                                | Menampilkan daftar anggota organisasi atau mencari satu anggota berdasarkan email; mengubah peran anggota; menghapus anggota.      |
-| **Undangan**     | `POST /v1/organizations/invites` `GET /v1/organizations/invites` `GET /v1/organizations/invites/{invite_id}` `DELETE /v1/organizations/invites/{invite_id}`                                                                              | Mengundang seseorang ke organisasi, melacak status undangan, dan menariknya sebelum diterima.                                      |
-| **Grup**         | `GET /v1/organizations/rbac_groups` `GET /v1/organizations/rbac_groups/{rbac_group_id}` `POST /v1/organizations/rbac_groups` `POST /v1/organizations/rbac_groups/{rbac_group_id}` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}` | Membaca grup enterprise Anda dan peran kustom yang terlampir pada masing-masing grup; membuat, mengganti nama, dan menghapus grup. |
-| **Anggota grup** | `GET /v1/organizations/rbac_groups/{rbac_group_id}/members` `POST /v1/organizations/rbac_groups/{rbac_group_id}/members` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`                                        | Membaca anggota grup; menambahkan dan menghapus anggota.                                                                           |
-| **Peran kustom** | `GET /v1/organizations/rbac_roles` `GET /v1/organizations/rbac_roles/{rbac_role_id}` `GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions`                                                                                       | Membaca peran kustom organisasi Anda dan izin yang diberikan oleh setiap peran.                                                    |
+| Sumber daya      | Endpoint                                                                                                                                                                                                                                                     | Digunakan untuk                                                                                                                    |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Anggota**      | `GET /v1/organizations/users`<br />`GET /v1/organizations/users/{user_id}`<br />`POST /v1/organizations/users/{user_id}`<br />`DELETE /v1/organizations/users/{user_id}`                                                                                     | Menampilkan daftar anggota organisasi atau mencari satu anggota berdasarkan email; mengubah peran anggota; menghapus anggota.      |
+| **Undangan**     | `POST /v1/organizations/invites`<br />`GET /v1/organizations/invites`<br />`GET /v1/organizations/invites/{invite_id}`<br />`DELETE /v1/organizations/invites/{invite_id}`                                                                                   | Mengundang seseorang ke organisasi, melacak status undangan, dan menariknya sebelum diterima.                                      |
+| **Grup**         | `GET /v1/organizations/rbac_groups`<br />`GET /v1/organizations/rbac_groups/{rbac_group_id}`<br />`POST /v1/organizations/rbac_groups`<br />`POST /v1/organizations/rbac_groups/{rbac_group_id}`<br />`DELETE /v1/organizations/rbac_groups/{rbac_group_id}` | Membaca grup enterprise Anda dan peran kustom yang terlampir pada masing-masing grup; membuat, mengganti nama, dan menghapus grup. |
+| **Anggota grup** | `GET /v1/organizations/rbac_groups/{rbac_group_id}/members`<br />`POST /v1/organizations/rbac_groups/{rbac_group_id}/members`<br />`DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`                                                  | Membaca anggota grup; menambahkan dan menghapus anggota.                                                                           |
+| **Peran kustom** | `GET /v1/organizations/rbac_roles`<br />`GET /v1/organizations/rbac_roles/{rbac_role_id}`<br />`GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions`                                                                                                 | Membaca peran kustom organisasi Anda dan izin yang diberikan oleh setiap peran.                                                    |
 
 Peran kustom dan pelampirannya ke grup dikelola di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings); API membacanya tetapi tidak dapat mengubahnya.
 

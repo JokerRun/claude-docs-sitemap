@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/api_keys
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 606147a0cfdbb953920daa98c721d7036ca4b353af42f90cb2a0074277f9b492
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 83754e164326b1edc8d24cf3dd58c77ac610ffac278592f5f7632df54fdc2130
 ---
 
 ---
@@ -62,7 +62,7 @@ List API Keys
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -260,7 +260,7 @@ Retrieve information about a single API key in your organization, looked up by i
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Returns
 
@@ -439,7 +439,7 @@ Update API Key
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ### Body parameters
 

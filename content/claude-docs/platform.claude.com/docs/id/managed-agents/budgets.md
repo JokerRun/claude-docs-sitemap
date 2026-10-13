@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 98d08db83ea73b5faf11ccd18234748ee7567697d7562e65bfd09a5f3714f24d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 190cfd00b701fdfc1966c35b684882f4e821354a1b8b87181ae597f4265a6e9e
 ---
 
 ---
@@ -367,7 +367,7 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan yang dij
   ```
 
   ```php PHP
-  // update(budget: null) omits the field, so send the explicit null as an extra body parameter.
+  // update(budget: null) menghilangkan field tersebut, jadi kirim null eksplisit sebagai parameter body tambahan.
   $unbudgetedSession = $client->beta->sessions->update(
       $session->id,
       requestOptions: ['extraBodyParams' => ['budget' => null]],

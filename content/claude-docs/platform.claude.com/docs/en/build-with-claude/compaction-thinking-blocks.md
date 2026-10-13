@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a160939df3d1ed5b7b6e22d40ffc20eee63119d7c4618d5ce741452b7c27366a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: cac24375c4685e8acfe2ee2c742907ae59318cc0b63f9a68c2e00599356ef67f
 ---
 
 ---
@@ -604,7 +604,7 @@ The following program runs the four steps. It prints how many thinking blocks th
       compaction: new BetaCompactionConfig(), // type defaults to 'summarize'
   );
   if ($summary->stopReason !== BetaStopReason::COMPACTION->value) {
-      throw new RuntimeException("No summary: {$summary->stopReason}");
+      throw new \RuntimeException("No summary: {$summary->stopReason}");
   }
 
   // 3. Put the block in front of the kept turn and ask the next question.

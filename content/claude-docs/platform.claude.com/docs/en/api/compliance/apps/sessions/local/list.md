@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6f47befd6ca8d74177e711be3e772c6f6f5363a914a90e0cfb3067b794695ca3
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 90f59905454dfa98c34579d79fe616bfdbf761548a6c6c87216f4cc496b96f6c
 ---
 
 ---
@@ -59,7 +59,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

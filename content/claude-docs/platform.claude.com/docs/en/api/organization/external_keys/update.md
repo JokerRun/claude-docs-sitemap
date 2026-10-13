@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 184356d8376c31dbdeef5dcc517341e80eebfa0a70cf197ff76e134bdbe1a61e
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f6cbfbd8fd97b0b1cf0c0532c1137bda54709688308021bd5db6c8700648f43d
 ---
 
 ---
@@ -34,7 +34,7 @@ encrypted data requires the original key identity to decrypt.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 24b27e4a8bbcf94b65a8c5d8eb065cd0bee51a861b71e193c6b54d523879f2ab
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c5e6409664a70e57c16b1f12c0155f6e0181e120d1521384be99d6bcfc544202
 ---
 
 ---
@@ -38,7 +38,7 @@ Returns organizations sorted by creation date in ascending order. Use
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

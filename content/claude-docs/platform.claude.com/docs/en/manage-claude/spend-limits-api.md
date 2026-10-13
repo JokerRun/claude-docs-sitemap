@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 011f782fb8b9eebe13ffb69e28e616906a9b43f1ae417cb82f37e83f8140e506
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c0eed0c52cae85e0f162162220da671f2f9eb00f5e7cc5053b5e8bc21e42cf0f
 ---
 
 ---
@@ -29,10 +29,10 @@ For per-user and time-bucketed usage and cost *reporting*, see [Analytics APIs](
 
 The API exposes eight endpoints across two resources:
 
-| Resource                          | Endpoints                                                                                                                                                                                                                                             | Use for                                                                                                           |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Spend limits**                  | `GET /v1/organizations/spend_limits/effective` `GET /v1/organizations/spend_limits/{spend_limit_id}` `POST /v1/organizations/spend_limits` `DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Read each member's effective spend limit and period-to-date spend; set or clear a per-user override.              |
-| **Spend limit increase requests** | `GET /v1/organizations/spend_limit_increase_requests` `GET /v1/organizations/spend_limit_increase_requests/{id}` `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` `POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | List members' requests for a higher spend limit, with the context needed to decide; approve or deny each request. |
+| Resource                          | Endpoints                                                                                                                                                                                                                                                            | Use for                                                                                                           |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Spend limits**                  | `GET /v1/organizations/spend_limits/effective`<br />`GET /v1/organizations/spend_limits/{spend_limit_id}`<br />`POST /v1/organizations/spend_limits`<br />`DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Read each member's effective spend limit and period-to-date spend; set or clear a per-user override.              |
+| **Spend limit increase requests** | `GET /v1/organizations/spend_limit_increase_requests`<br />`GET /v1/organizations/spend_limit_increase_requests/{id}`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/approve`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | List members' requests for a higher spend limit, with the context needed to decide; approve or deny each request. |
 
 Use the **spend limits** endpoints to answer "what spend limit applies to each member, where does it come from, and how close are they to it?" and to set a per-user override. Use the **spend limit increase requests** endpoints to work the queue of member-submitted requests.
 

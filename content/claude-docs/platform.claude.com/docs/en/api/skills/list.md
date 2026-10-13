@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ff014499e0300b117a3749858fa4551517b5305652985235670b5995cfb4e08e
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c3b6c73a72bbd86bc85325046c101c3ebe8b4c6cc5875be660d37b33bb30c8b9
 ---
 
 ---
@@ -47,7 +47,7 @@ List Skills
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 

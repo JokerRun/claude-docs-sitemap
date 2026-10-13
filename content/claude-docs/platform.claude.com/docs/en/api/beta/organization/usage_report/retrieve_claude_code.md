@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 3da1e992e2944bdf6617da2c74882dda0054ec13702d517a003b9718426c0ddb
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 12db5e5b6b29b113add24ed42c669b45089d2551dd5b30418c5e737df2d1dd86
 ---
 
 ---
@@ -41,7 +41,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 
@@ -235,7 +235,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 186,
             "currency": "USD"
           },
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "tokens": {
             "cache_creation": 2340,
             "cache_read": 8790,
@@ -248,7 +248,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
             "amount": 42,
             "currency": "USD"
           },
-          "model": "claude-sonnet-5",
+          "model": "claude-sonnet-5-5",
           "tokens": {
             "cache_creation": 890,
             "cache_read": 3420,

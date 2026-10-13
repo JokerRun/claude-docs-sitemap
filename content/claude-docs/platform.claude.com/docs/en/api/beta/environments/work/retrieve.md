@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6b8b8feebad6d57fdd0288cf3d750c7ad688358174e126ab34ab07b05d16950c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 2204943eb9fbc8a46e1ce4304fcbc172cccf2022f7cfcaa04f9ffd62d1b58fba
 ---
 
 ---
@@ -30,7 +30,7 @@ Retrieve detailed information about a specific work item.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

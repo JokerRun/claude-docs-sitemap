@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 98787f1d1e1f4f47f8d442d3d5af32fb4fa6d18b66f31660973bf290a3e107b9
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f048777e9f489183488eb1db65a7531e4dbafcdb11405956d1ca2fdedff23e49
 ---
 
 ---
@@ -18,7 +18,7 @@ List the dreams in the workspace, newest first.
 
 Archived dreams are left out unless `include_archived` is `true`.
 
-See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#list-dreams) for how to page through dreams.
+See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#list-dreams) for how to page through dreams.
 
 ## Query parameters
 
@@ -240,7 +240,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
       A code for why the dream failed, such as `timeout` or `internal_error`.
 
-      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#errors) lists common error codes and when they occur.
+      The [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#errors) lists common error codes and when they occur.
 
     - `message: string`
 
@@ -278,7 +278,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
         Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
 
-        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#limits) lists all the limits on a dream.
+        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#limits) lists all the limits on a dream.
 
   - `instructions: string or null`
 
@@ -336,7 +336,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
     The array is empty while the dream is `pending` and for a short time after it starts `running`. It can stay empty if the dream fails or is canceled before then. The memory store holds the complete result only once `status` is `completed`.
 
-    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#use-the-output) for how to review and use the result.
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#use-the-output) for how to review and use the result.
 
     - `type: "memory_store"`
 
@@ -352,7 +352,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
     Stream that session's events to follow what the dream reads and writes.
 
-    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#watch-the-pipeline-run) for how to watch a running dream.
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#watch-the-pipeline-run) for how to watch a running dream.
 
   - `status: BetaDreamStatus`
 
@@ -360,7 +360,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
     `completed`, `failed`, and `canceled` are final: once a dream has one of these statuses, its status doesn't change again.
 
-    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#lifecycle) for what each status means.
+    See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#lifecycle) for what each status means.
 
     - `"pending"`
 

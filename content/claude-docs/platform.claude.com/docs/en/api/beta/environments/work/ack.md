@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 133f2faea42f80f7c83b1e9d99816746ad2eb151d9fa3e44f4488da2eba69748
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ca022946631307a29876067ebd42c64eb1fcb8ec280ea732aa8f3926f68f742e
 ---
 
 ---
@@ -30,7 +30,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

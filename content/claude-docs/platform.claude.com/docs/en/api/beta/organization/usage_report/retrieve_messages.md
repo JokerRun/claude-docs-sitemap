@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 70bd3dc8da0c6da4488452de8cfe423f80c5acaab29fb19f199954cbb977598a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e869b46b890d6be6ffb963e4dd47f6dc0c630670c870c71ac3a450b17ce5655c
 ---
 
 ---
@@ -147,7 +147,7 @@ Get Messages Usage Report
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -404,7 +404,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
           "cache_read_input_tokens": 200,
           "context_window": "0-200k",
           "inference_geo": "global",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "output_tokens": 500,
           "server_tool_use": {
             "web_search_requests": 10

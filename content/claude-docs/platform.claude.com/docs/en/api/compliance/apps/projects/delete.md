@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c99f52096fa0c47f062a2e8ca17358ed4f528ac83855e5b9f05cc0281f837d03
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: d093578f24b5405691bae37a9a12bb9aa9f4db48782232db85082dbf07bb1384
 ---
 
 ---
@@ -37,7 +37,7 @@ Project must have no attached chats - returns 409 if chats exist.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

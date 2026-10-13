@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c8cbbb5e3f418fbe9ba990ae8dab62e97c9f1a3068453a516a1fde5ca3f94edb
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f9c1233a233fad2152ffff4a72e059a9a83d1ebf1ed81ea0c1268d0807adbdfd
 ---
 
 ---
@@ -17,19 +17,19 @@ Halaman ini adalah referensi untuk alat-alat yang disediakan Anthropic dan prope
 
 Anthropic menyediakan dua jenis alat: **alat server** yang dieksekusi di infrastruktur Anthropic, dan **alat klien** di mana Anthropic mendefinisikan skemanya tetapi aplikasi Anda yang menangani eksekusinya. Kedua jenis ini muncul dalam array `tools` pada permintaan Anda bersama alat-alat yang didefinisikan pengguna.
 
-| Alat                                                                                                        | `type`                                                                              | Eksekusi | [Header beta](https://platform.claude.com/docs/id/api/beta-headers) |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------- |
-| [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)         | `web_search_20260318` `web_search_20260209` `web_search_20250305`                   | Server   | Tidak ada                                                           |
-| [Alat pengambilan web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)        | `web_fetch_20260318` `web_fetch_20260309` `web_fetch_20260209` `web_fetch_20250910` | Server   | Tidak ada                                                           |
-| [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)     | `code_execution_20260521` `code_execution_20260120` `code_execution_20250825`       | Server   | Tidak ada                                                           |
-| [Alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool)                  | `advisor_20260301`                                                                  | Server   | `advisor-tool-2026-03-01`                                           |
-| [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)       | `tool_search_tool_regex_20251119` `tool_search_tool_bm25_20251119`                  | Server   | Tidak ada                                                           |
-| [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector)                          | `mcp_toolset`                                                                       | Server   | `mcp-client-2025-11-20`                                             |
-| [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)                    | `memory_20250818`                                                                   | Klien    | Tidak ada                                                           |
-| [Alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)                        | `bash_20250124`                                                                     | Klien    | Tidak ada                                                           |
-| [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)          | `text_editor_20250728` `text_editor_20250124`                                       | Klien    | Tidak ada                                                           |
-| [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) | `computer_toolset_20260801` `computer_20251124` `computer_20250124`                 | Klien    | Tidak ada `computer-use-2025-11-24` `computer-use-2025-01-24`       |
-| [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)   | `browser_toolset_20260801`                                                          | Klien    | Tidak ada                                                           |
+| Alat                                                                                                        | `type`                                                                                             | Eksekusi | [Header beta](https://platform.claude.com/docs/id/api/beta-headers)     |
+| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------- |
+| [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)         | `web_search_20260318`<br />`web_search_20260209`<br />`web_search_20250305`                        | Server   | Tidak ada                                                               |
+| [Alat pengambilan web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)        | `web_fetch_20260318`<br />`web_fetch_20260309`<br />`web_fetch_20260209`<br />`web_fetch_20250910` | Server   | Tidak ada                                                               |
+| [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)     | `code_execution_20260521`<br />`code_execution_20260120`<br />`code_execution_20250825`            | Server   | Tidak ada                                                               |
+| [Alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool)                  | `advisor_20260301`                                                                                 | Server   | `advisor-tool-2026-03-01`                                               |
+| [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)       | `tool_search_tool_regex_20251119`<br />`tool_search_tool_bm25_20251119`                            | Server   | Tidak ada                                                               |
+| [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector)                          | `mcp_toolset`                                                                                      | Server   | `mcp-client-2025-11-20`                                                 |
+| [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)                    | `memory_20250818`                                                                                  | Klien    | Tidak ada                                                               |
+| [Alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)                        | `bash_20250124`                                                                                    | Klien    | Tidak ada                                                               |
+| [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)          | `text_editor_20250728`<br />`text_editor_20250124`                                                 | Klien    | Tidak ada                                                               |
+| [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) | `computer_toolset_20260801`<br />`computer_20251124`<br />`computer_20250124`                      | Klien    | Tidak ada<br />`computer-use-2025-11-24`<br />`computer-use-2025-01-24` |
+| [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)   | `browser_toolset_20260801`                                                                         | Klien    | Tidak ada                                                               |
 
 Untuk kompatibilitas model, lihat halaman masing-masing alat. Model yang didukung bervariasi menurut alat dan versi alat. Untuk memeriksa dari kode Anda apakah suatu model menerima pencarian web atau eksekusi kode, lihat [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api).
 

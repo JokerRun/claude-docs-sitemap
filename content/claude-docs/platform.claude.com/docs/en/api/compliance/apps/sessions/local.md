@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 3b41543b5afefd22c1ca3269ba5c4cba541d0fe57348468eeacffb0704a624fd
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 8c67cb5746e833cf850fe2ff8738dc351cdc872606f3cfd2e6a718418f7714dc
 ---
 
 ---
@@ -61,7 +61,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -176,7 +176,7 @@ inference call has aged out returns 404.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -441,7 +441,7 @@ response header.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

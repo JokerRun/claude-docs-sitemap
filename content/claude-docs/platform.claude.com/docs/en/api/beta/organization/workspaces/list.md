@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6c5800f9421c8ca71f34cd7adb90ae5f3591d03b9ce919d6828e2a9d54acca89
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 45c9ff96aa488d07a895ffa6d1f1b696ef857a8e00dd9ce2b50025a17426aac5
 ---
 
 ---
@@ -52,7 +52,7 @@ List Workspaces
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

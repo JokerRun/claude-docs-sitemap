@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 068cbefafb291c5503e536f85598e70f18c9d6c3bc1f6e6bf1fc8e72be7a00fa
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 3294f0410cf6a73a0f9303468c401878bc7979a76c78f0a53e7d057c1678afdc
 ---
 
 ---
@@ -28,7 +28,7 @@ Retrieve a member of the organization by user ID.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

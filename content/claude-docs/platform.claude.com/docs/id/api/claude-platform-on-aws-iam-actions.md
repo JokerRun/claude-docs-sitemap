@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 2e21fd30540ad71b212e28b95eac70f5c46059870af28e660f181e8c659ab9c4
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 40719dca3290f8886484f34ceb7b5499c1ad9f832ec23e05154a58b504c74374
 ---
 
 ---
@@ -41,13 +41,13 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Pemrosesan batch
 
-| Tindakan               | Rute yang diotorisasi                                                   |
-| ---------------------- | ----------------------------------------------------------------------- |
-| `CreateBatchInference` | `POST /v1/messages/batches`                                             |
-| `GetBatchInference`    | `GET /v1/messages/batches/{id}` `GET /v1/messages/batches/{id}/results` |
-| `ListBatchInferences`  | `GET /v1/messages/batches`                                              |
-| `CancelBatchInference` | `POST /v1/messages/batches/{id}/cancel`                                 |
-| `DeleteBatchInference` | `DELETE /v1/messages/batches/{id}`                                      |
+| Tindakan               | Rute yang diotorisasi                                                        |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `CreateBatchInference` | `POST /v1/messages/batches`                                                  |
+| `GetBatchInference`    | `GET /v1/messages/batches/{id}`<br />`GET /v1/messages/batches/{id}/results` |
+| `ListBatchInferences`  | `GET /v1/messages/batches`                                                   |
+| `CancelBatchInference` | `POST /v1/messages/batches/{id}/cancel`                                      |
+| `DeleteBatchInference` | `DELETE /v1/messages/batches/{id}`                                           |
 
 <Note>
   `GetBatchInference` mengotorisasi pembacaan metadata batch maupun pengunduhan hasil batch. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
@@ -62,12 +62,12 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### File
 
-| Tindakan     | Rute yang diotorisasi                             |
-| ------------ | ------------------------------------------------- |
-| `CreateFile` | `POST /v1/files`                                  |
-| `GetFile`    | `GET /v1/files/{id}` `GET /v1/files/{id}/content` |
-| `ListFiles`  | `GET /v1/files`                                   |
-| `DeleteFile` | `DELETE /v1/files/{id}`                           |
+| Tindakan     | Rute yang diotorisasi                                  |
+| ------------ | ------------------------------------------------------ |
+| `CreateFile` | `POST /v1/files`                                       |
+| `GetFile`    | `GET /v1/files/{id}`<br />`GET /v1/files/{id}/content` |
+| `ListFiles`  | `GET /v1/files`                                        |
+| `DeleteFile` | `DELETE /v1/files/{id}`                                |
 
 <Note>
   `GetFile` mengotorisasi pengunduhan metadata maupun konten. Principal dengan akses hanya-baca dapat mengunduh byte file, bukan hanya mencantumkan file.
@@ -75,13 +75,13 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Skill
 
-| Tindakan      | Rute yang diotorisasi                                                                                                                          |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CreateSkill` | `POST /v1/skills`                                                                                                                              |
-| `GetSkill`    | `GET /v1/skills/{id}` `GET /v1/skills/{id}/versions` `GET /v1/skills/{id}/versions/{version}` `GET /v1/skills/{id}/versions/{version}/content` |
-| `ListSkills`  | `GET /v1/skills`                                                                                                                               |
-| `UpdateSkill` | `POST /v1/skills/{id}/versions` `DELETE /v1/skills/{id}/versions/{version}`                                                                    |
-| `DeleteSkill` | `DELETE /v1/skills/{id}`                                                                                                                       |
+| Tindakan      | Rute yang diotorisasi                                                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateSkill` | `POST /v1/skills`                                                                                                                                             |
+| `GetSkill`    | `GET /v1/skills/{id}`<br />`GET /v1/skills/{id}/versions`<br />`GET /v1/skills/{id}/versions/{version}`<br />`GET /v1/skills/{id}/versions/{version}/content` |
+| `ListSkills`  | `GET /v1/skills`                                                                                                                                              |
+| `UpdateSkill` | `POST /v1/skills/{id}/versions`<br />`DELETE /v1/skills/{id}/versions/{version}`                                                                              |
+| `DeleteSkill` | `DELETE /v1/skills/{id}`                                                                                                                                      |
 
 <Note>
   `GetSkill` mengotorisasi pengunduhan metadata skill maupun konten skill. Principal dengan akses hanya-baca dapat mengunduh byte skill, bukan hanya mencantumkan skill.
@@ -93,13 +93,13 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Agen
 
-| Tindakan       | Rute yang diotorisasi                                |
-| -------------- | ---------------------------------------------------- |
-| `CreateAgent`  | `POST /v1/agents`                                    |
-| `GetAgent`     | `GET /v1/agents/{id}` `GET /v1/agents/{id}/versions` |
-| `ListAgents`   | `GET /v1/agents`                                     |
-| `UpdateAgent`  | `POST /v1/agents/{id}`                               |
-| `ArchiveAgent` | `POST /v1/agents/{id}/archive`                       |
+| Tindakan       | Rute yang diotorisasi                                     |
+| -------------- | --------------------------------------------------------- |
+| `CreateAgent`  | `POST /v1/agents`                                         |
+| `GetAgent`     | `GET /v1/agents/{id}`<br />`GET /v1/agents/{id}/versions` |
+| `ListAgents`   | `GET /v1/agents`                                          |
+| `UpdateAgent`  | `POST /v1/agents/{id}`                                    |
+| `ArchiveAgent` | `POST /v1/agents/{id}/archive`                            |
 
 <Note>
   Agen hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveAgent`. Tolak `ArchiveAgent`, `UpdateAgent`, dan `CreateAgent` jika Anda perlu mencegah mutasi agen apa pun.
@@ -107,14 +107,14 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Sesi
 
-| Tindakan         | Rute yang diotorisasi                                                                                                                                                         |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CreateSession`  | `POST /v1/sessions`                                                                                                                                                           |
-| `GetSession`     | `GET /v1/sessions/{id}` `GET /v1/sessions/{id}/events` `GET /v1/sessions/{id}/events/stream` `GET /v1/sessions/{id}/resources` `GET /v1/sessions/{id}/resources/{id}`         |
-| `ListSessions`   | `GET /v1/sessions`                                                                                                                                                            |
-| `UpdateSession`  | `POST /v1/sessions/{id}` `POST /v1/sessions/{id}/events` `POST /v1/sessions/{id}/resources` `POST /v1/sessions/{id}/resources/{id}` `DELETE /v1/sessions/{id}/resources/{id}` |
-| `ArchiveSession` | `POST /v1/sessions/{id}/archive`                                                                                                                                              |
-| `DeleteSession`  | `DELETE /v1/sessions/{id}`                                                                                                                                                    |
+| Tindakan         | Rute yang diotorisasi                                                                                                                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateSession`  | `POST /v1/sessions`                                                                                                                                                                               |
+| `GetSession`     | `GET /v1/sessions/{id}`<br />`GET /v1/sessions/{id}/events`<br />`GET /v1/sessions/{id}/events/stream`<br />`GET /v1/sessions/{id}/resources`<br />`GET /v1/sessions/{id}/resources/{id}`         |
+| `ListSessions`   | `GET /v1/sessions`                                                                                                                                                                                |
+| `UpdateSession`  | `POST /v1/sessions/{id}`<br />`POST /v1/sessions/{id}/events`<br />`POST /v1/sessions/{id}/resources`<br />`POST /v1/sessions/{id}/resources/{id}`<br />`DELETE /v1/sessions/{id}/resources/{id}` |
+| `ArchiveSession` | `POST /v1/sessions/{id}/archive`                                                                                                                                                                  |
+| `DeleteSession`  | `DELETE /v1/sessions/{id}`                                                                                                                                                                        |
 
 <Note>
   `GetSession` mengotorisasi pembacaan metadata sesi, aliran event lengkap (riwayat percakapan), dan sumber daya sesi. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
@@ -126,15 +126,15 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Environment
 
-| Tindakan                 | Rute yang diotorisasi                                                                                                                                                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CreateEnvironment`      | `POST /v1/environments`                                                                                                                                                                                                                  |
-| `GetEnvironment`         | `GET /v1/environments/{id}` `GET /v1/environments/{id}/work` `GET /v1/environments/{id}/work/{work_id}` `GET /v1/environments/{id}/work/stats`                                                                                           |
-| `ListEnvironments`       | `GET /v1/environments`                                                                                                                                                                                                                   |
-| `UpdateEnvironment`      | `POST /v1/environments/{id}`                                                                                                                                                                                                             |
-| `ArchiveEnvironment`     | `POST /v1/environments/{id}/archive`                                                                                                                                                                                                     |
-| `DeleteEnvironment`      | `DELETE /v1/environments/{id}`                                                                                                                                                                                                           |
-| `ProcessEnvironmentWork` | `GET /v1/environments/{id}/work/poll` `POST /v1/environments/{id}/work/{work_id}` `POST /v1/environments/{id}/work/{work_id}/ack` `POST /v1/environments/{id}/work/{work_id}/heartbeat` `POST /v1/environments/{id}/work/{work_id}/stop` |
+| Tindakan                 | Rute yang diotorisasi                                                                                                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CreateEnvironment`      | `POST /v1/environments`                                                                                                                                                                                                                                      |
+| `GetEnvironment`         | `GET /v1/environments/{id}`<br />`GET /v1/environments/{id}/work`<br />`GET /v1/environments/{id}/work/{work_id}`<br />`GET /v1/environments/{id}/work/stats`                                                                                                |
+| `ListEnvironments`       | `GET /v1/environments`                                                                                                                                                                                                                                       |
+| `UpdateEnvironment`      | `POST /v1/environments/{id}`                                                                                                                                                                                                                                 |
+| `ArchiveEnvironment`     | `POST /v1/environments/{id}/archive`                                                                                                                                                                                                                         |
+| `DeleteEnvironment`      | `DELETE /v1/environments/{id}`                                                                                                                                                                                                                               |
+| `ProcessEnvironmentWork` | `GET /v1/environments/{id}/work/poll`<br />`POST /v1/environments/{id}/work/{work_id}`<br />`POST /v1/environments/{id}/work/{work_id}/ack`<br />`POST /v1/environments/{id}/work/{work_id}/heartbeat`<br />`POST /v1/environments/{id}/work/{work_id}/stop` |
 
 <Note>
   Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveEnvironment`. `ProcessEnvironmentWork` tidak dicocokkan oleh wildcard `Create*`, `Update*`, `Delete*`, atau `Archive*`. Tolak juga `ArchiveEnvironment`, `UpdateEnvironment`, `CreateEnvironment`, dan `ProcessEnvironmentWork` jika Anda perlu mencegah mutasi environment apa pun.
@@ -146,14 +146,14 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Vault
 
-| Tindakan       | Rute yang diotorisasi                                                                                                                                                                       |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CreateVault`  | `POST /v1/vaults`                                                                                                                                                                           |
-| `GetVault`     | `GET /v1/vaults/{id}` `GET /v1/vaults/{id}/credentials` `GET /v1/vaults/{id}/credentials/{id}`                                                                                              |
-| `ListVaults`   | `GET /v1/vaults`                                                                                                                                                                            |
-| `UpdateVault`  | `POST /v1/vaults/{id}` `POST /v1/vaults/{id}/credentials` `POST /v1/vaults/{id}/credentials/{id}` `POST /v1/vaults/{id}/credentials/{id}/archive` `DELETE /v1/vaults/{id}/credentials/{id}` |
-| `ArchiveVault` | `POST /v1/vaults/{id}/archive`                                                                                                                                                              |
-| `DeleteVault`  | `DELETE /v1/vaults/{id}`                                                                                                                                                                    |
+| Tindakan       | Rute yang diotorisasi                                                                                                                                                                                           |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateVault`  | `POST /v1/vaults`                                                                                                                                                                                               |
+| `GetVault`     | `GET /v1/vaults/{id}`<br />`GET /v1/vaults/{id}/credentials`<br />`GET /v1/vaults/{id}/credentials/{id}`                                                                                                        |
+| `ListVaults`   | `GET /v1/vaults`                                                                                                                                                                                                |
+| `UpdateVault`  | `POST /v1/vaults/{id}`<br />`POST /v1/vaults/{id}/credentials`<br />`POST /v1/vaults/{id}/credentials/{id}`<br />`POST /v1/vaults/{id}/credentials/{id}/archive`<br />`DELETE /v1/vaults/{id}/credentials/{id}` |
+| `ArchiveVault` | `POST /v1/vaults/{id}/archive`                                                                                                                                                                                  |
+| `DeleteVault`  | `DELETE /v1/vaults/{id}`                                                                                                                                                                                        |
 
 <Note>
   Membuat, memperbarui, mengarsipkan, atau menghapus kredensial vault individual dipetakan ke `UpdateVault`. Membaca kredensial dipetakan ke `GetVault`. Rahasia kredensial vault tidak diekspos: field rahasia bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan kredensial, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan kredensial. Tolak juga `UpdateVault`, `CreateVault`, dan `ArchiveVault` jika Anda perlu mencegah mutasi vault apa pun.
@@ -161,14 +161,14 @@ Layanan ini mendefinisikan 72 tindakan. Tindakan mengikuti konvensi AWS `VerbNou
 
 ### Memory store
 
-| Tindakan             | Rute yang diotorisasi                                                                                                                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `CreateMemoryStore`  | `POST /v1/memory_stores`                                                                                                                                                                                                 |
-| `GetMemoryStore`     | `GET /v1/memory_stores/{id}` `GET /v1/memory_stores/{id}/memories` `GET /v1/memory_stores/{id}/memories/{id}` `GET /v1/memory_stores/{id}/memory_versions` `GET /v1/memory_stores/{id}/memory_versions/{id}`             |
-| `ListMemoryStores`   | `GET /v1/memory_stores`                                                                                                                                                                                                  |
-| `UpdateMemoryStore`  | `POST /v1/memory_stores/{id}` `POST /v1/memory_stores/{id}/memories` `POST /v1/memory_stores/{id}/memories/{id}` `DELETE /v1/memory_stores/{id}/memories/{id}` `POST /v1/memory_stores/{id}/memory_versions/{id}/redact` |
-| `ArchiveMemoryStore` | `POST /v1/memory_stores/{id}/archive`                                                                                                                                                                                    |
-| `DeleteMemoryStore`  | `DELETE /v1/memory_stores/{id}`                                                                                                                                                                                          |
+| Tindakan             | Rute yang diotorisasi                                                                                                                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateMemoryStore`  | `POST /v1/memory_stores`                                                                                                                                                                                                                     |
+| `GetMemoryStore`     | `GET /v1/memory_stores/{id}`<br />`GET /v1/memory_stores/{id}/memories`<br />`GET /v1/memory_stores/{id}/memories/{id}`<br />`GET /v1/memory_stores/{id}/memory_versions`<br />`GET /v1/memory_stores/{id}/memory_versions/{id}`             |
+| `ListMemoryStores`   | `GET /v1/memory_stores`                                                                                                                                                                                                                      |
+| `UpdateMemoryStore`  | `POST /v1/memory_stores/{id}`<br />`POST /v1/memory_stores/{id}/memories`<br />`POST /v1/memory_stores/{id}/memories/{id}`<br />`DELETE /v1/memory_stores/{id}/memories/{id}`<br />`POST /v1/memory_stores/{id}/memory_versions/{id}/redact` |
+| `ArchiveMemoryStore` | `POST /v1/memory_stores/{id}/archive`                                                                                                                                                                                                        |
+| `DeleteMemoryStore`  | `DELETE /v1/memory_stores/{id}`                                                                                                                                                                                                              |
 
 <Note>
   `GetMemoryStore` mengotorisasi pembacaan metadata store, semua memori, dan riwayat versi memori. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.

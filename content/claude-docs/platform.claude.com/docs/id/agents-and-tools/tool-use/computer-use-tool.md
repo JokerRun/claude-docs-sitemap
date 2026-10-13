@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 923c2b724c71c78dbd5bfc2dbe35c10bd1f4f5219b092ea8b4224e4a2bd08955
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 9eba23a9f528346d35822bc3b0ec7528513671d7f567e138b54d625a95abb156
 ---
 
 ---
@@ -1222,7 +1222,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               'left_click' => clickAt($input['coordinate'] ?? null),
               'type' => typeText($input['text']),
               // Tangani aksi lain sesuai kebutuhan
-              default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
+              default => throw new \RuntimeException("Unknown or unimplemented member: {$name}"),
           };
       }
       ```
@@ -1541,7 +1541,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               try {
                   // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
                   $toolResults[] = [...$result, 'content' => handleComputerAction($block->name, $block->input)];
-              } catch (Throwable $e) {
+              } catch (\Throwable $e) {
                   $failed = true;
                   $toolResults[] = [...$result, 'content' => 'Error: ' . $e->getMessage(), 'is_error' => true];
               }

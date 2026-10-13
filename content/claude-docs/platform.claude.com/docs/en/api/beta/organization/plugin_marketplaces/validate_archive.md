@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_archive
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: b58f0b2fd1c656e7e5ca4b7cb777a2ffb2bcfcfc2138693781e9fbed48ea9e44
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 91f14b2b5670cec036c6390243865e24071d5c9fea17d4942ed3f9cddce879bc
 ---
 
 ---
@@ -28,7 +28,7 @@ checked when the marketplace actually synchronizes.
 
 Nothing is recorded on the Compliance API activity feed.
 
-For a worked example, see [Validate marketplace content](/docs/en/manage-claude/plugins-api#validate-marketplace-content)
+For a worked example, see [Validate marketplace content](https://platform.claude.com/docs/en/manage-claude/plugins-api?sdk_languages=http#validate-marketplace-content)
 in the Plugins API guide.
 
 **Accepted credentials:** an Admin API key with the `read:plugins` or `write:plugins` scope; `read:org_audit` and `read:compliance_org_data` do not grant it.

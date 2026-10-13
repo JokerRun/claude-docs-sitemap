@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: feaadcdb2d544453bb709292a7eb45ca630ea4393684d3147dff41eedf01424c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 3e876b7c35b096d07ab571af81a6026ba75e6e2124c859bc338db42b28b70a71
 ---
 
 ---
@@ -33,7 +33,7 @@ without downloading every artifact.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

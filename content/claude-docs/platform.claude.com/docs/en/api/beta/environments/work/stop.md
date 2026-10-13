@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 2c39f5da93ae3134f0b47f8ff544a2e69b9c8fbe4e434b8ae30f065f3713cb9a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 32004e86949ff98f98d720c94bc61b5dd109426eda931da56160b16d66e972a8
 ---
 
 ---
@@ -30,7 +30,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

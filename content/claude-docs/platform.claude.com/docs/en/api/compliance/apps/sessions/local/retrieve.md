@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 30d954391b670a9e758096c26a4ee046d80a5d3c8697d49b75d629c72e1d3600
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c29d85b513b564a42e7d97758047182d3c04e95de19c3c00952bee054183c682
 ---
 
 ---
@@ -31,7 +31,7 @@ inference call has aged out returns 404.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

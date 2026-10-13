@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0b51c97baca0a4d65f4530980c73c3d6ed6ac47bb416c1d7f290ba98c505f2fc
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 0b77d87cd3d6e3ef0e7879855013f88ded91218dea545c627d9b07888d350c3c
 ---
 
 ---
@@ -30,7 +30,7 @@ Hard-deletes the project document permanently.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

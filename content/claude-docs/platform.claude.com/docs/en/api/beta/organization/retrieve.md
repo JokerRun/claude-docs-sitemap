@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 832e0a1132e55f368d0724b6dfd7f96f7f48353ea3bccebd72216053960be37d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c8ec3b45f65348c8a1930c2ff1511b101ab1030a55c639db372af42e881bcc95
 ---
 
 ---
@@ -22,7 +22,7 @@ Retrieve information about the organization associated with the authenticated AP
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

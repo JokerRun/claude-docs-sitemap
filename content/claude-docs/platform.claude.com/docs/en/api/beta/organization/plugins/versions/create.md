@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/create
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: a791add5db1ddaa16a20566e20427c3880607ad0c5ac557bba99fc831a607e90
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 00d9c9881f503bcf3af7a635d9d02cfe4647660975ed77fa15e8cb5e027c12f2
 ---
 
 ---
@@ -32,7 +32,7 @@ claude.ai) is refused with a 409: `error_code` `skill_name_taken`, with that nam
 `registration_pending` means the version was stored but is not yet usable; a later
 version create on the Plugin completes it.
 
-For a worked example, see [Create a version](/docs/en/manage-claude/plugins-api#create-a-version)
+For a worked example, see [Create a version](https://platform.claude.com/docs/en/manage-claude/plugins-api?sdk_languages=http#create-a-version)
 in the Plugins API guide.
 
 **Accepted credentials:** an Admin API key with the `write:plugins` scope.

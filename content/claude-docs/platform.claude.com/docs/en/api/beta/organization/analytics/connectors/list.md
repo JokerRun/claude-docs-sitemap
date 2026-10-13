@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1c08fd0fe9e6c4383163794d3bb541cb44762be025b5f5697b07f6ca31d76b3a
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 7a32e1dd3273b570db77c16d7c1ec28b18999d025e3c544e441cb4b9ec24b42f
 ---
 
 ---
@@ -91,7 +91,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

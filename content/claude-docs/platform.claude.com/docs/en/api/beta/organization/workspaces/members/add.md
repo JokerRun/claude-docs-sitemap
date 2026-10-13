@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/add
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: de7114b1b5cb0eea3f43caa564f77777172f0fcf764db5494abad8c7d1c584fc
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e12dd53777353e0b9befaf5b25fc1b4f8efbb2a3d2114c1dae776f09c76ca52e
 ---
 
 ---
@@ -28,7 +28,7 @@ Create Workspace Member
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: af5ecc35cef1cfb38258faa1d6cdfe3fdd2744ce79663eed127e5fd32d26accf
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 6817b57eb26ebb098154439265ab1dc36e8c6937d62434da6d1ea96c1d337f59
 ---
 
 ---
@@ -118,7 +118,7 @@ Retrieves message history and file metadata for a specific chat.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

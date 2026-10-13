@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 797d9ce53734d686c853270439d8441ce9fe01d67d049fdc206c0f243e269df2
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e9fa2f5ec650bb985113189368cdc489b80c1a4e422c390aff7d57906d7d239d
 ---
 
 ---
@@ -30,7 +30,7 @@ Update work item metadata with merge semantics.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

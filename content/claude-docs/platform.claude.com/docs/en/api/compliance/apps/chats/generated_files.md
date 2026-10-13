@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e2b3badbdaf2b2a9ce3e3a3b01d563b259b0adaca093118d3a51bd31e056ccec
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 54a1911167a81f83addd95f5f7670acb96597e99ba77a1e6f7b8b52251a72c3e
 ---
 
 ---
@@ -32,7 +32,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -108,7 +108,7 @@ Downloads the binary content of a file the assistant created via tool use.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

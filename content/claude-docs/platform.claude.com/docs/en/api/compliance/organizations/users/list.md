@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 150929c6da51c7b7a6471a2bb83dacad69fa39c0baf2c581c20ec668dcf5d87d
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ef6c283c2b1988d6aef764a5bef2662395e99ca1cfeed8d7b494b5a44f5af8cd
 ---
 
 ---
@@ -40,7 +40,7 @@ List current user members of an organization.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

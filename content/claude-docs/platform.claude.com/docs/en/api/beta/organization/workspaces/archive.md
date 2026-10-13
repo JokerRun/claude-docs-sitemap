@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 583997ad297a0dc03bac7eafd15feac93234ec266d37201d7914bca4cf235fc6
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 66c9f25dc557ec7bbf779074f097994a6c4b540102330f9911532678fda6d338
 ---
 
 ---
@@ -26,7 +26,7 @@ Archive Workspace
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

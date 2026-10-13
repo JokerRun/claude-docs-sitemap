@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 395aded42a84f940097864db56aecd27d66af031821e37898d66e1f26dd24268
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e49eb1efd9d31e7b9e5d26ce21c21cef3a0f5465393d1608888309e945376718
 ---
 
 ---
-title: Sandbox self-hosted
+title: Sandbox yang di-host sendiri
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-description: Jalankan sesi Claude Managed Agents di sandbox self-hosted, sehingga eksekusi alat, file, dan egress jaringan tetap berada di infrastruktur Anda sendiri.
+description: Jalankan sesi Claude Managed Agents di sandbox yang di-host sendiri, sehingga eksekusi alat, file, dan lalu lintas jaringan keluar tetap berada di infrastruktur Anda sendiri.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -17,47 +17,47 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference). Sandbox self-hosted tetap menjalankan orkestrasi di sisi Anthropic, tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan. File, proses, dan lalu lintas jaringan agen tetap berada di lingkungan Anda.
+Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference). "Self-hosted sandboxes" (sandbox yang di-host sendiri) mempertahankan orkestrasi di sisi Anthropic tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan. File, proses, dan lalu lintas jaringan agen tetap berada di lingkungan Anda.
 
-Self-hosting cocok ketika agen perlu:
+Hosting sendiri cocok ketika agen perlu:
 
-* Beroperasi pada data yang tidak boleh keluar dari batas jaringan Anda
+* Bekerja dengan data yang tidak boleh keluar dari batas jaringan Anda
 * Menjangkau layanan internal yang tidak dapat dirutekan secara publik
 * Berjalan di bawah kontrol kepatuhan dan audit milik organisasi Anda sendiri
 
 ## Cara kerjanya
 
-Environment `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **environment worker** (worker lingkungan), yaitu proses di infrastruktur Anda sendiri yang melayani antrean tersebut:
+Lingkungan `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **environment worker** (worker lingkungan), yaitu proses di infrastruktur Anda sendiri yang melayani antrean tersebut:
 
-1. Anda membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang menargetkan environment tersebut. Anthropic memasukkan sesi ke antrean sebagai work item.
-2. Worker Anda mengklaim work item tersebut dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
+1. Anda membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang menargetkan lingkungan tersebut. Anthropic memasukkan sesi ke antrean sebagai item kerja.
+2. Worker Anda mengklaim item kerja dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
 3. Claude berjalan di sisi Anthropic dan meminta pemanggilan alat. Worker Anda menjalankan setiap pemanggilan secara lokal dan mengirimkan hasilnya kembali.
 
-Input dan output alat tetap mengalir ke control plane Anthropic, sehingga model dapat melihat hasilnya dan menentukan langkah berikutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
+Input dan output alat tetap mengalir ke "control plane" (bidang kendali) Anthropic, sehingga model dapat melihat hasil dan menentukan langkah selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
 
-Sandbox self-hosted mendukung setiap model Claude yang tersedia di Managed Agents. Model dikonfigurasi pada agen, bukan pada environment.
+Sandbox yang di-host sendiri mendukung setiap model Claude yang tersedia di Managed Agents. Model dikonfigurasi pada agen, bukan pada lingkungan.
 
 CLI `ant` serta SDK Python, TypeScript, dan Go menyertakan worker siap pakai. Penyedia sandbox seperti Cloudflare, Daytona, dan Modal juga menerbitkan [panduan platform](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#platform-guides) mereka sendiri.
 
 ## Mulai cepat
 
-Panduan mulai cepat ini menjalankan satu worker always-on dengan CLI `ant`, mengirimkan sebuah sesi kepadanya, dan memastikan bahwa pemanggilan alat agen berjalan di host Anda.
+Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `ant`, mengirimkan sebuah sesi kepadanya, dan memastikan bahwa pemanggilan alat agen berjalan di host Anda.
 
 ### Prasyarat
 
 * **Sebuah agen:** Jika Anda belum memilikinya, selesaikan [Memulai dengan Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agennya.
-* **Host Linux:** Host memerlukan `/bin/bash` tepat di path tersebut. Worker hanya memerlukan HTTPS keluar.
-* **Kunci API Claude:** Anda menggunakannya dari mesin Anda sendiri untuk membuat sesi dan membaca statistik antrean. Jauhkan kunci ini dari host worker, tempat pemanggilan alat agen dapat membacanya.
-* **CLI `ant` di mesin Anda sendiri:** Perintah sesi dan statistik dalam panduan mulai cepat ini dijalankan di sana, bukan di host worker. Instal dengan cara yang sama seperti [langkah instalasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) untuk worker.
+* **Sebuah host Linux:** Host memerlukan `/bin/bash` tepat di path tersebut. Worker hanya memerlukan HTTPS keluar.
+* **Sebuah kunci API Claude:** Anda menggunakannya dari mesin Anda sendiri untuk membuat sesi dan membaca statistik antrean. Jangan simpan di host worker, karena pemanggilan alat agen dapat membacanya.
+* **CLI `ant` atau SDK di mesin Anda sendiri:** Langkah statistik dan sesi dalam panduan mulai cepat ini dijalankan di sana, bukan di host worker. Instal CLI dengan cara yang sama seperti [langkah instalasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) untuk worker, atau instal [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 
 <Note>
-  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan environment key. Lampirkan managed policy [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan untuk menjalankan worker Anda. Environment key yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
+  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan kunci lingkungan. Lampirkan kebijakan terkelola [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan worker Anda. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
 </Note>
 
 ### Jalankan sesi pertama Anda
 
 <Steps>
-  <Step title="Buat environment self-hosted">
+  <Step title="Buat lingkungan yang di-host sendiri">
     Di [Console](https://platform.claude.com/workspaces/default/environments): **Workspace > Environments > New > Self-hosted**
 
     Atau melalui API:
@@ -178,10 +178,10 @@ Panduan mulai cepat ini menjalankan satu worker always-on dengan CLI `ant`, meng
     </CodeGroup>
   </Step>
 
-  <Step title="Buat environment key">
-    Di Console, buka environment tersebut dan klik **Generate environment key**. Environment key mengautentikasi worker ke antreannya. Anda hanya dapat membuatnya di Console, bahkan untuk environment yang Anda buat melalui API.
+  <Step title="Buat kunci lingkungan">
+    Di Console, buka lingkungan tersebut dan klik **Generate environment key**. Kunci lingkungan mengautentikasi worker ke antreannya. Anda hanya dapat membuatnya di Console, bahkan untuk lingkungan yang Anda buat melalui API.
 
-    Ekspor ID environment dan environment key di host worker:
+    Ekspor ID lingkungan dan kunci di host worker:
 
     ```bash
     export ANTHROPIC_ENVIRONMENT_KEY="sk-ant-oat01-..."
@@ -230,34 +230,290 @@ Panduan mulai cepat ini menjalankan satu worker always-on dengan CLI `ant`, meng
   </Step>
 
   <Step title="Verifikasi bahwa worker terhubung">
-    Di mesin Anda sendiri, atur `ANTHROPIC_API_KEY` ke kunci API Claude Anda (bukan environment key) dan `ANTHROPIC_ENVIRONMENT_ID` ke ID environment. Pastikan bahwa `workers_polling` bernilai setidaknya 1:
+    Di mesin Anda sendiri, atur `ANTHROPIC_API_KEY` ke kunci API Claude Anda (bukan kunci lingkungan) dan `ANTHROPIC_ENVIRONMENT_ID` (python, ruby: `environment_id`; typescript, java, csharp: `environmentId`; go: `environmentID`; php: `$environmentId`) ke ID lingkungan. Pastikan bahwa `workers_polling` (java, php: `workersPolling`; csharp, go: `WorkersPolling`) bernilai setidaknya 1:
 
-    ```bash
-    ant beta:environments:work stats --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
-    ```
+    <CodeGroup>
+      ```bash cURL
+      curl -sS --fail-with-body "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/stats" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-beta: managed-agents-2026-04-01"
+      ```
 
-    Jika `workers_polling` tetap bernilai 0, lihat [Pemecahan masalah](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#troubleshooting).
+      ```bash CLI
+      ant beta:environments:work stats --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
+      ```
+
+      ```python Python
+      client = anthropic.Anthropic()
+
+      stats = client.beta.environments.work.stats(environment_id)
+      print(f"workers_polling={stats.workers_polling}")
+      ```
+
+      ```typescript TypeScript
+      const client = new Anthropic();
+
+      const stats = await client.beta.environments.work.stats(environmentId);
+
+      console.log(`workers_polling=${stats.workers_polling}`);
+      ```
+
+      ```csharp C#
+      var client = new AnthropicClient();
+
+      var stats = await client.Beta.Environments.Work.Stats(environmentId);
+
+      Console.WriteLine($"workers_polling={stats.WorkersPolling}");
+      ```
+
+      ```go Go
+      client := anthropic.NewClient()
+
+      stats, err := client.Beta.Environments.Work.Stats(
+      	context.Background(),
+      	environmentID,
+      	anthropic.BetaEnvironmentWorkStatsParams{},
+      )
+      if err != nil {
+      	panic(err)
+      }
+
+      fmt.Printf("workers_polling=%d\n", stats.WorkersPolling)
+      ```
+
+      ```java Java
+      var client = AnthropicOkHttpClient.fromEnv();
+
+      var stats = client.beta().environments().work().stats(environmentId);
+
+      IO.println("workers_polling=" + stats.workersPolling().orElse(null));
+      ```
+
+      ```php PHP
+      $client = new Client();
+
+      $stats = $client->beta->environments->work->stats($environmentId);
+
+      printf("workers_polling=%d\n", $stats->workersPolling);
+      ```
+
+      ```ruby Ruby
+      client = Anthropic::Client.new
+
+      stats = client.beta.environments.work.stats(environment_id)
+
+      puts "workers_polling=#{stats.workers_polling}"
+      ```
+    </CodeGroup>
+
+    Jika `workers_polling` (java, php: `workersPolling`; csharp, go: `WorkersPolling`) tetap bernilai 0, lihat [Pemecahan masalah](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#troubleshooting).
   </Step>
 
   <Step title="Mulai sesi">
-    Atur `AGENT_ID` ke ID agen Anda. Buat sesi yang menargetkan environment tersebut, lalu kirimkan sebuah tugas:
+    Atur `AGENT_ID` (python, ruby: `agent_id`; typescript, java, csharp: `agentId`; go: `agentID`; php: `$agentId`) ke ID agen Anda. Buat sesi yang menargetkan lingkungan tersebut, lalu kirimkan sebuah tugas:
 
-    ```bash
-    SESSION_ID=$(ant beta:sessions create \
-      --agent "$AGENT_ID" \
-      --environment-id "$ANTHROPIC_ENVIRONMENT_ID" \
-      --transform id --raw-output)
+    <CodeGroup>
+      ```bash cURL
+      SESSION_ID=$(curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-beta: managed-agents-2026-04-01" \
+        -H "content-type: application/json" \
+        -d @- <<EOF | jq -er '.id'
+      {
+        "agent": "$AGENT_ID",
+        "environment_id": "$ANTHROPIC_ENVIRONMENT_ID"
+      }
+      EOF
+      )
 
-    ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
-    events:
-      - type: user.message
-        content:
-          - type: text
-            text: Write the output of "uname -a" to hello.txt in your working directory.
-    YAML
-    ```
+      curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-beta: managed-agents-2026-04-01" \
+        -H "content-type: application/json" \
+        -d @- <<'EOF'
+      {
+        "events": [
+          {
+            "type": "user.message",
+            "content": [
+              {
+                "type": "text",
+                "text": "Write the output of \"uname -a\" to hello.txt in your working directory."
+              }
+            ]
+          }
+        ]
+      }
+      EOF
+      ```
 
-    Sesi menunggu di antrean environment hingga sebuah worker mengklaimnya. Jika tidak ada worker yang terhubung, sesi tetap berada dalam antrean alih-alih gagal.
+      ```bash CLI
+      SESSION_ID=$(ant beta:sessions create \
+        --agent "$AGENT_ID" \
+        --environment-id "$ANTHROPIC_ENVIRONMENT_ID" \
+        --transform id --raw-output)
+
+      ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
+      events:
+        - type: user.message
+          content:
+            - type: text
+              text: Write the output of "uname -a" to hello.txt in your working directory.
+      YAML
+      ```
+
+      ```python Python
+      session = client.beta.sessions.create(
+          agent=agent_id,
+          environment_id=environment_id,
+      )
+
+      client.beta.sessions.events.send(
+          session.id,
+          events=[
+              {
+                  "type": "user.message",
+                  "content": [
+                      {
+                          "type": "text",
+                          "text": 'Write the output of "uname -a" to hello.txt in your working directory.',
+                      },
+                  ],
+              },
+          ],
+      )
+      ```
+
+      ```typescript TypeScript
+      const session = await client.beta.sessions.create({
+        agent: agentId,
+        environment_id: environmentId
+      });
+
+      await client.beta.sessions.events.send(session.id, {
+        events: [
+          {
+            type: "user.message",
+            content: [
+              {
+                type: "text",
+                text: 'Write the output of "uname -a" to hello.txt in your working directory.'
+              }
+            ]
+          }
+        ]
+      });
+      ```
+
+      ```csharp C#
+      var session = await client.Beta.Sessions.Create(new()
+      {
+          Agent = agentId,
+          EnvironmentID = environmentId,
+      });
+
+      await client.Beta.Sessions.Events.Send(session.ID, new()
+      {
+          Events =
+          [
+              new BetaManagedAgentsUserMessageEventParams
+              {
+                  Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
+                  Content =
+                  [
+                      new BetaManagedAgentsTextBlock
+                      {
+                          Type = BetaManagedAgentsTextBlockType.Text,
+                          Text = "Write the output of \"uname -a\" to hello.txt in your working directory.",
+                      },
+                  ],
+              },
+          ],
+      });
+      ```
+
+      ```go Go
+      session, err := client.Beta.Sessions.New(context.Background(), anthropic.BetaSessionNewParams{
+      	Agent:         anthropic.BetaSessionNewParamsAgentUnion{OfString: anthropic.String(agentID)},
+      	EnvironmentID: environmentID,
+      })
+      if err != nil {
+      	panic(err)
+      }
+
+      _, err = client.Beta.Sessions.Events.Send(context.Background(), session.ID, anthropic.BetaSessionEventSendParams{
+      	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+      		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
+      			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
+      			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
+      				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+      					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+      					Text: "Write the output of \"uname -a\" to hello.txt in your working directory.",
+      				},
+      			}},
+      		},
+      	}},
+      })
+      if err != nil {
+      	panic(err)
+      }
+      ```
+
+      ```java Java
+      var session = client.beta().sessions().create(SessionCreateParams.builder()
+          .agent(agentId)
+          .environmentId(environmentId)
+          .build());
+
+      client.beta().sessions().events().send(
+          session.id(),
+          EventSendParams.builder()
+              .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
+                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
+                  .addTextContent("Write the output of \"uname -a\" to hello.txt in your working directory.")
+                  .build())
+              .build());
+      ```
+
+      ```php PHP
+      $session = $client->beta->sessions->create(
+          agent: $agentId,
+          environmentID: $environmentId,
+      );
+
+      $client->beta->sessions->events->send(
+          $session->id,
+          events: [
+              [
+                  'type' => 'user.message',
+                  'content' => [['type' => 'text', 'text' => 'Write the output of "uname -a" to hello.txt in your working directory.']],
+              ],
+          ],
+      );
+      ```
+
+      ```ruby Ruby
+      session = client.beta.sessions.create(
+        agent: agent_id,
+        environment_id: environment_id
+      )
+
+      client.beta.sessions.events.send_(
+        session.id,
+        events: [
+          {
+            type: :"user.message",
+            content: [{type: :text, text: 'Write the output of "uname -a" to hello.txt in your working directory.'}]
+          }
+        ]
+      )
+      ```
+    </CodeGroup>
+
+    Sesi menunggu di antrean lingkungan hingga sebuah worker mengklaimnya. Jika tidak ada worker yang terhubung, sesi tetap berada dalam antrean alih-alih gagal.
   </Step>
 
   <Step title="Pastikan alat berjalan di host Anda">
@@ -271,34 +527,34 @@ Panduan mulai cepat ini menjalankan satu worker always-on dengan CLI `ant`, meng
   </Step>
 </Steps>
 
-## Perbedaannya dengan environment cloud
+## Perbedaannya dengan lingkungan cloud
 
-|                               | Environment cloud                         | Sandbox self-hosted                                    |
-| ----------------------------- | ----------------------------------------- | ------------------------------------------------------ |
-| Tempat alat berjalan          | Sandbox yang dikelola Anthropic           | Infrastruktur Anda                                     |
-| Jangkauan jaringan            | Kontrol egress Anthropic                  | Kebijakan jaringan Anda                                |
-| Mounting file dan repo GitHub | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
-| Memory store                  | Di-mount oleh Anthropic di `/mnt/memory/` | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker |
-| Siklus hidup                  | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
+|                                 | Lingkungan cloud                          | Sandbox yang di-host sendiri                           |
+| ------------------------------- | ----------------------------------------- | ------------------------------------------------------ |
+| Tempat alat berjalan            | Sandbox yang dikelola Anthropic           | Infrastruktur Anda                                     |
+| Jangkauan jaringan              | Kontrol egress Anthropic                  | Kebijakan jaringan Anda                                |
+| Pemasangan file dan repo GitHub | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
+| Memory store                    | Dipasang oleh Anthropic di `/mnt/memory/` | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker |
+| Siklus hidup                    | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
 
 Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
 ### Sumber daya sesi
 
-Sandbox self-hosted hanya mendukung sumber daya `memory_store`. Sesi pada environment self-hosted yang menyertakan sumber daya `file` atau `github_repository` akan ditolak dengan error 400:
+Sandbox yang di-host sendiri hanya mendukung sumber daya `memory_store`. Sesi pada lingkungan yang di-host sendiri yang menyertakan sumber daya `file` atau `github_repository` akan ditolak dengan error 400:
 
 ```text wrap
 Environment env_... is a self-hosted environment. `resources` are not supported with self-hosted environments.
 ```
 
-[Deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) yang menargetkan environment self-hosted mengikuti aturan yang sama. Untuk memberikan file input tersendiri kepada sebuah sesi, lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#stage-files-for-a-session).
+[Deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) yang menargetkan lingkungan yang di-host sendiri mengikuti aturan yang sama. Untuk memberikan file input tersendiri kepada sebuah sesi, lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#stage-files-for-a-session).
 
-## Sandbox self-hosted dan tunnel MCP
+## Sandbox yang di-host sendiri dan tunnel MCP
 
-Self-hosting mengontrol *di mana kode agen dieksekusi*. [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) mengontrol *bagaimana Anthropic menjangkau server MCP di jaringan Anda*. Keduanya independen:
+Hosting sendiri mengendalikan *di mana kode agen dieksekusi*. [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) mengendalikan *bagaimana Anthropic menjangkau server MCP di jaringan Anda*. Keduanya independen:
 
 * Sesi di sandbox cloud Anthropic dapat menjangkau server MCP privat melalui tunnel.
-* Sesi self-hosted dapat menggunakan server MCP melalui tunnel maupun server MCP publik.
+* Sesi yang di-host sendiri dapat menggunakan server MCP melalui tunnel maupun server MCP publik.
 
 Gunakan keduanya ketika Anda ingin eksekusi dan akses alat tetap berada di dalam batas Anda. Untuk melewati tunnel, [bungkus server MCP sebagai alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools#wrap-an-mcp-server-as-custom-tools) yang dilayani oleh worker Anda.
 
@@ -321,12 +577,12 @@ Halaman-halaman ini menjelaskan cara membangun worker di platform sandboxing apa
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Menerapkan worker" icon="play" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers">
+  <Card title="Deploy worker" icon="play" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers">
     Jalankan worker SDK, picu worker dari webhook, atau berikan sandbox tersendiri untuk setiap sesi.
   </Card>
 
   <Card title="Memory store" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory">
-    Siapkan host, konfigurasikan sinkronisasi, dan tangani store read-only serta konflik.
+    Siapkan host, konfigurasikan sinkronisasi, dan tangani store hanya-baca serta konflik.
   </Card>
 
   <Card title="Alat kustom dan server MCP" icon="tool" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools">
@@ -342,6 +598,6 @@ Halaman-halaman ini menjelaskan cara membangun worker di platform sandboxing apa
   </Card>
 
   <Card title="Model keamanan" icon="lock" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security">
-    Model tanggung jawab bersama untuk lingkungan sandbox self-hosted.
+    Model tanggung jawab bersama untuk lingkungan sandbox yang di-host sendiri.
   </Card>
 </CardGroup>

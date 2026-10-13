@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b85fc26ddedb42f00541afb8c2a2cec6e5f6547bcc70b27f19ea9c8d4723a8d8
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: b54ce5407c8177e569b666b3cdd0d32bad474c2379e7f556bea3ef2118d4acec
 ---
 
 ---
@@ -30,7 +30,7 @@ Get detailed information for a specific project document.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -112,7 +112,7 @@ consumer can dedupe or match hashes without downloading every document.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -208,7 +208,7 @@ Hard-deletes the project document permanently.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e00f7d66ae86a093db342f6a0969543e512d172a252f5facc79ef1ffec16f356
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 04007e811c268ca7630c43e75fe9cd8f5bedb46cba382fd26a7624d2c4b71887
 ---
 
 ---
@@ -63,7 +63,7 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

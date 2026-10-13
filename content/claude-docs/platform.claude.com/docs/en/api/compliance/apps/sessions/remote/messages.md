@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote/messages
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 4a702be9b415c403272fe1b26a33afb1692295d58cdff2c8e4b8304d3ccdab8c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: fa2959dd8cd7730a7f93b604292db73523c1b0aca816ad1d14c9042e63adcbe7
 ---
 
 ---
@@ -83,7 +83,7 @@ malformed session identifier returns 400.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

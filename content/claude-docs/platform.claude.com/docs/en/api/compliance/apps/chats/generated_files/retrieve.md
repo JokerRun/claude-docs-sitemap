@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 4a6b56cb3464ba95c950bc1c22ce08ba5c0da8aada5ffc9ed4bd34e56747be0c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e6288b03eea6586d545e7b8f890050703c1ca8b13206ef048fa1ca7be9a8af04
 ---
 
 ---
@@ -30,7 +30,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

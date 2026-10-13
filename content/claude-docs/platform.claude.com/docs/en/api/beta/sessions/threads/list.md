@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 733707aacca23028c7273016119d37788e310c0517d52806f5ec290a9a51922b
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: cde0fc33fed40aa541018d45fd1de01c288fd2ad3945307ddc34fc931ea84456
 ---
 
 ---
@@ -1007,7 +1007,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads \
           }
         ],
         "model": {
-          "id": "claude-opus-5",
+          "id": "claude-opus-5-5",
           "effort": {
             "type": "low"
           },

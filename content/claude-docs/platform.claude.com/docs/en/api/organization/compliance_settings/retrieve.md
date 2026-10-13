@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/compliance_settings/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8a99df5a3f711386b72adfa795e5d3255d86c28a0f88f7383e32b7f444104f36
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 7d4298f804b5dca0d4df4957316b057865088da7a890c15d67231eca48776177
 ---
 
 ---
@@ -27,7 +27,7 @@ organization reads the state inherited from the parent's configuration.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

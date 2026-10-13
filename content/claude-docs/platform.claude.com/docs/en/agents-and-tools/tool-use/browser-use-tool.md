@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d97b7838afd08e166d8f8f82293c962308bbba1ae9a1f150ff230cfa57d2be18
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: aba7396ce69698adefa980e267df9d0a1c2e0eb0b39fc393b0047251517c964e
 ---
 
 ---
@@ -680,7 +680,7 @@ Here's a skeleton of that loop's tool-call step in two parts. First, stub member
           'type' => typeText($input['text']),
           'screenshot' => captureScreenshot(),
           // Handle other actions as needed
-          default => throw new RuntimeException("Unknown or unimplemented member: {$name}"),
+          default => throw new \RuntimeException("Unknown or unimplemented member: {$name}"),
       };
   }
   ```
@@ -1013,7 +1013,7 @@ The second part runs a batch in order, dispatches each block to those handlers, 
           try {
               // A real executor also returns a browser_state block on navigation and tab-management results
               $toolResults[] = [...$result, 'content' => handleBrowserAction($block->name, $block->input)];
-          } catch (Throwable $e) {
+          } catch (\Throwable $e) {
               $failed = true;
               $toolResults[] = [...$result, 'content' => 'Error: ' . $e->getMessage(), 'is_error' => true];
           }

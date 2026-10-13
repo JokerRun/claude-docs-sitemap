@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a9569aee9e3b629bd5bc2aa16a9f9417dfbb4ef3e8929fc0d771b1563ed2dcbc
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 53d01602e1b6b86daebba6e23ea7977363eef9ca3e80b4de9123feab7982a6d4
 ---
 
 ---
@@ -49,7 +49,7 @@ Requests whose requester is no longer a member are excluded.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

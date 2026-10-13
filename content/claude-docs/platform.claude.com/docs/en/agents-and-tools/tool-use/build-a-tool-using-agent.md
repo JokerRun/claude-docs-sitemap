@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 58251ef667f2abf5f8612f610edfa0b571c56dd02a0f9b24de4b31e0ad152670
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 5d17185b83a86d3182268733bb8d2c832b6fee7f00210e6359feecac8a9159f9
 ---
 
 ---
@@ -3828,7 +3828,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
   {
       if ($name === 'create_calendar_event') {
           if (count($input['attendees'] ?? []) > 10) {
-              throw new InvalidArgumentException('Too many attendees (max 10)');
+              throw new \InvalidArgumentException('Too many attendees (max 10)');
           }
 
           return json_encode([
@@ -3843,7 +3843,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
           ]);
       }
 
-      throw new InvalidArgumentException("Unknown tool: {$name}");
+      throw new \InvalidArgumentException("Unknown tool: {$name}");
   }
 
   // Build a request that exceeds the tool's attendee limit so the error path runs.
@@ -3872,7 +3872,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
                       'tool_use_id' => $block->id,
                       'content' => runTool($block->name, $block->input),
                   ];
-              } catch (Exception $e) {
+              } catch (\Exception $e) {
                   // Signal failure so Claude can retry or ask for clarification.
                   $toolResults[] = [
                       'type' => 'tool_result',
@@ -4524,7 +4524,7 @@ Each SDK provides a helper that turns an ordinary function into a runnable tool 
       ],
       run: function (array $input): string {
           if (count($input['attendees'] ?? []) > 10) {
-              throw new InvalidArgumentException('Too many attendees (max 10)');
+              throw new \InvalidArgumentException('Too many attendees (max 10)');
           }
 
           return json_encode([

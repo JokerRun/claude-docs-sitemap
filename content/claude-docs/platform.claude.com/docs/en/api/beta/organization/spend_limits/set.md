@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1751b1629a8df84e25c9c92eda13aa60d8548bc0c608ce22222cb7f65b06cc5f
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 0fd019169aa886335de8c3faf645196a8b33831f5ddad1643fbafe1131bd6d19
 ---
 
 ---
@@ -30,7 +30,7 @@ Anthropic account team.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
@@ -222,7 +222,7 @@ Anthropic account team.
 
   - `is_enabled: boolean`
 
-    Read-only. `false` when extra usage is switched off for this organization (`organization` limit) or for this member (`user` limit); `amount` is kept and applies again when it's switched back on. Always `true` for other limits.
+    Read-only. `false` when extra usage is switched off for this organization (`organization` limit); `amount` is kept and applies again when it's switched back on. Always `true` for other limits.
 
   - `period: BetaSpendLimitPeriod`
 

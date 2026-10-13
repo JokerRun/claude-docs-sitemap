@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 67836d3b900006ffdb3c1f18f754370ce63e5f8165ac419d900b6e33ddbdc2c4
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 677c24250fc534e5225c3f003d0035e991131cf80c1e3b8096368600b90c7913
 ---
 
 ---
@@ -331,7 +331,7 @@ The actual credential values you supply (`token` (java, php; csharp, go: `Token`
               type: 'mcp_oauth',
               mcpServerURL: 'https://mcp.slack.com/mcp',
               accessToken: 'xoxp-...',
-              expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+              expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
               refresh: ManagedAgentsMCPOAuthRefreshParams::with(
                   tokenEndpoint: 'https://slack.com/api/oauth.v2.user.access',
                   clientID: '1234567890.0987654321',
@@ -965,7 +965,7 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       auth: ManagedAgentsMCPOAuthUpdateParams::with(
           type: 'mcp_oauth',
           accessToken: 'xoxp-new-...',
-          expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+          expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
           refresh: ManagedAgentsMCPOAuthRefreshUpdateParams::with(refreshToken: 'xoxe-1-new-...'),
       ),
   );

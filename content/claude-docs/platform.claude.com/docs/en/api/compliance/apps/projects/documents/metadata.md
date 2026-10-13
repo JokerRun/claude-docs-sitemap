@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a3364630edf35af335f63137a49bca330da5da8c6a7f586fe659005dc2a9eb83
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: e9d28da66fa252a18cad13c929e99968cba5a72d8a5a4566fb752bf2f8742559
 ---
 
 ---
@@ -33,7 +33,7 @@ consumer can dedupe or match hashes without downloading every document.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

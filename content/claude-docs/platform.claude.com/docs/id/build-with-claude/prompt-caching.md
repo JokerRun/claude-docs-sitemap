@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c808d28d08edef3ce38859ebf0b06da3b132513032589836f53850c3a899661c
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: c83c776350d1c33c5b8fb900dd8130138b1ba9807a165653ccd0be0b3c554b82
 ---
 
 ---
@@ -486,11 +486,11 @@ Caching otomatis adalah cara termudah untuk mengaktifkan caching prompt. Alih-al
 
 Dengan caching otomatis, titik cache bergerak maju secara otomatis seiring percakapan bertambah panjang. Setiap permintaan baru menyimpan ke cache semua konten hingga blok terakhir yang dapat di-cache, dan konten sebelumnya dibaca dari cache.
 
-| Permintaan   | Konten                                                                                   | Perilaku cache                                                              |
-| ------------ | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Permintaan 1 | System + User(1) + Asst(1) + **User(2)** ◀ cache                                         | Semuanya ditulis ke cache                                                   |
-| Permintaan 2 | System + User(1) + Asst(1) + User(2) + Asst(2) + **User(3)** ◀ cache                     | System hingga User(2) dibaca dari cache; Asst(2) + User(3) ditulis ke cache |
-| Permintaan 3 | System + User(1) + Asst(1) + User(2) + Asst(2) + User(3) + Asst(3) + **User(4)** ◀ cache | System hingga User(3) dibaca dari cache; Asst(3) + User(4) ditulis ke cache |
+| Permintaan   | Konten                                                                                                       | Perilaku cache                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Permintaan 1 | System<br />+ User(1) + Asst(1)<br />+ **User(2)** ◀ cache                                                   | Semuanya ditulis ke cache                                                        |
+| Permintaan 2 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ **User(3)** ◀ cache                          | System hingga User(2) dibaca dari cache;<br />Asst(2) + User(3) ditulis ke cache |
+| Permintaan 3 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ User(3) + Asst(3)<br />+ **User(4)** ◀ cache | System hingga User(3) dibaca dari cache;<br />Asst(3) + User(4) ditulis ke cache |
 
 Breakpoint cache secara otomatis berpindah ke blok terakhir yang dapat di-cache di setiap permintaan, sehingga Anda tidak perlu memperbarui penanda `cache_control` apa pun seiring percakapan bertambah panjang.
 

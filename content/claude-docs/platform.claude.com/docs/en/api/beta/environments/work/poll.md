@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d4d83e89b0c95a6e46449c3269e1961de8a427422b3847b121bd34cabbf3839e
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: f1ba8cc9401b3048160ed18ea8e98367d70e2cb133798bb0b58297fcb9b99d32
 ---
 
 ---
@@ -42,7 +42,7 @@ Long poll for work items in the queue.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 

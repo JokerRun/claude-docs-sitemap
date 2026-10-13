@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 2682fb2af0b6d87b60f89be7f2b6f9cd1183536965d63c8e7daec99853f49386
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ff10c006e6bdfb57bff492da0a9296153e6666dd4facd05af8f8a3d46494d211
 ---
 
 ---
@@ -42,13 +42,13 @@ Members and invites are the same endpoints for both organization types; this pag
 
 This page covers five resources:
 
-| Resource          | Endpoints                                                                                                                                                                                                                                | Use for                                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Members**       | `GET /v1/organizations/users` `GET /v1/organizations/users/{user_id}` `POST /v1/organizations/users/{user_id}` `DELETE /v1/organizations/users/{user_id}`                                                                                | List the organization's members or look one up by email; change a member's role; remove a member.          |
-| **Invites**       | `POST /v1/organizations/invites` `GET /v1/organizations/invites` `GET /v1/organizations/invites/{invite_id}` `DELETE /v1/organizations/invites/{invite_id}`                                                                              | Invite a person to the organization, track the invitation's status, and withdraw it before it is accepted. |
-| **Groups**        | `GET /v1/organizations/rbac_groups` `GET /v1/organizations/rbac_groups/{rbac_group_id}` `POST /v1/organizations/rbac_groups` `POST /v1/organizations/rbac_groups/{rbac_group_id}` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}` | Read your enterprise's groups and the custom roles attached to each; create, rename, and delete groups.    |
-| **Group members** | `GET /v1/organizations/rbac_groups/{rbac_group_id}/members` `POST /v1/organizations/rbac_groups/{rbac_group_id}/members` `DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`                                        | Read a group's members; add and remove members.                                                            |
-| **Custom roles**  | `GET /v1/organizations/rbac_roles` `GET /v1/organizations/rbac_roles/{rbac_role_id}` `GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions`                                                                                       | Read your organization's custom roles and the permissions each role grants.                                |
+| Resource          | Endpoints                                                                                                                                                                                                                                                    | Use for                                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| **Members**       | `GET /v1/organizations/users`<br />`GET /v1/organizations/users/{user_id}`<br />`POST /v1/organizations/users/{user_id}`<br />`DELETE /v1/organizations/users/{user_id}`                                                                                     | List the organization's members or look one up by email; change a member's role; remove a member.          |
+| **Invites**       | `POST /v1/organizations/invites`<br />`GET /v1/organizations/invites`<br />`GET /v1/organizations/invites/{invite_id}`<br />`DELETE /v1/organizations/invites/{invite_id}`                                                                                   | Invite a person to the organization, track the invitation's status, and withdraw it before it is accepted. |
+| **Groups**        | `GET /v1/organizations/rbac_groups`<br />`GET /v1/organizations/rbac_groups/{rbac_group_id}`<br />`POST /v1/organizations/rbac_groups`<br />`POST /v1/organizations/rbac_groups/{rbac_group_id}`<br />`DELETE /v1/organizations/rbac_groups/{rbac_group_id}` | Read your enterprise's groups and the custom roles attached to each; create, rename, and delete groups.    |
+| **Group members** | `GET /v1/organizations/rbac_groups/{rbac_group_id}/members`<br />`POST /v1/organizations/rbac_groups/{rbac_group_id}/members`<br />`DELETE /v1/organizations/rbac_groups/{rbac_group_id}/members/{user_id}`                                                  | Read a group's members; add and remove members.                                                            |
+| **Custom roles**  | `GET /v1/organizations/rbac_roles`<br />`GET /v1/organizations/rbac_roles/{rbac_role_id}`<br />`GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions`                                                                                                 | Read your organization's custom roles and the permissions each role grants.                                |
 
 Custom roles and their group attachments are managed in [claude.ai organization settings](https://claude.ai/admin-settings); the API reads them but cannot change them.
 

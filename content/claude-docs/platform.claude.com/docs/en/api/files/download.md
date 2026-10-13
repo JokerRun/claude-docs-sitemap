@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/download
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 359279e62c4a3a49f22b3d6c8e74718dfbd3a3c44faf72cf317f14cd47585f60
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 6c0cdd7c09582182b40b9d06dcdfe7886590d90d76f5dcdfd6933459b62b39d7
 ---
 
 ---
@@ -28,7 +28,7 @@ Download File
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-workspace-id": optional string`
 

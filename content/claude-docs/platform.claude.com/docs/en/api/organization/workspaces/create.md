@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: daf5b7354d0deafabc0d1780c6d6951ad2ec2df88843b8939dc4bb878e231582
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 8b2f54fa2858b268d8aaced4b5ff22a0097c1f9948365da22f219cf104e804ac
 ---
 
 ---
@@ -22,7 +22,7 @@ Create Workspace
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

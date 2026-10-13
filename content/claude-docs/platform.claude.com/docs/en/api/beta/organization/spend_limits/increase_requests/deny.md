@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 281e920cddce9d3c5024a28d5fc5ec7d50447bdff18a4fdb875f54dc0b7f5f67
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 8c447b6556e777e53844fcdc06944922f37d149e16a8abb2032b3a3b4faa773b
 ---
 
 ---
@@ -31,7 +31,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e02f49fa5d552c3171d23bf117fedff098f34b333145912682411f250e9795d9
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 9ebd67e06ba91627d3d19ea204feb164c6e7d548060194cb3d700273292ae7b6
 ---
 
 ---
@@ -32,7 +32,7 @@ download the bytes.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -118,7 +118,7 @@ operation that cannot be undone.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 
@@ -170,7 +170,7 @@ Downloads the binary content of a file referenced in chat messages.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9e5a424ca3a9999f1e2e4e77447714f40cdcbbcfac7f5c2e3e41e028de718be2
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 25f7878b7a8c5791e9ef09a739f925829d39cde2fa3d7a1a79141e78559ddbce
 ---
 
 ---
@@ -30,7 +30,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

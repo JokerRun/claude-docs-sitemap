@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/members/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 352d41fc301f5ae6c5a8542d7a3971b01bfef6a30f8bd50958722070432b0db5
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: fbd73df8213d7d18e62a4f77de16caac00a61e53106a4a2ba6ac51f18292bd14
 ---
 
 ---
@@ -32,7 +32,7 @@ Get Workspace Member
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

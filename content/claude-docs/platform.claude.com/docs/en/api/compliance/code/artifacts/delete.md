@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0918e65a345f435cbf20cc41325fcb32680ac7e8d4ce2e0c0dc9be6a7fa06420
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: ddde61b8cb074eb16a9f4d79b6f4261284400670695c5dd69e3d4ef82472cd3a
 ---
 
 ---
@@ -35,7 +35,7 @@ Artifact.
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"x-api-key": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a255134e79e387d56799abfb3da08daa9d76f65b55c069fe2958c1ed3c1873cf
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 93eba0e8cb9e9849a5b3de1d1fb3f92fd3f6af7ac29496a948c50fd904f6790d
 ---
 
 ---
@@ -89,7 +89,7 @@ on a Claude Enterprise plan. Requires an API key with the
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 ## Returns
 

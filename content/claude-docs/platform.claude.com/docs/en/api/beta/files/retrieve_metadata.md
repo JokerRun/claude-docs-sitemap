@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0309b694e09b53dfaecbf340324c7922d6ef34cee476ad1b83fb96b60fc97551
+fetched_at: 2026-10-13T02:33:54.812386Z
+sha256: 6f4d2c7586f57ac3be8c9f2963f6b804daf0f05aeed3ee733e293320ccc19eb8
 ---
 
 ---
@@ -28,7 +28,7 @@ Get File Metadata
 
   The version of the Claude API you want to use.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
