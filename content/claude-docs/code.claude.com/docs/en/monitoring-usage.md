@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: d6c8c4717d3e694e48ca9e5aa023c40ca2305ef849755375d2ee914ec48e5e47
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: f6f62ca9393def62b259dfa3b3928175f16bf3f1257fb2b4dc8200e02cbc590d
 ---
 
 > ## Documentation Index
@@ -1267,7 +1267,7 @@ Logged when conversation compaction completes.
 * `pre_tokens`: Approximate token count before compaction
 * `post_tokens`: Approximate token count after compaction
 * `error`: Error message when compaction failed
-* `precompute_reuse`: Only set when `trigger` is `"manual"`. Auto-compaction can prepare a summary in the background before the context window fills, and this attribute records whether `/compact` reused that prepared summary. `"hit"` means it was reused; `"miss_custom_instructions"`, `"miss_hook"`, and `"miss_not_ready"` give the reason a fresh summary was computed instead
+* `precompute_reuse`: Only set when `trigger` is `"manual"` or for an [idle compaction](/docs/en/settings-reference#idlecompaction), which reports `trigger` as `"auto"`. Auto-compaction can prepare a summary in the background before the context window fills, and this attribute records whether the compaction reused that prepared summary. `"hit"` means it was reused; `"miss_custom_instructions"`, `"miss_hook"`, and `"miss_not_ready"` give the reason a fresh summary was computed instead
 
 #### Subagent completed event
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision-coordinates
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 6858de5bd8059664774f4adfcdd5aee59ec13429391af4fc269c2afe16e7dc6f
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: f10edc10f2163b6922dbaaccaad21530588e25301cb68b7baee3a84ced091177
 ---
 
 ---
@@ -129,7 +129,9 @@ First check which resolution tier your model is on (see [Resolution and token co
    */
   function roundTiesToEven(value: number): number {
     const floor = Math.floor(value);
-    if (value - floor !== 0.5) return Math.round(value);
+    if (value - floor !== 0.5) {
+      return Math.round(value);
+    }
     return floor % 2 === 0 ? floor : floor + 1;
   }
 
@@ -151,7 +153,9 @@ First check which resolution tier your model is on (see [Resolution and token co
       Math.ceil(h / 28) * 28 <= maxEdge &&
       countImageTokens(w, h) <= maxTokens;
 
-    if (fits(width, height)) return [width, height];
+    if (fits(width, height)) {
+      return [width, height];
+    }
     if (height > width) {
       const [resizedH, resizedW] = resizedSize(height, width, maxEdge, maxTokens);
       return [resizedW, resizedH];

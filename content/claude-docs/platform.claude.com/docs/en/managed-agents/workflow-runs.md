@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 46eadcccb2f32de959b8d4b1fedf772134960af4a9f5a2a42c2758c0ad8a89dc
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 7d35f8574d5c6f1013896a7d23463b6f2fe34c7d89a51fc1daee9607119ccc54
 ---
 
 ---
@@ -306,7 +306,9 @@ This sample follows a session from your message to the agent's answer. It opens 
         } catch (error) {
           // The server refuses a result that comes too late, after it
           // archived the call's thread. Keep following the run.
-          if (!(error instanceof Anthropic.BadRequestError)) throw error;
+          if (!(error instanceof Anthropic.BadRequestError)) {
+            throw error;
+          }
           console.log(`  Answer to ${event.name} refused: ${error.message}`);
         }
         break;

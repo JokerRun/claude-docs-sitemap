@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/budgets
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 756b935589e287ce09bf4acf64f4d4764cdc761a40fd147fd86dd6f7f7513665
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 85f58a1ccad5ef0de674316860d4c350e568e4452edc38de4735a95092497a80
 ---
 
 ---
@@ -169,7 +169,7 @@ Enforcement uses the exact, unrounded list cost. The `list_cost` (java, php: `li
 
 ## When a session reaches its budget
 
-The cap is enforced between model requests, not mid-request. Before each model request, the platform checks the session's consumed list cost, and once that total reaches the cap every thread pauses before its next request. The request that carried the total past the cap was admitted while the session was still under it and runs to completion, so a paused session's recorded `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) reads at or a fraction past `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`): a session capped at `"50"` (50 cents) can pause with a `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) of `"53"`. This is expected, not a billing error, and the overshoot is bounded by one model request per thread. Treat the budget as a bound on new work rather than an exact stopping point, and size the cap with that one-request margin in mind.
+The cap is enforced between model requests, not mid-request. Before each model request, the platform checks the session's consumed list cost, and once that total reaches the cap every thread pauses before its next request. The request that carried the total past the cap was admitted while the session was still under it and runs to completion, so a paused session's recorded `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) reads at or a fraction past `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`): a session capped at `"50"` (50 cents) can pause with a `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) of `"53"`. This is expected, not a billing error. Model spend past the cap is at most the cost of one model request for each thread. The tool calls in that request's response still run, and their web searches and running time also count toward list cost. Treat the budget as a bound on new work rather than an exact stopping point, and size the cap with that margin in mind.
 
 A session that reaches its budget goes idle with a `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) of `budget_reached`; it is not terminated, and its history and sandbox are preserved like any other idle session's. On the [event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming) you'll see, in order:
 

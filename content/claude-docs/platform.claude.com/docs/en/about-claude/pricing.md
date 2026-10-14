@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 67904e280b595d31f373c857844ed380072ae79d280d8f385640b5992d337ca9
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 9c7be951e649665896711d46691b191ef0d4e0ba29b937091053c808393abd63
 ---
 
 ---
@@ -450,24 +450,24 @@ Runtime is measured to the millisecond and accrues only while the session's stat
 
 ### Worked example
 
-A one-hour coding session using Claude Opus 5 that consumes 50,000 input tokens and 15,000 output tokens:
+A one-hour coding session using Claude Opus 5.5 that consumes 50,000 input tokens and 15,000 output tokens:
 
-| Line item       | Calculation              | Cost       |
-| --------------- | ------------------------ | ---------- |
-| Input tokens    | 50,000 × $5 / 1,000,000  | $0.25      |
-| Output tokens   | 15,000 × $25 / 1,000,000 | $0.375     |
-| Session runtime | 1.0 hour × $0.08         | $0.08      |
-| **Total**       |                          | **$0.705** |
+| Line item       | Calculation              | Cost      |
+| --------------- | ------------------------ | --------- |
+| Input tokens    | 50,000 × $4 / 1,000,000  | $0.20     |
+| Output tokens   | 15,000 × $20 / 1,000,000 | $0.30     |
+| Session runtime | 1.0 hour × $0.08         | $0.08     |
+| **Total**       |                          | **$0.58** |
 
 If prompt caching is active and 40,000 of the input tokens are cache reads:
 
-| Line item             | Calculation                   | Cost       |
-| --------------------- | ----------------------------- | ---------- |
-| Uncached input tokens | 10,000 × $5 / 1,000,000       | $0.05      |
-| Cache read tokens     | 40,000 × $5 × 0.1 / 1,000,000 | $0.02      |
-| Output tokens         | 15,000 × $25 / 1,000,000      | $0.375     |
-| Session runtime       | 1.0 hour × $0.08              | $0.08      |
-| **Total**             |                               | **$0.525** |
+| Line item             | Calculation                    | Cost       |
+| --------------------- | ------------------------------ | ---------- |
+| Uncached input tokens | 10,000 × $4 / 1,000,000        | $0.04      |
+| Cache read tokens     | 40,000 × $4 × 0.05 / 1,000,000 | $0.008     |
+| Output tokens         | 15,000 × $20 / 1,000,000       | $0.30      |
+| Session runtime       | 1.0 hour × $0.08               | $0.08      |
+| **Total**             |                                | **$0.428** |
 
 ## Additional pricing considerations
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/plugins-api
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 40364729114eab04817893597257d3fa3c5d1156c025ca9670511d9ccef79530
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: c969c6e97483e9600d4e61403bd5375eb513e12778183b0916e1b16ccd915c9a
 ---
 
 ---
@@ -1873,7 +1873,9 @@ Downloading a **member-owned** plugin's archive records a `claude_plugin_archive
   const response = await client.beta.organization.plugins.versions.download(versionId, {
     plugin_id: pluginId
   });
-  if (!response.body) throw new Error("The download returned no body");
+  if (!response.body) {
+    throw new Error("The download returned no body");
+  }
 
   await writeFile(`${pluginId}_${versionId}.zip`, response.body);
   ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 45b370216e463bac22090d9f5823d9e410de5a05e69fac111dd8795628db4181
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 21adcbeae4e353ffed4ddc16d8b7036847561441f006187bb9be66c6c0190efa
 ---
 
 ---
@@ -231,7 +231,7 @@ The Python and TypeScript SDKs expose the request ID as a `_request_id` property
   client = AnthropicAWS(aws_region="us-west-2")
 
   response = client.messages.with_raw_response.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -247,7 +247,7 @@ The Python and TypeScript SDKs expose the request ID as a `_request_id` property
 
   const { response: raw, request_id } = await client.messages
     .create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     })

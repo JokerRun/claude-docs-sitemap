@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 8f65d1b1463bc7e24fa0eeeadd290278162b1f26c56be6190a1db510de8d7ca0
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 6da5ac48b2cc3548746d56b6c76de876f5af8a7e8c1191e0d2625b63956eeecf
 ---
 
 > ## Documentation Index
@@ -810,6 +810,8 @@ If you don't set an auto-compact window, Claude Code compacts when the conversat
 * When you set [`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`](/docs/en/env-vars), models with a native 1M window, such as Sonnet 5 and the Fable models, compact at the 200K boundary
 * Models running with a native 1M window compact before the window fills, at about 967K tokens by default. These include the Fable models, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later. Behind a custom `ANTHROPIC_BASE_URL`, see [the context window behind a gateway](#context-window-behind-a-gateway)
 * Sessions on a model ID Claude Code doesn't recognize, such as an [LLM gateway](/docs/en/llm-gateway) alias, compact at the context window Claude Code assumes for the ID; see [Correct the window for a gateway or custom model ID](#correct-the-window-for-a-gateway-or-custom-model-id)
+
+See the [`idleCompaction`](/docs/en/settings-reference#idlecompaction) setting for when Claude Code also compacts a conversation you leave idle.
 
 ### Correct the window for a gateway or custom model ID
 

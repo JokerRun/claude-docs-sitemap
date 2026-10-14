@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a25f218dc3d8952319f939ae6b317062b54505e87416e973f0b7424d2fb218f7
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 7f5bd03504e01757099c047ea55ee0350b328809c8b947a4e1768f48a86cf3a5
 ---
 
 ---
@@ -259,7 +259,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
         // 1. Catat id yang diumumkan dan buka snapshot. Delta dan
         //    event yang di-buffer membawa id yang sama.
         const preview = accumulateManagedAgentsEvent(undefined, event);
-        if (preview) previews.set(event.event.id, preview);
+        if (preview) {
+          previews.set(event.event.id, preview);
+        }
         console.log(`event_start             ${event.event.type} ${event.event.id}`);
         break;
       }
@@ -759,7 +761,9 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
       break;
     }
   }
-  if (!childThreadId) throw new Error("No child thread found");
+  if (!childThreadId) {
+    throw new Error("No child thread found");
+  }
 
   // Stream child thread menerima parameter event_deltas yang sama dengan
   // stream sesi.

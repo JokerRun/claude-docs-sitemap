@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 60ed0053d4436f8deda318118220f71eec4c3119efcbbf2c7bb67864f94ae33c
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 97dfac82b148467bbc5b9aab769c33418c18e4e34d217658fc27f5b65d122acb
 ---
 
 > ## Documentation Index
@@ -3145,7 +3145,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `TodoWrite`
 
 <Note>
-  The following tools are available by default only on Claude 3.x models, Opus 4 through 4.7, Sonnet 4 through 4.6, and Haiku 4.5. On every other model, including model IDs Claude Code doesn't recognize, they aren't available unless you opt in:
+  The following tools are available by default only on Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5, and earlier models. On every other model, including model IDs Claude Code doesn't recognize, they aren't available unless you opt in:
 
   * `TodoWrite`
   * `TaskCreate`

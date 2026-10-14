@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 7db473823ea6b7ca3d4143dbf5002f339625d9fc171a01afb92497ec9d3c9ac6
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 639eecf210bb75d35087569d1065ae05d4d0125f6b5c7341e291ebf4a420855b
 ---
 
 ---
@@ -306,7 +306,9 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
         } catch (error) {
           // Server menolak hasil yang datang terlambat, setelah server
           // mengarsipkan thread panggilan tersebut. Terus ikuti eksekusinya.
-          if (!(error instanceof Anthropic.BadRequestError)) throw error;
+          if (!(error instanceof Anthropic.BadRequestError)) {
+            throw error;
+          }
           console.log(`  Answer to ${event.name} refused: ${error.message}`);
         }
         break;

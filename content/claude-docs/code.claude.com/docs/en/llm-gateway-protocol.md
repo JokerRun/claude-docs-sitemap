@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 030da238a27c1e9b0bcb4af34429f3ac2f1603b0c321b0809c5b353adb2fa41e
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: b2eb66031d7049f026626a5c7fd66c049f2de935b2447d6bcdc2853222548c3c
 ---
 
 > ## Documentation Index
@@ -220,7 +220,7 @@ Fine-grained tool streaming is one of the direct-connection defaults: it is off 
 
 | Feature | Header and body pair | Symptom when broken | Remediation |
 | :- | :- | :- | :- |
-| [Adaptive reasoning](/docs/en/model-config#adjust-effort-level) | No beta header. Claude Code sends `thinking: {"type": "adaptive"}` for Claude 4.6 and later, and treats model names it doesn't recognize, such as gateway aliases, as current models that receive the field | `400` naming the `thinking` field or the `adaptive` tag when the upstream model build doesn't accept it | Upgrade the upstream. On Opus 4.6 and Sonnet 4.6, developers can set `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1` instead |
+| [Adaptive reasoning](/docs/en/model-config#adjust-effort-level) | No beta header. Claude Code sends `thinking: {"type": "adaptive"}` for Claude Opus 4.6, Claude Sonnet 4.6, Claude Haiku 5.5, Claude Fable 5, and later models, and treats model names it doesn't recognize, such as gateway aliases, as current models that receive the field | `400` naming the `thinking` field or the `adaptive` tag when the upstream model build doesn't accept it | Upgrade the upstream. On Opus 4.6 and Sonnet 4.6, developers can set `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1` instead |
 | [Context management](https://platform.claude.com/docs/en/build-with-claude/context-editing) | Context management beta header pairs with the `context_management` body field | `400` with `Extra inputs are not permitted`. Common when a gateway accepts Anthropic-format requests but forwards them to Amazon Bedrock | Forward both, or [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](#disable-pre-release-capabilities) |
 | [Extended context](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) and [interleaved thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking#interleaved-thinking) | Beta headers only, no body field | Silently unavailable when the header is stripped; the upstream never sees the capability request | Forward `anthropic-beta` verbatim |
 | Beta [tool fields](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) | Tool-related beta headers pair with tool schema fields such as `strict` and `defer_loading` | `400` naming the unrecognized tool schema field when the body passes through without its header | Forward both, or [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](#disable-pre-release-capabilities) |

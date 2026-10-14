@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: b544c3e2f36c8e50a5b89782effad37d98cbe998b46244792fe5e13e1d8f6487
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 1fe7801361f6ac2098b9e5c8144c0759e01adacc3e99fc5788586eb43d38253f
 ---
 
 ---
@@ -49,7 +49,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
       { "type": "memory_store", "memory_store_id": "$store_id" },
       { "type": "sessions", "session_ids": ["$session_a", "$session_b"] }
     ],
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5-5",
     "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
   }
   EOF
@@ -62,7 +62,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
       memory_store_id: $store_id
     - type: sessions
       session_ids: [$session_a, $session_b]
-  model: claude-opus-4-8
+  model: claude-opus-5-5
   instructions: Focus on coding-style preferences; ignore one-off debugging notes.
   YAML
   ```
@@ -73,7 +73,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
           {"type": "memory_store", "memory_store_id": store_id},
           {"type": "sessions", "session_ids": [session_a, session_b]},
       ],
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       instructions="Focus on coding-style preferences; ignore one-off debugging notes.",
   )
   print(dream.id)  # drm_01...
@@ -85,7 +85,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
       { type: "memory_store", memory_store_id: storeId },
       { type: "sessions", session_ids: [sessionA, sessionB] },
     ],
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     instructions: "Focus on coding-style preferences; ignore one-off debugging notes.",
   });
   console.log(dream.id); // drm_01...
@@ -107,7 +107,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
               SessionIds = [sessionA, sessionB],
           },
       ],
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5-5",
       Instructions = "Focus on coding-style preferences; ignore one-off debugging notes.",
   });
   Console.WriteLine(dream.ID);  // drm_01...
@@ -120,7 +120,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   		anthropic.BetaDreamInputParamOfSessions([]string{sessionA, sessionB}),
   	},
   	Model: anthropic.BetaDreamModelParamsUnion{
-  		OfString: anthropic.String("claude-opus-4-8"),
+  		OfString: anthropic.String("claude-opus-5-5"),
   	},
   	Instructions: anthropic.String("Focus on coding-style preferences; ignore one-off debugging notes."),
   })
@@ -135,7 +135,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
       DreamCreateParams.builder()
           .addMemoryStoreInput(storeId)
           .addSessionsInput(List.of(sessionA, sessionB))
-          .model("claude-opus-4-8")
+          .model("claude-opus-5-5")
           .instructions("Focus on coding-style preferences; ignore one-off debugging notes.")
           .build()
   );
@@ -148,7 +148,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
           ['type' => 'memory_store', 'memory_store_id' => $storeId],
           ['type' => 'sessions', 'session_ids' => [$sessionA, $sessionB]],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       instructions: 'Focus on coding-style preferences; ignore one-off debugging notes.',
   );
   echo "{$dream->id}\n"; // drm_01...
@@ -160,7 +160,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
       {type: "memory_store", memory_store_id: store_id},
       {type: "sessions", session_ids: [session_a, session_b]}
     ],
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     instructions: "Focus on coding-style preferences; ignore one-off debugging notes."
   )
   puts dream.id # drm_01...
@@ -313,7 +313,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
 
 <CodeGroup>
   ```bash cURL
-  # Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
+  # After the dream ends, the memory_store output holds the rebuilt store
   output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
 
   curl -s https://api.anthropic.com/v1/sessions \
@@ -346,7 +346,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   ```
 
   ```python Python
-  # Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
+  # After the dream ends, the output holds the rebuilt memory store
   output_store_id = next(
       output.memory_store_id for output in dream.outputs if output.type == "memory_store"
   )
@@ -361,7 +361,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   ```
 
   ```typescript TypeScript
-  // Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
+  // After the dream ends, the output holds the rebuilt memory store
   const output = dream.outputs.find((entry) => entry.type === "memory_store");
   const outputStoreId = output!.memory_store_id;
 

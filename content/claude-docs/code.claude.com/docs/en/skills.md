@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 35fd2c11f870fbe1497a53796de31b2a6b760645e724bda58894525356d4602a
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 22827c7d760af84428b8767ccee80455ecf09f42b60176b9f5c20b65f5b2ebbf
 ---
 
 > ## Documentation Index
@@ -801,7 +801,9 @@ Skills and [subagents](/docs/en/sub-agents) work together in two directions:
 | Skill with `context: fork` | From agent type | SKILL.md content | CLAUDE.md, per the agent's [startup context](/docs/en/sub-agents#what-loads-at-startup) |
 | Subagent with `skills` field | Subagent's markdown body | Claude's delegation message | Preloaded skills + CLAUDE.md, per the subagent's [startup context](/docs/en/sub-agents#what-loads-at-startup) |
 
-With `context: fork`, you write the task in your skill and pick an agent type to execute it. The built-in Explore and Plan agents [skip CLAUDE.md and git status](/docs/en/sub-agents#what-loads-at-startup) to keep their context small, so a forked skill using `agent: Explore` sees only the SKILL.md content and the agent's own system prompt. For the inverse, where you define a custom subagent that uses skills as reference material, see [Subagents](/docs/en/sub-agents#preload-skills-into-subagents).
+With `context: fork`, you write the task in your skill and pick an agent type to execute it. The built-in Explore and Plan agents [start without CLAUDE.md and git status](/docs/en/sub-agents#what-loads-at-startup) to keep their context small. Put everything the task needs in your SKILL.md. A forked skill using `agent: Explore` starts with that content and the agent's own system prompt, and none of your CLAUDE.md files.
+
+For the inverse, where you define a custom subagent that uses skills as reference material, see [Subagents](/docs/en/sub-agents#preload-skills-into-subagents).
 
 #### Example: Research skill using Explore agent
 

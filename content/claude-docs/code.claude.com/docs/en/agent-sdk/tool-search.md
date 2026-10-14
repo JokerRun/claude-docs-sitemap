@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-10-04T03:00:01.408900Z
-sha256: 15e9328cc1f74edb24a883144f1f296f8ffa62176fb6c8494432ea7399a546f4
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 967d986f41213c68af7ddd360f6f70282516052cde1781554f39ff8b8540cdc4
 ---
 
 > ## Documentation Index
@@ -47,8 +47,8 @@ The SDK also disables tool search when `ANTHROPIC_BASE_URL` points to a non-firs
 
 | Value | Behavior |
 | :- | :- |
-| (unset) | Tool search is on. Tool definitions are deferred and discovered on demand. Falls back to loading upfront on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation, a non-first-party `ANTHROPIC_BASE_URL`, or a Microsoft Foundry deployment hosted on Azure. |
-| `true` | Tool search is always on, except on a Microsoft Foundry deployment hosted on Azure, where the server-side rejection still forces upfront loading, and on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation, where the SDK keeps loading tool definitions upfront. The SDK sends the beta header through proxies, and requests fail on proxies that don't support `tool_reference` blocks. |
+| (unset) | Tool search is on. Tool definitions are deferred and discovered on demand. Falls back to loading upfront on models earlier than Opus 4 and Sonnet 4, Google Cloud's Agent Platform models earlier than Opus 4.5, Sonnet 4.5, and Haiku 4.5, a non-first-party `ANTHROPIC_BASE_URL`, or a Microsoft Foundry deployment hosted on Azure. |
+| `true` | Tool search stays on with a non-first-party `ANTHROPIC_BASE_URL`. The other (unset) fallbacks still apply. The SDK sends the beta header through proxies, and requests fail on proxies that don't support `tool_reference` blocks. |
 | `auto` | Counts the tokens in the tool definitions that tool search can defer and compares the total against the model's context window. When the total reaches 10% of the window, tool search activates. Below that, the SDK loads every tool definition into context upfront. |
 | `auto:N` | Same as `auto` with a custom percentage. `auto:5` activates when those definitions reach 5% of the context window. Lower values activate sooner. |
 | `false` | Tool search is off. All tool definitions are loaded into context on every turn. |
@@ -166,7 +166,7 @@ For the full set of system prompt options, see [Modifying system prompts](/docs/
 
 * **Maximum tools:** 10,000 tools in your catalog
 * **Search results:** returns up to five most relevant tools per search by default
-* **Model support:** Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.5, and later models; see [model compatibility in the API docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#model-compatibility) for the current list. The same minimums apply on Google Cloud's Agent Platform.
+* **Model support:** Opus 4, Sonnet 4, Haiku 4.5, and later models, or Opus 4.5, Sonnet 4.5, Haiku 4.5, and later models on Google Cloud's Agent Platform. On earlier models the SDK loads tool definitions upfront, as [Configure tool search](#configure-tool-search) describes.
 
 ## Related documentation
 

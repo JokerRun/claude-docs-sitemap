@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: ca57e8921b5681781b02af90681fbf72dc83ef8fb940e2035974eabcb0c314a8
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 59d55cb037e3ff1e4d4a96e8ed00ca40af7b8e00aa4d92a7299caf6b8661e41d
 ---
 
 ---
@@ -424,8 +424,12 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   // Ikuti event live, lewati apa pun yang sudah terlihat
   tail: for await (const event of stream) {
     // Event pratinjau (event_start/event_delta) tidak memiliki id tingkat atas
-    if (event.type === "event_start" || event.type === "event_delta") continue;
-    if (seenEventIds.has(event.id)) continue;
+    if (event.type === "event_start" || event.type === "event_delta") {
+      continue;
+    }
+    if (seenEventIds.has(event.id)) {
+      continue;
+    }
     seenEventIds.add(event.id);
     switch (event.type) {
       case "agent.message":
@@ -865,7 +869,9 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
         break;
       }
       case "session.status_idle":
-        if (event.stop_reason.type === "end_turn") break loop;
+        if (event.stop_reason.type === "end_turn") {
+          break loop;
+        }
         break;
     }
   }
@@ -1107,9 +1113,15 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   const stream = await client.beta.sessions.events.stream(session.id);
 
   for await (const event of stream) {
-    if (event.type !== "session.status_idle") continue;
-    if (event.stop_reason.type === "end_turn") break;
-    if (event.stop_reason.type !== "requires_action") continue;
+    if (event.type !== "session.status_idle") {
+      continue;
+    }
+    if (event.stop_reason.type === "end_turn") {
+      break;
+    }
+    if (event.stop_reason.type !== "requires_action") {
+      continue;
+    }
 
     for (const eventId of event.stop_reason.event_ids) {
       // Setujui panggilan alat yang tertunda

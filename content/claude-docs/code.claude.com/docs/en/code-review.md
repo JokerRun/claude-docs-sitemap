@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: dee0c99cda361d89a25b7e8457aa97094e3d852abbb392db41195539939683cb
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: c8bc1fe46d475ad3b585de89661f4ba8c6ca1400923877b4cae4eda4fe8efebe
 ---
 
 > ## Documentation Index
@@ -147,8 +147,6 @@ For any of these commands to trigger a review:
 * Put the command at the start of the comment, with `once` or `always` on the same line as the rest of the command
 * You must have write, maintain, or admin permission on the repository
 * The PR must be open
-
-If the repository belongs to an organization and your membership in that organization is private, which is GitHub's default, GitHub doesn't identify you to Claude as a member. Claude may still react to your comment with 👀, but it doesn't start a review unless you were added to the repository directly as a collaborator, even when a team or the organization's base permissions give you write access. To fix this, [make your organization membership public](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-membership-in-organizations/publicizing-or-hiding-organization-membership) or ask a repository admin to add you to the repository as a collaborator.
 
 Unlike automatic triggers, manual triggers run on draft PRs, since an explicit request signals you want the review now regardless of draft status.
 

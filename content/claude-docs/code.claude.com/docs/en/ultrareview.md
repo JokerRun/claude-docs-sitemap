@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 90eac1dd3c004c789a25a3cde408afc65b75b594f1607ed6126c050da581a62d
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 581d796fbc5cb4c23a968096b6bc01ffbca1a9e74f17647f972d360fa1baf955
 ---
 
 > ## Documentation Index
@@ -140,7 +140,7 @@ Claude Code asks you to confirm usage-credits billing once per conversation: whe
 
 ## Track a running review
 
-A review typically takes 5 to 10 minutes. The review runs as a background task, so you can keep working in your session or start other commands. If you chose to [post the findings to the pull request](#post-findings-to-the-pull-request), keep the session open until the review finishes; if the session ends first, Claude Code posts nothing.
+A review typically takes 15 to 25 minutes. The review runs as a background task, so you can keep working in your session or start other commands. If you chose to [post the findings to the pull request](#post-findings-to-the-pull-request), keep the session open until the review finishes; if the session ends first, Claude Code posts nothing.
 
 Use `/tasks` to see running and completed reviews, open the detail view for a review, or stop a review that is in progress. If you stop a review, Claude Code archives the cloud session and doesn't return partial findings.
 
@@ -203,7 +203,7 @@ Both reviews examine code, but you use them at different stages of your workflow
 | Target | your working diff, a pull request, a branch, or a path | your working diff or a pull request |
 | Runs | locally in your session | in a cloud sandbox |
 | Depth | scales with the effort argument | multi-agent fleet with independent verification |
-| Duration | seconds to a few minutes | roughly 5 to 10 minutes |
+| Duration | seconds to a few minutes | roughly 15 to 25 minutes |
 | Cost | counts toward normal usage | free runs, then roughly \$5 to \$25 per review as usage credits |
 | Best for | quick feedback while iterating | pre-merge confidence on substantial changes |
 

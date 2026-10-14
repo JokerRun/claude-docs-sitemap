@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 057fbadeb4e83266404886593a727fc375ee22bc172126040fc7e7a239f21acf
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 35e8fd83f8a8d4b94fb53ffec718a1206232d476f956a8764feab4b422ec6495
 ---
 
 ---
@@ -596,7 +596,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5-5",
       "max_tokens": 16000,
       "thinking": {"type": "adaptive"},
       "output_config": {"effort": "high"},
@@ -621,7 +621,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   # After: adaptive thinking with effort
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5-5
   max_tokens: 16000
   thinking:
     type: adaptive
@@ -644,7 +644,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   # After: adaptive thinking with effort
   client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive"},
       output_config={"effort": "high"},
@@ -663,7 +663,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   // After: adaptive thinking with effort
   await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     thinking: { type: "adaptive" },
     output_config: { effort: "high" },
@@ -684,7 +684,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   // After: adaptive thinking with effort
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive(),
       OutputConfig = new OutputConfig { Effort = Effort.High },
@@ -707,7 +707,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   // After: adaptive thinking with effort
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -732,7 +732,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   // After: adaptive thinking with effort
   client.messages().create(MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(16000L)
       .thinking(ThinkingConfigAdaptive.builder().build())
       .outputConfig(OutputConfig.builder()
@@ -753,7 +753,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   // After: adaptive thinking with effort
   $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       maxTokens: 16000,
       thinking: ['type' => 'adaptive'],
       outputConfig: ['effort' => 'high'],
@@ -772,7 +772,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
   # After: adaptive thinking with effort
   client.messages.create(
-    model: "claude-opus-4-8",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 16000,
     thinking: { type: "adaptive" },
     output_config: { effort: "high" },

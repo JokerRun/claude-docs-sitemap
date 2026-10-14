@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 9cfb8c114e4563ea7b5022bd054568e044e3126f63692b243d5e12d8b3b70c75
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: eccb2028e9a0ad05af0afe1f6e40aa7e588b38a9c3d73ef63094150e4aa4a1f2
 ---
 
 > ## Documentation Index
@@ -173,7 +173,7 @@ One-off runs count against the same hourly limit as other scheduled runs. See [U
 
 An API trigger gives a routine a dedicated HTTP endpoint. POSTing to the endpoint with the routine's bearer token starts a new session and returns a session URL. Use this to wire Claude Code into alerting systems, deploy pipelines, internal tools, or anywhere you can make an authenticated HTTP request.
 
-API triggers are added to an existing routine from the web. The CLI cannot currently create or revoke tokens.
+API triggers are added to an existing routine from the web. The CLI can't currently create, regenerate, or delete tokens.
 
 <Steps>
   <Step title="Open the routine for editing">
@@ -193,7 +193,10 @@ API triggers are added to an existing routine from the web. The CLI cannot curre
   </Step>
 </Steps>
 
-Each routine has its own token, scoped to triggering that routine only. To rotate or revoke it, return to the same modal and click **Regenerate** or **Revoke**.
+Each routine has its own token, scoped to triggering that routine only. To turn off API access or rotate the token, return to the same modal:
+
+* **Turn off API access**: click **Delete token**, the trash icon next to **Regenerate**
+* **Rotate the token**: click **Regenerate**
 
 #### Trigger a routine
 

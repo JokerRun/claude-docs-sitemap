@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a9c8e419d43f3f92f5f33da2e334ee6029d2c10c7d24a0488a112244ccb2667b
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 262f20a592942b1daf47ad147f75830206ed2d9be39a047f94c96d6ecfffbc3d
 ---
 
 ---
@@ -750,7 +750,9 @@ Most use cases need multidimensional evaluation along several success criteria.
         }
         const lcs = lcsLengths[candidateWords.length][referenceWords.length];
 
-        if (lcs === 0) return 0;
+        if (lcs === 0) {
+          return 0;
+        }
         const precision = lcs / candidateWords.length;
         const recall = lcs / referenceWords.length;
         return (2 * precision * recall) / (precision + recall);

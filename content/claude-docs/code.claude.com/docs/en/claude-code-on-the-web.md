@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ff605017d6d49a3ebf3ddb60def565db29d4e36b848f0892afb9649c9b7d6ffe
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 6e1437934f96e876c78c460ad5c369c3ff347e5ac28807bf48de6bb35fcf0b23
 ---
 
 > ## Documentation Index
@@ -419,8 +419,9 @@ These errors come from running `claude` with [`--cloud <session-id>`](#send-foll
 | Message | What it means |
 | - | - |
 | `Cloud sessions aren't available with <provider>. They run on Anthropic's infrastructure and require an Anthropic account.` | Claude Code is configured for a third-party provider. The message names the provider with the label your configuration uses, such as `Amazon Bedrock` or `Google Vertex AI`. Remove that provider's configuration, for example by unsetting `CLAUDE_CODE_USE_BEDROCK`, and sign in with an Anthropic account (`claude auth login`). |
-| `Cloud sessions are disabled by your organization's policy. Contact your organization admin to enable them.` | The `allow_remote_sessions` organization policy is off. |
-| `Couldn't verify your organization's policy for cloud sessions. Check your network connection and try again.` | Claude Code couldn't fetch your organization's policy, so it refuses the send rather than assume cloud sessions are allowed. Check your network connection and retry. |
+| `Cloud sessions are disabled by your organization's policy. Contact your organization admin to enable them.` | Your organization's `allow_remote_sessions` policy is off; see [Cloud sessions are disabled by your organization's policy](/docs/en/errors#cloud-sessions-are-disabled-by-your-organizations-policy). If the message instead names a credential this session is using, see [Cloud sessions use your claude.ai login](/docs/en/errors#cloud-sessions-use-your-claude-ai-login). |
+| `Couldn't verify your organization's policy for cloud sessions. Check your network connection and try again.` | Claude Code hasn't finished loading your organization's policy, so it refuses the send rather than assume cloud sessions are allowed. Check your network connection and retry. |
+| `Cloud sessions aren't available:` followed by a cause | Loading your organization's policy failed, and the rest of the message says how. Act on the cause it names; see [Couldn't verify your organization's policy for cloud sessions](/docs/en/errors#couldnt-verify-your-organizations-policy-for-cloud-sessions). |
 | `Attaching to an existing cloud session is not enabled for your account.` | You ran `--cloud <session-id>` without `-p`. Send the message with `claude -p "your message" --cloud <session-id>`. |
 | `Session not found: <id>` | The ID or URL doesn't match a session you can access. Check it against the session's claude.ai/code URL. |
 | `cloud session <id> is archived and cannot accept new messages` | The session has been archived. Start a new session instead. |

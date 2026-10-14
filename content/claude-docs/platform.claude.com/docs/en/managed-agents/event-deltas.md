@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f632e3fc43db9149b34721d3455b7429d4b425be3501e74e883fe0b12fb46027
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 0f37f164b032cc962ecfd010b6a11072c3af64503b5728ca496451cdbc7afd89
 ---
 
 ---
@@ -259,7 +259,9 @@ The following examples opt in to `agent.message` previews and reconcile them wit
         // 1. Note the announced id and open the snapshot. Deltas and the
         //    buffered event carry the same id.
         const preview = accumulateManagedAgentsEvent(undefined, event);
-        if (preview) previews.set(event.event.id, preview);
+        if (preview) {
+          previews.set(event.event.id, preview);
+        }
         console.log(`event_start             ${event.event.type} ${event.event.id}`);
         break;
       }
@@ -759,7 +761,9 @@ A thread stream's path ends in `/threads/{thread_id}/stream`. `/events/stream` e
       break;
     }
   }
-  if (!childThreadId) throw new Error("No child thread found");
+  if (!childThreadId) {
+    throw new Error("No child thread found");
+  }
 
   // The child thread's stream takes the same event_deltas parameter as the
   // session stream.

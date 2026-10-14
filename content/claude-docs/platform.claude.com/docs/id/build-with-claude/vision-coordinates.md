@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: db8db032f2e876c76da3bb8b4ee6d9af0e2792e77f87351dedbb5bcdf629900f
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 2530735afb46ca37bc85854efe605d4931b118691931611c00cdcccfd1bc13d8
 ---
 
 ---
@@ -129,7 +129,9 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
    */
   function roundTiesToEven(value: number): number {
     const floor = Math.floor(value);
-    if (value - floor !== 0.5) return Math.round(value);
+    if (value - floor !== 0.5) {
+      return Math.round(value);
+    }
     return floor % 2 === 0 ? floor : floor + 1;
   }
 
@@ -151,7 +153,9 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
       Math.ceil(h / 28) * 28 <= maxEdge &&
       countImageTokens(w, h) <= maxTokens;
 
-    if (fits(width, height)) return [width, height];
+    if (fits(width, height)) {
+      return [width, height];
+    }
     if (height > width) {
       const [resizedH, resizedW] = resizedSize(height, width, maxEdge, maxTokens);
       return [resizedW, resizedH];

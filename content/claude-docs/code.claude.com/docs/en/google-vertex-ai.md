@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 75daf4286c5e2e21028a164a79485ccd96ff3e57684c5137b57d869e54d7a711
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: afcee2b668720564f8d21cd7482aa73b79783ada23e136ee9b7b54c58aab14a5
 ---
 
 > ## Documentation Index
@@ -213,7 +213,7 @@ To raise your rate limits, contact Google Cloud support. When using Google Cloud
 Claude Code decides between [MCP tool search](/docs/en/mcp#scale-with-mcp-tool-search) and upfront loading by model generation:
 
 * **Claude Opus 4.5, Sonnet 4.5, Haiku 4.5, and later**: Claude Code enables tool search by default.
-* **Earlier models, including all Claude 3.x models**: Claude Code loads MCP tool definitions upfront, because their Agent Platform serving stacks reject the required beta header. Setting `ENABLE_TOOL_SEARCH=true` doesn't override this.
+* **Earlier models**: Claude Code loads MCP tool definitions upfront, because their Agent Platform serving stacks reject the required beta header. Setting `ENABLE_TOOL_SEARCH=true` doesn't override this.
 
 Set `ENABLE_TOOL_SEARCH=false` to disable tool search on every model. Before v2.1.221, Claude Code disabled tool search for all models on Google Cloud's Agent Platform unless you set `ENABLE_TOOL_SEARCH=true`.
 

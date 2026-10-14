@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 4c584bee5b4a992fd2e367a5860e8afd2130926d8a400018acc802f855609377
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 7e356f289d32f461376c0668e33f36d0bea3fa5d13ab1a2eb0abf30351932c92
 ---
 
 ---
@@ -49,7 +49,7 @@ The dream produces another **output memory store**, separate from the input. The
       { "type": "memory_store", "memory_store_id": "$store_id" },
       { "type": "sessions", "session_ids": ["$session_a", "$session_b"] }
     ],
-    "model": "claude-opus-4-8",
+    "model": "claude-opus-5-5",
     "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
   }
   EOF
@@ -62,7 +62,7 @@ The dream produces another **output memory store**, separate from the input. The
       memory_store_id: $store_id
     - type: sessions
       session_ids: [$session_a, $session_b]
-  model: claude-opus-4-8
+  model: claude-opus-5-5
   instructions: Focus on coding-style preferences; ignore one-off debugging notes.
   YAML
   ```
@@ -73,7 +73,7 @@ The dream produces another **output memory store**, separate from the input. The
           {"type": "memory_store", "memory_store_id": store_id},
           {"type": "sessions", "session_ids": [session_a, session_b]},
       ],
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       instructions="Focus on coding-style preferences; ignore one-off debugging notes.",
   )
   print(dream.id)  # drm_01...
@@ -85,7 +85,7 @@ The dream produces another **output memory store**, separate from the input. The
       { type: "memory_store", memory_store_id: storeId },
       { type: "sessions", session_ids: [sessionA, sessionB] },
     ],
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     instructions: "Focus on coding-style preferences; ignore one-off debugging notes.",
   });
   console.log(dream.id); // drm_01...
@@ -107,7 +107,7 @@ The dream produces another **output memory store**, separate from the input. The
               SessionIds = [sessionA, sessionB],
           },
       ],
-      Model = "claude-opus-4-8",
+      Model = "claude-opus-5-5",
       Instructions = "Focus on coding-style preferences; ignore one-off debugging notes.",
   });
   Console.WriteLine(dream.ID);  // drm_01...
@@ -120,7 +120,7 @@ The dream produces another **output memory store**, separate from the input. The
   		anthropic.BetaDreamInputParamOfSessions([]string{sessionA, sessionB}),
   	},
   	Model: anthropic.BetaDreamModelParamsUnion{
-  		OfString: anthropic.String("claude-opus-4-8"),
+  		OfString: anthropic.String("claude-opus-5-5"),
   	},
   	Instructions: anthropic.String("Focus on coding-style preferences; ignore one-off debugging notes."),
   })
@@ -135,7 +135,7 @@ The dream produces another **output memory store**, separate from the input. The
       DreamCreateParams.builder()
           .addMemoryStoreInput(storeId)
           .addSessionsInput(List.of(sessionA, sessionB))
-          .model("claude-opus-4-8")
+          .model("claude-opus-5-5")
           .instructions("Focus on coding-style preferences; ignore one-off debugging notes.")
           .build()
   );
@@ -148,7 +148,7 @@ The dream produces another **output memory store**, separate from the input. The
           ['type' => 'memory_store', 'memory_store_id' => $storeId],
           ['type' => 'sessions', 'session_ids' => [$sessionA, $sessionB]],
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       instructions: 'Focus on coding-style preferences; ignore one-off debugging notes.',
   );
   echo "{$dream->id}\n"; // drm_01...
@@ -160,7 +160,7 @@ The dream produces another **output memory store**, separate from the input. The
       {type: "memory_store", memory_store_id: store_id},
       {type: "sessions", session_ids: [session_a, session_b]}
     ],
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     instructions: "Focus on coding-style preferences; ignore one-off debugging notes."
   )
   puts dream.id # drm_01...
@@ -181,7 +181,7 @@ The response is the full `dream` resource with `status: "pending"`:
     { "type": "sessions", "session_ids": ["sesn_01...", "sesn_02..."] }
   ],
   "outputs": [],
-  "model": { "id": "claude-opus-4-8" },
+  "model": { "id": "claude-opus-5-5" },
   "instructions": "Focus on coding-style preferences; ignore one-off debugging notes.",
   "session_id": null,
   "created_at": "2026-04-29T17:04:10Z",

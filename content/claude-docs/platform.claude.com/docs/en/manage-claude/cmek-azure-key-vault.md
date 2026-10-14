@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8f5d765d3f670fd8ab9e112daef613f020ee3ca4de3327dc213460ecb94d9158
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: f4e7f71cfb5eff7162ff07fd08fa491b8001e824f7461e72249daea10b0c7575
 ---
 
 ---
@@ -171,17 +171,17 @@ How you register the key depends on which product you use.
       <Tab title="Claude Console">
         <Steps>
           <Step title="Register the key with Anthropic">
-            In the Claude Console, open **Settings > Encryption keys** and click **Add key**. Enter a display name, choose **Azure Key Vault**, and click **Continue**. Fill in **Vault URI**, **Key name**, and **Tenant ID**, and click **Add**.
+            In the Claude Console, go to the [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) page (`platform.claude.com/settings/privacy`). If you don't see **Encryption keys**, select **Organization** from the dropdown menu at the top of the page. Under **Encryption keys**, click **Add key**. Enter a display name, choose **Azure Key Vault**, and click **Continue**. Fill in **Vault URI**, **Key name**, and **Tenant ID**, and click **Add**.
 
             The key details step shows the organization tag. Add it to the key, as [the create step](https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault#organization-tag) describes, before you click **Add**.
           </Step>
 
           <Step title="Validate the key">
-            On the **Encryption keys** page, click **Verify** next to the key. **Connected** appears when the check passes. If it fails, a message gives the reason.
+            In the **Encryption keys** list, click **Verify** next to the key. **Connected** appears when the check passes. If it fails, a message gives the reason.
           </Step>
 
           <Step title="Attach the key to a workspace">
-            In the Claude Console, go to [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) and select the workspace in the workspace picker at the top of the sidebar. Under **Encryption key**, select the key, click **Save**, and confirm. Attaching a key can't be undone. For a workspace that already receives requests, the key can take [up to a day to take effect](https://platform.claude.com/docs/en/manage-claude/cmek#how-it-works).
+            In the Claude Console, go to the [Data retention](https://platform.claude.com/settings/privacy) page (`platform.claude.com/settings/privacy`) and select the workspace from the dropdown menu at the top of the page. Under **Encryption key**, select the key, click **Save**, and confirm. Attaching a key can't be undone. For a workspace that already receives requests, the key can take [up to a day to take effect](https://platform.claude.com/docs/en/manage-claude/cmek#how-it-works).
           </Step>
         </Steps>
       </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 20f325e192d1a46ee7a918808fb0913ab19a838623edd7df163fe95967e61628
+fetched_at: 2026-10-14T02:20:13.092948Z
+sha256: 2b8e020b988d9159e7c5979cbfe1361eb4b8df76fecb0e1999c78ae61aa132d0
 ---
 
 ---
@@ -38,11 +38,13 @@ featureMetadata:
     - Platforms other than the Claude API and Google Cloud currently offer only the [earlier beta tool versions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
 
+<Note>
+  **Start with the SDK toolsets:** For `computer_toolset_20260801`, the Python and TypeScript SDKs have a computer toolset class, in beta. Start from [a partner's integration](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), or see the [computer toolset](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk#computer-toolset) section of the SDK toolsets page. Use this page as the tool reference, or when you handle the tool calls yourself.
+</Note>
+
 Claude can interact with computer environments through the computer use tool, which provides screenshot capabilities and mouse/keyboard control for autonomous desktop interaction.
 
 The computer use tool is an Anthropic-defined [client toolset](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference#client-toolsets): one `{"type": "computer_toolset_20260801"}` entry in `tools` gives Claude 17 member tools such as `screenshot`, `left_click`, `type`, and `zoom`, and your application runs every call in an environment you control. It isn't currently available in [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/tools). Claude's calls are `tool_use` blocks whose `name` is the member and which carry `"toolset_name": "computer"`, often several per turn (a [batch action](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
-
-The Python and TypeScript SDKs include a class that passes these calls to your desktop code and asks your approval callback. See [Browser and computer use with the SDK toolsets](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk#computer-toolset).
 
 For tasks that stay inside webpages, the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) is the closer fit: its member tools read and act on the page itself, and it doesn't need a full desktop environment.
 
@@ -2235,8 +2237,8 @@ Computer use follows the standard [tool use pricing](https://platform.claude.com
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Browser and computer use with the SDK toolsets" icon="code" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk#computer-toolset">
-    Write a desktop driver in Python or TypeScript. The SDK runs the loop and the approval callback you pass.
+  <Card title="Computer toolset in the SDKs" icon="code" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk#computer-toolset">
+    Start from a partner's driver, or write your own in Python or TypeScript. The SDK runs the loop and the approval callback you pass.
   </Card>
 
   <Card title="Troubleshooting tool use" icon="wrench" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use">
