@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: ce2dcf3b80384f052eb2e4f8296d9f18a2b461eb39a89dc40791beef91149f66
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d9adfa2de758a48db0e35eabbac4070b0cb60e9140e6dcc4b55a80e565215491
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
 description: Install and configure the Anthropic Ruby SDK with Sorbet types, streaming helpers, and connection pooling
 ---
 
-The Anthropic Ruby library provides convenient access to the Claude API from any Ruby 3.2.0+ application. It ships with comprehensive types and docstrings in Yard, RBS, and RBI. The standard library's `net/http` is used as the HTTP transport, with connection pooling through the `connection_pool` gem.
+The Anthropic Ruby library provides convenient access to the Claude API from any Ruby 3.2.0+ application. It ships with comprehensive types and docstrings in YARD, RBS, and RBI. The standard library's `net/http` is used as the HTTP transport, with connection pooling through the `connection_pool` gem.
 
 <Info>
   For API feature documentation with code examples, see the [API reference](https://platform.claude.com/docs/en/api/overview). This page covers Ruby-specific SDK features and configuration.
@@ -295,7 +295,7 @@ anthropic.messages.create(**params)
 
 ### Enums
 
-Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, the SDK provides "tagged symbols", which is always a primitive at runtime:
+Because this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, the SDK provides "tagged symbols," which are always primitives at runtime:
 
 ```ruby
 # :auto
@@ -327,7 +327,7 @@ All parameter and response objects inherit from `Anthropic::Internal::Type::Base
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
-2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.
+2. Structural equivalence for equality. If two API calls return the same values, comparing the responses with == will return true.
 
 3. Both instances and the classes themselves can be pretty-printed.
 
@@ -373,11 +373,11 @@ puts(message[:my_undocumented_property])
 
 ### Undocumented request params
 
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the previous examples.
 
 ### Undocumented endpoints
 
-To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `anthropic.request`, like so:
+To make requests to undocumented endpoints while retaining the benefit of authentication, retries, and so on, you can make requests using `anthropic.request`, like so:
 
 ```ruby
 response = anthropic.request(

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a3ec76bba3ae653d7ab2bcf4753657f724f8207ebf2a225523a7c63fe6e26edb
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: cfae375bc09ad6566f417998d61a90561ff3b5e53d89a020945851d96b88f820
 ---
 
 ---
@@ -147,6 +147,8 @@ List work items in an environment.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d11e6b5089eeb43316c83e5606f0ec33500101dfb8c300e2487a7502d317f9ce
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f8cf765e183bc5be873710bc652c56d523b79571e7572807cfd6bf4b71bb85b0
 ---
 
 ---
@@ -144,6 +144,8 @@ holds at most two non-archived certificates.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

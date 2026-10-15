@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 190cfd00b701fdfc1966c35b684882f4e821354a1b8b87181ae597f4265a6e9e
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2b2d030ef07c5c5f43891a961af7f6170052c5ce612edca99d89e4b438efec0b
 ---
 
 ---
@@ -389,7 +389,7 @@ Tetapkan `budget` ke `null` untuk menghapus batas sepenuhnya. Pekerjaan yang dij
 
 Objek sesi membawa `budget` miliknya dan objek `usage` dengan pengeluaran yang dilacak: `usage.list_cost` adalah biaya daftar yang telah dikonsumsi sesi, dan `usage.active_seconds` adalah waktu berjalan yang menjadi dasar penghitungan biaya runtime-nya. Pada sesi yang dijeda dengan `budget_reached`, perkirakan `usage.list_cost` bernilai sama dengan atau sedikit melewati `max_list_cost`: [permintaan yang melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) selesai sebelum jeda. `active_seconds` tingkat sesi menghitung aktivitas yang tumpang tindih dari thread konkuren hanya sekali. Respons pengambilan thread membawa dua field yang sama pada `usage` milik thread itu sendiri, dihitung per thread. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi; angka sesi adalah angka yang menjadi acuan pemberlakuan anggaran.
 
-Event `session.usage` adalah snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Event ini membawa total token sesi, `list_cost`, `active_seconds`, jumlah permintaan `server_tool_use` (`web_search_requests`, yang dihitung ke dalam biaya daftar per permintaan, dan `web_fetch_requests`, yang bernilai `0` karena permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur), serta salinan `budget` sesi, atau `null` jika sesi tidak memilikinya. Event ini muncul dalam daftar event dan stream sesi. Sesi memancarkan satu event ini tepat sebelum menjadi idle, apa pun alasan berhentinya, sehingga sesi yang mencapai anggarannya selalu memancarkan satu event ini tepat sebelum event idle budget-reached.
+Event `session.usage` adalah snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Event ini membawa total token sesi, `list_cost`, `active_seconds`, jumlah permintaan `server_tool_use` (`web_search_requests`, yang dihitung ke dalam biaya daftar per permintaan, dan `web_fetch_requests`, yang bernilai `0` karena permintaan web fetch tidak dikenai biaya per permintaan dan tidak diukur), serta `budget` sesi jika sesi memilikinya. Event ini muncul dalam daftar event dan stream sesi. Sesi memancarkan satu event ini tepat sebelum menjadi idle, apa pun alasan berhentinya, sehingga sesi yang mencapai anggarannya selalu memancarkan satu event ini tepat sebelum event idle budget-reached.
 
 Untuk membaca penggunaan dari stream dan objek sesi, lihat [Melacak penggunaan](https://platform.claude.com/docs/id/managed-agents/session-observability#track-usage).
 

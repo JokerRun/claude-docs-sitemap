@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 15b2df904a4d496a3aee56ef2a48eb2da885ec4bf5195443a51e789b4dc5a9cc
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 153742ba6e00b4336d30366d3ee8b2aa14708914bf15e172ca2bdf21c2b6aff3
 ---
 
 ---
@@ -135,6 +135,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -8659,6 +8661,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -77932,6 +77936,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-user-profile-id": optional string`
 
   The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
@@ -82356,6 +82362,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -82643,6 +82651,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -82941,6 +82951,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -83220,6 +83232,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -83390,6 +83404,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

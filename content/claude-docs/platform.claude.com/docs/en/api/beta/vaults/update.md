@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0ebbf7a887d617c710d91c3a50fa032c45055a75ee465184a1ac975c6b4c367b
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: fc0fa0a0169c198f90fd5fc82f0f67094362f1f045ffc6ed3c96deb02dc25447
 ---
 
 ---
@@ -131,6 +131,8 @@ Update Vault
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

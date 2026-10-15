@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ce16a2240ffb26b97746cb159f1c47679d87c85035cdae5531047141ad9c6ce0
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 0707b201ad1de2e7f7863642b969686a0f69eac437a33090e88059972aac76d5
 ---
 
 ---
@@ -1241,8 +1241,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.71.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.71.0")
+        implementation("com.anthropic:anthropic-java:2.72.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.72.0")
         ```
       </Tab>
 
@@ -1251,12 +1251,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.71.0</version>
+            <version>2.72.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.71.0</version>
+            <version>2.72.0</version>
         </dependency>
         ```
       </Tab>
@@ -1331,12 +1331,12 @@ Impor helper untuk bahasa Anda:
   ```
 </CodeGroup>
 
-| Helper                                                                                                                                                                                                                                                                                                                             | Deskripsi                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `async_mcp_tool(tool, mcp_client)` (python; typescript: `mcpTools(tools, mcpClient)`; csharp: `BetaMcp.ListToolsAsync(mcpClient)`; go: `mcp.NewBetaTools(tools, session)`; java: `BetaMcp.mcpTools(tools, mcpClient)`; php: `BetaMcp::tools($tools, $mcp)`; ruby: `Anthropic::Mcp.tools(tools, mcp_client)`)                       | Mengonversi alat MCP menjadi alat Claude API untuk digunakan dengan `client.beta.messages.tool_runner()` (python, ruby; typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`) |
-| `mcp_message(message)` (python; typescript: `mcpMessages(messages)`; csharp: `BetaMcp.Messages(messages)`; go: `mcp.ToMessage(message)`; java: `BetaMcp.mcpMessages(messages)`; php: `BetaMcp::message($message)`; ruby: `Anthropic::Mcp.message(message)`)                                                                        | Mengonversi pesan prompt MCP ke format pesan Claude API                                                                                                                                                                                                                                                                                                        |
-| `mcp_resource_to_content(resource)` (python; typescript: `mcpResourceToContent(resource)`; csharp: `BetaMcp.ResourceToContent(resource)`; go: `mcp.ResourceToBlock(resource)`; java: `BetaMcp.mcpResourceContents(resource)`; php: `BetaMcp::resourceToContent($resource)`; ruby: `Anthropic::Mcp.resource_to_contents(resource)`) | Mengonversi resource MCP menjadi blok konten Claude API                                                                                                                                                                                                                                                                                                        |
-| `mcp_resource_to_file(resource)` (python; typescript: `mcpResourceToFile(resource)`; csharp: `BetaMcp.ResourceToFile(resource)`; go: `mcp.ResourceToFile(resource)`; java: `BetaMcp.mcpResourceFiles(resource)`; php: `BetaMcp::resourceToFile($resource)`; ruby: `Anthropic::Mcp.resource_to_files(resource)`)                    | Mengonversi resource MCP menjadi objek file untuk diunggah                                                                                                                                                                                                                                                                                                     |
+| Helper                                                                                                                                                                                                                                                                                                                     | Deskripsi                                                                                                                                                                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `async_mcp_tool(tool, mcp_client)` (typescript: `mcpTools(tools, mcpClient)`; csharp: `BetaMcp.ListToolsAsync(mcpClient)`; go: `mcp.NewBetaTools(tools, session)`; java: `BetaMcp.mcpTools(tools, mcpClient)`; php: `BetaMcp::tools($tools, $mcp)`; ruby: `Anthropic::Mcp.tools(tools, mcp_client)`)                       | Mengonversi alat MCP menjadi alat Claude API untuk digunakan dengan `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`) |
+| `mcp_message(message)` (typescript: `mcpMessages(messages)`; csharp: `BetaMcp.Messages(messages)`; go: `mcp.ToMessage(message)`; java: `BetaMcp.mcpMessages(messages)`; php: `BetaMcp::message($message)`; ruby: `Anthropic::Mcp.message(message)`)                                                                        | Mengonversi pesan prompt MCP ke format pesan Claude API                                                                                                                                                                                                                                                                                          |
+| `mcp_resource_to_content(resource)` (typescript: `mcpResourceToContent(resource)`; csharp: `BetaMcp.ResourceToContent(resource)`; go: `mcp.ResourceToBlock(resource)`; java: `BetaMcp.mcpResourceContents(resource)`; php: `BetaMcp::resourceToContent($resource)`; ruby: `Anthropic::Mcp.resource_to_contents(resource)`) | Mengonversi resource MCP menjadi blok konten Claude API                                                                                                                                                                                                                                                                                          |
+| `mcp_resource_to_file(resource)` (typescript: `mcpResourceToFile(resource)`; csharp: `BetaMcp.ResourceToFile(resource)`; go: `mcp.ResourceToFile(resource)`; java: `BetaMcp.mcpResourceFiles(resource)`; php: `BetaMcp::resourceToFile($resource)`; ruby: `Anthropic::Mcp.resource_to_files(resource)`)                    | Mengonversi resource MCP menjadi objek file untuk diunggah                                                                                                                                                                                                                                                                                       |
 
 ### Menggunakan alat MCP
 

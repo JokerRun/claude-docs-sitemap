@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 902b5064757d6a7fec75c134ded35d8f4ee9e963d989c8e4576482c0b50b104b
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 062bb3c099f25b8320b543153fda36731e7501d7a4db9056fa3995c22601bde8
 ---
 
 ---
@@ -700,7 +700,7 @@ Sesi menjadi `idle` hanya ketika tidak ada thread yang berstatus `running`, sehi
 
 Di bawah `auto`, event `user.message` Anda dapat membuat server mengizinkan panggilan yang seharusnya ditolaknya. Tidak ada apa pun di thread subagen yang dihitung sebagai maksud Anda. Klien Anda tidak memposting pesan apa pun di sana, dan pesan yang dikirimkan agen thread utama kepada subagen tidak dihitung. Ketika server menolak panggilan di bawah `auto`, tidak ada yang diposting silang: event dan hasil alat berupa error hanya muncul di [aliran thread](https://platform.claude.com/docs/id/managed-agents/session-threads#session-thread-events) milik subagen itu sendiri, dan subagen tetap berjalan.
 
-Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation). Untuk setiap ID dalam `stop_reason.event_ids`, contoh ini mengirimkan `user.tool_confirmation` yang mengizinkan panggilan tersebut. Pola yang sama berlaku untuk `user.custom_tool_result`.
+Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation). Untuk setiap ID dalam `stop_reason.event_ids`, contoh ini mengirimkan `user.tool_confirmation` yang mengizinkan panggilan tersebut. Pola yang sama berlaku untuk `user.custom_tool_result`, yang juga dapat Anda kirim segera setelah event `agent.custom_tool_use`-nya tiba.
 
 <CodeGroup>
   ```bash cURL
@@ -788,6 +788,7 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
+                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                   .toolUseId(eventId)
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                   .build())

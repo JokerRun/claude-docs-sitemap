@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d32cd4e55c4edd7e327a350c937749a8be4cf0b9732ed9f776d1f66104e28d3d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d5030034414947fa5b2df122dad3e71faabbea04ad0793002e7d4e135d921d7f
 ---
 
 ---
@@ -133,6 +133,8 @@ Get statistics about the work queue for an environment.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

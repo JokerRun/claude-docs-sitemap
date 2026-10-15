@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4aa2d04cf3836de9e31202ed243b42a648d9488d3c295091d7ef8f30aff39813
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2641caf1e80acd9edff5c33cdea9a268d4854f13f3805532b91cb45986c33371
 ---
 
 ---
@@ -156,6 +156,8 @@ omitted from the results.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

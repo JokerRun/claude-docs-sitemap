@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 287cd27655463735500ce45284c4c14a5f0e9f4fe423d6fd25cf02b6a9b784a5
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 7f6fdfc8a8c8c43feeafb70d7789abe65bfd45a7266dbaabfc7923f47fc8a68a
 ---
 
 ---
 title: API Penggunaan dan Biaya
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-description: Akses data penggunaan dan biaya API organisasi Anda secara terprogram dengan Usage & Cost Admin API.
+description: Akses data penggunaan dan biaya API organisasi Anda secara terprogram dengan Usage and Cost Admin API.
 ---
 
 <Tip>
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Usage & Cost Admin API menyediakan akses terprogram dan granular ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) dan [Cost](https://platform.claude.com/cost) pada Claude Console.
+Usage and Cost Admin API menyediakan akses terprogram dan terperinci ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) dan [Cost](https://platform.claude.com/cost) di Claude Console.
 
 API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda dengan lebih baik:
 

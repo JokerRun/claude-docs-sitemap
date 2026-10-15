@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 2d1b2be9725dc766210c5e9d4f1d80a9339d94d40804d5e7ee1f81a1b5c1e03c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 71b891e9504ed415fe5b46b61a2f6cec18d685c5d0906837087c2497e0300059
 ---
 
 ---
@@ -143,6 +143,8 @@ Download a skill version's content as a zip archive.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

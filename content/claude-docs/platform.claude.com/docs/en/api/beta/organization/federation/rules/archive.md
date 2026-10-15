@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 245260aa319e282ad9f88d3d04bf3c1725b169f9e8c8acb236bf83bf8f21dce7
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 4a81e156b4c9f99ca6eac2644c3d7b6556ec18ce227b87a5e89859c272d24870
 ---
 
 ---
@@ -145,6 +145,8 @@ other scopes require a Console session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

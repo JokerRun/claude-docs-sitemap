@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 91783ff5257b90d6f3961b7661bbb521f446e1727b3ec5b7bd7f0214ebc38786
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 384ecf87146f4faede82e8c77d486de549a6d134ad713ed5fd9f15c05130d64f
 ---
 
 ---
@@ -37,7 +37,7 @@ Each middleware can inspect or replace the request before calling `next()`, and 
 
 ## Registering middleware
 
-Each middleware is a function that receives the outgoing request and the next handler. Call `call_next(request)` (python; typescript: `next(request)`; csharp: `next(request, cancellationToken)`; go: `next(req)`; java: `nextClient.execute(request, requestOptions)`; php: `$next($request)`; ruby: `call_next.call(request)`) to forward the request to the rest of the chain (or directly to the SDK core if this is the last middleware), and return its response. Anything before that call runs on the way out; anything after runs on the way back.
+Each middleware is a function that receives the outgoing request and the next handler. Call `call_next(request)` (typescript: `next(request)`; csharp: `next(request, cancellationToken)`; go: `next(req)`; java: `nextClient.execute(request, requestOptions)`; php: `$next($request)`; ruby: `call_next.call(request)`) to forward the request to the rest of the chain (or directly to the SDK core if this is the last middleware), and return its response. Anything before that call runs on the way out; anything after runs on the way back.
 
 <CodeGroup exclude="shell">
   ```python Python

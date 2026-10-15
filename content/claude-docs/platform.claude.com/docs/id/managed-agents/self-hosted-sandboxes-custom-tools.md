@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 64f575a7dedc6b0dfb90bfb78b6f9acc0a6a318f7d31d62b60d4bc278360b259
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 1f78ee626362d9a4fe4911d0b52d80d2a6813b23ca951abca90759fed237363b
 ---
 
 ---
@@ -217,7 +217,7 @@ Saat runtime, model memanggil alat yang dibungkus seperti alat kustom lainnya:
 
 ### Menginstal SDK MCP
 
-[Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) milik SDK mengonversi alat-alat server menjadi alat yang dapat dijalankan yang diterima worker. Instal SDK MCP bersama dengan SDK Anthropic: `pip install "anthropic[mcp]" "mcp>=1.24"` (python; typescript: `npm install @modelcontextprotocol/sdk`; go: `go get github.com/modelcontextprotocol/go-sdk`).
+[Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) milik SDK mengonversi alat-alat server menjadi alat yang dapat dijalankan yang diterima worker. Instal SDK MCP bersama dengan SDK Anthropic: `pip install "anthropic[mcp]" "mcp>=1.24"` (typescript: `npm install @modelcontextprotocol/sdk`; go: `go get github.com/modelcontextprotocol/go-sdk`).
 
 Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfigurasikan `http_client` (typescript: `requestInit`; go: `HTTPClient`) yang Anda berikan ke transport MCP.
 
@@ -440,7 +440,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
   </Step>
 
   <Step title="Layani alat dari worker">
-    Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool` (python; typescript: `mcpTools`; go: `mcp.NewBetaTools`), dan daftarkan bersama dengan `beta_agent_toolset_20260401` (python; typescript: `betaAgentToolset20260401`; go: `agenttoolset.BetaAgentToolset20260401`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
+    Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool` (typescript: `mcpTools`; go: `mcp.NewBetaTools`), dan daftarkan bersama dengan `beta_agent_toolset_20260401` (typescript: `betaAgentToolset20260401`; go: `agenttoolset.BetaAgentToolset20260401`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -625,7 +625,7 @@ Helper MCP mempertahankan nama dan deskripsi server, dan sebagian besar skema di
 | `name`                   | Unik per agen. Huruf, angka, garis bawah, dan tanda hubung, 1–128 karakter. Tidak boleh sama dengan alat agen bawaan seperti `bash` atau `read`, atau menggunakan prefiks cadangan `mcp__` atau `ant__`.                                                                                                                         |
 | `description`            | Wajib dan tidak boleh kosong.                                                                                                                                                                                                                                                                                                    |
 | `input_schema`           | Menerima kata kunci JSON Schema yang umum dipancarkan oleh server MCP, seperti `additionalProperties` dan `title`. Menolak kata kunci referensi seperti `$ref` di mana pun, serta `oneOf`, `anyOf`, dan `allOf` di tingkat teratas. Nama properti menggunakan huruf, angka, garis bawah, titik, dan tanda hubung, 1–64 karakter. |
-| Array `tools` milik agen | Paling banyak 128 entri. Setiap alat yang dibungkus adalah satu entri, dan toolset bawaan adalah satu entri lagi.                                                                                                                                                                                                                |
+| Array `tools` milik agen | Paling banyak 256 entri. Setiap alat yang dibungkus adalah satu entri, dan toolset bawaan adalah satu entri lagi.                                                                                                                                                                                                                |
 
 Dua kasus memerlukan pekerjaan tambahan:
 

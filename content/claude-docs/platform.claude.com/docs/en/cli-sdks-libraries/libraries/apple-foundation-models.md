@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b8d40762992c0c0c051635364c50255f7c3d78586f2714ca6493e6d582a1bd1e
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e05431ade327c6c74b81d72d049314a5641b563631d2674b5d5d10aa4f66d5f5
 ---
 
 ---
@@ -132,7 +132,7 @@ ClaudeLanguageModel(
 To set up App Attest, you need your Apple Developer Team ID and the admin, owner, or primary owner role in your organization. Configure your Xcode project and register your app in the [Claude Console](https://platform.claude.com/):
 
 1. In Xcode, add the **App Attest** capability to your app target under **Signing & Capabilities**.
-2. In your workspace's settings in the Claude Console, open **App integrations**.
+2. In the Claude Console, go to the [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) page (`platform.claude.com/settings/workspaces/default/app-integrations`). Each app integration belongs to one workspace. Select the workspace you want in the workspace picker in the sidebar.
 3. Click **Create app integration** and enter a name, your Apple Developer Team ID, and one or more bundle IDs (up to 32).
 4. Copy the client ID (`clid_...`) from the integration's **Overview** tab and pass it to your app's Claude configuration.
 
@@ -140,7 +140,7 @@ The first time your app uses Claude on a device, the app requests a challenge fr
 
 Tokens are scoped to your workspace, expire after one hour, and authorize only [Messages API](https://platform.claude.com/docs/en/api/messages/create) calls. They carry no end-user identity: App Attest identifies your app, not the person using it, so handle any per-user logic in your app.
 
-To stop a compromised or retired app, revoke its integration: in your workspace's settings in the Claude Console, open **App integrations**, select the integration, and click **Revoke**, then confirm. Revoking an integration revokes its outstanding tokens, and its registered devices can no longer request new ones. Revocation is permanent, so create a new app integration to restore access.
+To stop a compromised or retired app, revoke its integration. In the Claude Console, go to the [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) page (`platform.claude.com/settings/workspaces/default/app-integrations`). Each app integration belongs to one workspace. In the workspace picker in the sidebar, select the workspace that holds the integration. Select the integration and click **Revoke**, then confirm. Revoking an integration revokes its outstanding tokens, and its registered devices can no longer request new ones. Revocation is permanent, so create a new app integration to restore access.
 
 ### Proxy (production)
 

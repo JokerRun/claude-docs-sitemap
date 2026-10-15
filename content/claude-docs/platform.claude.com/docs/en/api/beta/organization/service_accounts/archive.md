@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: dddd2b23d406df8edb48154651973642ecac888fac27963da5ddd107ed4bdd04
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d231dd55b0f8ea7488d2566c9b886d6934037b7aaeb54a3718a2c15b33e42218
 ---
 
 ---
@@ -142,6 +142,8 @@ those rules first or change their target to another service account.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

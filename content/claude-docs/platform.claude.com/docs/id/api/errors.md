@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 521b2c57b551daaa425d00c41053b0df6dfcebb8f1b17791ee1e478a248493bf
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: eb318c13124a7863138cb9840f487e2cb6e69d0b1b3843f69cd0253d7411837d
 ---
 
 ---
@@ -79,7 +79,7 @@ Sesuai dengan kebijakan [pembuatan versi](https://platform.claude.com/docs/id/ap
 
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (python; typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`: lakukan percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Halaman SDK Anda mendokumentasikan hierarki exception secara lengkap:
+SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`: lakukan percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Halaman SDK Anda mendokumentasikan hierarki exception secara lengkap:
 
 * [Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
 

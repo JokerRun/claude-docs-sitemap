@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f2942836c36d50600098fba8ee1d7af5f035866cf3367374698d5a9cd19ecdb2
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 7969dcefb936b66e5443c17a4943ee959912e0a311bf8b89e746cd8bd5e1be17
 ---
 
 ---
@@ -81,7 +81,7 @@ Claude Opus 5 mendelegasikan ke subagen lebih mudah daripada model sebelumnya. D
 Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 ```
 
-Jika harness Anda adalah Claude Code atau Claude Agent SDK, batas deterministiknya adalah variabel lingkungan `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` dan `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` serta opsi `max_budget_usd` (python; typescript: `maxBudgetUsd`) milik SDK. Semuanya memerlukan Claude Code 2.1.217 atau yang lebih baru, jadi perbarui SDK yang di-pin sebelum mengarahkannya ke Claude Opus 5. Claude Code menambahkan instruksi delegasinya sendiri pada Claude Opus 5 hanya ketika Anda menggunakan preset prompt sistem `claude_code`; dengan prompt sistem kustom atau yang dihilangkan, tambahkan sendiri instruksi delegasi seperti contoh di bagian ini. Lihat [Membatasi kedalaman, konkurensi, dan pengeluaran subagen](https://code.claude.com/docs/id/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) di dokumentasi Agent SDK.
+Jika harness Anda adalah Claude Code atau Claude Agent SDK, batas deterministiknya adalah variabel lingkungan `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` dan `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` serta opsi `max_budget_usd` (typescript: `maxBudgetUsd`) milik SDK. Semuanya memerlukan Claude Code 2.1.217 atau yang lebih baru, jadi perbarui SDK yang di-pin sebelum mengarahkannya ke Claude Opus 5. Claude Code menambahkan instruksi delegasinya sendiri pada Claude Opus 5 hanya ketika Anda menggunakan preset prompt sistem `claude_code`; dengan prompt sistem kustom atau yang dihilangkan, tambahkan sendiri instruksi delegasi seperti contoh di bagian ini. Lihat [Membatasi kedalaman, konkurensi, dan pengeluaran subagen](https://code.claude.com/docs/id/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) di dokumentasi Agent SDK.
 
 ## Koreksi diri
 

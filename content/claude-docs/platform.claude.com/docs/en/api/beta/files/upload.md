@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9a6a53faa2fa903850ca0168b44f571256108da3348f02a540882dc2ecb18860
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 83e459b977bf5110b2cb69d6a3dc8f5bdf4e121a485a1d526baa9789a56ed87e
 ---
 
 ---
@@ -129,6 +129,8 @@ Upload File
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

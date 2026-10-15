@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: af1f6efd2180c78964b4330f880a797e02f0d4f5df76549e49f868d816fc185b
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 126c0be0a51c501705e05ab820be50f05c4fbf2d85131cd1aa797f6e9c7b00ab
 ---
 
 ---
@@ -135,6 +135,8 @@ Validate Credential
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 9f32eeb8421d2f720c6f7a8a4c1382e39465550db941552be7caf0b2b98a47dc
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d28fbfce1925693bcca6448782bdb106b618e7a62f1352cb64d40bc3834bbc03
 ---
 
 > ## Documentation Index
@@ -159,6 +159,7 @@ Match the message you see to a section below.
 | `Request too large for the API's 32MB request limit` | [Request errors](#request-too-large) |
 | `Image was too large` | [Request errors](#image-was-too-large) |
 | `Unable to resize image` | [Request errors](#unable-to-resize-image) |
+| `Request rejected as unprocessable by the model` | [Request errors](#request-rejected-as-unprocessable-by-the-model) |
 | `PDF too large` / `PDF is password protected` / `pdftoppm is not installed` | [Request errors](#pdf-errors) |
 | `Extra inputs are not permitted` | [Request errors](#extra-inputs-are-not-permitted) |
 | `API Error: 400 ... tools.N.custom.input_schema: JSON schema is invalid` / `Property keys should match pattern` | [Request errors](#tool-input-schema-is-invalid) |
@@ -210,6 +211,7 @@ Match the message you see to a section below.
 | `Couldn't verify your organization's policy for cloud sessions` | [Command-line errors](#couldnt-verify-your-organizations-policy-for-cloud-sessions) |
 | `Cloud sessions aren't available:` followed by why your organization's policy couldn't be loaded | [Command-line errors](#couldnt-verify-your-organizations-policy-for-cloud-sessions) |
 | `Cloud sessions need a claude.ai sign-in` | [Unable to get organization UUID](/docs/en/claude-code-on-the-web#unable-to-get-organization-uuid) |
+| `Nothing was stashed: "<path>" is now a folder in place of a tracked file or link` / `are now folders in place of tracked files or links` | [Command-line errors](#nothing-was-stashed-because-a-folder-replaced-a-tracked-file) |
 | `Error: --json-schema is not a valid JSON Schema` | [Command-line errors](#the-json-schema-value-is-not-a-valid-json-schema) |
 | `Error: Invalid --agents configuration:` | [Command-line errors](#invalid-agents-configuration) |
 | `Error: --agents takes a JSON object, or a file path only with --print (-p)` | [Command-line errors](#invalid-agents-configuration) |
@@ -269,6 +271,7 @@ Match the message you see to a section below.
 | `Output styles are saved to local settings (.claude/settings.local.json), which this session doesn't load` | [Command-line errors](#output-styles-are-saved-to-local-settings-which-this-session-doesnt-load) |
 | `/recap only runs when you ask for it yourself in this session` | [Command-line errors](#recap-only-runs-when-you-ask-for-it-yourself) |
 | `` `plugin eval` is currently in early access `` / `` `plugin eval` is currently unavailable `` | [Plugin errors](#plugin-eval-is-currently-in-early-access) |
+| `cannot be evaluated where sessions load it` | [Test plugins with evals](/docs/en/plugin-evals#cannot-be-evaluated-where-sessions-load-it) |
 | `Marketplace "<name>" is registered from an untrusted source` | [Plugin errors](#marketplace-is-registered-from-an-untrusted-source) |
 | `Claude Code refuses the marketplace name "<name>"` | [Plugin errors](#claude-code-refuses-the-marketplace-name) |
 | `Marketplace name impersonates an official Anthropic/Claude marketplace` | [Plugin errors](#claude-code-refuses-the-marketplace-name) |
@@ -368,7 +371,9 @@ Match the message you see to a section below.
 | `Claude Code's fullscreen renderer didn't finish starting last time on this machine` / `Claude Code's fullscreen renderer has repeatedly failed to start on this machine` | [Fullscreen rendering](/docs/en/fullscreen#fullscreen-renderer-didnt-finish-starting) |
 | `Claude Code exited after an unrecoverable interface error (...)` | [Configuration warnings](#exited-after-an-unrecoverable-interface-error) |
 | `Agent descriptions are over the 15.0k-token limit` | [Configuration warnings](#agent-descriptions-are-over-the-15000-token-limit) |
+| `hook needs quotes around a path with a space` | [Configuration warnings](#hook-needs-quotes-around-a-path-with-a-space) |
 | `Not loaded: rename <path>, then restart — its name uses "<name>", a name reserved for the skills synced from your claude.ai account` | [Configuration warnings](#a-skill-command-or-workflow-wasnt-loaded-because-its-name-is-reserved) |
+| `N skill or command names refused: run with --debug to see which ([names]), rename, then restart` | [Configuration warnings](#skill-or-command-name-refused) |
 | `Ignoring N permissions.allow entries from ... this workspace has not been trusted` | [Configuration warnings](#workspace-has-not-been-trusted) |
 | `is a network path, which cannot be added as a working directory` | [Configuration warnings](#working-directory-is-a-network-path) |
 | `Remote managed settings failed to load (<cause>)` | [Configuration warnings](#remote-managed-settings-failed-to-load) |
@@ -1932,7 +1937,7 @@ This is not a client-side network problem. Cloud sessions and [routines](/docs/e
 These steps change one of your own environments. An [organization-shared environment](/docs/en/cloud-environments#organization-shared-environments) opens read-only in the selector, so ask an Owner to change its network access from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings).
 
 * Open your environment for editing, either from the [routine's form](/docs/en/routines#environments-and-network-access) or from the [environment selector](/docs/en/cloud-environments#configure-your-environment) where you start cloud sessions.
-* In the **Edit environment** dialog, change **Network access** from **Trusted** to **Custom**, then add the blocked domain to **Allowed domains**. Enter one domain per line. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead if you want unrestricted access.
+* In the **Edit cloud environment** dialog, change **Network access** from **Trusted** to **Custom**, then add the blocked domain to **Allowed domains**. Enter one domain per line. Check **Also include default list of common package managers** to keep the [default allowlist](/docs/en/cloud-environments#default-allowed-domains) alongside your custom domains. Select **Full** instead if you want unrestricted access.
 * Click **Save changes**. The next run uses the updated allowlist. For a cloud session that's already open, see [when a network access change reaches existing sessions](/docs/en/cloud-environments#network-access).
 
 See [Network access](/docs/en/cloud-environments#network-access) for access levels and the default allowlist. Local CLI sessions are not affected by this policy.
@@ -2236,6 +2241,20 @@ Claude Code normally resizes large images automatically. These errors mean the i
 * If the message asks you to convert the image, convert it to PNG, JPEG, GIF, or WebP and attach it again. Claude Code can verify dimensions for these formats from the file header, without decoding the image.
 * If the message reports a dimension or size limit, resize or recompress the image below that limit before attaching.
 * If the message names a cause, such as a CMYK JPEG, an animated WebP, or a possibly damaged file, re-save the image in the format the message suggests and attach it again.
+
+### Request rejected as unprocessable by the model
+
+The API refused the request as one the model can't process. The message is the API's own.
+
+```text theme={null}
+API Error: 400 Request rejected as unprocessable by the model (too many or oversized images, or unsupported parameters)
+```
+
+Claude Code can remove the oldest images and documents from a refused request and send it again. Before v2.1.290, Claude Code didn't remove images on this refusal, so a long session that accumulated hundreds of them could fail with this error on every turn.
+
+**What to do:**
+
+* If the message keeps appearing in a conversation with images or documents, remove them yourself. Press Esc twice to step back past the turns that added them, or run `/clear` to start fresh.
 
 ### PDF errors
 
@@ -2947,6 +2966,20 @@ Before v2.1.296, these failures printed the `Couldn't verify` message too.
 
 * For the `Couldn't verify` message, check your network connection and try again. Inside a session, restart Claude Code first
 * For a `Cloud sessions aren't available:` message, do what its cause calls for, such as checking your proxy or unsetting the credential it names, then run the command again
+
+<h3 id="nothing-was-stashed-because-a-folder-replaced-a-tracked-file">
+  Nothing was stashed because a folder replaced a tracked file
+</h3>
+
+This message means a folder in your checkout now sits where a git-tracked file or link used to be. It appears after you choose the stash option while pulling a [cloud session](/docs/en/claude-code-on-the-web#from-cloud-to-terminal) into your terminal, for example with `claude --teleport` or `/teleport`. Stashing that state could delete the files inside the folder, so Claude Code refuses the stash and leaves your checkout and index unchanged:
+
+```text wrap theme={null}
+Error: Nothing was stashed: "f" is now a folder in place of a tracked file or link, and stashing could delete what's in it for good. Commit the change or move the folder somewhere else, then try again.
+```
+
+**What to do:**
+
+* Commit the change or move the folder somewhere else, as the message says, then run the teleport again
 
 <h3 id="the-json-schema-value-is-not-a-valid-json-schema">
   The `--json-schema` value is not a valid JSON Schema
@@ -5173,6 +5206,22 @@ Agent descriptions are over the 15.0k-token limit (~16.2k tokens) · ask Claude 
 * Shorten the `description` frontmatter of your agent files, or ask Claude to trim them for you.
 * Remove agent files you no longer use.
 
+<h3 id="hook-needs-quotes-around-a-path-with-a-space">
+  Hook needs quotes around a path with a space
+</h3>
+
+This notification in the conversation view means a hook's script didn't run because its path has a space and isn't quoted. That hook is an [`asyncRewake`](/docs/en/hooks#run-hooks-in-the-background) hook in shell form. In its `command`, an interpreter such as `python3` is followed by an unquoted path placeholder, and the resolved path contains a space.
+
+The notification starts with the hook's event name and names the script:
+
+```text theme={null}
+Stop hook needs quotes around a path with a space (check.py)
+```
+
+**What to do:**
+
+* In the `command` of the hook that runs the script the notification names, wrap the path in double quotes. In a JSON file, write it as `"command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/check.py\""`.
+
 <h3 id="a-skill-command-or-workflow-wasnt-loaded-because-its-name-is-reserved">
   A skill, command, or workflow wasn't loaded because its name is reserved
 </h3>
@@ -5192,6 +5241,24 @@ The notice names what to change for the first item it refused: a folder or file 
 * Rename the item the notice names, or edit the `name:` line it points to, then restart the session.
 
 Before v2.1.282, Claude Code loaded skills and commands with these names.
+
+<h3 id="skill-or-command-name-refused">
+  Skill or command name refused
+</h3>
+
+This startup notice means Claude Code refused the name of at least one [skill or custom command](/docs/en/skills), so it didn't load or loaded without its `name` field:
+
+```text theme={null}
+1 skill or command name refused: run with --debug to see which ([names]), rename, then restart — a name may not hold hidden, direction-changing or blank-like characters, < or >, or be over 256 characters
+```
+
+* **Not loaded**: Claude Code refused the name a skill or command goes by, such as its directory name or a command file's name or subfolder. It's missing from the `/` menu and Claude can't invoke it. Its line in the debug log reads `<name> is not offered`.
+* **`name` field ignored**: Claude Code refused a skill's frontmatter `name`. The skill still loads, but the `/` menu doesn't show the `name` value and typing it doesn't invoke the skill. Its line in the debug log reads `<name value> is not shown for <skill>`.
+
+**What to do:**
+
+* Start Claude Code with `claude --debug` from your shell and search the [debug log](/docs/en/debug-your-config) for `[names]`. Each name the notice counts has one line there. The line spells out some hidden characters as codes, such as `\u{200B}` for a zero-width space, so you can see where they are.
+* Remove the [characters a skill name can't hold](/docs/en/skills#characters-a-skill-name-cant-hold) by renaming the folder or file or editing the `name:` line, or shorten a name that is over 256 characters. Then restart the session, unless the file is in a directory Claude Code [watches for changes](/docs/en/skills#live-change-detection). For a skill from a plugin you didn't write, ask the plugin's author to rename it.
 
 ### Workspace has not been trusted
 

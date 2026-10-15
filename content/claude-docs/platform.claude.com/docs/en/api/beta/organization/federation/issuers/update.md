@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d748d019ce6529ddd5645cec38334066c56f578c6e54c9ba297bd6de759f4b8d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 90eff35b79cae45ca04f713cb899eced46ddb1fc31094acda329620b3a5f86c0
 ---
 
 ---
@@ -144,6 +144,8 @@ session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

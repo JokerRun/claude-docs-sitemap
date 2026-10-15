@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a5538c0f3c1f01421e74d0b5701cabb006b00bfa56bcb8836316f83e4b249ae6
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 0801e0d9149aee4c98c9a05b4e118f1eb07398ac2c4c9ede8e031721a7807337
 ---
 
 ---
@@ -129,6 +129,8 @@ Create a new environment with the specified configuration.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

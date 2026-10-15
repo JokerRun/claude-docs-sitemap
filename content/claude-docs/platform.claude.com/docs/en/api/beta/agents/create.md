@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 6af5febef08fb6988383aa8b99ed134e093685b882aeb101d8e177cf3bf9c102
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f76f9ca92f8c364f70e18a42525b4a8d68bbcc8c8b58f5e9db19ace8021dd885
 ---
 
 ---
@@ -125,6 +125,8 @@ Create Agent
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -301,6 +303,28 @@ Create Agent
   Description of what the agent does.
 
   maxLength: 2048
+
+- `execution_identity: optional BetaManagedAgentsExecutionIdentityParams or null`
+
+  Execution principal for runs of this agent. Omitting it, sending null, or sending `{"type": "service_account"}` stores the default.
+
+  - `BetaManagedAgentsAWSRoleExecutionIdentityParams object`
+
+    An AWS IAM role principal.
+
+    - `type: "aws_role"`
+
+    - `role_arn: string`
+
+      The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
+
+      maxLength: 2048
+
+  - `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
+
+    The Anthropic-managed service account — the default execution principal. Carries no identifier.
+
+    - `type: "service_account"`
 
 - `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams`
 
@@ -1080,6 +1104,26 @@ Create Agent
 
   - `description: string or null`
 
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
+
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
     - `type: "url"`
@@ -1856,6 +1900,9 @@ curl https://api.anthropic.com/v1/agents \
   "archived_at": null,
   "created_at": "2026-03-15T10:00:00Z",
   "description": "A general-purpose starter agent.",
+  "execution_identity": {
+    "type": "service_account"
+  },
   "mcp_servers": [
     {
       "name": "example-mcp",

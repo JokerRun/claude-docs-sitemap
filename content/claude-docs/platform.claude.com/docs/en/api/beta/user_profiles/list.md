@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d11507e68eb4cc02c1aec46fff042e9c714ff5ba9ce43f1fa14173fe230fdd65
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 8922cacdcab7377f7b8c02306262d23299b3a354fd6381c79867ab8be687619f
 ---
 
 ---
@@ -163,6 +163,8 @@ List User Profiles
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

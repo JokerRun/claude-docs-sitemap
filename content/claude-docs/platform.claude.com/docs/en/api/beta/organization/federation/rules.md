@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 3e1420d8971ef608fe375bc3e719d1782e43226904c88669ca0c38449c813276
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: fa29fa70b8213468cd1c41c74e99d87f7dd362bfd6cfffc7c3028499403daab1
 ---
 
 ---
@@ -147,6 +147,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -571,6 +573,8 @@ unless `include_archived=true`.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `data: array of BetaFederationRule`
@@ -879,6 +883,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -1206,6 +1212,8 @@ Console session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -1605,6 +1613,8 @@ other scopes require a Console session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -2142,6 +2152,8 @@ other scopes require a Console session.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -2349,6 +2361,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -2545,6 +2559,8 @@ Console session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 #### Returns
 

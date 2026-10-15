@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: c68a559d6a4db3bd4d61b8f713bacb956780fc7692b93fce881d2d200b39542f
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 39a39f725f669bdb05977333b1610a8878c2ecde0f238dd5faea67ff02f7646f
 ---
 
 > ## Documentation Index
@@ -187,6 +187,8 @@ After a break longer than the [cache lifetime](#cache-lifetime), there is no cac
 <Tip>
   Compaction works in your favor when the context you discard is content you no longer need. To choose when its overhead happens, run `/compact` at a natural break in your work, such as between tasks, instead of waiting for auto-compaction to trigger mid-task. If you've gone down a path you want to abandon entirely, [`/rewind`](#rewinding-the-conversation) to an earlier turn instead. Rewinding truncates back to a prefix that is already cached, rather than building a new one as compaction does.
 </Tip>
+
+If you leave a long conversation idle in a terminal session while it is on the [one-hour TTL](#which-ttl-each-request-gets), Claude Code can compact it shortly before the cache expires. To turn idle compaction off, set [`idleCompaction`](/docs/en/settings-reference#idlecompaction) to `false`, which requires Claude Code v2.1.290 or later.
 
 ### Accumulating many images
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e562abe44e1c143736ccf08c231312eb328e258959778d64cd300660556fee8d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: a45646d66c6ae78c85fdf0813f482b0984bec735f73ea804ddca4822e3dbe8f1
 ---
 
 ---
@@ -453,7 +453,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunak
   ```
 </CodeGroup>
 
-Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/resources` (curl; python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`). Untuk menghapus file, panggil `DELETE /v1/sessions/{session_id}/resources/{resource_id}` (curl; python, typescript, ruby: `client.beta.sessions.resources.delete()`; go, csharp: `client.Beta.Sessions.Resources.Delete()`; java: `client.beta().sessions().resources().delete()`; php: `$client->beta->sessions->resources->delete()`; cli: `ant beta:sessions:resources delete`) dengan ID resource:
+Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/resources` (python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`). Untuk menghapus file, panggil `DELETE /v1/sessions/{session_id}/resources/{resource_id}` (python, typescript, ruby: `client.beta.sessions.resources.delete()`; go, csharp: `client.Beta.Sessions.Resources.Delete()`; java: `client.beta().sessions().resources().delete()`; php: `$client->beta->sessions->resources->delete()`; cli: `ant beta:sessions:resources delete`) dengan ID resource:
 
 <CodeGroup>
   ```bash cURL
@@ -562,7 +562,7 @@ Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/
 
 Gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) untuk mendaftarkan file yang dicakup ke suatu sesi dan mengunduhnya. File yang ditulis agen ke `/mnt/session/outputs/` muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file output yang Anda harapkan tidak ada, daftarkan lagi setelah jeda singkat; setelah file tersebut muncul dalam daftar, pengunggahannya telah selesai.
 
-Pemfilteran berdasarkan `scope_id` memerlukan beta header `managed-agents-2026-04-01`, sehingga contoh daftar memanggil `GET /v1/files` (curl; python, typescript, ruby: `client.beta.files.list()`; go, csharp: `client.Beta.Files.List()`; java: `client.beta().files().list()`; php: `$client->beta->files->list()`; cli: `ant beta:files list`) dan meneruskan header tersebut secara eksplisit.
+Pemfilteran berdasarkan `scope_id` memerlukan beta header `managed-agents-2026-04-01`, sehingga contoh daftar memanggil `GET /v1/files` (python, typescript, ruby: `client.beta.files.list()`; go, csharp: `client.Beta.Files.List()`; java: `client.beta().files().list()`; php: `$client->beta->files->list()`; cli: `ant beta:files list`) dan meneruskan header tersebut secara eksplisit.
 
 <CodeGroup>
   ```bash cURL

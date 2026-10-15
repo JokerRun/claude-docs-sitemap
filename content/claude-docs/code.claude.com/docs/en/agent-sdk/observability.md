@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/observability
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 1ac3a6038dd6a5ad9007987d48f3a7a6bc2d6b2889ac32fb5956d390a37d7e14
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 4df4a9bacf53675a2e013d5fde79900919c88f2f803d5b8402cb835e961ff495
 ---
 
 > ## Documentation Index
@@ -23,6 +23,10 @@ When you run agents in production, you need visibility into what they did:
 The Agent SDK can export this data as OpenTelemetry traces, metrics, and log events to any backend that accepts the OpenTelemetry Protocol (OTLP), whether a hosted observability platform or a self-hosted collector.
 
 This guide explains how the SDK emits telemetry, how to configure the export, and how to tag and filter the data once it reaches your backend. To read token usage and cost directly from the SDK response stream instead of exporting to a backend, see [Track cost and usage](/docs/en/agent-sdk/cost-tracking).
+
+<Note>
+  For the Claude API or Managed Agents, see [OpenTelemetry for the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry).
+</Note>
 
 ## How telemetry flows from the SDK
 

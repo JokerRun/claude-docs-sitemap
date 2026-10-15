@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 46ff9e73451724130941f4cfbb90e63752163808e1e4a1c94c56b9ed396e3d77
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 24654c9158d8a041776683f4927316748ecc4a95be01033ed261b0d4d6b1f08c
 ---
 
 ---
@@ -90,7 +90,7 @@ Objek `stats` sesi memiliki `active_seconds` sendiri, yang menjumlahkan waktu ak
 
 ### Membaca penggunaan dari stream
 
-Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama pada stream sesi dan dalam riwayat event. Snapshot tersebut berisi objek `usage` ditambah `budget` sesi, yang bernilai `null` jika sesi tidak memilikinya.
+Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama pada stream sesi dan dalam riwayat event. Snapshot tersebut berisi objek `usage`, ditambah `budget` sesi jika sesi memilikinya.
 
 Event ini dipancarkan pada transisi idle, bukan berdasarkan timer:
 

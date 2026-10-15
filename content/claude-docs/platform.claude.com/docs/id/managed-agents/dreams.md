@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 1fe7801361f6ac2098b9e5c8144c0759e01adacc3e99fc5788586eb43d38253f
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 888ef1e0533b12bf0cb58106b658139f0d7076c72c28d10cca6cb0eca8392026
 ---
 
 ---
@@ -119,7 +119,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   		anthropic.BetaDreamInputParamOfMemoryStore(storeID),
   		anthropic.BetaDreamInputParamOfSessions([]string{sessionA, sessionB}),
   	},
-  	Model: anthropic.BetaDreamModelParamsUnion{
+  	Model: anthropic.BetaDreamNewParamsModelUnion{
   		OfString: anthropic.String("claude-opus-5-5"),
   	},
   	Instructions: anthropic.String("Focus on coding-style preferences; ignore one-off debugging notes."),
@@ -408,6 +408,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   		EnvironmentID: environmentID,
   		Resources: []anthropic.BetaSessionNewParamsResourceUnion{{
   			OfMemoryStore: &anthropic.BetaManagedAgentsMemoryStoreResourceParam{
+  				Type:          anthropic.BetaManagedAgentsMemoryStoreResourceParamTypeMemoryStore,
   				MemoryStoreID: outputStoreID,
   			},
   		}},

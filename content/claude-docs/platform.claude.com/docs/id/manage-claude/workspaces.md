@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 189524558f181981016dfaccf806faedf9c9cd5cd3378454c262fde0a2525c25
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: b02cd7213d15cb80b98871c03f1ad0e089e4486cee9a0392f9ae429a6ab7e167
 ---
 
 ---
@@ -1100,7 +1100,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
   </Step>
 
   <Step title="Pantau penggunaan">
-    Gunakan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) untuk melacak konsumsi tingkat workspace.
+    Gunakan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) untuk melacak konsumsi di tingkat workspace.
   </Step>
 </Steps>
 

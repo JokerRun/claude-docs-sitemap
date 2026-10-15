@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 2bbbfca4e3880dc8cef9a0028ec2fc8cd5e1476706f73ff0f0d1ab6b3d91c88e
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 960560efb01c066f70223901e79aa14879dd48de82824afb40d3cc867ad7109a
 ---
 
 ---
@@ -127,6 +127,8 @@ Create Agent
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -303,6 +305,28 @@ Create Agent
   Description of what the agent does.
 
   maxLength: 2048
+
+- `execution_identity: optional BetaManagedAgentsExecutionIdentityParams or null`
+
+  Execution principal for runs of this agent. Omitting it, sending null, or sending `{"type": "service_account"}` stores the default.
+
+  - `BetaManagedAgentsAWSRoleExecutionIdentityParams object`
+
+    An AWS IAM role principal.
+
+    - `type: "aws_role"`
+
+    - `role_arn: string`
+
+      The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
+
+      maxLength: 2048
+
+  - `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
+
+    The Anthropic-managed service account — the default execution principal. Carries no identifier.
+
+    - `type: "service_account"`
 
 - `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams`
 
@@ -1082,6 +1106,26 @@ Create Agent
 
   - `description: string or null`
 
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
+
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
     - `type: "url"`
@@ -1858,6 +1902,9 @@ curl https://api.anthropic.com/v1/agents \
   "archived_at": null,
   "created_at": "2026-03-15T10:00:00Z",
   "description": "A general-purpose starter agent.",
+  "execution_identity": {
+    "type": "service_account"
+  },
   "mcp_servers": [
     {
       "name": "example-mcp",
@@ -2093,6 +2140,8 @@ List Agents
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -2122,6 +2171,26 @@ List Agents
     format: date-time
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -2890,6 +2959,9 @@ curl https://api.anthropic.com/v1/agents \
       "archived_at": null,
       "created_at": "2026-03-15T10:00:00Z",
       "description": "A general-purpose starter agent.",
+      "execution_identity": {
+        "type": "service_account"
+      },
       "mcp_servers": [
         {
           "name": "example-mcp",
@@ -3114,6 +3186,8 @@ Get Agent
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -3143,6 +3217,26 @@ Get Agent
     format: date-time
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -3905,6 +3999,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
   "archived_at": null,
   "created_at": "2026-03-15T10:00:00Z",
   "description": "A general-purpose starter agent.",
+  "execution_identity": {
+    "type": "service_account"
+  },
   "mcp_servers": [
     {
       "name": "example-mcp",
@@ -4118,6 +4215,8 @@ Update Agent
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -4131,6 +4230,28 @@ Update Agent
   Description. Omit to preserve; send empty string or null to clear.
 
   maxLength: 2048
+
+- `execution_identity: optional BetaManagedAgentsExecutionIdentityParams or null`
+
+  Execution principal for runs of this agent. Full replacement. Omit to preserve; send null or `{"type": "service_account"}` to restore the default.
+
+  - `BetaManagedAgentsAWSRoleExecutionIdentityParams object`
+
+    An AWS IAM role principal.
+
+    - `type: "aws_role"`
+
+    - `role_arn: string`
+
+      The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
+
+      maxLength: 2048
+
+  - `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
+
+    The Anthropic-managed service account — the default execution principal. Carries no identifier.
+
+    - `type: "service_account"`
 
 - `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams or null`
 
@@ -5078,6 +5199,26 @@ Update Agent
 
   - `description: string or null`
 
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
+
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
     - `type: "url"`
@@ -5845,6 +5986,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
   "archived_at": null,
   "created_at": "2026-03-15T10:00:00Z",
   "description": "A general-purpose starter agent.",
+  "execution_identity": {
+    "type": "service_account"
+  },
   "mcp_servers": [
     {
       "name": "example-mcp",
@@ -6058,6 +6202,8 @@ Archive Agent
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -6087,6 +6233,26 @@ Archive Agent
     format: date-time
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -6850,6 +7016,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
   "archived_at": null,
   "created_at": "2026-03-15T10:00:00Z",
   "description": "A general-purpose starter agent.",
+  "execution_identity": {
+    "type": "service_account"
+  },
   "mcp_servers": [
     {
       "name": "example-mcp",
@@ -6978,6 +7147,26 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
     format: date-time
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -9505,6 +9694,32 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `type: "auto"`
 
+### Beta Managed Agents AWS Role Execution Identity
+
+- `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+  An AWS IAM role principal as returned in API responses.
+
+  - `type: "aws_role"`
+
+  - `role_arn: string`
+
+    The IAM role's ARN.
+
+### Beta Managed Agents AWS Role Execution Identity Params
+
+- `BetaManagedAgentsAWSRoleExecutionIdentityParams object`
+
+  An AWS IAM role principal.
+
+  - `type: "aws_role"`
+
+  - `role_arn: string`
+
+    The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
+
+    maxLength: 2048
+
 ### Beta Managed Agents Bash Tool Config
 
 - `BetaManagedAgentsBashToolConfig object`
@@ -9784,6 +9999,52 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
   Extra-high effort. Not all models accept this level.
 
   - `type: "xhigh"`
+
+### Beta Managed Agents Execution Identity
+
+- `BetaManagedAgentsExecutionIdentity = BetaManagedAgentsAWSRoleExecutionIdentity or BetaManagedAgentsServiceAccountExecutionIdentity`
+
+  Execution principal for runs of this agent as returned in API responses.
+
+  - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+    An AWS IAM role principal as returned in API responses.
+
+    - `type: "aws_role"`
+
+    - `role_arn: string`
+
+      The IAM role's ARN.
+
+  - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+    The Anthropic-managed service account as returned in API responses.
+
+    - `type: "service_account"`
+
+### Beta Managed Agents Execution Identity Params
+
+- `BetaManagedAgentsExecutionIdentityParams = BetaManagedAgentsAWSRoleExecutionIdentityParams or BetaManagedAgentsServiceAccountExecutionIdentityParams`
+
+  Execution principal for runs of this agent: `service_account` (the default) or `aws_role`.
+
+  - `BetaManagedAgentsAWSRoleExecutionIdentityParams object`
+
+    An AWS IAM role principal.
+
+    - `type: "aws_role"`
+
+    - `role_arn: string`
+
+      The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
+
+      maxLength: 2048
+
+  - `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
+
+    The Anthropic-managed service account — the default execution principal. Carries no identifier.
+
+    - `type: "service_account"`
 
 ### Beta Managed Agents Glob Tool Config
 
@@ -11573,6 +11834,22 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `type: "auto"`
 
+### Beta Managed Agents Service Account Execution Identity
+
+- `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+  The Anthropic-managed service account as returned in API responses.
+
+  - `type: "service_account"`
+
+### Beta Managed Agents Service Account Execution Identity Params
+
+- `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
+
+  The Anthropic-managed service account — the default execution principal. Carries no identifier.
+
+  - `type: "service_account"`
+
 ### Beta Managed Agents Session Thread Agent
 
 - `BetaManagedAgentsSessionThreadAgent object`
@@ -11584,6 +11861,26 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
   - `id: string`
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal snapshotted from the agent at session creation. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -13331,6 +13628,8 @@ List Agent Versions
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -13360,6 +13659,26 @@ List Agent Versions
     format: date-time
 
   - `description: string or null`
+
+  - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+    Execution principal for runs of this agent. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+    - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+      An AWS IAM role principal as returned in API responses.
+
+      - `type: "aws_role"`
+
+      - `role_arn: string`
+
+        The IAM role's ARN.
+
+    - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+      The Anthropic-managed service account as returned in API responses.
+
+      - `type: "service_account"`
 
   - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -14128,6 +14447,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
       "archived_at": null,
       "created_at": "2026-03-15T10:00:00Z",
       "description": "A general-purpose starter agent.",
+      "execution_identity": {
+        "type": "service_account"
+      },
       "mcp_servers": [
         {
           "name": "example-mcp",

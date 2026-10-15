@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9b392b69c25cfafdacadca60041b5d37d5067634f90c54406ff3ba9d2c4de4f4
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 89159a21750465295a9b72b7e9168579f504900b552575fead1d2dd824f3f7fd
 ---
 
 ---
@@ -456,7 +456,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 1. Changes to library internals that are technically public but not intended or documented for external use.
 2. Changes that aren't expected to impact the vast majority of users in practice.
 
-Backward-compatibility is taken seriously to ensure you can rely on a smooth upgrade experience.
+Backward compatibility is taken seriously to ensure you can rely on a smooth upgrade experience.
 
 ## Additional resources
 

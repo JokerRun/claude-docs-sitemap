@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 59d55cb037e3ff1e4d4a96e8ed00ca40af7b8e00aa4d92a7299caf6b8661e41d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 12c7d1c2457e73485ad4262e866444218adce039bd9fa38324af157460edb22a
 ---
 
 ---
@@ -1041,7 +1041,7 @@ Jika agen memiliki [workflow run](https://platform.claude.com/docs/id/managed-ag
 
 ### Mengonfirmasi panggilan alat
 
-Kirim event `user.tool_confirmation`, dengan meneruskan ID event di parameter `tool_use_id` (java: `toolUseId`; php: `toolUseID`; csharp, go: `ToolUseID`). Atur `result` (java, php; csharp, go: `Result`) ke `"allow"` atau `"deny"`. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk mengetahui panggilan mana yang menunggu konfirmasi dan cara menjelaskan penolakan.
+Kirim event `user.tool_confirmation`, dengan meneruskan ID event di parameter `tool_use_id` (java: `toolUseId`; php: `toolUseID`; csharp, go: `ToolUseID`). Atur `result` (csharp, go: `Result`) ke `"allow"` atau `"deny"`. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk mengetahui panggilan mana yang menunggu konfirmasi dan cara menjelaskan penolakan.
 
 Contoh berikut menyetujui setiap panggilan yang tertunda:
 
@@ -1719,7 +1719,7 @@ Ambil riwayat event lengkap untuk sebuah sesi:
   ```
 </CodeGroup>
 
-Teruskan filter `types` (java, php; csharp, go: `Types`) untuk hanya mengembalikan jenis event tertentu:
+Teruskan filter `types` (csharp, go: `Types`) untuk hanya mengembalikan jenis event tertentu:
 
 <CodeGroup>
   ```bash cURL
@@ -1818,7 +1818,7 @@ Teruskan filter `types` (java, php; csharp, go: `Types`) untuk hanya mengembalik
 
 Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models), kirim event `system.message` untuk memberikan konteks tingkat sistem yang istimewa kepada agen. Konteks tersebut berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi, misalnya persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime.
 
-`content` (java, php; csharp, go: `Content`) dari event menerima 1–1000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan "system prompt" (prompt sistem) tingkat atas, yang diatur oleh field `system` (java, php; csharp, go: `System`; ruby: `system_`) pada definisi agen.
+`content` (csharp, go: `Content`) dari event menerima 1–1000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan "system prompt" (prompt sistem) tingkat atas, yang diatur oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
 
 <CodeGroup>
   ```bash cURL

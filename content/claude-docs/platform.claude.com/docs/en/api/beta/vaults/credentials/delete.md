@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9f088e5f5fdc7cbf5e7f211d3943816254fa976164ca0dd0d0a8cffc06468785
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d9d7de23def7b20755ff8ffeecc431803235daa8c1228f945892104836597624
 ---
 
 ---
@@ -135,6 +135,8 @@ Delete Credential
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

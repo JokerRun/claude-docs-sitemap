@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f14a0e9bec2d2dbe01869c27ca8af3148974cecb5c187d5633e3569dac7d366d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f025f63ac66ed7367e037ed1566706d9b4b37fdd4d48bb3eb414bc63eb9e5ba2
 ---
 
 ---
@@ -177,6 +177,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -445,6 +447,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `BetaPluginMarketplace object`
@@ -701,6 +705,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -981,6 +987,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Body parameters
 
 - `repository_url: string`
@@ -1246,6 +1254,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters (form-data)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 071d65c5200bf7f81bf7687d4c35aeb23046ad898140d769585ffb741d319618
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 6c1fc5fbcbc6a0e6306b68670c53744d158bbab4ca3342944ff2fe10cbc4c206
 ---
 
 ---
@@ -62,7 +62,7 @@ String tipe event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{act
     | `session.deleted`                   | Sesi telah dihapus. Mengakhiri aliran event yang aktif; tidak ada event lebih lanjut yang dipancarkan untuk sesi ini.                                                                                                                                                                                                               |
     | `session.updated`                   | Permintaan pembaruan sesi mengubah setidaknya satu field. Hanya menyertakan field yang berubah. Pembaruan berlaku pada giliran berikutnya.                                                                                                                                                                                          |
     | `session.error`                     | Terjadi error selama pemrosesan. Menyertakan objek `error` bertipe dengan `retry_status`.                                                                                                                                                                                                                                           |
-    | `session.usage`                     | Snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Membawa total penggunaan sesi dan salinan [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi, atau `null` jika sesi tidak memilikinya.                                                                                                   |
+    | `session.usage`                     | Snapshot penggunaan kumulatif sesi dan biaya daftar yang dilacak. Membawa total penggunaan sesi dan [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika sesi memilikinya.                                                                                                                              |
     | `session.thread_created`            | Sebuah thread [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) telah dibuat. Event ini menyertakan `workflow_run_id`: ID eksekusi untuk thread milik [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads), dan `null` untuk thread lainnya. |
     | `session.thread_status_running`     | Sebuah thread sesi mulai dieksekusi. Setiap sesi memancarkan ini untuk thread utamanya; dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), transisi thread anak juga diposting silang ke aliran utama.                                                                            |
     | `session.thread_status_idle`        | Sebuah thread sesi telah menyelesaikan gilirannya dan sedang menunggu input. Menyertakan `stop_reason`.                                                                                                                                                                                                                             |

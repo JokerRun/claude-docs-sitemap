@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 374cfbcd526b6d8417bb0260e0082c36d232e35e2c21b8b14903149d26ca549e
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d409a5b3090210f580414c61ad82aec7dee4780d5abd78a5bfd7f2ce68d7f600
 ---
 
 ---
@@ -62,7 +62,7 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
     In the policy, replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<ORGANIZATION_UUID>` with your organization ID. The `StringEquals` condition on `kms:EncryptionContext:anthropic:org_uuid` binds the key to your Anthropic organization, and validation refuses a key without it. To share one key among several Anthropic organizations, list each organization ID in the condition value.
 
     <Note>
-      **Finding your organization ID:** Copy the **Organization ID** field under **Settings > Organization** in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/organization/retrieve) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
+      **Finding your organization ID:** Copy the **Organization ID** field on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console, or under **Organization settings > Organization** in claude.ai, or read the `id` field from the [Organization Info](https://platform.claude.com/docs/en/api/organization/retrieve) endpoint. Use the bare UUID, not the `org_`-prefixed ID.
     </Note>
 
     Save the policy as `key-policy.json`. To create the key in the AWS Console instead, paste the policy there, as described later in this step.

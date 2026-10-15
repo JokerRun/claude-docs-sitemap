@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 186f56f443f45bbdf55a5246682447de1b742eb1d78c5f021e26894397853bd0
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2a29da88776fe9fad6963d744f33f89b7867ec09b7622cf39c7f2634927cc2be
 ---
 
 ---
@@ -135,6 +135,8 @@ Delete File
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

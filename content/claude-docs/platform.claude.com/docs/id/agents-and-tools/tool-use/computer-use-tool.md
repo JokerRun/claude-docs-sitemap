@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9eba23a9f528346d35822bc3b0ec7528513671d7f567e138b54d625a95abb156
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: fe81331eafd7e711b1b581574ef26e9a90abecc49c7f1fa137572a0844890fb0
 ---
 
 ---
@@ -2128,7 +2128,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
 
-1. **Hapus header beta.** Hilangkan `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Dengan SDK, hapus `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan panggil Messages API melalui klien standar, bukan namespace beta.
+1. **Hapus header beta.** Hilangkan `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Dengan SDK, hapus `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan panggil Messages API melalui klien standar, bukan namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.
 3. **Pilih apakah zoom tetap diaktifkan.** Zoom diaktifkan secara default pada toolset, sedangkan `enable_zoom` default-nya `false`. Jika lingkungan Anda tidak mengimplementasikan zoom, tambahkan `"configs": {"zoom": {"enabled": false}}` untuk mempertahankan perilaku sebelumnya; jika tidak, implementasikan (lihat [Aksi yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#available-actions)).
 4. **Tangani setiap blok dalam satu giliran.** Perbarui loop agen Anda untuk mengiterasi setiap blok `tool_use` dalam respons alih-alih hanya membaca yang pertama, dan untuk melakukan dispatch berdasarkan `name` blok bersama dengan `toolset_name` alih-alih berdasarkan `input.action`. Input anggota tidak lagi berisi field `action`; field lainnya tidak berubah.
@@ -2184,7 +2184,7 @@ Pasangan berikut menunjukkan blok `tool_use` sebelum dan sesudah perubahan. Nama
 
 ## Versi alat sebelumnya
 
-Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang sudah ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan di [referensi beta Messages API](https://platform.claude.com/docs/id/api/beta/messages/create). Dengan SDK, teruskan header melalui `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau text editor dalam permintaan yang sama.
+Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang sudah ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan di [referensi beta Messages API](https://platform.claude.com/docs/id/api/beta/messages/create). Dengan SDK, teruskan header melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau text editor dalam permintaan yang sama.
 
 | Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameter                                                                     |
 | ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |

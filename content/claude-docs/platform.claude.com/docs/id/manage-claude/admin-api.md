@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 3afa0e7169b6c7099dbcf9181b4254807d097e239945c48f68e013fa75d62e45
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 27b45794bc6e4df45fce34394f54bff7c39bec7a168b90657fc1399caee7dee6
 ---
 
 ---
@@ -32,7 +32,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 </Note>
 
 <Note>
-  **Claude Platform on AWS:** Hanya endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) dan endpoint external key (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws); tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace) yang tersedia di Claude Platform on AWS. Anggota organisasi, anggota workspace, undangan, kunci API, serta laporan penggunaan, biaya, dan batas laju tidak tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+  **Claude Platform on AWS:** Hanya endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint external key (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws); tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace), dan [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations) yang tersedia di Claude Platform on AWS. Anggota organisasi, anggota workspace, undangan, kunci API, serta laporan penggunaan, biaya, dan batas laju tidak tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Autentikasi

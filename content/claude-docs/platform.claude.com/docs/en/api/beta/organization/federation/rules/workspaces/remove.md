@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9ea4afa1f3592bf97f32d8093b2e88e3945db4844c2b37e47ce0cbbec37de5d4
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 5b0b23cfd73d74211f8374adebce464bca2cb29762b7f51eb8b749ace51c7a2b
 ---
 
 ---
@@ -146,6 +146,8 @@ Console session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

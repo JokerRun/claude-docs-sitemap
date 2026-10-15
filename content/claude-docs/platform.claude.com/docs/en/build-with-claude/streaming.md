@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a02a5bb2e5a36cbfab5dfdf4067606f7980eccc2cfd754155fd45469be47d20a
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: efff2a8fa4f1b51cd82fda5683bdbd404aaea11631c068473c207e95b8ab0f32
 ---
 
 ---
@@ -145,7 +145,7 @@ The [Python SDK](https://github.com/anthropics/anthropic-sdk-python) and [TypeSc
 
 ## Get the final message without handling events
 
-If you don't need to process text as it arrives, the SDK provides a way to use streaming internally while returning the complete `Message` object, identical to what `client.messages.create()` (python, typescript, ruby; go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`) returns. This is especially useful for requests with large `max_tokens` values, where the SDK requires streaming to avoid HTTP timeouts.
+If you don't need to process text as it arrives, the SDK provides a way to use streaming internally while returning the complete `Message` object, identical to what `client.messages.create()` (go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`) returns. This is especially useful for requests with large `max_tokens` values, where the SDK requires streaming to avoid HTTP timeouts.
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI

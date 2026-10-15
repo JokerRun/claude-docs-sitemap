@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4bf2d0977ded6cd886786ef5bde1e383f9f1e26f3beacf79aaaefd3a73c0d9d9
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 56efa5aec8f5cf4720aa4c2f12631c13ef7569c0b510f71af6404253057b51f4
 ---
 
 ---
@@ -163,6 +163,8 @@ page to recover.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 07f9daa4bcd80135918d158d0e8f833e2d70b0be677e52b9e17eeba6790747be
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ab3fbf15ba4a0ffa43d29862ca70c8ae98e16086f82d152ba0c5f60b584b2352
 ---
 
 ---
@@ -108,7 +108,7 @@ Webhook events return the event `type` and `id`, not the full object. When you r
 
 ## Register an endpoint
 
-Visit **Manage > Webhooks** in the [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks).
+In the Claude Console, go to the [Webhooks](https://platform.claude.com/settings/workspaces/default/webhooks) page (`platform.claude.com/settings/workspaces/default/webhooks`). Each endpoint belongs to one workspace. Select the workspace you want in the workspace picker in the sidebar.
 
 A webhook endpoint consists of:
 

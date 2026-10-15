@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 71e21081778584dcbc9b866e76c9bb4a969c3e87fbeafed4765c98124930ffc1
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ef11100f75bb89708f9127ac752f3dc0b83b84a0865ca9c186ba2f7db41660ed
 ---
 
 ---
@@ -222,7 +222,7 @@ claims.sub.startsWith("repo:acme-corp/") && claims.ref in ["refs/heads/main", "r
 
 ### Error pertukaran token
 
-`POST /v1/oauth/token` mengembalikan error dalam [bentuk error API](https://platform.claude.com/docs/id/api/errors) standar. SDK membungkus kegagalan pertukaran dalam `WorkloadIdentityError` (python, typescript; ruby: `Anthropic::Credentials::WorkloadIdentityError`; go: `*config.FederationExchangeError`; java: `UnexpectedStatusCodeException`; csharp: `WorkloadIdentityException`; php: `OAuthException`) bertipe yang mengekspos status HTTP, body respons, dan `request_id`.
+`POST /v1/oauth/token` mengembalikan error dalam [bentuk error API](https://platform.claude.com/docs/id/api/errors) standar. SDK membungkus kegagalan pertukaran dalam `WorkloadIdentityError` (ruby: `Anthropic::Credentials::WorkloadIdentityError`; go: `*config.FederationExchangeError`; java: `UnexpectedStatusCodeException`; csharp: `WorkloadIdentityException`; php: `OAuthException`) bertipe yang mengekspos status HTTP, body respons, dan `request_id`.
 
 | Status | Error                   | Penyebab                                                                                                                                                                      | Resolusi                                                                                                                                                                                                                                                                                                                                                |
 | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

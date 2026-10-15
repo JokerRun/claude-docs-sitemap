@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 0c5b0558bbd519f1e3ac17e3efb13800b85bd823e6898025d438c4a7762d2830
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 8373f2593508578e49c2d84d1de4ab6d011bcadb405c9a32348a27b6b82ece97
 ---
 
 ---
@@ -137,6 +137,8 @@ The Models API response can be used to determine information about a specific mo
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

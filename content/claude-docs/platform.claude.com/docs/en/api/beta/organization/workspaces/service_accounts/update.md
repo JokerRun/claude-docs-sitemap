@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 146fcd79fdcd47adf786ddb97fa81f652e41e6f1f23ce4404ae8448461d39536
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: da3a8e512ee31f7b09b0e4a0ad782260fa39e237727e8b3cb590ce8ec274c6f5
 ---
 
 ---
@@ -148,6 +148,8 @@ rejected.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

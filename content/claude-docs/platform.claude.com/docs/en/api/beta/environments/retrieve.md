@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: fc3680745cc94714d93536e821354a710189d46cd4e522fcb4518d66b1877c2d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 002350c42606bd68004e41d90d97681333f4cf17501e1b4f09599279ef8891b6
 ---
 
 ---
@@ -133,6 +133,8 @@ Retrieve a specific environment by ID.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

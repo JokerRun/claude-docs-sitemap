@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 953ad39937ce1c04f02c34d6abd0649098fb369abe3a15cd4be426756772586b
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 8a37e163fc6c10732a9318f969c9de775f9fe9ed4ac490df74f7725f60dde097
 ---
 
 ---
@@ -133,6 +133,8 @@ Fetches a tunnel by ID.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 8cf109f8a2120244942ce5f772f8d58fdb1a92c2485271ceb773c5c88733eece
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f3c981fc4c75e8f1c1a8a2154abc60d8ed578304c1e79a37d6c625446c2ef914
 ---
 
 ---
@@ -165,6 +165,8 @@ List memories
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 67f5ca798f8e74a7396a54d7c79f6595d662c8780070b397cec9c3e24668a61a
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 29ef8023fff2261dc3e45fdfc5d710bfae11f84515bc91eb024422f946297006
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Programmatically query your organization's API rate limits with the
 ---
 
 <Tip>
-  **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization in **Console → Settings → Organization**.
+  **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
 </Tip>
 
 The Rate Limits API provides programmatic access to the rate limits configured for your organization and its workspaces. This is the same information shown on the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console.

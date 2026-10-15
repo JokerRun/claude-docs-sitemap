@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b73b3620d205cb446a8d387a669496a770da6aeada05244fb6aa5187ad12004a
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2923ca131a2a69bfcc3c45f94094217268bef41df548eb3e2e125552c124e64d
 ---
 
 ---
@@ -130,6 +130,8 @@ Archive Session
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -155,6 +157,26 @@ Archive Session
     - `id: string`
 
     - `description: string or null`
+
+    - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+      Execution principal snapshotted from the agent at session creation. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
+      - `BetaManagedAgentsAWSRoleExecutionIdentity object`
+
+        An AWS IAM role principal as returned in API responses.
+
+        - `type: "aws_role"`
+
+        - `role_arn: string`
+
+          The IAM role's ARN.
+
+      - `BetaManagedAgentsServiceAccountExecutionIdentity object`
+
+        The Anthropic-managed service account as returned in API responses.
+
+        - `type: "service_account"`
 
     - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -313,6 +335,10 @@ Archive Session
             - `id: string`
 
             - `description: string or null`
+
+            - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+              Execution principal snapshotted from the agent at session creation. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
 
             - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -860,6 +886,10 @@ Archive Session
 
               - `description: string or null`
 
+              - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+                Execution principal snapshotted from the agent at session creation. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
+
               - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
               - `model: BetaManagedAgentsModelConfig`
@@ -907,6 +937,10 @@ Archive Session
               - `id: string`
 
               - `description: string or null`
+
+              - `execution_identity: BetaManagedAgentsExecutionIdentity`
+
+                Execution principal snapshotted from the agent at session creation. Always present; `{"type": "service_account"}` when runs carry no customer-named principal.
 
               - `mcp_servers: array of BetaManagedAgentsMCPServerURLDefinition`
 
@@ -1264,6 +1298,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/archive \
   "agent": {
     "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "description": "A general-purpose starter agent.",
+    "execution_identity": {
+      "type": "service_account"
+    },
     "mcp_servers": [
       {
         "name": "example-mcp",
@@ -1284,6 +1321,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/archive \
         {
           "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
           "description": "A focused research subagent.",
+          "execution_identity": {
+            "type": "service_account"
+          },
           "mcp_servers": [
             {
               "name": "example-mcp",

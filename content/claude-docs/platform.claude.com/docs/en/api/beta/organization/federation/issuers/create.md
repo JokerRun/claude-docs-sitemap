@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d2a8b829af592f794cf55b78d8abc2d72ef40f2765becc08f8c7789d6d35f8a0
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ac22d61e2f7d86642352e2d2d7f762bfd1913ef69b71d850dc0e4b478652894c
 ---
 
 ---
@@ -141,6 +141,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

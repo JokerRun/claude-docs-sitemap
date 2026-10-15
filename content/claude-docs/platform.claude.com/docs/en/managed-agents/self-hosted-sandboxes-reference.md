@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 895fe2e40df3bbc32b6c455271132a354d573a3c067278b0bf1a5b611eb15b9f
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 8dd9ab913fedeb63feaa4f39e6716b020d48fc7a29263f328f0275e22d7b09dd
 ---
 
 ---
@@ -144,7 +144,7 @@ The Python, TypeScript, and Go SDKs provide three helpers at different levels of
 | Option                                                                               | Description                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `drain` (go: `Drain`)                                                                | Whether to stop polling once the queue is empty rather than waiting for new work.                                                                                                                                                                                                                                                              |
-| `block_ms` (python; typescript: `blockMs`; go: `BlockMs`)                            | How long each poll waits for work to arrive before returning, in milliseconds. Must be between 1 and 999; the helper re-polls automatically. Pass `null` (typescript; python: `None`; go: `param.Null[int64]()`) for a non-blocking check. Defaults to a 999 ms long-poll.                                                                     |
+| `block_ms` (typescript: `blockMs`; go: `BlockMs`)                                    | How long each poll waits for work to arrive before returning, in milliseconds. Must be between 1 and 999; the helper re-polls automatically. Pass `null` (python: `None`; go: `param.Null[int64]()`) for a non-blocking check. Defaults to a 999 ms long-poll.                                                                                 |
 | `reclaim_older_than_ms` (typescript: `reclaimOlderThanMs`; go: `ReclaimOlderThanMs`) | Re-claims work items that were claimed but never acknowledged within this many milliseconds.                                                                                                                                                                                                                                                   |
 | `auto_stop` (typescript: `autoStop`; go: `AutoStop`)                                 | Whether to post a stop signal for each work item once your loop body finishes with it. Set it to `false` (python: `False`; go: `param.NewOpt(false)`) when whatever runs the work item posts the stop itself. `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) does, and so does a sandbox you launch that owns the stop call. |
 

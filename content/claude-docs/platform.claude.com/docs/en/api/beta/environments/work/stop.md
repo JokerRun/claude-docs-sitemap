@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 32004e86949ff98f98d720c94bc61b5dd109426eda931da56160b16d66e972a8
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 3abbeb75e798587a3479a66af2f5ba649b9a6c4cc8c97a6b6adb7a5fea5e36c6
 ---
 
 ---
@@ -137,6 +137,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

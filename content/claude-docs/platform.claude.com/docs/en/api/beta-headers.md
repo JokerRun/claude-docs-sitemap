@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: eb0e5452112bff1036dfd6f2c4bcda810f7cb14d64e326796c5d5a784b5c8142
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 9b2446457eef33b330a50a743e45cf615b94bc44e052594d961055a7cdb147c8
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Access experimental features before they become part of the standar
 Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
 
 <Info>
-  The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) exposes a `client.beta` (python, typescript, ruby; csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) namespace for calling the API with beta features enabled.
+  The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) exposes a `client.beta` (csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) namespace for calling the API with beta features enabled.
 </Info>
 
 ## How to use beta headers
@@ -31,7 +31,7 @@ content-type: application/json
 
 Each feature's documentation states the exact beta name to send. The [API overview](https://platform.claude.com/docs/en/api/overview) lists the APIs currently in beta.
 
-The following examples show the same request with cURL, the `ant` CLI, and the SDK, using the [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) beta as the example. The SDK takes beta names through `betas` (python, typescript, php, ruby; csharp, go: `Betas`; java: `.addBeta()`) and sends the `anthropic-beta` header for you:
+The following examples show the same request with cURL, the `ant` CLI, and the SDK, using the [context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) beta as the example. The SDK takes beta names through `betas` (csharp, go: `Betas`; java: `.addBeta()`) and sends the `anthropic-beta` header for you:
 
 <CodeGroup>
   ```bash cURL
@@ -183,7 +183,7 @@ anthropic-beta: feature2
 anthropic-beta: feature3
 ```
 
-With the SDK, list each feature (for example, `betas=["feature1", "feature2"]` (python; typescript, ruby: `betas: ["feature1", "feature2"]`; php: `betas: ['feature1', 'feature2']`; csharp: `Betas = ["feature1", "feature2"]`; go: `Betas: []anthropic.AnthropicBeta{"feature1", "feature2"}`; java: `.addBeta("feature1").addBeta("feature2")`)). With the CLI, pass a single `--beta` flag with the feature names separated by commas (for example, `--beta feature1,feature2`). You can also repeat the flag (for example, `--beta feature1 --beta feature2`).
+With the SDK, list each feature (for example, `betas=["feature1", "feature2"]` (typescript, ruby: `betas: ["feature1", "feature2"]`; php: `betas: ['feature1', 'feature2']`; csharp: `Betas = ["feature1", "feature2"]`; go: `Betas: []anthropic.AnthropicBeta{"feature1", "feature2"}`; java: `.addBeta("feature1").addBeta("feature2")`)). With the CLI, pass a single `--beta` flag with the feature names separated by commas (for example, `--beta feature1,feature2`). You can also repeat the flag (for example, `--beta feature1 --beta feature2`).
 
 ### Beta features on other platforms
 
@@ -204,7 +204,7 @@ Some beta APIs are scoped to specific endpoints and require a feature-specific b
 | `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
 | `/v1/memory_stores` and sub-resources            | `agent-memory-2026-07-22`   |
 
-The SDK's `client.beta` (python, typescript, ruby; csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) namespace adds these headers automatically. Add them yourself only when making raw HTTP requests. See the [Managed Agents overview](https://platform.claude.com/docs/en/managed-agents/overview), [Using agent memory](https://platform.claude.com/docs/en/managed-agents/memory), and the [MCP tunnels reference](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference#tunnels-api) for details.
+The SDK's `client.beta` (csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) namespace adds these headers automatically. Add them yourself only when making raw HTTP requests. See the [Managed Agents overview](https://platform.claude.com/docs/en/managed-agents/overview), [Using agent memory](https://platform.claude.com/docs/en/managed-agents/memory), and the [MCP tunnels reference](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference#tunnels-api) for details.
 
 Endpoint-specific headers that apply to the same endpoint aren't always combinable. On memory store endpoints, `agent-memory-2026-07-22` replaces `managed-agents-2026-04-01`: sending both on the same request returns a `400` error. The SDK sends the correct header for each endpoint automatically.
 

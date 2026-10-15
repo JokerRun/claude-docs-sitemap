@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 813800394fb908e70d844d58ffe87902750796cbc8142054b794e8102256a9a4
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d7512765ec9be3d95d2dfffc932de3566b9caa027f7e16350a08fe2cf8ec5f27
 ---
 
 ---
@@ -137,6 +137,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b9dce54dd52a022b004d05f93164e881b2e43c1ad529e3507a7e40a2ab9c93ec
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d830d9d816f5820e66e5bf9b630a0b6683852f4ba2e9a06aeb43284a501b59ec
 ---
 
 ---
@@ -125,6 +125,8 @@ Create Deployment
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

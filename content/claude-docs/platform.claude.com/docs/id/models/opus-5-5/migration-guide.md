@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e837453fefb5308d97b2bf682c1e733f25d0c2238a63ced3682ab75653560576
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 8c8ed0bc932b08b997c5a59b62011f8eed138f7deb98cfc885a566591bdc0562
 ---
 
 ---
@@ -335,7 +335,7 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhentilah setelah grup yang 
 
 * Hapus prefill pesan asisten apa pun; Claude Opus 4.6 sudah menolaknya.
 * Pastikan penguraian JSON pemanggilan alat menggunakan parser JSON standar.
-* Pindah dari `client.beta.messages.create()` (python, typescript, ruby; csharp: `client.Beta.Messages.Create()`; go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; php: `$client->beta->messages->create()`; cli: `ant beta:messages create`) ke `client.messages.create()` (python, typescript, ruby; csharp: `client.Messages.Create()`; go: `client.Messages.New()`; java: `client.messages().create()`; php: `$client->messages->create()`; cli: `ant messages create`): pemikiran adaptif dan effort tidak memerlukan namespace beta.
+* Pindah dari `client.beta.messages.create()` (csharp: `client.Beta.Messages.Create()`; go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; php: `$client->beta->messages->create()`; cli: `ant beta:messages create`) ke `client.messages.create()` (csharp: `client.Messages.Create()`; go: `client.Messages.New()`; java: `client.messages().create()`; php: `$client->messages->create()`; cli: `ant messages create`): pemikiran adaptif dan effort tidak memerlukan namespace beta.
 * Hapus header beta `effort-2025-11-24` (parameter effort tidak memerlukannya).
 * Hapus header beta `fine-grained-tool-streaming-2025-05-14`.
 * Hapus header beta `interleaved-thinking-2025-05-14` (pemikiran adaptif mengaktifkan interleaved thinking secara otomatis).
@@ -1553,7 +1553,7 @@ Jika Anda bermigrasi langsung ke Claude Opus 5.5 dari Claude Opus 4.5, Claude Op
 
 Butir pertama wajib diterapkan pada Claude Opus 5.5, sedangkan sisanya direkomendasikan.
 
-1. **Migrasi ke pemikiran adaptif (wajib):** `thinking: {"type": "enabled", "budget_tokens": N}` mengembalikan error 400 pada Claude Opus 4.7 dan model yang lebih baru. Contoh sebelum dan sesudahnya ada di butir 1 dari [perubahan yang merusak kompatibilitas untuk migrasi dari Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes). Migrasi ini juga mencakup peralihan dari `client.beta.messages.create()` (python, typescript, ruby; csharp: `client.Beta.Messages.Create()`; go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; php: `$client->beta->messages->create()`; cli: `ant beta:messages create`) ke `client.messages.create()` (python, typescript, ruby; csharp: `client.Messages.Create()`; go: `client.Messages.New()`; java: `client.messages().create()`; php: `$client->messages->create()`; cli: `ant messages create`): pemikiran adaptif dan effort tidak memerlukan namespace SDK beta atau header beta apa pun.
+1. **Migrasi ke pemikiran adaptif (wajib):** `thinking: {"type": "enabled", "budget_tokens": N}` mengembalikan error 400 pada Claude Opus 4.7 dan model yang lebih baru. Contoh sebelum dan sesudahnya ada di butir 1 dari [perubahan yang merusak kompatibilitas untuk migrasi dari Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes). Migrasi ini juga mencakup peralihan dari `client.beta.messages.create()` (csharp: `client.Beta.Messages.Create()`; go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; php: `$client->beta->messages->create()`; cli: `ant beta:messages create`) ke `client.messages.create()` (csharp: `client.Messages.Create()`; go: `client.Messages.New()`; java: `client.messages().create()`; php: `$client->messages->create()`; cli: `ant messages create`): pemikiran adaptif dan effort tidak memerlukan namespace SDK beta atau header beta apa pun.
 
 2. **Hapus header beta effort:** Parameter effort tidak memerlukan header beta. Hapus beta `effort-2025-11-24` dari permintaan Anda.
 

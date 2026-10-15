@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/cancel
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5c526d143a569c93f0af2e2f0696feed191f544e9dcfd8374167e5fcd21c9da7
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 64164e41447ccaba3b506ca2c63a794536086609c7e0317ab668240a49a7a319
 ---
 
 ---
@@ -139,6 +139,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

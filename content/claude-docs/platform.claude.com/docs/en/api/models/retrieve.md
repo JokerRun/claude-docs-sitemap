@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 79058928ca22bc290832c5b04756ac684f3fd5c33ef53cc7880296fa62437575
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e188716f5f9b29a1a5194f2797249c83c9e301bec788689937784b91fc5b9b51
 ---
 
 ---
@@ -145,6 +145,8 @@ The Models API response can be used to determine information about a specific mo
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

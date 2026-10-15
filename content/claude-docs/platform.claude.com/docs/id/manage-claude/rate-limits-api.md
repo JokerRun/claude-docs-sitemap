@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 14e8f38904895b7cda8e8a2ed65bea2397cda31d59523839694914c12327ba9c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ae3a90a87be4bc380683ed0e778c86a998190e261bd672588dab15ee37ad3d45
 ---
 
 ---
@@ -164,6 +164,7 @@ Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapka
 * **`group_type`:** Sudah deprecated dan digantikan oleh `type` di dalam `group`. Field ini masih dikembalikan, selalu sama dengan nilai tersebut, dan tidak memiliki tanggal penghapusan. Parameter kueri `group_type` tidak deprecated. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk daftar nilainya.
 * **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
 * **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk cara setiap limiter diukur dan diberlakukan.
+* **`source` pada batas workspace:** Pada endpoint workspace, setiap nilai batas juga membawa `source`, yang menyatakan asal `value`: `{"type": "workspace"}` untuk override yang disimpan pada workspace, atau `{"type": "organization"}` untuk nilai yang diwarisi dari organisasi. Secara default, endpoint workspace hanya mengembalikan override, sehingga `source.type` selalu `workspace` di sana; nilai yang diwarisi muncul ketika Anda meneruskan `include_inherited=true`. Lihat [Batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#workspace-rate-limits).
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/organization/rate_limits/list).
 
@@ -288,7 +289,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```
 </CodeGroup>
 
-```json
+```text wrap
 {
   "data": [
     {
@@ -345,19 +346,19 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
 
 <CodeGroup>
   ```bash cURL
-  curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-5" \
+  curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-5-5" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  ant organization:rate-limits list --model claude-opus-5
+  ant organization:rate-limits list --model claude-opus-5-5
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  rate_limits = client.organization.rate_limits.list(model="claude-opus-5")
+  rate_limits = client.organization.rate_limits.list(model="claude-opus-5-5")
 
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
@@ -369,7 +370,9 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const rateLimits = await client.organization.rateLimits.list({ model: "claude-opus-5" });
+  const rateLimits = await client.organization.rateLimits.list({
+    model: "claude-opus-5-5"
+  });
 
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
@@ -385,7 +388,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
 
   var rateLimits = await client.Organization.RateLimits.List(new()
   {
-      Model = "claude-opus-5"
+      Model = "claude-opus-5-5"
   });
 
   await foreach (var entry in rateLimits.Paginate())
@@ -403,7 +406,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   client := anthropic.NewClient()
 
   rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{
-  	Model: anthropic.String(anthropic.ModelClaudeOpus5),
+  	Model: anthropic.String(anthropic.ModelClaudeOpus5_5),
   })
 
   for rateLimits.Next() {
@@ -430,7 +433,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = RateLimitListParams.builder()
-          .model(Model.CLAUDE_OPUS_5.asString())
+          .model(Model.CLAUDE_OPUS_5_5.asString())
           .build();
       var rateLimits = client.organization().rateLimits().list(params);
 
@@ -452,7 +455,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   $client = new Client();
 
   $rateLimits = $client->organization->rateLimits->list(
-      model: Model::CLAUDE_OPUS_5->value,
+      model: Model::CLAUDE_OPUS_5_5->value,
   );
 
   foreach ($rateLimits->data as $entry) {
@@ -467,7 +470,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  rate_limits = client.organization.rate_limits.list(model: Anthropic::Model::CLAUDE_OPUS_5)
+  rate_limits = client.organization.rate_limits.list(model: Anthropic::Model::CLAUDE_OPUS_5_5)
 
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
@@ -483,18 +486,18 @@ Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error
 
 ## Batas laju workspace
 
-Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace.
+Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace. Untuk juga melihat nilai yang diwarisi workspace, teruskan `include_inherited=true` (lihat [Menyertakan nilai yang diwarisi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#include-inherited-values)).
 
-Respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
+Secara default, respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
 * Grup yang tidak ada di `data` sama sekali tidak memiliki override workspace. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan tanpa batas).
 * Di dalam grup yang ada, tipe limiter yang tidak ada di `limits[]` tidak memiliki override workspace untuk limiter tersebut. Workspace mewarisi nilai organisasi untuknya.
-* Untuk setiap limiter yang ada, `org_limit` adalah nilai tingkat organisasi untuk limiter yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe limiter tersebut.
+* Untuk setiap limiter yang ada, `org_limit` adalah nilai tingkat organisasi untuk limiter yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe limiter tersebut, dan `source` adalah `{"type": "workspace"}`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, sehingga tidak memiliki entri di endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, dan endpoint ini mengembalikan error 404 untuknya, dengan atau tanpa `include_inherited`; gunakan endpoint organisasi untuk membaca batasnya.
 </Tip>
 
 <CodeGroup>
@@ -631,7 +634,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```
 </CodeGroup>
 
-```json
+```text wrap
 {
   "data": [
     {
@@ -644,8 +647,18 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       },
       "models": ["claude-opus-5-5"],
       "limits": [
-        { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },
-        { "type": "input_tokens_per_minute", "value": 500000, "org_limit": 10000000 }
+        {
+          "type": "requests_per_minute",
+          "value": 1000,
+          "org_limit": 4000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "input_tokens_per_minute",
+          "value": 500000,
+          "org_limit": 10000000,
+          "source": { "type": "workspace" }
+        }
       ]
     },
     {
@@ -664,8 +677,263 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
         "claude-opus-4-8"
       ],
       "limits": [
-        { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },
-        { "type": "input_tokens_per_minute", "value": 500000, "org_limit": 10000000 }
+        {
+          "type": "requests_per_minute",
+          "value": 1000,
+          "org_limit": 4000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "input_tokens_per_minute",
+          "value": 500000,
+          "org_limit": 10000000,
+          "source": { "type": "workspace" }
+        }
+      ]
+    }
+  ],
+  "next_page": null
+}
+```
+
+### Menyertakan nilai yang diwarisi
+
+Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan parameter kueri opsional `include_inherited`. Nilai defaultnya adalah `false`; nilai yang bukan Boolean mengembalikan error 400. Dengan `include_inherited=true`:
+
+* `data` memiliki satu entri untuk setiap grup yang berlaku pada workspace dan memiliki nilai tingkat organisasi, meskipun workspace tidak meng-override satu pun darinya. Grup model berlaku ketika workspace dapat mengakses setidaknya satu modelnya.
+* `limits[]` pada setiap entri mencantumkan setiap tipe limiter yang memiliki nilai dari organisasi pada grup tersebut, ditambah tipe apa pun yang di-override oleh workspace. Setiap tipe muncul sekali, dengan override workspace jika ada yang disimpan dan nilai organisasi jika tidak, sehingga satu entri dapat mencampur keduanya.
+* `source` pada setiap nilai membedakan keduanya: `{"type": "workspace"}` adalah override yang disimpan, dan `{"type": "organization"}` adalah nilai yang diwarisi, di mana `value` sama dengan `org_limit`.
+
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits?include_inherited=true" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant organization:workspaces:rate-limits list \
+    --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
+    --include-inherited
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  rate_limits = client.organization.workspaces.rate_limits.list(
+      "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      include_inherited=True,
+  )
+
+  for entry in rate_limits:
+      models = f" ({', '.join(entry.models)})" if entry.models else ""
+      print(f"{entry.group.type}{models}")
+      for limit in entry.limits:
+          print(f"  {limit.type}: {limit.value} ({limit.source.type})")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const rateLimits = await client.organization.workspaces.rateLimits.list(
+    "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+    { include_inherited: true }
+  );
+
+  for await (const entry of rateLimits) {
+    const models = entry.models ? ` (${entry.models.join(", ")})` : "";
+    console.log(`${entry.group.type}${models}`);
+    for (const limit of entry.limits) {
+      console.log(`  ${limit.type}: ${limit.value} (${limit.source.type})`);
+    }
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var rateLimits = await client.Organization.Workspaces.RateLimits.List(
+      "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      new() { IncludeInherited = true }
+  );
+
+  await foreach (var entry in rateLimits.Paginate())
+  {
+      var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
+      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      foreach (var limit in entry.Limits)
+      {
+          Console.WriteLine($"  {limit.Type}: {limit.Value} ({limit.Source.Type.GetString()})");
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  rateLimits := client.Organization.Workspaces.RateLimits.ListAutoPaging(
+  	context.Background(),
+  	"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  	anthropic.OrganizationWorkspaceRateLimitListParams{
+  		IncludeInherited: anthropic.Bool(true),
+  	},
+  )
+
+  for rateLimits.Next() {
+  	entry := rateLimits.Current()
+  	models := ""
+  	if len(entry.Models) > 0 {
+  		models = fmt.Sprintf(" (%s)", strings.Join(entry.Models, ", "))
+  	}
+  	fmt.Printf("%s%s\n", entry.Group.Type, models)
+  	for _, limit := range entry.Limits {
+  		fmt.Printf("  %s: %d (%s)\n", limit.Type, limit.Value, limit.Source.Type)
+  	}
+  }
+  if err := rateLimits.Err(); err != nil {
+  	log.Fatal(err)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.organization.workspaces.ratelimits.RateLimitListParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = RateLimitListParams.builder()
+          .includeInherited(true)
+          .build();
+      var rateLimits = client.organization().workspaces().rateLimits()
+          .list("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ", params);
+
+      for (var entry : rateLimits.autoPager()) {
+          var models = entry.models()
+              .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
+              .orElse("");
+          IO.println(entry.group().type().asString() + models);
+          for (var limit : entry.limits()) {
+              IO.println("  " + limit.type() + ": " + limit.value()
+                  + " (" + limit.source().type().asString() + ")");
+          }
+      }
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $rateLimits = $client->organization->workspaces->rateLimits->list(
+      workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
+      includeInherited: true,
+  );
+
+  foreach ($rateLimits->data as $entry) {
+      $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
+      echo "{$entry->group->type}{$models}\n";
+      foreach ($entry->limits as $limit) {
+          echo "  {$limit->type}: {$limit->value} ({$limit->source->type})\n";
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+  rate_limits = client.organization.workspaces.rate_limits.list(workspace_id, include_inherited: true)
+
+  rate_limits.data.each do |entry|
+    models = entry.models ? " (#{entry.models.join(", ")})" : ""
+    puts "#{entry.group.type}#{models}"
+    entry.limits.each do |limit|
+      puts "  #{limit.type}: #{limit.value} (#{limit.source.type})"
+    end
+  end
+  ```
+</CodeGroup>
+
+```text wrap
+{
+  "data": [
+    {
+      "type": "workspace_rate_limit",
+      "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
+        "display_name": "Claude Opus 5.5"
+      },
+      "models": ["claude-opus-5-5"],
+      "limits": [
+        {
+          "type": "requests_per_minute",
+          "value": 1000,
+          "org_limit": 4000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "input_tokens_per_minute",
+          "value": 500000,
+          "org_limit": 10000000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "output_tokens_per_minute",
+          "value": 800000,
+          "org_limit": 800000,
+          "source": { "type": "organization" }
+        }
+      ]
+    },
+    {
+      "type": "workspace_rate_limit",
+      "group_type": "model_group",
+      "group": {
+        "type": "model_group",
+        "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
+        "display_name": "Claude Opus 4.x"
+      },
+      "models": [
+        "claude-opus-4-5",
+        "claude-opus-4-5-20251101",
+        "claude-opus-4-6",
+        "claude-opus-4-7",
+        "claude-opus-4-8"
+      ],
+      "limits": [
+        {
+          "type": "requests_per_minute",
+          "value": 1000,
+          "org_limit": 4000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "input_tokens_per_minute",
+          "value": 500000,
+          "org_limit": 10000000,
+          "source": { "type": "workspace" }
+        },
+        {
+          "type": "output_tokens_per_minute",
+          "value": 800000,
+          "org_limit": 800000,
+          "source": { "type": "organization" }
+        }
+      ]
+    },
+    {
+      "type": "workspace_rate_limit",
+      "group_type": "batch",
+      "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
+      "models": null,
+      "limits": [
+        {
+          "type": "enqueued_batch_requests",
+          "value": 500000,
+          "org_limit": 500000,
+          "source": { "type": "organization" }
+        }
       ]
     }
   ],
@@ -829,7 +1097,7 @@ Setiap ID model dan alias yang dihitung terhadap grup, termasuk ID bertanggal (s
 
 ### Apa artinya jika sebuah grup hilang dari respons workspace?
 
-Workspace tidak memiliki override untuk grup tersebut dan mewarisi batas tingkat organisasi. Kueri endpoint organisasi untuk melihat nilai yang diwarisi.
+Secara default, respons workspace hanya mencantumkan override, sehingga grup yang tidak ada tidak memiliki override workspace dan mewarisi batas tingkat organisasi. Teruskan `include_inherited=true` untuk melihat nilai yang diwarisi pada endpoint workspace, atau kueri endpoint organisasi. Dengan `include_inherited=true`, sebuah grup hanya tidak ada ketika grup tersebut tidak berlaku pada workspace atau organisasi tidak menetapkan batas untuknya.
 
 ### Bisakah saya memperbarui batas laju dengan API ini?
 

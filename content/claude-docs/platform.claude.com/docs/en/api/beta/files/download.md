@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9eb593ef36afc083f11873cae6896879aa67e982b5305e4393671219857a5878
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 3061d9585c488fa5a1c2ab2009f54f0a0757e980f910b48eb700b4ddf86230fb
 ---
 
 ---
@@ -135,6 +135,8 @@ Download File
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

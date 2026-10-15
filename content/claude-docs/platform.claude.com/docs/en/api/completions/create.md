@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9bd4b7d00892a9aac74e52a0a5239a5916bc5118503c922feb11f4e84411c94c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 591672d9cf95525821e39f6dadb622074a6d048049bea6170e53f2d1efab08e5
 ---
 
 ---
@@ -143,6 +143,8 @@ Future models and features will not be compatible with Text Completions. See our
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 87481e24c58dcf0940b4adc41c0cd1fd72191899b71b2eacfe01837904a64a93
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: d005e96618562b039112060ecbed517562afdac93ff21e817a124a494b3415f7
 ---
 
 ---
@@ -21,7 +21,7 @@ Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan 
 
 ## Membuat sesi
 
-Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya yang memiliki versi; meneruskan ID `agent` (java, php; csharp, go: `Agent`) sebagai string akan membuat sesi dengan versi agen terbaru.
+Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya yang memiliki versi; meneruskan ID `agent` (csharp, go: `Agent`) sebagai string akan membuat sesi dengan versi agen terbaru.
 
 <CodeGroup>
   ```bash cURL
@@ -415,8 +415,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
       ],
   );
 
-  // initial_events are not echoed on the create response; read them back
-  // from the session's event list.
+  // initial_events tidak digemakan pada respons create; baca kembali
+  // dari daftar event sesi.
   $seededEvents = $client->beta->sessions->events->list($seededSession->id);
   foreach ($seededEvents->getItems() as $event) {
       if ($event->type === 'user.message') {
@@ -465,23 +465,23 @@ Event `user.define_outcome` di `initial_events` (java, php: `initialEvents`; csh
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat meneruskan `agent` (java, php; csharp, go: `Agent`) dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` (java, php; csharp, go: `ID`) agen serta secara opsional `version` (java, php; csharp, go: `Version`) (hilangkan `version` (java, php; csharp, go: `Version`) untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model` (java, php; csharp, go: `Model`), `system` (java, php; csharp, go: `System`; ruby: `system_`), `tools` (java, php; csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), atau `skills` (java, php; csharp, go: `Skills`) dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` (csharp, go: `Agent`) dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` (csharp, go: `ID`) agen serta secara opsional `version` (csharp, go: `Version`) (hilangkan `version` (csharp, go: `Version`) untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model` (csharp, go: `Model`), `system` (csharp, go: `System`; ruby: `system_`), `tools` (csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), atau `skills` (csharp, go: `Skills`) dengan nilai yang harus digunakan sesi.
 
 Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
 
-* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` (java, php; csharp, go: `System`; ruby: `system_`) dan `skills` (java, php; csharp, go: `Skills`). Ada tiga pengecualian:
+* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` (csharp, go: `System`; ruby: `system_`) dan `skills` (csharp, go: `Skills`). Ada tiga pengecualian:
 
   * `model` tidak pernah dapat dikosongkan. Sesi selalu memerlukan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
-  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` (java, php; csharp, go: `Skills`) efektif sesi tidak kosong, karena skill memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
-  * Mengosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mengembalikan error 400 ketika `tools` (java, php; csharp, go: `Tools`) efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` (java, php; csharp, go: `Tools`) dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`).
+  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` (csharp, go: `Skills`) efektif sesi tidak kosong, karena skill memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+  * Mengosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mengembalikan error 400 ketika `tools` (csharp, go: `Tools`) efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` (csharp, go: `Tools`) dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`).
 
-* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` (java, php; csharp, go: `Tools`) harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` (java, php; csharp, go: `Model`) menggantikan objek `model` (java, php; csharp, go: `Model`) agen secara penuh, sehingga `effort` (java, php; csharp, go: `Effort`) milik agen sendiri tidak terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` (java, php; csharp, go: `Effort`) di dalam objek `model` (java, php; csharp, go: `Model`) override. Tingkat yang tidak didukung model mengembalikan error 400, dan override `model` (java, php; csharp, go: `Model`) tanpa `effort` (java, php; csharp, go: `Effort`) berjalan pada tingkat effort default model tersebut.
+* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` (csharp, go: `Tools`) harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen secara penuh, sehingga `effort` (csharp, go: `Effort`) milik agen sendiri tidak terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` (csharp, go: `Effort`) di dalam objek `model` (csharp, go: `Model`) override. Tingkat yang tidak didukung model mengembalikan error 400, dan override `model` (csharp, go: `Model`) tanpa `effort` (csharp, go: `Effort`) berjalan pada tingkat effort default model tersebut.
 
 Override hanya berlaku untuk sesi yang Anda buat. Override tidak mengubah sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 
-Dalam respons, objek `agent` (java, php; csharp, go: `Agent`) mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` (java, php; csharp, go: `ID`) dan `version` (java, php; csharp, go: `Version`)-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
+Dalam respons, objek `agent` (csharp, go: `Agent`) mencerminkan konfigurasi yang digunakan sesi setelah override diterapkan. `id` (csharp, go: `ID`) dan `version` (csharp, go: `Version`)-nya tetap mengidentifikasi agen dan versi tempat override diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
 
 Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
@@ -615,15 +615,15 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       type: 'agent_with_overrides',
       model: ['id' => 'claude-sonnet-5-5'],
   );
-  // Clear the system prompt for this session. Array access is load-bearing here:
-  // create() strips nulls from raw arrays and ::with() treats null args as omitted.
+  // Kosongkan prompt sistem untuk sesi ini. Akses array penting di sini:
+  // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
   $overrides['system'] = null;
 
   $overrideSession = $client->beta->sessions->create(
       agent: $overrides,
       environmentID: $environment->id,
   );
-  // The response's agent is the resolved snapshot with the overrides applied.
+  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
   echo "Model: {$overrideSession->agent->model->id}\n";
   echo 'System: ' . ($overrideSession->agent->system ?? 'null') . "\n";
   ```
@@ -648,9 +648,9 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 #### Menyematkan geo inferensi untuk sebuah sesi
 
-Karena override `model` (java, php; csharp, go: `Model`) menggantikan objek `model` (java, php; csharp, go: `Model`) agen secara penuh, override tersebut juga mengatur atau mengosongkan penyematan [geo inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya akan mengosongkan penyematan agen sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
+Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen secara penuh, override tersebut juga mengatur atau mengosongkan penyematan [geo inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya akan mengosongkan penyematan agen sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
 
-Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (java, php; csharp, go: `Model`), dan mencetak nilai yang dikembalikan di `agent.model` (java, php; csharp, go: `Agent.Model`) pada respons:
+Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (csharp, go: `Model`), dan mencetak nilai yang dikembalikan di `agent.model` (csharp, go: `Agent.Model`) pada respons:
 
 <CodeGroup>
   ```bash cURL
@@ -807,7 +807,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
 
 ### Menetapkan anggaran sesi
 
-Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (java, php; csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak pada biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengirim permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). Atur `type` (java, php; csharp, go: `Type`) ke `limit` dan berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (java, php; csharp, go: `Amount`) dan `currency` (java, php; csharp, go: `Currency`). `amount` (java, php; csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga tidak pernah ada pembulatan floating-point yang diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi akan dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
+Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak pada biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengirim permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). Atur `type` (csharp, go: `Type`) ke `limit` dan berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (csharp, go: `Amount`) dan `currency` (csharp, go: `Currency`). `amount` (csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga tidak pernah ada pembulatan floating-point yang diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi akan dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
 
 Contoh berikut membuat sesi dengan anggaran $1,25:
 

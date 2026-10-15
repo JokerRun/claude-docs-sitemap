@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: cd755f3fd2c0975538a52c91b6ec6b4b5a6dd7d78cd9327e3924696ebd6cae89
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 0d6067abde05c1a20d0aa04d7e92cb6057f65bb407b95d40097ccfb0812a7e68
 ---
 
 > ## Documentation Index
@@ -143,7 +143,9 @@ With GitHub connected and an environment created, you're ready to submit tasks.
 
 <Steps>
   <Step title="Select a repository and branch">
-    From [claude.ai/code](https://claude.ai/code) or the Code tab in the Claude mobile app, click the repository selector below the input box and choose a repository for Claude to work in. Each repository shows a branch selector. Change it to start Claude from a feature branch instead of the default. You can add multiple repositories to work across them in one session.
+    From [claude.ai/code](https://claude.ai/code) or the Code tab in the Claude mobile app, click the repository selector below the input box and choose a repository for Claude to work in. You can add multiple repositories to work across them in one session.
+
+    At claude.ai/code, to start Claude from a feature branch instead of the default, change the branch in the control after the repository selector.
   </Step>
 
   <Step title="Choose a permission mode">

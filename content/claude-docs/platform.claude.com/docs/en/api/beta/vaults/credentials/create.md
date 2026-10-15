@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: f24ac987ec2b58fd0414b8313211cabce283ef3f5598c0268dbf71a853b78968
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ed97f7a11d9a29c7e82519487641816034760c347a492b6bf55d49eb65a39522
 ---
 
 ---
@@ -131,6 +131,8 @@ Create Credential
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

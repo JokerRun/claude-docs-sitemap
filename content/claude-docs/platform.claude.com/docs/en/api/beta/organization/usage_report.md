@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 9bf0ce41ed127626fe67b8c1fb3592dc4da6317101ea18fe8d0f61ec82dab2ee
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f72a09cafb1e264b469aa074cff38d599e4354e0c088e76211e60772c5a756b1
 ---
 
 ---
@@ -256,6 +256,8 @@ Get Messages Usage Report
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

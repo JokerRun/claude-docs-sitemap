@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 69ce58aa8eee6786ef854071e5442e74d7736437429ff5be6b320bcb62c161ef
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: b9290e573d689ce776e17d224656c8d3a09ac54ed496bad384084247758f2515
 ---
 
 ---
@@ -441,6 +441,8 @@ curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_grou
 
 Peran kustom bersifat hanya-baca melalui API: endpoint ini mengatalogkan peran kustom organisasi Anda (yang didefinisikan di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings) atau diprovisikan oleh Anthropic) dan izin yang diberikan oleh setiap peran. Pembacaan peran kustom menggunakan cakupan `read:members` (tidak ada cakupan peran terpisah) dan berfungsi dengan kunci tingkat organisasi: tidak seperti endpoint grup, endpoint ini tidak memerlukan kunci yang dibuat untuk semua organisasi tertaut, dan katalog yang dikembalikan adalah milik organisasi Anda sendiri.
 
+Baca nama peran dari field `display_name`-nya. Field `name` yang sudah usang masih dikembalikan, selalu sama dengan `display_name`. Untuk peran yang diprovisikan oleh Anthropic, `display_name` dapat berbeda dari label yang ditampilkan claude.ai, dan Anthropic mungkin mengubah namanya. Untuk menyimpan referensi permanen ke suatu peran, simpan `id`-nya.
+
 ### Mendaftarkan peran
 
 `GET /v1/organizations/rbac_roles` mengembalikan peran kustom organisasi Anda. Memerlukan cakupan `read:members`.
@@ -459,6 +461,7 @@ curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
     {
       "type": "rbac_role",
       "id": "rbac_role_01CdEfGhIjKlMnOpQrStUv",
+      "display_name": "Engineering base",
       "name": "Engineering base",
       "created_at": "2026-03-18T10:01:42Z",
       "updated_at": "2026-05-02T08:55:09Z"

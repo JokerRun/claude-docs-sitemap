@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 389169bfba242e52b41295cea985a69c0deb36f03b40fa9254b7b6234d53aafd
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 9877edeaaaf58406c2d4c18e40cb11563ae7415642d696d59ad380ab3a180231
 ---
 
 ---
@@ -146,6 +146,8 @@ holds at most two non-archived certificates.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -377,6 +379,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `data: array of BetaOrganizationTunnelCertificate`
@@ -585,6 +589,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `BetaOrganizationTunnelCertificate object`
@@ -787,6 +793,8 @@ certificate is added.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 601c6ddfa393468eb1b512d739ec274caea515be48d7a165c988ef7a49352be3
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: b447d2b1957d63087d95bc40ae00d78e530ac8c396abe68d3e9b7053c8e8e8e8
 ---
 
 ---
@@ -58,7 +58,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
 
 <Steps>
   <Step title="Create a self-hosted environment">
-    In the [Console](https://platform.claude.com/workspaces/default/environments): **Workspace > Environments > New > Self-hosted**
+    In the Claude Console, go to the [Environments](https://platform.claude.com/environments) page (`platform.claude.com/environments`), click **Create environment**, and under **Hosting** select **Self-hosted**.
 
     Or through the API:
 
@@ -197,7 +197,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=1.40.0
+        VERSION=1.41.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;

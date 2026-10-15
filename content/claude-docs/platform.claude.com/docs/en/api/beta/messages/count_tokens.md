@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b3bc597871c84aa33a9425b493e0325ba89c306c9448e4d30b6c50dd2c92ba06
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2f210388274bb4af54e04968464e6ab43f9a51374205a58a82e5b334c3ac6713
 ---
 
 ---
@@ -133,6 +133,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-user-profile-id": optional string`
 

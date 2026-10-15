@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a59189eced486cdcdb599521ff7c89b3014fe911e8438459b46d61966d7641a2
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: abe19c0b73379b7e54679f4a3804c40d132746fe194d703d227bb15b0698a891
 ---
 
 ---
@@ -131,6 +131,8 @@ Update User Profile
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

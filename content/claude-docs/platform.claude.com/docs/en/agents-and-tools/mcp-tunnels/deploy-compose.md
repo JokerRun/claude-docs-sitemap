@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 74e5fee300a579b866562df9d71aade63e859b69ef033aa43a433ddc9b8f8675
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 988a1c1458147b526da82abc4f3b3df4117b82911d87bce06dbf0d98754402af
 ---
 
 ---
@@ -25,7 +25,7 @@ You need:
 
 * **A way for the host to authenticate to the Tunnels API.**
 
-  * **Programmatic access (recommended).** Turn on **Set up programmatic access** when creating the tunnel (or create the federation rule directly under **Settings > Workload identity** if you're letting the setup component create the tunnel) so the setup component can authenticate through Workload Identity Federation. Record the federation rule ID (`fdrl_...`) and your organization ID.
+  * **Programmatic access (recommended).** Turn on **Set up programmatic access** when creating the tunnel so the setup component can authenticate through Workload Identity Federation. If you're letting the setup component create the tunnel, create the federation rule directly on the [Workload identity](https://platform.claude.com/settings/workload-identity-federation) page (`platform.claude.com/settings/workload-identity-federation`) in the Claude Console instead. Record the federation rule ID (`fdrl_...`) and your organization ID.
   * **Manual.** Skip programmatic access. You'll [get the tunnel token from the Console](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#get-the-connection-details), generate a CA and server certificate yourself, and [register the CA in the Console](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
 * **A host with Docker and Docker Compose** installed. The manual flow also requires `openssl` (1.1.1 or later).

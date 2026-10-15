@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5ecc23ee03da49beeac18f224029de3059e2b4e3471333da9c1f50e3d7c21ce6
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 1e42e5c3406499034deb6cd8fca95fba6a2a6df5a3886ff2759228bc121e9a14
 ---
 
 ---
@@ -147,6 +147,8 @@ List environments with pagination support.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

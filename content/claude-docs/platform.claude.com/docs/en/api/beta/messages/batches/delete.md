@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b7ca3c062c7b2f50ef2b3bff7aa68b808bea62b6ae60bd5724a1a70c2a766771
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: abde10a843ad27db5dd660bcdd2abe16645937b51844e73bfc5614c37736fb53
 ---
 
 ---
@@ -139,6 +139,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

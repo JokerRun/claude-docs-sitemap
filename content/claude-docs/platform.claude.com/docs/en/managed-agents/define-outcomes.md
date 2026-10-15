@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-10-12T02:38:08.121687Z
-sha256: 2934315de8ccf028a72b9a9be63cf93f347835e40cefbbfccae95dc333290c24
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: a687bb3ec236c21f10223db2868c0873643f978abe52eb54de21e27dd67bdd74
 ---
 
 ---
@@ -548,7 +548,7 @@ Progress on an outcome-oriented session is surfaced on the events [stream](https
 * `agent.*` events (such as messages and tool use) show progress toward the outcome.
 * `span.outcome_evaluation_*` events are only emitted for outcome-oriented sessions and show the number of iteration loops and the grader's feedback process.
 * You can also send `user.message` [events](https://platform.claude.com/docs/en/managed-agents/reference#event-types) to an outcome-oriented session to direct the agent's work as it progresses, but it isn't required: the agent works toward the outcome on its own, iterating until it succeeds or runs out of iterations.
-* A `user.interrupt` event pauses work on the current outcome and marks the `result` (java, php; csharp, go: `Result`) of the `span.outcome_evaluation_end` event as `interrupted`, allowing you to kick off a new outcome.
+* A `user.interrupt` event pauses work on the current outcome and marks the `result` (csharp, go: `Result`) of the `span.outcome_evaluation_end` event as `interrupted`, allowing you to kick off a new outcome.
 * After the final outcome evaluation, the session can be continued as a conversational session, or a new outcome can be started. The session retains history of the prior outcome.
 
 ### Define outcome user event

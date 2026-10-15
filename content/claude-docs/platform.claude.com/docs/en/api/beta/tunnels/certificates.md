@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 75447e6f984e4cc7c597a905883d042875644fbec60aeedf489b97ed7cec52f2
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 00c02b74bf8f877a91c36248a86fdbd34fb7dff960e5615e422794a1db0ddc91
 ---
 
 ---
@@ -135,6 +135,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -343,6 +345,8 @@ Fetches a tunnel certificate by ID.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -550,6 +554,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -753,6 +759,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

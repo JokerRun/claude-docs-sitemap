@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 64e6c12438bd5cce240bbdc1eed568ebb503902c56a0474b6c7221b4c7a86ca5
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f1153fce7c00ade7e26b0537dcbe43c42bc0f4a60cf254ac60558a3de7bbd441
 ---
 
 ---
@@ -40,7 +40,7 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 
   Role for the invited User.
 
-  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
+  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`; inviting with the `managed` role requires the `write:rbac_groups` scope in addition to `write:members`.
 
   - `"billing"`
 

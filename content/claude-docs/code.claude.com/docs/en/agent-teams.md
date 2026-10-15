@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c7ccfd71d6e27ed15577ba1578ae70dc331bb613ff57092b2a056f06f828c0d6
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e9a12f8d1601d07665fc9153bd428b12cd70609da82c0c91ccb34c3b48ffb035
 ---
 
 > ## Documentation Index
@@ -247,7 +247,7 @@ An agent team consists of:
 | **Task list** | Shared list of work items that teammates claim and complete |
 | **Mailbox** | Messaging system for communication between agents |
 
-Each agent's mailbox is a JSON file at `~/.claude/teams/{team-name}/inboxes/{agent-name}.json`. Claude Code validates every entry when it reads a mailbox file. Entries that don't match the message format are reported as errors and removed from the file; the valid messages are still delivered. Before v2.1.207, a single malformed mailbox entry caused a repeated error every second and blocked delivery for that mailbox until you deleted the file manually.
+Each agent's mailbox is a JSON file at `~/.claude/teams/{team-name}/inboxes/{agent-name}.json`. Claude Code validates every entry when it reads a mailbox file. Entries that don't match the message format are reported as errors and removed from the file; the valid messages are still delivered.
 
 Claude Code reports a message as sent only when the write to the recipient's mailbox file succeeds, whether the message is plain text or a structured protocol message such as a plan approval or shutdown request. When the write fails, for example because the disk is full or the mailbox directory isn't writable, the sending agent receives an error and nothing is sent. See [Failed to write to a teammate's inbox](/docs/en/errors#failed-to-write-to-a-teammate-inbox) for the error messages and recovery steps.
 
@@ -284,6 +284,7 @@ Claude Code reads the subagent definition you named and applies these parts of i
 * **`model`**: Claude Code uses the definition's `model` in either display mode when your spawn prompt doesn't name one. See [how Claude Code picks a teammate's model](#specify-teammates-and-models).
 * **`disallowedTools`**: for an in-process teammate, Claude Code removes the tools in the definition's `disallowedTools` from the teammate's set. `SendMessage` and the Task tools it adds stay available even when the list names them.
 * **`effort`**: for an in-process teammate, Claude Code applies the definition's [`effort`](/docs/en/sub-agents#supported-frontmatter-fields) under the [frontmatter effort rules](/docs/en/model-config#set-the-effort-level).
+* **`autoCompactWindow`**: for an in-process teammate, Claude Code applies the definition's [`autoCompactWindow`](/docs/en/sub-agents#supported-frontmatter-fields) under [that field's rules](/docs/en/sub-agents#subagent-auto-compact-window). A split-pane teammate ignores the field. Requires Claude Code v2.1.296 or later.
 * **Body**: for an in-process teammate, Claude Code appends the definition's body to its default system prompt as additional instructions. For a split-pane teammate, Claude Code uses the body in place of its default system prompt.
 * **`skills`**: Claude Code doesn't apply the definition's `skills` to a teammate in either display mode. The teammate loads skills from your project and user settings.
 * **`mcpServers`**: for a split-pane teammate, Claude Code applies the definition's `mcpServers` under the [rules for that field](/docs/en/sub-agents#scope-mcp-servers-to-a-subagent), which cover a session started with `--agent` as well. An in-process teammate ignores the field and loads MCP servers from your project and user settings.

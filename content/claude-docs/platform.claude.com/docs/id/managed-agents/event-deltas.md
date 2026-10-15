@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 7f5bd03504e01757099c047ea55ee0350b328809c8b947a4e1768f48a86cf3a5
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 87d7e1616581de47c964ccd96eb2ec453bb705e8aa1ad60315d21e8515bebf30
 ---
 
 ---
@@ -110,7 +110,7 @@ Pola ini bergantung pada dua jaminan:
 
 ### Helper akumulator SDK
 
-Helper setiap SDK menangani pencatatan `index` (java, php; csharp, go: `Index`). Helper Go, Java, Ruby, dan C# juga memberi kunci pada pratinjau yang terakumulasi berdasarkan `id` (java, php; csharp, go: `ID`) event. Dengan helper Python, TypeScript, dan PHP, simpan map tersebut sendiri dan gabungkan setiap delta ke dalam entri untuk `id` (java, php; csharp, go: `ID`)-nya.
+Helper setiap SDK menangani pencatatan `index` (csharp, go: `Index`). Helper Go, Java, Ruby, dan C# juga memberi kunci pada pratinjau yang terakumulasi berdasarkan `id` (csharp, go: `ID`) event. Dengan helper Python, TypeScript, dan PHP, simpan map tersebut sendiri dan gabungkan setiap delta ke dalam entri untuk `id` (csharp, go: `ID`)-nya.
 
 Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasinya dengan event yang di-buffer:
 

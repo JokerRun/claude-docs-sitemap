@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 0a44fc06105f5290462f3bbc34f85175ae4bd64037fd40875f52dd1022c6a088
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 21f83f05f8b686a7d6e349f5d553de6f7e70b4210c35171d23825841075ea461
 ---
 
 ---
@@ -164,6 +164,8 @@ archived tunnels are excluded unless `include_archived` is set.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -369,6 +371,8 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `BetaOrganizationTunnel object`
@@ -568,6 +572,8 @@ tunnel returns the existing record unchanged.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -770,6 +776,8 @@ access logs.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `BetaOrganizationTunnelToken object`
@@ -942,6 +950,8 @@ restarted after rotation must use the new value. An optional
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -1190,6 +1200,8 @@ holds at most two non-archived certificates.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Body parameters
 
 - `ca_certificate_pem: string`
@@ -1420,6 +1432,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Returns
 
 - `data: array of BetaOrganizationTunnelCertificate`
@@ -1628,6 +1642,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Returns
 
 - `BetaOrganizationTunnelCertificate object`
@@ -1830,6 +1846,8 @@ certificate is added.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 #### Returns
 

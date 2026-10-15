@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e84eb7d21a821670b50ddee64293bc9affd43226a6b820d8cfcf2d868777ff5c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 2a0268dc746c872360cece4f2782deca7df105b09fd2efd6096a802b61292408
 ---
 
 ---
@@ -145,7 +145,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
 ## Mendapatkan pesan akhir tanpa menangani event
 
-Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming secara internal sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `client.messages.create()` (python, typescript, ruby; go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`). Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
+Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming secara internal sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `client.messages.create()` (go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`). Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI

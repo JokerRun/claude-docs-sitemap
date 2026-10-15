@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e5b3990c757984347d57a7b406d25cb925f8e22cbe33718f36fb895cfa07b03c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: b7a4ea21665a5a80d568a467482cf8c1fdd11075294d95c699b873d5262e9509
 ---
 
 ---
@@ -129,6 +129,8 @@ Delete Session
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0cb38f5d7a0844e484734642dffb6cdc8e5e7988894a0d6ccb64862bd1671256
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 04f7ff26e714e33dfbe23aee5ce6182c37a2c2102db55c6bc4178a58daf4284e
 ---
 
 ---
@@ -255,6 +255,10 @@ Thinking is supported in the following models:
 * Claude Opus 5.5 (`claude-opus-5-5`, adaptive thinking only, always on)
 * Claude Sonnet 5.5 (`claude-sonnet-5-5`, adaptive thinking only, on by default; `thinking: {"type": "disabled"}` returns a 400 error, so send `thinking: {"type": "between_tools"}` to turn off up-front thinking)
 * Claude Haiku 5.5 (`claude-haiku-5-5`, adaptive thinking only, on by default)
+* Claude Fable 5.1 (`claude-fable-5-1`, adaptive thinking only, always on)
+* Claude Mythos 5.1 (`claude-mythos-5-1`, adaptive thinking only, always on)
+* Claude Fable 5 (`claude-fable-5`, adaptive thinking only, always on)
+* Claude Mythos 5 (`claude-mythos-5`, adaptive thinking only, always on)
 * Claude Opus 5 (claude-opus-5, adaptive thinking only, on by default)
 * Claude Sonnet 5 (`claude-sonnet-5`, adaptive thinking only, on by default)
 * Claude Opus 4.8 (claude-opus-4-8, adaptive thinking only)

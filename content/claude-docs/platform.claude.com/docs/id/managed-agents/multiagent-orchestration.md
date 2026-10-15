@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 196cfa93a5bbb32c8d1caff2e96dd4cb9e3d6f6adbdd0dad63b5206387d0764e
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 38be3f6184986cce32e06daf0bf5d5579b7066cc14d2d8500db5969fbbe3bcba
 ---
 
 ---
@@ -376,7 +376,7 @@ Aturan berikut berlaku untuk agen yang Anda cantumkan di `subagents.predefined_a
 
 * **Penyematan:** Konfigurasi agen, termasuk daftar `subagents.predefined_agents`-nya, diambil snapshot-nya saat agen dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diresolusi saat itu dan tidak mengambil pembaruan selanjutnya pada definisinya. Pembaruan yang tidak mengirimkan daftar tersebut mempertahankan versi yang sudah disematkan. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) sehingga daftar `subagents.predefined_agents`-nya mereferensikan versi tersebut.
 * **Satu tingkat:** Agen hanya dapat mendelegasikan ke satu tingkat agen. Mereferensikan agen lain yang memiliki `multiagent` yang diatur akan membuat permintaan pembuatan atau pembaruan gagal dengan error validasi 400.
-* **Hingga 20 agen:** `subagents.predefined_agents` dapat mencantumkan hingga 20 agen unik. Batas ini berlaku per daftar: `workflows.predefined_agents` juga dapat mencantumkan hingga 20. Agen dapat memanggil beberapa salinan dari setiap agen, dalam [batas thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi.
+* **Hingga 20 agen:** `subagents.predefined_agents` dapat mencantumkan hingga 20 agen unik. Batas ini berlaku per daftar: `workflows.predefined_agents` juga dapat mencantumkan hingga 20. Agen dapat memanggil beberapa salinan dari setiap subagen, dalam [batas thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi.
 * **Geografi inferensi:** Agen dan setiap agen yang Anda cantumkan, di `subagents.predefined_agents` atau di `workflows.predefined_agents`, harus menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) yang sama (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), atau tidak satu pun dari mereka boleh menyematkannya. Ketidakcocokan di salah satu daftar ditolak dengan error validasi 400. Pemeriksaan tersebut dijalankan baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan.
 
 ### Buat sesi
@@ -903,7 +903,7 @@ Dengan alur kerja dinamis, sebuah agen dapat mengerjakan pekerjaan dengan banyak
 
 * **Bagaimana eksekusi dimulai:** Anda mendeskripsikan pekerjaan dalam sebuah `user.message`. Dari situ, agen menentukan apakah dan kapan memulai eksekusi, sehingga tidak ada panggilan API tambahan. Sebagai gantinya, Anda memengaruhi keputusan agen dengan mendeskripsikan kapan menggunakan eksekusi di `user.message` atau di prompt sistem agen. (Kebijakan izin berlaku untuk alat yang dipanggil oleh agen-agen dalam eksekusi, bukan untuk memulai eksekusi.)
 * **Agen mana yang digunakannya:** [Agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) yang didefinisikan workflow, agen predefined yang Anda cantumkan di `workflows.predefined_agents`, atau keduanya. Jika Anda tidak mencantumkan satu pun, workflow mendefinisikan semuanya. Agen inline menggunakan model milik agen yang dijalankan sesi. Agar sebuah eksekusi dapat menggunakan model lain untuk sebagian agennya, buat mereka sebagai agen dan cantumkan di `workflows.predefined_agents`.
-* **Bagaimana Anda mengikutinya:** Event eksekusi tiba di aliran event sesi, dan setiap agen dalam eksekusi bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang dapat Anda cantumkan, baca, dan stream. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) untuk event, interupsi, batas, dan [apa yang ditampilkan thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
+* **Bagaimana Anda mengikutinya:** Event eksekusi tiba di aliran event sesi, dan setiap agen dalam eksekusi bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang dapat Anda cantumkan, baca, dan stream. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) untuk event, interupsi, [batas](https://platform.claude.com/docs/id/managed-agents/workflow-runs#limits), dan [apa yang ditampilkan thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
 
 ### Aktifkan alur kerja dinamis
 
@@ -1109,9 +1109,9 @@ Perhatikan hal-hal berikut:
 
 * **Agen yang dapat Anda cantumkan:** Agen yang memiliki pengaturan `multiagent` tidak dapat dicantumkan sebagai subagen dari agen lain, atau di `workflows.predefined_agents` milik agen lain. Agen dapat mencantumkan dirinya sendiri di salah satu daftar dengan `{"type": "self"}`, yang akan terbaca kembali sebagai `id` dan `version` miliknya sendiri.
 
-* **Nama alat:** Prefiks `ant__` dicadangkan. Jika agen Anda sudah memiliki alat kustom yang namanya diawali dengan `ant__`, setiap pembaruan akan gagal dengan error 400 hingga Anda mengirim `tools` tanpa nama tersebut. Sesi baru juga ditolak dengan error 400 jika agennya, atau agen di salah satu daftar, memiliki alat seperti itu. Ganti nama atau hapus alat tersebut dalam pembaruan yang sama yang mengaktifkan alur kerja dinamis. Lihat [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).
+* **Nama alat:** Prefiks `ant__` dicadangkan. Jika agen Anda sudah memiliki alat kustom yang namanya diawali dengan `ant__`, sebuah pembaruan akan gagal dengan error 400 hingga Anda mengirim `tools` tanpa nama tersebut. Sesi baru juga ditolak dengan error 400 jika agennya, atau agen di salah satu daftar, memiliki alat seperti itu. Ganti nama atau hapus alat tersebut dalam pembaruan yang sama yang mengaktifkan alur kerja dinamis. Lihat [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).
 
-* **Anggaran:** Atur [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) saat Anda membuat sesi untuk membatasi pengeluaran sesi, termasuk eksekusi; Anda tidak dapat menambahkannya ke sesi yang sudah ada. Eksekusi dijeda saat sesi mencapai anggaran, dan eksekusi yang dijeda oleh anggaran akan dilanjutkan saat Anda menaikkan atau menghapusnya, kecuali jika eksekusi tersebut juga dijeda oleh interupsi. Lihat [Anggaran dan batas](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits).
+* **Anggaran:** Atur [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) saat Anda membuat sesi untuk membatasi pengeluaran sesi, termasuk eksekusi; Anda tidak dapat menambahkannya ke sesi yang sudah ada. Eksekusi dijeda saat sesi mencapai anggaran, dan eksekusi yang dijeda oleh anggaran akan dilanjutkan saat Anda menaikkan atau menghapusnya, kecuali jika eksekusi tersebut juga dijeda oleh interupsi. Lihat [Biaya dan anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#cost-and-budgets).
 
 ### Beri tahu agen kapan menggunakan eksekusi
 

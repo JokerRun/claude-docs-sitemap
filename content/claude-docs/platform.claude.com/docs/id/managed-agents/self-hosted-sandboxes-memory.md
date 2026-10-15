@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: bb8b2d487e44d87dee038e212b1b8b8b1938718eecc971fe3e06970631b4a0e2
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 1828a721907dc1c4e515390a45754e8ef46d662d16d49ae663612dab9a6e9af8
 ---
 
 ---
@@ -75,12 +75,12 @@ Dua opsi `EnvironmentWorker` mengontrol perilaku memori. Atur opsi tersebut di m
 
 `memory_sync_interval` (typescript: `memorySyncIntervalMs`; go: `MemorySyncInterval`) mengatur seberapa sering store yang terlampir direkonsiliasi dengan server selama sesi berjalan.
 
-| Pengaturan                    | Nilai                                                       |
-| ----------------------------- | ----------------------------------------------------------- |
-| Default                       | 15 detik                                                    |
-| Minimum                       | 5 detik                                                     |
-| Contoh (10 detik)             | `10` (python; typescript: `10_000`; go: `10 * time.Second`) |
-| Menonaktifkan dukungan memori | `None` (python; typescript: `null`; go: `-1`)               |
+| Pengaturan                    | Nilai                                               |
+| ----------------------------- | --------------------------------------------------- |
+| Default                       | 15 detik                                            |
+| Minimum                       | 5 detik                                             |
+| Contoh (10 detik)             | `10` (typescript: `10_000`; go: `10 * time.Second`) |
+| Menonaktifkan dukungan memori | `None` (typescript: `null`; go: `-1`)               |
 
 Interval yang lebih pendek mempersempit jendela waktu di mana sesi lain melihat memori yang usang, dengan konsekuensi lebih banyak permintaan ke memory store.
 

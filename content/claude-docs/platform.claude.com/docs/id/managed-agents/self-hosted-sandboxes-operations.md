@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 9c51b63ff2b1697e5bb88ea42b52acaeaf343a7ae2d52803cf9a349d3a13a12a
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e8557756c7da9ed54c0c45d88a826b68fc764b15e42aa9d2851617b0ada181a8
 ---
 
 ---
@@ -25,7 +25,7 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
 
 ## Membaca kedalaman antrean
 
-`GET /v1/environments/{environment_id}/work/stats` (curl; python, typescript, ruby: `client.beta.environments.work.stats()`; go, csharp: `client.Beta.Environments.Work.Stats()`; java: `client.beta().environments().work().stats()`; php: `$client->beta->environments->work->stats()`; cli: `ant beta:environments:work stats`) mengembalikan status antrean untuk sebuah environment:
+`GET /v1/environments/{environment_id}/work/stats` (python, typescript, ruby: `client.beta.environments.work.stats()`; go, csharp: `client.Beta.Environments.Work.Stats()`; java: `client.beta().environments().work().stats()`; php: `$client->beta->environments->work->stats()`; cli: `ant beta:environments:work stats`) mengembalikan status antrean untuk sebuah environment:
 
 | Field              | Arti                                                                                                                                                                                                     | Gunakan untuk                                                                                                                     |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -159,7 +159,7 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
 
 ## Menghentikan sesi dengan baik
 
-Gunakan `POST /v1/environments/{environment_id}/work/{work_id}/stop` (curl; python, typescript, ruby: `client.beta.environments.work.stop()`; go, csharp: `client.Beta.Environments.Work.Stop()`; java: `client.beta().environments().work().stop()`; php: `$client->beta->environments->work->stop()`; cli: `ant beta:environments:work stop`) untuk meminta worker yang menangani sesi tertentu agar mematikannya.
+Gunakan `POST /v1/environments/{environment_id}/work/{work_id}/stop` (python, typescript, ruby: `client.beta.environments.work.stop()`; go, csharp: `client.Beta.Environments.Work.Stop()`; java: `client.beta().environments().work().stop()`; php: `$client->beta->environments->work->stop()`; cli: `ant beta:environments:work stop`) untuk meminta worker yang menangani sesi tertentu agar mematikannya.
 
 Secara default, work item berpindah ke `stopping`. Worker menyadarinya pada heartbeat lease berikutnya, membatalkan panggilan alat sesi yang sedang berjalan, dan mengonfirmasi penghentian. Work item kemudian menjadi `stopped`.
 

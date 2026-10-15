@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c84f174413fcbb6f7d174c26fe6592e11839ee425e0f9ae4bf9a3abb8dc69f5c
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 41bf2a1094abcaaa49a1789ba7a4d2827c47de1fe1695d11a8b9e161f62aa821
 ---
 
 ---
@@ -129,6 +129,8 @@ Add Session Resource
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

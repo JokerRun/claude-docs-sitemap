@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a6b19a2c7dabd1dc8ffffb9dab7c5f4b999cc2fcde16f6fcf3ca8454fa4d8eb8
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: b0f5de8674fca569799c06e297e52f528b26fb027ac13bc8c031e11b4a7a6b24
 ---
 
 ---
@@ -144,7 +144,7 @@ SDK Python, TypeScript, dan Go menyediakan tiga helper dengan tingkat kontrol ya
 | Opsi                                                                                 | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `drain` (go: `Drain`)                                                                | Apakah polling dihentikan setelah antrean kosong alih-alih menunggu pekerjaan baru.                                                                                                                                                                                                                                                                                                                          |
-| `block_ms` (python; typescript: `blockMs`; go: `BlockMs`)                            | Berapa lama setiap poll menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999; helper melakukan poll ulang secara otomatis. Teruskan `null` (typescript; python: `None`; go: `param.Null[int64]()`) untuk pemeriksaan non-blocking. Default-nya adalah long-poll 999 ms.                                                                                                          |
+| `block_ms` (typescript: `blockMs`; go: `BlockMs`)                                    | Berapa lama setiap poll menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999; helper melakukan poll ulang secara otomatis. Teruskan `null` (python: `None`; go: `param.Null[int64]()`) untuk pemeriksaan non-blocking. Default-nya adalah long-poll 999 ms.                                                                                                                      |
 | `reclaim_older_than_ms` (typescript: `reclaimOlderThanMs`; go: `ReclaimOlderThanMs`) | Mengklaim ulang work item yang telah diklaim tetapi tidak pernah di-acknowledge dalam jumlah milidetik ini.                                                                                                                                                                                                                                                                                                  |
 | `auto_stop` (typescript: `autoStop`; go: `AutoStop`)                                 | Apakah sinyal berhenti dikirim untuk setiap work item setelah badan loop Anda selesai memprosesnya. Atur ke `false` (python: `False`; go: `param.NewOpt(false)`) ketika apa pun yang menjalankan work item mengirim sinyal berhenti sendiri. `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) melakukannya, begitu pula sandbox yang Anda luncurkan yang memiliki pemanggilan stop tersebut. |
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f8b5a582cc981a60c9223bf3e263f2ff4775aa0890369c9b9907224a631d5231
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: a3183fd26da4dbfb85650c62130be62c1da74c4617c54c59dd3ab6a9de53f1a5
 ---
 
 ---
@@ -146,6 +146,8 @@ accounts cannot be added and are rejected.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

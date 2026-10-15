@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f84789c7a6b1087923cba83b0b18a06ae9dfda04c2332b9be4735ae778777eaf
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: f95f9a4ae44111ac982c7df931d09a0e191be00adecd29ae0c47495c3a500328
 ---
 
 ---
@@ -141,6 +141,8 @@ accounts.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -401,6 +403,8 @@ archived service accounts.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `data: array of BetaServiceAccount`
@@ -621,6 +625,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -843,6 +849,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -1083,6 +1091,8 @@ those rules first or change their target to another service account.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -1414,6 +1424,8 @@ rejected.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -1650,6 +1662,8 @@ page to recover.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 #### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -1857,6 +1871,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 #### Returns
 

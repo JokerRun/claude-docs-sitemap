@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 3579db2329c52e0d59d7fd2e7683b353d5ac8ad26fb5930a8b20efdf04ec8948
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: bf27d193648c5e664ba2624afa63b736231c44bd049c9edf85b5216542045f08
 ---
 
 ---
@@ -95,7 +95,7 @@ console.log(message.usage);
 
 ## Streaming responses
 
-The SDK provides support for streaming responses using Server Sent Events (SSE).
+The SDK provides support for streaming responses using Server-Sent Events (SSE).
 
 ```typescript
 const client = new Anthropic();
@@ -282,7 +282,7 @@ await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
 
 ### MCP error handling
 
-The conversion functions throw `UnsupportedMCPValueError` if an MCP value isn't supported by the Claude API (for example, unsupported content type, unsupported MIME type, non-http/https resource link).
+The conversion functions throw `UnsupportedMCPValueError` if an MCP value isn't supported by the Claude API (for example, unsupported content type, unsupported MIME type, non-HTTP/HTTPS resource link).
 
 ## Message batches
 
@@ -337,7 +337,7 @@ Request parameters that correspond to file uploads can be passed in many differe
 * an `fs.ReadStream`
 * the return value of the `toFile` helper
 
-Set the content-type explicitly as the files API will not infer it for you:
+Set the content type explicitly as the Files API will not infer it for you:
 
 ```typescript
 import fs from "node:fs";
@@ -752,7 +752,7 @@ const response = await client.beta.messages.create({
 ## Runtime support
 
 <Accordion title="Browser usage">
-  Enabling the `dangerouslyAllowBrowser` option can be dangerous because it exposes your secret API credentials in the client-side code. Web browsers are inherently less secure than server environments, any user with access to the browser can potentially inspect, extract, and misuse these credentials. This could lead to unauthorized access using your credentials and potentially compromise sensitive data or functionality.
+  Enabling the `dangerouslyAllowBrowser` option can be dangerous because it exposes your secret API credentials in the client-side code. Web browsers are inherently less secure than server environments. Any user with access to the browser can potentially inspect, extract, and misuse these credentials. This could lead to unauthorized access using your credentials and potentially compromise sensitive data or functionality.
 
   **When might this not be dangerous?**
 
@@ -791,7 +791,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 2. Changes to library internals which are technically public but not intended or documented for external use.
 3. Changes that aren't expected to impact the vast majority of users in practice.
 
-Backward-compatibility is taken seriously to ensure you can rely on a smooth upgrade experience.
+Backward compatibility is taken seriously to ensure you can rely on a smooth upgrade experience.
 
 ## Frequently asked questions
 

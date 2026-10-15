@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 50abed26f68a1bfa2326cfc280fe8cfdb821cf715f2fc403549e5ded92dedda9
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 6d275cc0c801a42f60e549f96b70540708699a7ea366428e30b00012172925cb
 ---
 
 ---
@@ -285,6 +285,24 @@ An application tool is one that the Anthropic application making the request pro
 | -------------- | -------- | --------------------------------- |
 | `type`         | Always   | `"application"`                   |
 | `toolset_name` | Optional | The group of tools it belongs to. |
+
+A `tool_use` block for a web search tool that claude.ai provides itself:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01LmNoPqRsTuVwXyZaBcDeFg",
+  "tool_name": "web_search",
+  "input": {
+    "query": "comparable deals for unannounced 4.2B USD Acme Corp acquisition"
+  },
+  "tool_info": {
+    "type": "application"
+  }
+}
+```
+
+claude.ai doesn't always name this tool `web_search`, so don't match on the name alone. `input` always includes the search query and can hold other fields.
 
 ### Third-party tools
 

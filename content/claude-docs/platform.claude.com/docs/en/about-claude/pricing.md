@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 9c7be951e649665896711d46691b191ef0d4e0ba29b937091053c808393abd63
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: a62e85bd0420e44f326f7b6c6c6d9fdb879dbf0e513b93b9f671b72caae5c83b
 ---
 
 ---
@@ -538,6 +538,6 @@ Batch API and prompt caching discounts can be combined. For example, using both 
 
 ### What payment methods are accepted?
 
-Major credit cards are accepted for standard accounts. Enterprise customers can arrange invoicing and other payment methods.
+Major credit cards are accepted for standard accounts. To buy credits or manage your payment methods, go to the [Billing](https://platform.claude.com/settings/billing) page (`platform.claude.com/settings/billing`) in the Claude Console. Enterprise customers can arrange invoicing and other payment methods.
 
 For additional questions about pricing, contact [support@anthropic.com](mailto:support@anthropic.com).

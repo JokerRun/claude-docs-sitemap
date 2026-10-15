@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f73fdac5ea2ebad1a48ad5fcb6eba9b3b26fcb40963bd349401515f041316d34
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 328b2331c94c3ac5065ebb9c5f129789a53435661161d97b84bcdf117124e386
 ---
 
 ---
@@ -133,6 +133,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

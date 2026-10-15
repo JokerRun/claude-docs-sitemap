@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c57a7246bc76775b322c487dbbfadfeddc8c9ae1576b1f57635340a9bd343811
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 009dfa8342fab22c4ce8b73b69dcb92766b957783f5a79bf88ef166f1eed7a0b
 ---
 
 ---
@@ -151,6 +151,8 @@ List Skill Versions
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

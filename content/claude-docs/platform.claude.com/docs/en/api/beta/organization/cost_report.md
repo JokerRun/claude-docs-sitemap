@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a0f50467ae8d375947a060407fe69ec52904342fc4b667b2b26b5c23d64eafc8
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 3dadcea7c5576200092e4ae26fcc168b4bbb9fd3e8383f79348940f1a8597e91
 ---
 
 ---
@@ -170,6 +170,8 @@ Get Cost Report
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

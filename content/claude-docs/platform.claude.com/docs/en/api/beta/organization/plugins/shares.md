@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/shares
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 5ac998e829cffff840e36772b52ccade493ef06ceb76d8b31392389482c7de48
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 28bdc8b823a8c10f8094970bb38b7975736d5adf8efdf5880f42fde0df317ddd
 ---
 
 ---
@@ -171,6 +171,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

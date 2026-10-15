@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-errors
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 133b034470e7e591aeb747ce659ec77ee23e07f75845c17b7b6fbde22b175506
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e47fe9eea40b944db22c9639a6be4ad3e7982d67e75a03c4cffc51ae274e10a7
 ---
 
 ---
@@ -177,7 +177,7 @@ API key has expired.
 
 **Cause:** `API key is invalid.` means the value sent does not match a usable key, for example because it was truncated or altered when it was stored. `API key has been deactivated.` means the key has been disabled or deleted. `API key has expired.` means an Admin API key's expiration date has passed; Compliance Access Keys are not created with one.
 
-**Fix:** For `API key is invalid.`, compare the value your client sends against the secret you stored when the key was created; the full secret is displayed only once, so if your stored copy is wrong, create a new key. For `API key has been deactivated.`, re-enable the key if it was only disabled, in [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) for a Compliance Access Key or [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) for an Admin API key; a deleted key cannot be restored. For a deleted or expired key, create a new key and update your integration to use it, as described in [Manage and rotate keys](https://platform.claude.com/docs/en/manage-claude/compliance-api-access#manage-and-rotate-keys).
+**Fix:** For `API key is invalid.`, compare the value your client sends against the secret you stored when the key was created; the full secret is displayed only once, so if your stored copy is wrong, create a new key. For `API key has been deactivated.`, re-enable the key if it was only disabled, in [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) for a Compliance Access Key or on the [Admin keys](https://platform.claude.com/settings/admin-keys) page (`platform.claude.com/settings/admin-keys`) in the Claude Console for an Admin API key; a deleted key cannot be restored. For a deleted or expired key, create a new key and update your integration to use it, as described in [Manage and rotate keys](https://platform.claude.com/docs/en/manage-claude/compliance-api-access#manage-and-rotate-keys).
 
 ## 403 Forbidden
 

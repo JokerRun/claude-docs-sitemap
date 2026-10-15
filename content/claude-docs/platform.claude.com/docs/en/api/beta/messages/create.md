@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 716860a9641808d8f36f4b9429a48fcdd221658e02a556155bc3c236063c1504
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 7c23dc1eed03f688cdd68cc5c30ac6ce41e6113745eb25552c1b56bb49e20911
 ---
 
 ---
@@ -133,6 +133,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-user-profile-id": optional string`
 

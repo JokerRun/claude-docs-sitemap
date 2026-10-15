@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 4a41f3fe708501b435899d83a6079bf78369153ffcae59752d984be88cae9255
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 6c6fecbbba21f4066ac02c61c86e960d44350332817b4f85545c166f76a0f807
 ---
 
 ---
@@ -18,6 +18,12 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### October 14, 2026
+
+* We've launched [OpenTelemetry export](https://platform.claude.com/docs/en/manage-claude/opentelemetry) in beta, so you can trace Messages API requests and Claude Managed Agents sessions in your observability backend. The Claude SDK emits spans in Python, TypeScript, C#, Go, Java, PHP, and Ruby. To get spans from the API, [add an OpenTelemetry destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#add-a-destination) in the Claude Console.
+
+- Claude Managed Agents [scheduled deployments](https://platform.claude.com/docs/en/managed-agents/scheduled-deployments) are now available on [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#claude-managed-agents).
 
 ### October 9, 2026
 

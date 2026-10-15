@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: f5d351d996a7189b08d2d139893cdf55eef33624afb05de56e02afd1b257b9bd
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 6224fd0c2325796bce786ba2bb1f02aa8094debacac9f202dda9abeb51c59a3b
 ---
 
 ---
@@ -131,6 +131,8 @@ Retrieve a memory store
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 - `"anthropic-workspace-id": optional string`
 

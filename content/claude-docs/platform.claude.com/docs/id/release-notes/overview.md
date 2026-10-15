@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 92f695b782ded52e89a4a6381a7d2407673e050f67df9c5489b6b25dd08d2aa8
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ae98f346601ff7bf977619b29bd620c142e7b26971e67ca3540852413d23d6e2
 ---
 
 ---
@@ -19,6 +19,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 14 Oktober 2026
+
+* Kami telah meluncurkan [ekspor OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) dalam beta, sehingga Anda dapat melacak permintaan Messages API dan sesi Claude Managed Agents di backend observabilitas Anda. Claude SDK memancarkan span dalam Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Untuk mendapatkan span dari API, [tambahkan tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination) di Claude Console.
+
 ### 9 Oktober 2026
 
 * Anda kini dapat mengizinkan agen Claude Managed Agents menggunakan [alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows), dalam versi beta dengan header beta `managed-agents-2026-04-01`. Untuk pekerjaan yang terdiri dari banyak bagian, seperti meninjau ratusan dokumen, agen dapat menulis sebuah workflow. Workflow adalah program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan hasilnya. Server menjalankannya di latar belakang sebagai sebuah workflow run (eksekusi workflow). Untuk [mengaktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows), atur field `multiagent` milik agen ke `{"type": "multiagent_20261001", "workflows": {"type": "enabled"}}`. Untuk memandu agen, beri tahu agen dalam prompt sistemnya kapan harus memulai sebuah eksekusi. Ikuti setiap eksekusi melalui event `workflow_run.*` pada aliran event sesi. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs).
@@ -26,6 +30,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 ### 8 Oktober 2026
 
 * Endpoint chat [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini juga mengembalikan chat dari pengalaman Claude terpadu, dalam beta untuk organisasi Claude Enterprise, dengan Compliance Access Key Anda yang sudah ada. Lihat [Mengambil dan menghapus chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data).
+* Compliance API kini dapat mengunduh dokumen Claude Docs sebagai file Word, dalam beta. Lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts).
 
 ### 7 Oktober 2026
 
@@ -285,11 +290,11 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 9 Juni 2026
 
-* Kami telah meluncurkan **Claude Fable 5** (`claude-fable-5`), model paling mumpuni kami yang tersedia untuk semua pelanggan, bersama **Claude Mythos 5** (`claude-mythos-5`) untuk peserta Project Glasswing. Kedua model mendukung [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) secara default, maksimum 128k token output, dan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5) untuk kapabilitas, perubahan API, dan ketersediaan.
+* Kami telah meluncurkan **Claude Fable 5** (`claude-fable-5`), model paling mumpuni kami yang terbuka untuk semua pelanggan, bersama dengan **Claude Mythos 5** (`claude-mythos-5`) untuk peserta Project Glasswing. Kedua model mendukung [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) secara default, maksimum 128k token output, dan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Lihat [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) untuk spesifikasi, harga, dan ketersediaan.
 * Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan bersama Claude Opus 4.7. Dibandingkan model sebelum Claude Opus 4.7, teks yang sama menghasilkan sekitar 30% lebih banyak token. Besar peningkatannya bergantung pada konten dan karakteristik beban kerja. Gunakan [API penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting#token-counts-on-claude-fable-5) dengan `model: "claude-fable-5"` untuk mengukur prompt Anda dengan tokenizer baru.
 * Claude Fable 5 menjalankan "safety classifiers" (pengklasifikasi keamanan) pada permintaan dan selama respons dihasilkan. Jika pengklasifikasi menolak suatu permintaan, Messages API mengembalikan `stop_reason: "refusal"`. Anda tidak ditagih untuk permintaan yang ditolak sebelum output apa pun dihasilkan. Parameter opsional `fallbacks` dapat menjalankan ulang permintaan yang ditolak pada model lain, dengan tagihan sesuai tarif model fallback tersebut. Parameter ini tersedia dalam beta di Claude API dan Claude Platform on AWS, tetapi tidak didukung di Message Batches API. Lihat [Menangani alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 * Field [`stop_details.category`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) pada respons penolakan kini dapat berisi `"reasoning_extraction"` di Claude Fable 5. Nilai ini dikembalikan ketika permintaan diblokir berdasarkan larangan dalam Ketentuan Layanan Anthropic terkait rekayasa balik atau penggandaan output model. Kategori `"cyber"` dan `"bio"` yang sudah ada tidak berubah. Header beta tidak diperlukan.
-* Pada Claude Fable 5 dan Claude Mythos 5, [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) adalah satu-satunya mode thinking. `thinking: {"type": "disabled"}` tidak didukung. Anggaran pemikiran diperpanjang manual dan "assistant prefill" (pengisian awal respons asisten) juga tidak didukung, dan keduanya mengembalikan error 400. Lihat [Migrasi dari Claude Mythos Preview ke Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/migration-guide#migrating-from-claude-mythos-preview).
+* Pada Claude Fable 5 dan Claude Mythos 5, [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) adalah satu-satunya mode thinking: `thinking: {"type": "disabled"}` tidak didukung, dan anggaran pemikiran diperpanjang manual serta prefill asisten tidak didukung (keduanya mengembalikan error 400).
 * Pada Claude Fable 5 dan Claude Mythos 5, `thinking.display` bernilai default `"omitted"`, sama seperti Claude Opus 4.8, Claude Opus 4.7, dan Claude Mythos Preview. Tetapkan `display: "summarized"` untuk menerima ringkasan thinking yang mudah dibaca. "Chain of thought" (rantai pemikiran) mentah tidak pernah dikembalikan. Dalam percakapan multi-giliran pada model yang sama, kirimkan kembali blok thinking tanpa perubahan. Lihat [Output thinking di Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
 * Claude Fable 5 memerlukan retensi data selama 30 hari dan tidak tersedia dengan "zero data retention" (retensi data nol). Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 * Claude Managed Agents kini mendukung [deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments), sehingga Anda dapat menjalankan sesi berdasarkan jadwal cron tanpa perlu mengelola penjadwal sendiri.

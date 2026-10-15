@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 4926618ad89a00c6c94b6cafdc9c77f134a57a071ce8518a83869d00bad39950
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: fe48a99bf20a988c8e20d600881026afb5e6dc05e9bc4c9515ac4f72e568e473
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
 description: Buat kunci Admin API untuk organisasi Claude Console atau Claude Enterprise Anda.
 ---
 
-Kunci Admin API mengautentikasi setiap API di bagian **Admin** panduan ini: [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api), [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), [Spend Limits API](https://platform.claude.com/docs/id/manage-claude/spend-limits-api), [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), dan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api). Anda tidak memerlukan kunci terpisah untuk setiap API. Satu-satunya pengecualian adalah endpoint service-account, federation-issuer, dan federation-rule milik Admin API, yang hanya menerima token bearer OAuth dengan scope `org:admin`. Lihat [Mendapatkan token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
+Kunci Admin API mengautentikasi setiap API di bagian **Admin** panduan ini: [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api), [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api), [Spend Limits API](https://platform.claude.com/docs/id/manage-claude/spend-limits-api), [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), dan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api). Anda tidak memerlukan kunci terpisah untuk setiap API. Satu-satunya pengecualian adalah endpoint service-account, federation-issuer, dan federation-rule milik Admin API, yang hanya menerima token bearer OAuth dengan scope `org:admin`. Lihat [Mendapatkan token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
 
 Tempat Anda membuat kunci bergantung pada produk Claude mana yang digunakan organisasi Anda.
 

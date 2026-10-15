@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 12582e9ecca59de05a2df5b0059ebb74213568ca1a19ed33553458487178193f
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: e316d4e7ce8fdf111731889eeaa0f178f906d51dd52c6ad12543d0eb05c2b7cf
 ---
 
 ---
@@ -158,6 +158,8 @@ omitted from the results.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -363,6 +365,8 @@ accounts cannot be added and are rejected.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -585,6 +589,8 @@ account returns 404.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `BetaServiceAccountWorkspaceMember object`
@@ -782,6 +788,8 @@ rejected.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -997,6 +1005,8 @@ membership. Archived workspaces return 400.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

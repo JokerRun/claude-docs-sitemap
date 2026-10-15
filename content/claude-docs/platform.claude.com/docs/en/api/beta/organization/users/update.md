@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a49eece67a162e6bd928c9b62796d703ba6046b9ce897b594d56c80e31cb4fdd
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 839267442c3e03859530f837326f1b6941823e81b7eeacaba7aa750ff1093c43
 ---
 
 ---
@@ -36,7 +36,7 @@ Update a member's organization role.
 
   New role for the User.
 
-  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`.
+  The accepted values depend on the organization type. Console and API organizations accept `user`, `developer`, `billing`, and `claude_code_user`; `admin` cannot be assigned through the API. Claude Enterprise organizations accept `user` and `managed`; changing a User's role to `managed` requires the `write:rbac_groups` scope in addition to `write:members`.
 
   - `"billing"`
 

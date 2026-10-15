@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 1ba5ce1af4a5d0a3bde860a924609b3f995f2c1c80e6b20f1c64be6d3a0d826f
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: bf2a2d8b3441cb1e6a4164ffb4b825c2af0b514322041b3fb6902ffcccbe32da
 ---
 
 ---
@@ -192,7 +192,7 @@ The Install steps that follow note where to add the corresponding route.
 
         The setup component runs as a Helm pre-install hook Job, so `helm install` blocks until it completes. On success Helm deletes the Job automatically. If `helm install` fails with a hook error, see [Setup component authentication failures](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting#setup-component-authentication-failures).
 
-        When `tunnel.id` is empty, the setup component creates the tunnel in the workspace your federation rule targets (the organization's default workspace unless you set `api.wif.workspaceId`) and stores its ID and domain in the `mcp-tunnel` Secret. Find the domain you'll need for [verification](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) on the tunnel's detail page in the Console under **Manage > MCP tunnels**, or read it from the Secret:
+        When `tunnel.id` is empty, the setup component creates the tunnel in the workspace your federation rule targets (the organization's default workspace unless you set `api.wif.workspaceId`) and stores its ID and domain in the `mcp-tunnel` Secret. Find the domain you'll need for [verification](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) on the tunnel's detail page, which you open from the [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) page (`platform.claude.com/settings/workspaces/default/mcp-tunnels`) in the Console. In the workspace picker in the sidebar, select the workspace that holds the tunnel. You can also read the domain from the Secret:
 
         ```bash
         kubectl -n mcp-tunnel get secret mcp-tunnel \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a51db4fdab30421f11a4298d27a60e426ae457435381c2195360a8680fb51589
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: a80a2331d6fe1ffe80c20cefa797dc0c3cbe7b932e90573aceb6d55e4d09b0ca
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.71.0")
+    implementation("com.anthropic:anthropic-java:2.72.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.71.0</version>
+        <version>2.72.0</version>
     </dependency>
     ```
   </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 872ba004e1626fb775ad7133ef5977bd58d44e527509b9418e9fe57e9a1543b0
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 035c7fd2a39ca8a545974a2d868a46fce2a4239e9d8e3e5f45fa10269d3ccdcf
 ---
 
 ---
@@ -155,7 +155,7 @@ Endpoint daftar mengembalikan hasil dalam halaman. Sebagian besar endpoint dafta
 
 Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` adalah `null` ketika Anda berada di halaman pertama. Tidak semua endpoint daftar mendukung `prev_page`. Hanya `GET /v1/sessions` yang mengembalikan `prev_page`; pada endpoint daftar yang tidak mendukung paginasi mundur, bidang tersebut tidak ada dalam respons alih-alih `null`. Untuk panduan permintaan, lihat [Mendaftar sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#listing-sessions).
 
-SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Misalnya, `for session in client.beta.sessions.list()` (python; typescript: `for await (const session of client.beta.sessions.list())`; go: `client.Beta.Sessions.ListAutoPaging()`; java: `client.beta().sessions().list().autoPager()`; csharp: `(await client.Beta.Sessions.List()).Paginate()`; php: `$client->beta->sessions->list()->pagingEachItem()`; ruby: `client.beta.sessions.list.auto_paging_each`) menelusuri setiap sesi. Paginasi otomatis SDK hanya bergerak maju; untuk kembali ke halaman sebelumnya, baca `prev_page` dari respons dan teruskan sendiri sebagai parameter `page`. Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detailnya.
+SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Misalnya, `for session in client.beta.sessions.list()` (typescript: `for await (const session of client.beta.sessions.list())`; go: `client.Beta.Sessions.ListAutoPaging()`; java: `client.beta().sessions().list().autoPager()`; csharp: `(await client.Beta.Sessions.List()).Paginate()`; php: `$client->beta->sessions->list()->pagingEachItem()`; ruby: `client.beta.sessions.list.auto_paging_each`) menelusuri setiap sesi. Paginasi otomatis SDK hanya bergerak maju; untuk kembali ke halaman sebelumnya, baca `prev_page` dari respons dan teruskan sendiri sebagai parameter `page`. Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detailnya.
 
 <Note>
   Beberapa endpoint daftar menggunakan skema kursor yang berbeda. [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Models API](https://platform.claude.com/docs/id/api/models/list), dan beberapa endpoint [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) mengambil parameter kueri `after_id` dan `before_id` alih-alih `page`. Respons mereka mengembalikan `has_more`, `first_id`, dan `last_id` alih-alih `next_page`. Lihat halaman referensi untuk setiap endpoint untuk bidang paginasi yang tepat.

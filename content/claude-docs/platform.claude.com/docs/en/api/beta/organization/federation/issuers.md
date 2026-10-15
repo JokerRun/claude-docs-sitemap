@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a59fa13a713912dcf2ab56f58f0fd81d8f7f8e8d8a6bac8eeb8bcbfd1576cc5d
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 4270e09e54274c5ad286c8cf3423b887ed0f9650d47c379e10c6162531251b51
 ---
 
 ---
@@ -143,6 +143,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -542,6 +544,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"spend-limit-reads-2026-09-26"`
 
+  - `"telemetry-destinations-2026-08-11"`
+
 ### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -850,6 +854,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 
@@ -1162,6 +1168,8 @@ session.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Body parameters
 
@@ -1552,6 +1560,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ### Returns
 

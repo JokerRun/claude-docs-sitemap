@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 000bc96f2179d5aa2c98f5010b426e1ee85e0a58f4c4ede3d129de7f5bbaecef
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: ae58660effd26c08ad2d93af53f1d5e2d09d6e0395121e07166345e0846fb6d3
 ---
 
 ---
@@ -139,6 +139,8 @@ Retrieve a single tunnel in the caller's organization by ID.
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b866f679a1b64ecd61e85623b302821a3b307fb6a2e9db494aba5804ecf25c8a
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: 395bbddc78606aabfd967908e2ed73f9821ffa4568abf15ba1738a779876dafe
 ---
 
 ---
@@ -143,6 +143,8 @@ restarted after rotation must use the new value. An optional
   - `"ce-plugins-2026-09-01"`
 
   - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
 
 ## Body parameters
 

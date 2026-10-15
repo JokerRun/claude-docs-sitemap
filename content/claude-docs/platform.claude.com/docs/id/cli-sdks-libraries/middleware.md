@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 79880dc20a5af6c0dfecca52f239cd692aa315ed22f1f2aa144b97ee4fb04ef4
+fetched_at: 2026-10-15T02:20:20.510650Z
+sha256: fdb44abe1ebd4f68d45201edb55439fe78011bf325121acf55518fd573205163
 ---
 
 ---
@@ -37,7 +37,7 @@ Setiap middleware dapat memeriksa atau mengganti permintaan sebelum memanggil `n
 
 ## Mendaftarkan middleware
 
-Setiap middleware adalah fungsi yang menerima permintaan keluar dan handler berikutnya. Panggil `call_next(request)` (python; typescript: `next(request)`; csharp: `next(request, cancellationToken)`; go: `next(req)`; java: `nextClient.execute(request, requestOptions)`; php: `$next($request)`; ruby: `call_next.call(request)`) untuk meneruskan permintaan ke sisa rantai (atau langsung ke inti SDK jika ini adalah middleware terakhir), lalu kembalikan responsnya. Apa pun sebelum panggilan tersebut berjalan saat permintaan keluar; apa pun setelahnya berjalan saat respons kembali.
+Setiap middleware adalah fungsi yang menerima permintaan keluar dan handler berikutnya. Panggil `call_next(request)` (typescript: `next(request)`; csharp: `next(request, cancellationToken)`; go: `next(req)`; java: `nextClient.execute(request, requestOptions)`; php: `$next($request)`; ruby: `call_next.call(request)`) untuk meneruskan permintaan ke sisa rantai (atau langsung ke inti SDK jika ini adalah middleware terakhir), lalu kembalikan responsnya. Apa pun sebelum panggilan tersebut berjalan saat permintaan keluar; apa pun setelahnya berjalan saat respons kembali.
 
 <CodeGroup exclude="shell">
   ```python Python
