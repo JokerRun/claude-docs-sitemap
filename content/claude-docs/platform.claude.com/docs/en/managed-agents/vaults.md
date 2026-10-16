@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 35c979552ac39b278cfa03a72ff0de6a22fe74d4dc867a960848f18b67600ac6
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 313678bf96b329a6c5b4ab56788e2a828b45e7057e0c2f9ee074ad5a5f9bb41e
 ---
 
 ---
@@ -36,12 +36,10 @@ A vault is the collection of `credentials` associated with an end user. Give it 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "display_name": "Alice",
-    "metadata": {"external_user_id": "usr_abc123"}
-  }
-  EOF
+    --data '{
+      "display_name": "Alice",
+      "metadata": {"external_user_id": "usr_abc123"}
+    }'
   ```
 
   <CodeGroupItem>
@@ -148,6 +146,8 @@ The actual credential values you supply (`token` (csharp, go: `Token`), `access_
 <Note>
   Environment variable credentials (`environment_variable`) are not yet supported with [self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes).
 </Note>
+
+To get the same behavior with a self-hosted sandbox, you can run your own proxy that replaces placeholder values with the real secrets at egress.
 
 <Tabs>
   <Tab title="MCP OAuth">
@@ -752,14 +752,12 @@ Pass `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `Va
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "vault_ids": ["$VAULT_ID"],
-    "title": "Alice's Slack digest"
-  }
-  EOF
+    --data '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "vault_ids": ["'"$VAULT_ID"'"],
+      "title": "Slack digest for Alice"
+    }'
   ```
 
   ```bash CLI

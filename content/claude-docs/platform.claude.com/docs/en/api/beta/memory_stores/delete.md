@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 77591ef73f1fe6f28d8c68beffb471d53028bbcea00f3a4fdde1174c8a68daf0
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: ef5407625184d4461becf51a1d9ddf24b3c4c315a61c722923fc0301fee52260
 ---
 
 ---
@@ -26,9 +26,13 @@ Delete a memory store
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `agent-memory-2026-07-22` or `managed-agents-2026-04-01` in this header.
 
   - `string`
 

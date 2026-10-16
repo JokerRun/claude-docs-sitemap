@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d6db71fdc7b79590af85d4f60bee98cb906bde3ef08658b0e5a76f9e96ef82a8
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: bb8167eecafa729da3733f9d33a476c823269c25de5e26bba98e6e883de47018
 ---
 
 ---
@@ -42,9 +42,13 @@ List Credentials
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

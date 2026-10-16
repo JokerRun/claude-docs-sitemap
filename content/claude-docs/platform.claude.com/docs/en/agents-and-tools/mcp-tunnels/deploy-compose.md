@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 988a1c1458147b526da82abc4f3b3df4117b82911d87bce06dbf0d98754402af
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 8ac03500de52410e653c69c516a81cf5cf2506025eecc26148966fa94079c42a
 ---
 
 ---
@@ -295,7 +295,7 @@ This guide provides one reference approach using Docker Compose. You are respons
         cat data/ca.crt
         ```
 
-        The tunnel's status flips to **Active** once a certificate is registered. See [Add a CA certificate](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
+        The **Needs certificate** badge next to the tunnel's name goes away once a certificate is registered. See [Add a CA certificate](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
       </Step>
 
       <Step title="Write the proxy config">

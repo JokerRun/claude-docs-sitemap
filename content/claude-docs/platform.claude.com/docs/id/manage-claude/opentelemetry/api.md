@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 6f6ddd737b1f7bd6852a7bd7434da852ab616987dc0a83f17a1430248b0afd01
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 401c6ab0cce4e203dd925abf5d73e579ac8f8d8823ab4355001aadeb0dc16e82
 ---
 
 ---
@@ -218,7 +218,7 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
   ```
 </CodeGroup>
 
-Permintaan create menerima pengaturan Console kecuali **Provider**, jadi masukkan sendiri URL endpoint dan header platform observabilitas Anda. Atur `traces.max_content_bytes` (csharp, go: `Traces.MaxContentBytes`; java, php: `traces.maxContentBytes`), dalam byte, agar sesuai dengan yang diterima platform observabilitas Anda (lihat [Batas konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#content-limits)). Untuk mencantumkan, mengubah, atau menghapus tujuan, atau untuk menambahkan atau menghapus satu workspace, gunakan metode lain dari API tujuan telemetri.
+Permintaan create menerima pengaturan Console kecuali **Provider**, jadi masukkan sendiri URL endpoint dan header platform observabilitas Anda. Atur `traces.max_content_bytes` (csharp, go: `Traces.MaxContentBytes`; java, php: `traces.maxContentBytes`), dalam byte, agar sesuai dengan yang diterima platform observabilitas Anda (lihat [Batas konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#content-limits)). Untuk mencantumkan, mengubah, atau menghapus tujuan, atau untuk menambahkan atau menghapus satu workspace, gunakan metode lain dari [API tujuan telemetri](https://platform.claude.com/docs/id/api/beta/organization/telemetry_destinations).
 
 ## 2. Pilih workspace untuk tujuan
 
@@ -246,7 +246,7 @@ Jika kolom menampilkan **Failing**, arahkan penunjuk ke atasnya untuk melihat ke
 
 Secara default, span API dari permintaan Messages API atau sesi Managed Agents berada di trace-nya sendiri. Hubungkan span tersebut ke trace aplikasi Anda, sehingga span tersebut bersarang di bawah span Anda sendiri.
 
-API membaca konteks trace dari setiap permintaan dari [header `traceparent`](https://www.w3.org/TR/trace-context/) W3C. Jika flag sampled di header tersebut nonaktif, API tidak memancarkan span dari permintaan tersebut maupun span di bawahnya. Claude Platform on AWS belum mendukung header ini. Span untuk permintaan yang Anda kirim ke platform tersebut selalu memulai trace-nya sendiri, bahkan ketika flag sampled nonaktif.
+API membaca konteks trace dari setiap permintaan dari [header `traceparent`](https://www.w3.org/TR/trace-context/) W3C. Jika flag sampled di header tersebut nonaktif, API tidak memancarkan span dari permintaan tersebut maupun span di bawahnya.
 
 <Tabs>
   <Tab title="Dengan Claude SDK">

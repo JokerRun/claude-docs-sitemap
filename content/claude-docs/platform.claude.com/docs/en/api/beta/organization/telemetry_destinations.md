@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 90037cb6ab42e1bfbc8e291168f0ab2ba27588e0d5a564f3642cab77640c9f41
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 071341c6948dc5c46861fe44c1deff48b50b83dc3294734e8d311937e60c113f
 ---
 
 ---
@@ -26,9 +26,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -495,9 +499,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -842,9 +850,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -1184,9 +1196,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -1660,9 +1676,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -1815,9 +1835,13 @@ Send one test span, named `anthropic.test`, to the destination with its register
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -2740,9 +2764,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -2925,9 +2953,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 
@@ -3104,9 +3136,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 

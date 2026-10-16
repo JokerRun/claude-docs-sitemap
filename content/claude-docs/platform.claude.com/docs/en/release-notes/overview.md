@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 6c6fecbbba21f4066ac02c61c86e960d44350332817b4f85545c166f76a0f807
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: ceadf38268e3097f1bca1243d65a1c050c8ce3a768997a410860e85044aba1d2
 ---
 
 ---
@@ -18,6 +18,12 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### October 15, 2026
+
+* The [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api) now returns the text each organization member saved as **Instructions for Claude** in claude.ai and as **Global instructions** in Cowork, in beta for Claude Enterprise organizations. Call `GET /v1/compliance/organizations/{org_uuid}/user_preferences` with your existing Compliance Access Key and the `read:compliance_user_data` scope. See [List user preferences](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#list-user-preferences).
+* [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) is out of research preview for Claude Opus 5.5, and you no longer need to request access. Requests to Claude Opus 5.5 no longer require the `fast-mode-2026-02-01` beta header, and requests that still send it keep working. Claude Opus 5.5 now has a default fast mode rate limit in the Start, Build, and Scale usage tiers. Fast mode for Claude Opus 5 and Claude Opus 4.8 remains in research preview. Keep sending the beta header with fast mode requests to those models.
+* [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) for Claude Opus 5.5 is now available on [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) for deployments hosted on Azure.
 
 ### October 14, 2026
 

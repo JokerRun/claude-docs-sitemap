@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 1f3e4acfc0081efa673d21781e32da5af93cdbe81ddae791095a6011e4a3ccb4
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 8da91bd578f2cbd5823c7bc0cf83c4e8f33c111630a796ef8eb942dff1f3d5cf
 ---
 
 ---
@@ -759,30 +759,28 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
-        -d @- <<EOF
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 1024,
-        "messages": [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "document",
-                "source": {"type": "file", "file_id": "$FILE_ID"},
-                "title": "Document Title",
-                "context": "Context about the document that will not be cited from",
-                "citations": {"enabled": true}
-              },
-              {
-                "type": "text",
-                "text": "Summarize this document."
-              }
-            ]
-          }
-        ]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type": "document",
+                  "source": {"type": "file", "file_id": "'"$FILE_ID"'"},
+                  "title": "Document Title",
+                  "context": "Context about the document that will not be cited from",
+                  "citations": {"enabled": true}
+                },
+                {
+                  "type": "text",
+                  "text": "Summarize this document."
+                }
+              ]
+            }
+          ]
+        }'
       ```
 
       ```bash CLI
@@ -1580,30 +1578,28 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
-        -d @- <<EOF
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 1024,
-        "messages": [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "document",
-                "source": {"type": "file", "file_id": "$FILE_ID"},
-                "title": "Document Title",
-                "context": "Context about the document that will not be cited from",
-                "citations": {"enabled": true}
-              },
-              {
-                "type": "text",
-                "text": "Summarize this document."
-              }
-            ]
-          }
-        ]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type": "document",
+                  "source": {"type": "file", "file_id": "'"$FILE_ID"'"},
+                  "title": "Document Title",
+                  "context": "Context about the document that will not be cited from",
+                  "citations": {"enabled": true}
+                },
+                {
+                  "type": "text",
+                  "text": "Summarize this document."
+                }
+              ]
+            }
+          ]
+        }'
       ```
 
       ```bash CLI

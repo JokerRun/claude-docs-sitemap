@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: fcbe7d6585c2c9adfce79a67ceb1e80e8805d6dcdd62a6017cde33a3b613e15a
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: cb5c94222a14dc696548c1eff97c3fef3a582a425504ae78c09ce032ab7baf52
 ---
 
 ---
@@ -26,9 +26,13 @@ Archive Agent
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

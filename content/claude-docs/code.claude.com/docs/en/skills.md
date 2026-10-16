@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4d090296b0a4549865a7b5770b4ab33c6a522fc77a76c769dde589920f38c8fe
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: d7efdac51e999defb3df6adb0b0a7fe148c92b66106e7cdff1a57b236bc84dab
 ---
 
 > ## Documentation Index
@@ -675,7 +675,7 @@ If you invoke a skill with arguments but no placeholder in the skill's content r
 
 You can also stack several skills at the start of one message. Typing `/write-tests /fix-issue 123` loads both skills and passes the trailing text `123` as `$ARGUMENTS` to each of them.
 
-Claude Code expands the first skill plus up to five more stacked after it. Expansion stops at the first token that isn't an inline user-invocable skill, so a skill that runs as a [forked subagent](#run-skills-in-a-subagent), such as [`/code-review`](/docs/en/code-review#review-a-diff-locally), or one whose arguments may themselves start with a slash command, such as `/loop`, also ends the run there. That token and everything after it become the argument text for every expanded skill. `/code-review` runs as a forked subagent from v2.1.218; on earlier versions it ran inline and stacked.
+Claude Code expands the first skill plus up to five more stacked after it. Expansion stops at the first token that isn't an inline user-invocable skill, so a skill that runs as a [forked subagent](#run-skills-in-a-subagent), such as [`/code-review`](/docs/en/code-review-local), or one whose arguments may themselves start with a slash command, such as `/loop`, also ends the run there. That token and everything after it become the argument text for every expanded skill. `/code-review` runs as a forked subagent from v2.1.218; on earlier versions it ran inline and stacked.
 
 To access individual arguments by position, use `$ARGUMENTS[N]` or the shorter `$N`:
 
@@ -779,6 +779,10 @@ Which commands get the carveout depends on the shell:
 
 With the default `bash` shell, append `|| true` to any other command you expect to exit non-zero. A check script that exits 1 when it finds problems is one example.
 
+#### Control characters in injected commands
+
+`No shell command in <name> was run` means one of the file's `!` commands contains a raw control character other than tab or newline, so none of them runs. See [how to find and remove the character](/docs/en/errors#no-shell-command-was-run).
+
 #### Permission checks on injected commands
 
 Injected commands never prompt for permission while the skill renders. Claude Code checks each one against your [permission rules](/docs/en/permissions) first. A command a deny rule matches aborts the invocation with `Shell command permission check failed for pattern "..."`.
@@ -808,7 +812,7 @@ When an agent in a [dynamic workflow](/docs/en/workflows) invokes a forked skill
 
 A backgrounded fork also runs with the [narrower tool set that applies to background subagents](/docs/en/sub-agents#run-subagents-in-foreground-or-background): the skill's subagent is a regular agent type, so the exemption for subagents that fork the conversation doesn't cover it. If your skill's steps depend on a tool outside that set, set `background: false` to keep the full tool set.
 
-A forked skill that runs in the background applies its edits outside your session's [checkpoints](/docs/en/checkpointing), so `/rewind` doesn't undo them; use git to revert them.
+A forked skill that runs in the background applies its edits outside your session's [checkpoints](/docs/en/checkpointing#subagent-edits-not-restored). After one, `/rewind` restores only the files Claude had already edited in your conversation. The skill's edits to other files stay, so use git to revert them.
 
 <Warning>
   `context: fork` only makes sense for skills with explicit instructions. If your skill contains guidelines like "use these API conventions" without a task, the subagent receives the guidelines but no actionable prompt, and returns without meaningful output.

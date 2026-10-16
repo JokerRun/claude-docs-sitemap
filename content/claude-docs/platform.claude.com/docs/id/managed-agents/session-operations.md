@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d61f48a90ad31c7080e7bd7e7b495391dfd16324802d174dd5e3ae8f9b20a5d8
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 6e8a5a7d7a6149fe6515d7f6a76bfc9766e2bb27a55b0526655ba03718e2f666
 ---
 
 ---
@@ -47,19 +47,17 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": {
-      "tools": [
-        {"type": "agent_toolset_20260401"},
-        {"type": "mcp_toolset", "mcp_server_name": "linear"}
-      ],
-      "mcp_servers": [
-        {"type": "url", "name": "linear", "url": "https://mcp.linear.app/sse"}
-      ]
-    }
-  }
-  EOF
+    -d '{
+      "agent": {
+        "tools": [
+          {"type": "agent_toolset_20260401"},
+          {"type": "mcp_toolset", "mcp_server_name": "linear"}
+        ],
+        "mcp_servers": [
+          {"type": "url", "name": "linear", "url": "https://mcp.linear.app/sse"}
+        ]
+      }
+    }'
   ```
 
   ```bash CLI

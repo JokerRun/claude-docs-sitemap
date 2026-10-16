@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8922cacdcab7377f7b8c02306262d23299b3a354fd6381c79867ab8be687619f
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 045ad2f054a643f6153a0f08f49a2c8dc1f869d157c330ecb627b80f00643fb2
 ---
 
 ---
@@ -58,9 +58,13 @@ List User Profiles
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `user-profiles-2026-03-24`, `user-profiles-2026-08-18`, or `user-profiles-2026-09-04` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-background
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 7222d67f24b5fc84fd56d359cfee4952798a2a3f42b2c147c078906a3f4601b4
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 0aae16421f4f8c525c8588e44e347ff114a72191631acc160ad3a85be5028989
 ---
 
 ---
@@ -476,9 +476,7 @@ The following program is the loop from [Compact in a loop](https://platform.clau
   ```
 
   <CodeGroupItem language="PHP">
-    <Note>
-      The PHP SDK sends requests synchronously, so it can't run the compaction request in the background while the conversation goes on.
-    </Note>
+    The PHP SDK sends requests synchronously, so it can't run the compaction request in the background while the conversation goes on.
   </CodeGroupItem>
 
   ```ruby Ruby

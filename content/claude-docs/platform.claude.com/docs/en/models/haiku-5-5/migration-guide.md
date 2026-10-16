@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 83725c6237d1675659ff3bf568bc8316581e02deb9be94829b1ed81adad9d40f
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 73c13909e23fb2d5d813a1ff1ffb5da78bd7ffd03c3afaa753c0c0945ae69f5b
 ---
 
 ---
@@ -18,7 +18,9 @@ description: Switch to Claude Haiku 5.5 from earlier Haiku models with this migr
 <Tip>
   **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
 
-  ```text wrap
+  Let Claude Code migrate your code for you
+
+  ```text
   /claude-api migrate this project to claude-haiku-5-5
   ```
 

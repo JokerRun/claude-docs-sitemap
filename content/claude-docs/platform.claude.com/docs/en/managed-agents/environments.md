@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2e8378b5d6d3fa6a389b2e47ce665e775aa60e5a170a331f1a5bf0f263ed7508
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: c14c1744c16078e337afba94f462c277a359a75a42a9ad1d246142a587679f69
 ---
 
 ---
@@ -19,7 +19,7 @@ featureMetadata:
 
 Environments define the sandbox configuration where your agent runs. You create an environment once, then reference its ID each time you start a session. Multiple sessions can share the same environment, but each session gets its own isolated sandbox (a fresh Linux container).
 
-This page covers `type: cloud` environments. To run sandboxes on your own infrastructure, see [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes).
+This page covers `type: cloud` environments. To run sandboxes on your own infrastructure, see [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes). To choose between the two, see [Choosing an agent environment](https://platform.claude.com/docs/en/managed-agents/choosing-an-environment).
 
 ## Create an environment
 
@@ -30,15 +30,13 @@ This page covers `type: cloud` environments. To run sandboxes on your own infras
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "name": "python-dev",
-    "config": {
-      "type": "cloud",
-      "networking": {"type": "limited", "allow_package_managers": true}
-    }
-  }
-  EOF
+    --data '{
+      "name": "python-dev",
+      "config": {
+        "type": "cloud",
+        "networking": {"type": "limited", "allow_package_managers": true}
+      }
+    }'
   ```
 
   <CodeGroupItem>
@@ -170,12 +168,10 @@ Pass the environment ID as a string when [creating a session](https://platform.c
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    --data '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   ```
 
   ```bash CLI
@@ -251,19 +247,17 @@ The `packages` (csharp, go: `Packages`) field pre-installs packages into the san
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "name": "data-analysis",
-    "config": {
-      "type": "cloud",
-      "packages": {
-        "pip": ["pandas", "numpy", "scikit-learn"],
-        "npm": ["express"]
-      },
-      "networking": {"type": "limited", "allow_package_managers": true}
-    }
-  }
-  EOF
+    --data '{
+      "name": "data-analysis",
+      "config": {
+        "type": "cloud",
+        "packages": {
+          "pip": ["pandas", "numpy", "scikit-learn"],
+          "npm": ["express"]
+        },
+        "networking": {"type": "limited", "allow_package_managers": true}
+      }
+    }'
   ```
 
   <CodeGroupItem>

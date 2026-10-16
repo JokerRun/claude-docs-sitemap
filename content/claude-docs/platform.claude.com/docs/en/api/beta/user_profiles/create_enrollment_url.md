@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2b508aa9d2b8c99dcd66b8fadcd00f3f43610ecdeaac23c64ee67184d24ade5a
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: defc40c503d8d11f3943ae36e8b6acd7ede6e1c29d9ddee95009e34c710a2b7c
 ---
 
 ---
@@ -26,9 +26,13 @@ Create Enrollment URL
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `user-profiles-2026-03-24`, `user-profiles-2026-08-18`, or `user-profiles-2026-09-04` in this header.
 
   - `string`
 

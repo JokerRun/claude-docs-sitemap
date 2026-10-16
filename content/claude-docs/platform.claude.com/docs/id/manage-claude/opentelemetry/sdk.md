@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 128aa0cee7bc668d059dedcc25a037877d6efdc095f6e01a21c5da62f3a40d13
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 476cdcf082e50cbf0bbf2fc0aa63999e8654757b240a7ab34ecd08f8854fa2e4
 ---
 
 ---
@@ -91,14 +91,14 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
 
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:2.72.0")
+      implementation("com.anthropic:anthropic-java:2.73.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.72.0</version>
+          <version>2.73.0</version>
       </dependency>
       ```
     </CodeGroup>
@@ -567,7 +567,7 @@ Untuk mendapatkan span ini:
 1. Di proses yang menjalankan worker, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#install-the-sdk) seperti pada langkah 1 hingga 4.
 2. Izinkan lalu lintas jaringan dari sandbox ke platform observabilitas atau OpenTelemetry Collector Anda.
 
-Ketika worker mengirim hasil tool, span API untuk permintaan tersebut bersarang di bawah span SDK-nya. Untuk permintaan yang dikirim worker ke Claude Platform on AWS, span API berada di trace-nya sendiri sebagai gantinya.
+Ketika worker mengirim hasil tool, span API untuk permintaan tersebut bersarang di bawah span SDK-nya.
 
 ## Konteks trace dan baggage
 

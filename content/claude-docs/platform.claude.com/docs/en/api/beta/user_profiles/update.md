@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: abe19c0b73379b7e54679f4a3804c40d132746fe194d703d227bb15b0698a891
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 42435b52af3b3ad205b1099eb4fe5e665dcbcb179645f37fb7e73ae32b2e51ac
 ---
 
 ---
@@ -26,9 +26,13 @@ Update User Profile
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `user-profiles-2026-03-24`, `user-profiles-2026-08-18`, or `user-profiles-2026-09-04` in this header.
 
   - `string`
 

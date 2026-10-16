@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 515d19383160681c0906c8d3d51ff3610aaef4b2c4d7a7a391b5cd455e1cba63
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5d0b3fcc48750ca9f2436aa39380f630cd862ad664d513c9f4c7fb6d650cd991
 ---
 
 ---
@@ -154,9 +154,13 @@ List Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 
@@ -3253,9 +3257,13 @@ Send Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 
@@ -4244,9 +4252,13 @@ Stream Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

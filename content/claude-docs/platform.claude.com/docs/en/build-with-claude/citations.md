@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: cccda0d3954d4ed167eb47f7d7c51df9f669268c05a25274adf3fffaf6b8775e
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 0e18505904993a0f1b3529e8640fb521943e76e5dbf3bf60293199794c7366dd
 ---
 
 ---
@@ -759,30 +759,28 @@ Plain text documents are automatically chunked into sentences. You can provide t
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
-        -d @- <<EOF
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 1024,
-        "messages": [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "document",
-                "source": {"type": "file", "file_id": "$FILE_ID"},
-                "title": "Document Title",
-                "context": "Context about the document that will not be cited from",
-                "citations": {"enabled": true}
-              },
-              {
-                "type": "text",
-                "text": "Summarize this document."
-              }
-            ]
-          }
-        ]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type": "document",
+                  "source": {"type": "file", "file_id": "'"$FILE_ID"'"},
+                  "title": "Document Title",
+                  "context": "Context about the document that will not be cited from",
+                  "citations": {"enabled": true}
+                },
+                {
+                  "type": "text",
+                  "text": "Summarize this document."
+                }
+              ]
+            }
+          ]
+        }'
       ```
 
       ```bash CLI
@@ -1580,30 +1578,28 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
-        -d @- <<EOF
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 1024,
-        "messages": [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "document",
-                "source": {"type": "file", "file_id": "$FILE_ID"},
-                "title": "Document Title",
-                "context": "Context about the document that will not be cited from",
-                "citations": {"enabled": true}
-              },
-              {
-                "type": "text",
-                "text": "Summarize this document."
-              }
-            ]
-          }
-        ]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 1024,
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type": "document",
+                  "source": {"type": "file", "file_id": "'"$FILE_ID"'"},
+                  "title": "Document Title",
+                  "context": "Context about the document that will not be cited from",
+                  "citations": {"enabled": true}
+                },
+                {
+                  "type": "text",
+                  "text": "Summarize this document."
+                }
+              ]
+            }
+          ]
+        }'
       ```
 
       ```bash CLI

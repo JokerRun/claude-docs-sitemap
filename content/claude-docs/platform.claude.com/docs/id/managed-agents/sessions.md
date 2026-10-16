@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d005e96618562b039112060ecbed517562afdac93ff21e817a124a494b3415f7
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 20c1732d100675ce1b8968f9cc6e5e40ab962749bc3f7e0f2de4011202c12890
 ---
 
 ---
@@ -30,12 +30,10 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   ```
 
   ```bash CLI
@@ -109,12 +107,10 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": {"type": "agent", "id": "$AGENT_ID", "version": 1},
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    -d '{
+      "agent": {"type": "agent", "id": "'"$AGENT_ID"'", "version": 1},
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   ```
 
   ```bash CLI
@@ -209,18 +205,16 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "initial_events": [
-      {
-        "type": "user.message",
-        "content": [{"type": "text", "text": "List the files in the working directory."}]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "initial_events": [
+        {
+          "type": "user.message",
+          "content": [{"type": "text", "text": "List the files in the working directory."}]
+        }
+      ]
+    }'
   )
   SEEDED_SESSION_ID=$(jq -r '.id' <<< "$seeded_session")
 
@@ -492,17 +486,15 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": {
-      "type": "agent_with_overrides",
-      "id": "$AGENT_ID",
-      "model": {"id": "claude-sonnet-5-5"},
-      "system": null
-    },
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    -d '{
+      "agent": {
+        "type": "agent_with_overrides",
+        "id": "'"$AGENT_ID"'",
+        "model": {"id": "claude-sonnet-5-5"},
+        "system": null
+      },
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   ```
 
   ```bash CLI
@@ -660,16 +652,14 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": {
-      "type": "agent_with_overrides",
-      "id": "$AGENT_ID",
-      "model": {"id": "claude-opus-5-5", "inference_geo": "us"}
-    },
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    -d '{
+      "agent": {
+        "type": "agent_with_overrides",
+        "id": "'"$AGENT_ID"'",
+        "model": {"id": "claude-opus-5-5", "inference_geo": "us"}
+      },
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   )
   echo "Inference geo: $(jq -r '.agent.model.inference_geo' <<< "$session")"
   ```
@@ -818,16 +808,14 @@ Contoh berikut membuat sesi dengan anggaran $1,25:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "budget": {
-      "type": "limit",
-      "max_list_cost": {"amount": "125", "currency": "USD"}
-    }
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "budget": {
+        "type": "limit",
+        "max_list_cost": {"amount": "125", "currency": "USD"}
+      }
+    }'
   ```
 
   ```bash CLI
@@ -949,13 +937,11 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "vault_ids": ["$VAULT_ID"]
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "vault_ids": ["'"$VAULT_ID"'"]
+    }'
   ```
 
   ```bash CLI
@@ -1041,16 +1027,14 @@ Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `In
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [{"type": "text", "text": "List the files in the working directory."}]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [{"type": "text", "text": "List the files in the working directory."}]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

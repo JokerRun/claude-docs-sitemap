@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e0f13f238a9cd7c1d35e1f20a32e00f6bc52a1e65856af21eca47a4b9119d571
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 3e80bced0fa5b08032870f93668b315b8b9ac48f7972c2d45f9faf694af31d68
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Choosing a Claude model means balancing capabilities, speed, and co
 When choosing a Claude model, consider first evaluating these factors:
 
 * **Capabilities:** What specific features or capabilities will you need the model to have to meet your needs?
-* **Speed:** How quickly does the model need to respond in your application? Claude Opus 5.5, Claude Opus 5, and Claude Opus 4.8 support [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) (research preview), which delivers up to 2.5x higher output speed at premium pricing.
+* **Speed:** How quickly does the model need to respond in your application? [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) delivers up to 2.5x higher output speed at premium pricing on [supported models](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models).
 * **Cost:** What's your budget for both development and production usage?
 * **Effort:** Several Claude models support an [effort parameter](https://platform.claude.com/docs/en/build-with-claude/effort) that trades intelligence for latency and cost within a single model. Tuning effort is often a better lever than switching models. On Claude Fable 5.1, Claude Opus 5, and Claude Sonnet 5.5, start with the default (`high`) and adjust up or down based on your evals. On Claude Opus 5.5 and Claude Haiku 5.5 the default is `medium`; start there and adjust the same way. On Claude Opus 4.8 and Claude Opus 4.7, the `xhigh` effort level, between `high` and `max`, is the best setting for most coding and agentic use cases.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: ad0217a531a5e1da645fa8de5674868819312ba8ef8099ad40dcd030499fbbb1
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: fff2533c08c86c0ebe108f1b97a41fa2b3443c622b0e82831b5995562cd955c1
 ---
 
 ---
@@ -40,17 +40,14 @@ The [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/too
 
 The following script sends a request that should trigger parallel tool calls, verifies the response contains them, and formats the tool results so parallelism keeps working. Run it with `ANTHROPIC_API_KEY` set in your environment:
 
-<CodeGroup>
-  ```bash cURL
-  # This end-to-end test flow doesn't translate well to a one-off shell command.
-  # See the SDK tabs for the full flow. The underlying HTTP request is a standard
-  # tool use request with multiple tools defined.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    This end-to-end test needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it. The request it sends is a standard tool use request with two tools defined.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # This end-to-end test flow doesn't translate well to a one-off shell command.
-  # See the SDK tabs for the full flow.
-  ```
+  <CodeGroupItem language="CLI">
+    This end-to-end test needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()
@@ -1455,16 +1452,14 @@ Default prompting might not be sufficient. Use the stronger system prompt from [
 
 To verify parallel tool calls are working:
 
-<CodeGroup>
-  ```bash cURL
-  # Measuring parallel tool use is client-side analysis of responses you've already
-  # collected, so it doesn't translate to a one-off shell command. See the SDK tabs.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    To measure parallel tool use, your code analyzes the responses that it already collected. This needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Measuring parallel tool use is client-side analysis of responses you've already
-  # collected, so it doesn't translate to a one-off shell command. See the SDK tabs.
-  ```
+  <CodeGroupItem language="CLI">
+    To measure parallel tool use, your code analyzes the responses that it already collected. This needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+  </CodeGroupItem>
 
   ```python Python
   messages = []  # Message objects returned by client.messages.create across your run

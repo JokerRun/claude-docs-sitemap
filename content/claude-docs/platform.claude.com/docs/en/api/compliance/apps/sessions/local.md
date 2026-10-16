@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 8c67cb5746e833cf850fe2ff8738dc351cdc872606f3cfd2e6a718418f7714dc
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 1be820e65745eeae8d8510e50093f5ac4e8ef21076033935678af030e04e7558
 ---
 
 ---
@@ -25,6 +25,12 @@ forward-only via `next_page`; there is no reverse cursor.
 
 - `created_at: optional object`
 
+  - `gt: optional string`
+
+    Only return sessions whose first inference call is strictly after this time (RFC 3339; a UTC offset is required).
+
+    format: date-time
+
   - `gte: optional string`
 
     Only return sessions whose first inference call is at or after this time (RFC 3339; a UTC offset is required).
@@ -34,6 +40,12 @@ forward-only via `next_page`; there is no reverse cursor.
   - `lt: optional string`
 
     Only return sessions whose first inference call is strictly before this time (RFC 3339; a UTC offset is required).
+
+    format: date-time
+
+  - `lte: optional string`
+
+    Only return sessions whose first inference call is at or before this time (RFC 3339; a UTC offset is required).
 
     format: date-time
 
@@ -51,7 +63,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   - `gte: optional string`
 
-    Only return sessions whose last inference call is at or after this time (RFC 3339; a UTC offset is required). Combines with `created_at.gte` / `created_at.lt`; the ordering and pagination are unchanged. Use it to poll for sessions that have been active since a previous pass — a session that becomes active later can only enter the result, never leave it.
+    Only return sessions whose last inference call is at or after this time (RFC 3339; a UTC offset is required). Combines with the `created_at` filters and does not change the ordering or pagination. Use it to poll for sessions that have been active since a previous pass — a session that becomes active later can only enter the result, never leave it.
 
     format: date-time
 
@@ -101,7 +113,7 @@ forward-only via `next_page`; there is no reverse cursor.
 
   - `updated_at: string`
 
-    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
     format: date-time
 
@@ -212,7 +224,7 @@ inference call has aged out returns 404.
 
 - `updated_at: string`
 
-  Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+  Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
   format: date-time
 
@@ -297,7 +309,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
   - `updated_at: string`
 
-    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
     format: date-time
 
@@ -354,7 +366,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
 
   - `updated_at: string`
 
-    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
     format: date-time
 
@@ -647,7 +659,7 @@ response header.
 
   - `updated_at: string`
 
-    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
     format: date-time
 

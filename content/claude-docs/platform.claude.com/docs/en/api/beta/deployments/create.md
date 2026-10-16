@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d830d9d816f5820e66e5bf9b630a0b6683852f4ba2e9a06aeb43284a501b59ec
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e587fbae4bfd46f15eb8eb63182bf73c52f3b6c165a25770c3fb16dfcbb4573e
 ---
 
 ---
@@ -20,9 +20,13 @@ Create Deployment
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

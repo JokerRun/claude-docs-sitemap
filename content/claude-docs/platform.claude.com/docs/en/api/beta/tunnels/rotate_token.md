@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 69c21d3886c098eb64c8520f23fabdbdbc1c061ab3ed0e2e578c533364c7e8f6
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 58f457b5d7b06499c4f849984d07648d50f340660e48b7663cb95b8a5c8b7282
 ---
 
 ---
@@ -28,9 +28,13 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 

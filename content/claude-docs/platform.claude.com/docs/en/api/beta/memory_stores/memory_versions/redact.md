@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 6148c771c5866edaf2015bf8539437f0b25231110dc7f56205fd99a40b57f290
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 45aa863819dc9517768327854f3f5777283584f9f6fae5d8acf12f388052f5df
 ---
 
 ---
@@ -30,9 +30,13 @@ Redact a memory version
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `agent-memory-2026-07-22` or `managed-agents-2026-04-01` in this header.
 
   - `string`
 

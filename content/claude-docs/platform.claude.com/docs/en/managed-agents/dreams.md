@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8c99fb303d45e751f82ad1876bea9082525b4d57ecaacc7c57fc91e789835523
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: fc2f119b6b242f3027545cc6e4affb7b4361703d9733e1bace890709193e5604
 ---
 
 ---
@@ -43,16 +43,14 @@ The dream produces another **output memory store**, separate from the input. The
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "inputs": [
-      { "type": "memory_store", "memory_store_id": "$store_id" },
-      { "type": "sessions", "session_ids": ["$session_a", "$session_b"] }
-    ],
-    "model": "claude-opus-5-5",
-    "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
-  }
-  EOF
+    --data '{
+      "inputs": [
+        { "type": "memory_store", "memory_store_id": "'"$store_id"'" },
+        { "type": "sessions", "session_ids": ["'"$session_a"'", "'"$session_b"'"] }
+      ],
+      "model": "claude-opus-5-5",
+      "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
+    }'
   ```
 
   ```bash CLI
@@ -321,15 +319,13 @@ When `status` (csharp, go: `Status`) reaches `completed`, the `memory_store` ent
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
-    "resources": [
-      { "type": "memory_store", "memory_store_id": "$output_store_id" }
-    ]
-  }
-  EOF
+    --data '{
+      "agent": "'"$agent_id"'",
+      "environment_id": "'"$environment_id"'",
+      "resources": [
+        { "type": "memory_store", "memory_store_id": "'"$output_store_id"'" }
+      ]
+    }'
   ```
 
   ```bash CLI

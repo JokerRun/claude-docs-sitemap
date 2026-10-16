@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 03820519e1308ca663f228d84a6448b627d1a49597a737950a56d96d527ed63f
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 6e33dff45eded4518c857653746b3648d0e0500938c9303a4fe6c0e0a65c533c
 ---
 
 ---
@@ -50,7 +50,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.41.0
+    VERSION=1.42.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -101,7 +101,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.72.0")
+    implementation("com.anthropic:anthropic-java:2.73.0")
     ```
   </Tab>
 
@@ -153,16 +153,14 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
-            -d @- <<'EOF'
-        {
-          "name": "Coding Assistant",
-          "model": "claude-opus-5-5",
-          "system": "You are a helpful coding assistant. Write clean, well-documented code.",
-          "tools": [
-            {"type": "agent_toolset_20260401"}
-          ]
-        }
-        EOF
+            -d '{
+              "name": "Coding Assistant",
+              "model": "claude-opus-5-5",
+              "system": "You are a helpful coding assistant. Write clean, well-documented code.",
+              "tools": [
+                {"type": "agent_toolset_20260401"}
+              ]
+            }'
         )
 
         AGENT_ID=$(jq -er '.id' <<<"$agent")
@@ -392,15 +390,13 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
-            -d @- <<'EOF'
-        {
-          "name": "quickstart-env",
-          "config": {
-            "type": "cloud",
-            "networking": {"type": "limited", "allow_package_managers": true}
-          }
-        }
-        EOF
+            -d '{
+              "name": "quickstart-env",
+              "config": {
+                "type": "cloud",
+                "networking": {"type": "limited", "allow_package_managers": true}
+              }
+            }'
         )
 
         ENVIRONMENT_ID=$(jq -er '.id' <<<"$environment")
@@ -571,13 +567,11 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           -H "anthropic-version: 2023-06-01" \
           -H "anthropic-beta: managed-agents-2026-04-01" \
           -H "content-type: application/json" \
-          -d @- <<EOF
-      {
-        "agent": "$AGENT_ID",
-        "environment_id": "$ENVIRONMENT_ID",
-        "title": "Quickstart session"
-      }
-      EOF
+          -d '{
+            "agent": "'"$AGENT_ID"'",
+            "environment_id": "'"$ENVIRONMENT_ID"'",
+            "title": "Quickstart session"
+          }'
       )
 
       SESSION_ID=$(jq -er '.id' <<<"$session")

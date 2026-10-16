@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3722741806c999d50bedad82daf67b8e102b282f89e5a373597f1ce42577087b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 78a8d8d3ddb0b6d3a79b29d00a46ffc828ef062b86d6feaec366ff05e55d84b6
 ---
 
 ---
@@ -40,9 +40,13 @@ Create a memory
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `agent-memory-2026-07-22` or `managed-agents-2026-04-01` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 00c02b74bf8f877a91c36248a86fdbd34fb7dff960e5615e422794a1db0ddc91
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: abff15c4640b2723fa3f6e6663de948283106c8929eb35bab25db79e484018f0
 ---
 
 ---
@@ -30,9 +30,13 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 
@@ -239,9 +243,13 @@ Fetches a tunnel certificate by ID.
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 
@@ -448,9 +456,13 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 
@@ -654,9 +666,13 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 

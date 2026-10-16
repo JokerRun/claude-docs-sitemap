@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f935ff4478902650d1845ceedba742b96638ce4445b9f9d10b7c017e3095b188
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e59c197342274689f29fcbe936d76e623a6f4968231b65c29593d6d0cd948025
 ---
 
 ---
@@ -1299,6 +1299,16 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"auto"`
 
       - `"standard_only"`
+
+    - `speed: optional "standard" or "fast" or null`
+
+      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
+
+      - `"standard"`
+
+      - `"fast"`
 
     - `stop_sequences: optional array of string`
 

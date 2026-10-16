@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: fc0fa0a0169c198f90fd5fc82f0f67094362f1f045ffc6ed3c96deb02dc25447
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 7b05da14d0a31cc0fcc7e091a30c3a66583992cabc0ad08a41ecb6f0b0b6b2cf
 ---
 
 ---
@@ -26,9 +26,13 @@ Update Vault
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5f2befa2dcde9cba84fc2c7b5233319c8f9012a1b3a31dc4954123e43dedc288
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: af03e1a947ed3ad319c4d33256c771ebae8fa53c4bede3adf70e3961d29f6129
 ---
 
 ---
@@ -1281,6 +1281,16 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"auto"`
 
   - `"standard_only"`
+
+- `speed: optional "standard" or "fast" or null`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
+
+  - `"standard"`
+
+  - `"fast"`
 
 - `stop_sequences: optional array of string`
 
@@ -4207,6 +4217,14 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `"batch"`
 
+    - `speed: "standard" or "fast" or null`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
+
 - `RawMessageStreamEvent = RawMessageStartEvent or RawMessageDeltaEvent or RawMessageStopEvent or 3 more`
 
   - `RawMessageStartEvent object`
@@ -4516,7 +4534,8 @@ curl https://api.anthropic.com/v1/messages \
       "web_fetch_requests": 2,
       "web_search_requests": 0
     },
-    "service_tier": "standard"
+    "service_tier": "standard",
+    "speed": "standard"
   }
 }
 ```
@@ -5702,6 +5721,16 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `schema: map[unknown]`
 
       The JSON schema of the format
+
+- `speed: optional "standard" or "fast" or null`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
+
+  - `"standard"`
+
+  - `"fast"`
 
 - `system: optional string or array of TextBlockParam`
 
@@ -21041,6 +21070,14 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"batch"`
 
+    - `speed: "standard" or "fast" or null`
+
+      The inference speed mode used for this request.
+
+      - `"standard"`
+
+      - `"fast"`
+
 ### Message Count Tokens Tool
 
 - `MessageCountTokensTool = Tool or ToolBash20250124 or CodeExecutionTool20250522 or 18 more`
@@ -26265,6 +26302,14 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `"batch"`
 
+      - `speed: "standard" or "fast" or null`
+
+        The inference speed mode used for this request.
+
+        - `"standard"`
+
+        - `"fast"`
+
 ### Raw Message Stop Event
 
 - `RawMessageStopEvent object`
@@ -27393,6 +27438,14 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
           - `"priority"`
 
           - `"batch"`
+
+        - `speed: "standard" or "fast" or null`
+
+          The inference speed mode used for this request.
+
+          - `"standard"`
+
+          - `"fast"`
 
   - `RawMessageDeltaEvent object`
 
@@ -33832,6 +33885,14 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `"batch"`
 
+  - `speed: "standard" or "fast" or null`
+
+    The inference speed mode used for this request.
+
+    - `"standard"`
+
+    - `"fast"`
+
 ### User Location
 
 - `UserLocation object`
@@ -37475,6 +37536,16 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"auto"`
 
       - `"standard_only"`
+
+    - `speed: optional "standard" or "fast" or null`
+
+      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
+
+      - `"standard"`
+
+      - `"fast"`
 
     - `stop_sequences: optional array of string`
 
@@ -41216,6 +41287,14 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: "standard" or "fast" or null`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
     - `MessageBatchErroredResult object`
 

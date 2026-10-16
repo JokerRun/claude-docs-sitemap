@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: aa80d936066b8f7715b704bf9cf97b074f6309f700b0f95ec70a940b0f0c32d5
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5be941c097daa713b366d9ad3f4847de41df869f061b30583d20c33f612dac48
 ---
 
 ---
@@ -1191,6 +1191,16 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `schema: map[unknown]`
 
       The JSON schema of the format
+
+- `speed: optional "standard" or "fast" or null`
+
+  The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
+
+  - `"standard"`
+
+  - `"fast"`
 
 - `system: optional string or array of TextBlockParam`
 

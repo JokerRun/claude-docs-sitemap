@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 356a6b903bdb774eae9aa776e186521ca24ea50da3f42f61be614f049eb83ce8
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 8b0918a38f87c49348ad5c1ba75b09b4d498ab3b3b8193035ab762cc43ca17db
 ---
 
 ---
@@ -22,9 +22,13 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 

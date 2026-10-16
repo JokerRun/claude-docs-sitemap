@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 07aeddc0503fdc5b9527a5ecdaa78718aaac3749b650d923f6329962e9f36d7e
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 315ce09d489c260570280ee81cd96ff66105c3636d1d47b989a4e951eb8cc279
 ---
 
 ---
@@ -236,7 +236,7 @@ Anthropic account team.
 
     - `"weekly"`
 
-  - `scope: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 3 more`
+  - `scope: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 4 more`
 
     What the limit applies to. A tagged union on `type`; each variant carries the identifier for its scope.
 
@@ -297,6 +297,20 @@ Anthropic account team.
       - `workspace_id: string`
 
         Tagged ID of the workspace the spend limit applies to.
+
+    - `BetaSpendLimitUsageTierScope object`
+
+      Scope of the monthly spend cap Anthropic sets for a Claude Console
+      organization from its usage tier, or a higher cap Anthropic granted the
+      organization. Read-only; its `created_at` and `updated_at` are the
+      organization's creation time, so `amount` can change while `updated_at` stays
+      the same.
+
+      - `type: "usage_tier"`
+
+        Scope type. Always `usage_tier` for this scope.
+
+        default: usage_tier
 
   - `updated_at: string`
 

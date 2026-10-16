@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1c28529338d9d11fc59183744c71b7290df4d044aea27554dcebe73982bf291d
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 86ca91ffc72811795709fe5296c3906cebdba37b92248bcefd058fb3dfd420d7
 ---
 
 ---
@@ -26,9 +26,13 @@ Archive a memory store
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `agent-memory-2026-07-22` or `managed-agents-2026-04-01` in this header.
 
   - `string`
 

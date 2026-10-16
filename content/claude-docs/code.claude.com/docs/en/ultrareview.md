@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 581d796fbc5cb4c23a968096b6bc01ffbca1a9e74f17647f972d360fa1baf955
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: d02944d665975514e2818b7035bbd4e18c16cdee0d4f605b2998df9f5d665b77
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ Compared to a local `/code-review`, ultrareview offers:
 * **Broader coverage**: a larger fleet of reviewer agents explores the change in parallel, which surfaces issues that a local review can miss
 * **No local resource use**: the review runs entirely in a cloud sandbox, so your terminal stays free for other work while it runs
 
-Ultrareview requires authentication with a claude.ai account because it runs as a cloud session on Anthropic's infrastructure. If you are signed in with an API key only, run `/login` and authenticate with claude.ai first. Ultrareview is not available when using Claude Code with Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, and it is not available to organizations that have enabled Zero Data Retention or have the [HIPAA configuration](/docs/en/hipaa-setup) applied. When ultrareview is not available, `/code-review ultra` runs a local review in your session instead.
+Ultrareview requires authentication with a claude.ai account because it runs as a cloud session on Anthropic's infrastructure. If you are signed in with an API key only, run `/login` and authenticate with claude.ai first. Ultrareview is not available when using Claude Code with Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, and it is not available to organizations that have enabled Zero Data Retention or have the [HIPAA configuration](/docs/en/hipaa-setup) applied. In these cases, `/code-review ultra` runs a local review in your session instead. Organizations that use [customer-managed encryption keys](https://platform.claude.com/docs/en/manage-claude/cmek) (CMEK) can't run ultrareview. To review your changes locally, run `/code-review`.
 
 ## Run ultrareview from the CLI
 

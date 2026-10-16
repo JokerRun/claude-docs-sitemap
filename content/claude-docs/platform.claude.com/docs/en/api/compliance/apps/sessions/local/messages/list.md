@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 93486db052263f946cb1abfb3298ab1f3f714cb221862245a8d2f1715114077f
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 3e79764c84a8052d423a91121d9d793ca548f854f8063e23491f07639c58556d
 ---
 
 ---
@@ -281,7 +281,7 @@ response header.
 
   - `updated_at: string`
 
-    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page or `created_at.lt` window boundary it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
+    Timestamp of the session's last retained inference call (RFC 3339, UTC). Always at or after `created_at`. When a session's activity spans the child organization's retention boundary, calls older than the boundary are no longer reflected — but because retention removes only the oldest calls, this value (unlike `created_at`) is unaffected until the entire session has aged out. On the list endpoint this value is a lower bound: for a session still active at a page boundary or the upper end of a `created_at` window it can momentarily lag the session's true last activity. Retrieving the session, or its messages, always reflects the exact latest retained call.
 
     format: date-time
 

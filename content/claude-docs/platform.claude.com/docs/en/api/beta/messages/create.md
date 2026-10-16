@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 7c23dc1eed03f688cdd68cc5c30ac6ce41e6113745eb25552c1b56bb49e20911
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 39d444474dc6c54ac828412a5a16ece608464278bfe5cd7c88c5de202c76662e
 ---
 
 ---
@@ -3956,6 +3956,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 - `speed: optional "standard" or "fast" or null`
 
   The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
 
   - `"standard"`
 

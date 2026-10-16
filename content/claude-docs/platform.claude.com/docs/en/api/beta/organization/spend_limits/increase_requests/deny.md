@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 8c447b6556e777e53844fcdc06944922f37d149e16a8abb2032b3a3b4faa773b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 310c74206810178d701911dffc654e05034ecff58e02f22d83ca42765a3755b8
 ---
 
 ---
@@ -149,7 +149,7 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
       The member's spend so far in the current period, as a non-negative decimal string in the minor unit of `currency` (cents for USD). May carry fractional minor units up to three decimal places (e.g. `"12050.5"`) — metered usage is not rounded to whole cents. Reads as `"0"` when the spend reading is temporarily unavailable.
 
-    - `scope: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 3 more`
+    - `scope: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 4 more`
 
       - `BetaSpendLimitUserScope object`
 
@@ -209,7 +209,21 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
           Tagged ID of the workspace the spend limit applies to.
 
-    - `source: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 3 more`
+      - `BetaSpendLimitUsageTierScope object`
+
+        Scope of the monthly spend cap Anthropic sets for a Claude Console
+        organization from its usage tier, or a higher cap Anthropic granted the
+        organization. Read-only; its `created_at` and `updated_at` are the
+        organization's creation time, so `amount` can change while `updated_at` stays
+        the same.
+
+        - `type: "usage_tier"`
+
+          Scope type. Always `usage_tier` for this scope.
+
+          default: usage_tier
+
+    - `source: BetaSpendLimitUserScope or BetaSpendLimitSeatTierScope or BetaSpendLimitRBACGroupScope or 4 more`
 
       - `BetaSpendLimitUserScope object`
 
@@ -226,6 +240,14 @@ Idempotent on `denied`; denying an already-`approved` request returns
       - `BetaSpendLimitWorkspaceScope object`
 
         Scope selecting one workspace of a Claude Console organization.
+
+      - `BetaSpendLimitUsageTierScope object`
+
+        Scope of the monthly spend cap Anthropic sets for a Claude Console
+        organization from its usage tier, or a higher cap Anthropic granted the
+        organization. Read-only; its `created_at` and `updated_at` are the
+        organization's creation time, so `amount` can change while `updated_at` stays
+        the same.
 
     - `spend_limit_id: string`
 

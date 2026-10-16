@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 12c7d1c2457e73485ad4262e866444218adce039bd9fa38324af157460edb22a
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a8d9dda2faa35b94c5c84648ac021d349f444b859cce8bc21d3bf0a070d80031
 ---
 
 ---
@@ -53,16 +53,14 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- >/dev/null <<'EOF'
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [{"type": "text", "text": "Summarize the repo README"}]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [{"type": "text", "text": "Summarize the repo README"}]
+        }
+      ]
+    }' >/dev/null
 
   while IFS= read -r -u "$stream" event_line; do
     [[ $event_line == data:* ]] || continue
@@ -604,18 +602,16 @@ Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [
-          {"type": "text", "text": "Analyze the performance of the sort function in utils.py"}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [
+            {"type": "text", "text": "Analyze the performance of the sort function in utils.py"}
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -1291,18 +1287,16 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [
-          {"type": "text", "text": "Now run the tests against the changes you made earlier."}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [
+            {"type": "text", "text": "Now run the tests against the changes you made earlier."}
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -1464,19 +1458,17 @@ Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu la
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "events": [
-      {"type": "user.interrupt"},
-      {
-        "type": "user.message",
-        "content": [
-          {"type": "text", "text": "Instead, focus on fixing the bug in line 42."}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {"type": "user.interrupt"},
+        {
+          "type": "user.message",
+          "content": [
+            {"type": "text", "text": "Instead, focus on fixing the bug in line 42."}
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -1827,18 +1819,16 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "events": [
-      {
-        "type": "system.message",
-        "content": [
-          {"type": "text", "text": "The user's current timezone is America/New_York."}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "system.message",
+          "content": [
+            {"type": "text", "text": "The current timezone of the user is America/New_York."}
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

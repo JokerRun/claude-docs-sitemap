@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3dadcea7c5576200092e4ae26fcc168b4bbb9fd3e8383f79348940f1a8597e91
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 92fb15f310a21b10062fee91c2585548cd5c0bf6bf16ae221fc7f87396a8478a
 ---
 
 ---
@@ -246,6 +246,14 @@ Get Cost Report
 
         - `"standard"`
 
+      - `speed: "standard" or "fast" or null`
+
+        Speed used. `null` if not grouping by description, or for non-token costs.
+
+        - `"standard"`
+
+        - `"fast"`
+
       - `token_type: BetaAnalyticsTokenType or null`
 
         Type of token. `null` if not grouping by description or for non-token costs.
@@ -303,6 +311,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
           "inference_geo": "global",
           "model": "claude-opus-5-5",
           "service_tier": "standard",
+          "speed": "standard",
           "token_type": "cache_creation.ephemeral_1h_input_tokens",
           "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }
@@ -389,6 +398,14 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
         - `"batch"`
 
         - `"standard"`
+
+      - `speed: "standard" or "fast" or null`
+
+        Speed used. `null` if not grouping by description, or for non-token costs.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `token_type: BetaAnalyticsTokenType or null`
 

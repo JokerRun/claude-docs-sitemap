@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7554fec54a6948dd63a1b1e5b19a2bfb85e5932f14c2b08d6e990b086c3c9805
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: db3d6cbf322fadb625f19337625d9b10eaa1acb1b5565403c563dd2195bfe142
 ---
 
 ---
@@ -115,7 +115,7 @@ Claude Opus 5.5 is built for long-running agentic coding and knowledge work, pri
   </Card>
 
   <Card title="Fast mode" icon="lightning" href="https://platform.claude.com/docs/en/build-with-claude/fast-mode">
-    Lower-latency Claude Opus 5.5 on the Claude API (research preview), priced separately.
+    Lower-latency Claude Opus 5.5 on the Claude API, priced separately.
   </Card>
 </CardGroup>
 

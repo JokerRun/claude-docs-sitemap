@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 41b07c3072766fae160bfb44ad5cc73c542187076aa222484d18abe687ab662e
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 7ddd021a92b9b878e265c5fed580cbfd8ed99d5233b97fce0bedf0655bbc62d7
 ---
 
 ---
@@ -44,9 +44,13 @@ Retrieve a memory
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `agent-memory-2026-07-22` or `managed-agents-2026-04-01` in this header.
 
   - `string`
 

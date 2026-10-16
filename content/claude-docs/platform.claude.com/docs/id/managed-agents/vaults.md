@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c6bc3293c0ff4d8ba5b253df254b65dd1a36d079ef26d2f9a4ecca1f32c1633c
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 718f20c01a4e7c677689f7c2a821a64e8d514afba8ac6f4c89bd149b7851c32d
 ---
 
 ---
@@ -36,12 +36,10 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "display_name": "Alice",
-    "metadata": {"external_user_id": "usr_abc123"}
-  }
-  EOF
+    --data '{
+      "display_name": "Alice",
+      "metadata": {"external_user_id": "usr_abc123"}
+    }'
   ```
 
   <CodeGroupItem>
@@ -752,14 +750,12 @@ Berikan `vault_ids` saat membuat sesi:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "vault_ids": ["$VAULT_ID"],
-    "title": "Alice's Slack digest"
-  }
-  EOF
+    --data '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "vault_ids": ["'"$VAULT_ID"'"],
+      "title": "Slack digest for Alice"
+    }'
   ```
 
   ```bash CLI

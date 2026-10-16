@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 82ce647389fabcc487531f91bb60914d9c5590f320c8d5fecef021b02c7f1467
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 42b31331cfde88481d642a6cf8af995597484758dd54cda76a43dfd11093bbf0
 ---
 
 > ## Documentation Index
@@ -75,6 +75,7 @@ You can start a Remote Control session from the CLI, the [Claude Desktop app](/d
     | `-d`, `--debug[=<filter>]` | Turn on debug logging for the server, optionally filtered by category. Pass a filter only in the `=` form, such as `--debug=api,hooks`. Requires Claude Code v2.1.282 or later. |
     | `--debug-file <path>` | Write debug logs to the given file. |
     | `--verbose` | Show detailed connection and session logs. |
+    | `--sandbox`, `--no-sandbox` | Removed in v2.1.300. If you pass either flag, the server [exits with an error](/docs/en/errors#sandbox-is-not-supported-by-claude-remote-control) instead of starting. |
 
     If you pass a global `claude` flag before `remote-control`, or a wrapper script adds one, Claude Code doesn't carry the flag over to the sessions the server creates. Claude Code lets the flag through only when dropping it is known not to change what those sessions can do, such as `--verbose` or `--model`. For any other flag, such as `--settings`, Claude Code [refuses to start](/docs/en/errors#not-carried-over-to-the-sessions-remote-control-starts) and names the flag to remove.
 

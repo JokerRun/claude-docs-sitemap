@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: ed97f7a11d9a29c7e82519487641816034760c347a492b6bf55d49eb65a39522
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: df84ccb4e90f1e1ef62ee65fe0cd9703029446d9cf5096eade9009b1bc5c4686
 ---
 
 ---
@@ -26,9 +26,13 @@ Create Credential
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

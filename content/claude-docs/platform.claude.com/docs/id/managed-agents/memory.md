@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 6e603806e79e8c216007a15bc628fcd8bb2c8dbd2743d9c41e0ee9b7085a50b7
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: c7ab279198ccfdd254f0c771f4e29e7aea6ccadc46eaecdf17d3fa722d7d2309
 ---
 
 ---
@@ -232,20 +232,18 @@ Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (d
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
-    "resources": [
-      {
-        "type": "memory_store",
-        "memory_store_id": "$store_id",
-        "access": "read_write",
-        "instructions": "User preferences and project context. Check before starting any task."
-      }
-    ]
-  }
-  EOF
+    --data '{
+      "agent": "'"$agent_id"'",
+      "environment_id": "'"$environment_id"'",
+      "resources": [
+        {
+          "type": "memory_store",
+          "memory_store_id": "'"$store_id"'",
+          "access": "read_write",
+          "instructions": "User preferences and project context. Check before starting any task."
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -756,12 +754,10 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    --data @- > /dev/null <<EOF
-  {
-    "content": "CORRECTED: Always use 2-space indentation.",
-    "precondition": {"type": "content_sha256", "content_sha256": "$mem_sha"}
-  }
-  EOF
+    --data '{
+      "content": "CORRECTED: Always use 2-space indentation.",
+      "precondition": {"type": "content_sha256", "content_sha256": "'"$mem_sha"'"}
+    }' > /dev/null
   ```
 
   ```bash CLI

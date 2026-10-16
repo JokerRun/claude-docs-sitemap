@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 971cf6ea481bd1231452f89b983e24b3a037fa78c8dfec0203bd78b6a0d1aad5
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: ed37a104e70eb5b75e78dd83e44213190ce21ab05f6fdf04fa15a4be8e0093b6
 ---
 
 ---
@@ -503,16 +503,14 @@ Guard the parse, as the following SDK examples do. A response can also stop at `
 
 The type mismatch between the initial `input: {}` (object) and `partial_json` (string) is by design. The empty object marks the slot in the content array. The delta strings build the real value.
 
-<CodeGroup>
-  ```bash cURL
-  # Accumulating per-block input deltas needs a programming language; the first
-  # example's CLI tab shows the raw fragments with jq. See the SDK tabs.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Accumulating the input fragments of each `tool_use` block needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this. To see the raw fragments as they stream, run the request in [How to use fine-grained tool streaming](https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Accumulating per-block input deltas needs a programming language; the first
-  # example's CLI tab shows the raw fragments with jq. See the SDK tabs.
-  ```
+  <CodeGroupItem language="CLI">
+    Accumulating the input fragments of each `tool_use` block needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this. To see the raw fragments as they stream, run the request in [How to use fine-grained tool streaming](https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()

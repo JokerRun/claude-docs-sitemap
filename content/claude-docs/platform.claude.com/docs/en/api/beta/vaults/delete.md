@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 9612ee1fdcace086340c3fca3330896684423fb0439a1fb52b9af396dec2ea46
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 9b6a23b8d92a9112ea6c49c64331be0729a131de64f6f43c32a54376ac4dab32
 ---
 
 ---
@@ -26,9 +26,13 @@ Delete Vault
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

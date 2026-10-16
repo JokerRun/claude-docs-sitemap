@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: de6aeca5f3c2fcbab36f6eddea5e4d9ba546aaa02f9763e49b54e29e3e1142fd
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 2bbf7e7b838397cb62f5cc4f9328f2d9838793c0eaad7bb0a59a92f8b6ad7d76
 ---
 
 ---
@@ -26,9 +26,13 @@ Pause Deployment
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

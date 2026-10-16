@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3fd9bdb86c03bfcf1fc12e4a4a0b1c21bf409cc57353c6a51b2563b0f79a60cb
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: c6f68753ae9ffc0cfb88ee9c14786f5c0c9770d059aabc4b861e7df3c35714a9
 ---
 
 ---
@@ -26,9 +26,13 @@ Delete Session Resource
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

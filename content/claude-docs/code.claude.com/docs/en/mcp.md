@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3c658de8dce88add9a2779767dfcea844f017220f59ba4ce0a7e1109f9ac7406
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 60647b46b63a1115cd3dad47ff1bb53824304df1fd5d76ab6bf05bf83f23c170
 ---
 
 > ## Documentation Index
@@ -1489,7 +1489,7 @@ Keep descriptions and instructions concise, and put critical details near the st
 
 Before v2.1.296, the shorter limit was 2,048 characters, and before v2.1.295 it applied to every tool description, including one loaded through tool search.
 
-To change the limits for every MCP server in your session, set [`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`](/docs/en/env-vars#variables) to a number of characters. The number you set replaces both limits: `8192`, for example, raises the shorter limit and lowers the longer one. This variable requires Claude Code v2.1.280 or later.
+Descriptions and instructions from some of the MCP servers that Anthropic hosts at `api.anthropic.com` reach Claude in full. To change the limits for the other MCP servers in your session, set [`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`](/docs/en/env-vars#variables) to a number of characters. The number you set replaces both limits: `8192`, for example, raises the shorter limit and lowers the longer one. This variable requires Claude Code v2.1.280 or later.
 
 <h4 id="per-tool-alwaysload">
   Mark a tool to load upfront or stay deferred

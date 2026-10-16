@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 02769adbe2528d4275574d33d8358b16c94ab812c828b2b9a36a3e3b3a227035
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: abe8137aae3ed7fd2d16cc00af10f17249068c0b29e7f69920194252fbb9ef29
 ---
 
 ---
@@ -32,27 +32,25 @@ First, create an agent that declares the GitHub MCP server. The agent definition
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r '.id'
-  {
-    "name": "Code Reviewer",
-    "model": "claude-opus-5-5",
-    "system": "You are a code review assistant with access to GitHub.",
-    "mcp_servers": [
-      {
-        "type": "url",
-        "name": "github",
-        "url": "https://api.githubcopilot.com/mcp/"
-      }
-    ],
-    "tools": [
-      {"type": "agent_toolset_20260401"},
-      {
-        "type": "mcp_toolset",
-        "mcp_server_name": "github"
-      }
-    ]
-  }
-  JSON
+    --data '{
+      "name": "Code Reviewer",
+      "model": "claude-opus-5-5",
+      "system": "You are a code review assistant with access to GitHub.",
+      "mcp_servers": [
+        {
+          "type": "url",
+          "name": "github",
+          "url": "https://api.githubcopilot.com/mcp/"
+        }
+      ],
+      "tools": [
+        {"type": "agent_toolset_20260401"},
+        {
+          "type": "mcp_toolset",
+          "mcp_server_name": "github"
+        }
+      ]
+    }' | jq -r '.id'
   )
   ```
 
@@ -746,21 +744,19 @@ With the GitHub MCP server, the agent can create branches, commit changes, and p
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -o /dev/null \
-    --data @- <<JSON
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [
-          {
-            "type": "text",
-            "text": "Fix the type error in src/utils.ts, commit it to a new branch, and push it."
-          }
-        ]
-      }
-    ]
-  }
-  JSON
+    --data '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix the type error in src/utils.ts, commit it to a new branch, and push it."
+            }
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: f04209e240b571bec8e947bf0f252196c93808f78da39019f53dc3dc15eb5915
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 996c152764a35abc02dae4b1252d3c8f2c33a58951d4e5e1ffdef024d389cf22
 ---
 
 ---
@@ -28,9 +28,13 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 

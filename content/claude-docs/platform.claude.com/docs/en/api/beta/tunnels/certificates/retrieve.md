@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: dd5e0b6208566076f0a0257e6eb3a8f71a837671d4542c4cdadb5f62a13fa786
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 31e367c81b5e23234bacfd3d96ad173ebb7588549eae0999b30563e58116cdaa
 ---
 
 ---
@@ -32,9 +32,13 @@ Fetches a tunnel certificate by ID.
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `mcp-tunnels-2026-06-22` in this header.
 
   - `string`
 

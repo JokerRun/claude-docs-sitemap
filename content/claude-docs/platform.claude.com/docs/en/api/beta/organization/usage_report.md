@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: f72a09cafb1e264b469aa074cff38d599e4354e0c088e76211e60772c5a756b1
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e9616536c5d4094328bae49a53aa30da37d63bd5c5c6e53e6ff7ec546fddff4f
 ---
 
 ---
@@ -63,7 +63,7 @@ Get Messages Usage Report
 
 - `group_by: optional array of "account_id" or "api_key_id" or "context_window" or 6 more`
 
-  Group by any subset of the available options. Grouping by `speed` requires the `fast-mode-2026-02-01` beta header.
+  Group by any subset of the available options.
 
   - `"account_id"`
 
@@ -132,8 +132,7 @@ Get Messages Usage Report
 
 - `speeds: optional array of "standard" or "fast"`
 
-  Restrict usage returned to the specified speed(s) (Claude Code research preview).
-  Requires the `fast-mode-2026-02-01` beta header.
+  Restrict usage returned to the specified speed(s).
 
   - `"standard"`
 
@@ -360,6 +359,14 @@ Get Messages Usage Report
 
         - `"standard"`
 
+      - `speed: "standard" or "fast" or null`
+
+        Speed of the usage. `null` if not grouping by speed.
+
+        - `"standard"`
+
+        - `"fast"`
+
       - `uncached_input_tokens: number`
 
         The number of uncached input tokens processed.
@@ -415,6 +422,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
           },
           "service_account_id": "svac_01Hk3R9TWxq7CfQak00OiVw4",
           "service_tier": "standard",
+          "speed": "standard",
           "uncached_input_tokens": 1500,
           "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }
@@ -960,6 +968,14 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
         - `"priority_on_demand"`
 
         - `"standard"`
+
+      - `speed: "standard" or "fast" or null`
+
+        Speed of the usage. `null` if not grouping by speed.
+
+        - `"standard"`
+
+        - `"fast"`
 
       - `uncached_input_tokens: number`
 

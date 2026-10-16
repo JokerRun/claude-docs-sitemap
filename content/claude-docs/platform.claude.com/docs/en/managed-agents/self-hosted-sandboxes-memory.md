@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 729aa9df3060f3981fe6e062f7099f72a1f983e522dc9e08e08a1493987c86da
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 29ff4d8155efca734ee3229cd77d097c7829c8e4114b9879535d4b6d091b49fd
 ---
 
 ---
@@ -100,7 +100,7 @@ While memory support is enabled, a work item that arrives without a `secret` (cs
 
 For example, to sync every 10 seconds and only log the deletes the worker would have made:
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, csharp, java, php, ruby">
   ```python Python
   worker = EnvironmentWorker(
       client,
@@ -123,9 +123,9 @@ For example, to sync every 10 seconds and only log the deletes the worker would 
   });
   ```
 
-  ```csharp C#
-  // EnvironmentWorker is not currently available in the C# SDK.
-  ```
+  <CodeGroupItem language="C#">
+    The C# SDK does not have `EnvironmentWorker`.
+  </CodeGroupItem>
 
   ```go Go
   worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
@@ -137,17 +137,17 @@ For example, to sync every 10 seconds and only log the deletes the worker would 
   })
   ```
 
-  ```java Java
-  // EnvironmentWorker is not currently available in the Java SDK.
-  ```
+  <CodeGroupItem language="Java">
+    The Java SDK does not have `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```php PHP
-  // EnvironmentWorker is not currently available in the PHP SDK.
-  ```
+  <CodeGroupItem language="PHP">
+    The PHP SDK does not have `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # EnvironmentWorker is not currently available in the Ruby SDK.
-  ```
+  <CodeGroupItem language="Ruby">
+    The Ruby SDK does not have `EnvironmentWorker`.
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Read-only stores and conflicts

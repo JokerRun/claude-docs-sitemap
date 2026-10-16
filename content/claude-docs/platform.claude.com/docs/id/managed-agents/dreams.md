@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 888ef1e0533b12bf0cb58106b658139f0d7076c72c28d10cca6cb0eca8392026
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 004b8cbc48c68a4cbd6ae3e68251808660722184bf5ab5a5d08b8f08cf6483b5
 ---
 
 ---
@@ -43,16 +43,14 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "inputs": [
-      { "type": "memory_store", "memory_store_id": "$store_id" },
-      { "type": "sessions", "session_ids": ["$session_a", "$session_b"] }
-    ],
-    "model": "claude-opus-5-5",
-    "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
-  }
-  EOF
+    --data '{
+      "inputs": [
+        { "type": "memory_store", "memory_store_id": "'"$store_id"'" },
+        { "type": "sessions", "session_ids": ["'"$session_a"'", "'"$session_b"'"] }
+      ],
+      "model": "claude-opus-5-5",
+      "instructions": "Focus on coding-style preferences; ignore one-off debugging notes."
+    }'
   ```
 
   ```bash CLI
@@ -321,15 +319,13 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
-    "resources": [
-      { "type": "memory_store", "memory_store_id": "$output_store_id" }
-    ]
-  }
-  EOF
+    --data '{
+      "agent": "'"$agent_id"'",
+      "environment_id": "'"$environment_id"'",
+      "resources": [
+        { "type": "memory_store", "memory_store_id": "'"$output_store_id"'" }
+      ]
+    }'
   ```
 
   ```bash CLI

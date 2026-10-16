@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 21729440640f03f3686a19b403cd6cfa540a6346a4ea82e5b23b338f01288b31
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 6c708417f8905af4a1a9d97bf482b726599702ff363f159ad5117ca297341b91
 ---
 
 ---
@@ -80,20 +80,14 @@ Returning search results from your custom tools enables dynamic RAG applications
 
 ### Example: Knowledge base tool
 
-<CodeGroup>
-  ```bash cURL
-  # The tool-calling flow needs application-side search logic that doesn't
-  # translate to a one-off shell command. See the SDK tabs for the full flow.
-  # The raw shape of a tool conversation with search results is shown in the
-  # Combining both methods cURL tab; Method 2 shows the top-level shape.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    The tool-calling flow needs search logic in your application, which needs more than a single shell command. Use the Claude SDK for the full flow. For the raw request shape of a tool conversation with search results, see [Combining both methods](https://platform.claude.com/docs/en/build-with-claude/search-results#combining-both-methods). For search results as top-level content, see [Method 2](https://platform.claude.com/docs/en/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # The tool-calling flow needs application-side search logic that doesn't
-  # translate to a one-off shell command. See the SDK tabs for the full flow.
-  # The raw shape of a tool conversation with search results is shown in the
-  # Combining both methods cURL tab; Method 2 shows the top-level shape.
-  ```
+  <CodeGroupItem language="CLI">
+    The tool-calling flow needs search logic in your application, which needs more than a single shell command. Use the Claude SDK for the full flow. For the raw request shape of a tool conversation with search results, see [Combining both methods](https://platform.claude.com/docs/en/build-with-claude/search-results#combining-both-methods). For search results as top-level content, see [Method 2](https://platform.claude.com/docs/en/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+  </CodeGroupItem>
 
   ```python Python
   from anthropic.types import (

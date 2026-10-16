@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: dd93b84c11889ade83fcbaf3d74eea6b8596dc9cfe17234c02d7d2511ba3c14a
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 6b82ab3a59664ddbb3823f93473be37db0fba76a9bab172eac4f3b5e70dcf96a
 ---
 
 ---
@@ -11,8 +11,10 @@ url: https://platform.claude.com/docs/en/manage-claude/cmek
 description: Encrypt Claude workspace data at rest with a key you control.
 ---
 
-```bash Learn more with the /claude-api skill in Claude Code
-claude "/claude-api tell me about customer-managed encryption keys"
+Ask Claude Code about this feature
+
+```text
+/claude-api tell me about customer-managed encryption keys
 ```
 
 A customer-managed encryption key (CMEK) lets you provision an encryption key in your own [AWS KMS](https://aws.amazon.com/kms/), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), or [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault) and have Anthropic use it to encrypt certain workspace data at rest. You retain full control of the key, including rotation, audit, and revocation, and the key operations Anthropic performs against your key are recorded in your cloud provider's audit logs.
@@ -114,6 +116,7 @@ These features remain available, but their data is not encrypted under your key.
 * Activity Feed, audit logs, and telemetry network traffic such as OTEL, so customers can maintain compliance even if a key is revoked.
 * Claude Managed Agents [vault credential](https://platform.claude.com/docs/en/managed-agents/vaults) values, such as OAuth tokens and client secrets. These are stored under Anthropic-managed encryption, are write-only, and are never returned in API responses.
 * [User profiles](https://platform.claude.com/docs/en/api/beta/user_profiles): the `name`, `external_id`, and `metadata` fields are stored under Anthropic-managed encryption, not your key. Do not store sensitive personal data in profile `metadata`.
+* Ratings and comments about the Claude Console that members send with its **Feedback** option. No setting turns these off; members send them only when they choose to.
 
 - [OpenTelemetry destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry#add-a-destination) request headers, such as the API key header of your observability backend. These are stored under Anthropic-managed encryption. Their values are write-only and are never returned in API responses.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d074c33f115ad6fb956158183a3b7cdee4b802a6e15c9786e99faf80c07871df
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a5c6ea31fc95641710ab3d3bc0116f12d7cbffb71d147ed7b25e3b294a991c06
 ---
 
 ---
@@ -20,9 +20,13 @@ Create Session
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

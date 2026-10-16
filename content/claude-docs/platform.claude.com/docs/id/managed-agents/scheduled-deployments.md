@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e92eadcaf6f2144eff4ff16b5ecabc5998bbd15a888c9f46d815b751396d7fe2
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: ea66b2057365aa1fdbb2ee6d9f14f3a368ba69c4e95ad93c43345b6513cf287b
 ---
 
 ---
@@ -36,21 +36,19 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "name": "Weekly compliance scan",
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "initial_events": [
-      {"type": "user.message", "content": [{"type": "text", "text": "Run the weekly compliance scan."}]}
-    ],
-    "schedule": {
-      "type": "cron",
-      "expression": "0 20 * * 5",
-      "timezone": "America/New_York"
-    }
-  }
-  EOF
+    -d '{
+      "name": "Weekly compliance scan",
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "initial_events": [
+        {"type": "user.message", "content": [{"type": "text", "text": "Run the weekly compliance scan."}]}
+      ],
+      "schedule": {
+        "type": "cron",
+        "expression": "0 20 * * 5",
+        "timezone": "America/New_York"
+      }
+    }'
   ```
 
   <CodeGroupItem>
@@ -286,14 +284,12 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "budget": {
-      "type": "limit",
-      "max_list_cost": {"amount": "2000", "currency": "USD"}
-    }
-  }
-  EOF
+    -d '{
+      "budget": {
+        "type": "limit",
+        "max_list_cost": {"amount": "2000", "currency": "USD"}
+      }
+    }'
   ```
 
   <CodeGroupItem>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api-access
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 237f56e6abef72f5fdebbce7267549560025b05e79fc59665e3125a743a00d13
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 099995a689bda9984bc87b2fdb072a0d2836a91b47970d4e1ceecb49bfcf5e82
 ---
 
 ---
@@ -82,7 +82,7 @@ Setup is one flow: enable the Compliance API for your organization, then create 
     | Scope                         | Grants                                                                                                                                                                                                                    |
     | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `read:compliance_activities`  | Read the Activity Feed. A key covering the parent organization reads events for the parent organization and all linked organizations.                                                                                     |
-    | `read:compliance_user_data`   | Read user chats, messages, files, projects, session metadata and transcripts, organization users, and group members                                                                                                       |
+    | `read:compliance_user_data`   | Read user chats, messages, files, projects, session metadata and transcripts, organization users, user preferences, and group members                                                                                     |
     | `delete:compliance_user_data` | Delete user chats, files, and projects                                                                                                                                                                                    |
     | `read:compliance_org_data`    | Read organization metadata (names, types, roles, and groups) and the effective settings in force for organizations under the parent organization. User listings and group membership require `read:compliance_user_data`. |
 

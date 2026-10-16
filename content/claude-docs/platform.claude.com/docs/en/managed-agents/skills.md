@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1253a32dcdcb130538d1acfb19b6cc05cf2eae327236585adb6e8c2316e2615b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 53628f94ad2985cac1a681ed032a91541b1fdcafbd37fe54b59fc7f4b8476b1c
 ---
 
 ---
@@ -229,17 +229,15 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json @- <<'EOF'
-  {
-    "name": "Financial Analyst",
-    "model": "claude-opus-5-5",
-    "system": "You are a financial analysis agent.",
-    "skills": [
-      {"type": "anthropic", "skill_id": "xlsx"},
-      {"type": "custom", "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv", "version": "latest"}
-    ]
-  }
-  EOF
+    --json '{
+      "name": "Financial Analyst",
+      "model": "claude-opus-5-5",
+      "system": "You are a financial analysis agent.",
+      "skills": [
+        {"type": "anthropic", "skill_id": "xlsx"},
+        {"type": "custom", "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv", "version": "latest"}
+      ]
+    }'
   )
   ```
 

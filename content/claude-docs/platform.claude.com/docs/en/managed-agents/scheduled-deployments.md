@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 5dfc9db90ccfd85be8d902df311ae59498d27f424335688ea32755be80e8475e
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 2811bc2d2cf4f6c0318873b7c0d69e5635a552055425a89fe54b18198abf4576
 ---
 
 ---
@@ -44,21 +44,19 @@ When creating a deployment, you pass the [session configurations](https://platfo
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "name": "Weekly compliance scan",
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "initial_events": [
-      {"type": "user.message", "content": [{"type": "text", "text": "Run the weekly compliance scan."}]}
-    ],
-    "schedule": {
-      "type": "cron",
-      "expression": "0 20 * * 5",
-      "timezone": "America/New_York"
-    }
-  }
-  EOF
+    -d '{
+      "name": "Weekly compliance scan",
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "initial_events": [
+        {"type": "user.message", "content": [{"type": "text", "text": "Run the weekly compliance scan."}]}
+      ],
+      "schedule": {
+        "type": "cron",
+        "expression": "0 20 * * 5",
+        "timezone": "America/New_York"
+      }
+    }'
   ```
 
   <CodeGroupItem>
@@ -294,14 +292,12 @@ The following example sets a budget on an existing deployment:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "budget": {
-      "type": "limit",
-      "max_list_cost": {"amount": "2000", "currency": "USD"}
-    }
-  }
-  EOF
+    -d '{
+      "budget": {
+        "type": "limit",
+        "max_list_cost": {"amount": "2000", "currency": "USD"}
+      }
+    }'
   ```
 
   <CodeGroupItem>

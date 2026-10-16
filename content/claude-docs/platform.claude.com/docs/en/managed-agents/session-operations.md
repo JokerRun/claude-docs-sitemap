@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 9e4cc9fa36d485be27aa608b717e649793fcd8d438420207460f32d0e9ce9db7
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 487a0d21ee4977d8c8792b1afee820f3692b14c647ab5eb4261c4186bf81fab3
 ---
 
 ---
@@ -47,19 +47,17 @@ The session must be `idle` to update the agent. To update the agent while the se
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": {
-      "tools": [
-        {"type": "agent_toolset_20260401"},
-        {"type": "mcp_toolset", "mcp_server_name": "linear"}
-      ],
-      "mcp_servers": [
-        {"type": "url", "name": "linear", "url": "https://mcp.linear.app/sse"}
-      ]
-    }
-  }
-  EOF
+    -d '{
+      "agent": {
+        "tools": [
+          {"type": "agent_toolset_20260401"},
+          {"type": "mcp_toolset", "mcp_server_name": "linear"}
+        ],
+        "mcp_servers": [
+          {"type": "url", "name": "linear", "url": "https://mcp.linear.app/sse"}
+        ]
+      }
+    }'
   ```
 
   ```bash CLI

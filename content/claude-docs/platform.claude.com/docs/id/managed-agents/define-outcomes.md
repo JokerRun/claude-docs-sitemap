@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 50c3a3de86343fffcb07395b8fd2c1bf350ef88be8eebe918ac505221745fa62
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 7930c9b901eebc49d448afe04a461451fa4ba671649df22880386c447cc4d905
 ---
 
 ---
@@ -301,13 +301,11 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "title": "Financial analysis on Costco"
-  }
-  EOF
+    --json '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "title": "Financial analysis on Costco"
+    }'
   )
   SESSION_ID=$(jq -r '.id' <<<"$session")
 
@@ -316,19 +314,17 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json @- >/dev/null <<EOF
-  {
-    "events": [
-      {
-        "type": "user.define_outcome",
-        "description": "Build a DCF model for Costco in .xlsx",
-        "rubric": {"type": "text", "content": "# DCF Model Rubric\n..."},
-        "max_iterations": 5
-      }
-    ]
-  }
-  EOF
-  # atau: "rubric": {"type": "file", "file_id": "$RUBRIC_ID"}
+    --json '{
+      "events": [
+        {
+          "type": "user.define_outcome",
+          "description": "Build a DCF model for Costco in .xlsx",
+          "rubric": {"type": "text", "content": "# DCF Model Rubric\n..."},
+          "max_iterations": 5
+        }
+      ]
+    }' >/dev/null
+  # atau: "rubric": {"type": "file", "file_id": "'"$RUBRIC_ID"'"}
   # "max_iterations" bersifat opsional; default 3, maksimum 20
   ```
 

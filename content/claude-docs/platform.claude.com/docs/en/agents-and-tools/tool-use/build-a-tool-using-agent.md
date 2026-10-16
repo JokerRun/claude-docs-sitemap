@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5d17185b83a86d3182268733bb8d2c832b6fee7f00210e6359feecac8a9159f9
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: ea0863c280b28861df79cb30dadb94ea27e8c7ed6cc029aacd0fc2ac4e31b04d
 ---
 
 ---
@@ -4026,27 +4026,14 @@ Rings 2 through 4 wrote the same loop by hand: call the API, check `stop_reason`
 
 Each SDK provides a helper that turns an ordinary function into a runnable tool and derives the input schema from its signature; the tabs below show the idiomatic form for each language.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 5: The Tool Runner SDK abstraction.
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    The Tool Runner is a helper in the Claude SDK. Raw HTTP requests have no equivalent. To keep using curl, use the loop from [Ring 4](https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+  </CodeGroupItem>
 
-  # The Tool Runner SDK abstraction is available in all seven SDKs: Python,
-  # TypeScript, C#, Go, Java, PHP, and Ruby. There is no equivalent for raw
-  # curl requests. Switch to any SDK tab to see Ring 5, or keep the Ring 4
-  # loop as your shell implementation.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 5: The Tool Runner SDK abstraction.
-  set -euo pipefail
-
-  # The Tool Runner SDK abstraction is available in all seven SDKs: Python,
-  # TypeScript, C#, Go, Java, PHP, and Ruby. The ant CLI exposes the Messages
-  # API directly and has no equivalent helper. Switch to any SDK tab to see
-  # Ring 5, or keep the Ring 4 loop as your CLI implementation.
-  ```
+  <CodeGroupItem language="CLI">
+    The Tool Runner is a helper in the Claude SDK. The `ant` CLI has no equivalent. To keep using the CLI, use the loop from [Ring 4](https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+  </CodeGroupItem>
 
   ```python Python
   # Ring 5: The Tool Runner SDK abstraction.

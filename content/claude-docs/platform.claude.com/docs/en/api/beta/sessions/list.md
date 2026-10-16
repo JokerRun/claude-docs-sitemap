@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 5e22e81a179e808553406efeba8f6fe3681b22202de03ad26b65089e7b798100
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b48bb554eead5e384d6894afe8574ad23639dc9eec31bf11cf77f17173da05fb
 ---
 
 ---
@@ -106,9 +106,13 @@ List Sessions
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

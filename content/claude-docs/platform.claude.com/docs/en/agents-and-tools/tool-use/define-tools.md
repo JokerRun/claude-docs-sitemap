@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: bc9b98eec352da2c8adc322f6a420cc610c0b2a0c12d3541b80d1bd3ac4019f0
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: f1db4ebbe6aee0ef13941fa46e3ca9e07fb76c32e16e95dfbbda955576383d18
 ---
 
 ---
@@ -153,41 +153,39 @@ Add an optional `input_examples` field to your tool definition with an array of 
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -d @- <<'EOF'
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "tools": [
-      {
-        "name": "get_weather",
-        "description": "Get the current weather in a given location",
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "location": {
-              "type": "string",
-              "description": "The city and state, e.g. San Francisco, CA"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather in a given location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA"
+              },
+              "unit": {
+                "type": "string",
+                "enum": ["celsius", "fahrenheit"],
+                "description": "The unit of temperature"
+              }
             },
-            "unit": {
-              "type": "string",
-              "enum": ["celsius", "fahrenheit"],
-              "description": "The unit of temperature"
-            }
+            "required": ["location"]
           },
-          "required": ["location"]
-        },
-        "input_examples": [
-          {"location": "San Francisco, CA", "unit": "fahrenheit"},
-          {"location": "Tokyo, Japan", "unit": "celsius"},
-          {"location": "New York, NY"}
-        ]
-      }
-    ],
-    "messages": [
-      {"role": "user", "content": "What's the weather like in San Francisco?"}
-    ]
-  }
-  EOF
+          "input_examples": [
+            {"location": "San Francisco, CA", "unit": "fahrenheit"},
+            {"location": "Tokyo, Japan", "unit": "celsius"},
+            {"location": "New York, NY"}
+          ]
+        }
+      ],
+      "messages": [
+        {"role": "user", "content": "What is the weather like in San Francisco?"}
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -578,32 +576,30 @@ On models that support it, the highlighted lines are the only difference from a 
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -d @- <<'EOF'
-  {
-    "model": "claude-opus-5",
-    "max_tokens": 1024,
-    "tools": [
-      {
-        "name": "get_weather",
-        "description": "Get the current weather in a given location",
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "location": {
-              "type": "string",
-              "description": "The city and state, e.g. San Francisco, CA"
-            }
-          },
-          "required": ["location"]
+    -d '{
+      "model": "claude-opus-5",
+      "max_tokens": 1024,
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather in a given location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA"
+              }
+            },
+            "required": ["location"]
+          }
         }
-      }
-    ],
-    "tool_choice": {"type": "tool", "name": "get_weather"},
-    "messages": [
-      {"role": "user", "content": "What's the weather like in San Francisco?"}
-    ]
-  }
-  EOF
+      ],
+      "tool_choice": {"type": "tool", "name": "get_weather"},
+      "messages": [
+        {"role": "user", "content": "What is the weather like in San Francisco?"}
+      ]
+    }'
   ```
 
   ```bash CLI

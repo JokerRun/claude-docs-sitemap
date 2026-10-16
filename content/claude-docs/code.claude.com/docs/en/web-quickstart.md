@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 0d6067abde05c1a20d0aa04d7e92cb6057f65bb407b95d40097ccfb0812a7e68
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 11339a9283e576a80ff4241e1229f22fcb7d860dd6fa5901463c94bfecad3886
 ---
 
 > ## Documentation Index
@@ -102,7 +102,7 @@ When you run `/web-setup`, Claude Code reads the token that `gh auth token` prin
 If you already connected GitHub in the browser, `/web-setup` warns you that continuing replaces that connection for your cloud sessions.
 
 <Note>
-  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled, or with the [HIPAA configuration](/docs/en/hipaa-setup) applied, cannot use `/web-setup` or other cloud session features. If the GitHub CLI isn't installed or isn't authenticated, Claude Code opens the browser onboarding flow instead.
+  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled, or with the [HIPAA configuration](/docs/en/hipaa-setup) applied, cannot use `/web-setup` or other cloud session features. Organizations that use [customer-managed encryption keys](https://platform.claude.com/docs/en/manage-claude/cmek) (CMEK) can't start cloud sessions either. If the GitHub CLI isn't installed or isn't authenticated, Claude Code opens the browser onboarding flow instead.
 </Note>
 
 <Steps>

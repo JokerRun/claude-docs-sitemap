@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b31acfffd868408045f320f9875ed66a0c654eefe42cf768e3432c8fb5c10c2d
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b39bbd63ff34df9071cddd13acbaac71016bd533481e6f617b09fee8ee5aff7f
 ---
 
 ---
@@ -243,7 +243,7 @@ The Message Batches API has its own set of rate limits which are shared across a
 
 ### Fast mode rate limits
 
-When using [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) (research preview) with `speed: "fast"` on Claude Opus 5.5, Claude Opus 5, or Opus 4.8, dedicated rate limits apply that are separate from standard Opus rate limits. When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header. Fast mode is not available on Claude Opus 4.7 (requests return an error) or Claude Opus 4.6 (requests to `claude-opus-4-6` with `speed: "fast"` run at standard speed). See [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models).
+When using [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) with `speed: "fast"` on Claude Opus 5.5, Claude Opus 5, or Claude Opus 4.8, dedicated rate limits apply that are separate from standard Opus rate limits. Claude Opus 5.5 has a default fast mode rate limit in the Start, Build, and Scale tiers, so you don't need to request access to use fast mode with it. Organizations in the Evaluation tier can use fast mode with Claude Opus 5.5 once they move to the Start, Build, or Scale tier. Fast mode for Claude Opus 5 and Claude Opus 4.8 is in research preview. To see your fast mode rate limits, go to the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console. When fast mode rate limits are exceeded, the API returns a `429` error with a `retry-after` header.
 
 The response includes `anthropic-fast-*` headers that indicate your fast mode rate limit status. See [Fast mode rate limits](https://platform.claude.com/docs/en/build-with-claude/fast-mode#rate-limits) for details on these headers.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e176dd64ac65e962daf396689419741906bce4431e29d5021bed8f073e6924c2
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5ff5a8d91a53ffdd7d6001223304dbc4a6a09b063030a373da5d47be5bf849ab
 ---
 
 ---
@@ -114,7 +114,7 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
       </Tab>
     </Tabs>
 
-    Back in the Console, on the tunnel detail page, click **Add certificate** and upload `data/ca.crt` (or paste its contents). The tunnel status flips to **Active**.
+    Back in the Console, on the tunnel detail page, click **Add certificate** and upload `data/ca.crt` (or paste its contents). The **Needs certificate** badge next to the tunnel's name goes away.
   </Step>
 
   <Step title="Write the sample MCP server">

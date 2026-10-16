@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 7691f762188a7ed80367887abe0140bf165498e5c4587e5b4cc742da0c06787b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 29d435af1794f81a536595e554b8aa772cb3a549a1da87c3fab66f909286ce21
 ---
 
 ---
@@ -943,13 +943,10 @@ To provide input files for Skills to work on, [upload them with the Files API](h
 
 The response's `container` object carries the container's `id` and `expires_at` timestamp (see [Container reuse](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#container-reuse) for lifetime details). Reuse the same container across multiple messages by specifying the container ID:
 
-<CodeGroup>
-  ```bash cURL
-  # Multi-turn container reuse doesn't translate well to a one-off shell
-  # command; one of the SDK options would be a better fit. Capture
-  # container.id from the first response, then pass it in the next request as
-  # "container": {"id": "...", "skills": [...]} with the conversation history.
-  ```
+<CodeGroup exclude="shell:cURL">
+  <CodeGroupItem language="cURL">
+    Multi-turn container reuse needs more logic than a single shell command, so use the Claude SDK for it. To build the requests yourself, capture `container.id` from the first response. Then pass it in the next request as `"container": {"id": "...", "skills": [...]}`, together with the conversation history.
+  </CodeGroupItem>
 
   ```bash CLI
   # First request creates container
@@ -4476,13 +4473,10 @@ For best caching performance, keep your Skills list, including its order, consis
 
 Handle Skill-related errors gracefully:
 
-<CodeGroup>
-  ```bash cURL
-  # This error-handling flow doesn't translate well to a one-off shell
-  # command; one of the SDK options would be a better fit. A failing request
-  # returns HTTP 400 with an error JSON whose .error.message names the
-  # Skill problem.
-  ```
+<CodeGroup exclude="shell:cURL">
+  <CodeGroupItem language="cURL">
+    This error-handling flow needs more logic than a single shell command, so use the Claude SDK for it. A request that fails because of a Skill problem returns HTTP 400. The `error.message` field in the JSON response body describes the problem.
+  </CodeGroupItem>
 
   ```bash CLI
   if ! RESULT=$(ant messages create \

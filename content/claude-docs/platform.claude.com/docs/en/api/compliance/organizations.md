@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 967e4b70365cfa4ce06b02f1709e1df4822ae06f6bde8b4bc149883fef4a0952
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e24df6125c8d1a63730cf57c50ff597c6d6bfc37b0772f9dfc7fcc2bdd1909ac
 ---
 
 ---
@@ -594,7 +594,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: boolean
 
-    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 60 more`
+    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 61 more`
 
       - `"access_transparency_enabled"`
 
@@ -655,6 +655,8 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"claude_science_custom_skills_enabled"`
 
       - `"claude_science_enabled"`
+
+      - `"claude_science_local_work_import_enabled"`
 
       - `"claude_science_managed_network_allowlist_enabled"`
 

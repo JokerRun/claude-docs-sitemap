@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 153742ba6e00b4336d30366d3ee8b2aa14708914bf15e172ca2bdf21c2b6aff3
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 66a27c4823aec2385252d13e6db59f7308916f967d504083f4ea138ea9d2aa72
 ---
 
 ---
@@ -3958,6 +3958,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 - `speed: optional "standard" or "fast" or null`
 
   The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
 
   - `"standard"`
 
@@ -12257,6 +12259,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 - `speed: optional "standard" or "fast" or null`
 
   The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+  Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
 
   - `"standard"`
 
@@ -81778,6 +81782,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `speed: optional "standard" or "fast" or null`
 
       The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+
+      Some models require the `fast-mode-2026-02-01` beta header for any `speed` value. See [fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode?sdk_languages=http) for which models.
 
       - `"standard"`
 

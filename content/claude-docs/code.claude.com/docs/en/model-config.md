@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 76f91c1cf8ccc291c772d5aae23841868f30fda204062a72343833c4a9e33723
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: cf781dd9bd0954efc98d52e09a5967a743e89b3bcfa762571501e0e1e5c712eb
 ---
 
 > ## Documentation Index
@@ -815,6 +815,26 @@ If you don't set an auto-compact window, Claude Code compacts when the conversat
 See the [`idleCompaction`](/docs/en/settings-reference#idlecompaction) setting for when Claude Code also compacts a conversation you leave idle.
 
 ### Correct the window for a gateway or custom model ID
+
+Either of these startup warnings means Claude Code doesn't recognize your session's model ID, so it can't tell the model's context window and assumes 200K tokens:
+
+```text theme={null}
+⚠ Model "my-gateway-opus" isn't recognized · context assumed to be 200k tokens · ...
+Claude Code doesn't recognize the model "my-gateway-opus", so it assumes a context window of 200k tokens. Update Claude Code, or see https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id to set the window.
+```
+
+Claude Code [auto-compacts](#default-auto-compact-thresholds) the conversation at the assumed 200K, so if the model's real context window is 200K, there is nothing to correct. Otherwise, give Claude Code the real window in whichever of these ways fits your ID:
+
+* **A model newer than your Claude Code version**: run `claude update` in your shell. If Claude Code recognizes the ID after the update, you don't need to configure anything else.
+* **Your gateway's or provider's name for a model Claude Code knows**: add a [`modelOverrides`](#override-model-ids-per-version) entry that maps the Anthropic model ID to your ID, such as `"claude-opus-4-8": "my-gateway-opus"`. You can instead list your ID in a [`modelPicker`](/docs/en/settings-reference#fields-for-modelpicker) row with `behavesAs` set to that model. Either way, Claude Code then treats the ID as that model.
+* **A model with a 1M window**: append `[1m]` to the ID where you set the model, such as `claude --model 'my-gateway-opus[1m]'` in your shell. If you [turned off 1M context](#turn-off-1m-context), you get the same window with or without the suffix.
+* **Any other window**: set [`CLAUDE_CODE_MAX_CONTEXT_TOKENS`](/docs/en/env-vars) to the window size in tokens in the environment that starts Claude Code, such as `CLAUDE_CODE_MAX_CONTEXT_TOKENS=400000`. For an unrecognized ID that doesn't start with `claude-` and has no `[1m]` suffix, the variable takes effect on its own. For any other ID, check [which IDs it applies to](#which-ids-claude_code_max_context_tokens-applies-to) first.
+
+Once Claude Code recognizes the ID or uses the window you gave it, the warning no longer appears when you start a session on that ID.
+
+<h4 id="which-ids-claude_code_max_context_tokens-applies-to">
+  Which IDs `CLAUDE_CODE_MAX_CONTEXT_TOKENS` applies to
+</h4>
 
 On an [LLM gateway](/docs/en/llm-gateway) or other custom deployment, Claude Code can assume a context window for the model ID that differs from the model's real window, whether or not it resolves the ID to a Claude model. Set [`CLAUDE_CODE_MAX_CONTEXT_TOKENS`](/docs/en/env-vars) to the window Claude Code should assume instead.
 

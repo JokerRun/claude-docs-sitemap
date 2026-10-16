@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 401a9071c1278f47dd092f314980cfb3a5bb6eacdda2c6418e3109706ad3cacf
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 14e7a200a92f8ed44073227d2a3223750284875cfaa2f3ac920c81da68aeae19
 ---
 
 ---
@@ -24,9 +24,13 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `dreaming-2026-04-21` in this header.
 
   - `string`
 

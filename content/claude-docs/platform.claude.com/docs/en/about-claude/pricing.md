@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: a62e85bd0420e44f326f7b6c6c6d9fdb879dbf0e513b93b9f671b72caae5c83b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: d0dc6009ff1bae0023eec432d7c21d4a3b71a71e542ac350dbfd13dc85a8b862
 ---
 
 ---
@@ -172,14 +172,12 @@ For more information, see [Data residency](https://platform.claude.com/docs/en/m
 
 ### Fast mode pricing
 
-[Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode), in research preview, provides significantly faster output for Claude Opus 5.5, Claude Opus 5, and Claude Opus 4.8 at premium pricing. Fast mode pricing applies across the full context window, including requests over 200k input tokens. Fast mode is available on the Claude API (first-party) only; it is not available on Claude Platform on AWS or partner-operated cloud platforms.
+[Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) provides significantly faster output for Claude Opus 5.5, Claude Opus 5, and Claude Opus 4.8 at premium pricing. Fast mode for Claude Opus 5 and Claude Opus 4.8 is in research preview. Fast mode pricing applies across the full context window, including requests over 200k input tokens. Fast mode is available on the Claude API (first-party) and, for Claude Opus 5.5, on [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) for deployments hosted on Azure; it is not available on Claude Platform on AWS or partner-operated cloud platforms.
 
-| Model                           | Input      | Output     |
-| ------------------------------- | ---------- | ---------- |
-| Claude Opus 5.5                 | $8 / MTok  | $40 / MTok |
-| Claude Opus 5 / Claude Opus 4.8 | $10 / MTok | $50 / MTok |
-
-Fast mode is not available on Claude Opus 4.7 (requests with `speed: "fast"` return an error) or Claude Opus 4.6 (requests run at standard speed and are billed at standard rates). See [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models).
+| Model                           | Input          | Output         |
+| ------------------------------- | -------------- | -------------- |
+| Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
+| Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
 Fast mode pricing stacks with other pricing modifiers:
 

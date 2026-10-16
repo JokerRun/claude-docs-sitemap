@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: f2847f880bdb1684522c884ff079c666888e396898c557777b4352beede70e5a
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: fb66443d4d698176872aa167f0ea12e1a6daa286141efe5b6922ac4a796726fd
 ---
 
 ---
@@ -26,9 +26,13 @@ Run Deployment Now
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

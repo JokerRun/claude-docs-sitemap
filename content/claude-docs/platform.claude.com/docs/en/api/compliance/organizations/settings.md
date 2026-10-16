@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 1108624a88b35bb22626995a8dc6ddcf207fe3194a87686cb1605be5fb3a4da1
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: d7c9fbe87b66c2db8281cb0d134a611777616dd4220ac55e420742232b66ac42
 ---
 
 ---
@@ -108,7 +108,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       default: boolean
 
-    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 60 more`
+    - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 61 more`
 
       - `"access_transparency_enabled"`
 
@@ -169,6 +169,8 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"claude_science_custom_skills_enabled"`
 
       - `"claude_science_enabled"`
+
+      - `"claude_science_local_work_import_enabled"`
 
       - `"claude_science_managed_network_allowlist_enabled"`
 
@@ -475,7 +477,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         default: boolean
 
-      - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 60 more`
+      - `name: "access_transparency_enabled" or "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or 61 more`
 
         - `"access_transparency_enabled"`
 
@@ -536,6 +538,8 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
         - `"claude_science_custom_skills_enabled"`
 
         - `"claude_science_enabled"`
+
+        - `"claude_science_local_work_import_enabled"`
 
         - `"claude_science_managed_network_allowlist_enabled"`
 

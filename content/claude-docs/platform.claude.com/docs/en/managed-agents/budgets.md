@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/budgets
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 389d1dfcb375872f686e4b3632875283324abe0149286f44f3753d76643396f4
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: db4b9af6fe125481ac5f8d1db24105c4a79d23b7f708796ae7bc378680700f82
 ---
 
 ---
@@ -30,16 +30,14 @@ Pass the optional `budget` (csharp, go: `Budget`) field when you create the sess
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "budget": {
-      "type": "limit",
-      "max_list_cost": {"amount": "125", "currency": "USD"}
-    }
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "budget": {
+        "type": "limit",
+        "max_list_cost": {"amount": "125", "currency": "USD"}
+      }
+    }'
   ```
 
   ```bash CLI

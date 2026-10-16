@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: ffde65e2fe1558d1a95743195324434bc934729089a997f004b914de7b59f09c
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 83cece60fa9a532fdab0a99216fdc121126fc5c4e8365f1b97dbb96579a8cf49
 ---
 
 ---
@@ -450,7 +450,9 @@ Each row compares two consecutive requests:
 <Tip>
   **Automate this check with the Claude API skill.** In the latest version of [Claude Code](https://code.claude.com/docs/en/overview), open the repository that builds your requests and run the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#checking-an-integration-for-preserved-thinking):
 
-  ```text wrap
+  Let Claude Code check your code for you
+
+  ```text
   /claude-api preserved-thinking-migration
   ```
 

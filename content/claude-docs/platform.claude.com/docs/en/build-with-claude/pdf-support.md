@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 7136a89c73b912e2b44b8939e011e02db4b9929005413e78539449f47dbe7085
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: c7490a6cf97b1fd36f7e5ac4c9be1c771b6bd21987abb98858aeba065c299c0a
 ---
 
 ---
@@ -733,26 +733,24 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -d @- <<EOF
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [{
-      "role": "user",
-      "content": [{
-        "type": "document",
-        "source": {
-          "type": "file",
-          "file_id": "$FILE_ID"
-        }
-      },
-      {
-        "type": "text",
-        "text": "What are the key findings in this document?"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [{
+        "role": "user",
+        "content": [{
+          "type": "document",
+          "source": {
+            "type": "file",
+            "file_id": "'"$FILE_ID"'"
+          }
+        },
+        {
+          "type": "text",
+          "text": "What are the key findings in this document?"
+        }]
       }]
-    }]
-  }
-  EOF
+    }'
   ```
 
   ```bash CLI

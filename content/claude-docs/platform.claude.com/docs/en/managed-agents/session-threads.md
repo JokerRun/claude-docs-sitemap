@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 53387f8a7eeea2cd4cf103b7324f61bd99f1d1aecb5130baee47ab6275698cdb
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b87db05a1d42dd2878be2aec866a2afbc48924dd2d88aa83a7e7dcee37eed0ba
 ---
 
 ---
@@ -702,7 +702,7 @@ Under `auto`, your `user.message` events can lead the server to allow a call it 
 
 The following example goes inside the event loop of the [tool confirmation handler](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#tool-confirmation). For each ID in `stop_reason.event_ids`, it sends a `user.tool_confirmation` that allows the call. The same pattern applies to `user.custom_tool_result`, which you can also send as soon as its `agent.custom_tool_use` event arrives.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   while IFS= read -r event_id; do
     jq -n --arg id "$event_id" \
@@ -716,10 +716,9 @@ The following example goes inside the event loop of the [tool confirmation handl
   done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
   ```
 
-  ```bash CLI
-  # This workflow does not translate well to a one-off shell command.
-  # Use one of the SDK examples in this code group instead.
-  ```
+  <CodeGroupItem language="CLI">
+    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+  </CodeGroupItem>
 
   ```python Python
   for event_id in stop.event_ids:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9df1d8c6e4a7f573e58bdbb8d1e46f73b7a416f9b1c686c21738c1db5224cfdc
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e750afa81ab54bfac81c9521b3a6c983311059d35a8e31d26c936763d00840a6
 ---
 
 ---
@@ -136,19 +136,17 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
-      -d @- <<'EOF'
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 16000,
-    "container": {
-      "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
-    },
-    "messages": [
-      {"role": "user", "content": "Create a presentation about renewable energy with 5 slides"}
-    ],
-    "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
-  }
-  EOF
+      -d '{
+        "model": "claude-opus-5-5",
+        "max_tokens": 16000,
+        "container": {
+          "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
+        },
+        "messages": [
+          {"role": "user", "content": "Create a presentation about renewable energy with 5 slides"}
+        ],
+        "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
+      }'
   )
   ```
 

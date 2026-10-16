@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2c0de8cea0289fe641801606947e8ff8cde341833b444302969426edbef201c9
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: dc3ca0d2caa580450b84f57975152dc01f64ff71b2f1f48807a8f909c14c2243
 ---
 
 ---
@@ -40,9 +40,13 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4e553e675b1d57fba64c1e85268affcea47abb266acbefd15dda0addd66286c8
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 7fc086fd4e54e4315fa0d47ea2b2c9d36f016c5ed479281aa94530211c9c3e19
 ---
 
 ---
@@ -370,12 +370,10 @@ With the CLI, edit the agent's file and run `ant apply` again; apply supplies `v
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "version": $AGENT_VERSION,
-    "system": "You are a helpful coding agent. Always write tests."
-  }
-  EOF
+    -d '{
+      "version": '"$AGENT_VERSION"',
+      "system": "You are a helpful coding agent. Always write tests."
+    }'
   )
 
   echo "New version: $(jq -r '.version' <<< "$updated_agent")"

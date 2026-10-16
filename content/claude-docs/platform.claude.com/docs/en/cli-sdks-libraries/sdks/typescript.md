@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: bf27d193648c5e664ba2624afa63b736231c44bd049c9edf85b5216542045f08
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: e263c3872cf4c4ef1257fd08e1a1c7bd5a88bb7fe92ebd3a27f9e72872d07364
 ---
 
 ---
@@ -88,7 +88,11 @@ Documentation for each method, request parameter, and response field is availabl
 You can see the exact usage for a given request through the `usage` response property, for example:
 
 ```typescript
-const message = await client.messages.create(/* ... */);
+const message = await client.messages.create({
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello, Claude" }],
+  model: "claude-opus-5-5"
+});
 console.log(message.usage);
 // { input_tokens: 25, output_tokens: 13 }
 ```

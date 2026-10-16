@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 58d352af10351ba2123c35a881c00ec29389cd4c1cfbb3963314f50320d4d127
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5c9739de269a620abfbca1949e5d2d6831c7e42ba0dc21049f08a74efaa85aaf
 ---
 
 ---
@@ -53,20 +53,18 @@ The following example enables the toolset and disables `web_fetch`:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "Coding Assistant",
-    "model": "claude-opus-5-5",
-    "tools": [
-      {
-        "type": "agent_toolset_20260401",
-        "configs": [
-          {"name": "web_fetch", "enabled": false}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "name": "Coding Assistant",
+      "model": "claude-opus-5-5",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401",
+          "configs": [
+            {"name": "web_fetch", "enabled": false}
+          ]
+        }
+      ]
+    }'
   )
   ```
 
@@ -268,29 +266,27 @@ The following example creates an agent with the built-in toolset and one custom 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "Weather Agent",
-    "model": "claude-opus-5-5",
-    "tools": [
-      {
-        "type": "agent_toolset_20260401"
-      },
-      {
-        "type": "custom",
-        "name": "get_weather",
-        "description": "Get current weather for a location",
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "City name"}
-          },
-          "required": ["location"]
+    -d '{
+      "name": "Weather Agent",
+      "model": "claude-opus-5-5",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401"
+        },
+        {
+          "type": "custom",
+          "name": "get_weather",
+          "description": "Get current weather for a location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
         }
-      }
-    ]
-  }
-  EOF
+      ]
+    }'
   )
   ```
 

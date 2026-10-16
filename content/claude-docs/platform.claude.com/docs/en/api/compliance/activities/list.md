@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/activities/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 22746a9699a99f6b43adc7bdf80f157662d8d0c76f00510b9052b2d865218641
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: edf0be5b2bc3d1af93abaa031da8e6cb154d7b02539e4780ec43e37773726e42
 ---
 
 ---
@@ -964,7 +964,7 @@ compliance activities that can be filtered by various criteria.
 
   - `"inference_hooks_circuit_breaker_tripped"`
 
-    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. The tripped state persists until an administrator re-enables Inference hooks inspection (or explicitly resets the circuit breaker).
+    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. Inspection turns back on by itself once the organization's Inference hooks endpoint returns a valid allow or deny answer to Anthropic's test request again, at least 10 minutes after the trip. An administrator can also end the tripped state by re-enabling Inference hooks inspection. If an administrator saves the Inference hooks settings after the trip (even without changing anything) or generates a new signing secret, inspection no longer turns back on by itself and stays off until an administrator re-enables it.
 
   - `"inference_hooks_config_deleted"`
 
@@ -3135,7 +3135,7 @@ compliance activities that can be filtered by various criteria.
 
   - `"inference_hooks_circuit_breaker_tripped"`
 
-    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. The tripped state persists until an administrator re-enables Inference hooks inspection (or explicitly resets the circuit breaker).
+    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. Inspection turns back on by itself once the organization's Inference hooks endpoint returns a valid allow or deny answer to Anthropic's test request again, at least 10 minutes after the trip. An administrator can also end the tripped state by re-enabling Inference hooks inspection. If an administrator saves the Inference hooks settings after the trip (even without changing anything) or generates a new signing secret, inspection no longer turns back on by itself and stays off until an administrator re-enables it.
 
   - `"inference_hooks_config_deleted"`
 
@@ -54508,7 +54508,7 @@ compliance activities that can be filtered by various criteria.
 
   - `InferenceHooksCircuitBreakerTripped object`
 
-    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. The tripped state persists until an administrator re-enables Inference hooks inspection (or explicitly resets the circuit breaker).
+    The organization's Inference hooks circuit breaker tripped automatically: calls to the organization's Inference hooks endpoint crossed a failure threshold, and inspection was suspended to protect live traffic. While tripped, requests are handled according to the organization's failure handling setting — allowed through uninspected (fail open) or rejected (fail closed) — and no per-request Inference hooks activities are recorded. Inspection turns back on by itself once the organization's Inference hooks endpoint returns a valid allow or deny answer to Anthropic's test request again, at least 10 minutes after the trip. An administrator can also end the tripped state by re-enabling Inference hooks inspection. If an administrator saves the Inference hooks settings after the trip (even without changing anything) or generates a new signing secret, inspection no longer turns back on by itself and stays off until an administrator re-enables it.
 
     - `type: optional "inference_hooks_circuit_breaker_tripped"`
 
@@ -86130,7 +86130,7 @@ compliance activities that can be filtered by various criteria.
 
         - `user_agent: optional string or null`
 
-    - `updates: array of Name or Capabilities or RedactContent or 101 more`
+    - `updates: array of Name or Capabilities or RedactContent or 104 more`
 
       - `Name object`
 
@@ -87905,6 +87905,22 @@ compliance activities that can be filtered by various criteria.
 
           Setting value immediately before this change
 
+      - `ClaudeScienceLocalWorkImportEnabled object`
+
+        The Claude Science setting that lets members access projects, sessions, and artifacts previously saved on their computer under other sign-ins, and add them to their account in the organization, was changed for the organization.
+
+        - `type: optional "claude_science_local_work_import_enabled"`
+
+          default: claude_science_local_work_import_enabled
+
+        - `current_value: optional boolean or null`
+
+          Setting value immediately after this change
+
+        - `previous_value: optional boolean or null`
+
+          Setting value immediately before this change
+
       - `ClaudeAIProjectSharingEnabled object`
 
         The Claude.ai project sharing setting (whether members can share projects with new recipients: people, groups, or the whole organization) was changed for the organization.
@@ -88000,6 +88016,38 @@ compliance activities that can be filtered by various criteria.
         - `previous_value: optional boolean or null`
 
           Setting value immediately before this change. Null means the setting had not been set for the organization, so the plan default applied.
+
+      - `ArtifactTypeDashboardsEnabled object`
+
+        The setting that lets members create Dashboards, one of Anthropic's built-in Artifact types, was changed for the organization.
+
+        - `type: optional "artifact_type_dashboards_enabled"`
+
+          default: artifact_type_dashboards_enabled
+
+        - `current_value: optional boolean or null`
+
+          Setting value immediately after this change
+
+        - `previous_value: optional boolean or null`
+
+          Setting value immediately before this change. Null means the setting had not been set for the organization, so the plan default applied.
+
+      - `BuiltInBrowserDataImportEnabled object`
+
+        The setting that lets members import cookies and site data from other browsers into the Claude desktop app's built-in browser was changed for the organization.
+
+        - `type: optional "built_in_browser_data_import_enabled"`
+
+          default: built_in_browser_data_import_enabled
+
+        - `current_value: optional boolean or null`
+
+          Setting value immediately after this change
+
+        - `previous_value: optional boolean or null`
+
+          Setting value immediately before this change. Null means the setting was not set, so its default applied.
 
     - `id: optional string`
 

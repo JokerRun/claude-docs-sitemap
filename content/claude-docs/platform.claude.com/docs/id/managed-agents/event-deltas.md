@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 87d7e1616581de47c964ccd96eb2ec453bb705e8aa1ad60315d21e8515bebf30
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 6d06a23dd7ad9eccfda7da26e2fffeb51a8d22950421cba815c683fc21d43510
 ---
 
 ---
@@ -132,16 +132,14 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- >/dev/null <<'EOF'
-  {
-    "events": [
-      {
-        "type": "user.message",
-        "content": [{"type": "text", "text": "In one short sentence, describe what an event delta is."}]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "events": [
+        {
+          "type": "user.message",
+          "content": [{"type": "text", "text": "In one short sentence, describe what an event delta is."}]
+        }
+      ]
+    }' >/dev/null
 
   # Akumulasikan delta dengan kunci (id pesan, indeks konten); agent.message
   # final membawa teks lengkap, sehingga menggantikan semua pratinjau untuk id tersebut.

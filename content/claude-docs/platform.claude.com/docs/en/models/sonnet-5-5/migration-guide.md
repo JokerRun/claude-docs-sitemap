@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5d8f26d67706678eaed7e238e482490604f75de3fc2ca084fd9e74e8599a77be
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 22cc494a09a419ddd159f1734cd0d2881d5d22a67ed7b88a19b3b7763c769938
 ---
 
 ---
@@ -20,7 +20,9 @@ This guide lists the code changes for moving to Claude Sonnet 5.5 from Claude So
 <Tip>
   **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
 
-  ```text wrap
+  Let Claude Code migrate your code for you
+
+  ```text
   /claude-api migrate this project to claude-sonnet-5-5
   ```
 

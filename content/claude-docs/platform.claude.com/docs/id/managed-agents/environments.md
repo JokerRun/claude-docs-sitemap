@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: cc11775d88f0f62f1efdf7b1196a9d2ea88830434d7d2fd09ff3d60a96cd0149
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 98cdef807f4e62c7a238c65ed9a53bd71055b57a353d1cb6cc6bd1650bc4b3a6
 ---
 
 ---
@@ -30,15 +30,13 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "name": "python-dev",
-    "config": {
-      "type": "cloud",
-      "networking": {"type": "limited", "allow_package_managers": true}
-    }
-  }
-  EOF
+    --data '{
+      "name": "python-dev",
+      "config": {
+        "type": "cloud",
+        "networking": {"type": "limited", "allow_package_managers": true}
+      }
+    }'
   ```
 
   <CodeGroupItem>
@@ -170,12 +168,10 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID"
-  }
-  EOF
+    --data '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'"
+    }'
   ```
 
   ```bash CLI

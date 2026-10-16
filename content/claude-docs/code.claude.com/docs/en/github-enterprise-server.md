@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 869b8b8ffc1f5f142fb87449f9f0c8ed07b1a29bc6a49730f6c3dd823346f44b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: f833e16eb3b18587757cf535bf6b203e1df04767b8ecd31830547bdffebb8fb0
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ The guided setup generates a GitHub App manifest and redirects you to your GHES 
   </Step>
 
   <Step title="Enable Code Review">
-    Go to [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) and enable [Code Review](/docs/en/code-review#set-up-code-review) for your GHES repositories using the same configuration as github.com.
+    Go to [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) and enable [Code Review](/docs/en/code-review-setup) for your GHES repositories using the same configuration as github.com.
   </Step>
 </Steps>
 

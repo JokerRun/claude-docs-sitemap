@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 126c0be0a51c501705e05ab820be50f05c4fbf2d85131cd1aa797f6e9c7b00ab
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 23841d5e077fc478880133b2673da8075fdfc80afa19834ab7b5dbe7deaee9a9
 ---
 
 ---
@@ -30,9 +30,13 @@ Validate Credential
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: b1aa1e0c618c8a4a5fbd9207cd69d2367cc3b8fa44103c9e68ef377ca5b90b35
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: efc52ab3feb58ab4b062a4878bae5b8f2dfc0a231c47db92186f874f345a6f95
 ---
 
 ---
@@ -555,30 +555,28 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [
-      {
-        "role": "user",
-        "content": [
-          {
-            "type": "image",
-            "source": {
-              "type": "file",
-              "file_id": "$FILE_ID"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "file",
+                "file_id": "'"$FILE_ID"'"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Describe this image."
             }
-          },
-          {
-            "type": "text",
-            "text": "Describe this image."
-          }
-        ]
-      }
-    ]
-  }
-  EOF
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 48813efb1878d36f5a846ddf35c99baba026bc7d31a6af0cb8146173c2041b61
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 0b23cf3b2d547bdb8cffc708f7a390cf297366f144f39acbc5d62709e1b9dfef
 ---
 
 ---
@@ -42,25 +42,23 @@ The example defines a `get_weather` tool, lets Claude think and request a tool c
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -d @- <<'EOF'
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 16000,
-        "thinking": {"type": "adaptive"},
-        "tools": [{
-          "name": "get_weather",
-          "description": "Get current weather for a location",
-          "input_schema": {
-            "type": "object",
-            "properties": {
-              "location": {"type": "string", "description": "City name"}
-            },
-            "required": ["location"]
-          }
-        }],
-        "messages": [{"role": "user", "content": "What's the weather in Paris?"}]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 16000,
+          "thinking": {"type": "adaptive"},
+          "tools": [{
+            "name": "get_weather",
+            "description": "Get current weather for a location",
+            "input_schema": {
+              "type": "object",
+              "properties": {
+                "location": {"type": "string", "description": "City name"}
+              },
+              "required": ["location"]
+            }
+          }],
+          "messages": [{"role": "user", "content": "What is the weather in Paris?"}]
+        }'
       ```
 
       ```bash CLI
@@ -322,11 +320,10 @@ The example defines a `get_weather` tool, lets Claude think and request a tool c
 
     Each sample is a self-contained script: it repeats the first request, then immediately sends the follow-up using the response it just received.
 
-    <CodeGroup>
-      ```bash cURL
-      # This workflow does not translate well to a one-off shell command.
-      # Use one of the SDK examples in this code group instead.
-      ```
+    <CodeGroup exclude="shell:cURL">
+      <CodeGroupItem language="cURL">
+        This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+      </CodeGroupItem>
 
       ```bash CLI
       # First turn: write the assistant content array (thinking and tool_use

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 8f373aed8de74244403d088217153c8fa15cc9129f883a1d89bfd35bbf5c04da
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5cb7a388d146fa5a6ceda8c1581943237f72b002f62368a92cde9f20143e7360
 ---
 
 ---
@@ -20,7 +20,8 @@ For a Claude Enterprise organization, this deletes a per-user override, and
 the member falls back to any inherited spend limit at that period. Its
 seat-tier, group, and organization-level rows cannot be deleted via this
 endpoint. A Claude Console organization deletes its organization and
-workspace limits. Deleting them through the API is in an early access preview.
+workspace limits, but not its `usage_tier` limit. Deleting organization and
+workspace limits through the API is in an early access preview.
 
 ## Path parameters
 

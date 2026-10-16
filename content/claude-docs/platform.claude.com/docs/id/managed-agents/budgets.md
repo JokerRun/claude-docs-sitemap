@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2b2d030ef07c5c5f43891a961af7f6170052c5ce612edca99d89e4b438efec0b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a2aabeb7751182337caffdb2895d413714bdb130718a49086ca43c36db465f09
 ---
 
 ---
@@ -30,16 +30,14 @@ Teruskan field opsional `budget` saat Anda membuat sesi:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ENVIRONMENT_ID",
-    "budget": {
-      "type": "limit",
-      "max_list_cost": {"amount": "125", "currency": "USD"}
-    }
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "budget": {
+        "type": "limit",
+        "max_list_cost": {"amount": "125", "currency": "USD"}
+      }
+    }'
   ```
 
   ```bash CLI

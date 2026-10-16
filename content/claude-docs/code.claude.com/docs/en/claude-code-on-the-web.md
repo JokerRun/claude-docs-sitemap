@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 0f821aa2d34c1c841f9a785dc357ad240fdf09421a7e50417512dced4ce6c257
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 96facadf5c54041b768e5e1c98131f80ae9c851c15253d72639423146dafb704
 ---
 
 > ## Documentation Index
@@ -67,7 +67,7 @@ In Anthropic-hosted environments, your GitHub credentials stay encrypted on Anth
 See [Connect from your terminal](/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough, including what `/web-setup` stores and how to remove it.
 
 <Note>
-  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled, or with the [HIPAA configuration](/docs/en/hipaa-setup) applied, can't use `/web-setup` or other cloud session features.
+  Organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled, or with the [HIPAA configuration](/docs/en/hipaa-setup) applied, can't use `/web-setup` or other cloud session features. Organizations that use [customer-managed encryption keys](https://platform.claude.com/docs/en/manage-claude/cmek) (CMEK) can't start cloud sessions either.
 </Note>
 
 ### Quick setup for Team and Enterprise

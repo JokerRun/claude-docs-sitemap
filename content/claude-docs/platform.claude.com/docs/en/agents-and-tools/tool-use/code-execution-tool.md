@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ecd9b6b8557938a113881e8325f5e89dd886ddcf549dae93b95dd07aab1ae7d9
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 011d5a22f4e275ca37f059e20af041aad4e3857e040c1c77599284d48cf936b9
 ---
 
 ---
@@ -565,18 +565,14 @@ The Python environment can process various file types uploaded through the Files
 
 When Claude saves files to its output directory during code execution (see [How generated files are captured](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#how-generated-files-are-captured)), each file's ID appears in the code execution tool result, and you can download it with the [Files API](https://platform.claude.com/docs/en/build-with-claude/files):
 
-<CodeGroup>
-  ```bash cURL
-  # Downloading every generated file means looping over the file IDs in the tool
-  # result, which doesn't translate to a one-off shell command. Use one of the
-  # SDK examples instead.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Extracting every file ID from the tool results and downloading each one
-  # requires a loop, which doesn't translate well to a one-off CLI command.
-  # Use one of the SDK examples instead.
-  ```
+  <CodeGroupItem language="CLI">
+    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 552a63f5a05153b455c18433e22dd24510050e5baf0036f2eef03ff0cb529c1d
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a0ed20beb87a6885503f6a6e361412034cc7f4d45dfeb519dc55f5447e911b56
 ---
 
 ---
@@ -182,30 +182,28 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [
-      {
-        "role": "user",
-        "content": [
-          {
-            "type": "text",
-            "text": "Please summarize this document for me."
-          },
-          {
-            "type": "document",
-            "source": {
-              "type": "file",
-              "file_id": "$FILE_ID"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Please summarize this document for me."
+            },
+            {
+              "type": "document",
+              "source": {
+                "type": "file",
+                "file_id": "'"$FILE_ID"'"
+              }
             }
-          }
-        ]
-      }
-    ]
-  }
-  EOF
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/test
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 61dd18dea5f484bc4687f6f75ac1c605997f0d2c1714646277dcc9c28b5cf3bb
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 468beb04716f25db696fc4e2cb4ccde5d80eef67040d772a72e1cca54cdff412
 ---
 
 ---
@@ -26,9 +26,13 @@ Send one test span, named `anthropic.test`, to the destination with its register
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `telemetry-destinations-2026-08-11` in this header.
 
   - `string`
 

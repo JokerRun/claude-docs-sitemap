@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 99e227f8e520ff27d6a088f9c8c842791e086dfb6bf0c37aed89d65e4be48f67
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 5a2d3282bfb9b7f7b4e6cc668f62e892ab4f8aca1bd660ba788fc64280057318
 ---
 
 ---
@@ -36,9 +36,13 @@ List Session Thread Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 
@@ -3147,9 +3151,13 @@ Stream Session Thread Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

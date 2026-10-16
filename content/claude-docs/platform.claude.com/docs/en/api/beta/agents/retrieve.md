@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: bf9e7898c59db91742c1b27b16228edad73484dc0443107884429ce3ed7a916b
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b0c0829b29f7dc0a65a14d3a72f124809fe38794e12000f5736ed511a38d06a6
 ---
 
 ---
@@ -34,9 +34,13 @@ Get Agent
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4abc59d95696d3581ddfd970144e52c04db610eb9219a1185c73153dbca6154c
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a76dffcbad8f4c98f42913ad86ba1e366236589dc2d8e1d022b3c801712e28dc
 ---
 
 ---
@@ -1174,6 +1174,14 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"priority"`
 
             - `"batch"`
+
+          - `speed: "standard" or "fast" or null`
+
+            The inference speed mode used for this request.
+
+            - `"standard"`
+
+            - `"fast"`
 
     - `MessageBatchErroredResult object`
 

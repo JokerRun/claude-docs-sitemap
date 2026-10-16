@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 77c994f2270508f6369ecf30eca8e3d83535034ba67dbbd4e493ae56c1d799a6
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: 42ff0314383881758685ed30212c2f610ac142bf926d6d3d4f2e8a67a2e131ed
 ---
 
 ---
@@ -39,23 +39,21 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` (c
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "GitHub Assistant",
-    "model": "claude-opus-5-5",
-    "mcp_servers": [
-      {
-        "type": "url",
-        "name": "github",
-        "url": "https://api.githubcopilot.com/mcp/"
-      }
-    ],
-    "tools": [
-      {"type": "agent_toolset_20260401"},
-      {"type": "mcp_toolset", "mcp_server_name": "github"}
-    ]
-  }
-  EOF
+    -d '{
+      "name": "GitHub Assistant",
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "type": "url",
+          "name": "github",
+          "url": "https://api.githubcopilot.com/mcp/"
+        }
+      ],
+      "tools": [
+        {"type": "agent_toolset_20260401"},
+        {"type": "mcp_toolset", "mcp_server_name": "github"}
+      ]
+    }'
   )
   agent_id=$(jq -r '.id' <<<"$agent_response")
   ```
@@ -307,13 +305,11 @@ With a `limited` [environment](https://platform.claude.com/docs/en/managed-agent
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$agent_id",
-    "environment_id": "$environment_id",
-    "vault_ids": ["$vault_id"]
-  }
-  EOF
+    -d '{
+      "agent": "'"$agent_id"'",
+      "environment_id": "'"$environment_id"'",
+      "vault_ids": ["'"$vault_id"'"]
+    }'
   )
   session_id=$(jq -r '.id' <<<"$session_response")
   ```

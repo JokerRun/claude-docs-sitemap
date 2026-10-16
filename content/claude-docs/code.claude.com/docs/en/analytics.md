@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 0b70ec467f3a1a3d82fa8bdab9e0757ce6a7d7a9907fcbd3214e9465ba635d8f
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b5cc60e906ae8247800a0939e2c0771d20507c0176d5fe224f17b0f227163653
 ---
 
 > ## Documentation Index
@@ -19,6 +19,8 @@ Claude Code provides analytics dashboards to help organizations understand devel
 | - | - | - | - |
 | Claude for Teams / Enterprise | [claude.ai/analytics/claude-code](https://claude.ai/analytics/claude-code) | Usage metrics, contribution metrics with GitHub integration, leaderboard, data export | [Details](#access-analytics-for-team-and-enterprise) |
 | API (Claude Console) | [platform.claude.com/claude-code](https://platform.claude.com/claude-code) | Usage metrics, spend tracking, team insights | [Details](#access-analytics-for-api-customers) |
+
+Code Review has its own dashboard. For review activity and spend, see [View usage](/docs/en/code-review-costs#view-usage).
 
 ## Access analytics for Team and Enterprise
 

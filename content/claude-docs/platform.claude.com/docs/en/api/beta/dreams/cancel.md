@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8fd17d57ef6b12e776df57c59f8002dc10059db40104f39de1ec906896bc56a7
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: a2ca32fe213a7936150b70f65d6c24c0fcecc7a4ed1231955d6c26ecaf5167f2
 ---
 
 ---
@@ -30,9 +30,13 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `dreaming-2026-04-21` in this header.
 
   - `string`
 

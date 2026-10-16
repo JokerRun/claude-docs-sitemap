@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e1d67a82ad2f679804f20fa0270117a0874c65590c77d7637d55c9bd4e08b5fd
+fetched_at: 2026-10-16T02:19:48.985501Z
+sha256: b1627019d835580bf88955ef4fa170fdbdf0d4dc5f8ad7c0b1f9243dd76a5ed2
 ---
 
 ---
@@ -24,9 +24,13 @@ Send Events
 
 - `"anthropic-version": optional string`
 
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  Optional header to specify the beta version(s) you want to use.
+  This endpoint is in beta: requests must send `managed-agents-2026-04-01` in this header.
 
   - `string`
 
