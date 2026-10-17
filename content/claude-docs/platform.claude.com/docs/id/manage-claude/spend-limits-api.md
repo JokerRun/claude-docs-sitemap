@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b5ffd78d5cea5a829bbef1dd336aafe303f830cb629807d1bf5dfa4054335b70
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 21ef30207c6c755649f7e01cf898ed99d7eccabc9640e29212b95898e32a3bee
 ---
 
 ---
@@ -41,15 +41,141 @@ Gunakan endpoint **spend limits** untuk menjawab "batas pengeluaran apa yang ber
 * Organisasi Anda harus menggunakan paket Claude Enterprise.
 * Kredit penggunaan harus diaktifkan untuk organisasi Anda. Primary owner Anda dapat mengaktifkannya di pengaturan penagihan claude.ai.
 
+SDK menyediakan endpoint ini di bawah `client.beta.organization.spend_limits` (typescript: `client.beta.organization.spendLimits`; csharp, go: `client.Beta.Organization.SpendLimits`; java: `client.beta().organization().spendLimits()`; php: `$client->beta->organization->spendLimits`), dan CLI `ant` di bawah `ant beta:organization:spend-limits`. Keduanya mengirimkan header `anthropic-version` untuk Anda. Contoh-contoh membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK dan CLI mengambil halaman berikutnya untuk Anda saat Anda menelusuri hasil, sehingga `limit` menetapkan ukuran halaman, bukan total (lihat [Paginasi](https://platform.claude.com/docs/id/manage-claude/spend-limits-api#pagination)).
+
 ## Mulai cepat
 
 Daftarkan batas pengeluaran bulanan efektif dan pengeluaran periode berjalan setiap anggota:
 
-```bash cURL
-curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:effective list --limit 20
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  effective_limits = client.beta.organization.spend_limits.effective.list(limit=20)
+
+  for effective_limit in effective_limits:
+      scope = effective_limit.scope
+      if scope.type == "user":
+          amount = effective_limit.amount or "unlimited"
+          print(f"{scope.user_id}: {effective_limit.period_to_date_spend} of {amount}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const effectiveLimits = await client.beta.organization.spendLimits.effective.list({
+    limit: 20
+  });
+
+  for await (const effectiveLimit of effectiveLimits) {
+    const { scope } = effectiveLimit;
+    if (scope.type === "user") {
+      const amount = effectiveLimit.amount ?? "unlimited";
+      console.log(`${scope.user_id}: ${effectiveLimit.period_to_date_spend} of ${amount}`);
+    }
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var page = await client.Beta.Organization.SpendLimits.Effective.List(
+      new() { Limit = 20 }
+  );
+
+  await foreach (var effectiveLimit in page.Paginate())
+  {
+      if (effectiveLimit.Scope.TryPickBetaSpendLimitUser(out var userScope))
+      {
+          var amount = effectiveLimit.Amount ?? "unlimited";
+          Console.WriteLine($"{userScope.UserID}: {effectiveLimit.PeriodToDateSpend} of {amount}");
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
+  	Limit: anthropic.Int(20),
+  })
+
+  for effectiveLimits.Next() {
+  	effectiveLimit := effectiveLimits.Current()
+  	if userScope, ok := effectiveLimit.Scope.AsAny().(anthropic.BetaSpendLimitUserScope); ok {
+  		amount := effectiveLimit.Amount
+  		if !effectiveLimit.JSON.Amount.Valid() {
+  			amount = "unlimited"
+  		}
+  		fmt.Printf("%s: %s of %s\n", userScope.UserID, effectiveLimit.PeriodToDateSpend, amount)
+  	}
+  }
+  if err := effectiveLimits.Err(); err != nil {
+  	log.Fatal(err)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = EffectiveListParams.builder()
+          .limit(20)
+          .build();
+      var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
+
+      for (var effectiveLimit : effectiveLimits.autoPager()) {
+          var amount = effectiveLimit.amount().orElse("unlimited");
+          effectiveLimit.scope().user().ifPresent(userScope ->
+              IO.println(userScope.userId() + ": " + effectiveLimit.periodToDateSpend() + " of " + amount)
+          );
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+  // ...
+
+  $client = new Client();
+
+  $effectiveLimits = $client->beta->organization->spendLimits->effective->list(limit: 20);
+
+  foreach ($effectiveLimits->pagingEachItem() as $effectiveLimit) {
+      $scope = $effectiveLimit->scope;
+      if ($scope instanceof SpendLimitUserScope) {
+          $amount = $effectiveLimit->amount ?? 'unlimited';
+          echo "{$scope->userID}: {$effectiveLimit->periodToDateSpend} of {$amount}\n";
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  page = client.beta.organization.spend_limits.effective.list(limit: 20)
+
+  page.auto_paging_each do |effective_limit|
+    scope = effective_limit.scope
+    if scope.is_a?(Anthropic::Models::Beta::Organization::BetaSpendLimitUserScope)
+      amount = effective_limit.amount || "unlimited"
+      puts "#{scope.user_id}: #{effective_limit.period_to_date_spend} of #{amount}"
+    end
+  end
+  ```
+</CodeGroup>
 
 ## Konsep utama
 
@@ -123,11 +249,135 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Errors](https:/
 
 Untuk detail parameter lengkap dan skema respons, lihat [List effective spend limits](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/effective/list) di referensi API.
 
-```bash cURL
-curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:effective list --limit 20
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  effective_limits = client.beta.organization.spend_limits.effective.list(limit=20)
+
+  for effective_limit in effective_limits:
+      scope = effective_limit.scope
+      if scope.type == "user":
+          amount = effective_limit.amount or "unlimited"
+          print(f"{scope.user_id}: {effective_limit.period_to_date_spend} of {amount}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const effectiveLimits = await client.beta.organization.spendLimits.effective.list({
+    limit: 20
+  });
+
+  for await (const effectiveLimit of effectiveLimits) {
+    const { scope } = effectiveLimit;
+    if (scope.type === "user") {
+      const amount = effectiveLimit.amount ?? "unlimited";
+      console.log(`${scope.user_id}: ${effectiveLimit.period_to_date_spend} of ${amount}`);
+    }
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var page = await client.Beta.Organization.SpendLimits.Effective.List(
+      new() { Limit = 20 }
+  );
+
+  await foreach (var effectiveLimit in page.Paginate())
+  {
+      if (effectiveLimit.Scope.TryPickBetaSpendLimitUser(out var userScope))
+      {
+          var amount = effectiveLimit.Amount ?? "unlimited";
+          Console.WriteLine($"{userScope.UserID}: {effectiveLimit.PeriodToDateSpend} of {amount}");
+      }
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
+  	Limit: anthropic.Int(20),
+  })
+
+  for effectiveLimits.Next() {
+  	effectiveLimit := effectiveLimits.Current()
+  	if userScope, ok := effectiveLimit.Scope.AsAny().(anthropic.BetaSpendLimitUserScope); ok {
+  		amount := effectiveLimit.Amount
+  		if !effectiveLimit.JSON.Amount.Valid() {
+  			amount = "unlimited"
+  		}
+  		fmt.Printf("%s: %s of %s\n", userScope.UserID, effectiveLimit.PeriodToDateSpend, amount)
+  	}
+  }
+  if err := effectiveLimits.Err(); err != nil {
+  	log.Fatal(err)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = EffectiveListParams.builder()
+          .limit(20)
+          .build();
+      var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
+
+      for (var effectiveLimit : effectiveLimits.autoPager()) {
+          var amount = effectiveLimit.amount().orElse("unlimited");
+          effectiveLimit.scope().user().ifPresent(userScope ->
+              IO.println(userScope.userId() + ": " + effectiveLimit.periodToDateSpend() + " of " + amount)
+          );
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+  // ...
+
+  $client = new Client();
+
+  $effectiveLimits = $client->beta->organization->spendLimits->effective->list(limit: 20);
+
+  foreach ($effectiveLimits->pagingEachItem() as $effectiveLimit) {
+      $scope = $effectiveLimit->scope;
+      if ($scope instanceof SpendLimitUserScope) {
+          $amount = $effectiveLimit->amount ?? 'unlimited';
+          echo "{$scope->userID}: {$effectiveLimit->periodToDateSpend} of {$amount}\n";
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  page = client.beta.organization.spend_limits.effective.list(limit: 20)
+
+  page.auto_paging_each do |effective_limit|
+    scope = effective_limit.scope
+    if scope.is_a?(Anthropic::Models::Beta::Organization::BetaSpendLimitUserScope)
+      amount = effective_limit.amount || "unlimited"
+      puts "#{scope.user_id}: #{effective_limit.period_to_date_spend} of #{amount}"
+    end
+  end
+  ```
+</CodeGroup>
 
 ```json
 {
@@ -159,11 +409,102 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20
 
 Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/retrieve) di referensi API.
 
-```bash cURL
-curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits retrieve \
+    --spend-limit-id spl_01AbCdEfGhIjKlMnOpQrSt
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  spend_limit = client.beta.organization.spend_limits.retrieve(
+      "spl_01AbCdEfGhIjKlMnOpQrSt"
+  )
+
+  amount = spend_limit.amount or "none"
+  print(f"id: {spend_limit.id}")
+  print(f"amount: {amount}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const spendLimit = await client.beta.organization.spendLimits.retrieve(
+    "spl_01AbCdEfGhIjKlMnOpQrSt"
+  );
+
+  const amount = spendLimit.amount ?? "none";
+  console.log(`id: ${spendLimit.id}`);
+  console.log(`amount: ${amount}`);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var spendLimit = await client.Beta.Organization.SpendLimits.Retrieve(
+      "spl_01AbCdEfGhIjKlMnOpQrSt"
+  );
+
+  var amount = spendLimit.Amount ?? "none";
+  Console.WriteLine($"id: {spendLimit.ID}");
+  Console.WriteLine($"amount: {amount}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  spendLimit, err := client.Beta.Organization.SpendLimits.Get(context.Background(), "spl_01AbCdEfGhIjKlMnOpQrSt")
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  amount := spendLimit.Amount
+  if !spendLimit.JSON.Amount.Valid() {
+  	amount = "none"
+  }
+
+  fmt.Printf("id: %s\n", spendLimit.ID)
+  fmt.Printf("amount: %s\n", amount)
+  ```
+
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  var spendLimit = client.beta().organization().spendLimits()
+      .retrieve("spl_01AbCdEfGhIjKlMnOpQrSt");
+
+  var amount = spendLimit.amount().orElse("none");
+  IO.println("id: " + spendLimit.id());
+  IO.println("amount: " + amount);
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $spendLimit = $client->beta->organization->spendLimits->retrieve('spl_01AbCdEfGhIjKlMnOpQrSt');
+
+  $amount = $spendLimit->amount ?? 'none';
+  echo "id: {$spendLimit->id}\n";
+  echo "amount: {$amount}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  spend_limit = client.beta.organization.spend_limits.retrieve("spl_01AbCdEfGhIjKlMnOpQrSt")
+
+  amount = spend_limit.amount || "none"
+  puts "id: #{spend_limit.id}"
+  puts "amount: #{amount}"
+  ```
+</CodeGroup>
 
 ### Menetapkan override per pengguna
 
@@ -171,13 +512,122 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKl
 
 Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/set) di referensi API.
 
-```bash cURL
-curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
-  --header "content-type: application/json" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --data '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "75000"}'
-```
+<CodeGroup>
+  ```bash cURL
+  curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "75000"}'
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits set \
+    --scope '{type: user, user_id: user_01AbCdEfGh}' \
+    --amount 75000
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  spend_limit = client.beta.organization.spend_limits.set(
+      scope={"type": "user", "user_id": "user_01AbCdEfGh"}, amount="75000"
+  )
+
+  print(f"id: {spend_limit.id}")
+  print(f"amount: {spend_limit.amount}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const spendLimit = await client.beta.organization.spendLimits.set({
+    scope: { type: "user", user_id: "user_01AbCdEfGh" },
+    amount: "75000"
+  });
+
+  console.log(`id: ${spendLimit.id}`);
+  console.log(`amount: ${spendLimit.amount}`);
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Organization.SpendLimits;
+
+  AnthropicClient client = new();
+
+  var spendLimit = await client.Beta.Organization.SpendLimits.Set(
+      new()
+      {
+          Scope = new BetaSpendLimitUserScope("user_01AbCdEfGh"),
+          Amount = "75000",
+      }
+  );
+
+  Console.WriteLine($"id: {spendLimit.ID}");
+  Console.WriteLine($"amount: {spendLimit.Amount}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  spendLimit, err := client.Beta.Organization.SpendLimits.Set(context.Background(), anthropic.BetaOrganizationSpendLimitSetParams{
+  	Scope: anthropic.BetaOrganizationSpendLimitSetParamsScopeUnion{
+  		OfUser: &anthropic.BetaSpendLimitUserScopeParam{UserID: "user_01AbCdEfGh"},
+  	},
+  	Amount: anthropic.String("75000"),
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  fmt.Printf("id: %s\n", spendLimit.ID)
+  fmt.Printf("amount: %s\n", spendLimit.Amount)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.SpendLimitSetParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = SpendLimitSetParams.builder()
+          .userScope("user_01AbCdEfGh")
+          .amount("75000")
+          .build();
+      var spendLimit = client.beta().organization().spendLimits().set(params);
+
+      IO.println("id: " + spendLimit.id());
+      IO.println("amount: " + spendLimit.amount().orElseThrow());
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+  // ...
+
+  $client = new Client();
+
+  $spendLimit = $client->beta->organization->spendLimits->set(
+      scope: SpendLimitUserScope::with(userID: 'user_01AbCdEfGh'),
+      amount: '75000',
+  );
+
+  echo "id: {$spendLimit->id}\n";
+  echo "amount: {$spendLimit->amount}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  spend_limit = client.beta.organization.spend_limits.set(
+    scope: { type: :user, user_id: "user_01AbCdEfGh" },
+    amount: "75000"
+  )
+
+  puts "id: #{spend_limit.id}"
+  puts "amount: #{spend_limit.amount}"
+  ```
+</CodeGroup>
 
 ```json
 {
@@ -198,11 +648,84 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
 
 Untuk detail parameter lengkap dan skema respons, lihat [Delete a spend limit](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/delete) di referensi API.
 
-```bash cURL
-curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl -X DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits delete \
+    --spend-limit-id spl_01RsTuVwXyZaBcDeFgHiJk
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  deleted_spend_limit = client.beta.organization.spend_limits.delete(
+      "spl_01RsTuVwXyZaBcDeFgHiJk"
+  )
+
+  print(f"id: {deleted_spend_limit.id}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const deletedSpendLimit = await client.beta.organization.spendLimits.delete(
+    "spl_01RsTuVwXyZaBcDeFgHiJk"
+  );
+
+  console.log(`id: ${deletedSpendLimit.id}`);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var deletedSpendLimit = await client.Beta.Organization.SpendLimits.Delete(
+      "spl_01RsTuVwXyZaBcDeFgHiJk"
+  );
+
+  Console.WriteLine($"id: {deletedSpendLimit.ID}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  deletedSpendLimit, err := client.Beta.Organization.SpendLimits.Delete(context.Background(), "spl_01RsTuVwXyZaBcDeFgHiJk")
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  fmt.Printf("id: %s\n", deletedSpendLimit.ID)
+  ```
+
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  var deletedSpendLimit = client.beta().organization().spendLimits()
+      .delete("spl_01RsTuVwXyZaBcDeFgHiJk");
+
+  IO.println("id: " + deletedSpendLimit.id());
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $deletedSpendLimit = $client->beta->organization->spendLimits->delete('spl_01RsTuVwXyZaBcDeFgHiJk');
+
+  echo "id: {$deletedSpendLimit->id}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  deleted_spend_limit = client.beta.organization.spend_limits.delete("spl_01RsTuVwXyZaBcDeFgHiJk")
+
+  puts "id: #{deleted_spend_limit.id}"
+  ```
+</CodeGroup>
 
 ## Permintaan kenaikan batas pengeluaran
 
@@ -212,11 +735,117 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/spend_limits/s
 
 Untuk detail parameter lengkap dan skema respons, lihat [List spend limit increase requests](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/increase_requests/list) di referensi API.
 
-```bash cURL
-curl --globoff "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:increase-requests list \
+    --status pending \
+    --limit 50
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  increase_requests = client.beta.organization.spend_limits.increase_requests.list(
+      status=["pending"], limit=50
+  )
+
+  for increase_request in increase_requests:
+      print(f"{increase_request.id}: {increase_request.status}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const increaseRequests = await client.beta.organization.spendLimits.increaseRequests.list({
+    status: ["pending"],
+    limit: 50
+  });
+
+  for await (const increaseRequest of increaseRequests) {
+    console.log(`${increaseRequest.id}: ${increaseRequest.status}`);
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Organization.SpendLimits.IncreaseRequests;
+
+  AnthropicClient client = new();
+
+  var page = await client.Beta.Organization.SpendLimits.IncreaseRequests.List(
+      new() { Status = [BetaSpendLimitIncreaseRequestStatus.Pending], Limit = 50 }
+  );
+
+  await foreach (var increaseRequest in page.Paginate())
+  {
+      Console.WriteLine($"{increaseRequest.ID}: {increaseRequest.Status.Raw()}");
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  increaseRequests := client.Beta.Organization.SpendLimits.IncreaseRequests.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitIncreaseRequestListParams{
+  	Status: []anthropic.BetaSpendLimitIncreaseRequestStatus{anthropic.BetaSpendLimitIncreaseRequestStatusPending},
+  	Limit:  anthropic.Int(50),
+  })
+
+  for increaseRequests.Next() {
+  	increaseRequest := increaseRequests.Current()
+  	fmt.Printf("%s: %s\n", increaseRequest.ID, increaseRequest.Status)
+  }
+  if err := increaseRequests.Err(); err != nil {
+  	log.Fatal(err)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.increaserequests.BetaSpendLimitIncreaseRequestStatus;
+  import com.anthropic.models.beta.organization.spendlimits.increaserequests.IncreaseRequestListParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = IncreaseRequestListParams.builder()
+          .addStatus(BetaSpendLimitIncreaseRequestStatus.PENDING)
+          .limit(50)
+          .build();
+      var increaseRequests = client.beta().organization().spendLimits().increaseRequests().list(params);
+
+      for (var increaseRequest : increaseRequests.autoPager()) {
+          IO.println(increaseRequest.id() + ": " + increaseRequest.status().asString());
+      }
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $increaseRequests = $client->beta->organization->spendLimits->increaseRequests->list(
+      status: ['pending'],
+      limit: 50,
+  );
+
+  foreach ($increaseRequests->pagingEachItem() as $increaseRequest) {
+      echo "{$increaseRequest->id}: {$increaseRequest->status}\n";
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  page = client.beta.organization.spend_limits.increase_requests.list(status: [:pending], limit: 50)
+
+  page.auto_paging_each do |increase_request|
+    puts "#{increase_request.id}: #{increase_request.status}"
+  end
+  ```
+</CodeGroup>
 
 Setiap permintaan pending membawa `spend_summary` langsung yang menunjukkan batas pengeluaran efektif pemohon saat ini dan pengeluaran periode berjalan, cukup untuk memutuskan tanpa pencarian terpisah.
 
@@ -226,11 +855,95 @@ Setiap permintaan pending membawa `spend_summary` langsung yang menunjukkan bata
 
 Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit increase request](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/increase_requests/retrieve) di referensi API.
 
-```bash cURL
-curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01"
-```
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01"
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:increase-requests retrieve \
+    --spend-limit-increase-request-id slir_01AbCdEfGhIjKlMnOpQrSt
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.retrieve(
+      "slir_01AbCdEfGhIjKlMnOpQrSt"
+  )
+
+  print(f"id: {increase_request.id}")
+  print(f"status: {increase_request.status}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const increaseRequest = await client.beta.organization.spendLimits.increaseRequests.retrieve(
+    "slir_01AbCdEfGhIjKlMnOpQrSt"
+  );
+
+  console.log(`id: ${increaseRequest.id}`);
+  console.log(`status: ${increaseRequest.status}`);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var increaseRequest = await client.Beta.Organization.SpendLimits.IncreaseRequests.Retrieve(
+      "slir_01AbCdEfGhIjKlMnOpQrSt"
+  );
+
+  Console.WriteLine($"id: {increaseRequest.ID}");
+  Console.WriteLine($"status: {increaseRequest.Status.Raw()}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  increaseRequest, err := client.Beta.Organization.SpendLimits.IncreaseRequests.Get(context.Background(), "slir_01AbCdEfGhIjKlMnOpQrSt")
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  fmt.Printf("id: %s\n", increaseRequest.ID)
+  fmt.Printf("status: %s\n", increaseRequest.Status)
+  ```
+
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  var increaseRequest = client.beta().organization().spendLimits().increaseRequests()
+      .retrieve("slir_01AbCdEfGhIjKlMnOpQrSt");
+
+  IO.println("id: " + increaseRequest.id());
+  IO.println("status: " + increaseRequest.status().asString());
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $increaseRequest = $client->beta->organization->spendLimits->increaseRequests->retrieve(
+      'slir_01AbCdEfGhIjKlMnOpQrSt',
+  );
+
+  echo "id: {$increaseRequest->id}\n";
+  echo "status: {$increaseRequest->status}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.retrieve(
+    "slir_01AbCdEfGhIjKlMnOpQrSt"
+  )
+
+  puts "id: #{increase_request.id}"
+  puts "status: #{increase_request.status}"
+  ```
+</CodeGroup>
 
 ### Menyetujui permintaan kenaikan
 
@@ -238,13 +951,123 @@ curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/s
 
 Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit increase request](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/increase_requests/approve) di referensi API.
 
-```bash cURL
-curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
-  --header "content-type: application/json" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --data '{"amount": "75000", "suppress_notification": true}'
-```
+<CodeGroup>
+  ```bash cURL
+  curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{"amount": "75000", "suppress_notification": true}'
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:increase-requests approve \
+    --spend-limit-increase-request-id slir_01AbCdEfGhIjKlMnOpQrSt \
+    --amount 75000 \
+    --suppress-notification
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.approve(
+      "slir_01AbCdEfGhIjKlMnOpQrSt", amount="75000", suppress_notification=True
+  )
+
+  print(f"id: {increase_request.id}")
+  print(f"status: {increase_request.status}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const increaseRequest = await client.beta.organization.spendLimits.increaseRequests.approve(
+    "slir_01AbCdEfGhIjKlMnOpQrSt",
+    {
+      amount: "75000",
+      suppress_notification: true
+    }
+  );
+
+  console.log(`id: ${increaseRequest.id}`);
+  console.log(`status: ${increaseRequest.status}`);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var increaseRequest = await client.Beta.Organization.SpendLimits.IncreaseRequests.Approve(
+      "slir_01AbCdEfGhIjKlMnOpQrSt",
+      new() { Amount = "75000", SuppressNotification = true }
+  );
+
+  Console.WriteLine($"id: {increaseRequest.ID}");
+  Console.WriteLine($"status: {increaseRequest.Status.Raw()}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  increaseRequest, err := client.Beta.Organization.SpendLimits.IncreaseRequests.Approve(
+  	context.Background(),
+  	"slir_01AbCdEfGhIjKlMnOpQrSt",
+  	anthropic.BetaOrganizationSpendLimitIncreaseRequestApproveParams{
+  		Amount:               "75000",
+  		SuppressNotification: anthropic.Bool(true),
+  	},
+  )
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  fmt.Printf("id: %s\n", increaseRequest.ID)
+  fmt.Printf("status: %s\n", increaseRequest.Status)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.increaserequests.IncreaseRequestApproveParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = IncreaseRequestApproveParams.builder()
+          .amount("75000")
+          .suppressNotification(true)
+          .build();
+      var increaseRequest = client.beta().organization().spendLimits().increaseRequests()
+          .approve("slir_01AbCdEfGhIjKlMnOpQrSt", params);
+
+      IO.println("id: " + increaseRequest.id());
+      IO.println("status: " + increaseRequest.status().asString());
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $increaseRequest = $client->beta->organization->spendLimits->increaseRequests->approve(
+      'slir_01AbCdEfGhIjKlMnOpQrSt',
+      amount: '75000',
+      suppressNotification: true,
+  );
+
+  echo "id: {$increaseRequest->id}\n";
+  echo "status: {$increaseRequest->status}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.approve(
+    "slir_01AbCdEfGhIjKlMnOpQrSt",
+    amount: "75000",
+    suppress_notification: true
+  )
+
+  puts "id: #{increase_request.id}"
+  puts "status: #{increase_request.status}"
+  ```
+</CodeGroup>
 
 ### Menolak permintaan kenaikan
 
@@ -252,19 +1075,123 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_incr
 
 Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit increase request](https://platform.claude.com/docs/id/api/beta/organization/spend_limits/increase_requests/deny) di referensi API.
 
-```bash cURL
-curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
-  --header "content-type: application/json" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --data '{"suppress_notification": true}'
-```
+<CodeGroup>
+  ```bash cURL
+  curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{"suppress_notification": true}'
+  ```
+
+  ```bash CLI
+  ant beta:organization:spend-limits:increase-requests deny \
+    --spend-limit-increase-request-id slir_01AbCdEfGhIjKlMnOpQrSt \
+    --suppress-notification
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.deny(
+      "slir_01AbCdEfGhIjKlMnOpQrSt", suppress_notification=True
+  )
+
+  print(f"id: {increase_request.id}")
+  print(f"status: {increase_request.status}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const increaseRequest = await client.beta.organization.spendLimits.increaseRequests.deny(
+    "slir_01AbCdEfGhIjKlMnOpQrSt",
+    {
+      suppress_notification: true
+    }
+  );
+
+  console.log(`id: ${increaseRequest.id}`);
+  console.log(`status: ${increaseRequest.status}`);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var increaseRequest = await client.Beta.Organization.SpendLimits.IncreaseRequests.Deny(
+      "slir_01AbCdEfGhIjKlMnOpQrSt",
+      new() { SuppressNotification = true }
+  );
+
+  Console.WriteLine($"id: {increaseRequest.ID}");
+  Console.WriteLine($"status: {increaseRequest.Status.Raw()}");
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  increaseRequest, err := client.Beta.Organization.SpendLimits.IncreaseRequests.Deny(
+  	context.Background(),
+  	"slir_01AbCdEfGhIjKlMnOpQrSt",
+  	anthropic.BetaOrganizationSpendLimitIncreaseRequestDenyParams{
+  		SuppressNotification: anthropic.Bool(true),
+  	},
+  )
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  fmt.Printf("id: %s\n", increaseRequest.ID)
+  fmt.Printf("status: %s\n", increaseRequest.Status)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.spendlimits.increaserequests.IncreaseRequestDenyParams;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = IncreaseRequestDenyParams.builder()
+          .suppressNotification(true)
+          .build();
+      var increaseRequest = client.beta().organization().spendLimits().increaseRequests()
+          .deny("slir_01AbCdEfGhIjKlMnOpQrSt", params);
+
+      IO.println("id: " + increaseRequest.id());
+      IO.println("status: " + increaseRequest.status().asString());
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $increaseRequest = $client->beta->organization->spendLimits->increaseRequests->deny(
+      'slir_01AbCdEfGhIjKlMnOpQrSt',
+      suppressNotification: true,
+  );
+
+  echo "id: {$increaseRequest->id}\n";
+  echo "status: {$increaseRequest->status}\n";
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  increase_request = client.beta.organization.spend_limits.increase_requests.deny(
+    "slir_01AbCdEfGhIjKlMnOpQrSt",
+    suppress_notification: true
+  )
+
+  puts "id: #{increase_request.id}"
+  puts "status: #{increase_request.status}"
+  ```
+</CodeGroup>
 
 ## Contoh alur kerja
 
 Beberapa alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api). Endpoint biaya Analytics dirancang untuk pelaporan pengeluaran seluruh organisasi dalam rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulailah penyisiran dengan Analytics untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
 
-Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Semua nilai moneter pada keduanya berupa string desimal dalam satuan minor (sen). Kedua API dipaginasi dengan cursor opaque. Tetapkan `limit` eksplisit dan telusuri halaman melalui `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
+Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Contoh-contoh menggunakan satu kunci Admin API yang memiliki cakupan dari setiap API yang dipanggil. Pemilik utama [memilih cakupan ini saat membuat kunci](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Semua nilai moneter pada keduanya adalah string desimal dalam satuan minor (sen). Kedua API dipaginasi dengan cursor opaque. Tetapkan `limit` secara eksplisit dan telusuri `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
 
 ### Mengotomatiskan alur peninjauan permintaan kenaikan
 
@@ -272,11 +1199,117 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
 
 1. Daftarkan permintaan pending:
 
-   ```bash cURL
-   curl --globoff "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01"
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01"
+     ```
+
+     ```bash CLI
+     ant beta:organization:spend-limits:increase-requests list \
+       --status pending \
+       --limit 100
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     increase_requests = client.beta.organization.spend_limits.increase_requests.list(
+         status=["pending"], limit=100
+     )
+
+     for increase_request in increase_requests:
+         print(f"{increase_request.id}: {increase_request.status}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const increaseRequests = await client.beta.organization.spendLimits.increaseRequests.list({
+       status: ["pending"],
+       limit: 100
+     });
+
+     for await (const increaseRequest of increaseRequests) {
+       console.log(`${increaseRequest.id}: ${increaseRequest.status}`);
+     }
+     ```
+
+     ```csharp C#
+     using Anthropic.Models.Beta.Organization.SpendLimits.IncreaseRequests;
+
+     AnthropicClient client = new();
+
+     var page = await client.Beta.Organization.SpendLimits.IncreaseRequests.List(
+         new() { Status = [BetaSpendLimitIncreaseRequestStatus.Pending], Limit = 100 }
+     );
+
+     await foreach (var increaseRequest in page.Paginate())
+     {
+         Console.WriteLine($"{increaseRequest.ID}: {increaseRequest.Status.Raw()}");
+     }
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     increaseRequests := client.Beta.Organization.SpendLimits.IncreaseRequests.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitIncreaseRequestListParams{
+     	Status: []anthropic.BetaSpendLimitIncreaseRequestStatus{anthropic.BetaSpendLimitIncreaseRequestStatusPending},
+     	Limit:  anthropic.Int(100),
+     })
+
+     for increaseRequests.Next() {
+     	increaseRequest := increaseRequests.Current()
+     	fmt.Printf("%s: %s\n", increaseRequest.ID, increaseRequest.Status)
+     }
+     if err := increaseRequests.Err(); err != nil {
+     	log.Fatal(err)
+     }
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.increaserequests.BetaSpendLimitIncreaseRequestStatus;
+     import com.anthropic.models.beta.organization.spendlimits.increaserequests.IncreaseRequestListParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = IncreaseRequestListParams.builder()
+             .addStatus(BetaSpendLimitIncreaseRequestStatus.PENDING)
+             .limit(100)
+             .build();
+         var increaseRequests = client.beta().organization().spendLimits().increaseRequests().list(params);
+
+         for (var increaseRequest : increaseRequests.autoPager()) {
+             IO.println(increaseRequest.id() + ": " + increaseRequest.status().asString());
+         }
+     }
+     ```
+
+     ```php PHP
+     $client = new Client();
+
+     $increaseRequests = $client->beta->organization->spendLimits->increaseRequests->list(
+         status: ['pending'],
+         limit: 100,
+     );
+
+     foreach ($increaseRequests->pagingEachItem() as $increaseRequest) {
+         echo "{$increaseRequest->id}: {$increaseRequest->status}\n";
+     }
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     page = client.beta.organization.spend_limits.increase_requests.list(status: [:pending], limit: 100)
+
+     page.auto_paging_each do |increase_request|
+       puts "#{increase_request.id}: #{increase_request.status}"
+     end
+     ```
+   </CodeGroup>
 
    Setiap permintaan membawa `actor.user_id` pemohon dan `spend_summary` langsung dengan `amount` efektif mereka saat ini dan `period_to_date_spend`, cukup untuk memutuskan tanpa pencarian terpisah.
 
@@ -284,15 +1317,125 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
 
 3. Selesaikan setiap permintaan. Untuk menyetujui, berikan batas baru:
 
-   ```bash cURL
-   curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/{id}/approve" \
-     --header "content-type: application/json" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01" \
-     --data '{"amount": "75000", "suppress_notification": true}'
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
+       -H "content-type: application/json" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01" \
+       -d '{"amount": "75000", "suppress_notification": true}'
+     ```
 
-   Untuk menolak, lakukan `POST` ke `.../{id}/deny`. Sertakan `suppress_notification: true` ketika sistem Anda sendiri yang memberi tahu pemohon.
+     ```bash CLI
+     ant beta:organization:spend-limits:increase-requests approve \
+       --spend-limit-increase-request-id slir_01AbCdEfGhIjKlMnOpQrSt \
+       --amount 75000 \
+       --suppress-notification
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     increase_request = client.beta.organization.spend_limits.increase_requests.approve(
+         "slir_01AbCdEfGhIjKlMnOpQrSt", amount="75000", suppress_notification=True
+     )
+
+     print(f"id: {increase_request.id}")
+     print(f"status: {increase_request.status}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const increaseRequest = await client.beta.organization.spendLimits.increaseRequests.approve(
+       "slir_01AbCdEfGhIjKlMnOpQrSt",
+       {
+         amount: "75000",
+         suppress_notification: true
+       }
+     );
+
+     console.log(`id: ${increaseRequest.id}`);
+     console.log(`status: ${increaseRequest.status}`);
+     ```
+
+     ```csharp C#
+     AnthropicClient client = new();
+
+     var increaseRequest = await client.Beta.Organization.SpendLimits.IncreaseRequests.Approve(
+         "slir_01AbCdEfGhIjKlMnOpQrSt",
+         new() { Amount = "75000", SuppressNotification = true }
+     );
+
+     Console.WriteLine($"id: {increaseRequest.ID}");
+     Console.WriteLine($"status: {increaseRequest.Status.Raw()}");
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     increaseRequest, err := client.Beta.Organization.SpendLimits.IncreaseRequests.Approve(
+     	context.Background(),
+     	"slir_01AbCdEfGhIjKlMnOpQrSt",
+     	anthropic.BetaOrganizationSpendLimitIncreaseRequestApproveParams{
+     		Amount:               "75000",
+     		SuppressNotification: anthropic.Bool(true),
+     	},
+     )
+     if err != nil {
+     	log.Fatal(err)
+     }
+
+     fmt.Printf("id: %s\n", increaseRequest.ID)
+     fmt.Printf("status: %s\n", increaseRequest.Status)
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.increaserequests.IncreaseRequestApproveParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = IncreaseRequestApproveParams.builder()
+             .amount("75000")
+             .suppressNotification(true)
+             .build();
+         var increaseRequest = client.beta().organization().spendLimits().increaseRequests()
+             .approve("slir_01AbCdEfGhIjKlMnOpQrSt", params);
+
+         IO.println("id: " + increaseRequest.id());
+         IO.println("status: " + increaseRequest.status().asString());
+     }
+     ```
+
+     ```php PHP
+     $client = new Client();
+
+     $increaseRequest = $client->beta->organization->spendLimits->increaseRequests->approve(
+         'slir_01AbCdEfGhIjKlMnOpQrSt',
+         amount: '75000',
+         suppressNotification: true,
+     );
+
+     echo "id: {$increaseRequest->id}\n";
+     echo "status: {$increaseRequest->status}\n";
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     increase_request = client.beta.organization.spend_limits.increase_requests.approve(
+       "slir_01AbCdEfGhIjKlMnOpQrSt",
+       amount: "75000",
+       suppress_notification: true
+     )
+
+     puts "id: #{increase_request.id}"
+     puts "status: #{increase_request.status}"
+     ```
+   </CodeGroup>
+
+   Untuk menolak, panggil [endpoint deny](https://platform.claude.com/docs/id/manage-claude/spend-limits-api#deny-an-increase-request) dengan ID yang sama sebagai gantinya. Kirimkan `suppress_notification: true` ketika sistem Anda sendiri memberi tahu pemohon.
 
 ### Mengidentifikasi anggota yang mendekati batas pengeluaran mereka
 
@@ -300,21 +1443,271 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
 
 1. Ambil pengeluaran bulan berjalan setiap anggota dari Analytics API (satu baris per anggota, pengeluaran tertinggi lebih dulu secara default):
 
-   ```bash cURL
-   curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-01T00:00:00Z&limit=1000" \
-     --header "x-api-key: $ANALYTICS_API_KEY" \
-     --header "anthropic-version: 2023-06-01"
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-01T00:00:00Z&limit=1000" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01"
+     ```
 
-   Setiap baris membawa `actor.user_id`, `actor.email`, dan `amount` (pengeluaran anggota dalam sen). Telusuri halaman melalui `next_page` untuk mencakup seluruh organisasi.
+     ```bash CLI
+     ant beta:organization:analytics:user-cost-report list \
+       --starting-at 2026-06-01T00:00:00Z \
+       --limit 1000
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     cost_rows = client.beta.organization.analytics.user_cost_report.list(
+         starting_at="2026-06-01T00:00:00Z", limit=1000
+     )
+
+     for cost_row in cost_rows:
+         print(f"{cost_row.actor.user_id}: {cost_row.amount}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const costRows = await client.beta.organization.analytics.userCostReport.list({
+       starting_at: "2026-06-01T00:00:00Z",
+       limit: 1000
+     });
+
+     for await (const costRow of costRows) {
+       console.log(`${costRow.actor.user_id}: ${costRow.amount}`);
+     }
+     ```
+
+     ```csharp C#
+     AnthropicClient client = new();
+
+     var page = await client.Beta.Organization.Analytics.UserCostReport.List(
+         new()
+         {
+             StartingAt = DateTimeOffset.Parse("2026-06-01T00:00:00Z"),
+             Limit = 1000,
+         }
+     );
+
+     await foreach (var costRow in page.Paginate())
+     {
+         Console.WriteLine($"{costRow.Actor.UserID}: {costRow.Amount}");
+     }
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     costRows := client.Beta.Organization.Analytics.UserCostReport.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsUserCostReportListParams{
+     	StartingAt: time.Date(2026, time.June, 1, 0, 0, 0, 0, time.UTC),
+     	Limit:      anthropic.Int(1000),
+     })
+
+     for costRows.Next() {
+     	costRow := costRows.Current()
+     	fmt.Printf("%s: %s\n", costRow.Actor.UserID, costRow.Amount)
+     }
+     if err := costRows.Err(); err != nil {
+     	log.Fatal(err)
+     }
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.analytics.usercostreport.UserCostReportListParams;
+     import java.time.OffsetDateTime;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = UserCostReportListParams.builder()
+             .startingAt(OffsetDateTime.parse("2026-06-01T00:00:00Z"))
+             .limit(1000)
+             .build();
+         var costRows = client.beta().organization().analytics().userCostReport().list(params);
+
+         for (var costRow : costRows.autoPager()) {
+             IO.println(costRow.actor().userId() + ": " + costRow.amount());
+         }
+     }
+     ```
+
+     ```php PHP
+     $client = new Client();
+
+     $costRows = $client->beta->organization->analytics->userCostReport->list(
+         startingAt: new \DateTimeImmutable('2026-06-01T00:00:00Z'),
+         limit: 1000,
+     );
+
+     foreach ($costRows->pagingEachItem() as $costRow) {
+         echo "{$costRow->actor->userID}: {$costRow->amount}\n";
+     }
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     page = client.beta.organization.analytics.user_cost_report.list(
+       starting_at: Time.utc(2026, 6, 1),
+       limit: 1000
+     )
+
+     page.auto_paging_each do |cost_row|
+       puts "#{cost_row.actor.user_id}: #{cost_row.amount}"
+     end
+     ```
+   </CodeGroup>
+
+   Setiap baris berisi `actor.user_id`, `actor.email_address`, dan `amount` (pengeluaran anggota dalam sen). Telusuri `next_page` untuk mencakup seluruh organisasi.
 
 2. Untuk pembelanja teratas (atau semua orang di atas ambang dolar), ambil batas efektif dalam batch:
 
-   ```bash cURL
-   curl --globoff "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01Ab...&user_ids[]=user_01Cd...&limit=100" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01"
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&user_ids[]=user_01JkLmNoPq&limit=100" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01"
+     ```
+
+     ```bash CLI
+     ant beta:organization:spend-limits:effective list \
+       --user-id user_01AbCdEfGh \
+       --user-id user_01JkLmNoPq \
+       --limit 100
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     effective_limits = client.beta.organization.spend_limits.effective.list(
+         user_ids=["user_01AbCdEfGh", "user_01JkLmNoPq"], limit=100
+     )
+
+     for effective_limit in effective_limits:
+         scope = effective_limit.scope
+         if scope.type == "user":
+             amount = effective_limit.amount or "unlimited"
+             print(f"{scope.user_id}: {effective_limit.period_to_date_spend} of {amount}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const effectiveLimits = await client.beta.organization.spendLimits.effective.list({
+       user_ids: ["user_01AbCdEfGh", "user_01JkLmNoPq"],
+       limit: 100
+     });
+
+     for await (const effectiveLimit of effectiveLimits) {
+       const { scope } = effectiveLimit;
+       if (scope.type === "user") {
+         const amount = effectiveLimit.amount ?? "unlimited";
+         console.log(`${scope.user_id}: ${effectiveLimit.period_to_date_spend} of ${amount}`);
+       }
+     }
+     ```
+
+     ```csharp C#
+     AnthropicClient client = new();
+
+     var page = await client.Beta.Organization.SpendLimits.Effective.List(
+         new() { UserIds = ["user_01AbCdEfGh", "user_01JkLmNoPq"], Limit = 100 }
+     );
+
+     await foreach (var effectiveLimit in page.Paginate())
+     {
+         if (effectiveLimit.Scope.TryPickBetaSpendLimitUser(out var userScope))
+         {
+             var amount = effectiveLimit.Amount ?? "unlimited";
+             Console.WriteLine($"{userScope.UserID}: {effectiveLimit.PeriodToDateSpend} of {amount}");
+         }
+     }
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
+     	UserIDs: []string{"user_01AbCdEfGh", "user_01JkLmNoPq"},
+     	Limit:   anthropic.Int(100),
+     })
+
+     for effectiveLimits.Next() {
+     	effectiveLimit := effectiveLimits.Current()
+     	if userScope, ok := effectiveLimit.Scope.AsAny().(anthropic.BetaSpendLimitUserScope); ok {
+     		amount := effectiveLimit.Amount
+     		if !effectiveLimit.JSON.Amount.Valid() {
+     			amount = "unlimited"
+     		}
+     		fmt.Printf("%s: %s of %s\n", userScope.UserID, effectiveLimit.PeriodToDateSpend, amount)
+     	}
+     }
+     if err := effectiveLimits.Err(); err != nil {
+     	log.Fatal(err)
+     }
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = EffectiveListParams.builder()
+             .addUserId("user_01AbCdEfGh")
+             .addUserId("user_01JkLmNoPq")
+             .limit(100)
+             .build();
+         var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
+
+         for (var effectiveLimit : effectiveLimits.autoPager()) {
+             var amount = effectiveLimit.amount().orElse("unlimited");
+             effectiveLimit.scope().user().ifPresent(userScope ->
+                 IO.println(userScope.userId() + ": " + effectiveLimit.periodToDateSpend() + " of " + amount)
+             );
+         }
+     }
+     ```
+
+     ```php PHP
+     use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+     // ...
+
+     $client = new Client();
+
+     $effectiveLimits = $client->beta->organization->spendLimits->effective->list(
+         userIDs: ['user_01AbCdEfGh', 'user_01JkLmNoPq'],
+         limit: 100,
+     );
+
+     foreach ($effectiveLimits->pagingEachItem() as $effectiveLimit) {
+         $scope = $effectiveLimit->scope;
+         if ($scope instanceof SpendLimitUserScope) {
+             $amount = $effectiveLimit->amount ?? 'unlimited';
+             echo "{$scope->userID}: {$effectiveLimit->periodToDateSpend} of {$amount}\n";
+         }
+     }
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     page = client.beta.organization.spend_limits.effective.list(
+       user_ids: ["user_01AbCdEfGh", "user_01JkLmNoPq"],
+       limit: 100
+     )
+
+     page.auto_paging_each do |effective_limit|
+       scope = effective_limit.scope
+       if scope.is_a?(Anthropic::Models::Beta::Organization::BetaSpendLimitUserScope)
+         amount = effective_limit.amount || "unlimited"
+         puts "#{scope.user_id}: #{effective_limit.period_to_date_spend} of #{amount}"
+       end
+     end
+     ```
+   </CodeGroup>
 
    Setiap baris mengembalikan batas sebagai `amount` (`null` = tanpa batas, `"0"` = hanya penggunaan termasuk) bersama `period_to_date_spend`.
 
@@ -328,13 +1721,144 @@ Munculkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
 
 1. Ambil biaya harian per anggota untuk dua minggu terakhir dari Analytics API:
 
-   ```bash cURL
-   curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-09T00:00:00Z&ending_at=2026-06-23T00:00:00Z&bucket_width=1d&limit=1000" \
-     --header "x-api-key: $ANALYTICS_API_KEY" \
-     --header "anthropic-version: 2023-06-01"
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-09T00:00:00Z&ending_at=2026-06-23T00:00:00Z&bucket_width=1d&limit=1000" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01"
+     ```
 
-   Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari dengan penggunaan; telusuri halaman melalui `next_page` untuk mengumpulkan seri lengkap setiap anggota.
+     ```bash CLI
+     ant beta:organization:analytics:user-cost-report list \
+       --starting-at 2026-06-09T00:00:00Z \
+       --ending-at 2026-06-23T00:00:00Z \
+       --bucket-width 1d \
+       --limit 1000
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     cost_rows = client.beta.organization.analytics.user_cost_report.list(
+         starting_at="2026-06-09T00:00:00Z",
+         ending_at="2026-06-23T00:00:00Z",
+         bucket_width="1d",
+         limit=1000,
+     )
+
+     for cost_row in cost_rows:
+         print(f"{cost_row.actor.user_id} {cost_row.starting_at}: {cost_row.amount}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const costRows = await client.beta.organization.analytics.userCostReport.list({
+       starting_at: "2026-06-09T00:00:00Z",
+       ending_at: "2026-06-23T00:00:00Z",
+       bucket_width: "1d",
+       limit: 1000
+     });
+
+     for await (const costRow of costRows) {
+       console.log(`${costRow.actor.user_id} ${costRow.starting_at}: ${costRow.amount}`);
+     }
+     ```
+
+     ```csharp C#
+     using Anthropic.Models.Beta.Organization.Analytics.UserCostReport;
+
+     AnthropicClient client = new();
+
+     var page = await client.Beta.Organization.Analytics.UserCostReport.List(
+         new()
+         {
+             StartingAt = DateTimeOffset.Parse("2026-06-09T00:00:00Z"),
+             EndingAt = DateTimeOffset.Parse("2026-06-23T00:00:00Z"),
+             BucketWidth = BucketWidth.Day,
+             Limit = 1000,
+         }
+     );
+
+     await foreach (var costRow in page.Paginate())
+     {
+         Console.WriteLine($"{costRow.Actor.UserID} {costRow.StartingAt}: {costRow.Amount}");
+     }
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     costRows := client.Beta.Organization.Analytics.UserCostReport.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsUserCostReportListParams{
+     	StartingAt:  time.Date(2026, time.June, 9, 0, 0, 0, 0, time.UTC),
+     	EndingAt:    anthropic.Time(time.Date(2026, time.June, 23, 0, 0, 0, 0, time.UTC)),
+     	BucketWidth: anthropic.BetaOrganizationAnalyticsUserCostReportListParamsBucketWidthDay,
+     	Limit:       anthropic.Int(1000),
+     })
+
+     for costRows.Next() {
+     	costRow := costRows.Current()
+     	fmt.Printf("%s %s: %s\n", costRow.Actor.UserID, costRow.StartingAt, costRow.Amount)
+     }
+     if err := costRows.Err(); err != nil {
+     	log.Fatal(err)
+     }
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.analytics.usercostreport.UserCostReportListParams;
+     import java.time.OffsetDateTime;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = UserCostReportListParams.builder()
+             .startingAt(OffsetDateTime.parse("2026-06-09T00:00:00Z"))
+             .endingAt(OffsetDateTime.parse("2026-06-23T00:00:00Z"))
+             .bucketWidth(UserCostReportListParams.BucketWidth.DAY)
+             .limit(1000)
+             .build();
+         var costRows = client.beta().organization().analytics().userCostReport().list(params);
+
+         for (var costRow : costRows.autoPager()) {
+             IO.println(costRow.actor().userId() + " " + costRow.startingAt().orElseThrow() + ": " + costRow.amount());
+         }
+     }
+     ```
+
+     ```php PHP
+     $client = new Client();
+
+     $costRows = $client->beta->organization->analytics->userCostReport->list(
+         startingAt: new \DateTimeImmutable('2026-06-09T00:00:00Z'),
+         endingAt: new \DateTimeImmutable('2026-06-23T00:00:00Z'),
+         bucketWidth: '1d',
+         limit: 1000,
+     );
+
+     foreach ($costRows->pagingEachItem() as $costRow) {
+         $startingAt = $costRow->startingAt?->format(\DateTimeInterface::ATOM);
+         echo "{$costRow->actor->userID} {$startingAt}: {$costRow->amount}\n";
+     }
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     page = client.beta.organization.analytics.user_cost_report.list(
+       starting_at: Time.utc(2026, 6, 9),
+       ending_at: Time.utc(2026, 6, 23),
+       bucket_width: :"1d",
+       limit: 1000
+     )
+
+     page.auto_paging_each do |cost_row|
+       puts "#{cost_row.actor.user_id} #{cost_row.starting_at}: #{cost_row.amount}"
+     end
+     ```
+   </CodeGroup>
+
+   Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari yang memiliki penggunaan. Telusuri `next_page` untuk mengumpulkan seluruh rangkaian data setiap anggota.
 
 2. Kelompokkan baris berdasarkan `actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan pilihan Anda (misalnya, tiga). Biaya hari-hari terakhir bersifat sementara dan dapat direvisi naik; untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya (lihat [Ketersediaan dan kesegaran data](https://platform.claude.com/docs/id/manage-claude/analytics-api#data-availability-and-freshness)).
 
@@ -346,31 +1870,393 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
 
 1. Baca batas anggota saat ini, dan catat untuk rollback:
 
-   ```bash cURL
-   curl --globoff "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&period[]=monthly" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01"
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&period[]=monthly" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01"
+     ```
+
+     ```bash CLI
+     ant beta:organization:spend-limits:effective list \
+       --user-id user_01AbCdEfGh \
+       --period monthly
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     effective_limits = client.beta.organization.spend_limits.effective.list(
+         user_ids=["user_01AbCdEfGh"], period=["monthly"]
+     )
+
+     for effective_limit in effective_limits:
+         scope = effective_limit.scope
+         if scope.type == "user":
+             amount = effective_limit.amount or "unlimited"
+             print(f"{scope.user_id}: {effective_limit.period_to_date_spend} of {amount}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const effectiveLimits = await client.beta.organization.spendLimits.effective.list({
+       user_ids: ["user_01AbCdEfGh"],
+       period: ["monthly"]
+     });
+
+     for await (const effectiveLimit of effectiveLimits) {
+       const { scope } = effectiveLimit;
+       if (scope.type === "user") {
+         const amount = effectiveLimit.amount ?? "unlimited";
+         console.log(`${scope.user_id}: ${effectiveLimit.period_to_date_spend} of ${amount}`);
+       }
+     }
+     ```
+
+     ```csharp C#
+     using Anthropic.Models.Beta.Organization.SpendLimits.Effective;
+
+     AnthropicClient client = new();
+
+     var page = await client.Beta.Organization.SpendLimits.Effective.List(
+         new() { UserIds = ["user_01AbCdEfGh"], Period = [Period.Monthly] }
+     );
+
+     await foreach (var effectiveLimit in page.Paginate())
+     {
+         if (effectiveLimit.Scope.TryPickBetaSpendLimitUser(out var userScope))
+         {
+             var amount = effectiveLimit.Amount ?? "unlimited";
+             Console.WriteLine($"{userScope.UserID}: {effectiveLimit.PeriodToDateSpend} of {amount}");
+         }
+     }
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
+     	UserIDs: []string{"user_01AbCdEfGh"},
+     	Period:  []string{"monthly"},
+     })
+
+     for effectiveLimits.Next() {
+     	effectiveLimit := effectiveLimits.Current()
+     	if userScope, ok := effectiveLimit.Scope.AsAny().(anthropic.BetaSpendLimitUserScope); ok {
+     		amount := effectiveLimit.Amount
+     		if !effectiveLimit.JSON.Amount.Valid() {
+     			amount = "unlimited"
+     		}
+     		fmt.Printf("%s: %s of %s\n", userScope.UserID, effectiveLimit.PeriodToDateSpend, amount)
+     	}
+     }
+     if err := effectiveLimits.Err(); err != nil {
+     	log.Fatal(err)
+     }
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = EffectiveListParams.builder()
+             .addUserId("user_01AbCdEfGh")
+             .addPeriod(EffectiveListParams.Period.MONTHLY)
+             .build();
+         var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
+
+         for (var effectiveLimit : effectiveLimits.autoPager()) {
+             var amount = effectiveLimit.amount().orElse("unlimited");
+             effectiveLimit.scope().user().ifPresent(userScope ->
+                 IO.println(userScope.userId() + ": " + effectiveLimit.periodToDateSpend() + " of " + amount)
+             );
+         }
+     }
+     ```
+
+     ```php PHP
+     use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+     // ...
+
+     $client = new Client();
+
+     $effectiveLimits = $client->beta->organization->spendLimits->effective->list(
+         userIDs: ['user_01AbCdEfGh'],
+         period: ['monthly'],
+     );
+
+     foreach ($effectiveLimits->pagingEachItem() as $effectiveLimit) {
+         $scope = $effectiveLimit->scope;
+         if ($scope instanceof SpendLimitUserScope) {
+             $amount = $effectiveLimit->amount ?? 'unlimited';
+             echo "{$scope->userID}: {$effectiveLimit->periodToDateSpend} of {$amount}\n";
+         }
+     }
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     page = client.beta.organization.spend_limits.effective.list(
+       user_ids: ["user_01AbCdEfGh"],
+       period: [:monthly]
+     )
+
+     page.auto_paging_each do |effective_limit|
+       scope = effective_limit.scope
+       if scope.is_a?(Anthropic::Models::Beta::Organization::BetaSpendLimitUserScope)
+         amount = effective_limit.amount || "unlimited"
+         puts "#{scope.user_id}: #{effective_limit.period_to_date_spend} of #{amount}"
+       end
+     end
+     ```
+   </CodeGroup>
 
 2. Naikkan batas:
 
-   ```bash cURL
-   curl --request POST "https://api.anthropic.com/v1/organizations/spend_limits" \
-     --header "content-type: application/json" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01" \
-     --data '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "500000", "period": "monthly"}'
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
+       -H "content-type: application/json" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01" \
+       -d '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "500000", "period": "monthly"}'
+     ```
+
+     ```bash CLI
+     ant beta:organization:spend-limits set \
+       --scope '{type: user, user_id: user_01AbCdEfGh}' \
+       --amount 500000 \
+       --period monthly
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     spend_limit = client.beta.organization.spend_limits.set(
+         scope={"type": "user", "user_id": "user_01AbCdEfGh"},
+         amount="500000",
+         period="monthly",
+     )
+
+     print(f"id: {spend_limit.id}")
+     print(f"amount: {spend_limit.amount}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const spendLimit = await client.beta.organization.spendLimits.set({
+       scope: { type: "user", user_id: "user_01AbCdEfGh" },
+       amount: "500000",
+       period: "monthly"
+     });
+
+     console.log(`id: ${spendLimit.id}`);
+     console.log(`amount: ${spendLimit.amount}`);
+     ```
+
+     ```csharp C#
+     using Anthropic.Models.Beta.Organization.SpendLimits;
+
+     AnthropicClient client = new();
+
+     var spendLimit = await client.Beta.Organization.SpendLimits.Set(
+         new()
+         {
+             Scope = new BetaSpendLimitUserScope("user_01AbCdEfGh"),
+             Amount = "500000",
+             Period = BetaSpendLimitPeriod.Monthly,
+         }
+     );
+
+     Console.WriteLine($"id: {spendLimit.ID}");
+     Console.WriteLine($"amount: {spendLimit.Amount}");
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     spendLimit, err := client.Beta.Organization.SpendLimits.Set(context.Background(), anthropic.BetaOrganizationSpendLimitSetParams{
+     	Scope: anthropic.BetaOrganizationSpendLimitSetParamsScopeUnion{
+     		OfUser: &anthropic.BetaSpendLimitUserScopeParam{UserID: "user_01AbCdEfGh"},
+     	},
+     	Amount: anthropic.String("500000"),
+     	Period: anthropic.BetaSpendLimitPeriodMonthly,
+     })
+     if err != nil {
+     	log.Fatal(err)
+     }
+
+     fmt.Printf("id: %s\n", spendLimit.ID)
+     fmt.Printf("amount: %s\n", spendLimit.Amount)
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.BetaSpendLimitPeriod;
+     import com.anthropic.models.beta.organization.spendlimits.SpendLimitSetParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = SpendLimitSetParams.builder()
+             .userScope("user_01AbCdEfGh")
+             .amount("500000")
+             .period(BetaSpendLimitPeriod.MONTHLY)
+             .build();
+         var spendLimit = client.beta().organization().spendLimits().set(params);
+
+         IO.println("id: " + spendLimit.id());
+         IO.println("amount: " + spendLimit.amount().orElseThrow());
+     }
+     ```
+
+     ```php PHP
+     use Anthropic\Beta\Organization\SpendLimits\SpendLimitUserScope;
+     // ...
+
+     $client = new Client();
+
+     $spendLimit = $client->beta->organization->spendLimits->set(
+         scope: SpendLimitUserScope::with(userID: 'user_01AbCdEfGh'),
+         amount: '500000',
+         period: 'monthly',
+     );
+
+     echo "id: {$spendLimit->id}\n";
+     echo "amount: {$spendLimit->amount}\n";
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     spend_limit = client.beta.organization.spend_limits.set(
+       scope: { type: :user, user_id: "user_01AbCdEfGh" },
+       amount: "500000",
+       period: :monthly
+     )
+
+     puts "id: #{spend_limit.id}"
+     puts "amount: #{spend_limit.amount}"
+     ```
+   </CodeGroup>
 
 3. Jika penanggap memerlukan akses yang lebih luas selama insiden, sediakan terlebih dahulu grup incident-responders yang [peran kustomnya](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles) memberikan akses tersebut, dan tambahkan anggota selama durasi insiden:
 
-   ```bash cURL
-   curl --request POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
-     --header "content-type: application/json" \
-     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-     --header "anthropic-version: 2023-06-01" \
-     --data '{"user_id": "user_01AbCdEfGh"}'
-   ```
+   <CodeGroup>
+     ```bash cURL
+     curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
+       -H "content-type: application/json" \
+       -H "x-api-key: $ANTHROPIC_API_KEY" \
+       -H "anthropic-version: 2023-06-01" \
+       -d '{"user_id": "user_01AbCdEfGh"}'
+     ```
+
+     ```bash CLI
+     ant beta:organization:rbac-groups:members add \
+       --rbac-group-id rbac_group_01UvWxYzAbCdEfGhIjKlMn \
+       --user-id user_01AbCdEfGh
+     ```
+
+     ```python Python
+     client = anthropic.Anthropic()
+
+     member = client.beta.organization.rbac_groups.members.add(
+         "rbac_group_01UvWxYzAbCdEfGhIjKlMn", user_id="user_01AbCdEfGh"
+     )
+
+     print(f"user_id: {member.user_id}")
+     print(f"rbac_group_id: {member.rbac_group_id}")
+     ```
+
+     ```typescript TypeScript
+     const client = new Anthropic();
+
+     const member = await client.beta.organization.rbacGroups.members.add(
+       "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
+       {
+         user_id: "user_01AbCdEfGh"
+       }
+     );
+
+     console.log(`user_id: ${member.user_id}`);
+     console.log(`rbac_group_id: ${member.rbac_group_id}`);
+     ```
+
+     ```csharp C#
+     AnthropicClient client = new();
+
+     var member = await client.Beta.Organization.RbacGroups.Members.Add(
+         "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
+         new() { UserID = "user_01AbCdEfGh" }
+     );
+
+     Console.WriteLine($"user_id: {member.UserID}");
+     Console.WriteLine($"rbac_group_id: {member.RbacGroupID}");
+     ```
+
+     ```go Go
+     client := anthropic.NewClient()
+
+     member, err := client.Beta.Organization.RBACGroups.Members.Add(
+     	context.Background(),
+     	"rbac_group_01UvWxYzAbCdEfGhIjKlMn",
+     	anthropic.BetaOrganizationRBACGroupMemberAddParams{
+     		UserID: "user_01AbCdEfGh",
+     	},
+     )
+     if err != nil {
+     	log.Fatal(err)
+     }
+
+     fmt.Printf("user_id: %s\n", member.UserID)
+     fmt.Printf("rbac_group_id: %s\n", member.RBACGroupID)
+     ```
+
+     ```java Java
+     import com.anthropic.models.beta.organization.rbacgroups.members.MemberAddParams;
+
+     void main() {
+         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+         var params = MemberAddParams.builder()
+             .userId("user_01AbCdEfGh")
+             .build();
+         var member = client.beta().organization().rbacGroups().members()
+             .add("rbac_group_01UvWxYzAbCdEfGhIjKlMn", params);
+
+         IO.println("user_id: " + member.userId());
+         IO.println("rbac_group_id: " + member.rbacGroupId());
+     }
+     ```
+
+     ```php PHP
+     $client = new Client();
+
+     $member = $client->beta->organization->rbacGroups->members->add(
+         'rbac_group_01UvWxYzAbCdEfGhIjKlMn',
+         userID: 'user_01AbCdEfGh',
+     );
+
+     echo "user_id: {$member->userID}\n";
+     echo "rbac_group_id: {$member->rbacGroupID}\n";
+     ```
+
+     ```ruby Ruby
+     client = Anthropic::Client.new
+
+     member = client.beta.organization.rbac_groups.members.add(
+       "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
+       user_id: "user_01AbCdEfGh"
+     )
+
+     puts "user_id: #{member.user_id}"
+     puts "rbac_group_id: #{member.rbac_group_id}"
+     ```
+   </CodeGroup>
 
    Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management#groups) untuk endpoint grup.
 

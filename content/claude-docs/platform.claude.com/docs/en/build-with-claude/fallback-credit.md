@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 400aae1aac0f57efc338def5e172eb705d334db02ef7b44f06e4639fb88108ab
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2e5ff5d5b1b06665c16abfc0b25db1947fd186e5f8dad7c354222e24e914cb75
 ---
 
 ---
@@ -254,21 +254,21 @@ The following example makes a request that may be refused and redeems the credit
   [
       new() { Role = Role.User, Content = "Hello, Claude" },
   ];
-  MessageCreateParams Request(string model) => new()
+  MessageCreateParams Request(Model model) => new()
   {
       Model = model,
       MaxTokens = 1024,
       Messages = requestMessages,
       Betas = [beta],
   };
-  var response = await client.Beta.Messages.Create(Request("claude-fable-5"));
+  var response = await client.Beta.Messages.Create(Request(Model.ClaudeFable5));
 
   if (
       response.StopReason == BetaStopReason.Refusal
       && response.StopDetails is { FallbackCreditToken: string token } details
   )
   {
-      var exactBody = Request("claude-opus-4-8") with { FallbackCreditToken = token };
+      var exactBody = Request(Model.ClaudeOpus4_8) with { FallbackCreditToken = token };
       var attempt = exactBody;
       // Prefer the continuation shape unless the claim is false
       if (details.FallbackHasPrefillClaim is not false)
@@ -315,7 +315,7 @@ The following example makes a request that may be refused and redeems the credit
               when (!retryError.Message.Contains("redemption temporarily unavailable"))
           {
               // The token itself was rejected: forfeit it and retry without.
-              response = await client.Beta.Messages.Create(Request("claude-opus-4-8"));
+              response = await client.Beta.Messages.Create(Request(Model.ClaudeOpus4_8));
           }
       }
   }

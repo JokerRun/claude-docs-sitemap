@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 035c7fd2a39ca8a545974a2d868a46fce2a4239e9d8e3e5f45fa10269d3ccdcf
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c6462347c9b8fd199a1fd478720208a9db7ccc72391fa5381a2427bdc09efded
 ---
 
 ---
@@ -22,7 +22,7 @@ Claude API adalah RESTful API di `https://api.anthropic.com` yang menyediakan ak
 Untuk menggunakan Claude API, Anda memerlukan:
 
 * Sebuah [akun Claude Console](https://platform.claude.com)
-* Sebuah [kunci API](https://platform.claude.com/settings/keys), atau aturan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) yang telah dikonfigurasi
+* Sebuah [kunci API](https://platform.claude.com/settings/keys) dari Console, atau aturan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) yang telah dikonfigurasi
 
 Untuk instruksi penyiapan langkah demi langkah, lihat [Memulai](https://platform.claude.com/docs/id/get-started).
 
@@ -63,7 +63,7 @@ Saat mengakses Claude melalui [platform cloud](https://platform.claude.com/docs/
 
 ### Mendapatkan kunci API
 
-API tersedia melalui web [Console](https://platform.claude.com/). Anda dapat menggunakan [playground](https://platform.claude.com/playground) untuk mencoba API di browser dan kemudian menghasilkan kunci API di [Account Settings](https://platform.claude.com/settings/keys) (lihat [Dapatkan kunci Claude API Anda](https://platform.claude.com/docs/id/get-api-key)). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [kedaluwarsanya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspaces](https://platform.claude.com/settings/workspaces) untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
+API tersedia melalui [Console](https://platform.claude.com/) web. Di Console, Anda dapat menggunakan [playground](https://platform.claude.com/playground) (`platform.claude.com/playground`) untuk mencoba API di browser lalu membuat kunci API di halaman [Kunci API](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`). Untuk mempelajari caranya, lihat [Dapatkan kunci API Claude Anda](https://platform.claude.com/docs/id/get-api-key). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [kedaluwarsanya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspace](https://platform.claude.com/settings/workspaces) di Console untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
 
 ## SDK Klien
 

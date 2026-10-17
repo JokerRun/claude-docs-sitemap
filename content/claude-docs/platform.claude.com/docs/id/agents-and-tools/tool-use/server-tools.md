@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1467a282304b74675e715ada89262390d3833d9c7335a2528ff9975619e8f9a8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 10f08a05d1e96f06bb7a2df38a9d8e01483c5a9fa2c2272b89e33f3205089d9c
 ---
 
 ---
@@ -517,7 +517,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [
         {
@@ -545,7 +545,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   # blok hasil yang cocok, jalankan alat klien dan jalankan ulang dengan pesan pengguna yang hanya
   # berisi blok tool_result mereka yang ditambahkan (lihat tab SDK).
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5-5
   max_tokens: 1024
   messages:
     - role: user
@@ -587,7 +587,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ]
 
   response = client.messages.create(
-      model="claude-opus-4-8", max_tokens=1024, tools=tools, messages=messages
+      model="claude-opus-5-5", max_tokens=1024, tools=tools, messages=messages
   )
 
   tool_results = [
@@ -605,7 +605,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       # Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
       # Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
       continuation = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5-5",
           max_tokens=1024,
           tools=tools,
           messages=[
@@ -649,7 +649,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ];
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: [webFetchTool, runCommandTool],
     messages
@@ -671,7 +671,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
     // Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
     // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
     const continuation = await client.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: [webFetchTool, runCommandTool],
       messages: [
@@ -718,7 +718,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = tools,
       Messages = [userMessage]
@@ -744,7 +744,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
       var continuation = await client.Messages.Create(new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Tools = tools,
           Messages =
@@ -792,7 +792,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   userMessage := anthropic.NewUserMessage(anthropic.NewTextBlock("Summarize https://example.com/article and run uname -a to tell me what system this is on."))
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
   	Tools:     tools,
   	Messages:  []anthropic.MessageParam{userMessage},
@@ -814,7 +814,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   	// Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
   	// Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 1024,
   		Tools:     tools,
   		Messages: []anthropic.MessageParam{
@@ -851,7 +851,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       String prompt = "Summarize https://example.com/article and run uname -a to tell me what system this is on.";
 
       Message response = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(WebFetchTool20250910.builder().maxUses(5L).build())
           .addTool(runCommandTool)
@@ -876,7 +876,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           // Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
           // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
           Message continuation = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
               .addTool(WebFetchTool20250910.builder().maxUses(5L).build())
               .addTool(runCommandTool)
@@ -915,7 +915,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [$userMessage],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       tools: $tools,
   );
 
@@ -941,7 +941,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
               ['role' => 'assistant', 'content' => $response->content],
               ['role' => 'user', 'content' => $toolResults],
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5-5',
           tools: $tools,
       );
       // Jika web_fetch ditunda, ia dijalankan pada permintaan ini dan
@@ -975,7 +975,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   }
 
   response = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 1024,
     tools: tools,
     messages: [user_message]
@@ -997,7 +997,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
     # Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
     # Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
     continuation = client.messages.create(
-      model: "claude-opus-4-8",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       tools: tools,
       messages: [

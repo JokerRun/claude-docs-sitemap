@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 6d275cc0c801a42f60e549f96b70540708699a7ea366428e30b00012172925cb
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f2edca0242bbe9d9fd231744a177dff3a06705e795e609678509c664b33f8a94
 ---
 
 ---
@@ -306,7 +306,7 @@ claude.ai doesn't always name this tool `web_search`, so don't match on the name
 
 ### Third-party tools
 
-A third-party tool is one on a server that Anthropic knows of, such as a claude.ai connector or an MCP server that the request names in `mcp_servers`. This doesn't mean Anthropic has vetted the server.
+A third-party tool is one on a server that Anthropic knows of, such as a claude.ai connector or an MCP server that the request names in `mcp_servers`. This doesn't mean Anthropic has vetted the server. In voice mode, a call to a claude.ai connector's tool is `"client"` instead.
 
 | Field             | Present              | Description                                                                                                                                                         |
 | ----------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

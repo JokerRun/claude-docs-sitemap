@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 26193a5bc07b75e25975b854cdb5830f564ec8b33d45e3f05edd09f298193d47
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 8eec056084cb19bbc5155e57a0fd6d0e52d66471aaa26335d900ec35044add39
 ---
 
 ---
@@ -11,14 +11,14 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/pr
 description: Perbedaan perilaku dan pola prompting untuk Claude Fable 5 dan Claude Mythos 5, mencakup effort, kepatuhan instruksi, run panjang, memori, dan perubahan scaffolding.
 ---
 
-Panduan ini membahas pola prompting dan scaffolding yang khusus untuk Claude Fable 5 dan Claude Mythos 5. Untuk kemampuan model, perubahan API, harga, dan ketersediaan, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Panduan ini membahas pola prompting dan scaffolding yang khusus untuk Claude Fable 5 dan Claude Mythos 5. Untuk spesifikasi, harga, dan ketersediaan model, lihat [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 Claude Fable 5 menangani masalah yang sebelumnya terlalu kompleks, berjalan terlalu lama, atau terlalu ambigu bagi model-model sebelumnya, dan sangat efektif untuk pekerjaan end-to-end yang membutuhkan waktu berjam-jam, berhari-hari, atau berminggu-minggu bagi seseorang untuk menyelesaikannya. Tim yang memperoleh hasil terbaik menerapkan Claude Fable 5 pada masalah tersulit mereka yang belum terpecahkan; mengujinya hanya pada beban kerja yang lebih sederhana cenderung meremehkan rentang kemampuannya. Model ini juga bekerja dengan andal pada tugas-tugas yang lebih sederhana.
 
 Claude Fable 5 memiliki beberapa perbedaan perilaku dari Claude Opus 4.8 yang mungkin memerlukan pembaruan prompt atau scaffolding. Peningkatan kemampuan pada tingkat ini juga merupakan dorongan yang baik untuk mengevaluasi ulang instruksi, alat, dan guardrail mana yang masih diperlukan. Pola-pola di bawah ini mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk perubahan parameter API yang khusus untuk Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya berupa ringkasan, tanpa anggaran "extended thinking" (pemikiran diperpanjang), stop reason `refusal` dan penanganan fallback), lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5).
+  Untuk cara kerja thinking pada Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya berupa ringkasan, tanpa anggaran "extended thinking" (pemikiran diperpanjang)), lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking). Untuk stop reason `refusal` dan penanganan fallback, lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 
   Claude Fable 5 menjalankan classifier keamanan yang menargetkan teknik keamanan siber ofensif (seperti membangun exploit, malware, atau perangkat serangan), konten biologi dan ilmu hayati (seperti metode laboratorium atau mekanisme molekuler), dan ekstraksi ringkasan thinking model. Pekerjaan keamanan siber yang tidak berbahaya dan tugas ilmu hayati yang bermanfaat juga dapat memicu pengaman ini. Untuk mengalihkan permintaan yang ditolak secara otomatis, konfigurasikan [fallback sisi server atau sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ke Claude Opus 4.8.
 </Note>

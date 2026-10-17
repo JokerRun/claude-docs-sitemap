@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 062bb3c099f25b8320b543153fda36731e7501d7a4db9056fa3995c22601bde8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5f5435ca21d8d118ddfb4637e248df6a3b93c4de53d055af681555afd303172a
 ---
 
 ---
@@ -25,7 +25,7 @@ Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multia
 
 **Thread sesi** adalah tempat Anda menelusuri aktivitas agen tertentu secara mendalam.
 
-`status` sesi merupakan agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi secara keseluruhan juga `running`. Sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang sedang berjalan juga dapat membuat sesi tetap `running`, bahkan ketika tidak ada thread-nya yang sedang bekerja. Ketika tidak ada thread yang bekerja dan sebuah thread menunggu klien Anda, sesi berstatus `idle`; lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done).
+`status` (csharp, go: `Status`) sesi merupakan agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi secara keseluruhan juga `running`. Sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang sedang berjalan juga dapat membuat sesi tetap `running`, bahkan ketika tidak ada thread-nya yang sedang bekerja. Ketika tidak ada thread yang bekerja dan sebuah thread menunggu klien Anda, sesi berstatus `idle`; lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done).
 
 Sebuah [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) adalah satu batas bersama untuk semua thread dalam sebuah sesi. Saat batas tercapai, thread berhenti sementara secara independen, dan biaya setiap thread dihitung berdasarkan model yang melayani thread itu sendiri.
 
@@ -109,13 +109,13 @@ Cantumkan semua thread yang terkait dengan sebuah sesi sebagai berikut:
   ```
 </CodeGroup>
 
-Daftar lengkap mencakup thread utama. `parent_thread_id` bernilai `null` untuk thread utama. Setiap thread lainnya adalah thread anak. `workflow_run_id` bernilai `null` kecuali pada [thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
+Daftar lengkap mencakup thread utama. `parent_thread_id` (java: `parentThreadId`; php: `parentThreadID`; csharp, go: `ParentThreadID`) bernilai `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `""`) untuk thread utama. Setiap thread lainnya adalah thread anak. `workflow_run_id` (java: `workflowRunId`; php: `workflowRunID`; csharp, go: `WorkflowRunID`) bernilai `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `""`) kecuali pada [thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
 
 Untuk mencantumkan hanya thread yang memiliki status tertentu, tambahkan `statuses[]` ke permintaan, dan ulangi untuk memberikan lebih dari satu status, seperti pada `?statuses[]=running&statuses[]=idle`. Hilangkan parameter ini untuk mengembalikan thread dengan semua status.
 
 ## Menginterupsi thread sesi
 
-Kirim `user.interrupt` dengan `session_thread_id` untuk menghentikan thread tertentu. Menghilangkan `session_thread_id` akan menginterupsi setiap thread yang tidak diarsipkan dalam sesi, termasuk thread utama. Dalam sesi dengan alur kerja dinamis, interupsi tidak mengakhiri eksekusi apa pun, dan interupsi yang menyebut thread milik sebuah eksekusi tidak menghentikan apa pun. Interupsi menutup panggilan alat yang tertunda pada thread anak lainnya, tetapi jangan mengandalkannya untuk menutup panggilan alat milik thread eksekusi. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
+Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) untuk menghentikan thread tertentu. Menghilangkan `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) akan menginterupsi setiap thread yang tidak diarsipkan dalam sesi, termasuk thread utama. Dalam sesi dengan alur kerja dinamis, interupsi tidak mengakhiri eksekusi apa pun, dan interupsi yang menyebut thread milik sebuah eksekusi tidak menghentikan apa pun. Interupsi menutup panggilan alat yang tertunda pada thread anak lainnya, tetapi jangan mengandalkannya untuk menutup panggilan alat milik thread eksekusi. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 <CodeGroup>
   ```bash cURL
@@ -393,20 +393,20 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
 
 Event-event ini menampilkan aktivitas multiagen pada thread utama di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread yang aliran event-nya memuat event tersebut: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirimkan pesan. Tugas yang didelegasikan oleh agen thread utama, misalnya, tiba di aliran milik thread anak sebagai event `agent.thread_message_received`.
 
-| Tipe                               | Deskripsi                                                                                                                                                                                                  |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `session.thread_created`           | Sebuah thread telah dibuat. Mencakup `session_thread_id` dan `agent_name`.                                                                                                                                 |
-| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                                                                           |
-| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti.                                                                                      |
-| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir. |
-| `agent.thread_message_received`    | Pada thread utama, sebuah subagen mengirimkan laporan atau pertanyaan kepada agen thread utama. Mencakup `from_session_thread_id`, `from_agent_name`, dan `content`.                                       |
-| `agent.thread_message_sent`        | Pada thread utama, agen thread utama mengirimkan tugas atau pesan tindak lanjut kepada sebuah subagen. Mencakup `to_session_thread_id`, `to_agent_name`, dan `content`.                                    |
+| Tipe                               | Deskripsi                                                                                                                                                                                                                                                                                                                                           |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `session.thread_created`           | Sebuah thread telah dibuat. Mencakup `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) dan `agent_name` (java, php: `agentName`; csharp, go: `AgentName`).                                                                                                                                       |
+| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                                                                                                                                                                                                                    |
+| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) yang menunjukkan alasan agen berhenti.                                                                                                                                                                            |
+| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir.                                                                                                                                          |
+| `agent.thread_message_received`    | Pada thread utama, sebuah subagen mengirimkan laporan atau pertanyaan kepada agen thread utama. Mencakup `from_session_thread_id` (java: `fromSessionThreadId`; php: `fromSessionThreadID`; csharp, go: `FromSessionThreadID`), `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`), dan `content` (csharp, go: `Content`). |
+| `agent.thread_message_sent`        | Pada thread utama, agen thread utama mengirimkan tugas atau pesan tindak lanjut kepada sebuah subagen. Mencakup `to_session_thread_id` (java: `toSessionThreadId`; php: `toSessionThreadID`; csharp, go: `ToSessionThreadID`), `to_agent_name` (java, php: `toAgentName`; csharp, go: `ToAgentName`), dan `content` (csharp, go: `Content`).        |
 
-Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor` (sebagai `agent_name` pada event siklus hidup thread dan `from_agent_name` pada penyampaian saran); lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
+Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor` (sebagai `agent_name` (java, php: `agentName`; csharp, go: `AgentName`) pada event siklus hidup thread dan `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`) pada penyampaian saran); lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
 
 Thread milik sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) ditampilkan pada aliran utama sebagai berikut:
 
-* **Event siklus hidup:** Setiap thread eksekusi mengirimkan `session.thread_created`, dengan `workflow_run_id` milik eksekusi tersebut, serta event `session.thread_status_running`, `session.thread_status_idle`, dan `session.thread_status_terminated` miliknya.
+* **Event siklus hidup:** Setiap thread eksekusi mengirimkan `session.thread_created`, dengan `workflow_run_id` (java: `workflowRunId`; php: `workflowRunID`; csharp, go: `WorkflowRunID`) milik eksekusi tersebut, serta event `session.thread_status_running`, `session.thread_status_idle`, dan `session.thread_status_terminated` miliknya.
 * **Event pesan:** Prompt thread eksekusi, yaitu event `agent.thread_message_received`, tetap berada di alirannya sendiri.
 * **Event eksekusi:** Event `workflow_run.*` juga tiba di aliran ini; lihat [Event eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#run-events).
 * **Panggilan alat yang menunggu Anda:** Panggilan alat thread eksekusi yang memerlukan klien Anda diposting silang ke aliran ini, sama seperti untuk thread anak mana pun. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
@@ -417,9 +417,9 @@ Event penting diteruskan ke thread utama. Namun, Anda mungkin tetap ingin menyel
 
 Setiap thread sesi memiliki aliran event sendiri di `/v1/sessions/{session_id}/threads/{thread_id}/stream`, dan aliran ini menerima parameter `event_deltas[]` yang sama dengan aliran tingkat sesi, sehingga Anda dapat melihat pratinjau teks subagen saat model menghasilkannya. Sebuah koneksi hanya menampilkan pratinjau thread yang sedang dibacanya: pratinjau thread anak tidak pernah muncul di aliran tingkat sesi, jadi untuk memantau subagen secara langsung, buka aliran thread miliknya sendiri. Lihat [Pratinjau event thread sesi](https://platform.claude.com/docs/id/managed-agents/event-deltas#preview-session-thread-events) untuk cara mengaktifkan, mengakumulasi, dan merekonsiliasi pratinjau.
 
-Dalam sebuah eksekusi workflow, server menjalankan workflow: sebuah program yang ditulis oleh agen thread utama. Pada setiap thread milik eksekusi, `agent.thread_message_received` pertama adalah prompt yang ditulis oleh workflow. `from_session_thread_id`-nya adalah ID thread utama, dan event tersebut tidak memiliki `from_agent_name`. API tidak menjamin teks prompt tersebut, jadi jangan mem-parsing-nya. Event `session.thread_status_terminated` milik thread, pada aliran thread utama, memberi tahu Anda bahwa thread telah selesai. Tidak ada event yang mencatat hasil yang dikembalikannya ke workflow.
+Dalam sebuah eksekusi workflow, server menjalankan sebuah workflow: program yang ditulis oleh agen thread utama. Pada setiap thread milik eksekusi tersebut, `agent.thread_message_received` pertama adalah prompt yang ditulis oleh workflow. `from_session_thread_id` (java: `fromSessionThreadId`; php: `fromSessionThreadID`; csharp, go: `FromSessionThreadID`) miliknya adalah ID thread utama, dan API tidak menetapkan `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`) miliknya. API tidak menjamin teks prompt tersebut, jadi jangan mem-parsing-nya. Event `session.thread_status_terminated` milik thread, pada aliran thread utama, memberi tahu Anda bahwa thread telah selesai. Tidak ada event yang mencatat hasil yang dikembalikannya ke workflow.
 
-Aliran thread tidak memutar ulang event sebelumnya. Tepat setelah `session.thread_created`, daftar event thread milik eksekusi dapat kosong, karena server menulis event pertama thread setelahnya. Jadi, buka aliran thread terlebih dahulu, lalu cantumkan event thread tersebut, dan lewati setiap event yang di-streaming yang `id`-nya telah dikembalikan oleh daftar.
+Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `session.thread_created`, daftar event dari thread milik sebuah eksekusi bisa kosong, karena server menulis event pertama thread setelahnya. Jadi, buka aliran thread terlebih dahulu, lalu cantumkan event thread tersebut, dan lewati setiap event hasil streaming yang `id` (csharp, go: `ID`)-nya sudah dikembalikan oleh daftar.
 
 <Tabs>
   <Tab title="Streaming event thread sesi">
@@ -694,7 +694,7 @@ Jika sebuah subagen memerlukan sesuatu dari klien Anda, seperti [izin](https://p
 }
 ```
 
-Kirim `user.tool_confirmation` (dengan `tool_use_id`) atau `user.custom_tool_result` (dengan `custom_tool_use_id`); server secara otomatis merutekan respons ke thread yang benar. Respons dapat muncul di thread utama dan di thread subagen dengan nilai `id` yang berbeda. Untuk mencocokkan kedua salinan tersebut, bandingkan `type` dan `tool_use_id` (atau `custom_tool_use_id`), bukan `id`.
+Kirim `user.tool_confirmation` (dengan `tool_use_id` (java: `toolUseId`; php: `toolUseID`; csharp, go: `ToolUseID`)) atau `user.custom_tool_result` (dengan `custom_tool_use_id` (java: `customToolUseId`; php: `customToolUseID`; csharp, go: `CustomToolUseID`)); server secara otomatis merutekan respons ke thread yang benar. Respons dapat muncul di thread utama dan di thread subagen dengan nilai `id` (csharp, go: `ID`) yang berbeda. Untuk mencocokkan kedua salinan tersebut, bandingkan `type` (csharp, go: `Type`) dan `tool_use_id` (java: `toolUseId`; php: `toolUseID`; csharp, go: `ToolUseID`) (atau `custom_tool_use_id` (java: `customToolUseId`; php: `customToolUseID`; csharp, go: `CustomToolUseID`)), bukan `id` (csharp, go: `ID`).
 
 Sesi menjadi `idle` hanya ketika tidak ada thread yang berstatus `running`, sehingga `session.status_idle` dapat tiba lama setelah panggilan subagen. Anda tidak perlu menunggunya: kirim `user.custom_tool_result` segera setelah event `agent.custom_tool_use` yang diposting silang tiba.
 
@@ -702,7 +702,7 @@ Di bawah `auto`, event `user.message` Anda dapat membuat server mengizinkan pang
 
 Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation). Untuk setiap ID dalam `stop_reason.event_ids`, contoh ini mengirimkan `user.tool_confirmation` yang mengizinkan panggilan tersebut. Pola yang sama berlaku untuk `user.custom_tool_result`, yang juga dapat Anda kirim segera setelah event `agent.custom_tool_use`-nya tiba.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   while IFS= read -r event_id; do
     jq -n --arg id "$event_id" \
@@ -716,10 +716,9 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
   done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
   ```
 
-  ```bash CLI
-  # Workflow ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-  # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   for event_id in stop.event_ids:
@@ -818,4 +817,4 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
   ```
 </CodeGroup>
 
-Pola sebelumnya menjawab panggilan yang dicantumkan oleh event idle. Pada aliran utama, event `session.thread_status_idle` milik subagen dapat tiba sebelum event `agent.tool_use` atau `agent.mcp_tool_use` yang dicantumkan oleh `stop_reason.event_ids`-nya. `user.tool_confirmation` untuk panggilan yang event-nya belum tiba dapat mengembalikan 400. Untuk menghindarinya, jawab setiap panggilan yang [`evaluated_permission`](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated)-nya bernilai `ask` ketika event miliknya sendiri tiba di aliran utama.
+Pola sebelumnya menjawab panggilan yang dicantumkan oleh event idle. Pada aliran utama, event `session.thread_status_idle` milik subagen dapat tiba sebelum event `agent.tool_use` atau `agent.mcp_tool_use` yang dicantumkan oleh `stop_reason.event_ids`-nya. `user.tool_confirmation` untuk panggilan yang event-nya belum tiba dapat mengembalikan 400. Untuk menghindarinya, jawab setiap panggilan yang [`evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated)-nya bernilai `ask` ketika event-nya sendiri tiba di aliran utama.

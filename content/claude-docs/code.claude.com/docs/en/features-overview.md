@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: aa2b9920fafce5a34e9f7fc6364343c8b9d350a1e06922661ce47ec2d85c6d4c
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 55baae6766d04686f88dd4640975957bc666b94907b02d50581fac4cc908f017
 ---
 
 > ## Documentation Index
@@ -185,7 +185,7 @@ Some features can seem similar. For a deeper walkthrough of choosing between the
     | - | - | - |
     | **Runs** | A shell command, HTTP request, MCP tool call, LLM prompt, or subagent | Instructions Claude reads and follows |
     | **Triggered by** | [Lifecycle events](/docs/en/hooks#hook-events) such as `PostToolUse` or `SessionStart` | You typing `/<name>`, or Claude matching the description to your task |
-    | **Determinism** | Always fires on its event; the trigger is guaranteed | Claude interprets the instructions; outcome can vary |
+    | **Determinism** | Fires on its event without Claude deciding | Claude interprets the instructions; outcome can vary |
     | **Context cost** | Zero unless the hook returns output | Description loads each session; full content loads when used |
     | **Best for** | Linting after edits, blocking unsafe commands, logging, notifications | Workflows that need reasoning, reference material, multi-step tasks |
 

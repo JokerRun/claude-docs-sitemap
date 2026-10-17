@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: aa72684ca46f165b4417ca691f3850d56fe74a3b18cd0ffc9c9e6f7bd7a12a5b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 56d6e628dd27245a4113d720528fccaf62fc881d1918dce88ea8242fe6388e53
 ---
 
 ---
@@ -32,7 +32,7 @@ The [Admin API](https://platform.claude.com/docs/en/api/organization) lets you m
 </Note>
 
 <Note>
-  **Claude Platform on AWS:** Only the workspace endpoints (create, get, list, update, and archive on `/v1/organizations/workspaces`), the external key endpoints (register, get, list, update, and delete on `/v1/organizations/external_keys`, for [CMEK](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#claude-platform-on-aws); there is no validate endpoint, because keys are validated when attached to a workspace), and the [telemetry destination endpoints](https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions#telemetry-destinations) are available on Claude Platform on AWS. Organization members, workspace members, invites, API keys, and the usage, cost, and rate limit reports aren't. See [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws).
+  **Claude Platform on AWS:** Only the workspace endpoints (create, get, list, update, and archive on `/v1/organizations/workspaces`), the external key endpoints (register, get, list, update, and delete on `/v1/organizations/external_keys`, for [CMEK](https://platform.claude.com/docs/en/manage-claude/cmek-claude-platform-on-aws); there is no validate endpoint, because keys are validated when attached to a workspace), and the [telemetry destination endpoints](https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions#telemetry-destinations) are available on Claude Platform on AWS. Organization members, workspace members, invites, API keys, and the usage, cost, and rate limit reports aren't. See [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Authentication

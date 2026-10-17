@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c165556a3fd47e66f60441c7f240b26b942ee5c38fa9db415f894eedfaafdd3d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 74432fc84d3a15fe74b00c66d2761281483dbb67d220d51204e31ec6033bd9ec
 ---
 
 ---
@@ -42,30 +42,28 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
         -H "anthropic-version: 2023-06-01" \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -d @- <<'EOF'
-      {
-        "model": "claude-opus-4-8",
-        "max_tokens": 16000,
-        "thinking": {"type": "adaptive"},
-        "tools": [{
-          "name": "get_weather",
-          "description": "Get current weather for a location",
-          "input_schema": {
-            "type": "object",
-            "properties": {
-              "location": {"type": "string", "description": "City name"}
-            },
-            "required": ["location"]
-          }
-        }],
-        "messages": [{"role": "user", "content": "What's the weather in Paris?"}]
-      }
-      EOF
+        -d '{
+          "model": "claude-opus-5-5",
+          "max_tokens": 16000,
+          "thinking": {"type": "adaptive"},
+          "tools": [{
+            "name": "get_weather",
+            "description": "Get current weather for a location",
+            "input_schema": {
+              "type": "object",
+              "properties": {
+                "location": {"type": "string", "description": "City name"}
+              },
+              "required": ["location"]
+            }
+          }],
+          "messages": [{"role": "user", "content": "What is the weather in Paris?"}]
+        }'
       ```
 
       ```bash CLI
       ant messages create --transform content <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5-5
       max_tokens: 16000
       thinking:
         type: adaptive
@@ -102,7 +100,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
       # Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           tools=[weather_tool],
@@ -128,7 +126,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
       // Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -158,7 +156,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
@@ -189,7 +187,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -211,7 +209,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addTool(Tool.builder()
@@ -251,7 +249,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           messages: [
               ['role' => 'user', 'content' => "What's the weather in Paris?"]
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
           tools: [$weatherTool],
       );
@@ -274,7 +272,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       message = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -290,10 +288,10 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
   </Step>
 
   <Step title="Tangkap array content untuk digemakan kembali">
-    Anda akan melihat blok `thinking`, `text`, dan `tool_use` dalam content respons pada eksekusi di mana Claude memilih untuk berpikir (pada permintaan yang lebih sederhana, mode adaptive mungkin melewatkan blok thinking). Jaga array content ini tetap utuh: langkah berikutnya mengirimkannya kembali kata demi kata.
+    Anda akan melihat blok `thinking` dan `tool_use` dalam content respons pada eksekusi di mana Claude memilih untuk berpikir (pada permintaan yang lebih sederhana, mode adaptive mungkin melewatkan blok thinking). Catatan yang ditulis Claude sebelum pemanggilan alat dikembalikan sebagai blok `text` atau, pada model yang menulis [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), sebagai blok `thinking` lainnya. Jaga array content ini tetap utuh: langkah berikutnya mengirimkannya kembali kata demi kata.
 
     <Note>
-      Untuk melihat teks thinking seperti output ini, tambahkan `display: "summarized"` ke permintaan. Pada model di mana display secara default dihilangkan, termasuk claude-opus-4-8, field `thinking` akan dikembalikan sebagai string kosong dengan hanya `signature` yang terisi. Bagaimanapun juga, gemakan kembali array content tanpa perubahan; lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
+      Untuk melihat teks thinking seperti output ini, tambahkan `display: "summarized"` ke permintaan. Pada model di mana display secara default dihilangkan, termasuk Claude Opus 5.5, tanpa pengaturan tersebut field `thinking` akan dikembalikan sebagai string kosong dengan hanya `signature` yang terisi. Bagaimanapun juga, gemakan kembali array content tanpa perubahan; lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
     </Note>
 
     ```json Output
@@ -303,10 +301,6 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           "type": "thinking",
           "thinking": "The user wants to know the current weather in Paris. I have access to a function `get_weather`...",
           "signature": "BDaL4VrbR2Oj0hO4XpJxT28J5T...."
-        },
-        {
-          "type": "text",
-          "text": "I can help you get the current weather information for Paris. Let me check that for you"
         },
         {
           "type": "tool_use",
@@ -326,11 +320,10 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
     Setiap contoh adalah skrip mandiri: skrip ini mengulangi permintaan pertama, lalu segera mengirim tindak lanjutnya menggunakan respons yang baru saja diterima.
 
-    <CodeGroup>
-      ```bash cURL
-      # Alur kerja ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
-      # Sebagai gantinya, gunakan salah satu contoh SDK dalam grup kode ini.
-      ```
+    <CodeGroup exclude="shell:cURL">
+      <CodeGroupItem language="cURL">
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+      </CodeGroupItem>
 
       ```bash CLI
       # Giliran pertama: tulis array konten asisten (blok thinking dan tool_use,
@@ -338,7 +331,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       # lewat file menjauhkannya dari posisi ekspansi shell di langkah berikutnya.
       ant messages create --transform content --format jsonl \
         > assistant_content.json <<'YAML'
-      model: claude-opus-4-8
+      model: claude-opus-5-5
       max_tokens: 16000
       thinking:
         type: adaptive
@@ -367,7 +360,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           ($blocks[0][] | select(.type == "tool_use") | .id)
       ' <<'JSON' | ant messages create
       {
-        "model": "claude-opus-4-8",
+        "model": "claude-opus-5-5",
         "max_tokens": 16000,
         "thinking": {"type": "adaptive"},
         "tools": [{
@@ -407,7 +400,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           },
       }
       response = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           tools=[weather_tool],
@@ -422,7 +415,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
       # Permintaan kedua - Sertakan giliran asisten dan tool result
       continuation = client.messages.create(
-          model="claude-opus-4-8",
+          model="claude-opus-5-5",
           max_tokens=16000,
           thinking={"type": "adaptive"},
           tools=[weather_tool],
@@ -462,7 +455,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       };
 
       const response = await client.messages.create({
-        model: "claude-opus-4-8",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -483,7 +476,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       if (toolUseBlock) {
         // Permintaan kedua - Sertakan giliran asisten dan tool_result
         const continuation = await client.messages.create({
-          model: "claude-opus-4-8",
+          model: "claude-opus-5-5",
           max_tokens: 16000,
           thinking: {
             type: "adaptive"
@@ -529,7 +522,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
       var parameters = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
@@ -556,7 +549,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       // Bangun kelanjutan dengan hasil alat
       var continuationParams = new MessageCreateParams
       {
-          Model = Model.ClaudeOpus4_8,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
@@ -599,7 +592,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -624,7 +617,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       weatherData := map[string]int{"temperature": 88}
 
       continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus4_8,
+      	Model:     anthropic.ModelClaudeOpus5_5,
       	MaxTokens: 16000,
       	Thinking: anthropic.ThinkingConfigParamUnion{
       		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -664,7 +657,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
               .build();
 
           MessageCreateParams initialParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addTool(weatherTool)
@@ -685,7 +678,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
           // Permintaan kedua: kirim ulang giliran asisten sebagaimana diterima, lalu hasil alat
           MessageCreateParams continuationParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
               .addTool(weatherTool)
@@ -729,7 +722,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           messages: [
               ['role' => 'user', 'content' => "What's the weather in Paris?"]
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
           tools: [$weatherTool],
       );
@@ -757,7 +750,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
                   ]
               ]]
           ],
-          model: 'claude-opus-4-8',
+          model: 'claude-opus-5-5',
           thinking: ['type' => 'adaptive'],
           tools: [$weatherTool],
       );
@@ -781,7 +774,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       response = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -799,7 +792,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       weather_data = { temperature: 88 }
 
       continuation = client.messages.create(
-        model: "claude-opus-4-8",
+        model: "claude-opus-5-5",
         max_tokens: 16000,
         thinking: {
           type: "adaptive"

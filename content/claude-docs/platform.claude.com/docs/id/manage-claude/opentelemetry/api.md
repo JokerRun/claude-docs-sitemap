@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 401c6ab0cce4e203dd925abf5d73e579ac8f8d8823ab4355001aadeb0dc16e82
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 20501f8fa1d7c70525c96cae145bd77accb0a070fa9b22176170e05e61fb22c6
 ---
 
 ---
-title: Menggunakan OpenTelemetry dengan Claude API
+title: Menyiapkan OpenTelemetry dengan Claude API
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
 description: Tambahkan tujuan di Claude Console untuk mengirim trace OpenTelemetry dari permintaan Messages API dan sesi Managed Agents Anda ke platform observabilitas Anda.
 featureMetadata:
@@ -70,7 +70,7 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
 
 <CodeGroup>
   ```bash CLI
-  # Sign in once as an admin, which opens a browser. Leave ANTHROPIC_API_KEY unset, because it overrides the profile.
+  # Masuk sekali sebagai admin, yang akan membuka browser. Biarkan ANTHROPIC_API_KEY tidak diatur, karena variabel ini menimpa profil.
   ant auth login --profile admin --scope "org:admin"
   ant --profile admin beta:organization:telemetry-destinations create \
     --endpoint-url https://gateway.example.com/otlp \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 230925e9c000aa988087fb4d2b949b3dcb253c7a55358f2980db6a35dafe2835
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 410f4555977836968b2e40e3511f8e2c9793c8e4462ac2cd6ae992054139c232
 ---
 
 ---
@@ -18,7 +18,7 @@ Ini adalah referensi untuk "prompt engineering" (rekayasa prompt) dengan model C
 * **Pertimbangan migrasi** terakhir, untuk prompt yang berpindah dari generasi sebelumnya.
 
 <Tip>
-  Untuk ikhtisar kemampuan model, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview). Untuk kemampuan dan perubahan API Claude Fable 5.1, lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1). Untuk kemampuan dan perubahan API Claude Fable 5, lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5). Untuk panduan migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk Claude Opus 5.5, lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5). Untuk Claude Sonnet 5.5, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5). Untuk Claude Haiku 5.5, lihat [Yang baru di Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5).
+  Untuk ikhtisar kemampuan model, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview). Untuk kemampuan dan perubahan API Claude Fable 5.1, lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1). Untuk panduan migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk Claude Opus 5.5, lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5). Untuk Claude Sonnet 5.5, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5). Untuk Claude Haiku 5.5, lihat [Yang baru di Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5).
 </Tip>
 
 ## Panduan khusus model
@@ -596,7 +596,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5-5",
       "max_tokens": 16000,
       "thinking": {"type": "adaptive"},
       "output_config": {"effort": "high"},
@@ -621,7 +621,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   # Sesudah: pemikiran adaptif dengan effort
   ant messages create <<'YAML'
-  model: claude-opus-4-8
+  model: claude-opus-5-5
   max_tokens: 16000
   thinking:
     type: adaptive
@@ -644,7 +644,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   # Sesudah: pemikiran adaptif dengan effort
   client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive"},
       output_config={"effort": "high"},
@@ -663,7 +663,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   // Sesudah: pemikiran adaptif dengan effort
   await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     thinking: { type: "adaptive" },
     output_config: { effort: "high" },
@@ -675,7 +675,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   // Sebelum: "extended thinking" (pemikiran diperpanjang) dengan anggaran manual (model lama)
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-sonnet-4-5-20250929",
+      Model = Model.ClaudeSonnet4_5_20250929,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages = [new() { Role = Role.User, Content = "..." }]
@@ -684,7 +684,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   // Sesudah: adaptive thinking dengan effort
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive(),
       OutputConfig = new OutputConfig { Effort = Effort.High },
@@ -695,7 +695,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```go Go
   // Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     "claude-sonnet-4-5-20250929",
+  	Model:     anthropic.ModelClaudeSonnet4_5_20250929,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfEnabled: &anthropic.ThinkingConfigEnabledParam{BudgetTokens: 10000},
@@ -707,7 +707,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   // Sesudah: pemikiran adaptif dengan effort
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -724,7 +724,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```java Java
   // Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
   client.messages().create(MessageCreateParams.builder()
-      .model("claude-sonnet-4-5-20250929")
+      .model(Model.CLAUDE_SONNET_4_5_20250929)
       .maxTokens(16000L)
       .thinking(ThinkingConfigEnabled.builder().budgetTokens(10000L).build())
       .addUserMessage("...")
@@ -732,7 +732,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   // Sesudah: pemikiran adaptif dengan effort
   client.messages().create(MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_8)
+      .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(16000L)
       .thinking(ThinkingConfigAdaptive.builder().build())
       .outputConfig(OutputConfig.builder()
@@ -753,7 +753,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   // Sesudah: adaptive thinking (pemikiran adaptif) dengan effort
   $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       maxTokens: 16000,
       thinking: ['type' => 'adaptive'],
       outputConfig: ['effort' => 'high'],
@@ -772,7 +772,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
   # Sesudah: pemikiran adaptif dengan effort
   client.messages.create(
-    model: "claude-opus-4-8",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 16000,
     thinking: { type: "adaptive" },
     output_config: { effort: "high" },
@@ -1087,7 +1087,7 @@ If web search is available, Claude uses it to find the product's label and confi
 </medical_guidance>
 ```
 
-```text Medication dosing block wrap
+```text Medication dosing block for Claude Haiku 5.5 wrap
 <medical_guidance>
 This applies only when the person explicitly says the medicine is for a child, and isn't a healthcare professional asking for work.
 Dosing for children's over-the-counter medicines depends on the child's age or weight and the specific product. For infants and toddlers, a small error can cause real harm. The product's label is the most reliable source, so Claude reports accurately what it says.

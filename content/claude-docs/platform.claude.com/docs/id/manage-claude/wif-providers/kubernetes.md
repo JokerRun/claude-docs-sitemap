@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 925b4bb4fc08c3cba22f93af168e72aa1f7f6eee27075358730bb2c65fa0cc40
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 8fe7ce001da016892b26d6a7be8165caddee5fec5b0eb9b335b1f70f40019445
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
 description: Autentikasi ke Claude API dari klaster Kubernetes yang dikelola sendiri menggunakan projected service account token.
 ---
 
-Klaster Kubernetes yang dikelola sendiri (kubeadm, k3s, OpenShift, dan distribusi on-premises) menandatangani OIDC JSON Web Token (JWT) untuk setiap pod melalui [projected service account token](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). API server klaster bertindak sebagai OIDC issuer (penerbit OIDC), dan klaim `sub` setiap token mengikuti bentuk `system:serviceaccount:<namespace>:<service-account>`. Anda dapat menemukan URL issuer klaster Anda dengan membaca dokumen discovery-nya:
+Klaster Kubernetes yang dikelola sendiri (kubeadm, k3s, OpenShift, dan distribusi on-premise) menandatangani OIDC JSON Web Token (JWT) untuk setiap pod melalui [projected service account token](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). API server klaster bertindak sebagai OIDC issuer (penerbit OIDC), dan klaim `sub` setiap token mengikuti bentuk `system:serviceaccount:<namespace>:<service-account>`. Anda dapat menemukan URL issuer klaster Anda dengan membaca dokumen discovery-nya:
 
 ```bash cURL
 kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
@@ -78,7 +78,7 @@ Token yang diterbitkan untuk pod ini membawa `sub: "system:serviceaccount:infere
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Kubernetes**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih tile **Kubernetes**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -298,7 +298,7 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
 
 ## Memverifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang tidak transparan (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) untuk mengetahui alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
 
 ## Membatasi cakupan rule Anda
 

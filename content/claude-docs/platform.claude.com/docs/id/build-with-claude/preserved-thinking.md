@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 69f88920510836d5caba79c4c18f50e0470f59595a459e9a73b711533af14355
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: abee60086be9f452e03fdc19a86a96b3154fdea8e699c0f42641c300b1f7e851
 ---
 
 ---
@@ -104,7 +104,7 @@ Anda memilihnya dengan `thinking.block_binding.prefix_mismatch_behavior`:
 * **`"drop_block"`:** API membuang setiap blok yang gagal dan setiap blok pemikiran setelahnya, dan permintaan berhasil. Blok yang dibuang tidak ditagih. Model menjawab giliran tersebut tanpa menggunakan penalaran dari blok yang dibuang, dan cache prompt dimulai ulang pada titik edit. Respons mencantumkan setiap blok yang dibuang dalam `input_transformations` (pada event `message_start` saat streaming) dengan `reason: "prefix_binding_mismatch"`.
 
 <Warning>
-  `"drop_block"` menyembunyikan error tetapi tidak memperbaiki edit yang menyebabkannya. Blok yang dibuang tidak ditagih, tetapi penggunaan token sesi mungkin tetap meningkat karena Claude terkadang berpikir lebih banyak untuk membuat ulang pemikiran yang dibuang. Peningkatan ini cenderung lebih besar ketika lebih banyak blok pemikiran dibuang, atau ketika blok dibuang pada lebih banyak giliran dalam sesi yang panjang.
+  `"drop_block"` membuat permintaan tetap berhasil, tetapi tidak memperbaiki edit yang menyebabkan ketidakcocokan, dan ada biayanya. Membuang blok dapat secara signifikan meningkatkan token output yang dihasilkan, terutama pada tingkat effort yang lebih tinggi atau ketika blok dibuang pada setiap giliran. Untuk informasi lebih lanjut, lihat [Biaya token output dari `"drop_block"`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost). Blok yang dibuang tidak ditagih, tetapi Claude membuat ulang penalaran yang tidak dapat lagi dibacanya, sehingga menghasilkan lebih banyak token output. Kualitas output juga dapat berubah pada tugas di mana giliran selanjutnya dibangun di atas penalaran sebelumnya. Gunakan `"drop_block"` sebagai solusi sementara selagi Anda memperbaiki edit, tetapi bukan sebagai pengaturan jangka panjang.
 </Warning>
 
 Hitung respons dalam setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, buat peringatan untuk respons tersebut, dan ganti setiap edit dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Di Message Batches API, item yang tidak menetapkan field tersebut tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Tetapkan `"error"` secara eksplisit jika Anda ingin item batch gagal dalam kasus tersebut.
@@ -127,9 +127,17 @@ Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang beruba
 
 Signature yang dirusak atau tidak dapat didekripsi adalah kegagalan yang berbeda. Kegagalan ini selalu mengembalikan 400 (``Invalid `signature` in `thinking` block`` tanpa kalimat tentang percakapan), dan `prefix_mismatch_behavior` tidak berlaku untuknya.
 
+#### Biaya token output dari `"drop_block"`
+
+Dalam pengujian Anthropic pada benchmark coding multi-giliran, membuang blok pemikiran sekali per sesi meningkatkan token output sebesar 2,5% pada effort rendah, 3,9% pada sedang, 4,5% pada tinggi, dan 20,1% pada maksimum. Membuangnya pada setiap giliran setelah yang pertama meningkatkan token output sebesar 4,6% pada effort rendah, 9,7% pada sedang, 10,3% pada tinggi, dan 67,1% pada maksimum. Angka-angka ini adalah perkiraan dengan rentang error yang lebar, dan dampaknya pada beban kerja Anda bergantung pada harness Anda.
+
+Ketika Claude tidak dapat lagi membaca penalaran dari giliran sebelumnya, Claude membuat ulang penalaran tersebut, sehingga permintaan yang membuang blok pemikiran menghasilkan lebih banyak token output dan dapat membutuhkan waktu lebih lama untuk merespons. Pembuangan pada setiap giliran lebih mahal daripada pembuangan sesekali, dan seberapa besar selisihnya bergantung pada harness Anda: seberapa sering harness mengedit prefiks dan seberapa banyak setiap giliran dibangun di atas penalaran sebelumnya.
+
+Sebelum Anda mengandalkan `"drop_block"`, jalankan eval pada beban kerja Anda sendiri untuk mengukur peningkatannya. Jika kecil, `"drop_block"` dapat membuat permintaan tetap berhasil selagi Anda memperbaiki edit. Bagaimanapun juga, memperbaiki edit dengan pola dari [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits) adalah solusi jangka panjang yang lebih baik.
+
 #### Menangani error dalam kode
 
-Ini adalah `invalid_request_error` 400 yang ditunjukkan sebelumnya di bagian ini. Jangan mengirim ulang body yang sama: body tersebut akan gagal dengan cara yang sama setiap kali. Coba ulang sekali dengan header beta dan `prefix_mismatch_behavior: "drop_block"`, dan simpan pilihan tersebut bersama sesi sehingga setiap permintaan berikutnya juga mengirimkannya, termasuk setelah restart. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, jaga riwayat tetap append-only, atau hapus blok pemikiran mulai dari giliran yang diedit. Jika Anda tidak dapat mengirim header beta, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat sekali, biarkan tetap dihapus, dan lanjutkan. Kemudian perbaiki edit yang menyebabkan ketidakcocokan.
+Ini adalah 400 `invalid_request_error` yang ditunjukkan sebelumnya di bagian ini. Jangan mengirim ulang body yang sama: body tersebut akan gagal dengan cara yang sama setiap kali. Coba ulang sekali dengan header beta dan `prefix_mismatch_behavior: "drop_block"`, sebagai solusi sementara ([`"drop_block"` dapat meningkatkan token output](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost)), dan simpan pilihan tersebut bersama sesi sehingga setiap permintaan berikutnya juga mengirimkannya, termasuk setelah restart. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, jaga riwayat tetap append-only, atau hapus blok pemikiran mulai dari giliran yang diedit. Jika Anda tidak dapat mengirim header beta, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat sekali, biarkan tetap dihapus, dan lanjutkan. Kemudian perbaiki edit yang menyebabkan ketidakcocokan.
 
 ### Menetapkan perilaku ketidakcocokan dan membaca `input_transformations`
 
@@ -238,7 +246,7 @@ Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertam
   var response = await client.Beta.Messages.Create(
       new()
       {
-          Model = "claude-fable-5-1",
+          Model = Model.ClaudeFable5_1,
           MaxTokens = 16000,
           Thinking = new BetaThinkingConfigAdaptive
           {
@@ -274,7 +282,7 @@ Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertam
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-fable-5-1",
+  	Model:     anthropic.ModelClaudeFable5_1,
   	MaxTokens: 16000,
   	Thinking: anthropic.BetaThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{
@@ -307,12 +315,13 @@ Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertam
   import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
   import com.anthropic.models.beta.messages.BetaThinkingPrefixMismatchBehavior;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(16000L)
           .addBeta(AnthropicBeta.THINKING_BINDING_CONTROLS_2026_08_01)
           .thinking(BetaThinkingConfigAdaptive.builder()
@@ -442,7 +451,9 @@ Setiap baris membandingkan dua permintaan yang berurutan:
 <Tip>
   **Otomatiskan pemeriksaan ini dengan skill Claude API.** Di versi terbaru [Claude Code](https://code.claude.com/docs/en/overview), buka repositori yang membangun permintaan Anda dan jalankan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#checking-an-integration-for-preserved-thinking) bawaan:
 
-  ```text wrap
+  Biarkan Claude Code memeriksa kode Anda
+
+  ```text
   /claude-api preserved-thinking-migration
   ```
 
@@ -619,7 +630,7 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
       var response = await client.Beta.Messages.Create(
           new()
           {
-              Model = "claude-fable-5-1",
+              Model = Model.ClaudeFable5_1,
               MaxTokens = 16000,
               Thinking = new BetaThinkingConfigAdaptive
               {
@@ -656,7 +667,7 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
   for _, userTurn := range userTurns {
   	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(userTurn)))
   	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-fable-5-1",
+  		Model:     anthropic.ModelClaudeFable5_1,
   		MaxTokens: 16000,
   		Thinking: anthropic.BetaThinkingConfigParamUnion{
   			OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{
@@ -690,6 +701,7 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
   import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
   import com.anthropic.models.beta.messages.BetaThinkingPrefixMismatchBehavior;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -700,7 +712,7 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
 
       // Daftar pesan builder bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
       MessageCreateParams.Builder conversation = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(16000L)
           .thinking(BetaThinkingConfigAdaptive.builder()
               .blockBinding(BetaThinkingBlockBinding.builder()
@@ -1046,7 +1058,7 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
       var response = await client.Beta.Messages.Create(
           new()
           {
-              Model = "claude-fable-5-1",
+              Model = Model.ClaudeFable5_1,
               MaxTokens = 16000,
               Thinking = new BetaThinkingConfigAdaptive(),
               // Hanya permintaan terakhir yang menambahkan prompt sistem, yang sengaja mengubah prefiks
@@ -1087,7 +1099,7 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
   		system = []anthropic.BetaTextBlockParam{{Text: "Answer briefly."}}
   	}
   	response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  		Model:     "claude-fable-5-1",
+  		Model:     anthropic.ModelClaudeFable5_1,
   		MaxTokens: 16000,
   		Thinking: anthropic.BetaThinkingConfigParamUnion{
   			OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{},
@@ -1123,6 +1135,7 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -1134,7 +1147,7 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
 
       // Daftar pesan builder bertambah di setiap giliran: tiap giliran asisten dikirim kembali persis seperti yang dikembalikan
       MessageCreateParams.Builder conversation = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(16000L)
           .thinking(BetaThinkingConfigAdaptive.builder().build())
           .addBeta(AnthropicBeta.THINKING_BINDING_CONTROLS_2026_08_01);
@@ -1554,7 +1567,7 @@ Teruskan riwayat yang telah di-compact sebagai `messages` dan atur `block_bindin
   var response = await client.Beta.Messages.Create(
       new()
       {
-          Model = "claude-fable-5-1",
+          Model = Model.ClaudeFable5_1,
           MaxTokens = 16000,
           Thinking = new BetaThinkingConfigAdaptive
           {
@@ -1576,7 +1589,7 @@ Teruskan riwayat yang telah di-compact sebagai `messages` dan atur `block_bindin
 
   // compactedMessages: pesan ringkasan, lalu giliran yang dipertahankan sesuai yang dikembalikan
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-fable-5-1",
+  	Model:     anthropic.ModelClaudeFable5_1,
   	MaxTokens: 16000,
   	Thinking: anthropic.BetaThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{
@@ -1602,13 +1615,14 @@ Teruskan riwayat yang telah di-compact sebagai `messages` dan atur `block_bindin
   import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
   import com.anthropic.models.beta.messages.BetaThinkingPrefixMismatchBehavior;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       // compactedMessages: pesan ringkasan, lalu giliran yang dipertahankan sebagaimana dikembalikan
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(16000L)
           .thinking(BetaThinkingConfigAdaptive.builder()
               .blockBinding(BetaThinkingBlockBinding.builder()

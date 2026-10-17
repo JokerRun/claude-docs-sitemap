@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: c46492c7d4ae32ab5189ac6370a0a2bd0c8eaf62b395fce8105cb907a0093524
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c515e05538b55ae79a3044229d742946785e0dcca66845478d542ceb0620d26c
 ---
 
 > ## Documentation Index
@@ -524,7 +524,7 @@ For general skills troubleshooting, such as YAML syntax errors and debugging, se
 The [Claude Code skills guide](/docs/en/skills) covers authoring in depth. Its guidance applies to SDK sessions. Start with these sections:
 
 * [Frontmatter reference](/docs/en/skills#frontmatter-reference): every supported field
-* [Pass arguments to skills](/docs/en/skills#pass-arguments-to-skills): `$ARGUMENTS`, `$0`, `$1`, and skill stacking. The [full substitution table](/docs/en/skills#available-string-substitutions) adds named arguments and the `${CLAUDE_*}` variables
+* [Pass arguments to skills](/docs/en/skills#pass-arguments-to-skills): `$ARGUMENTS`, `$0`, and `$1`. The [full substitution table](/docs/en/skills#available-string-substitutions) adds named arguments and the `${CLAUDE_*}` variables
 * [Inject dynamic context](/docs/en/skills#inject-dynamic-context): `` !`command` `` lines that run before Claude sees the skill content
 * [Choose where skills load](/docs/en/skills#where-skills-live): every skill location, plugin namespacing, and which skill runs when two share a name
 

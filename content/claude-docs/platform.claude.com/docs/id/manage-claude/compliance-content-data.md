@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e130874a91de9936f9d525854dfc61dfcaa72eba2b55d367790328dbccbc955b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: fa8042c7bf40af876442b80b2e590783210b0371fe0cbb9e09d38aad248b666f
 ---
 
 ---
@@ -177,7 +177,7 @@ Endpoint pesan mengembalikan metadata chat ditambah array `chat_messages` yang d
 
 ## Mengambil file dan artifact
 
-File dan artifact diunduh berdasarkan ID dan tidak dicantumkan secara terpisah. ID tersebut berasal dari endpoint pesan chat di [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages), yaitu array `files`, `generated_files`, dan `artifacts` pada setiap pesan. Untuk unggahan tingkat proyek, ID berasal dari [endpoint lampiran proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-projects-and-attachments).
+File dan artifact diunduh berdasarkan ID. Kecuali untuk dokumen Claude Docs (lihat akhir bagian ini), file dan artifact tidak dicantumkan secara terpisah. ID berasal dari endpoint pesan chat di [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) (array `files`, `generated_files`, dan `artifacts` pada setiap pesan) atau, untuk unggahan tingkat proyek, dari [endpoint lampiran proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-projects-and-attachments).
 
 Pilih endpoint yang sesuai dengan jenis ID Anda dan data yang Anda butuhkan. Endpoint konten file yang sama melayani file chat maupun file proyek.
 
@@ -225,6 +225,8 @@ Apa pun caranya, nama tersebut adalah nama yang diberikan pengguna saat mengungg
 * Tolak nama yang diawali dengan `-` atau `.`.
 
 Berbeda dengan endpoint konten file, endpoint konten artifact mengembalikan objek JSON. Kirimkan `version_id` dari salah satu entri dalam array `artifacts` pada pesan asisten, bukan `id` artifact yang stabil. Setiap versi baru artifact memiliki `version_id` sendiri. Field `content` pada respons berisi teks dari versi tersebut secara persis, sedangkan field `title` dan `artifact_type` menggambarkan artifact-nya. [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve) menghitung `size_bytes` dan `md5` dari encoding UTF-8 teks tersebut. Jadi, bandingkan keduanya dengan nilai `content`, bukan dengan seluruh body respons.
+
+Dokumen Claude Docs dicantumkan secara terpisah, oleh [Mencantumkan artifact kode](https://platform.claude.com/docs/id/api/compliance/code/artifacts/list), dengan `artifact_type` disetel ke `claude_docs`. Daftar `versions` dokumen kosong dan `published_version_id`-nya bernilai `null`. Untuk mengunduh teks terkini dokumen, panggil `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`. Ini mengembalikan arsip ZIP dengan satu file Word (.docx) untuk setiap tab yang berisi teks. Komentar, file yang diunggah, dan riwayat pengeditan tidak disertakan. Mengunduh Claude Docs melalui Compliance API masih dalam beta.
 
 ## Mengambil proyek dan lampiran
 

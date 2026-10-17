@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/interface
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 0847364fb41a7c1b178400296bff7f5afd8aab021230730084e9e0e10e85b261
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3799ccf1061b6f1493a846634eb1f2fd75328232633f5e786d107837cd11c2ad
 ---
 
 > ## Documentation Index
@@ -446,8 +446,8 @@ The [interface gallery](/docs/en/plugins/mods/gallery) has samples and screensho
 
 | Element | What it draws | Where |
 | :- | :- | :- |
-| `Box` | A flex container. Takes layout props such as `flexDirection`, `columnGap`, `padding`, [`borderStyle`](/docs/en/plugins/mods/reference#box-border-styles), and `width`. | Everywhere |
-| `Text` | Styled text. Takes `color`, `bold`, `dimColor`, `italic`, and `wrap`. A `color` is a theme key or a color such as `'red'`. A `wrap` is `'wrap'`, `'truncate'`, `'truncate-start'`, `'truncate-middle'`, or `'truncate-end'`. | Everywhere |
+| `Box` | A flex container that takes layout props such as `flexDirection`, [`borderStyle`](/docs/en/plugins/mods/reference#box-border-styles), and `width`. Spacing props such as `columnGap` and `padding` take a number or a [step name](/docs/en/plugins/mods/reference#box-spacing-steps) from `'xs'` to `'xl'`. | Everywhere |
+| `Text` | Styled text. Takes `color`, `bold`, `dimColor`, `italic`, `wrap`, and others such as [`weight`](/docs/en/plugins/mods/reference#text-typography). A `color` is a theme key or a color such as `'red'`. A `wrap` is `'wrap'`, `'truncate'`, `'truncate-start'`, `'truncate-middle'`, or `'truncate-end'`. | Everywhere |
 | `Button` | A control that calls `onPress` | Everywhere |
 | `Link`, `Code`, `Markdown` | A link with `href` and an optional `label`, a code block, and text formatted the way Claude's replies are. `Markdown` takes its content in a `text` prop, not in `children`, and needs a `key` when you pass `onLinkPress`. | Everywhere |
 | `Input`, `Select` | A text field and a dropdown | Terminal, Desktop, VS Code |

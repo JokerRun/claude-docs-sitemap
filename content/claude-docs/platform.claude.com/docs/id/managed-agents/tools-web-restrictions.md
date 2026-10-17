@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c2b1b301928e007286792bef6c7a9f5131d09c4f2157df0ede8583e7901e6e1a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 9f3742e16737adfd93e0c149b1a0b74b214bf154e39d5053d6d5ad6b212aae47
 ---
 
 ---
@@ -17,20 +17,20 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Untuk mengontrol situs mana yang dapat dijangkau oleh alat web agen, tetapkan daftar domain pada entri `web_search` dan `web_fetch` dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset). Setiap entri `configs` ini menerima salah satu dari dua daftar:
+Untuk mengendalikan situs mana yang dapat dijangkau oleh alat web agen, tetapkan daftar domain pada entri `web_search` dan `web_fetch` dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset). Setiap entri `configs` (csharp, go: `Configs`) ini menerima salah satu dari dua daftar:
 
-* **`allowed_domains`:** Alat hanya dapat menjangkau host-host ini.
-* **`blocked_domains`:** Alat tidak pernah dapat menjangkau host-host ini.
+* **`allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`):** Alat hanya dapat menjangkau host-host ini.
+* **`blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`):** Alat tidak pernah dapat menjangkau host-host ini.
 
 Setiap alat memiliki daftarnya sendiri, sehingga `web_search` dan `web_fetch` dapat memiliki pembatasan yang berbeda.
 
 <Note>
-  `web_search` dan `web_fetch` berjalan di server Anthropic, bukan di sandbox. Environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` juga menerapkan `allowed_hosts`-nya pada alat-alat tersebut; lihat [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent). Jaringan `unrestricted` dan environment self-hosted tidak membatasinya. Daftar per alat membatasi alat-alat ini lebih lanjut. Pengaturan web search dan web fetch tingkat organisasi di Claude Console berlaku untuk Messages API. Pengaturan tersebut tidak berlaku untuk sesi Managed Agents.
+  `web_search` dan `web_fetch` berjalan di server Anthropic, bukan di sandbox. Environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` juga menerapkan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) miliknya pada alat-alat tersebut; lihat [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent). Jaringan `unrestricted` dan environment self-hosted tidak membatasinya. Daftar per alat membatasi alat-alat ini lebih lanjut. Pengaturan web search dan web fetch tingkat organisasi di Claude Console berlaku untuk Messages API. Pengaturan tersebut tidak berlaku untuk sesi Managed Agents.
 </Note>
 
 ## Menetapkan daftar domain pada agen
 
-Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` dan `max_content_tokens`, yang dijelaskan di [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings). Contoh tersebut kemudian mencetak array `configs` dari respons.
+Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) dan `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), yang dijelaskan di [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings). Contoh tersebut kemudian mencetak array `configs` (csharp, go: `Configs`) dari respons.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -39,35 +39,33 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "Research Agent",
-    "model": "claude-opus-5-5",
-    "tools": [
-      {
-        "type": "agent_toolset_20260401",
-        "configs": [
-          {
-            "type": "web_search",
-            "name": "web_search",
-            "allowed_domains": ["docs.example.com", "arxiv.org"],
-            "user_location": {
-              "type": "approximate",
-              "country": "US",
-              "timezone": "America/Los_Angeles"
+    -d '{
+      "name": "Research Agent",
+      "model": "claude-opus-5-5",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401",
+          "configs": [
+            {
+              "type": "web_search",
+              "name": "web_search",
+              "allowed_domains": ["docs.example.com", "arxiv.org"],
+              "user_location": {
+                "type": "approximate",
+                "country": "US",
+                "timezone": "America/Los_Angeles"
+              }
+            },
+            {
+              "type": "web_fetch",
+              "name": "web_fetch",
+              "blocked_domains": ["ads.example.com"],
+              "max_content_tokens": 50000
             }
-          },
-          {
-            "type": "web_fetch",
-            "name": "web_fetch",
-            "blocked_domains": ["ads.example.com"],
-            "max_content_tokens": 50000
-          }
-        ]
-      }
-    ]
-  }
-  EOF
+          ]
+        }
+      ]
+    }'
   )
   jq '.tools[0].configs' <<< "$agent"
   ```
@@ -377,20 +375,20 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
   ```
 </CodeGroup>
 
-Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, `allowed_hosts` milik environment juga berlaku untuk `web_search` dan `web_fetch`. Pembuatan sesi gagal dengan error 400 ketika `allowed_domains` dari alat web yang diaktifkan memiliki entri yang tidak berada dalam `allowed_hosts`. Begitu pula pembaruan sesi yang menambahkan entri semacam itu. Untuk memperbaikinya, tambahkan host ke `allowed_hosts` atau hapus entri dari `allowed_domains`. Saat runtime, panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` mengembalikan hasil error `url_not_allowed`. `web_search` menghilangkan hasil dari host semacam itu. Kedua daftar dicocokkan secara berbeda: entri alat mencakup subdomainnya, tetapi entri `allowed_hosts` hanya cocok dengan satu host yang persis sama kecuali diawali dengan `*.`. Misalnya, entri alat `docs.example.com` tidak berada dalam `allowed_hosts` berisi `["example.com"]`, tetapi berada dalam `["docs.example.com"]` atau `["*.example.com"]`.
+Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) milik environment juga berlaku untuk `web_search` dan `web_fetch`. Pembuatan sesi gagal dengan error 400 ketika `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dari alat web yang diaktifkan memiliki entri yang tidak berada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Hal yang sama berlaku untuk pembaruan sesi yang menambahkan entri semacam itu. Untuk memperbaikinya, tambahkan host ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) atau hapus entri dari `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`). Saat runtime, panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) mengembalikan hasil error `url_not_allowed`. `web_search` menghilangkan hasil dari host semacam itu. Kedua daftar dicocokkan secara berbeda: entri alat mencakup subdomainnya, tetapi entri `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) hanya cocok dengan satu host yang persis sama kecuali diawali dengan `*.`. Misalnya, entri alat `docs.example.com` tidak berada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) berisi `["example.com"]`, tetapi berada dalam `["docs.example.com"]` atau `["*.example.com"]`.
 
 Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen. Tetapkan `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
 
 ## Pengaturan
 
-Selain `enabled` dan `permission_policy`, entri alat web menerima pengaturan berikut:
+Selain `enabled` (csharp, go: `Enabled`) dan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`), entri alat web menerima pengaturan berikut:
 
-| Pengaturan           | Berlaku untuk             | Deskripsi                                                                                                                                                                                                                           |
-| -------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_domains`    | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                             |
-| `blocked_domains`    | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                                    |
-| `max_content_tokens` | `web_fetch`               | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
-| `user_location`      | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API.                  |
+| Pengaturan                                                                           | Berlaku untuk             | Deskripsi                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------ | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`)        | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                             |
+| `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`)        | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                                    |
+| `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`) | `web_fetch`               | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
+| `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`)              | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API.                  |
 
 Untuk cara SDK mendefinisikan tipe entri-entri ini, lihat [Jenis entri konfigurasi di SDK](https://platform.claude.com/docs/id/managed-agents/tools#config-entry-types-in-the-sdks).
 
@@ -400,9 +398,9 @@ Untuk cara SDK mendefinisikan tipe entri-entri ini, lihat [Jenis entri konfigura
 
 ## Aturan daftar domain
 
-Aturan-aturan ini berlaku sama untuk `allowed_domains` dan `blocked_domains`. Permintaan yang melanggar salah satunya akan ditolak, seperti yang dijelaskan di [Error validasi](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#validation-errors).
+Aturan-aturan ini berlaku sama untuk `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`). Permintaan yang melanggar salah satunya akan ditolak, seperti yang dijelaskan di [Error validasi](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#validation-errors).
 
-* **Satu daftar per entri:** Tetapkan `allowed_domains` atau `blocked_domains` pada sebuah entri, bukan keduanya.
+* **Satu daftar per entri:** Tetapkan `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) atau `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) pada sebuah entri, bukan keduanya.
 * **Ukuran daftar:** Setiap daftar berisi 1 hingga 64 domain, masing-masing 1 hingga 255 karakter.
 * **Tidak boleh ada daftar kosong:** Untuk tidak menerapkan pembatasan, hilangkan field tersebut atau kirim `null`.
 * **Tidak boleh ada duplikat:** Sebuah domain hanya boleh muncul sekali dalam daftar. `www.example.com` dan `example.com` dihitung sebagai domain yang berbeda.
@@ -440,7 +438,7 @@ Utamakan hostname polos untuk `web_search` juga. Penyedia pencarian mencocokkan 
 
 ## Error validasi
 
-API memvalidasi pengaturan ini saat Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). API juga memvalidasinya saat Anda membuat atau memperbarui sesi yang menyertakan `tools`.
+API memvalidasi pengaturan ini saat Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). API juga memvalidasinya saat Anda membuat atau memperbarui sesi yang menyertakan `tools` (csharp, go: `Tools`).
 
 Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error`:
 
@@ -452,11 +450,11 @@ Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error`:
 
 Pada permintaan yang sama, API juga menolak tiga pengaturan yang bergantung pada penyedia pencarian dan pengambilan:
 
-* Domain dalam `allowed_domains` yang tidak diizinkan untuk diakses oleh crawler Anthropic.
+* Domain dalam `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) yang tidak diizinkan untuk diakses oleh crawler Anthropic.
 * `user_location.country` yang tidak didukung oleh penyedia pencarian. Pesannya diakhiri dengan `user_location.country: not a country the search provider supports`.
 * `user_location.timezone` yang bukan nama IANA yang valid.
 
-Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan dan pembaruan sesi juga memeriksa `allowed_domains` terhadap `allowed_hosts` milik environment. Lihat aturannya di [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent).
+Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan dan pembaruan sesi juga memeriksa `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) terhadap `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) milik environment. Lihat aturannya di [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent).
 
 ### Ketika pengaturan yang diterima tidak lagi valid
 
@@ -470,7 +468,7 @@ Untuk melanjutkan sesi:
 
 ## Sesi multiagen dan berbasis outcome
 
-Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diberlakukan secara bersamaan. Agen yang tercantum dalam `subagents.predefined_agents` terikat oleh tiga set daftar:
+Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap daftar domain yang berlaku untuk sebuah thread diberlakukan secara bersamaan. Agen yang tercantum dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) terikat oleh tiga set daftar:
 
 * `allowed_domains` dan `blocked_domains` miliknya sendiri
 * Milik agen mana pun yang memanggilnya
@@ -489,7 +487,7 @@ Oleh karena itu, agen yang tercantum dapat mempersempit apa yang dijangkau alat 
 * Agen tercantum yang menetapkan `blocked_domains` tetap menggunakan `allowed_domains` dari agen sesi dan memblokir host tersebut di dalamnya.
 * Agen tercantum yang menetapkan `allowed_domains` sendiri hanya dapat menjangkau host yang tercakup baik oleh daftarnya maupun daftar agen sesi.
 
-Entri `{"type": "self"}` dalam `subagents.predefined_agents` tidak memiliki pengaturan web sendiri dan mengikuti pengaturan saat ini dari agen sesi.
+Entri `{"type": "self"}` dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) tidak memiliki pengaturan web sendiri dan mengikuti pengaturan saat ini dari agen sesi.
 
 Jika daftar `allowed_domains` yang digabungkan tidak memiliki domain yang sama, alat tetap tersedia bagi agen tersebut tetapi setiap panggilan gagal. Setiap panggilan mengembalikan error `url_not_allowed` yang menyatakan bahwa tidak ada domain yang diizinkan. Deskripsi alat juga memberi tahu model hal yang sama. Untuk menghindari hal ini, pastikan `allowed_domains` setiap agen tercantum berada di dalam `allowed_domains` agen sesi.
 
@@ -499,16 +497,16 @@ Grader dalam [sesi berbasis outcome](https://platform.claude.com/docs/id/managed
 
 Anda dapat mengubah daftar pada sesi yang sedang idle dengan [memperbarui alatnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-agent-configuration). Daftar baru berlaku untuk sisa sesi.
 
-Dalam sesi multiagen, setiap thread menerapkan daftar baru mulai dari giliran berikutnya. Untuk agen yang tercantum dalam `subagents.predefined_agents`, pembaruan tidak mengubah daftar milik agen itu sendiri. Daftar tersebut tetap seperti yang ditetapkan oleh definisi agen saat sesi dibuat.
+Dalam sesi multiagen, setiap thread menerapkan daftar baru mulai dari giliran berikutnya. Untuk agen yang tercantum dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), pembaruan tidak mengubah daftar milik agen itu sendiri. Daftar tersebut tetap seperti yang ditetapkan oleh definisi agen saat sesi dibuat.
 
 ## Perbedaan dari alat Messages API
 
-Pengaturan ini menggunakan field `allowed_domains` dan `blocked_domains` yang sama seperti [pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) pada alat server Messages API. Managed Agents berbeda dalam empat hal:
+Pengaturan ini menggunakan field `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) yang sama seperti [pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering) pada alat server Messages API. Managed Agents berbeda dalam empat hal:
 
 * Setiap daftar [dibatasi hingga 64 domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).
 * Domain yang didaftarkan untuk `web_fetch` [tidak boleh menyertakan path](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-format).
 * Domain [harus berupa ASCII](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-format). Messages API menerima entri Unicode, meskipun tidak merekomendasikannya.
-* `max_uses`, `citations`, dan `cache_control` tidak tersedia pada toolset.
+* `max_uses` (java, php: `maxUses`; csharp, go: `MaxUses`), `citations` (csharp, go: `Citations`), dan `cache_control` (java, php: `cacheControl`; csharp, go: `CacheControl`) tidak tersedia pada toolset.
 
 ## Langkah selanjutnya
 

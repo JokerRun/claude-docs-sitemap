@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 2530735afb46ca37bc85854efe605d4931b118691931611c00cdcccfd1bc13d8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c7f0cc0554ef5a6fcaa93a9583f542ea90b97b681fc789ef3aa537f6ff2d9324
 ---
 
 ---
@@ -50,16 +50,14 @@ Pendekatan yang paling andal adalah mengubah ukuran gambar Anda sendiri sebelum 
 
 Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)) dan berikan batas tepi dan token yang sesuai. Implementasi referensi berikut menghitung ukuran persis yang digunakan Claude saat mengubah ukuran gambar:
 
-<CodeGroup>
-  ```bash cURL
-  # Implementasi referensi ini adalah perhitungan lokal yang tidak membuat permintaan API, jadi
-  # tidak ada yang perlu ditampilkan untuk cURL. Lihat tab SDK.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Hitung ukuran ini dalam kode.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Implementasi referensi ini adalah perhitungan lokal yang tidak membuat permintaan API, jadi
-  # tidak ada yang perlu ditampilkan untuk CLI. Lihat tab SDK.
-  ```
+  <CodeGroupItem language="CLI">
+    Hitung ukuran ini dalam kode.
+  </CodeGroupItem>
 
   ```python Python
   import math
@@ -491,16 +489,14 @@ Jika Anda tidak dapat mengubah ukuran terlebih dahulu (misalnya, ketika gambar b
 
 Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates) merupakan pengecualian dari pengubahan ukuran otomatis. API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih mengubah ukurannya. Ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya, lalu skalakan koordinat yang dikembalikan Claude kembali ke dimensi layar Anda.
 
-<CodeGroup>
-  ```bash cURL
-  # Konversi koordinat lokal ini tidak membuat permintaan API, jadi tidak ada
-  # yang perlu ditampilkan untuk cURL. Lihat tab SDK.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Konversikan koordinat dalam kode.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Konversi koordinat lokal ini tidak membuat permintaan API, jadi tidak ada
-  # yang perlu ditampilkan untuk CLI. Lihat tab SDK.
-  ```
+  <CodeGroupItem language="CLI">
+    Konversikan koordinat dalam kode.
+  </CodeGroupItem>
 
   ```python Python
   # Helper ini memanggil resized_size dari contoh resize di halaman ini.

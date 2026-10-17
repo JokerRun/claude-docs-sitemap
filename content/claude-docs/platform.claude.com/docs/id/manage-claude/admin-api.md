@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 27b45794bc6e4df45fce34394f54bff7c39bec7a168b90657fc1399caee7dee6
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 27309ba535f942fe3c96e792bdc1bb0c572a732107205c8844cc7694c3b667a2
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
 [Admin API](https://platform.claude.com/docs/id/api/organization) memungkinkan Anda mengelola anggota, workspace, undangan, dan kunci API organisasi Anda secara terprogram, alih-alih secara manual di [Claude Console](https://platform.claude.com/).

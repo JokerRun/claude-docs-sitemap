@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 1a001c9a5a253017bc004e2a6088fb182bb1bec1c1a9fc02a6b48ad1c3d4c987
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 261aa48f566debbde2d3b0105b3b6d91025faf371f9f9adc71a77ee42832990f
 ---
 
 ---
@@ -30,11 +30,13 @@ featureMetadata:
     Google Cloud: ga
 ---
 
+<Note>
+  **Mulai dengan toolset SDK:** SDK Python dan TypeScript memiliki kelas toolset browser, dalam versi beta. Mulailah dari [integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), atau lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk). Gunakan halaman ini sebagai referensi alat, atau ketika Anda menangani panggilan alat sendiri.
+</Note>
+
 Alat browser use memungkinkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang dijalankan oleh aplikasi Anda. Claude bekerja dengan halaman melalui strukturnya ("accessibility tree" (pohon aksesibilitas), elemen, formulir, dan tab) sekaligus melalui screenshot dan koordinat viewport.
 
 Alat ini adalah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) yang didefinisikan oleh Anthropic: satu entri `browser_toolset_20260801` di `tools` memberi Claude 27 alat anggota secara default, seperti `navigate`, `read_page`, `left_click`, dan `screenshot`, ditambah empat lagi saat Anda [mengaktifkannya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools). Aplikasi Anda menjalankan setiap panggilan menggunakan otomatisasi browsernya sendiri; tidak ada yang dijalankan di sisi Anthropic. Alat ini saat ini tidak tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools).
-
-SDK Python dan TypeScript menyertakan sebuah kelas yang meneruskan panggilan-panggilan ini ke kode browser Anda, menjalankan kebijakan URL dan file yang Anda tetapkan, dan meminta persetujuan melalui callback Anda. Lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 
 Pilih browser use ketika tugas tetap berada di dalam halaman web dan berarti bertindak pada halaman tersebut, atau ketika halaman membangun kontennya dengan JavaScript. Ketika tugas memerlukan seluruh desktop, gunakan [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), yang bekerja hanya melalui screenshot dan koordinat. Untuk membaca halaman yang dapat Anda tunjukkan kepada Claude, atau menemukan sumber di web, [alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) dan [alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) lebih ringan. Keduanya adalah [server tools](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang dijalankan API untuk Anda, tanpa browser yang perlu dioperasikan.
 
@@ -1591,7 +1593,7 @@ Sesi browser, unduhan, dan file yang diunggah tetap berada di lingkungan Anda; s
 
 <CardGroup cols={2}>
   <Card title="Penggunaan browser dan komputer dengan toolset SDK" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk">
-    Tulis driver browser dalam Python atau TypeScript. SDK menjalankan loop dan pemeriksaan yang Anda konfigurasikan.
+    Mulai dari driver mitra, atau tulis driver Anda sendiri dalam Python atau TypeScript. SDK menjalankan loop dan pemeriksaan yang Anda konfigurasikan.
   </Card>
 
   <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">

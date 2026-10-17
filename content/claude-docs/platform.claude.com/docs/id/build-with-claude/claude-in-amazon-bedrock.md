@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 8785aefef778a3384bc8eae0d94818a7d6033cea1835bc223768dc78b95152df
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 52aa86bd119938ae34d2a405aa8551f259fc0f2da31bba9e320ab85cd1b09168
 ---
 
 ---
@@ -355,7 +355,7 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 | Claude Haiku 5.5                                                                            | `anthropic.claude-haiku-5-5`      | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
 | Claude Haiku 4.5                                                                            | `anthropic.claude-haiku-4-5`      | Open                                                                                                |
 
-Gunakan Claude Code 2.1.255 atau yang lebih baru dengan Claude Fable 5.1 di Amazon Bedrock, dan 2.1.280 atau yang lebih baru dengan Claude Opus 5.5 dan Claude Haiku 5.5; jalankan `claude update` untuk memperbarui.
+Gunakan versi terbaru Claude Code dengan Claude di Amazon Bedrock; jalankan `claude update` untuk memperbarui.
 
 <Tip>
   Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 60647b46b63a1115cd3dad47ff1bb53824304df1fd5d76ab6bf05bf83f23c170
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f5dc6d1ddc01ceb1fec2cb601d8e5296417f960524d8c3d3549c293e100a2065
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ You can also have Claude scaffold a server for you with the official [`mcp-serve
     If the install fails, match the message Claude Code reports:
 
     * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-    * The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
+    * `Plugin "<name>" not found in marketplace "claude-plugins-official"`: your local copy of the marketplace catalog may be out of date. Refresh it with `/plugin marketplace update claude-plugins-official`, then retry the install. If the retry prints the same message, see [Plugin not found in marketplace](/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace).
 
     If the install summary reports `Run /reload-plugins to apply.`, Claude Code then runs that reload for you. If the reload warns that your next message would re-read the conversation, run `/reload-plugins --force`.
   </Step>

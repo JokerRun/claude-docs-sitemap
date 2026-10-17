@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 841aa82774c9be47d507a592ed87b1e14732cb3d03dbd56fe8f42444f1b3acd6
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 9ab907210e144de1e01f1f0a3fe5f7214e6c3420aaf057f5bc64b713cd0cfbd6
 ---
 
 ---
@@ -40,7 +40,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
 ### Contoh mulai cepat
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, php">
   ```python Python
   import os
 
@@ -160,12 +160,9 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   }
   ```
 
-  ```php PHP
-  <?php
-  // Tidak ada SDK PHP resmi dari OpenAI, jadi tidak ada contoh yang ditampilkan di sini.
-  // Untuk menggunakan Claude dari PHP, gunakan Claude API native sebagai gantinya:
-  // https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-  ```
+  <CodeGroupItem language="PHP">
+    OpenAI tidak memiliki SDK PHP resmi. Untuk menggunakan Claude dari PHP, gunakan [Claude SDK untuk PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php) sebagai gantinya.
+  </CodeGroupItem>
 
   ```ruby Ruby
   require "openai"
@@ -212,7 +209,7 @@ Sebagian besar input ke OpenAI SDK dipetakan secara langsung ke parameter API An
 
 Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude menentukan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; "extended thinking" (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama (legacy). Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan thinking Claude. Untuk fitur thinking lengkap, termasuk [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), gunakan Claude API native.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, php">
   ```python Python
   response = client.chat.completions.create(
       model="claude-sonnet-4-6",
@@ -270,12 +267,9 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
   ChatCompletion completion = client.chat().completions().create(params);
   ```
 
-  ```php PHP
-  <?php
-  // Tidak ada SDK PHP resmi dari OpenAI, jadi tidak ada contoh yang ditampilkan di sini.
-  // Untuk menggunakan Claude dari PHP, gunakan Claude API native sebagai gantinya:
-  // https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-  ```
+  <CodeGroupItem language="PHP">
+    OpenAI tidak memiliki SDK PHP resmi. Untuk menggunakan Claude dari PHP, gunakan [Claude SDK untuk PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php) sebagai gantinya.
+  </CodeGroupItem>
 
   ```ruby Ruby
   response = openai.chat.completions.create(

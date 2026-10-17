@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 75b86614d272fd364f09823732031cc7b15ffec967b58c65c519d525674eec78
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 4b0c652c2166c8ff0502375f2c661cb83af097c2d0142cf3511669b6b6527058
 ---
 
 ---
@@ -66,7 +66,7 @@ Wizard **Connect workload** membuat ketiga sumber daya (issuer, service account,
 
 <Steps>
   <Step title="Buka Connect workload">
-    Di Claude Console, buka **Settings → Workload identity** dan pilih **Connect workload**.
+    Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) dan pilih **Connect workload**.
   </Step>
 
   <Step title="Pilih penyedia Anda">
@@ -96,7 +96,7 @@ Setelah federasi dikonfigurasi, workload Anda menukar JWT yang diterbitkan IdP d
 
 Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti dijelaskan di bagian [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirimkan image container yang sama ke mana pun dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` per lingkungan.
 
-<CodeGroup exclude="shell:CLI">
+<CodeGroup>
   ```bash cURL
   # 1. Dapatkan JWT dari IdP Anda (spesifik platform; lihat panduan per penyedia).
   JWT=$(cat /var/run/secrets/anthropic.com/token)
@@ -117,20 +117,32 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   )
 
   ACCESS_TOKEN=$(jq -r .access_token <<<"$RESPONSE")
-  EXPIRES_IN=$(jq -r .expires_in <<<"$RESPONSE")  # seconds; re-exchange before this elapses
+  # expires_in pada respons adalah masa berlaku token dalam detik; tukar ulang sebelum habis.
 
   # 3. Panggil API dengan token akses di header Authorization: Bearer.
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<'JSON' | jq -r '.content[] | select(.type == "text") | .text'
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": "Hello, Claude"}]
-  }
-  JSON
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [{"role": "user", "content": "Hello, Claude"}]
+    }'
+  ```
+
+  ```bash CLI
+  # CLI sendiri yang menukar token identitas dengan token akses.
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=/var/run/secrets/anthropic.com/token
+  export ANTHROPIC_FEDERATION_RULE_ID=fdrl_...
+  export ANTHROPIC_ORGANIZATION_ID=00000000-0000-0000-0000-000000000000
+  export ANTHROPIC_SERVICE_ACCOUNT_ID=svac_...
+  export ANTHROPIC_WORKSPACE_ID=wrkspc_...
+
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
@@ -355,7 +367,7 @@ Untuk mengalihkan workload yang ada dari kunci API statis ke federasi tanpa down
 1. **Konfigurasikan federasi secara paralel.** Selesaikan [panduan penyiapan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#set-up-federation) dan pastikan aturan federasi cocok dengan token workload Anda. Biarkan `ANTHROPIC_API_KEY` yang ada tetap di tempatnya untuk saat ini.
 2. **Lakukan smoke-test kredensial mana yang menang.** Jalankan `ant auth status` dari dalam workload (atau periksa log debug SDK). Karena `ANTHROPIC_API_KEY` berada di atas tingkat federasi dalam rantai prioritas, kunci API masih menang pada tahap ini.
 3. **Hapus pengaturan `ANTHROPIC_API_KEY` di mana pun ia diinjeksikan.** Hapus dari rahasia CI, lingkungan container, dan profil shell (lihat peringatan sebelumnya). Jalankan ulang `ant auth status` dan pastikan sumber federasi kini terpilih.
-4. **Hapus kunci API.** Setelah workload berjalan dengan token terfederasi, hapus kunci tersebut di Claude Console pada **Settings → API keys**.
+4. **Hapus kunci API.** Setelah workload berjalan dengan token terfederasi, hapus kunci tersebut di halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) di Claude Console.
 
 ## Masa berlaku dan pembaruan token
 
@@ -368,7 +380,7 @@ SDK menyimpan token dalam cache dan memperbaruinya dengan jadwal dua tingkat yan
 
 Karena SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, SDK secara transparan mengambil token terproyeksi yang telah dirotasi (token service-account Kubernetes, misalnya, dirotasi jauh sebelum `exp`-nya).
 
-Secara default, token identitas yang membawa klaim `jti` bersifat sekali pakai: setiap pertukaran harus menyajikan JWT yang belum pernah ditukar sebelumnya, dan menyajikan ulang JWT yang sama akan gagal dengan alasan `jti_reused` di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history). Jika workload Anda mengambil tokennya sendiri dari penyedia identitas Anda, cetak JWT baru untuk setiap pertukaran alih-alih menggunakan ulang JWT dalam cache (loop retry adalah penyebab yang umum). Hal yang sama berlaku untuk token yang dibaca dari `ANTHROPIC_IDENTITY_TOKEN_FILE`: SDK membaca ulang file tersebut pada setiap pertukaran, sehingga file harus berisi token baru sebelum setiap pembaruan. Pembaruan yang membaca ulang token yang belum dirotasi, atau proses yang dimulai ulang dan menyajikan ulang token yang sudah pernah ditukarnya, ditolak dengan cara yang sama. Merotasi token jauh di dalam masa berlaku token yang dicetak menjaga file tetap mendahului jadwal pembaruan; jika sumber token Anda tidak dapat merotasi sesering itu, Anda dapat menonaktifkan `check_jti` untuk issuer tersebut sebagai upaya terakhir (ini menghapus perlindungan replay untuk setiap aturan pada issuer tersebut). Lihat [Verifikasi JWT](https://platform.claude.com/docs/id/manage-claude/wif-reference#jwt-verification) untuk detailnya.
+Secara default, token identitas yang membawa klaim `jti` bersifat sekali pakai: setiap pertukaran harus menyajikan JWT yang belum pernah ditukar sebelumnya, dan menyajikan ulang token tersebut akan gagal dengan alasan `jti_reused` di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console. Jika workload Anda mengambil tokennya sendiri dari penyedia identitas Anda, cetak JWT baru untuk setiap pertukaran alih-alih menggunakan ulang token yang di-cache (loop percobaan ulang adalah penyebab yang umum). Hal yang sama berlaku untuk token yang dibaca dari `ANTHROPIC_IDENTITY_TOKEN_FILE`: SDK membaca ulang file pada setiap pertukaran, sehingga file harus berisi token baru sebelum setiap pembaruan. Pembaruan yang membaca ulang token yang belum dirotasi, atau proses yang dimulai ulang yang menyajikan ulang token yang sudah ditukar, akan ditolak dengan cara yang sama. Merotasi token jauh di dalam masa berlaku token yang dicetak menjaga file tetap mendahului jadwal pembaruan; jika sumber token Anda tidak dapat merotasi sesering itu, Anda dapat menonaktifkan `check_jti` untuk issuer tersebut sebagai upaya terakhir (ini menghapus perlindungan replay untuk setiap aturan pada issuer tersebut). Lihat [Verifikasi JWT](https://platform.claude.com/docs/id/manage-claude/wif-reference#jwt-verification) untuk detailnya.
 
 ## Penyedia identitas
 
@@ -392,7 +404,7 @@ Setiap panduan membahas dari mana JWT berasal di platform tersebut, seperti apa 
   </Card>
 
   <Card title="Kubernetes" icon="cube" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes">
-    Klaster yang dikelola sendiri dan on-premises menggunakan token service-account terproyeksi.
+    Klaster yang dikelola sendiri dan on-premise menggunakan token service-account terproyeksi.
   </Card>
 
   <Card title="SPIFFE" icon="fingerprint" href="https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe">

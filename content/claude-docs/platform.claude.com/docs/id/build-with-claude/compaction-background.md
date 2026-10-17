@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e9ba14ab0fc5a879d4bc6695d0ca404bce9a6c502acda6b471a860ce086b9043
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 81395e018dc728bba2eb4da4a4129684b267d4e8278c255478779dc47e212e5d
 ---
 
 ---
@@ -476,9 +476,7 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
   ```
 
   <CodeGroupItem language="PHP">
-    <Note>
-      PHP SDK mengirim permintaan secara sinkron, sehingga tidak dapat menjalankan permintaan compaction di latar belakang sementara percakapan berlanjut.
-    </Note>
+    PHP SDK mengirim permintaan secara sinkron, sehingga tidak dapat menjalankan permintaan compaction di latar belakang sementara percakapan berlanjut.
   </CodeGroupItem>
 
   ```ruby Ruby

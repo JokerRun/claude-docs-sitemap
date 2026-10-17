@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/plugins-api
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: bc9944e890bfd98935f9f81cd95d7167c636f4a28a33bc808c0e94ce7f8dcb99
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 4bf9d2479300858510209ecb6821afb41233f76b114844282623303eaed44822
 ---
 
 ---
@@ -1873,7 +1873,9 @@ Mengunduh arsip plugin **milik anggota** mencatat event `claude_plugin_archive_a
   const response = await client.beta.organization.plugins.versions.download(versionId, {
     plugin_id: pluginId
   });
-  if (!response.body) throw new Error("The download returned no body");
+  if (!response.body) {
+    throw new Error("The download returned no body");
+  }
 
   await writeFile(`${pluginId}_${versionId}.zip`, response.body);
   ```

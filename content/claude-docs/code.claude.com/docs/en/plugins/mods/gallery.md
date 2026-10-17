@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/gallery
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 939381e8a1b63a4a0d4b03e7a80a0e73acc35c622f552faa663db18ffbce41fe
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c62a9fdf24e334a0e97b8d1a56792911786e6614cf945669f0ad981d03337715
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ Three elements put words on screen: `Text` for your own styling, `Markdown` for 
 
 ### `Text`
 
-`Text` draws a string with the styles you give it. This sample shows one line for each style:
+`Text` draws a string with the styles you give it. This sample shows plain text and eight styles, one on each line:
 
 ```javascript theme={null}
 Box({

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 1540b4f11c90da331040a39a04e21ac95e49d2492d9ba871ed4929947718ae31
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 02d0a7b6edde3fa847a3c031f3e662f50c747f473aa17ac367b0d7284bd960bd
 ---
 
 ---
@@ -124,7 +124,7 @@ Di Kubernetes, jalankan spiffe-helper sebagai container sidecar yang berbagi vol
 
 ## Konfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih **Custom OIDC**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, dan pilih **Custom OIDC**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -172,7 +172,7 @@ Buatlah sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` 
 
 ## Memperoleh dan menggunakan token
 
-Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau memanggil SPIFFE Workload API secara langsung melalui callable penyedia token. Jalur file adalah integrasi paling sederhana dan berfungsi di setiap bahasa SDK. Jalur callable menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
+Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, kecuali di Java, memanggil SPIFFE Workload API secara langsung melalui penyedia token. Jalur file adalah integrasi paling sederhana dan berfungsi di setiap bahasa SDK. Jalur penyedia token menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
 
 <Tabs>
   <Tab title="Berbasis file dengan spiffe-helper">
@@ -348,8 +348,8 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau mem
     </CodeGroup>
   </Tab>
 
-  <Tab title="Callable melalui SPIFFE Workload API">
-    Workload yang menautkan klien SPIFFE Workload API secara langsung dapat melewati spiffe-helper dan memberikan SDK sebuah callable yang mengambil JWT-SVID baru dari socket agent. SDK memanggil callable tersebut sebelum setiap token exchange, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
+  <Tab title="Penyedia token melalui SPIFFE Workload API">
+    Kecuali di Java, workload yang menautkan klien SPIFFE Workload API secara langsung dapat melewati spiffe-helper dan memberikan SDK sebuah penyedia token yang mengambil JWT-SVID baru dari socket agent. SDK memanggil penyedia tersebut sebelum setiap token exchange, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
 
     <CodeGroup exclude="shell, typescript, java, csharp, php, ruby">
       ```python Python
@@ -467,7 +467,7 @@ spire-agent api fetch jwt \
   | jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson'
 ```
 
-Flag `-output json` mengembalikan respons SVID dan respons bundle sebagai array JSON dua elemen, sehingga `jq -r '.[0].svids[0].svid'` mengekstrak token mentahnya. Pada versi SPIRE lama tanpa `-output`, perintah tersebut mencetak blok berlabel sebagai gantinya. Dalam kasus itu, salurkan output default melalui `awk '/^[[:space:]]*eyJ/{print $1; exit}'` untuk mengekstrak baris token. Periksa bahwa `iss` adalah URL OIDC Discovery Provider yang Anda daftarkan, `sub` adalah SPIFFE ID milik workload, dan `aud` berisi `https://api.anthropic.com`. Kemudian jalankan contoh cURL dari [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). Exchange yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-`. Jika exchange gagal dengan respons opak `401` `authentication_error` (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) untuk alasan penolakan dan lihat [Memecahkan masalah exchange yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi SPIRE adalah ketidakcocokan antara `jwt_issuer` milik SPIRE Server dan URL yang didaftarkan sebagai federation issuer.
+Flag `-output json` mengembalikan respons SVID dan respons bundle sebagai array JSON dua elemen, sehingga `jq -r '.[0].svids[0].svid'` mengekstrak token mentahnya. Pada versi SPIRE lama tanpa `-output`, perintah ini mencetak blok berlabel sebagai gantinya. Dalam hal ini, salurkan output default melalui `awk '/^[[:space:]]*eyJ/{print $1; exit}'` untuk mengekstrak baris token. Periksa bahwa `iss` adalah URL OIDC Discovery Provider yang Anda daftarkan, `sub` adalah SPIFFE ID milik workload, dan `aud` berisi `https://api.anthropic.com`. Kemudian jalankan contoh cURL dari [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). Exchange yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-`. Jika exchange gagal dengan respons opak `401` `authentication_error` (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi SPIRE adalah ketidakcocokan antara `jwt_issuer` milik SPIRE Server dan URL yang didaftarkan sebagai federation issuer.
 
 ## Membatasi cakupan aturan Anda
 

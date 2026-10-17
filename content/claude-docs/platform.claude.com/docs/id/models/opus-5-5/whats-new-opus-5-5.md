@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: bfec3e6201dd3adb85e66389acd4ea2cac241c0146b6866d535e6c442fa83f4a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 61611bc4c0fdbc3b987cf44bbfd7f96a6eb55ebfa6d6ee471b359cb6b1859776
 ---
 
 ---
@@ -71,7 +71,7 @@ Claude Opus 5.5 mendukung [effort per pesan](https://platform.claude.com/docs/id
 
 ### Mode cepat
 
-[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (pratinjau riset) tersedia untuk Claude Opus 5.5 hanya di Claude API; mode ini tidak tersedia di Amazon Bedrock, Claude Platform on AWS, Google Cloud, atau Microsoft Foundry. Tetapkan `speed: "fast"` dengan header beta `fast-mode-2026-02-01`. Lihat [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk akses, model yang didukung, dan harga.
+[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tersedia untuk Claude Opus 5.5 di Claude API dan di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure, tetapi tidak untuk deployment yang di-hosting di Anthropic; mode ini tidak tersedia di Amazon Bedrock, Claude Platform on AWS, atau Google Cloud. Di Claude API, tetapkan `speed: "fast"` pada permintaan Anda. Claude Opus 5.5 tidak memerlukan header beta. Lihat [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk model yang didukung, "rate limits" (batas laju), dan harga.
 
 ### Mendefinisikan alat dalam pesan (beta)
 

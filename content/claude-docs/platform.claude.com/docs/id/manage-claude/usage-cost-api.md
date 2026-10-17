@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 7f6fdfc8a8c8c43feeafb70d7789abe65bfd45a7266dbaabfc7923f47fc8a68a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 742ae24fde2ad4ebdcd8432674e519af9af2c0405e6799ec4b876a1da572a003
 ---
 
 ---
@@ -12,10 +12,10 @@ description: Akses data penggunaan dan biaya API organisasi Anda secara terprogr
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
-Usage and Cost Admin API menyediakan akses terprogram dan terperinci ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) dan [Cost](https://platform.claude.com/cost) di Claude Console.
+Usage and Cost Admin API menyediakan akses terprogram dan terperinci ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) (`platform.claude.com/usage`) dan halaman [Cost](https://platform.claude.com/cost) (`platform.claude.com/cost`) di Claude Console.
 
 API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda dengan lebih baik:
 
@@ -111,7 +111,7 @@ Lacak konsumsi token di seluruh organisasi Anda dengan rincian terperinci berdas
 
 * **Bucket waktu:** Agregasikan data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
 * **Pelacakan token:** Ukur token input yang tidak di-cache, input yang di-cache, pembuatan cache, dan token output
-* **Pemfilteran & pengelompokan:** Filter berdasarkan kunci API, workspace, model, tingkat layanan, "context window" (jendela konteks), [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency), atau kecepatan (beta), dan kelompokkan hasil berdasarkan dimensi-dimensi ini
+* **Pemfilteran & pengelompokan:** Filter berdasarkan kunci API, workspace, model, tingkat layanan, "context window" (jendela konteks), [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency), atau kecepatan, dan kelompokkan hasil berdasarkan dimensi-dimensi ini
 * **Penggunaan alat server:** Lacak penggunaan alat sisi server seperti pencarian web
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Usage API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_messages).
@@ -197,7 +197,7 @@ bucket_width=1d" \
   Model yang dirilis sebelum Februari 2026 (sebelum Claude Opus 4.6 dan Claude Sonnet 4.6) tidak mendukung parameter permintaan `inference_geo`, sehingga laporan penggunaannya mengembalikan `"not_available"` untuk dimensi ini. Anda dapat menggunakan `not_available` sebagai nilai filter di `inference_geos[]` untuk menargetkan model-model tersebut.
 </Note>
 
-#### Fast mode (pratinjau riset)
+#### Fast mode
 
 Lacak penggunaan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan mengelompokkan dan memfilter menggunakan dimensi `speed`. Ini berguna untuk memantau penggunaan mode standar versus fast mode.
 
@@ -209,7 +209,6 @@ group_by[]=speed&\
 group_by[]=model&\
 bucket_width=1d" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: fast-mode-2026-02-01" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -223,13 +222,8 @@ speeds[]=fast&\
 group_by[]=model&\
 bucket_width=1d" \
   -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: fast-mode-2026-02-01" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
-
-<Note>
-  Baik filter `speeds[]` maupun nilai group\_by `speed` memerlukan header beta `fast-mode-2026-02-01`.
-</Note>
 
 ### Batas granularitas waktu
 

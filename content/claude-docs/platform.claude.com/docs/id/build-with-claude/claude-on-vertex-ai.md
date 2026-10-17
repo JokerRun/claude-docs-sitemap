@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 4af5aa9914c3ed54d764dc784ef595603faba82628b7ab6b9cadfa369ce7980f
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 819847a64e7cc07fb8b5dd2b19edccb541eacd6f284ebc4b9384a425182679fe
 ---
 
 ---
@@ -162,7 +162,7 @@ Sebelum menjalankan permintaan, Anda mungkin perlu menjalankan `gcloud auth appl
 
 Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   MODEL_ID=claude-opus-5-5
   PROJECT_ID=MY_PROJECT_ID
@@ -177,9 +177,9 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
     }'
   ```
 
-  ```bash CLI
-  # CLI ant tidak mendukung Agent Platform.
-  ```
+  <CodeGroupItem language="CLI">
+    CLI `ant` tidak mendukung Agent Platform.
+  </CodeGroupItem>
 
   ```python Python
   from anthropic import AnthropicVertex
@@ -438,7 +438,7 @@ Endpoint regional dan multi-region dikenakan premi harga 10% di atas endpoint gl
 
 Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   MODEL_ID=claude-opus-5-5
   PROJECT_ID=MY_PROJECT_ID
@@ -453,9 +453,9 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
     }'
   ```
 
-  ```bash CLI
-  # CLI ant tidak mendukung Agent Platform.
-  ```
+  <CodeGroupItem language="CLI">
+    CLI `ant` tidak mendukung Agent Platform.
+  </CodeGroupItem>
 
   ```python Python
   from anthropic import AnthropicVertex
@@ -626,7 +626,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di berbagai region dalam wilayah geografis tersebut.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   MODEL_ID=claude-opus-5-5
   LOCATION=us # Multi-region identifier: "us" or "eu"
@@ -642,9 +642,9 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
     }'
   ```
 
-  ```bash CLI
-  # CLI ant tidak mendukung Agent Platform.
-  ```
+  <CodeGroupItem language="CLI">
+    CLI `ant` tidak mendukung Agent Platform.
+  </CodeGroupItem>
 
   ```python Python
   from anthropic import AnthropicVertex
@@ -815,7 +815,7 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
 
 Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
   MODEL_ID=claude-sonnet-4-6
@@ -832,9 +832,9 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
     }'
   ```
 
-  ```bash CLI
-  # CLI ant tidak mendukung Agent Platform.
-  ```
+  <CodeGroupItem language="CLI">
+    CLI `ant` tidak mendukung Agent Platform.
+  </CodeGroupItem>
 
   ```python Python
   from anthropic import AnthropicVertex

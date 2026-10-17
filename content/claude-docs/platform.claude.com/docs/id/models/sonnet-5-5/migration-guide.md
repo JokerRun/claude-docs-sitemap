@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 4b4fe2511a17636266f61d646ec0f16fc48e3bfbee44fc6e86b013705be3aa0d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 517252d0a8406e1bd2fc1c57e1a5ea519344abb551f59dc702a3a47bffa4517e
 ---
 
 ---
@@ -20,8 +20,10 @@ Panduan ini mencantumkan perubahan kode untuk beralih ke Claude Sonnet 5.5 dari 
 <Tip>
   **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
 
-  ```text wrap
-  /claude-api migrate this project to claude-sonnet-5-5
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke claude-sonnet-5-5
   ```
 
   Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
@@ -980,7 +982,7 @@ Sebelum (Claude Sonnet 4.6):
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-sonnet-4-6",
+      Model = Model.ClaudeSonnet4_6,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages = [new() { Role = Role.User, Content = "..." }]
@@ -994,7 +996,7 @@ Sebelum (Claude Sonnet 4.6):
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-sonnet-4-6",
+  	Model:     anthropic.ModelClaudeSonnet4_6,
   	MaxTokens: 16000,
   	Thinking:  anthropic.ThinkingConfigParamOfEnabled(10000),
   	Messages: []anthropic.MessageParam{
@@ -1011,7 +1013,7 @@ Sebelum (Claude Sonnet 4.6):
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model("claude-sonnet-4-6")
+      .model(Model.CLAUDE_SONNET_4_6)
       .maxTokens(16000L)
       .enabledThinking(10000L)
       .addUserMessage("...")
@@ -1117,7 +1119,7 @@ Sesudah (Claude Sonnet 5.5):
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-sonnet-5-5",
+      Model = Model.ClaudeSonnet5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive(),
       OutputConfig = new OutputConfig { Effort = Effort.High }, // or Max, Xhigh, Medium, Low
@@ -1132,7 +1134,7 @@ Sesudah (Claude Sonnet 5.5):
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-sonnet-5-5",
+  	Model:     anthropic.ModelClaudeSonnet5_5,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -1154,7 +1156,7 @@ Sesudah (Claude Sonnet 5.5):
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model("claude-sonnet-5-5")
+      .model(Model.CLAUDE_SONNET_5_5)
       .maxTokens(16000L)
       .thinking(ThinkingConfigAdaptive.builder().build())
       .outputConfig(OutputConfig.builder()

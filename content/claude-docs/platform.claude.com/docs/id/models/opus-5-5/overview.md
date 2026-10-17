@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f5e4038043aeacb2fc5290c520ce01ab29f93b996f8294ab13a79c7f3f6e11a2
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3ca07e088a1e467bb5ebbcbba521ff7ea5bf9b200586336c922226feb98e7c80
 ---
 
 ---
@@ -115,7 +115,7 @@ Claude Opus 5.5 dibangun untuk agentic coding dan pekerjaan pengetahuan yang ber
   </Card>
 
   <Card title="Mode cepat" icon="lightning" href="https://platform.claude.com/docs/id/build-with-claude/fast-mode">
-    Claude Opus 5.5 dengan latensi lebih rendah di Claude API (pratinjau riset), dengan harga terpisah.
+    Claude Opus 5.5 dengan latensi lebih rendah di Claude API, dengan harga terpisah.
   </Card>
 </CardGroup>
 

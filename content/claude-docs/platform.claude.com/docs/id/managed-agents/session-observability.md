@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 24654c9158d8a041776683f4927316748ecc4a95be01033ed261b0d4d6b1f08c
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5ba4b67be056e58db96362cfda373dc7c8bc134ff3e1d79f30cb6990f9d3b5d7
 ---
 
 ---
@@ -17,11 +17,11 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Gunakan penampil sesi di Claude Console untuk memeriksa apa yang dilakukan agen dalam sebuah sesi, tanpa menulis kode apa pun. Gunakan total `usage` sesi untuk melihat apa yang dikonsumsi oleh pekerjaan tersebut.
+Gunakan penampil sesi di Claude Console untuk memeriksa apa yang dilakukan agen dalam sebuah sesi, tanpa menulis kode apa pun. Gunakan total `usage` (csharp, go: `Usage`) sesi untuk melihat apa yang dikonsumsi oleh pekerjaan tersebut.
 
 ## Memeriksa sesi di Console
 
-Penampil sesi hanya dapat diakses oleh Developer dan Admin. Untuk membukanya, buka sidebar Console dan pilih **Sessions** di bawah **Managed Agents**. Daftar tersebut menampilkan setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya. Pilih sebuah sesi untuk membukanya.
+Penampil sesi hanya dapat diakses oleh Developer dan Admin. Untuk membukanya, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console. Daftar tersebut menampilkan setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya. Pilih sebuah sesi untuk membukanya.
 
 Penampil sesi menampilkan:
 
@@ -90,7 +90,7 @@ Objek `stats` sesi memiliki `active_seconds` sendiri, yang menjumlahkan waktu ak
 
 ### Membaca penggunaan dari stream
 
-Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama pada stream sesi dan dalam riwayat event. Snapshot tersebut berisi objek `usage`, ditambah `budget` sesi jika sesi memilikinya.
+Anda tidak perlu melakukan polling pada sesi untuk mengamati total ini. Event `session.usage` membawa snapshot kumulatif yang sama pada stream sesi dan dalam riwayat event. Snapshot tersebut memuat objek `usage` (csharp, go: `Usage`), ditambah `budget` (csharp, go: `Budget`) sesi jika sesi memilikinya.
 
 Event ini dipancarkan pada transisi idle, bukan berdasarkan timer:
 

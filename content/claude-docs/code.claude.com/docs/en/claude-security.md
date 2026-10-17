@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-security
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: 05afc01b020c1727cde7748a40e938e71e1502971414714a899098a257bc5465
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 20ccb6d1f4575ff3f04a2ee903356ac00924c851e605679248b6c05e6077dcd2
 ---
 
 > ## Documentation Index
@@ -49,10 +49,10 @@ In the VS Code extension or the desktop app, install it by following [Install a 
 
 The command opens the plugin's details, where you choose an [installation scope](/docs/en/plugins/install#install-a-plugin) to start the install.
 
-If the install fails, the fix depends on which message Claude Code reports:
+If the install fails, match the message Claude Code reports:
 
-* If it reports `Marketplace "claude-plugins-official" not found`, add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* If it reports that it [can't find the plugin in the marketplace](/docs/en/plugins/install#install-a-plugin), check the plugin name for a typo.
+* `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
+* `Plugin "claude-security" not found in marketplace "claude-plugins-official"`: your local copy of the marketplace catalog may be out of date. Refresh it with `/plugin marketplace update claude-plugins-official`, then retry the install. If the retry prints the same message, see [Plugin not found in marketplace](/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace).
 
 Check the install summary. If it reports `Run /reload-plugins to apply.`, see [Apply plugin changes without restarting](/docs/en/plugins/cli-reference#reload-plugins) to activate the plugin in your current session.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: db3b320ecc28b74ddf10b027a0af9ecefcb19cd43aa2fcbae8ac7db0ad69d884
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: fb67e32eeb1f59f1a04839e9ac541291bf290d811bb333faf29d53d1904d9e10
 ---
 
 ---
@@ -286,6 +286,24 @@ Alat aplikasi adalah alat yang disediakan sendiri oleh aplikasi Anthropic yang m
 | `type`         | Selalu   | `"application"`                        |
 | `toolset_name` | Opsional | Grup alat tempat alat tersebut berada. |
 
+Blok `tool_use` untuk alat web search yang disediakan sendiri oleh claude.ai:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01LmNoPqRsTuVwXyZaBcDeFg",
+  "tool_name": "web_search",
+  "input": {
+    "query": "comparable deals for unannounced 4.2B USD Acme Corp acquisition"
+  },
+  "tool_info": {
+    "type": "application"
+  }
+}
+```
+
+claude.ai tidak selalu menamai alat ini `web_search`, jadi jangan mencocokkan berdasarkan nama saja. `input` selalu menyertakan kueri pencarian dan dapat berisi field lain.
+
 ### Alat pihak ketiga
 
 Alat pihak ketiga adalah alat pada server yang diketahui Anthropic, seperti konektor claude.ai atau server MCP yang disebutkan permintaan di `mcp_servers`. Ini tidak berarti Anthropic telah memeriksa server tersebut.
@@ -533,8 +551,8 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
       /// </summary>
       public static bool Verify(string secret, IReadOnlyDictionary<string, string> headers, byte[] body)
       {
-          // TryAdd mempertahankan nilai pertama jika proxy mengirim nama yang duplikat
-          // beda kapitalisasi; konstruktor penyalin justru akan melempar exception.
+          // TryAdd mempertahankan nilai pertama jika proxy mengirim nama duplikat beda kapitalisasi;
+          // konstruktor penyalin justru akan melempar exception untuk kasus tersebut.
           var lookup = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
           foreach (var (name, value) in headers)
           {
@@ -554,7 +572,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
               return false; // replayed, or the clocks disagree
           }
 
-          // Alfabet base64 standar: decoder URL-safe menghasilkan byte kunci yang salah.
+          // Alfabet base64 standar: decoder URL-safe akan menghasilkan byte kunci yang salah.
           var encodedKey = secret.StartsWith("whsec_") ? secret["whsec_".Length..] : secret;
           byte[] key;
           try
@@ -570,7 +588,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
           var expected = Encoding.UTF8.GetBytes(
               "v1," + Convert.ToBase64String(HMACSHA256.HashData(key, payload)));
 
-          // FixedTimeEquals berjalan dalam waktu konstan dan mengembalikan false jika panjang berbeda.
+          // FixedTimeEquals berjalan dalam waktu konstan dan mengembalikan false jika panjangnya tidak cocok.
           return signatures.Split(' ', StringSplitOptions.RemoveEmptyEntries).Any(candidate =>
               CryptographicOperations.FixedTimeEquals(Encoding.UTF8.GetBytes(candidate), expected));
       }
@@ -593,7 +611,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
   const toleranceSeconds = 300
 
   // verify melaporkan apakah body ditandatangani oleh Anthropic untuk organisasi ini.
-  // net/http mengkanonikalisasi nama header saat pencarian, jadi nama dengan kapitalisasi berbeda tetap cocok.
+  // net/http mengkanonikalisasi nama header saat lookup, jadi nama dengan kapitalisasi berbeda tetap cocok.
   func verify(secret string, header http.Header, body []byte) bool {
   	messageID := header.Get("webhook-id")
   	timestamp := header.Get("webhook-timestamp")
@@ -611,7 +629,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
   		return false // replayed, or the clocks disagree
   	}
 
-  	// Alfabet base64 standar: decoder yang aman untuk URL akan menghasilkan byte kunci yang salah.
+  	// Alfabet base64 standar: decoder URL-safe akan menghasilkan byte kunci yang salah.
   	key, err := base64.StdEncoding.DecodeString(strings.TrimPrefix(secret, "whsec_"))
   	if err != nil {
   		return false
@@ -748,7 +766,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
   ```
 
   ```ruby Ruby
-  # base64 adalah bundled gem di Ruby 3.4: aplikasi yang dikelola Bundler perlu menambahkan gem "base64".
+  # base64 adalah bundled gem di Ruby 3.4: aplikasi yang dikelola Bundler menambahkan gem "base64".
   require "base64"
   require "openssl"
 
@@ -772,21 +790,21 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
       return false # replayed, or the clocks disagree
     end
 
-    # Alfabet base64 standar: decoder yang aman untuk URL menghasilkan byte kunci yang salah.
+    # Alfabet base64 standar: decoder URL-safe menghasilkan byte kunci yang salah.
     begin
       key = Base64.strict_decode64(secret.delete_prefix("whsec_"))
     rescue ArgumentError
       return false # misconfigured secret: reject rather than crash
     end
 
-    # Masukkan body secara terpisah agar encoding-nya tidak perlu sama dengan encoding prefiks.
+    # Masukkan body secara terpisah agar encoding-nya tak perlu cocok dengan prefiks.
     hmac = OpenSSL::HMAC.new(key, "SHA256")
     hmac.update("#{message_id}.#{timestamp}.")
     hmac.update(body)
     expected = "v1," + Base64.strict_encode64(hmac.digest)
 
     signatures.split(" ").any? do |candidate|
-      # fixed_length_secure_compare memunculkan error jika panjang tidak cocok, jadi periksa panjang dulu.
+      # fixed_length_secure_compare memunculkan error jika panjang tak cocok, jadi periksa panjang dulu.
       candidate.bytesize == expected.bytesize &&
         OpenSSL.fixed_length_secure_compare(candidate, expected)
     end

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 60ab9707701eb92ea0b21059de490d49fd93b81e194d4e442c03133c26dac118
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 27ab718e399fa9ece31ce6dd6fb779fa8c291e49c52b4bf92d3c2aaead050ce0
 ---
 
 ---
@@ -497,12 +497,13 @@ The following example starts at `high`, then drops to `low` for a routine follow
   ```csharp C#
   using Anthropic.Models.Beta;
   using Anthropic.Models.Beta.Messages;
+  using Model = Anthropic.Models.Messages.Model;
 
   AnthropicClient client = new();
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-fable-5-1",
+      Model = Model.ClaudeFable5_1,
       MaxTokens = 4096,
       OutputConfig = new() { Effort = Effort.High },
       Messages =
@@ -534,7 +535,7 @@ The following example starts at `high`, then drops to `low` for a routine follow
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-fable-5-1",
+  	Model:     anthropic.ModelClaudeFable5_1,
   	MaxTokens: 4096,
   	OutputConfig: anthropic.BetaOutputConfigParam{
   		Effort: anthropic.BetaOutputConfigEffortHigh,
@@ -571,12 +572,13 @@ The following example starts at `high`, then drops to `low` for a routine follow
   import com.anthropic.models.beta.messages.BetaOutputConfig;
   import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(4096L)
           .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
           .outputConfig(BetaOutputConfig.builder()

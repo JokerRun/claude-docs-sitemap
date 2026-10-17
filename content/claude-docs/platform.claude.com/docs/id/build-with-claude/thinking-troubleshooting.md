@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 26685319503454324bedb21e735a64d5622b4d250cb6d82a0f8698c5b5a34c75
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f59f257662ebadb20535b74b1ce91134e8b933c2c838c63dcd7b96a631511663
 ---
 
 ---
@@ -129,9 +129,7 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal. Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku mengembalikan error 400. `messages.N` adalah posisi pesan yang menetapkan level baru.
 
-Claude Haiku 5.5 mengembalikan pesan yang sama untuk perubahan effort per pesan saat `thinking: {type: "disabled"}` diatur.
-
-Hapus effort per pesan tersebut, atau atur ke level yang sedang berlaku. Untuk memvariasikan effort per giliran, gunakan adaptive thinking, yang merupakan maksud pesan tersebut dengan "enable thinking".
+Hapus effort per pesan tersebut, atau atur ke level yang sedang berlaku. Untuk memvariasikan effort per giliran, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan "enable thinking".
 
 Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan dengan `thinking: {type: "disabled"}` menetapkan effort per pesan yang berbeda dari level yang sedang berlaku. Hapus effort per pesan tersebut, atau atur `thinking` ke `{"type": "adaptive"}` untuk memvariasikan effort per giliran.
 

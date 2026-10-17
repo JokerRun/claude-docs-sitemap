@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: ae98f346601ff7bf977619b29bd620c142e7b26971e67ca3540852413d23d6e2
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d1b0ff5880b0ef442be06dd3dab57f22dcb159e56066a9d65e5a997f741d7b71
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/release-notes/overview
 description: Pembaruan untuk Claude Platform, termasuk Claude API, SDK klien, dan Claude Console.
 ---
 
-Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien, dan Claude Console, diurutkan dari yang terbaru.
+Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien, dan Claude Console, dengan yang terbaru di urutan pertama.
 
 <Tip>
   Untuk catatan rilis Claude Apps, lihat [Catatan rilis untuk Claude Apps di Claude Help Center](https://support.claude.com/en/articles/12138966-release-notes).
@@ -19,9 +19,17 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 15 Oktober 2026
+
+* [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini mengembalikan teks yang disimpan setiap anggota organisasi sebagai **Instructions for Claude** di claude.ai dan sebagai **Global instructions** di Cowork, dalam beta untuk organisasi Claude Enterprise. Panggil `GET /v1/compliance/organizations/{org_uuid}/user_preferences` dengan Compliance Access Key Anda yang sudah ada dan scope `read:compliance_user_data`. Lihat [Mencantumkan preferensi pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-user-preferences).
+* [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) telah keluar dari pratinjau riset untuk Claude Opus 5.5, dan Anda tidak perlu lagi meminta akses. Permintaan ke Claude Opus 5.5 tidak lagi memerlukan header beta `fast-mode-2026-02-01`, dan permintaan yang masih mengirimkannya tetap berfungsi. Claude Opus 5.5 kini memiliki "rate limit" (batas laju) fast mode default di tingkat penggunaan Start, Build, dan Scale. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 tetap dalam pratinjau riset. Tetap kirimkan header beta dengan permintaan fast mode ke model-model tersebut.
+* [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Opus 5.5 kini tersedia di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+
 ### 14 Oktober 2026
 
 * Kami telah meluncurkan [ekspor OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) dalam beta, sehingga Anda dapat melacak permintaan Messages API dan sesi Claude Managed Agents di backend observabilitas Anda. Claude SDK memancarkan span dalam Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Untuk mendapatkan span dari API, [tambahkan tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination) di Claude Console.
+
+- [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) Claude Managed Agents kini tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents).
 
 ### 9 Oktober 2026
 

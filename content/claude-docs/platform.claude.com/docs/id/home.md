@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: e08f0b8cbad1a91eb6d9c7a9af28abadba0c93b9841f537deb50222f3fd8a1c1
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 1189aa74b5f058486f56f1181a2a395e42dc474114ef0c08d8c6d1162e368e7f
 ---
 
 ---
@@ -103,7 +103,7 @@ dengan Claude"
 
     var msg = client.messages().create(
       MessageCreateParams.builder()
-        .model("claude-opus-5-5")
+        .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
         .addUserMessage("Hello, Claude")
         .build()
@@ -157,7 +157,7 @@ dengan Claude"
 
     var msg = await client.Messages
       .Create(new() {
-        Model = "claude-opus-5-5",
+        Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
         Messages = [new() {
           Role = Role.User,

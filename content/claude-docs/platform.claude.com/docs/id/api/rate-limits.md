@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 691b9a693df9a4766109aef5a5917671d1462319a5e5f279f92928cfd5de349f
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b5c561a87efad266e87cefee9b361b2e5b4f8486c5003b39e3eb00fdf53df179
 ---
 
 ---
@@ -27,7 +27,7 @@ API memberlakukan batas yang dikonfigurasi oleh layanan di tingkat organisasi, t
 * Batas dirancang untuk mencegah penyalahgunaan API, sekaligus meminimalkan dampak pada pola penggunaan pelanggan yang umum.
 * Batas ditentukan berdasarkan **tingkat penggunaan** ("usage tier"). Organisasi ditempatkan pada suatu tingkat secara otomatis berdasarkan riwayat penggunaan dan status akun, serta dapat berpindah ke tingkat yang lebih tinggi seiring waktu saat mereka menggunakan API.
 * Organisasi baru dan organisasi dengan riwayat penggunaan terbatas mungkin memulai di tingkat Evaluation, dengan batas di bawah batas standar yang ditampilkan di halaman ini selagi riwayat akun dibangun. Batas awal ini merupakan bagian dari cara Anthropic mencegah penipuan dan penyalahgunaan, dan batas tersebut meningkat secara otomatis seiring organisasi Anda membangun riwayat penggunaan.
-* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Rate limits](https://platform.claude.com/usage/limits) di [Claude Console](https://platform.claude.com/).
+* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Rate limits](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/).
 * Anda mungkin mencapai batas laju dalam interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) mungkin diberlakukan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dapat melampaui batas dan memicu error batas laju.
 * Batas berikut adalah batas standar untuk setiap tingkat. Jika Anda memerlukan batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 * API menggunakan [algoritma token bucket](https://en.wikipedia.org/wiki/Token_bucket) untuk melakukan pembatasan laju. Ini berarti kapasitas Anda terus diisi ulang hingga batas maksimum Anda, bukan direset pada interval tetap.
@@ -39,7 +39,7 @@ API memberlakukan batas yang dikonfigurasi oleh layanan di tingkat organisasi, t
   **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas pengeluaran bulanan yang sama berlaku, dan permintaan berhenti pada batas tersebut dengan cara yang sama. Penagihan dan kenaikan tingkat bekerja secara berbeda; lihat [Batas pengeluaran di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#spend-limits).
 </Note>
 
-Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan ("monthly spend cap"), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda pada API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Billing](https://platform.claude.com/settings/billing).
+Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan ("monthly spend cap"), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda untuk API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Billing](https://platform.claude.com/settings/billing) di Claude Console.
 
 | Tingkat penggunaan | Batas pengeluaran bulanan |
 | ------------------ | ------------------------- |
@@ -75,7 +75,7 @@ Anda juga dapat menetapkan batas pengeluaran Anda sendiri di bawah batas tingkat
 
 <Steps>
   <Step title="Buka halaman Billing">
-    Buka [Settings > Billing](https://platform.claude.com/settings/billing) di Claude Console.
+    Di Claude Console, buka halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`).
   </Step>
 
   <Step title="Buka editor batas pengeluaran">
@@ -131,7 +131,7 @@ Berikut yang dihitung terhadap ITPM:
   Untuk semua model lainnya, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan [tarif baca cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), sebagian kecil dari harga input dasar. Ini berarti Anda dapat mencapai throughput efektif yang jauh lebih tinggi dengan menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 </Note>
 
-Untuk memaksimalkan batas laju Anda, cache konten yang berulang seperti instruksi sistem dan prompt, dokumen konteks besar, definisi alat, dan riwayat percakapan; lihat [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panduan. Dengan caching yang efektif, Anda dapat meningkatkan throughput aktual Anda secara substansial tanpa menaikkan batas laju Anda. Pantau tingkat cache hit Anda di [halaman Usage](https://platform.claude.com/usage) untuk menyempurnakan strategi caching Anda.
+Untuk memaksimalkan batas laju Anda, cache konten yang berulang seperti instruksi sistem dan prompt, dokumen konteks yang besar, definisi alat, dan riwayat percakapan; lihat [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panduan. Dengan caching yang efektif, Anda dapat meningkatkan throughput aktual Anda secara substansial tanpa menaikkan batas laju Anda. Pantau tingkat cache hit Anda di [halaman Usage](https://platform.claude.com/usage) di Claude Console untuk menyempurnakan strategi caching Anda.
 
 Batas laju OTPM dievaluasi secara real time saat token output dihasilkan, dengan hanya menghitung token aktual yang dihasilkan. Parameter `max_tokens` tidak diperhitungkan dalam kalkulasi batas laju OTPM, sehingga tidak ada kerugian terkait batas laju jika menetapkan nilai `max_tokens` yang lebih tinggi.
 
@@ -243,7 +243,7 @@ Permintaan [Files API](https://platform.claude.com/docs/id/build-with-claude/fil
 
 ### Batas laju fast mode
 
-Saat menggunakan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (pratinjau riset) dengan `speed: "fast"` pada Claude Opus 5.5, Claude Opus 5, atau Opus 4.8, berlaku batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`. Fast mode tidak tersedia di Claude Opus 4.7 (permintaan mengembalikan error) atau Claude Opus 4.6 (permintaan ke `claude-opus-4-6` dengan `speed: "fast"` berjalan pada kecepatan standar). Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+Saat menggunakan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan `speed: "fast"` pada Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8, berlaku batas laju khusus yang terpisah dari batas laju Opus standar. Claude Opus 5.5 memiliki batas laju fast mode default di tingkat Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan fast mode dengannya. Organisasi di tingkat Evaluation dapat menggunakan fast mode dengan Claude Opus 5.5 setelah mereka berpindah ke tingkat Start, Build, atau Scale. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Untuk melihat batas laju fast mode Anda, buka halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`.
 
 Respons menyertakan header `anthropic-fast-*` yang menunjukkan status batas laju fast mode Anda. Lihat [Batas laju fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#rate-limits) untuk detail tentang header ini.
 
@@ -266,7 +266,7 @@ Selain menyediakan grafik token dan permintaan, halaman Usage menyediakan dua gr
 
 ## Meminta batas yang lebih tinggi
 
-Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits). Dukungan Anthropic juga dapat menaikkan batas; untuk kebutuhan mendesak, hubungi [dukungan Anthropic](https://support.claude.com).
+Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Dukungan Anthropic juga dapat menaikkan batas; untuk kebutuhan mendesak, hubungi [dukungan Anthropic](https://support.claude.com).
 
 <Note>
   **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Alur **Request tier increase** tidak tersedia. Hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com), dan sertakan model yang perlu dinaikkan batasnya, token input dan output puncak per menit untuk setiap model, serta perkiraan porsi input Anda yang merupakan konteks yang di-cache atau berulang. Lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).

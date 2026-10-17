@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b0f5de8674fca569799c06e297e52f528b26fb027ac13bc8c031e11b4a7a6b24
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 87deb45f922648d88b391b767c77bf4985fea06e9e3ec71a825c3db2c5a77827
 ---
 
 ---
@@ -59,11 +59,11 @@ Halaman ini mendokumentasikan worker siap pakai yang melayani environment `self_
 
 ## Sistem file sandbox
 
-| Path                       | Isi                                                                                                                                                                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/workspace`               | Direktori kerja default sistem untuk eksekusi alat dan pengunduhan skill. Jika Anda menggunakan direktori kerja yang berbeda, perbarui prompt sistem agen Anda agar Claude dapat menemukan file skill.                  |
-| `<workdir>/skills/<name>/` | Skill agen yang telah diunduh.                                                                                                                                                                                          |
-| `/mnt/memory/<store>/`     | Satu direktori per memory store yang terlampir, di `mount_path` milik store tersebut (misalnya, `/mnt/memory/user-preferences/`). Worker membuat direktori ini saat mengklaim sesi dan menghapusnya saat sesi berakhir. |
+| Path                       | Isi                                                                                                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/workspace`               | Direktori kerja default sistem untuk eksekusi alat dan pengunduhan skill. Jika Anda menggunakan direktori kerja yang berbeda, perbarui prompt sistem agen Anda agar Claude dapat menemukan file skill.                                                                      |
+| `<workdir>/skills/<name>/` | Skill agen yang telah diunduh.                                                                                                                                                                                                                                              |
+| `/mnt/memory/<store>/`     | Satu direktori per memory store yang terlampir, pada `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) milik store tersebut (misalnya, `/mnt/memory/user-preferences/`). Worker membuat direktori ini saat mengklaim sesi dan menghapusnya saat sesi berakhir. |
 
 Pada environment self-hosted, prompt sistem sesi menghilangkan instruksi `/mnt/session/outputs` yang digunakan pada sandbox yang dikelola Anthropic. Hasil akhir berada di mana pun agen menuliskannya di sistem file sandbox Anda, biasanya di bawah direktori kerja.
 
@@ -94,7 +94,7 @@ SDK Python, TypeScript, dan Go menyediakan tiga helper dengan tingkat kontrol ya
 
 `EnvironmentWorker` mengelola `AgentToolContext` dan toolset secara otomatis. Teruskan factory `tools` (go: `ToolsFunc`) untuk menyesuaikan daftar alat:
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, csharp, java, php, ruby">
   ```python Python
   EnvironmentWorker(client, ..., tools=lambda env: [beta_bash_tool(env), my_custom_tool])
   ```
@@ -108,10 +108,9 @@ SDK Python, TypeScript, dan Go menyediakan tiga helper dengan tingkat kontrol ya
   });
   ```
 
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di SDK C#.
-  // Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-  ```
+  <CodeGroupItem language="C#">
+    C# SDK tidak memiliki `EnvironmentWorker`. Untuk menjawab pemanggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti pada [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+  </CodeGroupItem>
 
   ```go Go
   worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
@@ -123,20 +122,17 @@ SDK Python, TypeScript, dan Go menyediakan tiga helper dengan tingkat kontrol ya
   })
   ```
 
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK.
-  // Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-  ```
+  <CodeGroupItem language="Java">
+    Java SDK tidak memiliki `EnvironmentWorker`. Untuk menjawab pemanggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti pada [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+  </CodeGroupItem>
 
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-  // Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-  ```
+  <CodeGroupItem language="PHP">
+    PHP SDK tidak memiliki `EnvironmentWorker`. Untuk menjawab pemanggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti pada [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-  # Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-  ```
+  <CodeGroupItem language="Ruby">
+    Ruby SDK tidak memiliki `EnvironmentWorker`. Untuk menjawab pemanggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti pada [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Work poller
@@ -154,7 +150,7 @@ Untuk contoh lengkap, lihat [Meluncurkan sandbox dari poller SDK](https://platfo
 
 `client.beta.sessions.events.tool_runner()` (typescript: `client.beta.sessions.events.toolRunner()`; go: `client.Beta.Sessions.Events.NewToolRunner()`) menerima daftar alat sebagai `tools` (go: `Tools`). Untuk membangun daftar tersebut, siapkan `AgentToolContext` sendiri dan panggil `beta_agent_toolset_20260401(env)` (typescript: `betaAgentToolset20260401(ctx)`; go: `agenttoolset.BetaAgentToolset20260401(env)`):
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, csharp, java, php, ruby">
   ```python Python
   from anthropic.lib.tools.agent_toolset import (
       AgentToolContext,
@@ -179,9 +175,9 @@ Untuk contoh lengkap, lihat [Meluncurkan sandbox dari poller SDK](https://platfo
   const tools = betaAgentToolset20260401(ctx);
   ```
 
-  ```csharp C#
-  // AgentToolContext saat ini belum tersedia di SDK C#.
-  ```
+  <CodeGroupItem language="C#">
+    C# SDK tidak memiliki `AgentToolContext`.
+  </CodeGroupItem>
 
   ```go Go
   env := &agenttoolset.AgentToolContext{Workdir: "/workspace"}
@@ -192,17 +188,17 @@ Untuk contoh lengkap, lihat [Meluncurkan sandbox dari poller SDK](https://platfo
   tools := agenttoolset.BetaAgentToolset20260401(env)
   ```
 
-  ```java Java
-  // AgentToolContext saat ini belum tersedia di Java SDK.
-  ```
+  <CodeGroupItem language="Java">
+    Java SDK tidak memiliki `AgentToolContext`.
+  </CodeGroupItem>
 
-  ```php PHP
-  // AgentToolContext saat ini belum tersedia di PHP SDK.
-  ```
+  <CodeGroupItem language="PHP">
+    PHP SDK tidak memiliki `AgentToolContext`.
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # AgentToolContext saat ini belum tersedia di Ruby SDK.
-  ```
+  <CodeGroupItem language="Ruby">
+    Ruby SDK tidak memiliki `AgentToolContext`.
+  </CodeGroupItem>
 </CodeGroup>
 
 ### AgentToolContext dan toolset agen

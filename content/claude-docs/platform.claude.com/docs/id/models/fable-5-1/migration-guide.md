@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 481cb9b3a32466f0d1b03369780ce9e820bacaa8d369c5d0e80333f27b27f124
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 06191d99daa9643287bfc26e870c31d3f6dbfba0e9ae80081f4f7a97abbda04f
 ---
 
 ---
@@ -18,8 +18,10 @@ description: Beralih ke Claude Fable 5.1 dan Claude Mythos 5.1 dari Claude Fable
 <Tip>
   **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
 
-  ```text wrap
-  /claude-api migrate this project to claude-fable-5-1
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke claude-fable-5-1
   ```
 
   Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
@@ -74,27 +76,25 @@ model = "claude-mythos-5-1"  # After
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
        -H "anthropic-version: 2023-06-01" \
-       -d @- <<'EOF'
-     {
-       "model": "claude-fable-5",
-       "max_tokens": 16000,
-       "tools": [
-         {
-           "name": "record_summary",
-           "description": "Record the structured summary of the document.",
-           "input_schema": {
-             "type": "object",
-             "properties": {"summary": {"type": "string"}},
-             "required": ["summary"]
+       -d '{
+         "model": "claude-fable-5",
+         "max_tokens": 16000,
+         "tools": [
+           {
+             "name": "record_summary",
+             "description": "Record the structured summary of the document.",
+             "input_schema": {
+               "type": "object",
+               "properties": {"summary": {"type": "string"}},
+               "required": ["summary"]
+             }
            }
-         }
-       ],
-       "tool_choice": {"type": "tool", "name": "record_summary"},
-       "messages": [
-         {"role": "user", "content": "Summarize: The meeting moved to Thursday."}
-       ]
-     }
-     EOF
+         ],
+         "tool_choice": {"type": "tool", "name": "record_summary"},
+         "messages": [
+           {"role": "user", "content": "Summarize: The meeting moved to Thursday."}
+         ]
+       }'
      ```
 
      ```bash CLI
@@ -316,29 +316,27 @@ model = "claude-mythos-5-1"  # After
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
        -H "anthropic-version: 2023-06-01" \
-       -d @- <<'EOF'
-     {
-       "model": "claude-fable-5-1",
-       "max_tokens": 16000,
-       "tools": [
-         {
-           "name": "record_summary",
-           "description": "Record the structured summary of the document.",
-           "strict": true,
-           "input_schema": {
-             "type": "object",
-             "properties": {"summary": {"type": "string"}},
-             "required": ["summary"],
-             "additionalProperties": false
+       -d '{
+         "model": "claude-fable-5-1",
+         "max_tokens": 16000,
+         "tools": [
+           {
+             "name": "record_summary",
+             "description": "Record the structured summary of the document.",
+             "strict": true,
+             "input_schema": {
+               "type": "object",
+               "properties": {"summary": {"type": "string"}},
+               "required": ["summary"],
+               "additionalProperties": false
+             }
            }
-         }
-       ],
-       "tool_choice": {"type": "auto"},
-       "messages": [
-         {"role": "user", "content": "Summarize: The meeting moved to Thursday. Call the record_summary tool with your result."}
-       ]
-     }
-     EOF
+         ],
+         "tool_choice": {"type": "auto"},
+         "messages": [
+           {"role": "user", "content": "Summarize: The meeting moved to Thursday. Call the record_summary tool with your result."}
+         ]
+       }'
      ```
 
      ```bash CLI
@@ -431,7 +429,7 @@ model = "claude-mythos-5-1"  # After
 
      var parameters = new MessageCreateParams
      {
-         Model = "claude-fable-5-1",
+         Model = Model.ClaudeFable5_1,
          MaxTokens = 16000,
          Tools = [
              new ToolUnion(new Tool()
@@ -464,7 +462,7 @@ model = "claude-mythos-5-1"  # After
      client := anthropic.NewClient()
 
      response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-     	Model:     "claude-fable-5-1",
+     	Model:     anthropic.ModelClaudeFable5_1,
      	MaxTokens: 16000,
      	Tools: []anthropic.ToolUnionParam{
      		{OfTool: &anthropic.ToolParam{
@@ -499,7 +497,7 @@ model = "claude-mythos-5-1"  # After
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
          MessageCreateParams params = MessageCreateParams.builder()
-             .model("claude-fable-5-1")
+             .model(Model.CLAUDE_FABLE_5_1)
              .maxTokens(16000L)
              .addTool(Tool.builder()
                  .name("record_summary")
@@ -588,35 +586,33 @@ model = "claude-mythos-5-1"  # After
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
        -H "anthropic-version: 2023-06-01" \
-       -d @- <<'EOF'
-     {
-       "model": "claude-fable-5-1",
-       "max_tokens": 16000,
-       "system": "You are a customer support assistant for an online electronics store.",
-       "tools": [
-         {
-           "name": "search_help_center",
-           "description": "Search the help center for policy and troubleshooting articles.",
-           "strict": true,
-           "input_schema": {
-             "type": "object",
-             "properties": {"query": {"type": "string"}},
-             "required": ["query"],
-             "additionalProperties": false
+       -d '{
+         "model": "claude-fable-5-1",
+         "max_tokens": 16000,
+         "system": "You are a customer support assistant for an online electronics store.",
+         "tools": [
+           {
+             "name": "search_help_center",
+             "description": "Search the help center for policy and troubleshooting articles.",
+             "strict": true,
+             "input_schema": {
+               "type": "object",
+               "properties": {"query": {"type": "string"}},
+               "required": ["query"],
+               "additionalProperties": false
+             }
            }
-         }
-       ],
-       "messages": [
-         {"role": "user", "content": "My headphones from order A1234 arrived yesterday."},
-         {"role": "assistant", "content": "Thanks for confirming. How can I help with order A1234?"},
-         {"role": "user", "content": "I opened the box. Can I still return them?"},
-         {
-           "role": "system",
-           "content": "Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the user's latest message. Begin your response with the search_help_center tool call. Do not reply with text only."
-         }
-       ]
-     }
-     EOF
+         ],
+         "messages": [
+           {"role": "user", "content": "My headphones from order A1234 arrived yesterday."},
+           {"role": "assistant", "content": "Thanks for confirming. How can I help with order A1234?"},
+           {"role": "user", "content": "I opened the box. Can I still return them?"},
+           {
+             "role": "system",
+             "content": "Tool-use requirement for the current turn: the application requires a call to the search_help_center tool in your response to the latest message from the user. Begin your response with the search_help_center tool call. Do not reply with text only."
+           }
+         ]
+       }'
      ```
 
      ```bash CLI
@@ -736,7 +732,7 @@ model = "claude-mythos-5-1"  # After
 
      var parameters = new MessageCreateParams
      {
-         Model = "claude-fable-5-1",
+         Model = Model.ClaudeFable5_1,
          MaxTokens = 16000,
          System = "You are a customer support assistant for an online electronics store.",
          Tools = [
@@ -779,7 +775,7 @@ model = "claude-mythos-5-1"  # After
      client := anthropic.NewClient()
 
      response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-     	Model:     "claude-fable-5-1",
+     	Model:     anthropic.ModelClaudeFable5_1,
      	MaxTokens: 16000,
      	System: []anthropic.TextBlockParam{
      		{Text: "You are a customer support assistant for an online electronics store."},
@@ -827,7 +823,7 @@ model = "claude-mythos-5-1"  # After
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
          MessageCreateParams params = MessageCreateParams.builder()
-             .model("claude-fable-5-1")
+             .model(Model.CLAUDE_FABLE_5_1)
              .maxTokens(16000L)
              .system("You are a customer support assistant for an online electronics store.")
              .addTool(Tool.builder()
@@ -1041,13 +1037,14 @@ model = "claude-mythos-5-1"  # After
      ```csharp C#
      using Anthropic.Models.Beta;
      using Anthropic.Models.Beta.Messages;
+     using Model = Anthropic.Models.Messages.Model;
 
      AnthropicClient client = new();
 
      var response = await client.Beta.Messages.Create(
          new()
          {
-             Model = "claude-fable-5-1",
+             Model = Model.ClaudeFable5_1,
              MaxTokens = 16000,
              Thinking = new BetaThinkingConfigAdaptive
              {
@@ -1083,7 +1080,7 @@ model = "claude-mythos-5-1"  # After
      client := anthropic.NewClient()
 
      response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
-     	Model:     "claude-fable-5-1",
+     	Model:     anthropic.ModelClaudeFable5_1,
      	MaxTokens: 16000,
      	Thinking: anthropic.BetaThinkingConfigParamUnion{
      		OfAdaptive: &anthropic.BetaThinkingConfigAdaptiveParam{
@@ -1116,12 +1113,13 @@ model = "claude-mythos-5-1"  # After
      import com.anthropic.models.beta.messages.BetaThinkingConfigAdaptive;
      import com.anthropic.models.beta.messages.BetaThinkingPrefixMismatchBehavior;
      import com.anthropic.models.beta.messages.MessageCreateParams;
+     import com.anthropic.models.messages.Model;
 
      void main() {
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
          MessageCreateParams params = MessageCreateParams.builder()
-             .model("claude-fable-5-1")
+             .model(Model.CLAUDE_FABLE_5_1)
              .maxTokens(16000L)
              .addBeta(AnthropicBeta.THINKING_BINDING_CONTROLS_2026_08_01)
              .thinking(BetaThinkingConfigAdaptive.builder()
@@ -1347,12 +1345,13 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
      ```csharp C#
      using Anthropic.Models.Beta;
      using Anthropic.Models.Beta.Messages;
+     using Model = Anthropic.Models.Messages.Model;
 
      AnthropicClient client = new();
 
      var response = await client.Beta.Messages.Create(new MessageCreateParams
      {
-         Model = "claude-fable-5-1",
+         Model = Model.ClaudeFable5_1,
          MaxTokens = 4096,
          OutputConfig = new() { Effort = Effort.High },
          Messages =
@@ -1384,7 +1383,7 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
      client := anthropic.NewClient()
 
      response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-     	Model:     "claude-fable-5-1",
+     	Model:     anthropic.ModelClaudeFable5_1,
      	MaxTokens: 4096,
      	OutputConfig: anthropic.BetaOutputConfigParam{
      		Effort: anthropic.BetaOutputConfigEffortHigh,
@@ -1421,12 +1420,13 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
      import com.anthropic.models.beta.messages.BetaOutputConfig;
      import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
      import com.anthropic.models.beta.messages.MessageCreateParams;
+     import com.anthropic.models.messages.Model;
 
      void main() {
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
          MessageCreateParams params = MessageCreateParams.builder()
-             .model("claude-fable-5-1")
+             .model(Model.CLAUDE_FABLE_5_1)
              .maxTokens(4096L)
              .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
              .outputConfig(BetaOutputConfig.builder()
@@ -1581,7 +1581,7 @@ model = "claude-mythos-5-1"  # After
 
 ## Migrasi ke Claude Fable 5.1 dari Claude Opus 4.8 atau sebelumnya
 
-Pertama, terapkan [Bermigrasi ke Claude Mythos 5 dan Claude Fable 5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/fable-5/migration-guide#migrating-from-claude-opus-48) untuk perubahan tingkat API dari Claude Opus 4.8. Bagian tersebut mencakup adaptive thinking, output thinking, penolakan, effort, batas minimum caching, harga, dan retensi data. Kemudian terapkan perbedaan yang tersisa di [Migrasi ke Claude Fable 5.1 dari Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-fable-5-to-claude-fable-5-1). Jika Anda menggunakan Claude Opus 4.7 atau versi sebelumnya, mulailah dengan bagian yang sesuai di [panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide).
+Ikuti daftar periksa di bawah ini. Jika Anda menggunakan Claude Opus 4.7 atau versi sebelumnya, mulailah dengan bagian yang sesuai di [panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide).
 
 ### Perbarui nama model Anda
 
@@ -1598,12 +1598,13 @@ model = "claude-mythos-5-1"  # After
 * Jika organisasi Anda memiliki pengaturan zero data retention (ZDR), konfirmasikan kelayakan terlebih dahulu: model-model ini tidak tersedia di bawah ZDR kecuali diizinkan secara tegas oleh Anthropic. Claude Opus 4.8 tersedia di bawah ZDR.
 * Perbarui nama model dari `claude-opus-4-8` menjadi `claude-fable-5-1` (atau `claude-mythos-5-1`).
 * Hapus konfigurasi `thinking: {type: "disabled"}` apa pun dan tinjau kembali `max_tokens`. Permintaan tanpa field `thinking` berjalan dengan adaptive thinking.
+* Perbarui penguraian respons yang membaca konten berdasarkan posisi, seperti `content[0].text`: respons sekarang dapat dimulai dengan blok `thinking`, jadi pilih blok konten berdasarkan `type`.
 * Ganti `tool_choice` paksa (`any` atau `tool`) dengan `auto` ditambah instruksi eksplisit (giliran `user` atau pesan sistem di tengah percakapan) dan alat `strict: true`, atau dengan output JSON.
 * Kirimkan kembali blok `thinking` tanpa perubahan dan perlakukan teksnya sebagai hanya-untuk-tampilan. Claude Fable 5.1 membaca blok thinking Claude Opus 4.8: percakapan yang berpindah ke `claude-fable-5-1` mempertahankan penalaran sebelumnya. Claude Opus 4.8 tidak dapat membaca blok Claude Fable 5.1.
 * Jika kode Anda membangun array `messages` sendiri, periksa apakah kode tersebut [mengedit giliran sebelumnya](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-preserved-thinking). Integrasi yang ditulis untuk Claude Opus 4.8 dan sebelumnya sering memotong giliran lama, menghapus atau membangun ulang pesan sebelumnya, atau menyegarkan prompt `system` setiap permintaan, dan Claude Opus 4.8 tidak pernah keberatan. Pada `claude-fable-5-1` masing-masing hal tersebut membuat blok thinking berikutnya tidak valid.
 * Tangani `stop_reason: "refusal"`, baca `stop_details.category`, dan pertimbangkan `fallbacks: "default"` (beta).
 * Terapkan item thinking yang dipertahankan, pengeditan riwayat, perilaku, effort per pesan, dan pembaruan progres dari [daftar periksa Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migration-checklist-fable-5-1-from-fable-5).
-* Evaluasi ulang `effort` (mulai dari `high`), tinjau prompt yang mendekati minimum caching 512 token, dan tetapkan ulang baseline biaya dan latensi. Harga per token berbeda.
+* Evaluasi ulang `effort` (mulai dari `high`), tinjau prompt yang mendekati [batas minimum caching](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations) 512 token (1.024 token pada Claude Opus 4.8), dan tetapkan ulang baseline biaya dan latensi. Harga per token berbeda, dan token thinking ditagih sebagai token output, sehingga beban kerja yang berjalan tanpa thinking pada Claude Opus 4.8 dapat menghasilkan lebih banyak token output per permintaan.
 
 ## Migrasi ke Claude Mythos 5.1 dari Claude Mythos 5
 

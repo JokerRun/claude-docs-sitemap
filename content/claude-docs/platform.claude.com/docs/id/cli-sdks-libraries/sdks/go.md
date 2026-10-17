@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: fd6f4c4f25299fb96de645d5a89ed907374f03f91ca7815f28d6dcf42d6a5493
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: a20668af48918e66ee6ea0bb6e97aaa6ed6894a8112dcd7d8aa9aa2599eb0258
 ---
 
 ---
@@ -249,7 +249,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
 ## Field permintaan
 
-Library anthropic menggunakan semantik [`omitzero`](https://tip.golang.org/doc/go1.24#encodingjsonpkgencodingjson) dari rilis `encoding/json` Go 1.24+ untuk field permintaan.
+Library Anthropic menggunakan semantik [`omitzero`](https://tip.golang.org/doc/go1.24#encodingjsonpkgencodingjson) dari rilis `encoding/json` Go 1.24+ untuk field permintaan.
 
 Field primitif yang diperlukan (seperti `int64` atau `string`) memiliki tag `` `json:"...,required"` ``. Field-field ini selalu diserialisasi, bahkan nilai nol-nya.
 
@@ -305,7 +305,7 @@ custom := param.Override[anthropic.FooParams](12)
 
 ### Union permintaan
 
-Union direpresentasikan sebagai struct dengan field yang diawali dengan "Of" untuk setiap variannya, hanya satu field yang dapat bernilai non-nol. Field non-nol akan diserialisasi.
+Union direpresentasikan sebagai struct dengan field berawalan "Of" untuk setiap variannya. Hanya satu field yang boleh bernilai bukan nol. Field yang bukan nol tersebut akan diserialisasi.
 
 Subproperti dari union dapat diakses melalui metode pada struct union. Metode-metode ini mengembalikan pointer yang dapat diubah ke data yang mendasarinya, jika ada.
 
@@ -414,7 +414,7 @@ res.JSON.Age.Raw() == ""               // true
 res.JSON.Age.Raw() == respjson.Omitted // true
 ```
 
-Struct `.JSON` ini juga menyertakan map `ExtraFields` yang berisi properti apa pun dalam respons json yang tidak ditentukan dalam struct. Ini dapat berguna untuk fitur API yang belum ada dalam SDK.
+Struct `.JSON` ini juga menyertakan map `ExtraFields` yang berisi properti apa pun dalam respons JSON yang tidak ditentukan dalam struct. Ini dapat berguna untuk fitur API yang belum ada dalam SDK.
 
 ```go
 body := res.JSON.ExtraFields["my_unexpected_field"].Raw()
@@ -562,7 +562,7 @@ SDK ini juga akan mengembalikan error jika permintaan non-streaming diperkirakan
 
 ## Unggahan file
 
-Parameter permintaan yang sesuai dengan unggahan file dalam permintaan multipart bertipe `io.Reader`. Konten dari `io.Reader` secara default akan dikirim sebagai bagian form multipart dengan nama file "anonymous\_file" dan content-type "application/octet-stream", jadi pendekatan yang direkomendasikan adalah menentukan content-type kustom dengan helper `anthropic.File(reader io.Reader, filename string, contentType string)`, yang membungkus `io.Reader` apa pun dengan nama file dan content type yang sesuai.
+Parameter permintaan yang sesuai dengan unggahan file dalam permintaan multipart bertipe `io.Reader`. Konten dari `io.Reader` secara default akan dikirim sebagai bagian form multipart dengan nama file `anonymous_file` dan content type `application/octet-stream`, sehingga pendekatan yang disarankan adalah menentukan content type kustom dengan helper `anthropic.File(reader io.Reader, filename string, contentType string)`, yang membungkus `io.Reader` apa pun dengan nama file dan content type yang sesuai.
 
 ```go
 // Sebuah file dari sistem file
@@ -577,7 +577,7 @@ anthropic.FileUploadParams{
 }
 ```
 
-Nama file dan content-type juga dapat disesuaikan dengan mengimplementasikan `Name() string` atau `ContentType() string` pada tipe run-time dari `io.Reader`. Perhatikan bahwa `os.File` mengimplementasikan `Name() string`, jadi file yang dikembalikan oleh `os.Open` akan dikirim dengan nama file di disk.
+Nama file dan content type juga dapat dikustomisasi dengan mengimplementasikan `Name() string` atau `ContentType() string` pada tipe run-time dari `io.Reader`. Perhatikan bahwa `os.File` mengimplementasikan `Name() string`, jadi file yang dikembalikan oleh `os.Open` akan dikirim dengan nama file di disk.
 
 ## Paginasi
 
@@ -748,7 +748,7 @@ Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.htm
 1. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktiknya.
 
-Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang mulus.
+Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
 Umpan balik Anda diterima; buka [issue](https://github.com/anthropics/anthropic-sdk-go/issues) dengan pertanyaan, bug, atau saran.
 

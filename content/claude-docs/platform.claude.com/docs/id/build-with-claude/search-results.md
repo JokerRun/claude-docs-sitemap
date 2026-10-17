@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 4e6f54e547beab20a1773ca6cf7a8890aa7faa86d677be45ad45be2032f56233
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b808818734da37c2d3108988286387d95246db2f1527f6c4485208b5fddd513c
 ---
 
 ---
@@ -80,20 +80,14 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
 
 ### Contoh: Alat basis pengetahuan
 
-<CodeGroup>
-  ```bash cURL
-  # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
-  # dapat diterjemahkan menjadi satu perintah shell. Lihat tab SDK untuk alur lengkapnya.
-  # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di
-  # tab cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atas.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Claude SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk hasil pencarian sebagai konten tingkat atas, lihat [Metode 2](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Alur pemanggilan alat memerlukan logika pencarian di sisi aplikasi yang tidak
-  # dapat diterjemahkan menjadi satu perintah shell. Lihat tab SDK untuk alur lengkapnya.
-  # Bentuk mentah percakapan alat dengan hasil pencarian ditampilkan di
-  # tab cURL Menggabungkan kedua metode; Metode 2 menunjukkan bentuk tingkat atas.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Claude SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk hasil pencarian sebagai konten tingkat atas, lihat [Metode 2](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+  </CodeGroupItem>
 
   ```python Python
   from anthropic.types import (

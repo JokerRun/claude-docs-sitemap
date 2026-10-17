@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9cc954c40b2d080d9503a8c4d68eb0845985c2f5e94e03e5ba098b8ab9750c00
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e9e2ce6064debde0f0de512c5a62434bb38919b59d7db9a9096f29e8a260fda2
 ---
 
 ---
@@ -555,30 +555,28 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [
-      {
-        "role": "user",
-        "content": [
-          {
-            "type": "image",
-            "source": {
-              "type": "file",
-              "file_id": "$FILE_ID"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "file",
+                "file_id": "'"$FILE_ID"'"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Describe this image."
             }
-          },
-          {
-            "type": "text",
-            "text": "Describe this image."
-          }
-        ]
-      }
-    ]
-  }
-  EOF
+          ]
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -1286,7 +1284,7 @@ Tabel berikut menunjukkan resolusi setelah diperkecil dan biaya token visual unt
 
 Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang sesuai dengan batas tingkat tersebut sambil mempertahankan rasio aspeknya. Ini membatasi biaya token. Untuk aturan persis dan implementasi referensi, lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
-Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 USD per juta token input (tingkat standar), gambar 1000×1000 berbiaya sekitar $1,30 USD per seribu gambar. Dengan harga Claude Opus 5 sebesar $5 USD per juta (tingkat resolusi tinggi), gambar yang sama berbiaya sekitar $6,48 USD per seribu dan gambar 4K sekitar $23,92 USD per seribu.
+Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 USD per juta token input (tingkat standar), gambar 1000×1000 memerlukan biaya sekitar $1,30 USD per seribu gambar. Dengan harga Claude Opus 5.5 sebesar $4 USD per juta (tingkat resolusi tinggi), gambar yang sama memerlukan biaya sekitar $5,18 USD per seribu dan gambar 4K sekitar $19,14 USD per seribu.
 
 Gambar resolusi tinggi dapat menggunakan hingga kira-kira tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk computer use, pemahaman tangkapan layar, dan dokumen padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
 

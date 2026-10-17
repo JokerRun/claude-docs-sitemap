@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-local
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6737698b83b55fade4d9a3a9a69403dc812ae12407546143f89a4c6b6a2b3856
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b5a1792e309b8113178ae29b7752ca630a910b712d620c419e0b788328ba0e4a
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ Pass the merge request as its URL or a `!123` reference. Claude Code treats a ba
 After the effort level and flags, Claude Code reads the rest of the line as the review target. The `ultra` argument changes that reading:
 
 * **With `ultra`**: Claude Code reads a single word as a base branch or PR number. Longer text that doesn't name a branch or PR becomes [a note attached to the review](/docs/en/ultrareview#pass-a-request-in-plain-words). `/code-review ultra check my auth changes` reviews your current branch, and Claude relates the findings to your note.
-* **Without `ultra`**: everything left is the review target, even when it starts with another command name. `/code-review /fix-issue 123` reviews with `/fix-issue 123` as target text instead of loading `/fix-issue` as a second [stacked skill](/docs/en/skills#pass-arguments-to-skills). Before v2.1.218, a command stacked after `/code-review` expanded as its own skill.
+* **Without `ultra`**: everything left is the review target, even when it starts with another command name. `/code-review /fix-issue 123` reviews with `/fix-issue 123` as target text instead of loading `/fix-issue` as a second [stacked skill](/docs/en/skills#stack-several-skills-in-one-message). Before v2.1.218, a command stacked after `/code-review` expanded as its own skill.
 
 ## Run in the foreground
 

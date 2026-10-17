@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: c8358be524ebdf4c0d61f5feec3b6b619ab557602c8391842f8e503f30ca564b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5481449fbdf5b32dffb403baa8d5ed6c3032cc12627fc44243d8a957027b0337
 ---
 
 ---
@@ -255,6 +255,10 @@ Thinking didukung pada model-model berikut:
 * Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
 * Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya adaptive thinking, aktif secara default; `thinking: {"type": "disabled"}` mengembalikan error 400, jadi kirim `thinking: {"type": "between_tools"}` untuk menonaktifkan thinking di awal)
 * Claude Haiku 5.5 (`claude-haiku-5-5`, hanya adaptive thinking, aktif secara default)
+* Claude Fable 5.1 (`claude-fable-5-1`, hanya adaptive thinking, selalu aktif)
+* Claude Mythos 5.1 (`claude-mythos-5-1`, hanya adaptive thinking, selalu aktif)
+* Claude Fable 5 (`claude-fable-5`, hanya adaptive thinking, selalu aktif)
+* Claude Mythos 5 (`claude-mythos-5`, hanya adaptive thinking, selalu aktif)
 * Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
 * Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
 * Claude Opus 4.8 (claude-opus-4-8, hanya adaptive thinking)

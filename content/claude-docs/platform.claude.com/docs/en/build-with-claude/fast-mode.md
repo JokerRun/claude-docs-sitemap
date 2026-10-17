@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 83304f7772ab89a00430c38ae2ace96645bb4f5d626600d4ef2856526cee73fa
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 959531f3e73b900097e8cf7dc2d81caf580774ce3ba6dc75e9c3e62b6602ffc3
 ---
 
 ---
@@ -119,7 +119,7 @@ Models in research preview also need the `fast-mode-2026-02-01` [beta header](ht
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Speed = Speed.Fast,
       Messages = [
@@ -305,7 +305,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Speed = Speed.Fast,
       Messages = [new() { Role = Role.User, Content = "Hello" }],
@@ -554,7 +554,7 @@ Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
   var message = await CreateMessageWithFastFallback(
       new MessageCreateParams
       {
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello" }],
           Speed = Speed.Fast,

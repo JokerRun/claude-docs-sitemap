@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/opentelemetry/spans
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: a4b7ed16bf4a0acc05b33c620076ebf1bbfca16a86b92676eff187a45d2e2ef9
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2be70cad118b673be529867672e3bfb4529a6485023a14b12ab8944e0a23c964
 ---
 
 ---
@@ -20,7 +20,7 @@ featureMetadata:
   OpenTelemetry export is in beta. It's provided under your agreement with Anthropic, including the Beta Services section of the [Service Specific Terms](https://www.anthropic.com/legal/service-specific-terms). Span names and attributes can change during the beta.
 </Note>
 
-To set up export, see [Use OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) and [Use OpenTelemetry with the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api).
+To get spans, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) and [Set up OpenTelemetry with the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api).
 
 ## Span names and kinds
 

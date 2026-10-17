@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: defbffbfa5982af8ac6f8d0559c7cea8d803ac864bfbdc58c5b1ccc3baf4523d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d07f9c31f640cc5e0ced149dcac3a9b2c4e8bce22b31bbd452af6c8db1c2325e
 ---
 
 ---
@@ -28,9 +28,9 @@ Pemisahan ini menjaga rahasia agar tidak masuk ke dalam definisi agen yang dapat
 
 ## Mendeklarasikan server MCP pada agen
 
-Tentukan server MCP dalam array `mcp_servers` saat membuat agen. Setiap server memerlukan `type`, `name` yang unik, dan `url`. Tidak ada token autentikasi yang diberikan pada tahap ini.
+Tentukan server MCP dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) saat membuat agen. Setiap server memerlukan `type` (csharp, go: `Type`), `name` (csharp, go: `Name`) yang unik, dan `url` (csharp: `Url`; go: `URL`). Tidak ada token autentikasi yang diberikan pada tahap ini.
 
-Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesuai dalam array `tools`. `mcp_server_name` pada toolset harus cocok dengan `name` server.
+Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesuai dalam array `tools` (csharp, go: `Tools`). `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) milik toolset harus cocok dengan `name` (csharp, go: `Name`) milik server.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -242,22 +242,22 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
 
 ### Referensi field `mcp_servers`
 
-Setiap entri dalam array `mcp_servers` mendefinisikan satu koneksi.
+Setiap entri dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mendefinisikan satu koneksi.
 
-| Field  | Deskripsi                                                                                                                                                                                                                                                      |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | Wajib. Harus bernilai `"url"`.                                                                                                                                                                                                                                 |
-| `name` | Wajib. Nama unik untuk server ini di dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` dalam array `tools` dan ditampilkan pada event alat MCP di [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
-| `url`  | Wajib. Endpoint server MCP jarak jauh (hingga 2.048 karakter). Lihat [Jenis server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                                    |
+| Field                            | Deskripsi                                                                                                                                                                                                                                                                                                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `type` (csharp, go: `Type`)      | Wajib. Harus bernilai `"url"`.                                                                                                                                                                                                                                                                                                                                     |
+| `name` (csharp, go: `Name`)      | Wajib. Nama unik untuk server ini di dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dalam array `tools` (csharp, go: `Tools`) dan ditampilkan pada event alat MCP dalam [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
+| `url` (csharp: `Url`; go: `URL`) | Wajib. Endpoint server MCP jarak jauh (hingga 2.048 karakter). Lihat [Jenis server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                                                                                                                                        |
 
 Batasan:
 
 * Sebuah agen dapat mendeklarasikan hingga 20 server MCP. Nama server harus unik di dalam array.
-* Setiap entri `mcp_servers` harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools`, dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API menolak definisi agen dengan server yang tidak direferensikan atau toolset yang menggantung.
+* Setiap entri `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools` (csharp, go: `Tools`), dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API menolak definisi agen yang memiliki server yang tidak direferensikan atau toolset yang menggantung.
 
 ## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung objek `default_config` dan array `configs`, yang diterapkan pada alat-alat yang diekspos oleh server MCP. Setiap entri `configs` hanya menerima `name`, `enabled`, dan `permission_policy`. Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type`, dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` dalam setiap entri `configs` adalah nama alat polos sebagaimana dilaporkan oleh server.
+Entri `mcp_toolset` mendukung objek `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) dan array `configs` (csharp, go: `Configs`), yang diterapkan pada alat-alat yang diekspos oleh server MCP. Setiap entri `configs` (csharp, go: `Configs`) hanya menerima `name` (csharp, go: `Name`), `enabled` (csharp, go: `Enabled`), dan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`). Tidak seperti entri dalam toolset agen bawaan, entri alat MCP tidak menerima field `type` (csharp, go: `Type`), dan [pengaturan web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings) yang tersedia pada `web_search` dan `web_fetch` tidak berlaku untuk alat MCP. `name` (csharp, go: `Name`) dalam setiap entri `configs` (csharp, go: `Configs`) adalah nama alat polos sebagaimana dilaporkan oleh server.
 
 Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 
@@ -286,7 +286,7 @@ Untuk menonaktifkan alat tertentu sambil tetap mengaktifkan sisanya, hilangkan `
 }
 ```
 
-Lihat [mengonfigurasi toolset](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset) untuk pola umum `default_config` / `configs`, dan [izin toolset MCP](https://platform.claude.com/docs/id/managed-agents/permission-policies#mcp-toolset-permissions) untuk mengatur `permission_policy` pada alat MCP dan menangani permintaan konfirmasi.
+Lihat [mengonfigurasi toolset](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset) untuk pola umum `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) / `configs` (csharp, go: `Configs`), dan [izin toolset MCP](https://platform.claude.com/docs/id/managed-agents/permission-policies#mcp-toolset-permissions) untuk mengatur `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`) pada alat MCP dan menangani permintaan konfirmasi.
 
 ### Penanganan output alat MCP
 
@@ -294,9 +294,9 @@ Ketika output alat MCP melebihi 100.000 karakter (sekitar 25.000 token), output 
 
 ## Menyediakan autentikasi saat pembuatan sesi
 
-Saat memulai sesi, teruskan `vault_ids` untuk menyediakan kredensial bagi server MCP Anda. Vault adalah kumpulan kredensial yang Anda daftarkan sekali dan referensikan berdasarkan ID. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mengelola kredensial.
+Saat memulai sesi, teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) untuk menyediakan kredensial bagi server MCP Anda. Vault adalah kumpulan kredensial yang Anda daftarkan sekali dan referensikan berdasarkan ID. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mengelola kredensial.
 
-Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
+Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mengatur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 <CodeGroup>
   ```bash cURL
@@ -385,11 +385,11 @@ Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environm
   ```
 </CodeGroup>
 
-Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya merujuk ke server yang sama dengan `url` yang dideklarasikan dalam `mcp_servers`. Kedua URL dinormalisasi sebelum pencocokan (skema dan host diubah ke huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan kapitalisasi host, port default, atau garis miring di akhir tidak menghalangi kecocokan; sedangkan path, subdomain, atau port non-default yang berbeda akan menghalanginya. Jika tidak ada yang cocok, koneksi dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk jenis kredensial `static_bearer` dan `mcp_oauth`.
+Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`)-nya merujuk ke server yang sama dengan `url` (csharp: `Url`; go: `URL`) yang dideklarasikan dalam `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`). Kedua URL dinormalisasi sebelum dicocokkan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar/kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; sedangkan path, subdomain, atau port non-default yang berbeda akan mencegahnya. Jika tidak ada yang cocok, koneksi dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk jenis kredensial `static_bearer` dan `mcp_oauth`.
 
 ### Menangani kegagalan koneksi dan autentikasi
 
-Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) dipancarkan dengan `mcp_server_name` dari server yang terdampak dan sebuah `retry_status`:
+Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di bagian [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) dipancarkan dengan `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dari server yang terdampak dan sebuah `retry_status` (java, php: `retryStatus`; csharp, go: `RetryStatus`):
 
 | Jenis error                       | Arti                                                                                                                                                                                                        |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

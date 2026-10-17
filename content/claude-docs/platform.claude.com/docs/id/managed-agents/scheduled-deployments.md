@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: ea66b2057365aa1fdbb2ee6d9f14f3a368ba69c4e95ad93c43345b6513cf287b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 93cbb4cac02dae75931c586114a78e714953089aa56f35fa48fc74ea08427495
 ---
 
 ---
@@ -28,6 +28,14 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
 * Deployment memerlukan [konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](https://platform.claude.com/docs/id/managed-agents/environments), serta secara opsional menerima [file](https://platform.claude.com/docs/id/managed-agents/files), [GitHub](https://platform.claude.com/docs/id/managed-agents/github), [memory store](https://platform.claude.com/docs/id/managed-agents/memory), dan [vault](https://platform.claude.com/docs/id/managed-agents/vaults). Deployment yang menargetkan [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) dapat melampirkan memory store; resource `file` dan `github_repository` memerlukan environment cloud. Formulir deployment di Claude Console saat ini tidak menawarkan memory store untuk environment self-hosted; lampirkan melalui API atau SDK sebagai gantinya.
 * Deployment juga memerlukan setidaknya satu event awal, yaitu `user.message` atau `user.define_outcome`, yang memulai pekerjaan setiap sesi. Dalam file deployment untuk `ant apply`, teks di bawah frontmatter menjadi `user.message` tersebut.
 * Di dalam `schedule` (csharp, go: `Schedule`), Anda mendefinisikan `expression` (csharp, go: `Expression`) cron dan `timezone` (csharp, go: `Timezone`). Granularitas maksimum yang didukung adalah tingkat menit.
+
+<Note>
+  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), setiap eksekusi membuat sesinya sebagai IAM role di akun AWS Anda. Sebelum Anda membuat deployment, atur `execution_identity` pada agen ke `{"type": "aws_role", "role_arn": "arn:aws:iam::123456789012:role/example-role"}`. Membuat deployment untuk agen tanpa field ini akan mengembalikan error 400.
+
+  * **Trust policy:** Izinkan service principal `aws-external-anthropic.amazonaws.com` untuk memanggil `sts:AssumeRole` dan `sts:SetSourceIdentity`.
+  * **Izin role:** Izinkan `aws-external-anthropic:CreateSession`, `sts:GetWebIdentityToken`, dan `sts:TagGetWebIdentityToken`.
+  * **Izin pemanggil:** Principal IAM yang mengatur role pada agen memerlukan `iam:PassRole` pada role tersebut. Role harus berada di akun AWS yang sama. Tidak ada [kebijakan terkelola](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) yang memberikan `iam:PassRole`.
+</Note>
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -448,8 +456,8 @@ Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berik
   );
   await foreach (var run in runs.Paginate())
   {
-      // The Error union exposes .Message directly; the discriminator is read
-      // from .Json until a common .Type accessor is added.
+      // Union Error mengekspos .Message secara langsung; diskriminatornya dibaca
+      // dari .Json sampai accessor .Type yang umum ditambahkan.
       var outcome = run.SessionID ?? run.Error!.Json.GetProperty("type").GetString();
       Console.WriteLine($"{run.CreatedAt} {outcome}");
   }
@@ -477,8 +485,8 @@ Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berik
           DeploymentRunListParams.builder()
               .deploymentId(deployment.id())
               .build()).autoPager()) {
-      // The Error union does not yet expose common .type()/.message()
-      // accessors; .toString() includes both.
+      // Union Error belum mengekspos accessor umum .type()/.message();
+      // .toString() menyertakan keduanya.
       IO.println(run.createdAt() + " "
           + run.sessionId().orElseGet(() -> run.error().orElseThrow().toString()));
   }

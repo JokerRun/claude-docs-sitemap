@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 23dc7130d2837cfbff7d37e21740ffb65714e3baecb919afca0d4a8dc9430c36
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 438c4b45fd323c73676a1539d2826098ea8bdb67f4da567304ca0c80836f041f
 ---
 
 ---
@@ -40,9 +40,9 @@ Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output ters
 
 ## Mengonfigurasi toolset
 
-Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri diidentifikasi oleh `name`-nya, yang mengambil nilai dari kolom Nama di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Sebuah entri juga menerima field `type` opsional dengan nilai yang sama.
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` (csharp, go: `Configs`) untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri diidentifikasi oleh `name` (csharp, go: `Name`)-nya, yang mengambil nilai dari kolom Nama di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Sebuah entri juga menerima field `type` (csharp, go: `Type`) opsional dengan nilai yang sama.
 
-Setiap entri konfigurasi juga dapat menetapkan `permission_policy`. Kebijakan ini mengontrol apakah panggilan alat berjalan tanpa konfirmasi, memerlukan konfirmasi, atau dievaluasi satu per satu oleh server. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Setiap entri konfigurasi juga dapat menetapkan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`). Kebijakan ini mengontrol apakah panggilan alat berjalan tanpa konfirmasi, memerlukan konfirmasi, atau dievaluasi secara individual oleh server. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
 
@@ -53,20 +53,18 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "Coding Assistant",
-    "model": "claude-opus-5-5",
-    "tools": [
-      {
-        "type": "agent_toolset_20260401",
-        "configs": [
-          {"name": "web_fetch", "enabled": false}
-        ]
-      }
-    ]
-  }
-  EOF
+    -d '{
+      "name": "Coding Assistant",
+      "model": "claude-opus-5-5",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401",
+          "configs": [
+            {"name": "web_fetch", "enabled": false}
+          ]
+        }
+      ]
+    }'
   )
   ```
 
@@ -124,7 +122,7 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Coding Assistant",
-      Model = new("claude-opus-5-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -143,7 +141,7 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -247,11 +245,11 @@ Entri `web_search` dan `web_fetch` juga menerima daftar domain, batas konten yan
 
 ### Jenis entri konfigurasi di SDK
 
-SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP memberikan tipe pada setiap entri `configs` per alat. Tipe tersebut adalah union dengan satu anggota per alat bawaan, yang dibedakan oleh `type`.
+SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP memberikan tipe pada setiap entri `configs` (csharp, go: `Configs`) per alat. Tipe tersebut adalah union dengan satu anggota per alat bawaan, yang dibedakan oleh `type` (csharp, go: `Type`).
 
-Di Go, Java, C#, dan PHP, Anda membuat entri dari nilai bertipe, bukan dari dictionary atau hash biasa. Di SDK tersebut, tipe elemen `configs` adalah union itu sendiri, jadi buat setiap entri dari tipe anggota per alatnya.
+Di Go, Java, C#, dan PHP, Anda membuat entri dari nilai bertipe, bukan dari dictionary atau hash biasa. Di SDK tersebut, tipe elemen dari `configs` (csharp, go: `Configs`) adalah union itu sendiri, jadi buat setiap entri dari tipe anggota per alatnya.
 
-Anda dapat menghilangkan `type` saat membuat entri, karena server menyimpulkannya dari `name`. Respons selalu menyertakannya. Pemberian tipe ini tidak mengubah JSON hasil serialisasi sebuah entri. Permintaan yang entrinya hanya menetapkan `name`, `enabled`, dan `permission_policy` valid dengan atau tanpa `type`.
+Anda dapat menghilangkan `type` (csharp, go: `Type`) saat membuat entri, karena server menyimpulkannya dari `name` (csharp, go: `Name`). Respons selalu menyertakannya. Pemberian tipe ini tidak mengubah JSON hasil serialisasi sebuah entri. Permintaan yang entrinya hanya menetapkan `name`, `enabled`, dan `permission_policy` valid dengan atau tanpa `type`.
 
 ## Alat kustom
 
@@ -268,29 +266,27 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<'EOF'
-  {
-    "name": "Weather Agent",
-    "model": "claude-opus-5-5",
-    "tools": [
-      {
-        "type": "agent_toolset_20260401"
-      },
-      {
-        "type": "custom",
-        "name": "get_weather",
-        "description": "Get current weather for a location",
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "City name"}
-          },
-          "required": ["location"]
+    -d '{
+      "name": "Weather Agent",
+      "model": "claude-opus-5-5",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401"
+        },
+        {
+          "type": "custom",
+          "name": "get_weather",
+          "description": "Get current weather for a location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"}
+            },
+            "required": ["location"]
+          }
         }
-      }
-    ]
-  }
-  EOF
+      ]
+    }'
   )
   ```
 
@@ -373,7 +369,7 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   var agent = await client.Beta.Agents.Create(new()
   {
       Name = "Weather Agent",
-      Model = new("claude-opus-5-5"),
+      Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
           new BetaManagedAgentsAgentToolset20260401Params
@@ -404,7 +400,7 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Weather Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -505,7 +501,7 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   ```
 </CodeGroup>
 
-Nama alat kustom tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Agen yang sudah memiliki alat kustom dengan nama yang diawali `ant__` hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` tanpa nama itu, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen di `subagents.predefined_agents`, atau pada agen di `workflows.predefined_agents`. Sesi yang sudah ada tidak terpengaruh.
+Nama alat kustom tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Agen yang sudah memiliki alat kustom dengan nama yang diawali `ant__` hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` (csharp, go: `Tools`) tanpa nama tersebut, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), atau pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`). Sesi yang sudah ada tidak terpengaruh.
 
 Agen memanggil alat kustomnya selama sesi. Untuk menerima panggilan dan mengembalikan hasil, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls).
 

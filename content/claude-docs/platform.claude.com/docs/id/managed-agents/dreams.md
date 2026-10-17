@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 004b8cbc48c68a4cbd6ae3e68251808660722184bf5ab5a5d08b8f08cf6483b5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: a0e151d9852e62dcc00fee5f9f77a53d7630a9f1099083d346866ea4054337ec
 ---
 
 ---
@@ -32,7 +32,7 @@ Sebuah **dream** adalah pekerjaan asinkron yang menerima:
 * sebuah **memory store** yang sudah ada: store yang diverifikasi, dideduplikasi, dan ditata ulang oleh Claude, dan
 * 1 hingga 100 **sesi:** transkrip sebelumnya yang digali Claude untuk menemukan pola dan wawasan yang akan dimasukkan ke dalam output.
 
-Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID store output muncul di `outputs[]` milik dream tidak lama setelah dream mulai `running`, setelah alur kerja mengkloning store input; dream yang `running` dapat sesaat melaporkan `outputs[]` yang kosong.
+Dream menghasilkan **memory store output** lain, terpisah dari input. ID store output muncul di array `outputs` (csharp, go: `Outputs`) milik dream tak lama setelah dream mulai `running`, setelah alur kerja mengkloning store input; dream yang sedang `running` dapat sesaat melaporkan array `outputs` (csharp, go: `Outputs`) yang kosong.
 
 ## Membuat dream
 
@@ -165,7 +165,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   ```
 </CodeGroup>
 
-Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming. Selama pratinjau riset, `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
+Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming. Selama pratinjau riset, `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` (csharp, go: `Instructions`) untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
 
 Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
@@ -179,7 +179,7 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
     { "type": "sessions", "session_ids": ["sesn_01...", "sesn_02..."] }
   ],
   "outputs": [],
-  "model": { "id": "claude-opus-4-8" },
+  "model": { "id": "claude-opus-5-5" },
   "instructions": "Focus on coding-style preferences; ignore one-off debugging notes.",
   "session_id": null,
   "created_at": "2026-04-29T17:04:10Z",
@@ -201,9 +201,9 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
 ### Mengarahkan dengan instruksi
 
-Field opsional `instructions` mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun store output.
+Field opsional `instructions` (csharp, go: `Instructions`) mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun store output.
 
-Gunakan `instructions` untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya penulisan kode"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga arahan imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y", "perbaiki jumlah di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan terarah pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
+Gunakan `instructions` (csharp, go: `Instructions`) untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya coding"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga perintah imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y", "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan terarah pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
 
 ## Melacak kemajuan
 
@@ -290,28 +290,28 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
 
 ### Siklus hidup
 
-| `status`    | Arti                                                                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `pending`   | Dream berhasil dibuat dan dimasukkan ke antrean.                                                                                     |
-| `running`   | Pipeline sedang memproses. `usage` diperbarui seiring kemajuan pekerjaan.                                                            |
-| `completed` | Selesai dengan sukses. Nilai `outputs[]` adalah memory store baru.                                                                   |
-| `failed`    | Proses dreaming berakhir dengan error. Memory store output dibiarkan apa adanya dengan apa pun yang telah ditulis sebelum kegagalan. |
-| `canceled`  | Proses dreaming dibatalkan. Memory store output dibiarkan apa adanya.                                                                |
+| `status` (csharp, go: `Status`) | Arti                                                                                                                                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `pending`                       | Dream berhasil dibuat dan dimasukkan ke antrean.                                                                                     |
+| `running`                       | Pipeline sedang memproses. `usage` (csharp, go: `Usage`) diperbarui seiring berjalannya pekerjaan.                                   |
+| `completed`                     | Selesai dengan sukses. Nilai `outputs` (csharp, go: `Outputs`) adalah memory store baru.                                             |
+| `failed`                        | Proses dreaming berakhir dengan error. Memory store output dibiarkan apa adanya dengan apa pun yang telah ditulis sebelum kegagalan. |
+| `canceled`                      | Proses dreaming dibatalkan. Memory store output dibiarkan apa adanya.                                                                |
 
 ### Mengamati pipeline berjalan
 
-Setelah dream berstatus `running`, field `session_id`-nya menunjuk ke [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) dasar yang menjalankan pipeline. Anda dapat melakukan streaming [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sesi tersebut untuk mengamati apa yang dibaca dan ditulis oleh dream secara real time. Sesi tersebut diarsipkan (bukan dihapus) ketika dream mencapai status terminal, sehingga transkripnya tetap tersedia setelahnya.
+Setelah dream berstatus `running`, field `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`) miliknya menunjuk ke [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang mendasari dan menjalankan pipeline. Anda dapat melakukan streaming [event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sesi tersebut untuk mengamati apa yang dibaca dan ditulis oleh dream secara real time. Sesi tersebut diarsipkan (bukan dihapus) ketika dream mencapai status terminal, sehingga transkripnya tetap tersedia setelahnya.
 
 ## Menggunakan output
 
-Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` mereferensikan store yang telah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) atau di Console, lalu pilih salah satu:
+Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store` di `outputs` (csharp, go: `Outputs`) mereferensikan store yang telah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) atau di Console, lalu pilih salah satu:
 
 * **Manfaatkan:** lampirkan ke sesi mendatang sebagai resource `memory_store` sebagai pengganti (atau bersama dengan) memory store input, atau
 * **Buang:** [hapus memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/delete) atau [arsipkan memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/archive).
 
 <CodeGroup>
   ```bash cURL
-  # After the dream ends, the memory_store output holds the rebuilt store
+  # Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
   output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
 
   curl -s https://api.anthropic.com/v1/sessions \
@@ -342,7 +342,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   ```
 
   ```python Python
-  # After the dream ends, the output holds the rebuilt memory store
+  # Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
   output_store_id = next(
       output.memory_store_id for output in dream.outputs if output.type == "memory_store"
   )
@@ -357,7 +357,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
   ```
 
   ```typescript TypeScript
-  // After the dream ends, the output holds the rebuilt memory store
+  // Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
   const output = dream.outputs.find((entry) => entry.type === "memory_store");
   const outputStoreId = output!.memory_store_id;
 
@@ -473,7 +473,7 @@ Dream itu sendiri tidak pernah menghapus atau memodifikasi inputnya. Pada status
 Pembatalan memindahkan dream yang `pending` atau `running` ke `canceled` dengan segera. Membatalkan dream yang sudah `canceled` adalah no-op yang idempoten; membatalkan dream yang `completed` atau `failed` mengembalikan 400.
 
 <Note>
-  Setelah pembatalan, field `usage` milik dream mungkin terus diperbarui selama beberapa detik sementara pekerjaan yang sedang berlangsung diselesaikan. Lakukan polling pada dream hingga `usage` stabil jika Anda memerlukan jumlah akhir.
+  Setelah pembatalan, field `usage` (csharp, go: `Usage`) milik dream mungkin terus diperbarui selama beberapa detik sementara pekerjaan yang sedang berjalan diselesaikan. Lakukan polling pada dream hingga `usage` (csharp, go: `Usage`) stabil jika Anda memerlukan hitungan akhir.
 </Note>
 
 <CodeGroup>
@@ -522,7 +522,7 @@ Pembatalan memindahkan dream yang `pending` atau `running` ke `canceled` dengan 
 
 ## Mengarsipkan dream
 
-Pengarsipan menetapkan `archived_at` pada dream yang telah mencapai status terminal (`completed`, `failed`, atau `canceled`); `status` dibiarkan tidak berubah. Dream yang diarsipkan dikecualikan dari respons daftar default tetapi tetap dapat dibaca berdasarkan ID. Mengarsipkan dream yang sudah diarsipkan adalah no-op yang idempoten. Mengarsipkan dream yang `pending` atau `running` mengembalikan 400; batalkan terlebih dahulu. Tidak ada pembatalan arsip.
+Pengarsipan mengatur `archived_at` (java, php: `archivedAt`; csharp, go: `ArchivedAt`) pada dream yang telah mencapai status terminal (`completed`, `failed`, atau `canceled`); `status` (csharp, go: `Status`) dibiarkan tidak berubah. Dream yang diarsipkan dikecualikan dari respons daftar default tetapi tetap dapat dibaca berdasarkan ID. Mengarsipkan dream yang sudah diarsipkan adalah no-op yang idempoten. Mengarsipkan dream yang berstatus `pending` atau `running` mengembalikan 400; batalkan terlebih dahulu. Tidak ada fitur batal arsip.
 
 <CodeGroup>
   ```bash cURL
@@ -572,7 +572,7 @@ Mengarsipkan dream tidak menyentuh memory store outputnya; kelola itu secara ter
 
 ## Mendaftar dreams
 
-Mengembalikan semua dream yang tidak diarsipkan di workspace, yang terbaru terlebih dahulu. Gunakan `limit` (default 20, maksimum 100) dan kursor `page` untuk melakukan paginasi. Berikan `include_archived=true` untuk menyertakan dream yang diarsipkan.
+Mengembalikan semua dream yang tidak diarsipkan di workspace, dari yang terbaru. Gunakan `limit` (csharp, go: `Limit`) (default 20, maks 100) dan kursor `page` (csharp, go: `Page`) untuk paginasi. Atur `include_archived` (java, php: `includeArchived`; csharp, go: `IncludeArchived`) ke `true` untuk menyertakan dream yang diarsipkan.
 
 <CodeGroup>
   ```bash cURL
@@ -654,14 +654,14 @@ Berikut adalah daftar tidak lengkap dari kemungkinan error dreaming.
 
 ## Penagihan
 
-Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usage` pada resource melaporkan total yang tepat. Biaya meningkat kira-kira secara linear dengan jumlah dan panjang sesi input. Mulailah dengan batch sesi yang kecil dan tingkatkan setelah Anda puas dengan kualitas kurasinya.
+Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usage` (csharp, go: `Usage`) pada resource melaporkan total yang tepat. Biaya meningkat kurang lebih secara linear seiring jumlah dan panjang sesi input. Mulailah dengan sejumlah kecil sesi dan tingkatkan skalanya setelah Anda puas dengan kualitas kurasi.
 
 ## Batas
 
-| Batas                  | Nilai                                                                                                                                                                       |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sesi per dream         | 100                                                                                                                                                                         |
-| Panjang `instructions` | 4.096 karakter                                                                                                                                                              |
-| Model yang didukung    | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
+| Batas                                               | Nilai                                                                                                                                                                       |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sesi per dream                                      | 100                                                                                                                                                                         |
+| Panjang `instructions` (csharp, go: `Instructions`) | 4.096 karakter                                                                                                                                                              |
+| Model yang didukung                                 | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
 Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam pratinjau riset. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.

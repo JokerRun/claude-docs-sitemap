@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7fa8015090f7138b25c2111eb6925c223627de4dd9261197aedafef6a165ace7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 9fc7583991d5844f767c0f05a37a48cc46dd7c8c3174ad5fe062d6de8411803a
 ---
 
 ---
@@ -11,8 +11,10 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
 description: Gunakan Azure Key Vault untuk menyediakan kunci enkripsi bagi organisasi Anda.
 ---
 
-```bash Configure with the /claude-api skill in Claude Code
-claude "/claude-api help me configure a customer-managed encryption key with Azure Key Vault"
+Biarkan Claude Code menyiapkan fitur ini untuk Anda
+
+```text
+/claude-api bantu saya mengonfigurasi kunci enkripsi yang dikelola pelanggan dengan Azure Key Vault
 ```
 
 Panduan ini memandu Anda mengonfigurasi kunci Azure Key Vault sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
@@ -83,7 +85,7 @@ Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID apl
     Opsi `--tags` menambahkan tag organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Tag ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID dengan awalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin field **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID dengan awalan `org_`.
     </Note>
 
     ```bash
@@ -171,17 +173,17 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
       <Tab title="Claude Console">
         <Steps>
           <Step title="Mendaftarkan kunci dengan Anthropic">
-            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Azure Key Vault**, dan klik **Continue**. Isi **Vault URI**, **Key name**, dan **Tenant ID**, lalu klik **Add**.
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, pilih **Azure Key Vault**, lalu klik **Continue**. Isi **Vault URI**, **Key name**, dan **Tenant ID**, lalu klik **Add**.
 
             Langkah detail kunci menampilkan tag organisasi. Tambahkan ke kunci, seperti yang dijelaskan [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#organization-tag), sebelum Anda klik **Add**.
           </Step>
 
           <Step title="Memvalidasi kunci">
-            Pada halaman **Encryption keys**, klik **Verify** di sebelah kunci. **Connected** muncul ketika pemeriksaan lolos. Jika gagal, sebuah pesan memberikan alasannya.
+            Di daftar **Encryption keys**, klik **Verify** di sebelah kunci. **Connected** muncul ketika pemeriksaan berhasil. Jika gagal, sebuah pesan akan memberikan alasannya.
           </Step>
 
           <Step title="Melampirkan kunci ke workspace">
-            Di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasikan. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, lalu konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
           </Step>
         </Steps>
       </Tab>

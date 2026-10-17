@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5b67bdac59e8e6649591f5d77404ec1d38f359792bebc715a602bde48d3195c4
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 4f17426c9643788f21ae73d667010e1863b3a2258966657e7fb4a36fee6f7620
 ---
 
 ---
@@ -18,8 +18,10 @@ description: Beralih ke Claude Haiku 5.5 dari model Haiku sebelumnya dengan pand
 <Tip>
   **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
 
-  ```text wrap
-  /claude-api migrate this project to claude-haiku-5-5
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke claude-haiku-5-5
   ```
 
   Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.

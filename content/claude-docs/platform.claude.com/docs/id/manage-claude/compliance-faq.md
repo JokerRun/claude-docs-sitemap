@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 259d092a5029e50c02406dc26ddf11f7334ef79598b16b8505003bb44e97b7f6
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 6efc0ad14c9a0280da3b29eccb85dbf2596f663aa49c882a1dc9c67405625877
 ---
 
 ---
@@ -19,11 +19,11 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
 
 <AccordionGroup>
   <Accordion title="Siapa yang dapat mengaktifkan Compliance API?">
-    Untuk organisasi Claude Enterprise, pemilik utama (primary owner) mengaktifkan Compliance API di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access), dan pengaktifan tersebut diteruskan dari organisasi induk ke setiap organisasi yang tertaut. Untuk organisasi Claude Console mandiri yang memenuhi syarat (organisasi tanpa organisasi induk), admin organisasi mengaktifkannya di [Claude Console > Settings > Security](https://platform.claude.com/settings/security). Organisasi Claude Console yang tertaut ke organisasi induk tidak mengaktifkan Compliance API sendiri; Compliance API diaktifkan dari organisasi induk. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) untuk langkah-langkahnya.
+    Untuk organisasi Claude Enterprise, pemilik utama mengaktifkan Compliance API di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access), dan pengaktifan tersebut diteruskan dari organisasi induk ke setiap organisasi yang tertaut. Untuk organisasi Claude Console mandiri yang memenuhi syarat (organisasi tanpa organisasi induk), admin organisasi mengaktifkannya di halaman [Compliance](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`) di Claude Console. Organisasi Claude Console yang tertaut ke organisasi induk tidak mengaktifkan Compliance API sendiri; Compliance API diaktifkan dari organisasi induk. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) untuk langkah-langkahnya.
   </Accordion>
 
   <Accordion title="Dapatkah saya menonaktifkan Compliance API setelah mengaktifkannya di Claude Console?">
-    Ya. Untuk organisasi Claude Console mandiri, admin organisasi dapat menonaktifkan toggle **Compliance API** di [Claude Console > Settings > Security](https://platform.claude.com/settings/security), tempat yang sama untuk mengaktifkannya. Selama Compliance API nonaktif, tidak ada peristiwa aktivitas yang direkam untuk organisasi Anda, sehingga [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) tidak menerima peristiwa baru. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), menonaktifkan Compliance API juga menghentikan pengiriman peristiwa Access Transparency. Aktivitas yang tidak direkam selama Compliance API nonaktif tidak dapat dipulihkan kemudian. Mengaktifkan kembali Compliance API akan melanjutkan perekaman sejak saat itu; aktivitas yang sudah direkam tidak dihapus.
+    Ya. Untuk organisasi Claude Console mandiri, admin organisasi dapat menonaktifkan toggle **Compliance API** di halaman [Compliance](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`) di Claude Console, tempat yang sama untuk mengaktifkannya. Selama Compliance API nonaktif, tidak ada peristiwa aktivitas yang direkam untuk organisasi Anda, sehingga [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) tidak menerima peristiwa baru. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), menonaktifkan Compliance API juga menghentikan pengiriman peristiwa Access Transparency. Aktivitas yang tidak direkam selama Compliance API nonaktif tidak dapat dipulihkan di kemudian hari. Mengaktifkan kembali Compliance API akan melanjutkan perekaman sejak saat itu; aktivitas yang sudah direkam tidak dihapus.
   </Accordion>
 
   <Accordion title="Apakah menonaktifkan Compliance API menghapus peristiwa yang sudah direkam?">
@@ -138,7 +138,7 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Bagaimana cara mendapatkan sandbox untuk menguji Compliance API?">
-    Untuk menguji [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) saja, Anda tidak memerlukan organisasi Claude Enterprise: admin organisasi dapat [mengaktifkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) pada organisasi uji Claude Console mandiri yang memenuhi syarat dan mengkueri feed dengan Admin API key baru. Jika bagian **Compliance API** tidak terlihat di pengaturan Security organisasi tersebut, organisasi itu tidak memenuhi syarat untuk pengaktifan mandiri.
+    Untuk menguji [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) saja, Anda tidak memerlukan organisasi Claude Enterprise: admin organisasi dapat [mengaktifkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) pada organisasi uji Claude Console mandiri yang memenuhi syarat dan melakukan kueri pada feed dengan kunci Admin API baru. Jika halaman [Compliance](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`) organisasi tersebut di Claude Console menampilkan error halaman tidak ditemukan, atau tidak menampilkan bagian **Compliance API**, organisasi tersebut tidak memenuhi syarat untuk pengaktifan mandiri.
 
     Untuk menguji setiap endpoint, siapkan organisasi sandbox Claude Enterprise yang tertaut ke organisasi Claude Console di bawah induk yang sama. Ini memungkinkan sandbox menguji Activity Feed (melalui Admin API key) maupun endpoint chat, file, proyek, dan sesi (melalui Compliance Access Key).
 

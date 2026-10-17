@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 0add9a390dda544aa32adb05568e7e848c3641eaf3d6572dd9909f833e33621a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 67f0d3dd044101b1367acdecc9100e386f593dec1ee7e009af8383ffa0d4f719
 ---
 
 ---
@@ -93,13 +93,17 @@ activity_types[].0: Input is not one of the permitted values.
 
 **Perbaikan:** Perbaiki parameter yang disebutkan dalam pesan. Setiap endpoint list memiliki rentang `limit` sendiri; lihat batasan parameter di halaman [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance) yang sesuai. Kirim timestamp dalam format RFC 3339 dengan offset UTC eksplisit, misalnya, `2024-03-01T00:00:00Z` atau `2024-03-01T00:00:00+00:00`; list sesi lokal menolak timestamp tanpa offset (`created_at.gte: Input should have timezone info`). Untuk nilai `activity_types[]` yang didukung, lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list).
 
-List sesi lokal (`GET /v1/compliance/apps/sessions/local`) juga mengembalikan 400 `invalid_request_error` ketika kedua batas waktu diberikan dan `created_at.lt` tidak benar-benar lebih lambat dari `created_at.gte`. Body-nya berbunyi:
+List sesi lokal (`GET /v1/compliance/apps/sessions/local`) juga mengembalikan 400 `invalid_request_error` ketika Anda memberikan batas bawah (`created_at.gte` atau `created_at.gt`) dan batas atas (`created_at.lt` atau `created_at.lte`) dan batas atas tidak lebih lambat dari batas bawah. Kedua batas hanya boleh bernilai sama untuk `created_at.gte` dengan `created_at.lte`. Pesan menyebutkan kedua parameter tersebut, misalnya:
 
 ```text wrap
 created_at.lt must be strictly after created_at.gte.
 ```
 
-Kirim `created_at.lt` yang lebih lambat dari `created_at.gte`, atau hilangkan salah satu batas.
+```text wrap
+created_at.lte must be at or after created_at.gte.
+```
+
+Kirim batas atas yang lebih lambat dari batas bawah, atau hilangkan salah satu batas.
 
 Endpoint transkrip sesi (`GET /v1/compliance/apps/sessions/local/{session_id}/messages` dan `GET /v1/compliance/apps/sessions/remote/{session_id}/messages`) memvalidasi parameter pemotongannya dengan cara yang sama: `tool_use_input_max_bytes` dan `tool_result_max_bytes` masing-masing menerima jumlah byte positif atau `-1` (nilai maksimum server), sehingga nilai seperti `0` mengembalikan 400 `invalid_request_error` yang sama.
 
@@ -177,7 +181,7 @@ API key has expired.
 
 **Penyebab:** `API key is invalid.` berarti nilai yang dikirim tidak cocok dengan kunci yang dapat digunakan, misalnya karena terpotong atau diubah saat disimpan. `API key has been deactivated.` berarti kunci telah dinonaktifkan atau dihapus. `API key has expired.` berarti tanggal kedaluwarsa kunci Admin API telah lewat; Compliance Access Key tidak dibuat dengan tanggal kedaluwarsa.
 
-**Perbaikan:** Untuk `API key is invalid.`, bandingkan nilai yang dikirim klien Anda dengan secret yang Anda simpan saat kunci dibuat; secret lengkap hanya ditampilkan sekali, jadi jika salinan yang Anda simpan salah, buat kunci baru. Untuk `API key has been deactivated.`, aktifkan kembali kunci jika kunci tersebut hanya dinonaktifkan, di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) untuk Compliance Access Key atau [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) untuk kunci Admin API; kunci yang telah dihapus tidak dapat dipulihkan. Untuk kunci yang dihapus atau kedaluwarsa, buat kunci baru dan perbarui integrasi Anda agar menggunakannya, seperti yang dijelaskan dalam [Mengelola dan merotasi kunci](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
+**Perbaikan:** Untuk `API key is invalid.`, bandingkan nilai yang dikirim klien Anda dengan secret yang Anda simpan saat kunci dibuat; secret lengkap hanya ditampilkan sekali, jadi jika salinan yang Anda simpan salah, buat kunci baru. Untuk `API key has been deactivated.`, aktifkan kembali kunci jika kunci tersebut hanya dinonaktifkan, di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) untuk Compliance Access Key atau di halaman [Admin keys](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console untuk kunci Admin API; kunci yang telah dihapus tidak dapat dipulihkan. Untuk kunci yang dihapus atau kedaluwarsa, buat kunci baru dan perbarui integrasi Anda untuk menggunakannya, seperti yang dijelaskan di [Mengelola dan merotasi kunci](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
 
 ## 403 Forbidden
 
@@ -499,15 +503,8 @@ The local-sessions index cannot currently evaluate retention overrides for this 
 **Perbaikan:** Tangani setiap body sebagai berikut:
 
 * Untuk kedua body `Try again shortly.`, coba lagi dengan "exponential backoff" (backoff eksponensial) dan jangan majukan kursor `page` Anda, karena permintaan yang gagal tidak mengembalikan data apa pun.
-
 * Jika body `Captured content` terus berulang pada endpoint messages untuk organisasi yang menggunakan kunci yang dikelola pelanggan, anggap kondisi ini persisten. Hentikan penelusuran transkrip organisasi tersebut dan periksa status kunci di "key management service" (layanan manajemen kunci) Anda. Transkrip di organisasi tertaut lainnya, serta metadata sesi di semua organisasi, tidak terpengaruh. Jika Anda mencoba lagi pada proses berikutnya, mulai ulang penelusuran setiap sesi tanpa `page`, karena kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran.
-
-* Untuk body `Try again later.`, jangan biarkan penelusuran tetap terbuka sambil menunggu kondisi ini pulih. Pada endpoint list, Anda dapat memilih salah satu cara berikut:
-
-  * Coba lagi nanti dengan memulai ulang tanpa parameter `page`. Token halaman list yang berusia lebih dari 24 jam masih diterima, tetapi dievaluasi ulang terhadap batas retensi saat ini, sehingga penelusuran yang ditunda dapat melewatkan sesi.
-  * Persempit jendela `created_at.gte` dan `created_at.lt` hingga permintaan berhasil, lalu ekspor rentang yang terlewat secara terpisah pada proses berikutnya.
-
-  Pada endpoint retrieve dan messages, lewati ID sesi tersebut, lanjutkan sisa ekspor Anda, dan coba lagi sesi tersebut pada proses berikutnya. Kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran, jadi mulai ulang penelusuran sesi tersebut tanpa `page` saat Anda kembali ke sesi itu.
+* Untuk body `Try again later.`, jangan biarkan penelusuran tetap terbuka sambil menunggu kondisi ini pulih. Pada endpoint list, coba lagi nanti dengan memulai ulang tanpa parameter `page` (token halaman list yang berusia lebih dari 24 jam masih diterima, tetapi dievaluasi ulang terhadap batas retensi saat ini, sehingga penelusuran yang ditunda dapat melewatkan sesi), atau persempit jendela `created_at` hingga permintaan berhasil, lalu ekspor rentang yang terlewat secara terpisah pada proses berikutnya. Pada endpoint retrieve dan messages, lewati ID sesi tersebut, lanjutkan sisa ekspor Anda, dan coba lagi sesi tersebut pada proses berikutnya. Kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran, jadi mulai ulang penelusuran sesi tersebut tanpa `page` saat Anda kembali ke sesi itu.
 
 Jika salah satu kondisi ini terus berulang di beberapa proses, hubungi perwakilan Anthropic Anda dan sertakan header respons `request-id`. Untuk kasus kunci yang dikelola pelanggan, lakukan ini hanya jika error terus muncul saat kunci tersebut dapat digunakan.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/app-attest
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0f248db27c3e36a76f7037a138ad101e0c8dc518ad6eda0ef52fc36ec7f924b7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 1d4eaf933b461c2d98d9e95af501882b96f0be732e6f6077bac9a383d7aaee2b
 ---
 
 ---
@@ -34,13 +34,13 @@ Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah satu jam, dan
 Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, owner, atau primary owner di organisasi Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
 
 1. Di Xcode, tambahkan kapabilitas **App Attest** ke target aplikasi Anda di bawah **Signing & Capabilities**.
-2. Di pengaturan workspace Anda di Claude Console, buka **App integrations**.
+2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
 3. Klik **Create app integration** dan masukkan nama, Apple Developer Team ID Anda, dan satu atau lebih bundle ID (hingga 32).
 4. Salin client ID (`clid_...`) dari tab **Overview** integrasi tersebut dan teruskan ke konfigurasi Claude aplikasi Anda.
 
 ## Mencabut integrasi aplikasi
 
-Untuk menghentikan aplikasi yang telah disusupi atau dipensiunkan, cabut integrasinya: di pengaturan workspace Anda di Claude Console, buka **App integrations**, pilih integrasi tersebut, dan klik **Revoke**, lalu konfirmasi. Mencabut integrasi akan mencabut token-tokennya yang masih berlaku, dan perangkat terdaftarnya tidak dapat lagi meminta token baru. Pencabutan bersifat permanen, jadi buat integrasi aplikasi baru untuk memulihkan akses.
+Untuk menghentikan aplikasi yang telah disusupi atau sudah tidak digunakan lagi, cabut integrasinya. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Di pemilih workspace pada sidebar, pilih workspace yang menyimpan integrasi tersebut. Pilih integrasi tersebut dan klik **Revoke**, lalu konfirmasi. Mencabut integrasi akan mencabut token-tokennya yang masih berlaku, dan perangkat-perangkatnya yang terdaftar tidak dapat lagi meminta token baru. Pencabutan bersifat permanen, jadi buat integrasi aplikasi baru untuk memulihkan akses.
 
 ## Langkah selanjutnya
 

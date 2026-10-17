@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: eb318c13124a7863138cb9840f487e2cb6e69d0b1b3843f69cd0253d7411837d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f4057df8e0efb4bad7c585438e429911ae13b50d05e3b18b7ad5b794aef5afe6
 ---
 
 ---
@@ -231,7 +231,7 @@ SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_i
   client = AnthropicAWS(aws_region="us-west-2")
 
   response = client.messages.with_raw_response.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -247,7 +247,7 @@ SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_i
 
   const { response: raw, request_id } = await client.messages
     .create({
-      model: "claude-opus-4-8",
+      model: "claude-opus-5-5",
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello, Claude" }]
     })
@@ -276,11 +276,10 @@ Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](h
 
 Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh panggilan non-streaming:
 
-<CodeGroup>
-  ```bash cURL
-  # Output SSE mentah memerlukan penanganan event; tidak ada cara satu perintah
-  # untuk mengakumulasi pesan akhir dengan curl. Gunakan contoh SDK sebagai gantinya.
-  ```
+<CodeGroup exclude="shell:cURL">
+  <CodeGroupItem language="cURL">
+    Permintaan curl mencetak event stream mentah dan tidak dapat menggabungkannya menjadi pesan akhir. Untuk mendapatkan objek `Message` lengkap dari stream, gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+  </CodeGroupItem>
 
   ```bash CLI
   # CLI melakukan streaming event; --format jsonl menghasilkan satu event per baris

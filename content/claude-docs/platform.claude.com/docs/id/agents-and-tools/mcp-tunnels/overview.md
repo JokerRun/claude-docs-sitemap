@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: a6c13d316f03a278fbe66c836c0870a4a2322121b20937f213d7a70a3afee9db
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 7fcacee1f76ae008ba6357b496cbd1fe1c7889150dd1a557f5a1e066929eaba4
 ---
 
 ---
@@ -136,7 +136,7 @@ Dalam kedua kasus, tunnel membawa lalu lintas terenkripsi ke server MCP Anda tet
 
 ### Managed Agents (Console)
 
-1. Di **Managed Agents > Sessions**, buat sesi dan pilih **Create new agent** agar Anda dapat mengedit daftar server MCP.
+1. Di halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console, buat sesi dan pilih **Create new agent** agar Anda dapat mengedit daftar server MCP.
 2. Klik **+ MCP Server** dan buka dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
 3. Pilih tunnel dan isikan **Subdomain** yang dirutekan proxy Anda ke server MCP tertentu, serta **Path** yang diharapkan oleh server MCP upstream. Baris **Resolves to** menampilkan URL persisnya.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2f3af823a085796d3734348b9b5dc8d97c8faca2ef307f25244da19b5ef4a5da
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c3956d6161f761c28cc6378999a916d0b5750f4e1d35e5f4cb3a4095f6318164
 ---
 
 ---
@@ -84,7 +84,9 @@ Skill ini disertakan bersama [Claude Code](https://code.claude.com/docs/en/overv
 
 Anda juga dapat memanggilnya secara langsung:
 
-```text wrap
+Gunakan skill ini di Claude Code
+
+```text
 /claude-api
 ```
 
@@ -98,26 +100,43 @@ Sumber skill ini tersedia di [repositori skills Anthropic](https://github.com/an
 npx skills add https://github.com/anthropics/skills --skill claude-api
 ```
 
-Atau instal sebagai [plugin Claude Code](https://code.claude.com/docs/en/plugins):
+Atau minta Claude Code untuk menginstalnya sebagai [plugin Claude Code](https://code.claude.com/docs/en/plugins):
 
-```text wrap
-/plugin marketplace add anthropics/skills
-/plugin install claude-api@anthropic-agent-skills
+Biarkan Claude Code menginstalnya untuk Anda
+
+```text
+Instal plugin claude-api dari marketplace plugin anthropics/skills
 ```
+
+<Accordion title="Perintah instalasi manual">
+  ```text wrap
+  /plugin marketplace add anthropics/skills
+  /plugin install claude-api@anthropic-agent-skills
+  ```
+</Accordion>
 
 ## Bermigrasi ke model Claude yang lebih baru
 
 Skill Claude API dapat melakukan migrasi model Claude di seluruh basis kode. Panggil secara langsung dengan `/claude-api migrate`:
 
-```text wrap
-/claude-api migrate this project to claude-opus-5-5
+Biarkan Claude Code memigrasikan kode Anda
+
+```text
+/claude-api migrate proyek ini ke model Claude Opus terbaru
 ```
 
 Anda juga dapat memberikan cakupan spesifik di awal untuk melewati pertanyaan konfirmasi cakupan:
 
-```text wrap
-/claude-api migrate everything under src/ to claude-opus-5-5
-/claude-api migrate apps/api.py and apps/worker.py to claude-opus-5-5
+Biarkan Claude Code memigrasikan kode Anda
+
+```text
+/claude-api migrate semua yang ada di bawah src/ ke model Claude Opus terbaru
+```
+
+Biarkan Claude Code memigrasikan kode Anda
+
+```text
+/claude-api migrate apps/api.py dan apps/worker.py ke model Claude Opus terbaru
 ```
 
 Ketika cakupannya ambigu (misalnya, `/claude-api migrate to claude-opus-5-5` tanpa keterangan tambahan), skill ini meminta Anda memilih antara seluruh direktori kerja, subdirektori tertentu, atau daftar file eksplisit sebelum mengedit file apa pun. Hal ini berlaku untuk pemanggil Messages API maupun Managed Agents.
@@ -142,7 +161,9 @@ Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Mi
 
 [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjaga blok `thinking` tetap valid hanya selama prompt `system`, `tools`, dan pesan-pesan sebelumnya tidak berubah. Untuk menemukan dan memperbaiki tempat-tempat di mana kode Anda mengedit riwayat tersebut, buka repositori yang membangun permintaan Anda dan panggil subperintah `preserved-thinking-migration`:
 
-```text wrap
+Biarkan Claude Code memeriksa kode Anda
+
+```text
 /claude-api preserved-thinking-migration
 ```
 
@@ -162,7 +183,9 @@ Permintaan uji dan pemutaran ulang adalah permintaan Messages API sungguhan, yan
 
 Untuk membuat kerangka Managed Agent baru dari awal, panggil subperintah `managed-agents-onboard`:
 
-```text wrap
+Biarkan Claude Code menyiapkan agen Anda
+
+```text
 /claude-api managed-agents-onboard
 ```
 
@@ -176,19 +199,25 @@ Berikut adalah contoh tugas yang dibantu skill ini untuk ditangani Claude:
 
 **Membangun aplikasi chat:**
 
-```text wrap
-Build a streaming chat UI with the Claude API in TypeScript
+Biarkan Claude Code membangunnya untuk Anda
+
+```text
+Bangun UI chat streaming dengan Claude API dalam TypeScript
 ```
 
 **Memigrasikan proyek yang sudah ada:**
 
-```text wrap
-/claude-api migrate this codebase to claude-opus-5-5 and re-tune effort
+Biarkan Claude Code memigrasikan kode Anda
+
+```text
+/claude-api migrate basis kode ini ke model Claude Opus terbaru dan setel ulang effort
 ```
 
 **Onboarding Managed Agent baru:**
 
-```text wrap
+Biarkan Claude Code menyiapkan agen Anda
+
+```text
 /claude-api managed-agents-onboard
 ```
 

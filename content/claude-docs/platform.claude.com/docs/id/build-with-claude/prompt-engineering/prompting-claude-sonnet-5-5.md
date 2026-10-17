@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8a3c17b87166fe7423c6c921c5bfea4d65c70d02d7a6032bd96d8ee86a698790
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5321200517006c78ae9c491cddbdf2b4942eec98a600dc8a31dcabbf4f480358
 ---
 
 ---
@@ -179,7 +179,7 @@ Claude Sonnet 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permin
 * `reasoning_extraction`: permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons.
 * `general_harms`: permintaan termasuk dalam area kebijakan penggunaan lainnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
 
-Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
+Jika pengklasifikasi `cyber` memblokir pekerjaan keamanan yang sah di organisasi Anda, Anda dapat mendaftar ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
 
 Jika Anda mengaktifkan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (beta), fitur ini mencoba ulang penolakan `cyber` dan `frontier_llm` pada Claude Sonnet 5. Fitur ini tidak mencoba ulang penolakan `bio`, `reasoning_extraction`, atau `general_harms`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#refusals-fallback-and-billing).
 

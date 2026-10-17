@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 5357b722e3684ceb45a7fc2c0c7b617fa63ba768f4e06fe210067c6d93087ff9
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2a3939c22b945516c7666fc062c7be24e8d609bf34329f71ca5fd1d5bf432bab
 ---
 
 > ## Documentation Index
@@ -200,7 +200,7 @@ The official marketplace has plugins for TypeScript, Python, Go, Rust, and other
 If the install fails, match the message Claude Code reports:
 
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* The plugin is [not found in the marketplace](/docs/en/plugins/install#install-a-plugin): check the plugin name.
+* `Plugin "<name>" not found in marketplace "claude-plugins-official"`: your local copy of the marketplace catalog may be out of date. Refresh it with `/plugin marketplace update claude-plugins-official`, then retry the install. If the retry prints the same message, see [Plugin not found in marketplace](/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace).
 
 To enable a plugin for everyone in the repository rather than installing it yourself, add it to the [`enabledPlugins` project setting](/docs/en/settings-reference#plugin-settings).
 

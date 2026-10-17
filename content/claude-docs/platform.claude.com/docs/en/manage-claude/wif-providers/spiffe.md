@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: a727c3a01a70c0dbcc92dce78ad1c66b1cfb631783df7e651f666ac292848022
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: ccdb145d469a6184b129c56b72cc5881e82ed0aee47b12a738a6089f1a8997cc
 ---
 
 ---
@@ -172,7 +172,7 @@ Be as specific as the workload allows. Loosen `subject_prefix` to `spiffe://prod
 
 ## Acquire and use the token
 
-The Claude SDK can either read the JWT-SVID from the file that spiffe-helper maintains or call the SPIFFE Workload API directly through a token-provider callable. The file path is the simplest integration and works in every SDK language. The callable path removes the sidecar but requires a SPIFFE Workload API client in your application's language.
+The Claude SDK can read the JWT-SVID from the file that spiffe-helper maintains or, except in Java, call the SPIFFE Workload API directly through a token provider. The file path is the simplest integration and works in every SDK language. The token-provider path removes the sidecar but requires a SPIFFE Workload API client in your application's language.
 
 <Tabs>
   <Tab title="File-based with spiffe-helper">
@@ -348,8 +348,8 @@ The Claude SDK can either read the JWT-SVID from the file that spiffe-helper mai
     </CodeGroup>
   </Tab>
 
-  <Tab title="Callable through the SPIFFE Workload API">
-    Workloads that link a SPIFFE Workload API client directly can skip spiffe-helper and pass the SDK a callable that fetches a fresh JWT-SVID from the agent socket. The SDK invokes the callable before each token exchange, so the workload always presents an unexpired SVID. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) and Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) have mature Workload API clients.
+  <Tab title="Token provider through the SPIFFE Workload API">
+    Except in Java, workloads that link a SPIFFE Workload API client directly can skip spiffe-helper and pass the SDK a token provider that fetches a fresh JWT-SVID from the agent socket. The SDK invokes the provider before each token exchange, so the workload always presents an unexpired SVID. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) and Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) have mature Workload API clients.
 
     <CodeGroup exclude="shell, typescript, java, csharp, php, ruby">
       ```python Python

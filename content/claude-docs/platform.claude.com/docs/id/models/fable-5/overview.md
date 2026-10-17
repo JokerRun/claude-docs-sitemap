@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/overview
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: a41dbe08cc86d3d269b8531535f6c929b667e814e67ed5d774ef0e7ab6a99b4a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 7f3f41d20337782ce8b09cadf8bd66084848dfe4d1325ae15918de1cc5f1b0f9
 ---
 
 ---
@@ -97,10 +97,6 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
   <Card title="Claude Fable 5.1" icon="arrow-right" href="https://platform.claude.com/docs/id/models/fable-5-1/overview">
     Model Fable saat ini: ikhtisar, spesifikasi, dan sumber daya.
-  </Card>
-
-  <Card title="Memperkenalkan Claude Fable 5 dan Claude Mythos 5" icon="star" href="https://platform.claude.com/docs/id/models/fable-5/introducing-claude-fable-5-and-claude-mythos-5">
-    Kemampuan, perubahan API, dan ketersediaan untuk Claude Fable 5.
   </Card>
 
   <Card title="Prompting Claude Fable 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5">

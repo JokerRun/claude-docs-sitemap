@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 7930c9b901eebc49d448afe04a461451fa4ba671649df22880386c447cc4d905
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f4246db67bc8cfe8eb8cac6b28d28cda74312ef218589250dfe6122981526e18
 ---
 
 ---
@@ -534,7 +534,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
 </CodeGroup>
 
 <Note>
-  Anda juga dapat mendefinisikan outcome di dalam permintaan pembuatan itu sendiri: teruskan satu event `user.define_outcome` dalam [`initial_events`](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events) untuk membuat sesi dan memulai pekerjaan menuju outcome dalam satu panggilan.
+  Anda juga dapat mendefinisikan outcome dalam permintaan pembuatan itu sendiri: teruskan satu event `user.define_outcome` di [`initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`)](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events) untuk membuat sesi dan memulai pekerjaan menuju outcome dalam satu panggilan.
 </Note>
 
 ## Event outcome
@@ -544,7 +544,7 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
 * Event `agent.*` (seperti pesan dan penggunaan alat) menunjukkan kemajuan menuju outcome.
 * Event `span.outcome_evaluation_*` hanya dipancarkan untuk sesi berorientasi outcome dan menunjukkan jumlah loop iterasi serta proses umpan balik grader.
 * Anda juga dapat mengirim [event](https://platform.claude.com/docs/id/managed-agents/reference#event-types) `user.message` ke sesi berorientasi outcome untuk mengarahkan pekerjaan agen seiring kemajuannya, tetapi ini tidak wajib: agen bekerja menuju outcome secara mandiri, beriterasi hingga berhasil atau kehabisan iterasi.
-* Event `user.interrupt` menjeda pekerjaan pada outcome saat ini dan menandai `span.outcome_evaluation_end.result` sebagai `interrupted`, sehingga Anda dapat memulai outcome baru.
+* Event `user.interrupt` menjeda pekerjaan pada outcome saat ini dan menandai `result` (csharp, go: `Result`) dari event `span.outcome_evaluation_end` sebagai `interrupted`, sehingga Anda dapat memulai outcome baru.
 * Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi mempertahankan riwayat outcome sebelumnya.
 
 ### Event pengguna define outcome
@@ -553,7 +553,7 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
   Hanya satu outcome yang didukung dalam satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
 </Note>
 
-Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dipantulkan kembali saat diterima, termasuk timestamp `processed_at` dan `outcome_id`.
+Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dikembalikan saat diterima, termasuk timestamp `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) dan `outcome_id` (java: `outcomeId`; php: `outcomeID`; csharp, go: `OutcomeID`).
 
 ```json
 {
@@ -708,7 +708,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id`, lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum terdaftar, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, pengunggahannya telah selesai.
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`), lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) memerlukan beta header `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum tercantum, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, unggahannya telah selesai.
 
 <CodeGroup>
   ```bash cURL

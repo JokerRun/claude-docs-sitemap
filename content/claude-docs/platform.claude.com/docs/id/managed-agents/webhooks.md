@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 420f11c768de9e0caff4bd6b76d3ec685d8f94f53a4cdd58d312920c3d44b4b9
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3e2193e68faaf35df622e997b801344a926af80bfbfbb5b067a9c38e8543a06a
 ---
 
 ---
@@ -108,7 +108,7 @@ Event webhook mengembalikan `type` dan `id` event, bukan objek lengkapnya. Saat 
 
 ## Mendaftarkan endpoint
 
-Kunjungi **Manage > Webhooks** di [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks).
+Di Claude Console, buka halaman [Webhooks](https://platform.claude.com/settings/workspaces/default/webhooks) (`platform.claude.com/settings/workspaces/default/webhooks`). Setiap endpoint dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
 
 Endpoint webhook terdiri dari:
 

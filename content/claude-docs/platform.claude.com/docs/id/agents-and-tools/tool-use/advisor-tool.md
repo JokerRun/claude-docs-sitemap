@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e95fa41c2f1486471443ab9b0d5bcddbf7fac605409e9c1023526861ba7249c1
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: cefab422c56d7e99fc194468a2667969a24a545863447c4c8a0d122f51661c0b
 ---
 
 ---
@@ -67,7 +67,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
         {
           "type": "advisor_20260301",
           "name": "advisor",
-          "model": "claude-opus-5"
+          "model": "claude-opus-5-5"
         }
       ],
       "messages": [{
@@ -84,7 +84,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
   tools:
     - type: advisor_20260301
       name: advisor
-      model: claude-opus-5
+      model: claude-opus-5-5
   messages:
     - role: user
       content: Build a concurrent worker pool in Go with graceful shutdown.
@@ -102,7 +102,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
           {
               "type": "advisor_20260301",
               "name": "advisor",
-              "model": "claude-opus-5",
+              "model": "claude-opus-5-5",
           }
       ],
       messages=[
@@ -127,7 +127,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
       {
         type: "advisor_20260301",
         name: "advisor",
-        model: "claude-opus-5"
+        model: "claude-opus-5-5"
       }
     ],
     messages: [
@@ -155,7 +155,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
       {
           new BetaAdvisorTool20260301
           {
-              Model = Messages::Model.ClaudeOpus5
+              Model = Messages::Model.ClaudeOpus5_5
           }
       },
       Messages =
@@ -181,7 +181,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
   	MaxTokens: 4096,
   	Tools: []anthropic.BetaToolUnionParam{
   		{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  			Model: anthropic.ModelClaudeOpus5,
+  			Model: anthropic.ModelClaudeOpus5_5,
   		}},
   	},
   	Messages: []anthropic.BetaMessageParam{
@@ -210,7 +210,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
           .model(Model.CLAUDE_SONNET_5)
           .maxTokens(4096L)
           .addTool(BetaAdvisorTool20260301.builder()
-              .model(Model.CLAUDE_OPUS_5)
+              .model(Model.CLAUDE_OPUS_5_5)
               .build())
           .addUserMessage("Build a concurrent worker pool in Go with graceful shutdown.")
           .addBeta("advisor-tool-2026-03-01")
@@ -237,7 +237,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
           [
               'type' => 'advisor_20260301',
               'name' => 'advisor',
-              'model' => 'claude-opus-5',
+              'model' => 'claude-opus-5-5',
           ],
       ],
       betas: ['advisor-tool-2026-03-01'],
@@ -256,7 +256,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
       {
         type: "advisor_20260301",
         name: "advisor",
-        model: "claude-opus-5"
+        model: "claude-opus-5-5"
       }
     ],
     messages: [
@@ -272,7 +272,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
   ```
 </CodeGroup>
 
-`content` respons menyertakan blok `advisor_tool_result` yang membawa panduan dari advisor. Dengan `claude-opus-5` sebagai advisor, seperti dalam mulai cepat ini, field `content` pada blok tersebut adalah varian `advisor_redacted_result` (terenkripsi; executor membacanya di sisi server, tetapi klien Anda tidak). Untuk melihat teks saran secara langsung dalam respons Anda, gunakan `claude-opus-4-8` sebagai model advisor, yang mengembalikan varian `advisor_result` berupa plaintext. Lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan dan model advisor mana yang mengembalikan varian mana, serta [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) untuk daftar lengkap pasangan yang valid.
+`content` respons menyertakan blok `advisor_tool_result` yang membawa panduan advisor. Dengan `claude-opus-5-5` sebagai advisor, seperti dalam mulai cepat ini, field `content` blok tersebut adalah varian `advisor_redacted_result` (terenkripsi; executor membacanya di sisi server, tetapi klien Anda tidak). Untuk melihat teks saran secara langsung dalam respons Anda, gunakan `claude-opus-4-8` sebagai model advisor, yang mengembalikan varian plaintext `advisor_result`. Lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan dan model advisor mana yang mengembalikan yang mana, serta [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) untuk daftar lengkap pasangan yang valid.
 
 ## Cara kerjanya
 
@@ -293,7 +293,7 @@ Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinki
 | ------------ | -------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`       | string         | *wajib*                    | Harus `"advisor_20260301"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `name`       | string         | *wajib*                    | Harus `"advisor"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `model`      | string         | *wajib*                    | ID model advisor, seperti claude-opus-5. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `model`      | string         | *wajib*                    | ID model advisor, seperti claude-opus-5-5. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                                                                                               |
 | `max_uses`   | integer        | tak terbatas               | Jumlah maksimum panggilan advisor yang diizinkan dalam satu permintaan. Setelah executor mencapai batas ini, panggilan advisor selanjutnya mengembalikan `advisor_tool_result_error` dengan `error_code: "max_uses_exceeded"` dan executor melanjutkan tanpa saran lebih lanjut. Ini adalah batas per permintaan, bukan batas per percakapan. Lihat [Kontrol biaya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#cost-control) untuk batas tingkat percakapan. |
 | `max_tokens` | integer        | batas output model advisor | Membatasi total output advisor (thinking ditambah teks) per panggilan. Minimum 1024. Lihat [Membatasi output advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).                                                                                                                                                                                                                                                                    |
 | `caching`    | object \| null | `null` (nonaktif)          | Mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk transkrip advisor sendiri di seluruh panggilan dalam satu percakapan. Lihat [Caching prompt advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#advisor-prompt-caching).                                                                                                                                                                           |
@@ -306,7 +306,7 @@ Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa
 
 ### Panggilan advisor yang berhasil
 
-Saat advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool_result` dalam konten asisten. Contoh berikut menunjukkan varian `advisor_result` plaintext yang dikembalikan oleh advisor Claude Opus 4.8. [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#quick-start) menggunakan Claude Opus 5, yang mengembalikan varian `advisor_redacted_result` terenkripsi; lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan.
+Saat advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool_result` dalam konten asisten. Contoh berikut menunjukkan varian plaintext `advisor_result` yang dikembalikan oleh advisor Claude Opus 4.8. [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#quick-start) menggunakan Claude Opus 5.5, yang justru mengembalikan varian terenkripsi `advisor_redacted_result`; lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan.
 
 ```json
 {
@@ -368,7 +368,7 @@ Dengan `"model": "claude-opus-4-8"`, saran berupa plaintext:
 }
 ```
 
-Dengan `"model": "claude-opus-5"`, saran terenkripsi:
+Dengan `"model": "claude-opus-5-5"`, saran terenkripsi:
 
 ```json
 {
@@ -418,7 +418,7 @@ Executor melihat error tersebut dan melanjutkan tanpa saran lebih lanjut. Permin
 
 ## Percakapan multi-giliran
 
-Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke API pada giliran berikutnya. Kirim kembali blok hasil apa adanya: dengan advisor Claude Opus 5, `content` blok hasil adalah varian `advisor_redacted_result` terenkripsi, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
+Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya. Kirimkan kembali blok hasil apa adanya: dengan advisor Claude Opus 5.5, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -428,7 +428,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
       {
           "type": "advisor_20260301",
           "name": "advisor",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
       }
   ]
 
@@ -469,7 +469,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5"
+      model: "claude-opus-5-5"
     }
   ];
 
@@ -507,11 +507,13 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
   using Anthropic.Models.Beta.Messages;
   using Messages = Anthropic.Models.Messages;
 
-  var client = new AnthropicClient();
+  // Panggilan advisor menjalankan model kedua di dalam permintaan, jadi beri waktu lebih dari
+  // timeout default non-streaming C# SDK, yang ukurannya ditentukan dari max_tokens.
+  var client = new AnthropicClient { Timeout = TimeSpan.FromMinutes(5) };
 
   var tools = new BetaToolUnion[]
   {
-      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5 }
+      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5_5 }
   };
 
   var messages = new List<BetaMessageParam>
@@ -553,7 +555,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
 
   tools := []anthropic.BetaToolUnionParam{
   	{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  		Model: anthropic.ModelClaudeOpus5,
+  		Model: anthropic.ModelClaudeOpus5_5,
   	}},
   }
 
@@ -608,7 +610,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
 
       List<BetaToolUnion> tools = List.of(
           BetaToolUnion.ofAdvisorTool20260301(
-              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5).build()));
+              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5_5).build()));
 
       List<BetaMessageParam> messages = new ArrayList<>();
       messages.add(BetaMessageParam.builder()
@@ -654,7 +656,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
       [
           'type' => 'advisor_20260301',
           'name' => 'advisor',
-          'model' => 'claude-opus-5',
+          'model' => 'claude-opus-5-5',
       ],
   ];
 
@@ -695,7 +697,7 @@ Kirimkan konten asisten lengkap, termasuk blok `advisor_tool_result`, kembali ke
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5"
+      model: "claude-opus-5-5"
     }
   ]
 
@@ -773,7 +775,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
 
   tools = [
-      {"type": "advisor_20260301", "name": "advisor", "model": "claude-opus-5"},
+      {
+          "type": "advisor_20260301",
+          "name": "advisor",
+          "model": "claude-opus-5-5",
+      },
       # ... alat Anda yang lain
   ]
   task = "Build a concurrent worker pool in Go with graceful shutdown."
@@ -830,7 +836,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   }
 
   const tools: Anthropic.Beta.Messages.BetaToolUnion[] = [
-    { type: "advisor_20260301", name: "advisor", model: "claude-opus-5" }
+    { type: "advisor_20260301", name: "advisor", model: "claude-opus-5-5" }
     // ... alat Anda yang lain
   ];
   const task = "Build a concurrent worker pool in Go with graceful shutdown.";
@@ -902,7 +908,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   var tools = new BetaToolUnion[]
   {
-      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5 }
+      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5_5 }
       // ... alat Anda yang lain
   };
   var task = "Build a concurrent worker pool in Go with graceful shutdown.";
@@ -977,7 +983,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   	tools := []anthropic.BetaToolUnionParam{
   		{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  			Model: anthropic.ModelClaudeOpus5,
+  			Model: anthropic.ModelClaudeOpus5_5,
   		}},
   		// ... alat Anda yang lain
   	}
@@ -1070,7 +1076,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
       List<BetaToolUnion> tools = List.of(
           BetaToolUnion.ofAdvisorTool20260301(
-              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5).build())
+              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5_5).build())
           // ... alat Anda yang lain
       );
       String task = "Build a concurrent worker pool in Go with graceful shutdown.";
@@ -1150,7 +1156,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   }
 
   $tools = [
-      ['type' => 'advisor_20260301', 'name' => 'advisor', 'model' => 'claude-opus-5'],
+      ['type' => 'advisor_20260301', 'name' => 'advisor', 'model' => 'claude-opus-5-5'],
       // ... alat Anda yang lain
   ];
   $task = 'Build a concurrent worker pool in Go with graceful shutdown.';
@@ -1208,7 +1214,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   end
 
   tools = [
-    { type: "advisor_20260301", name: "advisor", model: "claude-opus-5" }
+    { type: "advisor_20260301", name: "advisor", model: "claude-opus-5-5" }
     # ... alat Anda yang lain
   ]
   task = "Build a concurrent worker pool in Go with graceful shutdown."
@@ -1279,7 +1285,7 @@ Panggilan advisor berjalan sebagai sub-inferensi terpisah yang ditagih dengan ta
       },
       {
         "type": "advisor_message",
-        "model": "claude-opus-5",
+        "model": "claude-opus-5-5",
         "input_tokens": 823,
         "cache_read_input_tokens": 0,
         "cache_creation_input_tokens": 0,
@@ -1325,7 +1331,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
       {
           "type": "advisor_20260301",
           "name": "advisor",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "caching": {"type": "ephemeral", "ttl": "5m"},
       }
   ]
@@ -1336,7 +1342,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       caching: { type: "ephemeral", ttl: "5m" }
     }
   ];
@@ -1350,7 +1356,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
   {
       new BetaAdvisorTool20260301
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           Caching = new BetaCacheControlEphemeral { Ttl = Ttl.Ttl5m }
       }
   };
@@ -1359,7 +1365,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
   ```go Go
   tools := []anthropic.BetaToolUnionParam{
   	{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  		Model:   anthropic.ModelClaudeOpus5,
+  		Model:   anthropic.ModelClaudeOpus5_5,
   		Caching: anthropic.BetaCacheControlEphemeralParam{TTL: anthropic.BetaCacheControlEphemeralTTLTTL5m},
   	}},
   }
@@ -1373,7 +1379,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
 
   List<BetaToolUnion> tools = List.of(
       BetaToolUnion.ofAdvisorTool20260301(BetaAdvisorTool20260301.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .caching(BetaCacheControlEphemeral.builder()
               .ttl(BetaCacheControlEphemeral.Ttl.TTL_5M)
               .build())
@@ -1385,7 +1391,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
       [
           'type' => 'advisor_20260301',
           'name' => 'advisor',
-          'model' => 'claude-opus-5',
+          'model' => 'claude-opus-5-5',
           'caching' => ['type' => 'ephemeral', 'ttl' => '5m'],
       ],
   ];
@@ -1396,7 +1402,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       caching: { type: "ephemeral", ttl: "5m" }
     }
   ]
@@ -1428,7 +1434,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
       {
           "type": "advisor_20260301",
           "name": "advisor",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
       },
       {
           "name": "run_bash",
@@ -1451,7 +1457,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5"
+      model: "claude-opus-5-5"
     },
     {
       name: "run_bash",
@@ -1472,7 +1478,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
   var tools = new BetaToolUnion[]
   {
       new BetaWebSearchTool20250305 { MaxUses = 5 },
-      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5 },
+      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus5_5 },
       new BetaTool
       {
           Name = "run_bash",
@@ -1494,7 +1500,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
   		MaxUses: anthropic.Int(5),
   	}},
   	{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  		Model: anthropic.ModelClaudeOpus5,
+  		Model: anthropic.ModelClaudeOpus5_5,
   	}},
   	{OfTool: &anthropic.BetaToolParam{
   		Name:        "run_bash",
@@ -1521,7 +1527,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
           .maxUses(5L)
           .build()),
       BetaToolUnion.ofAdvisorTool20260301(BetaAdvisorTool20260301.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .build()),
       BetaToolUnion.ofBetaTool(BetaTool.builder()
           .name("run_bash")
@@ -1543,7 +1549,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
       [
           'type' => 'advisor_20260301',
           'name' => 'advisor',
-          'model' => 'claude-opus-5',
+          'model' => 'claude-opus-5-5',
       ],
       [
           'name' => 'run_bash',
@@ -1566,7 +1572,7 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5"
+      model: "claude-opus-5-5"
     },
     {
       name: "run_bash",
@@ -1698,7 +1704,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
       {
           "type": "advisor_20260301",
           "name": "advisor",
-          "model": "claude-opus-5",
+          "model": "claude-opus-5-5",
           "max_tokens": 2048,
       }
   ]
@@ -1709,7 +1715,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 2048
     }
   ];
@@ -1723,7 +1729,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
   {
       new BetaAdvisorTool20260301
       {
-          Model = Messages::Model.ClaudeOpus5,
+          Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 2048
       }
   };
@@ -1732,7 +1738,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
   ```go Go
   tools := []anthropic.BetaToolUnionParam{
   	{OfAdvisorTool20260301: &anthropic.BetaAdvisorTool20260301Param{
-  		Model:     anthropic.ModelClaudeOpus5,
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: anthropic.Int(2048),
   	}},
   }
@@ -1745,7 +1751,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
 
   List<BetaToolUnion> tools = List.of(
       BetaToolUnion.ofAdvisorTool20260301(BetaAdvisorTool20260301.builder()
-          .model(Model.CLAUDE_OPUS_5)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(2048L)
           .build()));
   ```
@@ -1755,7 +1761,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
       [
           'type' => 'advisor_20260301',
           'name' => 'advisor',
-          'model' => 'claude-opus-5',
+          'model' => 'claude-opus-5-5',
           'max_tokens' => 2048,
       ],
   ];
@@ -1766,7 +1772,7 @@ Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (t
     {
       type: "advisor_20260301",
       name: "advisor",
-      model: "claude-opus-5",
+      model: "claude-opus-5-5",
       max_tokens: 2048
     }
   ]

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6e33dff45eded4518c857653746b3648d0e0500938c9303a4fe6c0e0a65c533c
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: fb5b8f40e2c5e8389d4042bea13456eb53eef8f8a87e2fe1936d5ac9ca7274fa
 ---
 
 ---
@@ -379,7 +379,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Buat environment">
-    Environment mendefinisikan "sandbox" (lingkungan terisolasi) tempat agen Anda berjalan. Environment ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts`](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di environment ini, karena environment ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts`.
+    Environment mendefinisikan "sandbox" (lingkungan terisolasi) tempat agen Anda berjalan. Environment ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di environment ini, karena environment ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
@@ -548,9 +548,13 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     </CodeGroup>
 
     <Tip>
-      Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat 
+      Quickstart ini menggunakan environment cloud. Untuk memutuskan apakah akan menjalankan alat di infrastruktur Anda sendiri dengan 
 
-      [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
+      [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
+
+       sebagai gantinya, lihat 
+
+      [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment)
 
       .
     </Tip>
@@ -668,16 +672,14 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   <Step title="Kirim pesan dan lakukan streaming respons">
     Buka stream, kirim event pengguna, lalu proses event saat tiba:
 
-    <CodeGroup>
-      ```bash cURL
-      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-      # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-      ```
+    <CodeGroup exclude="shell">
+      <CodeGroupItem language="cURL">
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+      </CodeGroupItem>
 
-      ```bash CLI
-      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-      # Sebagai gantinya, gunakan salah satu contoh SDK di grup kode ini.
-      ```
+      <CodeGroupItem language="CLI">
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+      </CodeGroupItem>
 
       ```python Python
       with client.beta.sessions.events.stream(session.id) as stream:

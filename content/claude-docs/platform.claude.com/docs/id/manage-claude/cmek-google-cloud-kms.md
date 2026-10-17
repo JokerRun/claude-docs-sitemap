@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 315bc4f3ffc826c2600fe90d2f993182f0b1029fd35ea7f13a1fc918cc88c890
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 99a67ef9830b574ef5332d9ccff21095d74641c5675f13efc4e9bc2bacd3dc77
 ---
 
 ---
@@ -11,8 +11,10 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
 description: Gunakan Google Cloud KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
 ---
 
-```bash Configure with the /claude-api skill in Claude Code
-claude "/claude-api help me configure a customer-managed encryption key with Google Cloud KMS"
+Biarkan Claude Code menyiapkan fitur ini untuk Anda
+
+```text
+/claude-api bantu saya mengonfigurasi kunci enkripsi yang dikelola pelanggan dengan Google Cloud KMS
 ```
 
 Panduan ini memandu Anda mengonfigurasi kunci Google Cloud KMS sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
@@ -65,7 +67,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     Opsi `--labels` menambahkan label organisasi, `anthropic-org-<ORGANIZATION_UUID>` dengan nilai `true`, di mana `<ORGANIZATION_UUID>` adalah ID organisasi Anthropic Anda dalam huruf kecil. Label ini diperlukan agar Anthropic dapat memvalidasi kunci.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin kolom **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca kolom `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID yang diawali `org_`.
+      **Menemukan ID organisasi Anda:** Salin kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca kolom `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID yang diawali `org_`.
     </Note>
 
     ```bash
@@ -162,17 +164,17 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
       <Tab title="Claude Console">
         <Steps>
           <Step title="Daftarkan kunci dengan Anthropic">
-            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **Google Cloud KMS**, dan klik **Continue**. Tempel nama resource kunci lengkap ke **Key resource name**, dan klik **Add**.
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, pilih **Google Cloud KMS**, lalu klik **Continue**. Tempelkan nama resource kunci lengkap ke **Key resource name**, lalu klik **Add**.
 
             Langkah detail kunci menampilkan label organisasi. Tambahkan ke kunci, seperti yang dijelaskan [langkah pembuatan](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), sebelum Anda mengklik **Add**.
           </Step>
 
           <Step title="Validasi kunci">
-            Di halaman **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul ketika pemeriksaan lolos. Jika gagal, sebuah pesan memberikan alasannya.
+            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul ketika pemeriksaan berhasil. Jika gagal, sebuah pesan akan memberikan alasannya.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, lalu konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
           </Step>
         </Steps>
       </Tab>

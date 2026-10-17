@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 609c0d3794a914cdc88799dbd5c5a5c831e50ef01bf07965313727860b5d39f9
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 6bb393150fe73ff8a8c071218bc9dde9a07c90dc8dc31d15f1d765877695698f
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Memilih model Claude berarti menyeimbangkan kemampuan, kecepatan, d
 Saat memilih model Claude, pertimbangkan untuk terlebih dahulu mengevaluasi faktor-faktor berikut:
 
 * **Kemampuan:** Fitur atau kemampuan spesifik apa yang Anda perlukan dari model untuk memenuhi kebutuhan Anda?
-* **Kecepatan:** Seberapa cepat model perlu merespons dalam aplikasi Anda? Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 mendukung [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) (pratinjau riset), yang memberikan kecepatan output hingga 2,5x lebih tinggi dengan harga premium.
+* **Kecepatan:** Seberapa cepat model perlu merespons dalam aplikasi Anda? [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) memberikan kecepatan output hingga 2,5x lebih tinggi dengan harga premium pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
 * **Biaya:** Berapa anggaran Anda untuk penggunaan pengembangan maupun produksi?
 * **Effort:** Beberapa model Claude mendukung [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang menukar kecerdasan dengan "latency" (latensi) dan biaya dalam satu model. Menyetel effort sering kali merupakan pengungkit yang lebih baik daripada berganti model. Pada Claude Fable 5.1, Claude Opus 5, dan Claude Sonnet 5.5, mulailah dengan nilai default (`high`) dan sesuaikan naik atau turun berdasarkan eval Anda. Pada Claude Opus 5.5 dan Claude Haiku 5.5, nilai default-nya adalah `medium`; mulailah dari sana dan sesuaikan dengan cara yang sama. Pada Claude Opus 4.8 dan Claude Opus 4.7, tingkat effort `xhigh`, yang berada di antara `high` dan `max`, adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
 

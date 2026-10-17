@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 4344f20b49957989b143a27345ab4fcb5fd6369bc30bce9589b2f67018b8eaab
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 652e0d0fee8928ce066ef208fb58c1ba94a1fcb9bc15ae02e308f3345e861cb7
 ---
 
 ---
@@ -100,7 +100,7 @@ The skill source is available in the [Anthropic skills repository](https://githu
 npx skills add https://github.com/anthropics/skills --skill claude-api
 ```
 
-Or install it as a [Claude Code plugin](https://code.claude.com/docs/en/plugins):
+Or ask Claude Code to install it as a [Claude Code plugin](https://code.claude.com/docs/en/plugins):
 
 Let Claude Code install this for you
 
@@ -108,12 +108,12 @@ Let Claude Code install this for you
 Install the claude-api plugin from the anthropics/skills plugin marketplace
 ```
 
-Or run these commands in Claude Code:
-
-```text wrap
-/plugin marketplace add anthropics/skills
-/plugin install claude-api@anthropic-agent-skills
-```
+<Accordion title="Manual install commands">
+  ```text wrap
+  /plugin marketplace add anthropics/skills
+  /plugin install claude-api@anthropic-agent-skills
+  ```
+</Accordion>
 
 ## Migrating to a newer Claude model
 

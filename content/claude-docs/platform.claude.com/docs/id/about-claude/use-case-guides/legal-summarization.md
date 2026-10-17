@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: b9d2d4bed9d87733fe3ce36e2702383f68c0761766209e7efd832cd016187df2
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f87f611e2d9e6e6afb4152663a9a9baddc24a92d76b149376985fb3f34d545d0
 ---
 
 ---
@@ -47,16 +47,85 @@ Tidak ada satu ringkasan yang benar untuk dokumen apa pun. Tanpa arahan yang jel
 
 Misalnya, saat meringkas perjanjian sewa-ulang (sublease agreement), Anda mungkin ingin mengekstrak poin-poin penting berikut:
 
-```python
-details_to_extract = [
+<CodeGroup exclude="shell">
+  ```python Python
+  details_to_extract = [
+      "Parties involved (sublessor, sublessee, and original lessor)",
+      "Property details (address, description, and permitted use)",
+      "Term and rent (start date, end date, monthly rent, and security deposit)",
+      "Responsibilities (utilities, maintenance, and repairs)",
+      "Consent and notices (landlord's consent, and notice requirements)",
+      "Special provisions (furniture, parking, and subletting restrictions)",
+  ]
+  ```
+
+  ```typescript TypeScript
+  const detailsToExtract = [
     "Parties involved (sublessor, sublessee, and original lessor)",
     "Property details (address, description, and permitted use)",
     "Term and rent (start date, end date, monthly rent, and security deposit)",
     "Responsibilities (utilities, maintenance, and repairs)",
     "Consent and notices (landlord's consent, and notice requirements)",
-    "Special provisions (furniture, parking, and subletting restrictions)",
-]
-```
+    "Special provisions (furniture, parking, and subletting restrictions)"
+  ];
+  ```
+
+  ```csharp C#
+  List<string> detailsToExtract =
+  [
+      "Parties involved (sublessor, sublessee, and original lessor)",
+      "Property details (address, description, and permitted use)",
+      "Term and rent (start date, end date, monthly rent, and security deposit)",
+      "Responsibilities (utilities, maintenance, and repairs)",
+      "Consent and notices (landlord's consent, and notice requirements)",
+      "Special provisions (furniture, parking, and subletting restrictions)",
+  ];
+  ```
+
+  ```go Go
+  var detailsToExtract = []string{
+  	"Parties involved (sublessor, sublessee, and original lessor)",
+  	"Property details (address, description, and permitted use)",
+  	"Term and rent (start date, end date, monthly rent, and security deposit)",
+  	"Responsibilities (utilities, maintenance, and repairs)",
+  	"Consent and notices (landlord's consent, and notice requirements)",
+  	"Special provisions (furniture, parking, and subletting restrictions)",
+  }
+
+  ```
+
+  ```java Java
+  List<String> detailsToExtract = List.of(
+          "Parties involved (sublessor, sublessee, and original lessor)",
+          "Property details (address, description, and permitted use)",
+          "Term and rent (start date, end date, monthly rent, and security deposit)",
+          "Responsibilities (utilities, maintenance, and repairs)",
+          "Consent and notices (landlord's consent, and notice requirements)",
+          "Special provisions (furniture, parking, and subletting restrictions)");
+  ```
+
+  ```php PHP
+  $detailsToExtract = [
+      'Parties involved (sublessor, sublessee, and original lessor)',
+      'Property details (address, description, and permitted use)',
+      'Term and rent (start date, end date, monthly rent, and security deposit)',
+      'Responsibilities (utilities, maintenance, and repairs)',
+      "Consent and notices (landlord's consent, and notice requirements)",
+      'Special provisions (furniture, parking, and subletting restrictions)',
+  ];
+  ```
+
+  ```ruby Ruby
+  details_to_extract = [
+    "Parties involved (sublessor, sublessee, and original lessor)",
+    "Property details (address, description, and permitted use)",
+    "Term and rent (start date, end date, monthly rent, and security deposit)",
+    "Responsibilities (utilities, maintenance, and repairs)",
+    "Consent and notices (landlord's consent, and notice requirements)",
+    "Special provisions (furniture, parking, and subletting restrictions)"
+  ]
+  ```
+</CodeGroup>
 
 ### Tetapkan kriteria keberhasilan
 
@@ -96,7 +165,7 @@ Lihat panduan tentang [menetapkan kriteria keberhasilan](https://platform.claude
 
 ### Pilih model Claude yang tepat
 
-Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 5 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini di mana akurasi tinggi diperlukan. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 5.5.
+Akurasi model sangat penting saat meringkas dokumen hukum. Claude Opus 5.5 adalah pilihan yang sangat baik untuk kasus penggunaan seperti ini yang memerlukan akurasi tinggi. Jika ukuran dan jumlah dokumen Anda besar sehingga biaya mulai menjadi perhatian, Anda juga dapat mencoba menggunakan model yang lebih kecil seperti Claude Haiku 5.5.
 
 Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk meringkas 1.000 perjanjian sewa-ulang menggunakan model Opus dan Haiku:
 
@@ -108,21 +177,15 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
 
 * **Perkiraan token**
 
-  * Token input: 108 juta, sekitar 108.000 per perjanjian (sekitar 1 token per 2,8 karakter, rasio yang ditunjukkan oleh ketiga model pada contoh perjanjian dalam panduan ini)
-  * Token output per ringkasan, termasuk token pemikiran apa pun, yang ditagih sebagai output: sekitar 4.800 pada Claude Opus 5, 2.000 pada Claude Opus 4.8, dan 3.100 pada Claude Haiku 5.5
-  * Total token output: 4,8 juta pada Claude Opus 5, 2,0 juta pada Claude Opus 4.8, dan 3,1 juta pada Claude Haiku 5.5
+  * Token input: 108 juta, sekitar 108.000 per perjanjian (sekitar 1 token per 2,8 karakter, rasio yang ditunjukkan kedua model pada contoh perjanjian dalam panduan ini)
+  * Token output per ringkasan, termasuk token pemikiran apa pun, yang ditagih sebagai output: sekitar 6.200 pada Claude Opus 5.5 dan 3.100 pada Claude Haiku 5.5
+  * Total token output: 6,2 juta pada Claude Opus 5.5 dan 3,1 juta pada Claude Haiku 5.5
 
-* **Perkiraan biaya Claude Opus 5**
+* **Perkiraan biaya Claude Opus 5.5**
 
-  * Biaya token input: 108 MTok \* $5,00/MTok = $540,00 USD
-  * Biaya token output: 4,8 MTok \* $25,00/MTok = $120,00 USD
-  * Total biaya: $540,00 + $120,00 = $660,00 USD
-
-* **Perkiraan biaya Claude Opus 4.8**
-
-  * Biaya token input: 108 MTok \* $5,00/MTok = $540,00 USD
-  * Biaya token output: 2,0 MTok \* $25,00/MTok = $50,00 USD
-  * Total biaya: $540,00 + $50,00 = $590,00 USD
+  * Biaya token input: 108 MTok \* $4,00/MTok = $432,00 USD
+  * Biaya token output: 6,2 MTok \* $20,00/MTok = $124,00 USD
+  * Total biaya: $432,00 + $124,00 = $556,00 USD
 
 * **Perkiraan biaya Claude Haiku 5.5**, dengan harganya untuk prompt di atas 100.000 token
 
@@ -160,44 +223,258 @@ Sebelum mulai meringkas dokumen, Anda perlu menyiapkan data Anda. Ini mencakup m
 
 Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
 
-```python
-from io import BytesIO
-import re
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Ekstrak teks dari PDF di dalam kode.
+  </CodeGroupItem>
 
-import pypdf
-import requests
+  <CodeGroupItem language="CLI">
+    Ekstrak teks dari PDF di dalam kode.
+  </CodeGroupItem>
+
+  ```python Python
+  from io import BytesIO
+  import re
+
+  import pypdf
+  import requests
 
 
-def get_llm_text(pdf_file):
-    reader = pypdf.PdfReader(pdf_file)
-    text = "\n".join([page.extract_text() for page in reader.pages])
+  def get_llm_text(pdf_file):
+      reader = pypdf.PdfReader(pdf_file)
+      text = "\n".join([page.extract_text() for page in reader.pages])
+
+      # Hapus nomor halaman
+      text = re.sub(r"\n\s*\d+\s*\n", "\n", text)
+
+      # Hapus spasi berlebih
+      text = re.sub(r"\s+", " ", text)
+
+      return text
+
+
+  # Buat URL lengkap dari repositori GitHub
+  url = "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample Sublease Agreement.pdf"
+  url = url.replace(" ", "%20")
+
+  # Unduh file PDF ke dalam memori
+  response = requests.get(url)
+
+  # Muat PDF dari memori
+  pdf_file = BytesIO(response.content)
+
+  document_text = get_llm_text(pdf_file)
+  print(document_text[:50000])
+  ```
+
+  ```typescript TypeScript
+  import { PDFParse } from "pdf-parse";
+
+  async function getLlmText(pdfData: Uint8Array): Promise<string> {
+    const parser = new PDFParse({ data: pdfData });
+    const result = await parser.getText();
+    await parser.destroy();
+    let text = result.pages.map((page) => page.text).join("\n");
+
+    // Hapus nomor halaman
+    text = text.replace(/\n\s*\d+\s*\n/g, "\n");
+
+    // Hapus spasi berlebih
+    text = text.replace(/\s+/g, " ");
+
+    return text;
+  }
+
+  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  const response = await fetch(
+    "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"
+  );
+  const pdfData = new Uint8Array(await response.arrayBuffer());
+
+  const documentText = await getLlmText(pdfData);
+  console.log(documentText.slice(0, 50000));
+  ```
+
+  ```csharp C#
+  using System.Text.RegularExpressions;
+  using UglyToad.PdfPig;
+  using UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor;
+
+  string GetLlmText(byte[] pdfData)
+  {
+      using var document = PdfDocument.Open(pdfData);
+      var text = string.Join("\n", document.GetPages().Select(page => ContentOrderTextExtractor.GetText(page)));
+
+      // Hapus nomor halaman
+      text = Regex.Replace(text, @"\n\s*\d+\s*\n", "\n");
+
+      // Hapus spasi berlebih
+      text = Regex.Replace(text, @"\s+", " ");
+
+      return text;
+  }
+
+  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  using var httpClient = new HttpClient();
+  var pdfData = await httpClient.GetByteArrayAsync(
+      "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"
+  );
+
+  var documentText = GetLlmText(pdfData);
+  Console.WriteLine(documentText[..Math.Min(50000, documentText.Length)]);
+  ```
+
+  ```go Go
+  import (
+  	"bytes"
+  	"io"
+  	"net/http"
+  	"regexp"
+
+  	"github.com/ledongthuc/pdf"
+  )
+
+  // Teks contoh perjanjian sewa ulang (sublease)
+  var documentText string
+
+  func getLLMText(pdfData []byte) (string, error) {
+  	reader, err := pdf.NewReader(bytes.NewReader(pdfData), int64(len(pdfData)))
+  	if err != nil {
+  		return "", err
+  	}
+
+  	var pages []string
+  	for pageIndex := 1; pageIndex <= reader.NumPage(); pageIndex++ {
+  		pageText, err := reader.Page(pageIndex).GetPlainText(nil)
+  		if err != nil {
+  			return "", err
+  		}
+  		pages = append(pages, pageText)
+  	}
+  	text := strings.Join(pages, "\n")
+
+  	// Hapus nomor halaman
+  	text = regexp.MustCompile(`\n\s*\d+\s*\n`).ReplaceAllString(text, "\n")
+
+  	// Hapus spasi berlebih
+  	text = regexp.MustCompile(`\s+`).ReplaceAllString(text, " ")
+
+  	return text, nil
+  }
+
+  // extractDocumentText mengunduh contoh perjanjian sewa ulang dan mengekstrak teksnya.
+  func extractDocumentText() {
+  	// Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  	response, err := http.Get("https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf")
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+  	defer response.Body.Close()
+
+  	pdfData, err := io.ReadAll(response.Body)
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+
+  	documentText, err = getLLMText(pdfData)
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+  	fmt.Println(documentText[:min(50000, len(documentText))])
+  }
+
+  ```
+
+  ```java Java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import org.apache.pdfbox.Loader;
+  import org.apache.pdfbox.pdmodel.PDDocument;
+  import org.apache.pdfbox.text.PDFTextStripper;
+
+  // Teks contoh perjanjian sewa ulang (sublease)
+  String documentText;
+
+  String getLlmText(byte[] pdfData) throws IOException {
+      try (PDDocument document = Loader.loadPDF(pdfData)) {
+          String text = new PDFTextStripper().getText(document);
+
+          // Hapus nomor halaman
+          text = text.replaceAll("\\n\\s*\\d+\\s*\\n", "\n");
+
+          // Hapus spasi berlebih
+          return text.replaceAll("\\s+", " ");
+      }
+  }
+
+  void extractDocumentText() throws IOException, InterruptedException {
+      // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+      HttpRequest request = HttpRequest.newBuilder(URI.create(
+                      "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"))
+              .build();
+      byte[] pdfData;
+      try (HttpClient httpClient = HttpClient.newHttpClient()) {
+          pdfData = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray()).body();
+      }
+
+      documentText = getLlmText(pdfData);
+      IO.println(documentText.substring(0, Math.min(50000, documentText.length())));
+  }
+  ```
+
+  ```php PHP
+  $getLlmText = function (string $pdfData): string {
+      $document = (new \Smalot\PdfParser\Parser())->parseContent($pdfData);
+      $text = implode("\n", array_map(fn ($page) => $page->getText(), $document->getPages()));
+
+      // Hapus nomor halaman
+      $text = preg_replace('/\n\s*\d+\s*\n/', "\n", $text);
+
+      // Hapus spasi berlebih
+      return preg_replace('/\s+/', ' ', $text);
+  };
+
+  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  $pdfData = file_get_contents(
+      'https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf'
+  );
+
+  $documentText = $getLlmText($pdfData);
+  echo substr($documentText, 0, 50000) . "\n";
+  ```
+
+  ```ruby Ruby
+  require "net/http"
+  require "pdf-reader"
+  require "stringio"
+
+  def get_llm_text(pdf_data)
+    reader = PDF::Reader.new(StringIO.new(pdf_data))
+    text = reader.pages.map(&:text).join("\n")
 
     # Hapus nomor halaman
-    text = re.sub(r"\n\s*\d+\s*\n", "\n", text)
+    text = text.gsub(/\n\s*\d+\s*\n/, "\n")
 
     # Hapus spasi berlebih
-    text = re.sub(r"\s+", " ", text)
+    text.gsub(/\s+/, " ")
+  end
 
-    return text
+  # Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  pdf_data = Net::HTTP.get(
+    URI("https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf")
+  )
 
-
-# Buat URL lengkap dari repositori GitHub
-url = "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample Sublease Agreement.pdf"
-url = url.replace(" ", "%20")
-
-# Unduh file PDF ke dalam memori
-response = requests.get(url)
-
-# Muat PDF dari memori
-pdf_file = BytesIO(response.content)
-
-document_text = get_llm_text(pdf_file)
-print(document_text[:50000])
-```
+  document_text = get_llm_text(pdf_data)
+  puts document_text[0, 50_000]
+  ```
+</CodeGroup>
 
 Dalam contoh ini, Anda pertama-tama mengunduh PDF dari contoh perjanjian sewa-ulang yang digunakan dalam [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide). Perjanjian ini bersumber dari perjanjian sewa-ulang yang tersedia untuk publik dari [situs web sec.gov](https://www.sec.gov/Archives/edgar/data/1045425/000119312507044370/dex1032.htm).
 
-Contoh ini menggunakan pustaka pypdf untuk mengekstrak isi PDF dan mengonversinya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
+Contoh ini menggunakan pustaka `pypdf` (typescript: `pdf-parse`; csharp: `PdfPig`; go: `github.com/ledongthuc/pdf`; java: `org.apache.pdfbox:pdfbox`; php: `smalot/pdfparser`; ruby: `pdf-reader`) untuk mengekstrak isi PDF dan mengubahnya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
 
 ### Buat prompt yang kuat
 
@@ -205,52 +482,364 @@ Claude dapat beradaptasi dengan berbagai gaya peringkasan. Anda dapat mengubah d
 
 Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasilkan mengikuti struktur yang konsisten saat menganalisis perjanjian sewa-ulang:
 
-```python Python
-# Inisialisasi klien Anthropic
-client = anthropic.Anthropic()
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  ```python Python
+  # Inisialisasi klien Anthropic
+  client = anthropic.Anthropic()
 
 
-def summarize_document(
-    text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
-):
-    # Format detail yang akan diekstrak agar ditempatkan dalam konteks prompt
-    details_to_extract_str = "\n".join(details_to_extract)
+  def summarize_document(
+      text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
+  ):
+      # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      details_to_extract_str = "\n".join(details_to_extract)
 
-    # Minta model untuk merangkum perjanjian sewa ulang (sublease)
-    prompt = f"""Summarize the following sublease agreement. Focus on these key aspects:
+      # Minta model meringkas perjanjian sewa ulang (sublease)
+      prompt = f"""Summarize the following sublease agreement. Focus on these key aspects:
 
-    {details_to_extract_str}
+      {details_to_extract_str}
 
-    Provide the summary in bullet points nested within the XML header for each section. For example:
+      Provide the summary in bullet points nested within the XML header for each section. For example:
 
-    <parties involved>
-    - Sublessor: [Name]
-    // Add more details as needed
-    </parties involved>
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
 
-    If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
 
-    Sublease agreement text:
-    {text}
-    """
+      Sublease agreement text:
+      {text}
+      """
 
-    response = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system="You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
-        messages=[
-            {"role": "user", "content": prompt},
-        ],
+      response = client.messages.create(
+          model=model,
+          max_tokens=max_tokens,
+          system="You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
+          messages=[
+              {"role": "user", "content": prompt},
+          ],
+      )
+
+      return next(block.text for block in response.content if block.type == "text")
+
+
+  sublease_summary = summarize_document(document_text, details_to_extract)
+  print(sublease_summary)
+  ```
+
+  ```typescript TypeScript
+  // Inisialisasi klien Anthropic
+  const client = new Anthropic();
+
+  async function summarizeDocument(
+    text: string,
+    detailsToExtract: string[],
+    model: Anthropic.Model = "claude-opus-5-5",
+    maxTokens = 16000
+  ): Promise<string> {
+    // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    const detailsToExtractStr = detailsToExtract.join("\n");
+
+    // Minta model meringkas perjanjian sewa ulang
+    const prompt = `Summarize the following sublease agreement. Focus on these key aspects:
+
+      ${detailsToExtractStr}
+
+      Provide the summary in bullet points nested within the XML header for each section. For example:
+
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
+
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+      Sublease agreement text:
+      ${text}
+      `;
+
+    const response = await client.messages.create({
+      model,
+      max_tokens: maxTokens,
+      system:
+        "You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
+      messages: [{ role: "user", content: prompt }]
+    });
+
+    const textBlock = response.content.find((block) => block.type === "text");
+    if (!textBlock) {
+      throw new Error("Expected a text block in the response");
+    }
+    return textBlock.text;
+  }
+
+  const subleaseSummary = await summarizeDocument(documentText, detailsToExtract);
+  console.log(subleaseSummary);
+  ```
+
+  ```csharp C#
+  // Inisialisasi klien Anthropic
+  var client = new AnthropicClient();
+
+  async Task<string> SummarizeDocument(
+      string text,
+      IReadOnlyList<string> detailsToExtract,
+      Model model = Model.ClaudeOpus5_5,
+      long maxTokens = 16000
+  )
+  {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      var detailsToExtractStr = string.Join("\n", detailsToExtract);
+
+      // Minta model meringkas perjanjian sewa ulang
+      var prompt = $"""
+          Summarize the following sublease agreement. Focus on these key aspects:
+
+              {detailsToExtractStr}
+
+              Provide the summary in bullet points nested within the XML header for each section. For example:
+
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
+
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+              Sublease agreement text:
+              {text}
+          """;
+
+      var response = await client.Messages.Create(
+          new()
+          {
+              Model = model,
+              MaxTokens = maxTokens,
+              System = "You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
+              Messages = [new() { Role = Role.User, Content = prompt }],
+          }
+      );
+
+      foreach (var block in response.Content)
+      {
+          if (block.TryPickText(out var textBlock))
+          {
+              return textBlock.Text;
+          }
+      }
+      throw new InvalidOperationException("Expected a text block in the response.");
+  }
+
+  var subleaseSummary = await SummarizeDocument(documentText, detailsToExtract);
+  Console.WriteLine(subleaseSummary);
+  ```
+
+  ```go Go
+  // Inisialisasi klien Anthropic
+  var client = anthropic.NewClient()
+
+  func summarizeDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
+  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+  	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
+
+  	// Minta model meringkas perjanjian sewa ulang
+  	prompt := fmt.Sprintf(`Summarize the following sublease agreement. Focus on these key aspects:
+
+      %s
+
+      Provide the summary in bullet points nested within the XML header for each section. For example:
+
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
+
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+      Sublease agreement text:
+      %s
+      `, detailsToExtractStr, text)
+
+  	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+  		Model:     model,
+  		MaxTokens: maxTokens,
+  		System: []anthropic.TextBlockParam{
+  			{Text: "You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements."},
+  		},
+  		Messages: []anthropic.MessageParam{
+  			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
+  		},
+  	})
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+
+  	for _, block := range response.Content {
+  		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  			return textBlock.Text
+  		}
+  	}
+  	panic("expected a text block in the response")
+  }
+
+  // printSubleaseSummary meringkas perjanjian sewa ulang dan mencetak ringkasannya.
+  func printSubleaseSummary() {
+  	subleaseSummary := summarizeDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
+  	fmt.Println(subleaseSummary)
+  }
+
+  ```
+
+  ```java Java
+  // Inisialisasi klien Anthropic
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  String summarizeDocument(String text, List<String> detailsToExtract, Model model, long maxTokens) {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      String detailsToExtractStr = String.join("\n", detailsToExtract);
+
+      // Minta model meringkas perjanjian sewa ulang
+      String prompt = """
+              Summarize the following sublease agreement. Focus on these key aspects:
+
+                  %s
+
+                  Provide the summary in bullet points nested within the XML header for each section. For example:
+
+                  <parties involved>
+                  - Sublessor: [Name]
+                  // Add more details as needed
+                  </parties involved>
+
+                  If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+                  Sublease agreement text:
+                  %s
+              """
+              .formatted(detailsToExtractStr, text);
+
+      Message response = client.messages().create(MessageCreateParams.builder()
+              .model(model)
+              .maxTokens(maxTokens)
+              .system("You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.")
+              .addUserMessage(prompt)
+              .build());
+
+      return response.content().stream()
+              .flatMap(block -> block.text().stream())
+              .findFirst()
+              .orElseThrow()
+              .text();
+  }
+
+  void printSubleaseSummary() {
+      String subleaseSummary = summarizeDocument(
+              documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
+      IO.println(subleaseSummary);
+  }
+  ```
+
+  ```php PHP
+  // Inisialisasi klien Anthropic
+  $client = new \Anthropic\Client();
+
+  $summarizeDocument = function (
+      string $text,
+      array $detailsToExtract,
+      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      int $maxTokens = 16000,
+  ) use ($client): string {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      $detailsToExtractStr = implode("\n", $detailsToExtract);
+
+      // Minta model meringkas perjanjian sewa ulang
+      $prompt = <<<PROMPT
+          Summarize the following sublease agreement. Focus on these key aspects:
+
+              {$detailsToExtractStr}
+
+              Provide the summary in bullet points nested within the XML header for each section. For example:
+
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
+
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+              Sublease agreement text:
+              {$text}
+          PROMPT;
+
+      $response = $client->messages->create(
+          model: $model,
+          maxTokens: $maxTokens,
+          system: 'You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.',
+          messages: [['role' => 'user', 'content' => $prompt]],
+      );
+
+      $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
+          ?? throw new \RuntimeException('Expected a text block in the response.');
+
+      return $textBlock->text;
+  };
+
+  $subleaseSummary = $summarizeDocument($documentText, $detailsToExtract);
+  echo $subleaseSummary . "\n";
+  ```
+
+  ```ruby Ruby
+  # Inisialisasi klien Anthropic
+  CLIENT = Anthropic::Client.new
+
+  def summarize_document(text, details_to_extract, model: Anthropic::Model::CLAUDE_OPUS_5_5, max_tokens: 16_000)
+    # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    details_to_extract_str = details_to_extract.join("\n")
+
+    # Minta model meringkas perjanjian sewa ulang
+    prompt = <<~PROMPT
+      Summarize the following sublease agreement. Focus on these key aspects:
+
+          #{details_to_extract_str}
+
+          Provide the summary in bullet points nested within the XML header for each section. For example:
+
+          <parties involved>
+          - Sublessor: [Name]
+          // Add more details as needed
+          </parties involved>
+
+          If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+
+          Sublease agreement text:
+          #{text}
+    PROMPT
+
+    response = CLIENT.messages.create(
+      model:,
+      max_tokens:,
+      system_: "You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
+      messages: [{role: :user, content: prompt}]
     )
 
-    return next(block.text for block in response.content if block.type == "text")
+    response.content.find { |block| block.is_a?(Anthropic::Models::TextBlock) }.text
+  end
 
+  sublease_summary = summarize_document(document_text, details_to_extract)
+  puts sublease_summary
+  ```
+</CodeGroup>
 
-sublease_summary = summarize_document(document_text, details_to_extract)
-print(sublease_summary)
-```
-
-Kode ini mengimplementasikan fungsi `summarize_document` yang menggunakan Claude untuk meringkas isi perjanjian sewa-ulang. Fungsi ini menerima string teks dan daftar detail yang akan diekstrak sebagai input. Dalam contoh ini, kode memanggil fungsi tersebut dengan variabel `document_text` dan `details_to_extract` yang telah didefinisikan dalam cuplikan kode sebelumnya.
+Kode ini mengimplementasikan fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) yang menggunakan Claude untuk meringkas isi perjanjian sewa-ulang. Fungsi ini menerima string teks dan daftar detail yang akan diekstrak sebagai input. Dalam contoh ini, kode memanggil fungsi tersebut dengan variabel `document_text` (typescript, go, java, csharp: `documentText`; php: `$documentText`) dan `details_to_extract` (typescript, go, java, csharp: `detailsToExtract`; php: `$detailsToExtract`) yang telah didefinisikan dalam cuplikan kode sebelumnya.
 
 Di dalam fungsi, sebuah prompt dibuat untuk Claude, yang mencakup dokumen yang akan diringkas, detail yang akan diekstrak, dan instruksi spesifik untuk meringkas dokumen. Prompt tersebut menginstruksikan Claude untuk merespons dengan ringkasan setiap detail yang akan diekstrak, yang disarangkan di dalam header XML.
 
@@ -308,72 +897,446 @@ Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak 
 
 Berikut adalah contoh cara melakukan meta-peringkasan:
 
-```python Python
-# Inisialisasi klien Anthropic
-client = anthropic.Anthropic()
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  ```python Python
+  def chunk_text(text, chunk_size=20000):
+      return [text[i : i + chunk_size] for i in range(0, len(text), chunk_size)]
 
 
-def chunk_text(text, chunk_size=20000):
-    return [text[i : i + chunk_size] for i in range(0, len(text), chunk_size)]
+  def summarize_long_document(
+      text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
+  ):
+      # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      details_to_extract_str = "\n".join(details_to_extract)
+
+      # Iterasi setiap chunk dan ringkas masing-masing
+      chunk_summaries = [
+          summarize_document(
+              chunk, details_to_extract, model=model, max_tokens=max_tokens
+          )
+          for chunk in chunk_text(text)
+      ]
+
+      final_summary_prompt = f"""
+
+      You are looking at the chunked summaries of multiple documents that are all related.
+      Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+      <chunked_summaries>
+      {"".join(chunk_summaries)}
+      </chunked_summaries>
+
+      Focus on these key aspects:
+      {details_to_extract_str}
+
+      Provide the summary in bullet points nested within the XML header for each section. For example:
+
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
+
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+      """
+
+      response = client.messages.create(
+          model=model,
+          max_tokens=max_tokens,
+          system="You are a legal expert that summarizes notes on one document.",
+          messages=[
+              {"role": "user", "content": final_summary_prompt},
+          ],
+      )
+
+      return next(block.text for block in response.content if block.type == "text")
 
 
-def summarize_long_document(
-    text, details_to_extract, model="claude-opus-5-5", max_tokens=16000
-):
-    # Format detail yang akan diekstrak agar ditempatkan dalam konteks prompt
-    details_to_extract_str = "\n".join(details_to_extract)
+  long_summary = summarize_long_document(document_text, details_to_extract)
+  print(long_summary)
+  ```
+
+  ```typescript TypeScript
+  function chunkText(text: string, chunkSize = 20000): string[] {
+    return Array.from({ length: Math.ceil(text.length / chunkSize) }, (_, index) =>
+      text.slice(index * chunkSize, (index + 1) * chunkSize)
+    );
+  }
+
+  async function summarizeLongDocument(
+    text: string,
+    detailsToExtract: string[],
+    model: Anthropic.Model = "claude-opus-5-5",
+    maxTokens = 16000
+  ): Promise<string> {
+    // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    const detailsToExtractStr = detailsToExtract.join("\n");
+
+    // Iterasi setiap chunk dan ringkas masing-masing
+    const chunkSummaries: string[] = [];
+    for (const chunk of chunkText(text)) {
+      chunkSummaries.push(await summarizeDocument(chunk, detailsToExtract, model, maxTokens));
+    }
+
+    const finalSummaryPrompt = `
+
+      You are looking at the chunked summaries of multiple documents that are all related.
+      Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+      <chunked_summaries>
+      ${chunkSummaries.join("")}
+      </chunked_summaries>
+
+      Focus on these key aspects:
+      ${detailsToExtractStr}
+
+      Provide the summary in bullet points nested within the XML header for each section. For example:
+
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
+
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+      `;
+
+    const response = await client.messages.create({
+      model,
+      max_tokens: maxTokens,
+      system: "You are a legal expert that summarizes notes on one document.",
+      messages: [{ role: "user", content: finalSummaryPrompt }]
+    });
+
+    const textBlock = response.content.find((block) => block.type === "text");
+    if (!textBlock) {
+      throw new Error("Expected a text block in the response");
+    }
+    return textBlock.text;
+  }
+
+  const longSummary = await summarizeLongDocument(documentText, detailsToExtract);
+  console.log(longSummary);
+  ```
+
+  ```csharp C#
+  IEnumerable<string> ChunkText(string text, int chunkSize = 20000) =>
+      text.Chunk(chunkSize).Select(chars => new string(chars));
+
+  async Task<string> SummarizeLongDocument(
+      string text,
+      IReadOnlyList<string> detailsToExtract,
+      Model model = Model.ClaudeOpus5_5,
+      long maxTokens = 16000
+  )
+  {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      var detailsToExtractStr = string.Join("\n", detailsToExtract);
+
+      // Iterasi setiap chunk dan ringkas masing-masing
+      List<string> chunkSummaries = [];
+      foreach (var chunk in ChunkText(text))
+      {
+          chunkSummaries.Add(await SummarizeDocument(chunk, detailsToExtract, model, maxTokens));
+      }
+
+      var finalSummaryPrompt = $"""
+
+              You are looking at the chunked summaries of multiple documents that are all related.
+              Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+              <chunked_summaries>
+              {string.Concat(chunkSummaries)}
+              </chunked_summaries>
+
+              Focus on these key aspects:
+              {detailsToExtractStr}
+
+              Provide the summary in bullet points nested within the XML header for each section. For example:
+
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
+
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+          """;
+
+      var response = await client.Messages.Create(
+          new()
+          {
+              Model = model,
+              MaxTokens = maxTokens,
+              System = "You are a legal expert that summarizes notes on one document.",
+              Messages = [new() { Role = Role.User, Content = finalSummaryPrompt }],
+          }
+      );
+
+      foreach (var block in response.Content)
+      {
+          if (block.TryPickText(out var textBlock))
+          {
+              return textBlock.Text;
+          }
+      }
+      throw new InvalidOperationException("Expected a text block in the response.");
+  }
+
+  var longSummary = await SummarizeLongDocument(documentText, detailsToExtract);
+  Console.WriteLine(longSummary);
+  ```
+
+  ```go Go
+  func chunkText(text string, chunkSize int) []string {
+  	var chunks []string
+  	for chunk := range slices.Chunk([]rune(text), chunkSize) {
+  		chunks = append(chunks, string(chunk))
+  	}
+  	return chunks
+  }
+
+  func summarizeLongDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
+  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+  	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
+
+  	// Iterasi setiap chunk dan ringkas masing-masing
+  	var chunkSummaries []string
+  	for _, chunk := range chunkText(text, 20000) {
+  		chunkSummaries = append(chunkSummaries, summarizeDocument(chunk, detailsToExtract, model, maxTokens))
+  	}
+
+  	finalSummaryPrompt := fmt.Sprintf(`
+
+      You are looking at the chunked summaries of multiple documents that are all related.
+      Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+      <chunked_summaries>
+      %s
+      </chunked_summaries>
+
+      Focus on these key aspects:
+      %s
+
+      Provide the summary in bullet points nested within the XML header for each section. For example:
+
+      <parties involved>
+      - Sublessor: [Name]
+      // Add more details as needed
+      </parties involved>
+
+      If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+      `, strings.Join(chunkSummaries, ""), detailsToExtractStr)
+
+  	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+  		Model:     model,
+  		MaxTokens: maxTokens,
+  		System: []anthropic.TextBlockParam{
+  			{Text: "You are a legal expert that summarizes notes on one document."},
+  		},
+  		Messages: []anthropic.MessageParam{
+  			anthropic.NewUserMessage(anthropic.NewTextBlock(finalSummaryPrompt)),
+  		},
+  	})
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+
+  	for _, block := range response.Content {
+  		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+  			return textBlock.Text
+  		}
+  	}
+  	panic("expected a text block in the response")
+  }
+
+  // printLongSummary meringkas perjanjian sewa ulang per chunk dan mencetak ringkasan gabungannya.
+  func printLongSummary() {
+  	longSummary := summarizeLongDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
+  	fmt.Println(longSummary)
+  }
+
+  ```
+
+  ```java Java
+  List<String> chunkText(String text, int chunkSize) {
+      return IntStream.iterate(0, start -> start < text.length(), start -> start + chunkSize)
+              .mapToObj(start -> text.substring(start, Math.min(start + chunkSize, text.length())))
+              .toList();
+  }
+
+  String summarizeLongDocument(String text, List<String> detailsToExtract, Model model, long maxTokens) {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      String detailsToExtractStr = String.join("\n", detailsToExtract);
+
+      // Iterasi setiap chunk dan ringkas masing-masing
+      String chunkSummaries = chunkText(text, 20000).stream()
+              .map(chunk -> summarizeDocument(chunk, detailsToExtract, model, maxTokens))
+              .collect(Collectors.joining());
+
+      String finalSummaryPrompt = """
+
+                  You are looking at the chunked summaries of multiple documents that are all related.
+                  Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+                  <chunked_summaries>
+                  %s
+                  </chunked_summaries>
+
+                  Focus on these key aspects:
+                  %s
+
+                  Provide the summary in bullet points nested within the XML header for each section. For example:
+
+                  <parties involved>
+                  - Sublessor: [Name]
+                  // Add more details as needed
+                  </parties involved>
+
+                  If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+              """
+              .formatted(chunkSummaries, detailsToExtractStr);
+
+      Message response = client.messages().create(MessageCreateParams.builder()
+              .model(model)
+              .maxTokens(maxTokens)
+              .system("You are a legal expert that summarizes notes on one document.")
+              .addUserMessage(finalSummaryPrompt)
+              .build());
+
+      return response.content().stream()
+              .flatMap(block -> block.text().stream())
+              .findFirst()
+              .orElseThrow()
+              .text();
+  }
+
+  void printLongSummary() {
+      String longSummary = summarizeLongDocument(
+              documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
+      IO.println(longSummary);
+  }
+  ```
+
+  ```php PHP
+  $chunkText = fn (string $text, int $chunkSize = 20000): array => mb_str_split($text, $chunkSize);
+
+  $summarizeLongDocument = function (
+      string $text,
+      array $detailsToExtract,
+      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      int $maxTokens = 16000,
+  ) use ($client, $chunkText, $summarizeDocument): string {
+      // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+      $detailsToExtractStr = implode("\n", $detailsToExtract);
+
+      // Iterasi setiap chunk dan ringkas masing-masing
+      $chunkSummaries = array_map(
+          fn (string $chunk) => $summarizeDocument($chunk, $detailsToExtract, $model, $maxTokens),
+          $chunkText($text),
+      );
+      $chunkSummariesStr = implode('', $chunkSummaries);
+
+      $finalSummaryPrompt = <<<PROMPT
+
+              You are looking at the chunked summaries of multiple documents that are all related.
+              Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+
+              <chunked_summaries>
+              {$chunkSummariesStr}
+              </chunked_summaries>
+
+              Focus on these key aspects:
+              {$detailsToExtractStr}
+
+              Provide the summary in bullet points nested within the XML header for each section. For example:
+
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
+
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+          PROMPT;
+
+      $response = $client->messages->create(
+          model: $model,
+          maxTokens: $maxTokens,
+          system: 'You are a legal expert that summarizes notes on one document.',
+          messages: [['role' => 'user', 'content' => $finalSummaryPrompt]],
+      );
+
+      $textBlock = array_find($response->content, fn ($block) => $block instanceof \Anthropic\Messages\TextBlock)
+          ?? throw new \RuntimeException('Expected a text block in the response.');
+
+      return $textBlock->text;
+  };
+
+  $longSummary = $summarizeLongDocument($documentText, $detailsToExtract);
+  echo $longSummary . "\n";
+  ```
+
+  ```ruby Ruby
+  def chunk_text(text, chunk_size: 20_000)
+    text.chars.each_slice(chunk_size).map(&:join)
+  end
+
+  def summarize_long_document(text, details_to_extract, model: Anthropic::Model::CLAUDE_OPUS_5_5, max_tokens: 16_000)
+    # Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+    details_to_extract_str = details_to_extract.join("\n")
 
     # Iterasi setiap chunk dan ringkas masing-masing
-    chunk_summaries = [
-        summarize_document(
-            chunk, details_to_extract, model=model, max_tokens=max_tokens
-        )
-        for chunk in chunk_text(text)
-    ]
+    chunk_summaries = chunk_text(text).map do |chunk|
+      summarize_document(chunk, details_to_extract, model:, max_tokens:)
+    end
 
-    final_summary_prompt = f"""
+    final_summary_prompt = <<~PROMPT
 
-    You are looking at the chunked summaries of multiple documents that are all related.
-    Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+          You are looking at the chunked summaries of multiple documents that are all related.
+          Combine the following summaries of the document from different truthful sources into a coherent overall summary:
 
-    <chunked_summaries>
-    {"".join(chunk_summaries)}
-    </chunked_summaries>
+          <chunked_summaries>
+          #{chunk_summaries.join}
+          </chunked_summaries>
 
-    Focus on these key aspects:
-    {details_to_extract_str}
+          Focus on these key aspects:
+          #{details_to_extract_str}
 
-    Provide the summary in bullet points nested within the XML header for each section. For example:
+          Provide the summary in bullet points nested within the XML header for each section. For example:
 
-    <parties involved>
-    - Sublessor: [Name]
-    // Add more details as needed
-    </parties involved>
+          <parties involved>
+          - Sublessor: [Name]
+          // Add more details as needed
+          </parties involved>
 
-    If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
-    """
+          If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+    PROMPT
 
-    response = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system="You are a legal expert that summarizes notes on one document.",
-        messages=[
-            {"role": "user", "content": final_summary_prompt},
-        ],
+    response = CLIENT.messages.create(
+      model:,
+      max_tokens:,
+      system_: "You are a legal expert that summarizes notes on one document.",
+      messages: [{role: :user, content: final_summary_prompt}]
     )
 
-    return next(block.text for block in response.content if block.type == "text")
+    response.content.find { |block| block.is_a?(Anthropic::Models::TextBlock) }.text
+  end
 
+  long_summary = summarize_long_document(document_text, details_to_extract)
+  puts long_summary
+  ```
+</CodeGroup>
 
-long_summary = summarize_long_document(document_text, details_to_extract)
-print(long_summary)
-```
+Fungsi `summarize_long_document` (typescript, go, java: `summarizeLongDocument`; php: `$summarizeLongDocument`; csharp: `SummarizeLongDocument`) dibangun di atas fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) sebelumnya dengan membagi dokumen menjadi potongan-potongan yang lebih kecil dan meringkas setiap potongan secara individual.
 
-Fungsi `summarize_long_document` dibangun di atas fungsi `summarize_document` sebelumnya dengan membagi dokumen menjadi potongan-potongan yang lebih kecil dan meringkas setiap potongan secara individual.
+Kode mencapai hal ini dengan menerapkan fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) ke setiap potongan berukuran 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan-ringkasan potongan ini.
 
-Kode ini mencapainya dengan menerapkan fungsi `summarize_document` pada setiap potongan sebesar 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan potongan-potongan ini.
-
-Perhatikan bahwa fungsi `summarize_long_document` tidak benar-benar diperlukan untuk PDF contoh, karena seluruh dokumen muat di dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Bagaimanapun, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewat dalam pendekatan ringkasan tunggal sebelumnya.
+Perhatikan bahwa fungsi `summarize_long_document` (typescript, go, java: `summarizeLongDocument`; php: `$summarizeLongDocument`; csharp: `SummarizeLongDocument`) sebenarnya tidak mutlak diperlukan untuk contoh PDF ini, karena seluruh dokumen muat dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Terlepas dari itu, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewatkan dalam pendekatan ringkasan tunggal sebelumnya.
 
 ### Gunakan dokumen berindeks ringkasan untuk menjelajahi koleksi dokumen yang besar
 

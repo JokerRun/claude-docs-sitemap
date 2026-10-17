@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8cf50ee864cfda88a693b76aeaeb41e18da72b8dcaf2eb4a8a3b26ce9c599c74
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 20526e178ef5329b0076cd89909e276042b9e861091c0190c4433b2a2112e1c1
 ---
 
 ---
@@ -503,16 +503,14 @@ Lindungi proses parse, seperti yang dilakukan contoh SDK berikut. Respons juga d
 
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
-<CodeGroup>
-  ```bash cURL
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI contoh
-  # pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI contoh
-  # pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
-  ```
+  <CodeGroupItem language="CLI">
+    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -842,7 +840,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                   try {
                       $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
                       echo "Tool input: " . json_encode($parsed) . "\n";
-                  } catch (JsonException $e) {
+                  } catch (\JsonException $e) {
                       // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
                       // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
                       echo "Invalid tool input: {$accumulated}\n";

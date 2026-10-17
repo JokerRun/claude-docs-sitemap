@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 5c758d91d89a86ce1a82f3eae79d8199bf8d9312c848794ccf0f722f9dcbb6d3
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 77165d270be6e781dbd3635338171c472b1266729c1930fcb244ffbdc29be4fe
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
 description: Instal dan konfigurasikan Anthropic Ruby SDK dengan tipe Sorbet, helper streaming, dan connection pooling
 ---
 
-Library Anthropic Ruby menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ apa pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam Yard, RBS, dan RBI. `net/http` dari standard library digunakan sebagai transport HTTP, dengan "connection pooling" (pengumpulan koneksi) melalui gem `connection_pool`.
+Library Ruby Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ mana pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam YARD, RBS, dan RBI. `net/http` dari library standar digunakan sebagai transport HTTP, dengan "connection pooling" (pengumpulan koneksi) melalui gem `connection_pool`.
 
 <Info>
   Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus Ruby.
@@ -308,16 +308,21 @@ T.reveal_type(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 Parameter enum memiliki tipe yang "longgar", sehingga Anda dapat meneruskan konstanta enum atau nilai literalnya:
 
 ```ruby
+anthropic = Anthropic::Client.new
 # Menggunakan konstanta enum mempertahankan informasi tipe bertag:
 anthropic.messages.create(
-  service_tier: Anthropic::MessageCreateParams::ServiceTier::AUTO,
-  # ...
+  max_tokens: 1024,
+  messages: [{role: "user", content: "Hello, Claude"}],
+  model: Anthropic::Model::CLAUDE_OPUS_5_5,
+  service_tier: Anthropic::MessageCreateParams::ServiceTier::AUTO
 )
 
 # Nilai literal juga diperbolehkan:
 anthropic.messages.create(
-  service_tier: :auto,
-  # ...
+  max_tokens: 1024,
+  messages: [{role: "user", content: "Hello, Claude"}],
+  model: :"claude-opus-5-5",
+  service_tier: :auto
 )
 ```
 
@@ -327,7 +332,7 @@ Semua objek parameter dan respons mewarisi dari `Anthropic::Internal::Type::Base
 
 1. Semua field, termasuk yang tidak dikenal, dapat diakses dengan sintaks `obj[:prop]`, dan dapat di-destructure dengan `obj => {prop: prop}` atau sintaks pattern-matching.
 
-2. Ekuivalensi struktural untuk kesetaraan; jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
+2. Kesetaraan struktural untuk perbandingan kesamaan. Jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
 
 3. Baik instance maupun kelasnya sendiri dapat di-pretty-print.
 
@@ -373,11 +378,11 @@ puts(message[:my_undocumented_property])
 
 ### Parameter permintaan tidak terdokumentasi
 
-Jika Anda ingin secara eksplisit mengirim parameter tambahan, Anda dapat melakukannya dengan `extra_query`, `extra_body`, dan `extra_headers` di bawah parameter `request_options:` saat membuat permintaan, seperti terlihat pada contoh di atas.
+Jika Anda ingin mengirim parameter tambahan secara eksplisit, Anda dapat melakukannya dengan `extra_query`, `extra_body`, dan `extra_headers` di bawah parameter `request_options:` saat membuat permintaan, seperti yang terlihat pada contoh sebelumnya.
 
 ### Endpoint tidak terdokumentasi
 
-Untuk membuat permintaan ke endpoint tidak terdokumentasi sambil tetap mendapatkan manfaat autentikasi, percobaan ulang, dan sebagainya, Anda dapat membuat permintaan menggunakan `anthropic.request`, seperti berikut:
+Untuk membuat permintaan ke endpoint yang tidak terdokumentasi sambil tetap mempertahankan manfaat autentikasi, percobaan ulang, dan sebagainya, Anda dapat membuat permintaan menggunakan `anthropic.request`, seperti ini:
 
 ```ruby
 response = anthropic.request(

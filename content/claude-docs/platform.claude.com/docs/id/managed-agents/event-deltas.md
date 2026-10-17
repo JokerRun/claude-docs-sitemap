@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6d06a23dd7ad9eccfda7da26e2fffeb51a8d22950421cba815c683fc21d43510
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b9801a3e52fdc753dfc69a74c48c5efed0dd35a33a840ded1231e25f2f155698
 ---
 
 ---
@@ -114,7 +114,7 @@ Helper setiap SDK menangani pencatatan `index` (csharp, go: `Index`). Helper Go,
 
 Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasinya dengan event yang di-buffer:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   # Aktifkan pratinjau agent.message melalui event_deltas, lalu akumulasikan secara manual.
   exec {stream}< <(
@@ -180,10 +180,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   exec {stream}<&-
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Snapshot pratinjau, dikunci berdasarkan id event. accumulate_managed_agents_event melipat setiap

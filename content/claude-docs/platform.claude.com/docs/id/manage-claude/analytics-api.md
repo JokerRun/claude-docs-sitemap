@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 82de642161205738f987406c3f9a93c69d7fc5018eddfd435314c16543e1a7f6
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2b60b1ce9b08b2d8f3f618d645915e6482ed8ec0ae83a41eaf81dcc35258550a
 ---
 
 ---
@@ -20,10 +20,10 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 
 ## API mana yang Anda butuhkan?
 
-| API                                 | Jenis kunci                            | Dibuat di                                                                                 | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
-| ----------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
-| **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)    | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
+| API                                 | Jenis kunci                            | Dibuat di                                                                                                                           | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
+| ----------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | Halaman [Admin keys](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
+| **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)                                              | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
 Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Kedua API muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 

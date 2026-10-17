@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: fe81331eafd7e711b1b581574ef26e9a90abecc49c7f1fa137572a0844890fb0
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: bc430f118f950274bf1552c2fa133fca618c71e6c9ea100f6b5c89419381aca3
 ---
 
 ---
@@ -38,11 +38,13 @@ featureMetadata:
     - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
 
+<Note>
+  **Mulai dengan toolset SDK:** Untuk `computer_toolset_20260801`, SDK Python dan TypeScript memiliki kelas computer toolset, dalam versi beta. Mulailah dari [integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), atau lihat bagian [computer toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset) di halaman toolset SDK. Gunakan halaman ini sebagai referensi alat, atau saat Anda menangani panggilan alat sendiri.
+</Note>
+
 Claude dapat berinteraksi dengan lingkungan komputer melalui alat "computer use" (penggunaan komputer), yang menyediakan kemampuan tangkapan layar serta kendali mouse/keyboard untuk interaksi desktop secara otonom.
 
 Alat penggunaan komputer adalah sebuah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) (toolset klien) yang didefinisikan oleh Anthropic: satu entri `{"type": "computer_toolset_20260801"}` dalam `tools` memberi Claude 17 alat anggota seperti `screenshot`, `left_click`, `type`, dan `zoom`, dan aplikasi Anda menjalankan setiap panggilan di lingkungan yang Anda kendalikan. Alat ini saat ini belum tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools). Panggilan Claude berupa blok `tool_use` yang `name`-nya adalah nama anggota dan yang membawa `"toolset_name": "computer"`, sering kali beberapa per giliran (sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
-
-SDK Python dan TypeScript menyertakan kelas yang meneruskan panggilan-panggilan ini ke kode desktop Anda dan meminta persetujuan melalui callback Anda. Lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset).
 
 Untuk tugas yang tetap berada di dalam halaman web, [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) lebih cocok: alat anggotanya membaca dan bertindak pada halaman itu sendiri, dan tidak memerlukan lingkungan desktop penuh.
 
@@ -2235,8 +2237,8 @@ Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.co
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Penggunaan browser dan komputer dengan toolset SDK" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset">
-    Tulis driver desktop dalam Python atau TypeScript. SDK menjalankan loop dan callback persetujuan yang Anda berikan.
+  <Card title="Computer toolset di SDK" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset">
+    Mulai dari driver mitra, atau tulis driver Anda sendiri dalam Python atau TypeScript. SDK menjalankan loop dan callback persetujuan yang Anda berikan.
   </Card>
 
   <Card title="Pemecahan masalah penggunaan alat" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use">

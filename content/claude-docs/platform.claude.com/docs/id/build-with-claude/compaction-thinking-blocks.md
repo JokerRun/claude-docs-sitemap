@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9b3277f03389b15b85294411630bd90ac6752b75afb0e6f823a5c44fb21027df
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 04503eadf1dc008ac74c4e71a98c0cdd975ecc0850715bffd7aff3728ae2ff65
 ---
 
 ---
@@ -604,7 +604,7 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
       compaction: new BetaCompactionConfig(), // type defaults to 'summarize'
   );
   if ($summary->stopReason !== BetaStopReason::COMPACTION->value) {
-      throw new RuntimeException("No summary: {$summary->stopReason}");
+      throw new \RuntimeException("No summary: {$summary->stopReason}");
   }
 
   // 3. Letakkan blok di depan giliran yang dipertahankan, lalu ajukan pertanyaan berikutnya.

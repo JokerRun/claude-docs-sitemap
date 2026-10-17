@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 3c0db834632f60f982cdea2a7fc13e67666bb2002c7a56f1546d08851696bab7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 80d6a0b238694c0e98aeeab32ea080254802b0515cb8e1665adf0a7b613cffb8
 ---
 
 ---
@@ -1021,7 +1021,10 @@ This driver implements five of the 17 tools listed under [Available actions](htt
   } from "@anthropic-ai/sdk/resources/beta";
 
   class MyDesktop extends BetaAbstractComputerToolset20260801 {
-    constructor(private display: Display, options: BetaComputerToolsetOptions = {}) {
+    constructor(
+      private display: Display,
+      options: BetaComputerToolsetOptions = {}
+    ) {
       super(options);
     }
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 37222deed525ed03c03a660fe0a70454f0e7c71fe47ed7241d94b852be57a2d5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: fdf0a06426cc1e72a90d57fe012f1871438ec337e593e57810994d0b35e7effd
 ---
 
 ---
@@ -49,7 +49,7 @@ Untuk mengatur agen mana yang dapat dipanggil oleh agen, lihat [Agen predefined 
 
 Setiap subagen, dan setiap agen dalam sebuah eksekusi workflow, adalah salah satu dari dua jenis:
 
-* **Agen predefined (agen yang telah ditentukan sebelumnya):** Agen yang telah Anda [buat](https://platform.claude.com/docs/id/managed-agents/agent-setup), dan yang Anda cantumkan di blok `multiagent`. Agen ini menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill.
+* **Agen predefined (agen yang telah ditentukan sebelumnya):** Agen yang sudah Anda [buat](https://platform.claude.com/docs/id/managed-agents/agent-setup), dan yang Anda cantumkan di blok `multiagent` (csharp, go: `Multiagent`). Agen ini menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill.
 * **Agen inline:** Agen yang tidak disimpan. Agen yang dijalankan sesi, atau sebuah workflow, mendefinisikannya saat membagikan pekerjaan. Agen ini menggunakan model, alat, server MCP, dan skill milik agen tersebut.
 
 Kedua jenis berfungsi di bawah `subagents` dan di bawah `workflows`:
@@ -114,7 +114,7 @@ Konfigurasi mana yang digunakan subagen bergantung pada apakah ia merupakan [age
 
 ### Cantumkan subagen
 
-Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur `subagents.predefined_agents` di blok `multiagent` untuk mencantumkan agen-agen yang dapat menjadi tujuan delegasinya:
+Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup), atur daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) di blok `multiagent` (csharp, go: `Multiagent`) untuk mencantumkan agen-agen yang dapat menjadi tujuan delegasinya:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -364,22 +364,22 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   ```
 </CodeGroup>
 
-Agen juga dapat mendelegasikan ke agen inline kecuali Anda menonaktifkannya. Untuk pengaturan tersebut, dan untuk bentuk-bentuk yang dapat diambil oleh entri `subagents.predefined_agents`, lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
+Agen juga dapat mendelegasikan ke agen inline kecuali Anda menonaktifkannya. Untuk pengaturan tersebut, dan untuk bentuk-bentuk yang dapat diambil oleh entri daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
 
-`"advisor": {"type": "enabled", "model": "<model id>"}` memberi thread utama sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Advisor adalah pengaturan di blok `multiagent`, bukan entri dalam daftar ini. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+`"advisor": {"type": "enabled", "model": "<model id>"}` memberikan thread utama sesi sebuah advisor yang dapat dikonsultasikan di tengah giliran. Advisor adalah pengaturan di blok `multiagent` (csharp, go: `Multiagent`), bukan entri dalam daftar ini. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
 Alur kerja dinamis juga diaktifkan secara default dengan tipe ini, sehingga agen ini dapat merencanakan pekerjaan besar yang menjalankan banyak agen di latar belakang. Untuk menonaktifkannya, atau untuk mencantumkan agen yang dapat digunakan workflow, lihat [Aktifkan alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows).
 
-Aturan berikut berlaku untuk agen yang Anda cantumkan di `subagents.predefined_agents`, dan juga untuk agen yang Anda cantumkan di `workflows.predefined_agents`:
+Aturan berikut berlaku untuk agen yang Anda cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), dan juga untuk agen yang Anda cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`):
 
-* **Penyematan:** Konfigurasi agen, termasuk daftar `subagents.predefined_agents`-nya, diambil snapshot-nya saat agen dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diresolusi saat itu dan tidak mengambil pembaruan selanjutnya pada definisinya. Pembaruan yang tidak mengirimkan daftar tersebut mempertahankan versi yang sudah disematkan. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) sehingga daftar `subagents.predefined_agents`-nya mereferensikan versi tersebut.
-* **Satu tingkat:** Agen hanya dapat mendelegasikan ke satu tingkat agen. Mereferensikan agen lain yang memiliki `multiagent` yang diatur akan membuat permintaan pembuatan atau pembaruan gagal dengan error validasi 400.
-* **Hingga 20 agen:** `subagents.predefined_agents` dapat mencantumkan hingga 20 agen unik. Batas ini berlaku per daftar: `workflows.predefined_agents` juga dapat mencantumkan hingga 20. Agen dapat memanggil beberapa salinan dari setiap subagen, dalam [batas thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi.
-* **Geografi inferensi:** Agen dan setiap agen yang Anda cantumkan, di `subagents.predefined_agents` atau di `workflows.predefined_agents`, harus menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) yang sama (`model.inference_geo` dalam [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), atau tidak satu pun dari mereka boleh menyematkannya. Ketidakcocokan di salah satu daftar ditolak dengan error validasi 400. Pemeriksaan tersebut dijalankan baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan.
+* **Penyematan:** Konfigurasi agen, termasuk daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), diambil snapshot-nya saat agen dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang diresolusi saat itu dan tidak mengambil pembaruan selanjutnya pada definisinya. Pembaruan yang tidak mengirimkan daftar tersebut mempertahankan versi yang sudah disematkan. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) sehingga daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) mereferensikan versi tersebut.
+* **Satu tingkat:** Agen hanya dapat mendelegasikan ke satu tingkat agen. Mereferensikan agen lain yang memiliki `multiagent` (csharp, go: `Multiagent`) yang diatur akan menggagalkan permintaan pembuatan atau pembaruan dengan error validasi 400.
+* **Hingga 20 agen:** Daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) dapat mencantumkan hingga 20 agen unik. Batas ini berlaku per daftar: daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`) juga dapat mencantumkan hingga 20. Agen dapat memanggil beberapa salinan dari setiap subagen, dalam [batas thread](https://platform.claude.com/docs/id/managed-agents/session-threads) sesi.
+* **Geografi inferensi:** Agen dan setiap agen yang Anda cantumkan, di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) atau dari `workflows` (csharp, go: `Workflows`), harus menyematkan [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) yang sama (`inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) di `model` (csharp, go: `Model`) pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup)), atau tidak satu pun dari mereka boleh menyematkannya. Ketidakcocokan di salah satu daftar ditolak dengan error validasi 400. Pemeriksaan tersebut dijalankan baik saat agen disimpan maupun saat [override pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) mengubah salah satu sematan.
 
 ### Buat sesi
 
-Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda cantumkan di `subagents.predefined_agents` sesuai kebutuhan. Agen juga dapat mendelegasikan ke [agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) kecuali Anda menonaktifkannya.
+Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) sesuai kebutuhan. Agen juga dapat mendelegasikan ke [agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) kecuali Anda menonaktifkannya.
 
 <CodeGroup>
   ```bash cURL
@@ -460,14 +460,14 @@ Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda c
 
 ### Hubungkan agen ke server MCP
 
-Server MCP memiliki cakupan agen: setiap definisi agen mendeklarasikan server dan alatnya sendiri. Agen inline tidak memiliki definisi agen, sehingga ia menggunakan server MCP dan alat milik agen yang dijalankan sesi. Kredensial vault memiliki cakupan sesi: `vault_ids` yang diteruskan saat pembuatan sesi berlaku untuk setiap thread. Dua implikasi untuk integrasi Anda:
+Server MCP memiliki cakupan per agen: setiap definisi agen mendeklarasikan server dan alatnya sendiri. Agen inline tidak memiliki definisi agen, sehingga menggunakan server MCP dan alat milik agen yang dijalankan sesi. Kredensial vault memiliki cakupan per sesi: `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) yang diteruskan saat pembuatan sesi berlaku untuk setiap thread. Dua implikasi untuk integrasi Anda:
 
 * Untuk mengautentikasi server MCP, sertakan kredensial vault untuk setiap server MCP yang digunakan di semua agen.
-* Untuk membatasi akses sebuah agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya. Anda tidak dapat membatasi agen inline dengan cara ini. Untuk hanya mengizinkan agen yang Anda cantumkan, nonaktifkan `inline_agents` di `subagents` dan `workflows`, dan cantumkan setidaknya satu agen di masing-masing. Lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
+* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkannya dalam definisi agennya. Anda tidak dapat membatasi agen inline dengan cara ini. Untuk hanya mengizinkan agen yang Anda cantumkan, nonaktifkan `inline_agents` (java, php: `inlineAgents`; csharp, go: `InlineAgents`) di `subagents` (csharp, go: `Subagents`) dan `workflows` (csharp, go: `Workflows`), dan cantumkan setidaknya satu agen di masing-masing. Lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
 
 [Override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP milik agen yang dijalankan sesi dan milik salinan `self`-nya.
 
-Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen, atau agen yang Anda cantumkan di `subagents.predefined_agents` atau `workflows.predefined_agents`, mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts`. Mengatur `allow_mcp_servers: true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
+Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen, atau agen yang Anda cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) atau `workflows` (csharp, go: `Workflows`), mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mengatur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` di pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelegasikan ke researcher:
 
@@ -877,10 +877,10 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   ```
 </CodeGroup>
 
-Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehingga agen yang dijalankan sesi tidak memiliki akses. `vault_ids` sesi menyediakan kredensial GitHub ke thread researcher.
+Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehingga agen yang dijalankan sesi tidak memiliki akses. `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) milik sesi menyediakan kredensial GitHub ke thread researcher.
 
 <Tip>
-  Jika panggilan MCP sebuah agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` kredensial merujuk ke server yang sama dengan `mcp_servers[].url` milik agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar-kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
+  Jika panggilan MCP sebuah agen gagal diautentikasi setelah Anda mendeklarasikan server, pastikan `mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`) pada kredensial merujuk ke server yang sama dengan `mcp_servers[].url` (java, php: `mcpServers[].url`; csharp: `McpServers[].Url`; go: `MCPServers[].URL`) milik agen. Kedua URL dinormalisasi sebelum dicocokkan (skema dan host diubah menjadi huruf kecil, port default dan garis miring di akhir dihapus), sehingga perbedaan huruf besar-kecil pada host, port default, atau garis miring di akhir tidak mencegah kecocokan; path, subdomain, atau port non-default yang berbeda akan mencegahnya.
 </Tip>
 
 ### Thread
@@ -889,11 +889,11 @@ Thread sesi setiap agen memiliki aliran event-nya sendiri. Untuk mencantumkan, m
 
 ## Alur kerja dinamis
 
-Dengan alur kerja dinamis, sebuah agen dapat mengerjakan pekerjaan dengan banyak bagian, seperti meninjau ratusan dokumen atau memeriksa silang banyak sumber. Agen menulis sebuah **workflow**: program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan apa yang mereka kembalikan. Server menjalankannya di latar belakang sebagai **workflow run** (eksekusi workflow), sementara agen terus bekerja atau mengakhiri gilirannya. Anda mengaktifkan atau menonaktifkan alur kerja dinamis dengan pengaturan `workflows` di blok `multiagent` agen. Agen-agen dalam sebuah eksekusi dapat bekerja pada saat yang sama, sehingga tugas panjang dapat selesai lebih cepat dibandingkan jika satu agen mengerjakan setiap bagian secara bergiliran.
+Dengan alur kerja dinamis, sebuah agen dapat menangani pekerjaan dengan banyak bagian, seperti meninjau ratusan dokumen atau memeriksa silang banyak sumber. Agen menulis sebuah **workflow** (alur kerja): program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan apa yang mereka kembalikan. Server menjalankannya di latar belakang sebagai **workflow run** (eksekusi workflow), sementara agen terus bekerja atau mengakhiri gilirannya. Anda mengaktifkan atau menonaktifkan alur kerja dinamis dengan pengaturan `workflows` (csharp, go: `Workflows`) di blok `multiagent` (csharp, go: `Multiagent`) milik agen. Agen-agen dalam sebuah eksekusi dapat bekerja pada saat yang sama, sehingga tugas panjang dapat selesai lebih cepat dibandingkan jika satu agen mengerjakan setiap bagian secara bergiliran.
 
 * **Bagaimana eksekusi dimulai:** Anda mendeskripsikan pekerjaan dalam sebuah `user.message`. Dari situ, agen menentukan apakah dan kapan memulai eksekusi, sehingga tidak ada panggilan API tambahan. Sebagai gantinya, Anda memengaruhi keputusan agen dengan mendeskripsikan kapan menggunakan eksekusi di `user.message` atau di prompt sistem agen. (Kebijakan izin berlaku untuk alat yang dipanggil oleh agen-agen dalam eksekusi, bukan untuk memulai eksekusi.)
-* **Agen mana yang digunakannya:** [Agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) yang didefinisikan workflow, agen predefined yang Anda cantumkan di `workflows.predefined_agents`, atau keduanya. Jika Anda tidak mencantumkan satu pun, workflow mendefinisikan semuanya. Agen inline menggunakan model milik agen yang dijalankan sesi. Agar sebuah eksekusi dapat menggunakan model lain untuk sebagian agennya, buat mereka sebagai agen dan cantumkan di `workflows.predefined_agents`.
-* **Bagaimana Anda mengikutinya:** Event eksekusi tiba di aliran event sesi, dan setiap agen dalam eksekusi bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang dapat Anda cantumkan, baca, dan stream. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) untuk event, interupsi, [batas](https://platform.claude.com/docs/id/managed-agents/workflow-runs#limits), dan [apa yang ditampilkan thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
+* **Agen mana yang digunakan:** [Agen inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents) yang didefinisikan workflow, agen predefined yang Anda cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`), atau keduanya. Jika Anda tidak mencantumkan satu pun, workflow mendefinisikan semuanya. Agen inline menggunakan model milik agen yang dijalankan sesi. Agar sebuah eksekusi dapat menggunakan model lain untuk sebagian agennya, buat mereka sebagai agen dan cantumkan di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`).
+* **Cara Anda mengikutinya:** Event eksekusi tiba di aliran event sesi, dan setiap agen dalam eksekusi bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang dapat Anda cantumkan, baca, dan stream. Lihat [Eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) untuk event, interupsi, [batas](https://platform.claude.com/docs/id/managed-agents/workflow-runs#limits), dan [apa yang ditampilkan thread milik sebuah eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
 
 ### Aktifkan alur kerja dinamis
 
@@ -1087,7 +1087,7 @@ Perhatikan hal-hal berikut:
 
   * Pengaturan atau field yang tidak Anda sertakan mempertahankan nilai tersimpannya.
   * Pengaturan atau field yang Anda kirim sebagai `null` mengambil nilai default-nya, begitu pula semua yang ada di dalamnya, apa pun yang telah Anda simpan.
-  * Daftar `predefined_agents` yang Anda kirim menggantikan daftar yang tersimpan.
+  * Daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) yang Anda kirim menggantikan daftar yang tersimpan.
   * Pengaturan yang Anda kirim dengan `type` yang berbeda menggantikan pengaturan yang tersimpan, dan field yang tidak Anda sertakan di dalamnya mengambil nilai default-nya.
   * Setiap objek yang Anda kirim memerlukan `type`-nya, dan `advisor` yang aktif memerlukan `model`-nya.
 
@@ -1095,11 +1095,11 @@ Perhatikan hal-hal berikut:
 
 * **Sesi yang sudah ada:** Sesi menyalin pengaturan saat sesi dibuat, sehingga mengubah agen di kemudian hari tidak mengubah sesi yang sudah ada.
 
-* **Agen yang dapat Anda cantumkan:** Agen yang memiliki pengaturan `multiagent` tidak dapat dicantumkan sebagai subagen dari agen lain, atau di `workflows.predefined_agents` milik agen lain. Agen dapat mencantumkan dirinya sendiri di salah satu daftar dengan `{"type": "self"}`, yang akan terbaca kembali sebagai `id` dan `version` miliknya sendiri.
+* **Agen yang dapat Anda cantumkan:** Agen yang memiliki `multiagent` (csharp, go: `Multiagent`) yang diatur tidak dapat dicantumkan sebagai subagen dari agen lain, atau di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`) di agen lain. Agen dapat mencantumkan dirinya sendiri di salah satu daftar dengan `{"type": "self"}`, yang terbaca kembali sebagai `id` dan `version` miliknya sendiri.
 
-* **Nama alat:** Prefiks `ant__` dicadangkan. Jika agen Anda sudah memiliki alat kustom yang namanya diawali dengan `ant__`, sebuah pembaruan akan gagal dengan error 400 hingga Anda mengirim `tools` tanpa nama tersebut. Sesi baru juga ditolak dengan error 400 jika agennya, atau agen di salah satu daftar, memiliki alat seperti itu. Ganti nama atau hapus alat tersebut dalam pembaruan yang sama yang mengaktifkan alur kerja dinamis. Lihat [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).
+* **Nama alat:** Prefiks `ant__` dicadangkan. Jika agen Anda sudah memiliki alat kustom yang namanya diawali dengan `ant__`, pembaruan akan gagal dengan error 400 hingga Anda mengirim `tools` (csharp, go: `Tools`) tanpa nama tersebut. Sesi baru juga ditolak dengan error 400 jika agennya, atau agen di salah satu daftar, memiliki alat seperti itu. Ganti nama atau hapus alat tersebut dalam pembaruan yang sama yang mengaktifkan alur kerja dinamis. Lihat [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).
 
-* **Anggaran:** Atur [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) saat Anda membuat sesi untuk membatasi pengeluaran sesi, termasuk eksekusi; Anda tidak dapat menambahkannya ke sesi yang sudah ada. Eksekusi dijeda saat sesi mencapai anggaran, dan eksekusi yang dijeda oleh anggaran akan dilanjutkan saat Anda menaikkan atau menghapusnya, kecuali jika eksekusi tersebut juga dijeda oleh interupsi. Lihat [Biaya dan anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#cost-and-budgets).
+* **Anggaran:** Atur [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) saat Anda membuat sesi untuk membatasi pengeluaran sesi, termasuk eksekusi; Anda tidak dapat menambahkannya ke sesi yang sudah ada. Eksekusi dijeda saat sesi mencapai anggaran, dan eksekusi yang dijeda oleh anggaran akan dilanjutkan saat Anda menaikkan atau menghapusnya, kecuali jika interupsi juga menjedanya. Lihat [Biaya dan anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#cost-and-budgets).
 
 ### Beri tahu agen kapan menggunakan eksekusi
 
@@ -1112,8 +1112,9 @@ You review contracts. When you're asked to review more than a few contracts, sta
 Untuk menyesuaikannya, sebutkan tugas-tugas dalam domain agen Anda yang memerlukan eksekusi, serta tugas-tugas kecil yang harus dikerjakan sendiri oleh agen. Anda juga dapat memandu cara eksekusi mengerjakan pekerjaan, seperti dalam contoh-contoh berikut:
 
 * **Cara membagi pekerjaan:** "Dalam sebuah eksekusi, gunakan satu agen per kontrak. Kemudian minta agen kedua meninjau setiap kontrak, bukan hanya kontrak yang menurut agen pertama bermasalah, dan mencari apa yang terlewat oleh agen pertama. Apa pun yang gagal dalam peninjauan dikerjakan ulang dan ditinjau kembali."
-* **Apa yang harus dilakukan saat agen gagal:** "Satu agen yang gagal tidak boleh membuat eksekusi gagal. Jika agen gagal membaca sebuah kontrak, cantumkan kontrak tersebut sebagai tidak tercakup."
+* **Apa yang harus dilakukan saat agen gagal:** "Satu agen yang gagal tidak boleh membuat eksekusi gagal. Jika agen gagal membaca kontrak, cantumkan kontrak tersebut sebagai tidak tercakup. Saat eksekusi berakhir, beri tahu saya kontrak mana yang tidak tercakup."
 * **Batas waktu:** "Berikan eksekusi batas waktu satu jam."
+* **Rencanakan terlebih dahulu:** "Sebelum Anda memulai eksekusi, jelaskan fase-fasenya dan berapa banyak agen yang dijalankan di setiap fase. Kemudian tunggu persetujuan saya." Tidak ada langkah persetujuan sebelum eksekusi dimulai, sehingga tidak ada yang memberlakukan hal ini.
 
 Batasi eksekusi hanya untuk tugas-tugas yang memerlukannya, karena setiap agen dalam eksekusi menggunakan token.
 
@@ -1123,7 +1124,7 @@ Untuk event eksekusi, menginterupsi sesi dengan eksekusi yang masih terbuka, apa
 
 ## Berikan advisor pada sesi
 
-Pengaturan `advisor` yang aktif di blok `multiagent` milik agen memberikan thread utama sesi sebuah **advisor** (penasihat): model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum menyelesaikannya. Pengaturan ini nonaktif secara default. Untuk mengaktifkannya, atur `advisor` ke `{"type": "enabled", "model": "..."}`, yang memiliki tepat dua field, `type` dan `model`:
+Pengaturan `advisor` yang aktif di blok `multiagent` (csharp, go: `Multiagent`) milik agen memberikan **advisor** pada thread utama sesi: model yang dapat dikonsultasikan di tengah giliran untuk panduan strategis, seperti merencanakan pendekatan, keluar dari kebuntuan, atau meninjau pekerjaan sebelum selesai. Pengaturan ini nonaktif secara default. Untuk mengaktifkannya, atur `advisor` ke `{"type": "enabled", "model": "..."}`, yang memiliki tepat dua field, `type` dan `model`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -1270,17 +1271,17 @@ Pengaturan `advisor` yang aktif di blok `multiagent` milik agen memberikan threa
   ```
 </CodeGroup>
 
-Contoh ini hanya mengatur `advisor`. Dua pengaturan lainnya, `subagents` dan `workflows`, mempertahankan nilai default-nya, sehingga keduanya aktif, dan agen juga dapat mendelegasikan ke agen inline serta memulai eksekusi workflow. Untuk agen yang berkonsultasi dengan advisor dan mengerjakan semua pekerjaan sendiri, atur keduanya ke `{"type": "disabled"}`.
+Contoh ini hanya mengatur `advisor` (csharp, go: `Advisor`). Dua pengaturan lainnya, `subagents` (csharp, go: `Subagents`) dan `workflows` (csharp, go: `Workflows`), mempertahankan nilai default-nya, sehingga keduanya aktif, dan agen juga dapat mendelegasikan ke agen inline serta memulai eksekusi workflow. Untuk agen yang berkonsultasi dengan advisor dan mengerjakan semua pekerjaan sendiri, atur keduanya ke `{"type": "disabled"}`.
 
-Anda tidak dapat mencantumkan advisor di `subagents.predefined_agents` atau `workflows.predefined_agents`. `advisor` yang aktif mencadangkan nama `anthropic.advisor`. Selama advisor aktif, tidak satu pun dari kedua daftar tersebut dapat memuat agen yang secara harfiah bernama `anthropic.advisor`: permintaan akan ditolak dengan error validasi 400.
+Anda tidak dapat mencantumkan advisor di daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`) atau `workflows` (csharp, go: `Workflows`). `advisor` (csharp, go: `Advisor`) yang aktif mencadangkan nama `anthropic.advisor`. Selama aktif, tidak ada daftar yang dapat memuat agen yang secara harfiah bernama `anthropic.advisor`: permintaan akan ditolak dengan error validasi 400.
 
 Model advisor harus memenuhi batas kemampuan minimum, dan model milik agen itu sendiri tidak boleh lebih mampu daripada advisor-nya; model dengan kemampuan yang setara dapat dipasangkan. Pasangan yang tidak valid ditolak dengan error validasi 400 saat agen disimpan, dan sekali lagi saat sesi dibuat. Pasangan tersebut juga diperiksa saat setiap konsultasi dimulai: jika sudah tidak valid, konsultasi tersebut gagal dan sesi tetap berlanjut. Pasangan yang valid mengikuti tabel [kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) pada alat advisor.
 
-Advisor juga tersedia sebagai [alat server di Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan penyampaian: pengaturan `advisor` tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran disampaikan melalui event thread, bukan blok `advisor_tool_result`.
+Advisor juga tersedia sebagai [alat server di Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool). Permukaan Managed Agents berbeda dalam konfigurasi dan penyampaian: pengaturan `advisor` (csharp, go: `Advisor`) tidak memiliki field `max_uses`, `max_tokens`, atau `caching`, dan saran tiba melalui event thread, bukan melalui blok `advisor_tool_result`.
 
 ### Cara kerja konsultasi
 
-Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang menghentikan dirinya sendiri saat konsultasi selesai, dan saran disampaikan ke thread utama sebagai event `agent.thread_message_received`. Konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama cadangan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name`, dan penyampaian saran membawanya sebagai `from_agent_name`), biasanya dalam urutan berikut:
+Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `anthropic.advisor` yang menghentikan dirinya sendiri saat konsultasi selesai, dan saran disampaikan ke thread utama sebagai event `agent.thread_message_received`. Konsultasi memancarkan event thread standar, yang diidentifikasi dengan nama cadangan `anthropic.advisor` (event siklus hidup thread membawanya sebagai `agent_name` (java, php: `agentName`; csharp, go: `AgentName`), dan penyampaian saran membawanya sebagai `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`)), biasanya dalam urutan ini:
 
 1. `session.thread_created`
 2. `session.thread_status_running`
@@ -1290,9 +1291,9 @@ Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `ant
 
 Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform, bukan dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Penyampaian saran (event 3) tidak dijamin tiba sebelum event idle dan terminated milik thread advisor, jadi jangan perlakukan event-event tersebut sebagai sinyal bahwa saran sudah disampaikan.
 
-Apakah klien Anda dapat membaca saran bergantung pada kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor di Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menyampaikan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menyampaikan placeholder `[{"type": "redacted"}]` di setiap permukaan klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Claude Opus 5 dan Claude Opus 5.5 mengembalikan hasil yang disunting, sehingga dengan salah satu dari keduanya klien Anda hanya melihat placeholder. Untuk membaca saran di aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan model dapat berubah tanpa perubahan pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang mengembalikan hasil yang disunting; lihat [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang memuat blok tersebut ditolak dengan error validasi 400.
+Apakah klien Anda dapat membaca saran bergantung pada kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menyampaikan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menyampaikan placeholder `[{"type": "redacted"}]` di setiap permukaan klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Claude Opus 5.5 mengembalikan hasil yang disunting, sehingga klien Anda hanya melihat placeholder. Untuk membaca saran di aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan model dapat berubah tanpa perubahan pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang mengembalikan hasil yang disunting; lihat [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang memuatnya akan ditolak dengan error validasi 400.
 
-Konsultasi yang gagal atau terinterupsi tidak pernah membuat giliran agen gagal: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi akan menghentikan thread advisor tanpa saran yang disampaikan; `user.interrupt` dengan `session_thread_id` milik thread advisor hanya membatalkan konsultasi tersebut.
+Konsultasi yang gagal atau terinterupsi tidak pernah membuat giliran agen gagal: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi menghentikan thread advisor tanpa saran yang disampaikan; `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) milik thread advisor hanya membatalkan konsultasi tersebut.
 
 ### Thread advisor
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1828a721907dc1c4e515390a45754e8ef46d662d16d49ae663612dab9a6e9af8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: ff403186fd7cf0e70d299d3b02977b2d3dc82b3c1545227bac1bfeafc70384a9
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Sesi pada environment self-hosted melampirkan [memory store](https://platform.claude.com/docs/id/managed-agents/memory) persis seperti sesi pada environment cloud. Cantumkan memory store tersebut di `resources` saat Anda membuat sesi, seperti yang ditunjukkan di [Melampirkan memory store ke sesi](https://platform.claude.com/docs/id/managed-agents/memory#attach-a-memory-store-to-a-session). Sebuah sesi menerima hingga 8 memory store.
+Sesi pada environment self-hosted melampirkan [memory store](https://platform.claude.com/docs/id/managed-agents/memory) persis seperti sesi pada environment cloud. Cantumkan store tersebut di `resources` (csharp, go: `Resources`) saat Anda membuat sesi, seperti yang ditunjukkan di [Melampirkan memory store ke sesi](https://platform.claude.com/docs/id/managed-agents/memory#attach-a-memory-store-to-a-session). Sebuah sesi menerima hingga 8 memory store.
 
 Perbedaannya terletak pada siapa yang mewujudkan store tersebut. Pada environment self-hosted, worker Anda, bukan infrastruktur Anthropic, yang mengunduh setiap store ke dalam sandbox dan menyinkronkan kembali perubahan yang dibuat agen.
 
@@ -40,7 +40,7 @@ Sebelum Anda memulai worker, buat direktori induk dan jadikan direktori tersebut
 sudo mkdir -p /mnt/memory && sudo chown "$USER" /mnt/memory
 ```
 
-Jangan membuat direktori per-store sendiri. Worker membuat direktori `mount_path` untuk setiap store (misalnya, `/mnt/memory/user-preferences`) saat sesi dimulai dan menghapusnya saat sesi berakhir. Jika sudah ada sesuatu di path tersebut, worker menolak untuk memulai pekerjaan sesi.
+Jangan membuat direktori per-store sendiri. Worker membuat direktori `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) untuk setiap store (misalnya, `/mnt/memory/user-preferences`) saat sesi dimulai dan menghapusnya saat sesi berakhir. Jika sudah ada sesuatu di path tersebut, worker menolak untuk memulai pekerjaan sesi.
 
 Dalam [pola sandbox-per-sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session), image sandbox memerlukan `/mnt/memory` yang dapat ditulis. Anda tidak perlu melakukan bind-mount direktori memori ke host, karena worker mengunggah isinya ke store sebelum sandbox keluar.
 
@@ -52,7 +52,7 @@ Dua sesi tidak dapat me-mount store yang sama pada satu host secara bersamaan, k
 
 Saat worker mengklaim work item yang sesinya memiliki memory store terlampir, worker akan:
 
-1. **Mengunduh setiap store ke `mount_path`-nya.** Ini adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud, dan prompt sistem sesi menjelaskannya kepada agen. Misalnya, store bernama "User Preferences" ditempatkan di `/mnt/memory/user-preferences/`.
+1. **Mengunduh setiap store ke `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)-nya.** Ini adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud, dan prompt sistem sesi menjelaskannya kepada agen. Misalnya, store bernama "User Preferences" ditempatkan di `/mnt/memory/user-preferences/`.
 2. **Membuka direktori tersebut untuk alat file.** Agen bekerja dengan memori menggunakan alat file yang sama dengan yang digunakannya di direktori kerja.
 3. **Merekonsiliasi perubahan setelah pemanggilan alat,** paling banyak sekali per interval sinkronisasi (15 detik secara default). Memori yang berubah di store ditulis ke disk, dan file yang diubah agen diunggah ke store.
 4. **Menjalankan sinkronisasi akhir saat sesi berakhir.** Worker menuntaskan unggahan yang masih tertunda hingga 30 detik, lalu menghapus direktori yang dibuatnya.
@@ -86,7 +86,7 @@ Interval yang lebih pendek mempersempit jendela waktu di mana sesi lain melihat 
 
 Nonaktifkan dukungan memori hanya pada worker yang sesinya tidak melampirkan memory store. Worker yang dinonaktifkan tidak mengunduh maupun menyinkronkan store, sehingga sesi dengan store terlampir berjalan tanpa store tersebut meskipun prompt sistemnya masih menjelaskannya.
 
-Selama dukungan memori diaktifkan, work item yang tiba tanpa `secret` untuk sesi dengan store terlampir akan gagal alih-alih berjalan tanpa memori. Lihat [Memory store gagal di-mount](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#memory-stores-fail-to-mount).
+Selama dukungan memori diaktifkan, work item yang tiba tanpa `secret` (csharp, go: `Secret`) untuk sesi dengan store terlampir akan gagal alih-alih berjalan tanpa memori. Lihat [Memory store gagal di-mount](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#memory-stores-fail-to-mount).
 
 ### Penghapusan
 
@@ -100,7 +100,7 @@ Selama dukungan memori diaktifkan, work item yang tiba tanpa `secret` untuk sesi
 
 Misalnya, untuk menyinkronkan setiap 10 detik dan hanya mencatat penghapusan yang akan dilakukan worker:
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, csharp, java, php, ruby">
   ```python Python
   worker = EnvironmentWorker(
       client,
@@ -123,9 +123,9 @@ Misalnya, untuk menyinkronkan setiap 10 detik dan hanya mencatat penghapusan yan
   });
   ```
 
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di SDK C#.
-  ```
+  <CodeGroupItem language="C#">
+    SDK C# tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
   ```go Go
   worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
@@ -137,17 +137,17 @@ Misalnya, untuk menyinkronkan setiap 10 detik dan hanya mencatat penghapusan yan
   })
   ```
 
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK.
-  ```
+  <CodeGroupItem language="Java">
+    SDK Java tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-  ```
+  <CodeGroupItem language="PHP">
+    SDK PHP tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-  ```
+  <CodeGroupItem language="Ruby">
+    SDK Ruby tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Store read-only dan konflik

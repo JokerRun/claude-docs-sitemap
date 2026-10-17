@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 576e8a4e23993931438fdb63cdaab3be69fcadf69eb9dcb96716879685bc018d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3477bf7d9bf4373763917011f1785def91d0dab08b61acbd4b3bf86010223555
 ---
 
 ---
@@ -29,7 +29,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
 
 <Steps>
   <Step title="Buat tunnel">
-    Di sidebar Claude Console, buka **Manage > MCP tunnels** dan klik **New tunnel**. Beri nama. Biarkan **Set up programmatic access** nonaktif; panduan memulai cepat ini menggunakan penyediaan kredensial manual.
+    Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Setiap tunnel dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar. Klik **New tunnel** dan beri nama. Biarkan **Set up programmatic access** nonaktif; panduan memulai cepat ini menggunakan penyediaan kredensial manual.
 
     Setelah dibuat, buka tunnel tersebut. Salin dua nilai dari bagian **Connection**:
 
@@ -114,7 +114,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
       </Tab>
     </Tabs>
 
-    Kembali ke Console, pada halaman detail tunnel, klik **Add certificate** dan unggah `data/ca.crt` (atau tempel isinya). Status tunnel berubah menjadi **Active**.
+    Kembali ke Console, pada halaman detail tunnel, klik **Add certificate** dan unggah `data/ca.crt` (atau tempel isinya). Badge **Needs certificate** di samping nama tunnel akan hilang.
   </Step>
 
   <Step title="Tulis server MCP contoh">
@@ -268,7 +268,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
   </Step>
 
   <Step title="Panggil dari Claude">
-    Di Console, buka **Managed Agents > Sessions** dan buat sebuah sesi. Di pemilih agen, pilih **Create new agent**, beri nama agen, dan pertahankan model yang sudah terisi. Klik **+ MCP Server**, pilih tunnel Anda, atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Lalu tanyakan:
+    Di Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan buat sesi. Di pemilih agen, pilih **Create new agent**, beri nama agen, dan pertahankan model yang sudah terisi. Klik **+ MCP Server**, pilih tunnel Anda, atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Lalu tanyakan:
 
     > Use the hello tool to greet tunnel.
 

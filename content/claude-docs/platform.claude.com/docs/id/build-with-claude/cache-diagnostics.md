@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e8141a3c8bea19074459abec2be23d926fa702d9330987edc626e2fd482e33e9
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 4287d95c3bf5ed3fa0e5a0d68097b207da2087c0c8201d2598a9dc60bb9b0e09
 ---
 
 ---
@@ -57,20 +57,18 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF | jq '{id, diagnostics}'  # diagnostics: null means no divergence was found
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "cache_control": {"type": "ephemeral"},
-    "system": "You are an AI assistant analyzing a large document. <document>...</document>",
-    "messages": [
-      {"role": "user", "content": "Summarize section 1."},
-      {"role": "assistant", "content": "Section 1 covers..."},
-      {"role": "user", "content": "Now summarize section 2."}
-    ],
-    "diagnostics": {"previous_message_id": "$message_id"}
-  }
-  EOF
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "cache_control": {"type": "ephemeral"},
+      "system": "You are an AI assistant analyzing a large document. <document>...</document>",
+      "messages": [
+        {"role": "user", "content": "Summarize section 1."},
+        {"role": "assistant", "content": "Section 1 covers..."},
+        {"role": "user", "content": "Now summarize section 2."}
+      ],
+      "diagnostics": {"previous_message_id": "'"$message_id"'"}
+    }' | jq '{id, diagnostics}'  # diagnostics: null means no divergence was found
   ```
 
   ```bash CLI
@@ -420,21 +418,19 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "stream": true,
-    "cache_control": {"type": "ephemeral"},
-    "system": "You are an AI assistant analyzing a large document. <document>...</document>",
-    "messages": [
-      {"role": "user", "content": "Summarize section 1."},
-      {"role": "assistant", "content": "Section 1 covers..."},
-      {"role": "user", "content": "Now summarize section 2."}
-    ],
-    "diagnostics": {"previous_message_id": "$message_id"}
-  }
-  EOF
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "stream": true,
+      "cache_control": {"type": "ephemeral"},
+      "system": "You are an AI assistant analyzing a large document. <document>...</document>",
+      "messages": [
+        {"role": "user", "content": "Summarize section 1."},
+        {"role": "assistant", "content": "Section 1 covers..."},
+        {"role": "user", "content": "Now summarize section 2."}
+      ],
+      "diagnostics": {"previous_message_id": "'"$message_id"'"}
+    }' | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
   ```
 
   ```bash CLI

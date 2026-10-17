@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e5611c8c52e1f375db8977de6dfb21a4042161cfca89521c2dda36b1e75c5478
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 170597c668cdd7aa9232b8ee39aea549bdd54a268aef93df565cb020098bdc62
 ---
 
 ---
@@ -565,18 +565,14 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
 Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat [Cara file yang dihasilkan ditangkap](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#how-generated-files-are-captured)), ID setiap file muncul dalam hasil alat eksekusi kode, dan Anda dapat mengunduhnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files):
 
-<CodeGroup>
-  ```bash cURL
-  # Mengunduh setiap file yang dihasilkan berarti melakukan loop atas ID file di hasil
-  # alat, yang tidak bisa diterjemahkan menjadi satu perintah shell sekali jalan. Gunakan salah satu
-  # contoh SDK sebagai gantinya.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Mengekstrak setiap ID file dari hasil alat dan mengunduh masing-masing
-  # memerlukan loop, yang tidak cocok untuk perintah CLI sekali jalan.
-  # Sebagai gantinya, gunakan salah satu contoh SDK.
-  ```
+  <CodeGroupItem language="CLI">
+    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()

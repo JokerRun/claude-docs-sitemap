@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e09acaae85ca59601fa06109d8dcb062e74360b0b30aa6065326c21882ca8ecf
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3e2b5d2201f30b6dccd8c0b390d1290b216907c5419e12b57c199e8fb7788aac
 ---
 
 ---
@@ -20,7 +20,7 @@ featureMetadata:
   Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Layanan Beta dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms). Nama span dan atribut dapat berubah selama masa beta.
 </Note>
 
-Untuk menyiapkan ekspor, lihat [Menggunakan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) dan [Menggunakan OpenTelemetry dengan Claude API](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api).
+Untuk mendapatkan span, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) dan [Menyiapkan OpenTelemetry dengan Claude API](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api).
 
 ## Nama dan jenis span
 

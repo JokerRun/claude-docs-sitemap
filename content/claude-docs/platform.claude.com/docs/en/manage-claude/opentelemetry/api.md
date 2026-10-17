@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/api
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: eda24aa81f139a3dce8bb16f7d43e542e130cc01acaf133b00b27322aa5c512a
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2dd7a7448f9e4aa40794e3a04d0bc2bd3fd03ff16621fccf50a96abacd1e3690
 ---
 
 ---
-title: Use OpenTelemetry with the Claude API
+title: Set up OpenTelemetry with the Claude API
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/api
 description: Add a destination in the Claude Console to send OpenTelemetry traces of your Messages API requests and Managed Agents sessions to your observability platform.
 featureMetadata:

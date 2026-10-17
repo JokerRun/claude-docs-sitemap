@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 275ee47a83d51436c8d2be6815e6470893324b1aaab12938198756244e7dd4ae
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 7021869cec42ecff88c9fb58802bbb2bf52edaac68326cee074bd00bac86123b
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
 description: Lihat pembaruan pada prompt sistem inti di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
-Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan "system prompt" (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya. Mulai dari generasi Claude 4.6, setiap ID model merupakan [satu snapshot tetap](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions), sehingga model-model tersebut memiliki satu entri.
+Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan "system prompt" (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya.
 
 <CardGroup cols={3}>
   <Card id="claude-haiku-5-5" title="Claude Haiku 5.5" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-5-5" />

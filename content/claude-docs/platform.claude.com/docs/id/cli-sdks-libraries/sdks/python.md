@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4ad0d93422696aecf2ee505d8be76967a7f555a408405e9f8e7efdcec8627cdd
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f093788ddd84a7b25169ce3c7efc978c24bea0e039cd19b10d80f7b6dce79681
 ---
 
 ---
@@ -470,7 +470,7 @@ Perhatikan bahwa permintaan yang mengalami timeout akan [dicoba ulang dua kali s
   Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) tanpa menerima respons dari Anthropic.
+Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) tanpa menerima respons dari Anthropic.
 
 SDK akan memunculkan `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` di tingkat klien atau permintaan akan menonaktifkan error ini.
 
@@ -721,7 +721,7 @@ with Anthropic() as client:
 
 ## Fitur beta
 
-Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 
 Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` pada klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
@@ -784,5 +784,5 @@ print(anthropic.__version__)
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-python)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming Pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
 * [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

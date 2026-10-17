@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d76b216c473deb8d477e4daf71c0c198351076afcf5f9fc84a0451636da298d2
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: ada7a8c2344b8efe83a3a1f6d8ce8dc01b62fcbb9fa5091f091340ed5800c4d9
 ---
 
 ---
@@ -73,7 +73,7 @@ Jika Anda belum memiliki organisasi Console, buat terlebih dahulu di [platform.c
   </Step>
 
   <Step title="Mulai membangun">
-    Kredit Anda muncul di Console, di bagian **Promotional credits** pada [**Settings > Billing**](https://platform.claude.com/settings/billing). Buat kunci API dan kirim permintaan pertama Anda. Lihat [Memulai](https://platform.claude.com/docs/id/get-started).
+    Kredit Anda muncul di bagian **Promotional credits** pada halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console. Buat kunci API dan kirim permintaan pertama Anda. Lihat [Memulai](https://platform.claude.com/docs/id/get-started).
   </Step>
 </Steps>
 
@@ -103,7 +103,7 @@ Kredit API ini hanya dapat digunakan di Claude Platform. Tabel berikut menunjukk
 * **Urutan.** Kredit yang disertakan digunakan terlebih dahulu, kemudian kredit yang Anda beli. Auto-reload (isi ulang otomatis) hanya didasarkan pada saldo yang Anda beli. Isi ulang terjadi ketika saldo tersebut mencapai ambang batas Anda, meskipun kredit yang disertakan masih tersisa.
 * **Kedaluwarsa.** Kredit yang tidak terpakai kedaluwarsa pada akhir setiap siklus penagihan (atau setiap bulan untuk paket tahunan) dan tidak diakumulasikan ke periode berikutnya.
 * **Berbagi.** Setiap kunci API dan workspace di organisasi yang ditautkan menggunakan saldo yang sama. Untuk membatasi pengeluaran pada suatu proyek, berikan proyek tersebut workspace tersendiri dan atur [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/workspaces#setting-workspace-limits) workspace tersebut.
-* **Visibilitas.** Kredit Anda muncul di Console pada [**Settings > Billing**](https://platform.claude.com/settings/billing), di bagian **Promotional credits**, beserta jumlah dan tanggal kedaluwarsanya.
+* **Visibilitas.** Kredit Anda muncul di bagian **Promotional credits** pada halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console, beserta jumlah dan tanggal kedaluwarsanya.
 * **Paket Claude Anda.** Kredit tidak mengubah batas penggunaan Anda di Claude atau Claude Code.
 
 ## Batas pengeluaran dan batas laju
@@ -117,7 +117,7 @@ Kredit tidak mengubah cara kerja [batas laju dan batas pengeluaran](https://plat
 ### Ketika kredit habis
 
 * **Jika organisasi memiliki kredit lain**, permintaan tetap berjalan menggunakan kredit yang dibeli. Auto-reload, jika diaktifkan, menambahkan kredit ke saldo yang dibeli.
-* **Jika organisasi tidak memiliki kredit tersisa**, permintaan API berhenti hingga kredit API bulanan berikutnya masuk. Penggunaan tidak pernah dibebankan ke paket Claude Anda. Untuk terus membangun, beli kredit atau aktifkan auto-reload di Console.
+* **Jika organisasi tidak memiliki kredit tersisa**, permintaan API berhenti hingga kredit API bulanan Anda berikutnya masuk. Penggunaan tidak pernah ditagihkan ke paket Claude Anda. Untuk terus membangun, beli kredit atau aktifkan auto-reload di halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console.
 * **Jika organisasi Anda ditagih melalui tim penjualan Anthropic**, penggunaan di luar kredit API ditagih seperti biasa.
 
 Ketika saldo habis, permintaan mengembalikan:
@@ -148,7 +148,7 @@ Biaya bulanan Anda terutama bergantung pada model yang Anda pilih dan seberapa s
 * Pilih model yang sesuai untuk setiap tugas. Untuk mempelajari caranya, lihat [Memilih model yang tepat](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model).
 * Gunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk konteks yang berulang.
 * Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) untuk pekerjaan yang tidak memerlukan respons segera. Biayanya 50 persen lebih murah.
-* Periksa [harga](https://platform.claude.com/docs/id/about-claude/pricing) dan pantau pengeluaran di halaman [Cost](https://platform.claude.com/cost).
+* Periksa [harga](https://platform.claude.com/docs/id/about-claude/pricing) dan pantau pengeluaran di halaman [Cost](https://platform.claude.com/cost) di Claude Console.
 
 ## Terkait
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 32bd026b3978827e8af5281d00c8e253d59d0b90a3c109aa2e0baba16e919248
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d46d6076c62778439506fa2e08d80e70fe44fcc313ef9928f884b1ed56af37de
 ---
 
 ---
@@ -1203,7 +1203,7 @@ Utamakan konstanta bertipe baik (misalnya, `Model.CLAUDE_OPUS_5`) agar Anda mend
 
 ## Fitur beta
 
-Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 
 Anda dapat mengakses sebagian besar fitur API beta melalui metode `beta()` pada klien. Untuk mengaktifkan fitur beta tertentu, tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai dengan `.addBeta()` saat membangun params pesan.
 

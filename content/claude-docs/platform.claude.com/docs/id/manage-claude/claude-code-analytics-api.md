@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 9a4bcbd7145f69009cf0e5139b118cb3046c226eea60d633a51d9a0635613d83
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: f6c94e0dc64082959cd6a6daffd55c3a4509e9c2152cae6aba7e9bd96e129d10
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Akses analitik penggunaan Claude Code dan metrik produktivitas orga
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
 Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, yang memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini menyediakan detail yang lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar tanpa kerumitan integrasi OpenTelemetry.

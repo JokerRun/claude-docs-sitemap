@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 25e846804a054fdd74d2908ab90ba97e31ce18552721962e3c6df6cd643c0d60
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: a95c2fca9499394e4fdaa114a3a12ebfc411fd591d3fad20feb7e3ceb4e45d21
 ---
 
 ---
@@ -194,7 +194,7 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Untuk chat dukungan pelanggan, Claude Opus 5 sangat cocok untuk menyeimbangkan kecerdasan, "latency" (latensi), dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dengan banyak langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan banyak prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 5.5 mungkin lebih cocok untuk mengoptimalkan latensi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan: `low` adalah tingkat tercepat, cocok untuk chat dan tugas alat yang singkat.
+Untuk chat dukungan pelanggan, Claude Opus 5.5 sangat cocok untuk menyeimbangkan kecerdasan, "latency" (latensi), dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dengan banyak langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt konteks panjang, Claude Haiku 5.5 mungkin lebih cocok untuk mengoptimalkan latensi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan: `low` adalah tingkat tercepat, cocok untuk chat dan tugas alat yang singkat.
 
 ### Bangun prompt yang kuat
 

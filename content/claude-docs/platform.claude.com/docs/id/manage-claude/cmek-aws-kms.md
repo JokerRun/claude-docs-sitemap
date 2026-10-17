@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 47ab1b044ece795208cbd36b5df06d1dbc5eac3b77f174062374c497835abac5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: a714595d3fad6a40be20ac4177dc564161a997a0924d5cb1a5d17c018cc7994d
 ---
 
 ---
@@ -11,8 +11,10 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
 description: Gunakan AWS KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
 ---
 
-```bash Configure with the /claude-api skill in Claude Code
-claude "/claude-api help me configure a customer-managed encryption key with AWS KMS"
+Biarkan Claude Code menyiapkan fitur ini untuk Anda
+
+```text
+/claude-api bantu saya mengonfigurasi kunci enkripsi yang dikelola pelanggan dengan AWS KMS
 ```
 
 Panduan ini memandu proses konfigurasi kunci [AWS KMS](https://aws.amazon.com/kms/) sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
@@ -62,7 +64,7 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
     Dalam kebijakan, ganti `<AWS_ACCOUNT_ID>` dengan ID akun AWS Anda dan `<ORGANIZATION_UUID>` dengan ID organisasi Anda. Kondisi `StringEquals` pada `kms:EncryptionContext:anthropic:org_uuid` mengikat kunci ke organisasi Anthropic Anda, dan validasi menolak kunci tanpanya. Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, cantumkan setiap ID organisasi dalam nilai kondisi.
 
     <Note>
-      **Menemukan ID organisasi Anda:** Salin kolom **Organization ID** di bawah **Settings > Organization** di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca kolom `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID yang berawalan `org_`.
+      **Menemukan ID organisasi Anda:** Salin kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca kolom `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID yang berawalan `org_`.
     </Note>
 
     Simpan kebijakan sebagai `key-policy.json`. Untuk membuat kunci di AWS Console sebagai gantinya, tempel kebijakan di sana, seperti dijelaskan nanti dalam langkah ini.
@@ -203,7 +205,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
     </Note>
 
     <Note>
-      **Menemukan ID compartment Anda:** Setiap workspace memiliki ID compartment yang menjadi cakupan data CMEK-nya. Untuk menemukannya di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
+      **Menemukan ID compartment Anda:** Setiap workspace memiliki ID compartment yang menjadi cakupan data CMEK-nya. Untuk menemukannya di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
     </Note>
 
     Anda dapat menyiapkan kunci di Claude Console atau melalui Admin API, dengan hasil yang sama.
@@ -212,17 +214,17 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
       <Tab title="Claude Console">
         <Steps>
           <Step title="Daftarkan kunci dengan Anthropic">
-            Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, pilih **AWS KMS**, dan klik **Continue**. Tempel ARN kunci ke **KMS key ARN**, dan klik **Add**.
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, pilih **AWS KMS**, dan klik **Continue**. Tempelkan ARN kunci ke **KMS key ARN**, lalu klik **Add**.
 
             Langkah detail kunci menampilkan ID organisasi Anda. Tambahkan ke [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) sebelum Anda mengklik **Add**.
           </Step>
 
           <Step title="Validasi kunci">
-            Pada halaman **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul ketika pemeriksaan lolos. Jika gagal, pesan memberikan alasannya.
+            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, sebuah pesan memberikan alasannya.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
           </Step>
         </Steps>
       </Tab>
@@ -637,7 +639,7 @@ Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-cla
 
 * Akun AWS yang menghosting organisasi Claude Platform on AWS Anda, dengan izin untuk membuat kunci KMS dan menetapkan kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
 * Peran **Admin** di Claude Console untuk Claude Platform on AWS. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console).
-* Untuk principal IAM yang Anda gunakan untuk masuk ke Claude Console: selain `aws-external-anthropic:AssumeConsole`, [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys) untuk operasi yang Anda lakukan di sana, karena halaman Encryption keys dan lampiran kunci melewati gateway AWS. Mendaftarkan kunci adalah `RegisterKey` (dengan `ListKeys` dan `GetKey` untuk melihat pendaftaran), dan melampirkan satu adalah `UpdateWorkspace` atau `CreateWorkspace`. Aksi kunci eksternal (dan `CreateWorkspace`) bersifat account-scoped, jadi berikan pada `Resource: "*"`; kebijakan yang terbatas pada ARN workspace tidak menyertakannya.
+* Untuk principal IAM yang Anda gunakan untuk masuk ke Claude Console: selain `aws-external-anthropic:AssumeConsole`, [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys) untuk operasi yang Anda lakukan di sana, karena pendaftaran, pencantuman, dan pelampiran kunci melewati gateway AWS. Mendaftarkan kunci adalah `RegisterKey` (dengan `ListKeys` dan `GetKey` untuk melihat pendaftaran), dan melampirkan kunci adalah `UpdateWorkspace` atau `CreateWorkspace`. Aksi kunci eksternal (dan `CreateWorkspace`) memiliki cakupan akun, jadi berikan aksi tersebut pada `Resource: "*"`; kebijakan yang dibatasi pada ARN workspace tidak mencakupnya.
 * Untuk principal IAM yang melampirkan kunci ke workspace (identitas yang Anda gunakan untuk masuk ke Claude Console): `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci. Akses principal Anda ke kunci diperiksa saat Anda melampirkannya, selain principal layanan.
 * Opsional, untuk pemilih kunci di Claude Console: `kms:ListKeys` dan `kms:DescribeKey` untuk principal yang Anda gunakan untuk masuk. Tanpanya, tempel ARN kunci sebagai gantinya.
 
@@ -645,7 +647,7 @@ Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-cla
 
 Kebijakan kunci memiliki tiga pernyataan: pernyataan admin root akun Anda; pernyataan yang memungkinkan principal layanan Claude Platform on AWS mengenkripsi, mendekripsi, dan menghasilkan kunci data; serta pernyataan terpisah untuk `kms:DescribeKey`. Pernyataan kripto membawa kondisi `EncryptionContext` opsional yang mengikat kunci ke workspace yang Anda cantumkan. `DescribeKey` diberikan secara terpisah karena tidak memiliki parameter `EncryptionContext`, sehingga kondisi `EncryptionContext` pada aksi tersebut akan selalu menolak.
 
-Jika Anda berencana menggunakan kondisi `EncryptionContext` opsional yang ditunjukkan di sini, buat workspace terlebih dahulu (tanpa kunci), salin ID compartment-nya, dan gunakan sebagai pengganti `<compartment-uuid>`. Untuk menemukan ID di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membacanya dari kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve). Jika Anda tidak berencana menggunakan kondisi tersebut, hapus blok `Condition` dari pernyataan itu.
+Jika Anda berencana menggunakan kondisi `EncryptionContext` opsional yang ditunjukkan di sini, buat workspace terlebih dahulu (tanpa kunci), salin ID compartment-nya, dan gunakan sebagai pengganti `<compartment-uuid>`. Untuk menemukan ID di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membacanya dari kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve). Jika Anda tidak berencana menggunakan kondisi tersebut, hapus blok `Condition` dari pernyataan itu.
 
 ```bash
 export YOUR_ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
@@ -701,11 +703,11 @@ Anda juga dapat membuat kunci dari AWS Console: pilih kunci simetris dengan peng
 
 <Steps>
   <Step title="Daftarkan kunci">
-    Di Claude Console, buka **Settings > Encryption keys** dan klik **Add key**. Masukkan nama tampilan, lalu pilih kunci dari pemilih kunci atau pilih **Enter ARN manually** dan tempel ARN kunci, dan klik **Add**. Kunci harus berada di akun AWS yang menghosting organisasi Anda; kunci lintas akun tidak didukung. Pemilih mencantumkan kunci yang diaktifkan, customer-managed, simetris, single-region di akun Anda di salah satu region organisasi Anda; untuk kunci yang tidak dicantumkan pemilih, masukkan ARN. Pemilih mencantumkan kunci hanya jika principal yang Anda gunakan untuk masuk dapat memanggil `kms:ListKeys` dan `kms:DescribeKey`.
+    Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, lalu pilih kunci dari pemilih kunci atau pilih **Enter ARN manually** dan tempelkan ARN kunci, lalu klik **Add**. Kunci harus berada di akun AWS yang menghosting organisasi Anda; kunci lintas akun tidak didukung. Pemilih mencantumkan kunci yang aktif, dikelola pelanggan, simetris, dan single-region di akun Anda di salah satu region organisasi Anda; untuk kunci yang tidak dicantumkan oleh pemilih, masukkan ARN-nya. Pemilih hanya mencantumkan kunci jika principal yang Anda gunakan untuk masuk dapat memanggil `kms:ListKeys` dan `kms:DescribeKey`.
   </Step>
 
   <Step title="Lampirkan kunci ke workspace">
-    Lampirkan kunci ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works). Di Claude Console, buka [Manage > Security](https://platform.claude.com/settings/workspaces/default/security-compliance) dan pilih workspace di pemilih workspace di bagian atas sidebar. Di bawah **Encryption key**, pilih kunci, klik **Save**, lalu konfirmasi. Anda juga dapat memilih kunci saat membuat workspace di Claude Console, tetapi hanya jika kebijakan kunci Anda belum menyebutkan workspace tertentu (tanpa kondisi `EncryptionContext`), karena ID compartment workspace ditetapkan saat pembuatan. Setelah dilampirkan, kunci sebuah workspace tidak dapat diubah.
+    Lampirkan kunci ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works). Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Anda juga dapat memilih kunci saat membuat workspace di Claude Console, tetapi hanya jika kebijakan kunci Anda belum menyebutkan workspace tertentu (tanpa kondisi `EncryptionContext`), karena ID compartment workspace ditetapkan saat pembuatan. Setelah dilampirkan, kunci sebuah workspace tidak dapat diubah.
 
     Inilah saat kunci divalidasi: panggilan lampiran memeriksa akses principal Anda ke kunci dan melakukan round enkripsi/dekripsi terhadapnya dengan ID compartment workspace sebagai konteks enkripsi, sehingga masalah dengan kebijakan kunci atau izin principal Anda muncul sebagai kesalahan pada panggilan tersebut. Jika lampiran gagal dengan kesalahan akses KMS, periksa hal berikut:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1f78ee626362d9a4fe4911d0b52d80d2a6813b23ca951abca90759fed237363b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 2dc00a41733b1ab555f438ca066963f7bce278189bee59e76666b0ab4b9aa654
 ---
 
 ---
@@ -50,7 +50,7 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
   <Step title="Daftarkan implementasi dengan worker">
     Teruskan alat melalui factory `tools` (go: `ToolsFunc`) milik worker (lihat [`EnvironmentWorker`](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#environment-worker)), bersama dengan toolset bawaan:
 
-    <CodeGroup exclude="shell">
+    <CodeGroup exclude="shell, csharp, java, php, ruby">
       ```python Python
       import asyncio
       import os
@@ -116,10 +116,9 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
       }).run();
       ```
 
-      ```csharp C#
-      // EnvironmentWorker saat ini belum tersedia di SDK C#.
-      // Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-      ```
+      <CodeGroupItem language="C#">
+        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menjawab panggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti dalam [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+      </CodeGroupItem>
 
       ```go Go
       package main
@@ -183,20 +182,17 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
 
       ```
 
-      ```java Java
-      // EnvironmentWorker saat ini belum tersedia di Java SDK.
-      // Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-      ```
+      <CodeGroupItem language="Java">
+        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menjawab panggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti dalam [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+      </CodeGroupItem>
 
-      ```php PHP
-      // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-      // Untuk menjawab panggilan alat kustom secara langsung, lihat stream event sesi.
-      ```
+      <CodeGroupItem language="PHP">
+        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menjawab panggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti dalam [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+      </CodeGroupItem>
 
-      ```ruby Ruby
-      # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-      # Untuk menjawab panggilan alat kustom secara langsung, lihat aliran event sesi.
-      ```
+      <CodeGroupItem language="Ruby">
+        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menjawab panggilan alat kustom dari kode Anda sendiri, kirim setiap hasil pada aliran event sesi, seperti dalam [Mengembalikan hasil alat kustom](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result).
+      </CodeGroupItem>
     </CodeGroup>
   </Step>
 </Steps>
@@ -217,9 +213,9 @@ Saat runtime, model memanggil alat yang dibungkus seperti alat kustom lainnya:
 
 ### Menginstal SDK MCP
 
-[Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) milik SDK mengonversi alat-alat server menjadi alat yang dapat dijalankan yang diterima worker. Instal SDK MCP bersama dengan SDK Anthropic: `pip install "anthropic[mcp]" "mcp>=1.24"` (typescript: `npm install @modelcontextprotocol/sdk`; go: `go get github.com/modelcontextprotocol/go-sdk`).
+[Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) milik SDK mengonversi alat-alat server menjadi alat yang dapat dijalankan yang diterima oleh worker. Instal SDK MCP bersama dengan SDK Anthropic: `pip install "anthropic[mcp]" "mcp>=1.24"` (typescript: `npm install @modelcontextprotocol/sdk`; go: `go get github.com/modelcontextprotocol/go-sdk`; csharp: `dotnet add package ModelContextProtocol`; java: `com.anthropic:anthropic-java-mcp`; php: `composer require mcp/sdk`; ruby: `bundle add mcp faraday event_stream_parser`).
 
-Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfigurasikan `http_client` (typescript: `requestInit`; go: `HTTPClient`) yang Anda berikan ke transport MCP.
+Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfigurasikan `http_client` (typescript: `requestInit`; go: `HTTPClient`; csharp: `AdditionalHeaders`; java: `customizeRequest`; php, ruby: `headers`) yang Anda berikan ke transport MCP.
 
 ### Mendeklarasikan dan melayani alat
 
@@ -310,8 +306,56 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       ```
 
       ```csharp C#
-      // Lihat tab Python, TypeScript, dan Go. Mendeklarasikan alat kustom dari
-      // C# bekerja dengan cara yang sama setelah Anda mencantumkan alat server dengan klien MCP.
+      using System.Text.Json;
+      using Anthropic;
+      using Anthropic.Models.Beta.Agents;
+      using ModelContextProtocol.Client;
+
+      const string McpServerUrl = "http://mcp.internal.example.com:8000/mcp";
+
+      // Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
+      // melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      var client = new AnthropicClient();
+
+      await using var mcpClient = await McpClient.CreateAsync(
+          new HttpClientTransport(new HttpClientTransportOptions { Endpoint = new Uri(McpServerUrl) })
+      );
+      var mcpTools = await mcpClient.ListToolsAsync();
+
+      List<Tool> tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params { Type = "agent_toolset_20260401" },
+      ];
+      foreach (var tool in mcpTools)
+      {
+          var description = tool.Description;
+          if (string.IsNullOrEmpty(description))
+          {
+              description = tool.Name;
+          }
+
+          // Field MCP dipetakan satu per satu ke deklarasi alat kustom.
+          // Kata kunci skema diteruskan ke SDK tanpa perubahan.
+          tools.Add(
+              new BetaManagedAgentsCustomToolParams
+              {
+                  Type = "custom",
+                  Name = tool.Name,
+                  Description = description,
+                  InputSchema = new(
+                      tool.ProtocolTool.InputSchema.Deserialize<Dictionary<string, JsonElement>>()!
+                  ),
+              }
+          );
+      }
+
+      var agent = await client.Beta.Agents.Create(new()
+      {
+          Name = "Internal tools agent",
+          Model = BetaManagedAgentsModel.ClaudeOpus5_5,
+          Tools = tools,
+      });
+      Console.WriteLine(agent.ID);
       ```
 
       ```go Go
@@ -423,18 +467,138 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       ```
 
       ```java Java
-      // Lihat tab Python, TypeScript, dan Go. Mendeklarasikan alat kustom dari
-      // Java bekerja dengan cara yang sama setelah Anda mencantumkan alat server dengan klien MCP.
+      import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+      import com.anthropic.core.JsonValue;
+      import com.anthropic.models.beta.agents.AgentCreateParams;
+      import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
+      import com.anthropic.models.beta.agents.BetaManagedAgentsCustomToolInputSchema;
+      import com.anthropic.models.beta.agents.BetaManagedAgentsCustomToolParams;
+      import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
+      import io.modelcontextprotocol.client.McpClient;
+      import io.modelcontextprotocol.client.transport.HttpClientStreamableHttpTransport;
+      import io.modelcontextprotocol.spec.McpSchema;
+
+      // Field MCP dipetakan satu-satu ke deklarasi alat kustom. SDK Java MCP
+      // hanya mempertahankan kata kunci tingkat atas berikut dari skema input alat: type,
+      // properties, required, additionalProperties, $defs, dan definitions.
+      BetaManagedAgentsCustomToolParams toCustomTool(McpSchema.Tool tool) {
+          var description = tool.description();
+          if (description == null || description.isEmpty()) {
+              description = tool.name();
+          }
+
+          return BetaManagedAgentsCustomToolParams.builder()
+              .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
+              .name(tool.name())
+              .description(description)
+              .inputSchema(JsonValue.from(tool.inputSchema())
+                  .convert(BetaManagedAgentsCustomToolInputSchema.class))
+              .build();
+      }
+
+      void main() {
+          // Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
+          // melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+          var client = AnthropicOkHttpClient.fromEnv();
+
+          // Alamat server MCP, lalu path endpoint MCP-nya.
+          var transport = HttpClientStreamableHttpTransport.builder("http://mcp.internal.example.com:8000")
+              .endpoint("/mcp")
+              .build();
+          try (var mcpClient = McpClient.sync(transport)
+                  .clientInfo(new McpSchema.Implementation("declare-agent-tools", "1.0.0"))
+                  .build()) {
+              mcpClient.initialize();
+
+              var params = AgentCreateParams.builder()
+                  .name("Internal tools agent")
+                  .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
+                  .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+                      .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                      .build());
+              for (var tool : mcpClient.listTools().tools()) {
+                  params.addTool(toCustomTool(tool));
+              }
+
+              var agent = client.beta().agents().create(params.build());
+              IO.println(agent.id());
+          }
+      }
       ```
 
       ```php PHP
-      // Lihat tab Python, TypeScript, dan Go. Mendeklarasikan alat kustom dari
-      // PHP bekerja dengan cara yang sama setelah Anda mencantumkan alat server dengan klien MCP.
+      use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+      use Anthropic\Client as Anthropic;
+      use Mcp\Client as McpClient;
+      use Mcp\Client\Transport\HttpTransport;
+
+      $mcpServerUrl = 'http://mcp.internal.example.com:8000/mcp';
+
+      // Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
+      // melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      $client = new Anthropic();
+
+      $mcpClient = McpClient::builder()->build();
+      $mcpClient->connect(new HttpTransport($mcpServerUrl));
+
+      $tools = [['type' => 'agent_toolset_20260401']];
+      foreach ($mcpClient->listTools()->tools as $tool) {
+          // Field MCP dipetakan satu per satu ke deklarasi alat kustom.
+          // Kata kunci skema diteruskan ke SDK tanpa perubahan.
+          $tools[] = [
+              'type' => 'custom',
+              'name' => $tool->name,
+              'description' => $tool->description ?: $tool->name,
+              'inputSchema' => $tool->inputSchema,
+          ];
+      }
+
+      $agent = $client->beta->agents->create(
+          name: 'Internal tools agent',
+          model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
+          tools: $tools,
+      );
+      echo $agent->id, "\n";
+
+      $mcpClient->disconnect();
       ```
 
       ```ruby Ruby
-      # Lihat tab Python, TypeScript, dan Go. Mendeklarasikan alat kustom dari
-      # Ruby bekerja dengan cara yang sama setelah Anda mencantumkan alat server dengan klien MCP.
+      require "anthropic"
+      require "mcp"
+
+      MCP_SERVER_URL = "http://mcp.internal.example.com:8000/mcp"
+
+      # Jalankan ini di tempat Anda membuat agen, bukan di host worker: kode ini
+      # melakukan autentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      client = Anthropic::Client.new
+
+      transport = MCP::Client::HTTP.new(url: MCP_SERVER_URL)
+      mcp_client = MCP::Client.new(transport: transport)
+      mcp_client.connect
+
+      custom_tools = mcp_client.tools.map do |tool|
+        description = tool.description
+        description = tool.name if description.nil? || description.empty?
+
+        # Field MCP dipetakan satu-satu ke deklarasi alat kustom. Kata kunci
+        # skema diteruskan ke SDK tanpa perubahan.
+        {
+          type: :custom,
+          name: tool.name,
+          description: description,
+          input_schema: tool.input_schema
+        }
+      end
+
+      agent = client.beta.agents.create(
+        name: "Internal tools agent",
+        model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
+        tools: [{type: :agent_toolset_20260401}, *custom_tools]
+      )
+      puts agent.id
+
+      transport.close
       ```
     </CodeGroup>
   </Step>
@@ -442,7 +606,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
   <Step title="Layani alat dari worker">
     Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool` (typescript: `mcpTools`; go: `mcp.NewBetaTools`), dan daftarkan bersama dengan `beta_agent_toolset_20260401` (typescript: `betaAgentToolset20260401`; go: `agenttoolset.BetaAgentToolset20260401`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
 
-    <CodeGroup exclude="shell">
+    <CodeGroup exclude="shell, csharp, java, php, ruby">
       ```python Python
       import asyncio
       import os
@@ -526,9 +690,9 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       }).run();
       ```
 
-      ```csharp C#
-      // EnvironmentWorker saat ini belum tersedia di SDK C#.
-      ```
+      <CodeGroupItem language="C#">
+        SDK C# tidak memiliki `EnvironmentWorker`.
+      </CodeGroupItem>
 
       ```go Go
       package main
@@ -592,17 +756,17 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
 
       ```
 
-      ```java Java
-      // EnvironmentWorker saat ini belum tersedia di Java SDK.
-      ```
+      <CodeGroupItem language="Java">
+        SDK Java tidak memiliki `EnvironmentWorker`.
+      </CodeGroupItem>
 
-      ```php PHP
-      // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-      ```
+      <CodeGroupItem language="PHP">
+        SDK PHP tidak memiliki `EnvironmentWorker`.
+      </CodeGroupItem>
 
-      ```ruby Ruby
-      # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-      ```
+      <CodeGroupItem language="Ruby">
+        SDK Ruby tidak memiliki `EnvironmentWorker`.
+      </CodeGroupItem>
     </CodeGroup>
   </Step>
 </Steps>

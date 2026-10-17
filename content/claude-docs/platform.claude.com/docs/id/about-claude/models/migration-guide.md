@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/migration-guide
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9b0f77d6dcb1d4a9024cf3e5d6b9b13b519a1bf26fc4f9b4e7097bce3e802be3
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 72291e37170a65bc8b8c608c590f4764856c8f4ebba78eb0967f928c69a4d8e8
 ---
 
 ---
@@ -12,7 +12,6 @@ description: Panduan untuk bermigrasi ke model Claude terbaru dari versi Claude 
 ---
 
 * [Panduan migrasi Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide)
-* [Panduan migrasi Claude Mythos 5 dan Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/migration-guide)
 * [Panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide)
 * [Panduan migrasi Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide)
 * [Panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide)

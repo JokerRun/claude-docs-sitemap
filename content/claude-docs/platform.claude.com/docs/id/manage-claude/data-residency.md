@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: fe9ed53799ec42a541de23398e678bf9265c98b6cab21698ffe5924844b204cd
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b74b40d651d5a11dfc158f1c57caea01818d257cb315d77a068a3a7d32e0db83
 ---
 
 ---
@@ -251,9 +251,9 @@ Workspace geo ditetapkan saat Anda membuat workspace dan tidak dapat diubah sete
 
 Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platform.claude.com):
 
-1. Buka **Settings** > **Workspaces**.
-2. Buat workspace baru.
-3. Pilih workspace geo.
+1. Di Console, buka halaman [Workspaces](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`).
+2. Klik **Create workspace** untuk membuka halaman [Create workspace](https://platform.claude.com/settings/workspaces/new) (`platform.claude.com/settings/workspaces/new`) di Console.
+3. Masukkan nama, konfirmasi nilai di field **Workspace geo**, lalu klik **Create workspace**.
 
 <Note>
   **Claude Platform on AWS:** Workspace geo tidak dapat dikonfigurasi. Sesi Claude Managed Agents di platform ini berjalan dengan Workspace geo efektif `"us"`, yang saat ini merupakan satu-satunya workspace geo yang tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk pertimbangan residensi data yang spesifik untuk platform tersebut.

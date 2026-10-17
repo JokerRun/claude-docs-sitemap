@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 98cdef807f4e62c7a238c65ed9a53bd71055b57a353d1cb6cc6bd1650bc4b3a6
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 33bce46d5f397acbf8874d9c23f061ce9249f632f7c60e96acfc69de87a2593c
 ---
 
 ---
@@ -19,7 +19,7 @@ featureMetadata:
 
 Environment (lingkungan) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat environment satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi environment yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (container Linux baru).
 
-Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes). Untuk memilih di antara keduanya, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
 
 ## Membuat environment
 
@@ -155,7 +155,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
   ```
 </CodeGroup>
 
-Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan environment satu sama lain. Contoh ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga sandbox dapat menjangkau registri paket dan host kode. Agar sandbox dapat menjangkau host lain, tambahkan host tersebut ke `allowed_hosts`.
+Gunakan `name` (csharp, go: `Name`) yang unik dan deskriptif agar Anda dapat membedakan environment satu sama lain. Contoh ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga sandbox dapat menjangkau registri paket dan host kode. Untuk mengizinkannya menjangkau host lain, tambahkan host tersebut ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 
 ## Menggunakan environment dalam sesi
 
@@ -238,7 +238,7 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
 
 ### Paket
 
-Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional mengunci versi tertentu. Paket yang tidak dikunci akan menginstal versi terbaru. Jika environment menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, atur juga `networking.allow_package_managers` ke `true`; jika tidak, permintaan akan ditolak dengan error 400.
+Field `packages` (csharp, go: `Packages`) melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa package manager ditentukan, package manager tersebut berjalan dalam urutan abjad (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional mengunci versi tertentu. Paket yang tidak dikunci akan menginstal versi terbaru. Jika environment menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, atur juga `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) di `networking` (csharp, go: `Networking`) ke `true`; jika tidak, permintaan akan ditolak dengan error 400.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -247,19 +247,17 @@ Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dim
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF'
-  {
-    "name": "data-analysis",
-    "config": {
-      "type": "cloud",
-      "packages": {
-        "pip": ["pandas", "numpy", "scikit-learn"],
-        "npm": ["express"]
-      },
-      "networking": {"type": "limited", "allow_package_managers": true}
-    }
-  }
-  EOF
+    --data '{
+      "name": "data-analysis",
+      "config": {
+        "type": "cloud",
+        "packages": {
+          "pip": ["pandas", "numpy", "scikit-learn"],
+          "npm": ["express"]
+        },
+        "networking": {"type": "limited", "allow_package_managers": true}
+      }
+    }'
   ```
 
   <CodeGroupItem>
@@ -419,17 +417,17 @@ Package manager yang didukung:
 
 ### Jaringan
 
-Field `networking` mengontrol akses jaringan keluar (outbound) sandbox.
+Field `networking` (csharp, go: `Networking`) mengontrol akses jaringan keluar sandbox.
 
-Dengan jaringan `limited`, `allowed_hosts` juga berlaku untuk alat `web_search` dan `web_fetch`, yang berjalan di server Anthropic. Panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` mengembalikan hasil error kepada agen. `web_search` menghilangkan hasil dari host yang tidak cocok dengan `allowed_hosts`. `allow_package_managers` dan `allow_mcp_servers` tidak menambahkan host apa pun untuk alat-alat ini. Ketika `allowed_hosts` tidak mencantumkan host apa pun, tidak ada panggilan `web_fetch` atau `web_search` yang mengembalikan halaman atau hasil pencarian. Host yang Anda tambahkan ke `allowed_hosts` untuk alat-alat ini juga terbuka bagi sandbox. Jaringan `unrestricted` dan environment self-hosted tidak membatasi alat-alat ini. Untuk membatasinya lebih lanjut, atur `allowed_domains` atau `blocked_domains` pada entri alat di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+Dengan jaringan `limited`, `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) juga berlaku untuk alat `web_search` dan `web_fetch`, yang berjalan di server Anthropic. Panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) akan mengembalikan hasil error kepada agen. `web_search` menghilangkan hasil dari host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) dan `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) tidak menambahkan host apa pun untuk alat-alat ini. Ketika `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) tidak mencantumkan host apa pun, tidak ada panggilan `web_fetch` atau `web_search` yang mengembalikan halaman atau hasil pencarian. Host yang Anda tambahkan ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) untuk alat-alat ini juga terbuka bagi sandbox. Jaringan `unrestricted` dan environment self-hosted tidak membatasi alat-alat ini. Untuk membatasinya lebih lanjut, atur `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) atau `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) pada entri alat tersebut di toolset agen. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
-| Mode           | Deskripsi                                                                                                                                                                                                                                                       |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limited`      | Membatasi akses jaringan sandbox ke host di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. Gunakan mode ini kecuali agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Sebelum Anda menggunakannya, baca [Risiko jaringan tanpa batasan](https://platform.claude.com/docs/id/managed-agents/environments#risks-of-unrestricted-networking).                    |
+| Mode           | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `limited`      | Membatasi akses jaringan sandbox ke host di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Atur `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) dan `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` untuk mengizinkan akses tambahan. Gunakan mode ini kecuali agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Sebelum Anda menggunakannya, baca [Risiko jaringan tanpa batasan](https://platform.claude.com/docs/id/managed-agents/environments#risks-of-unrestricted-networking).                                                                                                                                                                                                                                                        |
 
 <Note>
-  Atur `networking` secara eksplisit dalam permintaan API; permintaan pembuatan yang menghilangkannya akan mendapatkan `unrestricted`. Formulir Claude Console untuk membuat environment dimulai dengan **Limited** terpilih dan tidak ada hal lain yang diizinkan.
+  Atur `networking` (csharp, go: `Networking`) secara eksplisit dalam permintaan API; permintaan pembuatan yang menghilangkannya akan mendapatkan `unrestricted`. Formulir Claude Console untuk membuat environment dimulai dengan **Limited** terpilih dan tidak ada hal lain yang diizinkan.
 </Note>
 
 Contoh berikut membuat environment dengan jaringan `limited`:
@@ -593,20 +591,20 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 </CodeGroup>
 
 <Info>
-  Gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Gunakan jaringan `limited` dengan daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
 Dengan jaringan `limited` dan tanpa field lain yang diatur, tidak ada host yang diizinkan. File, memory store, dan repositori GitHub yang Anda lampirkan ke sesi tetap tersedia. Ketika permintaan dari sandbox pada port 80 atau 443 ditolak karena host-nya tidak diizinkan, responsnya adalah 403 yang menyebutkan host yang diblokir.
 
 Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path. Hostname tanpa wildcard hanya cocok dengan host yang persis sama: `example.com` tidak cocok dengan `www.example.com`. `*.example.com` cocok dengan setiap subdomain dari `example.com`, tetapi tidak dengan `example.com` itu sendiri.
-* `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya `false`. Selama nilainya `false`, pembuatan sesi gagal dengan error 400 jika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts`. Hal yang sama berlaku untuk [agen yang dapat menerima delegasi tugas darinya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk memperbaikinya, tambahkan host ke `allowed_hosts` atau atur `allow_mcp_servers` ke `true`.
-* `allow_package_managers` mengizinkan akses keluar ke sekumpulan registri paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts`. Lihat [Host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages`; jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registri tercantum di `allowed_hosts`.
+* `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path. Hostname tanpa wildcard hanya cocok dengan host yang persis sama: `example.com` tidak cocok dengan `www.example.com`. `*.example.com` cocok dengan setiap subdomain dari `example.com`, tetapi tidak dengan `example.com` itu sendiri.
+* `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Default-nya `false`. Selama nilainya `false`, pembuatan sesi gagal dengan error 400 jika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Hal yang sama berlaku untuk [agen yang dapat menerima delegasi tugas darinya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk memperbaikinya, tambahkan host tersebut ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) atau atur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true`.
+* `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) mengizinkan akses keluar ke sekumpulan registri paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Lihat [Host package manager](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages` (csharp, go: `Packages`); jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registri tercantum di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 
 #### Host package manager
 
-Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host berikut selain yang ada di `allowed_hosts`. Anthropic memelihara daftar ini dan dapat mengubahnya.
+Ketika `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) bernilai `true`, sandbox dapat menjangkau host berikut selain yang ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Anthropic memelihara daftar ini dan dapat mengubahnya.
 
 | Ekosistem    | Host                                                                                                                                                                                       |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -622,7 +620,7 @@ Ketika `allow_package_managers` bernilai `true`, sandbox dapat menjangkau host b
 | Container    | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
 
 <Warning>
-  Akses jaringan diberikan per host, bukan per operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika environment tidak menentukan `packages`, sebagai gantinya Anda dapat membiarkan `allow_package_managers` tetap bernilai `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts`.
+  Akses jaringan diberikan per host, bukan per operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), "prompt injection" (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika environment tidak menentukan `packages` (csharp, go: `Packages`), sebagai gantinya Anda dapat membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) tetap bernilai `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 </Warning>
 
 #### Risiko jaringan tanpa batasan
@@ -647,7 +645,7 @@ Untuk mengurangi risiko ini, gunakan jaringan `limited` dengan daftar host yang 
 }
 ```
 
-Agen yang hanya menggunakan alat `web_search` dan `web_fetch` tidak memerlukan jaringan `unrestricted` jika Anda dapat mencantumkan situs yang dibutuhkannya. Dengan jaringan `limited`, `allowed_hosts` juga berlaku untuk alat-alat tersebut (lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking)), jadi cantumkan situs-situs tersebut di `allowed_hosts`. Mencantumkannya juga di `allowed_domains` milik `web_search` membuatnya mencari di situs-situs tersebut. Host yang Anda tambahkan ke `allowed_hosts` juga terbuka bagi sandbox. Untuk membatasi alat-alat tersebut lebih lanjut, lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+Agen yang hanya menggunakan alat `web_search` dan `web_fetch` tidak memerlukan jaringan `unrestricted` jika Anda dapat mencantumkan situs yang dibutuhkannya. Dengan jaringan `limited`, `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) juga berlaku untuk alat-alat tersebut (lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking)), jadi cantumkan situs-situs tersebut di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mencantumkannya juga di `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) milik `web_search` membuatnya mencari di situs-situs tersebut. Host yang Anda tambahkan ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) juga terbuka bagi sandbox. Untuk membatasi alat-alat tersebut lebih lanjut, lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. Dalam hal ini, jauhkan rahasia dan file sensitif dari sandbox, dan berikan agen hanya kredensial yang dibutuhkan tugas tersebut. Pertimbangkan untuk mengatur kebijakan izin alat `bash` ke `always_ask` atau `auto`, dan [pantau event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
 

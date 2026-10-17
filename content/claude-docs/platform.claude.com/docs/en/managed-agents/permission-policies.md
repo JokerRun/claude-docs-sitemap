@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2f52c685a94c474a904e98c6719d95ef79f279fab8b49fb055f76bc5b351d07d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 39cb250deb551a5c182bc12095d9a44da412c62419ed74977f62ce536fc1dce1
 ---
 
 ---
@@ -135,7 +135,7 @@ When creating an agent, you can apply a policy to every tool in `agent_toolset_2
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Coding Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -355,7 +355,7 @@ This example connects a GitHub MCP server and allows its tools to run without co
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Dev Assistant",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
@@ -863,7 +863,7 @@ The following example sets `auto` as the default for the agent toolset and for t
   agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
   	Name: "Ops Agent",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
-  		ID: "claude-opus-5-5",
+  		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
   		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,

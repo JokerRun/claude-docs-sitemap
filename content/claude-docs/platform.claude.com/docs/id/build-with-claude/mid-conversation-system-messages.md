@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 60ef10b4a85f41319c9a7541a4717d1fdfda10b4d3a76260d78d388ee698d308
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 21a08ac479b49490ac85e6c6ac393deaf57f9c20d7188a92fc0503e3ca3d5d7d
 ---
 
 ---
@@ -33,12 +33,7 @@ Pesan sistem di tengah percakapan menutup celah tersebut. Anda menambahkan pesan
 
 Array `tools` berada lebih awal lagi dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas. Karena itu, mengeditnya membatalkan [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan pesan sistem di tengah percakapan untuk alat. Daftar alat tidak perlu tetap sepanjang percakapan. Anda dapat mengubah alat yang ditawarkan kepada model di antara giliran: deklarasikan set alat lengkap di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya, mulai dari titik tertentu dalam percakapan. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh. Perubahan alat di tengah percakapan tersedia dalam beta dan menggunakan header beta `inline-tools-2026-09-15` di Claude API.
 
-`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan yang sama dengan pesan sistem di tengah percakapan lainnya, dengan satu batasan tambahan setelah giliran yang dijeda (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Perubahan berlaku mulai dari titik tersebut dalam percakapan. Field `tool` pada setiap blok mereferensikan alat, bukan mendefinisikannya:
-
-* `{"type": "tool_reference", "name": "..."}` menyebut alat yang dideklarasikan dalam array `tools` permintaan.
-* Alat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) dapat direferensikan satu per satu dengan `mcp_tool_reference` (`server_name` dan `name`), atau sebagai satu toolset utuh dengan `mcp_toolset_reference` (`server_name`).
-
-Mereferensikan nama yang tidak dideklarasikan di `tools` menghasilkan error 400. Di Claude API, `error.details.error_code` diatur ke `tool_reference_unresolved`. Sebagai alternatif, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), tetapi header `mid-conversation-tool-changes-2026-07-01` tidak mendukung hal ini.
+`tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan untuk pesan sistem di tengah percakapan mana pun, dengan satu batasan tambahan setelah giliran yang dijeda (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)), dan perubahan berlaku mulai dari titik tersebut dalam percakapan dan seterusnya. Field `tool` pada setiap blok mereferensikan alat alih-alih mendefinisikannya: `{"type": "tool_reference", "name": "..."}` menyebut alat yang dideklarasikan dalam array `tools` permintaan, dan alat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) dapat direferensikan secara individual dengan `mcp_tool_reference` (`server_name` dan `name`) atau sebagai satu toolset utuh dengan `mcp_toolset_reference` (`server_name`). Mereferensikan nama yang tidak dideklarasikan di `tools` mengembalikan error 400 (di Claude API, dengan `error.details.error_code` diatur ke `tool_reference_unresolved`). Sebagai alternatif, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), yang tidak didukung oleh header `mid-conversation-tool-changes-2026-07-01`.
 
 Setiap alat yang dideklarasikan di `tools` ditawarkan kepada model sejak awal percakapan, kecuali alat yang dideklarasikan dengan `defer_loading: true`. Alat tersebut ditahan sampai blok `tool_addition` memunculkannya. `tool_addition` juga dapat menawarkan kembali alat yang sebelumnya ditarik oleh `tool_removal`.
 
@@ -244,7 +239,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           new() { Role = Role.User, Content = "Say OK." },
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `Tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap terkena (hit).
+          // identik per byte dan cache tetap hit.
           new()
           {
               Role = Role.System,
@@ -294,7 +289,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   	},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Say OK.")),
-  		// Tarik get_weather mulai dari titik ini dan seterusnya. Blok ini merujuk
+  		// Tarik get_weather mulai titik ini. Blok ini merujuk
   		// alat berdasarkan nama alih-alih mengedit Tools, sehingga giliran sebelumnya tetap
   		// identik per byte dan cache tetap hit.
   		{
@@ -352,7 +347,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           .addUserMessage("Say OK.")
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache tetap terkena (hit).
+          // identik per byte dan cache tetap hit.
           .addMessage(BetaMessageParam.builder()
               .role(BetaMessageParam.Role.SYSTEM)
               .contentOfBetaContentBlockParams(List.of(
@@ -378,7 +373,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       betas: [AnthropicBeta::INLINE_TOOLS_2026_09_15],
-      // Set alat lengkap dideklarasikan di awal dan tidak pernah berubah, sehingga
+      // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
       // prefiks yang di-cache tetap utuh.
       tools: [
           [
@@ -398,9 +393,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       ],
       messages: [
           ['role' => 'user', 'content' => 'Say OK.'],
-          // Tarik get_weather mulai dari titik ini. Blok ini merujuk
+          // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan namanya alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
-          // identik per byte dan cache hit tetap terjadi.
+          // identik per byte dan cache tetap hit.
           [
               'role' => 'system',
               'content' => [
@@ -444,7 +439,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
     ],
     messages: [
       { role: "user", content: "Say OK." },
-      # Tarik get_weather mulai titik ini. Blok ini merujuk
+      # Tarik get_weather mulai dari titik ini. Blok ini merujuk
       # alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
       # identik per byte dan cache tetap hit.
       {
@@ -1916,7 +1911,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
           ['role' => 'assistant', 'content' => 'The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list.'],
           ['role' => 'user', 'content' => 'Now review the calling code that invokes process().'],
           // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
-          // kebijakan pengetikan ketat tim. Menambahkan instruksi di sini menjaga
+          // kebijakan typing ketat tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
           ['role' => 'system', 'content' => 'From now on, every suggestion must include explicit type annotations.']
@@ -2222,12 +2217,13 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```csharp C#
   using Anthropic.Models.Beta;
   using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
 
   AnthropicClient client = new();
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-fable-5-1",
+      Model = Messages::Model.ClaudeFable5_1,
       MaxTokens = 4096,
       Messages =
       [
@@ -2256,7 +2252,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-fable-5-1",
+  	Model:     anthropic.ModelClaudeFable5_1,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Draft a short status update on the database migration for the team channel.")),
@@ -2285,12 +2281,13 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaMessageParam;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(4096L)
           .addBeta(AnthropicBeta.MID_CONVERSATION_SYSTEM_CLEAR_AT_2026_08_21)
           .addUserMessage("Draft a short status update on the database migration for the team channel.")
@@ -2321,7 +2318,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
       maxTokens: 4096,
       messages: [
           BetaMessageParam::with(role: 'user', content: 'Draft a short status update on the database migration for the team channel.'),
-          // Pengingat cakupan giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
           BetaMessageParam::with(
               role: 'system',
               clearAt: 'next_user_message',

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e9a12f8d1601d07665fc9153bd428b12cd70609da82c0c91ccb34c3b48ffb035
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e09abc4e91fd29fc83e308ee66c7386d8de71f399b606e081c629673361d1250
 ---
 
 > ## Documentation Index
@@ -216,7 +216,7 @@ Ask the researcher teammate to shut down
 
 The lead sends a shutdown request. The teammate can approve, exiting gracefully, or reject with an explanation.
 
-The team's shared directories are cleaned up automatically when the session ends, so there's no separate cleanup step. See [Architecture](#architecture) for which directories are removed and which persist for resumed sessions.
+The team's shared directories are cleaned up automatically when the session ends, so there's no separate cleanup step. See [Architecture](#architecture) for which directories are removed and which stay on disk.
 
 ### Enforce quality gates with hooks
 
@@ -255,10 +255,10 @@ Claude Code manages task dependencies automatically: when a teammate completes a
 
 Teams and tasks are stored locally under a session-derived name. The name is `session-` followed by the first eight characters of the session ID:
 
-* **Team config**: `~/.claude/teams/{team-name}/config.json`
-* **Task list**: `~/.claude/tasks/{team-name}/`
+* **Team config**: `~/.claude/teams/{team-name}/config.json`. Claude Code removes the team config directory when the session ends.
+* **Task list**: `~/.claude/tasks/{team-name}/`. This directory stays on disk after the session ends. To change [how long Claude Code keeps it](/docs/en/claude-directory#cleaned-up-automatically), set [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays).
 
-Claude Code generates both of these automatically at session startup and updates them as teammates join, go idle, or leave. The team config directory is removed when the session ends. The task list directory persists locally and is never uploaded, so resumed sessions keep their tasks. Retention is governed by the same [`cleanupPeriodDays`](/docs/en/settings-reference#cleanupperioddays) you already control for session transcripts, following the [retention sweep rules](/docs/en/claude-directory#cleaned-up-automatically).
+Claude Code generates both of these automatically at session startup and updates them as teammates join, go idle, or leave.
 
 The team config holds runtime state such as session IDs and tmux pane IDs, so don't edit it by hand or pre-author it: your changes are overwritten on the next state update.
 

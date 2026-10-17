@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: eaa99a23da748ec63abf137d11df821fca88afb737acc69785ff292557d80bf4
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: cf37419529ded0b11a855d8fbab73b3ccbf80b9e4c05434c77e5d40fa2031dbe
 ---
 
 ---
@@ -67,7 +67,7 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
 
 ### Mengonfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -102,7 +102,7 @@ Buatlah sespesifik mungkin sesuai yang diizinkan beban kerja. Cocokkan ARN role 
 
 ### Memperoleh dan menggunakan token
 
-Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK. Karena `identity_token_provider` (typescript, php: `identityTokenProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `federationTokenProvider`) menerima callable, SDK akan memanggil ulang STS pada setiap refresh.
+Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK melalui `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`). Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, sehingga SDK akan memanggil ulang STS pada setiap refresh.
 
 <Note>
   `GetWebIdentityToken` hanya tersedia di endpoint STS regional. Jika Anda menerima `'STS' object has no attribute 'get_web_identity_token'` atau error serupa, sematkan klien STS Anda ke suatu region (misalnya, `boto3.client("sts", region_name="us-east-1")`) dan pastikan AWS SDK Anda cukup baru untuk menyertakan API tersebut.
@@ -270,31 +270,57 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   ```
 
   ```java Java
-  StsClient sts = StsClient.builder().region(Region.US_EAST_1).build();
+  import com.anthropic.config.AuthenticationConfig;
+  import com.anthropic.config.AuthenticationType;
+  import com.anthropic.config.IdentityTokenConfig;
+  import com.anthropic.config.InMemoryProfileConfigProvider;
+  import com.anthropic.config.ProfileConfig;
+  // ...
+  import software.amazon.awssdk.regions.Region;
+  import software.amazon.awssdk.services.sts.StsClient;
+  import software.amazon.awssdk.services.sts.model.GetWebIdentityTokenRequest;
 
-  IdentityTokenProvider getStsToken = () -> sts.getWebIdentityToken(
-                  GetWebIdentityTokenRequest.builder()
-                          .audience("https://api.anthropic.com")
-                          .signingAlgorithm("RS256")
-                          .durationSeconds(900)
-                          .build())
-          .webIdentityToken();
+  void main() {
+      StsClient sts = StsClient.builder().region(Region.US_EAST_1).build();
 
-  AnthropicClient client = AnthropicOkHttpClient.builder()
-          .federationTokenProvider(
-                  getStsToken,
-                  System.getenv("ANTHROPIC_FEDERATION_RULE_ID"),
-                  System.getenv("ANTHROPIC_ORGANIZATION_ID"),
-                  System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
-          .build();
+      // Java SDK menerima token itu sendiri atau path file, bukan fungsi; dengan
+      // source("value"), path(...) berisi token. SDK mengirim token yang sama
+      // pada setiap refresh token akses Anthropic, yang gagal setelah token
+      // kedaluwarsa atau, jika memiliki klaim jti, sudah dipakai. Untuk proses
+      // yang berjalan lebih lama, berikan source("file") dan tulis token baru ke file
+      // sebelum setiap refresh.
+      String stsToken = sts.getWebIdentityToken(
+                      GetWebIdentityTokenRequest.builder()
+                              .audience("https://api.anthropic.com")
+                              .signingAlgorithm("RS256")
+                              .durationSeconds(900)
+                              .build())
+              .webIdentityToken();
 
-  var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .addUserMessage("Hello from AWS")
-          .build());
+      AnthropicClient client = AnthropicOkHttpClient.builder()
+              .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
+                      .organizationId(System.getenv("ANTHROPIC_ORGANIZATION_ID"))
+                      .workspaceId(System.getenv("ANTHROPIC_WORKSPACE_ID"))
+                      .authentication(AuthenticationConfig.builder()
+                              .type(AuthenticationType.OIDC_FEDERATION)
+                              .federationRuleId(System.getenv("ANTHROPIC_FEDERATION_RULE_ID"))
+                              .serviceAccountId(System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
+                              .identityToken(IdentityTokenConfig.builder()
+                                      .source("value")
+                                      .path(stsToken)
+                                      .build())
+                              .build())
+                      .build()))
+              .build();
 
-  IO.println(message.content());
+      var message = client.messages().create(MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addUserMessage("Hello from AWS")
+              .build());
+
+      IO.println(message.content());
+  }
   ```
 
   ```csharp C#
@@ -365,20 +391,36 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   ```php PHP
   use Anthropic\Client;
-  use Anthropic\Credentials\WorkloadIdentityCredentials;
+  use Anthropic\Lib\Credentials\CredentialResult;
+  use Anthropic\Lib\Credentials\IdentityTokenProvider;
+  use Anthropic\Lib\Credentials\TokenCache;
+  use Anthropic\Lib\Credentials\WorkloadIdentityCredentials;
   use Aws\Sts\StsClient;
 
   $sts = new StsClient(['region' => 'us-east-1', 'version' => 'latest']);
-  $client = new Client(credentials: new WorkloadIdentityCredentials(
-      identityTokenProvider: fn() => $sts->getWebIdentityToken([
-          'Audience' => ['https://api.anthropic.com'],
-          'SigningAlgorithm' => 'RS256',
-          'DurationSeconds' => 900,
-      ])['WebIdentityToken'],
-      federationRuleId: getenv('ANTHROPIC_FEDERATION_RULE_ID'),
-      organizationId: getenv('ANTHROPIC_ORGANIZATION_ID'),
-      serviceAccountId: getenv('ANTHROPIC_SERVICE_ACCOUNT_ID'),
-      workspaceId: getenv('ANTHROPIC_WORKSPACE_ID') ?: null,
+
+  class StsIdentityToken implements IdentityTokenProvider
+  {
+      public function __construct(private StsClient $sts) {}
+
+      public function getIdentityToken(): string
+      {
+          return $this->sts->getWebIdentityToken([
+              'Audience' => ['https://api.anthropic.com'],
+              'SigningAlgorithm' => 'RS256',
+              'DurationSeconds' => 900,
+          ])['WebIdentityToken'];
+      }
+  }
+
+  $client = new Client(credentials: new CredentialResult(
+      provider: new TokenCache(new WorkloadIdentityCredentials(
+          identityProvider: new StsIdentityToken($sts),
+          federationRuleId: getenv('ANTHROPIC_FEDERATION_RULE_ID'),
+          organizationId: getenv('ANTHROPIC_ORGANIZATION_ID'),
+          serviceAccountId: getenv('ANTHROPIC_SERVICE_ACCOUNT_ID'),
+          workspaceId: getenv('ANTHROPIC_WORKSPACE_ID') ?: null,
+      )),
   ));
 
   $message = $client->messages->create(
@@ -444,7 +486,7 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang tidak transparan (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) untuk alasan penolakan dan lihat [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
+Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
 
 ## Menggunakan projected service-account token EKS
 
@@ -541,7 +583,7 @@ Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan]
 
 ### Mengonfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih tile **AWS**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -799,7 +841,7 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
   }" | jq
 ```
 
-Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang tidak transparan (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) untuk alasan penolakan dan lihat [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
+Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
 
 ## Membatasi cakupan rule Anda
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 163576ac4877a23cc3957c466612f5271784d75ad75d065988bf5f135941fb18
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5e4c573983f33fab5c8085de0d665f92adf4c13db477fae0f3c20910fcf32e52
 ---
 
 ---
@@ -4026,27 +4026,14 @@ Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa
 
 Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah ini menunjukkan bentuk idiomatis untuk setiap bahasa.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 5: Abstraksi Tool Runner SDK.
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Tool Runner adalah helper di Claude SDK. Permintaan HTTP mentah tidak memiliki padanannya. Untuk tetap menggunakan curl, gunakan loop dari [Cincin 4](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+  </CodeGroupItem>
 
-  # Abstraksi Tool Runner SDK tersedia di ketujuh SDK: Python,
-  # TypeScript, C#, Go, Java, PHP, dan Ruby. Tidak ada padanan untuk permintaan
-  # curl mentah. Beralihlah ke tab SDK mana pun untuk melihat Ring 5, atau pertahankan
-  # loop Ring 4 sebagai implementasi shell Anda.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 5: Abstraksi Tool Runner SDK.
-  set -euo pipefail
-
-  # Abstraksi Tool Runner SDK tersedia di ketujuh SDK: Python,
-  # TypeScript, C#, Go, Java, PHP, dan Ruby. CLI ant mengekspos Messages
-  # API secara langsung dan tidak memiliki helper yang setara. Beralihlah ke tab SDK mana pun untuk melihat
-  # Ring 5, atau pertahankan loop Ring 4 sebagai implementasi CLI Anda.
-  ```
+  <CodeGroupItem language="CLI">
+    Tool Runner adalah helper di Claude SDK. CLI `ant` tidak memiliki padanannya. Untuk tetap menggunakan CLI, gunakan loop dari [Cincin 4](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+  </CodeGroupItem>
 
   ```python Python
   # Ring 5: Abstraksi SDK Tool Runner.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 3ff8b526cb3b835093777f2b02376515090f466d4ffc2f17592ffd2a738d4b98
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d6e3143fe553359fb03e79437f06aecc1fa953fde2021bc7c4591d4b2f26b232
 ---
 
 ---
@@ -165,7 +165,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
   var parameters = new MessageCreateParams
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
@@ -222,7 +222,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addUserMessage("Help me build a website")
               .contextManagement(BetaContextManagementConfig.builder()
@@ -395,7 +395,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Betas = ["compact-2026-01-12"],
       Messages = messages,
@@ -443,7 +443,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addBeta("compact-2026-01-12")
               .addUserMessage("Hello, Claude")
@@ -611,7 +611,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
   var parameters = new MessageCreateParams
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages =
       [
@@ -666,7 +666,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addUserMessage("Help me build a Python web scraper")
               .addAssistantMessage("I'll help you build a web scraper...")
@@ -870,7 +870,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Betas = ["compact-2026-01-12"],
       Messages = messages,
@@ -895,7 +895,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
       parameters = new()
       {
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Betas = ["compact-2026-01-12"],
           Messages = messages,
@@ -964,7 +964,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addBeta("compact-2026-01-12")
               .addUserMessage("Help me build a website")
@@ -983,7 +983,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
               // Tambahkan blok compaction dan lanjutkan permintaan
               // dengan membuat permintaan baru menggunakan konteks yang telah dipadatkan
               MessageCreateParams continueParams = MessageCreateParams.builder()
-                  .model("claude-opus-5-5")
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .addBeta("compact-2026-01-12")
                   .addUserMessage("Help me build a website")
@@ -1171,7 +1171,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
   var response = await client.Beta.Messages.Create(new()
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
@@ -1266,7 +1266,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .messages(messages)
               .contextManagement(BetaContextManagementConfig.builder()
@@ -1535,7 +1535,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
   var response = await client.Beta.Messages.Create(new()
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
@@ -1555,7 +1555,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
   var nextResponse = await client.Beta.Messages.Create(new()
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
@@ -1619,7 +1619,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
           BetaMessage response = client.beta().messages().create(
               MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
-                  .model("claude-opus-5-5")
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .addUserMessage("Help me build a web scraper")
                   .contextManagement(BetaContextManagementConfig.builder()
@@ -1632,7 +1632,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
           BetaMessage nextResponse = client.beta().messages().create(
               MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
-                  .model("claude-opus-5-5")
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .addUserMessage("Help me build a web scraper")
                   .addMessage(response)
@@ -1860,7 +1860,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
   var parameters = new MessageCreateParams
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
@@ -1943,7 +1943,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addBeta("compact-2026-01-12")
               .addUserMessage("Hello, Claude")
@@ -2194,7 +2194,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
   var parameters = new MessageCreateParams
   {
       Betas = ["compact-2026-01-12"],
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       System = new List<BetaTextBlockParam>
       {
@@ -2249,7 +2249,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addBeta("compact-2026-01-12")
               .systemOfBetaTextBlockParams(List.of(
@@ -2462,7 +2462,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 
   var countParams = new MessageCountTokensParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       Messages = messages,
       ContextManagement = new BetaContextManagementConfig
       {
@@ -2507,7 +2507,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCountTokensParams params = MessageCountTokensParams.builder()
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .addUserMessage("Hello, Claude")
               .contextManagement(BetaContextManagementConfig.builder()
                   .addEdit(BetaCompact20260112Edit.builder().build())
@@ -2707,7 +2707,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       var parameters = new MessageCreateParams
       {
           Betas = ["compact-2026-01-12"],
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Messages = messages,
           ContextManagement = new BetaContextManagementConfig
@@ -2810,7 +2810,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .messages(messages)
               .contextManagement(BetaContextManagementConfig.builder()
@@ -3146,7 +3146,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       var response = await client.Beta.Messages.Create(new()
       {
           Betas = ["compact-2026-01-12"],
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Messages = messages,
           ContextManagement = new BetaContextManagementConfig
@@ -3193,7 +3193,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           response = await client.Beta.Messages.Create(new()
           {
               Betas = ["compact-2026-01-12"],
-              Model = "claude-opus-5-5",
+              Model = Model.ClaudeOpus5_5,
               MaxTokens = 4096,
               Messages = messagesAfterCompaction,
               ContextManagement = new BetaContextManagementConfig
@@ -3335,7 +3335,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
-              .model("claude-opus-5-5")
+              .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .messages(messages)
               .contextManagement(BetaContextManagementConfig.builder()
@@ -3378,7 +3378,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               // Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
               MessageCreateParams continueParams = MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
-                  .model("claude-opus-5-5")
+                  .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
                   .messages(messagesAfterCompaction)
                   .contextManagement(BetaContextManagementConfig.builder()

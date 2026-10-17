@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: a8d9dda2faa35b94c5c84648ac021d349f444b859cce8bc21d3bf0a070d80031
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 346048ba90876ef9a4fb330c76d76115f2d68d69185c9f07977dbf448ae47eb3
 ---
 
 ---
@@ -34,7 +34,7 @@ String jenis event ini mengikuti konvensi penamaan `{domain}.{action}`. Lihat [J
 
 Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Sebuah aliran hanya mengirimkan event yang dipancarkan setelah aliran dibuka, jadi buka aliran sebelum Anda mengirim event untuk menghindari "race condition" (kondisi balapan).
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   # Buka stream terlebih dahulu, lalu kirim pesan pengguna
   exec {stream}< <(
@@ -81,10 +81,9 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
   exec {stream}<&-
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Buka stream terlebih dahulu, lalu kirim pesan pengguna
@@ -338,7 +337,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 2. [Daftarkan riwayat event lengkap](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#list-past-events) untuk mengisi kumpulan ID event yang sudah terlihat.
 3. Ikuti aliran langsung, lewati event apa pun yang sudah dikembalikan oleh daftar riwayat.
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   exec {stream}< <(
     curl --fail-with-body -sS -N \
@@ -382,10 +381,9 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   exec {stream}<&-
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   with client.beta.sessions.events.stream(session.id) as stream:
@@ -742,7 +740,7 @@ Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
   ```
 </CodeGroup>
 
-Setiap event dalam riwayat sesi menyertakan timestamp `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`), yang diatur ketika event selesai diproses. Pada event yang Anda kirim, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) bernilai null selama event masih mengantre di belakang event sebelumnya. Pengecualiannya adalah `user.define_outcome`, `user.custom_tool_result`, dan `user.tool_result`, yang diproses saat diterima dan dikembalikan dengan `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) yang sudah terisi.
+Setiap event dalam riwayat sesi menyertakan timestamp `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`), yang ditetapkan ketika event selesai diproses. Pada event yang Anda kirim, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) bernilai `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `time.Time{}`) selama event masih mengantre di belakang event sebelumnya. Pengecualiannya adalah `user.define_outcome`, `user.custom_tool_result`, dan `user.tool_result`, yang diproses saat diterima dan dikembalikan dengan `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) yang sudah terisi.
 
 ## Merespons ketika sesi menjadi idle
 
@@ -777,7 +775,7 @@ Ketika Anda [menyambung ulang](https://platform.claude.com/docs/id/managed-agent
 
 Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   exec {stream_fd}< <(curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
@@ -814,10 +812,9 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   exec {stream_fd}<&-
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   with client.beta.sessions.events.stream(session.id) as stream:
@@ -1041,7 +1038,7 @@ Kirim event `user.tool_confirmation`, dengan meneruskan ID event di parameter `t
 
 Contoh berikut menyetujui setiap panggilan yang tertunda:
 
-<CodeGroup>
+<CodeGroup exclude="shell:CLI">
   ```bash cURL
   exec {stream_fd}< <(curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
@@ -1078,10 +1075,9 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   exec {stream_fd}<&-
   ```
 
-  ```bash CLI
-  # Alur kerja ini tidak cocok diterjemahkan ke perintah shell sekali jalan.
-  # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   with client.beta.sessions.events.stream(session.id) as stream:
@@ -1633,7 +1629,7 @@ Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu la
 
 Panggilan kembali segera setelah event dimasukkan ke antrean. Interupsi kemudian berlaku dalam urutan berikut:
 
-1. Agen menerapkan interupsi. Sampai saat itu, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) milik interupsi tetap null dan sesi tetap `running`. Respons model yang sedang berlangsung langsung berhenti, tetapi interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat panggilan alat sedang berjalan.
+1. Agen menerapkan interupsi. Hingga saat itu, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) milik interupsi tetap `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `time.Time{}`) dan sesi tetap `running`. Respons model yang sedang berlangsung langsung berhenti, tetapi interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat panggilan alat sedang berjalan.
 2. Event `user.interrupt` muncul di aliran, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`.
 3. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
 
@@ -1711,7 +1707,7 @@ Ambil riwayat event lengkap untuk sebuah sesi:
   ```
 </CodeGroup>
 
-Teruskan filter `types` (csharp, go: `Types`) untuk hanya mengembalikan jenis event tertentu:
+Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) untuk hanya mengembalikan jenis event tertentu:
 
 <CodeGroup>
   ```bash cURL

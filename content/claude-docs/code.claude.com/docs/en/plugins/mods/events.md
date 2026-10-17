@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/events
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 58c6fd6fbb6a1622eed3e3faf9f194bd4c25d35ad50a9bd517a1486e760fdf87
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c2862565ab32bceefd332d4029051fee5adc207ba7966a0eada038b842f07631
 ---
 
 > ## Documentation Index
@@ -205,11 +205,14 @@ on('tool.check', { tool: 'Bash' }, async ($, e, next) => {
 })
 ```
 
-On `main`, the hook returns `deny`, even when a rule allows `git push`. On another branch, and for other commands, the call gets the decision it would get without the mod.
+The hook denies `git push` on `main` and passes every other call through:
+
+* **On `main`**: the hook returns `deny`, even when a rule allows `git push`
+* **On another branch, and for other commands**: the call gets the decision it would get without the mod
 
 The hook matches the text of the command, so treat it as a reminder for Claude. To block pushes to `main` for everyone, protect the branch on your Git host.
 
-A hook can return `allow`, `ask`, or `deny`, so it can also approve a call that a `PreToolUse` hook outside managed settings blocked. [Extend permissions with hooks](/docs/en/permissions#extend-permissions-with-hooks) lists which decisions hold over a mod.
+A hook can return `allow`, `ask`, or `deny`, so it can also approve a call that a `PreToolUse` hook outside managed settings blocked. In [plan mode](/docs/en/permissions#hook-approvals-in-plan-mode), for a call that isn't read-only, such as a file edit, your hook can tighten the decision `next(e)` returns but can't loosen it. [Extend permissions with hooks](/docs/en/permissions#extend-permissions-with-hooks) lists which decisions hold over a mod.
 
 ### Rewrite or add to a prompt
 
@@ -316,7 +319,7 @@ The `PreToolUse` hooks configured in settings files also run during a tool call,
 * **`PreToolUse` hooks from managed settings**: run before the first mod's `tool.call` hook, and a block from one of them is final, so no mod sees the call.
 * **`PreToolUse` hooks from every other settings file and from plugins' `hooks/hooks.json`**: run after the last mod calls `next`, as part of Claude Code's own behavior. A mod that answers `tool.call` without calling `next` keeps them from running, and a mod that calls `next` sees their decision in the result it returns.
 
-[`tool.check`](#approve-or-refuse-a-tool-call-before-the-user-is-asked) fires after those hooks and the permission rules have decided, so a hook on it can approve a call that a hook in the second group blocked.
+A [`tool.check`](#approve-or-refuse-a-tool-call-before-the-user-is-asked) hook can approve a call that a `PreToolUse` hook outside managed settings blocked, because `tool.check` fires after those hooks and the permission rules have decided. In plan mode, a `tool.check` hook can approve such a call when it's read-only, but not a file edit or another call that isn't read-only.
 
 ### Handle a hook that fails
 

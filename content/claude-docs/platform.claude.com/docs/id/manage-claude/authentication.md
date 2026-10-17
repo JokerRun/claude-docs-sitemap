@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 8b8bdf099255cb18bef83408c5d3fb1d1b1e854990cbab15c91a01adf8db08d7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 917e3eed38aedc14ad6d6a833138b6e5436735a864acf0e3bffd323ff5668b55
 ---
 
 ---
@@ -43,7 +43,7 @@ Kunci API workspace masih berfungsi tetapi harus dianggap lawas; kunci yang didu
 
 ### Membuat dan menggunakan kunci
 
-* **Membuat kunci:** Buka [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console dan klik **Create key**. Beri nama kunci dan pilih [kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke akun layanan untuk kunci yang dibagikan di antara beberapa pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, yang memungkinkan Anda melewati pengaturan ID workspace secara manual dalam permintaan mendatang.
+* **Membuat kunci:** Di Claude Console, buka halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) dan klik **Create key**. Beri nama kunci dan pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke akun layanan untuk kunci yang digunakan bersama oleh beberapa pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, sehingga Anda tidak perlu mengatur ID workspace secara manual dalam permintaan berikutnya.
 * **Menggunakan kunci:** Kirim sebagai `Authorization: Bearer <key>` pada permintaan HTTP langsung, atau atur variabel lingkungan `ANTHROPIC_API_KEY` dan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) akan mengambilnya secara otomatis.
 
 ```http
@@ -55,7 +55,7 @@ content-type: application/json
 
 Header lawas `x-api-key: YOUR_API_KEY` masih didukung sebagai pengganti `Authorization`.
 
-Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di [halaman kunci API](https://platform.claude.com/settings/keys), **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan tetap muncul di [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
+Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di [halaman kunci API](https://platform.claude.com/settings/keys) di Claude Console, **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan tetap muncul di [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
 
 <CodeGroup>
   ```bash cURL
@@ -136,7 +136,7 @@ Jika kunci API Anda tidak dibatasi cakupannya ke workspace, Anda harus menentuka
 
 [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima kunci pribadi atau kunci akun layanan hanya jika kunci tersebut tidak dibatasi cakupannya ke workspace tertentu.
 
-Anda dapat menemukan ID workspace di kolom **ID** pada [Settings → Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list). List Workspaces menyertakan Default Workspace hanya ketika Anda meneruskan `include_default=true`; ID-nya juga ada di [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari setiap permintaan yang berjalan di sana.
+Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`) di Claude Console, atau dengan memanggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list). List Workspaces menyertakan Default Workspace hanya jika Anda meneruskan `include_default=true`; ID-nya juga ada di [header respons](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) `anthropic-workspace-id` dari setiap permintaan yang berjalan di sana.
 
 <CodeGroup>
   ```bash cURL
@@ -354,10 +354,10 @@ Lihat [Workload Identity Federation](https://platform.claude.com/docs/id/manage-
 Untuk mengganti kunci workspace dengan kunci pribadi atau akun layanan:
 
 1. **Tentukan jenis kunci.** Perkakas Anda sendiri harus menggunakan kunci pribadi. Beban kerja yang dibagikan atau tanpa pengawasan harus menggunakan kunci akun layanan.
-2. **Buat akun layanan** jika perlu. Anda mungkin harus meminta admin organisasi untuk membuatnya di [Settings → Service accounts](https://platform.claude.com/settings/service-accounts) dan menambahkannya ke workspace yang relevan.
+2. **Buat akun layanan** jika diperlukan. Anda mungkin perlu meminta admin organisasi untuk membuatnya di halaman [Service accounts](https://platform.claude.com/settings/service-accounts) (`platform.claude.com/settings/service-accounts`) di Claude Console dan menambahkannya ke workspace yang relevan.
 3. **Buat kunci baru.** Buat secara khusus untuk workspace integrasi kecuali beberapa workspace diperlukan.
 4. **Terapkan kunci baru.** Ganti kunci lama di mana pun integrasi membacanya, biasanya variabel lingkungan `ANTHROPIC_API_KEY` atau entri secrets manager. Untuk kunci multi-workspace, kirim juga header `anthropic-workspace-id` seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace).
-5. **Hapus kunci lama.** Konfirmasikan bahwa permintaan berhasil, lalu hapus kunci workspace di [halaman kunci API](https://platform.claude.com/settings/keys).
+5. **Hapus kunci lama.** Pastikan permintaan berhasil, lalu hapus kunci workspace di [halaman kunci API](https://platform.claude.com/settings/keys) di Claude Console.
 
 ## Workload Identity Federation
 

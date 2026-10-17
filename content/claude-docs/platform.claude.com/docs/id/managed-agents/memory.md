@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: c7ab279198ccfdd254f0c771f4e29e7aea6ccadc46eaecdf17d3fa722d7d2309
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: bf124d8a42fd3097e3c6f7a23c1da273570d5b78d96686e7bfe643db251d26fb
 ---
 
 ---
@@ -32,7 +32,7 @@ Setiap perubahan pada memori menciptakan **versi memori** yang tidak dapat diuba
 
 ## Membuat memory store
 
-Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke agen, memberi tahu apa isi store tersebut.
+Berikan store sebuah `name` (csharp, go: `Name`) dan `description` (csharp, go: `Description`). Deskripsi diteruskan ke agen, memberi tahu apa isi store tersebut.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -129,7 +129,7 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
   ```
 </CodeGroup>
 
-`id` memory store (`memstore_...`) adalah yang Anda teruskan saat melampirkan store ke sebuah sesi.
+`id` (csharp, go: `ID`) memory store (`memstore_...`) adalah yang Anda teruskan saat melampirkan store ke sesi.
 
 ### Mengisinya dengan konten awal (opsional)
 
@@ -219,11 +219,11 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
 
 ## Melampirkan memory store ke sesi
 
-Memory store dilampirkan dalam array `resources[]` sesi ketika [sesi dibuat](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session). Tidak seperti resource file, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung. Anda melampirkan memory store dengan cara yang sama untuk sesi di environment cloud maupun [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory); environment self-hosted hanya menerima resource `memory_store`.
+Memory store dilampirkan dalam array `resources` (csharp, go: `Resources`) sesi saat [sesi dibuat](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session). Tidak seperti resource file, memory store hanya dapat dilampirkan pada saat pembuatan sesi; menambahkan atau menghapusnya dari sesi yang sedang berjalan tidak didukung. Anda melampirkan memory store dengan cara yang sama untuk sesi di environment cloud maupun [environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory); environment self-hosted hanya menerima resource `memory_store`.
 
-Secara opsional, sertakan `instructions` untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Ini ditampilkan kepada agen bersama `name` dan `description` store, dan dibatasi hingga 4.096 karakter.
+Secara opsional, sertakan `instructions` (csharp, go: `Instructions`) untuk memberikan panduan khusus sesi tentang bagaimana agen harus menggunakan store ini. Instruksi ini ditampilkan kepada agen bersama `name` (csharp, go: `Name`) dan `description` (csharp, go: `Description`) store, dan dibatasi hingga 4.096 karakter.
 
-Anda juga dapat mengonfigurasi `access`. Nilai defaultnya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
+Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-nya adalah `read_write` (ditampilkan secara eksplisit dalam contoh berikut), tetapi `read_only` juga didukung.
 
 <CodeGroup>
   ```bash cURL
@@ -386,9 +386,9 @@ Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika b
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path persisnya dikembalikan dalam field `mount_path` pada resource memory-store milik sesi; baca dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path dipersistenkan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat setiap mount (nama tampilan, mount path, mode akses, `description` store, dan `instructions` apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap tersinkronisasi di seluruh sesi yang berbagi store tersebut; penulisan ke path lain di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
 
-`access` ditegakkan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi tersebut.
+`access` (csharp, go: `Access`) diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi.
 
 <Note>
   Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory), direktori setiap store adalah salinan lokal yang dikelola oleh worker, bukan mount langsung. Worker merekonsiliasi setiap salinan dengan store-nya setelah pemanggilan alat, paling banyak sekali per interval sinkronisasi (15 detik secara default), dan sekali lagi ketika sesi berakhir. Alat `write` dan `edit` milik agen hanya mengubah salinan lokal; worker mengunggah perubahan tersebut pada sinkronisasi berikutnya, sehingga sesi lain yang berjalan di sandbox self-hosted hanya melihat perubahan setelah kedua worker melakukan sinkronisasi. Path di bawah `/mnt/memory/` di luar direktori store bukan ruang scratch di sana: alat file worker menolak menulis ke path tersebut, dan apa pun yang ditulis oleh perintah shell di sana tidak pernah disinkronkan ke store.
@@ -578,7 +578,7 @@ Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta
 
 ### Membuat memori
 
-`POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) membuat memori pada `path` tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, [perbarui memori tersebut](https://platform.claude.com/docs/id/managed-agents/memory#update-a-memory) dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`).
+`POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) membuat memori pada `path` (csharp, go: `Path`) tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, [perbarui memori tersebut](https://platform.claude.com/docs/id/managed-agents/memory#update-a-memory) dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`).
 
 <CodeGroup>
   ```bash cURL
@@ -661,7 +661,7 @@ Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/m
 
 ### Memperbarui memori
 
-`POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`) memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content`, `path` (penggantian nama), atau keduanya. Contoh berikut mengganti nama memori ke path arsip:
+`POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`) memodifikasi memori yang sudah ada berdasarkan ID. Anda dapat mengubah `content` (csharp, go: `Content`), `path` (csharp, go: `Path`) (penggantian nama), atau keduanya. Contoh berikut mengganti nama memori ke path arsip:
 
 <CodeGroup>
   ```bash cURL
@@ -921,7 +921,7 @@ Setiap mutasi pada memori menciptakan **versi memori** yang tidak dapat diubah (
 
 Versi dimiliki oleh store (bukan memori individual) dan tidak dihapus ketika memori itu sendiri dihapus, sehingga jejak audit juga mencakup memori yang telah dihapus, dengan tunduk pada retensi yang dijelaskan di bawah. Versi disimpan selama 30 hari setelah ditulis; namun, versi-versi terbaru dari memori yang masih aktif selalu disimpan terlepas dari usianya, sehingga memori yang jarang berubah mungkin menyimpan riwayat lebih dari 30 hari. Panggilan `GET /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.retrieve()`; typescript: `client.beta.memoryStores.memories.retrieve()`; go: `client.Beta.MemoryStores.Memories.Get()`; java: `client.beta().memoryStores().memories().retrieve()`; csharp: `client.Beta.MemoryStores.Memories.Retrieve()`; php: `$client->beta->memoryStores->memories->retrieve()`; cli: `ant beta:memory-stores:memories retrieve`) langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
 
-Tidak ada endpoint pemulihan khusus; untuk melakukan rollback, ambil versi yang Anda inginkan dan tulis kembali `content`-nya dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`) (atau `POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) jika memori induk telah dihapus, asalkan versi yang Anda inginkan masih disimpan).
+Tidak ada endpoint pemulihan khusus; untuk melakukan rollback, ambil versi yang Anda inginkan dan tulis kembali `content` (csharp, go: `Content`)-nya dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`) (atau `POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) jika memori induk telah dihapus, asalkan versi yang Anda inginkan masih disimpan).
 
 Versi memori lama mungkin dihapus setelah 30 hari. Untuk mempertahankan riwayat memori lebih lama, ekspor versi melalui API.
 
@@ -1043,7 +1043,7 @@ Lihat [referensi List memory versions](https://platform.claude.com/docs/id/api/b
 
 ### Mengambil versi
 
-Mengambil versi individual mengembalikan field yang sama dengan respons daftar ditambah isi `content` lengkap.
+Mengambil versi individual mengembalikan field yang sama dengan respons daftar ditambah isi `content` (csharp, go: `Content`) lengkap.
 
 <CodeGroup>
   ```bash cURL
@@ -1200,7 +1200,7 @@ Selain [`create`](https://platform.claude.com/docs/id/api/beta/memory_stores/cre
 
 ### Mendaftar store
 
-Daftar store dalam workspace. Store yang diarsipkan dikecualikan secara default; teruskan `include_archived: true` untuk menyertakannya.
+Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; atur `include_archived` (java, php: `includeArchived`; csharp, go: `IncludeArchived`) ke `true` untuk menyertakannya.
 
 <CodeGroup>
   ```bash cURL

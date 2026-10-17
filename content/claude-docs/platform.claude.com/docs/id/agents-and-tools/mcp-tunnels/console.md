@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 91ea7413fb8bf01bacc6ed15b977c96859969cbb2b479f0aacd42b1b8e1b27bc
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 37a5a58558357516409610cf981ac7a0a7169abe2a53134b7c3912eaf009b04a
 ---
 
 ---
@@ -32,7 +32,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
 <Steps>
   <Step title="Buka halaman MCP tunnels">
-    Di sidebar Console, buka **Manage > MCP tunnels**. Tunnel memiliki cakupan workspace; tunnel baru menjadi milik workspace yang saat ini dipilih di Console, jadi ganti workspace terlebih dahulu jika Anda ingin menempatkannya di tempat lain.
+    Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Tunnel memiliki cakupan workspace; tunnel baru menjadi milik workspace yang sedang dipilih di Console. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
   </Step>
 
   <Step title="Beri nama tunnel">
@@ -44,7 +44,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
     Akses programatik bergantung pada [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika issuer federasi, aturan, dan service account belum familier bagi Anda. Untuk mengaktifkan toggle, Anda memerlukan:
 
-    1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti cluster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di bawah **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
+    1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti cluster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di tab **Issuers** pada halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) di Claude Console jika organisasi Anda belum memilikinya.
     2. **Aturan federasi dengan scope `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
     3. **Service account dari aturan tersebut ditambahkan ke workspace ini.** Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account. Jika Anda membuat tunnel di workspace selain workspace default organisasi, [tambahkan service account ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#role-inheritance) dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
 
@@ -63,10 +63,10 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
     Hal lain yang Anda perlukan bergantung pada [mode penyediaan kredensial](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning):
 
-    | Dengan akses programatik                                                                                                                                                                         | Tanpa akses programatik                                                                                                                                                                                                                                      |
-    | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | **ID aturan federasi** (`fdrl_...`) dari aturan yang Anda pilih. Aturan ini berada di tingkat organisasi, tidak disimpan pada tunnel; temukan di bawah **Settings > Workload identity > Rules**. | **Token tunnel**, ditampilkan dengan ikon mata di sebelah **Token** pada halaman detail. Perlakukan sebagai secret. Lihat [Mendapatkan detail koneksi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details). |
-    | **ID organisasi** (sebuah UUID), ditampilkan di bawah **Settings > Organization**.                                                                                                               | **Sertifikat CA** yang Anda buat dan [daftarkan pada tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).                                                                                                 |
+    | Dengan akses programatik                                                                                                                                                                                                                                                                                                                                              | Tanpa akses programatik                                                                                                                                                                                                                                      |
+    | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | **ID aturan federasi** (`fdrl_...`) dari aturan yang Anda pilih. Aturan ini berada di tingkat organisasi, tidak disimpan di tunnel; temukan di tab **Rules** pada halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation?tab=rules) (`platform.claude.com/settings/workload-identity-federation?tab=rules`) di Claude Console. | **Token tunnel**, ditampilkan dengan ikon mata di sebelah **Token** pada halaman detail. Perlakukan sebagai secret. Lihat [Mendapatkan detail koneksi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details). |
+    | **ID organisasi** (sebuah UUID), yang ditampilkan di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.                                                                                                                                                                       | **Sertifikat CA** yang Anda buat dan [daftarkan pada tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).                                                                                                 |
 
     Dengan akses programatik, stack Anda mengambil token tunnel melalui Tunnels API, membuat CA dan sertifikat server secara lokal (private key tidak pernah meninggalkan lingkungan Anda), dan hanya mendaftarkan sertifikat publik CA ke Anthropic. Anda tetap bertanggung jawab untuk mengamankan private key dan memperbarui sertifikat server sebelum kedaluwarsa.
   </Step>
@@ -130,8 +130,8 @@ Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfi
 </Note>
 
 <Steps>
-  <Step title="Buka modal New session">
-    Buka **Managed Agents > Sessions** dan klik **New session**.
+  <Step title="Buka dialog Create session">
+    Di Claude Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan klik **Create session**.
   </Step>
 
   <Step title="Definisikan agen inline">
@@ -155,7 +155,7 @@ Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfi
 
 Pengarsipan segera menghentikan tunnel dari menerima koneksi dan bersifat permanen.
 
-Di daftar **MCP tunnels**, buka menu baris untuk tunnel tersebut dan pilih **Archive**. Tunnel yang diarsipkan tetap terlihat saat Anda memfilter daftar berdasarkan **Archived** atau **All**.
+Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Di pemilih workspace pada sidebar, pilih workspace yang berisi tunnel tersebut. Buka menu baris untuk tunnel dan pilih **Archive**. Tunnel yang diarsipkan tetap terlihat saat Anda memfilter daftar berdasarkan **Archived** atau **All**.
 
 ## Langkah selanjutnya
 

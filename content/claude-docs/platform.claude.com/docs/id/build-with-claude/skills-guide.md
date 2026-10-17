@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 66fdf74c23ad5af2b8cd6668ba12ebd6d4d85c5ffceba3ddba097ae025d9ac43
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: df21c8dfb9f61eaf51cf88fe1947e8ee18dc4c28f3816bf2c084dea0c47c3492
 ---
 
 ---
@@ -177,7 +177,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -203,7 +203,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -492,7 +492,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   // Langkah 1: Gunakan Skill untuk membuat file
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -544,7 +544,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
   	// Langkah 1: Gunakan Skill untuk membuat file
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5-5",
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 4096,
   		Container: anthropic.MessageCreateParamsContainerUnion{
   			OfContainers: &anthropic.ContainerParams{
@@ -943,13 +943,10 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
 Objek `container` pada respons membawa `id` container dan timestamp `expires_at` (lihat [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse) untuk detail masa berlaku). Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID container:
 
-<CodeGroup>
-  ```bash cURL
-  # Penggunaan ulang container multi-turn kurang cocok untuk perintah shell
-  # sekali jalan; salah satu opsi SDK akan lebih sesuai. Ambil
-  # container.id dari respons pertama, lalu teruskan di permintaan berikutnya sebagai
-  # "container": {"id": "...", "skills": [...]} beserta riwayat percakapan.
-  ```
+<CodeGroup exclude="shell:cURL">
+  <CodeGroupItem language="cURL">
+    Penggunaan ulang container multi-giliran memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Untuk membangun permintaan sendiri, ambil `container.id` dari respons pertama. Kemudian teruskan nilai tersebut dalam permintaan berikutnya sebagai `"container": {"id": "...", "skills": [...]}`, bersama dengan riwayat percakapan.
+  </CodeGroupItem>
 
   ```bash CLI
   # Permintaan pertama membuat container
@@ -1076,7 +1073,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   // Permintaan pertama dengan Skill
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -1105,7 +1102,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -1137,7 +1134,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   client := anthropic.NewClient()
 
   response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1171,7 +1168,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
   assistantText := strings.Join(textParts, "\n")
 
   response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1557,7 +1554,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Container = containerId is null
               ? new ContainerParams
@@ -1614,7 +1611,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   maxRetries := 10
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -1644,7 +1641,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
   	messages = append(messages, response.ToParam())
 
   	response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-5-5",
+  		Model:     anthropic.ModelClaudeOpus5_5,
   		MaxTokens: 4096,
   		Container: anthropic.MessageCreateParamsContainerUnion{
   			OfContainers: &anthropic.ContainerParams{
@@ -1970,7 +1967,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -2008,7 +2005,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3015,7 +3012,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   // Gunakan versi tertentu
   var specificVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3039,7 +3036,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   // Gunakan versi terbaru
   var latestVersionParams = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3092,7 +3089,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi tertentu
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3119,7 +3116,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   // Gunakan versi terbaru
   latestResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -3593,7 +3590,7 @@ Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Sk
   // Gunakan bersama Excel untuk membuat model keuangan
   var parameters = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -3629,7 +3626,7 @@ Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Sk
 
   // Gunakan bersama Excel untuk membuat model keuangan
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4227,7 +4224,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   // Skill dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   var parameters1 = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -4251,7 +4248,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   // Set Skill berbeda ([xlsx] vs [xlsx, pptx]) = prefiks berbeda: cache miss (set yang identik menghasilkan cache hit)
   var parameters2 = new MessageCreateParams
   {
-      Model = "claude-opus-5-5",
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Container = new ContainerParams
       {
@@ -4284,7 +4281,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   // Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4311,7 +4308,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
 
   // Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar yang identik menghasilkan cache hit
   response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{
@@ -4476,13 +4473,10 @@ Untuk performa caching terbaik, jaga agar daftar Skills Anda, termasuk urutannya
 
 Tangani error terkait Skill dengan baik:
 
-<CodeGroup>
-  ```bash cURL
-  # Alur penanganan error ini kurang cocok untuk perintah shell
-  # sekali jalan; salah satu opsi SDK akan lebih sesuai. Permintaan yang gagal
-  # mengembalikan HTTP 400 dengan JSON error yang .error.message-nya menyebutkan
-  # masalah pada Skill.
-  ```
+<CodeGroup exclude="shell:cURL">
+  <CodeGroupItem language="cURL">
+    Alur penanganan error ini memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Permintaan yang gagal karena masalah Skill mengembalikan HTTP 400. Field `error.message` dalam body respons JSON menjelaskan masalahnya.
+  </CodeGroupItem>
 
   ```bash CLI
   if ! RESULT=$(ant messages create \
@@ -4578,7 +4572,7 @@ Tangani error terkait Skill dengan baik:
   {
       var parameters = new MessageCreateParams
       {
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 4096,
           Container = new ContainerParams
           {
@@ -4609,7 +4603,7 @@ Tangani error terkait Skill dengan baik:
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     "claude-opus-5-5",
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Container: anthropic.MessageCreateParamsContainerUnion{
   		OfContainers: &anthropic.ContainerParams{

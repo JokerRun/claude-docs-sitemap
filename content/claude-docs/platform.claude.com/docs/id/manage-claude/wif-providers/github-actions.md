@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 64b9f86dc963c630b6db6edb052070476b19444ae6fb418b8c4d9f0e67136e17
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 60e655acf51696560c3b5528b3d5e138f8eed05c71e7135a705e232baccc288f
 ---
 
 ---
@@ -20,7 +20,7 @@ Klaim `sub` pada token mengodekan konteks repositori dan pemicu. Untuk push ke s
 * Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): "service account" (akun layanan), "federation issuer" (penerbit federasi), dan "federation rule" (aturan federasi).
 * Repositori GitHub tempat Anda dapat mengedit file workflow dan memberikan izin `id-token: write`.
 * Izin untuk membuat akun layanan, penerbit federasi, dan aturan federasi di Claude Console untuk organisasi Anthropic Anda.
-* ID organisasi Anthropic Anda. Anda dapat menemukannya di Claude Console pada **Settings → Organization**.
+* ID organisasi Anthropic Anda. Anda dapat menemukannya di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
 ## Mengonfigurasi workflow Anda
 
@@ -75,7 +75,7 @@ Lihat [referensi klaim subjek OIDC GitHub](https://docs.github.com/en/actions/de
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, lalu pilih tile **GitHub Actions**. Wizard akan memandu Anda mendaftarkan issuer, membuat akun layanan, dan membuat aturan federasi.
+Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda mendaftarkan penerbit, membuat akun layanan, dan membuat aturan federasi.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -254,7 +254,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```csharp C#
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari lingkungan job.
+  // dari environment job.
   using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
@@ -316,15 +316,11 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```
 </CodeGroup>
 
-Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukar token pada penggunaan pertama dan menyimpan cache token akses Anthropic yang dihasilkan. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pembaruan, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, berikan callback penyedia token ke SDK yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
+Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar lima menit setelah diterbitkan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukar token pada penggunaan pertama dan menyimpan cache token akses Anthropic yang dihasilkan. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pembaruan, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, kecuali di Java, berikan SDK sebuah penyedia token yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
 
 ## Memverifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pertukaran yang ditolak mengembalikan `401` `authentication_error` yang buram dengan pesan tetap `Authentication failed`, apa pun pemeriksaan yang gagal.
-
-Dalam sebagian besar kasus, alasan penolakan dicatat pada entri percobaan tersebut di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history). Panduan [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) menjelaskan pemeriksaan tersebut secara berurutan.
-
-Penyebab paling umum dari sisi GitHub Actions adalah format klaim `sub` yang tidak cocok, karena segmen akhirnya berbeda-beda antara event `ref:...`, `environment:...`, dan `pull_request`. Dalam kasus ini, entri riwayat menampilkan alasan `match_subject_prefix`.
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pertukaran yang ditolak mengembalikan `401` `authentication_error` yang buram dengan pesan tetap `Authentication failed`, apa pun pemeriksaan yang gagal; dalam sebagian besar kasus, alasan penolakan dicatat pada entri percobaan tersebut di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console, dan [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) menjelaskan pemeriksaan secara berurutan. Penyebab paling umum di sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi antara event `ref:...`, `environment:...`, dan `pull_request`); entri riwayat menampilkan alasan `match_subject_prefix`.
 
 ## Membatasi workflow yang dapat melakukan autentikasi
 

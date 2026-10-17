@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 43f5704e25f25fe889d9b89156d447e9389dc3d0a9e840bbe3376371c1d8e5ab
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 0d23dd014d025711d12a55b261f79a85e61fc0c0ad3dbedb452384cb99b5bb03
 ---
 
 ---
@@ -17,13 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference). "Self-hosted sandboxes" (sandbox yang di-host sendiri) mempertahankan orkestrasi di sisi Anthropic tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan. File, proses, dan lalu lintas jaringan agen tetap berada di lingkungan Anda.
-
-Hosting sendiri cocok ketika agen perlu:
-
-* Bekerja dengan data yang tidak boleh keluar dari batas jaringan Anda
-* Menjangkau layanan internal yang tidak dapat dirutekan secara publik
-* Berjalan di bawah kontrol kepatuhan dan audit milik organisasi Anda sendiri
+"Self-hosted sandboxes" (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
 
 ## Cara kerjanya
 
@@ -58,7 +52,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
 <Steps>
   <Step title="Buat lingkungan yang di-host sendiri">
-    Di [Console](https://platform.claude.com/workspaces/default/environments): **Workspace > Environments > New > Self-hosted**
+    Di Claude Console, buka halaman [Environments](https://platform.claude.com/environments) (`platform.claude.com/environments`), klik **Create environment**, dan di bawah **Hosting** pilih **Self-hosted**.
 
     Atau melalui API:
 
@@ -157,7 +151,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       ```
 
       ```php PHP
-      $client = new Anthropic\Client();
+      $client = new \Anthropic\Client();
 
       $environment = $client->beta->environments->create(
           name: 'self-hosted',
@@ -320,12 +314,10 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        -d @- <<EOF | jq -er '.id'
-      {
-        "agent": "$AGENT_ID",
-        "environment_id": "$ANTHROPIC_ENVIRONMENT_ID"
-      }
-      EOF
+        -d '{
+          "agent": "'"$AGENT_ID"'",
+          "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'"
+        }' | jq -er '.id'
       )
 
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
@@ -333,21 +325,19 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        -d @- <<'EOF'
-      {
-        "events": [
-          {
-            "type": "user.message",
-            "content": [
-              {
-                "type": "text",
-                "text": "Write the output of \"uname -a\" to hello.txt in your working directory."
-              }
-            ]
-          }
-        ]
-      }
-      EOF
+        -d '{
+          "events": [
+            {
+              "type": "user.message",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Write the output of \"uname -a\" to hello.txt in your working directory."
+                }
+              ]
+            }
+          ]
+        }'
       ```
 
       ```bash CLI
@@ -527,19 +517,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
   </Step>
 </Steps>
 
-## Perbedaannya dengan lingkungan cloud
-
-|                                 | Lingkungan cloud                          | Sandbox yang di-host sendiri                           |
-| ------------------------------- | ----------------------------------------- | ------------------------------------------------------ |
-| Tempat alat berjalan            | Sandbox yang dikelola Anthropic           | Infrastruktur Anda                                     |
-| Jangkauan jaringan              | Kontrol egress Anthropic                  | Kebijakan jaringan Anda                                |
-| Pemasangan file dan repo GitHub | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
-| Memory store                    | Dipasang oleh Anthropic di `/mnt/memory/` | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker |
-| Siklus hidup                    | Dikelola oleh Anthropic                   | Dikelola oleh Anda                                     |
-
-Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
-
-### Sumber daya sesi
+## Sumber daya sesi
 
 Sandbox yang di-host sendiri hanya mendukung sumber daya `memory_store`. Sesi pada lingkungan yang di-host sendiri yang menyertakan sumber daya `file` atau `github_repository` akan ditolak dengan error 400:
 
@@ -553,7 +531,7 @@ Environment env_... is a self-hosted environment. `resources` are not supported 
 
 Hosting sendiri mengendalikan *di mana kode agen dieksekusi*. [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) mengendalikan *bagaimana Anthropic menjangkau server MCP di jaringan Anda*. Keduanya independen:
 
-* Sesi di sandbox cloud Anthropic dapat menjangkau server MCP privat melalui tunnel.
+* Sesi di sandbox cloud Anthropic dapat menjangkau server MCP privat melalui tunnel. Misalnya, server MCP privat mungkin berada di depan database atau API internal di balik firewall Anda.
 * Sesi yang di-host sendiri dapat menggunakan server MCP melalui tunnel maupun server MCP publik.
 
 Gunakan keduanya ketika Anda ingin eksekusi dan akses alat tetap berada di dalam batas Anda. Untuk melewati tunnel, [bungkus server MCP sebagai alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools#wrap-an-mcp-server-as-custom-tools) yang dilayani oleh worker Anda.

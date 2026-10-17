@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 8f2c8263b9d5615c4d79712039c7af85071e00efe95f2f14b535a369dc504198
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e95bc90b8a173e3697e95ead0c44a51af83d496dfb676fc375d70c7f2f2ffafd
 ---
 
 ---
@@ -172,14 +172,12 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 
 ### Harga fast mode
 
-[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat), dalam pratinjau riset, menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Harga fast mode berlaku di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200k token input. Fast mode hanya tersedia di Claude API (pihak pertama); fitur ini tidak tersedia di Claude Platform on AWS atau platform cloud yang dioperasikan mitra.
+[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga fast mode berlaku di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200k token input. Fast mode tersedia di Claude API (pihak pertama) dan, untuk Claude Opus 5.5, di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure; fitur ini tidak tersedia di Claude Platform on AWS atau platform cloud yang dioperasikan mitra.
 
-| Model                           | Input      | Output     |
-| ------------------------------- | ---------- | ---------- |
-| Claude Opus 5.5                 | $8 / MTok  | $40 / MTok |
-| Claude Opus 5 / Claude Opus 4.8 | $10 / MTok | $50 / MTok |
-
-Fast mode tidak tersedia di Claude Opus 4.7 (permintaan dengan `speed: "fast"` mengembalikan error) atau Claude Opus 4.6 (permintaan berjalan dengan kecepatan standar dan ditagih dengan tarif standar). Lihat [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
+| Model                           | Input          | Output         |
+| ------------------------------- | -------------- | -------------- |
+| Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
+| Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
 Harga fast mode dapat digabungkan dengan pengubah harga lainnya:
 
@@ -450,24 +448,24 @@ Runtime diukur hingga milidetik dan hanya terakumulasi saat status sesi adalah `
 
 ### Contoh perhitungan
 
-Sesi coding satu jam menggunakan Claude Opus 5 yang mengonsumsi 50.000 token input dan 15.000 token output:
+Sesi coding selama satu jam menggunakan Claude Opus 5.5 yang mengonsumsi 50.000 token input dan 15.000 token output:
 
-| Item baris   | Perhitungan              | Biaya      |
-| ------------ | ------------------------ | ---------- |
-| Token input  | 50.000 × $5 / 1.000.000  | $0,25      |
-| Token output | 15.000 × $25 / 1.000.000 | $0,375     |
-| Runtime sesi | 1,0 jam × $0,08          | $0,08      |
-| **Total**    |                          | **$0,705** |
+| Item baris   | Perhitungan              | Biaya     |
+| ------------ | ------------------------ | --------- |
+| Token input  | 50.000 × $4 / 1.000.000  | $0,20     |
+| Token output | 15.000 × $20 / 1.000.000 | $0,30     |
+| Runtime sesi | 1,0 jam × $0,08          | $0,08     |
+| **Total**    |                          | **$0,58** |
 
 Jika caching prompt aktif dan 40.000 dari token input merupakan pembacaan cache:
 
-| Item baris                      | Perhitungan                   | Biaya      |
-| ------------------------------- | ----------------------------- | ---------- |
-| Token input yang tidak di-cache | 10.000 × $5 / 1.000.000       | $0,05      |
-| Token pembacaan cache           | 40.000 × $5 × 0,1 / 1.000.000 | $0,02      |
-| Token output                    | 15.000 × $25 / 1.000.000      | $0,375     |
-| Runtime sesi                    | 1,0 jam × $0,08               | $0,08      |
-| **Total**                       |                               | **$0,525** |
+| Item baris                      | Perhitungan                    | Biaya      |
+| ------------------------------- | ------------------------------ | ---------- |
+| Token input yang tidak di-cache | 10.000 × $4 / 1.000.000        | $0,04      |
+| Token pembacaan cache           | 40.000 × $4 × 0,05 / 1.000.000 | $0,008     |
+| Token output                    | 15.000 × $20 / 1.000.000       | $0,30      |
+| Runtime sesi                    | 1,0 jam × $0,08                | $0,08      |
+| **Total**                       |                                | **$0,428** |
 
 ## Pertimbangan harga tambahan
 
@@ -538,6 +536,6 @@ Diskon Batch API dan caching prompt dapat digabungkan. Misalnya, menggunakan ked
 
 ### Metode pembayaran apa yang diterima?
 
-Kartu kredit utama diterima untuk akun standar. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
+Kartu kredit utama diterima untuk akun standar. Untuk membeli kredit atau mengelola metode pembayaran Anda, buka halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Claude Console. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
 
 Untuk pertanyaan tambahan tentang harga, hubungi [support@anthropic.com](mailto:support@anthropic.com).

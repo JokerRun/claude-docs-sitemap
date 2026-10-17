@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 813d47aa52fa510725144c2c53fb1cb6904ae3f96b4877bab28ef27b235e9e23
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 7b7a43992b8c10bec284b29415aa1752ac9b42cbd26dc984a00c13024904151a
 ---
 
 ---
@@ -38,7 +38,7 @@ Sebelum memulai, pastikan Anda memiliki:
 
 * Langganan Azure yang aktif
 * Akses ke [portal Foundry](https://ai.azure.com/)
-* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) yang terinstal (diperlukan untuk contoh cURL Entra ID, opsional untuk lainnya)
+* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) yang sudah terinstal (diperlukan untuk contoh cURL dan CLI Entra ID, opsional untuk lainnya)
 * Peran Azure RBAC yang memungkinkan Anda menggunakan resource, seperti **Foundry User** (sebelumnya Azure AI User) atau **Cognitive Services User**
 
 ## Instal SDK
@@ -156,7 +156,7 @@ Setelah membuat resource, deploy model Claude agar tersedia untuk panggilan API.
 
 1. Masuk ke portal Foundry. Dari beranda portal, pilih **Discover** di navigasi kanan atas, lalu **Models** di panel kiri untuk membuka katalog model.
 
-2. Cari dan pilih model Claude (misalnya, claude-opus-5). Setiap model muncul sekali di katalog terlepas dari berapa banyak opsi hosting yang didukungnya.
+2. Cari dan pilih model Claude (misalnya, claude-opus-5-5). Setiap model muncul satu kali di katalog, terlepas dari berapa banyak opsi hosting yang didukungnya.
 
 3. Pada kartu model, pilih **Deploy**, lalu **Custom settings** untuk membuka panel pengaturan deployment. Jika Anda memilih **Default settings**, deployment secara otomatis dikonfigurasi sebagai Hosted on Azure untuk model yang tersedia di kedua opsi hosting.
 
@@ -426,11 +426,16 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
   ```
 
   ```bash CLI
-  # CLI ant dapat mengirim bearer token dengan --auth-token, tetapi variabel
-  # lingkungan ANTHROPIC_API_KEY yang telah diatur lebih diutamakan (CLI
-  # hanya mencetak pemberitahuan di konsol), sehingga permintaan Anda bisa diautentikasi
-  # dengan kredensial yang salah. Untuk alur Entra ID, gunakan contoh cURL atau salah satu
-  # contoh SDK sebagai gantinya.
+  # Dapatkan token Microsoft Entra ID
+  ACCESS_TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
+
+  # Buat permintaan dengan token. Ganti {resource} dengan nama resource Anda
+  # env -u menghapus ANTHROPIC_API_KEY, yang jika ada akan dikirim CLI sebagai pengganti token
+  env -u ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN="$ACCESS_TOKEN" ant messages create \
+    --base-url https://{resource}.services.ai.azure.com/anthropic \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -773,7 +778,7 @@ Foundry tidak menyertakan header batas laju standar Anthropic (`anthropic-rateli
 
 **Error:** `Model not found` atau `Deployment not found`
 
-* **Solusi:** Verifikasi bahwa Anda menggunakan nama deployment yang benar. Jika Anda belum membuat deployment kustom, gunakan ID model default (misalnya, claude-opus-5).
+* **Solusi:** Verifikasi bahwa Anda menggunakan nama deployment yang benar. Jika Anda belum membuat deployment kustom, gunakan ID model default (misalnya, claude-opus-5-5).
 * **Solusi:** Pastikan model/deployment tersedia di region Azure Anda.
 
 **Error:** `Invalid model parameter`

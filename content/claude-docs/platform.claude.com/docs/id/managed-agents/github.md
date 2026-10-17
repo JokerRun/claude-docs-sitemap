@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 1583563baa14a623b3787b5f0c5aaa8ad237f90e11e4834d3784872d33b52efc
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3230a23511eeead321fd78d9bec3efc323fbb5df5c857e914a0f1a8a9d111003
 ---
 
 ---
@@ -246,7 +246,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```
 </CodeGroup>
 
-Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts`. Mengatur `allow_mcp_servers: true` pada pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
+Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mengatur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 <CodeGroup>
   ```bash cURL
@@ -400,13 +400,13 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
 
 Sumber daya `github_repository` menerima field berikut:
 
-| Field                 | Deskripsi                                                                                                                                                                                                                    |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                 |
-| `url`                 | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                              |
-| `authorization_token` | Wajib. Token GitHub yang digunakan untuk melakukan clone repositori. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
-| `mount_path`          | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                      |
-| `checkout`            | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                |
+| Field                                                                                     | Deskripsi                                                                                                                                                                                                                    |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type` (csharp, go: `Type`)                                                               | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                 |
+| `url` (csharp: `Url`; go: `URL`)                                                          | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                              |
+| `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) | Wajib. Token GitHub yang digunakan untuk melakukan clone repositori. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
+| `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)                            | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                      |
+| `checkout` (csharp, go: `Checkout`)                                                       | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                |
 
 Memasang repositori juga memuat skill apa pun yang disimpan di direktori root `.claude/skills` repositori tersebut. Skill ditemukan satu kali per sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 
@@ -427,7 +427,7 @@ Saat menyediakan token GitHub, gunakan izin minimum yang diperlukan:
 
 ## Beberapa repositori
 
-Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
+Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp, go: `Resources`):
 
 <CodeGroup>
   ```bash cURL
@@ -590,7 +590,7 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
 
 ## Mengelola repositori pada sesi yang sedang berjalan
 
-Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan saat pembuatan sesi (atau melalui `GET /v1/sessions/{session_id}/resources` (python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`)) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
+Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` (csharp, go: `ID`) yang dikembalikan saat pembuatan sesi (atau melalui `GET /v1/sessions/{session_id}/resources` (python, typescript, ruby: `client.beta.sessions.resources.list()`; go, csharp: `client.Beta.Sessions.Resources.List()`; java: `client.beta().sessions().resources().list()`; php: `$client->beta->sessions->resources->list()`; cli: `ant beta:sessions:resources list`)) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
 
 <CodeGroup>
   ```bash cURL

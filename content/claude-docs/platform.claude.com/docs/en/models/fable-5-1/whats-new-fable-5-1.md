@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a823b0b24a27d5ed5b5a7381abcd4fb98397b990923acf7bbd9b8551ce3976ac
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b1af04b571fc6f9149929f8f38dfed14ce15244be2ed7e4b7d68723a01fe3edb
 ---
 
 ---
@@ -179,12 +179,13 @@ On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs
   ```csharp C#
   using Anthropic.Models.Beta;
   using Anthropic.Models.Beta.Messages;
+  using Model = Anthropic.Models.Messages.Model;
 
   AnthropicClient client = new();
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-fable-5-1",
+      Model = Model.ClaudeFable5_1,
       MaxTokens = 4096,
       OutputConfig = new() { Effort = Effort.High },
       Messages =
@@ -216,7 +217,7 @@ On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     "claude-fable-5-1",
+  	Model:     anthropic.ModelClaudeFable5_1,
   	MaxTokens: 4096,
   	OutputConfig: anthropic.BetaOutputConfigParam{
   		Effort: anthropic.BetaOutputConfigEffortHigh,
@@ -253,12 +254,13 @@ On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs
   import com.anthropic.models.beta.messages.BetaOutputConfig;
   import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
   import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model("claude-fable-5-1")
+          .model(Model.CLAUDE_FABLE_5_1)
           .maxTokens(4096L)
           .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
           .outputConfig(BetaOutputConfig.builder()
@@ -453,18 +455,18 @@ To migrate from Claude Fable 5, update your model ID:
   ```
 
   ```csharp C#
-  var model = "claude-fable-5"; // Before
-  model = "claude-fable-5-1"; // After
+  var model = Model.ClaudeFable5; // Before
+  model = Model.ClaudeFable5_1; // After
   ```
 
   ```go Go
-  model := "claude-fable-5"  // Before
-  model = "claude-fable-5-1" // After
+  model := anthropic.ModelClaudeFable5  // Before
+  model = anthropic.ModelClaudeFable5_1 // After
   ```
 
   ```java Java
-  String model = "claude-fable-5"; // Before
-  model = "claude-fable-5-1"; // After
+  Model model = Model.CLAUDE_FABLE_5; // Before
+  model = Model.CLAUDE_FABLE_5_1; // After
   ```
 
   ```php PHP

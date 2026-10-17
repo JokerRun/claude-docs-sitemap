@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 54aff863780de6d862acf0e591d4266b89edf45a39ca027c957f02959b984695
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 00c9cb08df055b4f701e2c830ad512b9031915026c116650d9aee50a9c8cb958
 ---
 
 ---
@@ -88,14 +88,18 @@ Dokumentasi untuk setiap metode, parameter request, dan field response tersedia 
 Anda dapat melihat penggunaan yang tepat untuk request tertentu melalui properti response `usage`, misalnya:
 
 ```typescript
-const message = await client.messages.create(/* ... */);
+const message = await client.messages.create({
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello, Claude" }],
+  model: "claude-opus-5-5"
+});
 console.log(message.usage);
 // { input_tokens: 25, output_tokens: 13 }
 ```
 
 ## Streaming response
 
-SDK menyediakan dukungan untuk "streaming" (streaming) response menggunakan Server Sent Events (SSE).
+SDK menyediakan dukungan untuk streaming response menggunakan Server-Sent Events (SSE).
 
 ```typescript
 const client = new Anthropic();
@@ -282,7 +286,7 @@ await anthropic.files.upload({ file: mcpResourceToFile(fileResource) });
 
 ### Penanganan error MCP
 
-Fungsi konversi melempar `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, tipe konten yang tidak didukung, tipe MIME yang tidak didukung, tautan resource non-http/https).
+Fungsi konversi melemparkan `UnsupportedMCPValueError` jika nilai MCP tidak didukung oleh Claude API (misalnya, tipe konten yang tidak didukung, tipe MIME yang tidak didukung, tautan resource non-HTTP/HTTPS).
 
 ## Batch pesan
 
@@ -337,7 +341,7 @@ Parameter request yang berkaitan dengan unggahan file dapat diteruskan dalam ber
 * sebuah `fs.ReadStream`
 * nilai kembalian dari helper `toFile`
 
-Atur content-type secara eksplisit karena files API tidak akan menyimpulkannya untuk Anda:
+Atur tipe konten secara eksplisit karena Files API tidak akan menyimpulkannya untuk Anda:
 
 ```typescript
 import fs from "node:fs";
@@ -733,9 +737,9 @@ Untuk memodifikasi perilaku proxy, Anda dapat menyediakan `fetchOptions` kustom 
 
 ## Fitur beta
 
-Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [ikhtisar membangun dengan Claude](https://platform.claude.com/docs/id/build-with-claude/overview).
+Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui properti beta pada client. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` dari client. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
 Misalnya, untuk mengaktifkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing):
 
@@ -752,7 +756,7 @@ const response = await client.beta.messages.create({
 ## Dukungan runtime
 
 <Accordion title="Penggunaan browser">
-  Mengaktifkan opsi `dangerouslyAllowBrowser` dapat berbahaya karena mengekspos kredensial API rahasia Anda dalam kode sisi client. Browser web pada dasarnya kurang aman dibandingkan lingkungan server, pengguna mana pun yang memiliki akses ke browser berpotensi dapat memeriksa, mengekstrak, dan menyalahgunakan kredensial ini. Hal ini dapat menyebabkan akses tidak sah menggunakan kredensial Anda dan berpotensi membahayakan data atau fungsionalitas sensitif.
+  Mengaktifkan opsi `dangerouslyAllowBrowser` dapat berbahaya karena mengekspos kredensial API rahasia Anda dalam kode sisi client. Browser web pada dasarnya kurang aman dibandingkan lingkungan server. Setiap pengguna yang memiliki akses ke browser berpotensi dapat memeriksa, mengekstrak, dan menyalahgunakan kredensial ini. Hal ini dapat menyebabkan akses tidak sah menggunakan kredensial Anda dan berpotensi membahayakan data atau fungsionalitas yang sensitif.
 
   **Kapan hal ini mungkin tidak berbahaya?**
 
@@ -791,7 +795,7 @@ Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0
 2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 3. Perubahan yang tidak diperkirakan berdampak pada sebagian besar pengguna dalam praktiknya.
 
-Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
+Kompatibilitas ke belakang ditanggapi dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 
 ## Pertanyaan yang sering diajukan
 
@@ -801,5 +805,5 @@ Lihat [repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-typescript)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming Pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
 * [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

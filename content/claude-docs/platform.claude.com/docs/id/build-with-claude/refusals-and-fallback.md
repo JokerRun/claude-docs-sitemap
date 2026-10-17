@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1ff180f6599b8b8ff9ae4c3b99c46984398c6dde7b6550f21008f5285e0bf5c7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 5575d77742ebfd89fe16ae916b0be06fe9b2543dc01ca284856527cff6d424a6
 ---
 
 ---
@@ -789,18 +789,14 @@ SDK menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada 
 
 Teruskan `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddleware`; go: `betafallback.BetaRefusalFallbackMiddleware`; csharp: `BetaRefusalFallbackHandler`; java: `BetaRefusalFallbackInterceptor`; php: `RefusalFallbackMiddleware`) ke konstruktor klien, dan bagikan satu instance `BetaFallbackState` di seluruh permintaan dalam sebuah percakapan.
 
-<CodeGroup>
-  ```bash cURL
-  # Middleware refusal-fallback adalah fitur SDK. Lihat
-  # bagian fallback sisi server untuk pendekatan permintaan tunggal yang setara,
-  # atau halaman kredit fallback untuk pola retry HTTP mentah.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Middleware refusal-fallback adalah bagian dari Claude SDK, sehingga permintaan cURL tidak dapat menggunakannya. Untuk melakukan fallback dalam satu permintaan, gunakan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). Untuk menulis percobaan ulang sendiri, lihat [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Middleware refusal-fallback adalah fitur SDK. Lihat
-  # bagian fallback sisi server untuk pendekatan permintaan tunggal yang setara,
-  # atau halaman kredit fallback untuk pola percobaan ulang HTTP mentah.
-  ```
+  <CodeGroupItem language="CLI">
+    CLI `ant` tidak menyertakan middleware refusal-fallback. Untuk melakukan fallback dalam satu permintaan, gunakan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). Untuk menulis percobaan ulang sendiri, lihat [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit).
+  </CodeGroupItem>
 
   ```python Python
   from anthropic import Anthropic, BetaFallbackState, BetaRefusalFallbackMiddleware

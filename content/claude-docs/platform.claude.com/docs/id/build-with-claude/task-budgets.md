@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: c11312f52f534fc696152e70f1c4f7a7508a934402219cb6586555b9389c3cb8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 4a71b284ebd304fd369f36ac1bea8f0b1f6d16980d345f099a7fe5d644e09af2
 ---
 
 ---
@@ -521,9 +521,24 @@ Anggaran yang tepat bergantung pada seberapa banyak pekerjaan yang saat ini dila
 
 Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan catat total token yang dihabiskan Claude per tugas. Untuk loop agentik, jumlahkan `usage.output_tokens` di setiap permintaan dalam loop, ditambah token dari hasil alat yang Anda tambahkan di antara permintaan:
 
-<CodeGroup exclude="shell:cURL">
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 4096,
+      "messages": [{
+        "role": "user",
+        "content": "Review the codebase and propose a refactor plan."
+      }]
+    }'
+  ```
+
   ```bash CLI
-  ant messages create --transform 'usage.output_tokens' <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 4096
   messages:

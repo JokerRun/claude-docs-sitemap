@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: b787925a0d290995f8bf2035a4d6c515a3673a951c3c25273407e54d39062dc3
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 682dd2a0f0ba7686ad1dad3a33c2d7a4f7f78516087ac56d90aa33aecd02fe98
 ---
 
 ---
@@ -80,7 +80,7 @@ Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi 
 Anthropic menyediakan alat developer untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
 
 <CardGroup cols={3}>
-  <Card title="Developer Console" icon="computer" href="https://platform.claude.com/">
+  <Card title="Claude Console" icon="computer" href="https://platform.claude.com/">
     Jelajahi dan pahami API di browser Anda dengan playground.
   </Card>
 

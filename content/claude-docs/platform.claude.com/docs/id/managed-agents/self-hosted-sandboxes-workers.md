@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 265dff6e6b2aa74f224fd18c0446d3985b1eb62ef36e56f26a8c4c23f3f29aa2
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 3b3ce8eecf579d596d39351ccd01a9d57ff583496de47a2b64264e8315b58869
 ---
 
 ---
@@ -47,17 +47,13 @@ Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed
 
 ## Menjalankan worker always-on
 
-Kedua worker melakukan autentikasi dengan [environment key](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) dari quickstart.
+Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini melakukan autentikasi dengan [environment key](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) dari quickstart:
 
-Dengan CLI `ant`:
+<CodeGroup exclude="shell:cURL, csharp, java, php, ruby">
+  ```bash CLI
+  ant beta:worker poll --workdir /workspace
+  ```
 
-```bash
-ant beta:worker poll --workdir /workspace
-```
-
-Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
-
-<CodeGroup exclude="shell">
   ```python Python
   import asyncio
   import contextlib
@@ -112,9 +108,9 @@ Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
   }).run();
   ```
 
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di SDK C#. Gunakan worker CLI ant sebagai gantinya.
-  ```
+  <CodeGroupItem language="C#">
+    SDK C# tidak memiliki `EnvironmentWorker`. Jalankan worker CLI `ant` sebagai gantinya: `ant beta:worker poll --workdir /workspace`.
+  </CodeGroupItem>
 
   ```go Go
   package main
@@ -152,17 +148,17 @@ Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
 
   ```
 
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK. Gunakan worker CLI ant sebagai gantinya.
-  ```
+  <CodeGroupItem language="Java">
+    SDK Java tidak memiliki `EnvironmentWorker`. Jalankan worker CLI `ant` sebagai gantinya: `ant beta:worker poll --workdir /workspace`.
+  </CodeGroupItem>
 
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK. Gunakan worker CLI ant sebagai gantinya.
-  ```
+  <CodeGroupItem language="PHP">
+    SDK PHP tidak memiliki `EnvironmentWorker`. Jalankan worker CLI `ant` sebagai gantinya: `ant beta:worker poll --workdir /workspace`.
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK. Gunakan worker CLI ant sebagai gantinya.
-  ```
+  <CodeGroupItem language="Ruby">
+    SDK Ruby tidak memiliki `EnvironmentWorker`. Jalankan worker CLI `ant` sebagai gantinya: `ant beta:worker poll --workdir /workspace`.
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Memicu worker dari webhook
@@ -183,7 +179,7 @@ Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
   <Step title="Implementasikan handler webhook">
     Panggil worker saat `session.status_run_started` terpicu. Handler menguras antrean dan menyerahkan setiap work item yang diklaim ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang mengunduh skill, mengeksekusi pemanggilan alat, mengirimkan hasil kembali, lalu kembali.
 
-    <CodeGroup exclude="shell">
+    <CodeGroup exclude="shell, csharp, java, php, ruby">
       <CodeGroupItem>
         Untuk memverifikasi tanda tangan webhook, instal extra webhooks: `pip install "anthropic[webhooks]"`.
 
@@ -306,10 +302,9 @@ Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
       }
       ```
 
-      ```csharp C#
-      // EnvironmentWorker saat ini belum tersedia di SDK C#.
-      // Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
-      ```
+      <CodeGroupItem language="C#">
+        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+      </CodeGroupItem>
 
       ```go Go
       package main
@@ -422,20 +417,17 @@ Dengan SDK, `EnvironmentWorker` melakukan pekerjaan yang sama:
 
       ```
 
-      ```java Java
-      // EnvironmentWorker saat ini belum tersedia di Java SDK.
-      // Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
-      ```
+      <CodeGroupItem language="Java">
+        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+      </CodeGroupItem>
 
-      ```php PHP
-      // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-      // Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
-      ```
+      <CodeGroupItem language="PHP">
+        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+      </CodeGroupItem>
 
-      ```ruby Ruby
-      # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-      # Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
-      ```
+      <CodeGroupItem language="Ruby">
+        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+      </CodeGroupItem>
     </CodeGroup>
 
     Karena handler mengklaim pekerjaan sendiri, handler harus [meneruskan secret work item](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), seperti yang dilakukan argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) di sini.
@@ -497,14 +489,14 @@ Sebuah poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali per wo
 
 ### Meneruskan secret work item
 
-Setiap work item yang diklaim dapat membawa `secret` per sesi, yang diterbitkan oleh Anthropic. Worker yang menjalankan sesi memerlukannya untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory).
+Setiap work item yang diklaim dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang diterbitkan oleh Anthropic. Worker yang menjalankan sesi memerlukannya untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory).
 
 Worker yang mengklaim dan menjalankan sesi dalam satu proses (`ant beta:worker poll` tanpa `--on-work`, atau `EnvironmentWorker` dengan `run()` (go: `Run()`)) meneruskan secret itu sendiri. Ketika kode Anda sendiri berada di antara klaim dan worker, Anda yang meneruskannya:
 
 | Anda mengklaim pekerjaan dengan                                | Secret tiba sebagai                                               | Teruskan ke worker sebagai                                                                                                                                                                 |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `ant beta:worker poll --on-work`                               | Field `secret` dari JSON work item pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox                                                                                                                                              |
-| `work.poller()` (go: `environments.NewWorkPoller()`) milik SDK | Field `secret` dari setiap work item yang diklaim                 | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox, atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
+| `work.poller()` (go: `environments.NewWorkPoller()`) milik SDK | Field `secret` (go: `Secret`) dari setiap work item yang diklaim  | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox, atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
 
 Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya di log. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk mengetahui hubungannya dengan environment key.
 
@@ -512,16 +504,14 @@ Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah 
 
 Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll --on-work`, gunakan `work.poller()` (go: `environments.NewWorkPoller()`). Fungsi ini melakukan polling antrean dan memberi Anda setiap sesi yang diklaim, lalu Anda meluncurkan sandbox:
 
-<CodeGroup>
-  ```bash cURL
-  # Work poller adalah helper SDK (Python, TypeScript, Go), bukan endpoint
-  # mentah. Dari shell, gunakan `ant beta:worker poll --on-work` sebagai gantinya.
-  ```
+<CodeGroup exclude="shell, csharp, java, php, ruby">
+  <CodeGroupItem language="cURL">
+    Mengklaim pekerjaan dalam loop dan meluncurkan sandbox untuk setiap sesi memerlukan logika lebih dari satu perintah shell. Dari shell, jalankan `ant beta:worker poll --on-work` dengan skrip spawn, seperti pada [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session).
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Work poller adalah helper SDK (Python, TypeScript, Go), bukan endpoint
-  # mentah. Dari shell, gunakan `ant beta:worker poll --on-work` sebagai gantinya.
-  ```
+  <CodeGroupItem language="CLI">
+    Untuk mengklaim pekerjaan dari shell dan meluncurkan sandbox untuk setiap sesi, jalankan `ant beta:worker poll --on-work` dengan skrip spawn, seperti pada [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session).
+  </CodeGroupItem>
 
   ```python Python
   import asyncio
@@ -623,10 +613,9 @@ Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll
   }
   ```
 
-  ```csharp C#
-  // Helper untuk polling pekerjaan saat ini belum tersedia di SDK C#.
-  // Untuk mengklaim pekerjaan secara langsung, lihat endpoint Environments Work.
-  ```
+  <CodeGroupItem language="C#">
+    SDK C# tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+  </CodeGroupItem>
 
   ```go Go
   package main
@@ -698,27 +687,24 @@ Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll
   }
   ```
 
-  ```java Java
-  // Helper untuk polling pekerjaan saat ini belum tersedia di Java SDK.
-  // Untuk mengklaim pekerjaan secara langsung, lihat endpoint Environments Work.
-  ```
+  <CodeGroupItem language="Java">
+    SDK Java tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+  </CodeGroupItem>
 
-  ```php PHP
-  // Helper polling pekerjaan saat ini belum tersedia di PHP SDK.
-  // Untuk mengklaim pekerjaan secara langsung, lihat endpoint Environments Work.
-  ```
+  <CodeGroupItem language="PHP">
+    SDK PHP tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # Helper polling pekerjaan saat ini belum tersedia di Ruby SDK.
-  # Untuk mengklaim pekerjaan secara langsung, lihat endpoint Environments Work.
-  ```
+  <CodeGroupItem language="Ruby">
+    SDK Ruby tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Menjalankan worker SDK di dalam sandbox
 
 Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox harus [melayani alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) atau menggunakan [pengaturan sinkronisasi memori non-default](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#configure-sync). Entrypoint membuat `EnvironmentWorker` dan memanggil `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang membaca variabel `ANTHROPIC_*` yang sama yang diteruskan oleh skrip spawn.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell, csharp, java, php, ruby">
   ```python Python
   import asyncio
   import contextlib
@@ -766,9 +752,9 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   }).handleItem();
   ```
 
-  ```csharp C#
-  // EnvironmentWorker saat ini belum tersedia di SDK C#.
-  ```
+  <CodeGroupItem language="C#">
+    SDK C# tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
   ```go Go
   package main
@@ -804,17 +790,17 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
 
   ```
 
-  ```java Java
-  // EnvironmentWorker saat ini belum tersedia di Java SDK.
-  ```
+  <CodeGroupItem language="Java">
+    SDK Java tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```php PHP
-  // EnvironmentWorker saat ini belum tersedia di PHP SDK.
-  ```
+  <CodeGroupItem language="PHP">
+    SDK PHP tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 
-  ```ruby Ruby
-  # EnvironmentWorker saat ini belum tersedia di Ruby SDK.
-  ```
+  <CodeGroupItem language="Ruby">
+    SDK Ruby tidak memiliki `EnvironmentWorker`.
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Menyiapkan file untuk sesi
@@ -832,13 +818,11 @@ Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hoste
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d @- <<EOF
-  {
-    "agent": "$AGENT_ID",
-    "environment_id": "$ANTHROPIC_ENVIRONMENT_ID",
-    "metadata": {"input_file": "s3://my-bucket/data.csv"}
-  }
-  EOF
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'",
+      "metadata": {"input_file": "s3://my-bucket/data.csv"}
+    }'
   ```
 
   ```bash CLI

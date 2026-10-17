@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-api-key
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 5321aeb233ce563fff7976ef0ee5398c27a5adc0d77a84eac54dbb1086f6d9c5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 1edafc32ecd375255ace97a3204ef2702d54501b3c5e90033957b3dae38adadd
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/get-api-key
 description: Temukan, buat, dan kelola kunci API Anda untuk Claude API di Claude Console.
 ---
 
-Kunci API untuk Claude API (juga disebut kunci API Anthropic) berada di Claude Console. Untuk melihat kunci yang sudah ada atau membuat kunci baru, buka [Settings → API keys](https://platform.claude.com/settings/keys).
+Kunci API untuk Claude API (juga disebut kunci API Anthropic) berada di Claude Console. Untuk melihat kunci yang sudah ada atau membuat kunci baru, buka halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) di Console.
 
 ## Pilih jenis kunci
 
@@ -23,15 +23,15 @@ Anda juga dapat membuat **kunci workspace** (workspace key), yaitu kunci lama (l
 
 <Steps>
   <Step title="Masuk ke Claude Console">
-    Buka [platform.claude.com](https://platform.claude.com/) dan masuk, atau buat akun jika Anda belum memilikinya.
+    Buka Claude Console di [platform.claude.com](https://platform.claude.com/) dan masuk, atau buat akun jika Anda belum memilikinya.
   </Step>
 
   <Step title="Buka halaman API keys">
-    Buka [Settings → API keys](https://platform.claude.com/settings/keys).
+    Di Claude Console, buka halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`).
   </Step>
 
   <Step title="Buat kunci">
-    Klik **Create key**, beri nama kunci tersebut, pilih [masa berlaku](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration), dan atur **Linked account** ke diri Anda sendiri atau ke akun layanan. Anda juga dapat memilih [workspace](https://platform.claude.com/settings/workspaces) sebagai cakupan kunci tersebut.
+    Klik **Create key**, beri nama kunci, pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration), dan atur **Linked account** ke diri Anda sendiri atau ke akun layanan. Anda juga dapat memilih [workspace](https://platform.claude.com/settings/workspaces) di Console untuk membatasi cakupan kunci tersebut.
   </Step>
 
   <Step title="Salin dan simpan kunci">
@@ -58,5 +58,5 @@ Untuk membuat permintaan pertama Anda, ikuti [Quickstart](https://platform.claud
 [Admin API](https://platform.claude.com/docs/id/api/organization) menyertakan endpoint untuk mengelola kunci API organisasi Anda secara terprogram, seperti [Retrieve API Key](https://platform.claude.com/docs/id/api/organization/api_keys/retrieve) dan [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list). Endpoint ini ditujukan bagi admin organisasi yang mengotomatiskan pengelolaan kunci. Endpoint ini menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci pribadi maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu; kunci workspace tidak berfungsi di sana. Endpoint ini tidak pernah mengembalikan nilai rahasia kunci, hanya petunjuk yang sebagian disamarkan.
 
 <Note>
-  Admin API tidak dapat memulihkan kunci yang hilang atau memberi Anda kunci untuk memanggil Claude API. Untuk mendapatkan kunci API yang dapat digunakan, buat kunci di [Settings → API keys](https://platform.claude.com/settings/keys) di Claude Console.
+  Admin API tidak dapat memulihkan kunci yang hilang atau memberi Anda kunci untuk memanggil Claude API. Untuk mendapatkan kunci API yang dapat digunakan, buat kunci di halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) di Claude Console.
 </Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 23a976fa22070b8ba2dc1d5c723fcc0ac033cf33c9ea63109e4704aa7b9047a7
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: aba756d214e0a9b9c393c3bb94148e7aabd5c18a7fd4180d5cbdd875a7803b5b
 ---
 
 ---
@@ -222,7 +222,7 @@ claims.sub.startsWith("repo:acme-corp/") && claims.ref in ["refs/heads/main", "r
 
 ### Token exchange errors
 
-`POST /v1/oauth/token` returns errors in the standard [API error shape](https://platform.claude.com/docs/en/api/errors). The SDK wraps exchange failures in a typed `WorkloadIdentityError` (ruby: `Anthropic::Credentials::WorkloadIdentityError`; go: `*config.FederationExchangeError`; java: `UnexpectedStatusCodeException`; csharp: `WorkloadIdentityException`; php: `OAuthException`) that exposes the HTTP status, the response body, and the `request_id`.
+`POST /v1/oauth/token` returns errors in the standard [API error shape](https://platform.claude.com/docs/en/api/errors). The SDK reports an exchange failure as `WorkloadIdentityError` (ruby: `Anthropic::Credentials::WorkloadIdentityError`; go: `error`; java: `UnexpectedStatusCodeException`; csharp: `WorkloadIdentityException`; php: `OAuthException`), which gives the HTTP status and the error details from the response body. The request ID is on the error in Python, TypeScript, and Ruby, and in the exception's response headers in Java. In Go it is only in the error's message, because the error's type is in an internal package; the C# and PHP errors do not carry it.
 
 | Status | Error                   | Cause                                                                                                                                                                   | Resolution                                                                                                                                                                                                                                                                                                                    |
 | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

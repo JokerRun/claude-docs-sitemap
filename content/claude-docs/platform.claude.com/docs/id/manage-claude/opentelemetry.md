@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: adefb89bd44c289331343997a912b4e68cb7139252ce637ccafc87910fd325fc
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: dbbf329e0dd3c5992dd7ef7fdba0274d2ac5829d8518bd272ba220e2bdcc0241
 ---
 
 ---
@@ -27,6 +27,12 @@ OpenTelemetry adalah standar netral vendor yang didukung oleh sebagian besar pla
 ## Memulai
 
 Anda dapat menyiapkan tracing SDK, tracing API, atau keduanya. Siapkan keduanya untuk melihat span SDK dan API dari sebuah permintaan dalam satu trace, seperti pada [contoh trace](https://platform.claude.com/docs/id/manage-claude/opentelemetry#example-traces-and-how-to-read-them).
+
+Biarkan Claude Code menyiapkan fitur ini untuk Anda
+
+```text
+Siapkan tracing OpenTelemetry dengan Claude API dan Claude SDK
+```
 
 <CardGroup cols={3}>
   <Card title="Siapkan tracing SDK" icon="code-brackets" href="https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk" layout="horizontal">

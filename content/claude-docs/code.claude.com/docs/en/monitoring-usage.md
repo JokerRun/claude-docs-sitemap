@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 72374067fb003eb1c3287d1517147924c1c7475f50663e08d1d2cf26577ba188
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c4984d5c294fd8c8e7ceb8b2b655c95fba9b038941080e2552abe35612397d8a
 ---
 
 > ## Documentation Index
@@ -719,7 +719,7 @@ Incremented after each API request.
 **Attributes**:
 
 * All [standard attributes](#standard-attributes)
-* `type`: (`"input"`, `"output"`, `"cacheRead"`, `"cacheCreation"`). The `"input"` type excludes tokens read from or written to the prompt cache, which are counted under `"cacheRead"` and `"cacheCreation"`
+* `type`: (`"input"`, `"output"`, `"cacheRead"`, `"cacheCreation"`). The `"input"` type excludes tokens read from or written to the prompt cache, which are counted under `"cacheRead"` and `"cacheCreation"`. The `"cacheCreation"` type counts cache writes with the five-minute and one-hour [cache lifetimes](/docs/en/prompt-caching#cache-lifetime) together.
 * `model`: Model identifier (for example, "claude-sonnet-5")
 * `query_source`: Category of the subsystem that issued the request. One of `"main"`, `"subagent"`, or `"auxiliary"`
 * `speed`: `"fast"` when the request used fast mode. Absent otherwise
@@ -1010,7 +1010,7 @@ Logged when the permission mode changes, for example from `Shift+Tab` cycling, e
 * `event.sequence`: per-process counter for ordering events, described under [Event correlation attributes](#event-correlation-attributes)
 * `from_mode`: The previous permission mode, for example `"default"`, `"plan"`, `"acceptEdits"`, `"auto"`, or `"bypassPermissions"`
 * `to_mode`: The new permission mode
-* `trigger`: What caused the change. One of `"shift_tab"`, `"exit_plan_mode"`, `"auto_gate_denied"`, or `"auto_opt_in"`. Absent when the transition originates from the SDK or bridge
+* `trigger`: What caused the change. One of `"shift_tab"`, `"exit_plan_mode"`, `"auto_gate_denied"`, or `"auto_opt_in"`. Absent for some changes, such as when the SDK sets the permission mode through [`setPermissionMode()`](/docs/en/agent-sdk/typescript#query-object)
 
 #### Auth event
 

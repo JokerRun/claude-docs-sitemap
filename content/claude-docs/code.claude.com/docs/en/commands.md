@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 3857d8e6782aab339a1956bd41df854506a487e93df0764c2d882e6a322831df
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: ea13c6c08893d2f6d32a0172fae66a4bb34c76fee27367ea43334b1662e21dac
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ Commands control Claude Code from inside a session. They provide a quick way to 
 
 Type `/` to see the commands available to you, or type `/` followed by letters to filter. [How the command menu matches what you type](#how-the-command-menu-matches-what-you-type) covers highlighting, typos, and the few commands Claude Code hides from the menu until you type their full name.
 
-A command is only recognized at the start of your message. Text that follows the command name becomes its arguments. [Skills](/docs/en/skills#pass-arguments-to-skills) are the exception: a skill invocation followed by more skills, such as `/skill-a /skill-b do XYZ`, loads the skills named at the start and passes the trailing text to each as arguments. Up to six skills can be chained.
+A command is only recognized at the start of your message. Text that follows the command name becomes its arguments. At the terminal prompt, you can start one message with several [skills](/docs/en/skills#stack-several-skills-in-one-message): typing `/skill-a /skill-b do XYZ` loads both skills and passes the trailing text to each as arguments. Up to six skills can be chained.
 
 If you send a command while Claude is responding, Claude Code queues it and runs it after the current turn finishes. Claude Code runs some commands immediately without interrupting the response, such as `/status`, `/tasks`, and `/usage`. In [fullscreen rendering](/docs/en/fullscreen), Claude Code also opens dialog commands such as `/theme` and `/help` immediately. Before v2.1.234, Claude Code queued those dialogs until the turn finished.
 

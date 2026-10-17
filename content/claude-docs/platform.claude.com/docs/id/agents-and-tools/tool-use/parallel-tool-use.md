@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a7e28baff50ba8f889d73e37e4b2fa6325ac02d219d9b5ea0ae1ecdb5d41d7b3
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c32d3c4d40639fceaef4a5fce68849a86d34b326a7eda702b6491d9d83e414d9
 ---
 
 ---
@@ -40,17 +40,14 @@ Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap b
 
 Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel, memverifikasi bahwa respons berisi panggilan tersebut, dan memformat hasil alat agar paralelisme tetap berfungsi. Jalankan dengan `ANTHROPIC_API_KEY` yang telah diatur di lingkungan Anda:
 
-<CodeGroup>
-  ```bash cURL
-  # Alur pengujian end-to-end ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
-  # Lihat tab SDK untuk alur lengkapnya. Permintaan HTTP yang mendasarinya adalah permintaan
-  # penggunaan alat standar dengan beberapa alat yang didefinisikan.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya. Permintaan yang dikirimnya adalah permintaan penggunaan alat standar dengan dua alat yang didefinisikan.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Alur pengujian end-to-end ini tidak cocok diterjemahkan menjadi satu perintah shell sekali jalan.
-  # Lihat tab SDK untuk alur lengkapnya.
-  ```
+  <CodeGroupItem language="CLI">
+    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()
@@ -1455,16 +1452,14 @@ Prompting default mungkin tidak mencukupi. Gunakan prompt sistem yang lebih kuat
 
 Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
-<CodeGroup>
-  ```bash cURL
-  # Mengukur penggunaan alat paralel adalah analisis sisi klien atas respons yang sudah Anda
-  # kumpulkan, sehingga tidak dapat dijadikan satu perintah shell sekali jalan. Lihat tab SDK.
-  ```
+<CodeGroup exclude="shell">
+  <CodeGroupItem language="cURL">
+    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # Mengukur penggunaan alat paralel adalah analisis sisi klien atas respons yang sudah Anda
-  # kumpulkan, sehingga tidak dapat dijadikan perintah shell sekali jalan. Lihat tab SDK.
-  ```
+  <CodeGroupItem language="CLI">
+    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+  </CodeGroupItem>
 
   ```python Python
   messages = []  # Message objects returned by client.messages.create across your run

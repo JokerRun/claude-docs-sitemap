@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 5e87ca7e9af825ffe3e1fa61a13d6352fc138cabb107ddd15355aa7ee856da27
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: ad8c7d487435f918e155cbdb7668cc81120b0e7630c52775e3c096d3ee2a311b
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Enumerasi organisasi di bawah organisasi induk Anda (pengguna, pera
 </Note>
 
 <Check>
-  **Cakupan yang diperlukan:** `read:compliance_org_data` pada Compliance Access Key. Endpoint pengguna dan anggota grup memerlukan `read:compliance_user_data` sebagai gantinya.
+  **Cakupan yang diperlukan:** `read:compliance_org_data` pada Compliance Access Key. Endpoint pengguna, preferensi pengguna, dan anggota grup memerlukan `read:compliance_user_data` sebagai gantinya.
 
   Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai adalah satu-satunya jenis kunci yang diterima; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Panggilan yang diautentikasi dengan kunci Admin API (`sk-ant-admin01-...`) mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 </Check>
@@ -108,6 +108,40 @@ curl --fail-with-body -sS -G \
 ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama dengan yang diterima oleh filter `actor_ids[]` pada [Query Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) serta [daftar sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions); [daftar sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) tidak memiliki filter pengguna, jadi atribusikan sesi lokal berdasarkan `user.id` pada setiap objek sesi. Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang didaftar (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Daftar peran](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-roles). Alur eDiscovery yang umum mendaftar pengguna untuk satu atau lebih organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam query chat dan proyek.
 
 Seorang pengguna hanya muncul di sini selama mereka menjadi anggota aktif organisasi. Pengguna yang dihapus langsung dikeluarkan dari daftar. Aktivitas historis mereka tetap dapat di-query melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
+
+## Mencantumkan preferensi pengguna
+
+Endpoint `GET /v1/compliance/organizations/{org_uuid}/user_preferences` mengembalikan teks yang disimpan oleh anggota saat ini dari satu organisasi sebagai **Instructions for Claude** di claude.ai (`conversation_preferences`) dan sebagai **Global instructions** di Cowork (`cowork_global_instructions`). Keduanya merupakan pengaturan tingkat akun, sehingga teks yang sama dikembalikan di bawah setiap organisasi tempat seorang anggota bergabung. Endpoint ini masih dalam tahap beta.
+
+Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_data`; panggilan dengan kunci yang tidak memiliki `read:compliance_user_data` mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
+
+Secara default, respons hanya mencantumkan anggota yang telah menetapkan setidaknya salah satu dari kedua nilai tersebut. Kirimkan `include_unset=true` untuk mencantumkan setiap anggota saat ini, dengan `null` untuk setiap nilai yang tidak ditetapkan. Untuk mengembalikan anggota tertentu saja, kirimkan hingga 10 ID pengguna dalam `user_ids[]`. Hasil dipaginasi dengan `limit` (default 20, maksimum 100) dan `page`. Seperti pada [endpoint pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users), kirimkan kembali `next_page` tanpa perubahan sebagai `page`; kirimkan juga nilai `include_unset` dan `user_ids[]` yang sama pada setiap halaman, atau panggilan akan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#invalid-pagination-cursor). Sebuah halaman dapat berisi hasil yang lebih sedikit dari `limit`, atau tidak ada sama sekali, namun tetap bukan halaman terakhir, jadi teruslah meminta halaman hingga `next_page` bernilai `null`.
+
+```bash cURL
+org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
+
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/user_preferences" \
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01"
+```
+
+```json Response
+{
+  "data": [
+    {
+      "user": {
+        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "email_address": "priya@example.com"
+      },
+      "conversation_preferences": "Keep answers brief and cite sources.",
+      "cowork_global_instructions": null
+    }
+  ],
+  "has_more": false,
+  "next_page": null
+}
+```
 
 ## Daftar peran
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: d5d0abe145317af091c442121a9229c38564a955f66ac62813cb2b4afe342f05
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d16e214f5da8b84d92553c47c943edaceeb6f0e08362a2fd89f4929b6d2baa6c
 ---
 
 ---
@@ -63,7 +63,7 @@ Claude Managed Agents dibangun di atas empat konsep:
   </Step>
 
   <Step title="Buat environment">
-    Konfigurasikan tempat agen berjalan: sandbox cloud, atau [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) di infrastruktur Anda sendiri.
+    [Konfigurasikan tempat agen berjalan](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment): sandbox cloud, atau [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) di infrastruktur Anda sendiri.
   </Step>
 
   <Step title="Mulai sesi">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: a1c244bd037441f59530783970c3b45fb93e925139aee15002f316d075b186e5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 11f276f53f5b8ba068c2cd020579b8a5a70b10cf14814c1746f373b73f6659e3
 ---
 
 ---
@@ -215,7 +215,7 @@ In curl, the `--remote-header-name` (`-J`) option, which normally saves a downlo
 
 Unlike the file content endpoint, the artifact content endpoint returns a JSON object. Pass the `version_id` from one of the entries in an assistant message's `artifacts` array, not the artifact's stable `id`; each new version of an artifact has its own `version_id`. The response's `content` field holds exactly that version's text, and its `title` and `artifact_type` fields describe the artifact. [Get artifact metadata](https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve) computes `size_bytes` and `md5` over the UTF-8 encoding of that text, so compare them with the `content` value rather than the whole response body.
 
-Claude Docs documents are listed separately, by [List code artifacts](https://platform.claude.com/docs/en/api/compliance/code/artifacts/list), with `artifact_type` set to `claude_docs`. A document's `versions` list is empty and its `published_version_id` is `null`. To download a document's current text, call `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`. It returns a ZIP archive with one Word (.docx) file for each tab that holds text. Comments, uploaded files, and edit history aren't included. Downloading Claude Docs through the Compliance API is in beta.
+Claude Docs documents are listed separately, by [List code artifacts](https://platform.claude.com/docs/en/api/compliance/apps/code/artifacts/list), with `artifact_type` set to `claude_docs`. A document's `versions` list is empty and its `published_version_id` is `null`. To download a document's current text, call `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`. It returns a ZIP archive with one Word (.docx) file for each tab that holds text. Comments, uploaded files, and edit history aren't included. Downloading Claude Docs through the Compliance API is in beta.
 
 ## Retrieve projects and attachments
 

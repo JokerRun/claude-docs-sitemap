@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 44ce35eb5ceed2afcf8ef804d88051530ffa170d01b5ad935f6f7155524ec212
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e9bd30b6abd49cc42549387cfa7a4cd9946d79d0eb7ed2a1c12f4cf431ee04f4
 ---
 
 ---
@@ -675,7 +675,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   // Before: extended thinking with a manual budget (older models)
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = "claude-sonnet-4-5-20250929",
+      Model = Model.ClaudeSonnet4_5_20250929,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages = [new() { Role = Role.User, Content = "..." }]
@@ -695,7 +695,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```go Go
   // Before: extended thinking with a manual budget (older models)
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     "claude-sonnet-4-5-20250929",
+  	Model:     anthropic.ModelClaudeSonnet4_5_20250929,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfEnabled: &anthropic.ThinkingConfigEnabledParam{BudgetTokens: 10000},
@@ -724,7 +724,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```java Java
   // Before: extended thinking with a manual budget (older models)
   client.messages().create(MessageCreateParams.builder()
-      .model("claude-sonnet-4-5-20250929")
+      .model(Model.CLAUDE_SONNET_4_5_20250929)
       .maxTokens(16000L)
       .thinking(ThinkingConfigEnabled.builder().budgetTokens(10000L).build())
       .addUserMessage("...")

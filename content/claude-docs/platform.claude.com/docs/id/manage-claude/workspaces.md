@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b02cd7213d15cb80b98871c03f1ad0e089e4486cee9a0392f9ae429a6ab7e167
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 798370aba0a7a5d963b9ed10b8d73de5e08a1499bee8185b354a4f7a0519cbb3
 ---
 
 ---
@@ -56,7 +56,7 @@ Anggota dapat memiliki peran yang berbeda di setiap workspace, memungkinkan kont
 * **Admin organisasi** secara otomatis menerima akses Workspace Admin ke semua workspaces
 * **Anggota penagihan organisasi** secara otomatis menerima akses Workspace Billing ke semua workspaces
 * **Pengguna dan developer organisasi** harus ditambahkan secara eksplisit ke setiap workspace
-* **Akun layanan** ditambahkan ke workspaces di [Settings > Service accounts](https://platform.claude.com/settings/service-accounts): pilih **Add to workspace** di menu akun atau di halamannya sendiri. Untuk melihat akun dalam satu workspace, filter daftar berdasarkan workspace.
+* **Akun layanan** ditambahkan ke workspace di halaman [Service accounts](https://platform.claude.com/settings/service-accounts) (`platform.claude.com/settings/service-accounts`) di Claude Console: pilih **Add to workspace** di menu akun tersebut atau di halamannya sendiri. Untuk melihat akun-akun dalam satu workspace, filter daftar berdasarkan workspace.
 
 <Note>
   Peran Workspace Billing tidak dapat ditetapkan secara manual. Peran ini diwarisi dari memiliki peran penagihan organisasi.
@@ -76,11 +76,11 @@ Buat dan kelola workspaces di [Claude Console](https://platform.claude.com/setti
 
 <Steps>
   <Step title="Buka pengaturan workspace">
-    Di Claude Console, buka **Settings > Workspaces**.
+    Di Claude Console, buka halaman [Workspaces](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`).
   </Step>
 
-  <Step title="Buat workspace">
-    Klik **Create workspace**.
+  <Step title="Buka halaman Create workspace">
+    Klik **Create workspace** untuk membuka halaman [Create workspace](https://platform.claude.com/settings/workspaces/new) (`platform.claude.com/settings/workspaces/new`) di Console.
   </Step>
 
   <Step title="Konfigurasikan workspace">
@@ -93,7 +93,7 @@ Buat dan kelola workspaces di [Claude Console](https://platform.claude.com/setti
 </Steps>
 
 <Tip>
-  Untuk beralih antar workspace di Console, keluar dari Settings dan gunakan pemilih workspace di bagian atas sidebar.
+  Untuk beralih antar workspace di Console, buka halaman yang termasuk dalam sebuah workspace, seperti [Files](https://platform.claude.com/files) (`platform.claude.com/files`), dan gunakan pemilih workspace di sidebar.
 </Tip>
 
 #### Mengedit detail workspace
@@ -110,14 +110,14 @@ Untuk mengubah nama atau warna workspace:
 
 #### Menambahkan anggota ke workspace
 
-1. Di Claude Console, buka halaman [Members](https://platform.claude.com/settings/members).
+1. Di Claude Console, buka halaman [Members](https://platform.claude.com/settings/members) (`platform.claude.com/settings/members`).
 2. Klik **Add to workspace**.
 3. Pilih workspace, anggota organisasi yang akan ditambahkan, dan [peran workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#workspace-roles-and-permissions) mereka.
 4. Klik **Add to workspace** untuk mengonfirmasi.
 
 #### Menghapus anggota dari workspace
 
-1. Di halaman [Members](https://platform.claude.com/settings/members), pilih workspace dari menu dropdown **Workspace**. Jika menu tersebut menampilkan **All**, **Remove member** justru akan menghapus anggota dari organisasi Anda.
+1. Di halaman [Members](https://platform.claude.com/settings/members) di Claude Console, pilih workspace dari menu dropdown **Workspace**. Jika menu tersebut menampilkan **All**, **Remove member** justru akan menghapus anggota tersebut dari organisasi Anda.
 2. Di ujung baris anggota, buka menu **More actions** (tiga titik) dan pilih **Remove member**.
 3. Klik **Remove** untuk mengonfirmasi.
 
@@ -129,8 +129,8 @@ Untuk mengubah nama atau warna workspace:
 
 Anda menetapkan batas laju dan batas pengeluaran workspace di tempat yang berbeda:
 
-* **Rate limits:** Di halaman [Rate limits](https://platform.claude.com/usage/limits), pilih workspace dari menu dropdown **Workspace** dan klik **Edit** di samping model untuk menetapkan batas permintaan per menit, token input, atau token output.
-* **Spend limits:** Pilih workspace di bawah [Settings > Workspaces](https://platform.claude.com/settings/workspaces). Di panel yang terbuka, klik **Spend limits** untuk membatasi pengeluaran bulanan dan mengonfigurasi peringatan ketika pengeluaran mencapai ambang batas tertentu.
+* **Rate limits:** Di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace** dan klik **Edit** di samping sebuah model untuk menetapkan batas permintaan per menit, token input, atau token output.
+* **Spend limits:** Di halaman [Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console, pilih workspace. Di panel yang terbuka, klik **Spend limits** untuk membatasi pengeluaran bulanan dan mengonfigurasi peringatan ketika pengeluaran mencapai ambang batas tertentu.
 
 #### Mengarsipkan workspace
 
@@ -1028,7 +1028,7 @@ Anda dapat menetapkan batas pengeluaran dan batas laju khusus untuk setiap works
 
 Anda dapat menetapkan batas workspace lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
 
-* **Spend limits:** Batasi pengeluaran bulanan untuk workspace. Untuk menetapkannya, pilih workspace di bawah [Settings > Workspaces](https://platform.claude.com/settings/workspaces) di Claude Console. Di panel yang terbuka, klik **Spend limits**.
+* **Spend limits:** Batasi pengeluaran bulanan untuk sebuah workspace. Untuk menetapkannya, buka halaman [Workspaces](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`) di Claude Console dan pilih workspace. Di panel yang terbuka, klik **Spend limits**.
 * **Rate limits:** Batasi permintaan per menit, token input per menit, atau token output per menit. Untuk menetapkannya, buka halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace**, dan klik **Edit** di samping model.
 
 <Note>

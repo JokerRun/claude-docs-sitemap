@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: bfe8d30bd3620bd735f959de8f927743acf595ada16f3d31ef655bae8cad7852
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 688033838934175549bd17bccd78cba284fa2ed5db71fadfeb473bbc3f5344e7
 ---
 
 ---
@@ -89,7 +89,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK,
   var message = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = "claude-opus-5-5",
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
           Betas = ["context-management-2025-06-27"],

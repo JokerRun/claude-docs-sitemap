@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 6c5589c5a7bb5ff0eda568da8c703ecbe6588c50429d928090588e68b38ea8e8
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 616bfa6abe39fb0916a7f5707f69ab52020e0f73abb4625e250c92bb658ed078
 ---
 
 ---
@@ -254,21 +254,21 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
   [
       new() { Role = Role.User, Content = "Hello, Claude" },
   ];
-  MessageCreateParams Request(string model) => new()
+  MessageCreateParams Request(Model model) => new()
   {
       Model = model,
       MaxTokens = 1024,
       Messages = requestMessages,
       Betas = [beta],
   };
-  var response = await client.Beta.Messages.Create(Request("claude-fable-5"));
+  var response = await client.Beta.Messages.Create(Request(Model.ClaudeFable5));
 
   if (
       response.StopReason == BetaStopReason.Refusal
       && response.StopDetails is { FallbackCreditToken: string token } details
   )
   {
-      var exactBody = Request("claude-opus-4-8") with { FallbackCreditToken = token };
+      var exactBody = Request(Model.ClaudeOpus4_8) with { FallbackCreditToken = token };
       var attempt = exactBody;
       // Utamakan bentuk kelanjutan kecuali klaimnya salah
       if (details.FallbackHasPrefillClaim is not false)
@@ -315,7 +315,7 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
               when (!retryError.Message.Contains("redemption temporarily unavailable"))
           {
               // Token itu sendiri ditolak: lepaskan dan coba lagi tanpanya.
-              response = await client.Beta.Messages.Create(Request("claude-opus-4-8"));
+              response = await client.Beta.Messages.Create(Request(Model.ClaudeOpus4_8));
           }
       }
   }

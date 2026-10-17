@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d051d66773154d2aa49b42d55f6203a2ea522af93487b9223de0c749f1a9064d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 590e4b9230fe12c012dd3875df0ca16f753e2408a0fd397e3134d6999d3cd453
 ---
 
 ---
@@ -159,7 +159,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       def get_completion(prompt: str):
           message = client.messages.create(
               model="claude-opus-5-5",
-              max_tokens=50,
+              max_tokens=1024,
               messages=[{"role": "user", "content": prompt}],
           )
           return next(block.text for block in message.content if block.type == "text")
@@ -171,7 +171,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       outputs = [
           get_completion(
-              f"Classify this as 'positive', 'negative', 'neutral', or 'mixed': {tweet['text']}"
+              f"Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: {tweet['text']}"
           )
           for tweet in tweets
       ]
@@ -202,7 +202,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       async function getCompletion(prompt: string): Promise<string> {
         const message = await client.messages.create({
           model: "claude-opus-5-5",
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [{ role: "user", content: prompt }]
         });
         const textBlock = message.content.find((block) => block.type === "text");
@@ -216,7 +216,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       let correctCount = 0;
       for (const tweet of tweets) {
         const output = await getCompletion(
-          `Classify this as 'positive', 'negative', 'neutral', or 'mixed': ${tweet.text}`
+          `Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: ${tweet.text}`
         );
         if (evaluateExactMatch(output, tweet.sentiment)) {
           correctCount++;
@@ -244,7 +244,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           var message = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
-              MaxTokens = 50,
+              MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = prompt }],
           });
           return ContentText(message);
@@ -272,7 +272,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       foreach (var tweet in tweets)
       {
           var output = await GetCompletion(
-              $"Classify this as 'positive', 'negative', 'neutral', or 'mixed': {tweet.Text}");
+              $"Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: {tweet.Text}");
           if (EvaluateExactMatch(output, tweet.Sentiment))
           {
               correct++;
@@ -314,7 +314,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       func getCompletion(prompt string) string {
       	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
-      		MaxTokens: 50,
+      		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
       		},
@@ -332,7 +332,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       func main() {
       	correct := 0
       	for _, item := range tweets {
-      		output := getCompletion("Classify this as 'positive', 'negative', 'neutral', or 'mixed': " + item.Text)
+      		output := getCompletion("Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: " + item.Text)
       		if evaluateExactMatch(output, item.Sentiment) {
       			correct++
       		}
@@ -367,7 +367,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       String getCompletion(String prompt) {
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(50L)
+              .maxTokens(1024L)
               .addUserMessage(prompt)
               .build();
           return contentText(client.messages().create(params));
@@ -381,7 +381,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           int correct = 0;
           for (var tweet : tweets) {
               var output = getCompletion(
-                  "Classify this as 'positive', 'negative', 'neutral', or 'mixed': " + tweet.text());
+                  "Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: " + tweet.text());
               if (evaluateExactMatch(output, tweet.sentiment())) {
                   correct++;
               }
@@ -407,7 +407,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       {
           $message = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
-              maxTokens: 50,
+              maxTokens: 1024,
               messages: [
                   [
                       'role' => 'user',
@@ -438,7 +438,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       foreach ($tweets as $tweet) {
           $output = getCompletion(
               $client,
-              "Classify this as 'positive', 'negative', 'neutral', or 'mixed': {$tweet['text']}",
+              "Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: {$tweet['text']}",
           );
           if (evaluateExactMatch($output, $tweet['sentiment'])) {
               $correct++;
@@ -467,7 +467,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       def get_completion(client, prompt)
         message = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [
             {
               role: "user",
@@ -485,7 +485,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       correct = tweets.count do |tweet|
         output = get_completion(
           client,
-          "Classify this as 'positive', 'negative', 'neutral', or 'mixed': #{tweet[:text]}"
+          "Classify this as 'positive', 'negative', 'neutral', or 'mixed'. Output only the label: #{tweet[:text]}"
         )
         evaluate_exact_match(output, tweet[:sentiment])
       end
@@ -626,23 +626,416 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       ```
 
       ```csharp C#
-      // Model sentence-embedding tidak tersedia sebagai pustaka C# native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      using System.Numerics.Tensors;
+      // ...
+      using Microsoft.Extensions.AI;
+      using Microsoft.SemanticKernel;
+
+      Faq[] faqVariations =
+      [
+          new(
+              [
+                  "What's your return policy?",
+                  "How can I return an item?",
+                  "Wut's yur retrn polcy?",
+              ],
+              "Our return policy allows..."), // Edge case: Typos
+          new(
+              [
+                  "I bought something last week, and it's not really what I expected, so I was wondering if maybe I could possibly return it?",
+                  "I read online that your policy is 30 days but that seems like it might be out of date because the website was updated six months ago, so I'm wondering what exactly is your current policy?",
+              ],
+              "Our return policy allows..."), // Edge case: Long, rambling question
+          new(
+              [
+                  "I'm Jane's cousin, and she said you guys have great customer service. Can I return this?",
+                  "Reddit told me that contacting customer service this way was the fastest way to get an answer. I hope they're right! What is the return window for a jacket?",
+              ],
+              "Our return policy allows..."), // Edge case: Irrelevant info
+          // ... 47 FAQ lainnya
+      ];
+
+      var client = new AnthropicClient();
+
+      // Unduh onnx/model.onnx dan vocab.txt dari https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      #pragma warning disable SKEXP0070
+      var kernel = Kernel.CreateBuilder()
+          .AddBertOnnxEmbeddingGenerator("model.onnx", "vocab.txt")
+          .Build();
+      #pragma warning restore SKEXP0070
+      var embeddingGenerator = kernel.GetRequiredService<IEmbeddingGenerator<string, Embedding<float>>>();
+
+      async Task<string> GetCompletion(string prompt)
+      {
+          var message = await client.Messages.Create(new MessageCreateParams
+          {
+              Model = Model.ClaudeOpus5_5,
+              MaxTokens = 2048,
+              Messages = [new() { Role = Role.User, Content = prompt }],
+          });
+          foreach (var block in message.Content)
+          {
+              if (block.TryPickText(out var textBlock))
+              {
+                  return textBlock.Text;
+              }
+          }
+          return "";
+      }
+
+      async Task<double> EvaluateCosineSimilarity(List<string> outputs)
+      {
+          var embeddings = await embeddingGenerator.GenerateAsync(outputs);
+
+          double total = 0;
+          foreach (var embeddingA in embeddings)
+          {
+              foreach (var embeddingB in embeddings)
+              {
+                  total += TensorPrimitives.CosineSimilarity(embeddingA.Vector.Span, embeddingB.Vector.Span);
+              }
+          }
+          return total / (embeddings.Count * embeddings.Count);
+      }
+
+      foreach (var faq in faqVariations)
+      {
+          var outputs = new List<string>();
+          foreach (var question in faq.Questions)
+          {
+              outputs.Add(await GetCompletion(question));
+          }
+          var similarityScore = await EvaluateCosineSimilarity(outputs);
+          Console.WriteLine($"FAQ Consistency Score: {similarityScore * 100}%");
+      }
+
+      record Faq(string[] Questions, string Answer);
       ```
 
       ```go Go
-      // Model sentence-embedding tidak tersedia sebagai library Go native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      import (
+      	"context"
+      	"fmt"
+      	"log"
+      	"math"
+
+      // ...
+      	"github.com/knights-analytics/hugot"
+      	"github.com/knights-analytics/hugot/pipelines"
+      )
+
+      var client = anthropic.NewClient()
+
+      type faq struct {
+      	Questions []string
+      	Answer    string
+      }
+
+      var faqVariations = []faq{
+      	{
+      		[]string{
+      			"What's your return policy?",
+      			"How can I return an item?",
+      			"Wut's yur retrn polcy?",
+      		},
+      		"Our return policy allows...",
+      	}, // Edge case: Typos
+      	{
+      		[]string{
+      			"I bought something last week, and it's not really what I expected, so I was wondering if maybe I could possibly return it?",
+      			"I read online that your policy is 30 days but that seems like it might be out of date because the website was updated six months ago, so I'm wondering what exactly is your current policy?",
+      		},
+      		"Our return policy allows...",
+      	}, // Edge case: Long, rambling question
+      	{
+      		[]string{
+      			"I'm Jane's cousin, and she said you guys have great customer service. Can I return this?",
+      			"Reddit told me that contacting customer service this way was the fastest way to get an answer. I hope they're right! What is the return window for a jacket?",
+      		},
+      		"Our return policy allows...",
+      	}, // Edge case: Irrelevant info
+      	// ... 47 FAQ lainnya
+      }
+
+      func getCompletion(prompt string) string {
+      	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+      		Model:     anthropic.ModelClaudeOpus5_5,
+      		MaxTokens: 2048,
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
+      		},
+      	})
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+      	for _, block := range message.Content {
+      		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+      			return textBlock.Text
+      		}
+      	}
+      	return ""
+      }
+
+      func cosineSimilarity(embeddingA, embeddingB []float32) float64 {
+      	var dot, normA, normB float64
+      	for i := range embeddingA {
+      		dot += float64(embeddingA[i] * embeddingB[i])
+      		normA += float64(embeddingA[i] * embeddingA[i])
+      		normB += float64(embeddingB[i] * embeddingB[i])
+      	}
+      	return dot / (math.Sqrt(normA) * math.Sqrt(normB))
+      }
+
+      func evaluateCosineSimilarity(embeddingPipeline *pipelines.FeatureExtractionPipeline, outputs []string) float64 {
+      	result, err := embeddingPipeline.RunPipeline(context.Background(), outputs)
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+
+      	total := 0.0
+      	for _, embeddingA := range result.Embeddings {
+      		for _, embeddingB := range result.Embeddings {
+      			total += cosineSimilarity(embeddingA, embeddingB)
+      		}
+      	}
+      	return total / float64(len(result.Embeddings)*len(result.Embeddings))
+      }
+
+      func main() {
+      	ctx := context.Background()
+      	session, err := hugot.NewGoSession(ctx)
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+      	defer session.Destroy()
+
+      	downloadOptions := hugot.NewDownloadOptions()
+      	downloadOptions.OnnxFilePath = "onnx/model.onnx"
+      	modelPath, err := hugot.DownloadModel(ctx, "sentence-transformers/all-MiniLM-L6-v2", "./models/", downloadOptions)
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+      	embeddingPipeline, err := hugot.NewPipeline(session, hugot.FeatureExtractionConfig{
+      		ModelPath: modelPath,
+      		Name:      "embeddingPipeline",
+      	})
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+
+      	for _, item := range faqVariations {
+      		var outputs []string
+      		for _, question := range item.Questions {
+      			outputs = append(outputs, getCompletion(question))
+      		}
+      		similarityScore := evaluateCosineSimilarity(embeddingPipeline, outputs)
+      		fmt.Printf("FAQ Consistency Score: %v%%\n", similarityScore*100)
+      	}
+      }
       ```
 
       ```java Java
-      // Model sentence-embedding tidak tersedia sebagai pustaka Java native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      import dev.langchain4j.data.segment.TextSegment;
+      import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
+      import dev.langchain4j.store.embedding.CosineSimilarity;
+      // ...
+
+      record Faq(List<String> questions, String answer) {}
+
+      List<Faq> faqVariations = List.of(
+          new Faq(
+              List.of(
+                  "What's your return policy?",
+                  "How can I return an item?",
+                  "Wut's yur retrn polcy?"),
+              "Our return policy allows..."), // Edge case: Typos
+          new Faq(
+              List.of(
+                  "I bought something last week, and it's not really what I expected, so I was wondering if maybe I could possibly return it?",
+                  "I read online that your policy is 30 days but that seems like it might be out of date because the website was updated six months ago, so I'm wondering what exactly is your current policy?"),
+              "Our return policy allows..."), // Edge case: Long, rambling question
+          new Faq(
+              List.of(
+                  "I'm Jane's cousin, and she said you guys have great customer service. Can I return this?",
+                  "Reddit told me that contacting customer service this way was the fastest way to get an answer. I hope they're right! What is the return window for a jacket?"),
+              "Our return policy allows...") // Edge case: Irrelevant info
+          // ... 47 FAQ lainnya
+      );
+
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      String getCompletion(String prompt) {
+          var params = MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(2048L)
+              .addUserMessage(prompt)
+              .build();
+          Message message = client.messages().create(params);
+          return message.content().stream()
+              .flatMap(block -> block.text().stream())
+              .map(textBlock -> textBlock.text())
+              .findFirst()
+              .orElse("");
+      }
+
+      double evaluateCosineSimilarity(List<String> outputs) {
+          var embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+          var segments = outputs.stream().map(TextSegment::from).toList();
+          var embeddings = embeddingModel.embedAll(segments).content();
+
+          double total = 0;
+          for (var embeddingA : embeddings) {
+              for (var embeddingB : embeddings) {
+                  total += CosineSimilarity.between(embeddingA, embeddingB);
+              }
+          }
+          return total / (embeddings.size() * embeddings.size());
+      }
+
+      void main() {
+          for (var faq : faqVariations) {
+              var outputs = faq.questions().stream().map(this::getCompletion).toList();
+              double similarityScore = evaluateCosineSimilarity(outputs);
+              IO.println("FAQ Consistency Score: " + similarityScore * 100 + "%");
+          }
+      }
       ```
 
       ```php PHP
-      // Model sentence-embedding tidak tersedia sebagai pustaka PHP native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      use function Codewithkyrian\Transformers\Pipelines\pipeline;
+
+      $client = new Client();
+
+      $faqVariations = [
+          [
+              'questions' => [
+                  "What's your return policy?",
+                  'How can I return an item?',
+                  "Wut's yur retrn polcy?",
+              ],
+              'answer' => 'Our return policy allows...',
+          ], // Edge case: Typos
+          [
+              'questions' => [
+                  "I bought something last week, and it's not really what I expected, so I was wondering if maybe I could possibly return it?",
+                  "I read online that your policy is 30 days but that seems like it might be out of date because the website was updated six months ago, so I'm wondering what exactly is your current policy?",
+              ],
+              'answer' => 'Our return policy allows...',
+          ], // Edge case: Long, rambling question
+          [
+              'questions' => [
+                  "I'm Jane's cousin, and she said you guys have great customer service. Can I return this?",
+                  "Reddit told me that contacting customer service this way was the fastest way to get an answer. I hope they're right! What is the return window for a jacket?",
+              ],
+              'answer' => 'Our return policy allows...',
+          ], // Edge case: Irrelevant info
+          // ... 47 FAQ lainnya
+      ];
+
+      function getCompletion(Client $client, string $prompt): string
+      {
+          $message = $client->messages->create(
+              model: Model::CLAUDE_OPUS_5_5,
+              maxTokens: 2048,
+              messages: [
+                  [
+                      'role' => 'user',
+                      'content' => $prompt,
+                  ],
+              ],
+          );
+          foreach ($message->content as $block) {
+              if ($block instanceof \Anthropic\Messages\TextBlock) {
+                  return $block->text;
+              }
+          }
+          return '';
+      }
+
+      function evaluateCosineSimilarity(array $outputs): float
+      {
+          $extractor = pipeline('embeddings', 'Xenova/all-MiniLM-L6-v2');
+          $embeddings = $extractor($outputs, normalize: true, pooling: 'mean');
+
+          $total = 0.0;
+          foreach ($embeddings as $embeddingA) {
+              foreach ($embeddings as $embeddingB) {
+                  // Vektor sudah dinormalisasi, jadi cosine similarity sama dengan dot product
+                  $total += array_sum(array_map(fn ($valueA, $valueB) => $valueA * $valueB, $embeddingA, $embeddingB));
+              }
+          }
+          return $total / count($embeddings) ** 2;
+      }
+
+      foreach ($faqVariations as $faq) {
+          $outputs = array_map(fn ($question) => getCompletion($client, $question), $faq['questions']);
+          $similarityScore = evaluateCosineSimilarity($outputs);
+          echo 'FAQ Consistency Score: ' . ($similarityScore * 100) . '%' . PHP_EOL;
+      }
       ```
 
       ```ruby Ruby
-      # Model sentence-embedding tidak tersedia sebagai library Ruby native. Lihat tab Python atau TypeScript untuk resep eval ini.
+      require "informers"
+
+      client = Anthropic::Client.new
+
+      faq_variations = [
+        {
+          questions: [
+            "What's your return policy?",
+            "How can I return an item?",
+            "Wut's yur retrn polcy?"
+          ],
+          answer: "Our return policy allows..."
+        }, # Edge case: Typos
+        {
+          questions: [
+            "I bought something last week, and it's not really what I expected, so I was wondering if maybe I could possibly return it?",
+            "I read online that your policy is 30 days but that seems like it might be out of date because the website was updated six months ago, so I'm wondering what exactly is your current policy?"
+          ],
+          answer: "Our return policy allows..."
+        }, # Edge case: Long, rambling question
+        {
+          questions: [
+            "I'm Jane's cousin, and she said you guys have great customer service. Can I return this?",
+            "Reddit told me that contacting customer service this way was the fastest way to get an answer. I hope they're right! What is the return window for a jacket?"
+          ],
+          answer: "Our return policy allows..."
+        } # Edge case: Irrelevant info
+        # ... 47 FAQ lainnya
+      ]
+
+      def get_completion(client, prompt)
+        message = client.messages.create(
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
+          max_tokens: 2048,
+          messages: [
+            {
+              role: "user",
+              content: prompt
+            }
+          ]
+        )
+        text_block = message.content.find { |block| block.is_a?(Anthropic::Models::TextBlock) }
+        text_block ? text_block.text : ""
+      end
+
+      def evaluate_cosine_similarity(outputs)
+        model = Informers.pipeline("embedding", "sentence-transformers/all-MiniLM-L6-v2")
+        embeddings = model.(outputs)
+
+        # Vektor sudah dinormalisasi, jadi cosine similarity sama dengan dot product
+        total = embeddings.sum do |embedding_a|
+          embeddings.sum { |embedding_b| embedding_a.zip(embedding_b).sum { |value_a, value_b| value_a * value_b } }
+        end
+        total / embeddings.length**2
+      end
+
+      faq_variations.each do |faq|
+        outputs = faq[:questions].map { |question| get_completion(client, question) }
+        similarity_score = evaluate_cosine_similarity(outputs)
+        puts "FAQ Consistency Score: #{similarity_score * 100}%"
+      end
       ```
     </CodeGroup>
   </Accordion>
@@ -750,7 +1143,9 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         }
         const lcs = lcsLengths[candidateWords.length][referenceWords.length];
 
-        if (lcs === 0) return 0;
+        if (lcs === 0) {
+          return 0;
+        }
         const precision = lcs / candidateWords.length;
         const recall = lcs / referenceWords.length;
         return (2 * precision * recall) / (precision + recall);
@@ -1217,7 +1612,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
-              max_tokens=50,
+              max_tokens=1024,
               messages=[{"role": "user", "content": tone_prompt}],
           )
           return int(
@@ -1275,7 +1670,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [{ role: "user", content: tonePrompt }]
         });
         const textBlock = response.content.find((block) => block.type === "text");
@@ -1337,7 +1732,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
-              MaxTokens = 50,
+              MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = tonePrompt }],
           });
           return int.Parse(ContentText(response).Trim());
@@ -1419,7 +1814,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
-      		MaxTokens: 50,
+      		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(tonePrompt)),
       		},
@@ -1488,7 +1883,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(50L)
+              .maxTokens(1024L)
               .addUserMessage(tonePrompt)
               .build();
           var judgment = contentText(client.messages().create(params));
@@ -1546,7 +1941,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
-              maxTokens: 50,
+              maxTokens: 1024,
               messages: [
                   [
                       'role' => 'user',
@@ -1556,7 +1951,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           );
           $scoreText = trim(contentText($response));
           if (filter_var($scoreText, FILTER_VALIDATE_INT) === false) {
-              throw new RuntimeException("Unexpected rating from grader: {$scoreText}");
+              throw new \RuntimeException("Unexpected rating from grader: {$scoreText}");
           }
           return (int) $scoreText;
       }
@@ -1623,7 +2018,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [
             {
               role: "user",
@@ -1697,7 +2092,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
-              max_tokens=50,
+              max_tokens=1024,
               messages=[{"role": "user", "content": binary_prompt}],
           )
           return (
@@ -1774,7 +2169,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [{ role: "user", content: binaryPrompt }]
         });
         const textBlock = response.content.find((block) => block.type === "text");
@@ -1843,7 +2238,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
-              MaxTokens = 50,
+              MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = binaryPrompt }],
           });
           return ContentText(response).Trim().ToLowerInvariant() == "no";
@@ -1939,7 +2334,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
-      		MaxTokens: 50,
+      		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(binaryPrompt)),
       		},
@@ -2016,7 +2411,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(50L)
+              .maxTokens(1024L)
               .addUserMessage(binaryPrompt)
               .build();
           var judgment = contentText(client.messages().create(params));
@@ -2087,7 +2482,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
-              maxTokens: 50,
+              maxTokens: 1024,
               messages: [
                   [
                       'role' => 'user',
@@ -2173,7 +2568,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         # Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [
             {
               role: "user",
@@ -2271,7 +2666,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
-              max_tokens=50,
+              max_tokens=1024,
               messages=[{"role": "user", "content": ordinal_prompt}],
           )
           return int(
@@ -2363,7 +2758,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [{ role: "user", content: ordinalPrompt }]
         });
         const textBlock = response.content.find((block) => block.type === "text");
@@ -2446,7 +2841,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
-              MaxTokens = 50,
+              MaxTokens = 1024,
               Messages = [new() { Role = Role.User, Content = ordinalPrompt }],
           });
           return int.Parse(ContentText(response).Trim());
@@ -2556,7 +2951,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       	// Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
-      		MaxTokens: 50,
+      		MaxTokens: 1024,
       		Messages: []anthropic.MessageParam{
       			anthropic.NewUserMessage(anthropic.NewTextBlock(ordinalPrompt)),
       		},
@@ -2645,7 +3040,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(50L)
+              .maxTokens(1024L)
               .addUserMessage(ordinalPrompt)
               .build();
           var judgment = contentText(client.messages().create(params));
@@ -2716,7 +3111,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
-              maxTokens: 50,
+              maxTokens: 1024,
               messages: [
                   [
                       'role' => 'user',
@@ -2726,7 +3121,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           );
           $scoreText = trim(contentText($response));
           if (filter_var($scoreText, FILTER_VALIDATE_INT) === false) {
-              throw new RuntimeException("Unexpected rating from grader: {$scoreText}");
+              throw new \RuntimeException("Unexpected rating from grader: {$scoreText}");
           }
           return (int) $scoreText;
       }
@@ -2803,7 +3198,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
         # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
-          max_tokens: 50,
+          max_tokens: 1024,
           messages: [
             {
               role: "user",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: b9e964c65103afcf3373785a21d3d1ea832f1105e3661d1b113fa9069979952d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 1fac70769f170ad493589bc00df3976aa70d8aa4b0b709925c2b28d33a8460eb
 ---
 
 ---
@@ -40,7 +40,7 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
 
 <Steps>
   <Step title="Buat aturan org:admin di Console">
-    Di Claude Console, buka **Settings → Workload identity** dan pilih **Connect workload** untuk membuat satu aturan federasi bagi workload otomatisasi Anda, misalnya alur kerja GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, setel OAuth scope aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
+    Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) dan pilih **Connect workload** untuk membuat satu aturan federasi bagi workload otomatisasi Anda, misalnya workflow GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, atur scope OAuth aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
 
     <Warning>
       Cocokkan aturan dengan satu identitas workload yang tepat, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali jika diakhiri dengan `*`. Untuk GitHub Actions, sematkan subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga cocok dengan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Membatasi alur kerja mana yang dapat melakukan autentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).

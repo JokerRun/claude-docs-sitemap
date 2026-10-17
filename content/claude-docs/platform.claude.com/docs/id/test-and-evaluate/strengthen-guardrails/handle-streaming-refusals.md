@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 42f42c88b98db1139523b7c453216adebffd170363d393df1828675e59be021d
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e27c4bc310ebca4195dda958725b51f245ce449bca1d8523addaf16fcec0c981
 ---
 
 ---
@@ -287,7 +287,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
               break;
           }
       }
-  } catch (Exception $e) {
+  } catch (\Exception $e) {
       echo "Error: " . $e->getMessage() . "\n";
   }
   ```

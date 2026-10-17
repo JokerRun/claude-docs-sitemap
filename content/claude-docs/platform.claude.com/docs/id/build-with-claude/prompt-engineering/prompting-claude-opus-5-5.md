@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ffe534484c92ad96e808f7d17e4db01eaf4ba146105f60b332af23900518d1b4
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: b47cb0dbe3418fdd5b0ca2221f3cb3bbb515a1ddeeb38b4e5a39eb802f401874
 ---
 
 ---
@@ -86,7 +86,7 @@ A standing instruction from the user, the person you are working for. It is abou
 Claude Opus 5.5 menjalankan classifier keamanan, termasuk untuk biologi, keamanan siber, dan ekstraksi penalaran.
 
 * **Biologi:** Safeguard biologi sama dengan milik Claude Fable 5.1 dan merupakan hal baru jika Anda beralih dari Claude Opus 5. Pertanyaan kesehatan sehari-hari dan pertanyaan edukatif tidak terpengaruh. Jika pengklasifikasi biologi menghambat pekerjaan ilmu hayati organisasi Anda, ajukan permohonan ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
-* **Keamanan siber:** Menemukan kerentanan dalam kode sumber diperbolehkan. Aktivitas keamanan siber dwiguna berisiko tinggi tidak diperbolehkan.
+* **Keamanan siber:** Menemukan kerentanan dalam kode sumber diperbolehkan. Aktivitas keamanan siber dwiguna berisiko tinggi tidak diperbolehkan. Jika pengklasifikasi keamanan siber menghambat pekerjaan keamanan yang sah di organisasi Anda, ajukan permohonan ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * **Ekstraksi penalaran:** Permintaan yang mendorong model untuk mereproduksi penalaran internalnya dalam teks respons dapat ditolak dengan kategori `reasoning_extraction`. Jika prompt Anda meminta model menuliskan penalarannya dalam respons, hapus instruksi tersebut, atur `display: "summarized"`, dan baca penalaran yang diringkas dari blok thinking sebagai gantinya; lihat [Prompt yang ditulis untuk thinking yang dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled). Anda masih dapat meminta penjelasan singkat tentang jawaban atau ringkasan tindakan yang diambil; lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 Penolakan oleh classifier tiba sebagai respons normal dengan `stop_reason: "refusal"` dan objek `stop_details` yang menyebutkan kategorinya. Anda dapat membuat permintaan dicoba ulang secara otomatis pada model fallback, kecuali untuk penolakan `reasoning_extraction`, yang dikembalikan kepada Anda oleh fallback sisi server alih-alih dicoba ulang; lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#refusals-and-fallback).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 08d6dc1fd9875839a266ab95505936e95f5d422e5f398067e395e51f9927b1cc
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: d76e893391cac1dd833db6f2452f881b76f74870c95545beaa8308343c1c7b98
 ---
 
 ---
@@ -11,8 +11,10 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek
 description: Enkripsi data workspace Claude saat istirahat dengan kunci yang Anda kendalikan.
 ---
 
-```bash Learn more with the /claude-api skill in Claude Code
-claude "/claude-api tell me about customer-managed encryption keys"
+Tanyakan kepada Claude Code tentang fitur ini
+
+```text
+/claude-api ceritakan kepada saya tentang kunci enkripsi yang dikelola pelanggan
 ```
 
 Kunci enkripsi yang dikelola pelanggan (customer-managed encryption key, atau CMEK) memungkinkan Anda menyediakan kunci enkripsi di [AWS KMS](https://aws.amazon.com/kms/), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), atau [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault) Anda sendiri dan meminta Anthropic menggunakannya untuk mengenkripsi data workspace tertentu saat istirahat. Anda mempertahankan kendali penuh atas kunci tersebut, termasuk rotasi, audit, dan pencabutan, dan operasi kunci yang dilakukan Anthropic terhadap kunci Anda dicatat dalam log audit penyedia cloud Anda.
@@ -75,7 +77,7 @@ Apa yang dicakup CMEK bergantung pada produk mana yang Anda gunakan.
 * Claude Code di CLI, termasuk konten pesan.
 * Cowork di Claude Desktop.
 * [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) Compliance API yang diambil dari sesi di mesin pengguna. Jika kunci Anda tidak dapat digunakan, endpoint messages mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable) alih-alih konten transkrip. Metadata sesi tetap dicantumkan.
-* Office agents.
+* Agen Office.
 * Claude in Chrome.
 * Claude Science, yang berstatus beta.
 
@@ -114,6 +116,9 @@ Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci And
 * Activity Feed, log audit, dan lalu lintas jaringan telemetri seperti OTEL, sehingga pelanggan dapat mempertahankan kepatuhan bahkan jika kunci dicabut.
 * Nilai [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) Claude Managed Agents, seperti token OAuth dan client secret. Ini disimpan di bawah enkripsi yang dikelola Anthropic, bersifat write-only, dan tidak pernah dikembalikan dalam respons API.
 * [Profil pengguna](https://platform.claude.com/docs/id/api/beta/user_profiles): field `name`, `external_id`, dan `metadata` disimpan di bawah enkripsi yang dikelola Anthropic, bukan kunci Anda. Jangan menyimpan data pribadi sensitif di `metadata` profil.
+* Penilaian dan komentar tentang Claude Console yang dikirim anggota melalui opsi **Feedback**. Tidak ada pengaturan yang menonaktifkannya; anggota hanya mengirimkannya jika mereka memilih untuk melakukannya.
+
+- Header permintaan [tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry#add-a-destination), seperti header kunci API dari backend observabilitas Anda. Header ini disimpan di bawah enkripsi yang dikelola Anthropic. Nilainya bersifat write-only dan tidak pernah dikembalikan dalam respons API.
 
 **Claude Enterprise**
 

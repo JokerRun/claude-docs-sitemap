@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 62482c6b21d48f8443da02604af3f33bcd9f2d7210edeeb245a57425bc61709b
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: de3f4780c9f8be17de2fbc4f7148c360f48ef0095419d9c828ac645652a3f0ac
 ---
 
 ---
@@ -733,26 +733,24 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -d @- <<EOF
-  {
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "messages": [{
-      "role": "user",
-      "content": [{
-        "type": "document",
-        "source": {
-          "type": "file",
-          "file_id": "$FILE_ID"
-        }
-      },
-      {
-        "type": "text",
-        "text": "What are the key findings in this document?"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [{
+        "role": "user",
+        "content": [{
+          "type": "document",
+          "source": {
+            "type": "file",
+            "file_id": "'"$FILE_ID"'"
+          }
+        },
+        {
+          "type": "text",
+          "text": "What are the key findings in this document?"
+        }]
       }]
-    }]
-  }
-  EOF
+    }'
   ```
 
   ```bash CLI

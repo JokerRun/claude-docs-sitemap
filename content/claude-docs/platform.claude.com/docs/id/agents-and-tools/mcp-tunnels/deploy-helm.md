@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: c6bbc9e18a3ae2ac73c6551dfd278893669f9b4ca55772118637a6ceb77647fd
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 81c14091da647dec8bcb7e092061c449c2d2f2db157f1712790d8ca7664ed1f8
 ---
 
 ---
@@ -192,7 +192,7 @@ Langkah-langkah Instal berikut ini mencatat di mana menambahkan route yang sesua
 
         Komponen setup berjalan sebagai Job pre-install hook Helm, sehingga `helm install` memblokir hingga selesai. Jika berhasil, Helm menghapus Job secara otomatis. Jika `helm install` gagal dengan error hook, lihat [Kegagalan autentikasi komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#setup-component-authentication-failures).
 
-        Ketika `tunnel.id` kosong, komponen setup membuat tunnel di workspace yang ditargetkan federation rule Anda (workspace default organisasi kecuali Anda mengatur `api.wif.workspaceId`) dan menyimpan ID serta domainnya di Secret `mcp-tunnel`. Temukan domain yang Anda perlukan untuk [verifikasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) di halaman detail tunnel di Console di bawah **Manage > MCP tunnels**, atau baca dari Secret:
+        Ketika `tunnel.id` kosong, komponen setup membuat tunnel di workspace yang ditargetkan oleh federation rule Anda (workspace default organisasi kecuali Anda mengatur `api.wif.workspaceId`) dan menyimpan ID serta domain-nya di Secret `mcp-tunnel`. Temukan domain yang Anda perlukan untuk [verifikasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#verify-the-deployment) di halaman detail tunnel, yang Anda buka dari halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`) di Console. Di pemilih workspace pada sidebar, pilih workspace yang berisi tunnel tersebut. Anda juga dapat membaca domain dari Secret:
 
         ```bash
         kubectl -n mcp-tunnel get secret mcp-tunnel \

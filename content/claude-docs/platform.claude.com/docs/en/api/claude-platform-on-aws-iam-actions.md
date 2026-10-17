@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: cdab47a48fba79d40feafd978d9b9e54306b337694bcf3119508aeb578c10264
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: e29881c03362174091787f54ca46375197161e7ed3e0a6c98a68a71bfe66b710
 ---
 
 ---
@@ -240,7 +240,7 @@ Actions follow the AWS `VerbNoun` convention and use verb discipline so that `Ge
 | `DisableKey`  | `DELETE /v1/organizations/external_keys/{id}` |
 
 <Note>
-  These actions manage your organization's [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#claude-platform-on-aws) registrations, the record of which AWS KMS key ARNs are registered. They do not create, change, or disable the keys in AWS KMS. `DisableKey` removes a registration and is rejected while any workspace still uses the key. `RegisterKey` and `DisableKey` are not matched by `Create*`, `Update*`, or `Delete*` wildcards; deny `RegisterKey`, `UpdateKey`, and `DisableKey` if you need to prevent any change to key registrations. In these routes, `{id}` is the URL-encoded KMS key ARN. Attaching a registered key to a workspace is a workspace operation, authorized by `CreateWorkspace` or `UpdateWorkspace`; the principal that attaches a key also needs `kms:DescribeKey`, `kms:Encrypt`, and `kms:Decrypt` on that key (see the [prerequisites](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#claude-platform-on-aws)). External key actions are account-scoped: specifying a workspace ARN on them has no effect; use `Resource: "*"`.
+  These actions manage your organization's [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/en/manage-claude/cmek-claude-platform-on-aws) registrations, the record of which AWS KMS key ARNs are registered. They do not create, change, or disable the keys in AWS KMS. `DisableKey` removes a registration and is rejected while any workspace still uses the key. `RegisterKey` and `DisableKey` are not matched by `Create*`, `Update*`, or `Delete*` wildcards; deny `RegisterKey`, `UpdateKey`, and `DisableKey` if you need to prevent any change to key registrations. In these routes, `{id}` is the URL-encoded KMS key ARN. Attaching a registered key to a workspace is a workspace operation, authorized by `CreateWorkspace` or `UpdateWorkspace`; the principal that attaches a key also needs `kms:DescribeKey`, `kms:Encrypt`, and `kms:Decrypt` on that key (see the [prerequisites](https://platform.claude.com/docs/en/manage-claude/cmek-claude-platform-on-aws#prerequisites)). External key actions are account-scoped: specifying a workspace ARN on them has no effect; use `Resource: "*"`.
 </Note>
 
 ### Compliance

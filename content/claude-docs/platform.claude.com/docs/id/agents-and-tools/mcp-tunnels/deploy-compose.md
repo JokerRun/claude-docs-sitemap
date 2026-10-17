@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 4acf6eb0497ec8d189b93ab0d2d566a354b31bdfb2ab29ee252e5325739b1baf
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: c77822070804b71baf42c7d5ee47f3b101c2437181235d1fe54b8aa8e0794309
 ---
 
 ---
@@ -25,7 +25,7 @@ Anda memerlukan:
 
 * **Cara bagi host untuk melakukan autentikasi ke Tunnels API.**
 
-  * **Akses programatik (direkomendasikan).** Aktifkan **Set up programmatic access** saat membuat tunnel (atau buat aturan federasi secara langsung di bawah **Settings > Workload identity** jika Anda membiarkan komponen setup membuat tunnel) sehingga komponen setup dapat melakukan autentikasi melalui Workload Identity Federation. Catat ID aturan federasi (`fdrl_...`) dan ID organisasi Anda.
+  * **Akses programatik (direkomendasikan).** Aktifkan **Set up programmatic access** saat membuat tunnel agar komponen setup dapat mengautentikasi melalui Workload Identity Federation. Jika Anda membiarkan komponen setup membuat tunnel, buat aturan federasi langsung di halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) di Claude Console sebagai gantinya. Catat ID aturan federasi (`fdrl_...`) dan ID organisasi Anda.
   * **Manual.** Lewati akses programatik. Anda akan [mendapatkan token tunnel dari Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), membuat CA dan sertifikat server sendiri, dan [mendaftarkan CA di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
 * **Host dengan Docker dan Docker Compose** terinstal. Alur manual juga memerlukan `openssl` (1.1.1 atau lebih baru).
@@ -295,7 +295,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         cat data/ca.crt
         ```
 
-        Status tunnel berubah menjadi **Active** setelah sertifikat didaftarkan. Lihat [Tambahkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
+        Badge **Needs certificate** di samping nama tunnel akan hilang setelah sertifikat didaftarkan. Lihat [Menambahkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
       </Step>
 
       <Step title="Tulis konfigurasi proxy">

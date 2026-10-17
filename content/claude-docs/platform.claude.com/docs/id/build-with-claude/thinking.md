@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 905d0a8f3cbe38a3207b752fbf6396c9c13ef6427a2ac3afe74363bff5648a21
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 95f08cb786eb0274719b09aae4f7e9edfd0be8bd5797327c7a8afe75ed78bf70
 ---
 
 ---
@@ -77,9 +77,9 @@ Pada sebagian besar model, pemikiran aktif secara default atau hanya berjarak sa
 
 Dalam tabel, "pada effort `high` atau lebih rendah" berarti permintaan berfungsi pada effort `low`, `medium`, dan `high` serta mengembalikan error 400 pada `xhigh` atau `max`.
 
-Pada Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Haiku 5.5, pemikiran sudah aktif dan tidak memerlukan konfigurasi. `display` secara default bernilai `"omitted"` pada model-model ini, sehingga teks pemikiran disembunyikan sampai Anda memilih untuk menampilkannya. Pilih untuk menampilkannya dengan `thinking: {"type": "adaptive", "display": "summarized"}`, yang persis sama dengan permintaan berikut dengan [string model](https://platform.claude.com/docs/id/models/overview) yang ditukar.
+Pada Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Haiku 5.5, pemikiran sudah aktif dan tidak memerlukan konfigurasi. `display` secara default bernilai `"omitted"` pada model-model ini, sehingga teks pemikiran disembunyikan sampai Anda memilih untuk menampilkannya. Pilih untuk menampilkannya dengan `thinking: {"type": "adaptive", "display": "summarized"}`, seperti yang dilakukan contoh-contoh berikut.
 
-Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, pemikiran nonaktif sampai Anda menetapkan `thinking: {type: "adaptive"}`, yang memungkinkan Claude menentukan kapan dan seberapa dalam berpikir berdasarkan permintaan. Contoh-contoh berikut melakukan hal tersebut, menetapkan `display: "summarized"` agar teks pemikiran terlihat, dan menggunakan `max_tokens` yang lapang:
+Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, pemikiran nonaktif sampai Anda menetapkan `thinking: {type: "adaptive"}`, yang memungkinkan Claude menentukan kapan dan seberapa dalam berpikir berdasarkan permintaan. Permintaan yang sama, dengan [string model](https://platform.claude.com/docs/id/models/overview) yang ditukar, akan mengaktifkannya di sana. Contoh-contoh berikut menetapkan `display: "summarized"` agar teks pemikiran terlihat, dan menggunakan `max_tokens` yang lapang:
 
 <CodeGroup>
   ```bash cURL
@@ -88,7 +88,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5-5",
       "max_tokens": 16000,
       "thinking": {
         "type": "adaptive",
@@ -105,7 +105,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5-5 \
     --max-tokens 16000 \
     --thinking '{type: adaptive, display: summarized}' \
     --message '{role: user, content: "What is the greatest common divisor of 1071 and 462?"}' \
@@ -117,7 +117,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   client = anthropic.Anthropic()
 
   response = client.messages.create(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive", "display": "summarized"},
       messages=[
@@ -140,7 +140,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   const client = new Anthropic();
 
   const response = await client.messages.create({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     thinking: {
       type: "adaptive",
@@ -171,7 +171,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
       Messages = [
@@ -201,7 +201,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{
@@ -233,7 +233,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(16000L)
           .thinking(ThinkingConfigAdaptive.builder()
               .display(ThinkingConfigAdaptive.Display.SUMMARIZED)
@@ -268,7 +268,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
               'content' => 'What is the greatest common divisor of 1071 and 462?'
           ]
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       thinking: ['type' => 'adaptive', 'display' => 'summarized'],
   );
 
@@ -288,7 +288,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     thinking: {
       type: "adaptive",
@@ -561,7 +561,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-opus-4-8",
+      "model": "claude-opus-5-5",
       "max_tokens": 16000,
       "stream": true,
       "thinking": {
@@ -579,7 +579,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-8 \
+    --model claude-opus-5-5 \
     --max-tokens 16000 \
     --thinking '{type: adaptive, display: summarized}' \
     --message '{role: user, content: "What is the greatest common divisor of 1071 and 462?"}' \
@@ -591,7 +591,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
   client = anthropic.Anthropic()
 
   with client.messages.stream(
-      model="claude-opus-4-8",
+      model="claude-opus-5-5",
       max_tokens=16000,
       thinking={"type": "adaptive", "display": "summarized"},
       messages=[
@@ -618,7 +618,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
   const client = new Anthropic();
 
   const stream = client.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     thinking: { type: "adaptive", display: "summarized" },
     messages: [{ role: "user", content: "What is the greatest common divisor of 1071 and 462?" }]
@@ -648,7 +648,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_8,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
       Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
@@ -678,7 +678,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
   client := anthropic.NewClient()
 
   stream := client.Messages.NewStreaming(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeOpus4_8,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{
@@ -716,7 +716,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(16000L)
           .thinking(ThinkingConfigAdaptive.builder()
               .display(ThinkingConfigAdaptive.Display.SUMMARIZED)
@@ -763,7 +763,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
       messages: [
           ['role' => 'user', 'content' => 'What is the greatest common divisor of 1071 and 462?']
       ],
-      model: 'claude-opus-4-8',
+      model: 'claude-opus-5-5',
       thinking: ['type' => 'adaptive', 'display' => 'summarized'],
   );
 
@@ -790,7 +790,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-4-8",
+    model: "claude-opus-5-5",
     max_tokens: 16000,
     # Hash biasa seperti ini menerima display:. Kelas bertipe ThinkingConfigAdaptive
     # menuliskannya display_ (garis bawah di akhir) agar tidak membayangi Kernel#display milik Ruby.
@@ -817,7 +817,7 @@ Untuk menyusun kembali blok pemikiran lengkap beserta signature-nya setelah stre
 <Accordion title="Jejak event streaming lengkap">
   ```sse Output
   event: message_start
-  data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-4-8", "stop_reason": null, "stop_sequence": null}}
+  data: {"type": "message_start", "message": {"id": "msg_01...", "type": "message", "role": "assistant", "content": [], "model": "claude-opus-5-5", "stop_reason": null, "stop_sequence": null}}
 
   event: content_block_start
   data: {"type": "content_block_start", "index": 0, "content_block": {"type": "thinking", "thinking": "", "signature": ""}}

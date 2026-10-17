@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8c8ed0bc932b08b997c5a59b62011f8eed138f7deb98cfc885a566591bdc0562
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 175f355d83cd1f33f5446c66b8118840414b9cb7ba6431ac946f6d1746259ee8
 ---
 
 ---
@@ -18,8 +18,10 @@ description: Beralih ke Claude Opus 5.5 dari model Opus sebelumnya atau Claude S
 <Tip>
   **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
 
-  ```text wrap
-  /claude-api migrate this project to claude-opus-5-5
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke claude-opus-5-5
   ```
 
   Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
@@ -316,7 +318,7 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhentilah setelah grup yang 
 * Hapus header beta jendela konteks apa pun.
 * Jika Anda membangun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan untuk mempertahankan hit cache prompt.
 * Pastikan penanganan stop reason Anda membaca `stop_details` pada penolakan.
-* Jika Anda menginginkan fast mode, yang ditolak oleh Claude Opus 4.7, atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` di Claude API.
+* Jika Anda menginginkan fast mode, yang ditolak oleh Claude Opus 4.7, atur `speed: "fast"` pada permintaan Claude API Anda. Claude Opus 5.5 tidak memerlukan header beta.
 
 ### Claude Opus 4.6 atau sebelumnya
 
@@ -1211,7 +1213,7 @@ Tidak satu pun dari item ini menambahkan perubahan yang merusak kompatibilitas d
 
 4. **Detail stop penolakan:** Ketika model menolak permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan stop reason `refusal`. Claude Opus 4.7 mengembalikan objek yang sama, jadi hal ini hanya penting jika penanganan stop reason Anda belum membacanya. Tidak diperlukan header beta, dan tidak ada opsi untuk menonaktifkannya. Jika penanganan stop reason Anda belum membacanya, lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Pengklasifikasi keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
 
-5. **Fast mode:** Claude Opus 5.5 mendukung [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (pratinjau riset) di Claude API. Fast mode tidak tersedia pada Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01`.
+5. **Fast mode:** Claude Opus 5.5 mendukung [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API. Fast mode tidak tersedia pada Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Atur `speed: "fast"` pada permintaan Anda. Claude Opus 5.5 tidak memerlukan header beta.
 
 6. **Toolset computer use dan alat browser use:** Di Claude API dan Google Cloud, Claude Opus 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) sebagai toolset `computer_toolset_20260801` dan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk tugas di dalam halaman web. Claude Opus 4.7 tidak mendukung keduanya. Di platform tersebut, Claude Opus 5.5 tidak menerima alat `computer_20251124` yang lebih lama; lihat [perubahan yang merusak kompatibilitas pada computer use](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 
@@ -1288,7 +1290,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
 
      var parameters = new MessageCreateParams
      {
-         Model = "claude-opus-4-6",
+         Model = Model.ClaudeOpus4_6,
          MaxTokens = 16000,
          Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
          Messages = [new() { Role = Role.User, Content = "..." }]
@@ -1302,7 +1304,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
      client := anthropic.NewClient()
 
      response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-     	Model:     "claude-opus-4-6",
+     	Model:     anthropic.ModelClaudeOpus4_6,
      	MaxTokens: 16000,
      	Thinking:  anthropic.ThinkingConfigParamOfEnabled(10000),
      	Messages: []anthropic.MessageParam{
@@ -1319,7 +1321,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
      MessageCreateParams params = MessageCreateParams.builder()
-         .model("claude-opus-4-6")
+         .model(Model.CLAUDE_OPUS_4_6)
          .maxTokens(16000L)
          .enabledThinking(10000L)
          .addUserMessage("...")
@@ -1425,7 +1427,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
 
      var parameters = new MessageCreateParams
      {
-         Model = "claude-opus-5-5",
+         Model = Model.ClaudeOpus5_5,
          MaxTokens = 16000,
          Thinking = new ThinkingConfigAdaptive(),
          OutputConfig = new OutputConfig { Effort = Effort.High }, // or Max, Xhigh, Medium, Low
@@ -1440,7 +1442,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
      client := anthropic.NewClient()
 
      response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-     	Model:     "claude-opus-5-5",
+     	Model:     anthropic.ModelClaudeOpus5_5,
      	MaxTokens: 16000,
      	Thinking: anthropic.ThinkingConfigParamUnion{
      		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
@@ -1462,7 +1464,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
      MessageCreateParams params = MessageCreateParams.builder()
-         .model("claude-opus-5-5")
+         .model(Model.CLAUDE_OPUS_5_5)
          .maxTokens(16000L)
          .thinking(ThinkingConfigAdaptive.builder().build())
          .outputConfig(OutputConfig.builder()

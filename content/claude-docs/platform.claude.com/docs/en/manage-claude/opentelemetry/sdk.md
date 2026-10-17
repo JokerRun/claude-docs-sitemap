@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: d50211c0b400bb726bb5db247002a6761cd89d5bd266f8be891432c1d8aaf6d5
+fetched_at: 2026-10-17T02:19:22.559852Z
+sha256: 48f9d2cfa96747bdfd7518ac87d747be70d7757bbc86c5c28375df9093c05c82
 ---
 
 ---
-title: Use OpenTelemetry with the Claude SDK
+title: Set up OpenTelemetry with the Claude SDK
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
 description: Trace each request that the Claude SDK sends and each tool that its tool runner runs, and send the spans to your observability platform.
 featureMetadata:
