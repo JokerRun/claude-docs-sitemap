@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 983b09d03886a2509b3ee5b4803d044b90b87f0c1acc7184a37b1a9799ad04c8
+fetched_at: 2026-10-18T02:19:17.998468Z
+sha256: 161f32ddfb83999d78645a2ca626b0fae7a4c513cb076d01d5cbe9be6c801442
 ---
 
 > ## Documentation Index
@@ -5823,7 +5823,7 @@ type SandboxFilesystemConfig = {
 | Property | Type | Default | Description |
 | :- | :- | :- | :- |
 | `allowWrite` | `string[]` | `[]` | File path patterns to allow write access to |
-| `denyWrite` | `string[]` | `[]` | File path patterns to deny write access to. To block sandboxed writes to a file in the session's working directory, list its absolute path. If you list `.env` or `./.env`, sandboxed commands can write to the `.env` file in the session's working directory |
+| `denyWrite` | `string[]` | `[]` | File path patterns to deny write access to. To block sandboxed writes to a file in the session's working directory, list its absolute path. |
 | `denyRead` | `string[]` | `[]` | File path patterns to deny read access to |
 
 ### Permissions Fallback for Unsandboxed Commands
