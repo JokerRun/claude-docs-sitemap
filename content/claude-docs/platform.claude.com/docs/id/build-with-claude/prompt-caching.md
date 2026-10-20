@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c83c776350d1c33c5b8fb900dd8130138b1ba9807a165653ccd0be0b3c554b82
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 3f49b408716cb6be76101654c6cc64247eb0e2bdd6801e7f4bd97a522019bcab
 ---
 
 ---
@@ -896,7 +896,7 @@ Anda akan dikenakan biaya untuk:
 Berikut tiga contoh. Ini menggambarkan token input dari 3 permintaan, yang masing-masing memiliki cache hit dan cache miss yang berbeda. Akibatnya, masing-masing memiliki perhitungan harga yang berbeda, yang ditunjukkan dalam kotak berwarna.
 
 <Frame>
-  ![Tiga permintaan dengan cache hit dan miss yang berbeda: A, B, dan C menandai tempat berakhirnya cache read (baca cache), 1-hour write (tulis 1 jam), dan 5-minute write (tulis 5 menit)](https://platform.claude.com/docs/images/prompt-cache-mixed-ttl.svg)
+  ![Tiga permintaan dengan cache hit dan miss yang berbeda: A, B, dan C menandai tempat berakhirnya cache read (baca cache), 1-hour write (tulis 1 jam), dan 5-minute write (tulis 5 menit)](https://platform.claude.com/docs/id/images/prompt-cache-mixed-ttl.svg)
 </Frame>
 
 ***

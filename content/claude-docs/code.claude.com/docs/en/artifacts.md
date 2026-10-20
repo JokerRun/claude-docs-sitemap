@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 286097f5602fe616465be22f1c0bbf3eb48296bd5d92e79d1184ed75cfb6918d
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 882fb46a691e0845569fe886d616e61d21eb5dfcfdc5164d99ff66c732257641
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ Update https://claude.ai/code/artifact/5fbea6f3-... with today's numbers.
 
 ## Find an artifact again
 
-Run `/artifacts` in Claude Code to list the artifacts you own and the ones shared with you. The current session's artifacts come first, under **This session**. Requires Claude Code v2.1.208 or later.
+Run `/artifacts` in Claude Code to list the artifacts you own and the ones shared with you. The current session's artifacts come first, under **This session**.
 
 Select an artifact, then press one of these keys:
 

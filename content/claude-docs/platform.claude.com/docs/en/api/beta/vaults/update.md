@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 7b05da14d0a31cc0fcc7e091a30c3a66583992cabc0ad08a41ecb6f0b0b6b2cf
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 16047bcfe9bd44320f093618e348f0c072c2bec8cac7c89b2e0a257b7a3d9aa3
 ---
 
 ---
-title: Update Vault
+title: Update a Vault
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
 ---
 
-# Update Vault
+# Update a Vault
 
 **POST** `/v1/vaults/{vault_id}`
 
-Update Vault
+Update a Vault
 
 ## Path parameters
 
@@ -166,7 +166,7 @@ Update Vault
 
   - `id: string`
 
-    Unique identifier for the vault.
+    The unique ID of the vault (`vlt_...`).
 
   - `archived_at: string or null`
 

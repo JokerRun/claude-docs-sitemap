@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-code/routines-fire
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 6911448bb1c9fbf2220f948f4a6a3e4f9f5f50eba2a02eee4340313bdc62557c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 28011d6b7dec9a4e0cadfc5706b0aa6086ef53f692df14e647aba4696744630d
 ---
 
 ---
@@ -27,7 +27,7 @@ The routine fire endpoint belongs to the Claude Code product surface, which diff
 
 | Aspect         | This endpoint                                                                                                                               | Claude Platform APIs                                                                            |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Authentication | `Authorization: Bearer` with a per-routine token (`sk-ant-oat01-...`) created at [claude.ai/code/routines](https://claude.ai/code/routines) | `x-api-key` with a Claude API key from Claude Console                                           |
+| Authentication | `Authorization: Bearer` with a per-routine token (`sk-ant-oat01-...`) created at [claude.ai/code/routines](https://claude.ai/code/routines) | A Claude API key from Claude Console, sent as `Authorization: Bearer`                           |
 | Token scope    | One routine only; no read access                                                                                                            | Workspace-level                                                                                 |
 | SDK support    | None                                                                                                                                        | Available in all [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) |
 | Billing        | Claude Code subscription usage on claude.ai                                                                                                 | Claude Platform usage                                                                           |

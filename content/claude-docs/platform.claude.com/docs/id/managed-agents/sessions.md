@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 20c1732d100675ce1b8968f9cc6e5e40ab962749bc3f7e0f2de4011202c12890
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: f39fdc0682ff17364df23888fba07e84af9dcdf25bae3796ee39a233018226aa
 ---
 
 ---
@@ -200,7 +200,7 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
 
 <CodeGroup>
   ```bash cURL
-  seeded_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -215,23 +215,10 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
         }
       ]
     }'
-  )
-  SEEDED_SESSION_ID=$(jq -r '.id' <<< "$seeded_session")
-
-  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
-  # event sesi untuk melihat pesan yang di-seed.
-  seeded_events=$(curl -fsSL \
-    "https://api.anthropic.com/v1/sessions/$SEEDED_SESSION_ID/events" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-  echo "Seeded event: $(jq -r \
-    '.data[] | select(.type == "user.message") | .content[0].text' <<< "$seeded_events")"
   ```
 
   ```bash CLI
-  SEEDED_SESSION_ID=$(ant beta:sessions create \
-    --transform id --raw-output <<YAML
+  ant beta:sessions create <<YAML
   agent: $AGENT_ID
   environment_id: $ENVIRONMENT_ID
   initial_events:
@@ -240,14 +227,6 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
         - type: text
           text: List the files in the working directory.
   YAML
-  )
-
-  # initial_events tidak ikut dikembalikan pada respons create; tampilkan daftar
-  # event sesi untuk melihat pesan yang di-seed.
-  echo "Seeded event: $(ant beta:sessions:events list \
-    --session-id "$SEEDED_SESSION_ID" \
-    --format raw \
-    --transform 'data.#(type=="user.message").content.0.text' --raw-output)"
   ```
 
   ```python Python
@@ -498,8 +477,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```
 
   ```bash CLI
-  # `agent` pada respons adalah snapshot hasil resolusi: setiap override mengganti
-  # field tersebut hanya untuk sesi ini, dan resource agen tetap menyimpan id dan versinya.
+  # The response's `agent` is the resolved snapshot: each override replaces that
+  # field for this session only, and the agent resource keeps its id and version.
   ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
@@ -646,8 +625,8 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
 
 <CodeGroup>
   ```bash cURL
-  # Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  # Replaces the whole model object of the agent: restate id, add inference_geo to pin.
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -660,13 +639,11 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
       },
       "environment_id": "'"$ENVIRONMENT_ID"'"
     }'
-  )
-  echo "Inference geo: $(jq -r '.agent.model.inference_geo' <<< "$session")"
   ```
 
   ```bash CLI
-  # Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
-  session=$(ant beta:sessions create <<YAML
+  # Replaces the whole model object of the agent: restate id, add inference_geo to pin.
+  ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
     id: $AGENT_ID
@@ -675,8 +652,6 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
       inference_geo: us
   environment_id: $ENVIRONMENT_ID
   YAML
-  )
-  echo "Inference geo: $(jq -r '.agent.model.inference_geo' <<< "$session")"
   ```
 
   ```python Python

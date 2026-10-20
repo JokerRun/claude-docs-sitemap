@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5220edbfc9c9e9ffa32bc4a07e390dbdeec8d8750d753be6dde28f908ab0ab70
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 534127ce70780019a05ed7d34150a48688578eecbfb3d63c53fcdec3fa3efb95
 ---
 
 ---
@@ -68,7 +68,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
   ```typescript TypeScript
   const vault = await client.beta.vaults.create({
     display_name: "Alice",
-    metadata: { external_user_id: "usr_abc123" },
+    metadata: { external_user_id: "usr_abc123" }
   });
   console.log(vault.id); // "vlt_01ABC..."
   ```
@@ -220,7 +220,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
                   "client_id": "1234567890.0987654321",
                   "scope": "channels:read chat:write",
                   "refresh_token": "xoxe-1-...",
-                  "token_endpoint_auth": {"type": "client_secret_post", "client_secret": "abc123..."},
+                  "token_endpoint_auth": {
+                      "type": "client_secret_post",
+                      "client_secret": "abc123...",
+                  },
               },
           },
       )
@@ -241,10 +244,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
             refresh_token: "xoxe-1-...",
             token_endpoint_auth: {
               type: "client_secret_post",
-              client_secret: "abc123...",
-            },
-          },
-        },
+              client_secret: "abc123..."
+            }
+          }
+        }
       });
       ```
 
@@ -423,8 +426,8 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
         auth: {
           type: "static_bearer",
           mcp_server_url: "https://mcp.linear.app/mcp",
-          token: "lin_api_your_linear_key",
-        },
+          token: "lin_api_your_linear_key"
+        }
       });
       ```
 
@@ -565,7 +568,9 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       )
       if env_credential.auth.type == "environment_variable":
           location = env_credential.auth.injection_location
-          print(f"header: {location.header}, body: {location.body}")  # header: True, body: False
+          print(
+              f"header: {location.header}, body: {location.body}"
+          )  # header: True, body: False
       ```
 
       ```typescript TypeScript
@@ -577,10 +582,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           secret_value: "ntn_your-secret-here",
           networking: {
             type: "limited",
-            allowed_hosts: ["api.notion.com"],
+            allowed_hosts: ["api.notion.com"]
           },
-          injection_location: { header: true },
-        },
+          injection_location: { header: true }
+        }
       });
       if (envVarCredential.auth.type === "environment_variable") {
         console.log(envVarCredential.auth.injection_location); // { header: true, body: false }
@@ -782,7 +787,7 @@ Teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go:
     agent: agent.id,
     environment_id: environment.id,
     vault_ids: [vault.id],
-    title: "Alice's Slack digest",
+    title: "Alice's Slack digest"
   });
   ```
 
@@ -856,7 +861,7 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF' > /dev/null
+    -d @- <<'EOF'
   {
     "auth": {
       "type": "mcp_oauth",
@@ -902,9 +907,9 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       access_token: "xoxp-new-...",
       expires_at: "2099-12-31T23:59:59Z",
       refresh: {
-        refresh_token: "xoxe-1-new-...",
-      },
-    },
+        refresh_token: "xoxe-1-new-..."
+      }
+    }
   });
   ```
 
@@ -1037,10 +1042,9 @@ Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/cr
   ```
 
   ```typescript TypeScript
-  const validation = await client.beta.vaults.credentials.mcpOAuthValidate(
-    credential.id,
-    { vault_id: vault.id },
-  );
+  const validation = await client.beta.vaults.credentials.mcpOAuthValidate(credential.id, {
+    vault_id: vault.id
+  });
   console.log(validation.status); // "valid", "invalid", or "unknown"
   ```
 

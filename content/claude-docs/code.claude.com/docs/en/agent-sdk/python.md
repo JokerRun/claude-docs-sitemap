@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-18T02:19:17.998468Z
-sha256: 7744dc715d2c85a2eb47b0c78062e98d04efaf8114ccb9d6d3522c2b70252eb4
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: a61d932b61854426420d5f7a24a74290088dc02b66b043c81884b043e62ffdd4
 ---
 
 > ## Documentation Index
@@ -942,7 +942,7 @@ options = ClaudeAgentOptions(
 )
 ```
 
-* `API_TIMEOUT_MS`: per-request timeout on the Anthropic client, in milliseconds. Default `600000`. Applies to the main loop and all subagents.
+* [`API_TIMEOUT_MS`](/docs/en/env-vars): how long each request attempt can wait for response headers, in milliseconds. It doesn't limit how long a streaming response runs after the headers arrive. Default `600000`. Applies to the main loop and all subagents.
 * `CLAUDE_CODE_MAX_RETRIES`: maximum API retries. Default `10`, capped at `15`. Each retry gets its own `API_TIMEOUT_MS` window.
 
   For unattended runs that need to wait through longer outages, set [`CLAUDE_CODE_RETRY_WATCHDOG=1`](/docs/en/errors#tune-retry-behavior): it retries transient capacity errors indefinitely and, on Claude Code v2.1.199 or later, raises the default for other transient errors to `300` and removes the cap on this variable.

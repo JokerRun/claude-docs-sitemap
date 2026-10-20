@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 487a0d21ee4977d8c8792b1afee820f3692b14c647ab5eb4261c4186bf81fab3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 4489523c14d525acf3804d93de8fc2a6fa03b5ff660a52c4fed203ead74b422a
 ---
 
 ---
@@ -285,48 +285,23 @@ A `page` cursor is opaque and encodes the `order` of the request that produced i
 
 <CodeGroup>
   ```bash cURL
-  first_page=$(curl -sS --fail-with-body \
+  curl -sS --fail-with-body \
     "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-  jq '{prev_page, next_page}' <<< "$first_page"  # prev_page is null on the first page
-
-  next_cursor=$(jq -r '.next_page' <<< "$first_page")
-  second_page=$(curl -sS --fail-with-body \
-    "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1&page=$next_cursor" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-
-  prev_cursor=$(jq -r '.prev_page' <<< "$second_page")
-  curl -sS --fail-with-body \
-    "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1&page=$prev_cursor" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    | jq '{prev_page, next_page}'
+    -H "anthropic-beta: managed-agents-2026-04-01"
+  # Pass next_page back as the page query parameter to fetch the next page,
+  # or prev_page to go back.
   ```
 
   ```bash CLI
   # --format raw returns one page envelope with its prev_page and next_page
   # cursors; the default output auto-paginates and emits only the sessions.
-  cursors=$(ant beta:sessions list \
-    --agent-id "$AGENT_ID" \
-    --limit 1 \
-    --format raw \
-    --transform '{prev_page,next_page}')
-  printf '%s\n' "$cursors"
-
-  # Pass the next_page cursor back as --page to fetch the next page.
-  NEXT_PAGE=$(jq -r '.next_page' <<< "$cursors")
   ant beta:sessions list \
     --agent-id "$AGENT_ID" \
     --limit 1 \
-    --page "$NEXT_PAGE" \
-    --format raw \
-    --transform '{prev_page,next_page}'
-  # Pass that response's prev_page as --page to go back the same way.
+    --format raw
+  # Pass next_page back as --page to fetch the next page, or prev_page to go back.
   ```
 
   ```python Python

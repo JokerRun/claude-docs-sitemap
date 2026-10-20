@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 4436e05595a04c62e152824cc10936b7480735e18da5b865e5ad38f26cba297c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 8b78b2e21cf4132b0bbaba1a476d1e9367c31f3834e33475a22fa04c770306df
 ---
 
 ---
-title: Get Vault
+title: Retrieve a Vault
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
 ---
 
-# Get Vault
+# Retrieve a Vault
 
 **GET** `/v1/vaults/{vault_id}`
 
-Get Vault
+Retrieve a Vault
 
 ## Path parameters
 
@@ -154,7 +154,7 @@ Get Vault
 
   - `id: string`
 
-    Unique identifier for the vault.
+    The unique ID of the vault (`vlt_...`).
 
   - `archived_at: string or null`
 

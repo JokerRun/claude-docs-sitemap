@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 590e4b9230fe12c012dd3875df0ca16f753e2408a0fd397e3134d6999d3cd453
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 932edeb5b8abf10b21797aebbe2ec1b560ab2e2f2c10a47ca14ef09dd3dfc594
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Tentukan kriteria keberhasilan yang terukur untuk aplikasi LLM Anda
 Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari "prompt engineering" (rekayasa prompt).
 
 <Frame>
-  ![Diagram alir prompt engineering (rekayasa prompt): test cases (kasus uji), preliminary prompt (prompt awal), iterative testing and refinement (pengujian dan penyempurnaan iteratif), final validation (validasi akhir), ship (rilis)](https://platform.claude.com/docs/images/how-to-prompt-eng.svg)
+  ![Diagram alir prompt engineering (rekayasa prompt): test cases (kasus uji), preliminary prompt (prompt awal), iterative testing and refinement (pengujian dan penyempurnaan iteratif), final validation (validasi akhir), ship (rilis)](https://platform.claude.com/docs/id/images/how-to-prompt-eng.svg)
 </Frame>
 
 ## Tentukan kriteria keberhasilan Anda

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e188716f5f9b29a1a5194f2797249c83c9e301bec788689937784b91fc5b9b51
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 8da5354fc2d49099abb60710eb5c23982925279c9004bacb8885585f62b91814
 ---
 
 ---
@@ -276,9 +276,13 @@ The Models API response can be used to determine information about a specific mo
 
           Whether the model accepts thinking with type 'adaptive' (the model decides whether and how much to think).
 
+        - `between_tools: CapabilitySupport`
+
+          Whether the model accepts thinking with type 'between_tools' (thinking turned off, and any short progress updates the model writes between tool calls come back as thinking blocks). False exactly when a request that sends it gets a 400 from this model. A request that sends 'between_tools' can still be rejected for another reason, such as an effort level the model does not allow with thinking off.
+
         - `disabled: CapabilitySupport`
 
-          Whether the model accepts thinking with type 'disabled' (thinking turned off). False exactly when a request that sends it gets a 400 from this model. True on a model that does not support thinking.
+          Whether the model accepts thinking with type 'disabled' (thinking turned off). False exactly when a request that sends it gets a 400 from this model. True on a model that does not support thinking. A request that sends 'disabled' can still be rejected for another reason, such as an effort level the model does not allow with thinking off.
 
         - `enabled: CapabilitySupport`
 
@@ -419,6 +423,9 @@ curl https://api.anthropic.com/v1/models/$MODEL_ID \
       "supported": true,
       "types": {
         "adaptive": {
+          "supported": true
+        },
+        "between_tools": {
           "supported": true
         },
         "disabled": {

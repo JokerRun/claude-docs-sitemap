@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 241474e01d61b916c2ddfad6e8809b5488f71f27f6613fe4d318f9505a0c8488
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b3ddc571abf94de5a6ecfdefaea7f89827f49831f336234456c93515d8d8f223
 ---
 
 ---
@@ -106,19 +106,19 @@ The cursor parameter sets the page direction; the endpoint's sort order sets the
 </Note>
 
 ```bash cURL
-# Fetch the first page (newest activities first) and capture its trailing cursor.
-last_id=$(curl --fail-with-body -sS \
+# Fetch the first page (newest activities first).
+curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=2" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" | jq -er '.last_id')
+  --header "anthropic-version: 2023-06-01"
 
-# Pass the cursor back unchanged to fetch the next (older) page.
+# LAST_ID is the last_id from the first response. Pass it back unchanged to fetch the next (older) page.
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=2" \
-  --data-urlencode "after_id=${last_id}"
+  --data-urlencode "after_id=$LAST_ID"
 ```
 
 A production **backfill** loop pages through older activities by driving iteration off `has_more` and `last_id`:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5e4c573983f33fab5c8085de0d665f92adf4c13db477fae0f3c20910fcf32e52
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c24ebfc1b9e3e7dc1c7f20e81832b9475a6df945d1490bd0a4cb2c2bad939d58
 ---
 
 ---
@@ -28,194 +28,18 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
 <CodeGroup>
   ```bash cURL
   #!/bin/bash
-  # Ring 1: Satu alat, satu giliran.
+  # Ring 1: Single tool, single turn.
 
-  # Definisikan satu alat sebagai fragmen JSON. input_schema adalah objek
-  # JSON Schema yang mendeskripsikan argumen yang harus Claude berikan saat
-  # memanggil alat ini. Skema ini mencakup objek bersarang (recurrence),
-  # array (attendees), dan field opsional, yang lebih mendekati alat di
-  # dunia nyata dibandingkan argumen string datar.
-  TOOLS='[
-    {
-      "name": "create_calendar_event",
-      "description": "Create a calendar event with attendees and optional recurrence.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "title": {"type": "string"},
-          "start": {"type": "string", "format": "date-time"},
-          "end": {"type": "string", "format": "date-time"},
-          "attendees": {
-            "type": "array",
-            "items": {"type": "string", "format": "email"}
-          },
-          "recurrence": {
-            "type": "object",
-            "properties": {
-              "frequency": {"enum": ["daily", "weekly", "monthly"]},
-              "count": {"type": "integer", "minimum": 1}
-            }
-          }
-        },
-        "required": ["title", "start", "end"]
-      }
-    }
-  ]'
-
-  USER_MSG="Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
-
-  # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-  # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
-  RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d "$(jq -n \
-      --argjson tools "$TOOLS" \
-      --arg msg "$USER_MSG" \
-      '{
-        model: "claude-opus-5-5",
-        max_tokens: 1024,
-        tools: $tools,
-        tool_choice: {type: "auto", disable_parallel_tool_use: true},
-        messages: [{role: "user", content: $msg}]
-      }')")
-
-  # Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
-  # dan array content berisi blok tool_use di samping teks apa pun.
-  echo "stop_reason: $(echo "$RESPONSE" | jq -r '.stop_reason')"
-
-  # Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  # tool_use, jadi filter berdasarkan tipe alih-alih mengasumsikan posisi.
-  TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
-  TOOL_USE_ID=$(echo "$TOOL_USE" | jq -r '.id')
-  echo "Tool: $(echo "$TOOL_USE" | jq -r '.name')"
-  echo "Input: $(echo "$TOOL_USE" | jq -c '.input')"
-
-  # Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
-  # Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
-  RESULT='{"event_id": "evt_123", "status": "created"}'
-
-  # Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
-  # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas.
-  # Respons asisten sebelumnya disertakan agar Claude punya riwayat lengkap.
-  ASSISTANT_CONTENT=$(echo "$RESPONSE" | jq '.content')
-  FOLLOWUP=$(curl -s https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d "$(jq -n \
-      --argjson tools "$TOOLS" \
-      --arg msg "$USER_MSG" \
-      --argjson assistant "$ASSISTANT_CONTENT" \
-      --arg tool_use_id "$TOOL_USE_ID" \
-      --arg result "$RESULT" \
-      '{
-        model: "claude-opus-5-5",
-        max_tokens: 1024,
-        tools: $tools,
-        tool_choice: {type: "auto", disable_parallel_tool_use: true},
-        messages: [
-          {role: "user", content: $msg},
-          {role: "assistant", content: $assistant},
-          {role: "user", content: [
-            {type: "tool_result", tool_use_id: $tool_use_id, content: $result}
-          ]}
-        ]
-      }')")
-
-  # Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
-  # bahasa alami dan stop_reason menjadi "end_turn".
-  echo "stop_reason: $(echo "$FOLLOWUP" | jq -r '.stop_reason')"
-  echo "$FOLLOWUP" | jq -r '.content[] | select(.type == "text") | .text'
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```bash CLI
   #!/usr/bin/env bash
-  # Ring 1: Satu alat, satu giliran.
-  # Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
-  set -euo pipefail
+  # Ring 1: Single tool, single turn.
 
-  USER_MSG="Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
-  MESSAGES=$(jq -n --arg msg "$USER_MSG" '[{role: "user", content: $msg}]')
-
-  # Definisikan satu alat. input_schema adalah objek JSON Schema yang mendeskripsikan
-  # argumen yang harus diteruskan Claude saat memanggil alat ini. Skema ini
-  # mencakup objek bersarang (recurrence), array (attendees), dan field
-  # opsional, yang lebih mendekati alat dunia nyata daripada argumen string datar.
-  call_api() {
-    # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
-    # amplop JSON buatan tangan. Kunci statis (model, tools, tool_choice)
-    # berada di heredoc yang dikutip; array messages yang terus bertambah ditambahkan sebagai
-    # JSON, yang diterima YAML sebagai sintaks flow.
-    {
-      cat <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 1024
-  tool_choice: {type: auto, disable_parallel_tool_use: true}
-  tools:
-    - name: create_calendar_event
-      description: Create a calendar event with attendees and optional recurrence.
-      input_schema:
-        type: object
-        properties:
-          title: {type: string}
-          start: {type: string, format: date-time}
-          end: {type: string, format: date-time}
-          attendees:
-            type: array
-            items: {type: string, format: email}
-          recurrence:
-            type: object
-            properties:
-              frequency: {enum: [daily, weekly, monthly]}
-              count: {type: integer, minimum: 1}
-        required: [title, start, end]
-  YAML
-      printf 'messages: %s\n' "$MESSAGES"
-    } | ant messages create --format json
-  }
-
-  # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-  # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
-  RESPONSE=$(call_api)
-
-  # Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
-  # dan array content berisi blok tool_use di samping teks apa pun.
-  echo "stop_reason: $(jq -r '.stop_reason' <<<"$RESPONSE")"
-
-  # Temukan blok tool_use. Respons mungkin berisi blok teks sebelum
-  # blok tool_use, jadi filter berdasarkan tipe alih-alih mengasumsikan posisi.
-  TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
-  TOOL_USE_ID=$(jq -r '.id' <<<"$TOOL_USE")
-  echo "Tool: $(jq -r '.name' <<<"$TOOL_USE")"
-  echo "Input: $(jq -c '.input' <<<"$TOOL_USE")"
-
-  # Jalankan alat. Di sistem nyata ini akan memanggil API kalender Anda.
-  # Di sini hasilnya di-hardcode agar contoh tetap mandiri.
-  RESULT='{"event_id": "evt_123", "status": "created"}'
-
-  # Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
-  # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  # asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
-  MESSAGES=$(jq \
-    --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
-    --arg tool_use_id "$TOOL_USE_ID" \
-    --arg result "$RESULT" \
-    '. + [
-      {role: "assistant", content: $assistant},
-      {role: "user", content: [
-        {type: "tool_result", tool_use_id: $tool_use_id, content: $result}
-      ]}
-    ]' <<<"$MESSAGES")
-
-  FOLLOWUP=$(call_api)
-
-  # Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-  # alami dan stop_reason menjadi "end_turn".
-  echo "stop_reason: $(jq -r '.stop_reason' <<<"$FOLLOWUP")"
-  jq -r '.content[] | select(.type == "text") | .text' <<<"$FOLLOWUP"
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```python Python
@@ -337,8 +161,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   const tools: Anthropic.Tool[] = [
     {
       name: "create_calendar_event",
-      description:
-        "Create a calendar event with attendees and optional recurrence.",
+      description: "Create a calendar event with attendees and optional recurrence.",
       input_schema: {
         type: "object",
         properties: {
@@ -347,19 +170,19 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
           end: { type: "string", format: "date-time" },
           attendees: {
             type: "array",
-            items: { type: "string", format: "email" },
+            items: { type: "string", format: "email" }
           },
           recurrence: {
             type: "object",
             properties: {
               frequency: { enum: ["daily", "weekly", "monthly"] },
-              count: { type: "integer", minimum: 1 },
-            },
-          },
+              count: { type: "integer", minimum: 1 }
+            }
+          }
         },
-        required: ["title", "start", "end"],
-      },
-    },
+        required: ["title", "start", "end"]
+      }
+    }
   ];
 
   // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
@@ -373,9 +196,9 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       {
         role: "user",
         content:
-          "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.",
-      },
-    ],
+          "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
+      }
+    ]
   });
 
   // Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
@@ -384,9 +207,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
 
   // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
   // tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
-  const toolUse = response.content.find(
-    (block): block is Anthropic.ToolUseBlock => block.type === "tool_use",
-  )!;
+  const toolUse = response.content.find((block) => block.type === "tool_use")!;
   console.log(`Tool: ${toolUse.name}`);
   console.log(`Input: ${JSON.stringify(toolUse.input)}`);
 
@@ -406,7 +227,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       {
         role: "user",
         content:
-          "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.",
+          "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
       },
       { role: "assistant", content: response.content },
       {
@@ -415,11 +236,11 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
           {
             type: "tool_result",
             tool_use_id: toolUse.id,
-            content: JSON.stringify(result),
-          },
-        ],
-      },
-    ],
+            content: JSON.stringify(result)
+          }
+        ]
+      }
+    ]
   });
 
   // Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
@@ -1039,163 +860,18 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 <CodeGroup>
   ```bash cURL
   #!/bin/bash
-  # Ring 2: Loop agentik.
+  # Ring 2: The agentic loop.
 
-  TOOLS='[
-    {
-      "name": "create_calendar_event",
-      "description": "Create a calendar event with attendees and optional recurrence.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "title": {"type": "string"},
-          "start": {"type": "string", "format": "date-time"},
-          "end": {"type": "string", "format": "date-time"},
-          "attendees": {"type": "array", "items": {"type": "string", "format": "email"}},
-          "recurrence": {
-            "type": "object",
-            "properties": {
-              "frequency": {"enum": ["daily", "weekly", "monthly"]},
-              "count": {"type": "integer", "minimum": 1}
-            }
-          }
-        },
-        "required": ["title", "start", "end"]
-      }
-    }
-  ]'
-
-  run_tool() {
-    local name="$1"
-    local input="$2"
-    if [ "$name" = "create_calendar_event" ]; then
-      local title=$(echo "$input" | jq -r '.title')
-      jq -n --arg title "$title" '{event_id: "evt_123", status: "created", title: $title}'
-    else
-      echo "{\"error\": \"Unknown tool: $name\"}"
-    fi
-  }
-
-  # Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat konteks sebelumnya.
-  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
-
-  call_api() {
-    curl -s https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "content-type: application/json" \
-      -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, tool_choice: {type: "auto", disable_parallel_tool_use: true}, messages: $messages}')"
-  }
-
-  RESPONSE=$(call_api)
-
-  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
-  # yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
-  while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
-    TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
-    TOOL_NAME=$(echo "$TOOL_USE" | jq -r '.name')
-    TOOL_INPUT=$(echo "$TOOL_USE" | jq -c '.input')
-    TOOL_USE_ID=$(echo "$TOOL_USE" | jq -r '.id')
-    RESULT=$(run_tool "$TOOL_NAME" "$TOOL_INPUT")
-
-    ASSISTANT_CONTENT=$(echo "$RESPONSE" | jq '.content')
-    MESSAGES=$(echo "$MESSAGES" | jq \
-      --argjson assistant "$ASSISTANT_CONTENT" \
-      --arg tool_use_id "$TOOL_USE_ID" \
-      --arg result "$RESULT" \
-      '. + [
-        {role: "assistant", content: $assistant},
-        {role: "user", content: [{type: "tool_result", tool_use_id: $tool_use_id, content: $result}]}
-      ]')
-
-    RESPONSE=$(call_api)
-  done
-
-  echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```bash CLI
   #!/usr/bin/env bash
-  # Ring 2: Loop agentik.
-  # Memakai jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
-  set -euo pipefail
+  # Ring 2: The agentic loop.
 
-  run_tool() {
-    local name="$1" input="$2"
-    if [ "$name" = "create_calendar_event" ]; then
-      jq -n --arg title "$(jq -r '.title' <<<"$input")" \
-        '{event_id: "evt_123", status: "created", title: $title}'
-    else
-      printf '{"error": "Unknown tool: %s"}' "$name"
-    fi
-  }
-
-  # Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat
-  # konteks sebelumnya.
-  MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
-
-  call_api() {
-    # ant membaca body permintaan sebagai YAML dari stdin: tanpa header auth, tanpa
-    # amplop JSON buatan tangan. Kunci statis (model, tools, tool_choice)
-    # berada di heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai
-    # JSON, yang diterima YAML sebagai sintaks flow.
-    {
-      cat <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 1024
-  tool_choice: {type: auto, disable_parallel_tool_use: true}
-  tools:
-    - name: create_calendar_event
-      description: Create a calendar event with attendees and optional recurrence.
-      input_schema:
-        type: object
-        properties:
-          title: {type: string}
-          start: {type: string, format: date-time}
-          end: {type: string, format: date-time}
-          attendees:
-            type: array
-            items: {type: string, format: email}
-          recurrence:
-            type: object
-            properties:
-              frequency: {enum: [daily, weekly, monthly]}
-              count: {type: integer, minimum: 1}
-        required: [title, start, end]
-  YAML
-      printf 'messages: %s\n' "$MESSAGES"
-    } | ant messages create --format json
-  }
-
-  RESPONSE=$(call_api)
-
-  # Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan
-  # alat yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk
-  # melanjutkan.
-  while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
-    TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
-    TOOL_NAME=$(jq -r '.name' <<<"$TOOL_USE")
-    TOOL_INPUT=$(jq -c '.input' <<<"$TOOL_USE")
-    TOOL_USE_ID=$(jq -r '.id' <<<"$TOOL_USE")
-    RESULT=$(run_tool "$TOOL_NAME" "$TOOL_INPUT")
-
-    MESSAGES=$(jq \
-      --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
-      --arg tool_use_id "$TOOL_USE_ID" \
-      --arg result "$RESULT" \
-      '. + [
-        {role: "assistant", content: $assistant},
-        {role: "user", content: [
-          {type: "tool_result", tool_use_id: $tool_use_id, content: $result}
-        ]}
-      ]' <<<"$MESSAGES")
-
-    RESPONSE=$(call_api)
-  done
-
-  jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```python Python
@@ -1237,7 +913,11 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
   def run_tool(name, tool_input):
       if name == "create_calendar_event":
-          return {"event_id": "evt_123", "status": "created", "title": tool_input["title"]}
+          return {
+              "event_id": "evt_123",
+              "status": "created",
+              "title": tool_input["title"],
+          }
       return {"error": f"Unknown tool: {name}"}
 
 
@@ -1299,8 +979,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   const tools: Anthropic.Tool[] = [
     {
       name: "create_calendar_event",
-      description:
-        "Create a calendar event with attendees and optional recurrence.",
+      description: "Create a calendar event with attendees and optional recurrence.",
       input_schema: {
         type: "object",
         properties: {
@@ -1309,19 +988,19 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
           end: { type: "string", format: "date-time" },
           attendees: {
             type: "array",
-            items: { type: "string", format: "email" },
+            items: { type: "string", format: "email" }
           },
           recurrence: {
             type: "object",
             properties: {
               frequency: { enum: ["daily", "weekly", "monthly"] },
-              count: { type: "integer", minimum: 1 },
-            },
-          },
+              count: { type: "integer", minimum: 1 }
+            }
+          }
         },
-        required: ["title", "start", "end"],
-      },
-    },
+        required: ["title", "start", "end"]
+      }
+    }
   ];
 
   function runTool(name: string, input: Record<string, unknown>) {
@@ -1336,8 +1015,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     {
       role: "user",
       content:
-        "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
-    },
+        "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."
+    }
   ];
 
   let response = await client.messages.create({
@@ -1345,15 +1024,13 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
-    messages,
+    messages
   });
 
   // Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
   // yang diminta, menambahkan hasilnya ke riwayat, lalu meminta Claude melanjutkan.
   while (response.stop_reason === "tool_use") {
-    const toolUse = response.content.find(
-      (block): block is Anthropic.ToolUseBlock => block.type === "tool_use",
-    )!;
+    const toolUse = response.content.find((block) => block.type === "tool_use")!;
     const result = runTool(toolUse.name, toolUse.input as Record<string, unknown>);
 
     messages.push({ role: "assistant", content: response.content });
@@ -1363,9 +1040,9 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
         {
           type: "tool_result",
           tool_use_id: toolUse.id,
-          content: JSON.stringify(result),
-        },
-      ],
+          content: JSON.stringify(result)
+        }
+      ]
     });
 
     response = await client.messages.create({
@@ -1373,7 +1050,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       max_tokens: 1024,
       tools,
       tool_choice: { type: "auto", disable_parallel_tool_use: true },
-      messages,
+      messages
     });
   }
 
@@ -1962,177 +1639,18 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 <CodeGroup>
   ```bash cURL
   #!/bin/bash
-  # Ring 3: Beberapa alat, panggilan paralel.
+  # Ring 3: Multiple tools, parallel calls.
 
-  TOOLS='[
-    {
-      "name": "create_calendar_event",
-      "description": "Create a calendar event with attendees and optional recurrence.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "title": {"type": "string"},
-          "start": {"type": "string", "format": "date-time"},
-          "end": {"type": "string", "format": "date-time"},
-          "attendees": {"type": "array", "items": {"type": "string", "format": "email"}},
-          "recurrence": {
-            "type": "object",
-            "properties": {
-              "frequency": {"enum": ["daily", "weekly", "monthly"]},
-              "count": {"type": "integer", "minimum": 1}
-            }
-          }
-        },
-        "required": ["title", "start", "end"]
-      }
-    },
-    {
-      "name": "list_calendar_events",
-      "description": "List all calendar events on a given date.",
-      "input_schema": {
-        "type": "object",
-        "properties": {"date": {"type": "string", "format": "date"}},
-        "required": ["date"]
-      }
-    }
-  ]'
-
-  run_tool() {
-    case "$1" in
-      create_calendar_event)
-        jq -n --arg title "$(echo "$2" | jq -r '.title')" '{event_id: "evt_123", status: "created", title: $title}' ;;
-      list_calendar_events)
-        echo '{"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}' ;;
-      *)
-        echo "{\"error\": \"Unknown tool: $1\"}" ;;
-    esac
-  }
-
-  MESSAGES='[{"role": "user", "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."}]'
-
-  call_api() {
-    curl -s https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "content-type: application/json" \
-      -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
-  }
-
-  RESPONSE=$(call_api)
-
-  while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
-    # Satu respons dapat berisi beberapa blok tool_use. Proses semua blok
-    # tersebut dan kembalikan semua hasilnya sekaligus dalam satu pesan user.
-    TOOL_RESULTS='[]'
-    while read -r block; do
-      NAME=$(echo "$block" | jq -r '.name')
-      INPUT=$(echo "$block" | jq -c '.input')
-      ID=$(echo "$block" | jq -r '.id')
-      RESULT=$(run_tool "$NAME" "$INPUT")
-      TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$RESULT" \
-        '. + [{type: "tool_result", tool_use_id: $id, content: $result}]')
-    done < <(echo "$RESPONSE" | jq -c '.content[] | select(.type == "tool_use")')
-
-    MESSAGES=$(echo "$MESSAGES" | jq \
-      --argjson assistant "$(echo "$RESPONSE" | jq '.content')" \
-      --argjson results "$TOOL_RESULTS" \
-      '. + [{role: "assistant", content: $assistant}, {role: "user", content: $results}]')
-
-    RESPONSE=$(call_api)
-  done
-
-  echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```bash CLI
   #!/usr/bin/env bash
-  # Ring 3: Beberapa alat, panggilan paralel.
-  # Memakai jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
-  set -euo pipefail
+  # Ring 3: Multiple tools, parallel calls.
 
-  run_tool() {
-    case "$1" in
-      create_calendar_event)
-        jq -n --arg title "$(jq -r '.title' <<<"$2")" \
-          '{event_id: "evt_123", status: "created", title: $title}' ;;
-      list_calendar_events)
-        echo '{"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}' ;;
-      *)
-        printf '{"error": "Unknown tool: %s"}' "$1" ;;
-    esac
-  }
-
-  MESSAGES='[{"role": "user", "content": "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."}]'
-
-  call_api() {
-    # ant membaca body permintaan sebagai YAML dari stdin: tanpa header auth, tanpa
-    # amplop JSON yang dibuat manual. Kunci statis (model, tools) ada di
-    # heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai JSON,
-    # yang diterima YAML sebagai sintaks flow.
-    {
-      cat <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 1024
-  tools:
-    - name: create_calendar_event
-      description: Create a calendar event with attendees and optional recurrence.
-      input_schema:
-        type: object
-        properties:
-          title: {type: string}
-          start: {type: string, format: date-time}
-          end: {type: string, format: date-time}
-          attendees:
-            type: array
-            items: {type: string, format: email}
-          recurrence:
-            type: object
-            properties:
-              frequency: {enum: [daily, weekly, monthly]}
-              count: {type: integer, minimum: 1}
-        required: [title, start, end]
-    - name: list_calendar_events
-      description: List all calendar events on a given date.
-      input_schema:
-        type: object
-        properties:
-          date: {type: string, format: date}
-        required: [date]
-  YAML
-      printf 'messages: %s\n' "$MESSAGES"
-    } | ant messages create --format json
-  }
-
-  RESPONSE=$(call_api)
-
-  while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
-    # Satu respons bisa berisi beberapa blok tool_use. Proses semuanya
-    # dan kembalikan semua hasil sekaligus dalam satu pesan user.
-    TOOL_RESULTS='[]'
-    while read -r block; do
-      NAME=$(jq -r '.name' <<<"$block")
-      INPUT=$(jq -c '.input' <<<"$block")
-      ID=$(jq -r '.id' <<<"$block")
-      RESULT=$(run_tool "$NAME" "$INPUT")
-      TOOL_RESULTS=$(jq --arg id "$ID" --arg result "$RESULT" \
-        '. + [{type: "tool_result", tool_use_id: $id, content: $result}]' \
-        <<<"$TOOL_RESULTS")
-    done < <(jq -c '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
-
-    MESSAGES=$(jq \
-      --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
-      --argjson results "$TOOL_RESULTS" \
-      '. + [
-        {role: "assistant", content: $assistant},
-        {role: "user", content: $results}
-      ]' <<<"$MESSAGES")
-
-    RESPONSE=$(call_api)
-  done
-
-  jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```python Python
@@ -2185,9 +1703,15 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   def run_tool(name, tool_input):
       if name == "create_calendar_event":
-          return {"event_id": "evt_123", "status": "created", "title": tool_input["title"]}
+          return {
+              "event_id": "evt_123",
+              "status": "created",
+              "title": tool_input["title"],
+          }
       if name == "list_calendar_events":
-          return {"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}
+          return {
+              "events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]
+          }
       return {"error": f"Unknown tool: {name}"}
 
 
@@ -2244,8 +1768,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   const tools: Anthropic.Tool[] = [
     {
       name: "create_calendar_event",
-      description:
-        "Create a calendar event with attendees and optional recurrence.",
+      description: "Create a calendar event with attendees and optional recurrence.",
       input_schema: {
         type: "object",
         properties: {
@@ -2254,18 +1777,18 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
           end: { type: "string", format: "date-time" },
           attendees: {
             type: "array",
-            items: { type: "string", format: "email" },
+            items: { type: "string", format: "email" }
           },
           recurrence: {
             type: "object",
             properties: {
               frequency: { enum: ["daily", "weekly", "monthly"] },
-              count: { type: "integer", minimum: 1 },
-            },
-          },
+              count: { type: "integer", minimum: 1 }
+            }
+          }
         },
-        required: ["title", "start", "end"],
-      },
+        required: ["title", "start", "end"]
+      }
     },
     {
       name: "list_calendar_events",
@@ -2273,11 +1796,11 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       input_schema: {
         type: "object",
         properties: {
-          date: { type: "string", format: "date" },
+          date: { type: "string", format: "date" }
         },
-        required: ["date"],
-      },
-    },
+        required: ["date"]
+      }
+    }
   ];
 
   function runTool(name: string, input: Record<string, unknown>) {
@@ -2286,7 +1809,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     }
     if (name === "list_calendar_events") {
       return {
-        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }],
+        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }]
       };
     }
     return { error: `Unknown tool: ${name}` };
@@ -2296,15 +1819,15 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     {
       role: "user",
       content:
-        "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
-    },
+        "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."
+    }
   ];
 
   let response = await client.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
-    messages,
+    messages
   });
 
   while (response.stop_reason === "tool_use") {
@@ -2317,7 +1840,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
         toolResults.push({
           type: "tool_result",
           tool_use_id: block.id,
-          content: JSON.stringify(result),
+          content: JSON.stringify(result)
         });
       }
     }
@@ -2329,7 +1852,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
       model: "claude-opus-5-5",
       max_tokens: 1024,
       tools,
-      messages,
+      messages
     });
   }
 
@@ -2941,200 +2464,18 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 <CodeGroup>
   ```bash cURL
   #!/bin/bash
-  # Ring 4: Penanganan error.
+  # Ring 4: Error handling.
 
-  TOOLS='[
-    {
-      "name": "create_calendar_event",
-      "description": "Create a calendar event with attendees and optional recurrence.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "title": {"type": "string"},
-          "start": {"type": "string", "format": "date-time"},
-          "end": {"type": "string", "format": "date-time"},
-          "attendees": {"type": "array", "items": {"type": "string", "format": "email"}},
-          "recurrence": {
-            "type": "object",
-            "properties": {
-              "frequency": {"enum": ["daily", "weekly", "monthly"]},
-              "count": {"type": "integer", "minimum": 1}
-            }
-          }
-        },
-        "required": ["title", "start", "end"]
-      }
-    },
-    {
-      "name": "list_calendar_events",
-      "description": "List all calendar events on a given date.",
-      "input_schema": {
-        "type": "object",
-        "properties": {"date": {"type": "string", "format": "date"}},
-        "required": ["date"]
-      }
-    }
-  ]'
-
-  run_tool() {
-    case "$1" in
-      create_calendar_event)
-        local count=$(echo "$2" | jq '.attendees | length // 0')
-        if [ "$count" -gt 10 ]; then
-          echo "ERROR: Too many attendees (max 10)"
-          return 1
-        fi
-        jq -n --arg title "$(echo "$2" | jq -r '.title')" '{event_id: "evt_123", status: "created", title: $title}' ;;
-      list_calendar_events)
-        echo '{"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}' ;;
-      *)
-        echo "ERROR: Unknown tool: $1"
-        return 1 ;;
-    esac
-  }
-
-  EMAILS=$(seq 0 14 | sed 's/.*/user&@example.com/' | paste -sd, -)
-  MESSAGES="[{\"role\": \"user\", \"content\": \"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: $EMAILS\"}]"
-
-  call_api() {
-    curl -s https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "content-type: application/json" \
-      -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-        '{model: "claude-opus-5-5", max_tokens: 1024, tools: $tools, messages: $messages}')"
-  }
-
-  RESPONSE=$(call_api)
-
-  while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
-    TOOL_RESULTS='[]'
-    while read -r block; do
-      NAME=$(echo "$block" | jq -r '.name')
-      INPUT=$(echo "$block" | jq -c '.input')
-      ID=$(echo "$block" | jq -r '.id')
-      if OUTPUT=$(run_tool "$NAME" "$INPUT"); then
-        TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
-          '. + [{type: "tool_result", tool_use_id: $id, content: $result}]')
-      else
-        # Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
-        TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
-          '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]')
-      fi
-    done < <(echo "$RESPONSE" | jq -c '.content[] | select(.type == "tool_use")')
-
-    MESSAGES=$(echo "$MESSAGES" | jq \
-      --argjson assistant "$(echo "$RESPONSE" | jq '.content')" \
-      --argjson results "$TOOL_RESULTS" \
-      '. + [{role: "assistant", content: $assistant}, {role: "user", content: $results}]')
-
-    RESPONSE=$(call_api)
-  done
-
-  echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```bash CLI
   #!/usr/bin/env bash
-  # Ring 4: Penanganan error.
-  # Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
-  # memerlukan manipulasi JSON di luar cakupan --transform panggilan tunggal milik ant.
-  set -euo pipefail
+  # Ring 4: Error handling.
 
-  run_tool() {
-    case "$1" in
-      create_calendar_event)
-        local count
-        count=$(jq '.attendees | length // 0' <<<"$2")
-        if [ "$count" -gt 10 ]; then
-          echo "ERROR: Too many attendees (max 10)"
-          return 1
-        fi
-        jq -n --arg title "$(jq -r '.title' <<<"$2")" \
-          '{event_id: "evt_123", status: "created", title: $title}' ;;
-      list_calendar_events)
-        echo '{"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}' ;;
-      *)
-        echo "ERROR: Unknown tool: $1"
-        return 1 ;;
-    esac
-  }
-
-  EMAILS=$(seq 0 14 | sed 's/.*/user&@example.com/' | paste -sd, -)
-  MESSAGES=$(jq -n --arg msg "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: $EMAILS" \
-    '[{role: "user", content: $msg}]')
-
-  call_api() {
-    # ant membaca body request sebagai YAML dari stdin: tanpa header auth, tanpa
-    # amplop JSON yang dibuat manual. Kunci statis (model, tools) berada di
-    # heredoc berkutip; array messages yang terus bertambah ditambahkan sebagai JSON,
-    # yang diterima YAML sebagai sintaks flow.
-    {
-      cat <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 1024
-  tools:
-    - name: create_calendar_event
-      description: Create a calendar event with attendees and optional recurrence.
-      input_schema:
-        type: object
-        properties:
-          title: {type: string}
-          start: {type: string, format: date-time}
-          end: {type: string, format: date-time}
-          attendees:
-            type: array
-            items: {type: string, format: email}
-          recurrence:
-            type: object
-            properties:
-              frequency: {enum: [daily, weekly, monthly]}
-              count: {type: integer, minimum: 1}
-        required: [title, start, end]
-    - name: list_calendar_events
-      description: List all calendar events on a given date.
-      input_schema:
-        type: object
-        properties:
-          date: {type: string, format: date}
-        required: [date]
-  YAML
-      printf 'messages: %s\n' "$MESSAGES"
-    } | ant messages create --format json
-  }
-
-  RESPONSE=$(call_api)
-
-  while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
-    TOOL_RESULTS='[]'
-    while read -r block; do
-      NAME=$(jq -r '.name' <<<"$block")
-      INPUT=$(jq -c '.input' <<<"$block")
-      ID=$(jq -r '.id' <<<"$block")
-      if OUTPUT=$(run_tool "$NAME" "$INPUT"); then
-        TOOL_RESULTS=$(jq --arg id "$ID" --arg result "$OUTPUT" \
-          '. + [{type: "tool_result", tool_use_id: $id, content: $result}]' \
-          <<<"$TOOL_RESULTS")
-      else
-        # Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
-        TOOL_RESULTS=$(jq --arg id "$ID" --arg result "$OUTPUT" \
-          '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]' \
-          <<<"$TOOL_RESULTS")
-      fi
-    done < <(jq -c '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
-
-    MESSAGES=$(jq \
-      --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
-      --argjson results "$TOOL_RESULTS" \
-      '. + [
-        {role: "assistant", content: $assistant},
-        {role: "user", content: $results}
-      ]' <<<"$MESSAGES")
-
-    RESPONSE=$(call_api)
-  done
-
-  jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
+  # This workflow needs more logic than a single shell command.
+  # Use the Claude SDK to run it.
   ```
 
   ```python Python
@@ -3189,16 +2530,23 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       if name == "create_calendar_event":
           if "attendees" in tool_input and len(tool_input["attendees"]) > 10:
               raise ValueError("Too many attendees (max 10)")
-          return {"event_id": "evt_123", "status": "created", "title": tool_input["title"]}
+          return {
+              "event_id": "evt_123",
+              "status": "created",
+              "title": tool_input["title"],
+          }
       if name == "list_calendar_events":
-          return {"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}
+          return {
+              "events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]
+          }
       raise ValueError(f"Unknown tool: {name}")
 
 
   messages = [
       {
           "role": "user",
-          "content": "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + ", ".join(f"user{i}@example.com" for i in range(15)),
+          "content": "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: "
+          + ", ".join(f"user{i}@example.com" for i in range(15)),
       }
   ]
 
@@ -3216,7 +2564,11 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
               try:
                   result = run_tool(block.name, block.input)
                   tool_results.append(
-                      {"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(result)}
+                      {
+                          "type": "tool_result",
+                          "tool_use_id": block.id,
+                          "content": json.dumps(result),
+                      }
                   )
               except Exception as exc:
                   # Beri sinyal kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
@@ -3253,8 +2605,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   const tools: Anthropic.Tool[] = [
     {
       name: "create_calendar_event",
-      description:
-        "Create a calendar event with attendees and optional recurrence.",
+      description: "Create a calendar event with attendees and optional recurrence.",
       input_schema: {
         type: "object",
         properties: {
@@ -3263,18 +2614,18 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           end: { type: "string", format: "date-time" },
           attendees: {
             type: "array",
-            items: { type: "string", format: "email" },
+            items: { type: "string", format: "email" }
           },
           recurrence: {
             type: "object",
             properties: {
               frequency: { enum: ["daily", "weekly", "monthly"] },
-              count: { type: "integer", minimum: 1 },
-            },
-          },
+              count: { type: "integer", minimum: 1 }
+            }
+          }
         },
-        required: ["title", "start", "end"],
-      },
+        required: ["title", "start", "end"]
+      }
     },
     {
       name: "list_calendar_events",
@@ -3282,11 +2633,11 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       input_schema: {
         type: "object",
         properties: {
-          date: { type: "string", format: "date" },
+          date: { type: "string", format: "date" }
         },
-        required: ["date"],
-      },
-    },
+        required: ["date"]
+      }
+    }
   ];
 
   function runTool(name: string, input: Record<string, unknown>) {
@@ -3299,25 +2650,25 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     }
     if (name === "list_calendar_events") {
       return {
-        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }],
+        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }]
       };
     }
     throw new Error(`Unknown tool: ${name}`);
   }
 
-  const emails = Array.from({ length: 15 }, (_, i) => `user${i}@example.com`);
+  const emails = Array.from({ length: 15 }, (_, i) => `user${i}@example.com`).join(", ");
   const messages: Anthropic.MessageParam[] = [
     {
       role: "user",
-      content: `Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: ${emails.join(", ")}`,
-    },
+      content: `Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: ${emails}`
+    }
   ];
 
   let response = await client.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
-    messages,
+    messages
   });
 
   while (response.stop_reason === "tool_use") {
@@ -3329,7 +2680,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           toolResults.push({
             type: "tool_result",
             tool_use_id: block.id,
-            content: JSON.stringify(result),
+            content: JSON.stringify(result)
           });
         } catch (err) {
           // Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
@@ -3337,7 +2688,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
             type: "tool_result",
             tool_use_id: block.id,
             content: String(err),
-            is_error: true,
+            is_error: true
           });
         }
       }
@@ -3350,7 +2701,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       model: "claude-opus-5-5",
       max_tokens: 1024,
       tools,
-      messages,
+      messages
     });
   }
 
@@ -4075,7 +3426,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       Args:
           date: Date in YYYY-MM-DD format.
       """
-      return json.dumps({"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]})
+      return json.dumps(
+          {"events": [{"title": "Existing meeting", "start": "14:00", "end": "15:00"}]}
+      )
 
 
   final_message = client.beta.messages.tool_runner(
@@ -4106,8 +3459,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
 
   const createCalendarEvent = betaZodTool({
     name: "create_calendar_event",
-    description:
-      "Create a calendar event with attendees and optional recurrence.",
+    description: "Create a calendar event with attendees and optional recurrence.",
     inputSchema: z.object({
       title: z.string(),
       start: z.string().datetime(),
@@ -4116,9 +3468,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       recurrence: z
         .object({
           frequency: z.enum(["daily", "weekly", "monthly"]),
-          count: z.number().int().min(1),
+          count: z.number().int().min(1)
         })
-        .optional(),
+        .optional()
     }),
     run: async (input) => {
       if (input.attendees && input.attendees.length > 10) {
@@ -4127,22 +3479,22 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       return JSON.stringify({
         event_id: "evt_123",
         status: "created",
-        title: input.title,
+        title: input.title
       });
-    },
+    }
   });
 
   const listCalendarEvents = betaZodTool({
     name: "list_calendar_events",
     description: "List all calendar events on a given date.",
     inputSchema: z.object({
-      date: z.string().date(),
+      date: z.string().date()
     }),
     run: async () => {
       return JSON.stringify({
-        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }],
+        events: [{ title: "Existing meeting", start: "14:00", end: "15:00" }]
       });
-    },
+    }
   });
 
   const finalMessage = await client.beta.messages.toolRunner({
@@ -4153,9 +3505,9 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       {
         role: "user",
         content:
-          "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
-      },
-    ],
+          "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."
+      }
+    ]
   });
 
   for (const block of finalMessage.content) {

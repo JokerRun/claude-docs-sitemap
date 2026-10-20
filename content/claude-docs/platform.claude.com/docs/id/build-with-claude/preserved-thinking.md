@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: abee60086be9f452e03fdc19a86a96b3154fdea8e699c0f42641c300b1f7e851
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 6a31ce03443ddba1787962af57e3236e780e22f56bd2c2d3d1f191944908f694
 ---
 
 ---
@@ -55,7 +55,7 @@ Claude Haiku 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, C
 Tetap kirim riwayat lengkap pada setiap permintaan, termasuk blok pemikiran, dan biarkan API membuang apa yang tidak dapat dibaca oleh model saat ini. API tidak pernah mengedit array `messages` Anda, sehingga blok yang dibuang tetap ada dalam riwayat Anda. Ketika riwayat yang sama kembali ke Claude Fable 5.1, bloknya dapat dibaca lagi, bersama dengan pemikiran model sebelumnya. Penalaran hilang secara permanen hanya jika klien Anda sendiri yang menghapus blok tersebut, misalnya harness yang menghapus pemikiran saat peralihan model atau membangun ulang riwayat dari apa yang digunakan setiap model.
 
 <Frame>
-  ![Animasi: beralih ke Claude Opus melewatkan pemikiran Claude Fable 5.1 untuk giliran tersebut; saat beralih kembali, semuanya dibaca lagi](https://platform.claude.com/docs/images/preserved-thinking-model-switch.svg)
+  ![Animasi: beralih ke Claude Opus melewatkan pemikiran Claude Fable 5.1 untuk giliran tersebut; saat beralih kembali, semuanya dibaca lagi](https://platform.claude.com/docs/id/images/preserved-thinking-model-switch.svg)
 </Frame>
 
 Dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`, respons mencantumkan setiap blok yang dibuang dalam array `input_transformations` tingkat atas dengan `reason: "model_binding_mismatch"`:
@@ -1464,7 +1464,7 @@ Anda tetap dapat melakukan compaction di klien. Jika Anda menulis ringkasannya s
 Ketika percakapan menjadi terlalu panjang, ringkas seluruh sesi menjadi satu pesan pengguna dan kirim hanya pesan tersebut ditambah instruksi berikutnya. Tidak ada yang diputar ulang dari sebelumnya, sehingga tidak ada thinking yang tersisa untuk gagal dalam pemeriksaan, dan model bernalar dari awal berdasarkan ringkasan.
 
 <Frame>
-  ![Simple compaction (compaction sederhana): permintaan 4 mengirim riwayat lengkap dengan thinking pada setiap giliran asisten; permintaan 5 mengirim satu pesan pengguna yang berisi ringkasan giliran 1 hingga 4 ditambah instruksi berikutnya, sehingga tidak ada thinking sebelumnya yang dikirim dan tidak ada yang diperiksa](https://platform.claude.com/docs/images/preserved-thinking-simple-compaction.svg)
+  ![Simple compaction (compaction sederhana): permintaan 4 mengirim riwayat lengkap dengan thinking pada setiap giliran asisten; permintaan 5 mengirim satu pesan pengguna yang berisi ringkasan giliran 1 hingga 4 ditambah instruksi berikutnya, sehingga tidak ada thinking sebelumnya yang dikirim dan tidak ada yang diperiksa](https://platform.claude.com/docs/id/images/preserved-thinking-simple-compaction.svg)
 </Frame>
 
 ```json
@@ -1487,7 +1487,7 @@ Untuk mempertahankan thinking tersebut, minta API menulis ringkasannya dengan co
 Sisa bagian ini membahas ringkasan yang Anda tulis sendiri.
 
 <Frame>
-  ![Keep-tail compaction (compaction keep-tail): riwayat diganti dengan ringkasan giliran 1 dan 2 diikuti giliran 3 hingga 5 apa adanya; thinking pada giliran asisten 3 dan 4 dihasilkan setelah giliran aslinya, bukan ringkasannya, sehingga gagal; permintaan yang sama yang dikirim dengan prefix\_mismatch\_behavior drop\_block berhasil, API membuang kedua blok tersebut dan mencantumkannya di input\_transformations](https://platform.claude.com/docs/images/preserved-thinking-keep-tail-compaction.svg)
+  ![Keep-tail compaction (compaction keep-tail): riwayat diganti dengan ringkasan giliran 1 dan 2 diikuti giliran 3 hingga 5 apa adanya; thinking pada giliran asisten 3 dan 4 dihasilkan setelah giliran aslinya, bukan ringkasannya, sehingga gagal; permintaan yang sama yang dikirim dengan prefix\_mismatch\_behavior drop\_block berhasil, API membuang kedua blok tersebut dan mencantumkannya di input\_transformations](https://platform.claude.com/docs/id/images/preserved-thinking-keep-tail-compaction.svg)
 </Frame>
 
 Perbaikan: pertahankan giliran-giliran tersebut persis seperti adanya dan kirim `prefix_mismatch_behavior: "drop_block"`. API membuang blok thinking yang usang, model membaca blok `text` dan `tool_use` dari giliran yang dipertahankan, dan permintaan berhasil.

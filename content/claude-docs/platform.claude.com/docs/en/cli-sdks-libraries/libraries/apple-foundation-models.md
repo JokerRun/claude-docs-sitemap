@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: e05431ade327c6c74b81d72d049314a5641b563631d2674b5d5d10aa4f66d5f5
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b5ca9ccead1c9fd0cc0dbed489dbfb5e1d563a21b8f38b90dde63aed572347b6
 ---
 
 ---
@@ -154,7 +154,7 @@ ClaudeLanguageModel(
 )
 ```
 
-Your proxy receives standard [Messages API](https://platform.claude.com/docs/en/api/messages/create) requests, attaches the `x-api-key` header, and forwards them to `https://api.anthropic.com`.
+Your proxy receives standard [Messages API](https://platform.claude.com/docs/en/api/messages/create) requests, attaches your API key as `Authorization: Bearer <key>`, and forwards them to `https://api.anthropic.com`.
 
 ### API key (development)
 

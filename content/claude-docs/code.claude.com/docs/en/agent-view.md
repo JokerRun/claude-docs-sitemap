@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 1cba78a0b064b62fdfb8f1a48d0a23deec34ce0d5eeba0a9af01482207a73754
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 5d0e5212195e9559bd78466a52dc342dd304d11db23b173a92d7fa25a8c4e35e
 ---
 
 > ## Documentation Index
@@ -450,7 +450,7 @@ Run `/fork` to copy the current conversation into a new background session while
 
 After the fork, the two conversations are independent: nothing the copy does enters the original conversation on its own, though in sessions where [cross-session messaging](/docs/en/cross-session-messaging) is enabled, either session's Claude can explicitly message the other.
 
-Copying the session requires Claude Code v2.1.212 or later; on v2.1.161 through v2.1.211, `/fork` starts a [forked subagent](/docs/en/sub-agents#fork-the-current-conversation) instead, which is now `/subtask`. When [agent view is turned off](#turn-off-agent-view), `/fork` keeps the forked-subagent behavior and `/subtask` isn't available.
+When [agent view is turned off](#turn-off-agent-view), `/fork` starts a [forked subagent](/docs/en/sub-agents#fork-the-current-conversation) instead of copying the session.
 
 Pass a prompt such as `/fork open a draft pull request with the work so far` and the copy starts working on it immediately. Without a prompt the copy waits for its first instruction: select its row in `claude agents` and press `Space` to send one, or run `claude attach <id>`. The selected row shows `space to send it a prompt` while it waits.
 
@@ -879,6 +879,14 @@ If you press `←` to background the current session and Claude Code shows a `Ba
 * **Automatic artifact replies**: Claude is [replying to comments on an artifact on its own](/docs/en/artifacts#let-claude-reply-to-comments-on-its-own). Those replies continue in the background session, and the dialog says so.
 
 Run `/tasks` to see everything that's running, then confirm to background anyway or choose `Stay` to let the work finish first. See [What carries over when you background](#what-carries-over-when-you-background) for which kinds of work carry over and which Claude Code stops.
+
+<h3 id="carried-into-this-session-and-not-resumed">
+  The conversation says a background agent `was carried into this session and not resumed`
+</h3>
+
+This notice names a background [subagent](/docs/en/sub-agents) that isn't running in this session.
+
+Claude sees the notice and replies on its own, so you don't need to prompt it. If you still need that subagent's work after reading Claude's reply, ask Claude for it.
 
 ### Prompt rejected as too short
 

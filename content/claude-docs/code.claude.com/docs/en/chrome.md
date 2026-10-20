@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: afadfd9114496fac25143a94b59c3a5d553b71df45ba08827dfda901fdb42fd9
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: d2e02e7056580e53357a6940b821c4e04e6135b2248d861fd8d91a052b7cc671
 ---
 
 > ## Documentation Index
@@ -110,7 +110,7 @@ To connect Chrome without passing `--chrome` each time, run `/chrome` in a CLI s
 
 With the setting on and Claude Code v2.1.287 or later, each VS Code session connects to your browser as it starts, so Claude can use it before you type `@browser`. On earlier versions, or with the setting off, a VS Code session connects when you type `@browser`.
 
-Claude Code starts normally when Chrome isn't running. Before v2.1.211, startup could hang when Chrome integration was enabled but Chrome wasn't running.
+Claude Code starts normally when Chrome isn't running.
 
 <Note>
   Enabling Chrome by default increases context usage since the browser tools and their instructions are always loaded. If you notice increased context consumption, turn the setting off and connect only when needed, with `--chrome` in the CLI or by typing [`@browser`](/docs/en/vs-code#automate-browser-tasks-with-chrome) in the VS Code prompt box.
@@ -173,7 +173,7 @@ Claude reads your local file, navigates the web interface, and enters the data f
 
 ### Upload files to web pages
 
-Claude can attach files from your machine to upload fields on a page. Claude Code reads the file and sends its contents to the browser, so uploads work in both local and remote sessions. Requires Claude Code v2.1.211 or later.
+Claude can attach files from your machine to upload fields on a page. Claude Code reads the file and sends its contents to the browser, so uploads work in both local and remote sessions.
 
 This example attaches a log file to a form:
 
@@ -242,7 +242,7 @@ Ask Claude to keep a screenshot as a file:
 Take a screenshot of the checkout page and save it to disk
 ```
 
-Claude saves the image to disk and reports the file path. Before v2.1.211, the screenshot tool's `save_to_disk` option didn't write a file.
+Claude saves the image to disk and reports the file path.
 
 ## Troubleshooting
 

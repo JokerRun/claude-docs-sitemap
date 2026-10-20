@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/migration-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: a350d00bba9e98f29fff823c64daa9bdb7eaf2f7717d7513edd6295ab5f9e348
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 561afeb1f09136abde77a5f378ead34103a7263379f7c86dfd801a86eb194d2a
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Switch to Claude Fable 5.1 and Claude Mythos 5.1 from Claude Fable 
 </Note>
 
 <Tip>
-  **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
+  **Automate your migration with the [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** It comes bundled with Claude Code and works for any current Claude model as the target:
 
   Let Claude Code migrate your code for you
 
@@ -969,9 +969,7 @@ model = "claude-mythos-5-1"  # After
 
      ```bash CLI
      ant beta:messages create \
-       --beta thinking-binding-controls-2026-08-01 \
-       --transform '{content.#(type=="text")#.text,input_transformations}' \
-       --format yaml <<'YAML'
+       --beta thinking-binding-controls-2026-08-01 <<'YAML'
      model: claude-fable-5-1
      max_tokens: 16000
      thinking:
@@ -1261,9 +1259,7 @@ These changes aren't required, but each one lowers cost or latency or removes a 
 
      ```bash CLI
      ant beta:messages create \
-       --beta mid-conversation-output-config-2026-07-01 \
-       --transform 'content.#(type=="text").text' \
-       --raw-output <<'YAML'
+       --beta mid-conversation-output-config-2026-07-01 <<'YAML'
      model: claude-fable-5-1
      max_tokens: 4096
      output_config:

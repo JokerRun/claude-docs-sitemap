@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/interface
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3799ccf1061b6f1493a846634eb1f2fd75328232633f5e786d107837cd11c2ad
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 66a60b55a7eea45b5c17e4c5ce166a6a93c5695865f2a28eae63f6288167218c
 ---
 
 > ## Documentation Index
@@ -355,7 +355,7 @@ When the pane appears, `$.ui.open` resolves to `{ isPlaced: true }`. When the pa
 
 ### Draw in the VS Code extension
 
-In the VS Code extension, what a mod draws appears in the chat panel with extension version 2.1.299 or later, in a session that [fetches feature flags](/docs/en/env-vars#features-that-need-feature-flag-fetching). In a `ui.render` hook for the panel, `e.surface` is `vscode`. To check which sites and elements the panel draws, and which props it ignores, see the [render sites](/docs/en/plugins/mods/reference#render-sites) and [elements](/docs/en/plugins/mods/reference#elements) tables.
+In the VS Code extension, what a mod draws appears in the chat panel with extension version 2.1.299 or later. A session that [doesn't fetch feature flags](/docs/en/env-vars#features-that-need-feature-flag-fetching), such as one on Amazon Bedrock, needs 2.1.304 or later. In a `ui.render` hook for the panel, `e.surface` is `vscode`. To check which sites and elements the panel draws, and which props it ignores, see the [render sites](/docs/en/plugins/mods/reference#render-sites) and [elements](/docs/en/plugins/mods/reference#elements) tables.
 
 To make a mod work in the panel as well as the terminal, account for these differences:
 

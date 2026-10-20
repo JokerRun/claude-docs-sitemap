@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 2ba5aa7cef87e2c2965bd7e7c3893f19905e103e5a3cf5c47a6efc4da7499369
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 3f3f44da38f9a1e5708acb2ea025d90f3dbf2255ac395354be901f15367a460f
 ---
 
 ---
@@ -23,7 +23,7 @@ To access beta features, include the `anthropic-beta` header in your API request
 
 ```http
 POST /v1/messages
-x-api-key: YOUR_API_KEY
+Authorization: Bearer YOUR_API_KEY
 anthropic-version: 2023-06-01
 anthropic-beta: BETA_FEATURE_NAME
 content-type: application/json

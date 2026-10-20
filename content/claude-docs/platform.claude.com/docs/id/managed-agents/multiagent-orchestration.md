@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: fdf0a06426cc1e72a90d57fe012f1871438ec337e593e57810994d0b35e7effd
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 9f6c80b041a3097b2ee5ddba4d5b25c19ec299656912a344811fefc7b1eb7e67
 ---
 
 ---
@@ -118,7 +118,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  lead_agent=$(curl -fsS https://api.anthropic.com/v1/agents \
+  curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -143,41 +143,33 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
         }
       }
     }'
-  )
   ```
 
   <CodeGroupItem>
     ```bash CLI
-    # Buat subagent, lalu baca ID-nya dari lockfile.
-    ant apply reviewer.md test-writer.md
-    REVIEWER_AGENT_ID=$(jq -er '.resources["./reviewer.md"].id' claude-lock.json)
-    TEST_WRITER_AGENT_ID=$(jq -er '.resources["./test-writer.md"].id' claude-lock.json)
-
-    # Tulis definisi agent, dengan mencantumkan setiap subagent berdasarkan ID.
-    cat > engineering-lead.md <<EOF
-    ---
-    name: Engineering Lead
-    model: claude-opus-5-5
-    tools:
-      - type: agent_toolset_20260401
-    multiagent:
-      type: multiagent_20261001
-      subagents:
-        type: enabled
-        predefined_agents:
-          - type: agent
-            id: $REVIEWER_AGENT_ID
-          - type: agent
-            id: $TEST_WRITER_AGENT_ID
-    ---
-
-    You coordinate engineering work. Delegate code review to the reviewer agent
-    and test writing to the test agent.
-    EOF
-
-    # Buat agent.
     ant apply engineering-lead.md reviewer.md test-writer.md
     ```
+
+    <File filename="engineering-lead.md">
+      ```markdown
+      ---
+      name: Engineering Lead
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: multiagent_20261001
+        subagents:
+          type: enabled
+          predefined_agents: # ant apply replaces each path with {type: agent, id, version}
+            - ./reviewer.md
+            - ./test-writer.md
+      ---
+
+      You coordinate engineering work. Delegate code review to the reviewer agent
+      and test writing to the test agent.
+      ```
+    </File>
 
     <File filename="reviewer.md">
       ```markdown
@@ -236,10 +228,10 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
         type: "enabled",
         predefined_agents: [
           { type: "agent", id: reviewerAgent.id },
-          { type: "agent", id: testWriterAgent.id },
-        ],
-      },
-    },
+          { type: "agent", id: testWriterAgent.id }
+        ]
+      }
+    }
   });
   ```
 
@@ -383,7 +375,7 @@ Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda c
 
 <CodeGroup>
   ```bash cURL
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -392,8 +384,6 @@ Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda c
       "agent": "'"$LEAD_AGENT_ID"'",
       "environment_id": "'"$ENVIRONMENT_ID"'"
     }'
-  )
-  SESSION_ID=$(jq -r '.id' <<< "$session")
   ```
 
   ```bash CLI
@@ -412,7 +402,7 @@ Buat sesi yang mereferensikan agen. Agen mendelegasikan ke agen-agen yang Anda c
   ```typescript TypeScript
   const session = await client.beta.sessions.create({
     agent: leadAgent.id,
-    environment_id: environment.id,
+    environment_id: environment.id
   });
   ```
 
@@ -473,55 +463,60 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  research_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data '{
-    "name": "researcher",
-    "model": "claude-haiku-5-5",
-    "mcp_servers": [{"type": "url", "name": "github", "url": "https://api.githubcopilot.com/mcp/"}],
-    "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
-  }' | jq -er '.id'
-  )
+  # Create the researcher
+  curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "researcher",
+      "model": "claude-haiku-5-5",
+      "mcp_servers": [{"type": "url", "name": "github", "url": "https://api.githubcopilot.com/mcp/"}],
+      "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
+    }'
 
-  lead_agent_id=$(curl --fail-with-body -sS "$BASE/v1/agents" "${H[@]}" --data '{
-    "name": "lead",
-    "model": "claude-opus-5-5",
-    "tools": [{"type": "agent_toolset_20260401"}],
-    "multiagent": {
-      "type": "multiagent_20261001",
-      "subagents": {
-        "type": "enabled",
-        "predefined_agents": [{"type": "agent", "id": "'"$research_agent_id"'"}]
+  # Create the agent that delegates to it: research_agent_id is the id from the first response
+  curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "lead",
+      "model": "claude-opus-5-5",
+      "tools": [{"type": "agent_toolset_20260401"}],
+      "multiagent": {
+        "type": "multiagent_20261001",
+        "subagents": {
+          "type": "enabled",
+          "predefined_agents": [{"type": "agent", "id": "'"$research_agent_id"'"}]
+        }
       }
-    }
-  }' | jq -er '.id'
-  )
+    }'
   ```
 
   <CodeGroupItem>
     ```bash CLI
-    # Buat researcher, lalu baca ID-nya dari lockfile.
-    ant apply researcher.md
-    research_agent_id=$(jq -er '.resources["./researcher.md"].id' claude-lock.json)
-
-    # Tulis definisi agen, dengan mencantumkan researcher berdasarkan ID.
-    cat > lead.md <<EOF
-    ---
-    name: lead
-    model: claude-opus-5-5
-    tools:
-      - type: agent_toolset_20260401
-    multiagent:
-      type: multiagent_20261001
-      subagents:
-        type: enabled
-        predefined_agents:
-          - type: agent
-            id: $research_agent_id
-    ---
-    EOF
-
-    # Buat agen.
     ant apply lead.md researcher.md
     ```
+
+    <File filename="lead.md">
+      ```markdown
+      ---
+      name: lead
+      model: claude-opus-5-5
+      tools:
+        - type: agent_toolset_20260401
+      multiagent:
+        type: multiagent_20261001
+        subagents:
+          type: enabled
+          predefined_agents: # ant apply replaces each path with {type: agent, id, version}
+            - ./researcher.md
+      ---
+      ```
+    </File>
 
     <File filename="researcher.md">
       ```markdown
@@ -568,10 +563,8 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
   const researchAgent = await client.beta.agents.create({
     name: "researcher",
     model: "claude-haiku-5-5",
-    mcp_servers: [
-      { type: "url", name: "github", url: "https://api.githubcopilot.com/mcp/" },
-    ],
-    tools: [{ type: "mcp_toolset", mcp_server_name: "github" }],
+    mcp_servers: [{ type: "url", name: "github", url: "https://api.githubcopilot.com/mcp/" }],
+    tools: [{ type: "mcp_toolset", mcp_server_name: "github" }]
   });
 
   const leadAgent = await client.beta.agents.create({
@@ -582,9 +575,9 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       type: "multiagent_20261001",
       subagents: {
         type: "enabled",
-        predefined_agents: [{ type: "agent", id: researchAgent.id }],
-      },
-    },
+        predefined_agents: [{ type: "agent", id: researchAgent.id }]
+      }
+    }
   });
   ```
 
@@ -789,22 +782,23 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
 
 <CodeGroup>
   ```bash cURL
-  session_id=$(curl --fail-with-body -sS "$BASE/v1/sessions" "${H[@]}" --data '{
-    "agent": "'"$lead_agent_id"'",
-    "environment_id": "'"$environment_id"'",
-    "vault_ids": ["'"$vault_id"'"]
-  }' | jq -er '.id'
-  )
-  echo "$session_id"
+  curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "agent": "'"$lead_agent_id"'",
+      "environment_id": "'"$environment_id"'",
+      "vault_ids": ["'"$vault_id"'"]
+    }'
   ```
 
   ```bash CLI
-  session_id=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$lead_agent_id" \
     --environment-id "$environment_id" \
-    --vault-id "$vault_id" \
-    --transform id --raw-output)
-  echo "$session_id"
+    --vault-id "$vault_id"
   ```
 
   ```python Python
@@ -820,7 +814,7 @@ Kemudian buat sesi dengan vault yang menyimpan kredensial GitHub:
   const session = await client.beta.sessions.create({
     agent: leadAgent.id,
     environment_id: environment.id,
-    vault_ids: [vault.id],
+    vault_ids: [vault.id]
   });
   console.log(session.id);
   ```
@@ -957,7 +951,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
     system:
       "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
     tools: [{ type: "agent_toolset_20260401" }],
-    multiagent: { type: "multiagent_20261001", workflows: { type: "enabled" } },
+    multiagent: { type: "multiagent_20261001", workflows: { type: "enabled" } }
   });
   ```
 
@@ -1187,8 +1181,8 @@ Pengaturan `advisor` yang aktif di blok `multiagent` (csharp, go: `Multiagent`) 
       "You implement backend features end to end. Consult the advisor before major backend design decisions.",
     multiagent: {
       type: "multiagent_20261001",
-      advisor: { type: "enabled", model: "claude-opus-5-5" },
-    },
+      advisor: { type: "enabled", model: "claude-opus-5-5" }
+    }
   });
   console.log(agent.id);
   ```

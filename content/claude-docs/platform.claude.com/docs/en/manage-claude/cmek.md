@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 96370c717ff8e7a3c75aab38e2b028394efe640a345b35b144d1edf91e74b9a8
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: e78da92de5f61f47638b71cfdab98e678cf91a23d97626b4e6cc7b823a6eb024
 ---
 
 ---
@@ -90,7 +90,6 @@ Some features are turned off or substantially modified when CMEK is enabled. Thi
 **Claude Platform**
 
 * Playground in the Claude Console is disabled.
-* Portions of the Compliance API that return raw content, such as prompts, responses, and files, are disabled.
 * Structured outputs are not available for Claude Fable or Claude Mythos models in CMEK organizations.
 * Other beta and research preview features might not be covered by CMEK.
 

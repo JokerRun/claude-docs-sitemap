@@ -11743,6 +11743,12 @@
 <loc>https://platform.claude.com/docs/en/api/compliance/organizations/users/list</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/api/compliance/organizations/user_preferences</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/en/api/compliance/organizations/user_preferences/list</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/api/compliance/organizations/roles</loc>
 </url>
 <url>

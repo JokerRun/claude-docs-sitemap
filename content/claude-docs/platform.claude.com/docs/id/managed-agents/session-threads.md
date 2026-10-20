@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5f5435ca21d8d118ddfb4637e248df6a3b93c4de53d055af681555afd303172a
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 09a8a102bf85907eeedbdbfdedad113e189accf69e4cb1b30524147099ac5176
 ---
 
 ---
@@ -124,7 +124,7 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
+    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
   ```
 
   ```bash CLI
@@ -142,7 +142,7 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
 
   ```typescript TypeScript
   await client.beta.sessions.events.send(session.id, {
-    events: [{ type: "user.interrupt", session_thread_id: thread.id }],
+    events: [{ type: "user.interrupt", session_thread_id: thread.id }]
   });
   ```
 
@@ -228,7 +228,7 @@ Secara opsional, arsipkan thread sesi ketika thread tersebut telah menyelesaikan
 
   ```typescript TypeScript
   const archived = await client.beta.sessions.threads.archive(thread.id, {
-    session_id: session.id,
+    session_id: session.id
   });
   console.log(archived.status, archived.archived_at);
   ```
@@ -278,7 +278,7 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
+    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -307,10 +307,10 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
 
   ```typescript TypeScript
   await client.beta.sessions.events.send(session.id, {
-    events: [{ type: "user.interrupt", session_thread_id: thread.id }],
+    events: [{ type: "user.interrupt", session_thread_id: thread.id }]
   });
   const archived = await client.beta.sessions.threads.archive(thread.id, {
-    session_id: session.id,
+    session_id: session.id
   });
   console.log(archived.status, archived.archived_at);
   ```
@@ -428,19 +428,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" |
-        while IFS= read -r line; do
-          [[ $line == data:* ]] || continue
-          json=${line#data: }
-          case $(jq -r '.type' <<<"$json") in
-            agent.message)
-              printf '%s' "$(jq -j '.content[] | select(.type == "text") | .text' <<<"$json")"
-              ;;
-            session.thread_status_idle)
-              break
-              ;;
-          esac
-        done
+        -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
       ```bash CLI
@@ -466,7 +454,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
 
       ```typescript TypeScript
       const stream = await client.beta.sessions.threads.events.stream(thread.id, {
-        session_id: session.id,
+        session_id: session.id
       });
 
       loop: for await (const event of stream) {
@@ -594,8 +582,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
+        -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
       ```bash CLI
@@ -614,7 +601,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
 
       ```typescript TypeScript
       for await (const event of client.beta.sessions.threads.events.list(thread.id, {
-        session_id: session.id,
+        session_id: session.id
       })) {
         console.log(`[${event.type}] ${event.processed_at}`);
       }
@@ -702,22 +689,13 @@ Di bawah `auto`, event `user.message` Anda dapat membuat server mengizinkan pang
 
 Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#tool-confirmation). Untuk setiap ID dalam `stop_reason.event_ids`, contoh ini mengirimkan `user.tool_confirmation` yang mengizinkan panggilan tersebut. Pola yang sama berlaku untuk `user.custom_tool_result`, yang juga dapat Anda kirim segera setelah event `agent.custom_tool_use`-nya tiba.
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  while IFS= read -r event_id; do
-    jq -n --arg id "$event_id" \
-      '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d @-
-  done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Workflow ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Workflow ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -741,9 +719,9 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
         {
           type: "user.tool_confirmation",
           tool_use_id: eventId,
-          result: "allow",
-        },
-      ],
+          result: "allow"
+        }
+      ]
     });
   }
   ```

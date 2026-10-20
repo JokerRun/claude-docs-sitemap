@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 2d2543f9f12f44a710eeb4c59c77214a6b382d65db481484758eb7ae9be8b9f0
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 045d9867f3f46fbf1c3f433245364e81269a3c59521415e385485ab945fde56e
 ---
 
 ---
@@ -185,15 +185,15 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   name = "demo"
   version = "0.1.0"
   description = "Demo project for the batching example"
-  `,
+  `
     ],
     [
       "README.md",
       `# demo
 
   A small demo project. Run \`demo --help\` for usage.
-  `,
-    ],
+  `
+    ]
   ]);
   const tools: Anthropic.Beta.Messages.BetaTool[] = [
     {
@@ -202,12 +202,12 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
       input_schema: {
         type: "object",
         properties: { path: { type: "string" } },
-        required: ["path"],
-      },
-    },
+        required: ["path"]
+      }
+    }
   ];
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Summarize pyproject.toml and README.md." },
+    { role: "user", content: "Summarize pyproject.toml and README.md." }
   ];
 
   let response: Anthropic.Beta.Messages.BetaMessage;
@@ -217,7 +217,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
       max_tokens: 16000,
       betas: ["mid-conversation-system-clear-at-2026-08-21"],
       tools,
-      messages,
+      messages
     });
     // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
     messages.push({ role: "assistant", content: response.content });
@@ -243,14 +243,14 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
           type: "tool_result",
           tool_use_id: block.id,
           content: `File not found: ${path}`,
-          is_error: true,
+          is_error: true
         });
         continue;
       }
       toolResults.push({
         type: "tool_result",
         tool_use_id: block.id,
-        content: text,
+        content: text
       });
     }
     // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
@@ -260,7 +260,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
     messages.push({
       role: "system",
       content: BATCH_NUDGE,
-      clear_at: "next_user_message",
+      clear_at: "next_user_message"
     });
   }
 

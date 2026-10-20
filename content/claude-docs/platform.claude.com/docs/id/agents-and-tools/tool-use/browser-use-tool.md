@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 261aa48f566debbde2d3b0105b3b6d91025faf371f9f9adc71a77ee42832990f
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 03f1ba71d30d7695ea2843a7ab05c89b7117febd6ab39f8ad6e5e0f2eb69cc51
 ---
 
 ---
@@ -348,7 +348,11 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
       return [
           {
               "type": "image",
-              "source": {"type": "base64", "media_type": "image/png", "data": PLACEHOLDER_PNG},
+              "source": {
+                  "type": "base64",
+                  "media_type": "image/png",
+                  "data": PLACEHOLDER_PNG,
+              },
           }
       ]
 
@@ -370,7 +374,8 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   ```typescript TypeScript
   // Data gambar placeholder; executor nyata menangkap viewport sebagai byte PNG
-  const PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+  const PLACEHOLDER_PNG =
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
 
   function navigate(url: string): string {
     return `navigated to ${url}`;
@@ -400,18 +405,17 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
         source: {
           type: "base64",
           media_type: "image/png",
-          data: PLACEHOLDER_PNG,
-        },
-      },
+          data: PLACEHOLDER_PNG
+        }
+      }
     ];
   }
 
   function handleBrowserAction(
     action: string,
-    input: unknown,
+    input: unknown
   ): string | Anthropic.ImageBlockParam[] {
-    const params: object =
-      typeof input === "object" && input !== null ? input : {};
+    const params: object = typeof input === "object" && input !== null ? input : {};
     if (action === "navigate" && "url" in params) {
       return navigate(String(params.url));
     } else if (action === "read_page") {
@@ -419,9 +423,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
     } else if (action === "left_click" && "target" in params) {
       // target adalah referensi elemen dari read_page atau koordinat viewport
       const target: object =
-        typeof params.target === "object" && params.target !== null
-          ? params.target
-          : {};
+        typeof params.target === "object" && params.target !== null ? params.target : {};
       if ("type" in target && target.type === "ref" && "ref" in target) {
         return clickElement(String(target.ref));
       } else if ("x" in target && "y" in target) {
@@ -563,7 +565,6 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   	// Tercapai saat input anggota kehilangan field atau field bertipe salah
   	return nil, fmt.Errorf("invalid input for %s", action)
   }
-
   ```
 
   ```java Java
@@ -788,20 +789,18 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   function browserResult(
     toolUseId: string,
     content: string | Anthropic.ImageBlockParam[],
-    isError?: boolean,
+    isError?: boolean
   ): Anthropic.ToolResultBlockParam {
     return {
       type: "tool_result",
       tool_use_id: toolUseId,
       toolset_name: "browser",
       content,
-      is_error: isError,
+      is_error: isError
     };
   }
 
-  function processToolCalls(
-    response: Anthropic.Message,
-  ): Anthropic.ToolResultBlockParam[] {
+  function processToolCalls(response: Anthropic.Message): Anthropic.ToolResultBlockParam[] {
     const toolResults: Anthropic.ToolResultBlockParam[] = [];
     let failed = false;
     for (const block of response.content) {
@@ -944,7 +943,6 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   	}
   	return toolResults
   }
-
   ```
 
   ```java Java

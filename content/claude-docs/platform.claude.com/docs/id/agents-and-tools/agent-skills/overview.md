@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 06eb36717c1727d0c959d978d897bb3686605b343b3305c25ed01205207d9765
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: f30f0294b5a95eec3e13bf4c2f9cb8d3fce2b0d130e4dc5e9349ee06f34fa4bd
 ---
 
 ---
@@ -121,7 +121,7 @@ Progressive disclosure memastikan hanya konten yang relevan yang menempati jende
 Skills berjalan di lingkungan eksekusi kode tempat Claude memiliki akses sistem file, perintah bash, dan kemampuan eksekusi kode. Skills ada sebagai direktori di mesin virtual, dan Claude berinteraksi dengannya menggunakan perintah bash yang sama yang akan Anda gunakan untuk menavigasi file di komputer Anda.
 
 <Frame>
-  ![Arsitektur Agent Skills - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan mesin virtual](https://platform.claude.com/docs/images/agent-skills-architecture.svg)
+  ![Arsitektur Agent Skills - menunjukkan bagaimana Skills terintegrasi dengan konfigurasi agen dan mesin virtual](https://platform.claude.com/docs/id/images/agent-skills-architecture.svg)
 </Frame>
 
 **Cara Claude mengakses konten Skill:**
@@ -145,7 +145,7 @@ Berikut cara Claude memuat dan menggunakan Skill kustom `pdf-processing` dari co
 5. **Claude mengeksekusi:** Menggunakan instruksi dari SKILL.md untuk menyelesaikan tugas
 
 <Frame>
-  ![Skills dimuat ke dalam context window (jendela konteks) - menunjukkan pemuatan bertahap metadata dan konten skill](https://platform.claude.com/docs/images/agent-skills-context-window.svg)
+  ![Skills dimuat ke dalam context window (jendela konteks) - menunjukkan pemuatan bertahap metadata dan konten skill](https://platform.claude.com/docs/id/images/agent-skills-context-window.svg)
 </Frame>
 
 ## Di mana Skills bekerja

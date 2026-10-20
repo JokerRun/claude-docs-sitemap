@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: efff2a8fa4f1b51cd82fda5683bdbd404aaea11631c068473c207e95b8ab0f32
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7f0db59ae87284701744cf7296337365e760ca70dac3a923cf5392c09378e8be
 ---
 
 ---
@@ -19,11 +19,10 @@ The [Python SDK](https://github.com/anthropics/anthropic-sdk-python) and [TypeSc
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  ant messages create --stream --format jsonl \
+  ant messages create --stream \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello"}' \
-    | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
+    --message '{role: user, content: "Hello"}'
   ```
 
   ```python Python

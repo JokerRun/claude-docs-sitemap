@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 40b7fbd4811c764950271d39bbc817611ebacbd13f30b693fe949560e037938f
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: e0ae0f22ae0a844fdeecc22e1e88a0a067641ce4b16c5e5e2fae79db85a4e280
 ---
 
 ---
@@ -179,7 +179,6 @@ The environment key authorizes posting custom tool results, so your Claude API k
       		log.Fatalf("worker: %v", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">
@@ -230,6 +229,7 @@ The examples connect without authentication. To send credentials, configure the 
       from anthropic import AsyncAnthropic
       from anthropic.types.beta import BetaManagedAgentsCustomToolParams
       from mcp import ClientSession, types
+
       # Requires mcp >= 1.24, which renamed streamablehttp_client to streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
@@ -463,7 +463,6 @@ The examples connect without authentication. To send credentials, configure the 
       	}
       	fmt.Println(agent.ID)
       }
-
       ```
 
       ```java Java
@@ -616,6 +615,7 @@ The examples connect without authentication. To send credentials, configure the 
       from anthropic.lib.tools.agent_toolset import beta_agent_toolset_20260401
       from anthropic.lib.tools.mcp import async_mcp_tool
       from mcp import ClientSession
+
       # Requires mcp >= 1.24, which renamed streamablehttp_client to streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
@@ -630,7 +630,9 @@ The examples connect without authentication. To send credentials, configure the 
           # result instead of a stalled call.
           async with (
               streamable_http_client(MCP_SERVER_URL) as (read, write, _),
-              ClientSession(read, write, read_timeout_seconds=timedelta(seconds=60)) as mcp_session,
+              ClientSession(
+                  read, write, read_timeout_seconds=timedelta(seconds=60)
+              ) as mcp_session,
               AsyncAnthropic(auth_token=environment_key) as client,
           ):
               await mcp_session.initialize()
@@ -753,7 +755,6 @@ The examples connect without authentication. To send credentials, configure the 
       		log.Fatalf("worker: %v", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">

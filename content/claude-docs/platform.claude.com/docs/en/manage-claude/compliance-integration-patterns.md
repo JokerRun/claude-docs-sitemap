@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: fdae64699103613e03f7fa139609e067d521bd9392eb5f94581296b046fcf3d5
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: d8aec5f0b0d3027a373cef1dbe8971626ba47e09b9ab9dcfdebf2a05c1ea7fb6
 ---
 
 ---
@@ -68,14 +68,13 @@ Even with clean tiling, an activity that indexes after its window has closed nev
 ### Cursor-driven incremental reads
 
 ```bash cURL
-first_id="activity_01XyDMpzjS89pFZXqSFUBDr6"  # first_id from a previous response
-
+# before_id is the first_id from a previous response
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=5000" \
-  --data-urlencode "before_id=$first_id"
+  --data-urlencode "before_id=activity_01XyDMpzjS89pFZXqSFUBDr6"
 ```
 
 Page through until `has_more` is `false`, then persist `first_id` from the final response and pass it unchanged as `before_id` on the next run to retrieve activities newer than the saved cursor. To walk in the opposite direction for a backfill, persist `last_id` and pass it as `after_id` instead. For the full cursor-vs-page-token reference and retry semantics, see [Paginate results](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed#paginate-results).

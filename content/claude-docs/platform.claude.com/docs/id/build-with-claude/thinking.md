@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 95f08cb786eb0274719b09aae4f7e9edfd0be8bd5797327c7a8afe75ed78bf70
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 9e91fac76d6059d29e69421ec8cff3dd06403a2d5ea22cae3c3eb30b4448de6f
 ---
 
 ---
@@ -24,7 +24,7 @@ Pemikiran memiliki biaya. Token yang dihabiskan Claude untuk bernalar ditagih se
 ## Cara kerja pemikiran
 
 <Frame>
-  ![Diagram: Claude menentukan apakah akan berpikir di awal ("up-front thinking" (pemikiran di awal)), dapat berpikir di antara pemanggilan alat ("tool calls" (pemanggilan alat)), dan mengembalikan blok pemikiran ("thinking blocks" (blok pemikiran)) sebelum teks](https://platform.claude.com/docs/images/how-thinking-works.svg)
+  ![Diagram: Claude menentukan apakah akan berpikir di awal ("up-front thinking" (pemikiran di awal)), dapat berpikir di antara pemanggilan alat ("tool calls" (pemanggilan alat)), dan mengembalikan blok pemikiran ("thinking blocks" (blok pemikiran)) sebelum teks](https://platform.claude.com/docs/id/images/how-thinking-works.svg)
 </Frame>
 
 Apakah Claude berpikir pada permintaan tertentu, dan seberapa dalam, bergantung pada konfigurasi pemikiran Anda dan kompleksitas permintaan.
@@ -549,7 +549,7 @@ Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran 
 Pemikiran berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`, diikuti oleh satu event `signature_delta` tepat sebelum `content_block_stop` dari blok tersebut. Blok teks di-stream setelahnya seperti biasa.
 
 <Frame>
-  ![Diagram urutan event streaming dengan pemikiran: blok pemikiran ("thinking block" (blok pemikiran)) terbuka, delta pemikiran ("thinking deltas" (delta pemikiran)) membawa teks hanya ketika pengaturan display mengembalikan teks (summarized, atau updates untuk blok pembaruan progres), satu delta signature ("signature delta" (delta signature)) menutup blok, lalu delta teks ("text deltas" (delta teks)) di-stream](https://platform.claude.com/docs/images/how-thinking-streams.svg)
+  ![Diagram urutan event streaming dengan pemikiran: blok pemikiran ("thinking block" (blok pemikiran)) terbuka, delta pemikiran ("thinking deltas" (delta pemikiran)) membawa teks hanya ketika pengaturan display mengembalikan teks (summarized, atau updates untuk blok pembaruan progres), satu delta signature ("signature delta" (delta signature)) menutup blok, lalu delta teks ("text deltas" (delta teks)) di-stream](https://platform.claude.com/docs/id/images/how-thinking-streams.svg)
 </Frame>
 
 Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delta pemikiran dan teks saat tiba:
@@ -1155,13 +1155,13 @@ Dalam praktiknya:
 Diagram berikut mengilustrasikan rezim yang hanya mempertahankan giliran terakhir (penghapusan). Diagram pertama menunjukkan percakapan multi-giliran: blok pemikiran setiap giliran dihasilkan dalam output tetapi tidak dibawa ke input giliran berikutnya.
 
 <Frame>
-  ![Diagram pemikiran pada model yang menghapus blok pemikiran sebelumnya: blok pemikiran setiap giliran dihasilkan dalam output dan tidak dibawa ke input giliran berikutnya](https://platform.claude.com/docs/images/context-window-thinking.svg)
+  ![Diagram pemikiran pada model yang menghapus blok pemikiran sebelumnya: blok pemikiran setiap giliran dihasilkan dalam output dan tidak dibawa ke input giliran berikutnya](https://platform.claude.com/docs/id/images/context-window-thinking.svg)
 </Frame>
 
 Diagram kedua menunjukkan rezim yang sama dengan penggunaan alat: pemikiran tetap berada dalam konteks bersama hasil alatnya selama giliran asisten berlangsung, lalu keluar pada giliran pengguna berikutnya.
 
 <Frame>
-  ![Diagram pemikiran dengan penggunaan alat pada model yang menghapus blok pemikiran sebelumnya: pemikiran dipertahankan bersama hasil alatnya, lalu dibuang pada giliran pengguna berikutnya](https://platform.claude.com/docs/images/context-window-thinking-tools.svg)
+  ![Diagram pemikiran dengan penggunaan alat pada model yang menghapus blok pemikiran sebelumnya: pemikiran dipertahankan bersama hasil alatnya, lalu dibuang pada giliran pengguna berikutnya](https://platform.claude.com/docs/id/images/context-window-thinking-tools.svg)
 </Frame>
 
 Gunakan [API penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk mendapatkan hitungan yang akurat untuk kasus penggunaan spesifik Anda, terutama untuk percakapan multi-giliran yang menyertakan pemikiran.

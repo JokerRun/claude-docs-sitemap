@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4f9ad54dd10b52da61e0c6c7a447c75cb327206def87e76d2afe56d20f9c3fd9
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 27845812cf2e158b9e9301a05363b1d268a0c211fbd2849f938a6f226e286cf1
 ---
 
 ---
@@ -25,14 +25,15 @@ First, upload a file using the [Files API](https://platform.claude.com/docs/en/b
 
 <CodeGroup>
   ```bash cURL
-  file=$(curl --fail-with-body -sS "${auth[@]}" \
-    "${base_url}/files" \
-    -F file=@data.csv)
-  FILE_ID=$(jq -er '.id' <<<"${file}")
+  curl --fail-with-body -sS https://api.anthropic.com/v1/files \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -F file=@data.csv
   ```
 
   ```bash CLI
-  FILE_ID=$(ant files upload --file data.csv --transform id --raw-output)
+  ant files upload --file data.csv
   ```
 
   ```python Python
@@ -42,7 +43,7 @@ First, upload a file using the [Files API](https://platform.claude.com/docs/en/b
 
   ```typescript TypeScript
   const file = await client.files.upload({
-    file: await toFile(readFile("data.csv"), "data.csv", { type: "text/csv" }),
+    file: await toFile(readFile("data.csv"), "data.csv", { type: "text/csv" })
   });
   console.log(`File ID: ${file.id}`);
   ```
@@ -99,21 +100,22 @@ Mount uploaded files into the sandbox by adding them to the `resources` (csharp,
 
 <CodeGroup>
   ```bash cURL
-  jq -n \
-    --arg agent_id "${AGENT_ID}" \
-    --arg environment_id "${ENVIRONMENT_ID}" \
-    --arg file_id "${FILE_ID}" \
-    '{
-      agent: $agent_id,
-      environment_id: $environment_id,
-      resources: [
+  curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "agent": "'"$AGENT_ID"'",
+      "environment_id": "'"$ENVIRONMENT_ID"'",
+      "resources": [
         {
-          type: "file",
-          file_id: $file_id,
-          mount_path: "/data.csv"
+          "type": "file",
+          "file_id": "'"$FILE_ID"'",
+          "mount_path": "/data.csv"
         }
       ]
-    }' | curl --fail-with-body -sS "${auth[@]}" "${base_url}/sessions" --json @-
+    }'
   ```
 
   ```bash CLI
@@ -149,9 +151,9 @@ Mount uploaded files into the sandbox by adding them to the `resources` (csharp,
       {
         type: "file",
         file_id: file.id,
-        mount_path: "/data.csv",
-      },
-    ],
+        mount_path: "/data.csv"
+      }
+    ]
   });
   ```
 
@@ -365,9 +367,15 @@ You can add or remove files from a session after creation using the session reso
 
 <CodeGroup>
   ```bash cURL
-  jq -n --arg file_id "${FILE_ID}" '{type: "file", file_id: $file_id}' \
-    | curl --fail-with-body -sS "${auth[@]}" \
-        "${base_url}/sessions/${SESSION_ID}/resources" --json @-
+  curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "type": "file",
+      "file_id": "'"$FILE_ID"'"
+    }'
   ```
 
   ```bash CLI
@@ -389,7 +397,7 @@ You can add or remove files from a session after creation using the session reso
   ```typescript TypeScript
   const resource = await client.beta.sessions.resources.add(session.id, {
     type: "file",
-    file_id: file.id,
+    file_id: file.id
   });
   if (resource.type !== "file") {
     throw new Error(`Unexpected resource type: ${resource.type}`);
@@ -457,11 +465,15 @@ List all resources on a session with `GET /v1/sessions/{session_id}/resources` (
 
 <CodeGroup>
   ```bash cURL
-  curl --fail-with-body -sS "${auth[@]}" \
-    "${base_url}/sessions/${SESSION_ID}/resources"
+  curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01"
 
-  curl --fail-with-body -sS "${auth[@]}" -X DELETE \
-    "${base_url}/sessions/${SESSION_ID}/resources/${RESOURCE_ID}" >/dev/null
+  curl --fail-with-body -sS -X DELETE "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
   ```bash CLI
@@ -489,7 +501,7 @@ List all resources on a session with `GET /v1/sessions/{session_id}/resources` (
   }
 
   await client.beta.sessions.resources.delete(resource.id, {
-    session_id: session.id,
+    session_id: session.id
   });
   ```
 

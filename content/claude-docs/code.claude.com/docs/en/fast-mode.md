@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7c371b85166304cb1b88e50a55dedc532f8cf7c64a601d143d000707229827f9
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: be422724d973d98cccc67ac8b8a234922689c0dfa144052ff116378bb3d5a9de
 ---
 
 > ## Documentation Index
@@ -52,7 +52,7 @@ When you enable fast mode:
 * A small `↯` icon appears next to the prompt while fast mode is active
 * Run `/fast` again at any time to check whether fast mode is on or off
 
-Opus 5.5 is the fast mode default in Claude Code v2.1.280 and later. Before v2.1.280, fast mode defaulted to Opus 5 from v2.1.219, to Opus 4.8 on v2.1.154 through v2.1.218, and to Opus 4.7 on v2.1.142 through v2.1.153.
+Opus 5.5 is the fast mode default in Claude Code v2.1.280 and later. Before v2.1.280, fast mode defaulted to Opus 5 from v2.1.219, and to Opus 4.8 on v2.1.154 through v2.1.218.
 
 When you disable fast mode with `/fast` again, you remain on Opus. To switch to a different model, use `/model`.
 

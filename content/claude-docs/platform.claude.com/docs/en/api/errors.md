@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 9783def2e4be492a988a24dbd9df97522144fbc45b71f09e6ed91cffbb0afc45
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b67a0f8df4340e6a92267a6323330432e48537d85693f74afd035ef6cc24d8c5
 ---
 
 ---
@@ -93,8 +93,8 @@ The Python and TypeScript SDKs expose the request ID as a `_request_id` property
 
 <CodeGroup>
   ```bash cURL
-  # Print the response headers (including request-id); discard the body
-  curl -sS -D - -o /dev/null https://api.anthropic.com/v1/messages \
+  # -i prints the response headers, including request-id, before the body
+  curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \

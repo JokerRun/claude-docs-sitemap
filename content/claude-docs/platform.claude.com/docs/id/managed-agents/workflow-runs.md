@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 42377364053a3a6ebf5c4aae3e7a43508e7d54ab76d32194f1375a8f26c92a55
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: a02f78761a305ace50722576c69e597ff46fe040cba548a6758f4ca15155eea9
 ---
 
 ---
@@ -26,7 +26,7 @@ Server menjalankan workflow di latar belakang. Agen-agennya bekerja di [thread s
 Agen yang dijalankan sesi menulis setiap workflow untuk pekerjaan yang Anda jelaskan. Workflow adalah sebuah program: ia menjalankan agen lain, mengumpulkan apa yang dikembalikan masing-masing, dan menggabungkan hasilnya. Dengan begitu, agen dapat menangani tugas yang terlalu besar untuk satu percakapan, seperti peninjauan ratusan dokumen. Selama eksekusi, agen dapat terus bekerja atau mengakhiri gilirannya, dan ia dapat memeriksa eksekusi tersebut.
 
 <Frame>
-  ![Lapisan dari sebuah workflow run (eksekusi workflow): eksekusi, dua fasenya, dan thread agen di masing-masing fase. Hasil diteruskan dari satu fase ke fase berikutnya.](https://platform.claude.com/docs/images/workflow-anatomy.svg)
+  ![Lapisan dari sebuah workflow run (eksekusi workflow): eksekusi, dua fasenya, dan thread agen di masing-masing fase. Hasil diteruskan dari satu fase ke fase berikutnya.](https://platform.claude.com/docs/id/images/workflow-anatomy.svg)
 </Frame>
 
 Diagram menunjukkan satu contoh. Setiap workflow yang ditulis agen memiliki fase dan agennya sendiri. Sebuah eksekusi memiliki lapisan-lapisan berikut:
@@ -52,7 +52,7 @@ Tidak ada langkah persetujuan sebelum eksekusi dimulai: agen memulai eksekusi da
 ## Bagaimana eksekusi berpindah antar statusnya
 
 <Frame>
-  ![Status workflow run (eksekusi workflow): running, idle, dan ended, serta apa yang memindahkan eksekusi dari satu status ke status lain.](https://platform.claude.com/docs/images/workflow-run-states.svg)
+  ![Status workflow run (eksekusi workflow): running, idle, dan ended, serta apa yang memindahkan eksekusi dari satu status ke status lain.](https://platform.claude.com/docs/id/images/workflow-run-states.svg)
 </Frame>
 
 Sebuah eksekusi dimulai dalam status running atau idle. Mencapai anggaran, misalnya, menjeda eksekusi yang sedang berjalan, sehingga menjadi idle; menaikkan atau menghapus anggaran kemudian membuatnya berjalan lagi, kecuali jika interupsi juga menjedanya. Eksekusi yang sedang berjalan berakhir ketika workflow-nya selesai, agen menghentikannya, eksekusi gagal, masa hidupnya habis, atau sesi diarsipkan. Eksekusi yang idle juga dapat berakhir, misalnya ketika agen menghentikannya atau sesi diarsipkan.
@@ -261,9 +261,14 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
     events: [
       {
         type: "user.message",
-        content: [{ type: "text", text: "Which contracts in /contracts have a change-of-control clause?" }],
-      },
-    ],
+        content: [
+          {
+            type: "text",
+            text: "Which contracts in /contracts have a change-of-control clause?"
+          }
+        ]
+      }
+    ]
   });
 
   events: for await (const event of stream) {
@@ -297,9 +302,9 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
               {
                 type: "user.custom_tool_result",
                 custom_tool_use_id: event.id,
-                content: [{ type: "text", text: result }],
-              },
-            ],
+                content: [{ type: "text", text: result }]
+              }
+            ]
           });
         } catch (error) {
           // Server menolak hasil yang datang terlambat, setelah server
@@ -446,7 +451,7 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
   ```
 
   ```go Go
-  	openRuns := map[string]string{}   // workflow_run_id -> run name
+  	openRuns := map[string]string{}      // workflow_run_id -> run name
   	phaseNames := map[[2]string]string{} // {run ID, phase ID} -> phase name
 
   	// Buka stream terlebih dahulu, lalu kirim pesan pengguna

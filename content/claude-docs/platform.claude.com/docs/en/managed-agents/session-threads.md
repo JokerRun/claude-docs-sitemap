@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: b87db05a1d42dd2878be2aec866a2afbc48924dd2d88aa83a7e7dcee37eed0ba
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 822541ecf74350ed3f170e973e060a420a2f5c74e4a3e1a4e793d34c42a59a41
 ---
 
 ---
@@ -124,7 +124,7 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
+    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
   ```
 
   ```bash CLI
@@ -142,7 +142,7 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
 
   ```typescript TypeScript
   await client.beta.sessions.events.send(session.id, {
-    events: [{ type: "user.interrupt", session_thread_id: thread.id }],
+    events: [{ type: "user.interrupt", session_thread_id: thread.id }]
   });
   ```
 
@@ -228,7 +228,7 @@ Optionally archive a session thread when it has completed its work. Archiving a 
 
   ```typescript TypeScript
   const archived = await client.beta.sessions.threads.archive(thread.id, {
-    session_id: session.id,
+    session_id: session.id
   });
   console.log(archived.status, archived.archived_at);
   ```
@@ -278,7 +278,7 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d "{\"events\": [{\"type\": \"user.interrupt\", \"session_thread_id\": \"$THREAD_ID\"}]}"
+    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -307,10 +307,10 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
 
   ```typescript TypeScript
   await client.beta.sessions.events.send(session.id, {
-    events: [{ type: "user.interrupt", session_thread_id: thread.id }],
+    events: [{ type: "user.interrupt", session_thread_id: thread.id }]
   });
   const archived = await client.beta.sessions.threads.archive(thread.id, {
-    session_id: session.id,
+    session_id: session.id
   });
   console.log(archived.status, archived.archived_at);
   ```
@@ -428,19 +428,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
       curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" |
-        while IFS= read -r line; do
-          [[ $line == data:* ]] || continue
-          json=${line#data: }
-          case $(jq -r '.type' <<<"$json") in
-            agent.message)
-              printf '%s' "$(jq -j '.content[] | select(.type == "text") | .text' <<<"$json")"
-              ;;
-            session.thread_status_idle)
-              break
-              ;;
-          esac
-        done
+        -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
       ```bash CLI
@@ -466,7 +454,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
 
       ```typescript TypeScript
       const stream = await client.beta.sessions.threads.events.stream(thread.id, {
-        session_id: session.id,
+        session_id: session.id
       });
 
       loop: for await (const event of stream) {
@@ -594,8 +582,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
+        -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
       ```bash CLI
@@ -614,7 +601,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
 
       ```typescript TypeScript
       for await (const event of client.beta.sessions.threads.events.list(thread.id, {
-        session_id: session.id,
+        session_id: session.id
       })) {
         console.log(`[${event.type}] ${event.processed_at}`);
       }
@@ -702,19 +689,10 @@ Under `auto`, your `user.message` events can lead the server to allow a call it 
 
 The following example goes inside the event loop of the [tool confirmation handler](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#tool-confirmation). For each ID in `stop_reason.event_ids`, it sends a `user.tool_confirmation` that allows the call. The same pattern applies to `user.custom_tool_result`, which you can also send as soon as its `agent.custom_tool_use` event arrives.
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  while IFS= read -r event_id; do
-    jq -n --arg id "$event_id" \
-      '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
-      curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-        -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
-        -H "anthropic-beta: managed-agents-2026-04-01" \
-        -H "content-type: application/json" \
-        -d @-
-  done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
     This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
@@ -741,9 +719,9 @@ The following example goes inside the event loop of the [tool confirmation handl
         {
           type: "user.tool_confirmation",
           tool_use_id: eventId,
-          result: "allow",
-        },
-      ],
+          result: "allow"
+        }
+      ]
     });
   }
   ```

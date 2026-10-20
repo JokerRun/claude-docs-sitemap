@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 50e9e83319ea46f9e2d355bb106f6eb2658a5d50ed8d0f11f443e0aafce32b9a
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b3b762253e5f0e2138d3041f136f7b3f65e8397d87c24affa384b42e84028ba8
 ---
 
 ---
@@ -57,8 +57,7 @@ The `inference_geo` parameter controls where model inference runs for a specific
     --model claude-opus-5-5 \
     --max-tokens 1024 \
     --inference-geo us \
-    --message '{role: user, content: "Summarize the key points of this document."}' \
-    --transform '{content.#(type=="text").text,usage.inference_geo}' --format yaml
+    --message '{role: user, content: "Summarize the key points of this document."}'
   ```
 
   ```python Python
@@ -95,9 +94,7 @@ The `inference_geo` parameter controls where model inference runs for a specific
     ]
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   // Check where inference actually ran
   console.log(`Inference geo: ${response.usage.inference_geo}`);

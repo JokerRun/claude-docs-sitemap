@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: a901c10b4d267bba8e73101b20de74547cbafbd875435f062d78709f100d8029
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 8de5599c4e88b417aa409251a2761d6952665464766902689c58c4c0ab77818d
 ---
 
 ---
@@ -70,7 +70,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   ```
 
   ```bash CLI
-  ant messages create --transform content <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:

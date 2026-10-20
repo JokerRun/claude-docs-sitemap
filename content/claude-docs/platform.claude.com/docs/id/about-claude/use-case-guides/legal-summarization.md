@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f87f611e2d9e6e6afb4152663a9a9baddc24a92d76b149376985fb3f34d545d0
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 78f8043ec384504e2ddf2c723173964fc3f34c693b453e3db5c54ec3e55f0801
 ---
 
 ---
@@ -91,7 +91,6 @@ Misalnya, saat meringkas perjanjian sewa-ulang (sublease agreement), Anda mungki
   	"Consent and notices (landlord's consent, and notice requirements)",
   	"Special provisions (furniture, parking, and subletting restrictions)",
   }
-
   ```
 
   ```java Java
@@ -382,7 +381,6 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   	}
   	fmt.Println(documentText[:min(50000, len(documentText))])
   }
-
   ```
 
   ```java Java
@@ -426,8 +424,10 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   ```
 
   ```php PHP
+  use Smalot\PdfParser\Parser;
+
   $getLlmText = function (string $pdfData): string {
-      $document = (new \Smalot\PdfParser\Parser())->parseContent($pdfData);
+      $document = (new Parser())->parseContent($pdfData);
       $text = implode("\n", array_map(fn ($page) => $page->getText(), $document->getPages()));
 
       // Hapus nomor halaman
@@ -696,7 +696,6 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   	subleaseSummary := summarizeDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(subleaseSummary)
   }
-
   ```
 
   ```java Java
@@ -750,12 +749,12 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
 
   ```php PHP
   // Inisialisasi klien Anthropic
-  $client = new \Anthropic\Client();
+  $client = new Client();
 
   $summarizeDocument = function (
       string $text,
       array $detailsToExtract,
-      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      Model $model = Model::CLAUDE_OPUS_5_5,
       int $maxTokens = 16000,
   ) use ($client): string {
       // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
@@ -1160,7 +1159,6 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   	longSummary := summarizeLongDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(longSummary)
   }
-
   ```
 
   ```java Java
@@ -1229,7 +1227,7 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   $summarizeLongDocument = function (
       string $text,
       array $detailsToExtract,
-      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      Model $model = Model::CLAUDE_OPUS_5_5,
       int $maxTokens = 16000,
   ) use ($client, $chunkText, $summarizeDocument): string {
       // Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt

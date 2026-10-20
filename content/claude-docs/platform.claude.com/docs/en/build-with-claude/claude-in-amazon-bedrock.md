@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 9f49f453f7ed72b2b954b20ff6ee8430fdab27c26e6df62f5fd95760607b868d
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 6e7baa46848766e0798e667d1bd4c77846fa35e5ee7cf29fbf362e14b32867c6
 ---
 
 ---
@@ -358,7 +358,15 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 Use the latest version of Claude Code with Claude in Amazon Bedrock; run `claude update` to upgrade.
 
 <Tip>
-  Upgrading to a newer Claude model? In Claude Code, run `/claude-api migrate` to apply model ID swaps and breaking parameter changes across your codebase. The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform. See [Migrating to a newer Claude model](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+  Upgrading to a newer Claude model? The [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) in Claude Code applies model ID swaps and breaking parameter changes across your code base:
+
+  Let Claude Code migrate your code for you
+
+  ```text
+  /claude-api migrate this project to the latest Claude Opus model
+  ```
+
+  The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform.
 </Tip>
 
 ## Feature support
@@ -372,10 +380,10 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
 * [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
 * [Citations](https://platform.claude.com/docs/en/build-with-claude/citations)
+* [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
 ### Features not supported
 
-* [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 * Input sources (URL sources for images and documents, Files API)
 * Server-side tools (code execution, web search, web fetch, advisor)
 * Agent infrastructure (Agent Skills, MCP connector, programmatic tool calling)

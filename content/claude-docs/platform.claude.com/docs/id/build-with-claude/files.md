@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: a0ed20beb87a6885503f6a6e361412034cc7f4d45dfeb519dc55f5447e911b56
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: eed1c8c5a3dddd9182dcafa2041b8fa98800e6851364c159bfc8fd4e3fe04aa6
 ---
 
 ---
@@ -49,19 +49,14 @@ Unggah file untuk direferensikan dalam panggilan API mendatang:
 
 <CodeGroup>
   ```bash cURL
-  FILE_ID=$(curl -X POST https://api.anthropic.com/v1/files \
+  curl -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@/path/to/document.pdf" | jq -r '.id')
-  echo "$FILE_ID"
+    -F "file=@/path/to/document.pdf"
   ```
 
   ```bash CLI
-  FILE_ID=$(ant files upload \
-    --file /path/to/document.pdf \
-    --transform id \
-    --raw-output)
-  echo "$FILE_ID"
+  ant files upload --file /path/to/document.pdf
   ```
 
   ```python Python
@@ -74,11 +69,9 @@ Unggah file untuk direferensikan dalam panggilan API mendatang:
 
   ```typescript TypeScript
   const uploaded = await client.files.upload({
-    file: await toFile(
-      fs.createReadStream("/path/to/document.pdf"),
-      undefined,
-      { type: "application/pdf" },
-    ),
+    file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
+      type: "application/pdf"
+    })
   });
   console.log(uploaded.id);
   ```
@@ -255,18 +248,18 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
         content: [
           {
             type: "text",
-            text: "Please summarize this document for me.",
+            text: "Please summarize this document for me."
           },
           {
             type: "document",
             source: {
               type: "file",
-              file_id: uploaded.id,
-            },
-          },
-        ],
-      },
-    ],
+              file_id: uploaded.id
+            }
+          }
+        ]
+      }
+    ]
   });
 
   console.log(response);
@@ -920,7 +913,6 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   	_, err = io.Copy(out, resp.Body)
   	return err
   }
-
   ```
 
   ```java Java

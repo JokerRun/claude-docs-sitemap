@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 9bd3f40f36f87702eafff5ba47fa826db66f860c5f18d11029b8a1b82e59f954
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 0b3fde03d7215d8339caa1508ef28c992a6cc5c1f7dfd9f090513d2706753cc9
 ---
 
 > ## Documentation Index
@@ -38,7 +38,7 @@ Claude Code offers three ways to schedule recurring or one-off work:
 </Tip>
 
 <Note>
-  By default, scheduled tasks run against whatever state your working directory is in, including uncommitted changes. Enable the worktree toggle when creating the task to give each run its own isolated Git worktree, the same way [parallel sessions](/docs/en/desktop#work-in-parallel-with-sessions) work.
+  By default, scheduled tasks run against whatever state your working directory is in, including uncommitted changes. Enable the worktree toggle when creating the task to give each run its own [isolated Git worktree](/docs/en/desktop#run-a-session-in-its-own-worktree).
 </Note>
 
 ## Create a scheduled task

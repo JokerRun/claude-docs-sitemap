@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 578a200ffa56a54d801d848b601a8722d90d4c221f1eac95af710a03e7f0df2d
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: e7f83e9fd8a20481612693fab2bdbf3de28bc668fa43799c71b94980261d7f58
 ---
 
 ---
@@ -578,7 +578,7 @@ Dalam pengukuran Anthropic pada model-model saat ini, satu-satunya pasangan yang
 Untuk mengaktifkannya, tambahkan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool), sebuah fitur beta, ke permintaan Anda. Pada Claude Managed Agents, [berikan advisor kepada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor). Untuk Claude Code, lihat [mengeskalasikan keputusan sulit dengan alat advisor](https://code.claude.com/docs/en/advisor).
 
 <Frame>
-  ![Diagram strategi advisor: model executor menjalankan loop utama dan memanggil advisor Claude Fable 5.1 sesuai kebutuhan](https://platform.claude.com/docs/images/model-routing-advisor-strategy.svg)
+  ![Diagram strategi advisor: model executor menjalankan loop utama dan memanggil advisor Claude Fable 5.1 sesuai kebutuhan](https://platform.claude.com/docs/id/images/model-routing-advisor-strategy.svg)
 </Frame>
 
 Tabel berikut membandingkan setiap pasangan dengan executor-nya saja pada effort yang sama:
@@ -620,7 +620,7 @@ Ketika pekerjaan berupa satu rantai yang saling bergantung, atau muat dalam satu
 Untuk membangun orchestrator, gunakan [orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) di Claude Managed Agents: konfigurasikan agen orchestrator dan agen worker yang dapat dipanggilnya, masing-masing dengan modelnya sendiri.
 
 <Frame>
-  ![Diagram strategi orchestrator: model frontier menyebarkan subtugas ke tiga model worker berbiaya lebih rendah](https://platform.claude.com/docs/images/model-routing-orchestrator-strategy.svg)
+  ![Diagram strategi orchestrator: model frontier menyebarkan subtugas ke tiga model worker berbiaya lebih rendah](https://platform.claude.com/docs/id/images/model-routing-orchestrator-strategy.svg)
 </Frame>
 
 [Matriks pemilihan model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model#model-selection-matrix) mencantumkan Claude Haiku 5.5 untuk tugas sub-agen; sebelum Anda menggunakannya sebagai worker, [ukur pada beban kerja Anda sendiri](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#measure-on-your-own-workload).

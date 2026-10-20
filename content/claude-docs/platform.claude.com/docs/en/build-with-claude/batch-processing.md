@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 0b52402fa26b81053d08c8eb874cf4ab242ef54f0ff7d6e99bf442b6bde8510c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: becf39440b06098a7b112ba9c3704877d27f5814759454b33af8a7dd6e9dc7f4
 ---
 
 ---
@@ -50,9 +50,9 @@ This is especially useful for bulk operations that don't require immediate resul
 * A Message Batch is limited to either 100,000 Message requests or 256 MB in size, whichever is reached first.
 * The system processes each batch as fast as possible, with most batches completing within 1 hour. You can access batch results when all messages have completed or after 24 hours, whichever comes first. Batches expire if processing does not complete within 24 hours.
 * Batch results are available for 29 days after creation. After that, you may still view the Batch, but its results will no longer be available for download.
-* Batches are scoped to a [Workspace](https://platform.claude.com/settings/workspaces). You may view all batches (and their results) that were created within the Workspace your request runs in.
+* Batches are scoped to a [Workspace](https://platform.claude.com/settings/workspaces) in the Claude Console. You may view all batches (and their results) that were created within the Workspace your request runs in.
 * Rate limits apply to both Batches API HTTP requests and the number of requests within a batch waiting to be processed. See [Message Batches API rate limits](https://platform.claude.com/docs/en/api/rate-limits#message-batches-api). Additionally, processing may be slowed down based on current demand and your request volume. In that case, you may see more requests expiring after 24 hours.
-* Because of high throughput and concurrent processing, batches may go slightly over your Workspace's configured [spend limit](https://platform.claude.com/settings/billing).
+* Because of high throughput and concurrent processing, batches may go slightly over the [spend limit](https://platform.claude.com/settings/billing) configured in the Claude Console for your Workspace.
 * Each batched request must have `max_tokens` of at least `1`. `max_tokens: 0` ([cache pre-warming](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache)) is not supported inside a batch, because an ephemeral cache entry written during batch processing would likely expire before the follow-up request runs.
 
 ### Supported models
@@ -464,22 +464,16 @@ To poll a Message Batch, you'll need its `id`, which is provided in the response
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # ...
   # Check the status; repeat until processing_status is "ended"
-  curl -s "https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID" \
+  curl "https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID" \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    | jq -r '.processing_status'
+    --header "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  #!/bin/bash
-  # ...
   # Check the status; repeat until processing_status is "ended"
   ant messages:batches retrieve \
-    --message-batch-id "$MESSAGE_BATCH_ID" \
-    --transform processing_status --raw-output
+    --message-batch-id "$MESSAGE_BATCH_ID"
   ```
 
   ```python Python
@@ -618,7 +612,6 @@ You can list all Message Batches in your Workspace using the [list endpoint](htt
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
   # Fetches one page. While the response's has_more is true, pass its
   # last_id as after_id to fetch the next page. (The SDKs and the CLI
   # perform automatic pagination.)
@@ -734,28 +727,19 @@ Results of the batch are available for download at the `results_url` property on
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # Fetch the batch's results_url, then stream the .jsonl results it
-  # points to. For per-result handling (retries, validation errors),
-  # use the SDK examples in the other tabs.
-  RESULTS_URL=$(curl -s "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d" \
+  # Streams the batch's .jsonl results, one result per line.
+  # For per-result handling (retries, validation errors), use the Claude SDK.
+  curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d/results" \
     --header "anthropic-version: 2023-06-01" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    | jq -r '.results_url')
-
-  curl -s "$RESULTS_URL" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    | jq -r '"\(.result.type): \(.custom_id)"'
+    --header "x-api-key: $ANTHROPIC_API_KEY"
   ```
 
   ```bash CLI
-  # Prints one line per result, e.g. `{"custom_id":"test-1","type":"succeeded",…}`.
+  # Prints one result per line, e.g. `{"custom_id":"test-1","result":{"type":"succeeded",…}}`.
   # For per-result handling (retries, validation errors), use the SDK
   # examples in the other tabs.
   ant messages:batches results \
     --message-batch-id msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d \
-    --transform '{custom_id,"type":result.type,"error":result.error.error.type}' \
     --format jsonl
   ```
 
@@ -964,16 +948,12 @@ You can cancel a Message Batch that is currently processing using the [cancel en
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # ...
   curl --request POST https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/cancel \
       --header "x-api-key: $ANTHROPIC_API_KEY" \
       --header "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  #!/bin/bash
-  # ...
   ant messages:batches cancel --message-batch-id "$MESSAGE_BATCH_ID"
   ```
 

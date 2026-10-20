@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2664988a454a49ed87be3e740e29b712c00d4dbc737966eb1569b997b0932fb3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: f4d1bdc59338e33cc120b7164b0e93524d16eba65339a56a2292c988147a0e07
 ---
 
 ---
-title: Create Vault
+title: Create a Vault
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
 ---
 
-# Create Vault
+# Create a Vault
 
 **POST** `/v1/vaults`
 
-Create Vault
+Create a Vault
 
 ## Headers
 
@@ -160,7 +160,7 @@ Create Vault
 
   - `id: string`
 
-    Unique identifier for the vault.
+    The unique ID of the vault (`vlt_...`).
 
   - `archived_at: string or null`
 

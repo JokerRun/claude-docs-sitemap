@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: a0e151d9852e62dcc00fee5f9f77a53d7630a9f1099083d346866ea4054337ec
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 80ef8ef62118f7144796781e9b3e65685dc34b816d6cb7fb474631d8abb2a226
 ---
 
 ---
@@ -81,10 +81,10 @@ Dream menghasilkan **memory store output** lain, terpisah dari input. ID store o
   let dream = await client.beta.dreams.create({
     inputs: [
       { type: "memory_store", memory_store_id: storeId },
-      { type: "sessions", session_ids: [sessionA, sessionB] },
+      { type: "sessions", session_ids: [sessionA, sessionB] }
     ],
     model: "claude-opus-5-5",
-    instructions: "Focus on coding-style preferences; ignore one-off debugging notes.",
+    instructions: "Focus on coding-style preferences; ignore one-off debugging notes."
   });
   console.log(dream.id); // drm_01...
   ```
@@ -211,16 +211,10 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
 
 <CodeGroup>
   ```bash cURL
-  while true; do
-    dream=$(curl -s "https://api.anthropic.com/v1/dreams/$dream_id" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21")
-    status=$(jq -r '.status' <<< "$dream")
-    echo "status=$status input_tokens=$(jq -r '.usage.input_tokens' <<< "$dream")"
-    [[ "$status" == "pending" || "$status" == "running" ]] || break
-    sleep 10
-  done
+  curl -s "https://api.anthropic.com/v1/dreams/$dream_id" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21"
   ```
 
   ```bash CLI
@@ -311,9 +305,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
 
 <CodeGroup>
   ```bash cURL
-  # Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
-  output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
-
+  # $output_store_id is the memory_store_id of the completed dream's memory_store output
   curl -s https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -329,9 +321,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   ```
 
   ```bash CLI
-  output_store_id=$(ant beta:dreams retrieve --dream-id "$dream_id" --format json |
-    jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id')
-
+  # $output_store_id is the memory_store_id of the completed dream's memory_store output
   ant beta:sessions create <<YAML
   agent: $agent_id
   environment_id: $environment_id
@@ -364,9 +354,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   await client.beta.sessions.create({
     agent: agentId,
     environment_id: environmentId,
-    resources: [
-      { type: "memory_store", memory_store_id: outputStoreId },
-    ],
+    resources: [{ type: "memory_store", memory_store_id: outputStoreId }]
   });
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3b3ce8eecf579d596d39351ccd01a9d57ff583496de47a2b64264e8315b58869
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7a6e8b9e964ee42f2006069b5c7450a4f73b3721ae83bc6d77ee6e271f0bdade
 ---
 
 ---
@@ -145,7 +145,6 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
   		log.Fatalf("worker: %v", err)
   	}
   }
-
   ```
 
   <CodeGroupItem language="Java">
@@ -414,7 +413,6 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       		slog.Error("http shutdown", "err", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">
@@ -715,7 +713,9 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
 
 
   async def main() -> None:
-      async with AsyncAnthropic(auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]) as client:
+      async with AsyncAnthropic(
+          auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
+      ) as client:
           worker = EnvironmentWorker(client, workdir="/workspace")
           # Tanpa argumen, handle_item() membaca variabel ANTHROPIC_* yang diteruskan oleh
           # skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
@@ -787,7 +787,6 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   		log.Fatalf("worker: %v", err)
   	}
   }
-
   ```
 
   <CodeGroupItem language="Java">

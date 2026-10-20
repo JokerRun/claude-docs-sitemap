@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: bc430f118f950274bf1552c2fa133fca618c71e6c9ea100f6b5c89419381aca3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 132a55a39537cf0449be82f231d67068b4ef654a42f653d50c6ba13aa2c511cc
 ---
 
 ---
@@ -517,7 +517,7 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   async function samplingLoop(
     model: string,
     messages: Anthropic.MessageParam[],
-    maxIterations = 10,
+    maxIterations = 10
   ): Promise<Anthropic.MessageParam[]> {
     // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
     // atau batas iterasi tercapai.
@@ -526,7 +526,7 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
         model,
         max_tokens: 4096,
         messages,
-        tools,
+        tools
       });
 
       // Tambahkan respons Claude ke riwayat percakapan
@@ -622,7 +622,6 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   	}
   	return messages, nil
   }
-
   ```
 
   ```java Java
@@ -943,7 +942,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           return [
               {
                   "type": "image",
-                  "source": {"type": "base64", "media_type": "image/png", "data": PLACEHOLDER_PNG},
+                  "source": {
+                      "type": "base64",
+                      "media_type": "image/png",
+                      "data": PLACEHOLDER_PNG,
+                  },
               }
           ]
 
@@ -974,7 +977,8 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
       ```typescript TypeScript
       // Data gambar placeholder; eksekutor nyata menangkap layar sebagai byte PNG
-      const PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+      const PLACEHOLDER_PNG =
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
 
       function captureScreenshot(): Anthropic.ImageBlockParam[] {
         // screenshot menjawab dengan blok gambar, bukan teks
@@ -984,9 +988,9 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             source: {
               type: "base64",
               media_type: "image/png",
-              data: PLACEHOLDER_PNG,
-            },
-          },
+              data: PLACEHOLDER_PNG
+            }
+          }
         ];
       }
 
@@ -1004,10 +1008,9 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
       function handleComputerAction(
         action: string,
-        input: unknown,
+        input: unknown
       ): string | Anthropic.ImageBlockParam[] {
-        const params: object =
-          typeof input === "object" && input !== null ? input : {};
+        const params: object = typeof input === "object" && input !== null ? input : {};
         switch (action) {
           case "screenshot":
             return captureScreenshot();
@@ -1132,7 +1135,6 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	// Tercapai saat input anggota tidak memiliki field atau field bertipe salah
       	return nil, fmt.Errorf("invalid input for %s", action)
       }
-
       ```
 
       ```java Java
@@ -1313,26 +1315,23 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```
 
       ```typescript TypeScript
-      const HALT_TEXT =
-        "Not executed: an earlier computer action in this turn failed.";
+      const HALT_TEXT = "Not executed: an earlier computer action in this turn failed.";
 
       function computerResult(
         toolUseId: string,
         content: string | Anthropic.ImageBlockParam[],
-        isError?: boolean,
+        isError?: boolean
       ): Anthropic.ToolResultBlockParam {
         return {
           type: "tool_result",
           tool_use_id: toolUseId,
           toolset_name: "computer",
           content,
-          is_error: isError,
+          is_error: isError
         };
       }
 
-      function processToolCalls(
-        response: Anthropic.Message,
-      ): Anthropic.ToolResultBlockParam[] {
+      function processToolCalls(response: Anthropic.Message): Anthropic.ToolResultBlockParam[] {
         const toolResults: Anthropic.ToolResultBlockParam[] = [];
         let failed = false;
         for (const block of response.content) {
@@ -1473,7 +1472,6 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	}
       	return toolResults
       }
-
       ```
 
       ```java Java

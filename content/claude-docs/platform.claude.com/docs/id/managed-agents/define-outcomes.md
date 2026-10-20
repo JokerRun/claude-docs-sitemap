@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f4246db67bc8cfe8eb8cac6b28d28cda74312ef218589250dfe6122981526e18
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7724d25badba47c5c9d0cc08617e06171cc27c6e91b3aa4d7f15ecbaa076c621
 ---
 
 ---
@@ -119,7 +119,7 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
   await writeFile("/tmp/rubric.md", RUBRIC);
 
   const rubric = await client.files.upload({
-    file: await toFile(readFile("/tmp/rubric.md"), "/tmp/rubric.md"),
+    file: await toFile(readFile("/tmp/rubric.md"), "/tmp/rubric.md")
   });
   console.log(`Uploaded rubric: ${rubric.id}`);
   ```
@@ -296,8 +296,8 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
 
 <CodeGroup>
   ```bash cURL
-  # Membuat sesi
-  session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+  # Create a session
+  curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -306,10 +306,9 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       "environment_id": "'"$ENVIRONMENT_ID"'",
       "title": "Financial analysis on Costco"
     }'
-  )
-  SESSION_ID=$(jq -r '.id' <<<"$session")
 
-  # Mendefinisikan hasil — agen mulai bekerja begitu menerimanya
+  # Define the outcome: SESSION_ID is the id from the create response
+  # The agent starts working when it receives the event
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -323,20 +322,20 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
           "max_iterations": 5
         }
       ]
-    }' >/dev/null
-  # atau: "rubric": {"type": "file", "file_id": "'"$RUBRIC_ID"'"}
-  # "max_iterations" bersifat opsional; default 3, maksimum 20
+    }'
+  # or: "rubric": {"type": "file", "file_id": "'"$RUBRIC_ID"'"}
+  # "max_iterations" is optional; default 3, max 20
   ```
 
   ```bash CLI
-  # Buat sesi
-  SESSION_ID=$(ant beta:sessions create \
+  # Create a session
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
-    --title "Financial analysis on Costco" \
-    --transform id --raw-output)
+    --title "Financial analysis on Costco"
 
-  # Definisikan hasil — agen mulai bekerja saat diterima
+  # Define the outcome: SESSION_ID is the id from the create response
+  # The agent starts working when it receives the event
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
@@ -375,7 +374,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   const session = await client.beta.sessions.create({
     agent: agent.id,
     environment_id: environment.id,
-    title: "Financial analysis on Costco",
+    title: "Financial analysis on Costco"
   });
 
   // Definisikan hasil — agen mulai bekerja saat menerimanya
@@ -386,9 +385,9 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
         description: "Build a DCF model for Costco in .xlsx",
         rubric: { type: "text", content: RUBRIC },
         // atau: rubric: { type: "file", file_id: rubric.id },
-        max_iterations: 5, // optional; default 3, max 20
-      },
-    ],
+        max_iterations: 5 // optional; default 3, max 20
+      }
+    ]
   });
   ```
 
@@ -712,39 +711,28 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
 <CodeGroup>
   ```bash cURL
-  # Mencantumkan file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Mengunduh file
-  FILE_ID=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
+  # Download a file by the ID from the list
+  curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" | jq -r '.data[0].id // empty')
-  if [[ -n $FILE_ID ]]; then
-    curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -o /tmp/output.txt
-  fi
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -o /tmp/output.txt
   ```
 
   ```bash CLI
-  # Daftar file yang dihasilkan oleh sesi ini
-  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
+  # List files produced by this session
+  # scope_id filtering requires the managed-agents beta on the files request
   ant beta:files list --scope-id "$SESSION_ID" --beta managed-agents-2026-04-01
 
-  # Unduh file
-  FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
-    --beta managed-agents-2026-04-01 \
-    --transform 'data[0].id' --raw-output)
-  if [[ -n $FILE_ID ]]; then
-    ant files download --file-id "$FILE_ID" --output /tmp/output.txt
-  fi
+  # Download a file by the ID from the list
+  ant files download --file-id "$FILE_ID" --output /tmp/output.txt
   ```
 
   ```python Python
@@ -765,7 +753,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   // Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   const files = await client.beta.files.list({
     scope_id: session.id,
-    betas: ["managed-agents-2026-04-01"],
+    betas: ["managed-agents-2026-04-01"]
   });
   for (const file of files.data) {
     console.log(file.id, file.filename);

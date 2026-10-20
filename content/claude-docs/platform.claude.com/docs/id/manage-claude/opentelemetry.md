@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: dbbf329e0dd3c5992dd7ef7fdba0274d2ac5829d8518bd272ba220e2bdcc0241
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 03441781efd6266316a87824d56c807fb32fc4938eaa61fdce9603d91be125cb
 ---
 
 ---
@@ -165,7 +165,7 @@ Dalam contoh ini, aplikasi Anda memanggil [tool runner](https://platform.claude.
 5. Tool runner mengirimkan permintaan kedua dengan hasil alat (ditampilkan sebagai span klien `anthropic.messages.create` kedua dan span di bawahnya).
 6. Dalam permintaan kedua, model memberikan jawaban akhir.
 
-![Contoh trace tool runner Messages: dua permintaan dengan span klien dan server, permintaan model, web\_search, dan get\_weather](https://platform.claude.com/docs/images/opentelemetry-sdk-trace-shape.svg)
+![Contoh trace tool runner Messages: dua permintaan dengan span klien dan server, permintaan model, web\_search, dan get\_weather](https://platform.claude.com/docs/id/images/opentelemetry-sdk-trace-shape.svg)
 
 SDK di aplikasi Anda memancarkan span [`anthropic.messages.tool_runner`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-messages-tool-runner), span [`anthropic.custom_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use), dan span klien dari setiap permintaan. Untuk mendapatkan span ini, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
@@ -189,7 +189,7 @@ Contoh ini mengikuti satu permintaan chat, di mana aplikasi Anda mengirim pesan 
 6. Session tool runner menjalankan `list_issues` (ditampilkan sebagai span `anthropic.custom_tool_use list_issues`) dan mengirim hasilnya dengan memanggil `sessions.events.send`.
 7. Giliran kedua dimulai dengan hasil alat (ditampilkan sebagai span `anthropic.session.turn` terakhir).
 
-![Contoh trace sesi Managed Agents: span POST /chat Anda, permintaan event stream dan event list dari session tool runner, span klien dan server untuk permintaan yang mengirimkan pesan pengguna, giliran dengan permintaan model, penggunaan alat bash dan giliran pada thread lain, runner yang menjalankan list\_issues, span klien dan server untuk permintaan yang mengirimkan hasil alat, dan giliran kedua.](https://platform.claude.com/docs/images/opentelemetry-trace-shape.svg)
+![Contoh trace sesi Managed Agents: span POST /chat Anda, permintaan event stream dan event list dari session tool runner, span klien dan server untuk permintaan yang mengirimkan pesan pengguna, giliran dengan permintaan model, penggunaan alat bash dan giliran pada thread lain, runner yang menjalankan list\_issues, span klien dan server untuk permintaan yang mengirimkan hasil alat, dan giliran kedua.](https://platform.claude.com/docs/id/images/opentelemetry-trace-shape.svg)
 
 SDK di aplikasi Anda memancarkan span [`anthropic.custom_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) dan span klien dari setiap permintaan. Untuk mendapatkan span ini, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ff37f4c1a8c3b0efc5d61497805080bc1e20fc66b632ed26c24ff2efb41fe36a
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 45165c16d549ee7235125e5f30efd5253bc06310c418b60bd73b27a60c017839
 ---
 
 ---
@@ -29,7 +29,6 @@ Each row names one change, whether it is new, changed, or breaking, and what you
 | [Sampling parameters can return an error](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#remove-sampling-parameters)                                            | Breaking | Omit `temperature`, `top_p`, and `top_k`.                                                                                                                                                                                                  |
 | [Assistant message prefill returns an error](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#replace-assistant-prefill)                                          | Breaking | End `messages` with a user turn.                                                                                                                                                                                                           |
 | [`computer_20250124` returns an error on the Claude API, Google Cloud, and Amazon Bedrock](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset) | Breaking | Replace it with `computer_toolset_20260801` on the Claude API and Google Cloud, or with `computer_20251124` on Amazon Bedrock.                                                                                                             |
-| [Structured outputs aren't available on Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)                                                     | Breaking | On Amazon Bedrock, describe the format in the prompt or use a tool without `strict`, and validate the output in your code.                                                                                                                 |
 | [Changing earlier turns invalidates thinking blocks](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)                               | Breaking | Keep conversations append-only if you send thinking blocks back.                                                                                                                                                                           |
 | [Responses can begin with thinking blocks](https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5#responses-can-begin-with-thinking-blocks)                         | Changed  | Select content blocks by `type`, not by position.                                                                                                                                                                                          |
 | [Thinking text is omitted by default](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#configure-thinking)                                                        | Changed  | To receive summarized thinking, set `thinking.display` to `"summarized"`.                                                                                                                                                                  |

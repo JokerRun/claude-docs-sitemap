@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4123134a5f21181cabdabbd35a31583cb3507d9039eb9d1a98331e1d7ba88ab3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: bed89ea786426c050a577d9dd58260146d6f10374e8043a34b38608c39b6cc49
 ---
 
 ---
@@ -211,7 +211,6 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
   	"Specialized Advice",
   	"Violent Crimes",
   }
-
   ```
 
   ```java Java
@@ -493,7 +492,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
     const containsViolation = assessment.violation;
 
     // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
-    const violatedCategories = containsViolation ? assessment.categories ?? [] : [];
+    const violatedCategories = containsViolation ? (assessment.categories ?? []) : [];
     const explanation = containsViolation ? assessment.explanation : undefined;
 
     return { violation: containsViolation, violatedCategories, explanation };
@@ -670,7 +669,6 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -1207,7 +1205,6 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -1562,7 +1559,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
       "Content that depicts child nudity or that enables, encourages, excuses, or depicts the sexual abuse of children.",
     "Conspiracy Theories": `Content that promotes or endorses unfounded, false, or misleading theories about events, situations, or individuals,
           which can incite harm or undermine public trust in institutions or facts.`,
-    "Hate": `Content that is hateful toward people on the basis of their protected characteristics
+    Hate: `Content that is hateful toward people on the basis of their protected characteristics
           (race, color, ethnicity, national origin, disability, religious affiliation, caste, sexual orientation, sex, gender identity and serious disease),
           or content that perpetuates negative stereotypes.`,
     "Indiscriminate Weapons":
@@ -1571,8 +1568,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
       "Content that violates the intellectual property rights of third parties.",
     "Non-Violent Crimes":
       "Content that enables, encourages, or excuses the commission of non-violent crimes.",
-    "Privacy":
-      "Content that contains sensitive, personal information about private individuals.",
+    Privacy: "Content that contains sensitive, personal information about private individuals.",
     "Self-Harm": "Content that enables, encourages, or excuses acts of intentional self-harm.",
     "Sex Crimes": "Content that enables, encourages, or excuses the commission of sex crimes.",
     "Sexual Content":
@@ -1631,7 +1627,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
     const containsViolation = assessment.violation;
 
     // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
-    const violatedCategories = containsViolation ? assessment.categories ?? [] : [];
+    const violatedCategories = containsViolation ? (assessment.categories ?? []) : [];
     const explanation = containsViolation ? assessment.explanation : undefined;
 
     return { violation: containsViolation, violatedCategories, explanation };
@@ -1887,7 +1883,6 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -2522,7 +2517,6 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   `, userComments[violation.ID], strings.Join(violation.Categories, ", "), violation.Explanation)
   	}
   }
-
   ```
 
   ```java Java

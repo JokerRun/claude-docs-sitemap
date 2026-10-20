@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 4986f4c76b544c44e7869bcd3f76901f5306a8b15623d3e2473a7b0888dab656
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: ea383cfb9f30a6af53f557cc0946ba74aae097866fd073803986d897c9c2d597
 ---
 
 ---
@@ -438,12 +438,12 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
 
 <CodeGroup>
   ```bash cURL
-  session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
+  curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r '.id'
+    -d @- <<JSON
   {
     "agent": "$agent_id",
     "environment_id": "$environment_id",
@@ -457,21 +457,18 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
     ]
   }
   JSON
-  )
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID" \
-    --transform id --raw-output <<'EOF'
+    --environment-id "$ENVIRONMENT_ID" <<'EOF'
   resources:
     - type: github_repository
       url: https://github.com/org/repo
       mount_path: /workspace/repo
       authorization_token: ghp_your_github_token
   EOF
-  )
   ```
 
   ```python Python
@@ -498,9 +495,9 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
         type: "github_repository",
         url: "https://github.com/org/repo",
         mount_path: "/workspace/repo",
-        authorization_token: "ghp_your_github_token",
-      },
-    ],
+        authorization_token: "ghp_your_github_token"
+      }
+    ]
   });
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision-coordinates
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 8c549885b34fa59d9fe4f31fb8742a26602975a3af791c92564a75e4c23fe609
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 29e597c5551921e29b4100f31a8d10f65a68538450970f28bd8ee88dc9056f35
 ---
 
 ---
@@ -283,7 +283,6 @@ First check which resolution tier your model is on (see [Resolution and token co
   	}
   	return lo, max(int(math.RoundToEven(float64(lo)/aspectRatio)), 1)
   }
-
   ```
 
   ```java Java
@@ -541,12 +540,7 @@ Screenshots and zoom images that you return to the [computer use](https://platfo
     maxEdge = 1568,
     maxTokens = 1568
   ): [number, number] {
-    const [resizedW, resizedH] = resizedSize(
-      originalWidth,
-      originalHeight,
-      maxEdge,
-      maxTokens
-    );
+    const [resizedW, resizedH] = resizedSize(originalWidth, originalHeight, maxEdge, maxTokens);
     return [x / resizedW, y / resizedH];
   }
 

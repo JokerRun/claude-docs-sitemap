@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 011d5a22f4e275ca37f059e20af041aad4e3857e040c1c77599284d48cf936b9
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: aeaf204e35eddbe5cd1dacf8d6f624034589c9eebee2c0162598f629a0256e2a
 ---
 
 ---
@@ -296,13 +296,13 @@ The Python environment can process various file types uploaded through the Files
 
 <CodeGroup>
   ```bash cURL
-  # First, upload a file and capture the file ID (using jq)
-  FILE_ID=$(curl --fail-with-body -sS https://api.anthropic.com/v1/files \
+  # First, upload a file
+  curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@data.csv" | jq -r '.id')
+    -F "file=@data.csv"
 
-  # Then use the file_id with code execution
+  # Then use the file with code execution: FILE_ID is the id from the upload response
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -325,10 +325,10 @@ The Python environment can process various file types uploaded through the Files
   ```
 
   ```bash CLI
-  # First, upload a file and capture the file ID
-  FILE_ID=$(ant files upload --file ./data.csv --transform id --raw-output)
+  # First, upload a file
+  ant files upload --file ./data.csv
 
-  # Then use the file_id with code execution
+  # Then use the file with code execution: FILE_ID is the id from the upload response
   ant messages create <<YAML
   model: claude-opus-5-5
   max_tokens: 4096
@@ -1146,8 +1146,8 @@ Containers expire 30 days after creation. After about 5 minutes of inactivity a 
 
 <CodeGroup>
   ```bash cURL
-  # First request: Create a file with a random number, capturing the container ID (using jq)
-  CONTAINER_ID=$(curl -s https://api.anthropic.com/v1/messages \
+  # First request: Create a file with a random number
+  curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -1162,9 +1162,10 @@ Containers expire 30 days after creation. After about 5 minutes of inactivity a 
         "type": "code_execution_20250825",
         "name": "code_execution"
       }]
-    }' | jq -r '.container.id')
+    }'
 
   # Second request: Reuse the container to read the file
+  # CONTAINER_ID is the container.id from the first response
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1186,14 +1187,14 @@ Containers expire 30 days after creation. After about 5 minutes of inactivity a 
 
   ```bash CLI
   # First request: Create a file with a random number
-  CONTAINER_ID=$(ant messages create \
+  ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Write a file with a random number and save it to "/tmp/number.txt"}' \
-    --tool '{type: code_execution_20250825, name: code_execution}' \
-    --transform container.id --raw-output)
+    --tool '{type: code_execution_20250825, name: code_execution}'
 
   # Second request: Reuse the container to read the file
+  # CONTAINER_ID is the container.id from the first response
   ant messages create \
     --container "$CONTAINER_ID" \
     --model claude-opus-5-5 \

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 768be47946cafc36d6fbe3988a04229521f5433bc038736739204e2ed258f6a7
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 485f8fff5acec2f72bccf4ec4e0f835fd54c6cf0cf00052a7d4af2dd16d3e50e
 ---
 
 > ## Documentation Index
@@ -476,7 +476,7 @@ Running [`/init`](/docs/en/commands) reads other tools' instruction files and in
 * Copilot rules in `.github/copilot-instructions.md`
 * With `CLAUDE_CODE_NEW_INIT=1` set: `AGENTS.md`, `.devin/rules/`, `.windsurf/rules/` or `.windsurfrules`, and `.clinerules`
 
-You can also run [`/import`](/docs/en/commands) to bring a supported coding agent's configuration into Claude Code, which appends a one-time copy of instruction files such as `AGENTS.md` to the matching `CLAUDE.md` and carries over MCP servers, commands, subagents, and skills. Requires Claude Code v2.1.213 or later.
+You can also run [`/import`](/docs/en/commands) to bring a supported coding agent's configuration into Claude Code, which appends a one-time copy of instruction files such as `AGENTS.md` to the matching `CLAUDE.md` and carries over MCP servers, commands, subagents, and skills.
 
 ## Auto memory
 
@@ -562,7 +562,7 @@ The main conversation's auto memory isn't loaded into [subagents](/docs/en/sub-a
 
 Claude reads and writes memory files during your session. When you see messages like "Saved 2 memories" or "Recalled 2 memories" in the Claude Code interface, Claude is actively updating or reading from `~/.claude/projects/<project>/memory/`.
 
-When Claude writes a memory file that begins with YAML frontmatter, Claude Code records the write time in a `modified` frontmatter field as an ISO 8601 timestamp. The timestamp shows how current the fact is, both to you and to Claude when it reads the memory back. Any file that has frontmatter gets the field the next time Claude writes it, including files created on earlier versions; Claude Code never adds frontmatter to a file that has none. The `modified` field requires Claude Code v2.1.214 or later.
+When Claude writes a memory file that begins with YAML frontmatter, Claude Code records the write time in a `modified` frontmatter field as an ISO 8601 timestamp. The timestamp shows how current the fact is, both to you and to Claude when it reads the memory back.
 
 ### Audit and edit your memory
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 0e18505904993a0f1b3529e8640fb521943e76e5dbf3bf60293199794c7366dd
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: d109b64127d1993b36fa0195fa3063e8c7bb61d3e4b99edd9e3e3b3a8ecbbe6a
 ---
 
 ---
@@ -839,15 +839,15 @@ Plain text documents are automatically chunked into sentences. You can provide t
                 source: { type: "file", file_id: uploaded.id },
                 title: "Document Title",
                 context: "Context about the document that will not be cited from",
-                citations: { enabled: true },
+                citations: { enabled: true }
               },
               {
                 type: "text",
-                text: "Summarize this document.",
-              },
-            ],
-          },
-        ],
+                text: "Summarize this document."
+              }
+            ]
+          }
+        ]
       });
       console.log(citedResponse);
       ```
@@ -1658,15 +1658,15 @@ PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PD
                 source: { type: "file", file_id: uploaded.id },
                 title: "Document Title",
                 context: "Context about the document that will not be cited from",
-                citations: { enabled: true },
+                citations: { enabled: true }
               },
               {
                 type: "text",
-                text: "Summarize this document.",
-              },
-            ],
-          },
-        ],
+                text: "Summarize this document."
+              }
+            ]
+          }
+        ]
       });
       console.log(citedResponse);
       ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c7f0cc0554ef5a6fcaa93a9583f542ea90b97b681fc789ef3aa537f6ff2d9324
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: cf909a8646bc80c755d94958b006e969fa8462af10c16e06e9ffe2e2e34c6cb4
 ---
 
 ---
@@ -283,7 +283,6 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   	}
   	return lo, max(int(math.RoundToEven(float64(lo)/aspectRatio)), 1)
   }
-
   ```
 
   ```java Java
@@ -541,12 +540,7 @@ Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](h
     maxEdge = 1568,
     maxTokens = 1568
   ): [number, number] {
-    const [resizedW, resizedH] = resizedSize(
-      originalWidth,
-      originalHeight,
-      maxEdge,
-      maxTokens
-    );
+    const [resizedW, resizedH] = resizedSize(originalWidth, originalHeight, maxEdge, maxTokens);
     return [x / resizedW, y / resizedH];
   }
 

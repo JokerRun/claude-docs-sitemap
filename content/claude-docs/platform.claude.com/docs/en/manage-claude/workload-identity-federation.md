@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 577cafb40315434f25d50947a448b5e8a60875ad53334ba6e6a64dae725a58f2
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 01b276dd224a70858b74c79d52ca4c9c5f398404abb2789785af9b505e1531b8
 ---
 
 ---
@@ -102,9 +102,9 @@ You can construct the client with explicit credentials or with no arguments. Wit
   JWT=$(cat /var/run/secrets/anthropic.com/token)
 
   # 2. Exchange it for a short-lived Anthropic access token.
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    -d @- <<JSON
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -115,8 +115,6 @@ You can construct the client with explicit credentials or with no arguments. Wit
   }
   JSON
   )
-
-  ACCESS_TOKEN=$(jq -r .access_token <<<"$RESPONSE")
   # The response's expires_in is the token's lifetime in seconds; re-exchange before it elapses.
 
   # 3. Call the API with the access token in the Authorization: Bearer header.

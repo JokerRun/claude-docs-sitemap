@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c98113b9f3bbd6f017c9ff6b170d0d2aa217075ddf2a6b5bbf714e80fd59471b
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 78b81519f7860f4f2fe82d471c28fb5c1434c0ce8f909e19363d4562fc10ff97
 ---
 
 ---
@@ -48,7 +48,7 @@ The following example enables the toolset and disables `web_fetch`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -65,7 +65,6 @@ The following example enables the toolset and disables `web_fetch`:
         }
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>
@@ -261,7 +260,7 @@ The following example creates an agent with the built-in toolset and one custom 
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -287,7 +286,6 @@ The following example creates an agent with the built-in toolset and one custom 
         }
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>

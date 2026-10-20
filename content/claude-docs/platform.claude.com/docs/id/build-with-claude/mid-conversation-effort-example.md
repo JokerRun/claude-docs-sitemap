@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: f6008428d7b11b9df9d02ae9163144fe6bd4c6cfa24e540ccfa57e8d7b094187
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 5e96148982aa2ef18080aa6441629b784aa1a3bb5ee91afd1198267d68037605
 ---
 
 ---
@@ -47,7 +47,9 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
   MODEL = "claude-opus-5-5"
   EFFORT = "xhigh"
 
-  SYSTEM_PROMPT = "You are a helpful general-purpose agent. Answer the user's request directly."
+  SYSTEM_PROMPT = (
+      "You are a helpful general-purpose agent. Answer the user's request directly."
+  )
 
   REQUEST_TIMEOUT_SECONDS = 600
   BASH_TIMEOUT_SECONDS = 60
@@ -169,7 +171,6 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
   	}
   	return normal
   }
-
   ```
 
   ```java Java
@@ -290,9 +291,7 @@ Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah stat
       "description for standing consent, granularity guidance, and quality patterns. Work solo "
       "only on conversational or trivial turns."
   )
-  MODE_REFRESH = (
-      "Orchestration mode is still on. Use the Workflow tool; see its standing consent section."
-  )
+  MODE_REFRESH = "Orchestration mode is still on. Use the Workflow tool; see its standing consent section."
   MODE_EXIT = (
       "Orchestration mode is off. The Workflow tool's standard opt-in rule applies again."
   )
@@ -334,7 +333,6 @@ Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah stat
   	modeRefresh = "Orchestration mode is still on. Use the Workflow tool; see its standing consent section."
   	modeExit    = "Orchestration mode is off. The Workflow tool's standard opt-in rule applies again."
   )
-
   ```
 
   ```java Java
@@ -429,18 +427,27 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
       "input_schema": {
           "type": "object",
           "properties": {
-              "summary": {"type": "string", "description": "Two or three sentences of synthesis"},
+              "summary": {
+                  "type": "string",
+                  "description": "Two or three sentences of synthesis",
+              },
               "findings": {
                   "type": "array",
                   "items": {
                       "type": "object",
                       "properties": {
-                          "claim": {"type": "string", "description": "The finding, one sentence"},
+                          "claim": {
+                              "type": "string",
+                              "description": "The finding, one sentence",
+                          },
                           "evidence": {
                               "type": "string",
                               "description": "How it was verified (file, line, or command output)",
                           },
-                          "severity": {"type": "string", "enum": ["high", "medium", "low", "info"]},
+                          "severity": {
+                              "type": "string",
+                              "enum": ["high", "medium", "low", "info"],
+                          },
                       },
                       "required": ["claim", "evidence", "severity"],
                   },
@@ -472,7 +479,7 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
         "opt-in is standing. Author and run a workflow for every substantive task by default, " +
         "and lean toward verifying findings adversarially. Work solo only on conversational " +
         "turns or trivial mechanical edits. When a system message says the mode is off, " +
-        "revert to the opt-in rule above.",
+        "revert to the opt-in rule above."
     ].join("\n\n"),
     input_schema: {
       type: "object",
@@ -480,11 +487,11 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
         subtasks: {
           type: "array",
           items: { type: "string" },
-          description: "Independent subtask prompts to run as parallel agents",
-        },
+          description: "Independent subtask prompts to run as parallel agents"
+        }
       },
-      required: ["subtasks"],
-    },
+      required: ["subtasks"]
+    }
   };
 
   const BASH_TOOL: Anthropic.ToolBash20250124 = { type: "bash_20250124", name: "bash" };
@@ -506,16 +513,16 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
               claim: { type: "string", description: "The finding, one sentence" },
               evidence: {
                 type: "string",
-                description: "How it was verified (file, line, or command output)",
+                description: "How it was verified (file, line, or command output)"
               },
-              severity: { type: "string", enum: ["high", "medium", "low", "info"] },
+              severity: { type: "string", enum: ["high", "medium", "low", "info"] }
             },
-            required: ["claim", "evidence", "severity"],
-          },
-        },
+            required: ["claim", "evidence", "severity"]
+          }
+        }
       },
-      required: ["summary", "findings"],
-    },
+      required: ["summary", "findings"]
+    }
   };
   ```
 
@@ -658,7 +665,6 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
   		},
   	},
   }
-
   ```
 
   ```java Java
@@ -903,7 +909,10 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
           return f"command timed out after {BASH_TIMEOUT_SECONDS}s", True
       output = (proc.stdout + proc.stderr).strip() or "(no output)"
       if len(output) > TOOL_RESULT_MAX_CHARS:
-          output = output[:TOOL_RESULT_MAX_CHARS] + f"\n(truncated at {TOOL_RESULT_MAX_CHARS} chars)"
+          output = (
+              output[:TOOL_RESULT_MAX_CHARS]
+              + f"\n(truncated at {TOOL_RESULT_MAX_CHARS} chars)"
+          )
       if proc.returncode != 0:
           output = f"(exit code {proc.returncode})\n{output}"
       return output, proc.returncode != 0
@@ -934,7 +943,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return n if n < 2 else fib(n - 1) + fib(n - 2)
 
   print(fib(10))
-  `,
+  `
     );
   }
 
@@ -945,7 +954,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       shell: "/bin/bash",
       cwd: WORK_DIR,
       timeout: BASH_TIMEOUT_SECONDS * 1000,
-      maxBuffer: 16 * 1024 * 1024,
+      maxBuffer: 16 * 1024 * 1024
     };
     return new Promise((resolve) => {
       exec(command, options, (error, stdout, stderr) => {
@@ -1139,7 +1148,6 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	}
   	return runBash(ctx, input.Command)
   }
-
   ```
 
   ```java Java
@@ -1433,7 +1441,9 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           if response.stop_reason == "pause_turn":
               continue
           if response.stop_reason != "tool_use":
-              text = "".join(block.text for block in response.content if block.type == "text")
+              text = "".join(
+                  block.text for block in response.content if block.type == "text"
+              )
               if response.stop_reason == "max_tokens":
                   text += "\n\n(warning: subagent response was truncated at max_tokens)"
               return text
@@ -1482,9 +1492,9 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
             system: subagentSystem,
             output_config: { effort: EFFORT },
             tools: [BASH_TOOL, REPORT_TOOL],
-            messages,
+            messages
           },
-          { signal: AbortSignal.timeout(REQUEST_TIMEOUT_SECONDS * 1000) },
+          { signal: AbortSignal.timeout(REQUEST_TIMEOUT_SECONDS * 1000) }
         )
         .finalMessage();
       messages.push({ role: "assistant", content: response.content });
@@ -1522,7 +1532,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           type: "tool_result",
           tool_use_id: block.id,
           content: outcome.output,
-          is_error: outcome.isError,
+          is_error: outcome.isError
         });
       }
       if (report !== null) {
@@ -1699,7 +1709,6 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   	}
   	return "(subagent hit the turn limit before finishing)", nil
   }
-
   ```
 
   ```java Java
@@ -1983,7 +1992,8 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
               with open(temp, "w") as file:
                   json.dump(journal, file)
               os.replace(temp, JOURNAL_PATH)  # atomic on POSIX and Windows
-      except OSError as error:  # the journal is best-effort; never discard a computed result
+      # Penulisan jurnal yang gagal tidak boleh menghilangkan hasil yang telah dihitung
+      except OSError as error:
           print(f"[journal] write failed: {error}", file=sys.stderr)
       return result
   ```
@@ -2120,7 +2130,6 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
   	}
   	return result, nil
   }
-
   ```
 
   ```java Java
@@ -2286,13 +2295,16 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       def run_one(prompt: str) -> str:
           try:
               return journaled(prompt, lambda: run_subagent(model, prompt))
-          except Exception as error:  # isolation boundary: one bad subagent should not end the run
+          # Satu subagen yang gagal tidak boleh mengakhiri proses
+          except Exception as error:
               return f"(subagent failed: {type(error).__name__}: {error})"
 
       with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_CONCURRENT) as pool:
           results = list(pool.map(run_one, subtasks))
           print(f"[workflow] verifying {len(results)} results", file=sys.stderr)
-          verify_prompts = [verify_prompt_for(task, result) for task, result in zip(subtasks, results)]
+          verify_prompts = [
+              verify_prompt_for(task, result) for task, result in zip(subtasks, results)
+          ]
           verdicts = list(pool.map(run_one, verify_prompts))
 
       joined = "\n\n".join(
@@ -2301,7 +2313,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
 
   [verify {index + 1}]
   {verdict}"""
-          for index, (task, result, verdict) in enumerate(zip(subtasks, results, verdicts))
+          for index, (task, result, verdict) in enumerate(
+              zip(subtasks, results, verdicts)
+          )
       )
       if dropped > 0:
           joined = (
@@ -2327,7 +2341,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       return [];
     }
     return value
-      .filter((task): task is string => typeof task === "string")
+      .filter((task) => typeof task === "string")
       .map((task) => task.trim())
       .filter((task) => task.length > 0);
   }
@@ -2351,7 +2365,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   async function mapWithLimit<In, Out>(
     items: readonly In[],
     limit: number,
-    task: (item: In) => Promise<Out>,
+    task: (item: In) => Promise<Out>
   ): Promise<Out[]> {
     const results = new Array<Out>(items.length);
     let cursor = 0;
@@ -2382,7 +2396,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
         return await journaled(prompt, () => runSubagent(model, prompt));
       } catch (error) {
         // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan eksekusi.
-        const reason = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
+        const reason =
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error);
         return `(subagent failed: ${reason})`;
       }
     };
@@ -2398,7 +2413,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ${results[index]}
 
   [verify ${index + 1}]
-  ${verdicts[index]}`,
+  ${verdicts[index]}`
       )
       .join("\n\n");
     const droppedNote =
@@ -2599,7 +2614,6 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	}
   	return joined, false
   }
-
   ```
 
   ```java Java
@@ -3028,7 +3042,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               if response.stop_reason == "pause_turn":
                   continue
               if response.stop_reason != "tool_use":
-                  text = "".join(block.text for block in response.content if block.type == "text")
+                  text = "".join(
+                      block.text for block in response.content if block.type == "text"
+                  )
                   if response.stop_reason == "max_tokens":
                       # Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
                       self.messages.pop()
@@ -3041,7 +3057,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                       continue
                   match block.name:
                       case "Workflow":
-                          output, is_error = run_workflow(self.model, block.input.get("subtasks", []))
+                          output, is_error = run_workflow(
+                              self.model, block.input.get("subtasks", [])
+                          )
                       case "bash":
                           output, is_error = handle_bash_block(block)
                       case _:
@@ -3120,9 +3138,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               system: SYSTEM_PROMPT, // static for the whole session
               output_config: { effort: EFFORT },
               tools: [WORKFLOW_TOOL, BASH_TOOL],
-              messages: this.#messages,
+              messages: this.#messages
             },
-            { signal: AbortSignal.timeout(REQUEST_TIMEOUT_SECONDS * 1000) },
+            { signal: AbortSignal.timeout(REQUEST_TIMEOUT_SECONDS * 1000) }
           )
           .finalMessage();
         this.#messages.push({ role: "assistant", content: response.content });
@@ -3164,7 +3182,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
             type: "tool_result",
             tool_use_id: block.id,
             content: outcome.output,
-            is_error: outcome.isError,
+            is_error: outcome.isError
           });
         }
         this.#messages.push({ role: "user", content: toolResults });
@@ -3411,7 +3429,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	}
   	return "(hit the main loop turn limit before finishing)", nil
   }
-
   ```
 
   ```java Java
@@ -3844,7 +3861,6 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	fmt.Println(summary)
   	return nil
   }
-
   ```
 
   ```java Java

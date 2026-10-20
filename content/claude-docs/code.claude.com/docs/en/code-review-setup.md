@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-setup
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: ccf9c2ac509fda29a1b973b84974584df273b79184423c34e004569c5ecc666c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 911be118208244c5674069cd74ec7c9e375bfd11cd088b35aea52d837de18b1c
 ---
 
 > ## Documentation Index
@@ -112,7 +112,7 @@ A tip comment is a short comment Claude posts on a pull request when no review s
 
 * **The repository is set to Manual**: how to request a review with a comment
 * **The pull request comes from a fork**: that a maintainer can request the review
-* **A bot, or someone without write access, comments `@claude review`**: that no review was started, and who can request one
+* **A bot, or someone without write access who isn't the pull request's author, comments `@claude review`**: that no review was started, and who can request one
 * **The GitHub organization isn't linked to your Claude organization**: that reviews are paused, and how to link it
 
 Turn the setting off to stop these comments.

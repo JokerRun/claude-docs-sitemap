@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: fb5b8f40e2c5e8389d4042bea13456eb53eef8f8a87e2fe1936d5ac9ca7274fa
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: fa7c56b94ca6c752edf3c03351f7a71e1bc0d65ea350e6ae6f438a98ef473d20
 ---
 
 ---
@@ -145,28 +145,19 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
         ```bash cURL
-        set -euo pipefail
-
-        agent=$(
-          curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "anthropic-beta: managed-agents-2026-04-01" \
-            -H "content-type: application/json" \
-            -d '{
-              "name": "Coding Assistant",
-              "model": "claude-opus-5-5",
-              "system": "You are a helpful coding assistant. Write clean, well-documented code.",
-              "tools": [
-                {"type": "agent_toolset_20260401"}
-              ]
-            }'
-        )
-
-        AGENT_ID=$(jq -er '.id' <<<"$agent")
-        AGENT_VERSION=$(jq -er '.version' <<<"$agent")
-
-        echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
+        curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
+          -H "x-api-key: $ANTHROPIC_API_KEY" \
+          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-beta: managed-agents-2026-04-01" \
+          -H "content-type: application/json" \
+          -d '{
+            "name": "Coding Assistant",
+            "model": "claude-opus-5-5",
+            "system": "You are a helpful coding assistant. Write clean, well-documented code.",
+            "tools": [
+              {"type": "agent_toolset_20260401"}
+            ]
+          }'
         ```
 
         Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
@@ -224,9 +215,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           name: "Coding Assistant",
           model: "claude-opus-5-5",
           system: "You are a helpful coding assistant. Write clean, well-documented code.",
-          tools: [
-            { type: "agent_toolset_20260401" },
-          ],
+          tools: [{ type: "agent_toolset_20260401" }]
         });
 
         console.log(`Agent ID: ${agent.id}, version: ${agent.version}`);
@@ -384,24 +373,18 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
         ```bash cURL
-        environment=$(
-          curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "anthropic-beta: managed-agents-2026-04-01" \
-            -H "content-type: application/json" \
-            -d '{
-              "name": "quickstart-env",
-              "config": {
-                "type": "cloud",
-                "networking": {"type": "limited", "allow_package_managers": true}
-              }
-            }'
-        )
-
-        ENVIRONMENT_ID=$(jq -er '.id' <<<"$environment")
-
-        echo "Environment ID: $ENVIRONMENT_ID"
+        curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
+          -H "x-api-key: $ANTHROPIC_API_KEY" \
+          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-beta: managed-agents-2026-04-01" \
+          -H "content-type: application/json" \
+          -d '{
+            "name": "quickstart-env",
+            "config": {
+              "type": "cloud",
+              "networking": {"type": "limited", "allow_package_managers": true}
+            }
+          }'
         ```
 
         Simpan juga `environment.id` yang dikembalikan.
@@ -449,8 +432,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           name: "quickstart-env",
           config: {
             type: "cloud",
-            networking: { type: "limited", allow_package_managers: true },
-          },
+            networking: { type: "limited", allow_package_managers: true }
+          }
         });
 
         console.log(`Environment ID: ${environment.id}`);
@@ -565,32 +548,23 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
     <CodeGroup>
       ```bash cURL
-      session=$(
-        curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
-          -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
-          -H "anthropic-beta: managed-agents-2026-04-01" \
-          -H "content-type: application/json" \
-          -d '{
-            "agent": "'"$AGENT_ID"'",
-            "environment_id": "'"$ENVIRONMENT_ID"'",
-            "title": "Quickstart session"
-          }'
-      )
-
-      SESSION_ID=$(jq -er '.id' <<<"$session")
-
-      echo "Session ID: $SESSION_ID"
+      curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-beta: managed-agents-2026-04-01" \
+        -H "content-type: application/json" \
+        -d '{
+          "agent": "'"$AGENT_ID"'",
+          "environment_id": "'"$ENVIRONMENT_ID"'",
+          "title": "Quickstart session"
+        }'
       ```
 
       ```bash CLI
-      SESSION_ID=$(ant beta:sessions create \
+      ant beta:sessions create \
         --agent "$AGENT_ID" \
         --environment-id "$ENVIRONMENT_ID" \
-        --title "Quickstart session" \
-        --transform id --raw-output)
-
-      echo "Session ID: $SESSION_ID"
+        --title "Quickstart session"
       ```
 
       ```python Python
@@ -607,7 +581,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       const session = await client.beta.sessions.create({
         agent: agent.id,
         environment_id: environment.id,
-        title: "Quickstart session",
+        title: "Quickstart session"
       });
 
       console.log(`Session ID: ${session.id}`);
@@ -724,11 +698,11 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             content: [
               {
                 type: "text",
-                text: "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
-              },
-            ],
-          },
-        ],
+                text: "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt"
+              }
+            ]
+          }
+        ]
       });
 
       // Proses event streaming

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: d07f9c31f640cc5e0ced149dcac3a9b2c4e8bce22b31bbd452af6c8db1c2325e
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 9380178f1990b12283478330f39a620e8b9ff817180ed80b2014d8e57d21da74
 ---
 
 ---
@@ -34,7 +34,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent_response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
+  curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -54,8 +54,6 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
         {"type": "mcp_toolset", "mcp_server_name": "github"}
       ]
     }'
-  )
-  agent_id=$(jq -r '.id' <<<"$agent_response")
   ```
 
   <CodeGroupItem>
@@ -107,13 +105,13 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
       {
         type: "url",
         name: "github",
-        url: "https://api.githubcopilot.com/mcp/",
-      },
+        url: "https://api.githubcopilot.com/mcp/"
+      }
     ],
     tools: [
       { type: "agent_toolset_20260401" },
-      { type: "mcp_toolset", mcp_server_name: "github" },
-    ],
+      { type: "mcp_toolset", mcp_server_name: "github" }
+    ]
   });
   ```
 
@@ -300,7 +298,7 @@ Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environm
 
 <CodeGroup>
   ```bash cURL
-  session_response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+  curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -310,16 +308,13 @@ Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environm
       "environment_id": "'"$environment_id"'",
       "vault_ids": ["'"$vault_id"'"]
     }'
-  )
-  session_id=$(jq -r '.id' <<<"$session_response")
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
-    --vault-id "$VAULT_ID" \
-    --transform id --raw-output)
+    --vault-id "$VAULT_ID"
   ```
 
   ```python Python
@@ -334,7 +329,7 @@ Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environm
   const session = await client.beta.sessions.create({
     agent: agent.id,
     environment_id: environment.id,
-    vault_ids: [vault.id],
+    vault_ids: [vault.id]
   });
   ```
 

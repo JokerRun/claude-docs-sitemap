@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3230a23511eeead321fd78d9bec3efc323fbb5df5c857e914a0f1a8a9d111003
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c4c430e4e5f7b21cc477d5ed66d7fc286db5902817a10ac202bd2b45edd0facd
 ---
 
 ---
@@ -27,12 +27,12 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent_id=$(curl -fsS https://api.anthropic.com/v1/agents \
+  curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "name": "Code Reviewer",
       "model": "claude-opus-5-5",
       "system": "You are a code review assistant with access to GitHub.",
@@ -50,8 +50,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
           "mcp_server_name": "github"
         }
       ]
-    }' | jq -r '.id'
-  )
+    }'
   ```
 
   <CodeGroupItem>
@@ -110,16 +109,16 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       {
         type: "url",
         name: "github",
-        url: "https://api.githubcopilot.com/mcp/",
-      },
+        url: "https://api.githubcopilot.com/mcp/"
+      }
     ],
     tools: [
       { type: "agent_toolset_20260401" },
       {
         type: "mcp_toolset",
-        mcp_server_name: "github",
-      },
-    ],
+        mcp_server_name: "github"
+      }
+    ]
   });
   ```
 
@@ -250,12 +249,12 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
 
 <CodeGroup>
   ```bash cURL
-  session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
+  curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r '.id'
+    -d @- <<JSON
   {
     "agent": "$agent_id",
     "environment_id": "$environment_id",
@@ -269,21 +268,18 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
     ]
   }
   JSON
-  )
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID" \
-    --transform id --raw-output <<'EOF'
+    --environment-id "$ENVIRONMENT_ID" <<'EOF'
   resources:
     - type: github_repository
       url: https://github.com/org/repo
       mount_path: /workspace/repo
       authorization_token: ghp_your_github_token
   EOF
-  )
   ```
 
   ```python Python
@@ -310,9 +306,9 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
         type: "github_repository",
         url: "https://github.com/org/repo",
         mount_path: "/workspace/repo",
-        authorization_token: "ghp_your_github_token",
-      },
-    ],
+        authorization_token: "ghp_your_github_token"
+      }
+    ]
   });
   ```
 
@@ -431,24 +427,37 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
 
 <CodeGroup>
   ```bash cURL
-  resources='[
-    {
-      "type": "github_repository",
-      "url": "https://github.com/org/frontend",
-      "mount_path": "/workspace/frontend",
-      "authorization_token": "ghp_your_github_token"
-    },
-    {
-      "type": "github_repository",
-      "url": "https://github.com/org/backend",
-      "mount_path": "/workspace/backend",
-      "authorization_token": "ghp_your_github_token"
-    }
-  ]'
+  curl -fsS https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<JSON
+  {
+    "agent": "$agent_id",
+    "environment_id": "$environment_id",
+    "resources": [
+      {
+        "type": "github_repository",
+        "url": "https://github.com/org/frontend",
+        "mount_path": "/workspace/frontend",
+        "authorization_token": "ghp_your_github_token"
+      },
+      {
+        "type": "github_repository",
+        "url": "https://github.com/org/backend",
+        "mount_path": "/workspace/backend",
+        "authorization_token": "ghp_your_github_token"
+      }
+    ]
+  }
+  JSON
   ```
 
   ```bash CLI
-  RESOURCES_BODY=$(cat <<'EOF'
+  ant beta:sessions create \
+    --agent "$AGENT_ID" \
+    --environment-id "$ENVIRONMENT_ID" <<'EOF'
   resources:
     - type: github_repository
       url: https://github.com/org/frontend
@@ -459,7 +468,6 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
       mount_path: /workspace/backend
       authorization_token: ghp_your_github_token
   EOF
-  )
   ```
 
   ```python Python
@@ -485,14 +493,14 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
       type: "github_repository",
       url: "https://github.com/org/frontend",
       mount_path: "/workspace/frontend",
-      authorization_token: "ghp_your_github_token",
+      authorization_token: "ghp_your_github_token"
     },
     {
       type: "github_repository",
       url: "https://github.com/org/backend",
       mount_path: "/workspace/backend",
-      authorization_token: "ghp_your_github_token",
-    },
+      authorization_token: "ghp_your_github_token"
+    }
   ];
   ```
 
@@ -594,19 +602,18 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
 
 <CodeGroup>
   ```bash cURL
-  # Daftar resource pada sesi
-  repo_resource_id=$(curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
+  # List resources on the session
+  curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" | jq -r '.data[0].id')
-  echo "$repo_resource_id"  # "sesrsc_01ABC..."
+    -H "content-type: application/json"
 
-  # Rotasi token otorisasi
-  curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
+  # Rotate the authorization token
+  curl -fsS \
+    "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
   # ...
-    -o /dev/null \
-    --data @- <<JSON
+    -d @- <<'JSON'
   {
     "authorization_token": "ghp_your_new_github_token"
   }
@@ -614,10 +621,10 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```bash CLI
-  # Daftar resource pada session
+  # List resources on the session
   ant beta:sessions:resources list --session-id "$SESSION_ID"
 
-  # Rotasi token otorisasi pada resource tertentu
+  # Rotate the authorization token on a specific resource
   ant beta:sessions:resources update \
     --session-id "$SESSION_ID" \
     --resource-id "$RESOURCE_ID" \
@@ -641,9 +648,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```typescript TypeScript
   // Daftar resource pada session
   const listed = await client.beta.sessions.resources.list(session.id);
-  const repoResource = listed.data.find(
-    (entry) => entry.type === "github_repository",
-  );
+  const repoResource = listed.data.find((entry) => entry.type === "github_repository");
   if (!repoResource) {
     throw new Error("No GitHub repository resource on the session");
   }
@@ -653,7 +658,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   // Rotasi token otorisasi
   await client.beta.sessions.resources.update(repoResourceId, {
     session_id: session.id,
-    authorization_token: "ghp_your_new_github_token",
+    authorization_token: "ghp_your_new_github_token"
   });
   ```
 
@@ -743,8 +748,7 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -o /dev/null \
-    --data '{
+    -d '{
       "events": [
         {
           "type": "user.message",
@@ -760,7 +764,7 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
   ```
 
   ```bash CLI
-  ant beta:sessions:events send --session-id "$SESSION_ID" > /dev/null <<'EOF'
+  ant beta:sessions:events send --session-id "$SESSION_ID" <<'EOF'
   events:
     - type: user.message
       content:
@@ -794,11 +798,11 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
         content: [
           {
             type: "text",
-            text: "Fix the type error in src/utils.ts, commit it to a new branch, and push it.",
-          },
-        ],
-      },
-    ],
+            text: "Fix the type error in src/utils.ts, commit it to a new branch, and push it."
+          }
+        ]
+      }
+    ]
   });
   ```
 

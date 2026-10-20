@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 346048ba90876ef9a4fb330c76d76115f2d68d69185c9f07977dbf448ae47eb3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c341dd3d97c25df5161bc2d8aeeb07aa38292c930606ccdd5caf92935fb0ee56
 ---
 
 ---
@@ -34,56 +34,21 @@ String jenis event ini mengikuti konvensi penamaan `{domain}.{action}`. Lihat [J
 
 Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Sebuah aliran hanya mengirimkan event yang dipancarkan setelah aliran dibuka, jadi buka aliran sebelum Anda mengirim event untuk menghindari "race condition" (kondisi balapan).
 
-<CodeGroup exclude="shell:CLI">
+<CodeGroup>
   ```bash cURL
-  # Buka stream terlebih dahulu, lalu kirim pesan pengguna
-  exec {stream}< <(
-    curl --fail-with-body -sS -N \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "content-type: application/json" \
-      -H "accept: text/event-stream"
-  )
-
-  curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+  # Buka stream sebelum Anda mengirim event pertama: hanya event berikutnya yang dikirimkan.
+  curl --fail-with-body -sS -N \
+    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "events": [
-        {
-          "type": "user.message",
-          "content": [{"type": "text", "text": "Summarize the repo README"}]
-        }
-      ]
-    }' >/dev/null
-
-  while IFS= read -r -u "$stream" event_line; do
-    [[ $event_line == data:* ]] || continue
-    event_json=${event_line#data: }
-    case $(jq -r '.type' <<<"$event_json") in
-      agent.message)
-        jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
-        ;;
-      session.status_idle)
-        break
-        ;;
-      session.error)
-        printf '\n[Error: %s]\n' "$(jq -r '.error.message // "unknown"' <<<"$event_json")"
-        break
-        ;;
-    esac
-  done
-  exec {stream}<&-
+    -H "accept: text/event-stream"
   ```
 
-  <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
-  </CodeGroupItem>
+  ```bash CLI
+  # Buka stream sebelum Anda mengirim event pertama: hanya event setelahnya yang dikirimkan.
+  ant beta:sessions:events stream --session-id "$SESSION_ID"
+  ```
 
   ```python Python
   # Buka stream terlebih dahulu, lalu kirim pesan pengguna
@@ -337,52 +302,13 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 2. [Daftarkan riwayat event lengkap](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#list-past-events) untuk mengisi kumpulan ID event yang sudah terlihat.
 3. Ikuti aliran langsung, lewati event apa pun yang sudah dikembalikan oleh daftar riwayat.
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  exec {stream}< <(
-    curl --fail-with-body -sS -N \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "content-type: application/json" \
-      -H "accept: text/event-stream"
-  )
-
-  # Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
-  declare -A seen_event_ids
-  while IFS= read -r event_id; do
-    seen_event_ids[$event_id]=1
-  done < <(
-    curl --fail-with-body -sS \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "content-type: application/json" | jq -r '.data[].id'
-  )
-
-  # Ikuti event langsung, lewati yang sudah pernah dilihat
-  while IFS= read -r -u "$stream" event_line; do
-    [[ $event_line == data:* ]] || continue
-    event_json=${event_line#data: }
-    event_id=$(jq -r '.id' <<<"$event_json")
-    [[ -n ${seen_event_ids[$event_id]+seen} ]] && continue
-    seen_event_ids[$event_id]=1
-    case $(jq -r '.type' <<<"$event_json") in
-      agent.message)
-        jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
-        ;;
-      session.status_idle)
-        break
-        ;;
-    esac
-  done
-  exec {stream}<&-
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -647,11 +573,11 @@ Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
         content: [
           {
             type: "text",
-            text: "Analyze the performance of the sort function in utils.py",
-          },
-        ],
-      },
-    ],
+            text: "Analyze the performance of the sort function in utils.py"
+          }
+        ]
+      }
+    ]
   });
   ```
 
@@ -775,45 +701,13 @@ Ketika Anda [menyambung ulang](https://platform.claude.com/docs/id/managed-agent
 
 Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  exec {stream_fd}< <(curl --fail-with-body -sS -N \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" \
-    -H "accept: text/event-stream")
-
-  while IFS= read -r -u "$stream_fd" line; do
-    [[ $line == data:* ]] || continue
-    event_json="${line#data: }"
-    case $(jq -r '.type' <<<"$event_json") in
-      agent.custom_tool_use)
-        # Jalankan alat dan kirim hasilnya kembali
-        result=$(call_tool "$(jq -r '.name' <<<"$event_json")" "$(jq -c '.input' <<<"$event_json")")
-        jq --arg result "$result" \
-          '{events: [{type: "user.custom_tool_result", custom_tool_use_id: .id, content: [{type: "text", text: $result}]}]}' <<<"$event_json" |
-          curl --fail-with-body -sS \
-            "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "anthropic-beta: managed-agents-2026-04-01" \
-            -H "content-type: application/json" \
-            -d @-
-        ;;
-      session.status_idle)
-        if [[ $(jq -r '.stop_reason.type' <<<"$event_json") == end_turn ]]; then
-          break
-        fi
-        ;;
-    esac
-  done
-  exec {stream_fd}<&-
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -855,9 +749,9 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
             {
               type: "user.custom_tool_result",
               custom_tool_use_id: event.id,
-              content: [{ type: "text", text: result }],
-            },
-          ],
+              content: [{ type: "text", text: result }]
+            }
+          ]
         });
         break;
       }
@@ -1038,45 +932,13 @@ Kirim event `user.tool_confirmation`, dengan meneruskan ID event di parameter `t
 
 Contoh berikut menyetujui setiap panggilan yang tertunda:
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  exec {stream_fd}< <(curl --fail-with-body -sS -N \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" \
-    -H "accept: text/event-stream")
-
-  while IFS= read -r -u "$stream_fd" line; do
-    [[ $line == data:* ]] || continue
-    event_json="${line#data: }"
-    stop_reason=$(jq -r 'select(.type == "session.status_idle") | .stop_reason.type // empty' <<<"$event_json")
-    case "$stop_reason" in
-      requires_action)
-        while IFS= read -r event_id; do
-          # Setujui panggilan alat yang tertunda
-          jq -n --arg id "$event_id" \
-            '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
-            curl --fail-with-body -sS \
-              "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-              -H "x-api-key: $ANTHROPIC_API_KEY" \
-              -H "anthropic-version: 2023-06-01" \
-              -H "anthropic-beta: managed-agents-2026-04-01" \
-              -H "content-type: application/json" \
-              -d @-
-        done < <(jq -r '.stop_reason.event_ids[]' <<<"$event_json")
-        ;;
-      end_turn)
-        break
-        ;;
-    esac
-  done
-  exec {stream_fd}<&-
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1122,9 +984,9 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
           {
             type: "user.tool_confirmation",
             tool_use_id: eventId,
-            result: "allow",
-          },
-        ],
+            result: "allow"
+          }
+        ]
       });
     }
   }
@@ -1335,11 +1197,11 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
         content: [
           {
             type: "text",
-            text: "Now run the tests against the changes you made earlier.",
-          },
-        ],
-      },
-    ],
+            text: "Now run the tests against the changes you made earlier."
+          }
+        ]
+      }
+    ]
   });
   ```
 
@@ -1511,11 +1373,11 @@ Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu la
         content: [
           {
             type: "text",
-            text: "Instead, focus on fixing the bug in line 42.",
-          },
-        ],
-      },
-    ],
+            text: "Instead, focus on fixing the bug in line 42."
+          }
+        ]
+      }
+    ]
   });
   ```
 
@@ -1734,7 +1596,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
 
   ```typescript TypeScript
   const events = await client.beta.sessions.events.list(session.id, {
-    types: ["agent.tool_use", "agent.tool_result"],
+    types: ["agent.tool_use", "agent.tool_result"]
   });
   for (const event of events.data) {
     console.log(`[${event.type}] ${event.processed_at}`);
@@ -1862,11 +1724,11 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
         content: [
           {
             type: "text",
-            text: "The user's current timezone is America/New_York.",
-          },
-        ],
-      },
-    ],
+            text: "The user's current timezone is America/New_York."
+          }
+        ]
+      }
+    ]
   });
   ```
 

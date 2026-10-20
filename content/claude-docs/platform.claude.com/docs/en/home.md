@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f4a77636d5a2026b63c6d818f4d4cf200c13fb8f51cc4b0bcb504f31e09f53f0
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: e0ef3575e424543602681374833e4c36f0aa7711c7e3e0ef87a2987c5da5d99b
 ---
 
 ---
@@ -23,7 +23,7 @@ with Claude"
     </HomeQuickChip>
 
     <HomeQuickChip icon="Key" href="https://platform.claude.com/settings/keys">
-      Get API key
+      Get API key in Claude Console
     </HomeQuickChip>
 
     <HomeQuickChip icon="CodeBrackets" href="https://platform.claude.com/docs/en/api/overview">
@@ -258,7 +258,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Get API key
+            Get API key in Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/en/models/overview">
@@ -270,7 +270,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/playground">
-            Try the API in playground
+            Try the API in Console playground
           </HomeJourneyLink>
         </HomeJourneyStep>
 
@@ -344,7 +344,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            API key management
+            API keys in Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
@@ -364,7 +364,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Get API key
+            Get API key in Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/docs/en/managed-agents/onboarding">
@@ -402,7 +402,7 @@ with Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            API key management
+            API keys in Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">

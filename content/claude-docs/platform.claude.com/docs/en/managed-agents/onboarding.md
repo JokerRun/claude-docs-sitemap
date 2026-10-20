@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: ccf93fce3c446c5d1b4e94267008270dc782c635538333925edca61ed42a0d91
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: f01195da20a47aef6b6951d22ed6250ca5233c1ad6e8a87df9d9707fbe94ef37
 ---
 
 ---
@@ -21,7 +21,7 @@ featureMetadata:
 
 ## How to build an agent
 
-The [visual interface](https://platform.claude.com/workspaces/default/agent-quickstart/) walks you through each field of an agent definition:
+The [visual interface](https://platform.claude.com/workspaces/default/agent-quickstart/) in the Claude Console walks you through each field of an agent definition:
 
 * **Model and system prompt:** Pick a model and write the system prompt in a full-width editor.
 * **MCP servers:** Add remote MCP servers by URL and authenticate your agent to take action on your behalf.

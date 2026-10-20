@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: dc2cf7d3778d652feb9803c56215aa904cca84a954b94f8a7e6f6394211da50d
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 9d7c407fc3d0f0f3bc631d49b230f6744be03d1e95666235eff4f7a89eb55a39
 ---
 
 ---
@@ -159,7 +159,7 @@ The pod spec in [Configure Kubernetes](https://platform.claude.com/docs/en/manag
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 8da91bd578f2cbd5823c7bc0cf83c4e8f33c111630a796ef8eb942dff1f3d5cf
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: a8d58fdeeed283b95c25dd2242bc8fb4708a03ecd92476b90782a8596f8ca552
 ---
 
 ---
@@ -839,15 +839,15 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
                 source: { type: "file", file_id: uploaded.id },
                 title: "Document Title",
                 context: "Context about the document that will not be cited from",
-                citations: { enabled: true },
+                citations: { enabled: true }
               },
               {
                 type: "text",
-                text: "Summarize this document.",
-              },
-            ],
-          },
-        ],
+                text: "Summarize this document."
+              }
+            ]
+          }
+        ]
       });
       console.log(citedResponse);
       ```
@@ -1658,15 +1658,15 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                 source: { type: "file", file_id: uploaded.id },
                 title: "Document Title",
                 context: "Context about the document that will not be cited from",
-                citations: { enabled: true },
+                citations: { enabled: true }
               },
               {
                 type: "text",
-                text: "Summarize this document.",
-              },
-            ],
-          },
-        ],
+                text: "Summarize this document."
+              }
+            ]
+          }
+        ]
       });
       console.log(citedResponse);
       ```

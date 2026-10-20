@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: e750afa81ab54bfac81c9521b3a6c983311059d35a8e31d26c936763d00840a6
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 0dd1e7584828edc94b9058ffc03492eca7b8c6188d1f6171d1d0ad337e19cabe
 ---
 
 ---
@@ -196,20 +196,18 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
     model: "claude-opus-5-5",
     max_tokens: 16000,
     container: {
-      skills: [{ type: "anthropic", skill_id: "pptx", version: "latest" }],
+      skills: [{ type: "anthropic", skill_id: "pptx", version: "latest" }]
     },
     messages: [
       {
         role: "user",
-        content: "Create a presentation about renewable energy with 5 slides",
-      },
+        content: "Create a presentation about renewable energy with 5 slides"
+      }
     ],
-    tools: [{ type: "code_execution_20260521", name: "code_execution" }],
+    tools: [{ type: "code_execution_20260521", name: "code_execution" }]
   });
 
-  console.log(
-    `stop_reason=${response.stop_reason}, blocks=${response.content.length}`,
-  );
+  console.log(`stop_reason=${response.stop_reason}, blocks=${response.content.length}`);
   ```
 
   ```csharp C#
@@ -381,12 +379,10 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
 
   if [[ -n "$file_id" ]]; then
     # Unduh file dan simpan
-    output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
     curl --fail-with-body -sS "https://api.anthropic.com/v1/files/$file_id/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
-      -o "$output_path"
-    echo "Presentation saved to $output_path"
+      -o "${TMPDIR:-/tmp}/renewable_energy.pptx"
   fi
   ```
 
@@ -406,9 +402,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
 
   if [[ -n "$file_id" ]]; then
     # Unduh file dan simpan
-    output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
-    ant files download --file-id "$file_id" --output "$output_path"
-    echo "Presentation saved to $output_path"
+    ant files download --file-id "$file_id" --output "${TMPDIR:-/tmp}/renewable_energy.pptx"
   fi
   ```
 

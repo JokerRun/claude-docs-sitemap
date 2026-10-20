@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/api-credits-for-subscribers
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8f1644e17a1cd4ed0af7bfcd0292ec685e32e6900f5140d3da1a922a774a477a
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 2415ea4d6794619b3135961483ca59fc2a97d5e73dc1a45cb8a62705c0aedc21
 ---
 
 ---
@@ -59,7 +59,7 @@ You need both of the following roles:
 | **Claude plan**                 | Max: the subscriber<br />Team: Primary Owner, Owner |
 | **Claude Console organization** | Owner, Admin, or Billing                            |
 
-If you don't have a Console organization, create one at [platform.claude.com](https://platform.claude.com/) first, or create one during the claim flow.
+If you don't have a Claude Console organization, create one in the Console at [platform.claude.com](https://platform.claude.com/) first, or create one during the claim flow.
 
 ### Steps
 
@@ -92,7 +92,7 @@ These API credits can only be used on the Claude Platform. The following table s
 | [Claude API](https://platform.claude.com/docs/en/api/overview)                       | Yes     |
 | [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) | Yes     |
 | [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)               | Yes     |
-| [Playground](https://platform.claude.com/playground)                                 | Yes     |
+| [Playground](https://platform.claude.com/playground) in the Claude Console           | Yes     |
 | Claude Code                                                                          | No      |
 | Extra usage in the Claude apps                                                       | No      |
 | Claude Platform on AWS, Bedrock, Google Cloud, Microsoft Foundry                     | No      |

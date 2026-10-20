@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 686d22beea6462c579ede1b852063088a339e1f204520a88e9afae16f3d85667
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 63adb1e7099bf807bc551505569abe43d63398d7d4bd9d4cb89c786c100ba081
 ---
 
 ---
@@ -20,7 +20,7 @@ List Vaults
 
 - `include_archived: optional boolean`
 
-  Whether to include archived vaults in the results.
+  Whether to include archived vaults in the results. Defaults to `false`.
 
 - `limit: optional number`
 
@@ -30,7 +30,7 @@ List Vaults
 
 - `page: optional string`
 
-  Opaque pagination token from a previous `list_vaults` response.
+  The `next_page` value from a previous [List Vaults](https://platform.claude.com/docs/en/api/beta/vaults/list?sdk_languages=http) response, to get the next page. Leave it out to get the first page.
 
 ## Headers
 
@@ -158,13 +158,13 @@ List Vaults
 
 - `data: optional array of BetaManagedAgentsVault`
 
-  List of vaults.
+  The vaults on this page, newest first.
 
   - `type: "vault"`
 
   - `id: string`
 
-    Unique identifier for the vault.
+    The unique ID of the vault (`vlt_...`).
 
   - `archived_at: string or null`
 

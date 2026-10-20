@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: a324b4814d760d6c6f115a0a534123fe71acc40e4a9fa63f0e2f85200df197dd
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 82faec20e51fde0346ae200139238467f5f88459f3a853fd29e1185df9de70fa
 ---
 
 > ## Documentation Index
@@ -143,10 +143,6 @@ The keyword is an opt-in only in a prompt you type yourself: at the interactive 
 * a prompt an Agent SDK application sends without stamping it as human input
 * a scheduled task prompt
 * a webhook payload or pull request comment relayed into the conversation
-
-<Note>
-  Before v2.1.210, the keyword started a workflow from any of these routes too, including a webhook payload or pull request comment relayed into the conversation.
-</Note>
 
 ### Let Claude decide with ultracode
 

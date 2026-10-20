@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 4ad22dea07b659f3da09e9e298265a711417f81e4841a2b5617534dace614187
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 5e707717202bb96e792202a1a6852c1d4039f6324d1cf146cce3d3b824e265b6
 ---
 
 ---
@@ -270,13 +270,13 @@ SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci
 Skill dasar dimulai hanya dengan file SKILL.md yang berisi metadata dan instruksi:
 
 <Frame>
-  ![File SKILL.md sederhana yang menampilkan YAML frontmatter dan isi markdown](https://platform.claude.com/docs/images/agent-skills-simple-file.svg)
+  ![File SKILL.md sederhana yang menampilkan YAML frontmatter dan isi markdown](https://platform.claude.com/docs/id/images/agent-skills-simple-file.svg)
 </Frame>
 
 Seiring berkembangnya Skill Anda, Anda dapat membundel konten tambahan yang dimuat Claude hanya saat diperlukan:
 
 <Frame>
-  ![Membundel file referensi tambahan seperti reference.md dan forms.md.](https://platform.claude.com/docs/images/agent-skills-bundling-content.svg)
+  ![Membundel file referensi tambahan seperti reference.md dan forms.md.](https://platform.claude.com/docs/id/images/agent-skills-bundling-content.svg)
 </Frame>
 
 Struktur direktori Skill yang lengkap mungkin terlihat seperti ini:
@@ -949,7 +949,7 @@ Bahkan jika Claude dapat menulis skrip, skrip yang sudah dibuat sebelumnya menaw
 * Memastikan konsistensi di seluruh penggunaan
 
 <Frame>
-  ![Membundel skrip yang dapat dieksekusi bersama file instruksi](https://platform.claude.com/docs/images/agent-skills-executable-scripts.svg)
+  ![Membundel skrip yang dapat dieksekusi bersama file instruksi](https://platform.claude.com/docs/id/images/agent-skills-executable-scripts.svg)
 </Frame>
 
 Diagram di atas menunjukkan bagaimana "executable scripts" (skrip yang dapat dieksekusi) bekerja bersama file instruksi. File instruksi (forms.md) merujuk skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.

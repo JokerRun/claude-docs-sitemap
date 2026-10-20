@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: cb55d3c1f4716bda1f689ddfee94171a78463a92893e371328ab5db270b8c3a2
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 29b5ec964555e394e53c150f24cc75be6b5dcc5ea4f090056f8ed252bc649512
 ---
 
 ---
@@ -49,19 +49,14 @@ Upload a file to be referenced in future API calls:
 
 <CodeGroup>
   ```bash cURL
-  FILE_ID=$(curl -X POST https://api.anthropic.com/v1/files \
+  curl -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@/path/to/document.pdf" | jq -r '.id')
-  echo "$FILE_ID"
+    -F "file=@/path/to/document.pdf"
   ```
 
   ```bash CLI
-  FILE_ID=$(ant files upload \
-    --file /path/to/document.pdf \
-    --transform id \
-    --raw-output)
-  echo "$FILE_ID"
+  ant files upload --file /path/to/document.pdf
   ```
 
   ```python Python
@@ -74,11 +69,9 @@ Upload a file to be referenced in future API calls:
 
   ```typescript TypeScript
   const uploaded = await client.files.upload({
-    file: await toFile(
-      fs.createReadStream("/path/to/document.pdf"),
-      undefined,
-      { type: "application/pdf" },
-    ),
+    file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
+      type: "application/pdf"
+    })
   });
   console.log(uploaded.id);
   ```
@@ -255,18 +248,18 @@ Once uploaded, reference the file by passing the `id` from the upload response a
         content: [
           {
             type: "text",
-            text: "Please summarize this document for me.",
+            text: "Please summarize this document for me."
           },
           {
             type: "document",
             source: {
               type: "file",
-              file_id: uploaded.id,
-            },
-          },
-        ],
-      },
-    ],
+              file_id: uploaded.id
+            }
+          }
+        ]
+      }
+    ]
   });
 
   console.log(response);
@@ -478,9 +471,7 @@ The following examples read a text file and send its contents as plain text:
   # The "@./path" reference inlines the file contents directly into the field.
   ant messages create \
     --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --transform 'content.#(type=="text").text' \
-    --raw-output <<'YAML'
+    --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -545,9 +536,7 @@ The following examples read a text file and send its contents as plain text:
     ]
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -920,7 +909,6 @@ Download files that were created by [skills](https://platform.claude.com/docs/en
   	_, err = io.Copy(out, resp.Body)
   	return err
   }
-
   ```
 
   ```java Java

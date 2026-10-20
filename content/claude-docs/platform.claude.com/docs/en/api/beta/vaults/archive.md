@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: dda697139624b05b3ad945b93b7ade3a0cd2e5f63c9df42f67295e0fefa71cf0
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 34ba662ff86bd5fd9b94f6a80878953699ac6d22a2114d9766fe591a9bdccc05
 ---
 
 ---
-title: Archive Vault
+title: Archive a Vault
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
 ---
 
-# Archive Vault
+# Archive a Vault
 
 **POST** `/v1/vaults/{vault_id}/archive`
 
-Archive Vault
+Archive a Vault
 
 ## Path parameters
 
@@ -154,7 +154,7 @@ Archive Vault
 
   - `id: string`
 
-    Unique identifier for the vault.
+    The unique ID of the vault (`vlt_...`).
 
   - `archived_at: string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 190794470ceda12cb635459c4a6409577490dd3d9ff4ed2f4c944d4476867435
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b25fa2671463904bc5fc5bcd413e7a4d7ea4ad870d225b24d0faf60042e97af4
 ---
 
 ---
@@ -109,7 +109,7 @@ See [Tools](https://platform.claude.com/docs/en/managed-agents/tools) for the fu
 
 To get started, you need:
 
-1. A [Claude API key](https://platform.claude.com/settings/keys)
+1. A [Claude API key](https://platform.claude.com/settings/keys) from the Claude Console
 2. The `managed-agents-2026-04-01` beta header on all requests
 3. Access to Claude Managed Agents (enabled by default for all API accounts)
 

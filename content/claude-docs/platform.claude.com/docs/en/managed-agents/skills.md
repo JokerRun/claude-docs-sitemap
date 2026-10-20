@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 53628f94ad2985cac1a681ed032a91541b1fdcafbd37fe54b59fc7f4b8476b1c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7e58d54036c9b0375daf0ab5bbbc4a96f4394e1dd3af2fb3ed7925bfa8f30b4e
 ---
 
 ---
@@ -225,7 +225,7 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -sS https://api.anthropic.com/v1/agents \
+  curl -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -238,7 +238,6 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
         {"type": "custom", "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv", "version": "latest"}
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>
@@ -438,12 +437,12 @@ To load skills from a repository, create a session that mounts it. This is the s
 
 <CodeGroup>
   ```bash cURL
-  session_id=$(curl -fsS https://api.anthropic.com/v1/sessions \
+  curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r '.id'
+    -d @- <<JSON
   {
     "agent": "$agent_id",
     "environment_id": "$environment_id",
@@ -457,21 +456,18 @@ To load skills from a repository, create a session that mounts it. This is the s
     ]
   }
   JSON
-  )
   ```
 
   ```bash CLI
-  SESSION_ID=$(ant beta:sessions create \
+  ant beta:sessions create \
     --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID" \
-    --transform id --raw-output <<'EOF'
+    --environment-id "$ENVIRONMENT_ID" <<'EOF'
   resources:
     - type: github_repository
       url: https://github.com/org/repo
       mount_path: /workspace/repo
       authorization_token: ghp_your_github_token
   EOF
-  )
   ```
 
   ```python Python
@@ -498,9 +494,9 @@ To load skills from a repository, create a session that mounts it. This is the s
         type: "github_repository",
         url: "https://github.com/org/repo",
         mount_path: "/workspace/repo",
-        authorization_token: "ghp_your_github_token",
-      },
-    ],
+        authorization_token: "ghp_your_github_token"
+      }
+    ]
   });
   ```
 

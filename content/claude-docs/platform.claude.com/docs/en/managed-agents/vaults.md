@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 313678bf96b329a6c5b4ab56788e2a828b45e7057e0c2f9ee074ad5a5f9bb41e
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: a4235c91e59f5360575f4b9c30f170e33e6ff7030fee9b0f7ceaa47b32ad508e
 ---
 
 ---
@@ -68,7 +68,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
   ```typescript TypeScript
   const vault = await client.beta.vaults.create({
     display_name: "Alice",
-    metadata: { external_user_id: "usr_abc123" },
+    metadata: { external_user_id: "usr_abc123" }
   });
   console.log(vault.id); // "vlt_01ABC..."
   ```
@@ -220,7 +220,10 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
                   "client_id": "1234567890.0987654321",
                   "scope": "channels:read chat:write",
                   "refresh_token": "xoxe-1-...",
-                  "token_endpoint_auth": {"type": "client_secret_post", "client_secret": "abc123..."},
+                  "token_endpoint_auth": {
+                      "type": "client_secret_post",
+                      "client_secret": "abc123...",
+                  },
               },
           },
       )
@@ -241,10 +244,10 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
             refresh_token: "xoxe-1-...",
             token_endpoint_auth: {
               type: "client_secret_post",
-              client_secret: "abc123...",
-            },
-          },
-        },
+              client_secret: "abc123..."
+            }
+          }
+        }
       });
       ```
 
@@ -423,8 +426,8 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
         auth: {
           type: "static_bearer",
           mcp_server_url: "https://mcp.linear.app/mcp",
-          token: "lin_api_your_linear_key",
-        },
+          token: "lin_api_your_linear_key"
+        }
       });
       ```
 
@@ -565,7 +568,9 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
       )
       if env_credential.auth.type == "environment_variable":
           location = env_credential.auth.injection_location
-          print(f"header: {location.header}, body: {location.body}")  # header: True, body: False
+          print(
+              f"header: {location.header}, body: {location.body}"
+          )  # header: True, body: False
       ```
 
       ```typescript TypeScript
@@ -577,10 +582,10 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           secret_value: "ntn_your-secret-here",
           networking: {
             type: "limited",
-            allowed_hosts: ["api.notion.com"],
+            allowed_hosts: ["api.notion.com"]
           },
-          injection_location: { header: true },
-        },
+          injection_location: { header: true }
+        }
       });
       if (envVarCredential.auth.type === "environment_variable") {
         console.log(envVarCredential.auth.injection_location); // { header: true, body: false }
@@ -782,7 +787,7 @@ Pass `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `Va
     agent: agent.id,
     environment_id: environment.id,
     vault_ids: [vault.id],
-    title: "Alice's Slack digest",
+    title: "Alice's Slack digest"
   });
   ```
 
@@ -856,7 +861,7 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data @- <<'EOF' > /dev/null
+    -d @- <<'EOF'
   {
     "auth": {
       "type": "mcp_oauth",
@@ -902,9 +907,9 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       access_token: "xoxp-new-...",
       expires_at: "2099-12-31T23:59:59Z",
       refresh: {
-        refresh_token: "xoxe-1-new-...",
-      },
-    },
+        refresh_token: "xoxe-1-new-..."
+      }
+    }
   });
   ```
 
@@ -1037,10 +1042,9 @@ The top-level `status` (csharp, go: `Status`) tells you what to do next:
   ```
 
   ```typescript TypeScript
-  const validation = await client.beta.vaults.credentials.mcpOAuthValidate(
-    credential.id,
-    { vault_id: vault.id },
-  );
+  const validation = await client.beta.vaults.credentials.mcpOAuthValidate(credential.id, {
+    vault_id: vault.id
+  });
   console.log(validation.status); // "valid", "invalid", or "unknown"
   ```
 

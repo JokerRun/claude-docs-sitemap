@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 652e0d0fee8928ce066ef208fb58c1ba94a1fcb9bc15ae02e308f3345e861cb7
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: dc89eb5961b80a86b64ba213e247fcd61439473724b76c92e929f7e6487436a5
 ---
 
 ---
@@ -117,7 +117,7 @@ Install the claude-api plugin from the anthropics/skills plugin marketplace
 
 ## Migrating to a newer Claude model
 
-The Claude API skill can perform Claude model migrations across a code base. Invoke it directly with `/claude-api migrate`:
+The Claude API skill can perform Claude model migrations across a code base. Invoke it directly with the `migrate` subcommand:
 
 Let Claude Code migrate your code for you
 

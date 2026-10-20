@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: b9801a3e52fdc753dfc69a74c48c5efed0dd35a33a840ded1231e25f2f155698
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 76738564a5ab1691c7b699654d09705a6b67ef422c92f16e8e928ba19a5ad41c
 ---
 
 ---
@@ -114,74 +114,13 @@ Helper setiap SDK menangani pencatatan `index` (csharp, go: `Index`). Helper Go,
 
 Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasinya dengan event yang di-buffer:
 
-<CodeGroup exclude="shell:CLI">
-  ```bash cURL
-  # Aktifkan pratinjau agent.message melalui event_deltas, lalu akumulasikan secara manual.
-  exec {stream}< <(
-    curl --fail-with-body -sS -N \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true&event_deltas%5B%5D=agent.message" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "accept: text/event-stream"
-  )
-
-  curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "events": [
-        {
-          "type": "user.message",
-          "content": [{"type": "text", "text": "In one short sentence, describe what an event delta is."}]
-        }
-      ]
-    }' >/dev/null
-
-  # Akumulasikan delta dengan kunci (id pesan, indeks konten); agent.message
-  # final membawa teks lengkap, sehingga menggantikan semua pratinjau untuk id tersebut.
-  declare -A preview
-  while IFS= read -r -u "$stream" event_line; do
-    [[ $event_line == data:* ]] || continue
-    event_json=${event_line#data: }
-    case $(jq -r '.type' <<<"$event_json") in
-      event_start)
-        preview_id=$(jq -r '.event.id' <<<"$event_json")
-        printf '[event_start id=%s]\n' "$preview_id"
-        ;;
-      event_delta)
-        preview_key=$(jq -r '.event_id + ":" + (.delta.index | tostring)' <<<"$event_json")
-        preview[$preview_key]+=$(jq -r '.delta.content.text' <<<"$event_json")
-        printf '[event_delta] %s\n' "${preview[$preview_key]}"
-        ;;
-      agent.message)
-        msg_id=$(jq -r '.id' <<<"$event_json")
-        for preview_key in "${!preview[@]}"; do
-          [[ $preview_key == "$msg_id":* ]] && unset "preview[$preview_key]"
-        done
-        printf '[agent.message id=%s] ' "$msg_id"
-        jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
-        printf '\n'
-        ;;
-      span.model_request_end)
-        for preview_key in "${!preview[@]}"; do
-          printf '[closing unreconciled preview for %s]\n' "${preview_key%%:*}"
-        done
-        preview=()
-        ;;
-      session.status_idle)
-        break
-        ;;
-    esac
-  done
-  exec {stream}<&-
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -199,7 +138,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
           events=[
               {
                   "type": "user.message",
-                  "content": [{"type": "text", "text": "Describe the repo in one sentence."}],
+                  "content": [
+                      {"type": "text", "text": "Describe the repo in one sentence."}
+                  ],
               },
           ],
       )
@@ -212,14 +153,18 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
                       previews[event.event.id] = snapshot
                   print(f"event_start             {event.event.type} {event.event.id}")
               case "event_delta":
-                  preview = accumulate_managed_agents_event(previews.get(event.event_id), event)
+                  preview = accumulate_managed_agents_event(
+                      previews.get(event.event_id), event
+                  )
                   if preview is not None:
                       previews[event.event_id] = preview
                       text = "".join(block.text for block in preview.content)
                       print(f"event_delta             preview: {text!r}")
               case "agent.message":
                   # Event yang di-buffer adalah catatannya: ia menggantikan dan menutup pratinjau
-                  preview = accumulate_managed_agents_event(previews.pop(event.id, None), event)
+                  preview = accumulate_managed_agents_event(
+                      previews.pop(event.id, None), event
+                  )
                   text = "".join(block.text for block in preview.content)
                   print(f"agent.message           {event.id} {text!r}")
               case "span.model_request_end":
@@ -239,7 +184,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
 
   // Aktifkan pratinjau agent.message hanya untuk koneksi ini
   const stream = await client.beta.sessions.events.stream(session.id, {
-    event_deltas: ["agent.message"],
+    event_deltas: ["agent.message"]
   });
   await client.beta.sessions.events.send(session.id, {
     events: [
@@ -636,85 +581,23 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
 
 <CodeGroup>
   ```bash cURL
-  # Tampilkan daftar thread sesi dan pilih satu anak: thread anak memiliki
-  # parent_thread_id yang tidak null, dan parent_thread_id thread utama bernilai null.
-  THREAD_ID=$(
-    curl --fail-with-body -sS \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads?beta=true" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" |
-      jq -er 'first(.data[] | select(.parent_thread_id != null)).id'
-  )
-
-  # Stream thread anak menerima parameter event_deltas[] yang sama dengan
-  # stream sesi. Lakukan percent-encode pada tanda kurung (%5B%5D) dan beri tanda kutip pada URL.
-  exec {stream}< <(
-    curl --fail-with-body -sS -N \
-      "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true&event_deltas%5B%5D=agent.message" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      -H "accept: text/event-stream"
-  )
-
-  while IFS= read -r -u "$stream" event_line; do
-    [[ $event_line == data:* ]] || continue
-    event_json=${event_line#data: }
-    case $(jq -r '.type' <<<"$event_json") in
-      event_delta)
-        jq -j '.delta.content.text' <<<"$event_json"
-        ;;
-      agent.message)
-        # Event yang di-buffer adalah catatan otoritatif; render kontennya.
-        printf '\n'
-        jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
-        printf '\n'
-        ;;
-      session.thread_status_idle)
-        break
-        ;;
-    esac
-  done
-  exec {stream}<&-
+  # Stream thread menerima parameter event_deltas[] yang sama dengan stream sesi.
+  # Lakukan percent-encode pada tanda kurung (%5B%5D) dan beri tanda kutip pada URL.
+  curl --fail-with-body -sS -N \
+    "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true&event_deltas%5B%5D=agent.message" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "accept: text/event-stream"
   ```
 
   ```bash CLI
-  # Daftarkan thread sesi dan pilih satu anak: thread anak membawa
-  # parent_thread_id non-null, dan parent_thread_id thread utama bernilai null
-  # (kueri #(parent_thread_id!=~null) milik --transform cocok dengan nilai non-null).
-  THREAD_ID=$(ant beta:sessions:threads list \
-    --session-id "$SESSION_ID" \
-    --format raw --transform 'data.#(parent_thread_id!=~null).id' --raw-output)
-
-  # Stream thread anak menerima parameter event_deltas yang sama dengan
-  # stream sesi, satu flag --event-delta per jenis event untuk dipratinjau. @tostr
-  # mengodekan ulang tiap field teks sebagai string JSON, sehingga setiap nilai tetap di satu
-  # baris YAML dan fromjson milik jq memulihkan teks aslinya.
-  transform='{type,frag:delta.content.text|@tostr,text:content.#(type=="text").text|@tostr}'
-  exec {stream}< <(ant beta:sessions:threads:events stream \
+  # Stream thread menerima parameter event_deltas yang sama dengan stream sesi,
+  # satu flag --event-delta per tipe event yang akan dipratinjau.
+  ant beta:sessions:threads:events stream \
     --session-id "$SESSION_ID" \
     --thread-id "$THREAD_ID" \
-    --event-delta agent.message \
-    --transform "$transform" \
-    --format yaml)
-
-  type=
-  while IFS= read -r -u "$stream" line; do
-    case "$line" in
-      type:\ session.thread_status_idle) break ;;
-      type:\ *) type=${line#type: } ;;
-      frag:*)
-        [[ $type == event_delta ]] || continue
-        jq -j fromjson <<<"${line#frag: }" ;;
-      text:*)
-        [[ $type == agent.message ]] || continue
-        # Event yang di-buffer adalah catatan otoritatif; render kontennya.
-        printf '\n'
-        jq -r fromjson <<<"${line#text: }" ;;
-    esac
-  done
-  exec {stream}<&-
+    --event-delta agent.message
   ```
 
   ```python Python
@@ -766,7 +649,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   // stream sesi.
   const stream = await client.beta.sessions.threads.events.stream(childThreadId, {
     session_id: session.id,
-    event_deltas: ["agent.message"],
+    event_deltas: ["agent.message"]
   });
 
   threadDeltas: for await (const event of stream) {

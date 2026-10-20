@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 96e8940446c799cda83e2301e389049613904b07884e2bcfad9c189203c27e00
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 791a1e7e1dda4a886447505dd18f49a1756a24f298eb6ef3858b1b03e94c90eb
 ---
 
 ---
@@ -105,14 +105,14 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
     max_tokens: 16000,
     thinking: {
       type: "enabled",
-      budget_tokens: 10000,
+      budget_tokens: 10000
     },
     messages: [
       {
         role: "user",
-        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?",
-      },
-    ],
+        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+      }
+    ]
   });
 
   // Respons berisi blok pemikiran yang diringkas dan blok teks

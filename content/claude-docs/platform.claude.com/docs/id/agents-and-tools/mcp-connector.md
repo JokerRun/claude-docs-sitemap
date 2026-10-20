@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2047a792c0309d2979ec0285d394e3cf51facdf05e449c3f0c51939cee36f5df
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c57aac90f7a4ac992411c40f56c8b5b36791a0a1e9a903725606c1a27284e931
 ---
 
 ---
@@ -1312,7 +1312,6 @@ Impor helper untuk bahasa Anda:
   import (
   	"github.com/anthropics/anthropic-sdk-go/mcp"
   )
-
   ```
 
   ```java Java
@@ -1495,7 +1494,6 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   	}
   	fmt.Println(finalMessage.RawJSON())
   }
-
   ```
 
   ```java Java

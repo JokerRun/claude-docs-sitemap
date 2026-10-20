@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: bcdb69e6638faf28864e8ea975824b1f5791f4390da733b8196ed4004f20d633
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 022130b85c599881c7dbd208b5cd22cc09e0c2f0f4c4c7762532b435c608a7e3
 ---
 
 ---
@@ -261,9 +261,14 @@ This sample follows a session from your message to the agent's answer. It opens 
     events: [
       {
         type: "user.message",
-        content: [{ type: "text", text: "Which contracts in /contracts have a change-of-control clause?" }],
-      },
-    ],
+        content: [
+          {
+            type: "text",
+            text: "Which contracts in /contracts have a change-of-control clause?"
+          }
+        ]
+      }
+    ]
   });
 
   events: for await (const event of stream) {
@@ -297,9 +302,9 @@ This sample follows a session from your message to the agent's answer. It opens 
               {
                 type: "user.custom_tool_result",
                 custom_tool_use_id: event.id,
-                content: [{ type: "text", text: result }],
-              },
-            ],
+                content: [{ type: "text", text: result }]
+              }
+            ]
           });
         } catch (error) {
           // The server refuses a result that comes too late, after it
@@ -446,7 +451,7 @@ This sample follows a session from your message to the agent's answer. It opens 
   ```
 
   ```go Go
-  	openRuns := map[string]string{}   // workflow_run_id -> run name
+  	openRuns := map[string]string{}      // workflow_run_id -> run name
   	phaseNames := map[[2]string]string{} // {run ID, phase ID} -> phase name
 
   	// Open the stream first, then send the user message

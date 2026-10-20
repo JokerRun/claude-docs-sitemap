@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 6216a9dcdca5f440e7bc7beb93493f29041ce08512c248c5353f7e9ff77833fa
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c331466c558708a4899f31a4a4a0c3807f8158896e00824e819c4b095e9be611
 ---
 
 ---
@@ -33,7 +33,7 @@ Ada dua event hook. `prompt` dipicu sekali per permintaan inferensi yang diatur,
 Diagram berikut menelusuri satu contoh (permintaan Cowork di mana Claude juga memanggil alat O365) untuk mengilustrasikan bagian mana dari alur yang di-hook. Titik yang di-hook adalah langkah 1, 2, dan 3 pada diagram, yaitu saat prompt tiba, Claude memanggil alat, dan hasil alat kembali. Di setiap titik, server keamanan AI Anda mengembalikan putusan sebelum alur berlanjut. Langkah 2 hanya di-hook jika **Validate tool calls** aktif, dan satu putusannya mencakup semua panggilan alat dalam sebuah respons.
 
 <Frame>
-  ![Diagram alur: prompt, "tool call" (panggilan alat), dan "tool result" (hasil alat) masing-masing diperiksa oleh "AI security server" (server keamanan AI); "response" (respons) tidak diperiksa](https://platform.claude.com/docs/images/inference-hooks-flow-2.svg)
+  ![Diagram alur: prompt, "tool call" (panggilan alat), dan "tool result" (hasil alat) masing-masing diperiksa oleh "AI security server" (server keamanan AI); "response" (respons) tidak diperiksa](https://platform.claude.com/docs/id/images/inference-hooks-flow-2.svg)
 </Frame>
 
 Putusan adalah objek JSON kecil: `{"action": "allow"}` memungkinkan permintaan dilanjutkan, dan penolakan membawa alasan yang ditampilkan kepada pengguna. Untuk skema putusan lengkap, lihat [Mengembalikan putusan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#return-a-verdict).

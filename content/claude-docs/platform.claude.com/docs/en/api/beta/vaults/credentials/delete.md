@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 7a2ba3a23d6f72c6aaf6cfe5cda3c5b255c4d265506c7a0169d7fe8362274a7f
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: de657b1825f5bb1e9eaef3973e91fe2191b7ec35387db32ec00b39b675638903
 ---
 
 ---
-title: Delete Credential
+title: Delete a Credential
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
 ---
 
-# Delete Credential
+# Delete a Credential
 
 **DELETE** `/v1/vaults/{vault_id}/credentials/{credential_id}`
 
-Delete Credential
+Delete a Credential
 
 ## Path parameters
 
@@ -158,7 +158,7 @@ Delete Credential
 
   - `id: string`
 
-    Unique identifier of the deleted credential.
+    The unique ID of the deleted credential (`vcrd_...`).
 
 ## Example
 

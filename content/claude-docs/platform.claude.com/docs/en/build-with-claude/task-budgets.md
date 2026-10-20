@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 87b1983fe762d2a1c98324b6c3079a48a3e83a38346907eaca46a06da79b4163
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: a6cc500f0473e6f7c49e9f43edda9f1c890e09ce359cb8ecbc7ed85c4192eb6a
 ---
 
 ---
@@ -66,7 +66,7 @@ Add `task_budget` to `output_config` and include the beta header:
 
   ```bash CLI
   ant beta:messages create --beta task-budgets-2026-03-13 \
-    --stream --format jsonl <<'YAML' | jq 'select(.type == "message_delta").usage'
+    --stream <<'YAML'
   model: claude-opus-5-5
   max_tokens: 128000
   messages:
@@ -496,7 +496,7 @@ For loops that resend the full uncompacted history on every request, omit `remai
 
 ## Changing the budget mid-conversation
 
-`task_budget` is a request-level setting. To change the budget partway through a task, for example to extend it when the user broadens the request, set a new `task_budget` in `output_config` on the next request. Keep the caching consequence in mind: the budget value participates in the rendered prompt, so a changed value does not match cache entries created under the old one (see [Feature support](https://platform.claude.com/docs/en/build-with-claude/task-budgets#feature-support) below).
+`task_budget` is a request-level setting. To change the budget partway through a task, for example to extend it when the user broadens the request, set a new `task_budget` in `output_config` on the next request. Keep the caching consequence in mind: the budget value participates in the rendered prompt, so a changed value does not match cache entries created under the old one (see [Feature support](https://platform.claude.com/docs/en/build-with-claude/task-budgets#feature-support)).
 
 ## Task budgets are advisory, not enforced
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: f67571c5f37f148e3542a7a44b7abc2fc5045b1e2b0d38ff2a01354765940324
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 115bd3a4601eb2f8c1243e8ff4ee0c4fac8624416fe5e7ac4cce78aac7297ec0
 ---
 
 ---
@@ -349,6 +349,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   using Anthropic;
   using Anthropic.Helpers.Beta;
   using Anthropic.Models.Beta.Messages;
+  using Model = Anthropic.Models.Messages.Model;
 
   var client = new AnthropicClient();
 
@@ -358,7 +359,7 @@ Four SDKs provide memory tool helpers that handle the tool interface and the loo
   var runner = client.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Anthropic.Models.Messages.Model.ClaudeOpus5_5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [

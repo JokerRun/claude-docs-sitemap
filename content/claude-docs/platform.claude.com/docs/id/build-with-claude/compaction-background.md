@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 81395e018dc728bba2eb4da4a4129684b267d4e8278c255478779dc47e212e5d
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 3f0dc7dacf10205d31422cac7eaed6c9e2e825730214803d052079952dfc5238
 ---
 
 ---
@@ -48,7 +48,7 @@ Permintaan compaction dan blok yang dikembalikannya sama seperti dalam loop. Riw
 Sebagai contoh, jika permintaan compaction memuat pesan 1 hingga 5 dan percakapan bertambah dengan pesan 6 hingga 8 selama permintaan itu berjalan, setelah penukaran riwayat Anda adalah blok tersebut diikuti oleh pesan 6 hingga 8.
 
 <Frame>
-  ![Linimasa background compaction (pemadatan di latar belakang): permintaan compaction dikirim dengan pesan 1 hingga 5 sementara percakapan berlanjut pada riwayat lengkapnya dan bertambah dengan pesan 6 hingga 8; ketika blok tiba, blok tersebut menggantikan pesan 1 hingga 5 di bagian depan riwayat, dan riwayat menjadi blok tersebut diikuti oleh pesan 6 hingga 8](https://platform.claude.com/docs/images/compaction-background-timeline.svg)
+  ![Linimasa background compaction (pemadatan di latar belakang): permintaan compaction dikirim dengan pesan 1 hingga 5 sementara percakapan berlanjut pada riwayat lengkapnya dan bertambah dengan pesan 6 hingga 8; ketika blok tiba, blok tersebut menggantikan pesan 1 hingga 5 di bagian depan riwayat, dan riwayat menjadi blok tersebut diikuti oleh pesan 6 hingga 8](https://platform.claude.com/docs/id/images/compaction-background-timeline.svg)
 </Frame>
 
 Jika respons memiliki `stop_reason` lain, tidak ada ringkasan yang dihasilkan, dan hal ini dihitung sebagai kegagalan pada langkah 2. Pertahankan riwayat lengkap; [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) mencantumkan penyebabnya dan apa yang harus dilakukan untuk masing-masing.

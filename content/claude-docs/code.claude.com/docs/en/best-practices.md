@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-10-07T02:29:51.209198Z
-sha256: 3f2d4f1a6eeba4cb13141e68c9f45b7e5af95224ad3b0c62a13b886d144ea86f
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b98fde020aa0e3c9d5ee3f338063369456d8b436a5c5696dfbc8641761e44fb1
 ---
 
 > ## Documentation Index
@@ -514,7 +514,7 @@ For large migrations or analyses, you can distribute work across many parallel C
   </Step>
 
   <Step title="Test on a few files, then run on all of them">
-    Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag pre-approves the tools the migration needs, and [`--permission-mode dontAsk`](/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) denies anything else that would need approval, which matters when you're running unattended.
+    Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag pre-approves the tools the migration needs. [`--permission-mode dontAsk`](/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) denies anything else that would need approval, which matters when you're running unattended, though a [mod](/docs/en/plugins/mods/overview) you installed can still approve some of those calls.
   </Step>
 </Steps>
 

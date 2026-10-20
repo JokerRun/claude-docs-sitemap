@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: fff2533c08c86c0ebe108f1b97a41fa2b3443c622b0e82831b5995562cd955c1
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 38af9163f8effd2919382921b35c9d7cd75ec339e8a1172bfd22072e1f2951a4
 ---
 
 ---
@@ -219,7 +219,7 @@ The following script sends a request that should trigger parallel tool calls, ve
 
   // Simulate tool execution and format results correctly
   const toolResults: Anthropic.ToolResultBlockParam[] = toolUses
-    .filter((block): block is Anthropic.ToolUseBlock => block.type === "tool_use")
+    .filter((block) => block.type === "tool_use")
     .map((toolUse) => {
       const input = toolUse.input as Record<string, string>;
       let result: string;

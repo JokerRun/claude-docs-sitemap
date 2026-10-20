@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c1be48d1127d29ff914b27d5408fefa1c750b66cd88cec90539b401b3052f987
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 07e3f4454c7b4626f3ef1f491b5b48db0aabca5b0637fea122a6319e2e954346
 ---
 
 ---
@@ -63,38 +63,14 @@ When you receive **`stop_reason`: `refusal`**, you must reset the conversation c
 
 Here's how to detect and handle streaming refusals in your application:
 
-<CodeGroup>
-  ```bash cURL
-  response=$(curl -N https://api.anthropic.com/v1/messages \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "messages": [{"role": "user", "content": "Hello"}],
-      "max_tokens": 1024,
-      "stream": true
-    }')
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Detecting a refusal in the stream and resetting the conversation needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+  </CodeGroupItem>
 
-  if echo "$response" | jq -R -e 'select(startswith("data: "))
-      | sub("^data: "; "") | fromjson
-      | select(.delta.stop_reason == "refusal")' >/dev/null; then
-    echo "Response refused - resetting conversation context"
-    # Reset your conversation state here
-  fi
-  ```
-
-  ```bash CLI
-  response=$(ant messages create --stream --format jsonl \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: Hello}')
-
-  if echo "$response" | jq -e 'select(.delta.stop_reason == "refusal")' >/dev/null; then
-    echo "Response refused - resetting conversation context"
-    # Reset your conversation state here
-  fi
-  ```
+  <CodeGroupItem language="CLI">
+    Detecting a refusal in the stream and resetting the conversation needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: c14c1744c16078e337afba94f462c277a359a75a42a9ad1d246142a587679f69
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 299927b259b42dd32a0341bfa14099cb2e2035b87468563f417718ffb303b0b5
 ---
 
 ---
@@ -76,8 +76,8 @@ This page covers `type: cloud` environments. To run sandboxes on your own infras
     name: "python-dev",
     config: {
       type: "cloud",
-      networking: { type: "limited", allow_package_managers: true },
-    },
+      networking: { type: "limited", allow_package_managers: true }
+    }
   });
 
   console.log(`Environment ID: ${environment.id}`);
@@ -188,7 +188,7 @@ Pass the environment ID as a string when [creating a session](https://platform.c
   ```typescript TypeScript
   const session = await client.beta.sessions.create({
     agent: agent.id,
-    environment_id: environment.id,
+    environment_id: environment.id
   });
   ```
 

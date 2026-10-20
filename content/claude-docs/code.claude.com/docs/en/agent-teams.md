@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: e09abc4e91fd29fc83e308ee66c7386d8de71f399b606e081c629673361d1250
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 13cabc09f8a99aa0f990290f28acdf57f80f7842bc4afedc5e18d21559979dd8
 ---
 
 > ## Documentation Index
@@ -488,7 +488,7 @@ Agent teams are experimental. Current limitations to be aware of:
 * **Shutdown can be slow**: teammates finish their current request or tool call before shutting down, which can take time.
 * **One team per session**: a session has exactly one team, scoped to that session. You can't create additional named teams or share a team across sessions.
 * **No nested teams**: teammates cannot spawn their own teammates. Only the lead can manage the team.
-* **No background subagents from in-process teammates**: an in-process teammate's own subagents run in the foreground, because a teammate's background work can't outlive the lead's process. Claude Code returns an error when a teammate spawns a subagent whose definition sets `background: true`. A teammate's `run_in_background: true` request also fails, either with an error or by running silently in the foreground, as described in [how Claude Code picks foreground or background](/docs/en/sub-agents#run-subagents-in-foreground-or-background). Subagents launched from the main conversation follow the [background default](/docs/en/sub-agents#run-subagents-in-foreground-or-background).
+* **No background subagents from in-process teammates**: an in-process teammate's own subagents run in the foreground, because a teammate's background work can't outlive the lead's process. Claude Code returns an error when a teammate spawns a subagent whose definition sets `background: true`. A teammate's `run_in_background: true` request also fails, either with an error or by running silently in the foreground. Subagents launched from the main conversation follow the [background default](/docs/en/sub-agents#run-subagents-in-foreground-or-background).
 * **Lead is fixed**: the main session is the lead for its lifetime. You can't promote a teammate to lead or transfer leadership.
 * **Permissions set at spawn**: teammates start with the permission mode described under [Permissions](#permissions). You can change an individual teammate's permission mode after spawning, but you can't set per-teammate permission modes at spawn time.
 * **Split panes require tmux or iTerm2**: the default in-process mode works in any terminal. Split-pane mode isn't supported in VS Code's integrated terminal, Windows Terminal, or Ghostty.

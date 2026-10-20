@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: c5a01c5d7b13f0075aefb79ea7b7398ac7801ec8280157749a15b39f744584ee
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: bdae8a846507671613d52dd556d34613873b42071e95941da8d7f020dbd1f534
 ---
 
 ---
@@ -260,16 +260,6 @@ Default routing never draws the up-front [oversized-image rejection](https://pla
       "max_tokens": 1024,
       "fallbacks": "default",
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' |
-    jq -c '{
-      stop_reason,
-      model,
-      # A fallback_message entry in usage.iterations means a fallback model ran;
-      # pair it with stop_reason to confirm the fallback served the response.
-      served_by_fallback: (
-        any(.usage.iterations[]?; .type == "fallback_message")
-        and .stop_reason != "refusal"
-      )
     }'
   ```
 
@@ -279,18 +269,7 @@ Default routing never draws the up-front [oversized-image rejection](https://pla
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks default \
-    --beta server-side-fallback-2026-07-01 \
-    --format json |
-    jq -c '{
-      stop_reason,
-      model,
-      # A fallback_message entry in usage.iterations means a fallback model ran;
-      # pair it with stop_reason to confirm the fallback served the response.
-      served_by_fallback: (
-        any(.usage.iterations[]?; .type == "fallback_message")
-        and .stop_reason != "refusal"
-      )
-    }'
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python
@@ -655,7 +634,7 @@ The highlighted lines are the only difference from the default-routing request.
 A few rules apply to the `fallbacks` list:
 
 * Entries are tried in order. Each must be distinct from the other entries and from the requested model.
-* Each entry must be one of the requested model's permitted targets. With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/models/list).
+* Each entry must be one of the requested model's permitted targets. With the beta header set, that list is published as `allowed_fallback_models` on the model's entry in the [Models API](https://platform.claude.com/docs/en/api/beta/models/list).
 * Each entry names a `model` and can override `max_tokens`, `thinking`, `output_config`, and `speed` for that attempt only.
 * The request must be valid as a direct request to every model named. If a fallback model does not support a feature the request uses, the API rejects the request up front. Under the `2026-07-01` header, `thinking: {"type": "between_tools"}` is the exception: when a Claude Sonnet 5.5 request falls back to Claude Sonnet 5, the fallback attempt runs with `thinking: {"type": "disabled"}` and `display: "omitted"`. Under `2026-06-01`, set `thinking` on the Claude Sonnet 5 entry, or the request is rejected up front.
 * As with the default mode, only a safety classifier decline triggers the fallback. A rate limit, overload, or server error on the requested model is returned to you as-is.

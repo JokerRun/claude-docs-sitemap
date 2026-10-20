@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: a8e2f0261f886b1d67c5a64ad615eedf46f2db868f55f1d5195c2c929ff0f9cf
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 3c1eefb7d77065671986bcf39f9070cacaf730730757ab5be72a4073ef89b862
 ---
 
 ---
@@ -32,7 +32,7 @@ To use the OpenAI SDK compatibility feature, you'll need to:
 2. Change the following
 
    * Update your base URL to point to the Claude API
-   * Replace your API key with a [Claude API key](https://platform.claude.com/settings/keys)
+   * Replace your API key with a [Claude API key](https://platform.claude.com/settings/keys) from the Claude Console
    * If your key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, also send the `anthropic-workspace-id` header on every request (for example, `default_headers` in the Python SDK or `defaultHeaders` in TypeScript); see [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace)
    * Update your model name to use a [Claude model](https://platform.claude.com/docs/en/models/overview)
 

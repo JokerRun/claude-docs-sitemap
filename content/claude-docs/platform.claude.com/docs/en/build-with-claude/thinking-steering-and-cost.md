@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5bd117b52c45d88d25e90327b3423a062218d3aed1f6ef3931958c45c75e050e
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 249dbb140ab8cdcf0d47a74a6a9fb4faba044240d9f5b16212fd060335d18a2f
 ---
 
 ---
@@ -578,7 +578,7 @@ The following example demonstrates the invalidation with a multi-turn script you
               ))
               .addAssistantMessageOfBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
               .build();
 
@@ -605,11 +605,11 @@ The following example demonstrates the invalidation with a multi-turn script you
               ))
               .addAssistantMessageOfBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
               .addAssistantMessageOfBlockParams(response2.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the setting in this passage.")
               .build();
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 11f276f53f5b8ba068c2cd020579b8a5a70b10cf14814c1746f373b73f6659e3
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 5c2c1a7a8cd500dc5d137fd54b837437436e7e162e6ca3995eb3998ddf9661ca
 ---
 
 ---
@@ -91,10 +91,8 @@ curl --fail-with-body -sS -G \
 The list response carries chat metadata only. To pull the actual chat content, attached files, and inline artifacts (structured documents Claude generates inside a chat), follow up with the messages endpoint for each chat ID:
 
 ```bash cURL
-chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id/messages" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/claude_chat_01H5CWunD7RpVJ5bHa8RCkja/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```
@@ -202,10 +200,8 @@ The response carries these headers:
 * `Transfer-Encoding: chunked` is always set.
 
 ```bash cURL
-file_id="claude_file_01UaT9wBcDfGhJkLmNpQrSv7"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/files/claude_file_01UaT9wBcDfGhJkLmNpQrSv7/content" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --output "dashboard_mockup_v1.pdf"
@@ -237,10 +233,8 @@ Entries with `type` of `project_file` are file uploads (PDFs, images, spreadshee
 A consumer that walks the attachment list must branch on `type` and call the matching content endpoint for each entry. The following request lists one page of attachments; paginate by passing `next_page` back as the `page` parameter until `has_more` is `false`.
 
 ```bash cURL
-project_id="claude_proj_01KGp4eZNug9ri4kE35RSppq"
-
 curl --fail-with-body -sS -G \
-  "https://api.anthropic.com/v1/compliance/apps/projects/$project_id/attachments" \
+  "https://api.anthropic.com/v1/compliance/apps/projects/claude_proj_01KGp4eZNug9ri4kE35RSppq/attachments" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```
@@ -296,10 +290,8 @@ The following request deletes one chat. The same pattern applies to the other de
 # from `read:compliance_user_data` when the Compliance Access Key is created.
 # Ensure you have explicit authorization before running this.
 
-chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
-
 curl --fail-with-body -sS -X DELETE \
-  "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/claude_chat_01H5CWunD7RpVJ5bHa8RCkja" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```

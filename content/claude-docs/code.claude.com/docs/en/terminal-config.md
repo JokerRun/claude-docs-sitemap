@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 71841ee2104be84e2c24bf2219748c0c97dd4e087fd9edac79ea17c3859f0c13
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: b28078b25fec4fd23a25189561201b0c39d16a34dc687d0cf27933a1ec4b3666
 ---
 
 > ## Documentation Index
@@ -61,7 +61,7 @@ Some Claude Code shortcuts use the Option key, such as Option+Enter for a newlin
 
     If you accepted Claude Code's first-run terminal setup prompt, this is already done. That prompt runs `/terminal-setup` for you, which enables Option as Meta and turns off the audible bell in your Apple Terminal profile.
 
-    In [screen reader mode](/docs/en/accessibility), `/terminal-setup` leaves the bell setting unchanged so the terminal bell stays audible. Before v2.1.211, `/terminal-setup` turned the bell off even in screen reader mode. If an earlier run turned the bell off, turn it back on under Settings → Profiles → Advanced → "Audible bell".
+    In [screen reader mode](/docs/en/accessibility), `/terminal-setup` leaves the bell setting unchanged so the terminal bell stays audible. If an earlier run turned the bell off, turn it back on under Settings → Profiles → Advanced → "Audible bell".
   </Tab>
 
   <Tab title="iTerm2">

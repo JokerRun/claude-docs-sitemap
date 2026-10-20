@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6c708417f8905af4a1a9d97bf482b726599702ff363f159ad5117ca297341b91
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: f9e01d403eb9b233d50ea35f3c735bf3034f4c58be43cf065bf2d237cd2bd97b
 ---
 
 ---
@@ -254,9 +254,7 @@ Returning search results from your custom tools enables dynamic RAG applications
 
   // Handle tool use and provide results.
   // The tool_use block is not always first: find it in the content array.
-  const toolUse = response.content.find(
-    (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
-  );
+  const toolUse = response.content.find((block) => block.type === "tool_use");
   if (toolUse) {
     const input = toolUse.input as { query: string };
     const toolResult = searchKnowledgeBase(input.query);

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 33bce46d5f397acbf8874d9c23f061ce9249f632f7c60e96acfc69de87a2593c
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 98e3322aec89ae65a3724bfd0e5be1603a03f5d89ea86ad88d44dea597f2ea7d
 ---
 
 ---
@@ -76,8 +76,8 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     name: "python-dev",
     config: {
       type: "cloud",
-      networking: { type: "limited", allow_package_managers: true },
-    },
+      networking: { type: "limited", allow_package_managers: true }
+    }
   });
 
   console.log(`Environment ID: ${environment.id}`);
@@ -188,7 +188,7 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
   ```typescript TypeScript
   const session = await client.beta.sessions.create({
     agent: agent.id,
-    environment_id: environment.id,
+    environment_id: environment.id
   });
   ```
 

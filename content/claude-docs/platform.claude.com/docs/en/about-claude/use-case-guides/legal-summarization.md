@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: b67ffeef8d966652550fc341c8fd153bf85643d47089c9527eef2e0baf50783e
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 11267b60d8c38f470f21de051b2c76860b57d4fdb259bbc729de7790ef42a3b5
 ---
 
 ---
@@ -91,7 +91,6 @@ For instance, when summarizing a sublease agreement, you might want to extract t
   	"Consent and notices (landlord's consent, and notice requirements)",
   	"Special provisions (furniture, parking, and subletting restrictions)",
   }
-
   ```
 
   ```java Java
@@ -382,7 +381,6 @@ Here is a demonstration of this process on a sample PDF:
   	}
   	fmt.Println(documentText[:min(50000, len(documentText))])
   }
-
   ```
 
   ```java Java
@@ -426,8 +424,10 @@ Here is a demonstration of this process on a sample PDF:
   ```
 
   ```php PHP
+  use Smalot\PdfParser\Parser;
+
   $getLlmText = function (string $pdfData): string {
-      $document = (new \Smalot\PdfParser\Parser())->parseContent($pdfData);
+      $document = (new Parser())->parseContent($pdfData);
       $text = implode("\n", array_map(fn ($page) => $page->getText(), $document->getPages()));
 
       // Remove page numbers
@@ -696,7 +696,6 @@ Here’s an example of how to create a prompt that ensures the generated summari
   	subleaseSummary := summarizeDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(subleaseSummary)
   }
-
   ```
 
   ```java Java
@@ -750,12 +749,12 @@ Here’s an example of how to create a prompt that ensures the generated summari
 
   ```php PHP
   // Initialize the Anthropic client
-  $client = new \Anthropic\Client();
+  $client = new Client();
 
   $summarizeDocument = function (
       string $text,
       array $detailsToExtract,
-      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      Model $model = Model::CLAUDE_OPUS_5_5,
       int $maxTokens = 16000,
   ) use ($client): string {
       // Format the details to extract to be placed within the prompt's context
@@ -1160,7 +1159,6 @@ Here's an example of how to perform meta-summarization:
   	longSummary := summarizeLongDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(longSummary)
   }
-
   ```
 
   ```java Java
@@ -1229,7 +1227,7 @@ Here's an example of how to perform meta-summarization:
   $summarizeLongDocument = function (
       string $text,
       array $detailsToExtract,
-      \Anthropic\Messages\Model $model = \Anthropic\Messages\Model::CLAUDE_OPUS_5_5,
+      Model $model = Model::CLAUDE_OPUS_5_5,
       int $maxTokens = 16000,
   ) use ($client, $chunkText, $summarizeDocument): string {
       // Format the details to extract to be placed within the prompt's context

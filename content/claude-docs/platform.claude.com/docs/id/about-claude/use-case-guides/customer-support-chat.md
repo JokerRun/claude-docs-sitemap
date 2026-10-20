@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: a95c2fca9499394e4fdaa114a3a12ebfc411fd591d3fad20feb7e3ceb4e45d21
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 225df17c5f65e4306f83987f886c75c2f1f552e1de3342515d4df8a4fc63c19a
 ---
 
 ---
@@ -520,7 +520,11 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                   return f"An error occurred: {follow_up_response['error']}"
 
               response_text = next(
-                  (block.text for block in follow_up_response.content if block.type == "text"),
+                  (
+                      block.text
+                      for block in follow_up_response.content
+                      if block.type == "text"
+                  ),
                   None,
               )
               if response_text is None:
@@ -589,9 +593,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
         const followUpResponse = await this.generateMessage(this.messages, 2048);
 
-        const followUpBlock = followUpResponse.content.find(
-          (block): block is Anthropic.TextBlock => block.type === "text"
-        );
+        const followUpBlock = followUpResponse.content.find((block) => block.type === "text");
         if (!followUpBlock) {
           throw new Error("An error occurred: Unexpected response type");
         }
@@ -599,9 +601,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
         return followUpBlock.text;
       }
 
-      const firstBlock = responseMessage.content.find(
-        (block): block is Anthropic.TextBlock => block.type === "text"
-      );
+      const firstBlock = responseMessage.content.find((block) => block.type === "text");
       if (firstBlock) {
         this.messages.push({ role: "assistant", content: firstBlock.text });
         return firstBlock.text;
@@ -616,11 +616,16 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
         if (
           toolInput === null ||
           typeof toolInput !== "object" ||
-          !("make" in toolInput) || typeof toolInput.make !== "string" ||
-          !("model" in toolInput) || typeof toolInput.model !== "string" ||
-          !("year" in toolInput) || typeof toolInput.year !== "number" ||
-          !("mileage" in toolInput) || typeof toolInput.mileage !== "number" ||
-          !("driver_age" in toolInput) || typeof toolInput.driver_age !== "number"
+          !("make" in toolInput) ||
+          typeof toolInput.make !== "string" ||
+          !("model" in toolInput) ||
+          typeof toolInput.model !== "string" ||
+          !("year" in toolInput) ||
+          typeof toolInput.year !== "number" ||
+          !("mileage" in toolInput) ||
+          typeof toolInput.mileage !== "number" ||
+          !("driver_age" in toolInput) ||
+          typeof toolInput.driver_age !== "number"
         ) {
           throw new Error("An error occurred: Unexpected tool input");
         }
@@ -824,7 +829,6 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
   	premium := getQuote(input.Make, input.Model, input.Year, input.Mileage, input.DriverAge)
   	return fmt.Sprintf("Quote generated: $%.2f per month", premium), nil
   }
-
   ```
 
   ```java Java

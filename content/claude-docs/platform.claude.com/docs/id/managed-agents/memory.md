@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: bf124d8a42fd3097e3c6f7a23c1da273570d5b78d96686e7bfe643db251d26fb
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: ac5c83ec1d998286a0fe8648425b7d471882f334104f5443451ee0fa29b8c6fc
 ---
 
 ---
@@ -142,15 +142,14 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"path": "/formatting_standards.md", "content": "All reports use GAAP formatting. Dates are ISO-8601..."}' > /dev/null
+    -d '{"path": "/formatting_standards.md", "content": "All reports use GAAP formatting. Dates are ISO-8601..."}'
   ```
 
   ```bash CLI
   ant beta:memory-stores:memories create \
     --memory-store-id "$store_id" \
     --path "/formatting_standards.md" \
-    --content "All reports use GAAP formatting. Dates are ISO-8601..." \
-    > /dev/null
+    --content "All reports use GAAP formatting. Dates are ISO-8601..."
   ```
 
   ```python Python
@@ -670,15 +669,14 @@ Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/m
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"path": "/archive/2026_q1_formatting.md"}' > /dev/null
+    -d '{"path": "/archive/2026_q1_formatting.md"}'
   ```
 
   ```bash CLI
   ant beta:memory-stores:memories update \
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
-    --path "/archive/2026_q1_formatting.md" \
-    > /dev/null
+    --path "/archive/2026_q1_formatting.md"
   ```
 
   ```python Python
@@ -754,10 +752,10 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "content": "CORRECTED: Always use 2-space indentation.",
       "precondition": {"type": "content_sha256", "content_sha256": "'"$mem_sha"'"}
-    }' > /dev/null
+    }'
   ```
 
   ```bash CLI
@@ -765,8 +763,7 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
     --memory-store-id "$store_id" \
     --memory-id "$mem_id" \
     --content "CORRECTED: Always use 2-space indentation." \
-    --precondition "{type: content_sha256, content_sha256: $mem_sha}" \
-    > /dev/null
+    --precondition "{type: content_sha256, content_sha256: $mem_sha}"
   ```
 
   ```python Python
@@ -855,14 +852,13 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
   curl -s -X DELETE "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22" > /dev/null
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI
   ant beta:memory-stores:memories delete \
     --memory-store-id "$store_id" \
-    --memory-id "$mem_id" \
-    > /dev/null
+    --memory-id "$mem_id"
   ```
 
   ```python Python
@@ -1280,7 +1276,7 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: agent-memory-2026-07-22" > /dev/null
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI

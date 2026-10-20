@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 73c13909e23fb2d5d813a1ff1ffb5da78bd7ffd03c3afaa753c0c0945ae69f5b
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 559b5d1a889edfffc4d970a8d28e75a5fac39328414e3c0abd684cf67608847d
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Switch to Claude Haiku 5.5 from earlier Haiku models with this migr
 </Note>
 
 <Tip>
-  **Automate your migration with the Claude API skill.** In Claude Code, run `/claude-api migrate` to invoke the bundled [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model). It works for any current Claude model as the target:
+  **Automate your migration with the [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** It comes bundled with Claude Code and works for any current Claude model as the target:
 
   Let Claude Code migrate your code for you
 
@@ -45,7 +45,6 @@ Work down the groups and stop after the one that names your current model. If yo
 8. If you replay stored conversations through a different account, replay each one through the account that produced it. See [Replay thinking blocks through the account that produced them](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
 9. If your code changes `system`, `tools`, or earlier `messages` between requests in a conversation and sends thinking blocks back, keep the conversation append-only. See [Keep earlier turns unchanged](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Handle `stop_reason: "refusal"`. Claude Haiku 5.5 runs safety classifiers that can decline a request, and it has no server-side fallback. See [Safeguard refusals](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
-11. If you use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) (`output_config.format` or `strict: true` tools) on Amazon Bedrock, describe the format in the prompt or use a tool without `strict`, and validate the output in your code. Structured outputs aren't available for Claude Haiku 5.5 on Amazon Bedrock.
 
 If your organization has a [Priority Tier](https://platform.claude.com/docs/en/api/service-tiers#supported-models) commitment on Claude Haiku 4.5, plan capacity separately: Priority Tier is not supported on Claude Haiku 5.5.
 
@@ -132,7 +131,7 @@ Claude Haiku 4.5 accepts `temperature`, `top_p`, and `top_k`. On Claude Haiku 5.
 
 A prefill is a final assistant turn in `messages` that the model continues. Claude Haiku 4.5 accepts one when thinking is off. Claude Haiku 5.5 rejects it with a 400 error, even with thinking turned off. End `messages` with a user turn, and replace each prefill according to what it was for:
 
-* **Output format:** use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), or tools with enum fields for classification. On Amazon Bedrock, structured outputs aren't available for Claude Haiku 5.5. There, describe the format in the prompt or use a tool without `strict`, and validate the output in your code.
+* **Output format:** use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), or tools with enum fields for classification.
 * **Preambles:** ask in the system prompt for a direct answer.
 * **Continuations:** move them to the user message, for example "Your previous response was interrupted and ended with `[previous_response]`. Continue from where you left off."
 * **Context reminders:** put them in the user turn.

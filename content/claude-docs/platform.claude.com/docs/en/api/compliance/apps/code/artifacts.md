@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/code/artifacts
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: a7d54c399be3a4fdc2a6af187db85ffb3bc83624619ce73e93ce78210f5b4850
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 0d89d2fd5dcc77e646b6f51f247cd674f153732ed40646f49c2099e80a23458e
 ---
 
 ---
@@ -264,7 +264,7 @@ only for identity-stored content; validate against it when present.
 
 - `multi_file_format: optional string`
 
-  Set to `zip`, its only value, to receive a version that has more than one file as a ZIP archive of its files with an index, `files.json`. Files the artifact copied from its type (the app that displays every artifact of that type) are listed under `omitted_files` in the index, and left out of the archive, when an organization other than the artifact's owns that type. A Claude Doc's version never comes back as a ZIP: it is answered as without this parameter, except that a version with more than one file, one of them with a name the API cannot export, gets 422 `file_set_unavailable`. A version with one file is returned as that file, as without this parameter.
+  Set to `zip`, its only value, to receive a version that has more than one file as a ZIP archive of its files with an index, `files.json`. Files the Artifact copied from its type (the app that displays every Artifact of that type) are listed under `omitted_files` in the index, and left out of the archive, when an organization other than the Artifact's owns that type. Files the version uses from another Artifact are always listed there and left out. A Claude Doc's version never comes back as a ZIP: it is answered as without this parameter, except that a version with more than one file, one of them with a name the API cannot export, gets 422 `file_set_unavailable`. A version with one file is returned as that file, as without this parameter.
 
 ### Headers
 

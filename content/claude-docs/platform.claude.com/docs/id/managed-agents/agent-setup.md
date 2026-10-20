@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 96197e89c83bab008fd5a50be4b97d134868d876653eb7c7a645f32dce686217
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 27c339663a065869feb31e3afaf3be2217728e82a47f409759a19ede7999d00a
 ---
 
 ---
@@ -45,7 +45,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -55,10 +55,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       "model": "claude-opus-5-5",
       "system": "You are a helpful coding agent.",
       "tools": [{"type": "agent_toolset_20260401"}]
-    }')
-
-  AGENT_ID=$(jq -r '.id' <<< "$agent")
-  AGENT_VERSION=$(jq -r '.version' <<< "$agent")
+    }'
   ```
 
   <CodeGroupItem>
@@ -98,7 +95,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
     name: "Coding Assistant",
     model: "claude-opus-5-5",
     system: "You are a helpful coding agent.",
-    tools: [{ type: "agent_toolset_20260401" }],
+    tools: [{ type: "agent_toolset_20260401" }]
   });
   ```
 
@@ -225,7 +222,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -234,9 +231,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
       "name": "Geo-pinned assistant",
       "model": {"id": "claude-opus-5-5", "inference_geo": "us"},
       "system": "You are a helpful assistant."
-    }')
-
-  echo "Inference geo: $(jq -r '.model.inference_geo' <<< "$agent")"
+    }'
   ```
 
   <CodeGroupItem>
@@ -275,7 +270,7 @@ Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_ge
   const agent = await client.beta.agents.create({
     name: "Geo-pinned assistant",
     model: { id: "claude-opus-5-5", inference_geo: "us" },
-    system: "You are a helpful assistant.",
+    system: "You are a helpful assistant."
   });
 
   console.log(`Inference geo: ${agent.model.inference_geo}`);
@@ -365,7 +360,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
+  curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -374,9 +369,6 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
       "version": '"$AGENT_VERSION"',
       "system": "You are a helpful coding agent. Always write tests."
     }'
-  )
-
-  echo "New version: $(jq -r '.version' <<< "$updated_agent")"
   ```
 
   <CodeGroupItem>
@@ -411,7 +403,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
   ```typescript TypeScript
   const updatedAgent = await client.beta.agents.update(agent.id, {
     version: agent.version,
-    system: "You are a helpful coding agent. Always write tests.",
+    system: "You are a helpful coding agent. Always write tests."
   });
 
   console.log(`New version: ${updatedAgent.version}`);
@@ -476,16 +468,14 @@ Contoh sebelumnya memberikan `version` dari respons pembuatan, sehingga pembarua
 
 <CodeGroup>
   ```bash cURL
-  updated_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
+  curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
       "description": "Writes and reviews code."
-    }')
-
-  echo "New version: $(jq -r '.version' <<< "$updated_agent")"
+    }'
   ```
 
   ```bash CLI
@@ -505,7 +495,7 @@ Contoh sebelumnya memberikan `version` dari respons pembuatan, sehingga pembarua
 
   ```typescript TypeScript
   const unconditionalAgent = await client.beta.agents.update(agent.id, {
-    description: "Writes and reviews code.",
+    description: "Writes and reviews code."
   });
 
   console.log(`New version: ${unconditionalAgent.version}`);
@@ -583,7 +573,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  cleared_agent=$(curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
+  curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -592,9 +582,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
       "description": null,
       "metadata": {"team": null},
       "multiagent": {"type": "multiagent_20261001", "workflows": null}
-    }')
-
-  echo "Description: $(jq -r '.description' <<< "$cleared_agent")"
+    }'
   ```
 
   <CodeGroupItem>
@@ -638,7 +626,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
   const clearedAgent = await client.beta.agents.update(agent.id, {
     description: null,
     metadata: { team: null },
-    multiagent: { type: "multiagent_20261001", workflows: null },
+    multiagent: { type: "multiagent_20261001", workflows: null }
   });
 
   console.log(`Description: ${clearedAgent.description}`);
@@ -738,8 +726,7 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen berubah dari waktu ke w
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    | jq -r '.data[] | "Version \(.version): \(.updated_at)"'
+    -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
   ```bash CLI
@@ -801,12 +788,10 @@ Pengarsipan membuat agen menjadi hanya-baca dan tidak dapat dibatalkan. Sesi yan
 
 <CodeGroup>
   ```bash cURL
-  archived=$(curl -fsSL -X POST "https://api.anthropic.com/v1/agents/$AGENT_ID/archive" \
+  curl -fsSL -X POST "https://api.anthropic.com/v1/agents/$AGENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
-
-  echo "Archived at: $(jq -r '.archived_at' <<< "$archived")"
+    -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
   ```bash CLI

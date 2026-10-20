@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 2dc00a41733b1ab555f438ca066963f7bce278189bee59e76666b0ab4b9aa654
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 40645740eeb87f67a50f109f1fb5c2004e3b23478ba9858faf9da05af230b4da
 ---
 
 ---
@@ -179,7 +179,6 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
       		log.Fatalf("worker: %v", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">
@@ -230,6 +229,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       from anthropic import AsyncAnthropic
       from anthropic.types.beta import BetaManagedAgentsCustomToolParams
       from mcp import ClientSession, types
+
       # Memerlukan mcp >= 1.24, yang mengganti nama streamablehttp_client menjadi streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
@@ -463,7 +463,6 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	}
       	fmt.Println(agent.ID)
       }
-
       ```
 
       ```java Java
@@ -616,6 +615,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       from anthropic.lib.tools.agent_toolset import beta_agent_toolset_20260401
       from anthropic.lib.tools.mcp import async_mcp_tool
       from mcp import ClientSession
+
       # Memerlukan mcp >= 1.24, yang mengganti nama streamablehttp_client menjadi streamable_http_client.
       from mcp.client.streamable_http import streamable_http_client
 
@@ -630,7 +630,9 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
           # error alih-alih panggilan yang terhenti.
           async with (
               streamable_http_client(MCP_SERVER_URL) as (read, write, _),
-              ClientSession(read, write, read_timeout_seconds=timedelta(seconds=60)) as mcp_session,
+              ClientSession(
+                  read, write, read_timeout_seconds=timedelta(seconds=60)
+              ) as mcp_session,
               AsyncAnthropic(auth_token=environment_key) as client,
           ):
               await mcp_session.initialize()
@@ -753,7 +755,6 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       		log.Fatalf("worker: %v", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: a122913f105ffb5c4b1cd4e4f5c7331fe4ad9e1ff59519564b9b1b0b7c40f997
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 281a84e0ebae2bc754afd6a5e38147f5cff7b6644a529ebacd762b1d03e52330
 ---
 
 ---
@@ -86,7 +86,7 @@ FIRST_AGENT=$(ant beta:agents list --transform id --raw-output | head -1)
 
 ant beta:agents:versions list \
   --agent-id "$FIRST_AGENT" \
-  --transform "{version,created_at}" --format jsonl
+  --format jsonl
 ```
 
 ### Inspect errors

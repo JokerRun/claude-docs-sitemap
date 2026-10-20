@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_repository
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b193bb4840d6e9154a19e3985f63e74a63c10be086f51b396da430412809974a
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: dd5b74149873970800f773e7c2e626fcf4ddcfffba2dff73004a3a06218bd9dd
 ---
 
 ---
@@ -149,13 +149,13 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 - `repository_url: string`
 
-  The `https://` URL of a public repository on github.com that holds the marketplace. Any other host, a URL with credentials in it, or one that does not name a repository is a 400.
+  The `https://` URL of a public repository on github.com that holds the marketplace. A URL longer than 2,048 characters, on any other host or scheme, with a port other than 443 or 80, with credentials in it, or that does not name exactly `owner/repo` (a trailing `.git` or `/` is accepted) is a 400. A private or missing repository is reported in the response, not refused.
 
   minLength: 1
 
 - `ref: optional string or null`
 
-  The branch to validate the tip of, or the full 40-character SHA of the commit to validate. When omitted, the branch a synchronization would read (usually the repository's default branch); if that is not the default branch, the report's `ref` says which branch was read. An empty string, or a value that is neither a branch name nor a 40-character SHA, is a 400.
+  The branch to validate the tip of, or the full 40-character SHA of the commit to validate. When omitted, the branch a synchronization would read (usually the repository's default branch); if that is not the default branch, the report's `ref` says which branch was read. An empty string, a value longer than 255 characters, or one that contains `..` or a character other than ASCII letters, digits, `.`, `_`, `-`, `+`, and `/`, is a 400. Any other value that is not a 40-character SHA is read as a branch name; if the repository has no such branch, the response is a report with `valid: false`, not a 400.
 
   minLength: 1
 

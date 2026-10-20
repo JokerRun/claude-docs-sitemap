@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 93cbb4cac02dae75931c586114a78e714953089aa56f35fa48fc74ea08427495
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: c5af99ead8d67bef184926a2ce5e8bb9e1294c5127d42faf4d5a1deb65bcdc9d
 ---
 
 ---
@@ -110,14 +110,14 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
     initial_events: [
       {
         type: "user.message",
-        content: [{ type: "text", text: "Run the weekly compliance scan." }],
-      },
+        content: [{ type: "text", text: "Run the weekly compliance scan." }]
+      }
     ],
     schedule: {
       type: "cron",
       expression: "0 20 * * 5",
-      timezone: "America/New_York",
-    },
+      timezone: "America/New_York"
+    }
   });
   ```
 
@@ -342,8 +342,8 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
   const updatedDeployment = await client.beta.deployments.update(deployment.id, {
     budget: {
       type: "limit",
-      max_list_cost: { amount: "2000", currency: "USD" },
-    },
+      max_list_cost: { amount: "2000", currency: "USD" }
+    }
   });
   console.log(updatedDeployment.budget?.max_list_cost.amount); // 2000
   ```
@@ -444,7 +444,7 @@ Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berik
 
   ```typescript TypeScript
   for await (const run of client.beta.deploymentRuns.list({
-    deployment_id: deployment.id,
+    deployment_id: deployment.id
   })) {
     console.log(run.created_at, run.session_id ?? run.error?.type);
   }
@@ -535,7 +535,7 @@ Anda juga dapat memfilter eksekusi deployment yang mengalami error:
   ```typescript TypeScript
   for await (const run of client.beta.deploymentRuns.list({
     deployment_id: deployment.id,
-    has_error: true,
+    has_error: true
   })) {
     console.log(run.created_at, run.error?.type, run.error?.message);
   }

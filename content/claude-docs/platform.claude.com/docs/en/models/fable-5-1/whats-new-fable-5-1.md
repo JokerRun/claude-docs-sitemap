@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: b1af04b571fc6f9149929f8f38dfed14ce15244be2ed7e4b7d68723a01fe3edb
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 3bf3caca9385e5b2a738fe280b64a26a14b666a26d02c8f6c50943ce1ed90002
 ---
 
 ---
@@ -96,8 +96,7 @@ On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   output_config:

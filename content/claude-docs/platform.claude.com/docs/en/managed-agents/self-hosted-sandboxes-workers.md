@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: ef0d8f21480efcc1ead5f86a75fca7da64a32a9c795d50788dd857e66be60871
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 38cf0c17d9b53f0e7cd28542fccafa1888487c7aba16296affd4d954b2cab234
 ---
 
 ---
@@ -145,7 +145,6 @@ Start a worker that polls the queue continuously. It authenticates with the [env
   		log.Fatalf("worker: %v", err)
   	}
   }
-
   ```
 
   <CodeGroupItem language="Java">
@@ -414,7 +413,6 @@ Start a worker that polls the queue continuously. It authenticates with the [env
       		slog.Error("http shutdown", "err", err)
       	}
       }
-
       ```
 
       <CodeGroupItem language="Java">
@@ -715,7 +713,9 @@ Replace the `ant beta:worker run` entrypoint with an SDK entrypoint when the san
 
 
   async def main() -> None:
-      async with AsyncAnthropic(auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]) as client:
+      async with AsyncAnthropic(
+          auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
+      ) as client:
           worker = EnvironmentWorker(client, workdir="/workspace")
           # With no arguments, handle_item() reads the ANTHROPIC_* variables the spawn
           # script forwarded, including ANTHROPIC_WORK_SECRET.
@@ -787,7 +787,6 @@ Replace the `ant beta:worker run` entrypoint with an SDK entrypoint when the san
   		log.Fatalf("worker: %v", err)
   	}
   }
-
   ```
 
   <CodeGroupItem language="Java">

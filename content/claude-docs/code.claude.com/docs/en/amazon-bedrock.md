@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4790981fe3750642bb6af711ab5c21c7169e97ef8eab78cff5b8c88a9d15ce94
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 11faf7e72ff5d9b523406f24dee14de9ba1d976390e27a51e5b1c844c6063779
 ---
 
 > ## Documentation Index
@@ -173,7 +173,7 @@ aws sso login --profile=your-profile-name
 export AWS_PROFILE=your-profile-name
 ```
 
-Claude Code requests role credentials from the IAM Identity Center region named by the profile's `sso_region`, which doesn't need to match the region you run Amazon Bedrock in. In v2.1.207, the Amazon Bedrock region overrode `sso_region`, so a profile whose IAM Identity Center instance is in a different region failed to authenticate with a `Session token not found or invalid` error.
+Claude Code requests role credentials from the IAM Identity Center region named by the profile's `sso_region`, which doesn't need to match the region you run Amazon Bedrock in.
 
 #### Use AWS Management Console credentials
 

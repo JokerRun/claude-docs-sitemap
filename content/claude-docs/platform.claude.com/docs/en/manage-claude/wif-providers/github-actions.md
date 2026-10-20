@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3da34c9eabdee4509ae4315efcc36ba6c3c895dcb17d6daa7e068fcb15385d9e
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: d07cdb3e282fe73fee6301ebcdf83ecf8d7da76ae41009a2d7eed233f8d56979
 ---
 
 ---
@@ -152,9 +152,9 @@ Set the federation environment variables on the job and call the SDK normally. `
   ```bash cURL
   JWT=$(cat /tmp/gha-jwt)
 
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON
+    --data @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -166,8 +166,6 @@ Set the federation environment variables on the job and call the SDK normally. `
   JSON
   )
 
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
-
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
@@ -176,7 +174,7 @@ Set the federation environment variables on the job and call the SDK normally. `
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python

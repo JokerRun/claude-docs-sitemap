@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a2558f849b54c15dc53b6a3f17d3c0e74dfc7b0050e55df8577ecc82888b3f68
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7c430d14ad0bba47ea85d02c6e401f4ef1ccaa8f85aa4f121eddf235e318e8d4
 ---
 
 ---
@@ -211,7 +211,6 @@ Before developing a content moderation solution, first create examples of conten
   	"Specialized Advice",
   	"Violent Crimes",
   }
-
   ```
 
   ```java Java
@@ -493,7 +492,7 @@ To use Claude for content moderation, Claude must understand the moderation requ
     const containsViolation = assessment.violation;
 
     // If there's a violation, get the categories and explanation; otherwise, use empty defaults
-    const violatedCategories = containsViolation ? assessment.categories ?? [] : [];
+    const violatedCategories = containsViolation ? (assessment.categories ?? []) : [];
     const explanation = containsViolation ? assessment.explanation : undefined;
 
     return { violation: containsViolation, violatedCategories, explanation };
@@ -670,7 +669,6 @@ To use Claude for content moderation, Claude must understand the moderation requ
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -1207,7 +1205,6 @@ One additional consideration is that instead of treating content moderation as a
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -1562,7 +1559,7 @@ In addition to listing the unsafe categories in the prompt, further improvements
       "Content that depicts child nudity or that enables, encourages, excuses, or depicts the sexual abuse of children.",
     "Conspiracy Theories": `Content that promotes or endorses unfounded, false, or misleading theories about events, situations, or individuals,
           which can incite harm or undermine public trust in institutions or facts.`,
-    "Hate": `Content that is hateful toward people on the basis of their protected characteristics
+    Hate: `Content that is hateful toward people on the basis of their protected characteristics
           (race, color, ethnicity, national origin, disability, religious affiliation, caste, sexual orientation, sex, gender identity and serious disease),
           or content that perpetuates negative stereotypes.`,
     "Indiscriminate Weapons":
@@ -1571,8 +1568,7 @@ In addition to listing the unsafe categories in the prompt, further improvements
       "Content that violates the intellectual property rights of third parties.",
     "Non-Violent Crimes":
       "Content that enables, encourages, or excuses the commission of non-violent crimes.",
-    "Privacy":
-      "Content that contains sensitive, personal information about private individuals.",
+    Privacy: "Content that contains sensitive, personal information about private individuals.",
     "Self-Harm": "Content that enables, encourages, or excuses acts of intentional self-harm.",
     "Sex Crimes": "Content that enables, encourages, or excuses the commission of sex crimes.",
     "Sexual Content":
@@ -1631,7 +1627,7 @@ In addition to listing the unsafe categories in the prompt, further improvements
     const containsViolation = assessment.violation;
 
     // If there's a violation, get the categories and explanation; otherwise, use empty defaults
-    const violatedCategories = containsViolation ? assessment.categories ?? [] : [];
+    const violatedCategories = containsViolation ? (assessment.categories ?? []) : [];
     const explanation = containsViolation ? assessment.explanation : undefined;
 
     return { violation: containsViolation, violatedCategories, explanation };
@@ -1887,7 +1883,6 @@ In addition to listing the unsafe categories in the prompt, further improvements
   		}
   	}
   }
-
   ```
 
   ```java Java
@@ -2522,7 +2517,6 @@ To reduce costs in situations where real-time moderation isn't necessary, consid
   `, userComments[violation.ID], strings.Join(violation.Categories, ", "), violation.Explanation)
   	}
   }
-
   ```
 
   ```java Java

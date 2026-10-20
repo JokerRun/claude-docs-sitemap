@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 90e76309f0490b9384692a28ef7b7837a13a548705eb0aa528cf18870635d604
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 2b884d7d090973573aabc98e9a91e637a138fbbcbeec75f47b76be94ba8f73b5
 ---
 
 ---
@@ -520,7 +520,11 @@ The class should have two main methods: one that calls the API to generate a mes
                   return f"An error occurred: {follow_up_response['error']}"
 
               response_text = next(
-                  (block.text for block in follow_up_response.content if block.type == "text"),
+                  (
+                      block.text
+                      for block in follow_up_response.content
+                      if block.type == "text"
+                  ),
                   None,
               )
               if response_text is None:
@@ -589,9 +593,7 @@ The class should have two main methods: one that calls the API to generate a mes
 
         const followUpResponse = await this.generateMessage(this.messages, 2048);
 
-        const followUpBlock = followUpResponse.content.find(
-          (block): block is Anthropic.TextBlock => block.type === "text"
-        );
+        const followUpBlock = followUpResponse.content.find((block) => block.type === "text");
         if (!followUpBlock) {
           throw new Error("An error occurred: Unexpected response type");
         }
@@ -599,9 +601,7 @@ The class should have two main methods: one that calls the API to generate a mes
         return followUpBlock.text;
       }
 
-      const firstBlock = responseMessage.content.find(
-        (block): block is Anthropic.TextBlock => block.type === "text"
-      );
+      const firstBlock = responseMessage.content.find((block) => block.type === "text");
       if (firstBlock) {
         this.messages.push({ role: "assistant", content: firstBlock.text });
         return firstBlock.text;
@@ -616,11 +616,16 @@ The class should have two main methods: one that calls the API to generate a mes
         if (
           toolInput === null ||
           typeof toolInput !== "object" ||
-          !("make" in toolInput) || typeof toolInput.make !== "string" ||
-          !("model" in toolInput) || typeof toolInput.model !== "string" ||
-          !("year" in toolInput) || typeof toolInput.year !== "number" ||
-          !("mileage" in toolInput) || typeof toolInput.mileage !== "number" ||
-          !("driver_age" in toolInput) || typeof toolInput.driver_age !== "number"
+          !("make" in toolInput) ||
+          typeof toolInput.make !== "string" ||
+          !("model" in toolInput) ||
+          typeof toolInput.model !== "string" ||
+          !("year" in toolInput) ||
+          typeof toolInput.year !== "number" ||
+          !("mileage" in toolInput) ||
+          typeof toolInput.mileage !== "number" ||
+          !("driver_age" in toolInput) ||
+          typeof toolInput.driver_age !== "number"
         ) {
           throw new Error("An error occurred: Unexpected tool input");
         }
@@ -824,7 +829,6 @@ The class should have two main methods: one that calls the API to generate a mes
   	premium := getQuote(input.Make, input.Model, input.Year, input.Mileage, input.DriverAge)
   	return fmt.Sprintf("Quote generated: $%.2f per month", premium), nil
   }
-
   ```
 
   ```java Java

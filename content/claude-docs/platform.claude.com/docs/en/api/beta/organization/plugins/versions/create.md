@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: aa736cb33f55ab23e7f4d903c9e99e0468cbec4ab7600e04b98ed309dc0d489b
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 03f55b661295589c7138a7787fd16dee9305c6cd6af2d71a77cbe52ca5051732
 ---
 
 ---
@@ -287,7 +287,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `manifest_version: string or null`
 
-    The version string the manifest declares; null when it declares none.
+    The manifest's `version`, normalized for display: one leading `v` or `V` is dropped, and the result is returned only if it is 1 to 64 characters, starts with a digit, and uses only ASCII letters, digits, `.`, `+`, and `-`; otherwise `null`. For example, `"v1.4.0"` is returned as `"1.4.0"`, and `"latest"` as `null`. For a synchronized plugin, the `version` of its `marketplace.json` entry can take the place of the manifest's `version`. It is also `null` for a version stored before claude.ai began recording this field (August 2026).
 
   - `plugin_id: string`
 
@@ -295,7 +295,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `reach: "contained" or "privileged" or "remote" or null`
 
-    How far the version reaches: `remote`, `privileged` or `contained`, as on the Plugin; null when not classifiable.
+    How far the version reaches: `remote`, `privileged`, `contained`, or `null`, as defined on the Plugin's `reach`.
 
     - `"contained"`
 

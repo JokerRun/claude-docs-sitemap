@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: bc3d2adadcc8e1677d3e3c7df2a59676dd325a040be8997c701ef053a3ff57dc
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: bb32ce9a4c39d2c66b62d4ee1d51b425c803ced54c7e612e9d77d51816dacd30
 ---
 
 ---
@@ -105,14 +105,14 @@ Here is an example of using extended thinking in the Messages API:
     max_tokens: 16000,
     thinking: {
       type: "enabled",
-      budget_tokens: 10000,
+      budget_tokens: 10000
     },
     messages: [
       {
         role: "user",
-        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?",
-      },
-    ],
+        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+      }
+    ]
   });
 
   // The response contains summarized thinking blocks and text blocks

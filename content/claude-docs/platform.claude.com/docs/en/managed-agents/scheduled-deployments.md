@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2811bc2d2cf4f6c0318873b7c0d69e5635a552055425a89fe54b18198abf4576
+fetched_at: 2026-10-20T02:19:35.321723Z
+sha256: 7144fc0094e871d009af5f1cb94705abf71af6c28bfde90d94282f9508f36dc9
 ---
 
 ---
@@ -110,14 +110,14 @@ When creating a deployment, you pass the [session configurations](https://platfo
     initial_events: [
       {
         type: "user.message",
-        content: [{ type: "text", text: "Run the weekly compliance scan." }],
-      },
+        content: [{ type: "text", text: "Run the weekly compliance scan." }]
+      }
     ],
     schedule: {
       type: "cron",
       expression: "0 20 * * 5",
-      timezone: "America/New_York",
-    },
+      timezone: "America/New_York"
+    }
   });
   ```
 
@@ -342,8 +342,8 @@ The following example sets a budget on an existing deployment:
   const updatedDeployment = await client.beta.deployments.update(deployment.id, {
     budget: {
       type: "limit",
-      max_list_cost: { amount: "2000", currency: "USD" },
-    },
+      max_list_cost: { amount: "2000", currency: "USD" }
+    }
   });
   console.log(updatedDeployment.budget?.max_list_cost.amount); // 2000
   ```
@@ -444,7 +444,7 @@ List all deployment runs for a deployment as follows:
 
   ```typescript TypeScript
   for await (const run of client.beta.deploymentRuns.list({
-    deployment_id: deployment.id,
+    deployment_id: deployment.id
   })) {
     console.log(run.created_at, run.session_id ?? run.error?.type);
   }
@@ -535,7 +535,7 @@ You can additionally filter on deployment runs with errors:
   ```typescript TypeScript
   for await (const run of client.beta.deploymentRuns.list({
     deployment_id: deployment.id,
-    has_error: true,
+    has_error: true
   })) {
     console.log(run.created_at, run.error?.type, run.error?.message);
   }
