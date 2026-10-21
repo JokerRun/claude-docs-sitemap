@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 83031489f3918f774a030e81b8e53c9029f97e91087b982c3b5141d002e54418
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: bae322c3891350be971623ca095e554b9bcd4269b0a6ca41de76b6a5f830afc5
 ---
 
 ---
@@ -240,7 +240,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `DisableKey`  | `DELETE /v1/organizations/external_keys/{id}` |
 
 <Note>
-  Tindakan-tindakan ini mengelola registrasi [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) organisasi Anda, yaitu catatan tentang ARN kunci AWS KMS mana yang terdaftar. Tindakan ini tidak membuat, mengubah, atau menonaktifkan kunci di AWS KMS. `DisableKey` menghapus registrasi dan ditolak selama masih ada workspace yang menggunakan kunci tersebut. `RegisterKey` dan `DisableKey` tidak dicocokkan oleh wildcard `Create*`, `Update*`, atau `Delete*`; tolak `RegisterKey`, `UpdateKey`, dan `DisableKey` jika Anda perlu mencegah perubahan apa pun pada registrasi kunci. Dalam rute-rute ini, `{id}` adalah ARN kunci KMS yang di-URL-encode. Melampirkan kunci terdaftar ke workspace adalah operasi workspace, yang diotorisasi oleh `CreateWorkspace` atau `UpdateWorkspace`; principal yang melampirkan kunci juga memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci tersebut (lihat [prasyarat](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws)). Tindakan kunci eksternal bercakupan akun: menentukan ARN workspace pada tindakan tersebut tidak berpengaruh; gunakan `Resource: "*"`.
+  Tindakan-tindakan ini mengelola registrasi [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) organisasi Anda, yaitu catatan tentang ARN kunci AWS KMS mana yang terdaftar. Tindakan ini tidak membuat, mengubah, atau menonaktifkan kunci di AWS KMS. `DisableKey` menghapus registrasi dan ditolak selama masih ada workspace yang menggunakan kunci tersebut. `RegisterKey` dan `DisableKey` tidak dicocokkan oleh wildcard `Create*`, `Update*`, atau `Delete*`; tolak `RegisterKey`, `UpdateKey`, dan `DisableKey` jika Anda perlu mencegah perubahan apa pun pada registrasi kunci. Dalam rute-rute ini, `{id}` adalah ARN kunci KMS yang di-URL-encode. Melampirkan kunci terdaftar ke workspace adalah operasi workspace, yang diotorisasi oleh `CreateWorkspace` atau `UpdateWorkspace`; principal yang melampirkan kunci juga memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci tersebut (lihat [prasyarat](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#prerequisites)). Tindakan kunci eksternal bercakupan akun: menentukan ARN workspace pada tindakan tersebut tidak berpengaruh; gunakan `Resource: "*"`.
 </Note>
 
 ### Kepatuhan

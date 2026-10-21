@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c4c430e4e5f7b21cc477d5ed66d7fc286db5902817a10ac202bd2b45edd0facd
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 0d59d2f6e9ae6ada2b12f2ba35c62da69342d02878c553deb4c1eca65c59ca64
 ---
 
 ---
@@ -602,14 +602,14 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
 
 <CodeGroup>
   ```bash cURL
-  # List resources on the session
+  # Daftar resource pada sesi
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json"
 
-  # Rotate the authorization token
+  # Rotasi token otorisasi
   curl -fsS \
     "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
   # ...
@@ -621,10 +621,10 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```bash CLI
-  # List resources on the session
+  # Daftar resource pada session
   ant beta:sessions:resources list --session-id "$SESSION_ID"
 
-  # Rotate the authorization token on a specific resource
+  # Rotasi token otorisasi pada resource tertentu
   ant beta:sessions:resources update \
     --session-id "$SESSION_ID" \
     --resource-id "$RESOURCE_ID" \

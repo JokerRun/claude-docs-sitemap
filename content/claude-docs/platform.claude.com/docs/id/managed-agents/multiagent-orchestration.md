@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9f6c80b041a3097b2ee5ddba4d5b25c19ec299656912a344811fefc7b1eb7e67
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 4de10823f269d8d68bd34297ddf8db3892fad6946e297d87d59df6c9ab4c9cd1
 ---
 
 ---
@@ -463,7 +463,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Create the researcher
+  # Buat researcher
   curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -476,7 +476,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
     }'
 
-  # Create the agent that delegates to it: research_agent_id is the id from the first response
+  # Buat agen yang mendelegasikan kepadanya: research_agent_id adalah id dari respons pertama
   curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \

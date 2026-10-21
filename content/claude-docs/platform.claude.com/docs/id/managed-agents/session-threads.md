@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 09a8a102bf85907eeedbdbfdedad113e189accf69e4cb1b30524147099ac5176
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: bb32b083cc0cd5d7b06719a84999c1dac937b221441c916d440188d6c815af01
 ---
 
 ---
@@ -691,11 +691,11 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Workflow ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Workflow ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

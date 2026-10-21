@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: aa3d272e8e715dd14ee27d8737f2eed383f0afed753bd64744cd4aa0b9fc3448
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: dafb611ab7186cfe544ffcabcee5c90383e6da7989f807d5bd5fc99f1ae6c2d0
 ---
 
 ---
@@ -91,14 +91,14 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
 
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:2.73.0")
+      implementation("com.anthropic:anthropic-java:2.75.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.73.0</version>
+          <version>2.75.0</version>
       </dependency>
       ```
     </CodeGroup>

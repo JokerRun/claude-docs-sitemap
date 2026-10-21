@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 6c9ec03dddba2e86c14efe92b2a30f19687d97f879e1adb4d75199aecf2dfe24
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ae8c3087c17abb526fd0d56cd2fde18541064230f5c0e4a99ccf49eaef7ea0c6
 ---
 
 ---
@@ -82,7 +82,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   ```
 
   ```bash CLI
-  ant messages create --transform usage.service_tier --raw-output <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-4-8
   max_tokens: 1024
   messages:

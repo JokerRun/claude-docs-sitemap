@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: ea383cfb9f30a6af53f557cc0946ba74aae097866fd073803986d897c9c2d597
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 40677fc8028a16901937d1702daed939a0100efe13dc7fa9a9db8c979cc2f4bb
 ---
 
 ---
@@ -225,7 +225,7 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -sS https://api.anthropic.com/v1/agents \
+  curl -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -238,7 +238,6 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
         {"type": "custom", "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv", "version": "latest"}
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>

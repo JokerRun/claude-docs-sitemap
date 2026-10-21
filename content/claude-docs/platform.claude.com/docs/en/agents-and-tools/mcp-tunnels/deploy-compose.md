@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 8ac03500de52410e653c69c516a81cf5cf2506025eecc26148966fa94079c42a
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 899b651af5663e1c971da22569334992f2c1be031962ac9c32360c8d308020bf
 ---
 
 ---
@@ -87,7 +87,7 @@ This guide provides one reference approach using Docker Compose. You are respons
         cat > docker-compose.yaml <<'EOF'
         services:
           setup:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             entrypoint: ["/setup"]
             command:
               - init
@@ -111,7 +111,7 @@ This guide provides one reference approach using Docker Compose. You are respons
             profiles: ["setup"]
 
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN
@@ -131,7 +131,7 @@ This guide provides one reference approach using Docker Compose. You are respons
                 max-file: "3"
 
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
@@ -324,7 +324,7 @@ This guide provides one reference approach using Docker Compose. You are respons
         cat > docker-compose.yaml <<'EOF'
         services:
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             # --url is required: no ingress rules are pushed in the manual flow,
             # so without it cloudflared 503s every request.
             command: tunnel --no-autoupdate run --url http://localhost:8080
@@ -346,7 +346,7 @@ This guide provides one reference approach using Docker Compose. You are respons
                 max-file: "3"
 
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro

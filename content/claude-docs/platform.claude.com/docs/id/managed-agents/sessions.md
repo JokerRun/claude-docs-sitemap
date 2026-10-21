@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: f39fdc0682ff17364df23888fba07e84af9dcdf25bae3796ee39a233018226aa
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: b2395bf7d0a7a06f7df1211dca7142ef0a95d9cd554a5d7af839dcec5928f198
 ---
 
 ---
@@ -421,6 +421,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
   ```
 </CodeGroup>
 
+`initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) tidak ditampilkan kembali dalam respons pembuatan. Untuk melihat pesan yang diisikan, tampilkan daftar event sesi tersebut.
+
 Tidak ada jenis event lain yang diterima. Event yang merespons giliran agen (`user.tool_confirmation`, `user.tool_result`, dan `user.custom_tool_result`) tidak diterima karena belum ada giliran agen, dan `user.interrupt` tidak diterima karena tidak ada giliran yang perlu dihentikan. Berbeda dengan `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) pada deployment terjadwal, `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) milik sesi tidak menerima `system.message`.
 
 Setiap event di `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) divalidasi dan disimpan sebelum respons pembuatan dikembalikan, sesuai urutan daftar, dengan ID yang ditetapkan server, persis seolah-olah Anda mengirimkannya ke endpoint [kirim event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-events) segera setelah pembuatan. Aturan konten per event juga sama seperti pada endpoint tersebut. Daftar kosong setara dengan menghilangkan field tersebut. Validasi bersifat semua-atau-tidak-sama-sekali: jika ada event yang gagal validasi, seluruh permintaan ditolak dan tidak ada sesi yang dibuat.
@@ -477,8 +479,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```
 
   ```bash CLI
-  # The response's `agent` is the resolved snapshot: each override replaces that
-  # field for this session only, and the agent resource keeps its id and version.
+  # `agent` pada respons adalah snapshot hasil resolusi: setiap override mengganti
+  # field tersebut hanya untuk sesi ini, dan resource agen tetap menyimpan id dan versinya.
   ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
@@ -621,11 +623,11 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen secara penuh, override tersebut juga mengatur atau mengosongkan penyematan [geo inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya akan mengosongkan penyematan agen sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
 
-Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (csharp, go: `Model`), dan mencetak nilai yang dikembalikan di `agent.model` (csharp, go: `Agent.Model`) pada respons:
+Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, dan menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (csharp, go: `Model`). Respons menampilkan kembali nilai tersebut di `agent.model` (csharp, go: `Agent.Model`):
 
 <CodeGroup>
   ```bash cURL
-  # Replaces the whole model object of the agent: restate id, add inference_geo to pin.
+  # Mengganti seluruh objek model agen: nyatakan ulang id, tambahkan inference_geo untuk menyematkan.
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -642,7 +644,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   ```
 
   ```bash CLI
-  # Replaces the whole model object of the agent: restate id, add inference_geo to pin.
+  # Mengganti seluruh objek model agen: nyatakan ulang id, tambahkan inference_geo untuk menyematkan.
   ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 21a08ac479b49490ac85e6c6ac393deaf57f9c20d7188a92fc0503e3ca3d5d7d
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9ab7bd8a9622ae502ac3b4676142d3d04615c46ec53c6d4bb5dae6c51486ddd5
 ---
 
 ---
@@ -81,8 +81,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   ```
 
   ```bash CLI
-  ant beta:messages create --beta inline-tools-2026-09-15 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create --beta inline-tools-2026-09-15 <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   tools:
@@ -462,7 +461,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
 
 ### Mendefinisikan alat dalam pesan (beta)
 
-Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, yaitu dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Dengan begitu, Anda dapat memperkenalkan alat yang belum diketahui di awal percakapan, atau alat yang skemanya berubah kemudian, cukup dengan menambahkan pesan `role: "system"`. Array `tools` dan setiap pesan sebelumnya tetap persis seperti yang dikirim. Akibatnya, cache prompt tetap mengenai dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian, yaitu array `tools` tanpa alat yang tidak ditangguhkan, dibahas dalam aturan di bawah. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
+Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, yaitu dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Dengan begitu, Anda dapat memperkenalkan alat yang belum diketahui di awal percakapan, atau alat yang skemanya berubah kemudian, cukup dengan menambahkan pesan `role: "system"`. Array `tools` dan setiap pesan sebelumnya tetap persis seperti yang dikirim. Akibatnya, cache prompt tetap mengenai dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian, yaitu array `tools` tanpa alat yang tidak ditangguhkan, dibahas dalam aturan berikut. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
 
 Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools` dengan konfigurasi biasanya, termasuk `cache_control` dan `defer_loading`. Contohnya adalah alat kustom, atau alat klien maupun alat server yang didefinisikan Anthropic. Selama beta, beberapa tipe alat (termasuk alat computer use) belum dapat didefinisikan dalam pesan. Alat tersebut menghasilkan error 400 yang menyatakan hal itu. Deklarasikan alat tersebut di `tools` dan tambahkan berdasarkan referensi. Misalnya, untuk mendefinisikan alat kustom di tengah percakapan:
 
@@ -1684,7 +1683,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   ```
 
   ```bash CLI
-  ant messages create --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
@@ -1778,9 +1777,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
     ]
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -2146,8 +2143,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-system-clear-at-2026-08-21 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create --beta mid-conversation-system-clear-at-2026-08-21 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   messages:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 7724d25badba47c5c9d0cc08617e06171cc27c6e91b3aa4d7f15ecbaa076c621
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 466d03d52d6c8c8207f74c68cb0dd253bf4287acbc9bb75519141bf860e7138c
 ---
 
 ---
@@ -296,7 +296,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
 
 <CodeGroup>
   ```bash cURL
-  # Create a session
+  # Membuat sesi
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -307,8 +307,8 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       "title": "Financial analysis on Costco"
     }'
 
-  # Define the outcome: SESSION_ID is the id from the create response
-  # The agent starts working when it receives the event
+  # Definisikan hasil: SESSION_ID adalah id dari respons pembuatan
+  # Agen mulai bekerja saat menerima event tersebut
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -323,19 +323,19 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
         }
       ]
     }'
-  # or: "rubric": {"type": "file", "file_id": "'"$RUBRIC_ID"'"}
-  # "max_iterations" is optional; default 3, max 20
+  # atau: "rubric": {"type": "file", "file_id": "'"$RUBRIC_ID"'"}
+  # "max_iterations" bersifat opsional; default 3, maksimum 20
   ```
 
   ```bash CLI
-  # Create a session
+  # Buat sesi
   ant beta:sessions create \
     --agent "$AGENT_ID" \
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco"
 
-  # Define the outcome: SESSION_ID is the id from the create response
-  # The agent starts working when it receives the event
+  # Definisikan hasil: SESSION_ID adalah id dari respons pembuatan
+  # Agen mulai bekerja saat menerima event tersebut
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
@@ -711,14 +711,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
 <CodeGroup>
   ```bash cURL
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta
+  # Mencantumkan file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
-  # Download a file by the ID from the list
+  # Unduh file berdasarkan ID dari daftar
   curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -727,11 +727,11 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```bash CLI
-  # List files produced by this session
-  # scope_id filtering requires the managed-agents beta on the files request
+  # Daftar file yang dihasilkan oleh sesi ini
+  # Pemfilteran scope_id memerlukan beta managed-agents pada permintaan files
   ant beta:files list --scope-id "$SESSION_ID" --beta managed-agents-2026-04-01
 
-  # Download a file by the ID from the list
+  # Unduh file berdasarkan ID dari daftar
   ant files download --file-id "$FILE_ID" --output /tmp/output.txt
   ```
 

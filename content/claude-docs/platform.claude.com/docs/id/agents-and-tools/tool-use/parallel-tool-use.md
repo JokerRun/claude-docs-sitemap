@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c32d3c4d40639fceaef4a5fce68849a86d34b326a7eda702b6491d9d83e414d9
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 01c6126ca908a38c7e467ce09258e9c15467bafd7b92c331a4583a521f69631c
 ---
 
 ---
@@ -219,7 +219,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   // Simulasikan eksekusi alat dan format hasilnya dengan benar
   const toolResults: Anthropic.ToolResultBlockParam[] = toolUses
-    .filter((block): block is Anthropic.ToolUseBlock => block.type === "tool_use")
+    .filter((block) => block.type === "tool_use")
     .map((toolUse) => {
       const input = toolUse.input as Record<string, string>;
       let result: string;

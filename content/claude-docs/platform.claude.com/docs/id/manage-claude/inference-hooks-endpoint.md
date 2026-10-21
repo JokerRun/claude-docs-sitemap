@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: fb67e32eeb1f59f1a04839e9ac541291bf290d811bb333faf29d53d1904d9e10
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 4346f85a1cbf8d8e6389b9dc19ddfacb3fed0c0bd81187bcfa6a3bcd04d3e8f7
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Bangun server keamanan AI yang menerima permintaan Inference hooks 
 ---
 
 <Note>
-  Inference hooks sedang dalam tahap beta dan tersedia untuk organisasi Claude Enterprise. Nama field, bentuk permintaan, dan header dapat berubah selama masa beta.
+  Inference hooks hanya tersedia untuk organisasi Claude Enterprise.
 </Note>
 
 Integrasi Inference hooks adalah server keamanan AI, yaitu layanan HTTPS yang dipanggil oleh Anthropic. Untuk setiap permintaan yang diatur, server Anda menerima `POST` bertanda tangan yang berisi transkrip percakapan, lalu merespons dengan "verdict" (putusan) allow atau deny. Halaman ini mendokumentasikan protokol untuk membangun server tersebut: skema permintaan dan putusan, verifikasi tanda tangan, serta kontrak operasional.
@@ -306,7 +306,7 @@ claude.ai tidak selalu menamai alat ini `web_search`, jadi jangan mencocokkan be
 
 ### Alat pihak ketiga
 
-Alat pihak ketiga adalah alat pada server yang diketahui Anthropic, seperti konektor claude.ai atau server MCP yang disebutkan permintaan di `mcp_servers`. Ini tidak berarti Anthropic telah memeriksa server tersebut.
+Alat pihak ketiga adalah alat pada server yang diketahui Anthropic, seperti konektor claude.ai atau server MCP yang disebutkan permintaan di `mcp_servers`. Ini tidak berarti Anthropic telah memeriksa server tersebut. Dalam mode suara, panggilan ke alat konektor claude.ai justru merupakan `"client"`.
 
 | Field             | Ada                      | Deskripsi                                                                                                                                                                        |
 | ----------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

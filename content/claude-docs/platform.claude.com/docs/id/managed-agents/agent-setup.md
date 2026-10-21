@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 27c339663a065869feb31e3afaf3be2217728e82a47f409759a19ede7999d00a
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c8bfd8cdb1522195c166867fe770627c95357b9c7d8937a2af774de17678f477
 ---
 
 ---
@@ -218,7 +218,7 @@ Respons menggemakan konfigurasi Anda dan menambahkan bidang `id`, `type`, `versi
 
 Seperti `speed` (csharp, go: `Speed`) dan `effort` (csharp, go: `Effort`), `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) diatur melalui bentuk objek dari `model` (csharp, go: `Model`): berikan `model` (csharp, go: `Model`) sebagai objek dan atur `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) bersama `id` (csharp, go: `ID`). Bidang ini menerima `"us"` atau `"global"`. Jika tidak diatur, setiap permintaan model mengikuti geo inferensi default workspace pada saat permintaan dilayani. Lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) untuk kontrol geo tingkat workspace dan harga.
 
-Contoh berikut menyematkan agen ke inferensi AS dan mencetak nilai `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dari objek `model` (csharp, go: `Model`) milik agen:
+Contoh berikut menyematkan agen ke inferensi AS. Respons membawa nilai `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) di dalam objek `model` (csharp, go: `Model`) milik agen:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/troubleshooting
-fetched_at: 2026-10-05T02:32:29.186961Z
-sha256: 8f14cbdd3a7b7e475fd042535bc9583221b3d5e92c470761211f0d9bdae8062e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 51f617396866cae64b2fccfa5b5b0518199e7ef767329118b9c185cb9414f9c1
 ---
 
 > ## Documentation Index
@@ -147,11 +147,12 @@ The text after the colon is the CLI's report of what went wrong, so start there 
 
 ### structured\_output is None but the result says success
 
-A result message can end with `subtype: "success"` while `structured_output` is `None` in Python or `undefined` in TypeScript. The run completes, but no validated output exists. One way to hit this is a schema no output can satisfy, for example conflicting length constraints.
+A result message can end with `subtype: "success"` while `structured_output` is `None` in Python or `undefined` in TypeScript. The run completes, but no validated output exists.
 
-Treat this result as a failure in application code. Check both that `subtype` is `success` and that `structured_output` is present before using it. The [Error handling](/docs/en/agent-sdk/structured-outputs#error-handling) section shows this pattern for both SDKs.
+Treat this result as a failure in application code. Check both that `subtype` is `success` and that `structured_output` is present before using it. The [Error handling](/docs/en/agent-sdk/structured-outputs#error-handling) section shows this pattern for both SDKs. Then check for these causes:
 
-If it happens repeatedly with a schema you believe is correct, verify the schema is satisfiable, then simplify it until outputs validate, and reintroduce constraints one at a time.
+* **A request that Claude declined**: to detect this case in your code, check the result message's `stop_reason` for `"refusal"`. For what to try next, see [Usage Policy refusal](/docs/en/errors#usage-policy-refusal).
+* **A schema no output can satisfy**: for example, a string whose `minLength` is greater than its `maxLength`. If `structured_output` is missing repeatedly with a schema you believe is correct, look for constraints that contradict each other. If you find none, simplify the schema until outputs validate, then reintroduce your constraints one at a time.
 
 ## Report a new issue
 

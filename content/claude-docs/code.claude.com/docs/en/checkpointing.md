@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: abba6eb58112b4f5638862ec3241218b5fe7878834998f029f38a3a524378df1
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 24730ad24547ab8dcc5f389575e93513e3dd2f7a92faeb20a21889e1be9c796f
 ---
 
 > ## Documentation Index
@@ -32,9 +32,9 @@ Claude Code tracks all changes made by its file editing tools:
 
 Run `/rewind`, or press `Esc` twice when the prompt input is empty, to open the rewind menu.
 
-<Note>
-  If the prompt input contains text, double `Esc` clears it instead of opening the menu. The cleared text is saved to your input history, so press `Up` to recall it after you finish in the rewind menu.
-</Note>
+> [!NOTE]
+>
+> If the prompt input contains text, double `Esc` clears it instead of opening the menu. The cleared text is saved to your input history, so press `Up` to recall it after you finish in the rewind menu.
 
 The rewind menu lists the prompts you sent during the session. Select the point you want to act on, then choose an action:
 
@@ -51,6 +51,10 @@ After restoring the conversation or choosing Summarize from here, the original p
 
 Choosing Summarize up to here leaves you at the end of the conversation with the input empty. With either summarize option, a **Summarized conversation** marker appears in the conversation where the compressed messages were.
 
+#### Rewound messages can return if you exit before your next prompt
+
+To remove the returned messages again, run `/rewind` in the session and select the same prompt, then **Restore conversation**. Before you exit, send Claude a prompt, because Claude Code saves the rewound conversation together with that prompt. Files you restored stay as the rewind left them.
+
 #### Rewind past a cleared conversation
 
 If you ran `/clear` earlier in the same Claude Code process, the rewind menu shows an additional entry at the top of the list labeled `/resume <session-id> (previous session)`. Select it to resume the conversation that was active before `/clear` ran. The entry is available until you exit Claude Code or resume a different session.
@@ -59,9 +63,9 @@ If you ran `/clear` earlier in the same Claude Code process, the rewind menu sho
 
 Summarizing doesn't change files on disk, and the original messages stay in the session transcript, so Claude can still reference the details. To guide what the summary focuses on, highlight a **Summarize** option with the arrow keys and type instructions where the row reads **add context (optional)**, then press `Enter`. Selecting the option with its number key summarizes immediately without instructions.
 
-<Note>
-  Summarize keeps you in the same session and compresses context, like a targeted `/compact`. To branch off and try a different approach while preserving the original session intact, use [`/branch`](/docs/en/sessions#branch-a-session) or `claude --continue --fork-session` instead.
-</Note>
+> [!NOTE]
+>
+> Summarize keeps you in the same session and compresses context, like a targeted `/compact`. To branch off and try a different approach while preserving the original session intact, use [`/branch`](/docs/en/sessions#branch-a-session) or `claude --continue --fork-session` instead.
 
 ## Common use cases
 

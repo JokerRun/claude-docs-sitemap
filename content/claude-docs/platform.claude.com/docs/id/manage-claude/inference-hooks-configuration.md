@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 9a5380942cd4dd687ce606f133a459cf56032afe5ac8ed25b84cd78219882e4e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7b5810764518e0eda3e1196ca8f38364ae043b88add4f19babe5cc626099cdb7
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Izinkan Inference hooks untuk organisasi Claude Enterprise Anda, hu
 ---
 
 <Note>
-  Inference hooks masih dalam tahap beta dan tersedia untuk organisasi Claude Enterprise. Untuk mengonfigurasinya, Anda memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
+  Inference hooks hanya tersedia untuk organisasi Claude Enterprise. Untuk mengonfigurasinya, Anda memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
 </Note>
 
 Inference hooks mengirimkan prompt dari organisasi Anda ke server keamanan AI pilihan Anda. Setiap permintaan ditahan hingga server tersebut memberikan putusan izinkan atau tolak, sebelum Claude memprosesnya. Halaman ini menjelaskan cara mengaktifkan fitur ini, menghubungkan server Anda, dan mengendalikan penegakan. Untuk mempelajari apa itu Inference hooks dan kapan menggunakannya, lihat [ikhtisar Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks). Untuk membangun server keamanan AI itu sendiri, lihat [Mengembangkan integrasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint).
@@ -55,7 +55,7 @@ Ada tiga status penegakan: **off** (**Enforce verdicts** nonaktif: server keaman
     Mengklik **Next** pada dialog signing secret akan membuka kembali dialog endpoint, kini dengan dua kontrol tambahan:
 
     * **Custom request headers:** hingga 16 header statis yang dikirim bersama setiap permintaan putusan agar server keamanan AI Anda dapat mengautentikasi pemanggil. Nilai header disimpan dalam keadaan terenkripsi dan tidak pernah ditampilkan lagi; setelah disimpan, hanya nama header yang ditampilkan. Karena nilainya hanya dapat ditulis, menyimpan perubahan apa pun pada header mengharuskan Anda memasukkan ulang setiap nilai. Mengubah URL endpoint akan menghapus semua nilai header yang tersimpan sehingga kredensial Anda tidak pernah dikirim ke tujuan baru; masukkan ulang nilai tersebut setelah perubahan URL. Nama header harus menggunakan karakter token HTTP standar dengan `-` alih-alih `_`, dan tidak boleh bertabrakan dengan nama yang dicadangkan (header pembingkaian permintaan seperti `Content-*` dan `Host`, header proxy dan cookie, header alamat klien seperti `X-Forwarded-*`, header tanda tangan `webhook-*`, dan prefiks `X-Anthropic-*`). Nilai harus berupa ASCII yang dapat dicetak.
-    * **Test connection:** Claude mengirimkan prompt uji sintetis ke URL dan header yang saat ini ada di formulir, bukan nilai yang tersimpan, jadi masukkan ulang nilai header yang tersimpan sebelum menguji. Jika berhasil, hasilnya melaporkan apakah server keamanan AI Anda mengembalikan putusan izinkan atau tolak untuk prompt uji tersebut, yang akan mengungkap default tolak-semua sebelum Anda mulai menegakkan.
+    * **Test connection:** Claude mengirimkan prompt uji sintetis ke URL dan header yang saat ini ada di formulir, bukan nilai yang tersimpan, jadi masukkan ulang nilai header yang tersimpan sebelum menguji. Jika berhasil, hasilnya melaporkan apakah server keamanan AI Anda mengembalikan putusan izinkan atau tolak untuk prompt uji tersebut, yang akan mengungkap default tolak-semua sebelum Anda mulai menegakkan. Hasil ini juga menampilkan waktu bolak-balik yang diukur Anthropic untuk satu permintaan uji tersebut, pada koneksi baru, termasuk handshake koneksi.
 
     Klik **Save** untuk menyimpan header yang Anda masukkan.
 

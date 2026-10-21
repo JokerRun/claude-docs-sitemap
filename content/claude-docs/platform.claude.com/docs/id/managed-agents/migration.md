@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 45988bf56878d6668c26c1b283b8d331a7c8b26d6f88ee3909286005d32df96b
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: fe5716189fb025b4f6d36c662a62a5e624842dcd5645fb1872f4cdaa00b91985
 ---
 
 ---
@@ -256,93 +256,13 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
 
 **Sesudah** (Claude Managed Agents):
 
-<CodeGroup>
-  ```bash cURL
-  agent=$(
-    curl --fail-with-body -sS "https://api.anthropic.com/v1/agents?beta=true" \
-      -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      --json '{
-        "name": "Task Runner",
-        "model": "claude-opus-5-5",
-        "tools": [{"type": "agent_toolset_20260401"}]
-      }'
-  )
-  agent_id=$(jq -r '.id' <<< "${agent}")
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  session_id=$(
-    curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions?beta=true" \
-      -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01" \
-      --json "$(jq -n --argjson a "${agent}" --arg env "${environment_id}" \
-        '{agent: {type: "agent", id: $a.id, version: $a.version}, environment_id: $env}')" \
-    | jq -r '.id'
-  )
-
-  # Buka stream SSE di latar belakang, lalu kirim pesan pengguna.
-  stream_log=$(mktemp)
-  curl --fail-with-body -sS -N \
-    "https://api.anthropic.com/v1/sessions/${session_id}/events/stream?beta=true" \
-    -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    > "${stream_log}" &
-  stream_pid=$!
-
-  curl --fail-with-body -sS \
-    "https://api.anthropic.com/v1/sessions/${session_id}/events?beta=true" \
-    -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json "$(jq -n --arg text "${task}" \
-      '{events: [{type: "user.message", content: [{type: "text", text: $text}]}]}')" \
-    > /dev/null
-
-  # Tunggu hingga sesi menjadi idle. grep keluar pada kecocokan pertama, dan
-  # membaca via process substitution berarti shell tidak menunggu
-  # tail (pipeline latar depan `tail -f | grep -m1` akan macet: tail
-  # baru berhenti pada penulisan berikutnya, yang tak pernah terjadi saat stream idle).
-  grep -m1 '"session.status_idle"' <(tail -f -n +1 "${stream_log}") > /dev/null
-
-  kill "${stream_pid}" 2>/dev/null || true
-  ```
-
-  <CodeGroupItem>
-    ```bash CLI
-    ant apply agent.md
-
-    session_id=$(ant beta:sessions create \
-      --agent "{type: agent, id: $agent_id, version: $agent_version}" \
-      --environment-id "$environment_id" \
-      --transform id --raw-output)
-
-    # Buka stream terlebih dahulu, lalu kirim pesan pengguna
-    exec {stream}< <(ant beta:sessions:events stream \
-      --session-id "$session_id" \
-      --transform type --raw-output)
-
-    ant beta:sessions:events send \
-      --session-id "$session_id" \
-      --event "{type: user.message, content: [{type: text, text: \"$task\"}]}" \
-      > /dev/null
-
-    # Tunggu hingga sesi menjadi idle (grep keluar pada kecocokan pertama)
-    grep -m1 -x 'session.status_idle' <&"$stream" > /dev/null
-    exec {stream}<&-
-    ```
-
-    <File filename="agent.md">
-      ```markdown
-      ---
-      name: Task Runner
-      model: claude-opus-5-5
-      tools:
-        - type: agent_toolset_20260401
-      ---
-      ```
-    </File>
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1378,7 +1298,11 @@ Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasan
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    --json "$(jq -n --argjson version "$AGENT_VERSION" '{version: $version, model: "claude-opus-5-5"}')"
+    -H "content-type: application/json" \
+    -d '{
+      "version": '"$AGENT_VERSION"',
+      "model": "claude-opus-5-5"
+    }'
   ```
 
   <CodeGroupItem>

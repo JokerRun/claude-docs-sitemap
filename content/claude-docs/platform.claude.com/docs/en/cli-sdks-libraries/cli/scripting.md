@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 281a84e0ebae2bc754afd6a5e38147f5cff7b6644a529ebacd762b1d03e52330
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: da0ba9b3e45cb5764c9777af7380792123a6b6ff004d524dead82e164c70e508
 ---
 
 ---
@@ -131,8 +131,4 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-<Note>
-  Keep `ANTHROPIC_API_KEY` and `ANTHROPIC_AUTH_TOKEN` unset when working from a CLI login. Either variable takes precedence over the login for `ant` commands (see [Credential precedence](https://platform.claude.com/docs/en/manage-claude/wif-reference#credential-precedence)) and can silently route them to a different organization or workspace.
-</Note>
-
-Run [`ant auth status`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication#check-authentication-status) to confirm which organization and workspace you are logged in to; it warns when an environment variable is overriding your login.
+Run [`ant auth status`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication#check-authentication-status) to confirm which organization and workspace you are logged in to; it warns when an environment variable is overriding your login. For the full ordering of credential sources, see [Credential precedence](https://platform.claude.com/docs/en/manage-claude/wif-reference#credential-precedence).

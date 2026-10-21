@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 95ca266f107deb4474f9baeb9f04fcef4a36be82b2fbeeb0756d3f7b11009bde
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5d73faba253269605f792787970d0e961ca7365c4b1bd540871772cf749cbd1d
 ---
 
 ---
@@ -50,9 +50,9 @@ Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, se
 * Sebuah Message Batch dibatasi hingga 100.000 permintaan Message atau ukuran 256 MB, mana pun yang tercapai lebih dulu.
 * Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana pun yang lebih dulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
 * Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch tersebut, tetapi hasilnya tidak lagi tersedia untuk diunduh.
-* Batch dibatasi pada lingkup [Workspace](https://platform.claude.com/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
+* Batch dibatasi pada lingkup [Workspace](https://platform.claude.com/settings/workspaces) di Claude Console. Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
 * "Rate limit" (batas laju) berlaku baik untuk permintaan HTTP Batches API maupun jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](https://platform.claude.com/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
-* Karena throughput yang tinggi dan pemrosesan yang bersamaan, batch mungkin sedikit melampaui [batas pengeluaran](https://platform.claude.com/settings/billing) yang dikonfigurasi untuk Workspace Anda.
+* Karena throughput yang tinggi dan pemrosesan yang bersamaan, batch mungkin sedikit melampaui [batas pengeluaran](https://platform.claude.com/settings/billing) yang dikonfigurasi di Claude Console untuk Workspace Anda.
 * Setiap permintaan dalam batch harus memiliki `max_tokens` minimal `1`. `max_tokens: 0` ([pra-pemanasan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache ephemeral yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
 ### Model yang didukung
@@ -464,22 +464,16 @@ Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang diber
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # ...
   # Periksa statusnya; ulangi hingga processing_status bernilai "ended"
-  curl -s "https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID" \
+  curl "https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID" \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    | jq -r '.processing_status'
+    --header "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  #!/bin/bash
-  # ...
   # Periksa statusnya; ulangi hingga processing_status bernilai "ended"
   ant messages:batches retrieve \
-    --message-batch-id "$MESSAGE_BATCH_ID" \
-    --transform processing_status --raw-output
+    --message-batch-id "$MESSAGE_BATCH_ID"
   ```
 
   ```python Python
@@ -618,7 +612,6 @@ Anda dapat mendaftar semua Message Batch di Workspace Anda menggunakan [endpoint
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
   # Mengambil satu halaman. Selama has_more pada respons bernilai true, teruskan
   # last_id sebagai after_id untuk mengambil halaman berikutnya. (SDK dan CLI
   # melakukan paginasi otomatis.)
@@ -734,28 +727,19 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # Ambil results_url milik batch, lalu stream hasil .jsonl yang
-  # ditunjuknya. Untuk penanganan per hasil (percobaan ulang, error validasi),
-  # gunakan contoh SDK di tab lainnya.
-  RESULTS_URL=$(curl -s "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d" \
+  # Melakukan streaming hasil .jsonl dari batch, satu hasil per baris.
+  # Untuk penanganan per hasil (percobaan ulang, error validasi), gunakan Claude SDK.
+  curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d/results" \
     --header "anthropic-version: 2023-06-01" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    | jq -r '.results_url')
-
-  curl -s "$RESULTS_URL" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    | jq -r '"\(.result.type): \(.custom_id)"'
+    --header "x-api-key: $ANTHROPIC_API_KEY"
   ```
 
   ```bash CLI
-  # Mencetak satu baris per hasil, mis. `{"custom_id":"test-1","type":"succeeded",…}`.
+  # Mencetak satu hasil per baris, mis. `{"custom_id":"test-1","result":{"type":"succeeded",…}}`.
   # Untuk penanganan per hasil (percobaan ulang, kesalahan validasi), gunakan contoh SDK
   # di tab lainnya.
   ant messages:batches results \
     --message-batch-id msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d \
-    --transform '{custom_id,"type":result.type,"error":result.error.error.type}' \
     --format jsonl
   ```
 
@@ -964,16 +948,12 @@ Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint 
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
-  # ...
   curl --request POST https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/cancel \
       --header "x-api-key: $ANTHROPIC_API_KEY" \
       --header "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  #!/bin/bash
-  # ...
   ant messages:batches cancel --message-batch-id "$MESSAGE_BATCH_ID"
   ```
 

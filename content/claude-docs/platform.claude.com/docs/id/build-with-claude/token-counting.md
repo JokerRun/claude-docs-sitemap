@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 362c84d1d56e794bad1e1ce204d5ab8c75cb7ccc677e71f2d866e478fbe50229
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 956e45f630378a9a93c1450d98e1dbded6fe73714be14fe36b836f34a81645eb
 ---
 
 ---
@@ -486,9 +486,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   ```bash cURL
   #!/bin/sh
 
-  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
-  IMAGE_MEDIA_TYPE="image/jpeg"
-  IMAGE_BASE64=$(curl -s "$IMAGE_URL" | base64 | tr -d '\n')
+  IMAGE_BASE64=$(curl -s "https://platform.claude.com/docs/images/vision-example.jpg" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -501,7 +499,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
       {"role": "user", "content": [
         {"type": "image", "source": {
           "type": "base64",
-          "media_type": "$IMAGE_MEDIA_TYPE",
+          "media_type": "image/jpeg",
           "data": "$IMAGE_BASE64"
         }},
         {"type": "text", "text": "Describe this image"}
@@ -512,8 +510,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   ```
 
   ```bash CLI
-  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
-  curl -s "$IMAGE_URL" -o ./vision-example.jpg
+  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" -o ./vision-example.jpg
 
   ant messages count-tokens <<'YAML'
   model: claude-opus-5-5
@@ -1416,7 +1413,7 @@ Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits).
+Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console.
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |

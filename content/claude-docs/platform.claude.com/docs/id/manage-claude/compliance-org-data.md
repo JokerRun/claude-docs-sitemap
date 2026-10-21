@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: ad8c7d487435f918e155cbdb7668cc81120b0e7630c52775e3c096d3ee2a311b
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 342e16ea2e166ee1d6238bdb314a7a247f01a7c7b552929c554e162f74a32a16
 ---
 
 ---
@@ -80,10 +80,8 @@ Lihat [List organization users](https://platform.claude.com/docs/id/api/complian
 Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Berbeda dengan kursor `before_id`/`after_id` pada Activity Feed (lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results)), endpoint direktori melakukan paginasi dengan token `next_page`: ketika `has_more` bernilai `true`, teruskan kembali `next_page` tanpa perubahan sebagai parameter query `page` pada permintaan berikutnya.
 
 ```bash cURL
-org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
-
 curl --fail-with-body -sS -G \
-  "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/users" \
+  "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/users" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=500"
@@ -118,10 +116,8 @@ Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_
 Secara default, respons hanya mencantumkan anggota yang telah menetapkan setidaknya salah satu dari kedua nilai tersebut. Kirimkan `include_unset=true` untuk mencantumkan setiap anggota saat ini, dengan `null` untuk setiap nilai yang tidak ditetapkan. Untuk mengembalikan anggota tertentu saja, kirimkan hingga 10 ID pengguna dalam `user_ids[]`. Hasil dipaginasi dengan `limit` (default 20, maksimum 100) dan `page`. Seperti pada [endpoint pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users), kirimkan kembali `next_page` tanpa perubahan sebagai `page`; kirimkan juga nilai `include_unset` dan `user_ids[]` yang sama pada setiap halaman, atau panggilan akan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#invalid-pagination-cursor). Sebuah halaman dapat berisi hasil yang lebih sedikit dari `limit`, atau tidak ada sama sekali, namun tetap bukan halaman terakhir, jadi teruslah meminta halaman hingga `next_page` bernilai `null`.
 
 ```bash cURL
-org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/user_preferences" \
+  "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/user_preferences" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01"
 ```
@@ -150,10 +146,8 @@ Endpoint [List Compliance Roles](https://platform.claude.com/docs/id/api/complia
 Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [endpoint pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users).
 
 ```bash cURL
-org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/organizations/${org_uuid}/roles" \
+  "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/roles" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01"
 ```
@@ -214,10 +208,8 @@ curl --fail-with-body -sS -G \
 Untuk setiap ID grup, daftar anggotanya:
 
 ```bash cURL
-group_id="rbac_group_01P9qRsTuVwXyZa2BcDeFgHjK"
-
 curl --fail-with-body -sS -G \
-  "https://api.anthropic.com/v1/compliance/groups/$group_id/members" \
+  "https://api.anthropic.com/v1/compliance/groups/rbac_group_01P9qRsTuVwXyZa2BcDeFgHjK/members" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01"
 ```
@@ -250,10 +242,8 @@ Endpoint ini memerlukan `read:compliance_org_data`; kunci tanpa cakupan tersebut
 </Note>
 
 ```bash cURL
-org_uuid="91012d09-e48b-438e-a489-1bebfd8fa6f9"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/organizations/$org_uuid/settings" \
+  "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/settings" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01"
 ```

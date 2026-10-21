@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 80ef8ef62118f7144796781e9b3e65685dc34b816d6cb7fb474631d8abb2a226
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ece6f292cb2a6dc50875cea42aacd6a35e3be148b484449d57428d45c8034b4c
 ---
 
 ---
@@ -305,7 +305,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
 
 <CodeGroup>
   ```bash cURL
-  # $output_store_id is the memory_store_id of the completed dream's memory_store output
+  # $output_store_id adalah memory_store_id dari output memory_store milik dream yang telah selesai
   curl -s https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -321,7 +321,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   ```
 
   ```bash CLI
-  # $output_store_id is the memory_store_id of the completed dream's memory_store output
+  # $output_store_id adalah memory_store_id dari output memory_store milik dream yang telah selesai
   ant beta:sessions create <<YAML
   agent: $agent_id
   environment_id: $environment_id

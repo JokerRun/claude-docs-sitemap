@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: e27c4bc310ebca4195dda958725b51f245ce449bca1d8523addaf16fcec0c981
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: f3dddf8c5c9dd15f6f1abb7b37bcaf51c73d0ce25cc986fbc64531fae10d373e
 ---
 
 ---
@@ -63,38 +63,14 @@ Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks pe
 
 Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
-<CodeGroup>
-  ```bash cURL
-  response=$(curl -N https://api.anthropic.com/v1/messages \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "messages": [{"role": "user", "content": "Hello"}],
-      "max_tokens": 1024,
-      "stream": true
-    }')
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Mendeteksi penolakan dalam stream dan mereset percakapan memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  if echo "$response" | jq -R -e 'select(startswith("data: "))
-      | sub("^data: "; "") | fromjson
-      | select(.delta.stop_reason == "refusal")' >/dev/null; then
-    echo "Response refused - resetting conversation context"
-    # Reset status percakapan Anda di sini
-  fi
-  ```
-
-  ```bash CLI
-  response=$(ant messages create --stream --format jsonl \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: Hello}')
-
-  if echo "$response" | jq -e 'select(.delta.stop_reason == "refusal")' >/dev/null; then
-    echo "Response refused - resetting conversation context"
-    # Reset status percakapan Anda di sini
-  fi
-  ```
+  <CodeGroupItem language="CLI">
+    Mendeteksi penolakan dalam stream dan mereset percakapan memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()

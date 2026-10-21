@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 20b290e4361ec10a2cf3251570be54be1a865cec0c0cc5bab4e6ce68ed4be8ce
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6787145ab354cfddd7015c7d88addc5b550c31c97546f1e875c6c630159531b4
 ---
 
 ---
@@ -138,7 +138,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `"anthropic-workspace-id": optional string`
 

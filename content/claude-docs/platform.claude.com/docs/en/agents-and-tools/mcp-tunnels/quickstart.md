@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 5ff5a8d91a53ffdd7d6001223304dbc4a6a09b063030a373da5d47be5bf849ab
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9ec8b89e700af70117536aa9c06b61510d68631070932629242b6abde8447408
 ---
 
 ---
@@ -178,14 +178,14 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
         cat > docker-compose.yaml <<'EOF'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
             restart: unless-stopped
 
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN
@@ -218,14 +218,14 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
         @'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
             restart: unless-stopped
 
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN

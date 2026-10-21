@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 0f5eb5be987fccf7e6b80bda5cdbc1d6c8e781700b2ccb774c5c3581eea18160
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 194a101f0ee13a260b43d5c84b1d02cddabfcb03d70e0a8daac30b91359b8b78
 ---
 
 ---
@@ -24,6 +24,7 @@ Panduan ini mencantumkan pengaturan yang membatasi apa yang dapat dijangkau dan 
 | [Pilih tempat agen berjalan](https://platform.claude.com/docs/id/managed-agents/secure-deployment#choose-where-the-agent-runs)                                                                                | Sandbox cloud atau self-hosted                                                   | Cloud, kecuali alat harus berjalan di infrastruktur yang Anda kendalikan                                                                                                                                                                                                  |
 | [Batasi jaringan](https://platform.claude.com/docs/id/managed-agents/secure-deployment#limit-the-network)                                                                                                     | `networking.type` pada environment                                               | `limited`, hanya dengan host yang dibutuhkan agen                                                                                                                                                                                                                         |
 | [Simpan kredensial di vault](https://platform.claude.com/docs/id/managed-agents/secure-deployment#keep-credentials-in-vaults)                                                                                 | `injection_location` dan `networking` pada setiap kredensial variabel lingkungan | Hanya header permintaan, dan jaringan `limited` hanya dengan host yang menjadi tujuan kunci tersebut                                                                                                                                                                      |
+| [Simpan kredensial di vault](https://platform.claude.com/docs/id/managed-agents/secure-deployment#keep-credentials-in-vaults)                                                                                 | Cara aplikasi Anda melakukan autentikasi ke Claude API                           | Jika memungkinkan, aturan Workload Identity Federation yang diaktifkan hanya di satu workspace, jika tidak, kunci API yang cakupannya terbatas pada satu workspace                                                                                                        |
 | [Batasi web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/secure-deployment#restrict-web-search-and-web-fetch)                                                                     | `allowed_domains` pada setiap alat web                                           | Daftar izin (allowlist) pada setiap alat. Pada `web_fetch`, cantumkan hanya situs yang dibutuhkan agen. Pada `web_search`, cantumkan situs yang hasilnya Anda inginkan                                                                                                    |
 | [Setujui tindakan berisiko](https://platform.claude.com/docs/id/managed-agents/secure-deployment#approve-risky-actions)                                                                                       | `permission_policy` pada setiap alat                                             | `auto` pada `bash`, `write`, `edit`, `web_fetch`, dan alat MCP yang hanya membaca data. Gunakan `always_ask` pada alat jika Anda tidak dapat membatalkan perubahannya di luar sandbox, atau jika teks pengguna akhir yang diteruskan saja tidak boleh membuatnya berjalan |
 | [Berikan agen set alat terkecil](https://platform.claude.com/docs/id/managed-agents/secure-deployment#give-the-agent-the-smallest-tool-set)                                                                   | `default_config.enabled` pada toolset agen                                       | `false`, lalu aktifkan alat yang dibutuhkan agen                                                                                                                                                                                                                          |
@@ -237,11 +238,11 @@ Simpan setiap rahasia di vault. Untuk setiap kredensial variabel lingkungan, tet
 
 Agen dukungan tidak memerlukan kredensial vault, karena aplikasi Anda memegang kunci API untuk API pesanan Anda. Jika agen Anda memegang kredensial vault, lihat [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) untuk permintaan dalam setiap bahasa.
 
-Jauhkan kunci dari prompt sistem, definisi agen, dan pesan. Jangan berikan kunci API Claude kepada agen. Bahkan ketika kunci API Claude berada di vault, kode di sandbox dapat menggunakannya untuk memanggil Claude API secara langsung. Kode tersebut dapat melakukan apa pun yang diizinkan kunci itu, seperti memulai atau menghapus sesi, atau menggunakan web search dan web fetch. Pengaturan alat, persetujuan, dan anggaran agen tidak berlaku untuk panggilan tersebut. Dalam environment `limited`, kode dapat melakukan panggilan ini hanya jika `allowed_hosts` memungkinkan sandbox menjangkau `api.anthropic.com`.
+Jauhkan kunci dari prompt sistem, definisi agen, dan pesan. Jangan berikan kunci API Claude atau token akses Claude API kepada agen. Bahkan ketika salah satunya berada di vault, kode di sandbox dapat menggunakannya untuk memanggil Claude API secara langsung. Kode tersebut dapat melakukan apa pun yang diizinkan kredensial itu, seperti memulai atau menghapus sesi, atau menggunakan web search dan web fetch. Pengaturan alat, persetujuan, dan anggaran agen tidak berlaku untuk panggilan tersebut. Dalam environment `limited`, kode dapat melakukan panggilan ini hanya jika `allowed_hosts` memungkinkan sandbox menjangkau `api.anthropic.com`.
 
-Ambil token sendiri dan simpan di vault, karena token yang diambil oleh kode di sandbox dengan rahasia yang tersimpan akan kembali tanpa disensor.
+Ambil sendiri token pihak ketiga dan simpan di vault. Token yang diambil oleh kode di sandbox dengan rahasia yang tersimpan akan kembali tanpa disensor.
 
-Simpan vault untuk beban kerja dengan tingkat kepercayaan berbeda di [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah, karena kunci API apa pun yang memiliki akses ke suatu workspace dapat mereferensikan vault-nya. Gunakan kunci API yang cakupannya terbatas pada satu workspace.
+Simpan vault untuk beban kerja dengan tingkat kepercayaan berbeda di [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah, karena siapa pun yang dapat memulai sesi di suatu workspace dapat mereferensikan vault-nya. Batasi setiap beban kerja ke satu workspace: jika memungkinkan, aturan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) yang diaktifkan hanya di workspace tersebut, jika tidak, kunci API yang cakupannya terbatas pada workspace tersebut. Workload Identity Federation memberi aplikasi Anda token akses Claude API berumur pendek, sehingga tidak ada kunci API Claude berumur panjang yang dapat bocor.
 
 Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk kredensial MCP dan rotasi.
 
@@ -333,37 +334,46 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  tools='[
-    {
-      "type": "agent_toolset_20260401",
-      "default_config": {
-        "enabled": false,
-        "permission_policy": {"type": "always_ask"}
-      },
-      "configs": [
-        {"name": "read", "enabled": true, "permission_policy": {"type": "always_allow"}},
-        {"name": "write", "enabled": true, "permission_policy": {"type": "auto"}},
+  curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Support Agent",
+      "model": "claude-opus-5-5",
+      "tools": [
         {
-          "name": "web_fetch",
-          "enabled": true,
-          "allowed_domains": ["help.example.com"],
-          "permission_policy": {"type": "auto"}
+          "type": "agent_toolset_20260401",
+          "default_config": {
+            "enabled": false,
+            "permission_policy": {"type": "always_ask"}
+          },
+          "configs": [
+            {"name": "read", "enabled": true, "permission_policy": {"type": "always_allow"}},
+            {"name": "write", "enabled": true, "permission_policy": {"type": "auto"}},
+            {
+              "name": "web_fetch",
+              "enabled": true,
+              "allowed_domains": ["help.example.com"],
+              "permission_policy": {"type": "auto"}
+            }
+          ]
+        },
+        {
+          "type": "custom",
+          "name": "lookup_order",
+          "description": "Look up one order by its ID. Returns the status, the items, and the delivery date.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "order_id": {"type": "string", "description": "The order ID from the ticket"}
+            },
+            "required": ["order_id"]
+          }
         }
       ]
-    },
-    {
-      "type": "custom",
-      "name": "lookup_order",
-      "description": "Look up one order by its ID. Returns the status, the items, and the delivery date.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "order_id": {"type": "string", "description": "The order ID from the ticket"}
-        },
-        "required": ["order_id"]
-      }
-    }
-  ]'
+    }'
   ```
 
   <CodeGroupItem>
@@ -842,7 +852,7 @@ Interupsi tidak membatalkan apa yang sudah dilakukan atau dikirim agen. Mengarsi
 
 Anda tidak dapat menambahkan anggaran ke sesi yang dibuat tanpa anggaran. Untuk mengubah atau menghapus batas, lihat [Melanjutkan sesi yang mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). Setelah Anda menghapus batas sesi, Anda tidak dapat menetapkan batas baru.
 
-Anggaran membatasi pengeluaran, tetapi tidak membatasi apa yang dilakukan agen sebelum mencapai batas. Untuk memisahkan beban kerja dengan tingkat kepercayaan berbeda, gunakan [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah. Berikan setiap beban kerja kunci API yang cakupannya terbatas pada satu workspace, karena kunci yang dapat menjangkau beberapa workspace dapat bertindak di workspace mana pun di antaranya.
+Anggaran membatasi pengeluaran, tetapi tidak membatasi apa yang dilakukan agen sebelum mencapai batas. Untuk memisahkan beban kerja dengan tingkat kepercayaan berbeda, gunakan [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah. Batasi setiap beban kerja ke satu workspace: jika memungkinkan, aturan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) yang diaktifkan hanya di workspace tersebut, jika tidak, kunci API yang cakupannya terbatas pada workspace tersebut. Akses ke beberapa workspace memungkinkan beban kerja bertindak di workspace mana pun di antaranya.
 
 Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets), [Operasi sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#archiving-a-session), dan [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#managing-deployment-lifecycle).
 

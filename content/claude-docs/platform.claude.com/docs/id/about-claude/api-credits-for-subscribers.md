@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: ada7a8c2344b8efe83a3a1f6d8ce8dc01b62fcbb9fa5091f091340ed5800c4d9
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c3ae409ae7c930a11d5776af03688b135dc1f72f1a1b6fd42f9f7de2e7494f3e
 ---
 
 ---
@@ -59,7 +59,7 @@ Anda memerlukan kedua peran berikut:
 | **Paket Claude**              | Max: pelanggan<br />Team: Primary Owner, Owner |
 | **Organisasi Claude Console** | Owner, Admin, atau Billing                     |
 
-Jika Anda belum memiliki organisasi Console, buat terlebih dahulu di [platform.claude.com](https://platform.claude.com/), atau buat selama alur klaim.
+Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Console di [platform.claude.com](https://platform.claude.com/), atau buat selama alur klaim.
 
 ### Langkah-langkah
 
@@ -92,7 +92,7 @@ Kredit API ini hanya dapat digunakan di Claude Platform. Tabel berikut menunjukk
 | [Claude API](https://platform.claude.com/docs/id/api/overview)                       | Ya      |
 | [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | Ya      |
 | [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)               | Ya      |
-| [Playground](https://platform.claude.com/playground)                                 | Ya      |
+| [Playground](https://platform.claude.com/playground) di Claude Console               | Ya      |
 | Claude Code                                                                          | Tidak   |
 | Penggunaan tambahan di aplikasi Claude                                               | Tidak   |
 | Claude Platform on AWS, Bedrock, Google Cloud, Microsoft Foundry                     | Tidak   |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 4835bb8cff3ee5737c5641622270972ef4e4188e814660783cbea03185a58937
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 88aafdd0c5a2dcc09899b923c8ecf9584aac15dc8096820ec72695a9396a54e8
 ---
 
 > ## Documentation Index
@@ -109,7 +109,9 @@ Learn more: [CLAUDE.md files](/docs/en/memory#claude-md-files)
 
 ### Cloud session
 
-A Claude Code session that keeps running after you close your laptop, because it runs on cloud infrastructure instead of your machine: Anthropic-managed by default, or a [self-hosted environment](/docs/en/self-hosted-environments) your organization operates. You start one from claude.ai/code, the Claude mobile app, the Desktop app with **Cloud** selected, `claude --cloud`, or a [routine](/docs/en/routines). A session in your terminal, IDE, or the Desktop app with **Local** selected is a local session; to reach a local session from another device, use [Remote Control](#remote-control).
+A Claude Code session that keeps running after you close your laptop, because it runs on cloud infrastructure instead of your machine. That infrastructure is Anthropic-managed by default, or a [self-hosted environment](/docs/en/self-hosted-environments) your organization operates. You start one from claude.ai/code, the Claude mobile app, the Desktop app with **Cloud** selected, `claude --cloud`, or a [cloud scheduled task](/docs/en/routines).
+
+A session in your terminal, IDE, or the Desktop app with **Local** selected is a local session; to reach a local session from another device, use [Remote Control](#remote-control).
 
 Learn more: [Use Claude Code in the cloud](/docs/en/claude-code-on-the-web)
 

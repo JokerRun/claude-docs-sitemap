@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5e6833a2129cd69690ec98dbdb7e241059a5c94aa983325a081fe88253a1eda2
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 199b9d88bf10e5a04208ebd1063b360ec66235b034788c44b037e1115ac283bb
 ---
 
 ---
@@ -770,9 +770,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk
       output_config: { effort: "low" },
       messages: [{ role: "user", content: classificationPrompt }]
     });
-    const textBlock = message.content.find(
-      (block): block is Anthropic.TextBlock => block.type === "text"
-    );
+    const textBlock = message.content.find((block) => block.type === "text");
     const reasoningAndIntent = textBlock?.text ?? "";
 
     // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
@@ -1125,9 +1123,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
     });
     // Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
     const usage = message.usage;
-    const textBlock = message.content.find(
-      (block): block is Anthropic.TextBlock => block.type === "text"
-    );
+    const textBlock = message.content.find((block) => block.type === "text");
     const reasoningAndIntent = textBlock?.text ?? "";
 
     // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.

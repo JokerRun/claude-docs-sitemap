@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ff697dfbe3141d48b4589dbe98b0acc99fb71f446429eac33f977b9aedd23dde
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 584ae1d323a79334aade85735d8d14c861d6c6abc0227e32c94eb523499be36f
 ---
 
 ---
@@ -34,7 +34,7 @@ Untuk kelayakan Zero Data Retention dan solusi alternatif `allowed_callers`, lih
 <Warning>
   Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tidak tepercaya bersama data sensitif menimbulkan risiko "data exfiltration" (eksfiltrasi data). Gunakan alat ini hanya di lingkungan tepercaya atau saat menangani data yang tidak sensitif.
 
-  Untuk meminimalkan risiko eksfiltrasi, Claude tidak dapat mengambil URL yang hanya muncul dalam outputnya sendiri. Claude hanya dapat mengambil URL yang sebelumnya sudah muncul dalam percakapan, yaitu URL dalam pesan pengguna, URL dalam hasil alat sisi klien (bahkan ketika hasil tersebut mengulang teks yang dihasilkan Claude), dan URL dari hasil web search atau web fetch sebelumnya (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation)). Claude juga tidak dapat mengambil URL yang tampaknya berisi kredensial, seperti kunci API atau kata sandi, kecuali kredensial tersebut muncul dalam prompt sistem atau dalam teks pesan pengguna.
+  Untuk meminimalkan risiko eksfiltrasi, Claude tidak dapat mengambil URL yang hanya muncul dalam outputnya sendiri. Claude hanya dapat mengambil URL yang sebelumnya sudah muncul dalam percakapan, yaitu URL dalam pesan pengguna, URL dalam hasil alat sisi klien, dan URL dari hasil web search atau web fetch sebelumnya (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation)). Claude juga tidak dapat mengambil URL yang tampaknya berisi kredensial, seperti kunci API atau kata sandi, kecuali kredensial tersebut muncul dalam prompt sistem atau dalam teks pesan pengguna.
 
   Meski begitu, masih ada risiko residual yang perlu Anda pertimbangkan dengan cermat saat menggunakan alat ini.
 
@@ -43,6 +43,7 @@ Untuk kelayakan Zero Data Retention dan solusi alternatif `allowed_callers`, lih
   * Menonaktifkan alat web fetch sepenuhnya
   * Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
   * Menggunakan parameter `allowed_domains` untuk membatasi akses hanya ke domain yang diketahui aman
+  * Menggunakan parameter `url_sources` untuk mencegah hasil alat sisi klien dihitung sebagai sumber (lihat [Sumber URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-sources))
 </Warning>
 
 Untuk dukungan model, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
@@ -435,6 +436,11 @@ Alat web fetch mendukung parameter-parameter berikut:
   // Optional: Never fetch from these domains (cannot be combined with allowed_domains)
   "blocked_domains": ["private.example.com"],
 
+  // Optional: Don't fetch URLs that appear only in client-side tool results
+  "url_sources": {
+    "client_tool_results": { "type": "none" }
+  },
+
   // Optional: Enable citations for fetched content
   "citations": {
     "enabled": true
@@ -644,7 +650,7 @@ Berikut kode-kode error yang mungkin muncul:
 * `invalid_tool_input`: Input alat tidak valid, seperti URL yang formatnya salah atau skema selain HTTP(S)
 * `url_too_long`: URL melebihi panjang maksimum (250 karakter)
 * `url_not_allowed`: URL diblokir oleh aturan pemfilteran domain (termasuk pengaturan organisasi Anda) atau oleh pembatasan dari sisi Anthropic, seperti alamat privat, `robots.txt`, dan URL yang tampaknya berisi kredensial yang tidak Anda berikan
-* `url_not_in_prior_context`: URL tidak muncul sebelumnya dalam percakapan (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
+* `url_not_in_prior_context`: URL tidak muncul sebelumnya dalam percakapan, atau hanya muncul di sumber yang dikecualikan oleh `url_sources` (lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation))
 * `url_not_accessible`: Gagal mengambil konten (error HTTP)
 * `too_many_requests`: Batas laju terlampaui
 * `unsupported_content_type`: Jenis konten tidak didukung (hanya teks, HTML, dan PDF)
@@ -659,9 +665,55 @@ Demi alasan keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya s
 * URL dalam hasil alat sisi klien
 * URL dari hasil web search atau web fetch sebelumnya
 
-Alat ini tidak dapat mengambil URL yang hanya muncul dalam output Claude sendiri atau hanya dalam prompt sistem. Agar URL dari prompt sistem dapat diambil, sertakan juga URL tersebut dalam pesan pengguna. Hasil dari alat sisi server lainnya, seperti [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), atau [tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), juga tidak termasuk sumber yang diizinkan. Hasil alat sisi klien tetap merupakan sumber yang diizinkan meskipun mengulang teks yang dihasilkan Claude (misalnya, perintah yang mencetak inputnya, atau pesan error yang mengutipnya).
+Alat ini tidak dapat mengambil URL yang hanya muncul dalam output Claude sendiri atau hanya dalam prompt sistem. Agar URL dari prompt sistem dapat diambil, sertakan juga URL tersebut dalam pesan pengguna. Hasil dari alat sisi server lainnya, seperti [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), atau [tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), juga tidak termasuk sumber yang diizinkan. Secara default, hasil alat sisi klien tetap merupakan sumber yang diizinkan meskipun mengulang teks yang dihasilkan Claude (misalnya, perintah yang mencetak inputnya, atau pesan error yang mengutipnya).
 
 Alat ini juga menolak URL yang tampaknya berisi kredensial, seperti kunci API atau kata sandi, kecuali kredensial tersebut muncul dalam prompt sistem atau dalam teks pesan pengguna. Kredensial yang hanya muncul dalam hasil alat tidak dihitung. Hasilnya adalah error `url_not_allowed`. Untuk mengambil URL seperti itu, sertakan URL tersebut dalam pesan pengguna.
+
+### Sumber URL
+
+<Note>
+  Berfungsi dengan `web_fetch_20250910`, `web_fetch_20260209`, `web_fetch_20260309`, dan `web_fetch_20260318`.
+</Note>
+
+Parameter opsional `url_sources` memungkinkan Anda menonaktifkan sumber mana pun dari ketiga sumber yang diizinkan, atau membatasi hasil alat ke alat tertentu. Parameter ini memiliki satu key per sumber, dan setiap key memiliki default `{"type": "all"}`:
+
+* `user_input`: URL dalam pesan pengguna. `type`-nya adalah `"all"` atau `"none"`.
+* `client_tool_results`: URL dalam hasil alat sisi klien. `type`-nya adalah `"all"`, `"none"`, atau filter `"only"` atau `"except"` yang menyebutkan nama alat, seperti pada contoh berikut.
+* `server_tool_results`: URL dari hasil web search atau web fetch sebelumnya. Key ini menerima nilai yang sama, dan filternya menyebutkan `web_search` atau `web_fetch`.
+
+Misalnya, alat yang menjalankan kode yang ditulis Claude mengembalikan apa pun yang dicetak kode tersebut, termasuk URL apa pun yang dimasukkan Claude ke dalamnya. Untuk mencegah hasil alat tersebut dihitung sebagai sumber, sebutkan alat tersebut dalam filter `"except"`:
+
+```json
+{
+  "tools": [
+    {
+      "type": "web_fetch_20260318",
+      "name": "web_fetch",
+      "url_sources": {
+        "client_tool_results": {
+          "type": "except",
+          "tools": [{ "type": "tool_reference", "name": "run_code" }]
+        }
+      }
+    },
+    {
+      "name": "run_code",
+      "description": "Run Python code and return its output",
+      "input_schema": {
+        "type": "object",
+        "properties": { "code": { "type": "string" } },
+        "required": ["code"]
+      }
+    }
+  ]
+}
+```
+
+Filter mencantumkan alat sebagai objek `tool_reference`. Setiap nama harus cocok dengan alat dalam array `tools` permintaan: alat klien untuk `client_tool_results`, atau alat server untuk `server_tool_results`. Jika tidak, permintaan gagal dengan error. Di bawah `"except"`, alat yang Anda tambahkan ke `tools` di kemudian hari dihitung sebagai sumber. Di bawah `"only"`, alat tersebut tidak dihitung.
+
+Alat sisi klien selain `run_code` juga dapat mengembalikan teks yang ditulis Claude, misalnya dalam pesan error yang mengutipnya. Untuk mengecualikan semua hasil alat sisi klien, atur `client_tool_results` ke `{"type": "none"}`.
+
+Jika sebuah URL hanya muncul di sumber yang dikecualikan oleh `url_sources`, mengambilnya akan mengembalikan error `url_not_in_prior_context`.
 
 ## Gabungan search dan fetch
 

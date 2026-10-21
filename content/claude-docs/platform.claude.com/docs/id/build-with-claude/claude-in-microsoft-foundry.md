@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 7b7a43992b8c10bec284b29415aa1752ac9b42cbd26dc984a00c13024904151a
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 462ef3576c19f6dc1c63c5df2f1379d746438b60d2c4ea862b00417a469c710f
 ---
 
 ---
@@ -87,8 +87,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.73.0")
-        implementation("com.anthropic:anthropic-java-foundry:2.73.0")
+        implementation("com.anthropic:anthropic-java:2.75.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.75.0")
 
         // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
         implementation("com.azure:azure-identity:1.18.3")
@@ -100,12 +100,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -226,8 +226,7 @@ Klien Foundry pada SDK memerlukan kunci API dan salah satu dari nama resource at
     --base-url https://example-resource.services.ai.azure.com/anthropic \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello!"}' \
-    --transform content
+    --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -408,13 +407,10 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
 
 <CodeGroup>
   ```bash cURL
-  # Dapatkan token Microsoft Entra ID
-  ACCESS_TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
-
-  # Buat permintaan dengan token. Ganti {resource} dengan nama resource Anda
+  # Buat permintaan dengan token Microsoft Entra ID. Ganti {resource} dengan nama resource Anda
   curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
     -H "content-type: application/json" \
-    -H "Authorization: Bearer $ACCESS_TOKEN" \
+    -H "Authorization: Bearer $(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
       "model": "claude-opus-5-5",
@@ -426,16 +422,15 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
   ```
 
   ```bash CLI
-  # Dapatkan token Microsoft Entra ID
-  ACCESS_TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
-
-  # Buat permintaan dengan token. Ganti {resource} dengan nama resource Anda
+  # Buat permintaan dengan token Microsoft Entra ID. Ganti {resource} dengan nama resource Anda
   # env -u menghapus ANTHROPIC_API_KEY, yang jika ada akan dikirim CLI sebagai pengganti token
-  env -u ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN="$ACCESS_TOKEN" ant messages create \
-    --base-url https://{resource}.services.ai.azure.com/anthropic \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello!"}'
+  env -u ANTHROPIC_API_KEY \
+    ANTHROPIC_AUTH_TOKEN="$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)" \
+    ant messages create \
+      --base-url https://{resource}.services.ai.azure.com/anthropic \
+      --model claude-opus-5-5 \
+      --max-tokens 1024 \
+      --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -717,7 +712,15 @@ Secara default, nama deployment sama dengan ID model yang ditampilkan pada tabel
 </Info>
 
 <Tip>
-  Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke model Claude Opus terbaru
+  ```
+
+  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
 </Tip>
 
 ## Penagihan

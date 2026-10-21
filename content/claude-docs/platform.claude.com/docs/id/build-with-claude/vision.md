@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: e9e2ce6064debde0f0de512c5a62434bb38919b59d7db9a9096f29e8a260fda2
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 90e9c51022aed013823f53ac42d3740adfac87eca5c726b2a7660b21ad85dc3c
 ---
 
 ---
@@ -545,12 +545,12 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 <CodeGroup>
   ```bash cURL
   # Pertama, unggah gambar Anda ke Files API
-  FILE_ID=$(curl -sS -X POST https://api.anthropic.com/v1/files \
+  curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@vision-example.jpg" | jq -r '.id')
+    -F "file=@vision-example.jpg"
 
-  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
+  # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -584,13 +584,11 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     https://platform.claude.com/docs/images/vision-example.jpg
 
   # Pertama, unggah gambar Anda ke Files API
-  FILE_ID=$(ant files upload \
-    --file ./vision-example.jpg \
-    --transform id --raw-output)
+  ant files upload \
+    --file ./vision-example.jpg
 
-  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
-  ant messages create \
-    --transform content --format yaml <<YAML
+  # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
+  ant messages create <<YAML
   model: claude-opus-5-5
   max_tokens: 1024
   messages:

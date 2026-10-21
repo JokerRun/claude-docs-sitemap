@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: ef5da11bc4557b634f5c4e47557b7ab009c486464e4064970bb2c0c16de40f0e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a48d6d19a4932f9697c1afa2bedae4c5d738108b0475f1c0b1404e36b48a635d
 ---
 
 ---
@@ -307,7 +307,7 @@ custom := param.Override[anthropic.FooParams](12)
 
 Unions are represented as a struct with fields prefixed by "Of" for each of its variants. Only one field can be non-zero. The non-zero field will be serialized.
 
-Subproperties of the union can be accessed through methods on the union struct. These methods return a mutable pointer to the underlying data, if present.
+Subproperties of the union can be accessed through methods on the union struct. These methods return a pointer to the value, if present.
 
 ```go
 // Only one field can be non-zero, use param.IsOmitted() to check if a field is set

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 52aa86bd119938ae34d2a405aa8551f259fc0f2da31bba9e320ab85cd1b09168
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: e2ef00fd8ba28fe9c92e3b3c54cd68a212c7315a83f797c97142fcf0d1fbbbe9
 ---
 
 ---
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.73.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.73.0")
+        implementation("com.anthropic:anthropic-java:2.75.0")
+        implementation("com.anthropic:anthropic-java-bedrock:2.75.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         ```
       </Tab>
@@ -358,7 +358,15 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 Gunakan versi terbaru Claude Code dengan Claude di Amazon Bedrock; jalankan `claude update` untuk memperbarui.
 
 <Tip>
-  Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke model Claude Opus terbaru
+  ```
+
+  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
 </Tip>
 
 ## Dukungan fitur
@@ -372,10 +380,10 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 * [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
 * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Sitasi](https://platform.claude.com/docs/id/build-with-claude/citations)
+* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
-* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
 * Alat sisi server (eksekusi kode, pencarian web, web fetch, advisor)
 * Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)

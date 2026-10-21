@@ -1,26 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: ef5407625184d4461becf51a1d9ddf24b3c4c315a61c722923fc0301fee52260
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 8375f00419bffc0089daaefd322aaccedb8fd0c5f9303d6484523cb78b14a59a
 ---
 
 ---
-title: Delete a memory store
+title: Delete a Memory Store
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
 ---
 
-# Delete a memory store
+# Delete a Memory Store
 
 **DELETE** `/v1/memory_stores/{memory_store_id}`
 
-Delete a memory store
+Delete a Memory Store
 
 ## Path parameters
 
 - `memory_store_id: string`
 
-  ID of the memory store to permanently delete (a `memstore_...` identifier). Required. Deletion cascades to all memories and memory versions in the store and cannot be undone.
+  The ID of the memory store to delete (`memstore_...`).
+
+  Deleting a store also deletes all its memories and memory versions. It can't be undone.
 
 ## Headers
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f6c94e0dc64082959cd6a6daffd55c3a4509e9c2152cae6aba7e9bd96e129d10
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: e9265f918bed923bd24e18375bd122f6496e65fdf638109469ad46cf6267f79d
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Akses analitik penggunaan Claude Code dan metrik produktivitas orga
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
-Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, yang memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini menyediakan detail yang lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar tanpa kerumitan integrasi OpenTelemetry.
+Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, yang memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini menyediakan detail yang lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar di Claude Console, tanpa kerumitan integrasi OpenTelemetry.
 
 API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adopsi Claude Code Anda dengan lebih baik:
 
@@ -120,7 +120,7 @@ Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
 * **date:** Tanggal dalam format RFC 3339 (timestamp UTC)
 * **actor:** Pengguna atau kunci API yang melakukan tindakan Claude Code (baik `user_actor` dengan `email_address` atau `api_actor` dengan `api_key_name`)
 * **organization\_id:** UUID organisasi
-* **customer\_type:** Jenis akun pelanggan (`api` untuk pelanggan API, `subscription` untuk pelanggan Pro/Team)
+* **customer\_type:** Jenis akun pelanggan (`api` atau `subscription`); record hanya mencakup penggunaan yang diautentikasi terhadap organisasi Claude Console Anda
 * **terminal\_type:** Jenis terminal atau lingkungan tempat Claude Code digunakan (misalnya, `vscode`, `iTerm.app`, `tmux`)
 
 #### Metrik inti
@@ -251,7 +251,17 @@ Pengguna diidentifikasi melalui field `actor` dengan dua cara:
 * **`user_actor`:** Berisi `email_address` untuk pengguna yang melakukan autentikasi melalui OAuth (paling umum)
 * **`api_actor`:** Berisi `api_key_name` untuk pengguna yang melakukan autentikasi dengan kunci API
 
-Field `customer_type` menunjukkan apakah penggunaan berasal dari pelanggan `api` (API bayar sesuai pemakaian) atau pelanggan `subscription` (paket Pro/Team).
+Field `customer_type` bernilai `api` atau `subscription`. Setiap record, apa pun nilainya, menggambarkan penggunaan yang diautentikasi terhadap organisasi Claude Console Anda.
+
+### Apakah API ini mencakup penggunaan dari paket langganan Claude?
+
+Tidak. Ketika seseorang masuk ke Claude Code dengan paket langganan Claude, seperti Pro, Max, Team, atau Enterprise, penggunaannya diatribusikan ke organisasi claude.ai-nya, dan API ini tidak mengembalikannya.
+
+Untuk melacak penggunaan tersebut, gunakan salah satu opsi berikut:
+
+* **Claude Enterprise Analytics API:** Melaporkan aktivitas Claude Code untuk organisasi Claude Enterprise dan tidak tersedia pada paket lain. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api).
+* **Dashboard Analytics di claude.ai:** Tersedia pada paket Team dan Enterprise. Lihat [Melacak penggunaan tim dengan analitik](https://code.claude.com/docs/id/analytics).
+* **Ekspor OpenTelemetry:** Berfungsi pada paket apa pun. Lihat [Memantau penggunaan dengan OpenTelemetry](https://code.claude.com/docs/id/monitoring-usage).
 
 ### Berapa lama periode retensi datanya?
 
@@ -279,7 +289,7 @@ Claude Code Analytics API membantu Anda memahami dan mengoptimalkan alur kerja p
 
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
-* [Dashboard Claude Code Analytics](https://platform.claude.com/claude-code)
+* [Dashboard Claude Code Analytics](https://platform.claude.com/claude-code) di Claude Console
 * [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) - Lacak penggunaan API di semua layanan Anthropic
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) - Ambil data audit dan aktivitas
 * [Manajemen identitas dan akses](https://code.claude.com/docs/en/iam)

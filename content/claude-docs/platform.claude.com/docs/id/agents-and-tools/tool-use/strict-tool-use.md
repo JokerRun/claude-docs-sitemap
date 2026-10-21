@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6bee62bf75802544ac9468a607370a021da9f2ee35fa88cc868218593ace1bd6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5401a5b43366e1d7a0ae24605e8598f9fb6b8bd0ba194f5955aa9a86b49e7bc4
 ---
 
 ---
@@ -70,7 +70,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   ```
 
   ```bash CLI
-  ant messages create --transform content <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:

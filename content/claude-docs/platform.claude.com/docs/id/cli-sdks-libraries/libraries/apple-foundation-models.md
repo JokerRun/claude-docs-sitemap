@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: cc2267e07eed4fd55b23c208610c95eb5bd108e1e9fdc6480becf96b206af44e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 48da7a4978ed0a22088ae234de06f57fb25613aa73d9f0001fa84213a1fae550
 ---
 
 ---
@@ -154,7 +154,7 @@ ClaudeLanguageModel(
 )
 ```
 
-Proxy Anda menerima permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create) standar, melampirkan header `x-api-key`, dan meneruskannya ke `https://api.anthropic.com`.
+Proxy Anda menerima permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create) standar, melampirkan kunci API Anda sebagai `Authorization: Bearer <key>`, dan meneruskannya ke `https://api.anthropic.com`.
 
 ### Kunci API (pengembangan)
 

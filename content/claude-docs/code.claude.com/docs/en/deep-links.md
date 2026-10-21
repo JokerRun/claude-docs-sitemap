@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d038e60fdd2ffd7bd5695ffb8d9d933f837a3468ce5ec1f4167c241db660ad59
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 29028b2b724e92210f15796fcb83befc2b850485bba9b8b530fbe6a4de8252ae
 ---
 
 > ## Documentation Index
@@ -117,43 +117,41 @@ To use this in your own runbook, replace `acme/web-gateway` with your service's 
 
 You can also open a deep link from a shell script, alias, or automation rather than by clicking it. Call your operating system's URL-opening command with the link as the argument. These commands rely on the handler that Claude Code [registers when you send your first prompt of an interactive session](#registration-and-supported-platforms) on the machine.
 
-<Tabs>
-  <Tab title="macOS">
-    The built-in `open` command passes the URL to the registered `claude-cli://` handler:
+**macOS**
 
-    ```bash theme={null}
-    open "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
-    ```
+The built-in `open` command passes the URL to the registered `claude-cli://` handler:
 
-    On success, a new terminal window opens with Claude Code running and the prompt pre-filled.
-  </Tab>
+```bash theme={null}
+open "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
+```
 
-  <Tab title="Linux">
-    Most desktop environments provide `xdg-open`, which passes the URL to the registered handler:
+On success, a new terminal window opens with Claude Code running and the prompt pre-filled.
 
-    ```bash theme={null}
-    xdg-open "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
-    ```
+**Linux**
 
-    On success, a new terminal window opens with Claude Code running and the prompt pre-filled. If the shell reports that `xdg-open` isn't found, see [Troubleshooting](#xdg-open-is-not-found-on-linux).
-  </Tab>
+Most desktop environments provide `xdg-open`, which passes the URL to the registered handler:
 
-  <Tab title="Windows">
-    In PowerShell, `Start-Process` passes the URL to the registered handler:
+```bash theme={null}
+xdg-open "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
+```
 
-    ```powershell theme={null}
-    Start-Process "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
-    ```
+On success, a new terminal window opens with Claude Code running and the prompt pre-filled. If the shell reports that `xdg-open` isn't found, see [Troubleshooting](#xdg-open-is-not-found-on-linux).
 
-    In `cmd.exe`, `start` treats its first quoted argument as a window title, so pass an empty title before the URL:
+**Windows**
 
-    ```cmd theme={null}
-    start "" "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
-    ```
+In PowerShell, `Start-Process` passes the URL to the registered handler:
 
-    On success, a new terminal window opens with Claude Code running and the prompt pre-filled.
-  </Tab>
-</Tabs>
+```powershell theme={null}
+Start-Process "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
+```
+
+In `cmd.exe`, `start` treats its first quoted argument as a window title, so pass an empty title before the URL:
+
+```cmd theme={null}
+start "" "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
+```
+
+On success, a new terminal window opens with Claude Code running and the prompt pre-filled.
 
 ## Registration and supported platforms
 

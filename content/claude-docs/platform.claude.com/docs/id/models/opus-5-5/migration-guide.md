@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 175f355d83cd1f33f5446c66b8118840414b9cb7ba6431ac946f6d1746259ee8
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 31d16623eae0a41bdf406c3bd39e6a65ace07d1a299d0d5188d9d6c7a651c761
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Beralih ke Claude Opus 5.5 dari model Opus sebelumnya atau Claude S
 </Note>
 
 <Tip>
-  **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
+  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
 
   Biarkan Claude Code memigrasikan kode Anda
 
@@ -40,7 +40,7 @@ Dari model mana pun Anda beralih, permintaan ke `claude-opus-5-5` harus memenuhi
 * **Effort:** Kendalikan kedalaman thinking dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), satu-satunya parameter permintaan yang mengendalikannya. Kelima level (`low`, `medium`, `high`, `xhigh`, `max`) didukung, dan defaultnya adalah `medium`. Lihat [Tingkat effort yang direkomendasikan untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5-5).
 * **Pilihan alat:** Gunakan `tool_choice` `{"type": "auto"}` (default) atau `{"type": "none"}`. Memaksa pemanggilan alat dengan `{"type": "any"}` atau `{"type": "tool", "name": "..."}` ditolak. Lihat [sebelum dan sesudah untuk pilihan alat](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#forced-tool-use).
 * **Parameter sampling:** Hilangkan `temperature`, `top_p`, dan `top_k`, atau biarkan pada nilai defaultnya: nilai lain apa pun ditolak. Gunakan prompting untuk memandu perilaku model.
-* **Prefill:** Jangan akhiri `messages` dengan giliran asisten yang di-prefill: hal itu ditolak. Gunakan ["structured outputs" (output terstruktur)](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya. Di Amazon Bedrock, output terstruktur tidak tersedia untuk Claude Opus 5.5, jadi gunakan instruksi prompt sistem di sana.
+* **Prefill:** Jangan akhiri `messages` dengan giliran asisten yang di-prefill: hal itu ditolak. Gunakan ["structured outputs" (output terstruktur)](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya.
 * **Computer use:** Di Claude API dan Google Cloud, deklarasikan computer use sebagai toolset `computer_toolset_20260801`; alat `computer_20251124` yang lebih lama ditolak di sana. Lihat [perubahan yang merusak kompatibilitas pada computer use](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 * **Jendela konteks:** Tidak diperlukan header beta untuk "context window" (jendela konteks). [Jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) adalah default, dan header yang dikirim untuk model lama tidak berpengaruh.
 
@@ -110,9 +110,7 @@ Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak a
     }
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -293,7 +291,7 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhentilah setelah grup yang 
 * Perbarui ID model ke `claude-opus-5-5`.
 * Hapus `thinking: {"type": "disabled"}` dan `thinking: {"type": "enabled", ...}`; pilih level effort sebagai gantinya.
 * Atur `effort` secara eksplisit: defaultnya adalah `medium`, sedangkan default Claude Opus 5 adalah `high`.
-* Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah penggunaan alat ketat atau output terstruktur, atau dengan `auto` saja di Amazon Bedrock.
+* Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah penggunaan alat ketat atau output terstruktur.
 * Jika Anda menggunakan computer use di Claude API atau Google Cloud, deklarasikan `computer_toolset_20260801` (tanpa header beta) alih-alih `computer_20251124` dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, tetap gunakan `computer_20251124`; periksa bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use untuk platform lain.
 * Jika router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model lain, perkirakan model tersebut akan berjalan tanpa blok thinking Claude Opus 5.5 (Claude Fable 5.1 dan Claude Mythos 5.1 di Claude API adalah pengecualian dan mempertahankannya). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Google Cloud, dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos.
 * Baca blok konten berdasarkan `type`, dan kirimkan kembali blok `thinking` tanpa modifikasi dalam loop penggunaan alat.
@@ -577,7 +575,7 @@ Sesudah:
 
 #### Penggunaan alat paksa tidak didukung
 
-Tipe `tool_choice` `any` dan `tool` mengembalikan error 400 (`tool_choice: type "tool" and "any" are not supported for this model.`), termasuk pada endpoint penghitungan token. Gunakan `auto` dengan ["strict tool use" (penggunaan alat ketat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), dan sebutkan dalam prompt kapan alat tersebut berlaku. Penggunaan alat ketat menerima subset dari JSON Schema, jadi periksa `input_schema` setiap alat sebelum Anda menambahkan `strict: true`. Setiap objek dalam skema harus mengatur `additionalProperties: false`; lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Di Amazon Bedrock, output terstruktur, yang mencakup penggunaan alat ketat, tidak tersedia untuk Claude Opus 5.5. Di sana, kirim `auto` tanpa `strict`, sebutkan dalam prompt kapan alat tersebut berlaku, dan validasi input alat di kode Anda. Lihat [Penggunaan alat paksa tidak didukung](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported).
+Tipe `tool_choice` `any` dan `tool` mengembalikan error 400 (`tool_choice: type "tool" and "any" are not supported for this model.`), termasuk pada endpoint penghitungan token. Gunakan `auto` dengan ["strict tool use" (penggunaan alat ketat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), dan sebutkan dalam prompt kapan alat tersebut berlaku. Penggunaan alat ketat menerima subset dari JSON Schema, jadi periksa `input_schema` setiap alat sebelum Anda menambahkan `strict: true`. Setiap objek dalam skema harus mengatur `additionalProperties: false`; lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Lihat [Penggunaan alat paksa tidak didukung](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported).
 
 Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya dengan error 400:
 
@@ -1520,7 +1518,7 @@ Bagian ini menambahkan apa yang berubah pada Claude Opus 4.7, dengan `claude-opu
 
    Perbarui parameter `max_tokens` Anda agar memiliki ruang tambahan, termasuk pemicu compaction. Uji ulang juga setiap jalur kode yang memperkirakan token di sisi klien atau mengasumsikan rasio token-ke-karakter yang tetap. Gunakan [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memverifikasinya. Intervensi prompting, [`task_budget`](https://platform.claude.com/docs/id/build-with-claude/task-budgets), dan [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) dapat membantu mengendalikan biaya, tetapi kontrol ini dapat mengorbankan sebagian kecerdasan model.
 
-5. **Penghapusan prefill (sudah berlaku pada Claude Opus 4.6):** Melakukan prefill pada pesan asisten mengembalikan error 400 pada Claude Opus 4.6 dan model Opus yang lebih baru, termasuk Claude Opus 5.5, sehingga ini hanya merupakan perubahan jika Anda berasal dari Claude Opus 4.5 atau yang lebih lama. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya. Di Amazon Bedrock, output terstruktur tidak tersedia untuk Claude Opus 5.5, jadi gunakan instruksi prompt sistem di sana.
+5. **Penghapusan prefill (sudah berlaku pada Claude Opus 4.6):** Melakukan prefill pada pesan asisten mengembalikan error 400 pada Claude Opus 4.6 dan model Opus yang lebih baru, termasuk Claude Opus 5.5, sehingga ini hanya merupakan perubahan jika Anda berasal dari Claude Opus 4.5 atau yang lebih lama. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya.
 
 ### Perubahan perilaku
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 2a54559660b492b1bb19f8195543d3d1ce73643fa4816c0f7c664757deecf5bb
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7ed9cfe05355b2c668bc96b14d48507738ca721c8b2e35103b1b5fb8d3b77200
 ---
 
 ---
@@ -79,6 +79,8 @@ Anda dapat mengkueri kemampuan model dan batas token secara terprogram dengan [M
 Setiap model dalam respons juga memiliki field `line`, yang menyebutkan lini model tempat model tersebut berada. Claude Opus 4.5 dan Claude Opus 4.6 sama-sama melaporkan `opus`. Gunakan `line` untuk mengelompokkan model, misalnya, dalam pemilih model. `line` bernilai `null` ketika sebuah model tidak termasuk dalam lini mana pun. Bacalah `line` alih-alih menyimpulkannya dari `id` model. Anthropic mungkin menambahkan lebih banyak lini, jadi jangan anggap kumpulan nilainya bersifat tetap.
 
 Objek `capabilities` setiap model mencakup `thinking.types.disabled`, yang melaporkan apakah model menerima `thinking: {type: "disabled"}`, yaitu pengaturan yang [menonaktifkan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#turning-thinking-off). `supported` bernilai `false` ketika model menolak `"disabled"` dengan error 400, dan `true` pada model yang tidak mendukung thinking. Bahkan ketika `supported` bernilai `true`, API masih dapat menolak permintaan `"disabled"` karena alasan lain. Salah satu alasan tersebut adalah level [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang tidak diizinkan oleh model saat thinking dinonaktifkan.
+
+Objek `capabilities` setiap model juga mencakup `thinking.types.between_tools`, yang melaporkan apakah model menerima `thinking: {type: "between_tools"}`, yaitu pengaturan yang [menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/build-with-claude/thinking#turning-thinking-off). `supported` bernilai `false` ketika model menolak `"between_tools"` dengan error 400. Bahkan ketika `supported` bernilai `true`, API masih dapat menolak permintaan `"between_tools"` karena alasan lain, seperti level [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang tidak diizinkan oleh model dengan `"between_tools"`. Untuk Claude Sonnet 5.5, misalnya, Models API melaporkan `thinking.types.between_tools.supported` sebagai `true` dan `thinking.types.disabled.supported` sebagai `false`.
 
 Objek `capabilities` setiap model juga mencakup `server_tools`, yang melaporkan apakah model menerima alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). Ini tidak mencakup alat server lainnya, seperti web fetch. `server_tools.web_search.supported` dan `server_tools.code_execution.supported` bernilai `true` ketika model menerima setidaknya satu versi dari alat tersebut, tidak harus setiap versi. `server_tools.supported` bernilai `true` ketika model menerima setidaknya salah satu dari kedua alat tersebut. Bahkan ketika sebuah alat didukung, pengaturan organisasi Anda masih dapat menyebabkan permintaan yang menggunakannya gagal. Misalnya, administrator dapat [menonaktifkan pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#how-to-use-web-search).
 

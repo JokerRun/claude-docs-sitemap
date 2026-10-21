@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/platforms
-fetched_at: 2026-10-06T02:24:58.398995Z
-sha256: eee75247131b7edc0e12933f1996f7c09dfc80e34e3e25f71fd8da9beb7ba41c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 2fd19fcfe2fb06f99b8de6a21e35706ac05ac71c1a3db8f529476a93a18d10eb
 ---
 
 > ## Documentation Index
@@ -89,4 +89,4 @@ If you're not sure where to start, [install the CLI](/docs/en/quickstart) and ru
 * [Dispatch](/docs/en/desktop#sessions-from-dispatch): message a task from your phone and it can spawn a Desktop session
 * [Remote Control](/docs/en/remote-control): drive a running session from your phone or browser
 * [Channels](/docs/en/channels): push events from chat apps or your own servers into a session
-* [Scheduled tasks](/docs/en/scheduled-tasks): run prompts on a recurring schedule
+* [Scheduling options](/docs/en/scheduled-tasks#compare-scheduling-options): run prompts on a recurring schedule

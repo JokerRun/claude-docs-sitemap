@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: bc1db11233d03e497673142778a24949568d893389830526493df0ee202ce736
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c3cbd838ecdbaab6bb656a33c494eb2e5147c0f5b20fc7b277fb9f77f214ef79
 ---
 
 ---
@@ -140,7 +140,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
+  The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c331466c558708a4899f31a4a4a0c3807f8158896e00824e819c4b095e9be611
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 14d3846b8d0bb447b9b30c79db18ad0903fb11c2e994fd126ce392d23dfdf58a
 ---
 
 ---
@@ -12,12 +12,12 @@ description: Kirim setiap prompt yang diatur ke server keamanan AI organisasi An
 ---
 
 <Note>
-  Inference hooks masih dalam versi beta dan tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
+  Inference hooks hanya tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 </Note>
 
 Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui "AI security server" (server keamanan AI), yaitu layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya, sebelum inferensi berjalan. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak; permintaan yang ditolak tidak pernah mencapai model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara inline, dan pengembang membangun server keamanan AI yang mengevaluasi setiap permintaan.
 
-Karena hook berjalan di server Anthropic, setelah permintaan meninggalkan klien dan sebelum model berjalan, hook ini berlaku secara seragam untuk setiap permintaan yang diatur, tanpa perlu menginstal atau menerapkan apa pun di perangkat pengguna.
+Karena hook berjalan di server Anthropic, setelah permintaan meninggalkan klien dan sebelum model berjalan, hook ini berlaku secara seragam untuk setiap permintaan yang diatur, di semua produk Claude di organisasi Anda, tanpa perlu menginstal atau menerapkan apa pun di perangkat pengguna.
 
 Ada dua event hook. `prompt` dipicu sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. `tool_call` dipicu ketika respons Claude berisi panggilan alat, sebelum salah satunya dijalankan, di organisasi yang mengaktifkan **Validate tool calls**.
 
@@ -84,9 +84,9 @@ Langkah-langkahnya bergantung pada aplikasi:
 
 Inference hooks tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
 
-Satu hook mengatur percakapan di seluruh sesi claude.ai, Cowork, Claude Code, dan Claude Tag di organisasi Claude Enterprise Anda, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
+Satu hook mengatur percakapan di semua produk Claude di organisasi Claude Enterprise Anda, termasuk, namun tidak terbatas pada, claude.ai, Cowork, Claude Code, Claude for Microsoft 365, Claude Tag, dan Claude in Chrome, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
 
-Permintaan yang diatur adalah permintaan inferensi di balik percakapan pengguna. Permintaan tambahan tidak dikirim ke endpoint Anda. Ini termasuk pembuatan judul percakapan dan pengukuran yang dijalankan Anthropic pada balasan Claude setelah Claude Tag mempostingnya di Slack. Prompt sistem dan definisi alat tidak pernah disertakan dalam apa yang dikirim. Dalam mode suara, prompt dan panggilan alat juga dikirim ke endpoint Anda, meskipun sebagian kecil panggilan alat tidak dikirim, jadi jangan mengandalkan inference hooks sebagai satu-satunya kontrol Anda untuk suara. Jika endpoint Anda menolak permintaan dalam mode suara, panggilan suara biasanya berakhir dengan pesan error umum, dan alasan penolakan Anda tidak ditampilkan.
+Permintaan yang diatur adalah permintaan inferensi di balik percakapan atau sesi pengguna. Prompt sistem dan definisi alat tidak pernah disertakan dalam apa yang dikirim. Dalam mode suara, prompt dan panggilan alat juga dikirim ke endpoint Anda, meskipun sebagian kecil panggilan alat tidak dikirim, jadi jangan mengandalkan Inference hooks sebagai satu-satunya kontrol Anda untuk suara. Jika endpoint Anda menolak permintaan dalam mode suara, panggilan suara biasanya berakhir dengan pesan error umum, dan alasan penolakan Anda tidak ditampilkan.
 
 Dengan **Validate tool calls** aktif, event `tool_call` mungkin tidak menyertakan panggilan ke beberapa alat milik claude.ai sendiri, seperti alat yang mencantumkan, mencari, atau menyarankan konektor, plugin, atau skill, menyarankan untuk memulai riset atau mengaktifkan pencarian web, mencari alat lain, beralih ke model yang lebih besar, mengakhiri chat, memberi Claude waktu lokal pengguna, atau membaca chat lama dan memori tersimpan milik pengguna sendiri. Pemanggilan ini beserta hasilnya tetap ada dalam percakapan, sehingga event `prompt` berikutnya dari percakapan tersebut, jika ada, akan menyertakannya.
 
@@ -94,7 +94,7 @@ Beberapa fitur yang dijalankan Anthropic untuk organisasi Anda melakukan pemangg
 
 * **Pemindaian Claude Security (beta).** [Claude Security](https://claude.com/product/claude-security) menjalankan pemindaian yang di-host pada repositori Anda yang terhubung. Sesi yang dibuka pengguna untuk memperbaiki temuan, serta plugin Claude Security di Claude Code, termasuk yang diatur.
 * **Code Review (pratinjau riset).** [Code Review](https://code.claude.com/docs/en/code-review) menjalankan tinjauan pada pull request GitHub Anda. Tinjauan yang dijalankan pengguna secara lokal di Claude Code dengan `/code-review` termasuk yang diatur.
-* **Smart reports (beta).** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda.
+* **Smart reports (beta).** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda. Apa yang diketik atau diunggah pengguna saat membuat laporan termasuk yang diatur.
 
 ***
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 439cc2ff7699712f634a30b9810275a741232fe1c8b8ed1c80014406138f14d5
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: db4455ceb9e24e760b72269fd755a5073bb065268126aef87b8d73cf867c88f8
 ---
 
 ---
@@ -114,7 +114,7 @@ Anda juga dapat mendefinisikan sumber daya lain secara deklaratif sebagai berkas
 
 Sumber daya apa pun kecuali skill dapat ditulis sebagai YAML, JSON, atau Markdown. Dalam Markdown, frontmatter adalah body dan teks prosa mengisi bidang teks dari jenis tersebut: `system` milik agen, `description` milik lingkungan atau penyimpanan memori, pesan pertama milik deployment. Vault tidak memiliki bidang teks, sehingga `ant apply` menolak berkas Markdown vault yang memiliki prosa.
 
-Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut sebagai gantinya. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen lead mencantumkan `./reviewer.md` dalam daftar anggotanya, dan deployment menyebutkan agen, lingkungan, dan penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Proyek ini memiliki enam berkas:
+Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber daya lain, tuliskan path relatif ke berkas sumber daya tersebut sebagai gantinya. Dalam proyek ini, agen reviewer mencantumkan `../skills/pr-summary` di bawah `skills`, agen di `agents/lead.md` mencantumkan `./reviewer.md` di bawah `multiagent.subagents.predefined_agents`, dan deployment menyebutkan agen, lingkungan, dan penyimpanan memorinya melalui path. `ant apply` membuat semuanya sesuai urutan dependensi dan mengisi ID yang sebenarnya. Path di bawah `multiagent.subagents.predefined_agents` atau `multiagent.workflows.predefined_agents` memerlukan CLI versi 1.40.0 atau yang lebih baru. Proyek ini memiliki enam berkas:
 
 <FileExplorer>
   <File filename="agents/reviewer.md">
@@ -138,9 +138,11 @@ Sumber daya saling merujuk melalui path. Di mana pun API mengharapkan ID sumber 
     name: Engineering lead
     model: claude-opus-5-5
     multiagent:
-      type: coordinator
-      agents:
-        - ./reviewer.md
+      type: multiagent_20261001
+      subagents:
+        type: enabled
+        predefined_agents:
+          - ./reviewer.md
     ---
 
     You coordinate engineering work. Delegate code review to the reviewer.

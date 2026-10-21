@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ef3c9aadd5d82e0e7238dbdea57be771609d7d31ee599fb1c8a34b0d7ca4fd9c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 71114f38a585d520bd428330201a252e4f30db07b65fdd0f41079adf64f7d3ea
 ---
 
 ---
@@ -68,15 +68,14 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello!"}]
-    }' | jq 'if .stop_reason == "end_turn" then (.content[] | select(.type == "text") | .text) else . end'
+    }'
   ```
 
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello!"}' \
-    --format json | jq 'if .stop_reason == "end_turn" then (.content[] | select(.type == "text") | .text) else . end'
+    --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -105,9 +104,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
   if (response.stop_reason === "end_turn") {
     // Proses respons lengkap
-    const textBlock = response.content.find(
-      (block): block is Anthropic.TextBlock => block.type === "text"
-    );
+    const textBlock = response.content.find((block) => block.type === "text");
     console.log(textBlock?.text);
   }
   ```
@@ -761,15 +758,14 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
       "model": "claude-opus-5-5",
       "max_tokens": 10,
       "messages": [{"role": "user", "content": "Explain quantum physics"}]
-    }' | jq '.stop_reason'
+    }'
   ```
 
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 10 \
-    --message '{role: user, content: "Explain quantum physics"}' \
-    --format json | jq '.stop_reason'
+    --message '{role: user, content: "Explain quantum physics"}'
   ```
 
   ```python Python
@@ -902,49 +898,14 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 <Accordion title="Blok penggunaan alat yang tidak lengkap">
   Jika respons Claude terpotong karena mencapai batas `max_tokens`, dan respons yang terpotong tersebut berisi blok penggunaan alat yang tidak lengkap, Anda perlu mencoba ulang permintaan dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan penggunaan alat secara lengkap.
 
-  <CodeGroup exclude="shell:cURL">
-    ```bash CLI
-    RESPONSE=$(ant messages create --max-tokens 1024 --format jsonl <<'YAML'
-    model: claude-opus-5-5
-    tools:
-      - name: get_weather
-        description: Get the current weather in a given location
-        input_schema:
-          type: object
-          properties:
-            location:
-              type: string
-          required:
-            - location
-    messages:
-      - role: user
-        content: What is the weather in San Francisco?
-    YAML
-    )
+  <CodeGroup exclude="shell:cURL, shell:CLI">
+    <CodeGroupItem language="cURL">
+      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    </CodeGroupItem>
 
-    # Periksa apakah respons terpotong di tengah penggunaan alat
-    STOP_REASON=$(jq -r '.stop_reason' <<<"$RESPONSE")
-    LAST_TYPE=$(jq -r '.content[-1].type' <<<"$RESPONSE")
-    if [ "$STOP_REASON" = "max_tokens" ] && [ "$LAST_TYPE" = "tool_use" ]; then
-      # Coba lagi dengan max_tokens yang lebih tinggi
-      ant messages create --max-tokens 4096 <<'YAML'
-    model: claude-opus-5-5
-    tools:
-      - name: get_weather
-        description: Get the current weather in a given location
-        input_schema:
-          type: object
-          properties:
-            location:
-              type: string
-          required:
-            - location
-    messages:
-      - role: user
-        content: What is the weather in San Francisco?
-    YAML
-    fi
-    ```
+    <CodeGroupItem language="CLI">
+      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    </CodeGroupItem>
 
     ```python Python
     # Periksa apakah respons terpotong saat penggunaan alat
@@ -1110,7 +1071,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
       "max_tokens": 1024,
       "stop_sequences": ["END", "STOP"],
       "messages": [{"role": "user", "content": "Generate text until you say END"}]
-    }' | jq '{stop_reason, stop_sequence}'
+    }'
   ```
 
   ```bash CLI
@@ -1118,8 +1079,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
     --model claude-opus-5-5 \
     --max-tokens 1024 \
     --stop-sequence END --stop-sequence STOP \
-    --message '{role: user, content: "Generate text until you say END"}' \
-    --format json | jq '{stop_reason, stop_sequence}'
+    --message '{role: user, content: "Generate text until you say END"}'
   ```
 
   ```python Python
@@ -1263,11 +1223,11 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
         }
       }],
       "messages": [{"role": "user", "content": "What is the weather in San Francisco?"}]
-    }' | jq '.stop_reason, (.content[] | select(.type == "tool_use"))'
+    }'
   ```
 
   ```bash CLI
-  ant messages create --format json <<'YAML' | jq '.stop_reason, (.content[] | select(.type == "tool_use"))'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:
@@ -1598,13 +1558,13 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
       "max_tokens": 4096,
       "tools": [{"type": "web_search_20250305", "name": "web_search"}],
       "messages": [{"role": "user", "content": "Search for latest AI news"}]
-    }' | jq '{stop_reason, content}'
+    }'
   ```
 
   ```bash CLI
   # Periksa stop_reason; jika nilainya pause_turn, jalankan ulang dengan respons
   # asisten ditambahkan ke --message.
-  ant messages create --format json <<'YAML' | jq '{stop_reason, content}'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 4096
   tools:
@@ -1816,15 +1776,14 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "[Unsafe request]"}]
-    }' | jq '{stop_reason, stop_details}'
+    }'
   ```
 
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "[Unsafe request]"}' \
-    --format json | jq '{stop_reason, stop_details}'
+    --message '{role: user, content: "[Unsafe request]"}'
   ```
 
   ```python Python
@@ -1973,15 +1932,14 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
       "model": "claude-opus-5-5",
       "max_tokens": 20000,
       "messages": [{"role": "user", "content": "Large input that uses most of context window..."}]
-    }' | jq '.stop_reason'
+    }'
   ```
 
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 20000 \
-    --message '{role: user, content: "Large input that uses most of context window..."}' \
-    --format json | jq '.stop_reason'
+    --message '{role: user, content: "Large input that uses most of context window..."}'
   ```
 
   ```python Python
@@ -2150,9 +2108,7 @@ Biasakan untuk memeriksa `stop_reason` dalam logika penanganan respons Anda:
         return handleRefusal(response);
       default: {
         // Tangani end_turn dan kasus lainnya
-        const textBlock = response.content.find(
-          (block): block is Anthropic.Beta.BetaTextBlock => block.type === "text"
-        );
+        const textBlock = response.content.find((block) => block.type === "text");
         return textBlock?.text ?? "";
       }
     }
@@ -2273,9 +2229,7 @@ Ketika respons terpotong karena batas token atau jendela konteks, tambahkan pemb
 
   ```typescript TypeScript
   function handleTruncatedResponse(response: Anthropic.Beta.BetaMessage): string {
-    const textBlock = response.content.find(
-      (block): block is Anthropic.Beta.BetaTextBlock => block.type === "text"
-    );
+    const textBlock = response.content.find((block) => block.type === "text");
     const text = textBlock?.text ?? "";
 
     if (
@@ -2660,7 +2614,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   ```bash cURL
   # cURL keluar dengan kode non-nol pada error HTTP jika memakai --fail-with-body; periksa
   # $? untuk error dan stop_reason untuk respons yang berhasil.
-  curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+  curl --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -2668,7 +2622,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello!"}]
-    }' | jq '.stop_reason'
+    }'
   ```
 
   ```bash CLI
@@ -2676,8 +2630,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello!"}' \
-    --format json | jq '.stop_reason'
+    --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -2889,11 +2842,10 @@ Saat menggunakan streaming, `stop_reason`:
 
   ```bash CLI
   # stop_reason muncul di event message_delta.
-  ant messages create --stream --format jsonl \
+  ant messages create --stream \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello!"}' |
-    jq -c 'select(.type == "message_delta") | .delta.stop_reason'
+    --message '{role: user, content: "Hello!"}'
   ```
 
   ```python Python
@@ -3293,9 +3245,7 @@ Saat menggunakan streaming, `stop_reason`:
         messages
       });
 
-      const textBlock = response.content.find(
-        (block): block is Anthropic.TextBlock => block.type === "text"
-      );
+      const textBlock = response.content.find((block) => block.type === "text");
       fullResponse += textBlock?.text ?? "";
 
       if (response.stop_reason !== "max_tokens") {
@@ -3551,9 +3501,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
         console.log(`Generated ${tokens} tokens (natural completion)`);
     }
 
-    const textBlock = response.content.find(
-      (block): block is Anthropic.Beta.BetaTextBlock => block.type === "text"
-    );
+    const textBlock = response.content.find((block) => block.type === "text");
     return textBlock?.text ?? "";
   }
   ```

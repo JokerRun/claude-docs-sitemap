@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-api-key
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 1edafc32ecd375255ace97a3204ef2702d54501b3c5e90033957b3dae38adadd
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a23797ef177a88b2c63087be0a764539dc39b06ba6bedf3f4a14bc608e71a254
 ---
 
 ---
@@ -49,7 +49,7 @@ Atur kunci sebagai variabel lingkungan:
 export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirimkan kunci di header `x-api-key`. Jika kunci API Anda berfungsi di beberapa workspace, Anda juga harus mengirimkan header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirimkan kunci sebagai `Authorization: Bearer <key>`. Jika kunci API Anda berfungsi di beberapa workspace, Anda juga harus mengirimkan header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
 
 Untuk membuat permintaan pertama Anda, ikuti [Quickstart](https://platform.claude.com/docs/id/get-started), dan lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) untuk gambaran lengkapnya, termasuk kredensial berumur pendek dengan Workload Identity Federation.
 

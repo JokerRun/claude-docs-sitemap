@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 3f49b408716cb6be76101654c6cc64247eb0e2bdd6801e7f4bd97a522019bcab
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 885808be8dc604529abe98d0987d9441be2910d385976dce360fba8e6877626a
 ---
 
 ---
@@ -45,7 +45,7 @@ Cara termudah untuk memulai adalah dengan caching otomatis:
   ```
 
   ```bash CLI
-  ant messages create --transform usage <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
@@ -310,7 +310,7 @@ Caching otomatis adalah cara termudah untuk mengaktifkan caching prompt. Alih-al
   ```
 
   ```bash CLI
-  ant messages create --transform usage <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   cache_control:
@@ -936,8 +936,7 @@ Tempatkan breakpoint `cache_control` pada blok terakhir yang digunakan bersama d
   ```
 
   ```bash CLI
-  ant messages create \
-    --transform '{stop_reason,content,usage}' --format yaml <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 0
   system:
@@ -1191,7 +1190,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
 
   ```bash CLI
   # Panaskan cache saat aplikasi dimulai atau pada interval terjadwal.
-  ant messages create --transform usage <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 0
   system:
@@ -1207,7 +1206,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
   YAML
 
   # Nantinya, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
-  ant messages create --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   system:
@@ -1301,9 +1300,7 @@ Kirim permintaan pemanasan awal saat aplikasi Anda dimulai (atau pada interval t
 
   // Nantinya, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
   const response = await respond("How do I implement a binary search tree?");
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -1589,7 +1586,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
 
       ```bash CLI
-      ant messages create --transform usage <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 1024
       system:
@@ -1913,7 +1910,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
 
       ```bash CLI
-      ant messages create --transform usage <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 1024
       system:
@@ -2372,7 +2369,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
 
       ```bash CLI
-      ant messages create --transform usage <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 1024
       tools:

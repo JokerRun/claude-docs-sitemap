@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 2208c789f092fd8a8e7dbdc63b154e6e0afdba41dd6d5410bc40345b20ef44ee
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: d9e4379ad99d2fb27a93cf00c0e26bf322dcd2335f4a0b19fa01bec2ab2be07a
 ---
 
 ---
@@ -1283,8 +1283,8 @@ Install both the Anthropic SDK and the MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.73.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.73.0")
+        implementation("com.anthropic:anthropic-java:2.75.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.75.0")
         ```
       </Tab>
 
@@ -1293,12 +1293,12 @@ Install both the Anthropic SDK and the MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         ```
       </Tab>

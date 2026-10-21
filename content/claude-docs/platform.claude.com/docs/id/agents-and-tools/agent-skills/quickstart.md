@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 0dd1e7584828edc94b9058ffc03492eca7b8c6188d1f6171d1d0ad337e19cabe
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 203caccf87eef59386501db660686c7af51f2e006d7050c4ec1c6ef9437e1cd6
 ---
 
 ---
@@ -15,7 +15,7 @@ Tutorial ini menunjukkan kepada Anda cara menggunakan Agent Skills untuk membuat
 
 ## Prasyarat
 
-* Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) atau [ant CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
+* Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console, atau [ant CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
 * Sebuah [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
 * Pemahaman dasar tentang cara membuat permintaan API
 

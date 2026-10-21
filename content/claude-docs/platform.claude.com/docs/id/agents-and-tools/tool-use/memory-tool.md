@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 21a75243006bb9977491c1e7f3063df3820cdc94111fea5867dceb08c1246a04
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 24a4669287350d16a3c1ef709414a93bd8b6582bf6239204002bbec3000ec98e
 ---
 
 ---
@@ -349,6 +349,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
   using Anthropic;
   using Anthropic.Helpers.Beta;
   using Anthropic.Models.Beta.Messages;
+  using Model = Anthropic.Models.Messages.Model;
 
   var client = new AnthropicClient();
 
@@ -358,7 +359,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
   var runner = client.Beta.Messages.ToolRunner(
       new MessageCreateParams
       {
-          Model = Anthropic.Models.Messages.Model.ClaudeOpus5_5,
+          Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages =
           [

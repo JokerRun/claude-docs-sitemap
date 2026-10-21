@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c84ba25346b2ed18dad21b0eee5280dd4393faa397339530f0f707665885936b
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: fe89241066963cd8ebc8fdbe8d281a675620432d70c100e4f4baca9472b3231a
 ---
 
 ---
@@ -497,7 +497,7 @@ Secara default, respons hanya menyertakan override, sehingga apa pun yang tidak 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, dan endpoint ini mengembalikan error 404 untuknya, dengan atau tanpa `include_inherited`; gunakan endpoint organisasi untuk membaca batasnya.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). List Workspaces menyertakan workspace default hanya ketika Anda meneruskan `include_default=true`.
 </Tip>
 
 <CodeGroup>

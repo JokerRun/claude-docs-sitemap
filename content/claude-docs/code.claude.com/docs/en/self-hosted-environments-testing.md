@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-testing
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e77515585d7628809b3317490e92897ae4a278d5e202850825913b5d3ec58af8
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 8bb6b5ff2226ea3f1e06f5bcbe18d7b88d507370fd6d38469b1fb7d5595b41a9
 ---
 
 > ## Documentation Index
@@ -13,9 +13,9 @@ sha256: e77515585d7628809b3317490e92897ae4a278d5e202850825913b5d3ec58af8
 
 > Verify a self-hosted runner image from CI: dispatch a session with the CLI, read Claude's replies through a Stop hook, and script the full loop.
 
-<Note>
-  Self-hosted environments are in public beta on Team and Enterprise plans; [Availability and limitations](/docs/en/self-hosted-environments#availability-and-limitations) covers the enablement path. This page is the CI test recipe; see the [quickstart](/docs/en/self-hosted-environments-quickstart) for setup and [Deploy to production](/docs/en/self-hosted-environments-deploy) for the fleet recipes.
-</Note>
+> [!NOTE]
+>
+> Self-hosted environments are in public beta on Team and Enterprise plans; [Availability and limitations](/docs/en/self-hosted-environments#availability-and-limitations) covers the enablement path. This page is the CI test recipe; see the [quickstart](/docs/en/self-hosted-environments-quickstart) for setup and [Deploy to production](/docs/en/self-hosted-environments-deploy) for the fleet recipes.
 
 In a [self-hosted environment](/docs/en/self-hosted-environments), Claude Code [cloud sessions](/docs/en/claude-code-on-the-web) run on a runner image you build and maintain. Before rolling a new image to your production environment, drive a full session against a test environment from a script: create a session, read Claude's reply, send a follow-up, and read that reply too. This is the shape of a CI smoke test that verifies your runner image, git access, and any custom tools before you promote a change.
 

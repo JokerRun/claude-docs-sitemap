@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9e91fac76d6059d29e69421ec8cff3dd06403a2d5ea22cae3c3eb30b4448de6f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 1754e39d2c2601c82b1f60d484a6916ad8e397d7dbaa57441a0751c4764f8661
 ---
 
 ---
@@ -108,9 +108,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
     --model claude-opus-5-5 \
     --max-tokens 16000 \
     --thinking '{type: adaptive, display: summarized}' \
-    --message '{role: user, content: "What is the greatest common divisor of 1071 and 462?"}' \
-    --transform content \
-    --format yaml
+    --message '{role: user, content: "What is the greatest common divisor of 1071 and 462?"}'
   ```
 
   ```python Python
@@ -316,7 +314,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
   ```
 </CodeGroup>
 
-Menjalankan contoh ini mencetak pemikiran yang diringkas, lalu jawabannya:
+Respons membawa pemikiran yang diringkas, lalu jawabannya:
 
 ```text Output wrap
 Thinking: Use Euclidean algorithm.
@@ -480,7 +478,7 @@ Claude Haiku 5.5 juga memiliki pemikiran yang aktif secara default dan menerima 
 
 Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, dan Claude Mythos Preview menolak `thinking: {type: "disabled"}`. Pemikiran tidak dapat dinonaktifkan pada model-model ini.
 
-Untuk memeriksa apakah suatu model menerima `"disabled"` sebelum Anda mengirim permintaan, baca nilai `capabilities.thinking.types.disabled.supported` dari Models API. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan field tersebut.
+Untuk memeriksa apakah suatu model menerima `"disabled"` atau `"between_tools"` sebelum Anda mengirim permintaan, baca nilai `capabilities.thinking.types.disabled.supported` atau `capabilities.thinking.types.between_tools.supported` dari Models API. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan kedua field tersebut.
 
 Jika model Anda hanya mendukung pemikiran diperpanjang (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models)), konfigurasikan dengan `type: "enabled"` dan nilai `budget_tokens` sebagai gantinya. Halaman [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) membahas konfigurasi tersebut. Dan jika konfigurasi pemikiran apa pun menghasilkan error 400, [Pemecahan masalah pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting) mencocokkan setiap pesan error dengan perbaikannya.
 

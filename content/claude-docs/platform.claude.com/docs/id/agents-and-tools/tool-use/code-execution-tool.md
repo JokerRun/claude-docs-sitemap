@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 170597c668cdd7aa9232b8ee39aea549bdd54a268aef93df565cb020098bdc62
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5e496b2a7376fc1ad05b2c18383218f3135c825ba1dfb579405a621427cf7e3e
 ---
 
 ---
@@ -296,13 +296,13 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
 <CodeGroup>
   ```bash cURL
-  # Pertama, unggah file dan simpan ID file-nya (menggunakan jq)
-  FILE_ID=$(curl --fail-with-body -sS https://api.anthropic.com/v1/files \
+  # Pertama, unggah file
+  curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@data.csv" | jq -r '.id')
+    -F "file=@data.csv"
 
-  # Lalu gunakan file_id dengan eksekusi kode
+  # Lalu gunakan file tersebut dengan eksekusi kode: FILE_ID adalah id dari respons unggahan
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -325,10 +325,10 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
   ```
 
   ```bash CLI
-  # Pertama, unggah file dan simpan ID file-nya
-  FILE_ID=$(ant files upload --file ./data.csv --transform id --raw-output)
+  # Pertama, unggah file
+  ant files upload --file ./data.csv
 
-  # Lalu gunakan file_id dengan eksekusi kode
+  # Lalu gunakan file tersebut dengan eksekusi kode: FILE_ID adalah id dari respons unggahan
   ant messages create <<YAML
   model: claude-opus-5-5
   max_tokens: 4096
@@ -1146,8 +1146,8 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
 <CodeGroup>
   ```bash cURL
-  # Permintaan pertama: Buat file berisi angka acak, lalu ambil ID container (menggunakan jq)
-  CONTAINER_ID=$(curl -s https://api.anthropic.com/v1/messages \
+  # Permintaan pertama: Buat file berisi angka acak
+  curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -1162,9 +1162,10 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
         "type": "code_execution_20250825",
         "name": "code_execution"
       }]
-    }' | jq -r '.container.id')
+    }'
 
   # Permintaan kedua: Gunakan kembali container untuk membaca file tersebut
+  # CONTAINER_ID adalah container.id dari respons pertama
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1186,14 +1187,14 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
   ```bash CLI
   # Permintaan pertama: Buat file berisi angka acak
-  CONTAINER_ID=$(ant messages create \
+  ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 4096 \
     --message '{role: user, content: Write a file with a random number and save it to "/tmp/number.txt"}' \
-    --tool '{type: code_execution_20250825, name: code_execution}' \
-    --transform container.id --raw-output)
+    --tool '{type: code_execution_20250825, name: code_execution}'
 
   # Permintaan kedua: Gunakan kembali container untuk membaca file
+  # CONTAINER_ID adalah container.id dari respons pertama
   ant messages create \
     --container "$CONTAINER_ID" \
     --model claude-opus-5-5 \

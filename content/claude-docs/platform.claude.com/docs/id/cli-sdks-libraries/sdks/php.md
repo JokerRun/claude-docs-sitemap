@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: d213d6937e53cc6f2bd13ec3b3b1d479a9f71deb72e4fb7485d24194c9325de9
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 8ac24a21d6f7f158f823628dc998904857d317948b4b97ac4617021844da9ab3
 ---
 
 ---
@@ -79,8 +79,8 @@ foreach ($stream as $event) {
 Streaming memerlukan klien HTTP yang mengembalikan body respons secara bertahap. Ketika Guzzle adalah klien PSR-18 yang ditemukan, SDK mengonfigurasinya untuk streaming secara otomatis. Dengan klien yang melakukan buffering, loop `foreach` menghasilkan semua event sekaligus ketika respons selesai, bukan secara bertahap; jika Anda mengamati gejala tersebut, instal Guzzle atau sediakan klien PSR-18 yang mendukung streaming melalui opsi permintaan `streamingTransporter`:
 
 ```php
-$client = new \Anthropic\Client(
-  requestOptions: \Anthropic\RequestOptions::with(streamingTransporter: $myStreamingClient),
+$client = new Client(
+  requestOptions: RequestOptions::with(streamingTransporter: $myStreamingClient),
 );
 ```
 

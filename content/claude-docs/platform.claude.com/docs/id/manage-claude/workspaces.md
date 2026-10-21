@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 798370aba0a7a5d963b9ed10b8d73de5e08a1499bee8185b354a4f7a0519cbb3
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: e33e84b1b32149d3bd15d7e9b6f5cd650d59dc0db3a9c475860d327856056392
 ---
 
 ---
@@ -864,12 +864,12 @@ anthropic-workspace-id: wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
 
 Header tidak ada ketika kredensial tidak diselesaikan ke workspace (misalnya, pada permintaan Admin API) atau ketika permintaan gagal sebelum autentikasi selesai, seperti kesalahan 401.
 
-Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari header respons:
+Contoh berikut mengirim permintaan Messages API dan membaca ID workspace dari header respons:
 
 <CodeGroup>
   ```bash cURL
-  # -D - mencetak header respons; -o /dev/null membuang body
-  curl -sS -D - -o /dev/null https://api.anthropic.com/v1/messages \
+  # -i mencetak header respons, termasuk anthropic-workspace-id, sebelum body
+  curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -877,16 +877,16 @@ Contoh berikut mengirim permintaan Messages API dan mencetak ID workspace dari h
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | grep -i '^anthropic-workspace-id'
+    }'
   ```
 
   ```bash CLI
   # --debug mencetak respons HTTP, termasuk Anthropic-Workspace-Id
-  # header, ke stderr; > /dev/null menyembunyikan body JSON di stdout
+  # header, ke stderr
   ant --debug messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello, Claude"}' > /dev/null
+    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
@@ -1032,7 +1032,7 @@ Anda dapat menetapkan batas workspace lebih rendah dari (tetapi tidak lebih ting
 * **Rate limits:** Batasi permintaan per menit, token input per menit, atau token output per menit. Untuk menetapkannya, buka halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace**, dan klik **Edit** di samping model.
 
 <Note>
-  - Anda tidak dapat menetapkan batas pada Default Workspace
+  - Anda tidak dapat menetapkan batas pengeluaran pada Default Workspace
   - Jika tidak ditetapkan, batas workspace sesuai dengan batas organisasi
   - Batas di seluruh organisasi selalu berlaku, bahkan jika batas workspace berjumlah lebih banyak
 </Note>

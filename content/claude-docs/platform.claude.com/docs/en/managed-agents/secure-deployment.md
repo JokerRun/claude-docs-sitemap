@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: ae37ebf21f5e9c37b0101afb1d44c4f06eb70ff6228df7fc649877965d9e6147
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 372332d48ac29122407602b6e8cee184aebbb240268c746c9813de0bdd12c16b
 ---
 
 ---
@@ -34,6 +34,16 @@ This guide lists the settings that limit what an agent on Claude Managed Agents 
 | [Monitor sessions and review retention](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#monitor-sessions-and-review-retention)                                         | Webhooks and session deletion                                                 | An alert when a session goes idle, reaches its budget, or terminates, and a check of why it went idle. Store the events you want to keep in your own logs, and delete sessions you no longer need                              |
 
 [Security risks and sandbox boundaries](https://platform.claude.com/docs/en/managed-agents/secure-deployment-risks) explains why these settings matter and what they do not protect against. To review and monitor sessions, see [Review and monitor agent sessions](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring).
+
+The [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill) that ships with Claude Code has a `managed-agents-secure` command that checks an agent, its environments, and its vaults against this guide:
+
+Let Claude Code check your agent against this guide
+
+```text
+/claude-api managed-agents-secure
+```
+
+The command changes nothing, and its report lists each setting to change with its recommended value and the questions only you can answer. Before you run it, update Claude Code and set up the `ant` CLI for the agent's workspace, as the [CLI quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart) shows.
 
 ## Choose where the agent runs
 

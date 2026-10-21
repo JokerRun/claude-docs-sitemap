@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 60e655acf51696560c3b5528b3d5e138f8eed05c71e7135a705e232baccc288f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 54815505ca3a2745e3229f1e0c38125a2102c3d897b713b3dc4fb56a525dd1fc
 ---
 
 ---
@@ -152,9 +152,9 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```bash cURL
   JWT=$(cat /tmp/gha-jwt)
 
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON
+    --data @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -166,8 +166,6 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   JSON
   )
 
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
-
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
@@ -176,7 +174,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python

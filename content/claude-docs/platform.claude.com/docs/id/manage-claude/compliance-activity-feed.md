@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 87a19297b2db018a29aa79340b3d343150eea9360b5494537ee7816e2539c5cf
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 4edf4bd45a3d7caaead6c749f4ef7cb34b963fa0a6e8404169c6eb0cd516540f
 ---
 
 ---
@@ -106,19 +106,19 @@ Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan 
 </Note>
 
 ```bash cURL
-# Ambil halaman pertama (aktivitas terbaru lebih dulu) dan simpan cursor di akhirnya.
-last_id=$(curl --fail-with-body -sS \
+# Ambil halaman pertama (aktivitas terbaru lebih dulu).
+curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=2" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" | jq -er '.last_id')
+  --header "anthropic-version: 2023-06-01"
 
-# Kirim kembali cursor tanpa diubah untuk mengambil halaman berikutnya (yang lebih lama).
+# LAST_ID adalah last_id dari respons pertama. Kirim kembali tanpa diubah untuk mengambil halaman berikutnya (yang lebih lama).
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=2" \
-  --data-urlencode "after_id=${last_id}"
+  --data-urlencode "after_id=$LAST_ID"
 ```
 
 Loop **backfill** produksi menelusuri aktivitas yang lebih lama dengan menggerakkan iterasi berdasarkan `has_more` dan `last_id`:

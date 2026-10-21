@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 24d4b5bf88abdbebe1b331f1e6c694221a7570b0f372ad441c222396407c9d82
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7576fe0ea821466f9fa92247b72323fce0cbe01d5d5a77c142ebd04d5f7abc0c
 ---
 
 ---
@@ -578,7 +578,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               ))
               .addAssistantMessageOfBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
               .build();
 
@@ -605,11 +605,11 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               ))
               .addAssistantMessageOfBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
               .addAssistantMessageOfBlockParams(response2.content().stream()
                   .map(block -> block.toParam())
-                  .collect(java.util.stream.Collectors.toList()))
+                  .collect(Collectors.toList()))
               .addUserMessage("Analyze the setting in this passage.")
               .build();
 

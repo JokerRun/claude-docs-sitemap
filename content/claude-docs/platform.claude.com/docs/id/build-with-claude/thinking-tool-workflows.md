@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 74432fc84d3a15fe74b00c66d2761281483dbb67d220d51204e31ec6033bd9ec
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 2ee9317e4b91f9fd2b7b5ddbe69de6547e9e420cee23c0ac9e0368304ffe8680
 ---
 
 ---
@@ -62,7 +62,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       ```
 
       ```bash CLI
-      ant messages create --transform content <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 16000
       thinking:
@@ -320,72 +320,14 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
     Setiap contoh adalah skrip mandiri: skrip ini mengulangi permintaan pertama, lalu segera mengirim tindak lanjutnya menggunakan respons yang baru saja diterima.
 
-    <CodeGroup exclude="shell:cURL">
+    <CodeGroup exclude="shell:cURL, shell:CLI">
       <CodeGroupItem language="cURL">
-        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
       </CodeGroupItem>
 
-      ```bash CLI
-      # Giliran pertama: tulis array konten asisten (blok thinking dan tool_use,
-      # dengan signature utuh) ke sebuah file. Mengalirkan teks hasil model
-      # lewat file menjauhkannya dari posisi ekspansi shell di langkah berikutnya.
-      ant messages create --transform content --format jsonl \
-        > assistant_content.json <<'YAML'
-      model: claude-opus-5-5
-      max_tokens: 16000
-      thinking:
-        type: adaptive
-      tools:
-        - name: get_weather
-          description: Get current weather for a location
-          input_schema:
-            type: object
-            properties:
-              location:
-                type: string
-                description: City name
-            required: [location]
-      messages:
-        - role: user
-          content: What's the weather in Paris?
-      YAML
-
-      # Giliran kedua: jq mengisi dua placeholder null dari file yang disimpan,
-      # sehingga blok dikembalikan apa adanya sebagai pesan asisten. Blok thinking
-      # WAJIB menyertai blok tool_use. Delimiter yang dikutip mencegah
-      # shell mengekspansi apa pun di dalam body.
-      jq --slurpfile blocks assistant_content.json '
-        .messages[1].content = $blocks[0] |
-        .messages[2].content[0].tool_use_id =
-          ($blocks[0][] | select(.type == "tool_use") | .id)
-      ' <<'JSON' | ant messages create
-      {
-        "model": "claude-opus-5-5",
-        "max_tokens": 16000,
-        "thinking": {"type": "adaptive"},
-        "tools": [{
-          "name": "get_weather",
-          "description": "Get current weather for a location",
-          "input_schema": {
-            "type": "object",
-            "properties": {
-              "location": {"type": "string", "description": "City name"}
-            },
-            "required": ["location"]
-          }
-        }],
-        "messages": [
-          {"role": "user", "content": "What's the weather in Paris?"},
-          {"role": "assistant", "content": null},
-          {"role": "user", "content": [{
-            "type": "tool_result",
-            "tool_use_id": null,
-            "content": "Current temperature: 88°F"
-          }]}
-        ]
-      }
-      JSON
-      ```
+      <CodeGroupItem language="CLI">
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+      </CodeGroupItem>
 
       ```python Python
 
@@ -465,9 +407,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       });
 
       // Ekstrak blok tool_use untuk mendapatkan ID-nya bagi tool_result
-      const toolUseBlock = response.content.find(
-        (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
-      );
+      const toolUseBlock = response.content.find((block) => block.type === "tool_use");
 
       // Panggil API cuaca Anda yang sebenarnya, di sinilah panggilan API Anda yang sebenarnya ditempatkan
       // Anggap saja inilah yang kita terima kembali

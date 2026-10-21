@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agents
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 67874a4189558b75520e90509f497464c3712059ee156754bbb96bb1efd7a786
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5cd5c68ed28458ff9fc842b5f86837e0c1c140b6d6e5e7806f93245211a654c3
 ---
 
 > ## Documentation Index
@@ -35,11 +35,11 @@ A few other features run Claude without you driving each step, but they solve a 
 
 * A [background bash command](/docs/en/interactive-mode#background-bash-commands) runs one shell command without blocking the conversation. It doesn't spawn an agent.
 * A [forked subagent](/docs/en/sub-agents#fork-the-current-conversation) is a subagent that inherits your full conversation context instead of starting fresh. It's a way to spawn a subagent, not a separate surface. Start one with `/subtask`. Claude also spawns one itself where [fork mode](/docs/en/sub-agents#turn-fork-mode-on-or-off) is on. To copy the whole session into a new [background session](/docs/en/agent-view#from-inside-a-session) that runs alongside it, use `/fork`. With [agent view turned off](/docs/en/agent-view#turn-off-agent-view), the forked-subagent command is `/fork` instead and `/subtask` isn't available.
-* A [routine](/docs/en/routines) runs a session on a schedule in the cloud, not in parallel on your machine.
+* A [cloud scheduled task](/docs/en/routines) runs a session on a schedule in the cloud, not in parallel on your machine.
 
-<Note>
-  Running several sessions or subagents at once multiplies token usage. See [Costs](/docs/en/costs) for usage and rate-limit details.
-</Note>
+> [!NOTE]
+>
+> Running several sessions or subagents at once multiplies token usage. See [Costs](/docs/en/costs) for usage and rate-limit details.
 
 ## Choose an approach
 

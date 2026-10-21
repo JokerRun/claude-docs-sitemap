@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 2a0268dc746c872360cece4f2782deca7df105b09fd2efd6096a802b61292408
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 1ba4002f8406145a003b92de7ac8dd590f750d7c75697daa4ce8e27158f1626b
 ---
 
 ---
@@ -19,11 +19,10 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  ant messages create --stream --format jsonl \
+  ant messages create --stream \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello"}' \
-    | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
+    --message '{role: user, content: "Hello"}'
   ```
 
   ```python Python

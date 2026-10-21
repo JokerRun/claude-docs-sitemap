@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/measure
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: da4e58bf01f5de1d4eeef6c849c3a47354976ab7e10d3336aa5d6e35bdb1b186
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a316ab26489e65eda99f55584fa3fb90bfc84eab6e7b8faa514e682bda7a1603
 ---
 
 > ## Documentation Index
@@ -17,12 +17,12 @@ Every session where a plugin is enabled includes the names and descriptions of i
 
 This page is for plugin authors and maintainers. If you administer Claude Code for an organization, [Measure across a fleet](#measure-across-a-fleet) covers the same questions across every machine.
 
-<Note>
-  These cases are covered on other pages:
-
-  * **Testing how reliably the plugin changes Claude's behavior**: see [Test plugins with evals](/docs/en/plugin-evals)
-  * **Trimming your own session's context**: see [Manage installed plugins](/docs/en/plugins/install#manage-installed-plugins) and the [context window](/docs/en/context-window) page
-</Note>
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **Testing how reliably the plugin changes Claude's behavior**: see [Test plugins with evals](/docs/en/plugin-evals)
+> * **Trimming your own session's context**: see [Manage installed plugins](/docs/en/plugins/install#manage-installed-plugins) and the [context window](/docs/en/context-window) page
 
 Start with [Measure what a plugin costs](#measure-what-a-plugin-costs).
 
@@ -132,9 +132,7 @@ If you administer Claude Code for an organization, you can measure plugin cost a
 * **OpenTelemetry events**: Claude Code exports these to your own backend once you [configure an exporter](/docs/en/monitoring-usage). See [OpenTelemetry events for plugin installs and use](#pick-the-opentelemetry-event-for-each-question).
 * **Analytics API**: served from Anthropic's records, with no exporter needed. See [Query the Analytics API](#query-the-analytics-api).
 
-<h3 id="pick-the-opentelemetry-event-for-each-question">
-  OpenTelemetry events for plugin installs and use
-</h3>
+### OpenTelemetry events for plugin installs and use
 
 These OpenTelemetry events and attributes answer each plugin question from your backend:
 

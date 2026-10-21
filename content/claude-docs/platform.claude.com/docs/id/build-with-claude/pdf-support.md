@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: de3f4780c9f8be17de2fbc4f7148c360f48ef0095419d9c828ac645652a3f0ac
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 942c66c213db8755f944ea5cebb42943834699469593dc7fbfd20c8239ff5fc2
 ---
 
 ---
@@ -140,7 +140,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   ```
 
   ```bash CLI
-  ant messages create --transform content --format yaml <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:
@@ -421,9 +421,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --transform content \
-    --format yaml <<'YAML'
+    --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -723,12 +721,12 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 <CodeGroup>
   ```bash cURL
   # Pertama, unggah PDF Anda ke Files API
-  FILE_ID=$(curl -sS -X POST https://api.anthropic.com/v1/files \
+  curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -F "file=@document.pdf" | jq -r '.id')
+    -F "file=@document.pdf"
 
-  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
+  # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -755,15 +753,11 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   ```bash CLI
   # Pertama, unggah PDF Anda ke Files API
-  FILE_ID=$(ant files upload \
-    --file ./document.pdf \
-    --transform id \
-    --raw-output)
+  ant files upload \
+    --file ./document.pdf
 
-  # Lalu gunakan file_id yang dikembalikan dalam pesan Anda
-  ant messages create \
-    --transform content \
-    --format yaml <<YAML
+  # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
+  ant messages create <<YAML
   model: claude-opus-5-5
   max_tokens: 1024
   messages:
@@ -1078,41 +1072,32 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
 
 <CodeGroup>
   ```bash cURL
-  curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
-  # Buat file permintaan JSON menggunakan konten pdf_base64.txt
-  jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 1024,
-      "messages": [{
-          "role": "user",
-          "content": [{
-              "type": "document",
-              "source": {
-                  "type": "base64",
-                  "media_type": "application/pdf",
-                  "data": $PDF_BASE64
-              },
-              "cache_control": {
-                  "type": "ephemeral"
-              }
-          },
+  curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" |
+    base64 | tr -d '\n' |
+    jq -Rs '{
+      model: "claude-opus-5-5",
+      max_tokens: 1024,
+      messages: [{
+        role: "user",
+        content: [
           {
-              "type": "text",
-              "text": "Which model has the highest human preference win rates across each use-case?"
-          }]
+            type: "document",
+            source: {type: "base64", media_type: "application/pdf", data: .},
+            cache_control: {type: "ephemeral"}
+          },
+          {type: "text", text: "Which model has the highest human preference win rates across each use-case?"}
+        ]
       }]
-  }' > request.json
-
-  # Lalu lakukan panggilan API menggunakan file JSON tersebut
-  curl https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -d @request.json
+    }' |
+    curl https://api.anthropic.com/v1/messages \
+      -H "content-type: application/json" \
+      -H "x-api-key: $ANTHROPIC_API_KEY" \
+      -H "anthropic-version: 2023-06-01" \
+      -d @-
   ```
 
   ```bash CLI
-  ant messages create --transform content --format yaml <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:

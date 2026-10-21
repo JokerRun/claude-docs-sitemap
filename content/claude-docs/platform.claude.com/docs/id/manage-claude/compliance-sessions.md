@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 49a73d04fd09a9d7c2033e00830392c3200eceeaf654525b9df530567c9425af
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a4671c5e1adf206c0e4f511929012d3ef87863395439a69c36d21db674d07634
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Daftarkan sesi yang dijalankan pengguna Anda di aplikasi dan agen C
 ---
 
 <Note>
-  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint sesi lokal dan sesi jarak jauh sudah stabil untuk sesi Cowork, Claude Code, dan Claude for Microsoft 365; cakupan untuk sesi Claude Science dan Claude in Chrome masih dalam tahap beta. Endpoint ini bekerja dengan Compliance Access Key dan "scope" (cakupan) `read:compliance_user_data` yang sama seperti [endpoint chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data); tidak diperlukan kunci, cakupan, pengaturan, atau pembaruan klien baru. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+  Endpoint di halaman ini hanya tersedia untuk organisasi Claude Enterprise. Endpoint sesi lokal dan sesi jarak jauh sudah stabil untuk sesi Cowork, Claude Code, dan Claude for Microsoft 365. Cakupan untuk sesi di Claude Science, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome masih dalam tahap beta. Endpoint ini bekerja dengan Compliance Access Key dan "scope" (cakupan) `read:compliance_user_data` yang sama seperti [endpoint chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data); tidak diperlukan kunci, cakupan, pengaturan, atau pembaruan klien baru. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
@@ -21,20 +21,23 @@ description: Daftarkan sesi yang dijalankan pengguna Anda di aplikasi dan agen C
   **Prasyarat:** Tidak ada untuk mencantumkan sesi di seluruh organisasi. Untuk memfilter daftar sesi jarak jauh (sesi di cloud) ke pengguna tertentu, Anda memerlukan ID pengguna dari [Daftar pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users); daftar sesi lokal tidak memiliki filter pengguna.
 </Check>
 
-Endpoint di halaman ini menyediakan transkrip sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude (saat ini: Cowork, Claude Code, Claude Science, Claude for Microsoft 365, dan Claude in Chrome) dari organisasi Claude Enterprise Anda kepada peninjau kepatuhan. Setiap sesi adalah satu percakapan dengan Claude; transkripnya adalah urutan prompt pengguna, respons asisten, serta panggilan alat dan hasilnya dalam percakapan tersebut. Endpoint ini mendukung ekspor "electronic discovery" (penemuan elektronik), atau eDiscovery, dan penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP.
+Endpoint di halaman ini menyediakan transkrip sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude (saat ini: Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome) dari organisasi Claude Enterprise Anda kepada peninjau kepatuhan. Setiap sesi adalah satu percakapan dengan Claude; transkripnya adalah urutan prompt pengguna, respons asisten, serta panggilan alat dan hasilnya dalam percakapan tersebut. Endpoint ini mendukung ekspor "electronic discovery" (penemuan elektronik), atau eDiscovery, dan penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP.
 
 Compliance API mengelompokkan sesi ke dalam dua keluarga endpoint berdasarkan tempat sesi tersebut berjalan: endpoint sesi lokal untuk sesi di mesin pengguna, dan endpoint sesi jarak jauh untuk sesi yang berjalan di cloud dalam lingkungan yang dikelola Anthropic. Kedua keluarga bersifat hanya-baca, dan keduanya tidak tersedia untuk kunci Admin API (`sk-ant-admin01-...`): panggilan yang diautentikasi dengan kunci Admin API mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 
 Tabel berikut memetakan setiap produk, beserta tempat produk tersebut berjalan, ke keluarga endpoint yang mengembalikan sesinya dan nilai `product_surface` yang mengidentifikasinya dalam respons. Produk ditambahkan ke tabel ini seiring perluasan cakupan.
 
-| Produk dan tempat berjalannya                                                                                                            | Keluarga endpoint                                                | `product_surface`                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Cowork di Claude Desktop, berjalan di mesin pengguna                                                                                     | Endpoint sesi lokal (`/v1/compliance/apps/sessions/local`)       | `cowork`                                                                                                                                                       |
-| Claude Code di terminal, di Claude Desktop, atau di ekstensi IDE, berjalan di mesin pengguna                                             | Endpoint sesi lokal                                              | `claude_code`                                                                                                                                                  |
-| Aplikasi desktop Claude Science, berjalan di mesin pengguna                                                                              | Endpoint sesi lokal                                              | `claude_science`                                                                                                                                               |
-| Claude for Microsoft 365 (add-in Claude untuk Excel, PowerPoint, Word, dan Outlook), berjalan di aplikasi desktop atau web Microsoft 365 | Endpoint sesi lokal                                              | `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, atau `office_agents/outlook` (`office_agents` jika aplikasinya tidak teridentifikasi) |
-| Claude in Chrome (chat bawaan ekstensi browser), berjalan di mesin pengguna                                                              | Endpoint sesi lokal                                              | `claude_in_chrome`                                                                                                                                             |
-| Sesi Cowork yang dimulai di claude.ai web atau seluler, berjalan di cloud dalam lingkungan yang dikelola Anthropic                       | Endpoint sesi jarak jauh (`/v1/compliance/apps/sessions/remote`) | `cowork_remote`                                                                                                                                                |
+| Produk dan tempat berjalannya                                                                                                            | Keluarga endpoint                                                | `product_surface`                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Cowork di Claude Desktop, berjalan di mesin pengguna                                                                                     | Endpoint sesi lokal (`/v1/compliance/apps/sessions/local`)       | `cowork`                                                                                              |
+| Claude Code di terminal, di Claude Desktop, atau di ekstensi IDE, berjalan di mesin pengguna                                             | Endpoint sesi lokal                                              | `claude_code`                                                                                         |
+| Aplikasi desktop Claude Science, berjalan di mesin pengguna                                                                              | Endpoint sesi lokal                                              | `claude_science`                                                                                      |
+| Claude for Microsoft 365 (add-in Claude untuk Excel, PowerPoint, Word, dan Outlook), berjalan di aplikasi desktop atau web Microsoft 365 | Endpoint sesi lokal                                              | `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, atau `office_agents/outlook` |
+| Add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, berjalan di aplikasi Google tersebut                                  | Endpoint sesi lokal                                              | `office_agents/google_docs`, `office_agents/google_sheets`, atau `office_agents/google_slides`        |
+| Claude in Chrome (chat bawaan ekstensi browser), berjalan di mesin pengguna                                                              | Endpoint sesi lokal                                              | `claude_in_chrome`                                                                                    |
+| Sesi Cowork yang dimulai di claude.ai web atau seluler, berjalan di cloud dalam lingkungan yang dikelola Anthropic                       | Endpoint sesi jarak jauh (`/v1/compliance/apps/sessions/remote`) | `cowork_remote`                                                                                       |
+
+`office_agents` saja tidak menunjukkan dari aplikasi mana sesi berasal, dan sesi tersebut dapat berasal dari Claude for Microsoft 365 atau add-in Google. Lihat deskripsi `product_surface` di bagian [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions).
 
 Perekaman sesi lokal terkait dengan diaktifkannya Compliance API untuk organisasi Anda dan berlaku selama pengguna masuk dengan akun Claude Enterprise mereka. Endpoint sesi tidak mengembalikan hal-hal berikut:
 
@@ -62,7 +65,7 @@ Anthropic merekomendasikan Compliance API untuk mengambil konten sesi. Tabel ber
 
 ## Sesi di mesin pengguna (sesi lokal)
 
-Sesi lokal berjalan di mesin pengguna selama mereka masuk dengan akun Claude Enterprise mereka: saat ini, Cowork di Claude Desktop, Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), aplikasi desktop Claude Science, Claude for Microsoft 365 (di Excel, PowerPoint, Word, dan Outlook), dan ekstensi browser Claude in Chrome.
+Sesi lokal berjalan di mesin pengguna selama mereka masuk dengan akun Claude Enterprise mereka: saat ini, Cowork di Claude Desktop, Claude Code (di terminal, di Claude Desktop, atau di ekstensi IDE), aplikasi desktop Claude Science, Claude for Microsoft 365 (di Excel, PowerPoint, Word, dan Outlook), add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta ekstensi browser Claude in Chrome.
 
 Compliance API menyediakan sesi lokal melalui tiga endpoint: `GET /v1/compliance/apps/sessions/local` mencantumkan metadata sesi, `GET /v1/compliance/apps/sessions/local/{session_id}` mengambil metadata satu sesi, dan `GET /v1/compliance/apps/sessions/local/{session_id}/messages` mengembalikan transkrip satu sesi. Ketiganya memerlukan cakupan `read:compliance_user_data` dan hanya dihitung terhadap "rate limit" (batas laju) Compliance API bersama; ketiganya tidak dikenai anggaran permintaan kedua yang berlaku untuk endpoint sesi jarak jauh. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests). Jika sesi lokal tidak tersedia untuk organisasi induk Anda, ketiga endpoint mengembalikan 404 dengan pesan `Local sessions are not available.` (lihat [Sesi lokal tidak ditemukan](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-session-not-found)); selama daftar sesi atau konten yang direkam untuk sementara tidak tersedia, endpoint tersebut mengembalikan 503 (lihat [Sesi lokal untuk sementara tidak tersedia](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable)).
 
@@ -119,7 +122,7 @@ Hasil diurutkan dalam urutan kronologis terbalik (terbaru lebih dulu) berdasarka
 
 Dalam setiap objek sesi, `user.id` selalu diisi dan tetap ada meskipun akun dihapus; `user.email_address` bernilai `null` jika akun pengguna telah dihapus atau pengguna tidak lagi menjadi anggota organisasi yang dapat dibaca oleh kunci Anda. `workspace_id` bernilai `null` jika sesi tidak dikaitkan dengan workspace. Satu sesi lokal berkorespondensi dengan satu ID sesi klien: memulai percakapan baru di klien, atau menghapus konteksnya, akan memulai catatan sesi baru. Untuk Claude Science, daftar juga dapat menyertakan sesi terpisah untuk pekerjaan latar belakang aplikasi itu sendiri (misalnya, memberi nama percakapan; pada versi aplikasi yang lebih baru juga jalur peninjau dan delegasinya), dan pada versi aplikasi yang lebih lama sebagian pekerjaan latar belakang tersebut muncul sebagai pesan tambahan di dalam transkrip percakapan itu sendiri. Percakapan Claude Science yang berlanjut melewati beberapa pembaruan aplikasi muncul sebagai dua sesi. Perilaku ini memang diharapkan. Perlakukan nilai `id` sebagai string buram; formatnya dapat berubah tanpa pemberitahuan.
 
-Untuk Claude for Microsoft 365, menghapus percakapan di add-in hanya terjadi di klien, sehingga tidak tercermin di API: sesi lokal tidak memiliki field `deleted_at`, dan sesi tetap tercantum hingga retensi menghapusnya.
+Untuk Claude for Microsoft 365 dan add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, menghapus percakapan di add-in hanya terjadi di klien, sehingga tidak tercermin di API: sesi lokal tidak memiliki field `deleted_at`, dan sesi tetap tercantum hingga retensi menghapusnya.
 
 Sesi lokal memiliki `updated_at` tetapi tidak memiliki `status`: sesi lokal tidak memiliki status siklus hidup di sisi server, dan visibilitasnya diatur oleh retensi. Sesi lokal direkam sebagai rangkaian panggilan Claude API (panggilan inferensi) yang dilakukan klien selama sesi, dan retensi berlaku untuk setiap panggilan yang direkam secara individual. `created_at` adalah timestamp panggilan tertua yang dipertahankan dalam sesi dan `updated_at` adalah timestamp panggilan terakhirnya, keduanya dalam UTC. Saat panggilan yang lebih lama melewati periode retensi, `created_at` bergeser maju sesuai dengan itu, dan setelah setiap panggilan dalam sesi melewati retensi, sesi tersebut tidak lagi dikembalikan; `updated_at` mengikuti panggilan terbaru dan tidak terpengaruh hingga saat itu. Karena `created_at` dapat bergeser di antara eksekusi, lakukan deduplikasi berdasarkan `id` saat Anda menelusuri ulang daftar dari waktu ke waktu. Agar transkrip tetap mutakhir saat sesi mendapatkan pesan baru, lakukan polling dengan filter `updated_at.gte`, dengan jendela berturut-turut yang saling tumpang tindih. Pada endpoint list, `updated_at` adalah batas bawah: untuk sesi yang masih aktif pada batas halaman atau pada ujung atas jendela `created_at`, nilainya dapat sesaat tertinggal dari aktivitas terakhir sesi yang sebenarnya, dan panggilan baru baru dapat dikueri setelah penundaan pemrosesan singkat yang disebutkan sebelumnya. Karena keterlambatan tersebut, tetapkan `updated_at.gte` setiap eksekusi beberapa menit sebelum waktu mulai eksekusi sebelumnya, bukan tepat pada waktu eksekusi sebelumnya. Batas yang ditetapkan tepat pada waktu sebelumnya akan secara diam-diam dan permanen melewatkan sesi yang panggilan terakhirnya masih diindeks pada saat itu, karena setelah batas bergeser melewati panggilan tersebut, tidak ada eksekusi berikutnya yang mengembalikannya. Lakukan deduplikasi sesi yang dikembalikan berdasarkan `id`, ambil ulang transkripnya, dan lakukan deduplikasi pesan berdasarkan `id`. Mengambil sesi, atau pesannya, selalu mencerminkan panggilan terbaru yang dipertahankan secara tepat, sehingga putaran rekonsiliasi berkala atas jendela yang lebih lama merupakan alternatif yang lebih menyeluruh dibandingkan memperlebar tumpang tindih.
 
@@ -129,7 +132,21 @@ Konten sesi lokal yang direkam disimpan selama 6 tahun sejak perekaman secara de
 
 Untuk mengambil metadata satu sesi secara langsung, berikan ID-nya ke `GET /v1/compliance/apps/sessions/local/{session_id}`. Responsnya adalah objek sesi yang sama dengan yang dikembalikan endpoint list, tanpa envelope dan tanpa konten transkrip. ID sesi yang formatnya salah mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request). Satu [404 Not Found](https://platform.claude.com/docs/id/manage-claude/compliance-errors#404-not-found) mencakup empat kasus yang tidak dibedakan oleh respons: sesi tidak berada di organisasi yang dapat dibaca oleh kunci Anda (termasuk sesi di bawah organisasi induk lain), sesi tidak ada, retensi data nol berlaku untuk sesi tersebut, atau setiap panggilan di dalamnya telah melewati retensi.
 
-`product_surface` (string atau `null`) mengidentifikasi produk yang membuat sesi: `cowork` (Cowork di Claude Desktop pada mesin pengguna), `claude_code` (Claude Code), `claude_science` (Claude Science), `claude_in_chrome` (chat bawaan ekstensi browser Claude in Chrome), atau salah satu dari `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, dan `office_agents/outlook` (Claude for Microsoft 365, per aplikasi; `office_agents` saja jika aplikasinya tidak teridentifikasi). Nilai baru muncul seiring perluasan cakupan.
+`product_surface` (string atau `null`) memberi tahu Anda dari produk mana sesi berasal. Nilainya `null` jika produk tidak tercatat. Jika tidak, nilainya adalah salah satu dari nilai berikut:
+
+* `cowork`: Cowork di Claude Desktop pada mesin pengguna
+* `claude_code`: Claude Code
+* `claude_science`: Claude Science
+* `claude_in_chrome`: chat bawaan di ekstensi browser Claude in Chrome
+* `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, atau `office_agents/outlook`: Claude for Microsoft 365 di Excel, PowerPoint, Word, atau Outlook
+* `office_agents/google_docs`, `office_agents/google_sheets`, atau `office_agents/google_slides`: add-in Claude untuk Google Docs, Google Sheets, atau Google Slides
+* `office_agents`: Claude for Microsoft 365 atau salah satu add-in Google, jika aplikasinya tidak tercatat
+
+Jika sebuah sesi menampilkan `office_agents` saja, tidak ada hal lain dalam respons yang memberi tahu Anda dari produk mana sesi tersebut berasal. Jangan berasumsi bahwa sesi tersebut berasal dari Claude for Microsoft 365.
+
+Nilai ini berasal dari aktivitas terbaru sesi, sehingga dapat berubah seiring waktu. API mulai mencatat nilai Google pada 5 Oktober 2026. Sesi add-in Google yang aktivitas terbarunya terjadi pada atau sebelum tanggal tersebut dapat menampilkan `office_agents`. Jika pengguna bekerja lagi di sesi tersebut, nilainya beralih ke nilai Google yang sesuai.
+
+Nilai baru muncul seiring endpoint ini mencakup lebih banyak produk.
 
 <Note>
   **Bangun handler yang kompatibel ke depan.** Teruskan nilai `product_surface` yang tidak dikenali, dan abaikan field yang tidak diharapkan oleh handler Anda, agar integrasi Anda tetap berfungsi saat permukaan produk baru dirilis.
@@ -148,10 +165,8 @@ Endpoint messages mengembalikan transkrip sesi, yang direkonstruksi dari panggil
 File instruksi proyek seperti `CLAUDE.md` muncul sebagai konten peran pengguna biasa. Konten skill muncul ketika klien mengirimkannya sebagai konten pesan dan tidak dibedakan dari teks pengguna lainnya. Untuk ringkasan cakupan, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention); untuk tabel yang membandingkan sesi lokal dengan sesi jarak jauh dan logging OpenTelemetry, lihat pendahuluan halaman ini.
 
 ```bash cURL
-session_id="clls_01HxKpLmNoPqRsTuVwXyZaBc"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/sessions/local/$session_id/messages" \
+  "https://api.anthropic.com/v1/compliance/apps/sessions/local/clls_01HxKpLmNoPqRsTuVwXyZaBc/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```
@@ -367,10 +382,8 @@ Untuk mengambil chat dalam pengalaman Claude terpadu, termasuk bagian yang berja
 Endpoint messages mengembalikan transkrip sesi: prompt pengguna, respons asisten, serta panggilan alat dan hasilnya. Blok thinking dan gambar tidak disertakan. Untuk ringkasan cakupan, lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention); untuk tabel yang membandingkan sesi jarak jauh dengan sesi lokal dan logging OpenTelemetry Cowork, lihat pengantar halaman ini.
 
 ```bash cURL
-session_id="cse_01WpQrStUvXyZaBcDeFgHjK6"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/sessions/remote/$session_id/messages" \
+  "https://api.anthropic.com/v1/compliance/apps/sessions/remote/cse_01WpQrStUvXyZaBcDeFgHjK6/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```

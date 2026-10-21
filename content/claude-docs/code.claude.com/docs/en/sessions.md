@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 6ca0bc2e1e6d7a9ab9ffe74264a63948d25420a65757b0889b8890f53547b6b5
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6939e201a8768acd00e326210f3a35a4f61c0d23eaaabf7546458aff92abae1b
 ---
 
 > ## Documentation Index
@@ -30,9 +30,7 @@ Sessions are saved continuously to [local transcript files](#export-and-locate-s
 | `claude --from-pr <number>` | Opens the session picker filtered to sessions linked to that pull request |
 | `/resume` | Switches to a different session from inside an active session |
 
-<h3 id="resume-a-running-background-session">
-  Resume a running background session
-</h3>
+### Resume a running background session
 
 When the conversation you resume with `claude --resume` or `/resume` belongs to a [background session](/docs/en/agent-view) that is still running, Claude Code opens the running session itself. With `--bg` on the command line, the resume is a [background dispatch](/docs/en/agent-view#from-your-shell) instead. Before v2.1.285, Claude Code refused and told you to open the session with `claude attach <id>`, or to stop it with `claude stop <id>` first.
 
@@ -60,7 +58,7 @@ When Claude Code loads a conversation from its transcript, the resumed session r
 * Agent: a session started with [`--agent`](/docs/en/sub-agents#invoke-subagents-explicitly) or the `agent` setting continues as that agent, keeping its tool restrictions and model. Pass `--agent` when resuming to pick a different one; for the system prompt in either case, see [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations). Claude Code looks for the agent in two places: the session's original directory, provided you have [trusted that workspace](/docs/en/permissions#project-allow-rules-and-workspace-trust), and then the directory you resume from, so a project-scoped agent still loads when you resume from another directory. If Claude Code doesn't find the agent in either place, the session resumes with the default tools and shows a [warning naming the agent](/docs/en/errors#session-agent-no-longer-available).
 * Permission mode: if you resume from a terminal with `claude --continue`, `claude --resume <session-id>`, or `claude --resume <name>` when the name matches one session, without `-p`, Claude Code restores the permission mode the session was in, except in the cases in [permission mode on resume](#permission-mode-on-resume), which also covers the session picker, `/resume`, and resuming with `claude -p`. Pass `--permission-mode` or `--dangerously-skip-permissions` to override the restored mode.
 * Active goal: a [goal](/docs/en/goal#resume-with-an-active-goal) that was still active when the session ended carries over; its turn count, timer, and token-spend baseline reset.
-* Scheduled tasks: [tasks that haven't expired](/docs/en/scheduled-tasks#limitations) are restored. Background Bash and monitor tasks aren't.
+* Session-scoped scheduled tasks: [tasks that haven't expired](/docs/en/scheduled-tasks#limitations) are restored. Background Bash and monitor tasks aren't.
 * Background work: a [background subagent](/docs/en/sub-agents#run-subagents-in-foreground-or-background), background Bash command, or [workflow](/docs/en/workflows) that ended with the previous process shows up in the resumed transcript as a note that it didn't finish. Claude Code doesn't start a turn from those notes; Claude reads them with your next prompt.
 
 Not every configuration flag from the original launch is restored. If the session depended on `--mcp-config`, `--settings`, `--plugin-dir`, `--fallback-model`, or directories added with `--add-dir`, pass them again when you resume; directories added mid-session with `/add-dir` aren't restored either, though the session picker still uses them to locate the session. The standard settings files, such as `settings.json` and `settings.local.json`, are re-read at launch, so configuration that lives in them doesn't need to be passed again. For `--system-prompt` and `--append-system-prompt`, see [System prompt flags in resumed conversations](/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations).
@@ -89,8 +87,6 @@ Restoring plan mode on the non-interactive and VS Code paths requires Claude Cod
 | `plan` | Non-interactive, under the [conditions below](#resume-in-plan-mode-with-p) | Plan mode |
 | Any mode | Non-interactive, in any other case | The permission mode a new `claude -p` run would start in |
 | `plan` | VS Code | Plan mode, with [the exceptions on the VS Code page](/docs/en/vs-code#resume-past-conversations) |
-
-<a id="resume-in-plan-mode-with-p" />
 
 ##### Resume in plan mode with `-p`
 

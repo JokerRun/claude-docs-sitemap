@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4ff2c16c7fc4e02a4bca55d755b602c9747cc3797b8766a3435b3cc96297e229
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5f7bbb108839da421f4cf25c6f5dd63dffacbd887dc9f8be01490d45353f8152
 ---
 
 ---
@@ -1836,10 +1836,8 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   ```
 
   ```bash CLI
-  ORIGINAL=$(ant beta:messages count-tokens \
-    --beta context-management-2025-06-27 \
-    --transform context_management.original_input_tokens \
-    --raw-output <<'YAML'
+  ant beta:messages count-tokens \
+    --beta context-management-2025-06-27 <<'YAML'
   model: claude-opus-5-5
   messages:
     - role: user
@@ -1854,30 +1852,6 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
           type: tool_uses
           value: 5
   YAML
-  )
-
-  INPUT_TOKENS=$(ant beta:messages count-tokens \
-    --beta context-management-2025-06-27 \
-    --transform input_tokens --raw-output <<'YAML'
-  model: claude-opus-5-5
-  messages:
-    - role: user
-      content: Continue our conversation...
-  context_management:
-    edits:
-      - type: clear_tool_uses_20250919
-        trigger:
-          type: input_tokens
-          value: 30000
-        keep:
-          type: tool_uses
-          value: 5
-  YAML
-  )
-
-  printf 'Original tokens: %s\n' "$ORIGINAL"
-  printf 'After clearing: %s\n' "$INPUT_TOKENS"
-  printf 'Savings: %s tokens\n' "$((ORIGINAL - INPUT_TOKENS))"
   ```
 
   ```python Python

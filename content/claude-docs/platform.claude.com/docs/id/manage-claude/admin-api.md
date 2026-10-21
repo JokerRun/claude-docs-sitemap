@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 27309ba535f942fe3c96e792bdc1bb0c572a732107205c8844cc7694c3b667a2
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9fff608d88cdc65670a4e8df00959a8256cae48fa0d1de161e1932a83018c1b6
 ---
 
 ---
@@ -11,33 +11,31 @@ url: https://platform.claude.com/docs/id/manage-claude/admin-api
 description: Kelola anggota organisasi, workspace, undangan, dan kunci API secara terprogram dengan Admin API, menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci personal maupun kunci service account.
 ---
 
-<Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
-</Tip>
-
 [Admin API](https://platform.claude.com/docs/id/api/organization) memungkinkan Anda mengelola anggota, workspace, undangan, dan kunci API organisasi Anda secara terprogram, alih-alih secara manual di [Claude Console](https://platform.claude.com/).
 
-<Check>
-  **Admin API memerlukan akses khusus**
+## Ketersediaan
 
-  Admin API menerima tiga jenis kredensial:
+Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
-  * **Kunci Admin API** (diawali dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key`. Hanya anggota organisasi dengan peran admin yang dapat membuatnya. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys).
-  * **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
-  * **Kunci personal** atau **kunci service account** yang tidak dibatasi pada workspace tertentu, dikirim dalam header `x-api-key`. Kunci tersebut memiliki izin yang sama dengan akun yang tertaut. Lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
-</Check>
+Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
-<Note>
-  **Claude Enterprise:** Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
-</Note>
+Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), hanya endpoint Admin API berikut yang tersedia:
 
-<Note>
-  **Claude Platform on AWS:** Hanya endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint external key (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws); tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace), dan [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations) yang tersedia di Claude Platform on AWS. Anggota organisasi, anggota workspace, undangan, kunci API, serta laporan penggunaan, biaya, dan batas laju tidak tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
-</Note>
+* Endpoint workspace: create, get, list, update, dan archive pada `/v1/organizations/workspaces`.
+* Endpoint external key, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws): register, get, list, update, dan delete pada `/v1/organizations/external_keys`. Tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace.
+* [Endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations).
+
+Anggota organisasi, anggota workspace, undangan, kunci API, serta laporan penggunaan, biaya, dan batas laju tidak tersedia di Claude Platform on AWS.
 
 ## Autentikasi
 
-Lakukan autentikasi dengan salah satu dari tiga kredensial tersebut. Kunci Admin API mencakup sebagian besar endpoint. Endpoint service-account, federation-issuer, dan federation-rule hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci service account dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
+Admin API menerima salah satu dari tiga kredensial berikut:
+
+* **Kunci Admin API** (diawali dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key`. Hanya anggota organisasi dengan peran admin yang dapat membuatnya. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys).
+* **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
+* **Kunci personal** atau **kunci service account** yang tidak dibatasi pada workspace tertentu, dikirim dalam header `x-api-key`. Kunci tersebut memiliki izin yang sama dengan akun yang tertaut. Lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
+
+Kunci Admin API mencakup sebagian besar endpoint. Endpoint service-account, federation-issuer, dan federation-rule hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci service account dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
 
 SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby mengekspos endpoint di halaman ini di bawah `client.organization` (csharp, go: `client.Organization`; java: `client.organization()`; php: `$client->organization`), dan CLI `ant` di bawah `ant organization`. Contoh di halaman ini menggunakan klien default, yang membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token bearer OAuth dari `ANTHROPIC_AUTH_TOKEN`. Metode list SDK di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengambil halaman berikutnya sesuai kebutuhan, sehingga `limit` menetapkan ukuran halaman, bukan total. Contoh PHP, Ruby, dan curl mengembalikan satu halaman. Di CLI, `--limit` membatasi hasil pada daftar anggota, undangan, workspace, anggota workspace, dan kunci API. Untuk parameter dan respons setiap endpoint, lihat [referensi Admin API](https://platform.claude.com/docs/id/api/organization).
 

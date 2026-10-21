@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6e2b52abe57a1dc3d0c754c76b9e645758dc70f86572a6049de7ebb6ea561937
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 852def737ae3e746f2b90f3ccd52a172d32fd282572865cf740b0fa3f2da5965
 ---
 
 ---
@@ -61,20 +61,20 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.73.0")
-      implementation("com.anthropic:anthropic-java-bedrock:2.73.0")
+      implementation("com.anthropic:anthropic-java:2.75.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.75.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.73.0</version>
+          <version>2.75.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.73.0</version>
+          <version>2.75.0</version>
       </dependency>
       ```
 
@@ -737,7 +737,7 @@ Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar f
 * [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
 * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
-* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), untuk model-model dalam catatan Amazon Bedrock di bagian [Kompatibilitas](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#compatibility)
+* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 

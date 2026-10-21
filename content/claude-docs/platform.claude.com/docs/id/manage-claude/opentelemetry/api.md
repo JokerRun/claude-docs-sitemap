@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 20501f8fa1d7c70525c96cae145bd77accb0a070fa9b22176170e05e61fb22c6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5cce13d10171da2796fef390b225c3736a70186e2828e324d61c6edee6326597
 ---
 
 ---
@@ -66,7 +66,7 @@ API memancarkan span untuk permintaan Messages API dan sesi Managed Agents Anda.
 
 ### Admin API dan CLI
 
-Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) sebagai pengganti Console. Masuk ke CLI sebagai admin, atau gunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) di `ANTHROPIC_API_KEY`. Di Claude Platform on AWS, kirim permintaan ke `https://aws-external-anthropic.{region}.api.aws` sebagai gantinya, ditandatangani dengan kredensial AWS Anda seperti di [Membuat permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#making-requests). Di sana, [kebijakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions) Anda menentukan siapa yang dapat mengelola tujuan. Sebuah permintaan hanya dapat menyertakan workspace dari akun AWS Anda di Region tersebut.
+Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) sebagai pengganti Console. Masuk ke CLI sebagai admin, atau gunakan [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lain, seperti [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) atau kunci service account di `ANTHROPIC_API_KEY`. Di Claude Platform on AWS, kirim permintaan ke `https://aws-external-anthropic.{region}.api.aws` sebagai gantinya, ditandatangani dengan kredensial AWS Anda seperti di [Membuat permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#making-requests). Di sana, [kebijakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions) Anda menentukan siapa yang dapat mengelola tujuan. Sebuah permintaan hanya dapat menyertakan workspace dari akun AWS Anda di Region tersebut.
 
 <CodeGroup>
   ```bash CLI
@@ -228,7 +228,7 @@ Tujuan menerima span dari workspace yang dicakupnya. Pilih workspace tersebut sa
 * **Selected:** Hanya workspace yang Anda pilih.
 * **All except:** Seperti **All**, tetapi tanpa workspace yang Anda pilih.
 
-Untuk **Selected** atau **All except**, pilih workspace di kotak pencarian yang muncul di bawah opsi. Untuk mengubah workspace suatu tujuan nanti, buka menu **More actions** miliknya di [halaman pengaturan OpenTelemetry](https://platform.claude.com/settings/telemetry-destinations) saat filter **Workspace** menampilkan **All**. Klik **Edit**, lalu pilih opsi **Workspaces** lain atau ubah workspace di kotak pencarian.
+Untuk **Selected** atau **All except**, pilih workspace di kotak pencarian yang muncul di bawah opsi. Untuk mengubah workspace suatu tujuan nanti, buka menu **More actions** miliknya di [halaman pengaturan OpenTelemetry](https://platform.claude.com/settings/telemetry-destinations) di Console saat filter **Workspace** menampilkan **All**. Klik **Edit**, lalu pilih opsi **Workspaces** lain atau ubah workspace di kotak pencarian.
 
 Jika Anda memiliki peran developer di organisasi dan peran Workspace Admin di sebuah workspace, Anda dapat menambahkan workspace tersebut ke tujuan **Selected** atau menghapusnya dari tujuan itu. Atur filter **Workspace** ke workspace tersebut, lalu buka menu **More actions** tujuan. Di Claude Platform on AWS, Console tidak memiliki peran Workspace Admin. Di sana, [kebijakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions) Anda yang menentukan siapa yang dapat menambahkan workspace ke tujuan atau menghapusnya dari tujuan itu.
 
@@ -626,7 +626,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
   </Tab>
 </Tabs>
 
-Messages API juga meneruskan trace ke server MCP Anda saat Anda menghubungkannya dengan [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), sehingga server tersebut dapat menempatkan span-nya sendiri di bawah span API. Setiap permintaan dan notifikasi yang dikirim API ke server MCP Anda memiliki `traceparent` W3C di `params._meta`. Dalam permintaan `tools/call`, `traceparent` tersebut merujuk span [`anthropic.mcp_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) dari penggunaan alat tersebut. Dalam pesan lainnya, `traceparent` tersebut merujuk span [`anthropic.messages.create`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-messages-create). Untuk permintaan yang tidak di-trace oleh API, seperti permintaan yang header `traceparent`-nya memiliki flag sampled tidak aktif, API tidak mengirimkan `traceparent`.
+Saat Anda menghubungkan server MCP Anda dengan [konektor MCP Messages API](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) atau [konektor MCP Managed Agents](https://platform.claude.com/docs/id/managed-agents/mcp-connector), API juga meneruskan trace ke server Anda. Server tersebut kemudian dapat menempatkan span-nya sendiri di bawah span API. Di `params._meta` dari permintaan `tools/call`, API mengirimkan `traceparent` W3C yang merujuk span [`anthropic.mcp_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) untuk penggunaan alat tersebut. Dengan konektor MCP Messages API, permintaan dan notifikasi lainnya ke server MCP Anda juga memiliki `traceparent`, yang merujuk span [`anthropic.messages.create`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-messages-create). Jika API tidak melakukan trace pada permintaan Messages API Anda, seperti saat header `traceparent`-nya memiliki flag sampled tidak aktif, server MCP Anda tidak menerima `traceparent`.
 
 ## Langkah selanjutnya
 
@@ -646,9 +646,9 @@ Aturan berikut berlaku untuk span yang dikirim API ke tujuan Anda.
 
 * **Setidaknya sekali:** Sebuah tujuan dapat menerima span yang sama lebih dari sekali. Untuk menghapus duplikat, gunakan trace ID dan span ID.
 * **Upaya terbaik:** Sebuah span dapat hilang sebelum dikirimkan. API tidak dapat mengirim ulang span yang hilang.
-* **Kompresi:** API mengompresi permintaan pertama dari setiap pengiriman dengan gzip dan mengatur header `Content-Encoding: gzip`. Jika endpoint Anda menjawab permintaan tersebut dengan respons `400` atau `415`, API segera mengirim ulang span yang sama tanpa kompresi.
-* **Percobaan ulang:** API mencoba pengiriman lagi nanti, dalam jumlah terbatas, setelah timeout, kegagalan koneksi, TLS, atau DNS, atau respons `408`, `429`, atau `5xx`. API tidak mencoba ulang kegagalan lainnya.
-* **Timeout:** Untuk setiap permintaan, endpoint Anda harus menyelesaikan handshake TLS dalam 5 detik dan mengirim header respons dalam 5 detik. Setiap pengiriman mengalami timeout setelah total 10 detik, termasuk pengiriman ulang tanpa kompresi.
+* **Kompresi:** API mengompresi permintaan dengan gzip dan mengatur header `Content-Encoding: gzip`. Jika endpoint Anda menjawab permintaan yang dikompresi dengan respons `400`, `406`, `415`, atau `422`, API segera mengirim ulang span yang sama tanpa kompresi. Setelah itu, API biasanya mengirim permintaan berikutnya ke tujuan tersebut tanpa kompresi selama sekitar satu hari.
+* **Percobaan ulang:** API mencoba pengiriman lagi nanti, dalam jumlah terbatas, setelah timeout, kegagalan koneksi, TLS, atau DNS, alamat tidak valid, atau respons `408`, `429`, atau `5xx`. API tidak mencoba ulang kegagalan lainnya.
+* **Timeout:** Untuk setiap permintaan, endpoint Anda harus menyelesaikan handshake TLS dalam 5 detik dan mengirim header respons dalam 5 detik. Setiap pengiriman mengalami timeout setelah total 10 detik, termasuk pengiriman ulang.
 * **User agent:** Setiap permintaan memiliki header `User-Agent: Claude-Platform`.
 
 Kolom **Delivery** menampilkan status setiap tujuan. Status dapat terlambat hingga satu menit.
@@ -663,10 +663,9 @@ Kolom **Delivery** menampilkan status setiap tujuan. Status dapat terlambat hing
 API menonaktifkan tujuan ketika:
 
 * Endpoint mengirimkan redirect `3xx`.
-* Nama host endpoint di-resolve ke alamat IP yang tidak publik.
 * Semua pengiriman gagal selama 24 jam.
 
-API tidak mengirim span ke tujuan yang dinonaktifkan. Untuk melanjutkan ekspor, perbaiki penyebabnya. Kemudian, dengan filter **Workspace** di [halaman pengaturan OpenTelemetry](https://platform.claude.com/settings/telemetry-destinations) menampilkan **All**, klik **Enable** di menu **More actions** milik tujuan tersebut. Ekspor dimulai lagi dalam sekitar satu menit.
+Selama tujuan dinonaktifkan, API membuang span-nya, dan span tersebut tidak dikirim setelah Anda mengaktifkannya kembali. Untuk melanjutkan ekspor, perbaiki penyebabnya dan periksa perbaikannya dengan **Test** di menu **More actions** milik tujuan tersebut. Kemudian, di [halaman pengaturan OpenTelemetry](https://platform.claude.com/settings/telemetry-destinations) di Console, klik **Enable** di menu yang sama saat filter **Workspace** menampilkan **All**. Ekspor dimulai lagi dalam sekitar satu menit. Hingga pengiriman berikutnya, kolom **Delivery** masih dapat menampilkan **Failing** dengan error yang lama.
 
 Untuk mengubah sebuah tujuan, buka menu **More actions** miliknya saat filter **Workspace** menampilkan **All**. Kemudian klik **Edit**, **Disable**, **Enable**, atau **Delete**. Jika Anda mengubah host dari **OTLP endpoint URL**, masukkan kembali nilai header. Jika tujuan memiliki **OTLP traces endpoint URL**, berikan host baru yang sama, atau kosongkan.
 
@@ -699,7 +698,11 @@ Ketika pengiriman gagal, kolom **Delivery** menampilkan **Failing**. Arahkan poi
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HTTP error (status 401) atau HTTP error (status 403) | Header autentikasi yang salah                                                                                                                                 |
 | HTTP error (status 404)                              | Path yang salah di **OTLP endpoint URL** atau **OTLP traces endpoint URL**                                                                                    |
-| DNS resolution failure                               | Hostname endpoint tidak dapat di-resolve                                                                                                                      |
+| Invalid address                                      | Hostname endpoint tidak ada atau tidak di-resolve ke alamat IP publik                                                                                         |
+| Temporary DNS failure                                | Pencarian DNS untuk hostname endpoint gagal, misalnya karena server DNS-nya mengembalikan error                                                               |
 | TLS failure                                          | Masalah TLS, misalnya dengan sertifikat endpoint                                                                                                              |
 | Timeout                                              | Endpoint tidak merespons tepat waktu. Lihat [batas waktu pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health) |
 | Connection failure                                   | API tidak dapat terhubung ke endpoint                                                                                                                         |
+| Redirect (status 3xx)                                | Endpoint me-redirect permintaan. API tidak mengikuti redirect, jadi gunakan URL tujuan redirect tersebut                                                      |
+| HTTP error (status 408, 429, atau 5xx)               | Endpoint kelebihan beban, membatasi laju permintaan, atau mengalami error                                                                                     |
+| HTTP error (status 4xx lainnya)                      | Endpoint menolak permintaan, misalnya karena ukuran atau formatnya                                                                                            |

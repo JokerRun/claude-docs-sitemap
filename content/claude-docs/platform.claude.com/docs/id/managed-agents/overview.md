@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: d16e214f5da8b84d92553c47c943edaceeb6f0e08362a2fd89f4929b6d2baa6c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 166cf6ec9fb1478e32f4d8cf3de474213e743b50f87181c403cba9645727c5f6
 ---
 
 ---
@@ -109,7 +109,7 @@ Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daf
 
 Untuk memulai, Anda memerlukan:
 
-1. Sebuah [kunci API Claude](https://platform.claude.com/settings/keys)
+1. Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console
 2. Header beta `managed-agents-2026-04-01` pada semua permintaan
 3. Akses ke Claude Managed Agents (diaktifkan secara default untuk semua akun API)
 

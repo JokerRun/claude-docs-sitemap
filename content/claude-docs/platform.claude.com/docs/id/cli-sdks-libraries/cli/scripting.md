@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 9d5ff17a5e5a638097cd645a82606ace5123c0e6d5825cd53222c45fbe806ada
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6102d8c4a17b41a46a42db36597a2b65afa8cfc20dd86fbee2c49675d1458bae
 ---
 
 ---
@@ -86,7 +86,7 @@ FIRST_AGENT=$(ant beta:agents list --transform id --raw-output | head -1)
 
 ant beta:agents:versions list \
   --agent-id "$FIRST_AGENT" \
-  --transform "{version,created_at}" --format jsonl
+  --format jsonl
 ```
 
 ### Memeriksa error

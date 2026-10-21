@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c3956d6161f761c28cc6378999a916d0b5750f4e1d35e5f4cb3a4095f6318164
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 45bb0b22403e282f5dcfbade1c068a0650fe7494c9f5ed1e95daeb4f7229d480
 ---
 
 ---
@@ -117,7 +117,7 @@ Instal plugin claude-api dari marketplace plugin anthropics/skills
 
 ## Bermigrasi ke model Claude yang lebih baru
 
-Skill Claude API dapat melakukan migrasi model Claude di seluruh basis kode. Panggil secara langsung dengan `/claude-api migrate`:
+Skill Claude API dapat melakukan migrasi model Claude di seluruh basis kode. Panggil secara langsung dengan subperintah `migrate`:
 
 Biarkan Claude Code memigrasikan kode Anda
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: df21c8dfb9f61eaf51cf88fe1947e8ee18dc4c28f3816bf2c084dea0c47c3492
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 656ab2b7fb29ca58cdd91e0544db92f530fa0f2b4e51a4f13dd51ad576aadf4a
 ---
 
 ---
@@ -323,81 +323,14 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
 **Contoh: membuat dan mengunduh file Excel**
 
-<CodeGroup>
-  ```bash cURL
-  # Langkah 1: Gunakan Skill untuk membuat file
-  RESPONSE=$(curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 4096,
-      "container": {
-        "skills": [
-          {"type": "anthropic", "skill_id": "xlsx", "version": "latest"}
-        ]
-      },
-      "messages": [{
-        "role": "user",
-        "content": "Create an Excel file with a simple budget spreadsheet"
-      }],
-      "tools": [{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-      }]
-    }')
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # Langkah 2: Ekstrak file_id dari respons (menggunakan jq)
-  FILE_ID=$(echo "$RESPONSE" | jq -r '.content[] | select(.type=="bash_code_execution_tool_result") | .content | select(.type=="bash_code_execution_result") | .content[] | select(.file_id) | .file_id')
-
-  # Langkah 3: Dapatkan nama file dari metadata
-  FILENAME=$(curl "https://api.anthropic.com/v1/files/$FILE_ID" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" | jq -r '.filename')
-
-  # Langkah 4: Unduh file menggunakan Files API
-  curl "https://api.anthropic.com/v1/files/$FILE_ID/content" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    --output "$FILENAME"
-
-  echo "Downloaded: $FILENAME"
-  ```
-
-  ```bash CLI
-  # Langkah 1: Gunakan Skill xlsx untuk membuat file
-  # Langkah 2: Ekstrak file_id dari respons dengan --transform (path GJSON)
-  FILE_ID=$(ant messages create \
-    --transform 'content.#.content.content.#.file_id|@flatten|0' \
-    --raw-output <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    skills:
-      - type: anthropic
-        skill_id: xlsx
-        version: latest
-  messages:
-    - role: user
-      content: Create an Excel file with a simple budget spreadsheet
-  tools:
-    - type: code_execution_20250825
-      name: code_execution
-  YAML
-  )
-
-  # Langkah 3: Dapatkan nama file dari metadata file
-  FILENAME=$(ant files retrieve-metadata \
-    --file-id "$FILE_ID" \
-    --transform filename \
-    --raw-output)
-
-  # Langkah 4: Unduh file menggunakan Files API
-  ant files download --file-id "$FILE_ID" --output "$FILENAME" > /dev/null
-
-  printf 'Downloaded: %s\n' "$FILENAME"
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -787,15 +720,13 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   ```bash CLI
   # Dapatkan metadata file
   ant files retrieve-metadata \
-    --file-id "$FILE_ID" \
-    --transform '{filename,size_bytes}' \
-    --format yaml
+    --file-id "$FILE_ID"
 
   # Daftar semua file
-  ant files list --transform '{filename,created_at}' --format yaml
+  ant files list
 
   # Hapus file
-  ant files delete --file-id "$FILE_ID" >/dev/null
+  ant files delete --file-id "$FILE_ID"
   ```
 
   ```python Python
@@ -943,48 +874,14 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
 Objek `container` pada respons membawa `id` container dan timestamp `expires_at` (lihat [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse) untuk detail masa berlaku). Gunakan kembali container yang sama di beberapa pesan dengan menentukan ID container:
 
-<CodeGroup exclude="shell:cURL">
+<CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
     Penggunaan ulang container multi-giliran memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Untuk membangun permintaan sendiri, ambil `container.id` dari respons pertama. Kemudian teruskan nilai tersebut dalam permintaan berikutnya sebagai `"container": {"id": "...", "skills": [...]}`, bersama dengan riwayat percakapan.
   </CodeGroupItem>
 
-  ```bash CLI
-  # Permintaan pertama membuat container
-  CONTAINER_ID=$(ant messages create \
-    --transform container.id \
-    --raw-output <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    skills:
-      - {type: anthropic, skill_id: xlsx, version: latest}
-  messages:
-    - role: user
-      content: Create a sample sales dataset and analyze it
-  tools:
-    - {type: code_execution_20250825, name: code_execution}
-  YAML
-  )
-
-  # Lanjutkan percakapan dengan container yang sama
-  ant messages create <<YAML
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    id: $CONTAINER_ID  # Reuse container
-    skills:
-      - {type: anthropic, skill_id: xlsx, version: latest}
-  messages:
-    - role: user
-      content: Create a sample sales dataset and analyze it
-    - role: assistant
-      content: []  # the assistant's text from the first response
-    - role: user
-      content: What was the total revenue?
-  tools:
-    - {type: code_execution_20250825, name: code_execution}
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -1349,104 +1246,14 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
 Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop reason `pause_turn`:
 
-<CodeGroup>
-  ```bash cURL
-  # Permintaan awal
-  RESPONSE=$(curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 4096,
-      "container": {
-        "skills": [
-          {
-            "type": "custom",
-            "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
-            "version": "latest"
-          }
-        ]
-      },
-      "messages": [{
-        "role": "user",
-        "content": "Generate and process a large sample dataset"
-      }],
-      "tools": [{
-        "type": "code_execution_20250825",
-        "name": "code_execution"
-      }]
-    }')
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # Jika stop_reason adalah "pause_turn", lanjutkan di container yang sama, dengan menambahkan
-  # array content dari respons sebelumnya ke messages sebagai giliran assistant.
-  # Ulangi permintaan lanjutan ini hingga stop_reason bukan lagi "pause_turn".
-  STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
-  CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
-
-  RESPONSE=$(curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d "{
-      \"model\": \"claude-opus-5-5\",
-      \"max_tokens\": 4096,
-      \"container\": {
-        \"id\": \"$CONTAINER_ID\",
-        \"skills\": [{
-          \"type\": \"custom\",
-          \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
-          \"version\": \"latest\"
-        }]
-      },
-      \"messages\": [],
-      \"tools\": [{
-        \"type\": \"code_execution_20250825\",
-        \"name\": \"code_execution\"
-      }]
-    }")
-  ```
-
-  ```bash CLI
-  RESP=$(mktemp)
-
-  # Permintaan awal: simpan respons JSON lengkap ke file sementara
-  ant messages create > "$RESP" <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    skills:
-      - type: custom
-        skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
-        version: latest
-  messages:
-    - role: user
-      content: Generate and process a large sample dataset
-  tools:
-    - type: code_execution_20250825
-      name: code_execution
-  YAML
-
-  # Jika stop_reason adalah "pause_turn", lanjutkan di container yang sama,
-  # dengan menambahkan array content dari respons sebelumnya ke messages sebagai
-  # giliran assistant. Ulangi hingga stop_reason bukan lagi "pause_turn".
-  CONTAINER_ID=$(jq -r '.container.id' "$RESP")
-
-  ant messages create > "$RESP" <<YAML
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    id: $CONTAINER_ID
-    skills:
-      - type: custom
-        skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
-        version: latest
-  messages: [] # replace with conversation history + prior assistant content
-  tools:
-    - type: code_execution_20250825
-      name: code_execution
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -2725,7 +2532,7 @@ Menghapus Skill juga menghapus semua versinya.
   ```
 
   ```bash CLI
-  ant skills delete --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv >/dev/null
+  ant skills delete --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv
   ```
 
   ```python Python
@@ -2801,32 +2608,30 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 <CodeGroup>
   ```bash cURL
   # Buat versi baru
-  NEW_VERSION=$(curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
+  curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -F "files[]=@financial_skill/SKILL.md;filename=financial_skill/SKILL.md" \
-    -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py")
+    -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
 
-  VERSION_ID=$(echo "$NEW_VERSION" | jq -r '.id')
-
-  # Gunakan versi tertentu
+  # Gunakan versi tertentu: id dari respons create
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d "{
-      \"model\": \"claude-opus-5-5\",
-      \"max_tokens\": 4096,
-      \"container\": {
-        \"skills\": [{
-          \"type\": \"custom\",
-          \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
-          \"version\": \"$VERSION_ID\"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 4096,
+      "container": {
+        "skills": [{
+          "type": "custom",
+          "skill_id": "skill_01AbCdEfGhIjKlMnOpQrStUv",
+          "version": "'"$VERSION_ID"'"
         }]
       },
-      \"messages\": [{\"role\": \"user\", \"content\": \"Use updated Skill\"}],
-      \"tools\": [{\"type\": \"code_execution_20250825\", \"name\": \"code_execution\"}]
-    }"
+      "messages": [{"role": "user", "content": "Use updated Skill"}],
+      "tools": [{"type": "code_execution_20250825", "name": "code_execution"}]
+    }'
 
   # Gunakan versi terbaru
   curl https://api.anthropic.com/v1/messages \
@@ -2850,13 +2655,11 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
 
   ```bash CLI
   # Buat versi baru
-  VERSION_ID=$(ant skills:versions create \
+  ant skills:versions create \
     --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-    --file financial_skill.zip \
-    --transform id \
-    --raw-output)
+    --file financial_skill.zip
 
-  # Gunakan versi tertentu
+  # Gunakan versi tertentu: id dari respons create
   ant messages create <<YAML
   model: claude-opus-5-5
   max_tokens: 4096
@@ -4473,42 +4276,14 @@ Untuk performa caching terbaik, jaga agar daftar Skills Anda, termasuk urutannya
 
 Tangani error terkait Skill dengan baik:
 
-<CodeGroup exclude="shell:cURL">
+<CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
     Alur penanganan error ini memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Permintaan yang gagal karena masalah Skill mengembalikan HTTP 400. Field `error.message` dalam body respons JSON menjelaskan masalahnya.
   </CodeGroupItem>
 
-  ```bash CLI
-  if ! RESULT=$(ant messages create \
-    --transform-error error.message \
-    --format-error yaml 2>&1 <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  container:
-    skills:
-      - type: custom
-        skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
-        version: latest
-  messages:
-    - role: user
-      content: Process data
-  tools:
-    - type: code_execution_20250825
-      name: code_execution
-  YAML
-  ); then
-    case "$RESULT" in
-      *skill*)
-        printf 'Skill error: %s\n' "$RESULT"
-        # Tangani error khusus skill
-        ;;
-      *)
-        printf '%s\n' "$RESULT" >&2
-        exit 1
-        ;;
-    esac
-  fi
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()

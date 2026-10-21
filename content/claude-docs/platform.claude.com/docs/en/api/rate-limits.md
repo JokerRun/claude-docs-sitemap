@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: b39bbd63ff34df9071cddd13acbaac71016bd533481e6f617b09fee8ee5aff7f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 00194eb8ec221f26de4c135941be011edfa77e565dc3ef0b00bd385affe39827
 ---
 
 ---
@@ -282,7 +282,7 @@ Example: If your Organization's limit is 40,000 input tokens per minute and 8,00
 
 Note:
 
-* You can't set limits on the default Workspace.
+* You can't set spend limits on the default Workspace.
 * If not set, Workspace limits match the Organization's limit.
 * Workspace limits are set per limiter type (such as requests per minute, input tokens per minute, or output tokens per minute).
 * Organization-wide limits always apply, even if Workspace limits add up to more.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: be422724d973d98cccc67ac8b8a234922689c0dfa144052ff116378bb3d5a9de
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 8f975922930bbd7dc80aedab8817525ec094a190771e776cfb18dcfb7c9ba0ba
 ---
 
 > ## Documentation Index
@@ -13,9 +13,9 @@ sha256: be422724d973d98cccc67ac8b8a234922689c0dfa144052ff116378bb3d5a9de
 
 > Get faster Opus responses in Claude Code by toggling fast mode.
 
-<Note>
-  Fast mode is in [research preview](#research-preview). The feature, pricing, and availability may change based on feedback.
-</Note>
+> [!NOTE]
+>
+> Fast mode is in [research preview](#research-preview). The feature, pricing, and availability may change based on feedback.
 
 Fast mode is a high-speed configuration for Claude Opus, making the model up to 2.5x faster at a higher cost per token. Toggle it on with `/fast` when you need speed for interactive work like rapid iteration or live debugging, and toggle it off when cost matters more than latency.
 
@@ -131,21 +131,21 @@ Fast mode requires all of the following:
   * On Pro and Max, turn them on in the **Usage credits** section of [**Settings > Usage**](https://claude.ai/settings/usage) on claude.ai, or run `/usage-credits` to open that page.
   * On Team and Enterprise, a member with billing access turns them on for the organization at [**Organization settings > Usage**](https://claude.ai/admin-settings/usage), and a member without it runs `/usage-credits` to send the organization's admins a request.
 
-<Note>
-  Fast mode usage draws directly from usage credits, even if you have remaining usage on your plan.
-</Note>
+> [!NOTE]
+>
+> Fast mode usage draws directly from usage credits, even if you have remaining usage on your plan.
 
 * **Paid Console organization**: Claude Console accounts don't use usage credits, and your organization pays for fast mode per token with the rest of its API usage. On the Console's free Evaluation plan, `/fast` shows "Fast mode unavailable during evaluation. Please purchase credits." To clear it, purchase credits in your [Console billing settings](https://platform.claude.com/settings/billing).
 * **Owner enablement for Team and Enterprise**: fast mode is disabled by default for Team and Enterprise organizations. An Owner must explicitly [enable fast mode](#enable-fast-mode-for-your-organization) before users can access it.
 
-<Note>
-  Four organization settings can block turning fast mode on with `/fast`:
-
-  * **Fast mode not enabled**: if fast mode hasn't been enabled for your organization, turning fast mode on with `/fast` shows "Fast mode has been disabled by your organization."
-  * **Fast mode turned off by managed settings**: if your organization deploys [managed settings](/docs/en/managed-settings) that set [`fastMode: false`](/docs/en/settings-reference#fastmode), turning fast mode on with `/fast` shows the same "Fast mode has been disabled by your organization" message.
-  * **Per-session opt-in required**: managed settings that set [`fastModePerSessionOptIn: true`](#require-per-session-opt-in) refuse `/fast on` with the same message everywhere except an interactive terminal session.
-  * **Fast-mode model not allowed**: if your organization's [`availableModels`](/docs/en/model-config#restrict-model-selection) allowlist excludes the fast-mode Opus model, turning it on is refused with "is not in your organization's allowed models". In a session already running on an allowed Opus model that supports fast mode, `/fast` instead enables fast mode on your current model without switching models.
-</Note>
+> [!NOTE]
+>
+> Four organization settings can block turning fast mode on with `/fast`:
+>
+> * **Fast mode not enabled**: if fast mode hasn't been enabled for your organization, turning fast mode on with `/fast` shows "Fast mode has been disabled by your organization."
+> * **Fast mode turned off by managed settings**: if your organization deploys [managed settings](/docs/en/managed-settings) that set [`fastMode: false`](/docs/en/settings-reference#fastmode), turning fast mode on with `/fast` shows the same "Fast mode has been disabled by your organization" message.
+> * **Per-session opt-in required**: managed settings that set [`fastModePerSessionOptIn: true`](#require-per-session-opt-in) refuse `/fast on` with the same message everywhere except an interactive terminal session.
+> * **Fast-mode model not allowed**: if your organization's [`availableModels`](/docs/en/model-config#restrict-model-selection) allowlist excludes the fast-mode Opus model, turning it on is refused with "is not in your organization's allowed models". In a session already running on an allowed Opus model that supports fast mode, `/fast` instead enables fast mode on your current model without switching models.
 
 ### Enable fast mode for your organization
 

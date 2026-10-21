@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: eed1c8c5a3dddd9182dcafa2041b8fa98800e6851364c159bfc8fd4e3fe04aa6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 278e415fc76d7f4aeee0ad2fcc19e71868c3c35fde38315670c235a354725046
 ---
 
 ---
@@ -471,9 +471,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   # Referensi "@./path" menyisipkan isi file langsung ke dalam field.
   ant messages create \
     --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --transform 'content.#(type=="text").text' \
-    --raw-output <<'YAML'
+    --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -538,9 +536,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
     ]
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 366aa5dc52e312f15dcde31cda21c9d64e0f0162b7e4a159c91d9e2aed252ce5
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9d0082891b06e486c327d1bb4505ec75b77aa9e58704aeada95a14c38583e472
 ---
 
 ---
@@ -1400,68 +1400,14 @@ Percakapan yang berjalan lama dapat menghasilkan beberapa compaction. Blok compa
 
 Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang telah dipersingkat. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
 
-<CodeGroup>
-  ```bash cURL
-  # Konten respons, termasuk blok compaction, harus dikirim kembali ke
-  # API sebagai giliran asisten pada permintaan berikutnya. Mengelola daftar pesan itu
-  # tidak cocok untuk perintah shell sekali jalan; lihat tab CLI dan SDK
-  # untuk alur lengkapnya. Permintaan pertama:
-  curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: compact-2026-01-12" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 4096,
-      "messages": [
-        {
-          "role": "user",
-          "content": "Hello, Claude"
-        }
-      ],
-      "context_management": {
-        "edits": [
-          {
-            "type": "compact_20260112"
-          }
-        ]
-      }
-    }'
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  ```bash CLI
-  ant beta:messages create \
-    --beta compact-2026-01-12 \
-    --transform content \
-    --format jsonl <<'YAML' > content.json
-  model: claude-opus-5-5
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: Hello, Claude
-  context_management:
-    edits:
-      - type: compact_20260112
-  YAML
-
-  # Setelah menerima respons dengan blok compaction, tambahkan sebagai
-  # giliran asisten dan lanjutkan percakapan
-  ant beta:messages create --beta compact-2026-01-12 <<YAML
-  model: claude-opus-5-5
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: Hello, Claude
-    - role: assistant
-      content: $(cat content.json)
-    - role: user
-      content: Now add error handling
-  context_management:
-    edits:
-      - type: compact_20260112
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -2391,10 +2337,8 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
   ```
 
   ```bash CLI
-  CURRENT=$(ant beta:messages count-tokens \
-    --beta compact-2026-01-12 \
-    --transform input_tokens \
-    --raw-output <<'YAML'
+  ant beta:messages count-tokens \
+    --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-5-5
   messages:
     - role: user
@@ -2403,24 +2347,6 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
     edits:
       - type: compact_20260112
   YAML
-  )
-
-  ORIGINAL=$(ant beta:messages count-tokens \
-    --beta compact-2026-01-12 \
-    --transform context_management.original_input_tokens \
-    --raw-output <<'YAML'
-  model: claude-opus-5-5
-  messages:
-    - role: user
-      content: Hello, Claude
-  context_management:
-    edits:
-      - type: compact_20260112
-  YAML
-  )
-
-  printf 'Current tokens: %s\n' "$CURRENT"
-  printf 'Original tokens: %s\n' "$ORIGINAL"
   ```
 
   ```python Python
@@ -2561,60 +2487,14 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 
 Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
-<CodeGroup>
-  ```bash cURL
-  # curl mengirim permintaan satu per satu; kelola array messages di
-  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk permintaan
-  # satu giliran:
-  curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: compact-2026-01-12" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 4096,
-      "messages": [
-        {
-          "role": "user",
-          "content": "Help me build a Python web scraper"
-        }
-      ],
-      "context_management": {
-        "edits": [
-          {
-            "type": "compact_20260112",
-            "trigger": {
-              "type": "input_tokens",
-              "value": 100000
-            }
-          }
-        ]
-      }
-    }'
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # CLI menangani giliran individual; kelola array messages di
-  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
-  # permintaan satu giliran:
-  ant beta:messages create \
-    --beta compact-2026-01-12 \
-    --transform 'content.#(type=="text").text' \
-    --raw-output <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: Help me build a Python web scraper
-  context_management:
-    edits:
-      - type: compact_20260112
-        trigger:
-          type: input_tokens
-          value: 100000
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -2909,62 +2789,14 @@ Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5,
 
 Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) alih-alih meringkasnya. Contoh ini mempertahankan blok teks dan blok alatnya tanpa perubahan, menghapus blok `thinking` dan `redacted_thinking` dari giliran asisten yang dipertahankan, dan membuang giliran tersebut jika tidak ada lagi yang tersisa:
 
-<CodeGroup>
-  ```bash cURL
-  # curl mengirim permintaan satu per satu; kelola array messages di
-  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
-  # penanganan jeda-dan-pertahankan. Bentuk permintaan satu giliran:
-  curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: compact-2026-01-12" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 4096,
-      "messages": [
-        {
-          "role": "user",
-          "content": "Help me build a Python web scraper"
-        }
-      ],
-      "context_management": {
-        "edits": [
-          {
-            "type": "compact_20260112",
-            "trigger": {
-              "type": "input_tokens",
-              "value": 100000
-            },
-            "pause_after_compaction": true
-          }
-        ]
-      }
-    }'
-  ```
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  ```bash CLI
-  # CLI menangani giliran individual; kelola array messages di
-  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
-  # penanganan jeda-dan-pertahankan. Bentuk permintaan satu giliran:
-  ant beta:messages create \
-    --beta compact-2026-01-12 \
-    --transform 'content.#(type=="text").text' \
-    --raw-output <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: Help me build a Python web scraper
-  context_management:
-    edits:
-      - type: compact_20260112
-        trigger:
-          type: input_tokens
-          value: 100000
-        pause_after_compaction: true
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   from typing import Any

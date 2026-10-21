@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 9f3742e16737adfd93e0c149b1a0b74b214bf154e39d5053d6d5ad6b212aae47
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 23b4e9300c11ea22ac82de018e9ec65e03171594d46e5b125676118e33d3278b
 ---
 
 ---
@@ -30,11 +30,11 @@ Setiap alat memiliki daftarnya sendiri, sehingga `web_search` dan `web_fetch` da
 
 ## Menetapkan daftar domain pada agen
 
-Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) dan `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), yang dijelaskan di [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings). Contoh tersebut kemudian mencetak array `configs` (csharp, go: `Configs`) dari respons.
+Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) dan `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), yang dijelaskan di [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings). Respons menampilkan kembali array `configs` (csharp, go: `Configs`).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -66,8 +66,6 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
         }
       ]
     }'
-  )
-  jq '.tools[0].configs' <<< "$agent"
   ```
 
   <CodeGroupItem>

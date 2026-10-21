@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 76738564a5ab1691c7b699654d09705a6b67ef422c92f16e8e928ba19a5ad41c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ed3dcf4f24adec8d38fa1f883b315dadbad3f4f66b56ea18ea60109a04de2fb5
 ---
 
 ---
@@ -116,11 +116,11 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -593,7 +593,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
 
   ```bash CLI
   # Stream thread menerima parameter event_deltas yang sama dengan stream sesi,
-  # satu flag --event-delta per tipe event yang akan dipratinjau.
+  # satu flag --event-delta per jenis event untuk dipratinjau.
   ant beta:sessions:threads:events stream \
     --session-id "$SESSION_ID" \
     --thread-id "$THREAD_ID" \

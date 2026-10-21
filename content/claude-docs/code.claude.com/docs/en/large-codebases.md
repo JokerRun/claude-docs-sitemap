@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 2a3939c22b945516c7666fc062c7be24e8d609bf34329f71ca5fd1d5bf432bab
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 1323646a0198e7167aca34e724e9a3ba950c1196ca3661031127c5a2c317da10
 ---
 
 > ## Documentation Index
@@ -36,9 +36,9 @@ Each setting below is independent. They layer rather than replace each other, so
 | Give Claude procedures specific to one area that load only when relevant | Per-directory [skills](#add-per-directory-skills) |
 | Replace many per-directory CLAUDE.md files with one set of conventions everyone installs | A [plugin](#centralize-conventions-when-layering-stops-scaling) in an internal marketplace |
 
-<Tip>
-  For workflow techniques that keep context small in any repository, such as [running exploration in a subagent](/docs/en/best-practices#use-subagents-for-investigation) so file reads stay out of the main conversation, see [Best practices for Claude Code](/docs/en/best-practices). To roll out a baseline configuration to every developer in your organization, see [Set up Claude Code for your organization](/docs/en/admin-setup).
-</Tip>
+> [!TIP]
+>
+> For workflow techniques that keep context small in any repository, such as [running exploration in a subagent](/docs/en/best-practices#use-subagents-for-investigation) so file reads stay out of the main conversation, see [Best practices for Claude Code](/docs/en/best-practices). To roll out a baseline configuration to every developer in your organization, see [Set up Claude Code for your organization](/docs/en/admin-setup).
 
 ### The example monorepo
 
@@ -261,9 +261,9 @@ To avoid duplicating large directories like `node_modules` across worktrees, pai
 
 This creates a symlink from each worktree's `node_modules/` back to the main repository's copy rather than duplicating it on disk.
 
-<Note>
-  The `sparsePaths` and `symlinkDirectories` settings are read from your starting directory before the worktree is created. After creation, the session's working directory is the worktree root, not the subdirectory you launched from. Project settings inside the worktree therefore load from the worktree root's `.claude/settings.json`, the checked-out copy of the repository root's file. Put any other settings you need inside worktrees, such as permission rules or hooks, in the repository root's `.claude/settings.json`.
-</Note>
+> [!NOTE]
+>
+> The `sparsePaths` and `symlinkDirectories` settings are read from your starting directory before the worktree is created. After creation, the session's working directory is the worktree root, not the subdirectory you launched from. Project settings inside the worktree therefore load from the worktree root's `.claude/settings.json`, the checked-out copy of the repository root's file. Put any other settings you need inside worktrees, such as permission rules or hooks, in the repository root's `.claude/settings.json`.
 
 For the full worktree settings reference, see [Worktree settings](/docs/en/settings-reference#worktree).
 

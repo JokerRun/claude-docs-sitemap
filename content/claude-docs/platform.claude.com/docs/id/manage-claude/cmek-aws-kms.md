@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: a714595d3fad6a40be20ac4177dc564161a997a0924d5cb1a5d17c018cc7994d
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 435b2b3d8b68ccf06c2fe56fc2a73a658363f7ab2a0f5416bdd4f3dc7e036176
 ---
 
 ---
@@ -17,25 +17,25 @@ Biarkan Claude Code menyiapkan fitur ini untuk Anda
 /claude-api bantu saya mengonfigurasi kunci enkripsi yang dikelola pelanggan dengan AWS KMS
 ```
 
-Panduan ini memandu proses konfigurasi kunci [AWS KMS](https://aws.amazon.com/kms/) sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
+Panduan ini menunjukkan cara menggunakan kunci [AWS KMS](https://aws.amazon.com/kms/) sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
   Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 <Note>
-  **Claude Platform on AWS:** Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), kebijakan kunci Anda memberikan akses ke principal layanan AWS alih-alih peran IAM Anthropic, tidak ada langkah validasi terpisah, dan Anda mendaftarkan serta melampirkan kunci di Claude Console. Ikuti [Siapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) pada halaman ini alih-alih langkah-langkah di bagian berikutnya.
+  **Claude Platform on AWS:** Jika sidebar Claude Console Anda menampilkan **Account managed by AWS**, organisasi Anda berada di Claude Platform on AWS. Sebagai gantinya, ikuti [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws).
 </Note>
 
 ## Prasyarat
 
 * Akun AWS dengan izin untuk membuat kunci KMS dan menetapkan kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
-* Kunci Admin API untuk organisasi Anda.
-* [AWS CLI](https://aws.amazon.com/cli/) terpasang dan terautentikasi.
+* Untuk membuat kunci dari baris perintah, [AWS CLI](https://aws.amazon.com/cli/) terpasang dan terautentikasi.
+* Untuk mendaftarkan kunci melalui API, kunci Admin API Anthropic untuk organisasi Anda.
 
 ## Amazon Resource Name (ARN) untuk Anthropic
 
-Agar Anthropic menggunakan kunci enkripsi Anda, Anda harus memberikan peran IAM Anthropic sebuah kunci KMS yang dapat digunakannya untuk mengenkripsi data. ARN untuk Anthropic CMEK adalah:
+Kebijakan kunci dalam panduan ini memberikan akses ke kunci Anda kepada peran IAM Anthropic berikut:
 
 ```text wrap
 arn:aws:iam::915198916910:role/anthropic-cmek-client-us
@@ -47,91 +47,156 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
 
 ## Penyiapan kunci enkripsi
 
-<Steps>
-  <Step title="Buat kunci KMS dengan kebijakan kunci lintas akun">
-    <Note>
-      **Claude Platform on AWS:** Lewati langkah ini. Kebijakan kunci Anda memberikan akses ke principal layanan AWS, dan tidak memiliki kondisi organisasi. [Siapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) memberikan kebijakan tersebut.
-    </Note>
+### Menyiapkan kebijakan kunci
 
-    Kebijakan kunci memberikan peran IAM Anthropic akses lintas akun. Tiga pernyataan diperlukan:
+Salin kebijakan ini ke editor teks:
 
-    1. **Admin root akun:** pola KMS standar. Akun Anda mempertahankan kontrol admin penuh.
-    2. **Enkripsi dan dekripsi Anthropic:** aksi `kms:Encrypt` dan `kms:Decrypt`, yang digunakan Anthropic untuk mengenkripsi dan mendekripsi kunci data yang melindungi data workspace Anda (enkripsi envelope).
-    3. **Describe Anthropic:** pembacaan metadata yang dilakukan Anthropic saat startup. Ini diberikan secara terpisah karena `DescribeKey` tidak memiliki parameter `EncryptionContext`, sehingga kondisi `EncryptionContext` pada aksi ini akan selalu menolak.
-
-    Untuk menemukan [ID akun AWS Anda](https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-id.html), jalankan `aws sts get-caller-identity --query Account --output text`.
-
-    Dalam kebijakan, ganti `<AWS_ACCOUNT_ID>` dengan ID akun AWS Anda dan `<ORGANIZATION_UUID>` dengan ID organisasi Anda. Kondisi `StringEquals` pada `kms:EncryptionContext:anthropic:org_uuid` mengikat kunci ke organisasi Anthropic Anda, dan validasi menolak kunci tanpanya. Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, cantumkan setiap ID organisasi dalam nilai kondisi.
-
-    <Note>
-      **Menemukan ID organisasi Anda:** Salin kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console, atau di bawah **Organization settings > Organization** di claude.ai, atau baca kolom `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve). Gunakan UUID polos, bukan ID yang berawalan `org_`.
-    </Note>
-
-    Simpan kebijakan sebagai `key-policy.json`. Untuk membuat kunci di AWS Console sebagai gantinya, tempel kebijakan di sana, seperti dijelaskan nanti dalam langkah ini.
-
-    ```json key-policy.json
+```json key-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Sid": "AccountRootAdmin",
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": "arn:aws:iam::<AWS_ACCOUNT_ID>:root"
-          },
-          "Action": "kms:*",
-          "Resource": "*"
-        },
-        {
-          "Sid": "AllowAnthropicCMEKCrypto",
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
-          },
-          "Action": ["kms:Encrypt", "kms:Decrypt"],
-          "Resource": "*",
-          "Condition": {
-            "StringEquals": {
-              "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
-            }
-          }
-        },
-        {
-          "Sid": "AllowAnthropicCMEKDescribe",
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
-          },
-          "Action": "kms:DescribeKey",
-          "Resource": "*"
-        }
-      ]
-    }
-    ```
-
-    <Note>
-      **Opsional:** Untuk membatasi kunci ke beberapa workspace Anda, gunakan pernyataan `AllowAnthropicCMEKCrypto` ini alih-alih yang ada di JSON kebijakan sebelumnya, dengan satu ID compartment untuk setiap workspace. Tambahkan ID compartment workspace sebelum Anda melampirkan kunci ke sana. Untuk workspace baru, buat tanpa kunci, tambahkan ID compartment-nya, lalu lampirkan kunci.
-
-      ```json
-      {
-        "Sid": "AllowAnthropicCMEKCrypto",
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
-        },
-        "Action": ["kms:Encrypt", "kms:Decrypt"],
-        "Resource": "*",
-        "Condition": {
-          "StringEquals": {
-            "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
-          },
-          "StringEqualsIfExists": {
-            "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
-          }
+      "Sid": "AccountRootAdmin",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<AWS_ACCOUNT_ID>:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowAnthropicCMEKCrypto",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
+      },
+      "Action": ["kms:Encrypt", "kms:Decrypt"],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
         }
       }
-      ```
-    </Note>
+    },
+    {
+      "Sid": "AllowAnthropicCMEKDescribe",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
+      },
+      "Action": "kms:DescribeKey",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+Ganti kedua placeholder:
+
+* **`<AWS_ACCOUNT_ID>`:** [ID akun AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-id.html) Anda. Untuk menampilkannya dengan AWS CLI, jalankan `aws sts get-caller-identity --query Account --output text`.
+* **`<ORGANIZATION_UUID>`:** ID organisasi Anthropic Anda
+
+<Note>
+  **Menemukan ID organisasi Anda:** Gunakan UUID polos, bukan ID yang berawalan `org_`. Salin dari salah satu tempat berikut:
+
+  * **Claude Console:** kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`)
+  * **claude.ai:** kolom **Organization ID** di bawah **Organization settings > Organization**
+  * **Admin API:** field `id` dari endpoint [Organization Info](https://platform.claude.com/docs/id/api/organization/retrieve)
+</Note>
+
+Jangan hapus kondisi `kms:EncryptionContext:anthropic:org_uuid`, atau validasi akan gagal. Untuk berbagi satu kunci di antara beberapa organisasi Anthropic, cantumkan setiap ID organisasi di dalamnya. Untuk membatasi kunci ke workspace tertentu, lihat [kondisi workspace opsional](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#workspace-condition).
+
+<Warning>
+  **Kunci yang sudah melindungi data:** Jika kunci sudah dikonfigurasi untuk CMEK, tambahkan pernyataan keempat ini agar Anthropic tetap dapat mendekripsi data yang ada. Dalam kondisinya, cantumkan [ID compartment](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#compartment-id) dari setiap workspace tempat kunci dilampirkan atau pernah dilampirkan.
+
+  ```json
+  {
+    "Sid": "AllowAnthropicCMEKDecryptExistingData",
+    "Effect": "Allow",
+    "Principal": {
+      "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
+    },
+    "Action": "kms:Decrypt",
+    "Resource": "*",
+    "Condition": {
+      "StringEquals": {
+        "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
+      }
+    }
+  }
+  ```
+</Warning>
+
+### Membuat kunci
+
+Buat kunci di [region AS](https://platform.claude.com/docs/id/manage-claude/cmek#availability-and-regions). Untuk latensi terendah, gunakan `us-east-2`.
+
+<Tabs>
+  <Tab title="AWS Console">
+    <Steps>
+      <Step title="Buka wizard Create key">
+        Buka [konsol AWS KMS](https://console.aws.amazon.com/kms) dan beralih ke region untuk kunci tersebut. Buka **Customer managed keys** dan klik **Create key**.
+      </Step>
+
+      <Step title="Konfigurasikan kunci">
+        Pastikan opsi-opsi berikut dipilih:
+
+        * **Key type:** Symmetric
+        * **Key usage:** Encrypt and decrypt
+        * **Advanced options > Key material origin:** KMS
+        * **Advanced options > Regionality:** Single-Region key
+
+        Klik **Next**.
+
+        <Frame caption="Kunci simetris, encrypt dan decrypt, single-Region.">
+          ![Wizard Create-key di AWS KMS pada langkah Configure key, dengan tipe kunci simetris, penggunaan kunci encrypt dan decrypt, dan kunci single-region dipilih.](https://platform.claude.com/docs/images/cmek/aws-configure-key.png)
+        </Frame>
+      </Step>
+
+      <Step title="Tambahkan label">
+        Masukkan **Alias** untuk kunci tersebut, seperti `anthropic-cmek`. Klik **Next**.
+
+        <Frame caption="Alias untuk kunci.">
+          ![Langkah Add labels di AWS KMS dengan alias anthropic-cmek dan deskripsi Anthropic CMEK.](https://platform.claude.com/docs/images/cmek/aws-add-labels.png)
+        </Frame>
+      </Step>
+
+      <Step title="Tentukan izin administratif kunci">
+        Jangan pilih administrator kunci apa pun. Kebijakan kunci Anda sudah memberikan kontrol admin penuh kepada akun AWS Anda. Klik **Next**.
+
+        <Frame caption="Biarkan administrator kunci kosong.">
+          ![Langkah Define key administrative permissions di AWS KMS yang mencantumkan peran IAM yang dapat mengelola kunci.](https://platform.claude.com/docs/images/cmek/aws-admin-permissions.png)
+        </Frame>
+      </Step>
+
+      <Step title="Tentukan izin penggunaan kunci">
+        Jangan pilih pengguna kunci apa pun, dan jangan tambahkan apa pun di bawah **Other AWS accounts**. Kebijakan kunci Anda sudah memberikan akses yang diperlukan. Klik **Next**.
+      </Step>
+
+      <Step title="Edit kebijakan kunci">
+        Klik **Edit**. Ganti seluruh kebijakan dengan kebijakan kunci Anda, lalu klik **Next**.
+      </Step>
+
+      <Step title="Tinjau">
+        Klik **Finish**.
+      </Step>
+
+      <Step title="Salin ARN kunci">
+        Di **Customer managed keys**, buka kunci baru tersebut dan salin ARN-nya. Anda memerlukan ARN tersebut untuk mendaftarkan kunci.
+      </Step>
+    </Steps>
+
+    Untuk mengganti kebijakan kunci pada kunci yang sudah ada:
+
+    1. Buka kunci tersebut dan klik tab **Key policy**.
+    2. Jika Anda melihat **Switch to policy view**, klik opsi tersebut.
+    3. Klik **Edit**.
+    4. Ganti JSON dengan kebijakan kunci Anda.
+    5. Klik **Save changes**.
+  </Tab>
+
+  <Tab title="AWS CLI">
+    Simpan kebijakan kunci Anda sebagai `key-policy.json`, lalu buat kunci. Ganti `<REGION>` dengan region kunci tersebut.
 
     ```bash
     aws kms create-key \
@@ -141,98 +206,83 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
       --policy file://key-policy.json
     ```
 
-    Tangkap `KeyMetadata.Arn` dari output. Anda membutuhkannya saat mendaftarkan kunci di langkah berikutnya.
+    Salin `KeyMetadata.Arn` dari output. Anda memerlukannya untuk mendaftarkan kunci.
+  </Tab>
+</Tabs>
 
-    <Warning>
-      Jika kunci sudah dikonfigurasi untuk CMEK dan melindungi data yang ada, Anda harus menambahkan pernyataan yang memungkinkan Anthropic mendekripsi data tersebut, selain tiga pernyataan dalam kebijakan sebelumnya. Dalam kondisinya, cantumkan ID compartment dari setiap workspace tempat kunci dilampirkan atau pernah dilampirkan.
+<Note>
+  **Opsional:** Untuk membatasi kunci ke workspace tertentu, ganti pernyataan `AllowAnthropicCMEKCrypto` dalam kebijakan kunci dengan pernyataan ini. Cantumkan satu ID compartment untuk setiap workspace.
 
-      ```json
-      {
-        "Sid": "AllowAnthropicCMEKDecryptExistingData",
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
-        },
-        "Action": "kms:Decrypt",
-        "Resource": "*",
-        "Condition": {
-          "StringEquals": {
-            "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
-          }
-        }
+  ```json
+  {
+    "Sid": "AllowAnthropicCMEKCrypto",
+    "Effect": "Allow",
+    "Principal": {
+      "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
+    },
+    "Action": ["kms:Encrypt", "kms:Decrypt"],
+    "Resource": "*",
+    "Condition": {
+      "StringEquals": {
+        "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
+      },
+      "StringEqualsIfExists": {
+        "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
       }
-      ```
-    </Warning>
+    }
+  }
+  ```
 
-    Anthropic memvalidasi kunci saat Anda memverifikasinya atau melampirkannya ke workspace. Setiap validasi menambahkan empat kesalahan access-denied ke CloudTrail. Ini diharapkan. Jika Anda perlu memfilternya, filter pada ketiga nilai berikut. Yang pertama saja tidak cukup, karena pemanggil mana pun dapat menetapkannya:
+  Tambahkan ID compartment setiap workspace sebelum Anda melampirkan kunci ke workspace tersebut. Untuk workspace baru:
 
-    * `requestParameters.encryptionContext.associatedData`: `Y21lay12YWxpZGF0aW9u`
-    * `userIdentity.accountId`: `915198916910`
-    * `resources.ARN`: `arn:aws:kms:<REGION>:<AWS_ACCOUNT_ID>:key/<KEY_ID>`
+  1. Buat workspace tanpa kunci.
+  2. Tambahkan ID compartment-nya ke kebijakan.
+  3. Lampirkan kunci.
 
-    <Note>
-      **Menemukan ID compartment Anda:** Lihat tab **Claude Platform** di bawah **Daftarkan kunci dengan Anthropic**.
-    </Note>
-
-    Anda juga dapat membuat kunci dari AWS Console. Pilih kunci simetris dengan penggunaan kunci encrypt dan decrypt, kunci single-region, dan asal material kunci KMS. Wizard Create-key menetapkan kebijakan kunci pada langkah **Review**-nya: Jika Anda menambahkan ID akun Anthropic `915198916910` di bawah izin penggunaan kunci di sana, kebijakan yang dihasilkan memberikan seluruh akun Anthropic aksi yang lebih luas (seperti `kms:ReEncrypt*` dan `kms:GenerateDataKey*`) tanpa kondisi `EncryptionContext`, dan validasi menolaknya. Untuk menghindari meninggalkan kunci yang terlalu permisif, selesaikan wizard dengan izin administratif saja, lalu buka tab **Key policy** kunci dan ganti JSON dengan kebijakan `key-policy.json` yang ditunjukkan sebelumnya dalam langkah ini.
-
-    <Frame caption="Configure key: symmetric, encrypt and decrypt, single-region key.">
-      ![Wizard Create-key di AWS KMS pada langkah Configure key, dengan tipe kunci simetris, penggunaan kunci encrypt dan decrypt, dan kunci single-region dipilih.](https://platform.claude.com/docs/images/cmek/aws-configure-key.png)
-    </Frame>
-
-    <Frame caption="Tambahkan alias dan deskripsi untuk kunci.">
-      ![Langkah Add labels di AWS KMS dengan alias anthropic-cmek dan deskripsi Anthropic CMEK.](https://platform.claude.com/docs/images/cmek/aws-add-labels.png)
-    </Frame>
-
-    <Frame caption="Tentukan izin administratif kunci (opsional). Akun Anda mempertahankan kontrol admin penuh.">
-      ![Langkah Define key administrative permissions di AWS KMS yang mencantumkan peran IAM yang dapat mengelola kunci.](https://platform.claude.com/docs/images/cmek/aws-admin-permissions.png)
-    </Frame>
-
-    <Frame caption="Jangan tambahkan ID akun Anthropic di sini. Langkah wizard ini menghasilkan kebijakan yang terlalu permisif. Biarkan izin penggunaan kosong dan edit JSON Key policy setelah pembuatan (lihat kebijakan kunci sebelumnya).">
-      ![Langkah Define key usage permissions di AWS KMS dengan ID akun Anthropic yang dimasukkan di bawah Other AWS accounts.](https://platform.claude.com/docs/images/cmek/aws-usage-permissions.png)
-    </Frame>
-  </Step>
-</Steps>
+  **Menemukan ID compartment Anda:** Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`). Pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
+</Note>
 
 ## Daftarkan kunci dengan Anthropic
 
-Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
+Memvalidasi kunci akan menambahkan kesalahan access-denied yang memang diharapkan ke CloudTrail. Jika Anda memasang peringatan untuk kesalahan ini, lihat [Kesalahan yang diharapkan di CloudTrail](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#expected-errors-in-cloud-trail) terlebih dahulu.
 
 <Tabs>
   <Tab title="Claude Platform">
-    <Note>
-      **Claude Platform on AWS:** Principal, kebijakan kunci, dan alur pendaftaran berbeda, dan tidak ada langkah validasi terpisah. Ikuti [Siapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) alih-alih tab ini.
-    </Note>
-
-    <Note>
-      **Menemukan ID compartment Anda:** Setiap workspace memiliki ID compartment yang menjadi cakupan data CMEK-nya. Untuk menemukannya di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
-    </Note>
-
-    Anda dapat menyiapkan kunci di Claude Console atau melalui Admin API, dengan hasil yang sama.
-
     <Tabs>
       <Tab title="Claude Console">
         <Steps>
-          <Step title="Daftarkan kunci dengan Anthropic">
-            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, pilih **AWS KMS**, dan klik **Continue**. Tempelkan ARN kunci ke **KMS key ARN**, lalu klik **Add**.
+          <Step title="Buka pengaturan kunci enkripsi">
+            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman.
+          </Step>
 
-            Langkah detail kunci menampilkan ID organisasi Anda. Tambahkan ke [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) sebelum Anda mengklik **Add**.
+          <Step title="Tambahkan kunci">
+            Di bawah **Encryption keys**, klik **Add key**. Masukkan **Display name** dan pilih **AWS KMS**. Klik **Continue**.
+          </Step>
+
+          <Step title="Masukkan ARN kunci">
+            Kotak dialog menampilkan **Organization ID for the key policy**. Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi ID ini. Tempelkan ARN kunci ke **KMS key ARN**, lalu klik **Add**.
           </Step>
 
           <Step title="Validasi kunci">
-            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, sebuah pesan memberikan alasannya.
+            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#troubleshoot-validation) untuk penyebab umum.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Melampirkan kunci tidak dapat dibatalkan. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Melampirkan kunci tidak dapat dibatalkan. Jika memungkinkan, lampirkan kunci ke workspace baru sebelum workspace tersebut menerima permintaan apa pun. Di workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+
+            Di halaman Data retention, pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci dan klik **Save**.
+          </Step>
+
+          <Step title="Konfirmasi perubahan">
+            Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Confirm**.
           </Step>
         </Steps>
       </Tab>
 
       <Tab title="API">
         <Steps>
-          <Step title="Daftarkan kunci dengan Anthropic">
-            Buat konfigurasi kunci eksternal melalui Admin API.
+          <Step title="Buat kunci eksternal">
+            Ganti `<friendly-name>` dengan nama tampilan dan `<key-arn-from-create-key-step>` dengan ARN kunci.
 
             <CodeGroup>
               ```bash cURL
@@ -385,7 +435,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
               ```
             </CodeGroup>
 
-            Respons berisi ID kunci eksternal:
+            Field `id` pada respons berisi ID kunci eksternal. Salin untuk dua langkah berikutnya:
 
             ```json
             {
@@ -397,7 +447,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
           </Step>
 
           <Step title="Validasi kunci">
-            Picu round-trip enkripsi dan dekripsi terhadap kunci Anda.
+            Ganti `ekey_<id>` dengan ID kunci eksternal.
 
             <CodeGroup>
               ```bash cURL
@@ -486,16 +536,13 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
             { "type": "external_key_validation", "status": "success", "error": null }
             ```
 
-            Jika validasi gagal, penyebab umum adalah:
-
-            * **Ketidakcocokan konteks enkripsi:** Jika kebijakan memiliki kondisi `kms:EncryptionContext:anthropic:compartment_uuid`, pastikan kondisi tersebut mencantumkan ID compartment dari setiap workspace tempat kunci dilampirkan. Validasi mengirimkan ID compartment dari workspace yang diperiksanya. Kunci lama yang pernyataan compartment-nya masih mengizinkan `kms:Encrypt` divalidasi dengan nilai semua-nol (`00000000-0000-0000-0000-000000000000`) saat tidak dilampirkan, jadi pertahankan nilai tersebut dalam daftarnya.
-            * **Resource control policies (RCP):** Jika organisasi AWS Anda memiliki RCP yang menolak operasi KMS ketika `aws:PrincipalOrgID` tidak cocok dengan org Anda, itu memblokir peran lintas akun Anthropic. RCP memerlukan pengecualian untuk kunci ini atau untuk ARN peran Anthropic. Service control policies tidak berlaku di sini, karena tidak dievaluasi untuk principal eksternal yang memanggil melalui kebijakan berbasis sumber daya.
-            * **Akses diberikan melalui IAM alih-alih kebijakan kunci:** Akses KMS lintas akun harus diberikan dalam kebijakan kunci itu sendiri, bukan melalui kebijakan IAM di akun Anda. Periksa dengan `aws kms get-key-policy --key-id <id> --policy-name default`.
-            * **Ketidakcocokan region:** Konfirmasikan region kunci adalah salah satu yang dioperasikan Anthropic untuk tier geo yang Anda konfigurasikan.
+            Jika validasi gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#troubleshoot-validation).
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">
-            Setelah kunci divalidasi, lampirkan ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+            Melampirkan kunci tidak dapat dibatalkan. Jika memungkinkan, lampirkan kunci ke workspace baru sebelum workspace tersebut menerima permintaan apa pun. Di workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
+
+            Ganti `<workspace-id>` dengan ID workspace dan `ekey_<id>` dengan ID kunci eksternal.
 
             <CodeGroup>
               ```bash cURL
@@ -614,112 +661,50 @@ Cara Anda mendaftarkan kunci bergantung pada produk mana yang Anda gunakan.
   </Tab>
 
   <Tab title="Claude Enterprise">
-    Di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), buka **Encryption keys**, lalu klik **Add key**. Pilih **AWS** dan klik **Continue**, lalu tempel Key ARN dari langkah sebelumnya dan klik **Add**. Anthropic memvalidasi kunci dengan round-trip enkripsi dan dekripsi. Setelah ditampilkan sebagai terverifikasi, organisasi Anda dilindungi CMEK sejak saat itu.
+    Pada Claude Enterprise, CMEK berlaku untuk seluruh organisasi, dan sebuah organisasi hanya dapat memiliki satu kunci.
 
-    Langkah detail kunci dari alur ini menampilkan **Organization ID for the key policy** Anda dengan tombol salin. Gantikan nilai tersebut untuk `<ORGANIZATION_UUID>` dalam kebijakan kunci. Anda dapat membuka alur untuk menyalin ID sebelum Anda membuat kunci.
+    <Steps>
+      <Step title="Buka pengaturan kunci enkripsi">
+        Buka [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls) dan temukan **Encryption keys**.
+      </Step>
 
-    Pada Claude Enterprise, CMEK berlaku untuk seluruh organisasi, sehingga tidak ada langkah lampiran workspace terpisah, dan organisasi hanya dapat memiliki satu kunci.
+      <Step title="Tambahkan kunci">
+        Klik **Add key**. Masukkan **Display name** dan pilih **AWS KMS**. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Continue**.
+      </Step>
+
+      <Step title="Masukkan ARN kunci">
+        Kotak dialog menampilkan **Organization ID for the key policy**. Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi ID ini. Tempelkan ARN kunci ke **KMS key ARN**, lalu klik **Add**.
+      </Step>
+
+      <Step title="Konfirmasi bahwa validasi berhasil">
+        Ketika pemeriksaan berhasil, **Encryption key configured** muncul, dan organisasi Anda dilindungi CMEK sejak saat itu. Jika pemeriksaan gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#troubleshoot-validation).
+      </Step>
+    </Steps>
   </Tab>
 </Tabs>
 
-## Siapkan CMEK di Claude Platform on AWS
+## Memecahkan masalah validasi
 
-Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya menggunakan kunci AWS KMS, dan penyiapan berbeda dari bagian sebelumnya dalam hal berikut:
+Jika validasi gagal, penyebab umum adalah:
 
-* **Principal:** Kebijakan kunci Anda memberikan akses ke principal layanan AWS `aws-external-anthropic.amazonaws.com`. Peran IAM dan ID akun Anthropic tidak digunakan, sehingga [ARN untuk Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#amazon-resource-name-arn-for-anthropic) tidak berlaku.
-* **Persyaratan kunci:** Kunci harus berupa kunci KMS simetris dengan penggunaan encrypt dan decrypt, single-region, dan berada di akun serta region AWS yang sama dengan workspace tempat Anda melampirkannya. Kunci lintas akun tidak didukung: kunci harus berada di akun AWS yang menghosting organisasi Anda. Kunci multi-region (ID kunci yang dimulai dengan `mrk-`) dan ARN alias ditolak saat Anda mendaftarkan kunci; gunakan ARN kunci.
-* **Tidak ada langkah validasi terpisah:** Selain pemeriksaan pada ARN kunci saat pendaftaran, kunci divalidasi saat Anda melampirkannya ke workspace. Panggilan lampiran melakukan round enkripsi/dekripsi terhadap kunci dengan ID compartment workspace tersebut sebagai konteks enkripsi, sehingga masalah kebijakan kunci muncul pada waktu lampiran alih-alih pada pendaftaran. Oleh karena itu, kondisi `EncryptionContext` tidak memerlukan entri semua-nol.
-* **Di mana Anda mengelola kunci:** Daftarkan dan lampirkan kunci di Claude Console, masuk melalui AWS dengan peran Admin. Endpoint kunci eksternal juga tersedia di Claude Platform on AWS, diotorisasi melalui [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys); di sana, kunci diidentifikasi oleh ARN kunci KMS-nya alih-alih ID `ekey_`.
+* **ID organisasi salah:** Pastikan kondisi `org_uuid` mencantumkan ID organisasi polos Anda, bukan ID yang berawalan `org_`.
+* **Ketidakcocokan konteks enkripsi:** Jika kebijakan memiliki kondisi `kms:EncryptionContext:anthropic:compartment_uuid`, pastikan kondisi tersebut mencantumkan [ID compartment](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#compartment-id) dari setiap workspace tempat kunci dilampirkan. Pada kunci lama, pernyataan compartment mungkin masih mengizinkan `kms:Encrypt`. Dalam hal ini, pertahankan juga nilai semua-nol (`00000000-0000-0000-0000-000000000000`) dalam daftar.
+* **Resource control policies (RCP):** Beberapa RCP menolak operasi KMS ketika `aws:PrincipalOrgID` tidak cocok dengan organisasi AWS Anda. RCP seperti ini memblokir peran Anthropic. Tambahkan pengecualian di dalamnya untuk kunci ini atau untuk ARN peran Anthropic. Service control policies tidak berlaku di sini.
+* **Akses diberikan melalui IAM alih-alih kebijakan kunci:** Berikan akses kepada peran Anthropic di dalam kebijakan kunci itu sendiri, bukan melalui kebijakan IAM di akun Anda. Untuk memeriksa kebijakan kunci, jalankan `aws kms get-key-policy --region <REGION> --key-id <KEY_ARN> --policy-name default`.
+* **Ketidakcocokan region:** Konfirmasikan bahwa kunci berada di region AS.
 
-<Warning>
-  Gunakan hanya nama principal layanan yang dipublikasikan ini. Jangan pernah mempercayai pengenal yang diberikan melalui email, chat, atau saluran onboarding apa pun.
-</Warning>
+### Kesalahan yang diharapkan di CloudTrail
 
-### Prasyarat
+Anthropic memvalidasi kunci setiap kali Anda memverifikasinya, melampirkannya ke workspace, atau melihatnya di pengaturan Claude Enterprise. Setiap validasi menambahkan empat kesalahan access-denied ke CloudTrail. Kesalahan ini memang diharapkan.
 
-* Akun AWS yang menghosting organisasi Claude Platform on AWS Anda, dengan izin untuk membuat kunci KMS dan menetapkan kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
-* Peran **Admin** di Claude Console untuk Claude Platform on AWS. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console).
-* Untuk principal IAM yang Anda gunakan untuk masuk ke Claude Console: selain `aws-external-anthropic:AssumeConsole`, [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys) untuk operasi yang Anda lakukan di sana, karena pendaftaran, pencantuman, dan pelampiran kunci melewati gateway AWS. Mendaftarkan kunci adalah `RegisterKey` (dengan `ListKeys` dan `GetKey` untuk melihat pendaftaran), dan melampirkan kunci adalah `UpdateWorkspace` atau `CreateWorkspace`. Aksi kunci eksternal (dan `CreateWorkspace`) memiliki cakupan akun, jadi berikan aksi tersebut pada `Resource: "*"`; kebijakan yang dibatasi pada ARN workspace tidak mencakupnya.
-* Untuk principal IAM yang melampirkan kunci ke workspace (identitas yang Anda gunakan untuk masuk ke Claude Console): `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci. Akses principal Anda ke kunci diperiksa saat Anda melampirkannya, selain principal layanan.
-* Opsional, untuk pemilih kunci di Claude Console: `kms:ListKeys` dan `kms:DescribeKey` untuk principal yang Anda gunakan untuk masuk. Tanpanya, tempel ARN kunci sebagai gantinya.
+Untuk memfilternya, cocokkan ketiga nilai berikut:
 
-### Buat kunci KMS
+* `requestParameters.encryptionContext.associatedData`: `Y21lay12YWxpZGF0aW9u`
+* `userIdentity.accountId`: `915198916910`
+* `resources.ARN`: `arn:aws:kms:<REGION>:<AWS_ACCOUNT_ID>:key/<KEY_ID>`
 
-Kebijakan kunci memiliki tiga pernyataan: pernyataan admin root akun Anda; pernyataan yang memungkinkan principal layanan Claude Platform on AWS mengenkripsi, mendekripsi, dan menghasilkan kunci data; serta pernyataan terpisah untuk `kms:DescribeKey`. Pernyataan kripto membawa kondisi `EncryptionContext` opsional yang mengikat kunci ke workspace yang Anda cantumkan. `DescribeKey` diberikan secara terpisah karena tidak memiliki parameter `EncryptionContext`, sehingga kondisi `EncryptionContext` pada aksi tersebut akan selalu menolak.
-
-Jika Anda berencana menggunakan kondisi `EncryptionContext` opsional yang ditunjukkan di sini, buat workspace terlebih dahulu (tanpa kunci), salin ID compartment-nya, dan gunakan sebagai pengganti `<compartment-uuid>`. Untuk menemukan ID di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membacanya dari kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve). Jika Anda tidak berencana menggunakan kondisi tersebut, hapus blok `Condition` dari pernyataan itu.
-
-```bash
-export YOUR_ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
-
-aws kms create-key \
-  --region <workspace-region> \
-  --description "Anthropic CMEK (Claude Platform on AWS)" \
-  --key-usage ENCRYPT_DECRYPT \
-  --policy "{
-    \"Version\": \"2012-10-17\",
-    \"Statement\": [
-      {
-        \"Sid\": \"AccountRootAdmin\",
-        \"Effect\": \"Allow\",
-        \"Principal\": {\"AWS\": \"arn:aws:iam::${YOUR_ACCOUNT}:root\"},
-        \"Action\": \"kms:*\",
-        \"Resource\": \"*\"
-      },
-      {
-        \"Sid\": \"AllowClaudePlatformOnAWSCrypto\",
-        \"Effect\": \"Allow\",
-        \"Principal\": {\"Service\": \"aws-external-anthropic.amazonaws.com\"},
-        \"Action\": [\"kms:Encrypt\", \"kms:Decrypt\", \"kms:GenerateDataKey\"],
-        \"Resource\": \"*\",
-        \"Condition\": {
-          \"StringEquals\": {
-            \"kms:EncryptionContext:anthropic:compartment_uuid\": [
-              \"<compartment-uuid>\"
-            ]
-          }
-        }
-      },
-      {
-        \"Sid\": \"AllowClaudePlatformOnAWSDescribe\",
-        \"Effect\": \"Allow\",
-        \"Principal\": {\"Service\": \"aws-external-anthropic.amazonaws.com\"},
-        \"Action\": \"kms:DescribeKey\",
-        \"Resource\": \"*\"
-      }
-    ]
-  }"
-```
-
-Tangkap `KeyMetadata.Arn` dari output. Anda membutuhkannya saat mendaftarkan kunci.
-
-Kondisi `EncryptionContext` bersifat opsional. Setiap panggilan enkripsi, dekripsi, dan kunci data yang dilakukan untuk sebuah workspace, termasuk pemeriksaan pada waktu lampiran, membawa ID compartment workspace tersebut sebagai `anthropic:compartment_uuid`, sehingga kondisi tersebut mencantumkan ID compartment setiap workspace tempat Anda melampirkan kunci dan tidak memerlukan entri semua-nol. Menambahkannya juga mengikat kunci ke workspace yang Anda cantumkan di lapisan IAM. Karena ID compartment baru ada setelah workspace-nya ada, urutannya adalah: buat workspace, masukkan ID compartment-nya ke dalam kondisi (saat pembuatan kunci, atau nanti dengan `kms:PutKeyPolicy`), lalu lampirkan kunci. Sebelum melampirkan kunci ke setiap workspace tambahan, tambahkan ID compartment workspace tersebut dengan cara yang sama. Untuk memulai tanpa kondisi tersebut, hapus blok `Condition` dari pernyataan `AllowClaudePlatformOnAWSCrypto`; jika Anda menambahkannya nanti, sertakan ID compartment setiap workspace yang sudah dilampiri kunci.
-
-Anda dapat membatasi lebih lanjut kedua pernyataan principal layanan dengan kondisi `aws:SourceArn`. Layanan meneruskan [ARN workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#service-details) (`arn:aws:aws-external-anthropic:<region>:<account-id>:workspace/<workspace-id>`) sebagai ARN sumber pada setiap panggilan yang dilakukannya dengan kunci Anda, sehingga `"ArnLike": {"aws:SourceArn": "arn:aws:aws-external-anthropic:*:<account-id>:workspace/*"}` membatasi pemberian izin pada workspace di akun AWS Anda sendiri, dan daftar ARN workspace lengkap membatasinya pada workspace tersebut. Kondisi ini tidak wajib; kondisi `EncryptionContext` saja sudah mengikat kunci ke workspace yang Anda cantumkan.
-
-Anda juga dapat membuat kunci dari AWS Console: pilih kunci simetris dengan penggunaan kunci encrypt dan decrypt, kunci single-region, dan asal material kunci KMS, di region workspace. Biarkan izin penggunaan kunci kosong di wizard Create-key, lalu buka tab **Key policy** kunci dan ganti JSON dengan kebijakan yang ditunjukkan di sini.
-
-### Daftarkan dan lampirkan kunci
-
-<Steps>
-  <Step title="Daftarkan kunci">
-    Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy#encryption-keys) (`platform.claude.com/settings/privacy`). Jika Anda tidak melihat **Encryption keys**, pilih **Organization** dari menu dropdown di bagian atas halaman. Di bawah **Encryption keys**, klik **Add key**. Masukkan nama tampilan, lalu pilih kunci dari pemilih kunci atau pilih **Enter ARN manually** dan tempelkan ARN kunci, lalu klik **Add**. Kunci harus berada di akun AWS yang menghosting organisasi Anda; kunci lintas akun tidak didukung. Pemilih mencantumkan kunci yang aktif, dikelola pelanggan, simetris, dan single-region di akun Anda di salah satu region organisasi Anda; untuk kunci yang tidak dicantumkan oleh pemilih, masukkan ARN-nya. Pemilih hanya mencantumkan kunci jika principal yang Anda gunakan untuk masuk dapat memanggil `kms:ListKeys` dan `kms:DescribeKey`.
-  </Step>
-
-  <Step title="Lampirkan kunci ke workspace">
-    Lampirkan kunci ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Untuk workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works). Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) dan pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci, klik **Save**, dan konfirmasi. Anda juga dapat memilih kunci saat membuat workspace di Claude Console, tetapi hanya jika kebijakan kunci Anda belum menyebutkan workspace tertentu (tanpa kondisi `EncryptionContext`), karena ID compartment workspace ditetapkan saat pembuatan. Setelah dilampirkan, kunci sebuah workspace tidak dapat diubah.
-
-    Inilah saat kunci divalidasi: panggilan lampiran memeriksa akses principal Anda ke kunci dan melakukan round enkripsi/dekripsi terhadapnya dengan ID compartment workspace sebagai konteks enkripsi, sehingga masalah dengan kebijakan kunci atau izin principal Anda muncul sebagai kesalahan pada panggilan tersebut. Jika lampiran gagal dengan kesalahan akses KMS, periksa hal berikut:
-
-    * Kebijakan kunci menyebutkan principal layanan `aws-external-anthropic.amazonaws.com` dan memberikan `kms:Encrypt`, `kms:Decrypt`, dan `kms:GenerateDataKey`, ditambah `kms:DescribeKey` dalam pernyataan terpisah yang tidak memiliki kondisi `EncryptionContext`.
-    * Setiap kondisi `EncryptionContext` menyertakan ID compartment workspace ini, dan setiap kondisi `aws:SourceArn` yang Anda tambahkan cocok dengan ARN workspace ini.
-    * Kunci diaktifkan, single-region, dan berada di akun serta region AWS yang sama dengan workspace.
-    * Principal yang Anda gunakan untuk masuk memiliki `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci.
-    * Tidak ada service control policy atau resource control policy di organisasi AWS Anda yang mencegah principal layanan atau principal Anda menggunakan kunci.
-    * Jika kebijakan terlihat benar dan lampiran masih gagal, temukan event `kms:` yang ditolak di CloudTrail pada akun kunci (event tersebut menampilkan principal pemanggil dan, untuk panggilan kriptografis, konteks enkripsi), lalu perbaiki kondisi dengan `kms:PutKeyPolicy` dan coba lagi.
-  </Step>
-</Steps>
+Nilai pertama saja tidak cukup, karena pemanggil mana pun dapat menetapkannya.
 
 ## Terraform
 
-Untuk deployment infrastructure-as-code, langkah-langkah yang sama dipetakan ke provider `aws` dengan sumber daya `aws_kms_key` dan `aws_kms_alias`.
+Untuk membuat kunci dengan Terraform, gunakan resource `aws_kms_key` dan `aws_kms_alias` dari provider `aws`.

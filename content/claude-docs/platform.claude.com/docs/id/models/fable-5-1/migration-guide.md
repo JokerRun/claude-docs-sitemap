@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/migration-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 06191d99daa9643287bfc26e870c31d3f6dbfba0e9ae80081f4f7a97abbda04f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 83b68654276c14d53fa6fe83841933e7e2233ef5cfc12f93499ae1ad5b6cb90f
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Beralih ke Claude Fable 5.1 dan Claude Mythos 5.1 dari Claude Fable
 </Note>
 
 <Tip>
-  **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
+  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
 
   Biarkan Claude Code memigrasikan kode Anda
 
@@ -969,9 +969,7 @@ model = "claude-mythos-5-1"  # After
 
      ```bash CLI
      ant beta:messages create \
-       --beta thinking-binding-controls-2026-08-01 \
-       --transform '{content.#(type=="text")#.text,input_transformations}' \
-       --format yaml <<'YAML'
+       --beta thinking-binding-controls-2026-08-01 <<'YAML'
      model: claude-fable-5-1
      max_tokens: 16000
      thinking:
@@ -1261,9 +1259,7 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
 
      ```bash CLI
      ant beta:messages create \
-       --beta mid-conversation-output-config-2026-07-01 \
-       --transform 'content.#(type=="text").text' \
-       --raw-output <<'YAML'
+       --beta mid-conversation-output-config-2026-07-01 <<'YAML'
      model: claude-fable-5-1
      max_tokens: 4096
      output_config:

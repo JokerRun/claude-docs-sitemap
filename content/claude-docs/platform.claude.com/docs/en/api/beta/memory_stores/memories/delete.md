@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 1b3e10886fe13522d135dcc92272ab2194b541c4a211441ed81d4d91b248ea1c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 024a137d20ebbd49b9ab555f41f595ee5898ce0034357e8ed4633066e04005be
 ---
 
 ---
-title: Delete a memory
+title: Delete a Memory
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
 ---
 
-# Delete a memory
+# Delete a Memory
 
 **DELETE** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
-Delete a memory
+Delete a Memory
 
 ## Path parameters
 
@@ -160,7 +160,11 @@ Delete a memory
 
 - `BetaManagedAgentsDeletedMemory object`
 
-  Tombstone returned by [Delete a memory](https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete?sdk_languages=http). Deleting a memory does not erase its version history: its versions remain listable via [List memory versions](https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list?sdk_languages=http) while they are retained (each version is kept for at least the version retention period after it was written, unless the store itself is deleted).
+  The confirmation that [Delete a Memory](https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete?sdk_languages=http) returns.
+
+  Deleting a memory doesn't delete its versions. [List Memory Versions](https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list?sdk_languages=http) returns them while they are retained: each version is kept for at least the version retention period after it was written, unless the store itself is deleted.
+
+  See the [memory guide](https://platform.claude.com/docs/en/managed-agents/memory?sdk_languages=http#audit-memory-changes) to learn more about how long versions are kept.
 
   - `type: "memory_deleted"`
 

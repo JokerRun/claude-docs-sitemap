@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e30e6bec19369910f89e4d72b4df231597b3907bfd3e79b5e46e096f8bbe4ab6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6fdd81279f6f9457ff6e0148d3f606e6bf4039638334950a2f81a4ee848b5d3d
 ---
 
 ---
@@ -515,9 +515,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   #!/bin/sh
 
   # Opsi 1: Gambar yang dienkode Base64
-  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
-  IMAGE_MEDIA_TYPE="image/jpeg"
-  IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
+  IMAGE_BASE64=$(curl "https://platform.claude.com/docs/images/vision-example.jpg" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -531,7 +529,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       {"role": "user", "content": [
         {"type": "image", "source": {
           "type": "base64",
-          "media_type": "$IMAGE_MEDIA_TYPE",
+          "media_type": "image/jpeg",
           "data": "$IMAGE_BASE64"
         }},
         {"type": "text", "text": "What is in the above image?"}
@@ -561,10 +559,8 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```
 
   ```bash CLI
-  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
-
   # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
-  curl -s "$IMAGE_URL" -o ./vision-example.jpg
+  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" -o ./vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5-5
@@ -582,7 +578,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   YAML
 
   # Opsi 2: Gambar yang direferensikan melalui URL
-  ant messages create <<YAML
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:
@@ -591,7 +587,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
         - type: image
           source:
             type: url
-            url: $IMAGE_URL
+            url: https://platform.claude.com/docs/images/vision-example.jpg
         - type: text
           text: What is in the above image?
   YAML

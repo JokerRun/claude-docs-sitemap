@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 6a31ce03443ddba1787962af57e3236e780e22f56bd2c2d3d1f191944908f694
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: aaebdc5847e772993201b3050ac7519d892a275e5e71f4486403598e3f4856f3
 ---
 
 ---
@@ -464,97 +464,14 @@ Pertama, bandingkan apa yang Anda kirim. Rekam body permintaan yang dikirim inte
 
 Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-controls-2026-08-01`, tetapkan `prefix_mismatch_behavior` ke `"drop_block"`, dan jalankan sesi multi-giliran normal melalui integrasi Anda pada claude-fable-5-1. Contoh berikut menjalankan dua giliran sebagaimana seharusnya integrasi Anda: `messages` hanya bertambah, setiap giliran asisten dikirim kembali persis seperti yang dikembalikan API, termasuk blok `thinking`, dan `block_binding` ditetapkan pada setiap permintaan. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dalam respons dan jumlah blok yang dibuang:
 
-<CodeGroup>
-  ```bash cURL
-  # Menghitung blok thinking dalam respons dan blok yang dibuang oleh API
-  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
-    "dropped: \(.input_transformations | length)"'
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  FIRST=$(curl -s https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d '{
-      "model": "claude-fable-5-1",
-      "max_tokens": 16000,
-      "thinking": {
-        "type": "adaptive",
-        "block_binding": { "prefix_mismatch_behavior": "drop_block" }
-      },
-      "messages": [
-        {
-          "role": "user",
-          "content": "How many positive integers below 500 have exactly 6 positive divisors?"
-        }
-      ]
-    }')
-  echo "$FIRST" | jq -r "$COUNTS"
-
-  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
-  MESSAGES=$(jq -n --argjson first "$FIRST" '[
-    {
-      role: "user",
-      content: "How many positive integers below 500 have exactly 6 positive divisors?"
-    },
-    { role: "assistant", content: $first.content },
-    { role: "user", content: "How many of those are odd?" }
-  ]')
-
-  jq -n --argjson messages "$MESSAGES" '{
-    model: "claude-fable-5-1",
-    max_tokens: 16000,
-    thinking: {
-      type: "adaptive",
-      block_binding: { prefix_mismatch_behavior: "drop_block" }
-    },
-    messages: $messages
-  }' | curl -s https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d @- | jq -r "$COUNTS"
-  ```
-
-  ```bash CLI
-  # Menghitung blok thinking dalam respons dan blok yang dibuang oleh API
-  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
-    "dropped: \(.input_transformations | length)"'
-
-  FIRST=$(ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --format json <<'YAML'
-  model: claude-fable-5-1
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-    block_binding:
-      prefix_mismatch_behavior: drop_block
-  messages:
-    - role: user
-      content: How many positive integers below 500 have exactly 6 positive divisors?
-  YAML
-  )
-  echo "$FIRST" | jq -r "$COUNTS"
-
-  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
-  ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --format json <<YAML | jq -r "$COUNTS"
-  model: claude-fable-5-1
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-    block_binding:
-      prefix_mismatch_behavior: drop_block
-  messages:
-    - role: user
-      content: How many positive integers below 500 have exactly 6 positive divisors?
-    - role: assistant
-      content: $(echo "$FIRST" | jq -c .content)
-    - role: user
-      content: How many of those are odd?
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -826,7 +743,7 @@ Catat `input_transformations` pada setiap giliran integrasi Anda sendiri. Ketika
 * **`reason: "model_binding_mismatch"`:** percakapan berpindah ke model yang tidak dapat membaca blok model sebelumnya. Ini bukan edit prefiks. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 * **`reason: "organization_binding_mismatch"`:** blok berasal dari akun lain. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
-Untuk melihat kegagalan secara sengaja, kirim giliran ketiga dari contoh sebelumnya dan tambahkan prompt `system` hanya ke permintaan tersebut, sehingga berbeda dari dua permintaan pertama, yang tidak memilikinya. Dengan `"drop_block"`, jumlah yang dibuang tidak lagi 0: respons memiliki satu entri untuk setiap blok pemikiran dalam riwayat, masing-masing dengan `reason: "prefix_binding_mismatch"`. Dengan `"error"`, permintaan mengembalikan 400 yang dijelaskan di [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior), dan kalimat terakhirnya menyebutkan prompt `system`. Di tab cURL dan "command-line interface" (antarmuka baris perintah), atau CLI, hapus filter `jq` untuk melihat body error. Jika jumlahnya masih 0, tidak ada yang perlu diperiksa: pastikan bahwa modelnya adalah claude-fable-5-1, bahwa permintaan menetapkan `block_binding`, bahwa riwayat yang Anda kirim berisi blok `thinking`, dan bahwa dua permintaan pertama tidak memiliki prompt `system`.
+Untuk melihat kegagalan secara sengaja, kirim giliran ketiga dari contoh sebelumnya dan tambahkan prompt `system` hanya ke permintaan tersebut, sehingga berbeda dari dua permintaan pertama, yang tidak memilikinya. Dengan `"drop_block"`, jumlah yang dibuang tidak lagi 0: respons memiliki satu entri untuk setiap blok pemikiran dalam riwayat, masing-masing dengan `reason: "prefix_binding_mismatch"`. Dengan `"error"`, permintaan mengembalikan 400 yang dijelaskan di [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior), dan kalimat terakhirnya menyebutkan prompt `system`. Jika jumlahnya masih 0, tidak ada yang perlu diperiksa: pastikan bahwa modelnya adalah claude-fable-5-1, bahwa permintaan menetapkan `block_binding`, bahwa riwayat yang Anda kirim berisi blok `thinking`, dan bahwa dua permintaan pertama tidak memiliki prompt `system`.
 
 Dua giliran biasa jarang menunjukkan masalah. Jalankan sesi melalui masing-masing hal berikut, dengan `"error"` ditetapkan sehingga regresi menggagalkan "continuous integration" (integrasi berkelanjutan), atau CI, Anda:
 
@@ -853,130 +770,14 @@ Pada akun yang lebih lama, Anda juga dapat memantau lalu lintas produksi tanpa i
 
 Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), karena akun yang lebih baru menolak permintaan ketiganya dengan 400. Contoh ini mengirim header tanpa `block_binding` dan memperluas sesi sebelumnya dengan permintaan ketiga yang menambahkan prompt sistem, yang mengubah prefiks secara sengaja. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dan blok yang ditandai:
 
-<CodeGroup>
-  ```bash cURL
-  # Menghitung blok thinking dalam respons dan blok yang gagal pemeriksaan prefiks
-  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
-    "flagged: \([.input_transformations[] |
-      select(.type == "thinking_mismatch_allowed")] | length)"'
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  FIRST=$(curl -s https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d '{
-      "model": "claude-fable-5-1",
-      "max_tokens": 16000,
-      "thinking": { "type": "adaptive" },
-      "messages": [
-        {
-          "role": "user",
-          "content": "How many positive integers below 500 have exactly 6 positive divisors?"
-        }
-      ]
-    }')
-  echo "$FIRST" | jq -r "$COUNTS"
-
-  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
-  MESSAGES=$(jq -n --argjson first "$FIRST" '[
-    {
-      role: "user",
-      content: "How many positive integers below 500 have exactly 6 positive divisors?"
-    },
-    { role: "assistant", content: $first.content },
-    { role: "user", content: "How many of those are odd?" }
-  ]')
-
-  SECOND=$(jq -n --argjson messages "$MESSAGES" '{
-    model: "claude-fable-5-1",
-    max_tokens: 16000,
-    thinking: { type: "adaptive" },
-    messages: $messages
-  }' | curl -s https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d @-)
-  echo "$SECOND" | jq -r "$COUNTS"
-
-  # Giliran 3: hanya permintaan ini yang menambahkan prompt sistem, yang sengaja mengubah prefiks
-  jq -n --argjson messages "$MESSAGES" --argjson second "$SECOND" '{
-    model: "claude-fable-5-1",
-    max_tokens: 16000,
-    thinking: { type: "adaptive" },
-    system: "Answer briefly.",
-    messages: ($messages + [
-      { role: "assistant", content: $second.content },
-      { role: "user", content: "And how many of the odd ones are below 100?" }
-    ])
-  }' | curl -s https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d @- | jq -r "$COUNTS"
-  ```
-
-  ```bash CLI
-  # Menghitung blok thinking dalam respons dan blok yang gagal pemeriksaan prefiks
-  COUNTS='"thinking blocks: \([.content[] | select(.type == "thinking")] | length), " +
-    "flagged: \([.input_transformations[] |
-      select(.type == "thinking_mismatch_allowed")] | length)"'
-
-  FIRST=$(ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --format json <<'YAML'
-  model: claude-fable-5-1
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-  messages:
-    - role: user
-      content: How many positive integers below 500 have exactly 6 positive divisors?
-  YAML
-  )
-  echo "$FIRST" | jq -r "$COUNTS"
-
-  # Giliran 2: giliran asisten dikirim kembali persis seperti yang dikembalikan, lalu pesan pengguna berikutnya
-  SECOND=$(ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --format json <<YAML
-  model: claude-fable-5-1
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-  messages:
-    - role: user
-      content: How many positive integers below 500 have exactly 6 positive divisors?
-    - role: assistant
-      content: $(echo "$FIRST" | jq -c .content)
-    - role: user
-      content: How many of those are odd?
-  YAML
-  )
-  echo "$SECOND" | jq -r "$COUNTS"
-
-  # Giliran 3: hanya permintaan ini yang menambahkan prompt sistem, yang sengaja mengubah prefiks
-  ant beta:messages create --beta thinking-binding-controls-2026-08-01 \
-    --format json <<YAML | jq -r "$COUNTS"
-  model: claude-fable-5-1
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-  system: Answer briefly.
-  messages:
-    - role: user
-      content: How many positive integers below 500 have exactly 6 positive divisors?
-    - role: assistant
-      content: $(echo "$FIRST" | jq -c .content)
-    - role: user
-      content: How many of those are odd?
-    - role: assistant
-      content: $(echo "$SECOND" | jq -c .content)
-    - role: user
-      content: And how many of the odd ones are below 100?
-  YAML
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -1501,15 +1302,15 @@ Teruskan riwayat yang telah di-compact sebagai `messages` dan atur `block_bindin
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
-    -d "{
-      \"model\": \"claude-fable-5-1\",
-      \"max_tokens\": 16000,
-      \"thinking\": {
-        \"type\": \"adaptive\",
-        \"block_binding\": { \"prefix_mismatch_behavior\": \"drop_block\" }
+    -d '{
+      "model": "claude-fable-5-1",
+      "max_tokens": 16000,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": { "prefix_mismatch_behavior": "drop_block" }
       },
-      \"messages\": $COMPACTED_MESSAGES
-    }"
+      "messages": '"$COMPACTED_MESSAGES"'
+    }'
   ```
 
   ```bash CLI

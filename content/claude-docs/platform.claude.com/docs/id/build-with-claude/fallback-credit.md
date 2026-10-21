@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 616bfa6abe39fb0916a7f5707f69ab52020e0f73abb4625e250c92bb658ed078
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: bd9ff5961edd44e6a2583aab6c73280b9ab2329116802e339760cfdff982f30e
 ---
 
 ---
@@ -53,68 +53,14 @@ Field `fallback_has_prefill_claim` memberi tahu Anda apakah percobaan ulang dapa
 
 Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kredit pada percobaan ulang terhadap Claude Opus 4.8. Ketika upaya percobaan ulang ditolak, contoh ini menurun melalui tangga penolakan: urutan bentuk percobaan ulang yang semakin sederhana yang dibahas di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected).
 
-<CodeGroup>
-  ```bash cURL
-  # Permintaan awal (mungkin ditolak)
-  response=$(curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: fallback-credit-2026-07-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-fable-5",
-      "max_tokens": 1024,
-      "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }')
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # Penolakan membawa token kredit sekali pakai di stop_details
-  token=$(jq -r '.stop_details.fallback_credit_token // empty' <<<"${response}")
-
-  if [[ -n "${token}" ]]; then
-    # Coba lagi pada model cadangan dengan token kredit (body yang sama)
-    response=$(curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: fallback-credit-2026-07-01" \
-      -H "content-type: application/json" \
-      -d "$(jq -n --arg token "${token}" '{
-        model: "claude-opus-4-8",
-        max_tokens: 1024,
-        messages: [{"role": "user", "content": "Hello, Claude"}],
-        fallback_credit_token: $token
-      }')")
-  fi
-
-  # Lihat contoh SDK untuk tangga penanganan penolakan yang lengkap.
-  jq -c '{stop_reason, model}' <<<"${response}"
-  ```
-
-  ```bash CLI
-  # Permintaan awal (mungkin ditolak)
-  response=$(ant beta:messages create \
-    --model claude-fable-5 \
-    --max-tokens 1024 \
-    --message '{"role":"user","content":"Hello, Claude"}' \
-    --beta fallback-credit-2026-07-01 \
-    --format json)
-
-  # Penolakan membawa token kredit sekali pakai di stop_details
-  token=$(jq -r '.stop_details.fallback_credit_token // empty' <<<"${response}")
-
-  if [[ -n "${token}" ]]; then
-    # Coba lagi pada model cadangan dengan token kredit
-    response=$(ant beta:messages create \
-      --model claude-opus-4-8 \
-      --max-tokens 1024 \
-      --message '{"role":"user","content":"Hello, Claude"}' \
-      --fallback-credit-token "${token}" \
-      --beta fallback-credit-2026-07-01 \
-      --format json)
-  fi
-
-  # Lihat contoh SDK untuk tahapan penanganan penolakan yang lengkap.
-  jq -c '{stop_reason, model}' <<<"${response}"
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = Anthropic()
@@ -574,7 +520,7 @@ Kredit fallback tersedia dalam versi beta di Claude API, Amazon Bedrock, Claude 
 Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang menolak. Untuk Claude Fable 5.1, Claude Fable 5, dan Claude Opus 5.5, targetnya adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`). Untuk Claude Opus 5, targetnya adalah Claude Opus 4.8. Untuk Claude Sonnet 5.5, targetnya adalah Claude Sonnet 5 (`claude-sonnet-5`).
 
 <Accordion title="Mencari target fallback yang diizinkan secara terprogram">
-  Di Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](https://platform.claude.com/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar ini belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+  Di Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](https://platform.claude.com/docs/id/api/beta/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar ini belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 </Accordion>
 
 ## Memeriksa bahwa kredit telah diterapkan

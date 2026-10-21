@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/cli-hints
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: 8f7f28fb9568c8acfce79a0ed6761c175062ffb6c01b91936d2780ebd2e91257
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: cae42089de7d22257f486031fcff3698a3b9e6bdcc642778014fcfc603d570eb
 ---
 
 > ## Documentation Index
@@ -17,9 +17,9 @@ If you maintain a CLI or SDK, your tool can prompt Claude Code users to install 
 
 This page applies only if your plugin is listed in `claude-plugins-official` or another marketplace with one of Anthropic's [official marketplace names](/docs/en/plugins/security#official-marketplace-names). The community marketplace, `claude-community`, isn't one of them.
 
-<Note>
-  To publish a plugin, see [Publish and distribute a plugin](/docs/en/plugins/publish).
-</Note>
+> [!NOTE]
+>
+> To publish a plugin, see [Publish and distribute a plugin](/docs/en/plugins/publish).
 
 ## Emit the hint
 
@@ -34,38 +34,36 @@ The [environment variables reference](/docs/en/env-vars) has the details.
 
 The following examples gate on `CLAUDECODE` for the widest reach and emit a hint for a plugin named `example-cli` in the official marketplace:
 
-<CodeGroup>
-  ```javascript Node.js theme={null}
-  if (process.env.CLAUDECODE) {
-    process.stderr.write(
-      '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />\n',
+```javascript Node.js theme={null}
+if (process.env.CLAUDECODE) {
+  process.stderr.write(
+    '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />\n',
+  )
+}
+```
+
+```python Python theme={null}
+import os, sys
+
+if os.environ.get("CLAUDECODE"):
+    print(
+        '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />',
+        file=sys.stderr,
     )
-  }
-  ```
+```
 
-  ```python Python theme={null}
-  import os, sys
+```go Go theme={null}
+if os.Getenv("CLAUDECODE") != "" {
+    fmt.Fprintln(os.Stderr,
+        `<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />`)
+}
+```
 
-  if os.environ.get("CLAUDECODE"):
-      print(
-          '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />',
-          file=sys.stderr,
-      )
-  ```
-
-  ```go Go theme={null}
-  if os.Getenv("CLAUDECODE") != "" {
-      fmt.Fprintln(os.Stderr,
-          `<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />`)
-  }
-  ```
-
-  ```shell Shell theme={null}
-  if [ -n "$CLAUDECODE" ]; then
-    printf '%s\n' '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />' >&2
-  fi
-  ```
-</CodeGroup>
+```shell Shell theme={null}
+if [ -n "$CLAUDECODE" ]; then
+  printf '%s\n' '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />' >&2
+fi
+```
 
 Replace `example-cli` with your plugin's name in the official marketplace.
 

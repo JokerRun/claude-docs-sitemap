@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 4a71b284ebd304fd369f36ac1bea8f0b1f6d16980d345f099a7fe5d644e09af2
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7c4c55cc0753c448ba892fe0a2d92917531510285fa89e0d0e6fe4d2515dc6eb
 ---
 
 ---
@@ -66,7 +66,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
 
   ```bash CLI
   ant beta:messages create --beta task-budgets-2026-03-13 \
-    --stream --format jsonl <<'YAML' | jq 'select(.type == "message_delta").usage'
+    --stream <<'YAML'
   model: claude-opus-5-5
   max_tokens: 128000
   messages:
@@ -496,7 +496,7 @@ Untuk loop yang mengirim ulang seluruh riwayat yang tidak dipadatkan pada setiap
 
 ## Mengubah anggaran di tengah percakapan
 
-`task_budget` adalah pengaturan tingkat permintaan. Untuk mengubah anggaran di tengah tugas, misalnya untuk memperpanjangnya ketika pengguna memperluas permintaan, tetapkan `task_budget` baru di `output_config` pada permintaan berikutnya. Perhatikan konsekuensi caching-nya: nilai anggaran ikut serta dalam prompt yang dirender, sehingga nilai yang berubah tidak cocok dengan entri cache yang dibuat dengan nilai lama (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support) di bawah).
+`task_budget` adalah pengaturan tingkat permintaan. Untuk mengubah anggaran di tengah tugas, misalnya untuk memperpanjangnya ketika pengguna memperluas permintaan, tetapkan `task_budget` baru di `output_config` pada permintaan berikutnya. Perhatikan konsekuensi caching-nya: nilai anggaran ikut serta dalam prompt yang dirender, sehingga nilai yang berubah tidak cocok dengan entri cache yang dibuat dengan nilai lama (lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support)).
 
 ## Anggaran tugas bersifat saran, bukan ditegakkan
 

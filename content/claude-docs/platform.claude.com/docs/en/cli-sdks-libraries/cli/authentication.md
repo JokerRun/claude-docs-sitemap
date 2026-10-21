@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 2f84038717c4438a953737fbfe45eead2ffdd394e46f62898a054c4bdd59588e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 82d82aa613e536ed00b1a7f634845537af8741fc6d9063f23654365ed5e51e27
 ---
 
 ---
@@ -134,7 +134,7 @@ ANTHROPIC_PROFILE=other-ws ant models list
 Run [`ant auth status`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication#check-authentication-status) to confirm which profile and workspace are active.
 
 <Note>
-  Profiles are only consulted when no API key is set. If `ANTHROPIC_API_KEY` is present in your environment, it overrides every profile and these commands all use that key's workspace (or, for a multi-workspace key, the workspace set with `ANTHROPIC_WORKSPACE_ID` or `--workspace-id`). Unset it before switching profiles.
+  An `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` in your environment takes precedence over every profile (see [Credential precedence](https://platform.claude.com/docs/en/manage-claude/wif-reference#credential-precedence)). Until you unset it, API requests use that credential, whichever profile you select, and `ant` prints a message to stderr that says so.
 </Note>
 
 ## Manage profiles

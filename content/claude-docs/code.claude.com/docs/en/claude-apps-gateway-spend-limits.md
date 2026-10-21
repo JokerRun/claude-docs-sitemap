@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-10-03T02:22:36.062836Z
-sha256: d366894636585b26f150e707dd0c26382408f7984c6a6d2fe168de59b2c3652c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: b4f1ca7b124b5f864f3ca742274b87af032f42776043584642085068bbec16f1
 ---
 
 > ## Documentation Index
@@ -145,9 +145,9 @@ Group-sourced caps resolve against those last-seen groups with the same `group_l
 | `q` | Case-insensitive substring filter over the OIDC `sub`, last-seen email, and last-seen display name. |
 | `limit` / `page` | Page size, 1–1000 with a default of 20, and the opaque cursor from the previous response's `next_page`. |
 
-<Warning>
-  `q=` and `user_ids[]=` ride GET query strings, so any fronting proxy or load balancer captures them in its access logs. If your PII log policy is strict, scrub these parameters there.
-</Warning>
+> [!WARNING]
+>
+> `q=` and `user_ids[]=` ride GET query strings, so any fronting proxy or load balancer captures them in its access logs. If your PII log policy is strict, scrub these parameters there.
 
 ### `/audit`
 

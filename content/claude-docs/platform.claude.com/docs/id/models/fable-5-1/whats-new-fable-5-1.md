@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 97bc19a488ec39b519125d62eaea175b7fa117659e6860dcf6b86807af003670
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 89733c76378b889282e67793ca7ce8d7fa9f92b61a030105679505a19d0e9ed7
 ---
 
 ---
@@ -96,8 +96,7 @@ Di Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.claude
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   output_config:

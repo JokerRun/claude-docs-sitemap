@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: e8df3caae859189203da9e14696be4e75378ec6aa9a0780055d5aa93d7880019
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: abfedc6ecddb8da04a4ba351f2f86d2958775da3b4acfa3e73d64131e0e82515
 ---
 
 ---
@@ -28,7 +28,7 @@ ant auth login --workspace-id wrkspc_01...
 
 # Jika profil bernama yang Anda berikan dengan --profile tidak ada,
 # profil bernama baru akan dibuat dengan nama tersebut.
-ant auth login --profile <profile-name>
+ant auth login --profile work
 ```
 
 Selama alur browser, Anda memilih organisasi dan kemudian [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Token yang diterbitkan [dibatasi ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), sehingga CLI hanya dapat melihat sumber daya yang menjadi miliknya. Berikan `--workspace-id` untuk mengikat secara langsung dan melewati pemilih. Untuk bekerja di lebih dari satu workspace, lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).
@@ -78,7 +78,7 @@ CLI juga membaca kunci API Anda dari variabel lingkungan `ANTHROPIC_API_KEY`. Da
   </Tab>
 </Tabs>
 
-Untuk menimpa kunci untuk satu pemanggilan, berikan `--api-key`. Untuk mengarah ke host API yang berbeda, atur `ANTHROPIC_BASE_URL` atau berikan `--base-url`.
+Untuk menimpa kunci untuk satu pemanggilan, berikan [`--api-key-stdin`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags) dan pipe kunci ke perintah. Untuk mengarah ke host API yang berbeda, atur `ANTHROPIC_BASE_URL` atau berikan `--base-url`.
 
 Jika Anda menggunakan kunci API yang dibatasi ke beberapa workspace, seperti [kunci akun personal atau service](https://platform.claude.com/docs/id/manage-claude/authentication#key-types), Anda harus [menentukan workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) untuk menjalankan perintah Anda. Lakukan ini dengan mengatur variabel lingkungan `ANTHROPIC_WORKSPACE_ID`, yang dibaca CLI secara otomatis, atau dengan menggunakan [flag `--workspace-id`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags). Nilainya harus berupa ID `wrkspc_...`.
 

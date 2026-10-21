@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: c2d24923c104255043753e42bb404f1ab4c2588b18b87201cbf21dcec0128715
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9656b27cb655eac1a402442ef7c4611522e8ad122574f9a1b33960d0f6964471
 ---
 
 ---
@@ -30,7 +30,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `"anthropic-workspace-id": optional string`
 

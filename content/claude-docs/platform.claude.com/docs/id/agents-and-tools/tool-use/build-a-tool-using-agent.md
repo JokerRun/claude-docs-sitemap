@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c24ebfc1b9e3e7dc1c7f20e81832b9475a6df945d1490bd0a4cb2c2bad939d58
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 56e19fd454cb88ef7f81879b24cc19749d52de9ca70269d518e785c8a78b0cea
 ---
 
 ---
@@ -25,22 +25,14 @@ Program pengguna alat terkecil yang mungkin: satu alat, satu pesan pengguna, sat
 
 Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menentukan bahwa panggilan alat diperlukan, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda menjalankan alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari panggilan tersebut.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 1: Single tool, single turn.
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 1: Single tool, single turn.
-
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Ring 1: Satu alat, satu giliran.
@@ -857,22 +849,14 @@ Cincin 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata s
 
 Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks sebelumnya secara lengkap.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 2: The agentic loop.
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 2: The agentic loop.
-
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Ring 2: Loop agentik.
@@ -1636,22 +1620,14 @@ Agen jarang hanya memiliki satu kemampuan. Tambahkan alat kedua, `list_calendar_
 
 Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan kembali semua hasil bersama-sama dalam satu pesan pengguna. Iterasi setiap blok `tool_use` dalam `response.content`, bukan hanya yang pertama.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 3: Multiple tools, parallel calls.
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 3: Multiple tools, parallel calls.
-
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Ring 3: Beberapa alat, panggilan paralel.
@@ -2461,22 +2437,14 @@ Untuk informasi lebih lanjut tentang eksekusi konkuren dan jaminan urutan, lihat
 
 Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau sebuah tanggal mungkin salah format. Ketika alat memunculkan error, kirimkan pesan error kembali dengan `is_error: true` alih-alih membuat program crash. Claude membaca error tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi kepada pengguna, atau menjelaskan keterbatasannya.
 
-<CodeGroup>
-  ```bash cURL
-  #!/bin/bash
-  # Ring 4: Error handling.
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
-
-  ```bash CLI
-  #!/usr/bin/env bash
-  # Ring 4: Error handling.
-
-  # This workflow needs more logic than a single shell command.
-  # Use the Claude SDK to run it.
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   # Ring 4: Penanganan error.
@@ -3375,15 +3343,15 @@ Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude m
 
 Cincin 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, lalu mengulanginya. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, teruskan daftarnya ke `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan pengelolaan percakapan ditangani secara internal.
 
-Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab di bawah ini menunjukkan bentuk idiomatis untuk setiap bahasa.
+Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijalankan dan menurunkan skema input dari signature-nya; tab berikut menunjukkan bentuk idiomatis untuk setiap bahasa.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Tool Runner adalah helper di Claude SDK. Permintaan HTTP mentah tidak memiliki padanannya. Untuk tetap menggunakan curl, gunakan loop dari [Cincin 4](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+    Tool Runner adalah helper di [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). Permintaan HTTP mentah tidak memiliki padanannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Tool Runner adalah helper di Claude SDK. CLI `ant` tidak memiliki padanannya. Untuk tetap menggunakan CLI, gunakan loop dari [Cincin 4](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent#ring-4-error-handling).
+    Tool Runner adalah helper di [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). CLI `ant` tidak memiliki padanannya.
   </CodeGroupItem>
 
   ```python Python

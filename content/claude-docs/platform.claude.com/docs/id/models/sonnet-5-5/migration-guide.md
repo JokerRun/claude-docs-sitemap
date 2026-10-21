@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 517252d0a8406e1bd2fc1c57e1a5ea519344abb551f59dc702a3a47bffa4517e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a3d5e52f043c083db640cb629514d3f2f6123cb5cd9774e84e68fb46131900ee
 ---
 
 ---
@@ -18,7 +18,7 @@ Panduan ini mencantumkan perubahan kode untuk beralih ke Claude Sonnet 5.5 dari 
 </Note>
 
 <Tip>
-  **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
+  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
 
   Biarkan Claude Code memigrasikan kode Anda
 
@@ -101,9 +101,7 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
   });
 
   console.log(`Stop reason: ${response.stop_reason}`);
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -483,7 +481,7 @@ Kerjakan grup-grup berikut secara berurutan dan berhenti setelah grup yang menye
 * Ubah ID model menjadi `claude-sonnet-5-5`.
 * [Baca blok konten berdasarkan `type`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-in-responses), dan kirim kembali blok `thinking` tanpa perubahan.
 * Agar tetap berjalan tanpa thinking di awal, kirim [pengaturan thinking terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau lebih rendah.
-* Ganti [penggunaan alat paksa](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict, atau dengan `auto` saja di Amazon Bedrock.
+* Ganti [penggunaan alat paksa](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict.
 * Pertahankan percakapan agar [hanya ditambahkan (append-only)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
 * Di Claude API dan Google Cloud, pindahkan computer use ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa beta header `fine-grained-tool-streaming-2025-05-14`.
 * Pasangkan [alat advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#advisor-tool) dengan advisor yang didukung, dan perkirakan saran yang terenkripsi.
@@ -535,7 +533,7 @@ Setiap model sebelumnya di halaman ini menerima `tool_choice` dengan tipe `any` 
 tool_choice: type "tool" and "any" are not supported for this model.
 ```
 
-Kirim `tool_choice: {"type": "auto"}`, dan tandai alat dengan `strict: true` agar inputnya sesuai dengan skema. Model kemudian dapat menjawab tanpa memanggil alat, jadi sebutkan dalam prompt kapan harus menggunakannya. [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) mendukung subset JSON Schema dan memerlukan `additionalProperties: false` pada setiap objek. Lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Di Amazon Bedrock, ["structured outputs" (output terstruktur)](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), yang mencakup penggunaan alat strict, tidak tersedia untuk Claude Sonnet 5.5. Di sana, kirim `auto` tanpa `strict`, sebutkan dalam prompt kapan harus memanggil alat, dan validasi input alat dalam kode Anda.
+Kirim `tool_choice: {"type": "auto"}`, dan tandai alat dengan `strict: true` agar inputnya sesuai dengan skema. Model kemudian dapat menjawab tanpa memanggil alat, jadi sebutkan dalam prompt kapan harus menggunakannya. [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) mendukung subset JSON Schema dan memerlukan `additionalProperties: false` pada setiap objek. Lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
 
 Sebelum (Claude Sonnet 5):
 
@@ -1222,7 +1220,7 @@ This model does not support assistant message prefill. The conversation must end
 
 Ganti setiap prefill sesuai dengan tujuannya:
 
-* **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi. Di Amazon Bedrock, output terstruktur tidak tersedia untuk Claude Sonnet 5.5. Di sana, jelaskan format dalam prompt atau gunakan alat tanpa `strict`, dan validasi output dalam kode Anda.
+* **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
 * **Pembukaan:** minta jawaban langsung dalam prompt sistem.
 * **Penolakan yang tidak diinginkan:** instruksi yang jelas dalam pesan pengguna biasanya sudah cukup.
 * **Kelanjutan:** pindahkan ke pesan pengguna, misalnya "Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir."

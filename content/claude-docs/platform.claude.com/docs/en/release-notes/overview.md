@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 801e14d636678798437907149d6ce7945016c851f3dfe9cd6ccc005c2c20d229
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 3fbb221d699bf95b8d9f30822dcc20a2d192a16ad04f41961f6955cb1d0e8f4d
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### October 20, 2026
+
+* [Inference hooks](https://platform.claude.com/docs/en/manage-claude/inference-hooks) are out of beta for Claude Enterprise organizations.
 
 ### October 15, 2026
 

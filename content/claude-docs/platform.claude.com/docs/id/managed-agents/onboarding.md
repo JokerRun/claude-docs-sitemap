@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 322d78823a8463412427ea485ff35bb82dda73003e2aaea89cf082637f88b0ab
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 3631d87e2a6be259a4b28105424e452c727a98602f77bae18bccbb2d0727cdad
 ---
 
 ---
@@ -21,7 +21,7 @@ featureMetadata:
 
 ## Cara membangun agen
 
-[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) memandu Anda melalui setiap bidang dalam definisi agen:
+[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) di Claude Console memandu Anda melalui setiap bidang dalam definisi agen:
 
 * **Model dan prompt sistem:** Pilih model dan tulis "system prompt" (prompt sistem) di editor lebar penuh.
 * **Server MCP:** Tambahkan server MCP jarak jauh melalui URL dan autentikasi agen Anda agar dapat mengambil tindakan atas nama Anda.

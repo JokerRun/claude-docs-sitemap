@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 1189aa74b5f058486f56f1181a2a395e42dc474114ef0c08d8c6d1162e368e7f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5bbf084a05d69f38d28ebe6f2c5eee78556087d779b704229d90a29f4092db3a
 ---
 
 ---
@@ -23,7 +23,7 @@ dengan Claude"
     </HomeQuickChip>
 
     <HomeQuickChip icon="Key" href="https://platform.claude.com/settings/keys">
-      Dapatkan kunci API
+      Dapatkan kunci API di Claude Console
     </HomeQuickChip>
 
     <HomeQuickChip icon="CodeBrackets" href="https://platform.claude.com/docs/id/api/overview">
@@ -258,7 +258,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Dapatkan kunci API
+            Dapatkan kunci API di Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="settings" href="https://platform.claude.com/docs/id/models/overview">
@@ -270,7 +270,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/playground">
-            Coba API di playground
+            Coba API di playground Console
           </HomeJourneyLink>
         </HomeJourneyStep>
 
@@ -344,7 +344,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Manajemen kunci API
+            Kunci API di Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
@@ -364,7 +364,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Dapatkan kunci API
+            Dapatkan kunci API di Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="message" href="https://platform.claude.com/docs/id/managed-agents/onboarding">
@@ -402,7 +402,7 @@ dengan Claude"
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
-            Manajemen kunci API
+            Kunci API di Claude Console
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">

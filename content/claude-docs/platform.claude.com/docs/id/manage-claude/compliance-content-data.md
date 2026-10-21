@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: fa8042c7bf40af876442b80b2e590783210b0371fe0cbb9e09d38aad248b666f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c12376bbea72f5fa6e2fcbad917661d9697c27b995311d3f4e3750d971f4be8d
 ---
 
 ---
@@ -91,10 +91,8 @@ curl --fail-with-body -sS -G \
 Respons daftar hanya memuat metadata chat. Untuk mengambil konten chat yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam chat), lanjutkan dengan endpoint pesan untuk setiap ID chat:
 
 ```bash cURL
-chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id/messages" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/claude_chat_01H5CWunD7RpVJ5bHa8RCkja/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```
@@ -207,10 +205,8 @@ Respons menyertakan header berikut:
 * `Transfer-Encoding: chunked` selalu disetel.
 
 ```bash cURL
-file_id="claude_file_01UaT9wBcDfGhJkLmNpQrSv7"
-
 curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/compliance/apps/chats/files/$file_id/content" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/files/claude_file_01UaT9wBcDfGhJkLmNpQrSv7/content" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --output "dashboard_mockup_v1.pdf"
@@ -226,7 +222,7 @@ Apa pun caranya, nama tersebut adalah nama yang diberikan pengguna saat mengungg
 
 Berbeda dengan endpoint konten file, endpoint konten artifact mengembalikan objek JSON. Kirimkan `version_id` dari salah satu entri dalam array `artifacts` pada pesan asisten, bukan `id` artifact yang stabil. Setiap versi baru artifact memiliki `version_id` sendiri. Field `content` pada respons berisi teks dari versi tersebut secara persis, sedangkan field `title` dan `artifact_type` menggambarkan artifact-nya. [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve) menghitung `size_bytes` dan `md5` dari encoding UTF-8 teks tersebut. Jadi, bandingkan keduanya dengan nilai `content`, bukan dengan seluruh body respons.
 
-Dokumen Claude Docs dicantumkan secara terpisah, oleh [Mencantumkan artifact kode](https://platform.claude.com/docs/id/api/compliance/code/artifacts/list), dengan `artifact_type` disetel ke `claude_docs`. Daftar `versions` dokumen kosong dan `published_version_id`-nya bernilai `null`. Untuk mengunduh teks terkini dokumen, panggil `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`. Ini mengembalikan arsip ZIP dengan satu file Word (.docx) untuk setiap tab yang berisi teks. Komentar, file yang diunggah, dan riwayat pengeditan tidak disertakan. Mengunduh Claude Docs melalui Compliance API masih dalam beta.
+Dokumen Claude Docs dicantumkan secara terpisah, oleh [Mencantumkan artifact kode](https://platform.claude.com/docs/id/api/compliance/apps/code/artifacts/list), dengan `artifact_type` disetel ke `claude_docs`. Daftar `versions` dokumen kosong dan `published_version_id`-nya bernilai `null`. Untuk mengunduh teks terkini dokumen, panggil `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`. Ini mengembalikan arsip ZIP dengan satu file Word (.docx) untuk setiap tab yang berisi teks. Komentar, file yang diunggah, dan riwayat pengeditan tidak disertakan. Mengunduh Claude Docs melalui Compliance API masih dalam beta.
 
 ## Mengambil proyek dan lampiran
 
@@ -249,10 +245,8 @@ Lampiran proyek memiliki salah satu dari dua bentuk berbeda, yang dibedakan oleh
 Kode yang menelusuri daftar lampiran harus bercabang berdasarkan `type` dan memanggil endpoint konten yang sesuai untuk setiap entri. Permintaan berikut mencantumkan satu halaman lampiran. Untuk paginasi, kirimkan `next_page` sebagai parameter `page` hingga `has_more` bernilai `false`.
 
 ```bash cURL
-project_id="claude_proj_01KGp4eZNug9ri4kE35RSppq"
-
 curl --fail-with-body -sS -G \
-  "https://api.anthropic.com/v1/compliance/apps/projects/$project_id/attachments" \
+  "https://api.anthropic.com/v1/compliance/apps/projects/claude_proj_01KGp4eZNug9ri4kE35RSppq/attachments" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```
@@ -308,10 +302,8 @@ Permintaan berikut menghapus satu chat. Pola yang sama berlaku untuk endpoint pe
 # dari `read:compliance_user_data` saat Compliance Access Key dibuat.
 # Pastikan Anda memiliki otorisasi eksplisit sebelum menjalankan ini.
 
-chat_id="claude_chat_01H5CWunD7RpVJ5bHa8RCkja"
-
 curl --fail-with-body -sS -X DELETE \
-  "https://api.anthropic.com/v1/compliance/apps/chats/$chat_id" \
+  "https://api.anthropic.com/v1/compliance/apps/chats/claude_chat_01H5CWunD7RpVJ5bHa8RCkja" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01"
 ```

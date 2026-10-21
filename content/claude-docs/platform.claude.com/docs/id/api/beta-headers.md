@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 688033838934175549bd17bccd78cba284fa2ed5db71fadfeb473bbc3f5344e7
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 4d0c623e37e28bf0949303083ee5ec6cc56591779a4eaa795e6765aca4dfa307
 ---
 
 ---
@@ -23,7 +23,7 @@ Untuk mengakses fitur beta, sertakan header `anthropic-beta` dalam permintaan AP
 
 ```http
 POST /v1/messages
-x-api-key: YOUR_API_KEY
+Authorization: Bearer YOUR_API_KEY
 anthropic-version: 2023-06-01
 anthropic-beta: BETA_FEATURE_NAME
 content-type: application/json

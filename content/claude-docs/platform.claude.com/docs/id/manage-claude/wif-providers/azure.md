@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 892672eade9ae2a1d075ccfafb83db13629756b24c0c477e01665b829fd81054
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a0a1a8312e800cb9959dc9c1321614408bba4f099823a7314f8b6e92395a1c58
 ---
 
 ---
@@ -189,7 +189,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   JSON
   )
 
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
+  ACCESS_TOKEN=$(jq -r .access_token <<<"$RESPONSE")
 
   # 3. Panggil Claude API dengan bearer token tersebut.
   curl https://api.anthropic.com/v1/messages \
@@ -200,7 +200,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Azure"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python
@@ -604,12 +604,11 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   # Container Apps, ambil dari "$IDENTITY_ENDPOINT?api-version=2019-08-01&resource=api://<APP_ID>"
   # dengan -H "X-IDENTITY-HEADER: $IDENTITY_HEADER" sebagai gantinya.
   # Jika ada beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
-  ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS -H "Metadata: true" \
     "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=api://<APP_ID>" \
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-  export ANTHROPIC_IDENTITY_TOKEN_FILE
 
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.
@@ -841,7 +840,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Azure"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python
@@ -1227,7 +1226,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   ```bash CLI
   # 1. Tukarkan token yang diproyeksikan Kubernetes dengan token akses yang diterbitkan Entra
   # lalu tulis ke file sementara yang dapat dibaca CLI.
-  ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS "https://login.microsoftonline.com/$AZURE_TENANT_ID/oauth2/v2.0/token" \
     -d client_id="$AZURE_CLIENT_ID" \
@@ -1236,7 +1235,6 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
     -d client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer \
     --data-urlencode client_assertion@"$AZURE_FEDERATED_TOKEN_FILE" \
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-  export ANTHROPIC_IDENTITY_TOKEN_FILE
 
   # 2. Panggil Claude API. ANTHROPIC_FEDERATION_RULE_ID,
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca

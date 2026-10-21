@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 7abfbdc061a73cc854511088990b6ae077f718df16a9d6ca3c8898418fadb410
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 26d957de89af699b5841a26e8a90382bb255c6872c53e941047dcaafdbbe32b1
 ---
 
 ---
@@ -41,7 +41,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -57,7 +57,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
           }
         }
       ]
-    }')
+    }'
   ```
 
   <CodeGroupItem>
@@ -228,7 +228,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -249,7 +249,7 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
           }
         }
       ]
-    }')
+    }'
   ```
 
   <CodeGroupItem>
@@ -486,20 +486,29 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  tools='[
-    {
-      "type": "agent_toolset_20260401",
-      "default_config": {
-        "permission_policy": {"type": "always_allow"}
-      },
-      "configs": [
+  curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Coding Assistant",
+      "model": "claude-opus-5-5",
+      "tools": [
         {
-          "name": "bash",
-          "permission_policy": {"type": "always_ask"}
+          "type": "agent_toolset_20260401",
+          "default_config": {
+            "permission_policy": {"type": "always_allow"}
+          },
+          "configs": [
+            {
+              "name": "bash",
+              "permission_policy": {"type": "always_ask"}
+            }
+          ]
         }
       ]
-    }
-  ]'
+    }'
   ```
 
   <CodeGroupItem>
@@ -696,7 +705,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -725,7 +734,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
           }
         }
       ]
-    }')
+    }'
   ```
 
   <CodeGroupItem>

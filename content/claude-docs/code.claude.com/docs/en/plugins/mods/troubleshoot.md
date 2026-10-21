@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/troubleshoot
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 5a0822fe39c9136d70e2c28807f7778f286f9f61d703669da09faa2b2d571a07
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ef2cb833e1edf43f0a2299ff502c63ee2e25d7336d7f7536e5fe2830c3bc7d58
 ---
 
 > ## Documentation Index
@@ -186,13 +186,19 @@ The message tells Claude to issue the call once more as recorded. If that's deni
 
 Look them up in [Messages from the built-in guard](#messages-from-the-built-in-guard).
 
+## A toast appears after a turn is stopped
+
+### `Stopped: type a message to continue; a mod cannot resume work after Stop`
+
+This toast means that after you stopped the turn, for example with Esc, a mod tried to start work on its own and Claude Code didn't let it. Nothing needs fixing. After your next message, mods can start work again and [some of that work comes back](/docs/en/plugins/mods/api#work-your-mod-started-before-the-interruption) on its own. If what you expected from the mod doesn't come back, ask for it again or run the mod's command again.
+
+If you wrote the mod, see [Calls and background work after the user interrupts a turn](/docs/en/plugins/mods/api#calls-and-background-work-after-the-user-interrupts-a-turn).
+
 ## A drawing doesn't appear or respond
 
 The mod loaded, and its pane, band, toast, or controls don't behave as you expect.
 
-<h3 id="another-mods-band-shows-and-yours-doesnt">
-  Another mod's band shows and yours doesn't
-</h3>
+### Another mod's band shows and yours doesn't
 
 There is one band above the prompt, and every mod shares it. A mod that runs [before yours](/docs/en/plugins/mods/events#the-order-mods-run-in) replaces your band when it returns a tree without the result of `next(e)` in it. To show both bands, change that mod's hook, or ask its author to:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: b74b40d651d5a11dfc158f1c57caea01818d257cb315d77a068a3a7d32e0db83
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 66266f7ed5a16ed598584d7c187fc136c2fed8d631c1ace1a46e40e5f8908545
 ---
 
 ---
@@ -57,8 +57,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
     --model claude-opus-5-5 \
     --max-tokens 1024 \
     --inference-geo us \
-    --message '{role: user, content: "Summarize the key points of this document."}' \
-    --transform '{content.#(type=="text").text,usage.inference_geo}' --format yaml
+    --message '{role: user, content: "Summarize the key points of this document."}'
   ```
 
   ```python Python
@@ -95,9 +94,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
     ]
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   // Periksa di mana inferensi sebenarnya dijalankan
   console.log(`Inference geo: ${response.usage.inference_geo}`);

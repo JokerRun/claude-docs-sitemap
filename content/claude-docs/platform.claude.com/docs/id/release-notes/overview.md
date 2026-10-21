@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: d1b0ff5880b0ef442be06dd3dab57f22dcb159e56066a9d65e5a997f741d7b71
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 0884419dc423e98e9915def36fee19c8772baf514f215a4577ecf6b8dd2eb771
 ---
 
 ---
@@ -19,8 +19,13 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 20 Oktober 2026
+
+* [Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks) telah keluar dari beta untuk organisasi Claude Enterprise.
+
 ### 15 Oktober 2026
 
+* Kami telah menambahkan `capabilities.thinking.types.between_tools` ke [Models API](https://platform.claude.com/docs/id/api/models/list). `GET /v1/models` dan `GET /v1/models/{model_id}` kini melaporkan apakah setiap model menerima `thinking: {type: "between_tools"}`, yang menonaktifkan pemikiran di awal. Lihat [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api).
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini mengembalikan teks yang disimpan setiap anggota organisasi sebagai **Instructions for Claude** di claude.ai dan sebagai **Global instructions** di Cowork, dalam beta untuk organisasi Claude Enterprise. Panggil `GET /v1/compliance/organizations/{org_uuid}/user_preferences` dengan Compliance Access Key Anda yang sudah ada dan scope `read:compliance_user_data`. Lihat [Mencantumkan preferensi pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-user-preferences).
 * [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) telah keluar dari pratinjau riset untuk Claude Opus 5.5, dan Anda tidak perlu lagi meminta akses. Permintaan ke Claude Opus 5.5 tidak lagi memerlukan header beta `fast-mode-2026-02-01`, dan permintaan yang masih mengirimkannya tetap berfungsi. Claude Opus 5.5 kini memiliki "rate limit" (batas laju) fast mode default di tingkat penggunaan Start, Build, dan Scale. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 tetap dalam pratinjau riset. Tetap kirimkan header beta dengan permintaan fast mode ke model-model tersebut.
 * [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Opus 5.5 kini tersedia di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
@@ -44,7 +49,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 * Kami telah menurunkan harga pembacaan cache prompt pada Claude Sonnet 5.5 dari $0,20 USD menjadi $0,10 USD per juta token: 0,05x harga input dasar, bukan 0,1x. Penulisan cache dan semua harga lainnya tidak berubah. Lihat [Harga "prompt caching" (caching prompt)](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching).
 * Kami telah meluncurkan **Claude Haiku 5.5** (`claude-haiku-5-5`), model kami yang paling mumpuni yang disetel untuk pekerjaan bervolume tinggi dan sensitif terhadap latensi. Model ini memiliki ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows), maksimum 128k token output, dan ["adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort). Model ini tersedia di Claude API, [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Lihat [Yang baru di Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5).
-* Kode yang ditulis untuk Claude Haiku 4.5 dapat rusak pada Claude Haiku 5.5. "Extended thinking" (pemikiran diperpanjang) manual (`budget_tokens`), parameter sampling `temperature`, `top_p`, dan `top_k`, serta prefill pesan asisten masing-masing dapat mengembalikan error 400. `computer_20250124` juga mengembalikan error 400: gunakan toolset `computer_toolset_20260801` di Claude API dan Google Cloud, atau `computer_20251124` di Amazon Bedrock. Permintaan yang mengirim kembali blok thinking setelah ada perubahan pada `system`, `tools`, atau giliran sebelumnya juga dapat mengembalikan error 400. Di Amazon Bedrock, output terstruktur tidak tersedia untuk Claude Haiku 5.5. Pemikiran adaptif aktif secara default, sehingga respons dapat diawali dengan blok `thinking`, dan teksnya dihilangkan kecuali Anda mengatur `thinking.display` ke `"summarized"`. Teks yang sama juga dihitung sebagai lebih banyak token. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide) untuk setiap perubahan. Untuk pola prompting khusus model, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
+* Kode yang ditulis untuk Claude Haiku 4.5 dapat rusak pada Claude Haiku 5.5. "Extended thinking" (pemikiran diperpanjang) manual (`budget_tokens`), parameter sampling `temperature`, `top_p`, dan `top_k`, serta prefill pesan asisten masing-masing dapat mengembalikan error 400. `computer_20250124` juga mengembalikan error 400: gunakan toolset `computer_toolset_20260801` di Claude API dan Google Cloud, atau `computer_20251124` di Amazon Bedrock. Permintaan yang mengirim kembali blok thinking setelah ada perubahan pada `system`, `tools`, atau giliran sebelumnya juga dapat mengembalikan error 400. Pemikiran adaptif aktif secara default, sehingga respons dapat diawali dengan blok `thinking`, dan teksnya dihilangkan kecuali Anda mengatur `thinking.display` ke `"summarized"`. Teks yang sama juga dihitung sebagai lebih banyak token. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide) untuk setiap perubahan. Untuk pola prompting khusus model, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
 * SDK Python dan TypeScript kini menyertakan kelas, dalam versi beta, untuk [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) dan [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool). Anda membuat subclass dari salah satunya dan menulis satu metode per alat untuk otomatisasi browser atau desktop Anda sendiri. SDK menjalankan loop alat, kebijakan URL dan file yang Anda tetapkan untuk browser, serta callback persetujuan Anda. Lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 * Paket Claude Max dan Team kini menyertakan kredit API bulanan. Untuk mempelajari cara mengklaimnya, lihat [Kredit API untuk paket Max dan Team](https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers).
 * Di Claude Managed Agents, environment cloud dengan jaringan `limited` kini juga menerapkan `allowed_hosts`-nya pada alat `web_search` dan `web_fetch`. Panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` mengembalikan hasil error `url_not_allowed` kepada agen. `web_search` menghilangkan hasil dari host semacam itu. Ketika `allowed_hosts` tidak mencantumkan host apa pun, kedua alat tersebut tidak mengembalikan halaman maupun hasil pencarian. `allow_package_managers` dan `allow_mcp_servers` tidak menambahkan host untuk alat-alat ini. Agar alat dapat menjangkau suatu host, tambahkan host tersebut ke `allowed_hosts`, yang juga membukanya untuk sandbox. Jaringan `unrestricted` dan environment self-hosted tidak membatasi alat-alat ini. Lihat [Jaringan environment](https://platform.claude.com/docs/id/managed-agents/environments#networking).
@@ -210,7 +215,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 17 Juli 2026
 
-* **Workbench** lama ([platform.claude.com/workbench](https://platform.claude.com/workbench)) di Claude Console akan dihentikan, dan aksesnya berakhir pada 17 Agustus 2026. Prompt, variabel, dan eval yang tersimpan tidak didukung di [Workbench](https://platform.claude.com/playground) versi terbaru. Anda dapat mengekspor data yang ingin disimpan melalui banner dan di bagian **Organizational Settings**. Untuk informasi lebih lanjut, lihat [Bagaimana cara menggunakan Workbench?](https://support.claude.com/en/articles/8606378-how-do-i-use-the-workbench) di Claude Help Center.
+* **Workbench** lama ([platform.claude.com/workbench](https://platform.claude.com/workbench)) di Claude Console akan dihentikan, dan aksesnya berakhir pada 17 Agustus 2026. Prompt, variabel, dan eval yang tersimpan tidak didukung di [Workbench](https://platform.claude.com/playground) versi terbaru di Console. Anda dapat mengekspor data yang ingin disimpan melalui banner dan di bagian **Organizational Settings**. Untuk informasi lebih lanjut, lihat [Bagaimana cara menggunakan Workbench?](https://support.claude.com/en/articles/8606378-how-do-i-use-the-workbench) di Claude Help Center.
 * API alat prompt eksperimental untuk membuat, menyempurnakan, dan mengubah prompt menjadi template (`/v1/experimental/generate_prompt`, `/v1/experimental/improve_prompt`, dan `/v1/experimental/templatize_prompt`) akan dihentikan bersama Workbench pada 17 Agustus 2026. Setelah dihapus, permintaan ke endpoint ini akan mengembalikan error.
 
 ### 15 Juli 2026
@@ -646,7 +651,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 23 Juni 2025
 
-* Pengguna Console dengan peran Developer kini dapat mengakses halaman [Cost](https://console.anthropic.com/settings/cost). Sebelumnya, peran Developer mengizinkan akses ke halaman [Usage](https://console.anthropic.com/settings/usage), tetapi tidak ke halaman Cost.
+* Di Console, pengguna dengan peran Developer kini dapat mengakses halaman [Cost](https://console.anthropic.com/settings/cost). Sebelumnya, peran Developer mengizinkan akses ke halaman [Usage](https://console.anthropic.com/settings/usage), tetapi tidak ke halaman Cost.
 
 ### 11 Juni 2025
 
@@ -764,7 +769,7 @@ Kami juga merilis SDK resmi baru:
 ### 20 November 2024
 
 * Kami telah memperbarui "rate limit" (batas laju) untuk Messages API. Kami telah mengganti batas laju token per menit dengan batas laju token input dan token output per menit yang baru. Baca selengkapnya di [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
-* Kami telah menambahkan dukungan untuk ["tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) di [Workbench](https://console.anthropic.com/workbench).
+* Kami telah menambahkan dukungan untuk ["tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) di [Workbench](https://console.anthropic.com/workbench) Console.
 
 ### 13 November 2024
 

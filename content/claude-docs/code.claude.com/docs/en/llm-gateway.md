@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 3acb15a32a7a4ad0608c3bfdc50703a6fbca3b79fcddb0de8c89717db0b8b1a1
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 52ae824ce569956df19ed5a5461b4d59d28007166f813dd74579b039168d37a8
 ---
 
 > ## Documentation Index
@@ -15,11 +15,11 @@ sha256: 3acb15a32a7a4ad0608c3bfdc50703a6fbca3b79fcddb0de8c89717db0b8b1a1
 
 This section covers using a gateway product your organization already runs, rather than [Claude apps gateway](/docs/en/claude-apps-gateway). For what a gateway is, how it sits between Claude Code and your provider, and how to choose between Claude apps gateway and another product, see the [gateway overview](/docs/en/gateways).
 
-<Note>
-  * If you're a developer connecting to an existing gateway: [connect Claude Code to your gateway](/docs/en/llm-gateway-connect)
-  * If you're an admin rolling out a gateway for your organization: [deploy and distribute a gateway](/docs/en/llm-gateway-rollout)
-  * If you're configuring a gateway product: the [gateway compatibility guide](/docs/en/llm-gateway-protocol)
-</Note>
+> [!NOTE]
+>
+> * If you're a developer connecting to an existing gateway: [connect Claude Code to your gateway](/docs/en/llm-gateway-connect)
+> * If you're an admin rolling out a gateway for your organization: [deploy and distribute a gateway](/docs/en/llm-gateway-rollout)
+> * If you're configuring a gateway product: the [gateway compatibility guide](/docs/en/llm-gateway-protocol)
 
 Any gateway that exposes a [supported API format](/docs/en/llm-gateway-protocol#api-formats) works. Anthropic doesn't endorse, maintain, or audit third-party gateway products, and doesn't support routing Claude Code to non-Claude models through any gateway. Deploy the gateway following its own documentation, then complete the Claude Code side with the [rollout steps below](#roll-out-a-gateway).
 

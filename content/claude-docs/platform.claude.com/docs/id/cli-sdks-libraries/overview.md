@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: c66250b412120a3c92506174843aebbaba93023592aeddb5befa71c9448cb986
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6669068f78ad627ee424340c88f5b4c7e6f1b07b9349509dd25e8ac7934b4432
 ---
 
 ---
@@ -60,6 +60,21 @@ Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:
     Tipe Sorbet, helper streaming
   </Card>
 </CardGroup>
+
+## Versi terbaru
+
+| Alat       | Versi terbaru | Paket                                                                                                 |
+| ---------- | ------------- | ----------------------------------------------------------------------------------------------------- |
+| ant CLI    | `1.44.0`      | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)         |
+| Python     | `1.17.0`      | [`anthropic`](https://pypi.org/project/anthropic/)                                                    |
+| TypeScript | `0.137.0`     | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                |
+| C#         | `12.60.0`     | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                               |
+| Go         | `1.84.0`      | [`github.com/anthropics/anthropic-sdk-go`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go) |
+| Java       | `2.75.0`      | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)  |
+| PHP        | `0.61.0`      | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                 |
+| Ruby       | `1.82.0`      | [`anthropic`](https://rubygems.org/gems/anthropic)                                                    |
+
+Versi yang sama tersedia dalam format JSON di `https://platform.claude.com/docs/sdk-versions.json`.
 
 ## Library dan integrasi
 

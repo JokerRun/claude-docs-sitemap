@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: eedb3bde68e6fc46364d03892142dab570f05510a091575d2c59bc31a98b5f96
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 896373a224da95d59b54725aedd76876533d39b12604418a13f77602b9bf3d3d
 ---
 
 ---
@@ -113,8 +113,11 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d '{"model": "claude-opus-5-5", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
-    | jq -r '.content[] | select(.type == "text") | .text'
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [{"role": "user", "content": "Hello, Claude"}]
+    }'
   ```
 
   ```python Python
@@ -394,14 +397,13 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
 
   ```bash CLI
   # 1. Minta token akses dari Okta dan tulis ke file sementara.
-  ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS "$OKTA_ISSUER/v1/token" \
     -d grant_type=client_credentials \
     -d scope=anthropic.access \
     -d client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer \
     --data-urlencode client_assertion="$SIGNED_CLIENT_ASSERTION" \
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-  export ANTHROPIC_IDENTITY_TOKEN_FILE
 
   # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan

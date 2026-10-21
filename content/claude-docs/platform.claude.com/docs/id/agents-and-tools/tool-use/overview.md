@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: ec298760526196089cb79ba79eb64fbb86b1179f26f198f2c83bcc93457a9591
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 160ed88ba0be71beff7c020678571f6aceb8c7804b492bfd137f67bf075018ec
 ---
 
 ---
@@ -30,7 +30,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   ```
 
   ```bash CLI
-  ant messages create --transform content --format yaml \
+  ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
     --tool '{type: web_search_20260209, name: web_search}' \
@@ -149,112 +149,14 @@ Alat terutama dibedakan berdasarkan tempat kode dieksekusi. **Alat klien** (term
 
 Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Permintaan pertama mendefinisikan alat `get_weather`, dan Claude menjawab pertanyaan dengan memanggilnya: respons membawa blok `tool_use`, kode Anda menjalankan pencarian, dan permintaan kedua mengirimkan hasilnya kembali dalam blok `tool_result` sehingga Claude dapat membalas dengan jawabannya.
 
-<CodeGroup>
-  ```bash cURL
-  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
-  TOOLS='[
-    {
-      "name": "get_weather",
-      "description": "Get the current weather for a given location.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "location": {"type": "string", "description": "City and state, e.g. San Francisco, CA"}
-        },
-        "required": ["location"]
-      }
-    }
-  ]'
-  USER_MSG="What's the weather in San Francisco?"
-  RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d "$(jq -n --argjson tools "$TOOLS" --arg msg "$USER_MSG" '{
-      model: "claude-opus-5-5",
-      max_tokens: 1024,
-      tools: $tools,
-      # Minta paling banyak satu panggilan alat per giliran.
-      tool_choice: {type: "auto", disable_parallel_tool_use: true},
-      messages: [{role: "user", content: $msg}]
-    }')")
-  TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
-  echo "Claude called $(echo "$TOOL_USE" | jq -r '.name') with $(echo "$TOOL_USE" | jq -c '.input')"
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  # Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
-  # Claude menggunakan hasil tersebut untuk menjawab pertanyaan awal.
-  WEATHER="15 degrees Celsius, partly cloudy"
-  curl -s https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d "$(jq -n \
-      --argjson tools "$TOOLS" \
-      --arg msg "$USER_MSG" \
-      --argjson assistant "$(echo "$RESPONSE" | jq '.content')" \
-      --arg tool_use_id "$(echo "$TOOL_USE" | jq -r '.id')" \
-      --arg weather "$WEATHER" \
-      '{
-        model: "claude-opus-5-5",
-        max_tokens: 1024,
-        tools: $tools,
-        tool_choice: {type: "auto", disable_parallel_tool_use: true},
-        messages: [
-          {role: "user", content: $msg},
-          {role: "assistant", content: $assistant},
-          {role: "user", content: [
-            {type: "tool_result", tool_use_id: $tool_use_id, content: $weather}
-          ]}
-        ]
-      }')"
-  ```
-
-  ```bash CLI
-  # ant membaca body permintaan sebagai YAML di stdin; jq membawa
-  # state percakapan ke permintaan kedua.
-  USER_MSG="What's the weather in San Francisco?"
-  MESSAGES=$(jq -n --arg msg "$USER_MSG" '[{role: "user", content: $msg}]')
-  call_api() {
-    {
-      cat <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 1024
-  # Minta paling banyak satu panggilan alat per giliran.
-  tool_choice: {type: auto, disable_parallel_tool_use: true}
-  tools:
-    - name: get_weather
-      description: Get the current weather for a given location.
-      input_schema:
-        type: object
-        properties:
-          location: {type: string, description: "City and state, e.g. San Francisco, CA"}
-        required: [location]
-  YAML
-      printf 'messages: %s\n' "$MESSAGES"
-    } | ant messages create --format json
-  }
-
-  # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
-  RESPONSE=$(call_api)
-  TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
-  echo "Claude called $(jq -r '.name' <<<"$TOOL_USE") with $(jq -c '.input' <<<"$TOOL_USE")"
-
-  # Jalankan alat, lalu kirim hasilnya kembali dalam blok tool_result.
-  WEATHER="15 degrees Celsius, partly cloudy"
-  MESSAGES=$(jq \
-    --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
-    --arg tool_use_id "$(jq -r '.id' <<<"$TOOL_USE")" \
-    --arg weather "$WEATHER" \
-    '. + [
-      {role: "assistant", content: $assistant},
-      {role: "user", content: [
-        {type: "tool_result", tool_use_id: $tool_use_id, content: $weather}
-      ]}
-    ]' <<<"$MESSAGES")
-
-  # Claude menggunakan hasil tersebut untuk menjawab pertanyaan awal.
-  call_api
-  ```
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   client = anthropic.Anthropic()
@@ -342,9 +244,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
     messages
   });
-  const toolUse = response.content.find(
-    (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
-  )!;
+  const toolUse = response.content.find((block) => block.type === "tool_use")!;
   console.log(`Claude called ${toolUse.name} with ${JSON.stringify(toolUse.input)}`);
 
   // Jalankan alat, lalu kirim kembali hasilnya dalam blok tool_result.
@@ -365,9 +265,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   });
 
   // Claude menggunakan hasil tersebut untuk menjawab pertanyaan awal.
-  const finalText = followup.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  )!;
+  const finalText = followup.content.find((block) => block.type === "text")!;
   console.log(finalText.text);
   ```
 

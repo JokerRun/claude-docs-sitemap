@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: cf37419529ded0b11a855d8fbab73b3ccbf80b9e4c05434c77e5d40fa2031dbe
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 3f1139931474262a5f4a7ffb3b5b78cb7375ce350b447a80e04382cdb7c84b30
 ---
 
 ---
@@ -117,9 +117,9 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
     --duration-seconds 900 \
     --query WebIdentityToken --output text)
 
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON
+    --data @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -131,8 +131,6 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   JSON
   )
 
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
-
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
@@ -141,7 +139,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from AWS"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python
@@ -372,15 +370,14 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   ```
 
   ```bash CLI
-  TOKEN_FILE=$(mktemp)
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   aws sts get-web-identity-token \
     --region us-east-1 \
     --audience "https://api.anthropic.com" \
     --signing-algorithm RS256 \
     --duration-seconds 900 \
-    --query WebIdentityToken --output text > "$TOKEN_FILE"
+    --query WebIdentityToken --output text > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 
-  export ANTHROPIC_IDENTITY_TOKEN_FILE="$TOKEN_FILE"
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
   # ANTHROPIC_SERVICE_ACCOUNT_ID, serta ANTHROPIC_WORKSPACE_ID dibaca dari environment
   ant messages create \
@@ -476,14 +473,16 @@ JWT=$(aws sts get-web-identity-token \
 
 curl -sS https://api.anthropic.com/v1/oauth/token \
   -H "content-type: application/json" \
-  -d "{
-    \"grant_type\": \"urn:ietf:params:oauth:grant-type:jwt-bearer\",
-    \"assertion\": \"$JWT\",
-    \"federation_rule_id\": \"fdrl_...\",
-    \"organization_id\": \"00000000-0000-0000-0000-000000000000\",
-    \"service_account_id\": \"svac_...\",
-    \"workspace_id\": \"wrkspc_...\"
-  }" | jq
+  --data @- <<JSON
+{
+  "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+  "assertion": "$JWT",
+  "federation_rule_id": "fdrl_...",
+  "organization_id": "00000000-0000-0000-0000-000000000000",
+  "service_account_id": "svac_...",
+  "workspace_id": "wrkspc_..."
+}
+JSON
 ```
 
 Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
@@ -624,9 +623,9 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   ```bash cURL
   JWT=$(cat "$ANTHROPIC_IDENTITY_TOKEN_FILE")
 
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON
+    --data @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -638,8 +637,6 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   JSON
   )
 
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
-
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
@@ -648,7 +645,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from EKS"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python
@@ -831,14 +828,16 @@ JWT=$(cat "$ANTHROPIC_IDENTITY_TOKEN_FILE")
 
 curl -sS https://api.anthropic.com/v1/oauth/token \
   -H "content-type: application/json" \
-  -d "{
-    \"grant_type\": \"urn:ietf:params:oauth:grant-type:jwt-bearer\",
-    \"assertion\": \"$JWT\",
-    \"federation_rule_id\": \"$ANTHROPIC_FEDERATION_RULE_ID\",
-    \"organization_id\": \"$ANTHROPIC_ORGANIZATION_ID\",
-    \"service_account_id\": \"$ANTHROPIC_SERVICE_ACCOUNT_ID\",
-    \"workspace_id\": \"$ANTHROPIC_WORKSPACE_ID\"
-  }" | jq
+  --data @- <<JSON
+{
+  "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+  "assertion": "$JWT",
+  "federation_rule_id": "$ANTHROPIC_FEDERATION_RULE_ID",
+  "organization_id": "$ANTHROPIC_ORGANIZATION_ID",
+  "service_account_id": "$ANTHROPIC_SERVICE_ACCOUNT_ID",
+  "workspace_id": "$ANTHROPIC_WORKSPACE_ID"
+}
+JSON
 ```
 
 Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).

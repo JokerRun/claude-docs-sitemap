@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 0d23dd014d025711d12a55b261f79a85e61fc0c0ad3dbedb452384cb99b5bb03
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c6ddb60e99530d4c51a46409f7c80f8c9c501315cd89f1cf0721c46c91154b77
 ---
 
 ---
@@ -151,7 +151,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       ```
 
       ```php PHP
-      $client = new \Anthropic\Client();
+      $client = new Client();
 
       $environment = $client->beta->environments->create(
           name: 'self-hosted',
@@ -191,7 +191,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=1.42.0
+        VERSION=1.44.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -309,7 +309,8 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
     <CodeGroup>
       ```bash cURL
-      SESSION_ID=$(curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+      # Buat sesi
+      curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -317,9 +318,9 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         -d '{
           "agent": "'"$AGENT_ID"'",
           "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'"
-        }' | jq -er '.id'
-      )
+        }'
 
+      # Kirimkan tugas: SESSION_ID adalah id dari respons pembuatan
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -341,11 +342,12 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       ```
 
       ```bash CLI
-      SESSION_ID=$(ant beta:sessions create \
+      # Buat sesi
+      ant beta:sessions create \
         --agent "$AGENT_ID" \
-        --environment-id "$ANTHROPIC_ENVIRONMENT_ID" \
-        --transform id --raw-output)
+        --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
 
+      # Kirimkan tugas: SESSION_ID adalah id dari respons pembuatan
       ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
       events:
         - type: user.message

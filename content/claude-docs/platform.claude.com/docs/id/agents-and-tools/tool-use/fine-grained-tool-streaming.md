@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 20526e178ef5329b0076cd89909e276042b9e861091c0190c4433b2a2112e1c1
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 1b7bba785f00ddeb3c74a197f9840be873e2811e058013e9596f87add2a1c79c
 ---
 
 ---
@@ -70,7 +70,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   ```
 
   ```bash CLI
-  ant messages create --stream --format jsonl <<'YAML' |
+  ant messages create --stream <<'YAML'
   model: claude-opus-5-5
   max_tokens: 65536
   tools:
@@ -93,7 +93,6 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
     - role: user
       content: Can you write a long poem and make a file called poem.txt?
   YAML
-    jq -rj 'select(.delta.type == "input_json_delta") | .delta.partial_json'
   ```
 
   ```python Python
@@ -476,7 +475,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   ```
 </CodeGroup>
 
-Setiap tab mengaktifkan streaming fine-grained untuk alat `make_file`. Tab SDK mencetak setiap fragmen input begitu fragmen itu tiba, lalu mencetak input terakumulasi lengkap setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut memenuhi terminal Anda saat Claude menulisnya:
+Setiap fragmen input tiba begitu Claude menulisnya, dan fragmen-fragmen tersebut bergabung menjadi input alat lengkap, sehingga puisi tersebut tiba sepotong demi sepotong:
 
 ```text wrap
 {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", "", "I.", "", "Beneath the vast and star-strewn sky,", "Where silver moonbeams softly lie,", ...

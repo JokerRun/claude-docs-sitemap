@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c57aac90f7a4ac992411c40f56c8b5b36791a0a1e9a903725606c1a27284e931
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: e404d7f8f2356787a8a2d951155424c530393d004866960bb99429afe76a34e3
 ---
 
 ---
@@ -583,58 +583,87 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
 
 <CodeGroup>
   ```bash cURL
-  BODY='{
-    "model": "claude-opus-5-5",
-    "max_tokens": 1024,
-    "mcp_servers": [
-      {
-        "type": "url",
-        "url": "https://example-server.modelcontextprotocol.io/sse",
-        "name": "example-mcp",
-        "authorization_token": "YOUR_TOKEN"
-      }
-    ],
-    "tools": [
-      {
-        "type": "mcp_toolset",
-        "mcp_server_name": "example-mcp"
-      }
-    ],
-    "messages": [
-      {
-        "role": "user",
-        "content": "What tools do you have available?"
-      }
-    ]
-  }'
-
   # Permintaan pertama: toolset belum disematkan, jadi API meminta daftar
   # alat dari server dan respons diawali dengan blok mcp_tool_listing.
-  # tee menampilkan respons di stderr sementara variabel menangkapnya.
-  FIRST=$(curl -sS https://api.anthropic.com/v1/messages \
-    -H "content-type: application/json" \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: mcp-client-2026-09-15" \
-    -d "$BODY" | tee /dev/stderr)
-
-  # Sematkan daftar: salin alat dari blok tersebut ke toolset. API memakai
-  # persis entri ini dan tidak meminta ke server lagi.
-  TOOLS=$(jq '.content[] | select(.type == "mcp_tool_listing") | .tools' \
-    <<<"$FIRST")
-  PINNED=$(jq --argjson tools "$TOOLS" '.tools[0].tools = $tools' <<<"$BODY")
-
-  # Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: mcp-client-2026-09-15" \
-    -d "$PINNED"
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "mcp_servers": [
+        {
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse",
+          "name": "example-mcp",
+          "authorization_token": "YOUR_TOKEN"
+        }
+      ],
+      "tools": [
+        {
+          "type": "mcp_toolset",
+          "mcp_server_name": "example-mcp"
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "What tools do you have available?"
+        }
+      ]
+    }'
+
+  # Sematkan daftar: salin alat dari blok tersebut ke toolset. API memakai
+  # persis entri ini dan tidak meminta ke server lagi, jadi respons
+  # tidak memiliki blok mcp_tool_listing.
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: mcp-client-2026-09-15" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "mcp_servers": [
+        {
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse",
+          "name": "example-mcp",
+          "authorization_token": "YOUR_TOKEN"
+        }
+      ],
+      "tools": [
+        {
+          "type": "mcp_toolset",
+          "mcp_server_name": "example-mcp",
+          "tools": [
+            {
+              "name": "echo",
+              "description": "Returns the text it receives.",
+              "input_schema": {
+                "type": "object",
+                "properties": { "text": { "type": "string" } },
+                "required": ["text"]
+              }
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "What tools do you have available?"
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
-  request=$(cat <<'YAML'
+  # Permintaan pertama: toolset belum disematkan, jadi API meminta daftar
+  # alatnya ke server dan respons diawali dengan blok mcp_tool_listing.
+  ant beta:messages create --beta mcp-client-2026-09-15 <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   mcp_servers:
@@ -649,22 +678,35 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
     - role: user
       content: What tools do you have available?
   YAML
-  )
 
-  # Permintaan pertama: toolset belum disematkan, jadi API meminta daftar
-  # alatnya ke server dan respons diawali dengan blok mcp_tool_listing.
-  # tee menampilkan respons di stderr sementara variabel menangkapnya.
-  first=$(ant beta:messages create --beta mcp-client-2026-09-15 --format json \
-    <<<"$request" | tee /dev/stderr)
-  tools=$(jq -c '.content[] | select(.type == "mcp_tool_listing") | .tools' \
-    <<<"$first")
-
-  # Sematkan daftar: salin tools dari blok ke dalam toolset. Flag --tool
-  # menggantikan array tools di body. API memakai persis entri ini dan
-  # tidak bertanya lagi ke server, jadi respons tidak memiliki blok mcp_tool_listing.
-  ant beta:messages create --beta mcp-client-2026-09-15 \
-    --tool "{type: mcp_toolset, mcp_server_name: example-mcp, tools: $tools}" \
-    <<<"$request"
+  # Sematkan daftar: salin tools dari blok ke dalam toolset. API memakai
+  # persis entri ini dan tidak bertanya lagi ke server, jadi respons
+  # tidak memiliki blok mcp_tool_listing.
+  ant beta:messages create --beta mcp-client-2026-09-15 <<'YAML'
+  model: claude-opus-5-5
+  max_tokens: 1024
+  mcp_servers:
+    - type: url
+      url: https://example-server.modelcontextprotocol.io/sse
+      name: example-mcp
+      authorization_token: YOUR_TOKEN
+  tools:
+    - type: mcp_toolset
+      mcp_server_name: example-mcp
+      tools:
+        - name: echo
+          description: Returns the text it receives.
+          input_schema:
+            type: object
+            properties:
+              text:
+                type: string
+            required:
+              - text
+  messages:
+    - role: user
+      content: What tools do you have available?
+  YAML
   ```
 
   ```python Python
@@ -1241,8 +1283,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.73.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.73.0")
+        implementation("com.anthropic:anthropic-java:2.75.0")
+        implementation("com.anthropic:anthropic-java-mcp:2.75.0")
         ```
       </Tab>
 
@@ -1251,12 +1293,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.73.0</version>
+            <version>2.75.0</version>
         </dependency>
         ```
       </Tab>

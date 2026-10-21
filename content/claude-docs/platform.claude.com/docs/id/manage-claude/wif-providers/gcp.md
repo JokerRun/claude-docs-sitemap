@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 9fedceeb82b027b83c7c1f4d952ac7311cc14890bfe6affb297d84172fc208a2
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 0dcb23047bf47bc18ecca9f2e6b59166e5414b71d707c35c0091ba23198d8bce
 ---
 
 ---
@@ -155,7 +155,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   }
   JSON
   )
-  ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r .access_token)
+  ACCESS_TOKEN=$(jq -r .access_token <<<"$RESPONSE")
 
   # Panggil API Claude
   curl -sS https://api.anthropic.com/v1/messages \
@@ -166,7 +166,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from Cloud Run"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python
@@ -382,11 +382,10 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
 
   ```bash CLI
   # Tulis token identitas yang ditandatangani Google ke file yang dapat dibaca CLI
-  ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS -H "Metadata-Flavor: Google" \
     "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full" \
     > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-  export ANTHROPIC_IDENTITY_TOKEN_FILE
 
   # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.

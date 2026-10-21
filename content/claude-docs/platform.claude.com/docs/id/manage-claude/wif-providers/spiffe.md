@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 02d0a7b6edde3fa847a3c031f3e662f50c747f473aa17ac367b0d7284bd960bd
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: be982e678df31a33e2d40a2dc4d098a82b9cdc0b21526a68e710f54ccd29e731
 ---
 
 ---
@@ -204,7 +204,7 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, ke
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
           "messages": [{"role": "user", "content": "Hello, Claude"}]
-        }' | jq -r '.content[] | select(.type == "text") | .text'
+        }'
       ```
 
       ```bash CLI

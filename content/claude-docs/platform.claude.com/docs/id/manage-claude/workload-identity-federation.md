@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 4b0c652c2166c8ff0502375f2c661cb83af097c2d0142cf3511669b6b6527058
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ea29f2eb7c7a0ec339526de9a0d6e23b9328b8ad5e482bf732fe987dd05a5284
 ---
 
 ---
@@ -102,9 +102,9 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   JWT=$(cat /var/run/secrets/anthropic.com/token)
 
   # 2. Tukarkan JWT tersebut dengan token akses Anthropic berumur pendek.
-  RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
+  ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    -d @- <<JSON
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -115,8 +115,6 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   }
   JSON
   )
-
-  ACCESS_TOKEN=$(jq -r .access_token <<<"$RESPONSE")
   # expires_in pada respons adalah masa berlaku token dalam detik; tukar ulang sebelum habis.
 
   # 3. Panggil API dengan token akses di header Authorization: Bearer.

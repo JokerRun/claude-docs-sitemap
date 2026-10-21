@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-01T02:31:31.030823Z
-sha256: 94b4952291d0f151c1bfcd55468da2947a113dbcad83363e2be19262c1edcb0b
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 369a82554c1d68658693ab80f5b23e8d5825b0e2271545e1c65001c892552ac4
 ---
 
 ---
@@ -68,14 +68,13 @@ Bahkan dengan penyusunan yang rapi, aktivitas yang terindeks setelah jendelanya 
 ### Pembacaan inkremental berbasis kursor
 
 ```bash cURL
-first_id="activity_01XyDMpzjS89pFZXqSFUBDr6"  # first_id from a previous response
-
+# before_id adalah first_id dari respons sebelumnya
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=5000" \
-  --data-urlencode "before_id=$first_id"
+  --data-urlencode "before_id=activity_01XyDMpzjS89pFZXqSFUBDr6"
 ```
 
 Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa perubahan sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari kursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap kursor-vs-page-token dan semantik retry, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).

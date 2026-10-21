@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: fa7c56b94ca6c752edf3c03351f7a71e1bc0d65ea350e6ae6f438a98ef473d20
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 66cdaea90d0e6c5ee2c3883bd12804b00fa5ffdecc5844086500ab519461da45
 ---
 
 ---
@@ -20,7 +20,13 @@ featureMetadata:
 Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
-  **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
+  **Lebih suka panduan interaktif?** Versi terbaru [Claude Code](https://claude.com/product/claude-code) dapat memandu Anda melalui penyiapan dan menjawab pertanyaan Anda:
+
+  Biarkan Claude Code menyiapkan agen Anda
+
+  ```text
+  /claude-api managed-agents-onboard
+  ```
 </Tip>
 
 ## Konsep inti
@@ -35,7 +41,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
 ## Prasyarat
 
 * Sebuah [akun Claude Console](https://platform.claude.com)
-* Sebuah [kunci API](https://platform.claude.com/settings/keys)
+* Sebuah [kunci API](https://platform.claude.com/settings/keys) dari Console
 
 ## Instal CLI
 
@@ -50,7 +56,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Untuk environment Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.42.0
+    VERSION=1.44.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -101,7 +107,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.73.0")
+    implementation("com.anthropic:anthropic-java:2.75.0")
     ```
   </Tab>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f2edca0242bbe9d9fd231744a177dff3a06705e795e609678509c664b33f8a94
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: b9ae24570ba6f0df43491b96a18c5752d373d270f8c28962ebedffd44a92ba12
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Build the AI security server that receives signed Inference hooks r
 ---
 
 <Note>
-  Inference hooks are in beta and available to Claude Enterprise organizations. Field names, request shapes, and headers may change during the beta.
+  Inference hooks are available only to Claude Enterprise organizations.
 </Note>
 
 An Inference hooks integration is an AI security server: an HTTPS service that Anthropic calls. For each governed request, your server receives a signed `POST` carrying the conversation transcript and responds with an allow or deny verdict. This page documents the protocol for building that server: the request and verdict schemas, signature verification, and the operational contract.

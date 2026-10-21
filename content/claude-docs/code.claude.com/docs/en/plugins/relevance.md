@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/relevance
-fetched_at: 2026-09-29T02:22:52.185218Z
-sha256: bcbe647fd4e587be1dcaf436077181c1a863f9a4ddd18833d96b7862aeed17e9
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: bed8ccb839090c1ea1d9ca8654e280905276bd44c57f80b68fa4e4b75c02b93a
 ---
 
 > ## Documentation Index
@@ -17,12 +17,12 @@ Claude Code can suggest installing a plugin from your organization's marketplace
 
 A marketplace operator writes the `relevance` entries. An administrator then allowlists the marketplace in managed settings. Users see no suggestions from a marketplace until it's allowlisted.
 
-<Note>
-  These cases are covered on other pages:
-
-  * **You want to install plugins**: see [Install and manage plugins](/docs/en/plugins/install)
-  * **You want to turn suggestions off**: see [Understand how plugin relevance works](#understand-how-plugin-relevance-works)
-</Note>
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **You want to install plugins**: see [Install and manage plugins](/docs/en/plugins/install)
+> * **You want to turn suggestions off**: see [Understand how plugin relevance works](#understand-how-plugin-relevance-works)
 
 Start with the sections for your role:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 819847a64e7cc07fb8b5dd2b19edccb541eacd6f284ebc4b9384a425182679fe
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 68af7888710ecd3a134872e0876afd7cff8f8f089fb0397cf83cac08285ce17d
 ---
 
 ---
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.73.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.73.0")
+      implementation("com.anthropic:anthropic-java:2.75.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.75.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.73.0</version>
+          <version>2.75.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.73.0</version>
+          <version>2.75.0</version>
       </dependency>
       ```
 
@@ -153,7 +153,15 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian mode
 | Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-3-5-haiku@20241022`  |
 
 <Tip>
-  Meng-upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Bermigrasi ke model Claude yang lebih baru](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+
+  Biarkan Claude Code memigrasikan kode Anda
+
+  ```text
+  /claude-api migrate proyek ini ke model Claude Opus terbaru
+  ```
+
+  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
 </Tip>
 
 ### Membuat permintaan
@@ -164,10 +172,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  MODEL_ID=claude-opus-5-5
-  PROJECT_ID=MY_PROJECT_ID
-
-  curl https://aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/global/publishers/anthropic/models/${MODEL_ID}:rawPredict \
+  curl https://aiplatform.googleapis.com/v1/projects/MY_PROJECT_ID/locations/global/publishers/anthropic/models/claude-opus-5-5:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{
@@ -440,10 +445,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  MODEL_ID=claude-opus-5-5
-  PROJECT_ID=MY_PROJECT_ID
-
-  curl https://aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/global/publishers/anthropic/models/${MODEL_ID}:rawPredict \
+  curl https://aiplatform.googleapis.com/v1/projects/MY_PROJECT_ID/locations/global/publishers/anthropic/models/claude-opus-5-5:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{
@@ -628,11 +630,8 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  MODEL_ID=claude-opus-5-5
-  LOCATION=us # Multi-region identifier: "us" or "eu"
-  PROJECT_ID=MY_PROJECT_ID
-
-  curl https://aiplatform.${LOCATION}.rep.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/anthropic/models/${MODEL_ID}:rawPredict \
+  # Pengenal multi-region, "us" atau "eu", muncul di nama host dan di path
+  curl https://aiplatform.us.rep.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us/publishers/anthropic/models/claude-opus-5-5:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{
@@ -818,11 +817,8 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
   # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
-  MODEL_ID=claude-sonnet-4-6
-  LOCATION=us-east5 # Specify a specific region
-  PROJECT_ID=MY_PROJECT_ID
-
-  curl https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/anthropic/models/${MODEL_ID}:rawPredict \
+  # Region, di sini us-east5, muncul di nama host dan di path
+  curl https://us-east5-aiplatform.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us-east5/publishers/anthropic/models/claude-sonnet-4-6:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{

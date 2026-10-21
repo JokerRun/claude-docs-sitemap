@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: b5c561a87efad266e87cefee9b361b2e5b4f8486c5003b39e3eb00fdf53df179
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a905597ba68de796d1f1058aa811c0765dd5d172b743080c00abf1f29da1805a
 ---
 
 ---
@@ -282,7 +282,7 @@ Contoh: Jika batas Organisasi Anda adalah 40.000 token input per menit dan 8.000
 
 Catatan:
 
-* Anda tidak dapat menetapkan batas pada Workspace default.
+* Anda tidak dapat menetapkan batas pengeluaran pada Workspace default.
 * Jika tidak ditetapkan, batas Workspace sama dengan batas Organisasi.
 * Batas Workspace ditetapkan per jenis pembatas (seperti permintaan per menit, token input per menit, atau token output per menit).
 * Batas tingkat Organisasi selalu berlaku, meskipun jumlah batas Workspace lebih besar.

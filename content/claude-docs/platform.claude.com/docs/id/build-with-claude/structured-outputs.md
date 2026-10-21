@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: e7f8b25da9a4c518c912f59e961683daff005df042d0e6701a67787d3facc75d
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a79d375aa2ceebbbffbb8871bab1eb881210729e51012fdd039d0a24f1449a0a
 ---
 
 ---
@@ -35,9 +35,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock:
-      availability: ga
-      note: Di Amazon Bedrock, output terstruktur tersedia pada integrasi lama [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5, dan tidak tersedia di [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock).
+    Amazon Bedrock: ga
     Google Cloud: ga
     Microsoft Foundry: ga
 ---
@@ -131,9 +129,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui "constrained decod
 
   <Tab title="CLI">
     ```bash
-    ant messages create \
-      --transform 'content.#(type=="text").text|@fromstr' \
-      --format jsonl <<'YAML'
+    ant messages create <<'YAML'
     model: claude-opus-5-5
     max_tokens: 1024
     messages:
@@ -157,12 +153,15 @@ Output terstruktur menjamin respons yang sesuai skema melalui "constrained decod
     YAML
     ```
 
-    Untuk mencetak hanya beberapa properti dari output JSON, berikan [path GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson) ke `--transform`.
+    Claude mengembalikan JSON seperti ini di blok konten teks respons:
 
-    Contoh di atas menghasilkan output:
-
-    ```text Output wrap
-    {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
+    ```json Output
+    {
+      "name": "John Smith",
+      "email": "john@example.com",
+      "plan_interest": "Enterprise",
+      "demo_requested": true
+    }
     ```
   </Tab>
 
@@ -809,9 +808,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
 
   <Tab title="CLI">
     ```bash
-    ant messages create \
-      --transform 'content.#(type=="text").text|@fromstr' \
-      --format jsonl <<'YAML'
+    ant messages create <<'YAML'
     model: claude-opus-5-5
     max_tokens: 1024
     messages:
@@ -835,10 +832,15 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
     YAML
     ```
 
-    Contoh di atas menghasilkan output:
+    Claude mengembalikan JSON seperti ini di blok konten teks respons:
 
-    ```text Output wrap
-    {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
+    ```json Output
+    {
+      "name": "John Smith",
+      "email": "john@example.com",
+      "plan_interest": "Enterprise",
+      "demo_requested": true
+    }
     ```
   </Tab>
 
@@ -1244,9 +1246,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
       ```
 
       ```bash CLI
-      ant messages create \
-        --transform 'content.#(type=="text").text|@fromstr' \
-        --format jsonl <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 4096
       messages:
@@ -1574,9 +1574,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
       ```
 
       ```bash CLI
-      ant messages create \
-        --transform 'content.#(type=="text").text|@fromstr' \
-        --format jsonl <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 1024
       messages:
@@ -1864,9 +1862,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
       ```
 
       ```bash CLI
-      ant messages create \
-        --transform 'content.#(type=="text").text' \
-        --raw-output <<'YAML'
+      ant messages create <<'YAML'
       model: claude-opus-5-5
       max_tokens: 1024
       output_config:

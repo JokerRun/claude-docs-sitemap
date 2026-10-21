@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
-fetched_at: 2026-09-16T02:20:57.252456Z
-sha256: e9db92c5509efc9988fa54a9fe3301b049ff04c582b4a1eca2f624a7203bd9aa
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6fbbb8d4101c8a33a046eb9fb6c0749d1618429f6563ca8a7fcf0bb56c72666c
 ---
 
 > ## Documentation Index
@@ -13,11 +13,11 @@ sha256: e9db92c5509efc9988fa54a9fe3301b049ff04c582b4a1eca2f624a7203bd9aa
 
 > Reference for the removed V2 TypeScript Agent SDK session API, with session-based send/stream patterns for multi-turn conversations.
 
-<Warning>
-  The V2 session API is no longer supported. TypeScript Agent SDK 0.3.142 removes `unstable_v2_createSession`, `unstable_v2_resumeSession`, `unstable_v2_prompt`, and the `SDKSession` and `SDKSessionOptions` types.
-
-  To migrate, use the [`query()` API](/docs/en/agent-sdk/typescript) and the [session options](/docs/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable<SDKUserMessage>` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
-</Warning>
+> [!WARNING]
+>
+> The V2 session API is no longer supported. TypeScript Agent SDK 0.3.142 removes `unstable_v2_createSession`, `unstable_v2_resumeSession`, `unstable_v2_prompt`, and the `SDKSession` and `SDKSessionOptions` types.
+>
+> To migrate, use the [`query()` API](/docs/en/agent-sdk/typescript) and the [session options](/docs/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable<SDKUserMessage>` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
 
 V2 was an experimental session API that removed the need for async generators and yield coordination. Instead of managing generator state across turns, each turn was a separate `send()`/`stream()` cycle. The API surface reduced to creating a session, sending a message, and streaming the response:
 
@@ -33,9 +33,9 @@ Agent SDK 0.2.x is the last version that includes the V2 interface. The package 
 npm install @anthropic-ai/claude-agent-sdk@0.2
 ```
 
-<Note>
-  The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart) for the installs that need one.
-</Note>
+> [!NOTE]
+>
+> The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart) for the installs that need one.
 
 ## Quick start
 

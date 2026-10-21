@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 4f17426c9643788f21ae73d667010e1863b3a2258966657e7fb4a36fee6f7620
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7293fa8cee61bff308b6845b06d23ac78aef205cc5d3202e95afd9677e751497
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Beralih ke Claude Haiku 5.5 dari model Haiku sebelumnya dengan pand
 </Note>
 
 <Tip>
-  **Otomatiskan migrasi Anda dengan skill Claude API.** Di Claude Code, jalankan `/claude-api migrate` untuk memanggil [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) bawaan. Skill ini berfungsi untuk model Claude terkini mana pun sebagai target:
+  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
 
   Biarkan Claude Code memigrasikan kode Anda
 
@@ -45,7 +45,6 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhenti setelah grup yang men
 8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
 9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam satu percakapan dan mengirim kembali blok thinking, pertahankan percakapan bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
-11. Jika Anda menggunakan ["structured outputs" (output terstruktur)](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) (`output_config.format` atau alat `strict: true`) di Amazon Bedrock, jelaskan format dalam prompt atau gunakan alat tanpa `strict`, dan validasi output dalam kode Anda. Output terstruktur tidak tersedia untuk Claude Haiku 5.5 di Amazon Bedrock.
 
 Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models) pada Claude Haiku 4.5, rencanakan kapasitas secara terpisah: Priority Tier tidak didukung pada Claude Haiku 5.5.
 
@@ -132,7 +131,7 @@ Claude Haiku 4.5 menerima `temperature`, `top_p`, dan `top_k`. Pada Claude Haiku
 
 "Prefill" (pengisian awal) adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh model. Claude Haiku 4.5 menerimanya ketika thinking nonaktif. Claude Haiku 5.5 menolaknya dengan error 400, bahkan ketika thinking dinonaktifkan. Akhiri `messages` dengan giliran pengguna, dan ganti setiap prefill sesuai dengan tujuannya:
 
-* **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi. Di Amazon Bedrock, output terstruktur tidak tersedia untuk Claude Haiku 5.5. Di sana, jelaskan format dalam prompt atau gunakan alat tanpa `strict`, dan validasi output dalam kode Anda.
+* **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
 * **Pembukaan:** minta jawaban langsung dalam prompt sistem.
 * **Kelanjutan:** pindahkan ke pesan pengguna, misalnya "Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir."
 * **Pengingat konteks:** letakkan di giliran pengguna.

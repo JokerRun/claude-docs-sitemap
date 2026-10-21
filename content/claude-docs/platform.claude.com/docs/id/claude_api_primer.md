@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5481449fbdf5b32dffb403baa8d5ed6c3032cc12627fc44243d8a957027b0337
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ec6f9a6fd7b9e1c2181a0608baf05b3c4197715195ed6f4c2b657b8835450ce0
 ---
 
 ---
@@ -112,7 +112,7 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
 Anda dapat mengisi awal (prefill) sebagian respons Claude pada posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Note>
-  Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview tidak mendukung prefill pesan assistant; permintaan ke model-model tersebut harus diakhiri dengan pesan user. Contoh di bawah ini menggunakan model yang mendukung prefill.
+  Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview tidak mendukung prefill pesan assistant; permintaan ke model-model tersebut harus diakhiri dengan pesan user. Contoh berikut menggunakan model yang mendukung prefill.
 </Note>
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
@@ -152,10 +152,8 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  IMAGE_URL="https://platform.claude.com/docs/images/vision-example.jpg"
-
   # Opsi 1: Gambar yang di-encode Base64 (prefiks @ otomatis meng-encode file biner sebagai base64)
-  curl -sSo vision-example.jpg "$IMAGE_URL"
+  curl -sSo vision-example.jpg https://platform.claude.com/docs/images/vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5-5
@@ -173,7 +171,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
   YAML
 
   # Opsi 2: Gambar yang dirujuk melalui URL
-  ant messages create <<YAML
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
   messages:
@@ -182,7 +180,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
         - type: image
           source:
             type: url
-            url: $IMAGE_URL
+            url: https://platform.claude.com/docs/images/vision-example.jpg
         - type: text
           text: What is in the above image?
   YAML
@@ -279,7 +277,7 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  ant messages create --transform content --format yaml <<'YAML'
+  ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 16000
   thinking:
@@ -331,67 +329,7 @@ Batasan penting:
 
 ### Mempertahankan blok thinking
 
-<CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
-  ```bash CLI
-  # Permintaan pertama: tangkap array konten assistant (blok thinking + tool_use,
-  # dengan signature utuh) sebagai JSON ringkas.
-  ASSISTANT_CONTENT=$(ant messages create \
-    --transform content --format jsonl <<'YAML'
-  model: claude-opus-5-5
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-    display: summarized
-  tools:
-    - name: get_weather
-      description: Get the current weather for a location.
-      input_schema:
-        type: object
-        properties:
-          location:
-            type: string
-            description: The city name.
-        required: [location]
-  messages:
-    - role: user
-      content: "What's the weather in Paris?"
-  YAML
-  )
-
-  TOOL_USE_ID=$(printf '%s' "$ASSISTANT_CONTENT" \
-    | jq -r '.[] | select(.type == "tool_use") | .id')
-
-  # Permintaan kedua: kirim kembali blok yang ditangkap tanpa diubah sebagai pesan
-  # assistant. Blok thinking harus menyertai blok tool_use.
-  ant messages create <<YAML
-  model: claude-opus-5-5
-  max_tokens: 16000
-  thinking:
-    type: adaptive
-    display: summarized
-  tools:
-    - name: get_weather
-      description: Get the current weather for a location.
-      input_schema:
-        type: object
-        properties:
-          location:
-            type: string
-            description: The city name.
-        required: [location]
-  messages:
-    - role: user
-      content: "What's the weather in Paris?"
-    - role: assistant
-      content: $ASSISTANT_CONTENT
-    - role: user
-      content:
-        - type: tool_result
-          tool_use_id: $TOOL_USE_ID
-          content: "Current temperature: 72°F"
-  YAML
-  ```
-
+<CodeGroup exclude="shell:cURL, shell:CLI, typescript, csharp, go, java, php, ruby">
   ```python Python
   import anthropic
 
@@ -733,11 +671,10 @@ Saat membuat Message, Anda dapat mengatur `"stream": true` untuk melakukan strea
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  ant messages create --stream --format jsonl \
+  ant messages create --stream \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
-    --message '{role: user, content: "Hello"}' \
-    | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
+    --message '{role: user, content: "Hello"}'
   ```
 
   ```python Python

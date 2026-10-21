@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5575d77742ebfd89fe16ae916b0be06fe9b2543dc01ca284856527cff6d424a6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 2e457385cccb99f29ebc70e78fe264f8fccef112e2c02877e498e1b03dd61d1f
 ---
 
 ---
@@ -260,16 +260,6 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
       "max_tokens": 1024,
       "fallbacks": "default",
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' |
-    jq -c '{
-      stop_reason,
-      model,
-      # Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-      # pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
-      served_by_fallback: (
-        any(.usage.iterations[]?; .type == "fallback_message")
-        and .stop_reason != "refusal"
-      )
     }'
   ```
 
@@ -279,18 +269,7 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
     --max-tokens 1024 \
     --message '{"role":"user","content":"Hello, Claude"}' \
     --fallbacks default \
-    --beta server-side-fallback-2026-07-01 \
-    --format json |
-    jq -c '{
-      stop_reason,
-      model,
-      # Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-      # pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
-      served_by_fallback: (
-        any(.usage.iterations[]?; .type == "fallback_message")
-        and .stop_reason != "refusal"
-      )
-    }'
+    --beta server-side-fallback-2026-07-01
   ```
 
   ```python Python
@@ -655,7 +634,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
 Beberapa aturan berlaku untuk daftar `fallbacks`:
 
 * Entri dicoba secara berurutan. Setiap entri harus berbeda dari entri lainnya dan dari model yang diminta.
-* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan beta header diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](https://platform.claude.com/docs/id/api/models/list).
+* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan beta header diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](https://platform.claude.com/docs/id/api/beta/models/list).
 * Setiap entri menyebutkan `model` dan dapat menimpa `max_tokens`, `thinking`, `output_config`, dan `speed` hanya untuk percobaan tersebut.
 * Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan di awal. Dengan header `2026-07-01`, `thinking: {"type": "between_tools"}` adalah pengecualian: ketika permintaan Claude Sonnet 5.5 dialihkan ke Claude Sonnet 5, percobaan fallback berjalan dengan `thinking: {"type": "disabled"}` dan `display: "omitted"`. Dengan `2026-06-01`, atur `thinking` pada entri Claude Sonnet 5, atau permintaan akan ditolak di awal.
 * Sama seperti mode default, hanya penolakan oleh pengklasifikasi keamanan yang memicu fallback. Batas laju, kelebihan beban, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: dcb4aefed6fa63319bffa84481991fd8c140305c24e60e7a3f8cf3c784074b62
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 7cbad3f9e3fa524c81f214bf79f1295e5a26ecbfe3f3591ef9dbe29d68bf3c66
 ---
 
 ---
@@ -290,18 +290,18 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01"
-  # Pass next_page back as the page query parameter to fetch the next page,
-  # or prev_page to go back.
+  # Teruskan next_page kembali sebagai parameter query page untuk mengambil halaman berikutnya,
+  # atau prev_page untuk kembali.
   ```
 
   ```bash CLI
-  # --format raw returns one page envelope with its prev_page and next_page
-  # cursors; the default output auto-paginates and emits only the sessions.
+  # --format raw mengembalikan satu amplop halaman dengan kursor prev_page dan
+  # next_page-nya; output default melakukan paginasi otomatis dan hanya mengeluarkan sesi.
   ant beta:sessions list \
     --agent-id "$AGENT_ID" \
     --limit 1 \
     --format raw
-  # Pass next_page back as --page to fetch the next page, or prev_page to go back.
+  # Teruskan next_page kembali sebagai --page untuk mengambil halaman berikutnya, atau prev_page untuk kembali.
   ```
 
   ```python Python

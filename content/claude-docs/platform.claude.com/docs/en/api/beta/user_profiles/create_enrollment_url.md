@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: defc40c503d8d11f3943ae36e8b6acd7ede6e1c29d9ddee95009e34c710a2b7c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 3c4fa7d5de66df9050147179157fe1feaffa29db02ed5a2edc5c9d4bd3f58aaa
 ---
 
 ---
@@ -32,7 +32,7 @@ Create Enrollment URL
 
 - `"anthropic-beta": optional array of AnthropicBeta`
 
-  This endpoint is in beta: requests must send `user-profiles-2026-03-24`, `user-profiles-2026-08-18`, or `user-profiles-2026-09-04` in this header.
+  Optional header to specify the beta version(s) you want to use.
 
   - `string`
 
@@ -148,7 +148,7 @@ Create Enrollment URL
 
 - `BetaUserProfileEnrollmentURL object`
 
-  A URL to give to the entity that a user profile represents, so that the entity can enroll for a trust grant.
+  A URL to give to the entity that a user profile represents, so that the entity can enroll in a program.
 
   - `type: "enrollment_url"`
 

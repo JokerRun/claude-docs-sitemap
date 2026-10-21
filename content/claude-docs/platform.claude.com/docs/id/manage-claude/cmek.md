@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: d76e893391cac1dd833db6f2452f881b76f74870c95545beaa8308343c1c7b98
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 79238d0274857e99951899b3bff77a8081888ffd2be8f7e6ddc191b1c9af42da
 ---
 
 ---
@@ -27,7 +27,7 @@ Penggunaan CMEK bersifat opsional. Organisasi yang memenuhi syarat dapat **memil
   Mengaktifkan CMEK bersifat permanen. Anthropic tidak menyimpan salinan kunci Anda, sehingga kesalahan konfigurasi atau kehilangan kunci dapat menghancurkan data yang dilindungi CMEK Anda secara permanen. Jika Anda tidak yakin tentang langkah apa pun, hubungi perwakilan Anthropic Anda sebelum menerapkan perubahan.
 
   * **Kehilangan data permanen:** Jika kunci enkripsi Anda dihapus, dijadwalkan untuk dihapus, atau material kuncinya dihancurkan, Anthropic tidak dapat memulihkan data Anda.
-  * **Verifikasi identifier bersifat wajib:** Memberikan akses kunci kepada principal yang salah atau dipalsukan dapat mengekspos data Anda kepada pihak yang tidak berwenang. Selalu verifikasi identifier Anthropic terhadap identitas produksi yang dipublikasikan di setiap panduan konfigurasi. Pada Claude Platform on AWS, identitas tersebut adalah AWS service principal yang dipublikasikan dalam [panduan AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws). Jangan pernah mempercayai identifier yang diberikan melalui email, chat, atau saluran onboarding apa pun.
+  * **Verifikasi identifier bersifat wajib:** Memberikan akses kunci kepada principal yang salah atau dipalsukan dapat mengekspos data Anda kepada pihak yang tidak berwenang. Selalu verifikasi identifier Anthropic terhadap identitas produksi yang dipublikasikan di setiap panduan konfigurasi. Pada Claude Platform on AWS, identitas tersebut adalah AWS service principal yang dipublikasikan dalam [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Jangan pernah mempercayai identifier yang diberikan melalui email, chat, atau saluran onboarding apa pun.
 </Warning>
 
 ## Cara kerjanya
@@ -38,7 +38,7 @@ Pada Claude Platform, Anthropic merekomendasikan untuk melampirkan kunci Anda ke
 
 Peristiwa konfigurasi CMEK muncul di [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Operasi kunci yang dilakukan Anthropic terhadap kunci Anda (seperti membungkus dan membuka bungkus kunci data) tidak muncul di Compliance API; mereka muncul di log audit penyedia cloud Anda.
 
-Anthropic memanggil layanan manajemen kunci Anda dari rentang IP publik standarnya. Jika Anda membatasi akses ke layanan manajemen kunci Anda berdasarkan IP, izinkan alamat yang tercantum di [Alamat IP](https://platform.claude.com/docs/id/api/ip-addresses). Pada Claude Platform on AWS, jangan mengandalkan pembatasan berbasis IP untuk kunci Anda; cakup akses dengan kebijakan kunci yang dijelaskan dalam [panduan AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws) sebagai gantinya.
+Anthropic memanggil layanan manajemen kunci Anda dari rentang IP publik standarnya. Jika Anda membatasi akses ke layanan manajemen kunci Anda berdasarkan IP, izinkan alamat yang tercantum di [Alamat IP](https://platform.claude.com/docs/id/api/ip-addresses). Pada Claude Platform on AWS, jangan mengandalkan pembatasan berbasis IP untuk kunci Anda; cakup akses dengan kebijakan kunci yang dijelaskan dalam [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
 
 ## Prasyarat
 
@@ -56,7 +56,7 @@ Kecuali pada Claude Platform on AWS (dibahas di akhir bagian ini), CMEK saat ini
 | Google Cloud | `us-central1`, `us-east5`     |
 | Azure        | `northcentralus`, `eastus2`   |
 
-Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya tersedia dengan kunci AWS KMS; kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Rekomendasi wilayah ini tidak berlaku di sana: kunci harus berupa kunci KMS wilayah tunggal di akun dan wilayah AWS yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke AWS service principal alih-alih peran IAM Anthropic; lihat [Siapkan CMEK pada Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#claude-platform-on-aws). Daftarkan dan lampirkan kunci di Claude Console; endpoint kunci eksternal juga tersedia pada Claude Platform on AWS, diotorisasi melalui [tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan lampiran melakukan putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul pada saat pelampiran alih-alih pada saat pendaftaran.
+Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya tersedia dengan kunci AWS KMS; kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Rekomendasi wilayah ini tidak berlaku di sana: kunci harus berupa kunci KMS wilayah tunggal di akun dan wilayah AWS yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke AWS service principal alih-alih peran IAM Anthropic; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di Claude Console; endpoint kunci eksternal juga tersedia pada Claude Platform on AWS, diotorisasi melalui [tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan lampiran melakukan putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul pada saat pelampiran alih-alih pada saat pendaftaran.
 
 ## Apa yang dilindungi CMEK
 
@@ -90,7 +90,6 @@ Beberapa fitur dimatikan atau dimodifikasi secara substansial saat CMEK diaktifk
 **Claude Platform**
 
 * Playground di Claude Console dinonaktifkan.
-* Bagian dari Compliance API yang mengembalikan konten mentah, seperti prompt, respons, dan file, dinonaktifkan.
 * Structured outputs tidak tersedia untuk model Claude Fable atau Claude Mythos di organisasi CMEK.
 * Fitur beta dan research preview lainnya mungkin tidak dicakup oleh CMEK.
 
@@ -148,7 +147,7 @@ Di luar [penyaringan CSAM](https://support.claude.com/en/articles/9020328-csam-d
 
 ## Konfigurasikan penyedia Anda
 
-Ikuti panduan untuk layanan manajemen kunci yang Anda gunakan.
+Ikuti panduan untuk layanan manajemen kunci yang Anda gunakan. Pada Claude Platform on AWS, ikuti [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
 
 <CardGroup cols={3}>
   <Card href="https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms" title="AWS KMS">

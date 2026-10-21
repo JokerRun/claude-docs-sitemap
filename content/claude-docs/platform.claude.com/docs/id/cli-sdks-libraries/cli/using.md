@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: b9bbba9b9745ae66d69ccb24df38b32f455b0a7575de324849c58f3a06583e36
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: d957c9efa3a4e5a06ca5173d85a5f4a3b5a31867da57ead1b8f5cf3d9ddaa25e
 ---
 
 ---
@@ -37,6 +37,8 @@ ant beta:sessions:events list --session-id session_01...
 | Flag                                  | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--profile`                           | Profil bernama yang digunakan untuk pemanggilan ini (setara dengan mengatur `ANTHROPIC_PROFILE`). Lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).                                                                                                                                                                                                                                                 |
+| `--api-key-stdin`                     | Membaca kunci API dari standard input. Flag ini membaca seluruh standard input, jadi kirim body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                       |
+| `--auth-token-stdin`                  | Membaca bearer token dari standard input. Flag ini membaca seluruh standard input, jadi kirim body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                    |
 | `--format`                            | Format output: `auto`, `json`, `jsonl`, `yaml`, `pretty`, `raw`, `explore`                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `--transform`                         | Memfilter atau membentuk ulang respons dengan [path GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson)                                                                                                                                                                                                                                                                                                                                |
 | `-r`, `--raw-output`                  | Mencetak hasil string tanpa tanda kutip di sekelilingnya, seperti `jq -r`                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -96,12 +98,6 @@ AGENT_ID=$(ant beta:agents create \
   --name "My Agent" \
   --model '{id: claude-opus-5-5}' \
   --transform id --raw-output)
-
-printf '%s\n' "$AGENT_ID"
-```
-
-```text Output wrap
-agent_011CYm1BLqPXpQRk5khsSXrs
 ```
 
 <Note>
@@ -180,8 +176,7 @@ ant messages create \
   --message '{role: user, content: [
     {type: document, source: {type: base64, media_type: application/pdf, data: "@./scan.pdf"}},
     {type: text, text: "Extract the text from this scanned document."}
-  ]}' \
-  --transform 'content.#(type=="text").text' --raw-output
+  ]}'
 ```
 
 CLI mendeteksi tipe file dan mengodekan file biner sebagai base64 secara otomatis. Untuk memaksa pengodean tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f4057df8e0efb4bad7c585438e429911ae13b50d05e3b18b7ad5b794aef5afe6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 07fecbc1b7e505fc2a892e9c6ff9a73558f58d0cc857d83558f16075105b8fd9
 ---
 
 ---
@@ -93,8 +93,8 @@ SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_i
 
 <CodeGroup>
   ```bash cURL
-  # Cetak header respons (termasuk request-id); buang body
-  curl -sS -D - -o /dev/null https://api.anthropic.com/v1/messages \
+  # -i mencetak header respons, termasuk request-id, sebelum body
+  curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: b808818734da37c2d3108988286387d95246db2f1527f6c4485208b5fddd513c
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: f4bc856c518a6433d3bd22c3a64c89eb1d1a2b9d8a1b036806bc951732025ada
 ---
 
 ---
@@ -254,9 +254,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
 
   // Tangani penggunaan alat dan berikan hasilnya.
   // Blok tool_use tidak selalu berada di urutan pertama: cari di dalam array content.
-  const toolUse = response.content.find(
-    (block): block is Anthropic.ToolUseBlock => block.type === "tool_use"
-  );
+  const toolUse = response.content.find((block) => block.type === "tool_use");
   if (toolUse) {
     const input = toolUse.input as { query: string };
     const toolResult = searchKnowledgeBase(input.query);

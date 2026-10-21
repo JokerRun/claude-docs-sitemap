@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: e7f83e9fd8a20481612693fab2bdbf3de28bc668fa43799c71b94980261d7f58
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 5f03a4c14bd56c54223907d0cb0308c1d7686d47179a48e421a62aa6a0e8244c
 ---
 
 ---
@@ -16,7 +16,7 @@ Model yang paling mumpuni bisa terlalu mahal dalam skala besar, dan model yang p
 Biaya dan kecerdasan biasanya digambarkan sebagai sebuah frontier, tempat yang satu dibeli dengan mengorbankan yang lain. Kelompok tuas pertama di halaman ini menggerakkan beban kerja menuju frontier tersebut dengan memangkas biaya tanpa menyentuh kualitas; hanya kelompok kedua yang bergerak di sepanjang frontier itu:
 
 <Frame>
-  ![Skema "cost-to-intelligence frontier" (frontier biaya-terhadap-kecerdasan): satu panah memangkas pengeluaran pada kualitas yang sama, panah lainnya menukar kualitas dengan biaya](https://platform.claude.com/docs/images/cost-intel/frontier.svg)
+  ![Skema "cost-to-intelligence frontier" (frontier biaya-terhadap-kecerdasan): satu panah memangkas pengeluaran pada kualitas yang sama, panah lainnya menukar kualitas dengan biaya](https://platform.claude.com/docs/id/images/cost-intel/frontier.svg)
 </Frame>
 
 Tuas-tuas ini terbagi menjadi dua jenis:
@@ -71,7 +71,7 @@ Aktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/
 Di seluruh run yang diukur Anthropic, cache read secara rutin menjadi komponen tunggal terbesar dari biaya tugas, sehingga caching lebih berharga daripada sebagian besar keputusan pemilihan model. Anthropic menghitung biaya run DeepResearch Bench II[7](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) dengan dan tanpa caching:
 
 <Frame>
-  ![Grafik, DeepResearch Bench II: caching memangkas Fable 5.1 dari $37,94 USD menjadi $6,89 USD per tugas; Sonnet 5, $3,20 USD menjadi $1,18 USD](https://platform.claude.com/docs/images/cost-intel/caching-repriced.svg)
+  ![Grafik, DeepResearch Bench II: caching memangkas Fable 5.1 dari $37,94 USD menjadi $6,89 USD per tugas; Sonnet 5, $3,20 USD menjadi $1,18 USD](https://platform.claude.com/docs/id/images/cost-intel/caching-repriced.svg)
 </Frame>
 
 Masa hidup default cache adalah 5 menit dan giliran loop agen berjarak beberapa detik, sehingga diskon berlaku untuk sebagian besar token di setiap giliran. Run pada grafik caching membaca 84% hingga 90% token input mereka dari cache.
@@ -134,13 +134,13 @@ Pada Claude Haiku 5.5, gunakan baris "Apa pun". Permintaan keep-alive tidak diuk
 Grafik berikut memplot biaya per sesi terhadap proporsi giliran yang dijeda pada Claude Sonnet 5.5:
 
 <Frame>
-  ![Grafik garis: biaya per sesi triase berdasarkan proporsi giliran setelah jeda; cache 1 jam lebih murah setelah sekitar 1 dari 30 giliran](https://platform.claude.com/docs/images/cost-intel/cache-ttl-sonnet-5-5.svg)
+  ![Grafik garis: biaya per sesi triase berdasarkan proporsi giliran setelah jeda; cache 1 jam lebih murah setelah sekitar 1 dari 30 giliran](https://platform.claude.com/docs/id/images/cost-intel/cache-ttl-sonnet-5-5.svg)
 </Frame>
 
 Grafik berikut menambahkan cache 5 menit yang dijaga tetap hangat oleh permintaan keep-alive, pada Claude Fable 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5:
 
 <Frame>
-  ![Grafik biaya: keep-alive mengalahkan cache 1 jam pada Fable 5.1 di semua titik yang diplot; pada Opus 5.5 dan Sonnet 5.5 hanya jika sedikit giliran yang dijeda](https://platform.claude.com/docs/images/cost-intel/cache-keepalive-sonnet-5-5.svg)
+  ![Grafik biaya: keep-alive mengalahkan cache 1 jam pada Fable 5.1 di semua titik yang diplot; pada Opus 5.5 dan Sonnet 5.5 hanya jika sedikit giliran yang dijeda](https://platform.claude.com/docs/id/images/cost-intel/cache-keepalive-sonnet-5-5.svg)
 </Frame>
 
 **Yang perlu diketahui.**
@@ -179,7 +179,15 @@ Permintaan `max_tokens: 0` ditolak dalam kasus berikut:
 
 #### Aktifkan caching
 
-Penyiapannya hanya membutuhkan sedikit usaha. [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) menempatkan breakpoint untuk Anda; jika tidak, [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang disertakan dengan Claude Code dapat menambahkan caching ke integrasi yang sudah ada dari satu prompt, `/claude-api add prompt caching to this integration`. Pada kode yang menghasilkan pengukuran ini, skill tersebut menempatkan satu breakpoint pada blok system dan satu pada masing-masing dari dua giliran pengguna terbaru; [Breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) menjelaskan di mana menempatkannya.
+Penyiapannya hanya membutuhkan sedikit usaha. [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) menempatkan breakpoint untuk Anda; jika tidak, [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang disertakan dengan Claude Code dapat menambahkan caching ke integrasi yang sudah ada dari satu prompt:
+
+Biarkan Claude Code menambahkan caching untuk Anda
+
+```text
+/claude-api tambahkan caching prompt ke integrasi ini
+```
+
+Pada kode yang menghasilkan pengukuran ini, skill tersebut menempatkan satu breakpoint pada blok system dan satu pada masing-masing dari dua giliran pengguna terbaru; [Breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) menjelaskan di mana menempatkannya.
 
 #### Apa yang merusak cache
 
@@ -207,7 +215,7 @@ Anthropic mengukur waktu perubahan pada model sebelumnya, pada sesi panjang agen
 Sesi tanpa perubahan berbiaya lebih tinggi daripada sesi yang diubah setelah compaction, tetapi bukan karena caching. Sesi tersebut berjalan pada effort default sepanjang waktu dan dua di antaranya melakukan compaction untuk kedua kalinya, sementara yang lain dimulai pada effort rendah (referensi 18):
 
 <Frame>
-  ![Grafik batang, biaya per sesi triase: $0,81 USD tanpa perubahan, $0,95 USD di tengah sesi, $0,92 USD saat "compaction" (pemadatan), $0,75 USD setelahnya](https://platform.claude.com/docs/images/cost-intel/compaction-timing.svg)
+  ![Grafik batang, biaya per sesi triase: $0,81 USD tanpa perubahan, $0,95 USD di tengah sesi, $0,92 USD saat "compaction" (pemadatan), $0,75 USD setelahnya](https://platform.claude.com/docs/id/images/cost-intel/compaction-timing.svg)
 </Frame>
 
 ### Pangkas token input dan konteks
@@ -235,7 +243,7 @@ Setiap definisi alat yang dilampirkan ke permintaan merupakan input di setiap gi
 Dalam pengukuran pada model sebelumnya[27](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), Anthropic menjalankan agen triase dengan dua alatnya sendiri ditambah katalog definisi alat nyata dari server MCP publik, dengan total hingga 502 alat, memuat semuanya atau menandai alat tambahan dengan `defer_loading` di balik [tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool):
 
 <Frame>
-  ![Grafik garis: dengan semua alat dimuat, biaya run naik dari $0,55 USD menjadi $1,02 USD pada 502 alat; "tool search" (pencarian alat) menjaganya di $0,56 USD](https://platform.claude.com/docs/images/cost-intel/tool-search.svg)
+  ![Grafik garis: dengan semua alat dimuat, biaya run naik dari $0,55 USD menjadi $1,02 USD pada 502 alat; "tool search" (pencarian alat) menjaganya di $0,56 USD](https://platform.claude.com/docs/id/images/cost-intel/tool-search.svg)
 </Frame>
 
 * Dengan setiap definisi dimuat, biaya run naik seiring bertambahnya katalog, mengikuti token skema pada setiap permintaan.
@@ -248,7 +256,7 @@ Dalam pengukuran pada model sebelumnya[27](https://platform.claude.com/docs/id/a
 Ketika model harus melakukan komputasi atas sebuah tabel, unggah tabel tersebut dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan biarkan model mengkuerinya dengan [code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) alih-alih menempelkannya. Anthropic mengajukan 25 pertanyaan agregat[15](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) (penjumlahan, hitungan terfilter, group-by, dan filter tanggal) atas CSV publik 1.862 baris, dengan jawaban yang dihitung oleh pandas:
 
 <Frame>
-  ![Grafik sebar: file diunggah dengan code execution, 25 dari 25 benar dengan $0,40 USD; ditempelkan ke prompt, 7 dari 25 dengan $5,01 USD](https://platform.claude.com/docs/images/cost-intel/data-files.svg)
+  ![Grafik sebar: file diunggah dengan code execution, 25 dari 25 benar dengan $0,40 USD; ditempelkan ke prompt, 7 dari 25 dengan $5,01 USD](https://platform.claude.com/docs/id/images/cost-intel/data-files.svg)
 </Frame>
 
 Jika ditempelkan ke prompt, tabel tersebut berukuran sekitar 91.000 token input di setiap permintaan, dan Claude Sonnet 5 menjawab 7 dari 25 pertanyaan dengan benar. Jika diunggah, dengan code execution, model menjawab ke-25 pertanyaan, dan run tersebut berbiaya sekitar seperdua belas. Claude Opus 5 menunjukkan pola yang sama.
@@ -258,7 +266,7 @@ Jika ditempelkan ke prompt, tabel tersebut berukuran sekitar 91.000 token input 
 Tuas konteks hanya menguntungkan pada sesi yang cukup panjang untuk membutuhkannya:
 
 <Frame>
-  ![Grafik batang berdasarkan panjang run: context editing menambah 73% pada run pendek; compaction menghemat 32% dan pruning 39% pada run panjang](https://platform.claude.com/docs/images/cost-intel/hygiene.svg)
+  ![Grafik batang berdasarkan panjang run: context editing menambah 73% pada run pendek; compaction menghemat 32% dan pruning 39% pada run panjang](https://platform.claude.com/docs/id/images/cost-intel/hygiene.svg)
 </Frame>
 
 Anthropic mengukur tuas-tuas ini pada model sebelumnya[28](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs):
@@ -320,7 +328,15 @@ Audit prompt terhadap model yang Anda jalankan sekarang, dan lakukan lagi setiap
 * Kasus yang umum adalah instruksi yang terlalu spesifik yang ditambahkan untuk mengompensasi model lama: "verify twice", "be maximally thorough", prosedur langkah demi langkah yang wajib, atau scratchpad penalaran buatan sendiri.
 * Model yang lebih baru mengikuti instruksi semacam itu secara harfiah, menghasilkan putaran alat tambahan dan tulisan tambahan, sehingga tagihan naik tanpa peningkatan akurasi.
 
-Audit ini hanya satu perintah. [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang disertakan dengan Claude Code memiliki perintah `prompt-audit` yang membaca prompt dan kode permintaan sebuah proyek dan melaporkan apa yang ditulis untuk model yang berbeda. Kutipan yang dipersingkat ini menunjukkan perintah tersebut dijalankan terhadap prompt support-desk dan kode permintaan yang mengandung pola-pola tersebut:
+Audit ini hanya satu perintah. [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang disertakan dengan Claude Code memiliki perintah `prompt-audit` yang membaca prompt dan kode permintaan sebuah proyek dan melaporkan apa yang ditulis untuk model yang berbeda:
+
+Biarkan Claude Code mengaudit prompt Anda
+
+```text
+/claude-api prompt-audit
+```
+
+Kutipan yang dipersingkat ini menunjukkan perintah tersebut dijalankan terhadap prompt support-desk dan kode permintaan yang mengandung pola-pola tersebut:
 
 ```text wrap
 $ claude
@@ -352,7 +368,7 @@ Perintah tersebut kemudian mengusulkan pengeditannya sebagai diff (satu hunk dit
 Anthropic mengukur efeknya pada evaluasi support-desk[14](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), di dua migrasi antara model-model sebelumnya:
 
 <Frame>
-  ![Grafik sebar, evaluasi support-desk: prompt lama lebih mahal pada model baru; setelah "audited" (diaudit), lebih murah dan sama akuratnya](https://platform.claude.com/docs/images/cost-intel/prompt-audit.svg)
+  ![Grafik sebar, evaluasi support-desk: prompt lama lebih mahal pada model baru; setelah "audited" (diaudit), lebih murah dan sama akuratnya](https://platform.claude.com/docs/id/images/cost-intel/prompt-audit.svg)
 </Frame>
 
 * Dari Claude Opus 4.8 ke Claude Opus 5, prompt yang ditulis untuk model lama berbiaya lebih tinggi per tiket pada model yang lebih baru, tanpa perubahan akurasi.
@@ -362,7 +378,7 @@ Anthropic mengukur efeknya pada evaluasi support-desk[14](https://platform.claud
 Kedua jenis teks usang memiliki biaya yang berbeda:
 
 <Frame>
-  ![Grafik batang per pola lama: instruksi yang dipatuhi berlebihan memakan uang; pengaturan yang rusak dan aturan yang bertentangan memakan akurasi](https://platform.claude.com/docs/images/cost-intel/prompt-audit-patterns.svg)
+  ![Grafik batang per pola lama: instruksi yang dipatuhi berlebihan memakan uang; pengaturan yang rusak dan aturan yang bertentangan memakan akurasi](https://platform.claude.com/docs/id/images/cost-intel/prompt-audit-patterns.svg)
 </Frame>
 
 * Instruksi yang diikuti model baru terlalu harfiah menghabiskan uang: menghapus "verify twice" memangkas biaya per tiket Claude Opus 5, dan menghapus "be maximally thorough" memangkasnya hampir sebanyak itu.
@@ -381,7 +397,7 @@ Bandingkan model berdasarkan "cost per completed task" (biaya per tugas yang sel
 Model yang lebih mampu dapat menyelesaikan tugas dengan pekerjaan yang lebih sedikit, yang dapat mengimbangi sebagian besar selisih harga per token. Anthropic mengukur hal ini pada subset SWE-bench Pro[3](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), yang skornya tidak dapat dibandingkan dengan leaderboard publik, dengan harga sesuai tagihan pelanggan:
 
 <Frame>
-  ![Diagram sebar, SWE-bench Pro: Claude Opus 5.5 pada effort rendah menyamai default Sonnet 5.5 dengan biaya sekitar 7% lebih tinggi per tugas yang diselesaikan](https://platform.claude.com/docs/images/cost-intel/cost-per-task-sonnet-5-5.svg)
+  ![Diagram sebar, SWE-bench Pro: Claude Opus 5.5 pada effort rendah menyamai default Sonnet 5.5 dengan biaya sekitar 7% lebih tinggi per tugas yang diselesaikan](https://platform.claude.com/docs/id/images/cost-intel/cost-per-task-sonnet-5-5.svg)
 </Frame>
 
 Tabel berikut mencantumkan hasilnya:
@@ -408,7 +424,7 @@ Tabel berikut mencantumkan hasilnya:
 Tagihan ditentukan oleh tugas-tugas yang gagal diselesaikan oleh model yang lebih murah, karena tugas yang gagal tetap menagih token-nya, lalu percobaan ulangnya, lalu apa pun biaya kegagalan tersebut di tahap selanjutnya. Bagian ekor juga merupakan tempat uang dihabiskan bahkan ketika tidak ada yang gagal. Pada run WideSearch[1](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) dengan 20 soal, dua soal menanggung 43% dari pengeluaran:
 
 <Frame>
-  ![Diagram batang 20 soal WideSearch yang diurutkan berdasarkan biaya: dua teratas menanggung 43% pengeluaran dan separuh termurah 10%](https://platform.claude.com/docs/images/cost-intel/tail.svg)
+  ![Diagram batang 20 soal WideSearch yang diurutkan berdasarkan biaya: dua teratas menanggung 43% pengeluaran dan separuh termurah 10%](https://platform.claude.com/docs/id/images/cost-intel/tail.svg)
 </Frame>
 
 [Strategi multi-model](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#combine-models) ada untuk menghabiskan kecerdasan frontier pada ekor tersebut tanpa membayar tarif frontier untuk sisanya.
@@ -418,7 +434,7 @@ Tagihan ditentukan oleh tugas-tugas yang gagal diselesaikan oleh model yang lebi
 Jika Anda tertinggal satu atau dua model, tuas termurah adalah string model. Dalam pengukuran Anthropic, setiap model yang lebih baru menyelesaikan setidaknya sebanyak tugas yang diselesaikan model sebelumnya, biasanya dengan biaya lebih rendah per tugas yang diselesaikan. Diagram ini memetakan model-model Claude terbaru pada subset SWE-bench Pro[3](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), tempat setiap model dijalankan melalui penyiapan pengujian yang sama, dan pada Terminal-Bench 3[20](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs); tabel mencantumkan apa yang diubah oleh setiap peningkatan:
 
 <Frame>
-  ![Diagram: pada SWE-bench Pro, Opus 5.5 dan Sonnet 5.5 paling banyak memangkas biaya per tugas yang diselesaikan; pada Terminal-Bench 3, Opus turun menjadi $28 USD](https://platform.claude.com/docs/images/cost-intel/upgrade-ladder-sonnet-5-5.svg)
+  ![Diagram: pada SWE-bench Pro, Opus 5.5 dan Sonnet 5.5 paling banyak memangkas biaya per tugas yang diselesaikan; pada Terminal-Bench 3, Opus turun menjadi $28 USD](https://platform.claude.com/docs/id/images/cost-intel/upgrade-ladder-sonnet-5-5.svg)
 </Frame>
 
 | Benchmark                                                                                                                              | Peningkatan                          | Effort                                           | Skor                                                                             | Biaya                                                                                                                         |
@@ -458,13 +474,13 @@ Tabel berikut mencantumkan pengukuran Anthropic pada dua benchmark dengan model-
 Diagram berikut memetakan akurasi terhadap biaya per tugas untuk Claude Opus 5.5 pada subset SWE-bench Pro[3](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs):
 
 <Frame>
-  ![Diagram garis akurasi terhadap biaya per tugas berdasarkan effort: curam dari low ke high untuk Claude Opus 5.5 pada SWE-bench Pro](https://platform.claude.com/docs/images/cost-intel/effort-sweep-opus-5-5-swe-bench-pro.svg)
+  ![Diagram garis akurasi terhadap biaya per tugas berdasarkan effort: curam dari low ke high untuk Claude Opus 5.5 pada SWE-bench Pro](https://platform.claude.com/docs/id/images/cost-intel/effort-sweep-opus-5-5-swe-bench-pro.svg)
 </Frame>
 
 Diagram berikut memetakan skor rubrik terhadap biaya per tugas untuk Claude Fable 5.1 pada DeepResearch Bench II[7](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs):
 
 <Frame>
-  ![Diagram garis, DeepResearch Bench II, skor rubrik terhadap biaya per tugas: pada Fable 5.1 effort yang lebih tinggi tidak menambah skor, hanya biaya](https://platform.claude.com/docs/images/cost-intel/effort-limit-repriced.svg)
+  ![Diagram garis, DeepResearch Bench II, skor rubrik terhadap biaya per tugas: pada Fable 5.1 effort yang lebih tinggi tidak menambah skor, hanya biaya](https://platform.claude.com/docs/id/images/cost-intel/effort-limit-repriced.svg)
 </Frame>
 
 **Yang perlu dilakukan.**
@@ -482,7 +498,7 @@ Ketika hasil suatu tugas dapat diperiksa, kebijakan termurah pada kurva effort b
 Anthropic menghitung kebijakan ini tugas demi tugas dari run effort Claude Opus 5.5 pada subset SWE-bench Pro[3](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) di [Setel effort](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort):
 
 <Frame>
-  ![Diagram, SWE-bench Pro, Opus 5.5: effort low atau medium dengan kegagalan dijalankan ulang pada high menyamai effort tetap mana pun dengan biaya lebih rendah daripada high](https://platform.claude.com/docs/images/cost-intel/escalation-opus-5-5.svg)
+  ![Diagram, SWE-bench Pro, Opus 5.5: effort low atau medium dengan kegagalan dijalankan ulang pada high menyamai effort tetap mana pun dengan biaya lebih rendah daripada high](https://platform.claude.com/docs/id/images/cost-intel/escalation-opus-5-5.svg)
 </Frame>
 
 Dalam tabel berikut, biaya run ulang turut menghitung percobaan murah yang gagal:
@@ -533,7 +549,7 @@ Dalam pengukuran pada model sebelumnya[26](https://platform.claude.com/docs/id/a
 Diagram berikut memetakan biaya per run dari setiap format:
 
 <Frame>
-  ![Diagram batang: format satu baris $0,49 USD per run, format dua baris asli $0,57 USD, memo $1,40 USD, semuanya 78% hingga 85% benar](https://platform.claude.com/docs/images/cost-intel/output-format.svg)
+  ![Diagram batang: format satu baris $0,49 USD per run, format dua baris asli $0,57 USD, memo $1,40 USD, semuanya 78% hingga 85% benar](https://platform.claude.com/docs/id/images/cost-intel/output-format.svg)
 </Frame>
 
 Ketiganya mendapat skor dalam rentang noise antar-run satu sama lain terhadap label yang benar, sehingga format-format tersebut jauh lebih berbeda dalam hal yang Anda bayar daripada dalam hal ketepatannya. Mintalah jawaban yang akan Anda baca, bukan jawaban yang tampak menyeluruh.
@@ -541,7 +557,7 @@ Ketiganya mendapat skor dalam rentang noise antar-run satu sama lain terhadap la
 Pada tugas repositori internal[12](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), hampir setiap giliran selesai jauh di bawah batas 16.384 token. Giliran panjang yang jarang terjadi itulah yang dibeli oleh batas yang lebih tinggi:
 
 <Frame>
-  ![Diagram titik output per giliran untuk Opus 5.5 dan Fable 5.1: median beberapa ratus token, terpanjang 61k dan 128k, dibandingkan dengan batasnya](https://platform.claude.com/docs/images/cost-intel/max-tokens-ladder-opus-5-5.svg)
+  ![Diagram titik output per giliran untuk Opus 5.5 dan Fable 5.1: median beberapa ratus token, terpanjang 61k dan 128k, dibandingkan dengan batasnya](https://platform.claude.com/docs/id/images/cost-intel/max-tokens-ladder-opus-5-5.svg)
 </Frame>
 
 ### Tunjukkan waktu yang telah berlalu kepada model
@@ -555,7 +571,7 @@ Untuk kode yang berfungsi, lihat resep Claude Cookbook [Multi-agent teams under 
 Diagram berikut juga memetakan sebuah tim, yang agen utamanya jarang memulai agen pembantu, dan satu agen pada effort `low`:
 
 <Frame caption="Dengan kedua perubahan, satu agen memakan waktu 47% lebih singkat pada tugas DRACO yang tipikal, dan skor rata-ratanya 4,1 poin lebih rendah.">
-  ![Diagram sebar dan batang, DRACO, HLE, dan set fisika: perubahan tersebut paling banyak menghemat waktu pada DRACO, dengan pengorbanan beberapa poin skor](https://platform.claude.com/docs/images/cost-intel/time-awareness.svg)
+  ![Diagram sebar dan batang, DRACO, HLE, dan set fisika: perubahan tersebut paling banyak menghemat waktu pada DRACO, dengan pengorbanan beberapa poin skor](https://platform.claude.com/docs/id/images/cost-intel/time-awareness.svg)
 </Frame>
 
 ## Menggabungkan model
@@ -598,7 +614,7 @@ Advisor hanya dapat menyerahkan kemampuan yang tidak dimiliki executor: pada GPQ
 Pada benchmark coding, peningkatan dari pasangan tersebut berada di batas noise antar-run, dan posisinya kurang lebih berada pada kurva effort Claude Opus 5.5 sendiri, sehingga advisor membeli kurang lebih apa yang dihasilkan oleh effort yang lebih tinggi. Diagram berikut memetakan pasangan tersebut terhadap kurva itu dan kurva Claude Fable 5.1 dari bulan Agustus:
 
 <Frame>
-  ![Benchmark coding: Opus 5.5 pada high dengan advisor Fable 5.1 memperoleh 1,7 poin dengan 2,1 kali biaya, dekat dengan kurva effort-nya](https://platform.claude.com/docs/images/cost-intel/internal-coding-advisor-opus-5-5.svg)
+  ![Benchmark coding: Opus 5.5 pada high dengan advisor Fable 5.1 memperoleh 1,7 poin dengan 2,1 kali biaya, dekat dengan kurva effort-nya](https://platform.claude.com/docs/id/images/cost-intel/internal-coding-advisor-opus-5-5.svg)
 </Frame>
 
 **Yang perlu dilakukan.**
@@ -628,7 +644,7 @@ Untuk membangun orchestrator, gunakan [orkestrasi multiagen](https://platform.cl
 Diagram berikut memetakan konfigurasi benchmark pencarian cacat berdasarkan biaya dan skor:
 
 <Frame>
-  ![Diagram, benchmark pencarian cacat: orchestrator berbiaya sekitar setengah dari Fable 5.1 saja pada effort apa pun dan skornya 10 hingga 12 poin lebih rendah](https://platform.claude.com/docs/images/cost-intel/corpus-pareto.svg)
+  ![Diagram, benchmark pencarian cacat: orchestrator berbiaya sekitar setengah dari Fable 5.1 saja pada effort apa pun dan skornya 10 hingga 12 poin lebih rendah](https://platform.claude.com/docs/id/images/cost-intel/corpus-pareto.svg)
 </Frame>
 
 **Yang perlu dilakukan.**
@@ -649,53 +665,14 @@ Ukur pada beban kerja Anda sendiri: angka-angka di halaman ini mencerminkan harg
 
 Contoh berikut menghitung biaya satu permintaan dengan harga daftar Claude Opus 5.5. Ubah ketiga harga tersebut untuk model lain:
 
-<CodeGroup>
-  ```bash cURL
-  INPUT_PER_MTOK=4.00 # Claude Opus 5.5
-  CACHE_READ_PER_MTOK=0.20 # 0.05x the input price on Claude Opus 5.5; the multiplier differs by model
-  OUTPUT_PER_MTOK=20.00
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Perhitungan ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
-  response=$(curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 1024,
-      "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }')
-
-  cost=$(jq -r --argjson in_price "$INPUT_PER_MTOK" --argjson read_price "$CACHE_READ_PER_MTOK" --argjson out_price "$OUTPUT_PER_MTOK" '
-    .usage
-    | (.input_tokens * $in_price
-       + (.cache_creation.ephemeral_1h_input_tokens // 0) * $in_price * 2.00  # 1-hour cache write
-       + (.cache_creation.ephemeral_5m_input_tokens // 0) * $in_price * 1.25  # 5-minute cache write
-       + (.cache_read_input_tokens // 0) * $read_price                   # cache read
-       + .output_tokens * $out_price) / 1e6
-  ' <<<"$response")
-  printf 'Request cost: $%.6f\n' "$cost"
-  ```
-
-  ```bash CLI
-  INPUT_PER_MTOK=4.00 # Claude Opus 5.5
-  CACHE_READ_PER_MTOK=0.20 # 0.05x the input price on Claude Opus 5.5; the multiplier differs by model
-  OUTPUT_PER_MTOK=20.00
-
-  USAGE=$(ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello, Claude"}' \
-    --transform usage)
-
-  COST=$(jq -r --argjson in_price "$INPUT_PER_MTOK" --argjson read_price "$CACHE_READ_PER_MTOK" --argjson out_price "$OUTPUT_PER_MTOK" '
-    (.input_tokens * $in_price
-      + (.cache_creation.ephemeral_1h_input_tokens // 0) * $in_price * 2.00  # 1-hour cache write
-      + (.cache_creation.ephemeral_5m_input_tokens // 0) * $in_price * 1.25  # 5-minute cache write
-      + (.cache_read_input_tokens // 0) * $read_price                   # cache read
-      + .output_tokens * $out_price) / 1e6
-  ' <<<"$USAGE")
-  printf 'Request cost: $%.6f\n' "$COST"
-  ```
+  <CodeGroupItem language="CLI">
+    Perhitungan ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
 
   ```python Python
   INPUT_PER_MTOK = 4.00  # Claude Opus 5.5
@@ -900,7 +877,21 @@ Tabel berikut mencantumkan tuas-tuas penghematan sesuai urutan untuk dicoba. Ang
 
 ### Otomatiskan pencarian dengan skill Claude API
 
-Jalankan perintah `cost-optimize` dari [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) sebelum Anda mencari penghematan. Perintah ini memprofilkan ke mana token Anda digunakan dan menerapkan tuas-tuas secara berurutan, dimulai dari caching. Kemudian jalankan `/claude-api hillclimb` di direktori yang berisi evaluasi Anda.
+Jalankan perintah `cost-optimize` dari [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) sebelum Anda mencari penghematan. Perintah ini memprofilkan ke mana token Anda digunakan dan menerapkan tuas-tuas secara berurutan, dimulai dari caching:
+
+Biarkan Claude Code menemukan penghematan untuk Anda
+
+```text
+/claude-api cost-optimize
+```
+
+Kemudian jalankan perintah `hillclimb` di direktori yang berisi evaluasi Anda:
+
+Biarkan Claude Code menjalankan pencarian untuk Anda
+
+```text
+/claude-api hillclimb
+```
 
 Anthropic mengukur tuas pertama dari `cost-optimize` dan dua pencarian pada tau2-bench retail[24](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), semuanya pada model-model sebelumnya. Breakpoint cache yang dihasilkan `cost-optimize` memangkas biaya per tugas, dan tingkat kelulusan turun kurang dari sebaran antar-run yang identik.
 
@@ -909,7 +900,7 @@ Sebuah pencarian menemukan konfigurasi yang lebih murah dengan menurunkan effort
 Grafik berikut memplot setiap langkah dari pencarian pertama:
 
 <Frame caption="Satu pencarian pada model-model sebelumnya, langkah demi langkah. Perubahan effort dan model menghasilkan penghematan; suntingan prompt tidak membawa peningkatan yang bertahan lama.">
-  ![Grafik sebar, tau2-bench retail: setiap langkah pencarian dari Claude Opus 5; Sonnet 5 pada low 61% lebih murah dengan selisih dalam 2 poin](https://platform.claude.com/docs/images/cost-intel/hillclimb.svg)
+  ![Grafik sebar, tau2-bench retail: setiap langkah pencarian dari Claude Opus 5; Sonnet 5 pada low 61% lebih murah dengan selisih dalam 2 poin](https://platform.claude.com/docs/id/images/cost-intel/hillclimb.svg)
 </Frame>
 
 Dua pengaturan menentukan apakah Anda dapat memercayai jawaban pencarian:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 29ef8023fff2261dc3e45fdfc5d710bfae11f84515bc91eb024422f946297006
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 6f6b3c4364f8259eb08e0d498352def60c07f6c074ad41d7af9f80c93ef9d227
 ---
 
 ---
@@ -482,7 +482,7 @@ Pass any model ID or alias as the `model` query parameter to return only the ent
   ```
 </CodeGroup>
 
-If the model string doesn't match any group, the endpoint returns a 404 error. The `model` parameter is supported on the organization endpoint only; the workspace endpoint doesn't accept it.
+If the model string doesn't match any group, the endpoint returns a 404 error. Any model your organization has access to matches its group. The `model` parameter is supported on the organization endpoint only; the workspace endpoint doesn't accept it.
 
 ## Workspace rate limits
 
@@ -497,7 +497,7 @@ By default, the response only includes overrides, so anything missing from it is
 For complete parameter details and response schemas, see the [Workspace Rate Limits API reference](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint, or find them in the [Claude Console](https://platform.claude.com/settings/workspaces). The default workspace cannot have rate limit overrides, and this endpoint returns a 404 error for it, with or without `include_inherited`; use the organization endpoint to read its limits.
+  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint, or find them in the [Claude Console](https://platform.claude.com/settings/workspaces). List Workspaces includes the default workspace only when you pass `include_default=true`.
 </Tip>
 
 <CodeGroup>
@@ -1094,6 +1094,8 @@ Both endpoints accept a `page` query parameter and return a `next_page` field. R
 ### Which model strings appear in the `models` list?
 
 Every model ID and alias that counts against the group, including dated IDs (such as `claude-sonnet-4-5-20250929`) and undated aliases (such as `claude-sonnet-4-5`). Look up any model string you pass to the Messages API and you'll find it in exactly one `model_group` entry.
+
+The list covers the models your organization has access to, so it can differ between organizations.
 
 ### What does it mean if a group is missing from the workspace response?
 

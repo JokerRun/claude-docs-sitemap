@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 9ab907210e144de1e01f1f0a3fe5f7214e6c3420aaf057f5bc64b713cd0cfbd6
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: c3d247326e3b3093d224b92d40142018cbd446b5b1872a92465eda1603d85c30
 ---
 
 ---
@@ -32,7 +32,7 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 2. Mengubah hal-hal berikut
 
    * Perbarui base URL Anda agar mengarah ke Claude API
-   * Ganti "API key" (kunci API) Anda dengan [kunci API Claude](https://platform.claude.com/settings/keys)
+   * Ganti "API key" (kunci API) Anda dengan [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console
    * Jika kunci Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, kirimkan juga header `anthropic-workspace-id` pada setiap permintaan (misalnya, `default_headers` di Python SDK atau `defaultHeaders` di TypeScript); lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace)
    * Perbarui nama model Anda untuk menggunakan [model Claude](https://platform.claude.com/docs/id/models/overview)
 

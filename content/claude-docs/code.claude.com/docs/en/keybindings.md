@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: a2901681dad404ff4a235db43cf332b6a1506039c2a6a0e0895980e08d3b8f38
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: ff10bdd0e1469a1a4b293b71c78e61cb9fef0d0f71097b547f2344a1b16d11a6
 ---
 
 > ## Documentation Index
@@ -19,7 +19,9 @@ Claude Code supports customizable keyboard shortcuts. Run `/keybindings` to crea
 
 The keybindings configuration file is an object with a `bindings` array. Each block specifies a context and a map of keystrokes to actions.
 
-<Note>Changes to the keybindings file are automatically detected and applied without restarting Claude Code.</Note>
+> [!NOTE]
+>
+> Changes to the keybindings file are automatically detected and applied without restarting Claude Code.
 
 | Field | Description |
 | :- | :- |
@@ -451,6 +453,7 @@ Actions available in the `Settings` context. The `select:accept` and `confirm:no
 | :- | :- | :- |
 | `settings:search` | / | Enter search mode |
 | `settings:retry` | R | Retry loading usage data on error |
+| `settings:fixUsage` | F | Send your session the [`/usage` recommendations](/docs/en/costs#apply-recommendations-with-the-fix-shortcut) Claude Code can apply, when the `/usage` footer offers a fix. Requires v2.1.305 or later |
 | `select:accept` | Enter, Space | Change the selected setting or open its submenu |
 | `confirm:no` | Escape | Close the panel. Changes are already saved |
 
@@ -699,6 +702,7 @@ Claude Code validates your keybindings and writes a warning to the debug log for
 
 * Parse errors (invalid JSON or structure)
 * Misspelled modifiers, such as `ctl+k`. Claude Code drops the part it doesn't recognize and applies the binding to the keystroke that remains, `k` in this example.
+* A space next to `+` in a key string, such as `ctrl+ k`. Claude Code reads the string as a [chord](#chords) of `ctrl+` followed by `k`. No keypress matches `ctrl+` on its own, so the binding never fires. Remove the space.
 * Invalid context names
 * Invalid action values, such as an action that isn't a string or `null`
 * Unknown action names, such as a typo of a registered action. Claude Code skips the binding and keeps any default binding for that key in effect.

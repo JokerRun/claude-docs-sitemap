@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 438c4b45fd323c73676a1539d2826098ea8bdb67f4da567304ca0c80836f041f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: cc71c175e491919c3c064f58bfbf894e77a3851bd1c794445c92352a2599ba45
 ---
 
 ---
@@ -48,7 +48,7 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -65,7 +65,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
         }
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>
@@ -261,7 +260,7 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+  curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -287,7 +286,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
         }
       ]
     }'
-  )
   ```
 
   <CodeGroupItem>

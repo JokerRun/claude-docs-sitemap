@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3477bf7d9bf4373763917011f1785def91d0dab08b61acbd4b3bf86010223555
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: b9f0423e78e2cd7021a96a12364a58377a50e9d13cbd8bf26bdfe85ebe8a98be
 ---
 
 ---
-title: Panduan memulai cepat MCP tunnels
+title: Mulai cepat MCP tunnels
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
 description: Hubungkan Claude ke server MCP privat menggunakan deployment Docker Compose lokal.
 ---
@@ -15,21 +15,21 @@ description: Hubungkan Claude ke server MCP privat menggunakan deployment Docker
   MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
-Panduan memulai cepat ini membawa Anda dari nol hingga Claude memanggil server MCP privat melalui sebuah tunnel. Panduan ini menggunakan Docker Compose dengan penyediaan kredensial [manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning), yang merupakan jalur terpendek untuk pengujian lokal. Untuk deployment produksi, lihat [Deploy dengan Helm](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) atau [Deploy dengan Docker Compose](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose).
+Panduan mulai cepat ini membawa Anda dari nol hingga Claude memanggil server MCP privat melalui sebuah tunnel. Panduan ini menggunakan Docker Compose dengan penyediaan kredensial [manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning), yang merupakan jalur terpendek untuk pengujian lokal. Untuk deployment produksi, lihat [Deploy dengan Helm](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) atau [Deploy dengan Docker Compose](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose).
 
 ## Apa yang akan Anda bangun
 
-Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (tumpukan tunnel) dua kontainer ([proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components)) ditambah sebuah server MCP contoh yang berjalan di sampingnya. Ketika semuanya berjalan, server contoh tersebut dapat dijangkau dari Claude di `https://echo.<your-tunnel-domain>/mcp` meskipun tidak ada yang mendengarkan pada port publik.
+Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dua kontainer ([proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components)) ditambah server MCP contoh yang berjalan di sampingnya. Ketika semuanya berjalan, server contoh dapat dijangkau dari Claude di `https://echo.<your-tunnel-domain>/mcp` meskipun tidak ada yang mendengarkan di port publik.
 
 ## Apa yang Anda butuhkan
 
 * [Docker dan Docker Compose](https://docs.docker.com/get-docker/) pada mesin dengan akses internet keluar.
-* Sebuah peran di [Claude Console](https://platform.claude.com) yang dapat mengelola MCP tunnels. Lihat [prasyarat panduan Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#prerequisites).
-* [OpenSSL](https://openssl-library.org/source/) 1.1.1 atau lebih baru. Sudah terpasang di macOS dan sebagian besar distribusi Linux; di Windows, instal secara terpisah (biner `openssl` harus ada di `PATH` Anda).
+* Peran di [Claude Console](https://platform.claude.com) yang dapat mengelola MCP tunnels. Lihat [prasyarat panduan Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#prerequisites).
+* [OpenSSL](https://openssl-library.org/source/) 1.1.1 atau lebih baru. Sudah terpasang di macOS dan sebagian besar distribusi Linux; di Windows, pasang secara terpisah (binary `openssl` harus ada di `PATH` Anda).
 
 <Steps>
   <Step title="Buat tunnel">
-    Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Setiap tunnel dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar. Klik **New tunnel** dan beri nama. Biarkan **Set up programmatic access** nonaktif; panduan memulai cepat ini menggunakan penyediaan kredensial manual.
+    Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Setiap tunnel dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar. Klik **New tunnel** dan beri nama. Biarkan **Set up programmatic access** nonaktif; panduan mulai cepat ini menggunakan penyediaan kredensial manual.
 
     Setelah dibuat, buka tunnel tersebut. Salin dua nilai dari bagian **Connection**:
 
@@ -60,7 +60,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
   </Step>
 
   <Step title="Buat CA dan sertifikat server">
-    Proxy mengakhiri [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (TLS bagian dalam) menggunakan sertifikat yang ditandatangani oleh CA yang Anda kendalikan. Buat keduanya:
+    Proxy mengakhiri [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) menggunakan sertifikat yang ditandatangani oleh CA yang Anda kendalikan. Buat keduanya:
 
     <Tabs>
       <Tab title="macOS / Linux">
@@ -114,7 +114,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
       </Tab>
     </Tabs>
 
-    Kembali ke Console, pada halaman detail tunnel, klik **Add certificate** dan unggah `data/ca.crt` (atau tempel isinya). Badge **Needs certificate** di samping nama tunnel akan hilang.
+    Kembali ke Console, di halaman detail tunnel, klik **Add certificate** dan unggah `data/ca.crt` (atau tempel isinya). Lencana **Needs certificate** di samping nama tunnel akan hilang.
   </Step>
 
   <Step title="Tulis server MCP contoh">
@@ -178,14 +178,14 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
         cat > docker-compose.yaml <<'EOF'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
             restart: unless-stopped
 
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN
@@ -218,14 +218,14 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
         @'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:efb27b299d627e4134815663cb8896641eeaee025d734c0f695582b4df38f013
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:d243d30642d39857a0579e465cb3b9bf3ae7c1141e83143bb6856777a31467a5
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
             restart: unless-stopped
 
           cloudflared:
-            image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+            image: cloudflare/cloudflared@sha256:0e56c13c7058fcef9c4f0e7d83372f82330548dbf8f8b366f3d8b506526d93b2
             command: tunnel --no-autoupdate run --url http://localhost:8080
             environment:
               - TUNNEL_TOKEN
@@ -264,7 +264,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
       </Tab>
     </Tabs>
 
-    Anda seharusnya melihat satu baris `route configured` untuk `echo` dan empat baris `Registered tunnel connection`. Kontainer membutuhkan beberapa detik untuk mulai; jalankan ulang perintah log jika hasilnya kosong.
+    Anda akan melihat satu baris `route configured` untuk `echo` dan empat baris `Registered tunnel connection`. Kontainer membutuhkan beberapa detik untuk mulai; jalankan ulang perintah log jika hasilnya kosong.
   </Step>
 
   <Step title="Panggil dari Claude">
@@ -272,19 +272,19 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
 
     > Use the hello tool to greet tunnel.
 
-    Anda seharusnya melihat sebuah pemanggilan alat diikuti oleh hasilnya.
+    Anda akan melihat pemanggilan alat diikuti oleh hasilnya.
   </Step>
 </Steps>
 
 ## Langkah selanjutnya
 
-Tunnel telah terverifikasi dari ujung ke ujung. Untuk menggantinya dengan server MCP Anda sendiri, tambahkan server tersebut ke `docker-compose.yaml` (atau jalankan di jaringan Docker yang sama), tambahkan rute untuknya di `config/mcp-proxy.yaml`, lalu mulai ulang proxy (`docker compose restart mcp-proxy`).
+Tunnel telah diverifikasi secara menyeluruh. Untuk mengganti dengan server MCP Anda sendiri, tambahkan ke `docker-compose.yaml` (atau jalankan di jaringan Docker yang sama), tambahkan rute untuknya di `config/mcp-proxy.yaml`, lalu mulai ulang proxy (`docker compose restart mcp-proxy`).
 
 Untuk deployment produksi:
 
 <CardGroup cols={2}>
   <Card title="Deploy dengan Docker Compose" icon="cube" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
-    Deployment host tunggal yang diperkuat, dengan atau tanpa akses programatik.
+    Deployment host tunggal yang diperkuat, dengan atau tanpa akses terprogram.
   </Card>
 
   <Card title="Deploy dengan Helm" icon="stack" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-09-18T02:20:36.295342Z
-sha256: 138a8e283e89efbea044eaf0dfa21eae5818db902cb248cc375c0e93a7edd70e
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 33623be081372b794359f136175ec730ee2a1bb35bd6ac90ab4711fe57ed4c17
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/compliance-api
 description: Akses terprogram ke aktivitas Claude, chat, file, proyek, sesi di aplikasi Claude, dan pengguna di organisasi Anda untuk kepatuhan, audit, dan tata kelola.
 ---
 
-Compliance API memberi pelanggan Claude Enterprise dan Claude Console akses terprogram ke Activity Feed organisasi mereka. Untuk organisasi Claude Enterprise, API ini juga mencakup direktori pengguna, peran, dan grup di seluruh organisasi yang ditautkan; pengaturan efektif yang berlaku untuk setiap organisasi; chat, file, dan proyek yang mendasarinya di organisasi claude.ai; serta sesi Cowork, Claude Code, Claude Science, Claude for Microsoft 365, dan Claude in Chrome. Tim keamanan, hukum, dan kepatuhan menggunakannya untuk mengaudit aktivitas, mengambil atau menghapus konten, dan mengalirkan peristiwa ke alat hilir.
+Compliance API memberi pelanggan Claude Enterprise dan Claude Console akses terprogram ke Activity Feed organisasi mereka. Untuk organisasi Claude Enterprise, API ini juga mencakup direktori pengguna, peran, dan grup di seluruh organisasi yang ditautkan; pengaturan efektif yang berlaku untuk setiap organisasi; chat, file, dan proyek yang mendasarinya di organisasi claude.ai; serta sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. Tim keamanan, hukum, dan kepatuhan menggunakannya untuk mengaudit aktivitas, mengambil atau menghapus konten, dan mengalirkan peristiwa ke alat hilir.
 
 <Note>
   Dua jenis kunci membuka akses ke Compliance API. **Compliance Access Key** (dibuat di claude.ai) menjangkau setiap endpoint, dan **kunci Admin API** (dibuat di Claude Console) hanya menjangkau Activity Feed. Lihat [Kunci mana yang Anda butuhkan?](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk perbandingan lengkap jenis kunci.
@@ -62,7 +62,7 @@ Setiap endpoint berada di bawah `/v1/compliance/*` pada `https://api.anthropic.c
 
 Activity Feed (`GET /v1/compliance/activities`) tersedia untuk kunci apa pun yang memiliki scope `read:compliance_activities`; lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk filter, paginasi, dan objek `Activity` lengkap. Endpoint lainnya memerlukan Compliance Access Key yang memiliki scope yang relevan.
 
-Tenant Claude Enterprise memiliki satu "parent organization" (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise. Endpoint chat, file, dan proyek mengembalikan chat, file, dan proyek claude.ai. Endpoint sesi mengembalikan transkrip sesi Cowork, Claude Code, Claude Science, Claude for Microsoft 365, dan Claude in Chrome di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka. Endpoint ini juga mengembalikan transkrip sesi Cowork yang dimulai di claude.ai versi web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic (sesi jarak jauh). Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
+Tenant Claude Enterprise memiliki satu "parent organization" (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise. Endpoint chat, file, dan proyek mengembalikan chat, file, dan proyek claude.ai. Endpoint sesi mengembalikan transkrip sesi di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka: sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. Endpoint ini juga mengembalikan transkrip sesi Cowork yang dimulai di claude.ai versi web atau seluler, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic (sesi jarak jauh). Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
 
 Semua endpoint `/v1/compliance/*` berbagi "rate limit" (batas laju) sebesar 600 permintaan per menit per organisasi induk (untuk organisasi Claude Console mandiri, per organisasi). Endpoint sesi lokal hanya dihitung terhadap batas bersama tersebut, dan endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
 
@@ -92,7 +92,7 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
 
 ### Inference hooks
 
-[Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks) (beta) bekerja secara inline: server keamanan AI organisasi Anda menerima setiap prompt yang diatur sebelum inferensi dan dapat menolaknya secara real time, sedangkan Compliance API mengambil record setelah kejadian dan mengembalikan data yang lebih kaya, seperti pengaturan organisasi dan file non-teks lengkap.
+[Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks) bekerja secara inline: server keamanan AI organisasi Anda menerima setiap prompt yang diatur sebelum inferensi dan dapat menolaknya secara real time, sedangkan Compliance API mengambil record setelah kejadian dan mengembalikan data yang lebih kaya, seperti pengaturan organisasi dan file non-teks lengkap.
 
 ***
 

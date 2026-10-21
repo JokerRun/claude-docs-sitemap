@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: d8b1bee859e429a2cd62f2c46b1d48df857c49dbee372f77ecc826a6600a07be
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: a9595d502b8dfbf9ad0d50f5229bf20ff2763ca3ebfbd1c3491fb4fef5637299
 ---
 
 ---
@@ -29,7 +29,6 @@ Setiap baris menyebutkan satu perubahan, apakah perubahan tersebut baru, berubah
 | [Parameter sampling dapat mengembalikan error](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters)                                      | Merusak kompatibilitas | Hilangkan `temperature`, `top_p`, dan `top_k`.                                                                                                                                                                                                                   |
 | [Prefill pesan asisten mengembalikan error](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill)                                          | Merusak kompatibilitas | Akhiri `messages` dengan giliran pengguna.                                                                                                                                                                                                                       |
 | [`computer_20250124` mengembalikan error di Claude API, Google Cloud, dan Amazon Bedrock](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) | Merusak kompatibilitas | Ganti dengan `computer_toolset_20260801` di Claude API dan Google Cloud, atau dengan `computer_20251124` di Amazon Bedrock.                                                                                                                                      |
-| [Output terstruktur tidak tersedia di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)                                                      | Merusak kompatibilitas | Di Amazon Bedrock, jelaskan format dalam prompt atau gunakan alat tanpa `strict`, dan validasi output di kode Anda.                                                                                                                                              |
 | [Mengubah giliran sebelumnya membatalkan blok pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)                          | Merusak kompatibilitas | Pertahankan percakapan hanya-tambah (append-only) jika Anda mengirim kembali blok pemikiran.                                                                                                                                                                     |
 | [Respons dapat dimulai dengan blok pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5#responses-can-begin-with-thinking-blocks)                     | Berubah                | Pilih blok konten berdasarkan `type`, bukan berdasarkan posisi.                                                                                                                                                                                                  |
 | [Teks pemikiran dihilangkan secara default](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking)                                                 | Berubah                | Untuk menerima pemikiran yang diringkas, atur `thinking.display` ke `"summarized"`.                                                                                                                                                                              |

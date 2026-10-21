@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: af03e1a947ed3ad319c4d33256c771ebae8fa53c4bede3adf70e3961d29f6129
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 09ece6913df93a3e9b288db161c66ec59e3516f6325cfebce8b9817be574ad76
 ---
 
 ---
@@ -32,7 +32,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `"anthropic-workspace-id": optional string`
 
@@ -4560,7 +4560,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
 
 - `"anthropic-workspace-id": optional string`
 
@@ -36267,7 +36267,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 - `"anthropic-user-profile-id": optional string`
 
-  The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
+  The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 - `"anthropic-workspace-id": optional string`
 

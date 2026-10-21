@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5ac21046950d3a29f7954493864c8a0130109f422e4c587fc05511443169cd0f
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: d1e1da3ee3bc4a2379a7b8806514994939b6b849571ec9f737f19a19dba10c9c
 ---
 
 ---
@@ -46,7 +46,7 @@ Parameter effort (upaya) memungkinkan Anda mengendalikan berapa banyak token yan
 
 ## Mengatur tingkat effort
 
-Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu permintaan dengan effort `medium` dan mencetak teks respons.
+Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu permintaan dengan effort `medium`.
 
 <CodeGroup>
   ```bash cURL
@@ -72,9 +72,7 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
     --model claude-opus-5-5 \
     --max-tokens 4096 \
     --output-config '{effort: medium}' \
-    --message '{role: user, content: "Analyze the trade-offs between microservices and monolithic architectures"}' \
-    --transform 'content.#(type=="text").text' \
-    --raw-output
+    --message '{role: user, content: "Analyze the trade-offs between microservices and monolithic architectures"}'
   ```
 
   ```python Python
@@ -114,9 +112,7 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
     }
   });
 
-  const textBlock = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text"
-  );
+  const textBlock = response.content.find((block) => block.type === "text");
   console.log(textBlock?.text);
   ```
 
@@ -414,8 +410,7 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   output_config:

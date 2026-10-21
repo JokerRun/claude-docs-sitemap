@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 8fe7ce001da016892b26d6a7be8165caddee5fec5b0eb9b335b1f70f40019445
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 9b72bf32e4dd0d796a4082df0238ebe9963b3bc6a880b7d44ef15fbd2e011601
 ---
 
 ---
@@ -159,7 +159,7 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
-    }' | jq -r '.content[] | select(.type == "text") | .text'
+    }'
   ```
 
   ```python Python

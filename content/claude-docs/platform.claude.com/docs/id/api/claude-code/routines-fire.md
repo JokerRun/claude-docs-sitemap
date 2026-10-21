@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: f2e28913d992c40c6a08489a4e4a409527d88cecfe997f8ed3d76cd8e2ba9706
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 28fde76e5539a12cae072584bcfb9e2717528dd4ef21d75e88e3d8495b0d1cef
 ---
 
 ---
@@ -27,7 +27,7 @@ Endpoint pemicu routine termasuk dalam permukaan produk Claude Code, yang berbed
 
 | Aspek          | Endpoint ini                                                                                                                                    | API Claude Platform                                                                            |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Autentikasi    | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | `x-api-key` dengan kunci API Claude dari Claude Console                                        |
+| Autentikasi    | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | Kunci API Claude dari Claude Console, dikirim sebagai `Authorization: Bearer`                  |
 | Cakupan token  | Hanya satu routine; tanpa akses baca                                                                                                            | Tingkat workspace                                                                              |
 | Dukungan SDK   | Tidak ada                                                                                                                                       | Tersedia di semua [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) |
 | Penagihan      | Penggunaan langganan Claude Code di claude.ai                                                                                                   | Penggunaan Claude Platform                                                                     |

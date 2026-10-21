@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/anthropic-marketplaces
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 0c5af63bba6c84c30284ff089a227baeb832337edb867282bf0a701cb15eef96
+fetched_at: 2026-10-21T02:21:05.363362Z
+sha256: 3b577214de65b91023c482a965a266f0dae96bdc0f3fa09d914f552d4f341008
 ---
 
 > ## Documentation Index
@@ -17,12 +17,12 @@ Anthropic publishes three general-purpose plugin marketplaces for Claude Code: [
 
 Use this page to distinguish the three marketplaces and to find where to check whether the official one holds a given plugin.
 
-<Note>
-  These cases are covered on other pages:
-
-  * **How to install a plugin**: see [Install plugins](/docs/en/plugins/install)
-  * **A failed install**: see [Troubleshoot plugins](/docs/en/plugins/troubleshooting)
-</Note>
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **How to install a plugin**: see [Install plugins](/docs/en/plugins/install)
+> * **A failed install**: see [Troubleshoot plugins](/docs/en/plugins/troubleshooting)
 
 Go to the part of the page you need:
 
