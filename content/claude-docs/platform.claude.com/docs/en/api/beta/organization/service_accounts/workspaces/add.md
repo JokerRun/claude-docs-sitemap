@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b79a585cfb3f927c89cfe5eb8dc66e1e058d286634843befda8922569d6441da
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 581db846c5c56ce4d7da0adcb83e520a571d6e5cc0af8c5121777174127b5590
 ---
 
 ---
@@ -146,6 +146,8 @@ rejected.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Body parameters
 

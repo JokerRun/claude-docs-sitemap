@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 1a14140573d6ad9b5e4cef4ee138200cefe00dae998f3043cd09a9afda47531f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f7f2460a253fa6af8d01ec592dc59908270c628f1059f55b5474d6421b9e3e9c
 ---
 
 ---
@@ -131,6 +131,8 @@ Create Agent
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

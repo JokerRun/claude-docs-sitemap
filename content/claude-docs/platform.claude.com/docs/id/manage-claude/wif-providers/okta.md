@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 896373a224da95d59b54725aedd76876533d39b12604418a13f77602b9bf3d3d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: db1f4c20f06b90384e0ece3f20d453248bf6d1e4ed0e9a4a1f408092f5ed0e60
 ---
 
 ---
@@ -361,7 +361,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   foreach (var block in message.Content)
   {

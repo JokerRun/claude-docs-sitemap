@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a3d5e52f043c083db640cb629514d3f2f6123cb5cd9774e84e68fb46131900ee
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4d2dfc42c327de1687524691dcdd8106670cc1402bc7a426533c8296d8123ad0
 ---
 
 ---
@@ -113,8 +113,7 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
       Model = Model.ClaudeSonnet5_5,
       MaxTokens = 4096,
       Messages = [
-          new() {
-              Role = Role.User,
+          new UserMessageParam {
               Content = "Analyze the trade-offs between microservices and monolithic architectures"
           }
       ],
@@ -309,7 +308,7 @@ Sebelum (Claude Sonnet 5):
       MaxTokens = 16000,
       Thinking = new ThinkingConfigDisabled(),
       OutputConfig = new() { Effort = Effort.Xhigh },
-      Messages = [new() { Role = Role.User, Content = "..." }],
+      Messages = [new UserMessageParam { Content = "..." }],
   });
   ```
 
@@ -417,7 +416,7 @@ Sesudah (Claude Sonnet 5.5):
       MaxTokens = 16000,
       Thinking = new ThinkingConfigBetweenTools(),
       OutputConfig = new() { Effort = Effort.High },
-      Messages = [new() { Role = Role.User, Content = "..." }],
+      Messages = [new UserMessageParam { Content = "..." }],
   });
   ```
 
@@ -493,7 +492,7 @@ Kerjakan grup-grup berikut secara berurutan dan berhenti setelah grup yang menye
 
 * Perkirakan [pemikiran pada permintaan tanpa field `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-on-by-default), dan tinjau kembali `max_tokens`.
 * Ganti [anggaran pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#sonnet-46-breaking-changes) dengan tingkat effort.
-* Hapus nilai `temperature`, `top_p`, dan `top_k` yang bukan default.
+* Hapus `temperature`, `top_p`, dan `top_k`.
 * Jika Anda [menampilkan teks pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-in-responses), tetapkan `display: "summarized"`.
 * [Hitung ulang token](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#other-changes-from-claude-sonnet-4-6), dan anggarkan ulang token gambar.
 
@@ -617,7 +616,7 @@ Sebelum (Claude Sonnet 5):
       MaxTokens = 1024,
       Tools = [.. tools],
       ToolChoice = new ToolChoiceTool { Name = "get_weather" },
-      Messages = [new() { Role = Role.User, Content = "What's the weather in Paris?" }],
+      Messages = [new UserMessageParam { Content = "What's the weather in Paris?" }],
   });
   ```
 
@@ -769,9 +768,8 @@ Sesudah (Claude Sonnet 5.5):
       ToolChoice = new ToolChoiceAuto(),
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "What's the weather in Paris? Use the get_weather tool.",
           },
       ],
@@ -983,7 +981,7 @@ Sebelum (Claude Sonnet 4.6):
       Model = Model.ClaudeSonnet4_6,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
-      Messages = [new() { Role = Role.User, Content = "..." }]
+      Messages = [new UserMessageParam { Content = "..." }]
   };
 
   var response = await client.Messages.Create(parameters);
@@ -1121,7 +1119,7 @@ Sesudah (Claude Sonnet 5.5):
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive(),
       OutputConfig = new OutputConfig { Effort = Effort.High }, // or Max, Xhigh, Medium, Low
-      Messages = [new() { Role = Role.User, Content = "..." }]
+      Messages = [new UserMessageParam { Content = "..." }]
   };
 
   var response = await client.Messages.Create(parameters);
@@ -1198,7 +1196,7 @@ Sesudah (Claude Sonnet 5.5):
   ```
 </CodeGroup>
 
-**Parameter sampling mengembalikan error.** Claude Sonnet 4.6 dan model sebelumnya serta Claude Haiku 4.5 menerima `temperature`, `top_p`, dan `top_k`. Di Claude Sonnet 5.5, nilai yang bukan default mengembalikan error 400. Hapus parameter tersebut.
+**Parameter sampling mengembalikan error.** Hapus `temperature`, `top_p`, dan `top_k`.
 
 **Teks pemikiran dihilangkan secara default.** Lihat [Menangani pemikiran dalam respons](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-in-responses).
 

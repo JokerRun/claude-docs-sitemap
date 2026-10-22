@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 04503eadf1dc008ac74c4e71a98c0cdd975ecc0850715bffd7aff3728ae2ff65
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 52df0894f953fbf25a8da5455175fa7b45469b0c1a7975d61c7a5bd35e70b91c
 ---
 
 ---
@@ -259,7 +259,7 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
   // 1. Lakukan percakapan singkat dengan thinking diaktifkan.
   List<BetaMessageParam> history =
   [
-      new() { Role = Role.User, Content = "What are the main entities in the app's data model?" },
+      new BetaUserMessageParam { Content = "What are the main entities in the app's data model?" },
   ];
   var first = await client.Beta.Messages.Create(new MessageCreateParams
   {
@@ -272,14 +272,12 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
   });
   history.AddRange(
   [
-      new()
+      new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = first.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       },
-      new()
+      new BetaUserMessageParam
       {
-          Role = Role.User,
           Content = "Testing starts on Tuesday, March 3, 2026, takes 10 weekdays, and pauses on March 9 and March 16. On which date does it end?",
       },
   ]);
@@ -292,9 +290,8 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
       Thinking = thinking,
       Messages = history,
   });
-  history.Add(new()
+  history.Add(new BetaAssistantMessageParam
   {
-      Role = Role.Assistant,
       Content = second.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
   });
   var thinkingBlocks = second.Content.Count(block => block.TryPickThinking(out _));
@@ -319,13 +316,12 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
   // 3. Letakkan blok di depan giliran yang dipertahankan, lalu ajukan pertanyaan berikutnya.
   history =
   [
-      new()
+      new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = summary.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       },
       .. history[2..],
-      new() { Role = Role.User, Content = "Which day should the release go out?" },
+      new BetaUserMessageParam { Content = "Which day should the release go out?" },
   ];
   var third = await client.Beta.Messages.Create(new MessageCreateParams
   {
@@ -471,10 +467,7 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
 
       // 1. Lakukan percakapan singkat dengan thinking aktif.
       var history = new ArrayList<BetaMessageParam>();
-      history.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("What are the main entities in the app's data model?")
-          .build());
+      history.add(BetaMessageParam.ofUser("What are the main entities in the app's data model?"));
       var firstParams = MessageCreateParams.builder()
           .model(MODEL)
           .maxTokens(8192)
@@ -485,10 +478,8 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
           .build();
       var first = client.beta().messages().create(firstParams);
       history.add(first.toParam());
-      history.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("Testing starts on Tuesday, March 3, 2026, takes 10 weekdays, and pauses on March 9 and March 16. On which date does it end?")
-          .build());
+      history.add(BetaMessageParam.ofUser(
+          "Testing starts on Tuesday, March 3, 2026, takes 10 weekdays, and pauses on March 9 and March 16. On which date does it end?"));
       var secondParams = MessageCreateParams.builder()
           .model(MODEL)
           .maxTokens(8192)
@@ -521,10 +512,7 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
       // 3. Letakkan blok di depan giliran yang dipertahankan, lalu ajukan pertanyaan berikutnya.
       firstTurn.clear();
       history.addFirst(summary.toParam());
-      history.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("Which day should the release go out?")
-          .build());
+      history.add(BetaMessageParam.ofUser("Which day should the release go out?"));
       var thirdParams = MessageCreateParams.builder()
           .model(MODEL)
           .maxTokens(8192)

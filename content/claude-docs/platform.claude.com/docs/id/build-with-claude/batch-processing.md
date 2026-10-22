@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5d73faba253269605f792787970d0e961ca7365c4b1bd540871772cf749cbd1d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 24dc39ab81353268185cfad5b968edea6be02a5399650ff094e72b42bde3d8d3
 ---
 
 ---
@@ -265,10 +265,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
               {
                   Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
-                  Messages =
-                  [
-                      new() { Role = Role.User, Content = "Hello, world" }
-                  ]
+                  Messages = [new UserMessageParam { Content = "Hello, world" }]
               }
           },
           new()
@@ -278,10 +275,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
               {
                   Model = Model.ClaudeOpus5_5,
                   MaxTokens = 1024,
-                  Messages =
-                  [
-                      new() { Role = Role.User, Content = "Hi again, friend" }
-                  ]
+                  Messages = [new UserMessageParam { Content = "Hi again, friend" }]
               }
           }
       ]
@@ -797,13 +791,14 @@ Hasil batch tersedia untuk diunduh pada properti `results_url` di Message Batch,
 
   await foreach (var result in client.Messages.Batches.ResultsStreaming("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"))
   {
-      switch (result.Result.Type)
+      switch (result.Result.Type.Raw())
       {
           case "succeeded":
               Console.WriteLine($"Success! {result.CustomID}");
               break;
           case "errored":
-              if (result.Result.Error?.Type == "invalid_request")
+              if (result.Result.TryPickErrored(out var errored)
+                  && errored.Error.Error.Type.Raw() == "invalid_request_error")
               {
                   Console.WriteLine($"Validation error: {result.CustomID}");
               }
@@ -935,6 +930,8 @@ Hasilnya dalam format `.jsonl`, di mana setiap baris adalah objek JSON valid yan
 ```
 
 Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk kesalahan](https://platform.claude.com/docs/id/api/errors#error-shapes) standar.
+
+Hasil batch menggunakan versi API dari permintaan yang membuat batch tersebut.
 
 <Tip>
   **Hasil batch mungkin tidak sesuai dengan urutan input**
@@ -1297,7 +1294,7 @@ Contoh implementasi caching prompt dalam batch:
                   },
                   Messages =
                   [
-                      new() { Role = Role.User, Content = "Analyze the major themes in Pride and Prejudice." }
+                      new UserMessageParam { Content = "Analyze the major themes in Pride and Prejudice." }
                   ]
               }
           },
@@ -1322,7 +1319,7 @@ Contoh implementasi caching prompt dalam batch:
                   },
                   Messages =
                   [
-                      new() { Role = Role.User, Content = "Write a summary of Pride and Prejudice." }
+                      new UserMessageParam { Content = "Write a summary of Pride and Prejudice." }
                   ]
               }
           }
@@ -1685,7 +1682,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
                   MaxTokens = 300_000,
                   Messages =
                   [
-                      new() { Role = Role.User, Content = "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices." }
+                      new BetaUserMessageParam { Content = "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices." }
                   ]
               }
           }

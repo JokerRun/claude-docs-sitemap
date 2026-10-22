@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 261f90acba33c7fe8edd630839eb44a1f360f123b7b9e6ff6551991f31623285
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2ee50bce3c48981145fa96f0ace26015781fb7de85e6b3254241cf85a5a18aae
 ---
 
 ---
@@ -144,6 +144,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Body parameters (form-data)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ed3dcf4f24adec8d38fa1f883b315dadbad3f4f66b56ea18ea60109a04de2fb5
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c0001e6ff0002b5204796cd2f00bfc863bca318c28b4d18596453c5a9887dd90
 ---
 
 ---
@@ -255,14 +255,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
-                  new BetaManagedAgentsTextBlock
-                  {
-                      Type = BetaManagedAgentsTextBlockType.Text,
-                      Text = "Write a haiku about event streams.",
-                  },
+                  new BetaManagedAgentsTextBlock { Text = "Write a haiku about event streams." },
               ],
           },
       ],
@@ -282,7 +277,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
           // sehingga tipe pratinjau lain (termasuk yang ditambahkan nanti) dilewati.
           if (start.Event.TryPickAgentMessage(out var preview))
           {
-              Console.WriteLine($"event_start             {preview.Type.Raw()} {preview.ID}");
+              Console.WriteLine($"event_start             {preview.Type.GetString()} {preview.ID}");
           }
       }
       else if (streamEvent.TryPickDeltaEvent(out var delta))
@@ -392,7 +387,6 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Describe the repo in one sentence.")
                   .build())
               .build()
@@ -405,7 +399,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
               case EVENT_START -> {
                   if (event.asEventStart().event().isAgentMessage()) {
                       var preview = event.asEventStart().event().asAgentMessage();
-                      IO.println("event_start             " + preview.type().asString() + " " + preview.id());
+                      IO.println("event_start             " + preview._type() + " " + preview.id());
                   }
               }
               case EVENT_DELTA -> {
@@ -593,7 +587,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
 
   ```bash CLI
   # Stream thread menerima parameter event_deltas yang sama dengan stream sesi,
-  # satu flag --event-delta per jenis event untuk dipratinjau.
+  # satu flag --event-delta untuk setiap tipe event yang dipratinjau.
   ant beta:sessions:threads:events stream \
     --session-id "$SESSION_ID" \
     --thread-id "$THREAD_ID" \

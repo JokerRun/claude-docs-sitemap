@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: d07cdb3e282fe73fee6301ebcdf83ecf8d7da76ae41009a2d7eed233f8d56979
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ad2400e8ca0019092c77581c6e99bd555c9e24a99857822b0981e44f8ce7d1d6
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Authenticate GitHub Actions workflows to the Claude API with short-
 
 Every GitHub Actions workflow run can request a signed identity token from GitHub's hosted issuer at `https://token.actions.githubusercontent.com`. With Workload Identity Federation, your workflow exchanges that token for a short-lived Anthropic access token, so your CI jobs can call the Claude API without an `ANTHROPIC_API_KEY` secret stored in your repository.
 
-The token's `sub` claim encodes the repository and trigger context. For a push to a branch it has the form `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Pull-request runs use `repo:<owner>/<repo>:pull_request`, and environment-gated deployments use `repo:<owner>/<repo>:environment:<name>`. Your federation rule matches against this claim (and others, such as `repository_owner` and `ref`) to decide which workflow runs are allowed to authenticate.
+The token's `sub` claim encodes the repository and trigger context. For a push to a branch it has the form `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Pull-request runs use `repo:<owner>/<repo>:pull_request`, and environment-gated deployments use `repo:<owner>/<repo>:environment:<name>`. Your federation rule matches against this claim (and others, such as `repository_owner` and `ref`) to determine which workflow runs are allowed to authenticate.
 
 ## Prerequisites
 
@@ -112,7 +112,7 @@ The wizard creates these resources for you. Use the following values whether you
 }
 ```
 
-Be as specific as the workload allows. Loosen `subject_prefix` to `repo:your-org/your-repo:*` (paired with a `claims.ref` constraint) only if the rule must match multiple event types from the same repository, because the trailing segment of `sub` varies between `ref:...`, `environment:...`, and `pull_request` events.
+Be as specific as the workload allows. Loosen `subject_prefix` to `repo:your-org/your-repo:*` (paired with a `claims.ref` constraint) only if the rule must match multiple event types from the same repository, because the trailing segment of `sub` varies among `ref:...`, `environment:...`, and `pull_request` events.
 
 ## Acquire and use a token
 
@@ -154,7 +154,7 @@ Set the federation environment variables on the job and call the SDK normally. `
 
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r .access_token
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -259,7 +259,7 @@ Set the federation environment variables on the job and call the SDK normally. `
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   foreach (var block in message.Content)
   {
@@ -314,11 +314,11 @@ Set the federation environment variables on the job and call the SDK normally. `
   ```
 </CodeGroup>
 
-Each GitHub-issued identity token expires roughly five minutes after issuance. The token-request endpoint (`ACTIONS_ID_TOKEN_REQUEST_URL`) stays valid for the entire job, so you can fetch a fresh token at any point. The SDK exchanges the token on first use and caches the resulting Anthropic access token. For jobs that run longer than the Anthropic token's lifetime, the SDK re-reads `ANTHROPIC_IDENTITY_TOKEN_FILE` on each refresh, so re-run the fetch step periodically (or wrap it in a background loop) to keep the file current. Alternatively, except in Java, pass the SDK a token provider that calls `ACTIONS_ID_TOKEN_REQUEST_URL` directly instead of using the file path.
+Each GitHub-issued identity token expires roughly 5 minutes after issuance. The token-request endpoint (`ACTIONS_ID_TOKEN_REQUEST_URL`) stays valid for the entire job, so you can fetch a fresh token at any point. The SDK exchanges the token on first use and caches the resulting Anthropic access token. For jobs that run longer than the Anthropic token's lifetime, the SDK re-reads `ANTHROPIC_IDENTITY_TOKEN_FILE` on each refresh, so re-run the fetch step periodically (or wrap it in a background loop) to keep the file current. Alternatively, except in Java, pass the SDK a token provider that calls `ACTIONS_ID_TOKEN_REQUEST_URL` directly instead of using the file path.
 
 ## Verify the setup
 
-A successful exchange returns an `access_token` beginning with `sk-ant-oat01-` and an `expires_in` value in seconds. A denied exchange returns an opaque `401` `authentication_error` with the fixed message `Authentication failed`, whichever check failed; in most cases the deny reason is recorded on the attempt's entry in the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console, and [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange) walks the checks in order. The most common GitHub Actions-side cause is the `sub` claim format not matching (its trailing segment varies between `ref:...`, `environment:...`, and `pull_request` events); the history entry shows reason `match_subject_prefix`.
+A successful exchange returns an `access_token` beginning with `sk-ant-oat01-` and an `expires_in` value in seconds. A denied exchange returns an opaque `401` `authentication_error` with the fixed message `Authentication failed`, whichever check failed; in most cases the deny reason is recorded on the attempt's entry in the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console, and [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange) walks the checks in order. The most common GitHub Actions-side cause is the `sub` claim format not matching (its trailing segment varies among `ref:...`, `environment:...`, and `pull_request` events); the history entry shows reason `match_subject_prefix`.
 
 ## Restrict which workflows can authenticate
 

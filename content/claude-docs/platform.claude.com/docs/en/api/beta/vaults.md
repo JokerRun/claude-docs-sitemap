@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: ea0a8186c612bb222713e2087795e4ba7cc7c0bedf639d33f341b26cf8bf0fc9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 50cf7f9ec2ffebb0456f2f9f0abf66f4cc200631e0b63f9956cbf0174c9b10bb
 ---
 
 ---
@@ -133,6 +133,8 @@ Create a Vault
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -360,6 +362,8 @@ List Vaults
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -566,6 +570,8 @@ Retrieve a Vault
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -762,6 +768,8 @@ Update a Vault
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -979,6 +987,8 @@ Delete a Vault
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1143,6 +1153,8 @@ Archive a Vault
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1395,6 +1407,8 @@ Create a Credential
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1922,6 +1936,8 @@ List Credentials
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -2255,6 +2271,8 @@ Retrieve a Credential
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -2578,6 +2596,8 @@ Update a Credential
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -3052,6 +3072,8 @@ Delete a Credential
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -3220,6 +3242,8 @@ Archive a Credential
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -3545,6 +3569,8 @@ Validate an MCP OAuth Credential
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

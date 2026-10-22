@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 90e9c51022aed013823f53ac42d3740adfac87eca5c726b2a7660b21ad85dc3c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2f2e072024dd88b9e572adbbfcec0e3e84f2beb2eb70b0fed71ca05308188c26
 ---
 
 ---
@@ -165,10 +165,9 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new Base64ImageSource()
@@ -178,7 +177,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("Describe this image.")),
-              }),
+              },
           }
       ]
   });
@@ -232,7 +231,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
       MessageCreateParams.builder()
         .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
-        .addUserMessageOfBlockParams(contentBlockParams)
+        .addUserMessageOfContentBlockParams(contentBlockParams)
         .build()
     );
 
@@ -412,10 +411,9 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new UrlImageSource()
@@ -424,7 +422,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("Describe this image.")),
-              }),
+              },
           }
       ]
   });
@@ -475,7 +473,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
       MessageCreateParams.builder()
         .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
-        .addUserMessageOfBlockParams(contentBlockParams)
+        .addUserMessageOfContentBlockParams(contentBlockParams)
         .build()
     );
   System.out.println(message);
@@ -698,16 +696,15 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new FileImageSource(fileUpload.ID))
                   )),
                   new ContentBlockParam(new TextBlockParam("Describe this image.")),
-              }),
+              },
           }
       ]
   });
@@ -780,7 +777,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
       MessageCreateParams params = MessageCreateParams.builder()
         .model(Model.CLAUDE_OPUS_5_5)
         .maxTokens(1024)
-        .addUserMessageOfBlockParams(
+        .addUserMessageOfContentBlockParams(
           List.of(
             ContentBlockParam.ofImage(imageParam),
             ContentBlockParam.ofText(
@@ -1038,10 +1035,9 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new TextBlockParam("Image 1:")),
                   new ContentBlockParam(new ImageBlockParam(
@@ -1060,7 +1056,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("How are these images different?")),
-              }),
+              },
           }
       ]
   });
@@ -1134,7 +1130,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
           MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
-              .addUserMessageOfBlockParams(contentBlockParams)
+              .addUserMessageOfContentBlockParams(contentBlockParams)
               .build()
       );
 

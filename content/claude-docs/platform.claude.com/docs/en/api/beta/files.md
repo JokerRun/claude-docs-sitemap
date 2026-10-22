@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: f1675d8905e23fedadc4a8cad0499d6a6b3b7997f145e9295302994704bac4c5
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 870effe9ea8a58e3cff7031bb3b124fd0f9fea2e3565560adaa9093d2008f777
 ---
 
 ---
@@ -133,6 +133,8 @@ Upload File
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -391,6 +393,8 @@ List Files
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -627,6 +631,8 @@ Download File
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -768,6 +774,8 @@ Get File Metadata
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -993,6 +1001,8 @@ Delete File
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

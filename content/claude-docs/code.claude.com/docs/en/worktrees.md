@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: f12badeb51cb74cc6ff959cb0cbe0c63f6f8e01a3f5a5c27d4e33300f343fc66
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2b75578f90b8aaa4a6bd9071e982a99f238be37b543f6a3ad5df87f068fa884a
 ---
 
 > ## Documentation Index
@@ -65,6 +65,7 @@ When you exit an interactive worktree session, Claude checks the worktree for wo
 
 * **The worktree is clean**: for an unnamed session, Claude removes the worktree and its branch automatically. A [named](/docs/en/sessions#name-your-sessions) session prompts you first so you can keep the worktree for later
 * **The worktree has work in it**: Claude prompts you to keep or remove the worktree. Keeping preserves the directory and branch. To return later, run the `claude --worktree <name> --resume` command that Claude Code prints on exit. Removing deletes the worktree directory and its branch, along with all the work in them
+* **Another branch is checked out**: if the worktree is on a branch other than its own that has commits past the worktree's starting commit, Claude prompts you to keep or remove the worktree. Either answer keeps that other branch and its commits. Removing deletes the worktree directory and the worktree's own branch, the one Claude created with it
 * **The worktree's state can't be verified**: when Claude Code can't count the worktree's changes or can't inspect its submodule checkouts, it prompts you rather than removing the worktree automatically. The prompt names what it couldn't check
 
 Non-interactive runs with `-p` have no exit prompt, so Claude doesn't clean up their worktrees, and Claude Code leaves the lock it took on each one at creation in place until a later session's [stale-lock sweep](#clean-up-subagent-and-background-session-worktrees) releases it. To remove one, run `git worktree remove`; if git refuses because the worktree is locked, run `git worktree unlock` on it first.

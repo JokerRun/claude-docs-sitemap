@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2a80789d102c85a2f7aa2959ed24f75f511556d661aa8bec3fd1438db8bef5f6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 476265481cfe814f4ae0dd296b03907f0089835a072e01ba5249976019cbdbff
 ---
 
 ---
@@ -52,7 +52,7 @@ Set up OpenTelemetry tracing with the Claude API and Claude SDK
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | [Messages API](https://platform.claude.com/docs/en/api/messages/create) requests                                                  | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
 | [Sessions API](https://platform.claude.com/docs/en/managed-agents/sessions) requests                                              | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
-| [Token usage](https://platform.claude.com/docs/en/manage-claude/opentelemetry#count-tokens)                                       | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
+| [Token counts](https://platform.claude.com/docs/en/manage-claude/opentelemetry#count-tokens)                                      | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
 | Each model run within a request                                                                                                   | —                                                                           | ✅                                                                                          | ✅                                                                                          |
 | [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) turns                                               | —                                                                           | ✅                                                                                          | ✅                                                                                          |
 | [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), run by the API                        | —                                                                           | ✅                                                                                          | ✅                                                                                          |
@@ -139,7 +139,7 @@ With [zero data retention](https://platform.claude.com/docs/en/manage-claude/api
 
 ### Content limits
 
-With Full content, each span holds up to 0.75 MB of content by default. That fits a 200k-token context window of English text and stays below the 1 MB request limit of many observability platforms and proxies. If you choose a partner platform as the **Provider**, the Console sets a limit that the platform accepts.
+With Full content, each span holds up to 0.75 MB of content by default. That fits a 200k-token context window of English text and stays below the 1 MB request limit of many observability platforms and proxies. If you select a partner platform as the **Provider**, the Console sets a limit that the platform accepts.
 
 When content is over the limit, the SDK or the API shortens it and sets `anthropic.content.truncated` to `true`. Request spans drop the system prompt and the earliest messages first, and tool spans drop blocks from the end of the result. Images and documents appear only as their type.
 
@@ -189,7 +189,7 @@ This example follows one chat request, in which your application sends a message
 6. The session tool runner runs `list_issues` (shown as the `anthropic.custom_tool_use list_issues` span) and sends its result by calling `sessions.events.send`.
 7. A second turn starts with the tool result (shown as the last `anthropic.session.turn` span).
 
-![Example trace of a Managed Agents session: your POST /chat span, the event stream and event list requests of the session tool runner, the client and server spans for the request that sends the user message, a turn with model requests, a bash tool use and a turn on another thread, the runner running list\_issues, the client and server spans for the request that sends the tool result, and a second turn.](https://platform.claude.com/docs/images/opentelemetry-trace-shape.svg)
+![Example Managed Agents session trace: POST /chat, four session event requests, three turns, a bash tool use, and list\_issues](https://platform.claude.com/docs/images/opentelemetry-trace-shape.svg)
 
 The SDK in your application emits the [`anthropic.custom_tool_use`](https://platform.claude.com/docs/en/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) span and each request's client span. To get these spans, [set up SDK tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 

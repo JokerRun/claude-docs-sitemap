@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 9ec8b89e700af70117536aa9c06b61510d68631070932629242b6abde8447408
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f57bc1f5969c8e8ece82919c45133922378c7eaa476593865a9fbe208924e769
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Connect Claude to a private MCP server using a local Docker Compose
   MCP tunnels are in research preview. [Request access](https://claude.com/form/mcp-tunnels) to try them.
 </Note>
 
-This quickstart takes you from zero to Claude calling a private MCP server through a tunnel. It uses Docker Compose with [manual](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) credential provisioning, which is the shortest path for local testing. For production deployments, see [Deploy with Helm](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm) or [Deploy with Docker Compose](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose).
+This quickstart shows you how to set up a tunnel so that Claude can call a private MCP server through it. It uses Docker Compose with [manual](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) credential provisioning, which is the shortest path for local testing. For production deployments, see [Deploy with Helm](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm) or [Deploy with Docker Compose](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose).
 
 ## What you'll build
 
@@ -24,8 +24,8 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
 ## What you need
 
 * [Docker and Docker Compose](https://docs.docker.com/get-docker/) on a machine with outbound internet access.
-* A role in the [Claude Console](https://platform.claude.com) that can manage MCP tunnels. See the [Console guide prerequisites](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#prerequisites).
-* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. Preinstalled on macOS and most Linux distributions; on Windows, install it separately (the `openssl` binary must be on your `PATH`).
+* A role in the [Claude Console](https://platform.claude.com/) that can manage MCP tunnels. See the [Console guide prerequisites](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#prerequisites).
+* [OpenSSL](https://openssl-library.org/source/) 1.1.1 or later. Preinstalled on macOS and most Linux distributions. On Windows, install it separately (the `openssl` binary must be on your `PATH`).
 
 <Steps>
   <Step title="Create a tunnel">
@@ -268,7 +268,7 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
   </Step>
 
   <Step title="Call it from Claude">
-    In the Console, go to the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) and create a session. In the agent picker choose **Create new agent**, give the agent a name, and keep the pre-filled model. Click **+ MCP Server**, select your tunnel, set **Subdomain** to `echo` and **Path** to `mcp`. Then ask:
+    In the Console, go to the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) and create a session. In the agent picker, select **Create new agent**, give the agent a name, and keep the prefilled model. Click **+ MCP Server**, select your tunnel, and set **Subdomain** to `echo` and **Path** to `mcp`. Then ask:
 
     > Use the hello tool to greet tunnel.
 

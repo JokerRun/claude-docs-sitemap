@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a20471a8a9e08a1ee8cc3df5c42aa57ec51916684e06ef2a92fb9c8e7a9ca222
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c22939b985965d6aca22f80bf8a5ca55847a6b7beda0e9efb80fa137074a26d9
 ---
 
 ---
@@ -141,6 +141,8 @@ Redact a Memory Version
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

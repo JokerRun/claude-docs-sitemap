@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 81755f40232b95328b6601f3a20859d8fed3b932e980d267f48b806dc03568f3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 5188211bb218eb30b5964a114c1d18ae5d47db27e72ce114c0bcaf43f92bec36
 ---
 
 ---
@@ -201,8 +201,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
-          new() {
-              Role = Role.User,
+          new UserMessageParam {
               Content = "Query sales data for the West, East, and Central regions, then tell me which region had the highest revenue"
           }
       ],
@@ -811,14 +810,12 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
       Container = "container_xyz789",
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Query customer purchase history from the last quarter and identify our top 5 customers by revenue"
           },
-          new()
+          new AssistantMessageParam
           {
-              Role = Role.Assistant,
               Content = new ContentBlock[]
               {
                   new TextBlock { Text = "I'll query the purchase history and analyze the results." },
@@ -841,9 +838,8 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
                   }
               }
           },
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new ContentBlockParam[]
               {
                   new ToolResultBlockParam
@@ -961,7 +957,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
           .maxTokens(4096L)
           .container("container_xyz789")
           .addUserMessage("Query customer purchase history from the last quarter and identify our top 5 customers by revenue")
-          .addAssistantMessageOfBlockParams(List.of(
+          .addAssistantMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofText(
                   TextBlockParam.builder()
                       .text("I'll query the purchase history and analyze the results.")
@@ -969,7 +965,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
               ContentBlockParam.ofServerToolUse(
                   ServerToolUseBlockParam.builder()
                       .id("srvtoolu_abc123")
-                      .name("code_execution")
+                      .name(ServerToolUseBlockParam.Name.CODE_EXECUTION)
                       .input(JsonValue.from(Map.of("code", "...")))
                       .build()),
               ContentBlockParam.ofToolUse(
@@ -980,7 +976,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
                       .codeExecution20260120Caller("srvtoolu_abc123")
                       .build())
           ))
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofToolResult(
                   ToolResultBlockParam.builder()
                       .toolUseId("toolu_def456")

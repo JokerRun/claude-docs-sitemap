@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 5d0b3fcc48750ca9f2436aa39380f630cd862ad664d513c9f4c7fb6d650cd991
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f1b41515773ccc5e9545a35e83e81301a337db464060607a38a47be4ca89f887
 ---
 
 ---
@@ -265,6 +265,8 @@ List Events
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -3369,6 +3371,8 @@ Send Events
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -4363,6 +4367,8 @@ Stream Events
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

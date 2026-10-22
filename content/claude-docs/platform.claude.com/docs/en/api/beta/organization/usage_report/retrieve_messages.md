@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 926e5d4dc3acf3d0b8ec157a98c4e847e594b9e5776ed387cf80265381367be7
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9ecae5291767f870d60b8e1a0df4a55fdb249275e390c2f663066741d7725413
 ---
 
 ---
@@ -255,6 +255,8 @@ Get Messages Usage Report
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: dd6dce8da7f515ff0039bb3b4c6f5a4143cc0f74f363a741c5087328ae80a63c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bd8b966c47f7083371fc30c9dc821b776596f6d96509ee25859513ba6b802005
 ---
 
 > ## Documentation Index
@@ -46,7 +46,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 **macOS, Linux, WSL:**
 
-```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+```bash theme={null}
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
@@ -54,13 +54,13 @@ On Windows, your prompt shows `PS C:\` when you're in PowerShell and `C:\` witho
 
 **Windows PowerShell:**
 
-```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+```powershell theme={null}
 irm https://claude.ai/install.ps1 | iex
 ```
 
 **Windows CMD:**
 
-```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+```batch theme={null}
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
@@ -78,7 +78,7 @@ If the install command fails with `syntax error near unexpected token '<'`, a `4
 
 **Homebrew**
 
-```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+```bash theme={null}
 brew install --cask claude-code
 ```
 
@@ -90,7 +90,7 @@ Homebrew offers two casks. `claude-code` tracks the stable release channel, whic
 
 **WinGet**
 
-```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+```powershell theme={null}
 winget install Anthropic.ClaudeCode
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 3e80bced0fa5b08032870f93668b315b8b9ac48f7972c2d45f9faf694af31d68
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 39e65adddb870c54d1de56af99e103c4a2ea17d370d4ced4c5027acca7791e90
 ---
 
 ---
@@ -28,14 +28,14 @@ There are two general approaches you can use to start testing which Claude model
 
 ### Option 1: Start efficiency-first
 
-For many applications, starting with a faster, more cost-effective model like Claude Haiku 5.5 can be the optimal approach:
+For many applications, starting with a faster, more cost-effective model such as Claude Haiku 5.5 can be the optimal approach:
 
-1. Begin implementation with Claude Haiku 5.5.
+1. Start implementation with Claude Haiku 5.5.
 2. Test your use case thoroughly.
 3. Evaluate if performance meets your requirements.
 4. Upgrade only if necessary for specific capability gaps.
 
-This approach allows for quick iteration, lower development costs, and is often sufficient for many common applications. This approach is best for:
+This approach allows for quick iteration and lower development costs, and is often sufficient for many common applications. This approach is best for:
 
 * Initial prototyping and development
 * Applications with tight latency requirements
@@ -44,7 +44,7 @@ This approach allows for quick iteration, lower development costs, and is often 
 
 ### Option 2: Start capability-first
 
-For complex tasks where intelligence and advanced capabilities are paramount, you may want to start capability-first: implement with the strongest starting point for your task, then optimize to more efficient models down the line:
+For complex tasks where intelligence and advanced capabilities are paramount, you might want to start capability-first: implement with the strongest starting point for your task, then optimize to more efficient models later:
 
 1. Implement with Claude Opus 5.5.
 2. [Optimize your prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) for this model.
@@ -75,7 +75,7 @@ Most workloads start with Claude Opus 5.5.
 | The highest available capability                                          | Claude Fable 5.1          | Agent sessions that run for hours, multistep deep research, analysis carried through to a finished document, spreadsheet, or deck |
 | Complex agentic coding and enterprise work                                | Claude Opus 5.5           | Multihour autonomous coding agents, large-scale refactoring, complex systems engineering, vision-heavy workflows, computer use    |
 | Speed and capability for everyday coding, agent, and enterprise workloads | Claude Sonnet 5.5         | Code generation, data analysis, content creation, visual understanding, agentic tool use                                          |
-| The lowest latency and price                                              | Claude Haiku 5.5          | Real-time applications, high-volume intelligent processing, cost-sensitive deployments needing strong reasoning, sub-agent tasks  |
+| The lowest latency and price                                              | Claude Haiku 5.5          | Real-time applications, high-volume intelligent processing, cost-sensitive deployments needing strong reasoning, subagent tasks   |
 
 ***
 
@@ -83,7 +83,7 @@ Most workloads start with Claude Opus 5.5.
 
 To determine if you need to upgrade or change models, you should:
 
-1. [Create benchmark tests](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) specific to your use case - having a good evaluation set is the most important step in the process.
+1. [Create benchmark tests](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) specific to your use case. Having a good evaluation set is the most important step in the process.
 
 2. Test with your actual prompts and data.
 

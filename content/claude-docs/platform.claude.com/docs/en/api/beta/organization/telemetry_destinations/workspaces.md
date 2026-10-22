@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: aca73fe8901abd1ba7b56ec707728e2a771ffa835f1a9b19fe2dc66c28049b64
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0de87742c71aa8daa544a1718dbbf9fc74c2ee6c4ea3e072f3407767b2de8733
 ---
 
 ---
@@ -155,6 +155,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -345,6 +347,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaTelemetryDestinationWorkspace object`
@@ -527,6 +531,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 

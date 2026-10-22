@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 0884419dc423e98e9915def36fee19c8772baf514f215a4577ecf6b8dd2eb771
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0f1107bfa2b9d2eee96c7a71bfa39f549dfd533dffe0975c107bdb550e417373
 ---
 
 ---
@@ -19,9 +19,18 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 21 Oktober 2026
+
+* Kami telah merilis versi API `2026-10-21`. [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21) menunjukkan cara melakukan upgrade.
+* Kami telah merilis versi baru dari [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) yang mengirimkan versi API `2026-10-21` secara default: Python SDK 2.0.0, TypeScript SDK 1.0.0, C# SDK 13.0.0, Go SDK 2.0.0, Java SDK 3.0.0, PHP SDK 1.0.0, Ruby SDK 2.0.0, dan CLI `ant` 2.0.0. Lihat [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+* Versi SDK dan CLI yang baru juga memiliki "breaking changes" (perubahan yang merusak kompatibilitas) yang tidak bergantung pada versi API, dan dilisensikan di bawah Apache 2.0, bukan Lisensi MIT. Lihat [Perubahan SDK dan CLI](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-changes).
+* Kami telah menambahkan field `enforcement_status` dan `enforcement_actions` ke [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles), sehingga Anda dapat melihat apakah Anthropic telah membatasi atau memblokir salah satu pelanggan akhir Anda. Untuk menemukan profil yang memiliki pembatasan atau pemblokiran yang masih aktif, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan filter `enforcement_status[]` yang baru. Lihat [Memeriksa apakah Anthropic telah membatasi atau memblokir sebuah profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile).
+
 ### 20 Oktober 2026
 
 * [Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks) telah keluar dari beta untuk organisasi Claude Enterprise.
+* Kami telah meluncurkan [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles), sehingga Anda dapat memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, "safety enforcement action" (tindakan penegakan keamanan) dengan begitu dapat diterapkan pada satu pelanggan akhir alih-alih seluruh organisasi Anda. SDK dan CLI `ant` mendukung [endpoint `/v1/user_profiles`](https://platform.claude.com/docs/id/api/user_profiles) yang baru.
+* Kami telah menambahkan [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks) ke [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), dalam beta dengan beta header `webhooks-2026-10-07`. [Endpoint `/v1/organizations/webhooks`](https://platform.claude.com/docs/id/api/beta/organization/webhooks) mendaftarkan endpoint webhook untuk dua jenis event: satu untuk saat Anthropic membatasi atau memblokir salah satu profil pengguna organisasi Anda, dan satu untuk saat pembatasan atau pemblokiran tersebut berakhir. Untuk meminta akses, hubungi tim akun Anthropic Anda.
 
 ### 15 Oktober 2026
 
@@ -32,9 +41,8 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 14 Oktober 2026
 
-* Kami telah meluncurkan [ekspor OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) dalam beta, sehingga Anda dapat melacak permintaan Messages API dan sesi Claude Managed Agents di backend observabilitas Anda. Claude SDK memancarkan span dalam Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Untuk mendapatkan span dari API, [tambahkan tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination) di Claude Console.
-
-- [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) Claude Managed Agents kini tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents).
+* Kami telah meluncurkan [ekspor OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) dalam beta, sehingga Anda dapat melacak permintaan Messages API dan sesi Claude Managed Agents di platform observabilitas Anda. Claude SDK memancarkan span dalam Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Untuk mendapatkan span dari API, [tambahkan tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination) di Claude Console.
+* [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) Claude Managed Agents kini tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents).
 
 ### 9 Oktober 2026
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 54239da412b7a48827ec342b740713a6c73d3e5830504e53834396b5c838b601
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e66cd8aa22b3bd43a199b0cddc8cc040ab6f6dc1a8cf2dbcfc63a6c917cf681b
 ---
 
 ---
@@ -345,9 +345,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
               ],
           }),
       ],
-      Messages = [
-          new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }
-      ]
+      Messages = [new UserMessageParam { Content = "What's the weather like in San Francisco?" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -708,9 +706,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
           }),
       ],
       ToolChoice = new ToolChoiceTool { Name = "get_weather" },
-      Messages = [
-          new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }
-      ]
+      Messages = [new UserMessageParam { Content = "What's the weather like in San Francisco?" }]
   };
 
   var message = await client.Messages.Create(parameters);

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ae8c3087c17abb526fd0d56cd2fde18541064230f5c0e4a99ccf49eaef7ea0c6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9ccd96c005f093a77b91f01f31310bd2a248417eef874446e8b9699fc8cbc3fc
 ---
 
 ---
@@ -123,7 +123,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   {
       Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude!" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude!" }],
       ServiceTier = ServiceTier.Auto, // Automatically use Priority Tier when available, fallback to standard
   });
   Console.WriteLine(message.Usage.ServiceTier);

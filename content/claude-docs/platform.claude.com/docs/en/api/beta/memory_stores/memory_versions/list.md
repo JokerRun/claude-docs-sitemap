@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 1a870807fe4739581e63862ca859571573a75123ead08decaba76abe3f526261
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d6cfa2d2c838043723b0504197ef31ea107113ab46226e8d18ef2a577c882231
 ---
 
 ---
@@ -211,6 +211,8 @@ List Memory Versions
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

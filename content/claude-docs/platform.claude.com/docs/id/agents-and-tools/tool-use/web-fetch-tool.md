@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 584ae1d323a79334aade85735d8d14c861d6c6abc0227e32c94eb523499be36f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f811505a81cbad1a5532009e0d07665bc0097b3f44933f4c8a7a0289fa06db2d
 ---
 
 ---
@@ -169,7 +169,7 @@ Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Fetch the content at https://example.com/research-paper and extract the key findings." }],
+      Messages = [new UserMessageParam { Content = "Fetch the content at https://example.com/research-paper and extract the key findings." }],
       Tools = [new ToolUnion(new WebFetchTool20260318())]
   };
 
@@ -332,7 +332,7 @@ Sertakan alat web fetch dalam permintaan API Anda:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Please analyze the content at https://example.com/article" }],
+      Messages = [new UserMessageParam { Content = "Please analyze the content at https://example.com/article" }],
       Tools = [new ToolUnion(new WebFetchTool20250910() { MaxUses = 5 })]
   };
 
@@ -830,7 +830,7 @@ Ketika alat web search dan web fetch sama-sama diaktifkan, dan pengguna menyebut
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Find recent articles about quantum computing and analyze the most relevant one in detail" }],
+      Messages = [new UserMessageParam { Content = "Find recent articles about quantum computing and analyze the most relevant one in detail" }],
       Tools = [
           new ToolUnion(new WebSearchTool20250305() { MaxUses = 3 }),
           new ToolUnion(new WebFetchTool20250910() { MaxUses = 5, Citations = new() { Enabled = true } })

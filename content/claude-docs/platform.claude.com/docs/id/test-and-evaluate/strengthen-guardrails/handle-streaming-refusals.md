@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: f3dddf8c5c9dd15f6f1abb7b37bcaf51c73d0ce25cc986fbc64531fae10d373e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0eb053ff3fe9ec4f3954745508707f3472aedc21ce515644effc1a62362ca542
 ---
 
 ---
@@ -137,7 +137,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello" }]
+      Messages = [new UserMessageParam { Content = "Hello" }]
   };
 
   try

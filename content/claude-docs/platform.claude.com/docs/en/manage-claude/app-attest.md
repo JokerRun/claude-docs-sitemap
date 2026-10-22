@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/app-attest
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: a4360c5330b8b6a033f998d4dc802ea5172c09a0b12b7865a8e12c693f73b64b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b2d7753612325d03ef9ab45337cc3e3c29e8a667d734a392e59472d0521b4762
 ---
 
 ---
@@ -23,7 +23,7 @@ App Attest authentication is available only when your app calls the Claude API d
 
 The first time your app uses Claude on a device, the app requests a challenge from Anthropic, attests the device with Apple's `DCAppAttestService`, and exchanges the verified attestation for an access token. The Claude for Foundation Models package runs this flow automatically and requests new tokens as they expire; there is no attestation code for you to write.
 
-Tokens are scoped to your workspace, expire after one hour, and authorize only [Messages API](https://platform.claude.com/docs/en/api/messages/create) calls. They carry no end-user identity: App Attest identifies your app, not the person using it, so handle any per-user logic in your app.
+Tokens are scoped to your workspace, expire after 1 hour, and authorize only [Messages API](https://platform.claude.com/docs/en/api/messages/create) calls. They carry no end-user identity: App Attest identifies your app, not the person using it, so handle any per-user logic in your app.
 
 ## Set up App Attest
 

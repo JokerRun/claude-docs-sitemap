@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: a5afde2e7b85282a2448ebb0dfecb6b3036b17e17cb02e4305ae52f40c104f5a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0f2836c2931ba41f967a9f8ee0f67b6eab195ae013072643941204f9d016e2ba
 ---
 
 ---
@@ -157,6 +157,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters (form-data)
 
@@ -561,6 +563,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaPlugin object`
@@ -959,6 +963,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -1409,6 +1415,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaPlugin`
@@ -1807,6 +1815,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -2358,6 +2368,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Body parameters (form-data)
 
 - `files: array of string`
@@ -2703,6 +2715,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaPluginVersion`
@@ -3029,6 +3043,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 
@@ -3364,6 +3380,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Example
 
 ```bash
@@ -3533,6 +3551,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 
@@ -3782,6 +3802,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Body parameters
 
@@ -4049,6 +4071,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `BetaDeletedPluginInstallationSetting object`
@@ -4288,6 +4312,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 

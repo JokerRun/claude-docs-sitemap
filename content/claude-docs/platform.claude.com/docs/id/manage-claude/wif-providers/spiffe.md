@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: be982e678df31a33e2d40a2dc4d098a82b9cdc0b21526a68e710f54ccd29e731
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 1150260da2d6a33a72b380d1d90a2a314294857de312c6c25bc5270ea1cf5f8e
 ---
 
 ---
@@ -263,7 +263,7 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, ke
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+          Messages = [new UserMessageParam { Content = "Hello, Claude" }],
       });
       foreach (var block in message.Content)
       {

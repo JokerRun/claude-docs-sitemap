@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 07fecbc1b7e505fc2a892e9c6ff9a73558f58d0cc857d83558f16075105b8fd9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7154fdff4448ed54b88282b03cf5a5b367c534a298a1fc8f37f7d59539def837
 ---
 
 ---
@@ -142,7 +142,7 @@ SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_i
   {
       Model = Model.ClaudeSonnet5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }]
   });
   Console.WriteLine($"Request ID: {response.RequestID}");
   ```
@@ -328,7 +328,7 @@ Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi str
   {
       Model = Model.ClaudeSonnet5,
       MaxTokens = 128000,
-      Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
+      Messages = [new UserMessageParam { Content = "Write a detailed analysis..." }]
   };
 
   var message = await client.Messages.CreateStreaming(parameters).Aggregate();

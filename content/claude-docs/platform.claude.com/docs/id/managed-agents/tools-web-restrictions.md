@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 23b4e9300c11ea22ac82de018e9ec65e03171594d46e5b125676118e33d3278b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7f82280fa292c47f2555c3f4fdcf0a05d606a714acacd439f133b2a88701a2f2
 ---
 
 ---
@@ -182,7 +182,6 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
               Configs =
               [
                   new BetaManagedAgentsWebSearchToolConfigParams
@@ -277,7 +276,6 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
           .name("Research Agent")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
                   .allowedDomains(List.of("docs.example.com", "arxiv.org"))
                   .userLocation(BetaManagedAgentsUserLocation.builder()
@@ -316,7 +314,6 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
       model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
               configs: [
                   BetaManagedAgentsWebSearchToolConfigParams::with(
                       allowedDomains: ['docs.example.com', 'arxiv.org'],

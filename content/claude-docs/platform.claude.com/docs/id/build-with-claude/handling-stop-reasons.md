@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 71114f38a585d520bd428330201a252e4f30db07b65fdd0f41079adf64f7d3ea
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 1ed37f1aa4c56c425c4812d0465fa297f567e0a4daa9ffbe7cded70434314581
 ---
 
 ---
@@ -116,7 +116,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello!" }]
+      Messages = [new UserMessageParam { Content = "Hello!" }]
   });
 
   if (response.StopReason == "end_turn")
@@ -330,18 +330,16 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     // SALAH: Menambahkan teks langsung setelah tool_result
     List<MessageParam> messages =
     [
-        new() { Role = Role.User, Content = "Calculate the sum of 1234 and 5678" },
-        new()
+        new UserMessageParam { Content = "Calculate the sum of 1234 and 5678" },
+        new AssistantMessageParam
         {
-            Role = Role.Assistant,
             Content = new List<ContentBlockParam>
             {
                 new ToolUseBlockParam { ID = "toolu_123", Name = "calculator", Input = input }
             }
         },
-        new()
+        new UserMessageParam
         {
-            Role = Role.User,
             Content = new List<ContentBlockParam>
             {
                 new ToolResultBlockParam { ToolUseID = "toolu_123", Content = "6912" },
@@ -353,18 +351,16 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
     // BENAR: Kirim hasil alat secara langsung tanpa teks tambahan
     messages =
     [
-        new() { Role = Role.User, Content = "Calculate the sum of 1234 and 5678" },
-        new()
+        new UserMessageParam { Content = "Calculate the sum of 1234 and 5678" },
+        new AssistantMessageParam
         {
-            Role = Role.Assistant,
             Content = new List<ContentBlockParam>
             {
                 new ToolUseBlockParam { ID = "toolu_123", Name = "calculator", Input = input }
             }
         },
-        new()
+        new UserMessageParam
         {
-            Role = Role.User,
             // Hanya tool_result, tanpa teks tambahan
             Content = new List<ContentBlockParam>
             {
@@ -415,31 +411,25 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
     // SALAH: Menambahkan teks langsung setelah tool_result
     List<MessageParam> messages = List.of(
-        MessageParam.builder().role(MessageParam.Role.USER)
-            .content("Calculate the sum of 1234 and 5678").build(),
-        MessageParam.builder().role(MessageParam.Role.ASSISTANT)
-            .contentOfBlockParams(List.of(ContentBlockParam.ofToolUse(toolUse))).build(),
-        MessageParam.builder().role(MessageParam.Role.USER)
-            .contentOfBlockParams(List.of(
-                ContentBlockParam.ofToolResult(
-                    ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build()),
-                // Jangan tambahkan teks setelah tool_result
-                ContentBlockParam.ofText(TextBlockParam.builder().text("Here's the result").build())
-            )).build()
+        MessageParam.ofUser("Calculate the sum of 1234 and 5678"),
+        MessageParam.ofAssistantOfContentBlockParams(List.of(ContentBlockParam.ofToolUse(toolUse))),
+        MessageParam.ofUserOfContentBlockParams(List.of(
+            ContentBlockParam.ofToolResult(
+                ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build()),
+            // Jangan tambahkan teks setelah tool_result
+            ContentBlockParam.ofText(TextBlockParam.builder().text("Here's the result").build())
+        ))
     );
 
     // BENAR: Kirim hasil alat secara langsung tanpa teks tambahan
     messages = List.of(
-        MessageParam.builder().role(MessageParam.Role.USER)
-            .content("Calculate the sum of 1234 and 5678").build(),
-        MessageParam.builder().role(MessageParam.Role.ASSISTANT)
-            .contentOfBlockParams(List.of(ContentBlockParam.ofToolUse(toolUse))).build(),
+        MessageParam.ofUser("Calculate the sum of 1234 and 5678"),
+        MessageParam.ofAssistantOfContentBlockParams(List.of(ContentBlockParam.ofToolUse(toolUse))),
         // Hanya tool_result, tanpa teks tambahan
-        MessageParam.builder().role(MessageParam.Role.USER)
-            .contentOfBlockParams(List.of(
-                ContentBlockParam.ofToolResult(
-                    ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build())
-            )).build()
+        MessageParam.ofUserOfContentBlockParams(List.of(
+            ContentBlockParam.ofToolResult(
+                ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build())
+        ))
     );
     ```
 
@@ -610,7 +600,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         if (response.StopReason == "end_turn" && response.Content.Count == 0)
         {
             // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
-            messages.Add(new() { Role = Role.User, Content = "Please continue" });
+            messages.Add(new UserMessageParam { Content = "Please continue" });
 
             response = await client.Messages.Create(new MessageCreateParams
             {
@@ -669,10 +659,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         if (isEndTurn && response.content().isEmpty()) {
             // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
             List<MessageParam> extended = new ArrayList<>(messages);
-            extended.add(MessageParam.builder()
-                .role(MessageParam.Role.USER)
-                .content("Please continue")
-                .build());
+            extended.add(MessageParam.ofUser("Please continue"));
 
             response = client.messages().create(
                 MessageCreateParams.builder()
@@ -808,7 +795,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 10,
-      Messages = [new() { Role = Role.User, Content = "Explain quantum physics" }]
+      Messages = [new UserMessageParam { Content = "Explain quantum physics" }]
   });
 
   if (response.StopReason == "max_tokens")
@@ -1118,7 +1105,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       StopSequences = ["END", "STOP"],
-      Messages = [new() { Role = Role.User, Content = "Generate text until you say END" }]
+      Messages = [new UserMessageParam { Content = "Generate text until you say END" }]
   });
 
   if (response.StopReason == "stop_sequence")
@@ -1339,7 +1326,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [weatherTool],
-      Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco?" }]
+      Messages = [new UserMessageParam { Content = "What is the weather in San Francisco?" }]
   });
 
   if (response.StopReason == "tool_use")
@@ -1620,7 +1607,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
 
   ```csharp C#
   List<ToolUnion> tools = [new ToolUnion(new WebSearchTool20250305())];
-  MessageParam userMessage = new() { Role = Role.User, Content = "Search for latest AI news" };
+  MessageParam userMessage = new UserMessageParam { Content = "Search for latest AI news" };
 
   var response = await client.Messages.Create(new MessageCreateParams
   {
@@ -1641,9 +1628,8 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok has
           Messages =
           [
               userMessage,
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               }
           ]
@@ -1823,7 +1809,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "[Unsafe request]" }]
+      Messages = [new UserMessageParam { Content = "[Unsafe request]" }]
   });
 
   if (response.StopReason == "refusal")
@@ -1982,7 +1968,7 @@ Claude berhenti karena mencapai batas "context window" (jendela konteks) model. 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 20000,
-      Messages = [new() { Role = Role.User, Content = "Large input that uses most of context window..." }]
+      Messages = [new BetaUserMessageParam { Content = "Large input that uses most of context window..." }]
   });
 
   if (response.StopReason?.Value() == BetaStopReason.ModelContextWindowExceeded)
@@ -2417,7 +2403,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       List<ToolUnion> tools,
       int maxContinuations = 5)
   {
-      List<MessageParam> messages = [new() { Role = Role.User, Content = userQuery }];
+      List<MessageParam> messages = [new UserMessageParam { Content = userQuery }];
       Message response = null!;
 
       for (var i = 0; i < maxContinuations; i++)
@@ -2439,10 +2425,9 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
           messages =
           [
-              new() { Role = Role.User, Content = userQuery },
-              new()
+              new UserMessageParam { Content = userQuery },
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               }
           ];
@@ -2696,7 +2681,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Hello!" }]
+          Messages = [new UserMessageParam { Content = "Hello!" }]
       });
 
       // Tangani respons yang berhasil dengan stop_reason
@@ -2886,7 +2871,7 @@ Saat menggunakan streaming, `stop_reason`:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello!" }]
+      Messages = [new UserMessageParam { Content = "Hello!" }]
   };
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
@@ -3047,7 +3032,7 @@ Saat menggunakan streaming, `stop_reason`:
       string userQuery,
       List<ToolUnion> tools)
   {
-      List<MessageParam> messages = [new() { Role = Role.User, Content = userQuery }];
+      List<MessageParam> messages = [new UserMessageParam { Content = userQuery }];
 
       while (true)
       {
@@ -3063,12 +3048,11 @@ Saat menggunakan streaming, `stop_reason`:
           {
               // Jalankan alat dan lanjutkan
               var toolResults = ExecuteTools(response.Content);
-              messages.Add(new()
+              messages.Add(new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               });
-              messages.Add(new() { Role = Role.User, Content = toolResults });
+              messages.Add(new UserMessageParam { Content = toolResults });
           }
           else
           {
@@ -3122,7 +3106,7 @@ Saat menggunakan streaming, `stop_reason`:
       List<Tool> tools
   ) {
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder().role(MessageParam.Role.USER).content(userQuery).build());
+      messages.add(MessageParam.ofUser(userQuery));
 
       while (true) {
           MessageCreateParams.Builder params = MessageCreateParams.builder()
@@ -3141,10 +3125,8 @@ Saat menggunakan streaming, `stop_reason`:
           // Jalankan alat dan lanjutkan
           List<ToolResultBlockParam> toolResults = executeTools(response.content());
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(toolResults.stream().map(ContentBlockParam::ofToolResult).toList())
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(
+              toolResults.stream().map(ContentBlockParam::ofToolResult).toList()));
       }
   }
   ```
@@ -3267,7 +3249,7 @@ Saat menggunakan streaming, `stop_reason`:
   ```csharp C#
   static async Task<string> GetCompleteResponse(AnthropicClient client, string prompt, int maxAttempts = 3)
   {
-      List<MessageParam> messages = [new() { Role = Role.User, Content = prompt }];
+      List<MessageParam> messages = [new UserMessageParam { Content = prompt }];
       var fullResponse = "";
 
       for (var i = 0; i < maxAttempts; i++)
@@ -3296,9 +3278,9 @@ Saat menggunakan streaming, `stop_reason`:
           // Lanjutkan dari titik terakhir yang ditinggalkan
           messages =
           [
-              new() { Role = Role.User, Content = prompt },
-              new() { Role = Role.Assistant, Content = fullResponse },
-              new() { Role = Role.User, Content = "Please continue from where you left off." }
+              new UserMessageParam { Content = prompt },
+              new AssistantMessageParam { Content = fullResponse },
+              new UserMessageParam { Content = "Please continue from where you left off." }
           ];
       }
 
@@ -3346,9 +3328,7 @@ Saat menggunakan streaming, `stop_reason`:
 
   ```java Java
   static String getCompleteResponse(AnthropicClient client, String prompt, int maxAttempts) {
-      List<MessageParam> messages = List.of(
-          MessageParam.builder().role(MessageParam.Role.USER).content(prompt).build()
-      );
+      List<MessageParam> messages = List.of(MessageParam.ofUser(prompt));
       StringBuilder fullResponse = new StringBuilder();
 
       for (int i = 0; i < maxAttempts; i++) {
@@ -3371,9 +3351,9 @@ Saat menggunakan streaming, `stop_reason`:
 
           // Lanjutkan dari titik terakhir yang ditinggalkan
           messages = List.of(
-              MessageParam.builder().role(MessageParam.Role.USER).content(prompt).build(),
-              MessageParam.builder().role(MessageParam.Role.ASSISTANT).content(fullResponse.toString()).build(),
-              MessageParam.builder().role(MessageParam.Role.USER).content("Please continue from where you left off.").build()
+              MessageParam.ofUser(prompt),
+              MessageParam.ofAssistant(fullResponse.toString()),
+              MessageParam.ofUser("Please continue from where you left off.")
           );
       }
 
@@ -3516,7 +3496,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 20000,
-          Messages = [new() { Role = Role.User, Content = prompt }]
+          Messages = [new BetaUserMessageParam { Content = prompt }]
       });
 
       var tokens = response.Usage.OutputTokens;

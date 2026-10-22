@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5553fd96ed751fe1a4348086f9f485aa7bd77793a79c9d9368c26a81458988a6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 06f264444ae1aad8fcae37b1ff53ea22bd0b67528d1103baef5dd7ed9798d754
 ---
 
 ---
@@ -157,6 +157,8 @@ Don't remove the `kms:EncryptionContext:anthropic:org_uuid` condition, or valida
   3. Attach the key.
 
   **Finding your compartment ID:** In the Claude Console, go to the [Data retention](https://platform.claude.com/settings/privacy) page (`platform.claude.com/settings/privacy`). Select the workspace from the dropdown menu at the top of the page. The ID is under **Encryption key**, in the **Compartment ID** field. You can also read the `compartment_id` field returned by the [Get Workspace](https://platform.claude.com/docs/en/api/organization/workspaces/retrieve) endpoint.
+
+  On Claude Enterprise, the organization has one compartment ID. Copy it from your key under **Encryption keys** in [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
 </Note>
 
 ### Create the key

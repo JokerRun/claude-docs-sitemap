@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: d957c9efa3a4e5a06ca5173d85a5f4a3b5a31867da57ead1b8f5cf3d9ddaa25e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 457e58f6d6894b920a77cefea9c01bbf0bf3456b4c202583ffd8e4207b692194
 ---
 
 ---
@@ -15,15 +15,15 @@ Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di setiap
 
 ## Struktur perintah
 
-Perintah mengikuti pola `resource action`. Sumber daya bertingkat menggunakan tanda titik dua:
+Perintah mengikuti pola `resource action`. Sumber daya bersarang menggunakan titik dua:
 
 ```text wrap
 ant <resource>[:<subresource>] <action> [flags]
 ```
 
-Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah apa pun untuk melihat flag-nya.
+Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
 
-Sumber daya dalam versi beta (termasuk agents, sessions, deployments, dan environments) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirim header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu menyertakannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa nilai default (misalnya, untuk memilih versi skema yang berbeda).
+Sumber daya dalam beta (termasuk agents, sessions, deployments, dan environments) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa default (misalnya, untuk memilih versi skema yang berbeda).
 
 ```bash
 ant models list
@@ -37,19 +37,19 @@ ant beta:sessions:events list --session-id session_01...
 | Flag                                  | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--profile`                           | Profil bernama yang digunakan untuk pemanggilan ini (setara dengan mengatur `ANTHROPIC_PROFILE`). Lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).                                                                                                                                                                                                                                                 |
-| `--api-key-stdin`                     | Membaca kunci API dari standard input. Flag ini membaca seluruh standard input, jadi kirim body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                       |
-| `--auth-token-stdin`                  | Membaca bearer token dari standard input. Flag ini membaca seluruh standard input, jadi kirim body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                    |
+| `--api-key-stdin`                     | Membaca kunci API dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                    |
+| `--auth-token-stdin`                  | Membaca bearer token dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                 |
 | `--format`                            | Format output: `auto`, `json`, `jsonl`, `yaml`, `pretty`, `raw`, `explore`                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `--transform`                         | Memfilter atau membentuk ulang respons dengan [path GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson)                                                                                                                                                                                                                                                                                                                                |
 | `-r`, `--raw-output`                  | Mencetak hasil string tanpa tanda kutip di sekelilingnya, seperti `jq -r`                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--base-url`                          | Menimpa base URL API                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `--workspace-id`                      | Opsional. ID workspace (`wrkspc_...`) yang dikirim sebagai header `anthropic-workspace-id`, untuk kunci API yang memiliki akses ke beberapa workspace (setara dengan mengatur `ANTHROPIC_WORKSPACE_ID`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Perintah [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) memiliki `--workspace-id` sendiri, yang menunjuk workspace yang dikelolanya. |
+| `--base-url`                          | Menimpa URL dasar API                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `--workspace-id`                      | Opsional. ID workspace (`wrkspc_...`) yang dikirim sebagai header `anthropic-workspace-id`, untuk kunci API dengan akses ke beberapa workspace (setara dengan mengatur `ANTHROPIC_WORKSPACE_ID`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Perintah [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima `--workspace-id` sendiri, yang justru menunjuk workspace yang dikelolanya. |
 | `--debug`                             | Mencetak permintaan dan respons HTTP lengkap ke stderr                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `--format-error`, `--transform-error` | Sama seperti `--format` dan `--transform` tetapi diterapkan pada [respons error](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting#inspect-errors)                                                                                                                                                                                                                                                                                                                   |
 
 ## Format output
 
-`auto` mencetak JSON dengan format rapi (pretty-print) dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [explorer interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#interactive-explorer) saat menulis ke terminal, dan JSON berformat rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
+`auto` mencetak JSON dengan format rapi dan merupakan default untuk perintah yang membuat atau memodifikasi sumber daya. Perintah list dan retrieve secara default menggunakan [penjelajah interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#interactive-explorer) saat menulis ke terminal, dan JSON berformat rapi saat di-pipe. Timpa salah satu default tersebut dengan `--format`:
 
 ```bash
 ant models retrieve --model-id claude-opus-5-5 --format yaml
@@ -63,11 +63,11 @@ created_at: "2026-09-22T00:00:00Z"
 ...
 ```
 
-Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan bersih ke `head`, `grep`, dan filter `--transform`.
+Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item ditulis secara terpisah (satu objek JSON ringkas per baris dalam mode `jsonl`, aliran dokumen YAML dalam mode `yaml`), yang mengalir dengan lancar ke `head`, `grep`, dan filter `--transform`.
 
-### Explorer interaktif
+### Penjelajah interaktif
 
-Explorer adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah memperluas dan menciutkan node, `/` untuk mencari, `q` untuk keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Berikan `--format explore` untuk membukanya secara eksplisit:
+Penjelajah adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah membuka dan menutup node, `/` melakukan pencarian, `q` keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Teruskan `--format explore` untuk membukanya secara eksplisit:
 
 ```bash
 ant models list --format explore
@@ -75,7 +75,7 @@ ant models list --format explore
 
 ## Mentransformasi output dengan GJSON
 
-Gunakan `--transform` untuk membentuk ulang respons sebelum dicetak. Ekspresinya adalah [path GJSON](https://github.com/tidwall/gjson/blob/master/SYNTAX.md). Untuk endpoint list, transformasi dijalankan terhadap setiap item secara individual, bukan terhadap envelope-nya:
+Gunakan `--transform` untuk membentuk ulang respons sebelum dicetak. Ekspresinya adalah [path GJSON](https://github.com/tidwall/gjson/blob/master/SYNTAX.md). Untuk endpoint list, transformasi dijalankan terhadap setiap item secara individual, bukan terhadap envelope:
 
 ```bash
 ant beta:agents list \
@@ -91,7 +91,7 @@ ant beta:agents list \
 
 ### Mengekstrak nilai skalar
 
-Untuk mengambil satu field sebagai string tanpa tanda kutip (misalnya, ID sumber daya yang baru dibuat), pasangkan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap ditetapkan ke variabel shell:
+Untuk menangkap satu field sebagai string tanpa tanda kutip (misalnya, ID dari sumber daya yang baru dibuat), pasangkan `--transform` dengan `--raw-output`. Hasilnya dicetak tanpa tanda kutip JSON dan siap ditetapkan ke variabel shell:
 
 ```bash
 AGENT_ID=$(ant beta:agents create \
@@ -101,16 +101,16 @@ AGENT_ID=$(ant beta:agents create \
 ```
 
 <Note>
-  `--raw-output` berbeda dari `--format raw`. `--raw-output` menghapus tanda kutip JSON dari hasil string, seperti `jq -r`. `--format raw` mencetak byte JSON mentah dari body respons tanpa paginasi otomatis; pada endpoint list, opsi ini menerapkan `--transform` pada envelope paginasi, bukan pada setiap item.
+  `--raw-output` berbeda dari `--format raw`. `--raw-output` menghapus tanda kutip JSON dari hasil string, seperti `jq -r`. `--format raw` mencetak byte JSON mentah dari body respons tanpa paginasi otomatis; pada endpoint list, opsi ini menerapkan `--transform` ke envelope paginasi, bukan ke setiap item.
 </Note>
 
-## Mengirim body permintaan
+## Meneruskan body permintaan
 
-Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen **stdin** untuk body bertingkat atau multibaris, dan gunakan **referensi `@file`** untuk memasukkan isi file ke field string atau biner apa pun.
+Mekanisme input yang tepat bergantung pada bentuk datanya: gunakan **flag** untuk field skalar dan nilai terstruktur yang pendek, pipe dokumen melalui **stdin** untuk body bersarang atau multibaris, dan gunakan **referensi `@file`** untuk memasukkan isi file ke field string atau biner mana pun.
 
 ### Flag
 
-Field skalar dipetakan langsung ke flag. Field terstruktur menerima sintaks longgar mirip YAML (key tanpa tanda kutip, tanda kutip opsional di sekitar string) atau JSON ketat:
+Field skalar dipetakan langsung ke flag. Field terstruktur menerima sintaks longgar mirip YAML (kunci tanpa tanda kutip, tanda kutip opsional di sekitar string) atau JSON ketat:
 
 ```bash
 ant beta:sessions create \
@@ -119,7 +119,7 @@ ant beta:sessions create \
   --title "CLI docs test session"
 ```
 
-Flag yang dapat diulang membentuk array. Setiap `--tool` atau `--event` menambahkan satu elemen:
+Flag yang dapat diulang membangun array. Setiap `--tool` atau `--event` menambahkan satu elemen:
 
 ```bash
 ant beta:agents create \
@@ -131,7 +131,7 @@ ant beta:agents create \
 
 ### Stdin
 
-Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diutamakan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` diambil seperti pada [Mengekstrak nilai skalar](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#extract-a-scalar):
+Pipe dokumen JSON atau YAML ke stdin untuk menyediakan body permintaan lengkap. Field dari stdin digabungkan dengan flag, dengan flag yang diutamakan. Di sini `version` adalah token optimistic-locking yang dikembalikan oleh `retrieve` sebelumnya, dan `$AGENT_ID` ditangkap seperti pada [Mengekstrak nilai skalar](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#extract-a-scalar):
 
 ```bash
 echo '{"description": "Updated test agent.", "version": 1}' | \
@@ -159,7 +159,7 @@ Flag yang menerima path file, seperti `--file` pada perintah upload, menerima pa
 ant files upload --file ./report.pdf
 ```
 
-Untuk menyisipkan isi file ke dalam field bernilai string, awali path dengan `@`:
+Untuk menyisipkan isi file ke dalam field bernilai string, beri prefiks `@` pada path:
 
 ```bash
 ant beta:agents create \
@@ -179,11 +179,11 @@ ant messages create \
   ]}'
 ```
 
-CLI mendeteksi tipe file dan mengodekan file biner sebagai base64 secara otomatis. Untuk memaksa pengodean tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape karakter `@` literal di awal dengan backslash (`\@username`).
+CLI mendeteksi jenis file dan mengenkode file biner sebagai base64 secara otomatis. Untuk memaksakan encoding tertentu, gunakan `@file://` untuk teks biasa atau `@data://` untuk base64. Escape `@` literal di awal dengan backslash (`\@username`).
 
 ## Debugging
 
-Tambahkan `--debug` ke perintah apa pun untuk mencetak permintaan dan respons HTTP yang sebenarnya (header dan body) ke stderr. Kunci API disamarkan.
+Tambahkan `--debug` ke perintah mana pun untuk mencetak permintaan dan respons HTTP yang persis (header dan body) ke stderr. Kunci API disamarkan.
 
 ```bash
 ant --debug beta:agents list
@@ -193,20 +193,20 @@ ant --debug beta:agents list
 GET /v1/agents?beta=true HTTP/1.1
 Host: api.anthropic.com
 Anthropic-Beta: managed-agents-2026-04-01
-Anthropic-Version: 2023-06-01
-X-Api-Key: <REDACTED>
+Anthropic-Version: 2026-10-21
+Authorization: Bearer <REDACTED>
 ...
 ```
 
 ## Sumber daya yang tersedia
 
-Setiap sumber daya API yang diekspos CLI didokumentasikan dalam [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah apa pun untuk melihat flag dan parameternya.
+Setiap sumber daya API yang diekspos oleh CLI didokumentasikan dalam [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Untuk daftar lokal, jalankan `ant --help`, dan tambahkan `--help` ke subperintah mana pun untuk melihat flag dan parameternya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
-    Mengelola versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Kontrol versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Referensi API" icon="book" href="https://platform.claude.com/docs/id/api/cli/messages/create">

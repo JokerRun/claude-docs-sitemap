@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: b53de27905518cd8306521873e3c6f8272cebee46d0a3b9417083b662ce95694
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c7c020c7ee8130a50f95579a8a90d4679ad3e6bfea5522ce0c24dbbbd6df45b0
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-The [quickstart](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#quickstart) runs one `ant` CLI worker that polls continuously and runs every session in one process. This page covers the other ways to run a worker and how to choose between them.
+The [quickstart](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#quickstart) runs one `ant` CLI worker that polls continuously and runs every session in one process. This page covers the other ways to run a worker and how to choose among them.
 
 ## Choose a deployment pattern
 
@@ -164,11 +164,11 @@ Start a worker that polls the queue continuously. It authenticates with the [env
 
 <Steps>
   <Step title="Subscribe to session webhooks">
-    In the [Console](https://platform.claude.com/settings/workspaces/default/webhooks), define a webhook endpoint that listens for `session.status_run_started` events. See [Webhooks](https://platform.claude.com/docs/en/managed-agents/webhooks) for details.
+    In the [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks), define a webhook endpoint that listens for `session.status_run_started` events. See [Webhooks](https://platform.claude.com/docs/en/managed-agents/webhooks) for details.
   </Step>
 
   <Step title="Export the webhook signing key">
-    Along with the environment ID and key from the [quickstart](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#run-your-first-session), export the webhook signing key on your handler host. The handler uses it to verify incoming payloads.
+    Along with the environment ID and key from [Run your first session](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#run-your-first-session), export the webhook signing key on your handler host. The handler uses it to verify incoming payloads.
 
     ```bash
     export ANTHROPIC_WEBHOOK_SIGNING_KEY="whsec_..."
@@ -176,7 +176,7 @@ Start a worker that polls the queue continuously. It authenticates with the [env
   </Step>
 
   <Step title="Implement the webhook handler">
-    Invoke the worker when `session.status_run_started` fires. The handler drains the queue and hands each claimed work item to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), which downloads skills, executes tool calls, posts results back, and returns.
+    Start the worker when `session.status_run_started` fires. The handler drains the queue and hands each claimed work item to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), which downloads skills, runs tool calls, posts results back, and returns.
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
       <CodeGroupItem>
@@ -436,7 +436,7 @@ This handler runs every claimed item in one process on one host. If your session
 
 ## Run one sandbox per session
 
-A poller on the host claims work and calls your script once per work item. The script launches a sandbox for that one session.
+A poller on the host claims work and calls your script once for each work item. The script launches a sandbox for that one session.
 
 <Steps>
   <Step title="Build the sandbox image">
@@ -444,7 +444,7 @@ A poller on the host claims work and calls your script once per work item. The s
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=1.44.0
+    ARG ANT_VERSION=2.1.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -460,7 +460,7 @@ A poller on the host claims work and calls your script once per work item. The s
 
     ```bash
     #!/bin/bash
-    # spawn.sh: called once per claimed work item
+    # spawn.sh: called once for each claimed work item
     # The claimed work item arrives as JSON on stdin.
     ANTHROPIC_WORK_SECRET="$(jq -r '.secret // empty')"
     export ANTHROPIC_WORK_SECRET
@@ -500,7 +500,7 @@ Pass the secret only into the sandbox that serves that session, and never log it
 
 ### Launch sandboxes from the SDK poller
 
-To claim work from your own code instead of `ant beta:worker poll --on-work`, use `work.poller()` (go: `environments.NewWorkPoller()`). It polls the queue and gives you each claimed session, and you launch the sandbox:
+To claim work from your own code instead of `ant beta:worker poll --on-work`, use `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`). It polls the queue and gives you each claimed session, and you launch the sandbox:
 
 <CodeGroup exclude="shell, csharp, java, php, ruby">
   <CodeGroupItem language="cURL">
@@ -808,7 +808,7 @@ Anthropic doesn't mount files or GitHub repositories into self-hosted sandboxes.
 
 1. Pass file references, such as an S3 path or commit SHA, in the session's `metadata` field.
 2. In your spawn script or `--on-work` handler, retrieve the session (`GET /v1/sessions/{session_id}`) and read `metadata`. The claimed work item carries the session ID but not the metadata.
-3. Stage the files into the working directory before tool execution begins.
+3. Stage the files into the working directory before any tool runs.
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 8e9fb615d411bb4aea67c3b35d9d3e71173d68022b70aef7ee44b814dca446da
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 48c7c91a6a34cbf5a50ac61a08892b35dc0d9a30f66c1602779d25b303f4c815
 ---
 
 ---
@@ -166,7 +166,6 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
       [
           new BetaManagedAgentsFileResourceParams
           {
-              Type = "file",
               FileID = file.ID,
               MountPath = "/data.csv",
           },
@@ -200,7 +199,6 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
           .environmentId(environment.id())
           .addResource(
               BetaManagedAgentsFileResourceParams.builder()
-                  .type(BetaManagedAgentsFileResourceParams.Type.FILE)
                   .fileId(file.id())
                   .mountPath("/data.csv")
                   .build()
@@ -215,7 +213,6 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
       environmentID: $environment->id,
       resources: [
           BetaManagedAgentsFileResourceParams::with(
-              type: 'file',
               fileID: $file->id,
               mountPath: '/data.csv',
           ),
@@ -314,9 +311,9 @@ Mount beberapa file dengan menambahkan entri ke array `resources` (csharp, go: `
 
   var resources = new[]
   {
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/data.csv" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_def456", MountPath = "/config.json" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_ghi789", MountPath = "/src/main.py" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_abc123", MountPath = "/data.csv" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_def456", MountPath = "/config.json" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_ghi789", MountPath = "/src/main.py" },
   };
   ```
 
@@ -334,11 +331,11 @@ Mount beberapa file dengan menambahkan entri ke array `resources` (csharp, go: `
 
   var resources = List.of(
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/data.csv").build(),
+          .fileId("file_abc123").mountPath("/data.csv").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_def456").mountPath("/config.json").build(),
+          .fileId("file_def456").mountPath("/config.json").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_ghi789").mountPath("/src/main.py").build()
+          .fileId("file_ghi789").mountPath("/src/main.py").build()
   );
   ```
 
@@ -408,7 +405,6 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah dibuat menggunakan 
   ```csharp C#
   var resource = await client.Beta.Sessions.Resources.Add(session.ID, new()
   {
-      Type = "file",
       FileID = file.ID,
   });
   Console.WriteLine(resource.ID);  // "sesrsc_01ABC..."
@@ -433,7 +429,6 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah dibuat menggunakan 
       ResourceAddParams.builder()
           .betaManagedAgentsFileResourceParams(
               BetaManagedAgentsFileResourceParams.builder()
-                  .type(BetaManagedAgentsFileResourceParams.Type.FILE)
                   .fileId(file.id())
                   .build()
           )
@@ -445,7 +440,6 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah dibuat menggunakan 
   ```php PHP
   $resource = $client->beta->sessions->resources->add(
       $session->id,
-      type: 'file',
       fileID: $file->id,
   );
   echo "{$resource->id}\n";  // "sesrsc_01ABC..."
@@ -509,8 +503,7 @@ Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/
   var listed = await client.Beta.Sessions.Resources.List(session.ID);
   await foreach (var entry in listed.Paginate())
   {
-      var type = entry.Match<string>(repo => repo.Type, fileRes => fileRes.Type, memoryStore => memoryStore.Type);
-      Console.WriteLine($"{entry.ID} {type}");
+      Console.WriteLine($"{entry.ID} {entry.Type.Raw()}");
   }
 
   await client.Beta.Sessions.Resources.Delete(resource.ID, new() { SessionID = session.ID });
@@ -538,11 +531,11 @@ Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/
       switch (entry.type().value()) {
           case FILE -> {
               var fileResource = entry.asFile();
-              IO.println(fileResource.id() + " " + fileResource.type());
+              IO.println(fileResource.id() + " " + fileResource._type());
           }
           case GITHUB_REPOSITORY -> {
               var repoResource = entry.asGitHubRepository();
-              IO.println(repoResource.id() + " " + repoResource.type());
+              IO.println(repoResource.id() + " " + repoResource._type());
           }
       }
   }

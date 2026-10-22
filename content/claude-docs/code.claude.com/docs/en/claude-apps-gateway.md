@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4e21339c8da63a6ecc6ee14cbadec227cfd6501ef7d2e83b16763bca3a145e34
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6d980c13727d68fc4eaa726274fd1a693e93a03b5d9fc6075b1dbcd000c057a3
 ---
 
 > ## Documentation Index
@@ -521,7 +521,7 @@ The gateway delivers the [`anthropic-beta`](https://platform.claude.com/docs/en/
 | [`/design-sync`](/docs/en/commands#all-commands) and `/design-login` | Not available | Both need claude.ai, which the CLI doesn't contact on gateway sessions, so neither command appears there |
 | Features that need feature-flag fetching, such as `/import` and `claude import` | Not available | The CLI skips the flag fetch on gateway sessions. [Features that need feature-flag fetching](/docs/en/env-vars#features-that-need-feature-flag-fetching) lists what that turns off |
 | Standard prompt caching | Available | The gateway forwards `cache_control` breakpoints to every upstream. [Where the cache lives](/docs/en/prompt-caching#where-the-cache-lives) covers which blocks the CLI marks, including the system context it appends mid-conversation |
-| 1-hour cache TTL | Not available | The CLI omits the extended-cache-ttl beta on gateway sessions, because not every upstream the gateway can route to supports the 1-hour TTL, so prompt caching through the gateway uses the 5-minute TTL; see the beta-header note above |
+| 1-hour cache TTL | Available with opt-in | The CLI uses the 5-minute TTL on gateway sessions by default. To request the 1-hour TTL, set it [in a policy](/docs/en/claude-apps-gateway-config#one-hour-prompt-cache). Set it only if your upstreams offer the 1-hour TTL for every model the gateway serves, because the request fails if an upstream rejects the TTL |
 | Auto mode | Available | Follows the [third-party provider rules](/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry): only the models eligible on third-party providers can use it. Before v2.1.207, auto mode on gateway sessions required setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`, deliverable through the managed policy `env` block |
 | First-party-only optimizations such as global cache scope and token-efficient tools | Not available | The CLI doesn't enable them on gateway sessions; see the beta-header note above |
 | OTLP/gRPC | Not supported | OTLP over HTTP only |

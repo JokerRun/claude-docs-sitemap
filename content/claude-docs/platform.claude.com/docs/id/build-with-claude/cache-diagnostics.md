@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a7416d69f49a12c7ee25bee8db1d4191cedfe3ee64c974e9e2babe12fa46fce4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e65a524158a534ffac9502a9a9605ffc559fd1ef8c62920fd86f27ffa0557d4d
 ---
 
 ---
@@ -192,10 +192,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
           MaxTokens = 1024,
           CacheControl = new(),
           System = system,
-          Messages =
-          [
-              new() { Role = Role.User, Content = "Summarize section 1." },
-          ],
+          Messages = [new BetaUserMessageParam { Content = "Summarize section 1." }],
           Diagnostics = new() { PreviousMessageID = null },
       }
   );
@@ -209,13 +206,12 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
           System = system,
           Messages =
           [
-              new() { Role = Role.User, Content = "Summarize section 1." },
-              new()
+              new BetaUserMessageParam { Content = "Summarize section 1." },
+              new BetaAssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = r1.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
               },
-              new() { Role = Role.User, Content = "Now summarize section 2." },
+              new BetaUserMessageParam { Content = "Now summarize section 2." },
           ],
           Diagnostics = new() { PreviousMessageID = r1.ID },
       }
@@ -225,7 +221,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   {
       null => "No divergence detected.",
       { CacheMissReason: null } => "Comparison still pending.",
-      { CacheMissReason.Type: var type } => $"cache_miss_reason: {type.GetString()}",
+      { CacheMissReason.Type: var type } => $"cache_miss_reason: {type.Raw()}",
   });
   ```
 
@@ -522,13 +518,12 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
           System = system,
           Messages =
           [
-              new() { Role = Role.User, Content = "Summarize section 1." },
-              new()
+              new BetaUserMessageParam { Content = "Summarize section 1." },
+              new BetaAssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = r1.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
               },
-              new() { Role = Role.User, Content = "Now summarize section 2." },
+              new BetaUserMessageParam { Content = "Now summarize section 2." },
           ],
           Diagnostics = new() { PreviousMessageID = r1.ID },
       }
@@ -552,7 +547,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   {
       null => "No divergence detected.",
       { CacheMissReason: null } => "Comparison still pending.",
-      { CacheMissReason.Type: var type } => $"cache_miss_reason: {type.GetString()}",
+      { CacheMissReason.Type: var type } => $"cache_miss_reason: {type.Raw()}",
   });
   ```
 
@@ -800,7 +795,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
     for (int i = 0; i < prompts.Length; i++)
     {
-        messages.Add(new() { Role = Role.User, Content = prompts[i] });
+        messages.Add(new BetaUserMessageParam { Content = prompts[i] });
 
         var r = await client.Beta.Messages.Create(
             new()
@@ -816,13 +811,12 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
         if (r.Diagnostics?.CacheMissReason is { Type: var type })
         {
-            Console.WriteLine($"Turn {i + 1} cache_miss_reason: {type.GetString()}");
+            Console.WriteLine($"Turn {i + 1} cache_miss_reason: {type.Raw()}");
         }
 
         messages.Add(
-            new()
+            new BetaAssistantMessageParam
             {
-                Role = Role.Assistant,
                 Content = r.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
             }
         );
@@ -883,12 +877,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
     String prevId = null;
 
     for (var turn = 0; turn < prompts.size(); turn++) {
-        messages.add(
-            BetaMessageParam.builder()
-                .role(BetaMessageParam.Role.USER)
-                .content(prompts.get(turn))
-                .build()
-        );
+        messages.add(BetaMessageParam.ofUser(prompts.get(turn)));
 
         var r = client.beta().messages().create(
             MessageCreateParams.builder()

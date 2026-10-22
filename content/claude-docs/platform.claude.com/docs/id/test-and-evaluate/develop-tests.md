@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 932edeb5b8abf10b21797aebbe2ec1b560ab2e2f2c10a47ca14ef09dd3dfc594
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9492270c0293a7e7ce51a829ff854a85f2f1cee1127e4edd53e3cb58207cc5c4
 ---
 
 ---
@@ -245,7 +245,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           });
           return ContentText(message);
       }
@@ -671,7 +671,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 2048,
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           });
           foreach (var block in message.Content)
           {
@@ -1187,7 +1187,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           });
           return ContentText(message);
       }
@@ -1713,7 +1713,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 2048,
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           });
           return ContentText(message);
       }
@@ -1733,7 +1733,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = tonePrompt }],
+              Messages = [new UserMessageParam { Content = tonePrompt }],
           });
           return int.Parse(ContentText(response).Trim());
       }
@@ -2209,7 +2209,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           });
           return ContentText(message);
       }
@@ -2239,7 +2239,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = binaryPrompt }],
+              Messages = [new UserMessageParam { Content = binaryPrompt }],
           });
           return ContentText(response).Trim().ToLowerInvariant() == "no";
       }
@@ -2813,11 +2813,10 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [.. conversation.Select(turn => new MessageParam
-              {
-                  Role = turn.Role == "user" ? Role.User : Role.Assistant,
-                  Content = turn.Content,
-              })],
+              Messages = [.. conversation.Select<Turn, MessageParam>(turn =>
+                  turn.Role == "user"
+                      ? new UserMessageParam { Content = turn.Content }
+                      : new AssistantMessageParam { Content = turn.Content })],
           });
           return ContentText(message);
       }
@@ -2842,7 +2841,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = ordinalPrompt }],
+              Messages = [new UserMessageParam { Content = ordinalPrompt }],
           });
           return int.Parse(ContentText(response).Trim());
       }
@@ -3386,7 +3385,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 2048,
-            Messages = [new() { Role = Role.User, Content = BuildGraderPrompt(output, goldenAnswer) }],
+            Messages = [new UserMessageParam { Content = BuildGraderPrompt(output, goldenAnswer) }],
         });
         return ContentText(graderResponse).ToLowerInvariant().Contains("<result>correct</result>")
             ? "correct"
@@ -3408,7 +3407,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = prompt }],
+            Messages = [new UserMessageParam { Content = prompt }],
         });
         return ContentText(message);
     }

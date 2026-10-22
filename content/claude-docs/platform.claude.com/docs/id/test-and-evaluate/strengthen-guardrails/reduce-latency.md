@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 54cfa0c8902da10f5a26af29097951f6da623290660a033286158348472bba04
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9d536df1a47efc956e8a95959434a83bdd6b510d096e4e7843120fbfc75a8afc
 ---
 
 ---
@@ -109,9 +109,8 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan wakt
       MaxTokens = 1024,
       OutputConfig = new() { Effort = Effort.Low },
       Messages = [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Summarize this customer feedback in 2 sentences: [feedback text]"
           }
       ]
@@ -229,7 +228,6 @@ Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
      token, respons akan terpotong, mungkin di tengah kalimat atau di tengah kata, sehingga ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan dan biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
   </Note>
-* **Bereksperimen dengan temperature:** [Parameter](https://platform.claude.com/docs/id/api/messages/create) `temperature` mengontrol keacakan output. Nilai yang lebih rendah (misalnya, 0.2) terkadang dapat menghasilkan respons yang lebih terfokus dan lebih pendek, sementara nilai yang lebih tinggi (misalnya, 0.8) dapat menghasilkan output yang lebih beragam tetapi berpotensi lebih panjang. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview hanya menerima `temperature` default dan mengembalikan error 400 untuk nilai lainnya, jadi pada model-model tersebut turunkan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) sebagai gantinya.
 
 Menemukan keseimbangan yang tepat antara kejelasan prompt, kualitas output, dan jumlah token mungkin memerlukan beberapa eksperimen.
 

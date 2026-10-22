@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 81993bf3b7cbfc598da7e9f4e6d5d44285923b15eb7180e29e4be735d8f95485
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 91a68f1b1bf7d6b20a7e5269cbfd37359ca6a10a1e3ba5d7485b7dd0e13e22bb
 ---
 
 ---
@@ -155,6 +155,8 @@ archived service accounts.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

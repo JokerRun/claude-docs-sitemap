@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: db4455ceb9e24e760b72269fd755a5073bb065268126aef87b8d73cf867c88f8
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2631204fb8f982cd731a10ef7d2308fa567d7f0d531739a6418cecb0ef635dc1
 ---
 
 ---
@@ -48,7 +48,7 @@ Di terminal interaktif, `ant apply` mencetak rencana dan menunggu persetujuan An
 First apply  ./claude-lock.json does not exist yet and will be created
 
 Resources will be created with
-  credentials   API key (--api-key / ANTHROPIC_API_KEY)
+  credentials   API key (ANTHROPIC_API_KEY)
   host          api.anthropic.com
   organization  1b0c2a4d-6c1f-4f0e-9a57-2e8d1c3b4a5f
   workspace     wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ

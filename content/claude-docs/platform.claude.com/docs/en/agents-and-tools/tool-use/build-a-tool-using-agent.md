@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 296e83ed789b7c80da917e844e62c1fe825c1c5cde4341d314c9c8b315645b16
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 27c6be9c6fa18400ddd05913d9aee83459636cccdcc4b69bcacbf61ea6f9c17c
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-
 description: A guided walkthrough from a single tool call to a production-ready agentic loop.
 ---
 
-This tutorial builds a calendar-management agent in five concentric rings. Each ring is a complete, runnable program that adds exactly one concept to the ring before it. By the end you will have written the agentic loop by hand and then replaced it with the Tool Runner SDK abstraction.
+This tutorial builds a calendar-management agent in five concentric rings. Each ring is a complete, runnable program that adds exactly one concept to the ring before it. By the end you will have written the agentic loop by hand and then replaced it with the tool runner SDK abstraction.
 
 The example tool is `create_calendar_event`. Its schema uses nested objects, arrays, and optional fields, so you will see how Claude handles realistic input shapes rather than a single flat string.
 
@@ -311,7 +311,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
-      Messages = [new() { Role = Role.User, Content = userPrompt }],
+      Messages = [new UserMessageParam { Content = userPrompt }],
   });
 
   // When Claude calls a tool, the response has stop_reason "tool_use"
@@ -356,9 +356,9 @@ The request sends a `tools` array alongside the user message. When Claude determ
       ToolChoice = toolChoice,
       Messages =
       [
-          new() { Role = Role.User, Content = userPrompt },
-          new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-          new() { Role = Role.User, Content = new MessageParamContent(toolResults) },
+          new UserMessageParam { Content = userPrompt },
+          new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+          new UserMessageParam { Content = toolResults },
       ],
   });
 
@@ -595,7 +595,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
           .toolChoice(toolChoice)
           .addUserMessage(userPrompt)
           .addMessage(response)
-          .addUserMessageOfBlockParams(List.of(ContentBlockParam.ofToolResult(
+          .addUserMessageOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
               ToolResultBlockParam.builder()
                   .toolUseId(toolUse.id())
                   .content(result)
@@ -777,7 +777,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   # Send the user's request along with the tool definition. Claude decides
   # whether to call the tool based on the request and the tool description.
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -802,7 +802,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   # its tool_use_id must match the id from the tool_use block above. The
   # assistant's previous response is included so Claude has the full history.
   followup = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -847,7 +847,7 @@ The first `stop_reason` is `tool_use` because Claude is waiting for the calendar
 
 Ring 1 assumed Claude would call the tool exactly once. Real tasks often need several calls: Claude might create an event, read the confirmation, then create another. The fix is a `while` loop that keeps running tools and feeding results back until `stop_reason` is no longer `"tool_use"`.
 
-The other change is conversation history. Instead of rebuilding the `messages` array from scratch on each request, keep a running list and append to it. Every turn sees the complete prior context.
+The other change is conversation history. Instead of rebuilding the `messages` array on each request, keep a running list and append to it. Each request then includes the complete prior context.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
@@ -1107,9 +1107,8 @@ The other change is conversation history. Instead of rebuilding the `messages` a
   // Keep the full conversation history in a list so each turn sees prior context.
   List<MessageParam> messages =
   [
-      new()
+      new UserMessageParam
       {
-          Role = Role.User,
           Content = "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
       },
   ];
@@ -1138,15 +1137,13 @@ The other change is conversation history. Instead of rebuilding the `messages` a
       }
       var result = RunTool(toolUse!);
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new()
+      messages.Add(new UserMessageParam
       {
-          Role = Role.User,
-          Content = new MessageParamContent(
+          Content = new MessageContentParam(
           [
               new ContentBlockParam(new ToolResultBlockParam() { ToolUseID = toolUse!.ID, Content = result }),
           ]),
@@ -1355,10 +1352,8 @@ The other change is conversation history. Instead of rebuilding the `messages` a
 
       // Keep the full conversation history in a list so each turn sees prior context.
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.")
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -1379,14 +1374,11 @@ The other change is conversation history. Instead of rebuilding the `messages` a
           String result = runTool(toolUse);
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(List.of(ContentBlockParam.ofToolResult(
-                  ToolResultBlockParam.builder()
-                      .toolUseId(toolUse.id())
-                      .content(result)
-                      .build())))
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
+              ToolResultBlockParam.builder()
+                  .toolUseId(toolUse.id())
+                  .content(result)
+                  .build()))));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -1566,7 +1558,7 @@ The other change is conversation history. Instead of rebuilding the `messages` a
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -1592,7 +1584,7 @@ The other change is conversation history. Instead of rebuilding the `messages` a
     }
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       tool_choice: tool_choice,
@@ -1914,9 +1906,8 @@ When Claude has multiple independent tool calls to make, it might return several
 
   List<MessageParam> messages =
   [
-      new()
+      new UserMessageParam
       {
-          Role = Role.User,
           Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
       },
   ];
@@ -1946,12 +1937,11 @@ When Claude has multiple independent tool calls to make, it might return several
           }
       }
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new() { Role = Role.User, Content = new MessageParamContent(toolResults) });
+      messages.Add(new UserMessageParam { Content = toolResults });
 
       response = await client.Messages.Create(new MessageCreateParams
       {
@@ -2166,10 +2156,8 @@ When Claude has multiple independent tool calls to make, it might return several
           .build();
 
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -2196,10 +2184,7 @@ When Claude has multiple independent tool calls to make, it might return several
           }
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(toolResults)
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -2391,7 +2376,7 @@ When Claude has multiple independent tool calls to make, it might return several
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -2412,7 +2397,7 @@ When Claude has multiple independent tool calls to make, it might return several
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -2762,7 +2747,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
 
   List<MessageParam> messages =
   [
-      new() { Role = Role.User, Content = $"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: {emails}" },
+      new UserMessageParam { Content = $"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: {emails}" },
   ];
 
   var response = await client.Messages.Create(new MessageCreateParams
@@ -2799,12 +2784,11 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
           }
       }
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new() { Role = Role.User, Content = new MessageParamContent(toolResults) });
+      messages.Add(new UserMessageParam { Content = toolResults });
 
       response = await client.Messages.Create(new MessageCreateParams
       {
@@ -3044,10 +3028,8 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
           .collect(Collectors.joining(", "));
 
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + emails)
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + emails));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -3076,10 +3058,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
           }
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(toolResults)
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -3289,7 +3268,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -3318,7 +3297,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -3337,21 +3316,21 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
 I tried to schedule the all-hands but the calendar only allows 10 attendees per event. I can split this into two sessions, or you can let me know which 10 people to prioritize.
 ```
 
-The `is_error` flag is the only difference from a successful result. Claude sees the flag and the error text, and responds accordingly. See [Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) for the full error-handling reference.
+The `is_error` flag is the only difference from a successful result. Claude receives the flag and the error text, and responds accordingly. See [Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) for the full error-handling reference.
 
-## Ring 5: The Tool Runner SDK abstraction
+## Ring 5: The tool runner SDK abstraction
 
-Rings 2 through 4 wrote the same loop by hand: call the API, check `stop_reason`, run tools, append results, repeat. The Tool Runner does this for you. Define each tool as a function, pass the list to `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), and retrieve the final message once the loop completes. Error wrapping, result formatting, and conversation management are handled internally.
+Rings 2 through 4 wrote the same loop by hand: call the API, check `stop_reason`, run tools, append results, repeat. The tool runner does this for you. Define each tool as a function, pass the list to `client.beta.messages.tool_runner()` (typescript: `client.beta.messages.toolRunner()`; java: `client.beta().messages().toolRunner()`; php: `$client->beta->messages->toolRunner()`; csharp: `client.Beta.Messages.ToolRunner()`; go: `client.Beta.Messages.NewToolRunner()`), and retrieve the final message once the loop completes. Error wrapping, result formatting, and conversation management are handled internally.
 
-Each SDK provides a helper that turns an ordinary function into a runnable tool and derives the input schema from its signature; the following tabs show the idiomatic form for each language.
+The SDK provides a helper that turns an ordinary function into a runnable tool and derives the input schema from its signature; the following example shows the idiomatic form.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    The Tool Runner is a helper in the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). Raw HTTP requests have no equivalent.
+    The tool runner is a helper in the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). Raw HTTP requests have no equivalent.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    The Tool Runner is a helper in the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). The `ant` CLI has no equivalent.
+    The tool runner is a helper in the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). The `ant` CLI has no equivalent.
   </CodeGroupItem>
 
   ```python Python
@@ -3497,7 +3476,6 @@ Each SDK provides a helper that turns an ordinary function into a runnable tool 
   using Anthropic.Models.Beta.Messages;
   using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
   using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
-  using Role = Anthropic.Models.Beta.Messages.Role;
   using Model = Anthropic.Models.Messages.Model;
 
   AnthropicClient client = new();
@@ -3581,9 +3559,8 @@ Each SDK provides a helper that turns an ordinary function into a runnable tool 
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new BetaUserMessageParam
               {
-                  Role = Role.User,
                   Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
               },
           ],
@@ -3935,7 +3912,7 @@ Each SDK provides a helper that turns an ordinary function into a runnable tool 
   # The runner calls the API, runs requested tools, and feeds results back
   # until Claude produces a final answer.
   runner = client.beta.messages.tool_runner(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [CreateCalendarEvent.new, ListCalendarEvents.new],
     messages: [
@@ -3961,11 +3938,11 @@ Each SDK provides a helper that turns an ordinary function into a runnable tool 
 I checked your calendar for Monday, March 30 and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-The output is identical to Ring 3. The difference is in the code: roughly half the lines, no manual loop, and the schema lives next to the implementation.
+The output is identical to Ring 3. The difference is in the code: roughly half the lines, no manual loop, and a schema that lives next to the implementation.
 
 ## What you built
 
-You started with a single hardcoded tool call and ended with a production-shaped agent that handles multiple tools, parallel calls, and errors, then collapsed all of that into the Tool Runner. Along the way you saw every piece of the tool-use protocol: `tool_use` blocks, `tool_result` blocks, `tool_use_id` matching, `stop_reason` checking, and `is_error` signaling.
+You started with a single hardcoded tool call and ended with a production-shaped agent that handles multiple tools, parallel calls, and errors, then collapsed all of that into the tool runner. Along the way you saw every piece of the tool-use protocol: `tool_use` blocks, `tool_result` blocks, `tool_use_id` matching, `stop_reason` checking, and `is_error` signaling.
 
 ## Next steps
 
@@ -3974,7 +3951,7 @@ You started with a single hardcoded tool call and ended with a production-shaped
     Schema specification and best practices.
   </Card>
 
-  <Card href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner" title="Tool Runner">
+  <Card href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner" title="Tool runner">
     The full SDK abstraction reference.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: cef66c17fb17e0efe9dcc05752c24be6382056304a4d7bcf1092472f31e3bf6c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 5de19bd5ba80765f5cc8372d0a5ae833ba0a604d04ddb32c06b0637c13d51878
 ---
 
 ---
@@ -144,6 +144,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Body parameters
 

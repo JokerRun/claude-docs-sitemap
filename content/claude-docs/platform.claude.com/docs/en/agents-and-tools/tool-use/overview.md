@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: d2dd7b4d6d51c60d6bfc9f58d36a6180f6ebdd8f5388aabf1d017f141a909e0d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7c45cf69e78c4ee3c69523fbb122e6b15825969b93fce7c06d1605220fb80d06
 ---
 
 ---
 title: Tool use with Claude
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-description: Connect Claude to external tools and APIs. See where tools execute, when Claude calls them, and which tool fits your task.
+description: Connect Claude to external tools and APIs. See where tools run, when Claude calls them, and which tool fits your task.
 ---
 
-Tool use (also called function calling) lets Claude call functions that you define or that Anthropic provides. Claude determines when to call a tool based on the user's request and the tool's description. It then returns a structured call that your application executes (client tools) or that Anthropic executes (server tools).
+Tool use (also called function calling) lets Claude call functions that you define or that Anthropic provides. Claude determines when to call a tool based on the user's request and the tool's description. It then returns a structured call that your application runs (client tools) or that Anthropic runs (server tools).
 
-Here's a minimal example using a server tool, the [Web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool), which Anthropic executes for you:
+Here's a minimal example using a server tool, the [Web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool), which Anthropic runs for you:
 
 <CodeGroup>
   ```bash cURL
@@ -67,7 +67,7 @@ Here's a minimal example using a server tool, the [Web search tool](https://plat
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20260209())],
-      Messages = [new() { Role = Role.User, Content = "What's the latest on the Mars rover?" }]
+      Messages = [new UserMessageParam { Content = "What's the latest on the Mars rover?" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -132,7 +132,7 @@ Here's a minimal example using a server tool, the [Web search tool](https://plat
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -141,11 +141,11 @@ Here's a minimal example using a server tool, the [Web search tool](https://plat
   ```
 </CodeGroup>
 
-Claude runs the search on Anthropic's infrastructure and returns the cited results in the same response. To have Claude call a function that you define, pass a tool with an `input_schema`, then execute the call when Claude returns a `tool_use` block. [How tool use works](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview#how-tool-use-works) shows that round trip end to end. Learn more about [defining tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools) and [handling tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls).
+Claude runs the search on Anthropic's infrastructure and returns the cited results in the same response. To have Claude call a function that you define, pass a tool with an `input_schema`, then run the call when Claude returns a `tool_use` block. The [client tool example](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview#how-tool-use-works) shows that round trip end to end. Learn more about [defining tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools) and [handling tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls).
 
 ## How tool use works
 
-Tools differ primarily by where the code executes. **Client tools** (including user-defined tools and tools with Anthropic-defined schemas, such as `bash` and `text_editor`) run in your application. Claude responds with `stop_reason: "tool_use"` and one or more `tool_use` blocks. Your code executes the operation and sends back a `tool_result`. **Server tools** (such as `web_search`, `web_fetch`, `code_execution`, and `tool_search`) run on Anthropic's infrastructure: you see the results directly without handling execution, unless Claude calls the tool in the same group of parallel tool calls as one of your client tools (see [Stop reasons and fallback](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons#tool-use)).
+Tools differ primarily by where the code runs. **Client tools** (including user-defined tools and tools with Anthropic-defined schemas, such as `bash` and `text_editor`) run in your application. Claude responds with `stop_reason: "tool_use"` and one or more `tool_use` blocks. Your code runs the operation and sends back a `tool_result`. **Server tools** (such as `web_search`, `web_fetch`, `code_execution`, and `tool_search`) run on Anthropic's infrastructure: you see the results directly without handling execution, unless Claude calls the tool in the same group of parallel tool calls as one of your client tools (see [Stop reasons and fallback](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons#tool-use)).
 
 Here's that round trip in full for a client tool. The first request defines a `get_weather` tool, and Claude answers the question by calling it: the response carries a `tool_use` block, your code runs the lookup, and a second request sends the result back in a `tool_result` block so Claude can reply with the answer.
 
@@ -305,7 +305,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
-      Messages = [new() { Role = Role.User, Content = userPrompt }],
+      Messages = [new UserMessageParam { Content = userPrompt }],
   });
   ToolUseBlock? toolUse = null;
   foreach (var block in response.Content)
@@ -336,9 +336,9 @@ Here's that round trip in full for a client tool. The first request defines a `g
       ToolChoice = toolChoice,
       Messages =
       [
-          new() { Role = Role.User, Content = userPrompt },
-          new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-          new() { Role = Role.User, Content = new MessageParamContent(toolResults) },
+          new UserMessageParam { Content = userPrompt },
+          new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+          new UserMessageParam { Content = toolResults },
       ],
   });
 
@@ -486,7 +486,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
           .toolChoice(toolChoice)
           .addUserMessage(userPrompt)
           .addMessage(response)
-          .addUserMessageOfBlockParams(List.of(ContentBlockParam.ofToolResult(
+          .addUserMessageOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
               ToolResultBlockParam.builder()
                   .toolUseId(toolUse.id())
                   .content(weather)
@@ -594,7 +594,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
 
   # Claude replies with a tool_use block naming the tool and its arguments.
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     # Ask for at most one tool call per turn.
@@ -616,7 +616,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
     }
   ]
   followup = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -634,7 +634,7 @@ Claude called get_weather with {"location": "San Francisco, CA"}
 The current weather in San Francisco is 15 degrees Celsius with partly cloudy skies.
 ```
 
-[Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) covers each step in detail, including result formatting and error signaling; [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) covers responses that call several tools at once. To skip writing this round trip yourself, use [Tool Runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner): the SDK executes your tools and sends the results back automatically.
+[Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) covers each step in detail, including result formatting and error signaling; [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) covers responses that call several tools at once. To skip writing this round trip yourself, use the [tool runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner): the SDK runs your tools and sends the results back automatically.
 
 For the full conceptual model including the agentic loop and when to choose each approach, see [How tool use works](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works).
 
@@ -661,7 +661,7 @@ Each server tool's page describes its own trigger boundary in more detail.
 
   For example, given a `get_weather` tool that requires a `location` parameter, if you ask Claude "What's the weather?" without specifying a location, Claude (particularly Claude Sonnet) might guess values you didn't supply:
 
-  ```json JSON
+  ```text JSON wrap
   {
     "type": "tool_use",
     "id": "toolu_01A09q90qw90lq917835lq9",
@@ -679,7 +679,7 @@ For `type` strings, versions, and beta headers, see [Tool reference](https://pla
 
 ### Your own tools
 
-For tools you define, you write the schema and your application executes each call.
+For tools you define, you write the schema and your application runs each call.
 
 <CardGroup cols={2}>
   <Card title="Define tools" icon="hammer" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools">
@@ -693,7 +693,7 @@ For tools you define, you write the schema and your application executes each ca
 
 ### Anthropic-schema client tools
 
-Anthropic publishes the schema and trains Claude on it. Your application still executes each call and returns the `tool_result`.
+Anthropic publishes the schema and trains Claude on it. Your application still runs each call and returns the `tool_result`.
 
 <CardGroup cols={2}>
   <Card title="Memory tool" icon="brain" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool">
@@ -727,11 +727,11 @@ Server tools run on Anthropic's infrastructure, with no handler code in your app
   </Card>
 
   <Card title="Web fetch tool" icon="download" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool">
-    Retrieve the full content of specified web pages and PDF documents.
+    Retrieve the full content of specified webpages and PDF documents.
   </Card>
 
   <Card title="Code execution tool" icon="code" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool">
-    Run Python and bash code in a sandboxed container to analyze data and generate files.
+    Run Python and Bash code in a sandboxed container to analyze data and generate files.
   </Card>
 
   <Card title="Advisor tool" icon="lightbulb" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool">
@@ -798,13 +798,13 @@ See the [Models overview](https://platform.claude.com/docs/en/models/overview#la
 
 When you send a tool use prompt, like any other API request, the response includes both input and output token counts in the reported `usage` metrics.
 
-Some server tools add usage-based charges on top of tokens: see [Web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#usage-and-pricing) and [Code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) for their rates.
+Some server tools add usage-based charges on top of tokens: see [Web search tool usage and pricing](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#usage-and-pricing) and [Code execution tool usage and pricing](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) for their rates.
 
 ## Next steps
 
 <CardGroup cols={3}>
   <Card href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works" title="How tool use works" icon="compass">
-    Understand the tool use loop, where tools execute, and when to use tools instead of prose.
+    Understand the tool use loop, where tools run, and when to use tools instead of prose.
   </Card>
 
   <Card href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Build a tool-using agent" icon="graduation-cap">

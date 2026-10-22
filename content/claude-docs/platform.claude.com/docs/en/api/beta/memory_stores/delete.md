@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 8375f00419bffc0089daaefd322aaccedb8fd0c5f9303d6484523cb78b14a59a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4d95d168b3ab128553fb5cc9475098bfd626761aed375a6fd87d175ba18c120d
 ---
 
 ---
@@ -139,6 +139,8 @@ Delete a Memory Store
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

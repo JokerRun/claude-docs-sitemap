@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3b626e96a7750a1f4ff9022c9a2e3a5e4dbac526422d3326c2dda038f71e6e39
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b182f9607403c41ef3e4832c330773a15c0973d73fa1ecb400de744827701fd5
 ---
 
 ---
@@ -139,6 +139,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 82d82aa613e536ed00b1a7f634845537af8741fc6d9063f23654365ed5e51e27
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 407283da7075395c43f114611a67e7e0ef72401f296f82dda1bbd90a3bb399e7
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication
 description: Authenticate the ant CLI with interactive login, API keys, named profiles, and Workload Identity Federation.
 ---
 
-The `ant` CLI supports several credential sources. The [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart#authentication) covers the one-command happy path (`ant auth login`). This page covers every option in full.
+The `ant` CLI supports several credential sources. The [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart#authentication) covers the one-command login (`ant auth login`). This page covers every option in full.
 
 ## Interactive login
 
@@ -78,9 +78,9 @@ The CLI also reads your API key from the `ANTHROPIC_API_KEY` environment variabl
   </Tab>
 </Tabs>
 
-To override the key for a single invocation, pass [`--api-key-stdin`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#global-flags) and pipe the key to the command. To point at a different API host, set `ANTHROPIC_BASE_URL` or pass `--base-url`.
+To override the key for a single run, pass [`--api-key-stdin`](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#global-flags) and pipe the key to the command. To point at a different API host, set `ANTHROPIC_BASE_URL` or pass `--base-url`.
 
-If you are using an API key scoped to multiple workspaces, such as a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types), you must [specify the workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) to run your command in. Do this by setting an `ANTHROPIC_WORKSPACE_ID` environment variable, which the CLI reads automatically, or by using the [`--workspace-id` flag](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#global-flags). The value must be a `wrkspc_...` ID.
+If you are using a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) that isn't scoped to a workspace, you must [specify the workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) to run your command in. Do this by setting an `ANTHROPIC_WORKSPACE_ID` environment variable, which the CLI reads automatically, or by using the [`--workspace-id` flag](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#global-flags). The value must be a `wrkspc_...` ID.
 
 ```bash CLI
 ant messages create \
@@ -159,7 +159,7 @@ For the profile file schema and the federation block, see [Profile configuration
   </Card>
 
   <Card title="CLI scripting and automation" icon="code" href="https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting">
-    Version-control API resources, scripting patterns, and use from Claude Code
+    Version control for API resources, scripting patterns, and use from Claude Code
   </Card>
 
   <Card title="Workload Identity Federation" icon="cloud" href="https://platform.claude.com/docs/en/manage-claude/workload-identity-federation">

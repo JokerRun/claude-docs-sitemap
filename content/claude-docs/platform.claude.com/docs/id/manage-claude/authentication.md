@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 917e3eed38aedc14ad6d6a833138b6e5436735a864acf0e3bffd323ff5668b55
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ee59e0a409e6fb978cc5ee2f33629f07c28851707392d6a1b0a9a5680fe35259
 ---
 
 ---
@@ -211,7 +211,7 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   };
 
   // Diperlukan pada setiap permintaan untuk kunci multi-workspace.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5f7bbb108839da421f4cf25c6f5dd63dffacbd887dc9f8be01490d45353f8152
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 549762f9a8408ad285f85e07f36e3124c9813ebad436277d892441f2078caba6
 ---
 
 ---
@@ -183,9 +183,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [
-          new() { Role = Role.User, Content = "Search for recent developments in AI" }
-      ],
+      Messages = [new BetaUserMessageParam { Content = "Search for recent developments in AI" }],
       Tools = [
           new BetaWebSearchTool20250305()
       ],
@@ -488,7 +486,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
-          new() { Role = Role.User, Content = "Create a simple command line calculator app using Python" }
+          new BetaUserMessageParam { Content = "Create a simple command line calculator app using Python" }
       ],
       Tools = [
           new BetaToolTextEditor20250728 { MaxCharacters = 10000 },
@@ -799,9 +797,7 @@ Gunakan pembersihan blok thinking untuk mengelola konteks dan caching prompt dal
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
-      Messages = [
-          new() { Role = Role.User, Content = "Hello" }
-      ],
+      Messages = [new BetaUserMessageParam { Content = "Hello" }],
       Betas = [AnthropicBeta.ContextManagement2025_06_27],
       ContextManagement = new BetaContextManagementConfig
       {
@@ -1030,9 +1026,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
-      Messages = [
-          new() { Role = Role.User, Content = "Hello" }
-      ],
+      Messages = [new BetaUserMessageParam { Content = "Hello" }],
       Betas = [AnthropicBeta.ContextManagement2025_06_27],
       ContextManagement = new BetaContextManagementConfig
       {
@@ -1236,9 +1230,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
-      Messages = [
-          new() { Role = Role.User, Content = "Hello" }
-      ],
+      Messages = [new BetaUserMessageParam { Content = "Hello" }],
       Betas = [AnthropicBeta.ContextManagement2025_06_27],
       ContextManagement = new BetaContextManagementConfig
       {
@@ -1526,7 +1518,7 @@ Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat seca
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Messages = [
-          new() { Role = Role.User, Content = "Search for the latest developments in quantum error correction and summarize the key breakthroughs." }
+          new BetaUserMessageParam { Content = "Search for the latest developments in quantum error correction and summarize the key breakthroughs." }
       ],
       Tools = [
           new BetaWebSearchTool20250305 { MaxUses = 5 }
@@ -1928,7 +1920,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   var parameters = new MessageCountTokensParams
   {
       Model = Messages::Model.ClaudeOpus5_5,
-      Messages = [new() { Role = Role.User, Content = "Continue our conversation..." }],
+      Messages = [new BetaUserMessageParam { Content = "Continue our conversation..." }],
       Betas = [AnthropicBeta.ContextManagement2025_06_27],
       ContextManagement = new BetaContextManagementConfig
       {
@@ -2199,9 +2191,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [
-          new() { Role = Role.User, Content = "Hello" }
-      ],
+      Messages = [new BetaUserMessageParam { Content = "Hello" }],
       Tools = [
           new BetaMemoryTool20250818()
       ],

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 35676e97a8ed5e7501139edd44419fddabb2dc361c20af7fa939b6d4eae1642d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0064d00b485fe4f9517b9d8e2810112532baf4995d1648fe7a30310deb497058
 ---
 
 ---
@@ -148,6 +148,8 @@ rejected.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -387,6 +389,8 @@ page to recover.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -596,6 +600,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 

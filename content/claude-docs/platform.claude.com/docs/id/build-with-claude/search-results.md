@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: f4bc856c518a6433d3bd22c3a64c89eb1d1a2b9d8a1b036806bc951732025ada
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 62810f99c292fdb74566a044cd8c879a3864dea42547a87df952dd3dbfc77343
 ---
 
 ---
@@ -144,8 +144,8 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
 
 
   # Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
-  messages = [
-      MessageParam(role="user", content="How do I configure the timeout settings?")
+  messages: list[MessageParam] = [
+      {"role": "user", "content": "How do I configure the timeout settings?"}
   ]
 
   # Buat pesan dengan alat tersebut
@@ -164,18 +164,18 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
       tool_result = search_knowledge_base(tool_use.input["query"])
 
       # Tambahkan giliran Claude, lalu hasil alat, ke percakapan yang sedang berjalan
-      messages.append(MessageParam(role="assistant", content=response.content))
+      messages.append({"role": "assistant", "content": response.content})
       messages.append(
-          MessageParam(
-              role="user",
-              content=[
+          {
+              "role": "user",
+              "content": [
                   ToolResultBlockParam(
                       type="tool_result",
                       tool_use_id=tool_use.id,
                       content=tool_result,  # Search results go here
                   )
               ],
-          )
+          }
       )
 
       # Kirim kembali hasil alat
@@ -327,7 +327,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
   }
 
   // Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
-  List<MessageParam> messages = [new() { Role = Role.User, Content = "How do I configure the timeout settings?" }];
+  List<MessageParam> messages = [new UserMessageParam { Content = "How do I configure the timeout settings?" }];
 
   // Buat pesan dengan alat tersebut
   var response = await client.Messages.Create(new()
@@ -349,11 +349,10 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
           var toolResults = SearchKnowledgeBase(query);
 
           // Tambahkan giliran Claude, lalu hasil alat, ke percakapan yang sedang berjalan
-          messages.Add(new() { Role = Role.Assistant, Content = response.Content.Select(contentBlock => new ContentBlockParam(contentBlock.Json)).ToList() });
-          messages.Add(new()
+          messages.Add(new AssistantMessageParam { Content = response.Content.Select(contentBlock => new ContentBlockParam(contentBlock.Json)).ToList() });
+          messages.Add(new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(
+              Content = new MessageContentParam(
                   [new ContentBlockParam(new ToolResultBlockParam() { ToolUseID = toolUse.ID, Content = new ToolResultBlockParamContent(toolResults) })]
               ),
           });
@@ -501,10 +500,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
 
       // Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("How do I configure the timeout settings?")
-          .build());
+      messages.add(MessageParam.ofUser("How do I configure the timeout settings?"));
 
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5)
@@ -533,25 +529,15 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan aplikasi RAG ya
               // Membangun ulang hanya blok tool_use akan menghilangkan blok konten lain yang Claude
               // kembalikan (mis. teks awal saat pemanggilan alat tidak dipaksa) — tambahkan
               // giliran lengkapnya, seperti yang dilakukan tab bahasa lainnya.
-              messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.ASSISTANT)
-                  .contentOfBlockParams(
-                      response.content().stream()
-                          .map(block -> block.toParam())
-                          .toList()
+              messages.add(response.toParam());
+              messages.add(MessageParam.ofUserOfContentBlockParams(List.of(
+                  ContentBlockParam.ofToolResult(
+                      ToolResultBlockParam.builder()
+                          .toolUseId(toolUse.id())
+                          .contentOfBlocks(toolResult)
+                          .build()
                   )
-                  .build());
-              messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.USER)
-                  .contentOfBlockParams(List.of(
-                      ContentBlockParam.ofToolResult(
-                          ToolResultBlockParam.builder()
-                              .toolUseId(toolUse.id())
-                              .contentOfBlocks(toolResult)
-                              .build()
-                      )
-                  ))
-                  .build());
+              )));
 
               // Kirim kembali hasil alat
               MessageCreateParams finalParams = MessageCreateParams.builder()
@@ -877,7 +863,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
   ```
 
   ```python Python
-  from anthropic.types import MessageParam, TextBlockParam, SearchResultBlockParam
+  from anthropic.types import TextBlockParam, SearchResultBlockParam
 
   client = Anthropic()
 
@@ -886,9 +872,9 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
       model="claude-opus-5-5",
       max_tokens=1024,
       messages=[
-          MessageParam(
-              role="user",
-              content=[
+          {
+              "role": "user",
+              "content": [
                   SearchResultBlockParam(
                       type="search_result",
                       source="https://docs.company.com/api-reference",
@@ -918,7 +904,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
                       text="Based on these search results, how do I authenticate API requests and what are the rate limits?",
                   ),
               ],
-          )
+          }
       ],
   )
 
@@ -982,10 +968,9 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(
+              Content = new MessageContentParam(
               [
                   new ContentBlockParam(new SearchResultBlockParam
                   {
@@ -1058,7 +1043,7 @@ Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini b
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofSearchResult(
                   SearchResultBlockParam.builder()
                       .source("https://docs.company.com/api-reference")
@@ -1446,7 +1431,6 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
 
   ```python Python
   from anthropic.types import (
-      MessageParam,
       SearchResultBlockParam,
       TextBlockParam,
       ToolResultBlockParam,
@@ -1472,9 +1456,9 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
       max_tokens=1024,
       tools=[knowledge_base_tool],
       messages=[
-          MessageParam(
-              role="user",
-              content=[
+          {
+              "role": "user",
+              "content": [
                   SearchResultBlockParam(
                       type="search_result",
                       source="https://docs.company.com/overview",
@@ -1492,10 +1476,10 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                       text="What does Acme Dashboard do, and what plans is it available on?",
                   ),
               ],
-          ),
-          MessageParam(
-              role="assistant",
-              content=[
+          },
+          {
+              "role": "assistant",
+              "content": [
                   TextBlockParam(
                       type="text", text="Let me check the pricing information."
                   ),
@@ -1506,10 +1490,10 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                       input={"query": "Acme Dashboard pricing plans"},
                   ),
               ],
-          ),
-          MessageParam(
-              role="user",
-              content=[
+          },
+          {
+              "role": "user",
+              "content": [
                   ToolResultBlockParam(
                       type="tool_result",
                       tool_use_id="toolu_01A09q90qw90lq917835lq9",
@@ -1529,7 +1513,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                       ],
                   )
               ],
-          ),
+          },
       ],
   )
 
@@ -1647,10 +1631,9 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
       ],
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(
+              Content = new MessageContentParam(
               [
                   new ContentBlockParam(new SearchResultBlockParam
                   {
@@ -1662,10 +1645,9 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                   new ContentBlockParam(new TextBlockParam { Text = "What does Acme Dashboard do, and what plans is it available on?" }),
               ]),
           },
-          new()
+          new AssistantMessageParam
           {
-              Role = Role.Assistant,
-              Content = new MessageParamContent(
+              Content = new MessageContentParam(
               [
                   new ContentBlockParam(new TextBlockParam { Text = "Let me check the pricing information." }),
                   new ContentBlockParam(new ToolUseBlockParam
@@ -1679,10 +1661,9 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                   }),
               ]),
           },
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(
+              Content = new MessageContentParam(
               [
                   new ContentBlockParam(new ToolResultBlockParam()
                   {
@@ -1803,7 +1784,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addTool(knowledgeBaseTool)
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofSearchResult(SearchResultBlockParam.builder()
                   .source("https://docs.company.com/overview")
                   .title("Product Overview")
@@ -1816,7 +1797,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                   .text("What does Acme Dashboard do, and what plans is it available on?")
                   .build())
           ))
-          .addAssistantMessageOfBlockParams(List.of(
+          .addAssistantMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Let me check the pricing information.")
                   .build()),
@@ -1826,7 +1807,7 @@ Contoh berikut memutar ulang sebuah percakapan lengkap. Pesan pengguna pertama m
                   .input(JsonValue.from(Map.of("query", "Acme Dashboard pricing plans")))
                   .build())
           ))
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofToolResult(ToolResultBlockParam.builder()
                   .toolUseId("toolu_01A09q90qw90lq917835lq9")
                   .contentOfBlocks(List.of(

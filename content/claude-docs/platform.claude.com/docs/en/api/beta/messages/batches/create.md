@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 38d141bc1467b3945a0582b750469e7d77a54e5891d0961a8c77cae3f90b208d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f03836461d1f4ab001fc2fcd067abeb671e8f130b8518213d8b39caec693274a
 ---
 
 ---
@@ -135,6 +135,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -3801,7 +3803,21 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `max_tokens: optional number or null`
 
+          The `max_tokens` for the fallback attempt that uses this `fallbacks` entry's `model`, in place of the request's `max_tokens`. If you leave it out or set it to `null`, the attempt uses the request's `max_tokens`.
+
+          See the [refusals and fallback guide](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback?sdk_languages=http#naming-your-own-fallback-models) to learn more about fallback entries.
+
         - `output_config: optional BetaOutputConfig or null`
+
+          Output parameters for the fallback attempt that uses this `fallbacks` entry's `model`, combined with the request's `output_config` one field at a time.
+
+          - `format`: If you leave it out, the attempt uses the request's `format`. If you set it to `null`, the attempt runs without a format.
+          - `effort`: If you leave it out, the attempt uses the request's `effort` when `model` supports that level with the attempt's `thinking`. If the request doesn't set `effort`, if `model` doesn't support the level, or if you set `effort` to `null`, the attempt runs at the default effort of `model`.
+          - `task_budget`: If you leave it out, the attempt uses the request's `task_budget` when `model` accepts a task budget of that size. If the request doesn't set `task_budget`, if `model` doesn't accept it, or if you set `task_budget` to `null`, the attempt runs without a task budget.
+
+          Set `output_config` to `null` to run the attempt without a format or a task budget, at the default effort of `model`.
+
+          These rules apply with the `server-side-fallback-2026-07-01` beta header.
 
           - `effort: optional "low" or "medium" or "high" or 2 more or null`
 
@@ -3851,13 +3867,23 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
         - `speed: optional "standard" or "fast" or null`
 
-          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+          The inference speed mode for the fallback attempt that uses this `fallbacks` entry's `model`. If you leave it out, the attempt runs at `fast` speed only when the request sets `speed` to `fast` and your organization can use fast mode on `model`.
+
+          Otherwise, or when you set this field to `null`, the attempt runs at `standard` speed.
+
+          These rules apply with the `server-side-fallback-2026-07-01` beta header.
 
           - `"standard"`
 
           - `"fast"`
 
         - `thinking: optional BetaThinkingConfigEnabled or BetaThinkingConfigDisabled or BetaThinkingConfigBetweenTools or BetaThinkingConfigAdaptive or null`
+
+          The thinking configuration for the fallback attempt that uses this `fallbacks` entry's `model`. If you leave it out, the attempt uses the request's `thinking` when `model` supports that thinking `type`.
+
+          If you leave it out and the request's thinking `type` is `between_tools` but `model` doesn't support `between_tools`, the attempt uses `disabled` if `model` supports it. Otherwise, if `model` doesn't support the request's thinking `type`, if the request doesn't set `thinking`, or if you set this field to `null`, the attempt uses the thinking `type` that `model` uses when a request leaves out `thinking`. The request's `thinking.display` still applies where `model` allows it.
+
+          These rules apply with the `server-side-fallback-2026-07-01` beta header.
 
           - `BetaThinkingConfigEnabled object`
 

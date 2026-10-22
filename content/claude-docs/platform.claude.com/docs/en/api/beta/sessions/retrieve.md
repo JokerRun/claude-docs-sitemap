@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: efd60f301e261b8fd8571e756b35229c7a068fd579ba39d3c929238915029a99
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 837dd3013a0d21873cb6658ce115e204afb9e3fb0a24a850bb488ccdf99521dc
 ---
 
 ---
@@ -135,6 +135,8 @@ Get Session
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

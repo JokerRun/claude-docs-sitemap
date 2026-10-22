@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 6bcc5dad94c660093370f810b2262694e60aa017b1426e43a06f5609aef804c9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 117024bdc7d66a75a9319c8bdb98ab51b7edde17822e1f94dc759375ad029ae5
 ---
 
 ---
@@ -137,6 +137,8 @@ Add Session Resource
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -349,6 +351,8 @@ List Session Resources
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -635,6 +639,8 @@ Get Session Resource
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -898,6 +904,8 @@ Update Session Resource
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1174,6 +1182,8 @@ Delete Session Resource
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 01f7c83b029f54a87aafa79fb2631d04b9d5d1654664b4eb7541970dc75eefaf
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7b2de3be3dfb279fe6ee1b2c0bc1cb2666370f124a0cc34f0f67bd379256d6d8
 ---
 
 ---
@@ -27,7 +27,7 @@ A `self_hosted` environment acts as a work queue. You run an **environment worke
 2. Your worker claims the work item and downloads the agent's [skills](https://platform.claude.com/docs/en/managed-agents/skills) and the session's [memory stores](https://platform.claude.com/docs/en/managed-agents/memory).
 3. Claude runs on Anthropic's side and requests tool calls. Your worker runs each call locally and posts the result back.
 
-Tool inputs and outputs still flow to Anthropic's control plane, so the model can see results and determine what to do next. Anthropic stores skills and memory stores. Your sandbox holds a copy for the session. See [Security model](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security) for the full data-flow boundary.
+Tool inputs and outputs still flow to Anthropic's control plane, so the model can receive results and determine what to do next. Anthropic stores skills and memory stores. Your sandbox holds a copy for the session. See [Security model](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security) for the full data-flow boundary.
 
 Self-hosted sandboxes support every Claude model available in Managed Agents. The model is configured on the agent, not the environment.
 
@@ -191,7 +191,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=1.44.0
+        VERSION=2.1.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -320,7 +320,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
           "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'"
         }'
 
-      # Send it a task: SESSION_ID is the id from the create response
+      # Send it a task: SESSION_ID is the ID from the create response
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -347,7 +347,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         --agent "$AGENT_ID" \
         --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
 
-      # Send it a task: SESSION_ID is the id from the create response
+      # Send it a task: SESSION_ID is the ID from the create response
       ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
       events:
         - type: user.message
@@ -413,12 +413,10 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
           [
               new BetaManagedAgentsUserMessageEventParams
               {
-                  Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
                   Content =
                   [
                       new BetaManagedAgentsTextBlock
                       {
-                          Type = BetaManagedAgentsTextBlockType.Text,
                           Text = "Write the output of \"uname -a\" to hello.txt in your working directory.",
                       },
                   ],
@@ -464,7 +462,6 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Write the output of \"uname -a\" to hello.txt in your working directory.")
                   .build())
               .build());
@@ -515,7 +512,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
     cat /workspace/hello.txt
     ```
 
-    The file describes your own host's kernel, so the agent's tool calls ran there. To follow the agent's work as it happens, see [Session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming).
+    The file describes your own host's kernel, so the agent's tool calls ran there. To follow the agent's work in real time, see [Session event stream](https://platform.claude.com/docs/en/managed-agents/events-and-streaming).
   </Step>
 </Steps>
 
@@ -531,7 +528,7 @@ Environment env_... is a self-hosted environment. `resources` are not supported 
 
 ## Self-hosted sandboxes and MCP tunnels
 
-Self-hosting controls *where the agent's code executes*. [MCP tunnels](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview) control *how Anthropic reaches MCP servers in your network*. The two are independent:
+Self-hosting controls *where the agent's code runs*. [MCP tunnels](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview) control *how Anthropic reaches MCP servers in your network*. The two are independent:
 
 * A session in Anthropic's cloud sandboxes can reach private MCP servers through a tunnel. For example, a private MCP server might sit in front of a database or an internal API behind your firewall.
 * A self-hosted session can use either tunneled or public MCP servers.
@@ -561,7 +558,7 @@ These pages describe how to build a worker on any sandboxing platform. Platform-
     Run the SDK worker, trigger workers from webhooks, or give each session its own sandbox.
   </Card>
 
-  <Card title="Memory stores" icon="brain" href="https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory">
+  <Card title="Memory stores in self-hosted sandboxes" icon="brain" href="https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory">
     Prepare the host, configure sync, and handle read-only stores and conflicts.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: bca41eecf98fe5cb395940f457defe51528339b5091766cb6fdf00a60dde6b21
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2d826fdab512428aab66704afbf83a1f4d9c5fd9fe8852e563d6ef831593dd31
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
 description: Instal dan konfigurasikan Anthropic Java SDK dengan pola builder dan dukungan async
 ---
 
-Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang ditulis dalam Java. SDK ini menggunakan "builder pattern" (pola builder) untuk membuat permintaan dan mendukung operasi sinkron maupun asinkron.
+Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang ditulis dalam Java. SDK ini menggunakan pola builder untuk membuat permintaan dan mendukung operasi sinkron maupun asinkron.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus Java.
+  Untuk dokumentasi fitur API beserta contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Java.
 </Info>
 
 ## Instalasi
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:2.75.0")
+    implementation("com.anthropic:anthropic-java:3.1.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>2.75.0</version>
+        <version>3.1.0</version>
     </dependency>
     ```
   </Tab>
@@ -42,7 +42,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 Library ini memerlukan Java 8 atau yang lebih baru.
 
 <Note>
-  SDK mendukung Java 8 dan yang lebih baru. Contoh kode dalam dokumentasi ini ditulis sebagai [file sumber ringkas JDK 25](https://openjdk.org/jeps/512), menggunakan titik masuk `void main()` sederhana dan `IO.println()` untuk output. Pemanggilan API-nya sendiri identik di setiap JDK yang didukung; untuk mengompilasi contoh pada versi yang lebih lama, ganti `IO.println(...)` dengan `System.out.println(...)` dan tempatkan isinya di dalam `public static void main(String[] args)` dalam sebuah kelas.
+  SDK ini mendukung Java 8 dan yang lebih baru. Contoh kode dalam dokumentasi ini ditulis sebagai [file sumber ringkas JDK 25](https://openjdk.org/jeps/512), menggunakan titik masuk `void main()` polos dan `IO.println()` untuk output. Panggilan API itu sendiri identik di setiap JDK yang didukung; untuk mengompilasi contoh pada versi yang lebih lama, ganti `IO.println(...)` dengan `System.out.println(...)` dan tempatkan isinya di dalam `public static void main(String[] args)` di dalam sebuah kelas.
 </Note>
 
 ## Mulai cepat
@@ -71,7 +71,7 @@ Message message = client.messages().create(params);
 
 ### Penyiapan kunci API
 
-Konfigurasikan klien menggunakan system property atau variabel lingkungan:
+Konfigurasikan klien menggunakan properti sistem atau variabel lingkungan:
 
 ```java
 import com.anthropic.client.AnthropicClient;
@@ -116,7 +116,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 | `authToken` | `anthropic.authToken` | `ANTHROPIC_AUTH_TOKEN` | false | -                             |
 | `baseUrl`   | `anthropic.baseUrl`   | `ANTHROPIC_BASE_URL`   | true  | `"https://api.anthropic.com"` |
 
-System property lebih diutamakan daripada variabel lingkungan.
+Properti sistem lebih diutamakan daripada variabel lingkungan.
 
 <Tip>
   Jangan membuat lebih dari satu klien dalam aplikasi yang sama. Setiap klien memiliki connection pool dan thread pool, yang lebih efisien jika dibagikan antar permintaan.
@@ -124,7 +124,7 @@ System property lebih diutamakan daripada variabel lingkungan.
 
 ### Memodifikasi konfigurasi
 
-Untuk sementara menggunakan konfigurasi klien yang dimodifikasi sambil tetap menggunakan connection pool dan thread pool yang sama, panggil `withOptions()` pada klien atau service mana pun:
+Untuk sementara menggunakan konfigurasi klien yang dimodifikasi sambil tetap menggunakan kembali connection pool dan thread pool yang sama, panggil `withOptions()` pada klien atau layanan apa pun:
 
 ```java
 import com.anthropic.client.AnthropicClient;
@@ -135,7 +135,7 @@ AnthropicClient clientWithOptions = client.withOptions(optionsBuilder -> {
 });
 ```
 
-Metode `withOptions()` tidak memengaruhi klien atau service asli.
+Metode `withOptions()` tidak memengaruhi klien atau layanan aslinya.
 
 ## Penggunaan async
 
@@ -179,7 +179,7 @@ MessageCreateParams params = MessageCreateParams.builder()
 CompletableFuture<Message> message = client.messages().create(params);
 ```
 
-Klien asinkron mendukung opsi yang sama dengan klien sinkron, kecuali sebagian besar metodenya mengembalikan `CompletableFuture`.
+Klien asinkron mendukung opsi yang sama dengan klien sinkron, kecuali sebagian besar metode mengembalikan `CompletableFuture`.
 
 ## Streaming
 
@@ -247,7 +247,7 @@ client.async().messages().createStreaming(params)
     });
 ```
 
-Streaming async menggunakan `Executor` cached thread pool khusus per klien untuk melakukan streaming tanpa memblokir thread saat ini. Untuk menggunakan `Executor` yang berbeda:
+Streaming async menggunakan `Executor` thread pool ter-cache khusus per klien untuk melakukan streaming tanpa memblokir thread saat ini. Untuk menggunakan `Executor` yang berbeda:
 
 ```java
 Executor executor = Executors.newFixedThreadPool(4);
@@ -270,9 +270,9 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
 
 ### Streaming dengan message accumulator
 
-`MessageAccumulator` dapat merekam stream event dalam respons saat diproses dan mengakumulasi objek `Message` yang serupa dengan apa yang akan dikembalikan oleh API non-streaming.
+`MessageAccumulator` dapat merekam stream event dalam respons saat event tersebut diproses dan mengakumulasi objek `Message` yang serupa dengan yang akan dikembalikan oleh API non-streaming.
 
-Untuk respons sinkron, tambahkan pemanggilan `Stream.peek()` ke pipeline stream untuk mengakumulasi setiap event:
+Untuk respons sinkron, tambahkan panggilan `Stream.peek()` ke pipeline stream untuk mengakumulasi setiap event:
 
 ```java
 import com.anthropic.core.http.StreamResponse;
@@ -294,7 +294,7 @@ try (StreamResponse<RawMessageStreamEvent> streamResponse =
 Message message = messageAccumulator.message();
 ```
 
-Untuk respons asinkron, tambahkan `MessageAccumulator` ke pemanggilan `subscribe()`:
+Untuk respons asinkron, tambahkan `MessageAccumulator` ke panggilan `subscribe()`:
 
 ```java
 import com.anthropic.helpers.MessageAccumulator;
@@ -313,22 +313,22 @@ client.async().messages()
 Message message = messageAccumulator.message();
 ```
 
-`BetaMessageAccumulator` juga tersedia untuk akumulasi objek `BetaMessage`. Penggunaannya sama dengan `MessageAccumulator`.
+`BetaMessageAccumulator` juga tersedia untuk mengakumulasi objek `BetaMessage`. Cara penggunaannya sama dengan `MessageAccumulator`.
 
-## Output terstruktur
+## Structured outputs
 
-Untuk dokumentasi lengkap output terstruktur termasuk contoh Java, lihat [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+Untuk dokumentasi lengkap "structured outputs" (output terstruktur) termasuk contoh Java, lihat [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
 
 ## Penggunaan alat
 
-[Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) ("tool use") memungkinkan Anda mengintegrasikan alat dan fungsi eksternal langsung ke dalam respons model AI. Alih-alih menghasilkan teks biasa, model dapat mengeluarkan instruksi (dengan parameter) untuk memanggil alat atau fungsi bila sesuai. Anda mendefinisikan skema JSON untuk alat, dan model menggunakan skema tersebut untuk menentukan kapan dan bagaimana menggunakan alat-alat ini.
+["Tool use" (penggunaan alat) dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) memungkinkan Anda mengintegrasikan alat dan fungsi eksternal langsung ke dalam respons model AI. Alih-alih menghasilkan teks biasa, model dapat mengeluarkan instruksi (beserta parameter) untuk memanggil alat atau fungsi bila sesuai. Anda mendefinisikan skema JSON untuk alat, dan model menggunakan skema tersebut untuk menentukan kapan dan bagaimana menggunakan alat-alat ini.
 
 Fitur penggunaan alat mendukung mode "strict" yang menjamin bahwa output JSON dari model AI akan sesuai dengan skema JSON yang Anda berikan dalam parameter input.
 
 SDK dapat menurunkan alat dan parameternya secara otomatis dari struktur kelas Java apa pun: nama kelas (dikonversi ke snake case) menjadi nama alat, dan field kelas mendefinisikan parameter alat.
 
 <Note>
-  Deklarasikan kelas alat Anda sebagai kelas tingkat atas atau kelas bersarang `static`. Persyaratan ini berasal dari library Jackson Databind (`com.fasterxml.jackson.databind`), yang digunakan SDK untuk mendeserialisasi input alat menjadi instance kelas Anda dan tidak dapat membuat instance inner class non-static.
+  Deklarasikan kelas alat Anda sebagai kelas tingkat atas atau kelas bersarang `static`. Persyaratan ini berasal dari library Jackson Databind (`com.fasterxml.jackson.databind`), yang digunakan SDK untuk melakukan deserialisasi input alat ke dalam instance kelas Anda dan tidak dapat membuat instance dari inner class non-static.
 </Note>
 
 ### Mendefinisikan alat dengan anotasi
@@ -388,7 +388,7 @@ static class Weather {
 
 ### Memanggil alat
 
-Setelah kelas alat Anda didefinisikan, tambahkan ke parameter pesan menggunakan `MessageCreateParams.Builder.addTool(Class<T>)` lalu panggil alat tersebut jika diminta dalam respons model AI. `BetaToolUseBlock.input(Class<T>)` dapat digunakan untuk mem-parsing parameter alat dalam bentuk JSON menjadi instance kelas pendefinisi alat Anda.
+Setelah kelas alat Anda didefinisikan, tambahkan ke parameter pesan menggunakan `MessageCreateParams.Builder.addTool(Class<T>)` lalu panggil alat tersebut jika diminta dalam respons model AI. `BetaToolUseBlock.input(Class<T>)` dapat digunakan untuk mengurai parameter alat dalam bentuk JSON menjadi instance kelas pendefinisi alat Anda.
 
 Setelah memanggil alat, gunakan `BetaToolResultBlockParam.Builder.contentAsJson(Object)` untuk mengirimkan hasil alat kembali ke model AI:
 
@@ -410,14 +410,14 @@ client.beta().messages().create(createParamsBuilder.build()).content().stream()
         .flatMap(contentBlock -> contentBlock.toolUse().stream())
         .forEach(toolUseBlock -> createParamsBuilder
               // Tambahkan pesan yang menunjukkan bahwa penggunaan alat telah diminta.
-              .addAssistantMessageOfBetaContentBlockParams(
+              .addAssistantMessageOfContentBlockParams(
                       List.of(BetaContentBlockParam.ofToolUse(BetaToolUseBlockParam.builder()
                               .name(toolUseBlock.name())
                               .id(toolUseBlock.id())
                               .input(toolUseBlock._input())
                               .build())))
               // Tambahkan pesan berisi hasil dari penggunaan alat yang diminta.
-              .addUserMessageOfBetaContentBlockParams(
+              .addUserMessageOfContentBlockParams(
                       List.of(BetaContentBlockParam.ofToolResult(BetaToolResultBlockParam.builder()
                               .toolUseId(toolUseBlock.id())
                               .contentAsJson(callTool(toolUseBlock))
@@ -439,7 +439,7 @@ private static Object callTool(BetaToolUseBlock toolUseBlock) {
 
 ### Konversi nama alat
 
-Nama alat diturunkan dari nama kelas alat dalam camel case (misalnya, `GetWeather`) dan dikonversi ke snake case (misalnya, `get_weather`). Batas kata dimulai ketika karakter saat ini bukan karakter pertama, berupa huruf besar, dan karakter sebelumnya berupa huruf kecil atau karakter berikutnya berupa huruf kecil. Misalnya, `MyJSONParser` menjadi `my_json_parser` dan `ParseJSON` menjadi `parse_json`. Konversi ini dapat ditimpa menggunakan anotasi `@JsonTypeName`.
+Nama alat diturunkan dari nama kelas alat dalam camel case (misalnya, `GetWeather`) dan dikonversi ke snake case (misalnya, `get_weather`). Batas kata dimulai di mana karakter saat ini bukan karakter pertama, berupa huruf besar, dan karakter sebelumnya berupa huruf kecil, atau karakter berikutnya berupa huruf kecil. Misalnya, `MyJSONParser` menjadi `my_json_parser` dan `ParseJSON` menjadi `parse_json`. Konversi ini dapat ditimpa menggunakan anotasi `@JsonTypeName`.
 
 ### Validasi skema JSON alat secara lokal
 
@@ -460,12 +460,12 @@ Anda dapat menggunakan anotasi untuk menambahkan informasi lebih lanjut tentang 
 * `@JsonClassDescription` - Menambahkan deskripsi ke kelas alat yang merinci kapan dan bagaimana menggunakan alat tersebut.
 * `@JsonTypeName` - Menetapkan nama alat menjadi sesuatu selain nama sederhana kelas yang dikonversi ke snake case.
 * `@JsonPropertyDescription` - Menambahkan deskripsi terperinci ke parameter alat.
-* `@JsonIgnore` - Mengecualikan field `public` atau metode getter dari skema JSON yang dihasilkan untuk parameter alat.
-* `@JsonProperty` - Menyertakan field non-`public` atau metode getter dalam skema JSON yang dihasilkan untuk parameter alat.
+* `@JsonIgnore` - Mengecualikan field atau metode getter `public` dari skema JSON yang dihasilkan untuk parameter alat.
+* `@JsonProperty` - Menyertakan field atau metode getter non-`public` dalam skema JSON yang dihasilkan untuk parameter alat.
 
-## Batch pesan
+## Message batches
 
-SDK menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages().batches()`. Lihat [Paginasi](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#pagination) untuk cara mendaftar dan melakukan paginasi melalui batch.
+SDK menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages().batches()`. Lihat [Paginasi](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#pagination) untuk cara menampilkan daftar dan melakukan paginasi melalui batch.
 
 ## Unggahan file
 
@@ -508,7 +508,7 @@ FileUploadParams params = FileUploadParams.builder()
 FileMetadata fileMetadata = client.files().upload(params);
 ```
 
-Atau dari byte dalam memori:
+Atau dari byte di memori:
 
 ```java
 import com.anthropic.core.MultipartField;
@@ -530,7 +530,7 @@ FileMetadata fileMetadata = client.files().upload(params);
 
 ### Respons biner
 
-SDK mendefinisikan metode yang mengembalikan respons biner untuk respons API yang tidak selalu di-parsing sebagai JSON:
+SDK mendefinisikan metode yang mengembalikan respons biner untuk respons API yang tidak selalu diurai sebagai JSON:
 
 ```java
 import com.anthropic.core.http.HttpResponse;
@@ -555,7 +555,7 @@ try (HttpResponse response = client.files().download(params)) {
 }
 ```
 
-Atau transfer konten respons ke `OutputStream` mana pun:
+Atau transfer konten respons ke `OutputStream` apa pun:
 
 ```java
 import com.anthropic.core.http.HttpResponse;
@@ -570,12 +570,12 @@ try (HttpResponse response = client.files().download(params)) {
 
 ## Penanganan error
 
-SDK melempar tipe unchecked exception kustom:
+SDK melempar tipe exception unchecked kustom:
 
 * `AnthropicServiceException` - Kelas dasar untuk error HTTP.
 * `AnthropicIoException` - Error jaringan I/O.
-* `AnthropicRetryableException` - Error umum yang menunjukkan kegagalan yang dapat dicoba ulang.
-* `AnthropicInvalidDataException` - Kegagalan menafsirkan data yang berhasil di-parsing (misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya).
+* `AnthropicRetryableException` - Error generik yang menunjukkan kegagalan yang dapat dicoba ulang.
+* `AnthropicInvalidDataException` - Kegagalan menginterpretasikan data yang berhasil diurai (misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya).
 * `AnthropicException` - Kelas dasar untuk semua exception.
 
 ### Pemetaan kode status
@@ -591,7 +591,7 @@ SDK melempar tipe unchecked exception kustom:
 | 5xx     | `InternalServerException`       |
 | lainnya | `UnexpectedStatusCodeException` |
 
-`SseException` dilempar untuk error yang ditemui selama streaming SSE setelah respons HTTP awal yang berhasil.
+`SseException` dilempar untuk error yang terjadi selama streaming SSE setelah respons HTTP awal berhasil.
 
 ```java
 import com.anthropic.errors.*;
@@ -651,7 +651,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder().fromEnv().maxRetries(4)
 
 Permintaan mengalami timeout setelah 10 menit secara default.
 
-Namun, untuk metode yang menerima `maxTokens`, jika Anda menentukan nilai `maxTokens` yang besar dan menggunakan streaming, maka timeout default akan dihitung secara dinamis menggunakan rumus ini:
+Namun, untuk metode yang menerima `maxTokens`, jika Anda menentukan nilai `maxTokens` yang besar dan melakukan streaming, maka timeout default akan dihitung secara dinamis menggunakan rumus ini:
 
 ```java
 Duration.ofSeconds(
@@ -679,7 +679,7 @@ Message message = client
   .create(params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build());
 ```
 
-Atau konfigurasikan default untuk semua pemanggilan metode di tingkat klien:
+Atau konfigurasikan default untuk semua panggilan metode di tingkat klien:
 
 ```java
 import com.anthropic.client.AnthropicClient;
@@ -697,17 +697,17 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   Pertimbangkan untuk menggunakan [streaming](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#streaming) untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Hindari menetapkan nilai `maxTokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah jangka waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) tanpa menerima respons dari Anthropic. SDK secara berkala melakukan ping ke API untuk menjaga koneksi tetap hidup dan mengurangi dampak jaringan semacam ini.
+Hindari menetapkan nilai `maxTokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) tanpa menerima respons dari Anthropic. SDK secara berkala melakukan ping ke API untuk menjaga koneksi tetap hidup dan mengurangi dampak dari jaringan-jaringan ini.
 
 SDK melempar error jika permintaan non-streaming diperkirakan memakan waktu lebih dari 10 menit. Menggunakan [metode streaming](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#streaming) atau [menimpa timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#timeouts) di tingkat klien atau permintaan akan menonaktifkan error tersebut.
 
 ## Paginasi
 
-SDK menyediakan cara yang mudah untuk mengakses hasil berpaginasi, baik satu halaman sekaligus maupun item per item di seluruh halaman.
+SDK menyediakan cara yang mudah untuk mengakses hasil yang dipaginasi, baik satu halaman sekaligus maupun item demi item di seluruh halaman.
 
 ### Paginasi otomatis
 
-Untuk mengiterasi semua hasil di seluruh halaman, gunakan metode `autoPager()`, yang secara otomatis mengambil halaman tambahan sesuai kebutuhan.
+Untuk melakukan iterasi melalui semua hasil di seluruh halaman, gunakan metode `autoPager()`, yang secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
 
 ```java
 import com.anthropic.models.messages.batches.BatchListPage;
@@ -800,7 +800,7 @@ while (true) {
 
 ### Imutabilitas dan builder
 
-Setiap kelas dalam SDK memiliki builder terkait untuk membangunnya. Setiap kelas bersifat immutable setelah dibangun. Jika kelas memiliki builder terkait, maka kelas tersebut memiliki metode `toBuilder()`, yang dapat digunakan untuk mengonversinya kembali menjadi builder guna membuat salinan yang dimodifikasi.
+Setiap kelas dalam SDK memiliki builder terkait untuk membangunnya. Setiap kelas bersifat immutable setelah dibangun. Jika kelas memiliki builder terkait, maka kelas tersebut memiliki metode `toBuilder()`, yang dapat digunakan untuk mengonversinya kembali menjadi builder untuk membuat salinan yang dimodifikasi.
 
 ```java
 MessageCreateParams params = MessageCreateParams.builder()
@@ -817,13 +817,13 @@ Karena setiap kelas bersifat immutable, modifikasi builder tidak pernah memengar
 
 ### Permintaan dan respons
 
-Untuk mengirim permintaan ke Claude API, bangun instance dari suatu kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut dideserialisasi menjadi instance kelas Java.
+Untuk mengirim permintaan ke Claude API, bangun instance dari suatu kelas `Params` dan teruskan ke metode klien yang sesuai. Saat respons diterima, respons tersebut dideserialisasi menjadi instance kelas Java.
 
 Misalnya, `client.messages().create(...)` harus dipanggil dengan instance `MessageCreateParams`, dan mengembalikan instance `Message`.
 
-### Parameter tidak terdokumentasi
+### Parameter yang tidak terdokumentasi
 
-Untuk menetapkan parameter yang tidak terdokumentasi, panggil metode `putAdditionalHeader`, `putAdditionalQueryParam`, atau `putAdditionalBodyProperty` pada kelas `Params` mana pun:
+Untuk menetapkan parameter yang tidak terdokumentasi, panggil metode `putAdditionalHeader`, `putAdditionalQueryParam`, atau `putAdditionalBodyProperty` pada kelas `Params` apa pun:
 
 ```java
 import com.anthropic.core.JsonValue;
@@ -836,13 +836,13 @@ MessageCreateParams params = MessageCreateParams.builder()
   .build();
 ```
 
-Ini dapat diakses pada objek yang telah dibangun nantinya menggunakan metode `_additionalHeaders()`, `_additionalQueryParams()`, dan `_additionalBodyProperties()`.
+Nilai-nilai ini dapat diakses pada objek yang telah dibangun nanti menggunakan metode `_additionalHeaders()`, `_additionalQueryParams()`, dan `_additionalBodyProperties()`.
 
 <Warning>
-  Nilai yang diteruskan ke metode-metode ini menimpa nilai yang diteruskan ke metode sebelumnya. Demi keamanan, pastikan metode-metode ini hanya digunakan dengan data input yang tepercaya.
+  Nilai yang diteruskan ke metode-metode ini menimpa nilai yang diteruskan ke metode sebelumnya. Demi alasan keamanan, pastikan metode-metode ini hanya digunakan dengan data input yang tepercaya.
 </Warning>
 
-Untuk menetapkan parameter tidak terdokumentasi pada header, query param, atau kelas body bersarang:
+Untuk menetapkan parameter yang tidak terdokumentasi pada kelas header, query param, atau body bersarang:
 
 ```java
 import com.anthropic.core.JsonValue;
@@ -856,9 +856,9 @@ MessageCreateParams params = MessageCreateParams.builder()
   .build();
 ```
 
-Properti ini dapat diakses pada objek bersarang yang telah dibangun nantinya menggunakan metode `_additionalProperties()`.
+Properti-properti ini dapat diakses pada objek bersarang yang telah dibangun nanti menggunakan metode `_additionalProperties()`.
 
-Untuk menetapkan parameter atau properti terdokumentasi ke nilai yang tidak terdokumentasi atau belum didukung, teruskan objek `JsonValue` ke setter-nya:
+Untuk menetapkan parameter atau properti yang terdokumentasi ke nilai yang tidak terdokumentasi atau belum didukung, teruskan objek `JsonValue` ke setter-nya:
 
 ```java
 import com.anthropic.core.JsonValue;
@@ -874,7 +874,7 @@ MessageCreateParams params = MessageCreateParams.builder()
 
 ### Pembuatan JsonValue
 
-Cara paling mudah untuk membuat `JsonValue` adalah menggunakan metode `from(...)`-nya:
+Cara paling mudah untuk membuat `JsonValue` adalah menggunakan metode `from(...)`:
 
 ```java
 import com.anthropic.core.JsonValue;
@@ -894,14 +894,14 @@ JsonValue arrayValue = JsonValue.from(List.of("Hello", "World"));
 // Buat nilai objek JSON yang setara dengan `{ "a": 1, "b": 2 }`
 JsonValue objectValue = JsonValue.from(Map.of("a", 1, "b", 2));
 
-// Buat JSON bertingkat sembarang yang setara dengan:
+// Buat JSON bersarang sembarang yang setara dengan:
 // { "a": [1, 2], "b": [3, 4] }
 JsonValue complexValue = JsonValue.from(Map.of("a", List.of(1, 2), "b", List.of(3, 4)));
 ```
 
 ### Menghilangkan parameter wajib secara paksa
 
-Biasanya metode `build` dari kelas `Builder` akan melempar `IllegalStateException` jika ada parameter atau properti wajib yang belum ditetapkan. Untuk menghilangkan parameter atau properti wajib secara paksa, teruskan `JsonMissing`:
+Biasanya metode `build` dari kelas `Builder` akan melempar `IllegalStateException` jika ada parameter atau properti wajib yang tidak ditetapkan. Untuk menghilangkan parameter atau properti wajib secara paksa, teruskan `JsonMissing`:
 
 ```java
 import com.anthropic.core.JsonMissing;
@@ -945,13 +945,13 @@ String result = secretPropertyValue.accept(new JsonValue.Visitor<>() {
         return "It's a number!";
     }
 
-    // Metode lain mencakup `visitMissing`, `visitString`, `visitArray`, dan `visitObject`
+    // Metode lainnya mencakup `visitMissing`, `visitString`, `visitArray`, dan `visitObject`
     // Implementasi default setiap metode yang tidak diimplementasikan didelegasikan ke `visitDefault`,
     // yang secara default melempar exception, tetapi juga dapat di-override
 });
 ```
 
-Untuk mengakses nilai JSON mentah suatu properti, panggil metodenya yang berawalan `_`:
+Untuk mengakses nilai JSON mentah dari suatu properti, panggil metodenya yang berawalan `_`:
 
 ```java
 import com.anthropic.core.JsonField;
@@ -965,7 +965,7 @@ if (stopReason.isMissing()) {
   // Properti diatur ke null literal
 } else {
   // Periksa apakah nilai diberikan sebagai string
-  // Metode lain termasuk `asNumber()`, `asBoolean()`, dll.
+  // Metode lainnya mencakup `asNumber()`, `asBoolean()`, dll.
   Optional<String> jsonString = stopReason.asString();
 
   // Coba deserialisasi ke tipe kustom
@@ -975,9 +975,9 @@ if (stopReason.isMissing()) {
 
 ### Validasi respons
 
-Secara default, SDK tidak melempar exception ketika API mengembalikan respons yang tidak cocok dengan tipe yang diharapkan. SDK melempar `AnthropicInvalidDataException` hanya jika Anda mengakses properti tersebut secara langsung.
+Secara default, SDK tidak melempar exception saat API mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. SDK melempar `AnthropicInvalidDataException` hanya jika Anda mengakses properti tersebut secara langsung.
 
-Untuk memeriksa di awal bahwa respons sepenuhnya bertipe dengan benar, panggil `validate()`:
+Untuk memeriksa sejak awal bahwa respons sepenuhnya bertipe dengan benar, panggil `validate()`:
 
 ```java
 import com.anthropic.models.messages.Message;
@@ -995,7 +995,7 @@ Message message = client
   .create(params, RequestOptions.builder().responseValidation(true).build());
 ```
 
-Atau konfigurasikan default untuk semua pemanggilan metode di tingkat klien:
+Atau konfigurasikan default untuk semua panggilan metode di tingkat klien:
 
 ```java
 import com.anthropic.client.AnthropicClient;
@@ -1059,7 +1059,7 @@ Struktur ini memungkinkan penggantian klien HTTP default SDK tanpa menarik depen
 Untuk menggunakan `OkHttpClient` yang dikustomisasi:
 
 1. Ganti dependensi `anthropic-java` Anda dengan `anthropic-java-core`.
-2. Salin kelas `OkHttpClient` milik `anthropic-java-client-okhttp` ke dalam kode Anda dan kustomisasi.
+2. Salin kelas `OkHttpClient` dari `anthropic-java-client-okhttp` ke dalam kode Anda dan kustomisasikan.
 3. Bangun `AnthropicClientImpl` atau `AnthropicClientAsyncImpl` menggunakan klien yang telah Anda kustomisasi.
 
 #### Klien HTTP yang sepenuhnya kustom
@@ -1073,7 +1073,7 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
 ## Integrasi platform
 
 <Note>
-  Untuk panduan penyiapan platform terperinci dengan contoh kode, lihat:
+  Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
@@ -1086,7 +1086,7 @@ Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan
 
 * **Agent Platform:** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.builder()` atau `VertexBackend.fromEnv()`. `fromEnv()` membaca `CLOUD_ML_REGION` dan `ANTHROPIC_VERTEX_PROJECT_ID` serta menggunakan Application Default Credentials.
 * **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Gunakan `BedrockMantleBackend.fromEnv()` atau `BedrockMantleBackend.builder()` untuk endpoint Bedrock Messages-API, atau `BedrockBackend.fromEnv()` / `BedrockBackend.builder()` (jalur `bedrock-runtime`).
-* **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Gunakan `AwsBackend.fromEnv()` (membaca `ANTHROPIC_AWS_WORKSPACE_ID` dan rantai region/kredensial default AWS) atau `AwsBackend.builder()`. Tersedia dalam beta.
+* **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Gunakan `AwsBackend.fromEnv()` (membaca `ANTHROPIC_AWS_WORKSPACE_ID` serta region/rantai kredensial default AWS) atau `AwsBackend.builder()`. Tersedia dalam beta.
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Gunakan `FoundryBackend.fromEnv()` atau `FoundryBackend.builder()`.
 
 Gunakan `BedrockMantleBackend` untuk proyek baru; `BedrockBackend` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
@@ -1097,7 +1097,7 @@ Artefak platform merupakan add-on untuk dependensi dasar `com.anthropic:anthropi
 
 ### Akses respons mentah
 
-Untuk mengakses header HTTP, kode status, dan body respons mentah, awali pemanggilan metode HTTP apa pun dengan `withRawResponse()`:
+Untuk mengakses header HTTP, kode status, dan body respons mentah, awali panggilan metode HTTP apa pun dengan `withRawResponse()`:
 
 ```java
 import com.anthropic.core.http.Headers;
@@ -1119,7 +1119,7 @@ int statusCode = message.statusCode();
 Headers headers = message.headers();
 ```
 
-Anda masih dapat mendeserialisasi respons menjadi instance kelas Java jika diperlukan:
+Anda tetap dapat melakukan deserialisasi respons menjadi instance kelas Java jika diperlukan:
 
 ```java
 import com.anthropic.models.messages.Message;
@@ -1129,7 +1129,7 @@ Message parsedMessage = message.parse();
 
 ### Logging
 
-SDK menggunakan logging interceptor OkHttp standar.
+SDK menggunakan logging interceptor standar OkHttp.
 
 Aktifkan logging dengan menetapkan variabel lingkungan `ANTHROPIC_LOG` ke `info`:
 
@@ -1137,7 +1137,7 @@ Aktifkan logging dengan menetapkan variabel lingkungan `ANTHROPIC_LOG` ke `info`
 export ANTHROPIC_LOG=info
 ```
 
-Atau ke `debug` untuk logging yang lebih rinci:
+Atau ke `debug` untuk logging yang lebih verbose:
 
 ```bash
 export ANTHROPIC_LOG=debug
@@ -1151,33 +1151,33 @@ export ANTHROPIC_LOG=debug
   Jika SDK melempar exception, tetapi Anda yakin versinya kompatibel, nonaktifkan pemeriksaan versi menggunakan `checkJacksonVersionCompatibility` pada `AnthropicOkHttpClient` atau `AnthropicOkHttpClientAsync`.
 
   <Warning>
-    Tidak ada jaminan bahwa SDK berfungsi dengan benar ketika pemeriksaan versi Jackson dinonaktifkan.
+    Tidak ada jaminan bahwa SDK berfungsi dengan benar saat pemeriksaan versi Jackson dinonaktifkan.
   </Warning>
 
-  Ada juga bug pada versi Jackson lama yang dapat memengaruhi SDK. SDK tidak mengatasi semua bug Jackson dan mengharapkan pengguna untuk memutakhirkan Jackson untuk kasus-kasus tersebut.
+  Ada juga bug pada versi Jackson yang lebih lama yang dapat memengaruhi SDK. SDK tidak mengatasi semua bug Jackson dan mengharapkan pengguna untuk meningkatkan versi Jackson sebagai gantinya.
 </Accordion>
 
 <Accordion title="Konfigurasi ProGuard/R8">
-  Meskipun SDK menggunakan reflection, SDK tetap dapat digunakan dengan ProGuard dan R8 karena `anthropic-java-core` dipublikasikan dengan file konfigurasi yang berisi keep rules.
+  Meskipun SDK menggunakan reflection, SDK tetap dapat digunakan dengan ProGuard dan R8 karena `anthropic-java-core` dipublikasikan dengan file konfigurasi yang berisi aturan keep.
 
-  ProGuard dan R8 seharusnya secara otomatis mendeteksi dan menggunakan aturan yang dipublikasikan, tetapi Anda juga dapat menyalin keep rules secara manual jika diperlukan.
+  ProGuard dan R8 seharusnya secara otomatis mendeteksi dan menggunakan aturan yang dipublikasikan, tetapi Anda juga dapat menyalin aturan keep secara manual jika diperlukan.
 </Accordion>
 
-### Fungsionalitas API tidak terdokumentasi
+### Fungsionalitas API yang tidak terdokumentasi
 
-SDK memiliki tipe untuk penggunaan API terdokumentasi yang mudah. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
+SDK diberi tipe untuk kemudahan penggunaan API yang terdokumentasi. Namun, SDK juga mendukung bekerja dengan bagian API yang tidak terdokumentasi atau belum didukung.
 
-#### Parameter permintaan tidak terdokumentasi
+#### Parameter permintaan yang tidak terdokumentasi
 
-Untuk menetapkan parameter permintaan yang tidak terdokumentasi, gunakan metode `putAdditionalHeader`, `putAdditionalQueryParam`, atau `putAdditionalBodyProperty` seperti dijelaskan di [Parameter tidak terdokumentasi](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#undocumented-parameters).
+Untuk menetapkan parameter permintaan yang tidak terdokumentasi, gunakan metode `putAdditionalHeader`, `putAdditionalQueryParam`, atau `putAdditionalBodyProperty` seperti yang dijelaskan dalam [Parameter yang tidak terdokumentasi](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#undocumented-parameters).
 
-#### Properti respons tidak terdokumentasi
+#### Properti respons yang tidak terdokumentasi
 
-Untuk mengakses properti respons yang tidak terdokumentasi, gunakan metode `_additionalProperties()` seperti dijelaskan di [Properti respons](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#response-properties).
+Untuk mengakses properti respons yang tidak terdokumentasi, gunakan metode `_additionalProperties()` seperti yang dijelaskan dalam [Properti respons](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#response-properties).
 
-#### Nilai enum baru atau belum dirilis
+#### Nilai enum baru atau yang belum dirilis
 
-Kelas mirip enum dalam SDK, seperti `Model` dan `AnthropicBeta`, bukan tipe `enum` Java tertutup. Masing-masing menyediakan metode factory `of(String)` yang menerima string apa pun, sehingga Anda dapat menggunakan nilai yang belum ditambahkan ke SDK, seperti model atau header beta yang dirilis setelah versi SDK Anda:
+Kelas mirip enum dalam SDK, seperti `Model` dan `AnthropicBeta`, bukan tipe `enum` Java yang tertutup. Masing-masing menyediakan metode factory `of(String)` yang menerima string apa pun, sehingga Anda dapat menggunakan nilai yang belum ditambahkan ke SDK, seperti model atau header beta yang dirilis setelah versi SDK Anda:
 
 ```java
 import com.anthropic.models.beta.AnthropicBeta;
@@ -1199,13 +1199,13 @@ MessageCreateParams params = MessageCreateParams.builder()
   .build();
 ```
 
-Utamakan konstanta bertipe baik (misalnya, `Model.CLAUDE_OPUS_5`) agar Anda mendapatkan autocomplete dan peringatan deprecation. Overload `String` dan `of(...)` terutama ditujukan untuk menetapkan field ke nilai yang tidak terdokumentasi atau belum didukung sambil menunggu rilis SDK yang menyertakannya.
+Utamakan konstanta yang bertipe dengan baik (misalnya, `Model.CLAUDE_OPUS_5`) agar Anda mendapatkan autocomplete dan peringatan deprecation. Overload `String` dan `of(...)` terutama ditujukan untuk menetapkan field ke nilai yang tidak terdokumentasi atau belum didukung sambil menunggu rilis SDK yang menyertakannya.
 
 ## Fitur beta
 
 Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan menguji fungsionalitas baru. Anda dapat memeriksa ketersediaan semua kemampuan dan alat Claude di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 
-Anda dapat mengakses sebagian besar fitur API beta melalui metode `beta()` pada klien. Untuk mengaktifkan fitur beta tertentu, tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai dengan `.addBeta()` saat membangun params pesan.
+Anda dapat mengakses sebagian besar fitur API beta melalui metode `beta()` pada klien. Untuk mengaktifkan fitur beta tertentu, tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai dengan `.addBeta()` saat membangun parameter pesan.
 
 Misalnya, untuk mengaktifkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing):
 
@@ -1231,9 +1231,9 @@ void main() {
 
 <AccordionGroup>
   <Accordion title="Mengapa SDK tidak menggunakan kelas enum biasa?">
-    Kelas `enum` Java tidak mudah kompatibel ke depan. Menggunakannya dalam SDK dapat menyebabkan runtime exception jika API diperbarui untuk merespons dengan nilai enum baru.
+    Kelas `enum` Java tidak mudah kompatibel ke depan. Menggunakannya dalam SDK dapat menyebabkan exception saat runtime jika API diperbarui untuk merespons dengan nilai enum baru.
 
-    Karena kelas-kelas ini terbuka, Anda juga dapat membangunnya dengan nilai string apa pun melalui metode factory `of(String)`-nya. Lihat [Nilai enum baru atau belum dirilis](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#new-or-unreleased-enum-values) jika Anda perlu menggunakan nilai yang belum ada di versi SDK Anda.
+    Karena kelas-kelas ini terbuka, Anda juga dapat membangunnya dengan nilai string apa pun melalui metode factory `of(String)`. Lihat [Nilai enum baru atau yang belum dirilis](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#new-or-unreleased-enum-values) jika Anda perlu menggunakan nilai yang belum ada di versi SDK Anda.
   </Accordion>
 
   <Accordion title="Mengapa field direpresentasikan menggunakan JsonField<T> alih-alih T biasa?">
@@ -1241,11 +1241,11 @@ void main() {
 
     * Memungkinkan penggunaan fungsionalitas API yang tidak terdokumentasi
     * Memvalidasi respons API secara lazy terhadap bentuk yang diharapkan
-    * Merepresentasikan nilai yang tidak ada vs nilai null eksplisit
+    * Merepresentasikan nilai yang tidak ada vs nilai null secara eksplisit
   </Accordion>
 
   <Accordion title="Mengapa SDK tidak menggunakan data class?">
-    Menambahkan field baru ke data class tidak kompatibel ke belakang, dan SDK menghindari memperkenalkan breaking change setiap kali sebuah field ditambahkan ke kelas.
+    Menambahkan field baru ke data class tidak kompatibel ke belakang, dan SDK menghindari memperkenalkan breaking change setiap kali field ditambahkan ke suatu kelas.
   </Accordion>
 
   <Accordion title="Mengapa SDK tidak menggunakan checked exception?">
@@ -1254,23 +1254,25 @@ void main() {
     Checked exception:
 
     * Bertele-tele untuk ditangani
-    * Mendorong penanganan error pada tingkat abstraksi yang salah, di mana tidak ada yang bisa dilakukan terhadap error tersebut
+    * Mendorong penanganan error pada tingkat abstraksi yang salah, di mana tidak ada yang dapat dilakukan terhadap error tersebut
     * Merepotkan untuk dipropagasi karena masalah function coloring
-    * Tidak bekerja dengan baik bersama lambda (juga karena masalah function coloring)
+    * Tidak bekerja dengan baik dengan lambda (juga karena masalah function coloring)
   </Accordion>
 </AccordionGroup>
 
-## Versioning semantik
+## Semantic versioning
 
-Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
+Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 3.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
 
-1. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-2. Perubahan yang dalam praktiknya tidak diperkirakan berdampak pada sebagian besar pengguna.
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
+
+1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+2. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 ## Sumber daya tambahan
 
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-java)
 * [Javadocs](https://javadoc.io/doc/com.anthropic/anthropic-java)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
 * [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

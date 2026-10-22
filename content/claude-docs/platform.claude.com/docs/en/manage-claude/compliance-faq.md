@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-faq
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c25635d29b5bdd0eefcf535b4196e63ab89246227222a3e490ef25b607c5a993
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0c5e293603b5a4c4c157f5a18d9587b02a5867ece05ff4d9105b5061a66f98e2
 ---
 
 ---
@@ -50,7 +50,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   <Accordion title="Why does my Admin API key return 403 on chat or file endpoints?">
     An Admin API key's only Compliance API scope is `read:compliance_activities`, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, sessions, users, and group members, and `read:compliance_org_data` for organizations, roles, groups, and effective organization settings. For example, listing chats returns the following response.
 
-    ```json Response
+    ```text Response
     {
       "error": {
         "type": "permission_error",
@@ -85,7 +85,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   </Accordion>
 
   <Accordion title="What do session transcripts include?">
-    Local and remote session transcripts both carry user prompts, assistant responses, and tool calls and results. For local sessions (on users' machines), that is what Claude was asked to do and what it returned, not what happened on the device.
+    Local and remote session transcripts both carry user prompts, assistant responses, and tool calls and results. For local sessions (on users' machines), that is what Claude was asked to do and what it returned, not what occurred on the device.
 
     | Data                              | Local sessions (on users' machines)                                                                                                                                                                                                                    | Remote sessions (in the cloud)                                                                                                                                                                           |
     | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -104,7 +104,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   </Accordion>
 
   <Accordion title="How does session coverage compare with OpenTelemetry logging (OTEL) for Cowork and Claude Code?">
-    [Cowork's OpenTelemetry logging](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) and [Claude Code monitoring](https://code.claude.com/docs/en/monitoring-usage) overlap with the session endpoints but answer different needs: OTEL streams per-event telemetry to infrastructure you run as activity happens, whereas the Compliance API lets you retrieve retained per-session transcripts from Anthropic after the fact. OTEL can also capture prompts and responses, but Anthropic recommends the Compliance API for retrieving the content of Cowork and Claude Code sessions. For a table comparing local sessions, remote sessions, and OTEL, see the introduction to [Retrieve session transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-sessions).
+    [Cowork's OpenTelemetry logging](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) and [Claude Code monitoring](https://code.claude.com/docs/en/monitoring-usage) overlap with the session endpoints but answer different needs: OTEL streams per-event telemetry to infrastructure you run as activity occurs, whereas the Compliance API lets you retrieve retained per-session transcripts from Anthropic after the fact. OTEL can also capture prompts and responses, but Anthropic recommends the Compliance API for retrieving the content of Cowork and Claude Code sessions. For a table comparing local sessions, remote sessions, and OTEL, see the introduction to [Retrieve session transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-sessions).
 
     OTEL events and Compliance API records share organization and user identifiers, so you can join them.
   </Accordion>
@@ -130,7 +130,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   </Accordion>
 
   <Accordion title="Can one customer have multiple organizations under one parent?">
-    Yes. A Claude Enterprise parent organization can have many linked organizations, including a mix of claude.ai organizations and Claude Console organizations (for example, separate production and staging Claude Console organizations). Identity, SSO, and SCIM are shared across the parent; billing, members, projects, and API keys remain separate for each organization. Compliance API enablement happens at the parent organization level and cascades to all linked organizations, and a Compliance Access Key that covers the parent organization and carries `read:compliance_org_data` can enumerate every organization beneath the parent through `GET /v1/compliance/organizations`.
+    Yes. A Claude Enterprise parent organization can have many linked organizations, including a mix of claude.ai organizations and Claude Console organizations (for example, separate production and staging Claude Console organizations). Identity, SSO, and SCIM are shared across the parent; billing, members, projects, and API keys remain separate for each organization. Compliance API enablement occurs at the parent organization level and cascades to all linked organizations, and a Compliance Access Key that covers the parent organization and carries `read:compliance_org_data` can enumerate every organization beneath the parent through `GET /v1/compliance/organizations`.
   </Accordion>
 
   <Accordion title="Are activities returned in order, and how do I detect when I have caught up to real time?">

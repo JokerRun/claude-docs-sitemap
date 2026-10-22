@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 595931e3915c46ef6c5fcc16f316d22adbcdb1ea90dceb386ec1851db0359d3b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b371129f98ba5023d47cd93614154b2c793e5b0de05e79662ecd8950387b604e
 ---
 
 > ## Documentation Index
@@ -987,6 +987,7 @@ With a hook in a settings file or a plugin's `hooks/hooks.json` you can't loosen
 The hook is configured but never executes.
 
 * Run `/hooks` and confirm the hook appears under the correct event
+* For a hook in a skill's frontmatter, invoke the skill or ask Claude to, then run `/hooks` again. `/hooks` doesn't list hooks from a skill that hasn't been invoked in the session. If `/hooks` still doesn't list the hook, check for other causes, such as [frontmatter that didn't parse](/docs/en/skills#skill-not-triggering) or one of the [limits on skill hooks](/docs/en/hooks#limits-on-skill-hooks)
 * Check that the matcher pattern matches the tool name exactly. Matchers are case-sensitive
 * Verify you're triggering the right event type: `PreToolUse` fires before tool execution, `PostToolUse` fires after. A `PermissionRequest` hook fires when Claude Code is about to ask you for permission; see the [limitations](#limitations) for the non-interactive cases
 

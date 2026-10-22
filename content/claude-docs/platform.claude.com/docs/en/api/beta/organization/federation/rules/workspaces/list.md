@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: c16146620a54185e07e1fb6cefb29fd170dda7ea51eb029355037ef1d2d723a1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f26c8e145c3353addf79e983c0e6120de2cd75eeb4382d1093e5cfff3476185c
 ---
 
 ---
@@ -157,6 +157,8 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

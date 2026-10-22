@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 27845812cf2e158b9e9301a05363b1d268a0c211fbd2849f938a6f226e286cf1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 370cce7a37f120f80afdb3b5634edba24f010b32d08fe73e47eb854da3e7d64a
 ---
 
 ---
@@ -166,7 +166,6 @@ Mount uploaded files into the sandbox by adding them to the `resources` (csharp,
       [
           new BetaManagedAgentsFileResourceParams
           {
-              Type = "file",
               FileID = file.ID,
               MountPath = "/data.csv",
           },
@@ -200,7 +199,6 @@ Mount uploaded files into the sandbox by adding them to the `resources` (csharp,
           .environmentId(environment.id())
           .addResource(
               BetaManagedAgentsFileResourceParams.builder()
-                  .type(BetaManagedAgentsFileResourceParams.Type.FILE)
                   .fileId(file.id())
                   .mountPath("/data.csv")
                   .build()
@@ -215,7 +213,6 @@ Mount uploaded files into the sandbox by adding them to the `resources` (csharp,
       environmentID: $environment->id,
       resources: [
           BetaManagedAgentsFileResourceParams::with(
-              type: 'file',
               fileID: $file->id,
               mountPath: '/data.csv',
           ),
@@ -314,9 +311,9 @@ Mount multiple files by adding entries to the `resources` (csharp, go: `Resource
 
   var resources = new[]
   {
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_abc123", MountPath = "/data.csv" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_def456", MountPath = "/config.json" },
-      new BetaManagedAgentsFileResourceParams { Type = BetaManagedAgentsFileResourceParamsType.File, FileID = "file_ghi789", MountPath = "/src/main.py" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_abc123", MountPath = "/data.csv" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_def456", MountPath = "/config.json" },
+      new BetaManagedAgentsFileResourceParams { FileID = "file_ghi789", MountPath = "/src/main.py" },
   };
   ```
 
@@ -334,11 +331,11 @@ Mount multiple files by adding entries to the `resources` (csharp, go: `Resource
 
   var resources = List.of(
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_abc123").mountPath("/data.csv").build(),
+          .fileId("file_abc123").mountPath("/data.csv").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_def456").mountPath("/config.json").build(),
+          .fileId("file_def456").mountPath("/config.json").build(),
       BetaManagedAgentsFileResourceParams.builder()
-          .type(BetaManagedAgentsFileResourceParams.Type.FILE).fileId("file_ghi789").mountPath("/src/main.py").build()
+          .fileId("file_ghi789").mountPath("/src/main.py").build()
   );
   ```
 
@@ -359,7 +356,7 @@ Mount multiple files by adding entries to the `resources` (csharp, go: `Resource
   ```
 </CodeGroup>
 
-A maximum of 500 files is supported per session.
+A maximum of 500 files is supported for each session.
 
 ## Managing files on a running session
 
@@ -408,7 +405,6 @@ You can add or remove files from a session after creation using the session reso
   ```csharp C#
   var resource = await client.Beta.Sessions.Resources.Add(session.ID, new()
   {
-      Type = "file",
       FileID = file.ID,
   });
   Console.WriteLine(resource.ID);  // "sesrsc_01ABC..."
@@ -433,7 +429,6 @@ You can add or remove files from a session after creation using the session reso
       ResourceAddParams.builder()
           .betaManagedAgentsFileResourceParams(
               BetaManagedAgentsFileResourceParams.builder()
-                  .type(BetaManagedAgentsFileResourceParams.Type.FILE)
                   .fileId(file.id())
                   .build()
           )
@@ -445,7 +440,6 @@ You can add or remove files from a session after creation using the session reso
   ```php PHP
   $resource = $client->beta->sessions->resources->add(
       $session->id,
-      type: 'file',
       fileID: $file->id,
   );
   echo "{$resource->id}\n";  // "sesrsc_01ABC..."
@@ -509,8 +503,7 @@ List all resources on a session with `GET /v1/sessions/{session_id}/resources` (
   var listed = await client.Beta.Sessions.Resources.List(session.ID);
   await foreach (var entry in listed.Paginate())
   {
-      var type = entry.Match<string>(repo => repo.Type, fileRes => fileRes.Type, memoryStore => memoryStore.Type);
-      Console.WriteLine($"{entry.ID} {type}");
+      Console.WriteLine($"{entry.ID} {entry.Type.Raw()}");
   }
 
   await client.Beta.Sessions.Resources.Delete(resource.ID, new() { SessionID = session.ID });
@@ -538,11 +531,11 @@ List all resources on a session with `GET /v1/sessions/{session_id}/resources` (
       switch (entry.type().value()) {
           case FILE -> {
               var fileResource = entry.asFile();
-              IO.println(fileResource.id() + " " + fileResource.type());
+              IO.println(fileResource.id() + " " + fileResource._type());
           }
           case GITHUB_REPOSITORY -> {
               var repoResource = entry.asGitHubRepository();
-              IO.println(repoResource.id() + " " + repoResource.type());
+              IO.println(repoResource.id() + " " + repoResource._type());
           }
       }
   }
@@ -572,7 +565,7 @@ List all resources on a session with `GET /v1/sessions/{session_id}/resources` (
 
 ## Listing and downloading session files
 
-Use the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) to list files scoped to a session and download them. Files the agent writes to `/mnt/session/outputs/` appear in the list shortly after the agent finishes writing them, sometimes a few seconds after the session goes idle. If an output file you expect is missing, list again after a short delay; once it appears in the list, its upload has finished.
+Use the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) to list files scoped to a session and download them. Files the agent writes to `/mnt/session/outputs/` appear in the list shortly after the agent finishes writing them, sometimes a few seconds after the session goes idle. If an output file you expect is missing, list again after a short delay; once it appears in the list, its upload is complete.
 
 Filtering by `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) requires the `managed-agents-2026-04-01` beta header, so the list examples call `GET /v1/files` (python, typescript, ruby: `client.beta.files.list()`; go, csharp: `client.Beta.Files.List()`; java: `client.beta().files().list()`; php: `$client->beta->files->list()`; cli: `ant beta:files list`) and pass that header explicitly.
 
@@ -729,8 +722,8 @@ The agent can work with any file type, including:
   Files mounted in the sandbox are read-only copies. The agent can read them but cannot modify the original uploaded file. To work with modified versions, the agent writes to new paths within the sandbox.
 </Note>
 
-* The path you specify is rooted under the session's uploads directory: a `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) of `/data.csv` places the file at `/mnt/session/uploads/data.csv` in the sandbox
-* If you omit `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`), the file is placed at `/mnt/session/uploads/<file_id>`
-* Parent directories are created automatically
-* Paths should be absolute (starting with `/`)
-* Files the agent writes to `/mnt/session/outputs/` become available through the Files API, scoped to the session; see [Listing and downloading session files](https://platform.claude.com/docs/en/managed-agents/files#listing-and-downloading-session-files)
+* The path you specify is rooted under the session's uploads directory: a `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) of `/data.csv` places the file at `/mnt/session/uploads/data.csv` in the sandbox.
+* If you omit `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`), the file is placed at `/mnt/session/uploads/<file_id>`.
+* Parent directories are created automatically.
+* Paths should be absolute (starting with `/`).
+* Files the agent writes to `/mnt/session/outputs/` become available through the Files API, scoped to the session; see [Listing and downloading session files](https://platform.claude.com/docs/en/managed-agents/files#listing-and-downloading-session-files).

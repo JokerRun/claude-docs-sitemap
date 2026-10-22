@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 13d6a31ab4006bb3da5a1d469976dc1b40faee70f790c694736b90684b591128
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: dfb21315b6150c3bbf15278f249b8513f65124ad7abc632a502e859709284836
 ---
 
 > ## Documentation Index
@@ -955,6 +955,10 @@ Two failures that also reach a plugin's users have their entries under [Plugin i
 The **Errors** tab shows `commands path not found: <absolute path>` with the guidance `Check that the path in your manifest or marketplace config is correct`. The same message appears for `skills`, `agents`, and `hooks`.
 
 Claude Code resolved a path from your `plugin.json` or marketplace entry against the plugin root and found nothing there. The path in the message is the absolute path it checked, so compare it with what's on disk. Fix the path or create the directory, then run `/reload-plugins`.
+
+> [!NOTE]
+>
+> Before v2.1.299, this message could appear at startup on a row labeled with a tag such as `synced[0]`. That row is for a plugin [synced from claude.ai](/docs/en/plugins/loading#synced-plugins). It appeared when another Claude Code session on your machine had updated the plugin moments before and moved its files. To load the plugin, restart Claude Code. To keep the message from appearing for this reason, update to v2.1.299 or later.
 
 Paths in the manifest are relative to the plugin root and start with `./`. A path that resolves outside the plugin root is reported as `<component> path escapes plugin directory` instead and is dropped.
 

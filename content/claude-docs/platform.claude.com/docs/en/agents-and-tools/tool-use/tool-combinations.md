@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-08-21T02:32:13.524433Z
-sha256: 19af85f13fbc207a03784d4dbd31083f2335b97882d7b6831a86a94fd8a064dd
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a8bef1b41ec5428812910a3a376496c8a3d3ee99c31afb7b9f81f936ca4a4757
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinat
 description: Common Anthropic tool pairings for research agents, coding agents, and long-running agents.
 ---
 
-Anthropic-provided tools are designed to work together. Common agent patterns pair tools that cover complementary stages of a workflow: one tool gathers or discovers, another processes or acts. The combinations below are starting points, not prescriptions. Mix them to fit your task.
+Anthropic-provided tools are designed to work together. Common agent patterns pair tools that cover complementary stages of a workflow: one tool gathers or discovers, another processes or acts. The following combinations are starting points, not prescriptions. Mix them to fit your task.
 
 Each snippet shows only the `tools` array. See [Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) for the full request shape.
 
@@ -28,7 +28,7 @@ Search finds sources; code execution analyzes and synthesizes. Claude searches f
 }
 ```
 
-The flow is typically search, then execute, then optionally search again if the first pass surfaced a gap. Code execution runs server-side, so there's no client-side sandbox to manage.
+The flow is typically search, then run code, then optionally search again if the first pass surfaced a gap. Code execution runs server-side, so there's no client-side sandbox to manage.
 
 ## Coding agent: text\_editor + bash
 
@@ -76,7 +76,7 @@ Memory is orthogonal to your other tools. It doesn't change how they behave; it 
 
 ## All-in-one: computer\_use
 
-The computer use tool subsumes most others by operating a full desktop. Claude sees screenshots and issues mouse and keyboard actions, which means it can drive any application a human can. Use this when the task requires arbitrary GUI interaction that more specific tools can't reach: legacy software without an API, visual verification steps, or workflows that span multiple desktop apps.
+The computer use tool subsumes most others by operating a full desktop. Claude receives screenshots and issues mouse and keyboard actions, which means it can drive any application a human can. Use this when the task requires arbitrary GUI interaction that more specific tools can't reach: legacy software without an API, visual verification steps, or workflows that span multiple desktop apps.
 
 ```json
 {
@@ -90,7 +90,7 @@ Computer use is the most general option and also the slowest, because Claude typ
 
 ## Browser agent: browser\_use
 
-When the whole task happens inside webpages (filling forms, reading page content, working across tabs), the browser use tool is a closer fit than computer use. Your application drives a browser it controls and returns screenshots or page state; Claude calls page-aware member tools such as `read_page`, `find`, `form_input`, and `get_page_text` alongside clicks and typing, so it can act on element references in addition to pixel coordinates.
+When the whole task occurs inside webpages (filling forms, reading page content, working across tabs), the browser use tool is a closer fit than computer use. Your application drives a browser it controls and returns screenshots or page state; Claude calls page-aware member tools such as `read_page`, `find`, `form_input`, and `get_page_text` alongside clicks and typing, so it can act on element references in addition to pixel coordinates.
 
 ```json
 {

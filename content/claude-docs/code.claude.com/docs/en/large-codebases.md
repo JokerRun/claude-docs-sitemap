@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 1323646a0198e7167aca34e724e9a3ba950c1196ca3661031127c5a2c317da10
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8761d50291f9b2e804ac85caf2024c5e5cd966886c55787980842e78f86d30fb
 ---
 
 > ## Documentation Index
@@ -148,7 +148,7 @@ These patterns cover other common cases:
 * `"**/packages/legacy-*/**"`: excludes every package whose name matches the glob, including rules
 * `"/home/user/monorepo/legacy/CLAUDE.md"`: excludes one specific file by absolute path
 
-Managed policy CLAUDE.md files cannot be excluded, so organization-wide instructions always apply. You can set `claudeMdExcludes` at any [settings scope](/docs/en/settings#where-settings-live): user, project, local, or managed. Arrays merge across scopes, so a team can set project-level defaults while individuals add local overrides.
+You can set `claudeMdExcludes` at any [settings scope](/docs/en/settings#where-settings-live): user, project, local, or managed. Arrays merge across scopes, so a team can set project-level defaults while individuals add local overrides. If your organization deploys a [managed CLAUDE.md file](/docs/en/memory#deploy-organization-wide-claude-md), a pattern that matches it doesn't skip it, whichever scope sets the pattern.
 
 For the full exclusion documentation, see [Exclude specific CLAUDE.md files](/docs/en/memory#exclude-specific-claude-md-files).
 
@@ -356,7 +356,7 @@ Each route file has a corresponding `.test.ts` file.
 
 A different subdirectory holds different skills the same way: `packages/web/.claude/skills/component-patterns/` describes the frontend's component conventions instead of testing. When Claude works on a file in `packages/api/`, it loads the api-testing skill. When it works in `packages/web/`, it loads component-patterns instead. Neither directory's skills load during the other's tasks.
 
-You can also scope a skill by file pattern instead of by placement. The [`paths` frontmatter field](/docs/en/skills#frontmatter-reference) takes glob patterns, and Claude loads the skill automatically only when it works with matching files. Use this for a skill that lives in the repository root's `.claude/skills/` but applies only to certain files wherever they appear, such as a database-migration skill scoped to `**/migrations/**`.
+You can also scope a skill by file pattern instead of by placement. The [`paths` frontmatter field](/docs/en/skills#frontmatter-reference) takes glob patterns, and Claude loads the skill automatically only when it works with matching files. Use this for a skill that lives in the repository root's `.claude/skills/` but applies only to certain files, such as a database-migration skill scoped to `**/migrations/**`.
 
 For more on creating and organizing skills, see [Skills](/docs/en/skills).
 

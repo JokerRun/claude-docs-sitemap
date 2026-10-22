@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 98e3322aec89ae65a3724bfd0e5be1603a03f5d89ea86ad88d44dea597f2ea7d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 34d50dd3893c5dedebfa667e6b56d8250cdd4ee23b45d543518bc824d7a46ab5
 ---
 
 ---
@@ -30,7 +30,7 @@ Halaman ini membahas environment `type: cloud`. Untuk menjalankan sandbox di inf
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "name": "python-dev",
       "config": {
         "type": "cloud",
@@ -168,7 +168,7 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "agent": "'"$AGENT_ID"'",
       "environment_id": "'"$ENVIRONMENT_ID"'"
     }'

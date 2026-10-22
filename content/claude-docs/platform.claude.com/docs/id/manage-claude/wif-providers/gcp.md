@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 0dcb23047bf47bc18ecca9f2e6b59166e5414b71d707c35c0091ba23198d8bce
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9eee5decff567c3d4b0350bb5f49a320615d50ca1bb5a4b02fae395c45d8e18e
 ---
 
 ---
@@ -353,7 +353,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello from Cloud Run" }],
+      Messages = [new UserMessageParam { Content = "Hello from Cloud Run" }],
   });
   foreach (var block in message.Content)
   {

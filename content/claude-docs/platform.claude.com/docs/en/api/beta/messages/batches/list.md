@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1d1a62dd024a901f3cfa3ad1d3c825cc05e90cc58be55f62bc2f46840ac7631d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4c22c807a39c4ab9f631aff2993fde734a6ac9363dc92fb89c7ac7ffb1b349df
 ---
 
 ---
@@ -151,6 +151,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

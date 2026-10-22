@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: fe5716189fb025b4f6d36c662a62a5e624842dcd5645fb1872f4cdaa00b91985
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: dd124e5e9b7ff4d9010ebe578fa7de33609c9748799bf1c118971988e550e5f1
 ---
 
 ---
@@ -98,7 +98,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
   ```
 
   ```csharp C#
-  List<MessageParam> messages = [new() { Role = Role.User, Content = task }];
+  List<MessageParam> messages = [new UserMessageParam { Content = task }];
   while (true)
   {
       var response = await client.Messages.Create(new()
@@ -108,9 +108,8 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
           Messages = messages,
           Tools = tools,
       });
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = new([.. response.Content.Select(block => new ContentBlockParam(block.Json))]),
       });
       if (response.StopReason == StopReason.EndTurn)
@@ -122,9 +121,8 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
           if (block.Value is ToolUseBlock toolUse)
           {
               var result = ExecuteTool(toolUse.Name, toolUse.Input);
-              messages.Add(new()
+              messages.Add(new UserMessageParam
               {
-                  Role = Role.User,
                   Content = new([new ToolResultBlockParam { ToolUseID = toolUse.ID, Content = result }]),
               });
           }
@@ -163,10 +161,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
 
   ```java Java
   var messages = new ArrayList<MessageParam>();
-  messages.add(MessageParam.builder()
-      .role(MessageParam.Role.USER)
-      .content(task)
-      .build());
+  messages.add(MessageParam.ofUser(task));
   while (true) {
       var response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -181,14 +176,11 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
       for (var block : response.content()) {
           block.toolUse().ifPresent(toolUse -> {
               var result = executeTool(toolUse.name(), toolUse._input());
-              messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.USER)
-                  .contentOfBlockParams(List.of(
-                      ContentBlockParam.ofToolResult(ToolResultBlockParam.builder()
-                          .toolUseId(toolUse.id())
-                          .content(result)
-                          .build())))
-                  .build());
+              messages.add(MessageParam.ofUserOfContentBlockParams(List.of(
+                  ContentBlockParam.ofToolResult(ToolResultBlockParam.builder()
+                      .toolUseId(toolUse.id())
+                      .content(result)
+                      .build()))));
           });
       }
   }
@@ -322,20 +314,13 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
   {
       Name = "Task Runner",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
-      ],
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
   });
 
   var session = await client.Beta.Sessions.Create(new()
   {
       Agent = new BetaManagedAgentsAgentParams
       {
-          Type = "agent",
           ID = agent.ID,
           Version = agent.Version,
       },
@@ -350,8 +335,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = "user.message",
-              Content = [new BetaManagedAgentsTextBlock { Type = "text", Text = task }],
+              Content = [new BetaManagedAgentsTextBlock { Text = task }],
           },
       ],
   });
@@ -431,11 +415,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
           AgentCreateParams.builder()
               .name("Task Runner")
               .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-              .addTool(
-                  BetaManagedAgentsAgentToolset20260401Params.builder()
-                      .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                      .build()
-              )
+              .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
               .build()
       );
 
@@ -443,7 +423,6 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
           SessionCreateParams.builder()
               .agent(
                   BetaManagedAgentsAgentParams.builder()
-                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
                       .id(agent.id())
                       .version(agent.version())
                       .build()
@@ -458,7 +437,6 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
               EventSendParams.builder()
                   .addEvent(
                       BetaManagedAgentsUserMessageEventParams.builder()
-                          .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                           .addTextContent(task)
                           .build()
                   )
@@ -475,15 +453,12 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
       name: 'Task Runner',
       model: 'claude-opus-5-5',
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
       ],
   );
 
   $session = $client->beta->sessions->create(
       agent: BetaManagedAgentsAgentParams::with(
-          type: 'agent',
           id: $agent->id,
           version: $agent->version,
       ),
@@ -795,7 +770,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
       [
           new BetaManagedAgentsCustomToolParams
           {
-              Type = "custom",
               Name = "get_weather",
               Description = "Get the current weather for a city.",
               InputSchema = new()
@@ -822,7 +796,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   {
       Agent = new BetaManagedAgentsAgentParams
       {
-          Type = "agent",
           ID = agent.ID,
           Version = agent.Version,
       },
@@ -839,8 +812,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = "user.message",
-              Content = [new BetaManagedAgentsTextBlock { Type = "text", Text = "What's the weather in Tokyo?" }],
+              Content = [new BetaManagedAgentsTextBlock { Text = "What's the weather in Tokyo?" }],
           },
       ],
   });
@@ -862,16 +834,8 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
               [
                   new BetaManagedAgentsUserCustomToolResultEventParams
                   {
-                      Type = "user.custom_tool_result",
                       CustomToolUseID = toolUse.ID,
-                      Content =
-                      [
-                          new BetaManagedAgentsTextBlock
-                          {
-                              Type = "text",
-                              Text = result,
-                          },
-                      ],
+                      Content = [new BetaManagedAgentsTextBlock { Text = result }],
                   },
               ],
           });
@@ -1031,7 +995,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .system("You are a concise weather assistant.")
       .addTool(BetaManagedAgentsCustomToolParams.builder()
-          .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
           .name("get_weather")
           .description("Get the current weather for a city.")
           .inputSchema(BetaManagedAgentsCustomToolInputSchema.builder()
@@ -1053,7 +1016,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   var session = client.beta().sessions().create(SessionCreateParams.builder()
       .agent(BetaManagedAgentsAgentParams.builder()
-          .type(BetaManagedAgentsAgentParams.Type.AGENT)
           .id(agent.id())
           .version(agent.version())
           .build())
@@ -1067,7 +1029,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("What's the weather in Tokyo?")
                   .build())
               .build());
@@ -1088,7 +1049,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
                       session.id(),
                       EventSendParams.builder()
                           .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                              .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
                               .customToolUseId(toolUse.id())
                               .addTextContent(result)
                               .build())
@@ -1123,7 +1083,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
       system: 'You are a concise weather assistant.',
       tools: [
           BetaManagedAgentsCustomToolParams::with(
-              type: 'custom',
               name: 'get_weather',
               description: 'Get the current weather for a city.',
               inputSchema: BetaManagedAgentsCustomToolInputSchema::with(
@@ -1143,7 +1102,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   $session = $client->beta->sessions->create(
       agent: BetaManagedAgentsAgentParams::with(
-          type: 'agent',
           id: $agent->id,
           version: $agent->version,
       ),

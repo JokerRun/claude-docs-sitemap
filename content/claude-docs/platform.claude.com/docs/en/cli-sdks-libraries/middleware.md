@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 384ecf87146f4faede82e8c77d486de549a6d134ad713ed5fd9f15c05130d64f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 01b94cdd403152d74e0b38ecd5e32686d1a808720508bc1046d27aa3df5a19a5
 ---
 
 ---
@@ -180,7 +180,7 @@ In the Go SDK, repeated `option.WithMiddleware` calls concatenate (client first,
 
 ## Replacing the HTTP client
 
-The SDK also accepts a custom HTTP client (for proxy configuration, custom TLS, or connection pooling). Only one HTTP client is used per SDK client; setting it replaces the default. The custom HTTP client receives requests after all middleware has run.
+The SDK also accepts a custom HTTP client (for proxy configuration, custom TLS, or connection pooling). Only one HTTP client is used for each SDK client; setting it replaces the default. The custom HTTP client receives requests after all middleware has run.
 
 ## Built-in middleware
 

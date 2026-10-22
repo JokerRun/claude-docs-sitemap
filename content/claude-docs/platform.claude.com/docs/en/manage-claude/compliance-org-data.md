@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-org-data
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 07e7f5e1fcd35d18af302a1739555a1bd29053292fba9e58c03ff549e8447523
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 436572f8114b107e988e9072d8f21e80a44430a6c5a105b0d07807cf3093cf43
 ---
 
 ---
@@ -36,7 +36,7 @@ curl --fail-with-body -sS \
   -H "anthropic-version: 2023-06-01"
 ```
 
-```json Response
+```text Response wrap
 {
   "data": [
     {
@@ -87,7 +87,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "limit=500"
 ```
 
-```json Response
+```text Response wrap
 {
   "data": [
     {
@@ -122,7 +122,7 @@ curl --fail-with-body -sS \
   -H "anthropic-version: 2023-06-01"
 ```
 
-```json Response
+```text Response wrap
 {
   "data": [
     {
@@ -152,7 +152,7 @@ curl --fail-with-body -sS \
   -H "anthropic-version: 2023-06-01"
 ```
 
-```json Response
+```text Response
 {
   "data": [
     {
@@ -187,7 +187,7 @@ curl --fail-with-body -sS -G \
   -H "anthropic-version: 2023-06-01"
 ```
 
-```json Response
+```text Response wrap
 {
   "data": [
     {
@@ -214,7 +214,7 @@ curl --fail-with-body -sS -G \
   -H "anthropic-version: 2023-06-01"
 ```
 
-```json Response
+```text Response wrap
 {
   "data": [
     {
@@ -250,7 +250,7 @@ curl --fail-with-body -sS \
 
 The response is a list of typed setting rows, and which rows appear varies by organization: a setting the organization's administrators cannot change, because it is controlled by Anthropic policy or not available to the organization, is omitted from the list. Treat a missing row as "not controllable by this organization's administrators", not as "off". The following abridged example shows three of the rows a response can contain:
 
-```json Response
+```text Response wrap
 {
   "type": "effective_organization_settings",
   "organization_id": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
@@ -294,7 +294,7 @@ The response is a list of typed setting rows, and which rows appear varies by or
 
 Each row carries `name`, `type`, and `value`; the `type` field (`boolean`, `integer`, `string_list`, `provisioning_mode`, or `data_retention`) tells you the shape of `value`. The full list of setting names, and the `value` schema for each type, is in [Get effective organization settings](https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve) in the API reference.
 
-The `api_keys` array lists every Compliance Access Key configured for your parent organization, so the same list is returned regardless of which linked organization you query. Each entry carries the key's `type` (`compliance_api_key`), `id`, `name`, `scopes`, `is_active` flag, `created_at` and `expires_at` timestamps, and `created_by_id` (the ID of the user who created the key; may be `null`). The key's secret value is never returned. Deactivated keys are included with `is_active: false` so you can review keys that previously had access, and keys that carry only the retired `read:compliance_org_settings` scope remain in the list for audit and cleanup visibility even though that scope no longer grants access.
+The `api_keys` array lists every Compliance Access Key configured for your parent organization, so the same list is returned regardless of which linked organization you query. Each entry carries the key's `type` (`compliance_api_key`), `id`, `name`, `scopes`, `is_active` flag, `created_at` and `expires_at` timestamps, and `created_by_id` (the ID of the user who created the key, or `null`). The key's secret value is never returned. Deactivated keys are included with `is_active: false` so you can review keys that previously had access, and keys that carry only the retired `read:compliance_org_settings` scope remain in the list for audit and cleanup visibility even though that scope no longer grants access.
 
 The top-level `organization_id` is the organization's bare UUID: the same value as `uuid` in the organizations list, not the `org_`-prefixed form that `organization_id` carries on Activity Feed, chat, and project records (see the [organization identifier table](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#list-organizations)).
 

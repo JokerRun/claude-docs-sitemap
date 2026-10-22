@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: f197e08a2e31b175fa4a09a70b38fd32bbf2fb1b6ec9e3067d8ca055c817aef0
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9514b42af72a786d3acab676bcd6de74a81eaa24d7e36839786b33735f0e42b6
 ---
 
 ---
 title: Session event stream
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-description: Send events, stream responses, and interrupt or redirect your session mid-execution.
+description: Send events, stream responses, and interrupt or redirect your session while it runs.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -116,15 +116,7 @@ Stream events from the session to receive real-time updates as the agent works. 
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
-              Content =
-              [
-                  new BetaManagedAgentsTextBlock
-                  {
-                      Type = BetaManagedAgentsTextBlockType.Text,
-                      Text = "Summarize the repo README",
-                  },
-              ],
+              Content = [new BetaManagedAgentsTextBlock { Text = "Summarize the repo README" }],
           },
       ],
   });
@@ -201,7 +193,6 @@ Stream events from the session to receive real-time updates as the agent works. 
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Summarize the repo README")
                   .build())
               .build()
@@ -292,7 +283,7 @@ Stream events from the session to receive real-time updates as the agent works. 
 
 The session reports errors through the `session.error` event. See [Event types](https://platform.claude.com/docs/en/managed-agents/reference#event-types) for its fields.
 
-The agent's response text arrives as buffered `agent.message` events, each emitted only after the model request that produced it finishes. To render the text while the model is still generating it, see [Preview responses with event deltas](https://platform.claude.com/docs/en/managed-agents/event-deltas).
+The agent's response text arrives as buffered `agent.message` events, each emitted only after the model request that produced it completes. To render the text while the model is still generating it, see [Preview responses with event deltas](https://platform.claude.com/docs/en/managed-agents/event-deltas).
 
 ### Reconnect without missing events
 
@@ -500,7 +491,7 @@ To reconnect to an existing session without missing events, combine a new stream
   seen_event_ids = Set.new
   client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-  # Tail live events, skipping anything already seen — Set#add? returns nil for duplicates
+  # Tail live events, skipping anything already seen (Set#add? returns nil for duplicates)
   stream.each do |event|
     next unless seen_event_ids.add?(event.id)
     case event
@@ -588,12 +579,10 @@ Send a `user.message` event to start or continue the agent's work:
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "Analyze the performance of the sort function in utils.py",
                   },
               ],
@@ -625,7 +614,6 @@ Send a `user.message` event to start or continue the agent's work:
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-              .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
               .addTextContent("Analyze the performance of the sort function in utils.py")
               .build())
           .build());
@@ -682,7 +670,7 @@ No event you send resumes a session paused at its budget. The work that the budg
 
 ## Answer tool calls that pause the session
 
-A session pauses when the agent invokes a [custom tool](https://platform.claude.com/docs/en/managed-agents/tools#custom-tools), and when a tool call needs your confirmation under a [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies). Both pauses follow the same sequence:
+A session pauses when the agent calls a [custom tool](https://platform.claude.com/docs/en/managed-agents/tools#custom-tools), and when a tool call needs your confirmation under a [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies). Both pauses follow the same sequence:
 
 1. The session emits the tool call as an `agent.custom_tool_use`, `agent.tool_use`, or `agent.mcp_tool_use` event.
 2. The session pauses with a `session.status_idle` event whose `stop_reason.type` is `requires_action`. The blocking event IDs are in the `stop_reason.event_ids` array.
@@ -779,16 +767,8 @@ The following example answers each call as it arrives:
               [
                   new BetaManagedAgentsUserCustomToolResultEventParams
                   {
-                      Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
                       CustomToolUseID = toolUse.ID,
-                      Content =
-                      [
-                          new BetaManagedAgentsTextBlock
-                          {
-                              Type = BetaManagedAgentsTextBlockType.Text,
-                              Text = result,
-                          },
-                      ],
+                      Content = [new BetaManagedAgentsTextBlock { Text = result }],
                   },
               ],
           });
@@ -854,7 +834,6 @@ The following example answers each call as it arrives:
                       session.id(),
                       EventSendParams.builder()
                           .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                              .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
                               .customToolUseId(toolUse.id())
                               .addTextContent(result)
                               .build())
@@ -1008,7 +987,6 @@ The following example approves every pending call:
                   [
                       new BetaManagedAgentsUserToolConfirmationEventParams
                       {
-                          Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
                           ToolUseID = eventId,
                           Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
                       },
@@ -1071,7 +1049,6 @@ The following example approves every pending call:
               session.id(),
               EventSendParams.builder()
                   .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                      .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                       .toolUseId(toolUseId)
                       .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                       .build())
@@ -1214,12 +1191,10 @@ Sessions persist between interactions. To resume a session, send a `user.message
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "Now run the tests against the changes you made earlier.",
                   },
               ],
@@ -1255,7 +1230,6 @@ Sessions persist between interactions. To resume a session, send a `user.message
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-              .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
               .addTextContent("Now run the tests against the changes you made earlier.")
               .build())
           .build());
@@ -1281,7 +1255,7 @@ Sessions persist between interactions. To resume a session, send a `user.message
   ```
 
   ```ruby Ruby
-  # Resuming a session is just sending the next event to it. In production,
+  # To resume a session, send it the next event. In production,
   # pass the session ID you stored when the session was created.
   client.beta.sessions.events.send_(
     session.id,
@@ -1305,7 +1279,7 @@ Conversation history is preserved unless the session is explicitly deleted. When
 
 ## Interrupt the agent
 
-Send a `user.interrupt` event to stop the agent mid-execution, then follow up with a `user.message` event to redirect it:
+Send a `user.interrupt` event to stop the agent while it runs, then follow up with a `user.message` event to redirect it:
 
 <CodeGroup>
   ```bash cURL
@@ -1388,18 +1362,13 @@ Send a `user.interrupt` event to stop the agent mid-execution, then follow up wi
   {
       Events =
       [
-          new BetaManagedAgentsUserInterruptEventParams
-          {
-              Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-          },
+          new BetaManagedAgentsUserInterruptEventParams(),
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "Instead, focus on fixing the bug in line 42.",
                   },
               ],
@@ -1441,11 +1410,8 @@ Send a `user.interrupt` event to stop the agent mid-execution, then follow up wi
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
-          .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-              .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
-              .build())
+          .addEvent(BetaManagedAgentsUserInterruptEventParams.builder().build())
           .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-              .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
               .addTextContent("Instead, focus on fixing the bug in line 42.")
               .build())
           .build());
@@ -1495,7 +1461,7 @@ The call returns as soon as the events are queued. The interrupt then takes effe
 2. The `user.interrupt` event appears on the stream, and the interrupted turn ends with a `session.status_idle` event.
 3. The agent starts its next turn with the `user.message` you sent after the interrupt.
 
-The idle event's `stop_reason.type` is `end_turn`, the same value as a turn that finishes on its own. If workflow runs are open, the interrupt ends none of them. A run that's running can keep the session `running`, so the `session.status_idle` event in step 2 might not arrive. See [Interrupt a session with runs open](https://platform.claude.com/docs/en/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
+The idle event's `stop_reason.type` is `end_turn`, the same value as a turn that completes on its own. If workflow runs are open, the interrupt ends none of them. A run that's running can keep the session `running`, so the `session.status_idle` event in step 2 might not arrive. See [Interrupt a session with runs open](https://platform.claude.com/docs/en/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 ## List past events
 
@@ -1638,9 +1604,9 @@ Pass a `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) filter to r
           .build());
   for (var event : events.data()) {
       event.agentToolUse().ifPresent(toolUse ->
-          IO.println("[" + toolUse.type() + "] " + toolUse.processedAt()));
+          IO.println("[" + toolUse._type() + "] " + toolUse.processedAt()));
       event.agentToolResult().ifPresent(toolResult ->
-          IO.println("[" + toolResult.type() + "] " + toolResult.processedAt()));
+          IO.println("[" + toolResult._type() + "] " + toolResult.processedAt()));
   }
   ```
 
@@ -1668,7 +1634,7 @@ Pass a `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) filter to r
 
 On a [supported model](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#supported-models), send a `system.message` event to give the agent privileged system-level context. The context applies to the accompanying turn and all subsequent turns. Use it when the agent needs updated system-level guidance mid-session, for example a different persona, revised constraints, or context fetched at runtime.
 
-The event's `content` (csharp, go: `Content`) accepts 1–1000 text items. The content is appended to the session's system context as a `role: "system"` turn. It doesn't replace the top-level system prompt, which the `system` (csharp, go: `System`; ruby: `system_`) field on the agent definition sets.
+The event's `content` (csharp, go: `Content`) accepts 1–1,000 text items. The content is appended to the session's system context as a `role: "system"` turn. It doesn't replace the top-level system prompt, which the `system` (csharp, go: `System`; ruby: `system_`) field on the agent definition sets.
 
 <CodeGroup>
   ```bash cURL
@@ -1739,12 +1705,10 @@ The event's `content` (csharp, go: `Content`) accepts 1–1000 text items. The c
       [
           new BetaManagedAgentsSystemMessageEventParams
           {
-              Type = BetaManagedAgentsSystemMessageEventParamsType.SystemMessage,
               Content =
               [
                   new BetaManagedAgentsSystemContentBlock
                   {
-                      Type = BetaManagedAgentsSystemContentBlockType.Text,
                       Text = "The user's current timezone is America/New_York.",
                   },
               ],
@@ -1774,7 +1738,6 @@ The event's `content` (csharp, go: `Content`) accepts 1–1000 text items. The c
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsSystemMessageEventParams.builder()
-              .type(BetaManagedAgentsSystemMessageEventParams.Type.SYSTEM_MESSAGE)
               .addTextContent("The user's current timezone is America/New_York.")
               .build())
           .build());
@@ -1844,7 +1807,7 @@ While the session is idle with a `requires_action` stop reason, a `system.messag
   </Card>
 
   <Card title="Subscribe to webhooks" icon="link" href="https://platform.claude.com/docs/en/managed-agents/webhooks">
-    Get notified when major events happen without polling.
+    Get notified when major events occur without polling.
   </Card>
 
   <Card title="Event types" icon="book" href="https://platform.claude.com/docs/en/managed-agents/reference#event-types">

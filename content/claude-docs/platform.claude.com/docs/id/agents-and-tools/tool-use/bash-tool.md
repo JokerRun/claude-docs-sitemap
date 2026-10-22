@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 0921b91174fe007e36a5f4386e4c8ff252e135265db6ff6a481c5bb8e38f9785
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2761acf6164094252af504adc50b0e83d6138c1cd67cb12609cbf8c96866f372
 ---
 
 ---
@@ -106,11 +106,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
           Tools = [new ToolBash20250124()],
           Messages =
           [
-              new()
-              {
-                  Role = Role.User,
-                  Content = "List all Python files in the current directory.",
-              },
+              new UserMessageParam { Content = "List all Python files in the current directory." },
           ],
       }
   );
@@ -1001,15 +997,10 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
               Tools = [new ToolBash20250124()],
               Messages =
               [
-                  new()
+                  new UserMessageParam { Content = "List all Python files in the current directory." },
+                  new AssistantMessageParam
                   {
-                      Role = Role.User,
-                      Content = "List all Python files in the current directory.",
-                  },
-                  new()
-                  {
-                      Role = Role.Assistant,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
                           new ContentBlockParam(new ToolUseBlockParam()
                           {
@@ -1020,19 +1011,18 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                                   ["command"] = JsonSerializer.SerializeToElement("ls *.py"),
                               },
                           }),
-                      }),
+                      },
                   },
-                  new()
+                  new UserMessageParam
                   {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
                           new ContentBlockParam(new ToolResultBlockParam()
                           {
                               ToolUseID = "toolu_01A09q90qw90lq917835lq9",
                               Content = "analysis.py\nprocess_data.py\n",
                           }),
-                      }),
+                      },
                   },
               ],
           }
@@ -1090,7 +1080,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
               .maxTokens(1024)
               .addTool(ToolBash20250124.builder().build())
               .addUserMessage("List all Python files in the current directory.")
-              .addAssistantMessageOfBlockParams(
+              .addAssistantMessageOfContentBlockParams(
                   List.of(
                       ContentBlockParam.ofToolUse(
                           ToolUseBlockParam.builder()
@@ -1105,7 +1095,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                       )
                   )
               )
-              .addUserMessageOfBlockParams(
+              .addUserMessageOfContentBlockParams(
                   List.of(
                       ContentBlockParam.ofToolResult(
                           ToolResultBlockParam.builder()

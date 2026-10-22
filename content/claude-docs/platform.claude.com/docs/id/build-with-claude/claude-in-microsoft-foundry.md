@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 462ef3576c19f6dc1c63c5df2f1379d746438b60d2c4ea862b00417a469c710f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b37a418786c48db840e47a7340f2ee2d69800b4189878d368882edcf721eef4c
 ---
 
 ---
@@ -87,8 +87,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.75.0")
-        implementation("com.anthropic:anthropic-java-foundry:2.75.0")
+        implementation("com.anthropic:anthropic-java:3.1.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.1.0")
 
         // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
         implementation("com.azure:azure-identity:1.18.3")
@@ -100,12 +100,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -279,7 +279,7 @@ Klien Foundry pada SDK memerlukan kunci API dan salah satu dari nama resource at
   {
       Model = "claude-opus-5-5",
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello!" }],
+      Messages = [new UserMessageParam { Content = "Hello!" }],
   });
 
   Console.WriteLine(
@@ -496,7 +496,7 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
   {
       Model = "claude-opus-5-5",
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello!" }],
+      Messages = [new UserMessageParam { Content = "Hello!" }],
   });
 
   Console.WriteLine(

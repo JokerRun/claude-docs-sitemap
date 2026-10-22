@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 9ab7bd8a9622ae502ac3b4676142d3d04615c46ec53c6d4bb5dae6c51486ddd5
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a8fb28ddb220d6f0633fe49a7501bcdf7dc96f3fce725c31f24abbb982f13c44
 ---
 
 ---
@@ -235,13 +235,12 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       ],
       Messages =
       [
-          new() { Role = Role.User, Content = "Say OK." },
+          new BetaUserMessageParam { Content = "Say OK." },
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `Tools`, sehingga giliran sebelumnya tetap
           // identik per byte dan cache tetap hit.
-          new()
+          new BetaSystemMessageParam
           {
-              Role = Role.System,
               Content = new(
               [
                   new BetaRequestToolRemovalBlock
@@ -314,10 +313,9 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
 
   ```java Java
   import com.anthropic.models.beta.AnthropicBeta;
-  import com.anthropic.models.beta.messages.BetaContentBlockParam;
   import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaMessageParam;
   import com.anthropic.models.beta.messages.BetaRequestToolRemovalBlock;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam.Content.SystemMessageContentBlock;
   import com.anthropic.models.beta.messages.BetaTool;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   // ...
@@ -347,13 +345,10 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           // Tarik get_weather mulai titik ini. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
           // identik per byte dan cache tetap hit.
-          .addMessage(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.SYSTEM)
-              .contentOfBetaContentBlockParams(List.of(
-                  BetaContentBlockParam.ofToolRemoval(BetaRequestToolRemovalBlock.builder()
-                      .referenceTool("get_weather")
-                      .build())))
-              .build())
+          .addSystemMessageOfBlocks(List.of(
+              SystemMessageContentBlock.ofToolRemoval(BetaRequestToolRemovalBlock.builder()
+                  .referenceTool("get_weather")
+                  .build())))
           .build();
 
       BetaMessage response = client.beta().messages().create(params);
@@ -726,12 +721,11 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
       ],
       Messages =
       [
-          new() { Role = Role.User, Content = "How many orders shipped yesterday?" },
+          new BetaUserMessageParam { Content = "How many orders shipped yesterday?" },
           // Definisikan db_query berdasarkan nilai mulai titik ini. `Tools` dan
           // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
-          new()
+          new BetaSystemMessageParam
           {
-              Role = Role.System,
               Content = new(
               [
                   new BetaRequestToolAdditionBlock
@@ -827,9 +821,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
 
   ```java Java
   import com.anthropic.models.beta.AnthropicBeta;
-  import com.anthropic.models.beta.messages.BetaContentBlockParam;
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaRequestToolAdditionBlock;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam.Content.SystemMessageContentBlock;
   import com.anthropic.models.beta.messages.BetaTool;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   // ...
@@ -871,8 +865,8 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
           .addUserMessage("How many orders shipped yesterday?")
           // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
           // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
-          .addSystemMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofToolAddition(BetaRequestToolAdditionBlock.builder()
+          .addSystemMessageOfBlocks(List.of(
+              SystemMessageContentBlock.ofToolAddition(BetaRequestToolAdditionBlock.builder()
                   .definitionTool(dbQueryTool)
                   .build())))
           .build();
@@ -1309,12 +1303,11 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
       ],
       Messages =
       [
-          new() { Role = Role.User, Content = "What's on my calendar tomorrow?" },
+          new BetaUserMessageParam { Content = "What's on my calendar tomorrow?" },
           // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
           // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
-          new()
+          new BetaSystemMessageParam
           {
-              Role = Role.System,
               Content = new(
               [
                   new BetaRequestToolAdditionBlock
@@ -1414,12 +1407,12 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
 
   ```java Java
   import com.anthropic.models.beta.AnthropicBeta;
-  import com.anthropic.models.beta.messages.BetaContentBlockParam;
   import com.anthropic.models.beta.messages.BetaMcpTool;
   import com.anthropic.models.beta.messages.BetaMcpToolset;
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaRequestMcpServerUrlDefinition;
   import com.anthropic.models.beta.messages.BetaRequestToolAdditionBlock;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam.Content.SystemMessageContentBlock;
   import com.anthropic.models.beta.messages.BetaTool;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   // ...
@@ -1454,8 +1447,8 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
           .addUserMessage("What's on my calendar tomorrow?")
           // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
           // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
-          .addSystemMessageOfBetaContentBlockParams(List.of(
-              BetaContentBlockParam.ofToolAddition(BetaRequestToolAdditionBlock.builder()
+          .addSystemMessageOfBlocks(List.of(
+              SystemMessageContentBlock.ofToolAddition(BetaRequestToolAdditionBlock.builder()
                   .definitionTool(BetaMcpToolset.builder()
                       .mcpServerName("calendar")
                       .build())
@@ -1794,28 +1787,18 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
       System = "You are a code review assistant. Be concise.",
       Messages =
       [
-          new()
+          new UserMessageParam { Content = "Review process() in utils.py for performance issues." },
+          new AssistantMessageParam
           {
-              Role = Role.User,
-              Content = "Review process() in utils.py for performance issues."
-          },
-          new()
-          {
-              Role = Role.Assistant,
               Content = "The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list."
           },
-          new()
-          {
-              Role = Role.User,
-              Content = "Now review the calling code that invokes process()."
-          },
+          new UserMessageParam { Content = "Now review the calling code that invokes process()." },
           // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
           // kebijakan pengetikan ketat tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
-          new()
+          new SystemMessageParam
           {
-              Role = Role.System,
               Content = "From now on, every suggestion must include explicit type annotations."
           }
       ]
@@ -1866,8 +1849,6 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   ```java Java
   import com.anthropic.models.messages.CacheControlEphemeral;
   // ...
-  import com.anthropic.models.messages.MessageParam;
-  // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
@@ -1884,10 +1865,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
           // kebijakan pengetikan ketat tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
-          .addMessage(MessageParam.builder()
-              .role(MessageParam.Role.SYSTEM)
-              .content("From now on, every suggestion must include explicit type annotations.")
-              .build())
+          .addSystemMessage("From now on, every suggestion must include explicit type annotations.")
           .build();
 
       Message response = client.messages().create(params);
@@ -2223,11 +2201,10 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
       MaxTokens = 4096,
       Messages =
       [
-          new() { Role = Role.User, Content = "Draft a short status update on the database migration for the team channel." },
+          new BetaUserMessageParam { Content = "Draft a short status update on the database migration for the team channel." },
           // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
-          new()
+          new BetaSystemMessageParam
           {
-              Role = Role.System,
               ClearAt = ClearAt.NextUserMessage,
               Content = "The reader is on call: keep this reply under 50 words.",
           },
@@ -2275,7 +2252,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```java Java
   import com.anthropic.models.beta.AnthropicBeta;
   import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaMessageParam;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   import com.anthropic.models.messages.Model;
 
@@ -2288,9 +2265,8 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
           .addBeta(AnthropicBeta.MID_CONVERSATION_SYSTEM_CLEAR_AT_2026_08_21)
           .addUserMessage("Draft a short status update on the database migration for the team channel.")
           // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
-          .addMessage(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.SYSTEM)
-              .clearAt(BetaMessageParam.ClearAt.NEXT_USER_MESSAGE)
+          .addMessage(BetaSystemMessageParam.builder()
+              .clearAt(BetaSystemMessageParam.ClearAt.NEXT_USER_MESSAGE)
               .content("The reader is on call: keep this reply under 50 words.")
               .build())
           .build();

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 56e19fd454cb88ef7f81879b24cc19749d52de9ca70269d518e785c8a78b0cea
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 56af38fbd4182e0c2dfc5bac3c93f4babc2ca4ca2f621aba0dbe2abadb5e2adc
 ---
 
 ---
@@ -311,7 +311,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
-      Messages = [new() { Role = Role.User, Content = userPrompt }],
+      Messages = [new UserMessageParam { Content = userPrompt }],
   });
 
   // Saat Claude memanggil alat, respons memiliki stop_reason "tool_use"
@@ -356,9 +356,9 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       ToolChoice = toolChoice,
       Messages =
       [
-          new() { Role = Role.User, Content = userPrompt },
-          new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-          new() { Role = Role.User, Content = new MessageParamContent(toolResults) },
+          new UserMessageParam { Content = userPrompt },
+          new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+          new UserMessageParam { Content = toolResults },
       ],
   });
 
@@ -595,7 +595,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
           .toolChoice(toolChoice)
           .addUserMessage(userPrompt)
           .addMessage(response)
-          .addUserMessageOfBlockParams(List.of(ContentBlockParam.ofToolResult(
+          .addUserMessageOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
               ToolResultBlockParam.builder()
                   .toolUseId(toolUse.id())
                   .content(result)
@@ -777,7 +777,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
   # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -802,7 +802,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
   # assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   followup = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -1107,9 +1107,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   // Simpan seluruh riwayat percakapan dalam list agar setiap giliran melihat konteks sebelumnya.
   List<MessageParam> messages =
   [
-      new()
+      new UserMessageParam
       {
-          Role = Role.User,
           Content = "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
       },
   ];
@@ -1138,15 +1137,13 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       }
       var result = RunTool(toolUse!);
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new()
+      messages.Add(new UserMessageParam
       {
-          Role = Role.User,
-          Content = new MessageParamContent(
+          Content = new MessageContentParam(
           [
               new ContentBlockParam(new ToolResultBlockParam() { ToolUseID = toolUse!.ID, Content = result }),
           ]),
@@ -1355,10 +1352,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
       // Simpan seluruh riwayat percakapan dalam list agar tiap giliran melihat konteks sebelumnya.
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.")
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -1379,14 +1374,11 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
           String result = runTool(toolUse);
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(List.of(ContentBlockParam.ofToolResult(
-                  ToolResultBlockParam.builder()
-                      .toolUseId(toolUse.id())
-                      .content(result)
-                      .build())))
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
+              ToolResultBlockParam.builder()
+                  .toolUseId(toolUse.id())
+                  .content(result)
+                  .build()))));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -1566,7 +1558,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: tool_choice,
@@ -1592,7 +1584,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
     }
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       tool_choice: tool_choice,
@@ -1914,9 +1906,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
   List<MessageParam> messages =
   [
-      new()
+      new UserMessageParam
       {
-          Role = Role.User,
           Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
       },
   ];
@@ -1946,12 +1937,11 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
           }
       }
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new() { Role = Role.User, Content = new MessageParamContent(toolResults) });
+      messages.Add(new UserMessageParam { Content = toolResults });
 
       response = await client.Messages.Create(new MessageCreateParams
       {
@@ -2166,10 +2156,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
           .build();
 
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts."));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -2196,10 +2184,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
           }
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(toolResults)
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -2391,7 +2376,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -2412,7 +2397,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -2762,7 +2747,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 
   List<MessageParam> messages =
   [
-      new() { Role = Role.User, Content = $"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: {emails}" },
+      new UserMessageParam { Content = $"Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: {emails}" },
   ];
 
   var response = await client.Messages.Create(new MessageCreateParams
@@ -2799,12 +2784,11 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           }
       }
 
-      messages.Add(new()
+      messages.Add(new AssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
       });
-      messages.Add(new() { Role = Role.User, Content = new MessageParamContent(toolResults) });
+      messages.Add(new UserMessageParam { Content = toolResults });
 
       response = await client.Messages.Create(new MessageCreateParams
       {
@@ -3044,10 +3028,8 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           .collect(Collectors.joining(", "));
 
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder()
-          .role(MessageParam.Role.USER)
-          .content("Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + emails)
-          .build());
+      messages.add(MessageParam.ofUser(
+          "Schedule a one-hour all-hands on Monday, March 30, 2026 at 10am with everyone: " + emails));
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -3076,10 +3058,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
           }
 
           messages.add(response.toParam());
-          messages.add(MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .contentOfBlockParams(toolResults)
-              .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
 
           response = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
@@ -3289,7 +3268,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ]
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     messages: messages
@@ -3318,7 +3297,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     messages << {role: "user", content: tool_results}
 
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: tools,
       messages: messages
@@ -3497,7 +3476,6 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   using Anthropic.Models.Beta.Messages;
   using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
   using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
-  using Role = Anthropic.Models.Beta.Messages.Role;
   using Model = Anthropic.Models.Messages.Model;
 
   AnthropicClient client = new();
@@ -3581,9 +3559,8 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new BetaUserMessageParam
               {
-                  Role = Role.User,
                   Content = "Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.",
               },
           ],
@@ -3935,7 +3912,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   # Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
   # hingga Claude menghasilkan jawaban akhir.
   runner = client.beta.messages.tool_runner(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [CreateCalendarEvent.new, ListCalendarEvents.new],
     messages: [

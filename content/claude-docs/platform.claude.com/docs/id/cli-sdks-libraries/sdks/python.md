@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f093788ddd84a7b25169ce3c7efc978c24bea0e039cd19b10d80f7b6dce79681
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b937268d6ffbca8c595cdfd3c74da9caa6734b94afd315b6d9a2c109ce5f57b1
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
 description: Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sinkron dan asinkron
 ---
 
-Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, streaming, serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry.
+Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, "streaming" (streaming), serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Python.
+  Untuk dokumentasi fitur API beserta contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Python.
 </Info>
 
 ## Instalasi
@@ -23,7 +23,7 @@ Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Py
 pip install anthropic
 ```
 
-Untuk integrasi khusus platform atau performa asinkron yang lebih baik, instal dengan extras:
+Untuk integrasi khusus platform atau performa async yang lebih baik, instal dengan extras:
 
 ```bash
 # Untuk dukungan Amazon Bedrock
@@ -43,7 +43,7 @@ pip install "anthropic[aiohttp]"
 
 ## Persyaratan
 
-Diperlukan Python 3.10 atau yang lebih baru. Jika Anda melakukan upgrade dari rilis 0.x SDK ini, lihat [panduan migrasi v1](https://github.com/anthropics/anthropic-sdk-python/blob/main/MIGRATION.md) untuk daftar perubahan yang tidak kompatibel (breaking changes).
+Diperlukan Python 3.10 atau yang lebih baru. Jika Anda melakukan upgrade dari rilis 0.x SDK, lihat [panduan migrasi v1](https://github.com/anthropics/anthropic-sdk-python/blob/main/MIGRATION.md) untuk daftar perubahan yang bersifat breaking.
 
 ## Penggunaan
 
@@ -73,12 +73,12 @@ for block in message.content:
 ```
 
 <Tip>
-  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda sehingga kunci API Anda tidak tersimpan di source control.
+  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda agar "API key" (kunci API) Anda tidak tersimpan di source control.
 </Tip>
 
 Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
-## Penggunaan asinkron
+## Penggunaan async
 
 ```python
 import os
@@ -109,7 +109,7 @@ asyncio.run(main())
 
 ### Menggunakan aiohttp untuk konkurensi yang lebih baik
 
-Untuk performa asinkron yang lebih baik, Anda dapat menggunakan backend HTTP `aiohttp` sebagai pengganti `httpx2` bawaan:
+Untuk performa async yang lebih baik, Anda dapat menggunakan backend HTTP `aiohttp` sebagai pengganti `httpx2` default:
 
 ```python
 import os
@@ -140,7 +140,7 @@ asyncio.run(main())
 
 ## Respons streaming
 
-SDK ini menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
+SDK menyediakan dukungan untuk respons streaming menggunakan "Server-Sent Events" (peristiwa yang dikirim server), atau SSE.
 
 ```python
 client = Anthropic()
@@ -160,7 +160,7 @@ for event in stream:
     print(event.type)
 ```
 
-Klien asinkron menggunakan antarmuka yang persis sama:
+Klien async menggunakan antarmuka yang persis sama:
 
 ```python
 client = AsyncAnthropic()
@@ -182,7 +182,7 @@ async for event in stream:
 
 ### Helper streaming
 
-SDK ini juga menyediakan helper streaming yang menggunakan context manager dan memberikan akses ke teks yang terakumulasi serta pesan akhir:
+SDK juga menyediakan helper streaming yang menggunakan context manager dan memberikan akses ke teks yang terakumulasi serta pesan akhir:
 
 ```python
 async def main() -> None:
@@ -237,7 +237,7 @@ SDK ini menyediakan dukungan untuk "tool use" (penggunaan alat), yang juga diken
 
 ### Helper alat
 
-SDK ini menyediakan helper untuk mendefinisikan dan menjalankan alat sebagai fungsi Python murni. Decorator `@beta_tool` menghasilkan skema alat dari signature fungsi dan docstring:
+SDK menyediakan helper untuk mendefinisikan dan menjalankan alat sebagai fungsi Python murni. Decorator `@beta_tool` menghasilkan skema alat dari signature fungsi dan docstring:
 
 ```python
 import json
@@ -279,7 +279,7 @@ for message in runner:
 
 Pada setiap iterasi, sebuah permintaan API dibuat. Jika respons menyertakan panggilan ke salah satu alat yang diberikan, alat tersebut dipanggil secara otomatis, dan hasilnya dikembalikan langsung ke model pada iterasi berikutnya.
 
-Untuk menjalankan alat browser use atau alat computer use dengan SDK ini, lihat [Penggunaan browser dan komputer dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
+Untuk menjalankan alat browser use atau alat computer use dengan SDK ini, lihat [Browser dan computer use dengan toolset SDK](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk).
 
 ## Batch pesan
 
@@ -287,7 +287,7 @@ SDK ini menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.co
 
 ### Membuat batch
 
-Message Batches menerima array permintaan, di mana setiap objek memiliki pengenal `custom_id` dan `params` permintaan yang sama seperti Messages API standar:
+Message Batches menerima array permintaan, di mana setiap objek memiliki pengenal `custom_id` dan `params` permintaan yang sama dengan Messages API standar:
 
 ```python
 client.messages.batches.create(
@@ -314,7 +314,7 @@ client.messages.batches.create(
 
 ### Mendapatkan hasil dari batch
 
-Setelah sebuah Message Batch selesai diproses, yang ditandai dengan `.processing_status == 'ended'`, Anda dapat mengakses hasilnya dengan `.batches.results()`:
+Setelah Message Batch selesai diproses, yang ditandai dengan `.processing_status == 'ended'`, Anda dapat mengakses hasilnya dengan `.batches.results()`:
 
 ```python
 client = anthropic.Anthropic()
@@ -330,8 +330,8 @@ for entry in result_stream:
 Parameter permintaan yang berkaitan dengan unggahan file dapat diberikan dalam berbagai bentuk:
 
 * Objek `PathLike` (misalnya, `pathlib.Path`)
-* Tuple berisi `(filename, content, content_type)`
-* Objek file-like `BinaryIO`
+* Tuple `(filename, content, content_type)`
+* Objek mirip file `BinaryIO`
 
 ```python
 from pathlib import Path
@@ -339,22 +339,22 @@ from anthropic import Anthropic
 
 client = Anthropic()
 
-# Unggah menggunakan jalur file
+# Unggah menggunakan path file
 client.files.upload(
     file=Path("/path/to/file"),
 )
 
-# Unggah menggunakan byte
+# Unggah menggunakan bytes
 client.files.upload(
     file=("file.txt", b"my bytes", "text/plain"),
 )
 ```
 
-Klien asinkron menggunakan antarmuka yang persis sama. Jika Anda memberikan instance `PathLike`, isi file akan dibaca secara asinkron secara otomatis.
+Klien async menggunakan antarmuka yang persis sama. Jika Anda memberikan instance `PathLike`, isi file akan dibaca secara asinkron secara otomatis.
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), sebuah subclass dari `APIError` akan dimunculkan:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dimunculkan:
 
 ```python
 import anthropic
@@ -383,7 +383,7 @@ except anthropic.APIStatusError as e:
 
 Kode error adalah sebagai berikut:
 
-| Kode status | Tipe error                 |
+| Kode status | Jenis error                |
 | ----------- | -------------------------- |
 | 400         | `BadRequestError`          |
 | 401         | `AuthenticationError`      |
@@ -395,11 +395,11 @@ Kode error adalah sebagai berikut:
 | >=500       | `InternalServerError`      |
 | N/A         | `APIConnectionError`       |
 
-## Request ID
+## ID permintaan
 
-> Untuk informasi lebih lanjut tentang debugging permintaan, lihat [Request ID](https://platform.claude.com/docs/id/api/errors#request-id).
+> Untuk informasi lebih lanjut tentang debugging permintaan, lihat [ID Permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
-Semua respons objek dalam SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat permintaan yang gagal dan melaporkannya kembali ke Anthropic.
+Semua respons objek di SDK menyediakan properti `_request_id` yang ditambahkan dari header respons `request-id` sehingga Anda dapat dengan cepat mencatat permintaan yang gagal dan melaporkannya kembali ke Anthropic.
 
 ```python
 message = client.messages.create(
@@ -411,12 +411,12 @@ print(message._request_id)  # e.g., req_018EeWyXxfu5pfWkrYcMdjWG
 ```
 
 <Note>
-  Tidak seperti properti lain yang menggunakan prefiks `_`, properti `_request_id` bersifat publik. Kecuali didokumentasikan sebaliknya, semua properti, metode, dan modul lain dengan prefiks `_` bersifat privat.
+  Tidak seperti properti lain yang menggunakan awalan `_`, properti `_request_id` bersifat publik. Kecuali didokumentasikan sebaliknya, semua properti, metode, dan modul lain dengan awalan `_` bersifat privat.
 </Note>
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
+Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff yang singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
 
@@ -436,13 +436,13 @@ client.with_options(max_retries=5).messages.create(
 
 ## Timeout
 
-Secara default, permintaan akan timeout setelah 10 menit. Anda dapat mengonfigurasinya dengan opsi `timeout`, yang menerima float atau objek `httpx2.Timeout`:
+Secara default, permintaan akan timeout setelah 10 menit. Anda dapat mengonfigurasi ini dengan opsi `timeout`, yang menerima float atau objek `httpx2.Timeout`:
 
 ```python
 import httpx2
 from anthropic import Anthropic
 
-# Konfigurasikan default untuk semua permintaan:
+# Konfigurasikan nilai default untuk semua permintaan:
 client = Anthropic(
     timeout=20.0,  # 20 seconds (default is 10 minutes)
 )
@@ -460,19 +460,19 @@ client.with_options(timeout=5.0).messages.create(
 )
 ```
 
-Saat timeout, SDK memunculkan `APITimeoutError`.
+Saat timeout, SDK akan melempar `APITimeoutError`.
 
-Perhatikan bahwa permintaan yang mengalami timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#retries).
+Perhatikan bahwa permintaan yang timeout akan [dicoba ulang dua kali secara default](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#retries).
 
 ## Permintaan panjang
 
 <Warning>
-  Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#streaming-responses) streaming untuk permintaan yang berjalan lebih lama.
+  Pertimbangkan untuk menggunakan [Messages API](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#streaming-responses) dengan streaming untuk permintaan yang berjalan lebih lama.
 </Warning>
 
-Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi yang idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) tanpa menerima respons dari Anthropic.
+Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Beberapa jaringan mungkin memutus koneksi idle setelah periode waktu tertentu, yang dapat menyebabkan permintaan gagal atau [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) tanpa menerima respons dari Anthropic.
 
-SDK akan memunculkan `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` di tingkat klien atau permintaan akan menonaktifkan error ini.
+SDK akan melempar `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` di tingkat klien atau permintaan akan menonaktifkan error ini.
 
 "Latency" (latensi) permintaan yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
 
@@ -480,7 +480,7 @@ SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive
 
 ## Paginasi otomatis
 
-Metode list di Claude API menggunakan paginasi. Anda dapat menggunakan sintaks `for` untuk mengiterasi item di seluruh halaman:
+Metode list di Claude API dipaginasi. Anda dapat menggunakan sintaks `for` untuk melakukan iterasi item di semua halaman:
 
 ```python
 client = Anthropic()
@@ -492,7 +492,7 @@ for batch in client.messages.batches.list(limit=20):
 print(all_batches)
 ```
 
-Untuk iterasi asinkron:
+Untuk iterasi async:
 
 ```python
 async def main() -> None:
@@ -532,12 +532,12 @@ for batch in first_page.data:
 
 ## Header default
 
-SDK secara otomatis mengirim header `anthropic-version` yang diatur ke `2023-06-01`.
+SDK secara otomatis mengirimkan header `anthropic-version` yang diatur ke versi API untuk versi mayor SDK ini (lihat [Semantic versioning](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#semantic-versioning)).
 
-Jika diperlukan, Anda dapat menimpanya dengan menetapkan header default pada objek klien atau per permintaan.
+Jika perlu, Anda dapat menimpanya dengan menetapkan header default pada objek klien atau per permintaan.
 
 <Warning>
-  Menimpa header default dapat mengakibatkan tipe yang salah dan perilaku lain yang tidak terduga atau tidak terdefinisi dalam SDK.
+  Menimpa header default dapat mengakibatkan tipe yang salah dan perilaku tak terduga atau tidak terdefinisi lainnya di SDK.
 </Warning>
 
 ```python
@@ -561,7 +561,7 @@ client.messages.with_raw_response.create(
 
 Parameter permintaan bersarang adalah [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Respons adalah [model Pydantic](https://docs.pydantic.dev) yang juga memiliki metode helper untuk hal-hal seperti serialisasi kembali ke JSON ([`v1`](https://docs.pydantic.dev/1.10/usage/models/), [`v2`](https://docs.pydantic.dev/latest/concepts/serialization/)).
 
-Permintaan dan respons bertipe menyediakan autocomplete dan dokumentasi di dalam editor Anda. Jika Anda ingin melihat error tipe di VS Code untuk membantu menangkap bug lebih awal, atur `python.analysis.typeCheckingMode` ke `basic`.
+Permintaan dan respons bertipe menyediakan autocomplete dan dokumentasi di dalam editor Anda. Jika Anda ingin melihat error tipe di VS Code untuk membantu menemukan bug lebih awal, atur `python.analysis.typeCheckingMode` ke `basic`.
 
 ### Model respons
 
@@ -577,9 +577,9 @@ json_str = message.to_json()
 data = message.to_dict()
 ```
 
-### Menangani field null vs field yang tidak ada
+### Menangani field null vs yang tidak ada
 
-Dalam respons, Anda dapat membedakan antara field yang secara eksplisit `null` dengan field yang tidak dikembalikan (tidak ada):
+Dalam respons, Anda dapat membedakan antara field yang secara eksplisit bernilai `null` dan field yang tidak dikembalikan (tidak ada):
 
 ```python
 response = client.messages.create(
@@ -616,11 +616,11 @@ message = (
 print(message.content)
 ```
 
-Metode-metode ini mengembalikan objek `APIResponse`. Pada klien asinkron, metode ini mengembalikan `AsyncAPIResponse`, dan `.parse()`, `.read()`, `.text()`, serta `.json()` harus di-await.
+Metode-metode ini mengembalikan objek `APIResponse`. Pada klien async, metode ini mengembalikan `AsyncAPIResponse`, dan `.parse()`, `.read()`, `.text()`, serta `.json()` harus di-await.
 
 ### Streaming body respons
 
-Pendekatan `.with_raw_response` langsung membaca seluruh body respons saat Anda membuat permintaan. Untuk melakukan streaming body respons, gunakan `.with_streaming_response`, yang memerlukan context manager dan hanya membaca body respons setelah Anda memanggil `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()`, atau `.parse()`. Pada klien asinkron, ini adalah metode asinkron.
+Pendekatan `.with_raw_response` langsung membaca seluruh body respons saat Anda membuat permintaan. Untuk melakukan streaming body respons, gunakan `.with_streaming_response`, yang memerlukan context manager dan hanya membaca body respons setelah Anda memanggil `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()`, atau `.parse()`. Pada klien async, ini adalah metode async.
 
 ```python
 with client.messages.with_streaming_response.create(
@@ -652,7 +652,7 @@ Library ini bertipe untuk akses yang mudah ke API yang terdokumentasi. Jika Anda
 
 #### Endpoint tidak terdokumentasi
 
-Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verb HTTP lainnya. Opsi pada klien, seperti percobaan ulang, tetap dihormati saat membuat permintaan ini.
+Untuk membuat permintaan ke endpoint yang tidak terdokumentasi, Anda dapat menggunakan `client.get`, `client.post`, dan verb HTTP lainnya. Opsi pada klien, seperti percobaan ulang, tetap diterapkan saat membuat permintaan ini.
 
 ```python
 import httpx2
@@ -668,7 +668,7 @@ print(response.json())
 
 #### Parameter permintaan tidak terdokumentasi
 
-Jika Anda ingin secara eksplisit mengirim parameter tambahan, Anda dapat melakukannya dengan opsi permintaan `extra_query`, `extra_body`, dan `extra_headers`.
+Jika Anda ingin mengirim parameter tambahan secara eksplisit, Anda dapat melakukannya dengan opsi permintaan `extra_query`, `extra_body`, dan `extra_headers`.
 
 <Warning>
   Parameter `extra_` menimpa parameter terdokumentasi dengan nama yang sama. Demi alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang tepercaya.
@@ -680,7 +680,7 @@ Untuk mengakses properti respons yang tidak terdokumentasi, Anda dapat mengakses
 
 ### Mengonfigurasi klien HTTP
 
-SDK mengirim permintaan dengan [httpx2](https://httpx2.pydantic.dev), sebuah fork dari `httpx` yang kompatibel secara API. Untuk menyesuaikan klien HTTP, termasuk proxy dan transport, berikan [klien httpx2](https://httpx2.pydantic.dev/api/#client) Anda sendiri sebagai `http_client`:
+SDK mengirimkan permintaan dengan [httpx2](https://httpx2.pydantic.dev), sebuah fork dari `httpx` yang kompatibel secara API. Untuk menyesuaikan klien HTTP, termasuk proxy dan transport, berikan [klien httpx2](https://httpx2.pydantic.dev/api/#client) Anda sendiri sebagai `http_client`:
 
 ```python
 import httpx2
@@ -703,10 +703,10 @@ client.with_options(http_client=DefaultHttpxClient(...))
 ```
 
 <Note>
-  Gunakan `DefaultHttpxClient` dan `DefaultAsyncHttpxClient` sebagai pengganti `httpx2.Client` dan `httpx2.AsyncClient` mentah untuk memastikan konfigurasi default SDK (seperti timeout dan batas koneksi) tetap dipertahankan. Argumen `http_client` harus berupa klien `httpx2`. Memberikan klien dari paket `httpx` yang terpisah akan memunculkan `TypeError`.
+  Gunakan `DefaultHttpxClient` dan `DefaultAsyncHttpxClient` alih-alih `httpx2.Client` dan `httpx2.AsyncClient` mentah untuk memastikan konfigurasi default SDK (seperti timeout dan batas koneksi) tetap dipertahankan. Argumen `http_client` harus berupa klien `httpx2`. Memberikan klien dari paket `httpx` yang terpisah akan memunculkan `TypeError`.
 </Note>
 
-Alat tracing dan mocking yang mem-patch `httpx` itu sendiri, seperti `HTTPXClientInstrumentor` dari OpenTelemetry, integrasi `httpx` dari Sentry, `respx`, atau `pytest-httpx`, tidak melihat permintaan SDK secara default. Untuk menggunakannya, panggil `httpx2.alias_httpx()` sekali saat startup, sebelum apa pun mengimpor `httpx`. Ini membuat `import httpx` mengarah ke `httpx2` untuk seluruh proses.
+Alat tracing dan mocking yang mem-patch `httpx` itu sendiri, seperti `HTTPXClientInstrumentor` dari OpenTelemetry, integrasi `httpx` dari Sentry, `respx`, atau `pytest-httpx`, secara default tidak melihat permintaan SDK. Untuk menggunakannya, panggil `httpx2.alias_httpx()` sekali saat startup, sebelum ada yang mengimpor `httpx`. Ini membuat `import httpx` di-resolve ke `httpx2` untuk seluruh proses.
 
 ### Mengelola sumber daya HTTP
 
@@ -725,7 +725,7 @@ Fitur beta tersedia sebelum rilis umum untuk mendapatkan umpan balik awal dan me
 
 Anda dapat mengakses sebagian besar fitur API beta melalui properti `beta` pada klien. Untuk mengaktifkan fitur beta tertentu, Anda perlu menambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) yang sesuai ke field `betas` saat membuat pesan.
 
-Sebagai contoh, untuk mengaktifkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing):
+Misalnya, untuk mengaktifkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing):
 
 ```python
 client = Anthropic()
@@ -741,7 +741,7 @@ response = client.beta.messages.create(
 ## Integrasi platform
 
 <Note>
-  Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
+  Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
@@ -760,21 +760,23 @@ Kelima kelas klien disertakan dalam paket dasar `anthropic`:
 | Claude Platform on AWS            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`     |
 | Foundry                           | `from anthropic import AnthropicFoundry`       | Tidak ada                          |
 
-Klien `AnthropicAWS` masih dalam beta. Berikan `workspace_id` ke constructor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`.
+Klien `AnthropicAWS` masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`.
 
 Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
-## Versioning semantik
+## Semantic versioning
 
-Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
+Setiap versi mayor SDK ini secara default mengirimkan satu versi API di header `anthropic-version`, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 2.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
-2. Perubahan pada internal library yang secara teknis publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-3. Perubahan yang dalam praktiknya tidak diperkirakan berdampak pada sebagian besar pengguna.
+2. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
+3. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 ### Menentukan versi yang terinstal
 
-Jika Anda telah melakukan upgrade ke versi terbaru tetapi tidak melihat fitur baru yang Anda harapkan, lingkungan Python Anda kemungkinan masih menggunakan versi yang lebih lama. Anda dapat menentukan versi yang digunakan saat runtime dengan:
+Jika Anda telah melakukan upgrade ke versi terbaru tetapi tidak melihat fitur baru yang Anda harapkan, kemungkinan lingkungan Python Anda masih menggunakan versi yang lebih lama. Anda dapat menentukan versi yang digunakan saat runtime dengan:
 
 ```python
 print(anthropic.__version__)

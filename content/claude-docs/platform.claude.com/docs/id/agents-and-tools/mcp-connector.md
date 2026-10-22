@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: e404d7f8f2356787a8a2d951155424c530393d004866960bb99429afe76a34e3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 38f6bf9c6b351e069be1d0f6f59b7a0aab3c13f77a1be3cbe7c7139842bc4a22
 ---
 
 ---
@@ -167,7 +167,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
-          new() { Role = Role.User, Content = "What tools do you have available?" }
+          new BetaUserMessageParam { Content = "What tools do you have available?" }
       },
       McpServers = new List<BetaRequestMcpServerUrlDefinition>
       {
@@ -842,7 +842,7 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   ];
   List<BetaMessageParam> messages =
   [
-      new() { Role = Role.User, Content = "What tools do you have available?" },
+      new BetaUserMessageParam { Content = "What tools do you have available?" },
   ];
 
   // Permintaan pertama: toolset belum disematkan, jadi API meminta server untuk
@@ -890,7 +890,7 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   });
 
   // Dengan toolset yang disematkan, respons tidak memiliki blok mcp_tool_listing.
-  Console.WriteLine(string.Join(", ", second.Content.Select(block => block.Type)));
+  Console.WriteLine(string.Join(", ", second.Content.Select(block => block.Type.Raw())));
   ```
 
   ```go Go
@@ -1283,8 +1283,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.75.0")
-        implementation("com.anthropic:anthropic-java-mcp:2.75.0")
+        implementation("com.anthropic:anthropic-java:3.1.0")
+        implementation("com.anthropic:anthropic-java-mcp:3.1.0")
         ```
       </Tab>
 
@@ -1293,12 +1293,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         ```
       </Tab>
@@ -1473,14 +1473,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
       {
           Model = Messages::Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages =
-          [
-              new BetaMessageParam
-              {
-                  Role = Role.User,
-                  Content = "What tools do you have available?",
-              },
-          ],
+          Messages = [new BetaUserMessageParam { Content = "What tools do you have available?" }],
       },
       tools
   );
@@ -1816,10 +1809,9 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
           MaxTokens = 1024,
           Messages =
           [
-              new BetaMessageParam
+              new BetaUserMessageParam
               {
-                  Role = Role.User,
-                  Content = new BetaMessageParamContent(
+                  Content = new BetaMessageContentParam(
                       [
                           BetaMcp.ResourceToContent(resource),
                           new BetaTextBlockParam { Text = "Summarize this document" },
@@ -1910,7 +1902,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBetaContentBlockParams(content)
+          .addUserMessageOfContentBlockParams(content)
           .build());
 
   IO.println(response);
@@ -1926,9 +1918,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   MultipartField.Builder<InputStream> fileField = MultipartField.<InputStream>builder()
           .value(new ByteArrayInputStream(resourceFile.content()))
           .filename(resourceFile.filename());
-  if (resourceFile.mimeType() != null) {
-      fileField.contentType(resourceFile.mimeType());
-  }
+  resourceFile.mimeType().ifPresent(fileField::contentType);
 
   var uploaded = anthropic.files().upload(FileUploadParams.builder()
           .file(fileField.build())

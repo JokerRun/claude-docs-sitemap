@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 5d0f9a4ff22990804f1c10a7223fb2ccd588579b72f6f9cd43dad0582634dd61
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 138955f7c3dfc800525b7ee10700df368423b9329a4e904ad01c3817b9513913
 ---
 
 ---
@@ -18,7 +18,7 @@ description: Guides for migrating to the latest Claude models from previous Clau
 
 ## Get help
 
-* Check the [API documentation](https://platform.claude.com/docs/en/api/overview) for detailed specifications
-* Review [model capabilities](https://platform.claude.com/docs/en/models/overview) for performance comparisons
-* Review [API release notes](https://platform.claude.com/docs/en/release-notes/overview) for API updates
-* Contact support if you encounter any issues during migration
+* Check the [API overview](https://platform.claude.com/docs/en/api/overview) for detailed specifications.
+* Review [model capabilities](https://platform.claude.com/docs/en/models/overview) for performance comparisons.
+* Review [Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) for API updates.
+* Contact support if you encounter any issues during migration.

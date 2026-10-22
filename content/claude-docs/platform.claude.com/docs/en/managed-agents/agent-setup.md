@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 1885c2ac82d4d5ad1417e61f2f13e5f88e92ad9ed1836ff7e0400ab118ca06bf
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0e172256f97442bc6f61adf94a5d0ba7ce80d89cc61a704fe3b923b04877be2e
 ---
 
 ---
@@ -23,17 +23,17 @@ Create the agent once as a reusable resource and reference it by ID each time yo
 
 ## Agent configuration fields
 
-| Field                                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name` (csharp, go: `Name`)                                                     | Required. A human-readable name for the agent.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `model` (csharp, go: `Model`)                                                   | Required. The Claude [model](https://platform.claude.com/docs/en/models/overview) that powers the agent. Accepts a model ID string or an object, for example `{"id": "claude-opus-5-5"}`. Claude 4.5 and later models are supported. The object form also accepts `speed`, `effort`, and `inference_geo` fields; see the tips under [Create an agent](https://platform.claude.com/docs/en/managed-agents/agent-setup#create-an-agent), [Effort levels](https://platform.claude.com/docs/en/build-with-claude/effort#effort-levels), and [Pin the inference geo](https://platform.claude.com/docs/en/managed-agents/agent-setup#pin-the-inference-geo). |
-| `system` (csharp, go: `System`; ruby: `system_`)                                | A [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent's behavior and persona. The system prompt is distinct from [user messages](https://platform.claude.com/docs/en/managed-agents/reference#event-types), which should describe the work to be done.                                                                                                                                                                                                                                                                                 |
-| `tools` (csharp, go: `Tools`)                                                   | The tools available to the agent. Combines [pre-built agent tools](https://platform.claude.com/docs/en/managed-agents/tools), [MCP tools](https://platform.claude.com/docs/en/managed-agents/mcp-connector), and [custom tools](https://platform.claude.com/docs/en/managed-agents/tools#custom-tools).                                                                                                                                                                                                                                                                                                                                                |
-| `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) | [MCP servers](https://platform.claude.com/docs/en/managed-agents/mcp-connector) that provide standardized third-party capabilities.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `skills` (csharp, go: `Skills`)                                                 | [Skills](https://platform.claude.com/docs/en/managed-agents/skills) that supply domain-specific context with progressive disclosure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `multiagent` (csharp, go: `Multiagent`)                                         | Lets the agent hand work to other agents, as subagents or in [dynamic workflows](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#dynamic-workflows), and optionally consult an [advisor](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#give-the-session-an-advisor) model. With the `multiagent_20261001` type, dynamic workflows are on unless you disable them. See [Multiagent orchestration](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration).                                                                                                               |
-| `description` (csharp, go: `Description`)                                       | A description of what the agent does.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `metadata` (csharp, go: `Metadata`)                                             | Arbitrary key-value pairs for your own tracking.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Field                                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` (csharp, go: `Name`)                                                     | Required. A human-readable name for the agent.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `model` (csharp, go: `Model`)                                                   | Required. The Claude [model](https://platform.claude.com/docs/en/models/overview) that powers the agent. Accepts a model ID string or an object, for example `{"id": "claude-opus-5-5"}`. Claude 4.5 and later models are supported. The object form also accepts `speed` (csharp, go: `Speed`), `effort` (csharp, go: `Effort`), and `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) fields; see the tips under [Create an agent](https://platform.claude.com/docs/en/managed-agents/agent-setup#create-an-agent), [Effort levels](https://platform.claude.com/docs/en/build-with-claude/effort#effort-levels), and [Pin the inference geo](https://platform.claude.com/docs/en/managed-agents/agent-setup#pin-the-inference-geo). |
+| `system` (csharp, go: `System`; ruby: `system_`)                                | A [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent's behavior and persona. The system prompt is distinct from [user messages](https://platform.claude.com/docs/en/managed-agents/reference#event-types), which should describe the work to be done.                                                                                                                                                                                                                                                                                                                                                                                      |
+| `tools` (csharp, go: `Tools`)                                                   | The tools available to the agent. Combines [pre-built agent tools](https://platform.claude.com/docs/en/managed-agents/tools), [MCP tools](https://platform.claude.com/docs/en/managed-agents/mcp-connector), and [custom tools](https://platform.claude.com/docs/en/managed-agents/tools#custom-tools).                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) | [MCP servers](https://platform.claude.com/docs/en/managed-agents/mcp-connector) that provide standardized third-party capabilities.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `skills` (csharp, go: `Skills`)                                                 | [Skills](https://platform.claude.com/docs/en/managed-agents/skills) that supply domain-specific context with progressive disclosure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `multiagent` (csharp, go: `Multiagent`)                                         | Lets the agent hand work to other agents, as subagents or in [dynamic workflows](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#dynamic-workflows), and optionally consult an [advisor](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#give-the-session-an-advisor) model. With the `multiagent_20261001` type, dynamic workflows are on unless you disable them. See [Multiagent orchestration](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration).                                                                                                                                                                                                                    |
+| `description` (csharp, go: `Description`)                                       | A description of what the agent does.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `metadata` (csharp, go: `Metadata`)                                             | Arbitrary key-value pairs for your own tracking.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 You can also override `model` (csharp, go: `Model`), `system` (csharp, go: `System`; ruby: `system_`), `tools` (csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), and `skills` (csharp, go: `Skills`) for a single session without changing the agent. A `model` (csharp, go: `Model`) override replaces the agent's `model` (csharp, go: `Model`) object in full, so the agent's own `effort` (csharp, go: `Effort`) isn't carried over. To run the session at a specific effort level, set `effort` (csharp, go: `Effort`) inside the override's `model` (csharp, go: `Model`) object. See [Override agent configuration for a session](https://platform.claude.com/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session).
 
@@ -41,7 +41,7 @@ You can also override `model` (csharp, go: `Model`), `system` (csharp, go: `Syst
 
 The following example defines a coding agent that uses the newest Claude Opus model with access to the pre-built agent toolset. The toolset lets the agent write code, read files, search the web, and more. See the [agent tools reference](https://platform.claude.com/docs/en/managed-agents/tools) for the full list of supported tools.
 
-The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one up, the [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart#install-the-cli) covers installation and client setup.
+The examples use curl, the `ant` CLI, or the SDK. If you haven't set one up, the [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart#install-the-cli) covers installation and client setup.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -105,13 +105,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
       Name = "Coding Assistant",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a helpful coding agent.",
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
-      ],
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
   });
   ```
 
@@ -139,11 +133,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
           .name("Coding Assistant")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You are a helpful coding agent.")
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .build()
   );
   ```
@@ -154,9 +144,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
       model: 'claude-opus-5-5',
       system: 'You are a helpful coding agent.',
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
       ],
   );
   ```
@@ -164,7 +152,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a helpful coding agent.",
     tools: [{type: "agent_toolset_20260401"}]
   )
@@ -173,7 +161,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields, and fills in `model` fields you omit, such as `effort`, with their defaults. The `version` starts at 1 and increments each time an update changes the agent.
 
-```json
+```text wrap
 {
   "id": "agent_01HqR2k7vXbZ9mNpL3wYcT8f",
   "type": "agent",
@@ -464,7 +452,7 @@ With the CLI, edit the agent's file and run `ant apply` again; apply supplies `v
   ```
 </CodeGroup>
 
-The preceding example supplies `version` from the create response, so the update only applies if nothing else has changed the agent since you read it. To apply an update unconditionally, omit `version` from the request:
+The preceding example supplies `version` (csharp, go: `Version`) from the create response, so the update only applies if nothing else has changed the agent since you read it. To apply an update unconditionally, omit `version` (csharp, go: `Version`) from the request:
 
 <CodeGroup>
   ```bash cURL
@@ -851,7 +839,7 @@ Archiving makes the agent read-only and cannot be undone. Existing sessions cont
   </Card>
 
   <Card title="Start a session" icon="play" href="https://platform.claude.com/docs/en/managed-agents/sessions">
-    Create a session to run your agent and begin executing tasks.
+    Create a session to run your agent and start running tasks.
   </Card>
 
   <Card title="Reference" icon="book" href="https://platform.claude.com/docs/en/managed-agents/reference">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: bed89ea786426c050a577d9dd58260146d6f10374e8043a34b38608c39b6cc49
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 69b3caede8c0e465c8941067ff5e1dc7a6b362ee80fe0975b748531ebdf9fa89
 ---
 
 ---
@@ -553,7 +553,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
           {
               Model = Model.ClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
               MaxTokens = 200,
-              Messages = [new() { Role = Role.User, Content = assessmentPrompt }],
+              Messages = [new UserMessageParam { Content = assessmentPrompt }],
           }
       );
 
@@ -843,7 +843,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
 
     # Kirim permintaan ke Claude untuk moderasi konten
     response = CLIENT.messages.create(
-      model: "claude-haiku-4-5-20251001", # Using the Haiku model for lower costs
+      model: Anthropic::Model::CLAUDE_HAIKU_4_5_20251001, # Using the Haiku model for lower costs
       max_tokens: 200,
       messages: [{role: :user, content: assessment_prompt}]
     )
@@ -1084,7 +1084,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
           {
               Model = Model.ClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
               MaxTokens = 200,
-              Messages = [new() { Role = Role.User, Content = assessmentPrompt }],
+              Messages = [new UserMessageParam { Content = assessmentPrompt }],
           }
       );
 
@@ -1402,7 +1402,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
 
     # Kirim permintaan ke Claude untuk penilaian risiko
     response = CLIENT.messages.create(
-      model: "claude-haiku-4-5-20251001", # Using the Haiku model for lower costs
+      model: Anthropic::Model::CLAUDE_HAIKU_4_5_20251001, # Using the Haiku model for lower costs
       max_tokens: 200,
       messages: [{role: :user, content: assessment_prompt}]
     )
@@ -1733,7 +1733,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
           {
               Model = Model.ClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
               MaxTokens = 200,
-              Messages = [new() { Role = Role.User, Content = assessmentPrompt }],
+              Messages = [new UserMessageParam { Content = assessmentPrompt }],
           }
       );
 
@@ -2156,7 +2156,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
 
     # Kirim permintaan ke Claude untuk moderasi konten
     response = CLIENT.messages.create(
-      model: "claude-haiku-4-5-20251001", # Using the Haiku model for lower costs
+      model: Anthropic::Model::CLAUDE_HAIKU_4_5_20251001, # Using the Haiku model for lower costs
       max_tokens: 200,
       messages: [{role: :user, content: assessment_prompt}]
     )
@@ -2391,7 +2391,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
           {
               Model = Model.ClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
               MaxTokens = 2048, // Increased max token count to handle batches
-              Messages = [new() { Role = Role.User, Content = assessmentPrompt }],
+              Messages = [new UserMessageParam { Content = assessmentPrompt }],
           }
       );
 
@@ -2709,7 +2709,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
 
     # Kirim permintaan ke Claude untuk moderasi konten
     response = CLIENT.messages.create(
-      model: "claude-haiku-4-5-20251001", # Using the Haiku model for lower costs
+      model: Anthropic::Model::CLAUDE_HAIKU_4_5_20251001, # Using the Haiku model for lower costs
       max_tokens: 2048, # Increased max token count to handle batches
       messages: [{role: :user, content: assessment_prompt}]
     )

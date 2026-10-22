@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 9fff608d88cdc65670a4e8df00959a8256cae48fa0d1de161e1932a83018c1b6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f684573cce19579f1c71751c8fa2a4c7b1711c54cb521a9b6f0f6928e8ccd00d
 ---
 
 ---
@@ -1349,7 +1349,7 @@ Hapus anggota dari workspace:
 
 ### Kunci API
 
-Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, yaitu identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`; untuk kunci service account, `{"type": "service_account_actor", "service_account_id": "svac_..."}`; dan untuk kunci workspace, `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat pada satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses oleh akun tersebut. Field `workspace_id` tingkat atas sudah deprecated dan bernilai `null` baik untuk kunci yang terikat pada Default Workspace maupun untuk kunci tanpa scope workspace; gunakan `scope` untuk membedakannya. Memfilter daftar berdasarkan `workspace_id` dengan ID Default Workspace hanya mengembalikan kunci yang terikat pada Default Workspace; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
+Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, yaitu identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`; untuk kunci service account, `{"type": "service_account_actor", "service_account_id": "svac_..."}`; dan untuk kunci workspace, `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat pada satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses oleh akun tersebut. Memfilter daftar berdasarkan `workspace_id` dengan ID Default Workspace hanya mengembalikan kunci yang terikat pada Default Workspace; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
 
 Daftarkan kunci API aktif di sebuah workspace:
 
@@ -1736,6 +1736,10 @@ Baca "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan work
 ## Compliance API
 
 Ambil data audit dan aktivitas untuk organisasi Anda dengan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Kunci Admin API hanya dapat membaca Activity Feed. Untuk akses penuh, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+
+## Webhook organisasi
+
+Daftarkan endpoint webhook untuk peristiwa tentang tindakan penegakan pada profil pengguna organisasi Anda dengan [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks).
 
 ## Praktik terbaik
 

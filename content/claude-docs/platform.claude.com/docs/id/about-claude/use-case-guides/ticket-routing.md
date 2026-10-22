@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 199b9d88bf10e5a04208ebd1063b360ec66235b034788c44b037e1115ac283bb
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6280f82a958104b91d01e04f59f562551383bf3c505b89222d504ea116f42fd3
 ---
 
 ---
@@ -809,7 +809,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk
           Model = DefaultModel,
           MaxTokens = 2048,
           OutputConfig = new OutputConfig { Effort = Effort.Low },
-          Messages = [new() { Role = Role.User, Content = classificationPrompt }],
+          Messages = [new UserMessageParam { Content = classificationPrompt }],
       });
       var reasoningAndIntent = "";
       foreach (var block in message.Content)
@@ -1166,7 +1166,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
           Model = DefaultModel,
           MaxTokens = 2048,
           OutputConfig = new OutputConfig { Effort = Effort.Low },
-          Messages = [new() { Role = Role.User, Content = classificationPrompt }],
+          Messages = [new UserMessageParam { Content = classificationPrompt }],
       });
       // Dapatkan statistik penggunaan panggilan API untuk jumlah token input dan output yang digunakan.
       var usage = message.Usage;

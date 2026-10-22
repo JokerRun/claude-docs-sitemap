@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: fe89241066963cd8ebc8fdbe8d281a675620432d70c100e4f4baca9472b3231a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d61c0243d0dde999a5cb48e2cac01ebcfe6ee0ff73d736f130dd3e41c1465bb7
 ---
 
 ---
@@ -78,7 +78,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -161,7 +161,7 @@ Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapka
 * **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat web search.
 * **Objek `group`:** Ada di setiap entri, objek ini mengidentifikasi grup batas laju tempat entri tersebut berlaku. Objek ini selalu memiliki `type`, yang merupakan salah satu nilai `group_type`, dan `id`, sebuah pengidentifikasi opak dengan awalan `rlg_`. Pada entri `model_group`, objek ini juga memiliki `display_name`, label Anthropic saat ini untuk grup tersebut, seperti `Claude Sonnet 4.x`. Label ini hanya untuk tampilan dan dapat berubah. Tipe grup lainnya tidak memiliki `display_name`.
 * **`id` di dalam `group`:** Sebuah grup memiliki `id` yang sama di setiap organisasi dan di setiap override workspace, dan tidak pernah berubah. Gunakan untuk mencocokkan entri antar organisasi atau dengan katalog Anda sendiri. `id` milik entri itu sendiri berbeda per organisasi, dan `models` berubah ketika Anthropic memindahkan model antar grup. Keduanya bukan kunci yang stabil untuk grup.
-* **`group_type`:** Sudah deprecated dan digantikan oleh `type` di dalam `group`. Field ini masih dikembalikan, selalu sama dengan nilai tersebut, dan tidak memiliki tanggal penghapusan. Parameter kueri `group_type` tidak deprecated. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk daftar nilainya.
+* **`group_type`:** Parameter kueri yang membatasi daftar ke satu tipe grup. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk nilai-nilainya.
 * **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
 * **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk cara setiap limiter diukur dan diberlakukan.
 * **`source` pada batas workspace:** Pada endpoint workspace, setiap nilai batas juga membawa `source`, yang menyatakan asal `value`: `{"type": "workspace"}` untuk override yang disimpan pada workspace, atau `{"type": "organization"}` untuk nilai yang diwarisi dari organisasi. Secara default, endpoint workspace hanya mengembalikan override, sehingga `source.type` selalu `workspace` di sana; nilai yang diwarisi muncul ketika Anda meneruskan `include_inherited=true`. Lihat [Batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#workspace-rate-limits).
@@ -215,7 +215,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -293,6 +293,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 {
   "data": [
     {
+      "id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "rate_limit",
       "group_type": "model_group",
       "group": {
@@ -308,6 +309,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
       ]
     },
     {
+      "id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "rate_limit",
       "group_type": "model_group",
       "group": {
@@ -329,6 +331,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
       ]
     },
     {
+      "id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "rate_limit",
       "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
@@ -394,7 +397,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -482,7 +485,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   ```
 </CodeGroup>
 
-Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error 404. Parameter `model` hanya didukung pada endpoint organisasi; endpoint workspace tidak menerimanya.
+Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error 404. Setiap model yang dapat diakses oleh organisasi Anda cocok dengan grupnya. Parameter `model` hanya didukung pada endpoint organisasi; endpoint workspace tidak menerimanya.
 
 ## Batas laju workspace
 
@@ -552,7 +555,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -638,6 +641,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
 {
   "data": [
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -662,6 +667,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -760,10 +767,10 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
-          Console.WriteLine($"  {limit.Type}: {limit.Value} ({limit.Source.Type.GetString()})");
+          Console.WriteLine($"  {limit.Type}: {limit.Value} ({limit.Source.Type.Raw()})");
       }
   }
   ```
@@ -857,6 +864,8 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
 {
   "data": [
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -887,6 +896,8 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -923,6 +934,8 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "workspace_rate_limit",
       "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
@@ -995,7 +1008,7 @@ Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi res
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -1095,13 +1108,17 @@ Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_pag
 
 Setiap ID model dan alias yang dihitung terhadap grup, termasuk ID bertanggal (seperti `claude-sonnet-4-5-20250929`) dan alias tidak bertanggal (seperti `claude-sonnet-4-5`). Cari string model apa pun yang Anda berikan ke Messages API dan Anda akan menemukannya dalam tepat satu entri `model_group`.
 
+Daftar ini mencakup model yang dapat diakses oleh organisasi Anda, sehingga dapat berbeda antar organisasi.
+
 ### Apa artinya jika sebuah grup hilang dari respons workspace?
 
 Secara default, respons workspace hanya mencantumkan override, sehingga grup yang tidak ada tidak memiliki override workspace dan mewarisi batas tingkat organisasi. Teruskan `include_inherited=true` untuk melihat nilai yang diwarisi pada endpoint workspace, atau kueri endpoint organisasi. Dengan `include_inherited=true`, sebuah grup hanya tidak ada ketika grup tersebut tidak berlaku pada workspace atau organisasi tidak menetapkan batas untuknya.
 
 ### Bisakah saya memperbarui batas laju dengan API ini?
 
-Tidak. Untuk mengatur batas laju workspace, buka halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console, pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
+**Untuk workspace:** Ya. Endpoint [Atur Batas Laju Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) mengatur atau menghapus override workspace untuk satu grup batas laju. Teruskan `id` tingkat atas dari entri yang cocok dalam [respons endpoint organisasi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#list-all-organization-rate-limits) sebagai `rate_limit_id`, bukan `id` berawalan `rlg_` di dalam `group` entri tersebut. Yang berlaku adalah nilai yang lebih rendah antara override workspace dan batas tingkat organisasi, dan perubahan mulai berlaku dalam waktu sekitar satu jam. Anda juga dapat mengatur batas laju workspace di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console: pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
+
+**Untuk organisasi:** Tidak. Untuk meminta batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 
 ## Lihat juga
 

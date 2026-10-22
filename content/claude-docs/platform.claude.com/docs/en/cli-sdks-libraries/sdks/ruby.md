@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: bea65d951d85e248b7b8f1d8a16075e2440ebc0b382030ab89e985d92ab1f4b4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 93f13c6fb84c1f00ef6d3b26dc98a08ec15095629be7a3c75de856638179614a
 ---
 
 ---
@@ -39,7 +39,7 @@ anthropic = Anthropic::Client.new(
 message = anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 message.content.each do |block|
@@ -47,7 +47,7 @@ message.content.each do |block|
 end
 ```
 
-For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) with access to multiple workspaces, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
+For authentication options including Workload Identity Federation, see [Authentication](https://platform.claude.com/docs/en/manage-claude/authentication). If your API key is a [personal or service account key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) that isn't scoped to a workspace, set the workspace ID in the `anthropic-workspace-id` request header; [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) shows the per-request option for this SDK.
 
 ## Streaming
 
@@ -58,7 +58,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 stream.each do |message|
@@ -75,7 +75,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 stream.text.each do |text|
@@ -87,7 +87,7 @@ Streaming with `anthropic.messages.stream(...)` exposes various helpers includin
 
 ## Input schema and tool calling
 
-The SDK provides helper mechanisms to define structured data classes for tools and let Claude automatically execute them. For detailed documentation on tool use patterns including the tool runner, see [Tool Runner (SDK)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner).
+The SDK provides helper mechanisms to define structured data classes for tools and let Claude automatically run them. For detailed documentation on tool use patterns including the tool runner, see [Tool runner (SDK)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner).
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -107,7 +107,7 @@ end
 
 # Automatically handles tool execution loop
 anthropic.beta.messages.tool_runner(
-  model: "claude-opus-5-5",
+  model: Anthropic::Model::CLAUDE_OPUS_5_5,
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
   tools: [Calculator.new]
@@ -120,7 +120,7 @@ For complete structured outputs documentation including Ruby examples, see [Stru
 
 ## Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (that is, 4xx or 5xx response), a subclass of `Anthropic::Errors::APIError` is raised:
+When the library is unable to connect to the API, or if the API returns a non-success status code (that is, a 4xx or 5xx response), a subclass of `Anthropic::Errors::APIError` is raised:
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -128,7 +128,7 @@ begin
   message = anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-5-5"
+    model: Anthropic::Model::CLAUDE_OPUS_5_5
   )
 rescue Anthropic::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -143,7 +143,7 @@ end
 
 Error codes are as follows:
 
-| Cause            | Error Type                 |
+| Cause            | Error type                 |
 | ---------------- | -------------------------- |
 | HTTP 400         | `BadRequestError`          |
 | HTTP 401         | `AuthenticationError`      |
@@ -159,7 +159,7 @@ Error codes are as follows:
 
 ## Retries
 
-Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
+Certain errors are automatically retried 2 times by default, with a short exponential backoff.
 
 Connection errors (for example, because of a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts are all retried by default.
 
@@ -243,33 +243,33 @@ Request parameters that correspond to file uploads can be passed as raw contents
 anthropic = Anthropic::Client.new
 require "pathname"
 
-# Use `Pathname` to send the filename and/or avoid paging a large file into memory:
+# Use `Pathname` to send the filename, avoid paging a large file into memory, or both:
 file_metadata = anthropic.files.upload(file: Pathname("/path/to/file"))
 
 # Alternatively, pass file contents or a `StringIO` directly:
 file_metadata = anthropic.files.upload(file: File.read("/path/to/file"))
 
-# Or, to control the filename and/or content type:
+# Or, to control the filename, the content type, or both:
 file = Anthropic::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "...")
 file_metadata = anthropic.files.upload(file: file)
 
 puts(file_metadata.id)
 ```
 
-Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
+Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't determine whether the descriptor is a file or pipe (which cannot be rewound).
 
 ## Sorbet
 
 This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.
 
-You can provide typesafe request parameters like so:
+You can provide typesafe request parameters as follows:
 
 ```ruby
 anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 ```
 
@@ -281,14 +281,14 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 # You can also splat a full Params class:
 params = Anthropic::MessageCreateParams.new(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 anthropic.messages.create(**params)
 ```
@@ -342,7 +342,7 @@ All parameter and response objects inherit from `Anthropic::Internal::Type::Base
 
 The `Anthropic::Client` instances are threadsafe, but are only fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Anthropic::Client` has its own HTTP connection pool with a default size of 99. As such, the recommendation is to create the client once per application in most settings.
+Each instance of `Anthropic::Client` has its own HTTP connection pool with a default size of 99. As such, the recommendation is to create the client once for each application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting toward the request timeout.
 
@@ -352,10 +352,10 @@ Unless otherwise specified, other classes in the SDK do not have locks protectin
 
 ### Undocumented properties
 
-You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
+You can send undocumented parameters to any endpoint, and read undocumented response properties, as follows:
 
 <Warning>
-  The `extra_` parameters of the same name override the documented parameters. For security reasons, ensure these methods are only used with trusted input data.
+  The `extra_` parameters of the same name override the documented parameters. For security reasons, use these methods only with trusted input data.
 </Warning>
 
 ```ruby
@@ -376,13 +376,13 @@ message =
 puts(message[:my_undocumented_property])
 ```
 
-### Undocumented request params
+### Undocumented request parameters
 
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the previous examples.
+If you want to explicitly send an extra parameter, you can do so with `extra_query`, `extra_body`, and `extra_headers` under `request_options:` when making a request, as seen in the previous examples.
 
 ### Undocumented endpoints
 
-To make requests to undocumented endpoints while retaining the benefit of authentication, retries, and so on, you can make requests using `anthropic.request`, like so:
+To make requests to undocumented endpoints while retaining the benefit of authentication, retries, and so on, you can make requests using `anthropic.request`, as follows:
 
 ```ruby
 response = anthropic.request(
@@ -415,6 +415,8 @@ The Ruby SDK supports the following platforms:
 Use `Anthropic::BedrockMantleClient` for new projects; `Anthropic::BedrockClient` remains for existing applications using the Bedrock `InvokeModel` API.
 
 ## Semantic versioning
+
+Each major version of this SDK sends one API version in the `anthropic-version` header by default, and a new major version comes with each new API version. The first major version that sends `2026-10-21` is 2.0.0; see [Migrating to API version 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21#upgrade).
 
 This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions.
 

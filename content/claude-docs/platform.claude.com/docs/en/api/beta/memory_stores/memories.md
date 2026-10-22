@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 8c7212322a50b6aad3956880b9f5701b5b2a3cb78441371b9f4de0394dc3bfa6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2e229476d22c55b535f15ddef24d7f7e32cfe4f51af0743e0b1faf07e09ae853
 ---
 
 ---
@@ -155,6 +155,8 @@ Create a Memory
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -443,6 +445,8 @@ List Memories
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -712,6 +716,8 @@ Retrieve a Memory
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -955,6 +961,8 @@ Update a Memory
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1219,6 +1227,8 @@ Delete a Memory
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 26d957de89af699b5841a26e8a90382bb255c6872c53e941047dcaafdbbe32b1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e7a1c1ecf7d95ffae42a09ed5027d6ad2e82f31021a9e05554e00f2d77112a44
 ---
 
 ---
@@ -121,10 +121,9 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
               DefaultConfig = new()
               {
-                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy(),
               },
           },
       ],
@@ -165,14 +164,9 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addTool(
               BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
                   .defaultConfig(
                       BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
-                          .permissionPolicy(
-                              BetaManagedAgentsAlwaysAskPolicy.builder()
-                                  .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                                  .build()
-                          )
+                          .permissionPolicy(BetaManagedAgentsAlwaysAskPolicy.builder().build())
                           .build()
                   )
                   .build()
@@ -191,9 +185,8 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
       model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
               defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
-                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(),
               ),
           ),
       ],
@@ -327,24 +320,19 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
       [
           new()
           {
-              Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
               Name = "github",
               Url = "https://mcp.example.com/github",
           },
       ],
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
-          },
+          new BetaManagedAgentsAgentToolset20260401Params(),
           new BetaManagedAgentsMcpToolsetParams
           {
-              Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
               McpServerName = "github",
               DefaultConfig = new()
               {
-                  PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy(),
               },
           },
       ],
@@ -398,27 +386,17 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
-                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                   .name("github")
                   .url("https://mcp.example.com/github")
                   .build()
           )
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .addTool(
               BetaManagedAgentsMcpToolsetParams.builder()
-                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
                   .mcpServerName("github")
                   .defaultConfig(
                       BetaManagedAgentsMcpToolsetDefaultConfigParams.builder()
-                          .permissionPolicy(
-                              BetaManagedAgentsAlwaysAllowPolicy.builder()
-                                  .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
-                                  .build()
-                          )
+                          .permissionPolicy(BetaManagedAgentsAlwaysAllowPolicy.builder().build())
                           .build()
                   )
                   .build()
@@ -439,20 +417,16 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
       model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
-              type: 'url',
               name: 'github',
               url: 'https://mcp.example.com/github',
           ),
       ],
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
           BetaManagedAgentsMCPToolsetParams::with(
-              type: 'mcp_toolset',
               mcpServerName: 'github',
               defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams::with(
-                  permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
+                  permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(),
               ),
           ),
       ],
@@ -577,16 +551,15 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
   [
       new BetaManagedAgentsAgentToolset20260401Params
       {
-          Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           DefaultConfig = new()
           {
-              PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
+              PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy(),
           },
           Configs =
           [
               new BetaManagedAgentsBashToolConfigParams
               {
-                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy(),
               },
           ],
       },
@@ -625,23 +598,14 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
   var tools = List.of(
       AgentCreateParams.Tool.ofAgentToolset20260401(
           BetaManagedAgentsAgentToolset20260401Params.builder()
-              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .defaultConfig(
                   BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
-                      .permissionPolicy(
-                          BetaManagedAgentsAlwaysAllowPolicy.builder()
-                              .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
-                              .build()
-                      )
+                      .permissionPolicy(BetaManagedAgentsAlwaysAllowPolicy.builder().build())
                       .build()
               )
               .addConfig(
                   BetaManagedAgentsBashToolConfigParams.builder()
-                      .permissionPolicy(
-                          BetaManagedAgentsAlwaysAskPolicy.builder()
-                              .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                              .build()
-                      )
+                      .permissionPolicy(BetaManagedAgentsAlwaysAskPolicy.builder().build())
                       .build()
               )
               .build()
@@ -658,13 +622,12 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
 
   $tools = [
       BetaManagedAgentsAgentToolset20260401Params::with(
-          type: 'agent_toolset_20260401',
           defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
-              permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
+              permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(),
           ),
           configs: [
               BetaManagedAgentsBashToolConfigParams::with(
-                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(),
               ),
           ],
       ),
@@ -833,7 +796,6 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
       [
           new()
           {
-              Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
               Name = "github",
               Url = "https://mcp.example.com/github",
           },
@@ -842,7 +804,6 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
               DefaultConfig = new()
               {
                   PermissionPolicy = new BetaManagedAgentsAutoPolicy(),
@@ -851,13 +812,12 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
               [
                   new BetaManagedAgentsBashToolConfigParams
                   {
-                      PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+                      PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy(),
                   },
               ],
           },
           new BetaManagedAgentsMcpToolsetParams
           {
-              Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
               McpServerName = "github",
               DefaultConfig = new()
               {
@@ -927,14 +887,12 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
-                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                   .name("github")
                   .url("https://mcp.example.com/github")
                   .build()
           )
           .addTool(
               BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
                   .defaultConfig(
                       BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
                           .permissionPolicy(BetaManagedAgentsAutoPolicy.builder().build())
@@ -942,18 +900,13 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
                   )
                   .addConfig(
                       BetaManagedAgentsBashToolConfigParams.builder()
-                          .permissionPolicy(
-                              BetaManagedAgentsAlwaysAskPolicy.builder()
-                                  .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                                  .build()
-                          )
+                          .permissionPolicy(BetaManagedAgentsAlwaysAskPolicy.builder().build())
                           .build()
                   )
                   .build()
           )
           .addTool(
               BetaManagedAgentsMcpToolsetParams.builder()
-                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
                   .mcpServerName("github")
                   .defaultConfig(
                       BetaManagedAgentsMcpToolsetDefaultConfigParams.builder()
@@ -981,25 +934,22 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
       model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
-              type: 'url',
               name: 'github',
               url: 'https://mcp.example.com/github',
           ),
       ],
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
               defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
                   permissionPolicy: BetaManagedAgentsAutoPolicy::with(),
               ),
               configs: [
                   BetaManagedAgentsBashToolConfigParams::with(
-                      permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+                      permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(),
                   ),
               ],
           ),
           BetaManagedAgentsMCPToolsetParams::with(
-              type: 'mcp_toolset',
               mcpServerName: 'github',
               defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams::with(
                   permissionPolicy: BetaManagedAgentsAutoPolicy::with(),
@@ -1228,7 +1178,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
               ToolUseID = agentToolUseEvent.ID,
               Result = "allow",
           },
@@ -1242,7 +1191,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
               ToolUseID = mcpToolUseEvent.ID,
               Result = "deny",
               DenyMessage = "Don't create issues in the production project. Use the staging project.",
@@ -1289,7 +1237,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       EventSendParams.builder()
           .addEvent(
               BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                   .toolUseId(agentToolUseEvent.id())
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                   .build()
@@ -1303,7 +1250,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       EventSendParams.builder()
           .addEvent(
               BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                   .toolUseId(mcpToolUseEvent.id())
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.DENY)
                   .denyMessage("Don't create issues in the production project. Use the staging project.")
@@ -1321,7 +1267,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       $session->id,
       events: [
           ManagedAgentsUserToolConfirmationEventParams::with(
-              type: 'user.tool_confirmation',
               toolUseID: $agentToolUseEvent->id,
               result: 'allow',
           ),
@@ -1333,7 +1278,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       $session->id,
       events: [
           ManagedAgentsUserToolConfirmationEventParams::with(
-              type: 'user.tool_confirmation',
               toolUseID: $mcpToolUseEvent->id,
               result: 'deny',
               denyMessage: "Don't create issues in the production project. Use the staging project.",

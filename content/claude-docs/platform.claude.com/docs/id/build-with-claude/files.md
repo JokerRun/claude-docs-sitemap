@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 278e415fc76d7f4aeee0ad2fcc19e71868c3c35fde38315670c235a354725046
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 14dbf0e3d3c7289d6905185e408b279b2ff1d3f289913a20658d441afbcd3fb0
 ---
 
 ---
@@ -273,9 +273,8 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
           MaxTokens = 1024,
           Messages =
           [
-              new MessageParam
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = new List<ContentBlockParam>
                   {
                       new TextBlockParam { Text = "Please summarize this document for me." },
@@ -316,7 +315,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
-      .addUserMessageOfBlockParams(List.of(
+      .addUserMessageOfContentBlockParams(List.of(
           ContentBlockParam.ofText(TextBlockParam.builder()
               .text("Please summarize this document for me.")
               .build()),
@@ -356,7 +355,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
   ```ruby Ruby
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -550,9 +549,8 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new()
+      Messages = [new UserMessageParam
       {
-          Role = Role.User,
           Content = $"Here's the document content:\n\n{textContent}\n\nPlease summarize this document."
       }]
   };
@@ -761,8 +759,7 @@ Ambil informasi tentang file tertentu:
   ```
 
   ```bash CLI
-  ant files retrieve-metadata \
-    --file-id "$FILE_ID"
+  ant files retrieve-metadata --file-id "$FILE_ID"
   ```
 
   ```python Python
@@ -818,8 +815,7 @@ Hapus file dari workspace Anda:
   ```
 
   ```bash CLI
-  ant files delete \
-    --file-id "$FILE_ID"
+  ant files delete --file-id "$FILE_ID"
   ```
 
   ```python Python
@@ -863,13 +859,11 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   curl -X GET "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    --output downloaded_file.txt
+    -o downloaded_file.txt
   ```
 
   ```bash CLI
-  ant files download \
-    --file-id "$FILE_ID" \
-    --output downloaded_file.txt
+  ant files download --file-id "$FILE_ID" --output downloaded_file.txt
   ```
 
   ```python Python

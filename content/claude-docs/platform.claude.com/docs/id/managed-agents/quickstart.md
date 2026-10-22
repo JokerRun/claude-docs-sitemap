@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 66cdaea90d0e6c5ee2c3883bd12804b00fa5ffdecc5844086500ab519461da45
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 01d293342de1665284e1909d429d911de228135a14c70206fa9d12ae36162300
 ---
 
 ---
@@ -17,12 +17,12 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
   **Lebih suka panduan interaktif?** Versi terbaru [Claude Code](https://claude.com/product/claude-code) dapat memandu Anda melalui penyiapan dan menjawab pertanyaan Anda:
 
-  Biarkan Claude Code menyiapkan agen Anda
+  Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
   ```text
   /claude-api managed-agents-onboard
@@ -53,10 +53,10 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
   </Tab>
 
   <Tab title="curl (Linux/WSL)">
-    Untuk environment Linux, unduh binary rilis secara langsung.
+    Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.44.0
+    VERSION=2.1.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -73,7 +73,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai ses
     Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
     ```bash
-    go install github.com/anthropics/anthropic-cli/cmd/ant@latest
+    go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
     Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
@@ -107,7 +107,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.75.0")
+    implementation("com.anthropic:anthropic-java:3.1.0")
     ```
   </Tab>
 
@@ -136,7 +136,7 @@ ant --version
   </Tab>
 </Tabs>
 
-Atur kunci API Anda sebagai "environment variable" (variabel lingkungan):
+Tetapkan kunci API Anda sebagai variabel lingkungan:
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key-here"
@@ -245,13 +245,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             Name = "Coding Assistant",
             Model = BetaManagedAgentsModel.ClaudeOpus5_5,
             System = "You are a helpful coding assistant. Write clean, well-documented code.",
-            Tools =
-            [
-                new BetaManagedAgentsAgentToolset20260401Params
-                {
-                    Type = "agent_toolset_20260401",
-                },
-            ],
+            Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
         });
 
         Console.WriteLine($"Agent ID: {agent.ID}, version: {agent.Version}");
@@ -318,9 +312,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                 .name("Coding Assistant")
                 .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
                 .system("You are a helpful coding assistant. Write clean, well-documented code.")
-                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-                    .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                    .build())
+                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
                 .build());
 
             IO.println("Agent ID: " + agent.id() + ", version: " + agent.version());
@@ -358,7 +350,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
         agent = client.beta.agents.create(
           name: "Coding Assistant",
-          model: "claude-opus-5-5",
+          model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
           system_: "You are a helpful coding assistant. Write clean, well-documented code.",
           tools: [{type: "agent_toolset_20260401"}]
         )
@@ -373,8 +365,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
   </Step>
 
-  <Step title="Buat environment">
-    Environment mendefinisikan "sandbox" (lingkungan terisolasi) tempat agen Anda berjalan. Environment ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di environment ini, karena environment ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+  <Step title="Buat lingkungan">
+    Lingkungan mendefinisikan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di lingkungan ini, karena lingkungan ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
@@ -413,7 +405,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           ```
         </File>
 
-        [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) juga mencatat ID environment di `claude-lock.json`. Untuk membuat agen dan environment dengan satu perintah, berikan kedua file: `ant apply coding-assistant.md environment.yaml`.
+        [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) juga mencatat ID lingkungan di `claude-lock.json`. Untuk membuat agen dan lingkungan dengan satu perintah, berikan kedua file: `ant apply coding-assistant.md environment.yaml`.
       </CodeGroupItem>
 
       <CodeGroupItem>
@@ -537,9 +529,9 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     </CodeGroup>
 
     <Tip>
-      Quickstart ini menggunakan environment cloud. Untuk memutuskan apakah akan menjalankan alat di infrastruktur Anda sendiri dengan 
+      Quickstart ini menggunakan lingkungan cloud. Untuk memutuskan apakah akan menjalankan alat di infrastruktur Anda sendiri dengan 
 
-      [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
+      [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
 
        sebagai gantinya, lihat 
 
@@ -550,7 +542,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Mulai sesi">
-    Buat sesi yang mereferensikan agen dan environment Anda.
+    Buat sesi yang mereferensikan agen dan lingkungan Anda.
 
     <CodeGroup>
       ```bash cURL
@@ -741,12 +733,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           [
               new BetaManagedAgentsUserMessageEventParams
               {
-                  Type = "user.message",
                   Content =
                   [
                       new BetaManagedAgentsTextBlock
                       {
-                          Type = "text",
                           Text = "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
                       },
                   ],
@@ -828,7 +818,6 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           // Kirim pesan pengguna setelah stream terbuka
           client.beta().sessions().events().send(session.id(), EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt")
                   .build())
               .build());
@@ -910,7 +899,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat mirip seperti ini:
+    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat serupa dengan ini:
 
     ```text wrap
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -929,19 +918,19 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
 Saat Anda mengirim event pengguna, Claude Managed Agents:
 
-1. **Menyediakan sandbox:** Konfigurasi environment Anda menentukan bagaimana sandbox dibangun.
+1. **Menyediakan sandbox:** Konfigurasi lingkungan Anda menentukan cara sandbox dibangun.
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
-3. **Menjalankan alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
+3. **Menjalankan alat:** Penulisan file, perintah bash, dan panggilan alat lainnya berjalan di dalam sandbox.
 4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
-5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
+5. **Menjadi idle:** Agen memancarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 
 ## Bangun aplikasi lengkap
 
-Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di setiap quickstart, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
+Masing-masing quickstart ini memasangkan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di masing-masing, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
 
 <CardGroup cols={3}>
   <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
-    Analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan pemanggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
+    Analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan panggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
   </Card>
 
   <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
@@ -957,10 +946,10 @@ Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework ch
 
 <CardGroup cols={2}>
   <Card title="Definisikan agen Anda" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/agent-setup">
-    Buat konfigurasi agen yang dapat digunakan ulang dan memiliki versi
+    Buat konfigurasi agen yang dapat digunakan ulang dan berversi
   </Card>
 
-  <Card title="Konfigurasi environment" icon="settings" href="https://platform.claude.com/docs/id/managed-agents/environments">
+  <Card title="Konfigurasikan lingkungan" icon="settings" href="https://platform.claude.com/docs/id/managed-agents/environments">
     Sesuaikan pengaturan jaringan dan sandbox
   </Card>
 
@@ -977,6 +966,6 @@ Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework ch
   </Card>
 
   <Card title="Quickstart wiki pengetahuan" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki">
-    Saring korpus dokumen sekali menjadi wiki pengetahuan, lalu jawab pertanyaan berulang darinya dengan biaya yang jauh lebih kecil
+    Saring korpus dokumen sekali menjadi wiki pengetahuan, lalu jawab pertanyaan berulang darinya dengan sebagian kecil biaya
   </Card>
 </CardGroup>

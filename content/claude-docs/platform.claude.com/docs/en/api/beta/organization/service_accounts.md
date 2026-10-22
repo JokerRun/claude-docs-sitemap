@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: f95f9a4ae44111ac982c7df931d09a0e191be00adecd29ae0c47495c3a500328
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7bfbeae6928b1b6923b2246ad4a902243093d503b076fdc3bb72501b1d55ecde
 ---
 
 ---
@@ -143,6 +143,8 @@ accounts.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -405,6 +407,8 @@ archived service accounts.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaServiceAccount`
@@ -627,6 +631,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -851,6 +857,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -1093,6 +1101,8 @@ those rules first or change their target to another service account.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -1426,6 +1436,8 @@ rejected.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -1664,6 +1676,8 @@ page to recover.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -1873,6 +1887,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 

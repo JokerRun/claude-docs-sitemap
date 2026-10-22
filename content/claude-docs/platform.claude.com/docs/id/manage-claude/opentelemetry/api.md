@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5cce13d10171da2796fef390b225c3736a70186e2828e324d61c6edee6326597
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ac425daa04458f435a09c146c790efaeb3a9344d8d6fe6b9632e08ec64719264
 ---
 
 ---
@@ -70,7 +70,7 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
 
 <CodeGroup>
   ```bash CLI
-  # Masuk sekali sebagai admin, yang akan membuka browser. Biarkan ANTHROPIC_API_KEY tidak diatur, karena variabel ini menimpa profil.
+  # Masuk sekali sebagai admin, yang akan membuka browser.
   ant auth login --profile admin --scope "org:admin"
   ant --profile admin beta:organization:telemetry-destinations create \
     --endpoint-url https://gateway.example.com/otlp \
@@ -177,7 +177,7 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
 
       var params = TelemetryDestinationCreateParams.builder()
           .endpointUrl("https://gateway.example.com/otlp")
-          .headers(TelemetryDestinationCreateParams.Headers.builder()
+          .headers(TelemetryDestinationCreateParams.DestinationHeaders.builder()
               .putAdditionalProperty("authorization", JsonValue.from("Bearer YOUR_OBSERVABILITY_API_KEY"))
               .build())
           .traces(BetaTelemetryDestinationTracesParams.builder()
@@ -295,8 +295,9 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
 
       ```csharp C#
       using System.Diagnostics;
+      // ...
 
-      // Tambahkan sumber ini ke tracer provider Anda, di samping com.anthropic.sdk.csharp.
+      // Tambahkan sumber ini ke tracer provider Anda, di samping com.anthropic.sdk.csharp*.
       var source = new ActivitySource("MyService");
 
       using (source.StartActivity("summarize_issues"))

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: d231dd55b0f8ea7488d2566c9b886d6934037b7aaeb54a3718a2c15b33e42218
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8c35c56622139c4f0ab6fcfef6b767cfcf4db6aa12ad0db9fcc56909db4c8c15
 ---
 
 ---
@@ -144,6 +144,8 @@ those rules first or change their target to another service account.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

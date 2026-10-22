@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ea29f2eb7c7a0ec339526de9a0d6e23b9328b8ad5e482bf732fe987dd05a5284
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bde8cdf18c0dcb8cb330ff0003186b5d745edb1f276a46448c648cee15241db9
 ---
 
 ---
@@ -283,7 +283,7 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   foreach (var block in message.Content)
   {

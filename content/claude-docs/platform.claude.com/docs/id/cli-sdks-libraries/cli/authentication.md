@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: abfedc6ecddb8da04a4ba351f2f86d2958775da3b4acfa3e73d64131e0e82515
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 3ced242c31288e9b96f4c82ba8aeb60659a66e28f5311b4de11dd6cafaf0b8d6
 ---
 
 ---
@@ -134,7 +134,7 @@ ANTHROPIC_PROFILE=other-ws ant models list
 Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk mengonfirmasi profil dan workspace mana yang aktif.
 
 <Note>
-  Profil hanya dikonsultasikan ketika tidak ada kunci API yang diatur. Jika `ANTHROPIC_API_KEY` ada di lingkungan Anda, ia menimpa setiap profil dan perintah-perintah ini semuanya menggunakan workspace kunci tersebut (atau, untuk kunci multi-workspace, workspace yang diatur dengan `ANTHROPIC_WORKSPACE_ID` atau `--workspace-id`). Hapus pengaturannya sebelum beralih profil.
+  `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` di lingkungan Anda lebih diprioritaskan daripada setiap profil (lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence)). Sampai Anda menghapusnya (unset), permintaan API menggunakan kredensial tersebut, profil mana pun yang Anda pilih, dan `ant` mencetak pesan ke stderr yang menyatakan hal tersebut.
 </Note>
 
 ## Kelola profil

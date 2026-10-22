@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: e2191140e4136b93d2ab3ec0961c7538fad83cefecbcdb5e455950ccd12da1f2
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 551624f9513bbaff7334e96fb700a690388bfb274fb225592e5b316026964760
 ---
 
 > ## Documentation Index
@@ -98,7 +98,7 @@ Managed settings can lock down tools, sandbox execution, restrict MCP servers an
 | [Permission lockdown](/docs/en/permissions#managed-only-settings) | Make managed settings the [only settings source of permission rules](/docs/en/settings-reference#allowmanagedpermissionrulesonly). Disable `--dangerously-skip-permissions` | `allowManagedPermissionRulesOnly`, `permissions.disableBypassPermissionsMode` |
 | [Starting permission mode](/docs/en/permission-modes#which-mode-a-session-starts-in) | Choose the permission mode your developers' terminal sessions start in instead of the built-in starting permission mode, or remove auto mode. [Switch permission modes](/docs/en/permission-modes#switch-permission-modes) lists when the VS Code extension reads a `defaultMode` you set | `permissions.defaultMode`, `permissions.disableAutoMode` |
 | [Sandboxing](/docs/en/sandboxing) | OS-level filesystem and network isolation with domain allowlists | `sandbox.enabled`, `sandbox.network.allowedDomains` |
-| [Managed policy CLAUDE.md](/docs/en/memory#deploy-organization-wide-claude-md) | Org-wide instructions loaded in every session, can't be excluded | File at the managed policy path |
+| [Managed policy CLAUDE.md](/docs/en/memory#deploy-organization-wide-claude-md) | Organization-wide behavioral guidance for Claude rather than a client-enforced rule | File at the managed policy path |
 | [MCP server control](/docs/en/managed-mcp) | Restrict which MCP servers users can add or connect to, deploy a fixed set, or provide remote servers to every user alongside their own | `allowedMcpServers`, `deniedMcpServers`, `allowManagedMcpServersOnly`, `managedMcpServers`, or a deployed `managed-mcp.json` file |
 | [Plugin marketplace control](/docs/en/plugins/org#restrict-what-users-can-install) | Restrict which marketplace sources users can add and install from, reject the CLI flags that sideload plugins, agents, and MCP servers for a single run, block [`command` plugin sources](/docs/en/plugins/marketplace-reference#command-plugin-source), and allowlist which marketplaces' plugins can be suggested | `strictKnownMarketplaces`, `blockedMarketplaces`, `disableSideloadFlags`, `disableCommandPluginSources`, `pluginSuggestionMarketplaces` |
 | [Customization lockdown](/docs/en/settings-reference#strictpluginonlycustomization) | Block skills, agents, hooks, and MCP servers from user and project sources, so they can only come from plugins or managed settings. Locking skills also stops the [skills your developers enable on claude.ai](/docs/en/skills#where-synced-skills-load) from syncing | `strictPluginOnlyCustomization` |

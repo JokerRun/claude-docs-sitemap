@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 045d9867f3f46fbf1c3f433245364e81269a3c59521415e385485ab945fde56e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 960981ba7845229464af29c2f0b7b9fe3410a96c54e7724effcb28e66dc878a6
 ---
 
 ---
@@ -315,7 +315,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
 
   List<BetaMessageParam> messages =
   [
-      new() { Role = Role.User, Content = "Summarize pyproject.toml and README.md." },
+      new BetaUserMessageParam { Content = "Summarize pyproject.toml and README.md." },
   ];
 
   BetaMessage response;
@@ -330,9 +330,8 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
           Messages = messages,
       });
       // Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
       if (response.StopReason != BetaStopReason.ToolUse)
@@ -366,10 +365,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
       // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
       // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
       // sehingga model hanya melihat salinan yang terbaru.
-      messages.Add(new() { Role = Role.User, Content = toolResults });
-      messages.Add(new()
+      messages.Add(new BetaUserMessageParam { Content = toolResults });
+      messages.Add(new BetaSystemMessageParam
       {
-          Role = Role.System,
           Content = BatchNudge,
           ClearAt = ClearAt.NextUserMessage,
       });
@@ -498,6 +496,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaMessageParam;
   import com.anthropic.models.beta.messages.BetaStopReason;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam;
   import com.anthropic.models.beta.messages.BetaTool;
   import com.anthropic.models.beta.messages.BetaTool.InputSchema;
   import com.anthropic.models.beta.messages.BetaToolResultBlockParam;
@@ -535,10 +534,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
               .build())
           .build();
       List<BetaMessageParam> messages = new ArrayList<>();
-      messages.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("Summarize pyproject.toml and README.md.")
-          .build());
+      messages.add(BetaMessageParam.ofUser("Summarize pyproject.toml and README.md."));
 
       BetaMessage response;
       while (true) {
@@ -581,15 +577,11 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
           // Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
           // pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
           // sehingga model hanya melihat salinan yang terbaru.
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .contentOfBetaContentBlockParams(toolResults)
-              .build());
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.SYSTEM)
+          messages.add(BetaMessageParam.ofUserOfContentBlockParams(toolResults));
+          messages.add(BetaMessageParam.ofSystem(BetaSystemMessageParam.builder()
               .content(BATCH_NUDGE)
-              .clearAt(BetaMessageParam.ClearAt.NEXT_USER_MESSAGE)
-              .build());
+              .clearAt(BetaSystemMessageParam.ClearAt.NEXT_USER_MESSAGE)
+              .build()));
       }
 
       String finalText = response.content().stream()
@@ -726,7 +718,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   response = nil
   loop do
     response = client.beta.messages.create(
-      model: "claude-fable-5-1",
+      model: Anthropic::Model::CLAUDE_FABLE_5_1,
       max_tokens: 16000,
       betas: ["mid-conversation-system-clear-at-2026-08-21"],
       tools: tools,

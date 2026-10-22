@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 10f08a05d1e96f06bb7a2df38a9d8e01483c5a9fa2c2272b89e33f3205089d9c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bd8c3c47bb8fefadb8ad00e66b454cd2bddfa8babe51491d015fb2551f95db24
 ---
 
 ---
@@ -171,8 +171,7 @@ Berikut cara menangani stop reason `pause_turn`:
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
-          new() {
-              Role = Role.User,
+          new UserMessageParam {
               Content = "Search for comprehensive information about quantum computing breakthroughs in 2025"
           }
       ],
@@ -189,12 +188,10 @@ Berikut cara menangani stop reason `pause_turn`:
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [
-              new() {
-                  Role = Role.User,
+              new UserMessageParam {
                   Content = "Search for comprehensive information about quantum computing breakthroughs in 2025"
               },
-              new() {
-                  Role = Role.Assistant,
+              new AssistantMessageParam {
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               }
           ],
@@ -710,9 +707,8 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           },
       }),
   ];
-  MessageParam userMessage = new()
+  MessageParam userMessage = new UserMessageParam
   {
-      Role = Role.User,
       Content = "Summarize https://example.com/article and run uname -a to tell me what system this is on."
   };
 
@@ -750,12 +746,11 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           Messages =
           [
               userMessage,
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               },
-              new() { Role = Role.User, Content = new MessageParamContent(toolResults) }
+              new UserMessageParam { Content = toolResults }
           ]
       });
       // Jika web_fetch ditunda, ia dijalankan pada permintaan ini dan
@@ -882,7 +877,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
               .addTool(runCommandTool)
               .addUserMessage(prompt)
               .addMessage(response)
-              .addUserMessageOfBlockParams(toolResults)
+              .addUserMessageOfContentBlockParams(toolResults)
               .build());
           // Jika web_fetch ditunda, ia dijalankan pada permintaan ini dan
           // web_fetch_tool_result-nya adalah blok pertama dari continuation.content().

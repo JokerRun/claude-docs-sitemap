@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 1754e39d2c2601c82b1f60d484a6916ad8e397d7dbaa57441a0751c4764f8661
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f0c8d3469eb31477f6635acc92b85ea52a1738f8c64da4db21f3b467395c8ee6
 ---
 
 ---
@@ -173,10 +173,7 @@ Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6, p
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
       Messages = [
-          new() {
-              Role = Role.User,
-              Content = "What is the greatest common divisor of 1071 and 462?"
-          }
+          new UserMessageParam { Content = "What is the greatest common divisor of 1071 and 462?" }
       ]
   };
 
@@ -391,12 +388,7 @@ Pada Claude Sonnet 5, di mana pemikiran aktif secara default, Anda dapat menonak
       Model = Model.ClaudeSonnet5,
       MaxTokens = 4096,
       Thinking = new ThinkingConfigDisabled(),
-      Messages = [
-          new() {
-              Role = Role.User,
-              Content = "Summarize this article in one sentence."
-          }
-      ]
+      Messages = [new UserMessageParam { Content = "Summarize this article in one sentence." }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -649,14 +641,14 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
-      Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
+      Messages = [new UserMessageParam { Content = "What is the greatest common divisor of 1071 and 462?" }]
   };
 
   await foreach (var rawEvent in client.Messages.CreateStreaming(parameters))
   {
       if (rawEvent.TryPickContentBlockStart(out var start))
       {
-          Console.WriteLine($"\nStarting {start.ContentBlock.Type} block...");
+          Console.WriteLine($"\nStarting {start.ContentBlock.Type.Raw()} block...");
       }
       else if (rawEvent.TryPickContentBlockDelta(out var delta))
       {
@@ -1202,7 +1194,7 @@ Field `data` bersifat opaque dan terenkripsi. Seperti field `signature` pada blo
 
 ### Parameter sampling
 
-Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5, nilai `temperature`, `top_p`, atau `top_k` yang bukan default mengembalikan error 400 pada setiap permintaan, terlepas dari apakah pemikiran digunakan atau tidak. Pada model-model ini, default `top_p` adalah `0.99`, sehingga `top_p` bernilai `1` mengembalikan error 400, begitu pula permintaan yang menyertakan `temperature` dan `top_p` sekaligus, bahkan pada nilai default-nya. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters). Pada model yang lebih lama, pembatasan hanya berlaku saat pemikiran aktif: `temperature` dan `top_k` tidak kompatibel dengan pemikiran, dan `top_p` diizinkan pada nilai antara 0,95 dan 1.
+Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5, nilai `temperature`, `top_p`, atau `top_k` yang bukan default mengembalikan error 400 pada setiap permintaan, terlepas dari apakah pemikiran digunakan atau tidak. Pada model-model ini, default `top_p` adalah `0.99`, sehingga `top_p` bernilai `1` mengembalikan error 400, begitu pula permintaan yang menyertakan `temperature` dan `top_p` sekaligus, bahkan pada nilai default-nya. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters). Mulai dari [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters), permintaan yang menyertakan `temperature`, `top_p`, atau `top_k` dengan nilai apa pun mengembalikan error 400 pada setiap model. Pada model yang lebih lama dalam versi API sebelum `2026-10-21`, pembatasan hanya berlaku saat pemikiran aktif: `temperature` dan `top_k` tidak kompatibel dengan pemikiran, dan `top_p` diizinkan pada nilai antara 0,95 dan 1.
 
 ### Prefill respons dan penggunaan alat paksa
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rate_limits
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 67e8fd4ea3ac5b85ad5bec03fe95e0913e79a4be51d264cc7b414acea27c8939
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 134e2c1c0ce0a853306de5ea2a0e58a1e1fbef9f0ede72e876d2474cf66a85c6
 ---
 
 ---
@@ -82,7 +82,7 @@ the remaining entries.
 
   - `id: string`
 
-    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`.
+    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`. Pass it as `rate_limit_id` to set a workspace's overrides for this group.
 
   - `group: OrganizationRateLimitModelGroup or OrganizationRateLimitBatchGroup or OrganizationRateLimitTokenCountGroup or 3 more`
 
@@ -253,7 +253,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
   - `id: string`
 
-    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`.
+    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`. Pass it as `rate_limit_id` to set a workspace's overrides for this group.
 
   - `group: OrganizationRateLimitModelGroup or OrganizationRateLimitBatchGroup or OrganizationRateLimitTokenCountGroup or 3 more`
 

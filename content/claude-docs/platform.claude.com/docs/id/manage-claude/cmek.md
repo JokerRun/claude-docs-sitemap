@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 79238d0274857e99951899b3bff77a8081888ffd2be8f7e6ddc191b1c9af42da
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8e4007967ff0402eb4150924fb77840544659b7b025958f6933cd1ab7ccb4f88
 ---
 
 ---
@@ -116,8 +116,7 @@ Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci And
 * Nilai [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) Claude Managed Agents, seperti token OAuth dan client secret. Ini disimpan di bawah enkripsi yang dikelola Anthropic, bersifat write-only, dan tidak pernah dikembalikan dalam respons API.
 * [Profil pengguna](https://platform.claude.com/docs/id/api/beta/user_profiles): field `name`, `external_id`, dan `metadata` disimpan di bawah enkripsi yang dikelola Anthropic, bukan kunci Anda. Jangan menyimpan data pribadi sensitif di `metadata` profil.
 * Penilaian dan komentar tentang Claude Console yang dikirim anggota melalui opsi **Feedback**. Tidak ada pengaturan yang menonaktifkannya; anggota hanya mengirimkannya jika mereka memilih untuk melakukannya.
-
-- Header permintaan [tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry#add-a-destination), seperti header kunci API dari backend observabilitas Anda. Header ini disimpan di bawah enkripsi yang dikelola Anthropic. Nilainya bersifat write-only dan tidak pernah dikembalikan dalam respons API.
+* Header permintaan [tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination), seperti header kunci API dari platform observabilitas Anda. Header ini disimpan di bawah enkripsi yang dikelola Anthropic. Nilainya bersifat write-only dan tidak pernah dikembalikan dalam respons API.
 
 **Claude Enterprise**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 40e2154235e313d9bc89886efa988eec16fb03c44febc35651f326327004fc5e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: fc5d7b8613f1e81d6683a1ec02038d524d40c3a0d906096fe25cfe5947ad0ed2
 ---
 
 ---
@@ -231,10 +231,10 @@ Pada 4 September 2024, Anthropic memberi tahu developer yang menggunakan model C
 
 ## Penghentian parameter API
 
-Anthropic sesekali menghentikan parameter permintaan yang tidak lagi berlaku untuk model saat ini. Cara API memperlakukan parameter yang dihentikan bergantung pada modelnya, seperti yang ditunjukkan tabel berikut. Sebagian besar SDK mempertahankan parameter yang dihentikan dalam tipe permintaannya sehingga kode yang ada tetap lolos pemeriksaan tipe. Python SDK (v1.0 dan yang lebih baru) menghapus `temperature`, `top_p`, dan `top_k`, sehingga meneruskannya akan memunculkan `TypeError`.
+Anthropic sesekali menghentikan parameter permintaan yang tidak lagi berlaku untuk model saat ini. Cara API memperlakukan parameter yang dihentikan bergantung pada modelnya, seperti yang ditunjukkan tabel berikut.
 
-| Parameter                       | Status                                            | Perilaku                                                                                                                                                           | Pengganti yang direkomendasikan                                                                                                                                               |
-| ------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `temperature`, `top_p`, `top_k` | Dihentikan (model Claude 4.7 dan yang lebih baru) | Mengembalikan error 400 jika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
+| Parameter                       | Status                                            | Perilaku                                                                                                                                                                                                                                                                                                 | Pengganti yang direkomendasikan                                                                                                                                               |
+| ------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `temperature`, `top_p`, `top_k` | Dihentikan (model Claude 4.7 dan yang lebih baru) | Mengembalikan error 400 jika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Parameter-parameter ini juga dihapus di [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/versioning#version-history). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
 
 Untuk langkah-langkah migrasi, lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).

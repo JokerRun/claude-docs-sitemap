@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 71c87c6d1a25218249e7d3bb84c7cc2848db1c70fef8d49dad07988e366880ab
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d6d57894ea0da3b36ad7091f88f2f441d3b49fa48418ce34192f969d5efb988d
 ---
 
 ---
@@ -149,6 +149,8 @@ certificate is added.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

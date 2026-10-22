@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ebe2b17c71e4fe52c645fa57abcb3fb230cba9d3e3dece2d88b5ef54361237cc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 356231c6db1d2dbdd98004b27ffadce027f294afd46a4bb211ef9fb23fd17920
 ---
 
 ---
@@ -19,7 +19,7 @@ Anda dapat melewati halaman ini jika Anda hanya memerlukan atribusi, atau jika p
 
 ## Membuat tautan
 
-Untuk membuat tautan pendaftaran untuk sebuah profil, panggil `POST /v1/user_profiles/{id}/action_urls` dengan ID profil di path. Di body permintaan, atur `action.type` ke `enroll_end_user`.
+Untuk membuat tautan pendaftaran untuk sebuah profil, panggil [`POST /v1/user_profiles/{id}/action_urls`](https://platform.claude.com/docs/id/api/user_profiles/action_urls/create) dengan ID profil tersebut di path. Di badan permintaan, atur `action.type` ke `enroll_end_user`.
 
 Panggilan ini mengembalikan `404` jika pembuatan tautan pendaftaran tidak diaktifkan untuk organisasi Anda. Status tersebut sama dengan status untuk ID profil yang tidak dapat ditemukan, jadi periksa ID terlebih dahulu.
 
@@ -190,12 +190,12 @@ Sebuah profil ditautkan ke satu organisasi. Jika profil sudah ditautkan ke organ
 
 Portal tidak mengarahkan pelanggan akhir kembali ke produk Anda, dan Anthropic tidak memberi tahu Anda. Beri tahu pelanggan akhir di antarmuka Anda sendiri untuk kembali setelah mereka selesai.
 
-Penautan tidak menyetujui apa pun dengan sendirinya. Penautan menghubungkan profil ke organisasi pelanggan akhir, sehingga program yang telah disetujui untuk organisasi tersebut berlaku untuk permintaan yang membawa ID profil. Profil tidak memiliki field yang menyatakan bahwa profil tersebut telah ditautkan.
+Penautan tidak menyetujui apa pun dengan sendirinya. Penautan menghubungkan profil ke organisasi pelanggan akhir, sehingga program yang telah disetujui untuk organisasi tersebut berlaku untuk permintaan yang membawa ID profil, kecuali tingkat akses Cyber Verification Program, yang diaktifkan oleh pelanggan akhir untuk setiap profil tertaut di portal. Profil tidak memiliki field yang menyatakan bahwa profil tersebut tertaut.
 
-Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/beta/user_profiles/retrieve) dan baca `programs`. Field ini memiliki key untuk setiap program, seperti `cyber` dan `efs`, dan setiap profil memiliki semua key tersebut. Setiap key berisi salah satu dari berikut ini:
+Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/user_profiles/retrieve) dan baca `programs`. Field ini memiliki key untuk setiap program, seperti `cyber` dan `efs`, dan setiap profil memiliki semua key tersebut. Setiap key berisi salah satu dari berikut ini:
 
-* `null`: Anthropic tidak memiliki status untuk dilaporkan untuk program tersebut. Setiap key bernilai `null` jika Anthropic belum mengaktifkan program untuk organisasi Anda.
-* Sebuah objek: `status`-nya adalah `active` ketika Anthropic telah menyetujui pelanggan akhir untuk program tersebut, jika tidak `pending` atau `rejected`.
+* `null`: Anthropic tidak memiliki status untuk dilaporkan bagi program tersebut. Setiap key bernilai `null` jika Anthropic belum mengaktifkan program untuk organisasi Anda.
+* Sebuah objek: `status`-nya adalah `active` ketika program berlaku untuk profil, jika tidak maka `pending` atau `rejected`.
 
 Pelanggan akhir dapat melihat profil yang ditautkan di bawah **Linked accounts** di portal.
 
@@ -203,6 +203,6 @@ Jika inferensi Anda berjalan di Claude di Amazon Bedrock atau Google Cloud, Anda
 
 ## Langkah selanjutnya
 
-Untuk setiap field yang terdapat dalam profil yang diambil, lihat referensi [Retrieve a profile](https://platform.claude.com/docs/id/api/beta/user_profiles/retrieve).
+Untuk setiap field yang terdapat dalam profil yang diambil, lihat referensi [Retrieve a profile](https://platform.claude.com/docs/id/api/user_profiles/retrieve).
 
 Untuk membuat profil, mengirimkan ID-nya pada permintaan Anda, dan menjaganya tetap terkini, lihat [Profil pengguna untuk atribusi pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles).

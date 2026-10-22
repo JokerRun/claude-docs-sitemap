@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 9d0082891b06e486c327d1bb4505ec75b77aa9e58704aeada95a14c38583e472
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0d3c9c61293c440fd502fa6fe002d3a3f2e37f3add4151c909032d135611b56c
 ---
 
 ---
@@ -159,7 +159,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
   var messages = new List<BetaMessageParam>
   {
-      new() { Role = Role.User, Content = "Help me build a website" }
+      new BetaUserMessageParam { Content = "Help me build a website" }
   };
 
   var parameters = new MessageCreateParams
@@ -177,9 +177,8 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
   var response = await client.Beta.Messages.Create(parameters);
 
   // Tambahkan respons (termasuk blok compaction apa pun) untuk melanjutkan percakapan
-  messages.Add(new BetaMessageParam
+  messages.Add(new BetaAssistantMessageParam
   {
-      Role = Role.Assistant,
       Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
   });
 
@@ -391,7 +390,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
 
   var parameters = new MessageCreateParams
   {
@@ -615,9 +614,9 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
       MaxTokens = 4096,
       Messages =
       [
-          new BetaMessageParam { Role = Role.User, Content = "Help me build a Python web scraper" },
-          new BetaMessageParam { Role = Role.Assistant, Content = "I'll help you build a web scraper..." },
-          new BetaMessageParam { Role = Role.User, Content = "Add support for JavaScript-rendered pages" }
+          new BetaUserMessageParam { Content = "Help me build a Python web scraper" },
+          new BetaAssistantMessageParam { Content = "I'll help you build a web scraper..." },
+          new BetaUserMessageParam { Content = "Add support for JavaScript-rendered pages" }
       ],
       ContextManagement = new BetaContextManagementConfig
       {
@@ -865,7 +864,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
   var client = new AnthropicClient();
   var messages = new List<BetaMessageParam>
   {
-      new() { Role = Role.User, Content = "Hello, Claude" }
+      new BetaUserMessageParam { Content = "Hello, Claude" }
   };
 
   var parameters = new MessageCreateParams
@@ -887,9 +886,8 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
   if (response.StopReason == BetaStopReason.Compaction)
   {
-      messages.Add(new BetaMessageParam
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
 
@@ -1162,7 +1160,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello, Claude" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello, Claude" }];
 
   const int TriggerThreshold = 100_000;
   const int TotalTokenBudget = 3_000_000;
@@ -1187,18 +1185,16 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
   if (response.StopReason == BetaStopReason.Compaction)
   {
       compactionCount += 1;
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(b => new BetaContentBlockParam(b.Json)).ToList()
       });
 
       // Perkirakan total token yang terpakai; minta model menyelesaikan jika melebihi anggaran
       if (compactionCount * TriggerThreshold >= TotalTokenBudget)
       {
-          messages.Add(new()
+          messages.Add(new BetaUserMessageParam
           {
-              Role = Role.User,
               Content = "Please wrap up your current work and summarize the final state."
           });
       }
@@ -1259,10 +1255,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
           int compactionCount = 0;
 
           List<BetaMessageParam> messages = new ArrayList<>();
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content("Hello, Claude")
-              .build());
+          messages.add(BetaMessageParam.ofUser("Hello, Claude"));
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
@@ -1288,10 +1281,8 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
 
               // Perkirakan total token yang terpakai; minta model menyelesaikan jika melebihi anggaran
               if (compactionCount * triggerThreshold >= totalTokenBudget) {
-                  messages.add(BetaMessageParam.builder()
-                      .role(BetaMessageParam.Role.USER)
-                      .content("Please wrap up your current work and summarize the final state.")
-                      .build());
+                  messages.add(BetaMessageParam.ofUser(
+                      "Please wrap up your current work and summarize the final state."));
               }
           }
 
@@ -1475,7 +1466,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
 
   var messages = new List<BetaMessageParam>
   {
-      new() { Role = Role.User, Content = "Help me build a web scraper" }
+      new BetaUserMessageParam { Content = "Help me build a web scraper" }
   };
 
   var response = await client.Beta.Messages.Create(new()
@@ -1490,13 +1481,12 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
       }
   });
 
-  messages.Add(new BetaMessageParam
+  messages.Add(new BetaAssistantMessageParam
   {
-      Role = Role.Assistant,
       Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
   });
 
-  messages.Add(new BetaMessageParam { Role = Role.User, Content = "Now add error handling" });
+  messages.Add(new BetaUserMessageParam { Content = "Now add error handling" });
 
   var nextResponse = await client.Beta.Messages.Create(new()
   {
@@ -1801,7 +1791,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
 
   ```csharp C#
   var client = new AnthropicClient();
-  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
 
   var parameters = new MessageCreateParams
   {
@@ -2150,7 +2140,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
               CacheControl = new BetaCacheControlEphemeral()
           }
       },
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
       ContextManagement = new BetaContextManagementConfig
       {
           Edits = [new BetaCompact20260112Edit()]
@@ -2384,7 +2374,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
 
   var countParams = new MessageCountTokensParams
   {
@@ -2582,7 +2572,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
   static async Task<string> Chat(AnthropicClient client, List<BetaMessageParam> messages, string userMessage)
   {
-      messages.Add(new() { Role = Role.User, Content = userMessage });
+      messages.Add(new BetaUserMessageParam { Content = userMessage });
 
       var parameters = new MessageCreateParams
       {
@@ -2601,9 +2591,8 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
       var response = await client.Beta.Messages.Create(parameters);
 
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
 
@@ -2683,10 +2672,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       }
 
       private static String chat(String userMessage) {
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content(userMessage)
-              .build());
+          messages.add(BetaMessageParam.ofUser(userMessage));
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
@@ -2925,7 +2911,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               }
             : message
         )
-        .filter((message) => message.content.length > 0);
+        .filter((message) => message.role !== "assistant" || message.content.length > 0);
 
       // Bangun daftar pesan baru: compaction + pesan yang dipertahankan
       const messagesAfterCompaction: Anthropic.Beta.Messages.BetaMessageParam[] = [
@@ -2973,7 +2959,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
   async Task<string> Chat(string userMessage)
   {
-      messages.Add(new() { Role = Role.User, Content = userMessage });
+      messages.Add(new BetaUserMessageParam { Content = userMessage });
 
       var response = await client.Beta.Messages.Create(new()
       {
@@ -2998,25 +2984,29 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
           // tanpa blok thinking; giliran asisten yang kosong akan dibuang
-          var preserved = messages
-              .Skip(Math.Max(0, messages.Count - 3))
-              .Select(message => message.Content.TryPickBetaContentBlockParams(out var blocks)
-                  ? new BetaMessageParam
-                  {
-                      Role = message.Role,
-                      Content = blocks
-                          .Where(block => block.Type.GetString() is not ("thinking" or "redacted_thinking"))
-                          .ToList()
-                  }
-                  : message)
-              .Where(message => !message.Content.TryPickBetaContentBlockParams(out var blocks) || blocks.Count > 0)
-              .ToList();
+          var preserved = new List<BetaMessageParam>();
+          foreach (var message in messages.Skip(Math.Max(0, messages.Count - 3)))
+          {
+              if (!message.TryPickAssistant(out var assistant)
+                  || !assistant.Content.TryPickBetaContentBlockParams(out var blocks))
+              {
+                  preserved.Add(message);
+                  continue;
+              }
+
+              var kept = blocks
+                  .Where(block => block.Type.Raw() is not ("thinking" or "redacted_thinking"))
+                  .ToList();
+              if (kept.Count > 0)
+              {
+                  preserved.Add(assistant with { Content = kept });
+              }
+          }
 
           var messagesAfterCompaction = new List<BetaMessageParam>
           {
-              new()
+              new BetaAssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = new List<BetaContentBlockParam> { new BetaContentBlockParam(response.Content[0].Json) }
               }
           };
@@ -3037,9 +3027,8 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           messages = messagesAfterCompaction;
       }
 
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
 
@@ -3160,10 +3149,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       private static final List<BetaMessageParam> messages = new ArrayList<>();
 
       public static String chat(String userMessage) {
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content(userMessage)
-              .build());
+          messages.add(BetaMessageParam.ofUser(userMessage));
 
           MessageCreateParams params = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
@@ -3189,15 +3175,14 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               // tanpa blok thinking; giliran asisten yang kosong akan dibuang
               List<BetaMessageParam> preservedMessages = new ArrayList<>();
               for (BetaMessageParam message : messages.subList(Math.max(0, messages.size() - 3), messages.size())) {
-                  if (message.content().isBetaContentBlockParams()) {
-                      message = message.toBuilder()
-                          .contentOfBetaContentBlockParams(message.content().asBetaContentBlockParams().stream()
-                              .filter(block -> !block.isThinking() && !block.isRedactedThinking())
-                              .toList())
-                          .build();
-                      if (message.content().asBetaContentBlockParams().isEmpty()) {
+                  if (message.isAssistant() && message.asAssistant().content().isContentBlockParams()) {
+                      var keptBlocks = message.asAssistant().content().asContentBlockParams().stream()
+                          .filter(block -> !block.isThinking() && !block.isRedactedThinking())
+                          .toList();
+                      if (keptBlocks.isEmpty()) {
                           continue;
                       }
+                      message = BetaMessageParam.ofAssistantOfContentBlockParams(keptBlocks);
                   }
                   preservedMessages.add(message);
               }

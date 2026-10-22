@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-10-02T02:24:19.323378Z
-sha256: 00b38d6bb7f54f72b7b0f4c138d4474c7e086aa4c07b9329caa051870de94bcd
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cbd28e3fa05da7afd15cfb011e6fe653b4c2da453c398b6863a9b5c48fb61962
 ---
 
 ---
@@ -19,7 +19,7 @@ This guide assumes that you have:
 2. Some ways to empirically test against those criteria
 3. A first draft prompt you want to improve
 
-If not, spend time establishing that first. Check out [Define success criteria and build evaluations](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
+If not, spend time establishing that first. See [Define success criteria and build evaluations](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
 
 <CardGroup cols={2}>
   <Card title="Prompt generator notebook" icon="link" href="https://colab.research.google.com/github/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb">
@@ -35,7 +35,7 @@ If not, spend time establishing that first. Check out [Define success criteria a
 
 ## When to prompt engineer
 
-This guide focuses on success criteria that are controllable through prompt engineering. Not every success criteria or failing eval is best solved by prompt engineering. For example, you can sometimes improve latency and cost more easily by selecting a different model.
+This guide focuses on success criteria that are controllable through prompt engineering. Not every success criterion or failing eval is best solved by prompt engineering. For example, you can sometimes improve latency and cost more easily by choosing a different model.
 
 ***
 

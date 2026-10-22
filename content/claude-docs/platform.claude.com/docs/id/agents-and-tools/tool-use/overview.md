@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 160ed88ba0be71beff7c020678571f6aceb8c7804b492bfd137f67bf075018ec
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4b228d837685e07e195b360bb695cc3bfd57be1b506d19dba9907b51b4dfc3a0
 ---
 
 ---
@@ -67,7 +67,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20260209())],
-      Messages = [new() { Role = Role.User, Content = "What's the latest on the Mars rover?" }]
+      Messages = [new UserMessageParam { Content = "What's the latest on the Mars rover?" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -305,7 +305,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       MaxTokens = 1024,
       Tools = tools,
       ToolChoice = toolChoice,
-      Messages = [new() { Role = Role.User, Content = userPrompt }],
+      Messages = [new UserMessageParam { Content = userPrompt }],
   });
   ToolUseBlock? toolUse = null;
   foreach (var block in response.Content)
@@ -336,9 +336,9 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       ToolChoice = toolChoice,
       Messages =
       [
-          new() { Role = Role.User, Content = userPrompt },
-          new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-          new() { Role = Role.User, Content = new MessageParamContent(toolResults) },
+          new UserMessageParam { Content = userPrompt },
+          new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+          new UserMessageParam { Content = toolResults },
       ],
   });
 
@@ -486,7 +486,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
           .toolChoice(toolChoice)
           .addUserMessage(userPrompt)
           .addMessage(response)
-          .addUserMessageOfBlockParams(List.of(ContentBlockParam.ofToolResult(
+          .addUserMessageOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
               ToolResultBlockParam.builder()
                   .toolUseId(toolUse.id())
                   .content(weather)

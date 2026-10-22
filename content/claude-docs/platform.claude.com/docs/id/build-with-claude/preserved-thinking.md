@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: aaebdc5847e772993201b3050ac7519d892a275e5e71f4486403598e3f4856f3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f972cffc9a36c38000f9715dfa988a19054c5b46f3a3f7ae7100f9cb0148b714
 ---
 
 ---
@@ -257,9 +257,8 @@ Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertam
           },
           Messages =
           [
-              new()
+              new BetaUserMessageParam
               {
-                  Role = Role.User,
                   Content = "What is the greatest common divisor of 1071 and 462?",
               },
           ],
@@ -543,7 +542,7 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
   List<BetaMessageParam> messages = [];
   foreach (var userTurn in userTurns)
   {
-      messages.Add(new() { Role = Role.User, Content = userTurn });
+      messages.Add(new BetaUserMessageParam { Content = userTurn });
       var response = await client.Beta.Messages.Create(
           new()
           {
@@ -560,9 +559,8 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
               Betas = [AnthropicBeta.ThinkingBindingControls2026_08_01],
           }
       );
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
       var thinkingBlocks = response.Content.Count(block => block.TryPickThinking(out _));
@@ -855,7 +853,7 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
   List<BetaMessageParam> messages = [];
   for (var turnIndex = 0; turnIndex < userTurns.Length; turnIndex++)
   {
-      messages.Add(new() { Role = Role.User, Content = userTurns[turnIndex] });
+      messages.Add(new BetaUserMessageParam { Content = userTurns[turnIndex] });
       var response = await client.Beta.Messages.Create(
           new()
           {
@@ -868,9 +866,8 @@ Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/
               Betas = [AnthropicBeta.ThinkingBindingControls2026_08_01],
           }
       );
-      messages.Add(new()
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
       var thinkingBlocks = response.Content.Count(block => block.TryPickThinking(out _));

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: e33e84b1b32149d3bd15d7e9b6f5cd650d59dc0db3a9c475860d327856056392
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 09d8ce27030df723204b6459f81452d6e9ca789d4a018fd704d45201fe360f8a
 ---
 
 ---
@@ -21,7 +21,7 @@ Karakteristik utama:
 
 * **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`)
 * **Maksimum 100 workspaces** per organisasi secara default (workspaces yang diarsipkan tidak dihitung); hubungi tim akun Anda jika Anda membutuhkan lebih banyak
-* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya menampilkan `null` untuk `workspace_id`-nya, begitu pula kunci API untuk semua workspace (field `scope` pada kunci API membedakan keduanya; untuk kunci yang terikat ke Default Workspace, field tersebut memuat ID yang sebenarnya)
+* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan laporan penggunaan dan laporan biaya menampilkan `null` untuk `workspace_id`-nya (field `scope` pada kunci API memuat ID sebenarnya untuk kunci yang terikat ke Default Workspace)
 * **Kunci API** dapat dicakupkan ke satu workspace. Dalam hal ini, kunci tersebut hanya dapat mengakses sumber daya dalam workspace tersebut. Beberapa kunci API dapat diberikan izin di beberapa workspaces, dan menyediakan [header ID workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) untuk mengakses sumber daya dalam workspace tersebut
 
 ### Workspace Claude Code
@@ -921,7 +921,7 @@ Contoh berikut mengirim permintaan Messages API dan membaca ID workspace dari he
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }]
   });
   var workspaceId = response.GetHeaderValues("anthropic-workspace-id").First();
   Console.WriteLine($"Workspace ID: {workspaceId}");
@@ -1016,7 +1016,7 @@ Accessor yang sama membaca header dari endpoint Claude API lainnya juga, termasu
 Dengan ID workspace dari respons, Anda dapat:
 
 * Mengonfirmasi penggunaan, biaya, dan [batas laju](https://platform.claude.com/docs/id/api/rate-limits) workspace mana yang dihitung oleh permintaan tersebut
-* Mencocokkannya dengan bidang `workspace_id` dalam laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) dan pada objek [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) seperti kunci API (keduanya melaporkan `null` untuk Default Workspace, seperti halnya kunci API untuk kunci semua-workspaces; bidang `scope` kunci API membedakan keduanya dan, untuk kunci yang terikat ke satu workspace, membawa ID workspace yang sebenarnya)
+* Mencocokkannya dengan bidang `workspace_id` dalam laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), yang bernilai `null` untuk Default Workspace. Cocokkan juga dengan bidang `scope` pada kunci API di [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), yang membawa ID sebenarnya dari workspace tempat kunci terikat, termasuk Default Workspace
 * Memeriksa apakah itu ID Default Workspace Anda dengan meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys): Default Workspace dikembalikan dengan `"name": "Default"`, meskipun [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) menghilangkannya kecuali Anda meneruskan `include_default=true`
 * Membuka workspace tersebut di [Console](https://platform.claude.com/settings/workspaces) untuk menemukan sumber daya permintaan, seperti sesi, file, message batches, dan skills
 
@@ -1108,7 +1108,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 
 <AccordionGroup>
   <Accordion title="Apa itu Default Workspace?">
-    Setiap organisasi memiliki "Default Workspace" yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan kunci API, laporan penggunaan, serta laporan biaya yang dimilikinya menampilkan `null` untuk `workspace_id`, begitu pula kunci API untuk semua workspace; field `scope` pada kunci API membedakan keduanya dan, untuk kunci yang dimiliki oleh Default Workspace, memuat ID sebenarnya.
+    Setiap organisasi memiliki "Default Workspace" yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan laporan penggunaan dan laporan biaya yang dimilikinya menampilkan `null` untuk `workspace_id`. Untuk kunci API yang menjadi miliknya, field `scope` pada kunci tersebut memuat ID sebenarnya dari workspace.
   </Accordion>
 
   <Accordion title="Apa itu workspace Claude Code?">

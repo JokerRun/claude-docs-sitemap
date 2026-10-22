@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: dc28a905b38b7b43e78f0155ed02825508900c2ea7accfb1074dc203f531bbfc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 61a73191944b9ae887a266d3608b8b6eb95cc7ff8e06a3e37498120a4b981818
 ---
 
 ---
@@ -213,6 +213,8 @@ List Memory Versions
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -544,6 +546,8 @@ Retrieve a Memory Version
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -854,6 +858,8 @@ Redact a Memory Version
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

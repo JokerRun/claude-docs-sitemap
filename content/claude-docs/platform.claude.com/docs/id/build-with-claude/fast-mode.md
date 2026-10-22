@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ad2ab582c25fb0a4edd7989898e5d32c6e3847d8b490c232c984737268611bc4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e15f3fac9c6fae29c498f4cf1d34faae8760dbfa953265e35d15cb45668d3088
 ---
 
 ---
@@ -115,7 +115,7 @@ Mode cepat hanya berfungsi pada model yang didukung. Lihat [Ketersediaan model](
       MaxTokens = 4096,
       Speed = Speed.Fast,
       Messages = [
-          new() { Role = Role.User, Content = "Refactor this module to use dependency injection" }
+          new UserMessageParam { Content = "Refactor this module to use dependency injection" }
       ],
   });
 
@@ -316,7 +316,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Speed = Speed.Fast,
-      Messages = [new() { Role = Role.User, Content = "Hello" }],
+      Messages = [new UserMessageParam { Content = "Hello" }],
   });
 
   Console.WriteLine(response.Usage.Speed);  // "fast" or "standard"
@@ -525,7 +525,7 @@ Karena mengatur `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Hello" }],
+          Messages = [new UserMessageParam { Content = "Hello" }],
           Speed = Speed.Fast,
       },
       maxRetries: 0);

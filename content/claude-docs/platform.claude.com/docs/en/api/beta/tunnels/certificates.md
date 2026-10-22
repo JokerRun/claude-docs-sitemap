@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: abff15c4640b2723fa3f6e6663de948283106c8929eb35bab25db79e484018f0
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 143825d0016bc34c513379d37d0783851acbb9e36c7b298db7cf9574ddae7dcb
 ---
 
 ---
@@ -141,6 +141,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -355,6 +357,8 @@ Fetches a tunnel certificate by ID.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -568,6 +572,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -777,6 +783,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

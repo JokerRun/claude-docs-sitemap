@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 3f0dc7dacf10205d31422cac7eaed6c9e2e825730214803d052079952dfc5238
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cb76c00dd32959474c04fc0b03f0dae0583c498df4547225d832b63f34a6bf88
 ---
 
 ---
@@ -248,9 +248,8 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
       // Ganti tepat pesan-pesan yang dimuat oleh permintaan pemadatan. Giliran berikutnya tetap berada setelah blok tersebut.
       return
       [
-          new()
+          new BetaAssistantMessageParam
           {
-              Role = Role.Assistant,
               Content = summary.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
           },
           .. history[sent..],
@@ -269,7 +268,7 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
           pending = null;
       }
 
-      history.Add(new() { Role = Role.User, Content = question });
+      history.Add(new BetaUserMessageParam { Content = question });
       var response = await client.Beta.Messages.Create(new MessageCreateParams
       {
           Model = Model.ClaudeOpus5_5,
@@ -278,9 +277,8 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
           Betas = [AnthropicBeta.Compact2026_09_04],
           Messages = history,
       });
-      history.Add(new()
+      history.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
 
@@ -437,10 +435,7 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
               pending = null;
           }
 
-          history.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content(questions.get(turn - 1))
-              .build());
+          history.add(BetaMessageParam.ofUser(questions.get(turn - 1)));
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(8192)

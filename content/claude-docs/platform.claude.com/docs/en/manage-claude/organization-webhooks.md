@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/organization-webhooks
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: b0d0e7b0b62a58efcc6bc6e3f13340db8393d28f73e1dcc5849ddb8ea5953a53
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: aaa370f334bb7b74cc92738cee3d3a1812fef9628a4bd1db8a09bda6e70f71fe
 ---
 
 ---
@@ -24,7 +24,7 @@ An organization webhook endpoint receives an event when Anthropic restricts or b
 
 Any member of your organization can list and view organization webhook endpoints with the API, but only members with the admin, owner, or primary owner role can create, change, or delete them, or replace their signing secret.
 
-## Before you begin
+## Before you start
 
 You need the following:
 
@@ -38,7 +38,7 @@ You need the following:
 
 ## Event types
 
-Organization webhook endpoints accept two event types. Both are about enforcement actions on user profiles. An enforcement action is a restriction or a ban that Anthropic places on the end customer a profile represents.
+Organization webhook endpoints accept two event types. Both are about [enforcement actions](https://platform.claude.com/docs/en/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) on user profiles.
 
 | Event                                      | Trigger                                                                             |
 | ------------------------------------------ | ----------------------------------------------------------------------------------- |
@@ -49,9 +49,9 @@ Deleting a profile ends its open actions without a `user_profile.enforcement_act
 
 ### Before your first event
 
-Your profiles won't have the `enforcement_status` and `enforcement_actions` fields until enforcement actions are on for your organization. Until then, and in any request whose `anthropic-beta` header has `user-profiles-2026-09-04` or an earlier value, responses leave the fields out and the `enforcement_status[]` list filter returns a `400`. To get the fields, remove that value from your requests.
+In any request whose `anthropic-beta` header has `user-profiles-2026-09-04` or an earlier value, responses leave out the `enforcement_status` and `enforcement_actions` fields and the `enforcement_status[]` list filter returns a `400`. To get the fields, remove that value from your requests.
 
-If an enforcement action opened before Anthropic turned on enforcement actions and event delivery for your organization, or before you registered your endpoint, you don't get a `user_profile.enforcement_action_opened` event for it. The action still appears on the profile. To find these actions, [list your profiles](https://platform.claude.com/docs/en/api/user_profiles/list) with `enforcement_status[]=restricted` and `enforcement_status[]=banned`. A response might return fewer profiles than `limit`, or none, before the list ends, so keep requesting pages until `next_page` is `null`.
+If an enforcement action opened before Anthropic turned on event delivery for your organization, or before you registered your endpoint, you don't get a `user_profile.enforcement_action_opened` event for it. The action still appears on the profile. To find these actions, [list your profiles](https://platform.claude.com/docs/en/api/user_profiles/list) with `enforcement_status[]=restricted` and `enforcement_status[]=banned`. A response might return fewer profiles than `limit`, or none, before the list ends, so keep requesting pages until `next_page` is `null`.
 
 ### What an event contains
 
@@ -92,7 +92,7 @@ An organization webhook endpoint has these fields:
 | `updated_at`      | string           | When the endpoint last changed. Set by Anthropic.                                                                                                                                         |
 | `signing_secret`  | string           | A `whsec_`-prefixed secret, created with the endpoint. Only the responses that create the endpoint or replace the secret include it, so store it securely.                                |
 
-```json
+```text wrap
 {
   "id": "wep_011CZkZDf8HnUq2mTxRbVn4s",
   "url": "https://example.com/anthropic-webhooks",
@@ -133,14 +133,14 @@ Return any `2xx` status within 5 seconds, and do slow work afterward. Any other 
 
 With the Admin API, you can make these requests:
 
-| Task                                                                            | Request                                                                           |
-| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| List your organization's endpoints                                              | `GET /v1/organizations/webhooks`                                                  |
-| Create an endpoint                                                              | `POST /v1/organizations/webhooks`                                                 |
-| Get one endpoint                                                                | `GET /v1/organizations/webhooks/{webhook_endpoint_id}`                            |
-| Update an endpoint's `url`, `name`, `description`, `enabled_events`, or `state` | `POST /v1/organizations/webhooks/{webhook_endpoint_id}`                           |
-| Delete an endpoint                                                              | `DELETE /v1/organizations/webhooks/{webhook_endpoint_id}`                         |
-| Replace the signing secret                                                      | `POST /v1/organizations/webhooks/{webhook_endpoint_id}/regenerate_signing_secret` |
+| Task                                                                            | Request                                                                                                                                                                           |
+| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| List your organization's endpoints                                              | [`GET /v1/organizations/webhooks`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/list)                                                                       |
+| Create an endpoint                                                              | [`POST /v1/organizations/webhooks`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/create)                                                                    |
+| Get one endpoint                                                                | [`GET /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/retrieve)                                             |
+| Update an endpoint's `url`, `name`, `description`, `enabled_events`, or `state` | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/update)                                              |
+| Delete an endpoint                                                              | [`DELETE /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/delete)                                            |
+| Replace the signing secret                                                      | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}/regenerate_signing_secret`](https://platform.claude.com/docs/en/api/beta/organization/webhooks/regenerate_signing_secret) |
 
 In an update, `enabled_events` replaces the endpoint's whole list of event types. An empty list doesn't clear the list: the endpoint keeps the event types it had. To stop deliveries, send `"state": "disabled"` or delete the endpoint.
 
@@ -239,7 +239,7 @@ Send the `anthropic-beta: webhooks-2026-10-07` header with every request. The SD
 
 With no endpoints, the API returns an empty list:
 
-```json
+```text wrap
 {
   "data": [],
   "has_more": false
@@ -306,6 +306,8 @@ This example creates an endpoint that receives both event types:
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Organization.Webhooks;
+
   AnthropicClient client = new();
 
   var endpoint = await client.Beta.Organization.Webhooks.Create(new WebhookCreateParams
@@ -341,18 +343,22 @@ This example creates an endpoint that receives both event types:
   ```
 
   ```java Java
-  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  import com.anthropic.models.beta.organization.webhooks.WebhookCreateParams;
 
-  var params = WebhookCreateParams.builder()
-      .url("https://example.com/anthropic-webhooks")
-      .name("Enforcement actions")
-      .addEnabledEvent(WebhookCreateParams.EnabledEvent.USER_PROFILE_ENFORCEMENT_ACTION_OPENED)
-      .addEnabledEvent(WebhookCreateParams.EnabledEvent.USER_PROFILE_ENFORCEMENT_ACTION_RESOLVED)
-      .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  var endpoint = client.beta().organization().webhooks().create(params);
+      var params = WebhookCreateParams.builder()
+          .url("https://example.com/anthropic-webhooks")
+          .name("Enforcement actions")
+          .addEnabledEvent(WebhookCreateParams.EnabledEvent.USER_PROFILE_ENFORCEMENT_ACTION_OPENED)
+          .addEnabledEvent(WebhookCreateParams.EnabledEvent.USER_PROFILE_ENFORCEMENT_ACTION_RESOLVED)
+          .build();
 
-  IO.println(endpoint.id());
+      var endpoint = client.beta().organization().webhooks().create(params);
+
+      IO.println(endpoint.id());
+  }
   ```
 
   ```php PHP

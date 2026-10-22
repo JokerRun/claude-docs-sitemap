@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 28fde76e5539a12cae072584bcfb9e2717528dd4ef21d75e88e3d8495b0d1cef
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c4343149c95cff38ac42f955d6113eb5b86cfc3fb2ae6fea77db4420e1858735
 ---
 
 ---
@@ -54,7 +54,7 @@ UI web Claude Code menyediakan URL lengkap bersama token saat Anda menambahkan p
 ```bash cURL
 curl -X POST https://api.anthropic.com/v1/claude_code/routines/$ROUTINE_ID/fire \
   -H "Authorization: Bearer $ROUTINE_TOKEN" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "Content-Type: application/json" \
   -d '{"text": "Sentry alert SEN-4521 fired in prod. Stack trace attached."}'
 ```
@@ -67,7 +67,7 @@ curl -X POST https://api.anthropic.com/v1/claude_code/routines/$ROUTINE_ID/fire 
   run: |
     curl -X POST "$ROUTINE_FIRE_URL" \
       -H "Authorization: Bearer $ROUTINE_FIRE_TOKEN" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -H "Content-Type: application/json" \
       -d "{\"text\": \"CI failed: $GITHUB_WORKFLOW run $GITHUB_RUN_ID on $GITHUB_REF\"}"
 ```
@@ -76,11 +76,11 @@ Permintaan kembali setelah sesi dibuat. Permintaan ini tidak melakukan streaming
 
 ### Header
 
-| Nama                | Wajib         | Deskripsi                                                                                                              |
-| ------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `Authorization`     | Ya            | `Bearer <token>`. Token per-routine yang dibuat di UI web Claude Code, dengan awalan `sk-ant-oat01-`.                  |
-| `anthropic-version` | Ya            | [Versi API](https://platform.claude.com/docs/id/api/versioning). `2023-06-01` adalah satu-satunya nilai yang diterima. |
-| `Content-Type`      | Jika ada body | `application/json`.                                                                                                    |
+| Nama                | Wajib         | Deskripsi                                                                                                                                                                           |
+| ------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Authorization`     | Ya            | `Bearer <token>`. Token per-routine yang dibuat di UI web Claude Code, dengan awalan `sk-ant-oat01-`.                                                                               |
+| `anthropic-version` | Ya            | [Versi API](https://platform.claude.com/docs/id/api/versioning), seperti `2026-10-21`. Endpoint menerima setiap versi mulai dari `2023-06-01` dan berperilaku sama di setiap versi. |
+| `Content-Type`      | Jika ada body | `application/json`.                                                                                                                                                                 |
 
 Integrasi lama yang mengirimkan header `anthropic-beta: experimental-cc-routine-2026-04-01` tidak terpengaruh. Endpoint menerima permintaan baik dengan maupun tanpa header tersebut.
 

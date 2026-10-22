@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 318def153e270daf70377c988d3acca20fff8f30b5de12f0c6203c7f6b6a94e6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e867807dea9aedcc5bda1081b79eed62cbbf9ac9596cdb99d754e7b5975a1023
 ---
 
 ---
@@ -139,6 +139,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

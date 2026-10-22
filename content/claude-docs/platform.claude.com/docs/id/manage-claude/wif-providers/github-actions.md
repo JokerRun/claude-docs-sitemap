@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 54815505ca3a2745e3229f1e0c38125a2102c3d897b713b3dc4fb56a525dd1fc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d0ba283a338afcb3739f621b426d14418f9aa748908f4d23d5ee92d2e7c7a12f
 ---
 
 ---
@@ -259,7 +259,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   foreach (var block in message.Content)
   {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7576fe0ea821466f9fa92247b72323fce0cbe01d5d5a77c142ebd04d5f7abc0c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c4068ae7dbeeb14c3506cdfe8a1192a92e6bdffdc4318426430f8d5844843409
 ---
 
 ---
@@ -323,10 +323,9 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new TextBlockParam()
                       {
@@ -337,7 +336,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                       {
                           Text = "Analyze the tone of this passage."
                       }),
-                  })
+                  }
               }
           ]
       };
@@ -353,10 +352,9 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           Thinking = new ThinkingConfigAdaptive(),
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new TextBlockParam()
                       {
@@ -367,18 +365,13 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                       {
                           Text = "Analyze the tone of this passage."
                       }),
-                  })
+                  }
               },
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               },
-              new()
-              {
-                  Role = Role.User,
-                  Content = "Analyze the characters in this passage."
-              }
+              new UserMessageParam { Content = "Analyze the characters in this passage." }
           ]
       };
 
@@ -397,10 +390,9 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
           },
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new TextBlockParam()
                       {
@@ -411,28 +403,18 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                       {
                           Text = "Analyze the tone of this passage."
                       }),
-                  })
+                  }
               },
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               },
-              new()
+              new UserMessageParam { Content = "Analyze the characters in this passage." },
+              new AssistantMessageParam
               {
-                  Role = Role.User,
-                  Content = "Analyze the characters in this passage."
-              },
-              new()
-              {
-                  Role = Role.Assistant,
                   Content = response2.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               },
-              new()
-              {
-                  Role = Role.User,
-                  Content = "Analyze the setting in this passage."
-              }
+              new UserMessageParam { Content = "Analyze the setting in this passage." }
           ]
       };
 
@@ -547,7 +529,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
-              .addUserMessageOfBlockParams(List.of(
+              .addUserMessageOfContentBlockParams(List.of(
                   ContentBlockParam.ofText(TextBlockParam.builder()
                       .text(largeText)
                       .cacheControl(CacheControlEphemeral.builder().build())
@@ -567,7 +549,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(16000L)
               .thinking(ThinkingConfigAdaptive.builder().build())
-              .addUserMessageOfBlockParams(List.of(
+              .addUserMessageOfContentBlockParams(List.of(
                   ContentBlockParam.ofText(TextBlockParam.builder()
                       .text(largeText)
                       .cacheControl(CacheControlEphemeral.builder().build())
@@ -576,7 +558,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                       .text("Analyze the tone of this passage.")
                       .build())
               ))
-              .addAssistantMessageOfBlockParams(response1.content().stream()
+              .addAssistantMessageOfContentBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
                   .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
@@ -594,7 +576,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               .outputConfig(OutputConfig.builder()
                   .effort(OutputConfig.Effort.LOW)
                   .build())
-              .addUserMessageOfBlockParams(List.of(
+              .addUserMessageOfContentBlockParams(List.of(
                   ContentBlockParam.ofText(TextBlockParam.builder()
                       .text(largeText)
                       .cacheControl(CacheControlEphemeral.builder().build())
@@ -603,11 +585,11 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
                       .text("Analyze the tone of this passage.")
                       .build())
               ))
-              .addAssistantMessageOfBlockParams(response1.content().stream()
+              .addAssistantMessageOfContentBlockParams(response1.content().stream()
                   .map(block -> block.toParam())
                   .collect(Collectors.toList()))
               .addUserMessage("Analyze the characters in this passage.")
-              .addAssistantMessageOfBlockParams(response2.content().stream()
+              .addAssistantMessageOfContentBlockParams(response2.content().stream()
                   .map(block -> block.toParam())
                   .collect(Collectors.toList()))
               .addUserMessage("Analyze the setting in this passage.")

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 173a8e6dc02cd232172afe823f28a85f31785c6e3cbf8cda1f307dab8e69c2c1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: eb306248866486287c1ec258ee2b2c6dd7af69daef44315dd755b14b899746b9
 ---
 
 ---
@@ -139,6 +139,8 @@ Archive a Memory Store
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

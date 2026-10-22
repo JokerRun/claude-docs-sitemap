@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 3f1139931474262a5f4a7ffb3b5b78cb7375ce350b447a80e04382cdb7c84b30
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cfd8c5faf4c876110f2a99bb2e5e00ca4888043b11f9b7fe2e8c29c2f2aeba9f
 ---
 
 ---
@@ -342,7 +342,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello from AWS" }],
+      Messages = [new UserMessageParam { Content = "Hello from AWS" }],
   });
   foreach (var block in message.Content)
   {
@@ -763,7 +763,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello from EKS" }],
+      Messages = [new UserMessageParam { Content = "Hello from EKS" }],
   });
   foreach (var block in message.Content)
   {

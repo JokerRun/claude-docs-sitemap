@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 8b96d4e9d4e3d706d308246aa9caa2512baf846dd852e1304acf5e5f9c14a234
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 673d70b1809f7d03c9ee85e10ccac3c4c84e5b0bee4a2f33c3ebca73e2b9ff77
 ---
 
 ---
@@ -141,6 +141,8 @@ Retrieve detailed information about a specific work item.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -406,6 +408,8 @@ Long poll for work items in the queue.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"Anthropic-Worker-ID": optional string`
 
   Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -655,6 +659,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -913,6 +919,8 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaSelfHostedWorkHeartbeatResponse object`
@@ -1102,6 +1110,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1375,6 +1385,8 @@ List work items in an environment.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaSelfHostedWorkListResponse object`
@@ -1629,6 +1641,8 @@ Update work item metadata with merge semantics.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1889,6 +1903,8 @@ Get statistics about the work queue for an environment.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

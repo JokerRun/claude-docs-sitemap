@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 83e4458529cc65973d00b46afb56f6526243d2e37535cdff004ac33205d85519
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b62a1bf88f85d7fa01a77ac73187167c6f011b8f403862f0ffc03259b0cdeff0
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ You control whether and when tool definitions are deferred with the `ENABLE_TOOL
 | :- | :- |
 | (unset) | Tool search is on, with tool definitions deferred and discovered on demand. Falls back to loading upfront on models earlier than Opus 4 and Sonnet 4, on the [earlier Agent Platform models](#configure-tool-search), and on Microsoft Foundry deployments hosted on Azure. |
 | `true` | Tool search is on, with the same fallbacks as (unset). |
-| `auto` | Counts the tokens in the tool definitions that tool search can defer and compares the total against the model's context window. When the total reaches 10% of the window, tool search activates. Below that, the SDK loads every tool definition into context upfront. |
+| `auto` | Tool search is off, and tool definitions load upfront, until the definitions it can defer reach 10% of the model's context window. Tool search then activates, and can [stay on in the same conversation](/docs/en/mcp#tools-that-stay-deferred-below-the-threshold) even if those definitions later drop below 10%. |
 | `auto:N` | Same as `auto` with a custom percentage. `auto:5` activates when those definitions reach 5% of the context window. Lower values activate sooner. |
 | `false` | Tool search is off. All tool definitions are loaded into context on every turn. |
 

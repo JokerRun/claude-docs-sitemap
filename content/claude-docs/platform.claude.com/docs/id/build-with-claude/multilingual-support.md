@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: d0b432de0371dcf2fe8370f8c013ae1a9131e78061bd102358a44e2153b1e65e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4b2593074797f86e5527f518b62586ddafa2227b74cf46db4743fdd9ad7a6c00
 ---
 
 ---
@@ -109,10 +109,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       System = "Always respond in French, regardless of the language the user writes in.",
-      Messages =
-      [
-          new() { Role = Role.User, Content = "How do I reset my password?" }
-      ]
+      Messages = [new UserMessageParam { Content = "How do I reset my password?" }]
   };
 
   var message = await client.Messages.Create(parameters);

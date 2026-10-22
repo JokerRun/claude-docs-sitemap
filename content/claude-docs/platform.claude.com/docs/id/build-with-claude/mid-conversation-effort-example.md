@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 5e96148982aa2ef18080aa6441629b784aa1a3bb5ee91afd1198267d68037605
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a0ff9ea74e81e89f20898ca7f9e045b5efb7ea22983e8acd7a722e737deb45db
 ---
 
 ---
@@ -1343,8 +1343,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       stdin, stdout_and_stderr, wait_thr = Open3.popen2e("bash", "-c", command, pgroup: true, chdir: WORK_DIR)
       stdin.close
       reader = Thread.new { stdout_and_stderr.read.scrub }
-      # Terapkan batas waktu dengan tenggat monotonic-clock agar perintah yang kehabisan waktu
-      # dihentikan alih-alih dibiarkan berjalan di latar belakang.
+      # Terapkan batas waktu dengan tenggat jam monotonik agar perintah yang timeout
+      # dihentikan, bukan dibiarkan berjalan di latar belakang.
       deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BASH_TIMEOUT_SECONDS
       until wait_thr.join(0.1)
         next if Process.clock_gettime(Process::CLOCK_MONOTONIC) < deadline
@@ -1555,7 +1555,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           "You are one agent in a larger parallel fan-out, assigned a single subtask. "
           + "Investigate it directly, using bash to check facts rather than guessing, and finish "
           + "by calling report_findings exactly once. Return findings, not narration.";
-      List<MessageParam> messages = [new() { Role = Role.User, Content = prompt }];
+      List<MessageParam> messages = [new UserMessageParam { Content = prompt }];
       for (var turn = 0; turn < maxSubagentTurns; turn++)
       {
           using var deadline = new CancellationTokenSource(TimeSpan.FromSeconds(requestTimeoutSeconds));
@@ -1568,9 +1568,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
               Tools = [bashTool, reportTool],
               Messages = messages,
           }, cancellationToken: deadline.Token).Aggregate();
-          messages.Add(new()
+          messages.Add(new AssistantMessageParam
           {
-              Role = Role.Assistant,
               Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
           });
           if (response.StopReason == StopReason.PauseTurn)
@@ -1611,7 +1610,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           {
               return report;
           }
-          messages.Add(new() { Role = Role.User, Content = toolResults });
+          messages.Add(new UserMessageParam { Content = toolResults });
       }
       return "(subagent hit the turn limit before finishing)";
   }
@@ -1721,7 +1720,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   // Subagen mewarisi tingkat upaya dari loop utama.
   String runSubagent(Model model, String prompt) throws InterruptedException {
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(MessageParam.builder().role(MessageParam.Role.USER).content(prompt).build());
+      messages.add(MessageParam.ofUser(prompt));
       for (int turn = 0; turn < MAX_SUBAGENT_TURNS; turn++) {
           MessageCreateParams params = MessageCreateParams.builder()
                   .model(model)
@@ -1775,10 +1774,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           if (report != null) {
               return report;
           }
-          messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.USER)
-                  .contentOfBlockParams(toolResults)
-                  .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
       }
       return "(subagent hit the turn limit before finishing)";
   }
@@ -2023,8 +2019,8 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       return cached;
     }
     const result = await compute();
-    // Rantai penulisan agar subagen yang berjalan bersamaan tidak saling menimpa entri.
-    // Rantai dijaga tetap settled agar satu penulisan yang gagal tidak merusak penulisan berikutnya.
+    // Rangkai penulisan agar subagent yang berjalan bersamaan tidak saling menimpa entri.
+    // Rantai dijaga tetap settled agar satu penulisan gagal tidak membuat yang berikutnya gagal.
     await (journalWriteChain = journalWriteChain
       .then(async () => {
         const journal = await loadJournal();
@@ -3212,7 +3208,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       modeOn = nextModeOn;
   }
 
-  MessageParam SystemMessage(string content) => new() { Role = Role.System, Content = content };
+  MessageParam SystemMessage(string content) => new SystemMessageParam { Content = content };
 
   // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
   // atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
@@ -3247,7 +3243,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   {
       // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
       // prefiks yang di-cache di depannya tetap tidak tersentuh.
-      messages.Add(new() { Role = Role.User, Content = userInput });
+      messages.Add(new UserMessageParam { Content = userInput });
       messages.AddRange(DueSystemMessages());
       turnsSinceReminder++;
 
@@ -3263,9 +3259,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               Tools = [workflowTool, bashTool],
               Messages = messages,
           }, cancellationToken: deadline.Token).Aggregate();
-          messages.Add(new()
+          messages.Add(new AssistantMessageParam
           {
-              Role = Role.Assistant,
               Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList(),
           });
 
@@ -3301,7 +3296,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               };
               toolResults.Add(new ToolResultBlockParam(toolUse.ID) { Content = output, IsError = isError });
           }
-          messages.Add(new() { Role = Role.User, Content = toolResults });
+          messages.Add(new UserMessageParam { Content = toolResults });
       }
       return "(hit the main loop turn limit before finishing)";
   }
@@ -3483,17 +3478,14 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       }
 
       private MessageParam systemMessage(String content) {
-          return MessageParam.builder()
-                  .role(MessageParam.Role.SYSTEM)
-                  .content(content)
-                  .build();
+          return MessageParam.ofSystem(content);
       }
 
       // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
       String turn(String userInput) throws InterruptedException {
           // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
           // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
-          messages.add(MessageParam.builder().role(MessageParam.Role.USER).content(userInput).build());
+          messages.add(MessageParam.ofUser(userInput));
           messages.addAll(dueSystemMessages());
           turnsSinceReminder++;
 
@@ -3548,10 +3540,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                           .isError(result.isError())
                           .build()));
               }
-              messages.add(MessageParam.builder()
-                      .role(MessageParam.Role.USER)
-                      .contentOfBlockParams(toolResults)
-                      .build());
+              messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
           }
           return "(hit the main loop turn limit before finishing)";
       }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7293fa8cee61bff308b6845b06d23ac78aef205cc5d3202e95afd9677e751497
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ef60fbf1e0aafd6c656f0bf43720f3d0a3e960400f4ffdd64f72d1de57168daf
 ---
 
 ---
@@ -125,7 +125,7 @@ Claude Haiku 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Cl
 
 ## Hapus parameter sampling
 
-Claude Haiku 4.5 menerima `temperature`, `top_p`, dan `top_k`. Pada Claude Haiku 5.5, hilangkan ketiganya dan gunakan prompting untuk mengarahkan perilaku model sebagai gantinya. Jika permintaan menyertakan `temperature`, nilainya harus `1`. Jika menyertakan `top_p`, nilainya harus `0.99`, yaitu nilai default-nya. Nilai `temperature` atau `top_p` lainnya mengembalikan error 400, termasuk `top_p` bernilai `1`. Begitu pula nilai `top_k` apa pun, dan begitu pula permintaan yang menyertakan `temperature` dan `top_p` sekaligus.
+Pada Claude Haiku 5.5, hilangkan `temperature`, `top_p`, dan `top_k` dan gunakan prompting untuk mengarahkan perilaku model sebagai gantinya.
 
 ## Ganti prefill asisten
 

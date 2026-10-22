@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 6f6b3c4364f8259eb08e0d498352def60c07f6c074ad41d7af9f80c93ef9d227
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7de9ec719310d3946b2b4315351cf4f4a17bd33aca9700dc4fbaa5e774048edc
 ---
 
 ---
@@ -78,7 +78,7 @@ List the rate limits configured for your organization:
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -160,8 +160,8 @@ The `/v1/organizations/rate_limits` endpoint returns the rate limits applied at 
 
 * **Rate limit groups:** Each entry in the response represents one rate limit group. Model rate limits are grouped so that several model versions share a single set of limits, and other groups cover resources such as the Message Batches API, the Files API, the Token Counting API, agent skills, and the web search tool.
 * **`group` object:** Present on every entry, it identifies the rate limit group the entry applies to. It always has `type`, which is one of the `group_type` values, and `id`, an opaque identifier with the `rlg_` prefix. On `model_group` entries it also has `display_name`, Anthropic's current label for the group, such as `Claude Sonnet 4.x`. The label is for display only and may change. Other group types have no `display_name`.
-* **The `id` inside `group`:** A group has the same `id` in every organization and on every workspace override, and it never changes. Use it to match entries across organizations or against your own catalog. The entry's own `id` differs per organization, and `models` changes when Anthropic moves a model between groups. Neither is a stable key for the group.
-* **`group_type`:** Deprecated in favor of the `type` inside `group`. It's still returned, always equals that value, and has no removal date. The `group_type` query parameter isn't deprecated. See [Filtering by group type](https://platform.claude.com/docs/en/manage-claude/rate-limits-api#filtering-by-group-type) for the list of values.
+* **The `id` inside `group`:** A group has the same `id` in every organization and on every workspace override, and it never changes. Use it to match entries across organizations or against your own catalog. The entry's own `id` differs for each organization, and `models` changes when Anthropic moves a model between groups. Neither is a stable key for the group.
+* **`group_type`:** The query parameter that restricts the list to one group type. See [Filtering by group type](https://platform.claude.com/docs/en/manage-claude/rate-limits-api#filtering-by-group-type) for the values.
 * **`models` list:** For `model_group` entries, the `models` field lists every model ID and alias that counts against that group's limits. Use this list to look up which group any model string falls under. For other group types, `models` is `null`.
 * **`limits` list:** Each group carries a list of `{type, value}` pairs. The `type` field identifies the limiter (such as `requests_per_minute`, `input_tokens_per_minute`, or `output_tokens_per_minute`) and `value` is the configured limit. See [Rate limits](https://platform.claude.com/docs/en/api/rate-limits) for how each limiter is measured and enforced.
 * **`source` on workspace limits:** On the workspace endpoint, every limit value also carries `source`, which says where `value` comes from: `{"type": "workspace"}` for an override stored on the workspace, or `{"type": "organization"}` for a value inherited from the organization. By default, the workspace endpoint returns overrides only, so `source.type` is always `workspace` there; inherited values appear when you pass `include_inherited=true`. See [Workspace rate limits](https://platform.claude.com/docs/en/manage-claude/rate-limits-api#workspace-rate-limits).
@@ -215,7 +215,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -293,6 +293,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
 {
   "data": [
     {
+      "id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "rate_limit",
       "group_type": "model_group",
       "group": {
@@ -308,6 +309,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
       ]
     },
     {
+      "id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "rate_limit",
       "group_type": "model_group",
       "group": {
@@ -329,6 +331,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
       ]
     },
     {
+      "id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "rate_limit",
       "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
@@ -394,7 +397,7 @@ Pass any model ID or alias as the `model` query parameter to return only the ent
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -497,7 +500,7 @@ By default, the response only includes overrides, so anything missing from it is
 For complete parameter details and response schemas, see the [Workspace Rate Limits API reference](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint, or find them in the [Claude Console](https://platform.claude.com/settings/workspaces). List Workspaces includes the default workspace only when you pass `include_default=true`.
+  To retrieve your organization's workspace IDs, use the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint, or find them under [Workspaces in the Claude Console](https://platform.claude.com/settings/workspaces). List Workspaces includes the default workspace only when you pass `include_default=true`.
 </Tip>
 
 <CodeGroup>
@@ -552,7 +555,7 @@ For complete parameter details and response schemas, see the [Workspace Rate Lim
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -638,6 +641,8 @@ For complete parameter details and response schemas, see the [Workspace Rate Lim
 {
   "data": [
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -662,6 +667,8 @@ For complete parameter details and response schemas, see the [Workspace Rate Lim
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -760,10 +767,10 @@ To read a workspace's applicable limits in one request, add the optional `includ
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
-          Console.WriteLine($"  {limit.Type}: {limit.Value} ({limit.Source.Type.GetString()})");
+          Console.WriteLine($"  {limit.Type}: {limit.Value} ({limit.Source.Type.Raw()})");
       }
   }
   ```
@@ -857,6 +864,8 @@ To read a workspace's applicable limits in one request, add the optional `includ
 {
   "data": [
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -887,6 +896,8 @@ To read a workspace's applicable limits in one request, add the optional `includ
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
       "group_type": "model_group",
       "group": {
@@ -923,6 +934,8 @@ To read a workspace's applicable limits in one request, add the optional `includ
       ]
     },
     {
+      "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "rate_limit_id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "workspace_rate_limit",
       "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
@@ -995,7 +1008,7 @@ Both endpoints accept an optional `group_type` query parameter that restricts th
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
-      Console.WriteLine($"{entry.Group.Type.GetString()}{models}");
+      Console.WriteLine($"{entry.Group.Type.Raw()}{models}");
       foreach (var limit in entry.Limits)
       {
           Console.WriteLine($"  {limit.Type}: {limit.Value}");
@@ -1095,7 +1108,7 @@ Both endpoints accept a `page` query parameter and return a `next_page` field. R
 
 Every model ID and alias that counts against the group, including dated IDs (such as `claude-sonnet-4-5-20250929`) and undated aliases (such as `claude-sonnet-4-5`). Look up any model string you pass to the Messages API and you'll find it in exactly one `model_group` entry.
 
-The list covers the models your organization has access to, so it can differ between organizations.
+The list covers the models your organization has access to, so it can differ among organizations.
 
 ### What does it mean if a group is missing from the workspace response?
 
@@ -1103,7 +1116,9 @@ By default, the workspace response lists only overrides, so a missing group has 
 
 ### Can I update rate limits with this API?
 
-No. To set workspace rate limits, go to the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console, select the workspace from the **Workspace** dropdown menu, and click **Edit** next to a model.
+**For a workspace:** Yes. The [Set Workspace Rate Limits](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/update) endpoint sets or clears a workspace's overrides for one rate limit group. Pass the top-level `id` of the matching entry in the [organization endpoint's response](https://platform.claude.com/docs/en/manage-claude/rate-limits-api#list-all-organization-rate-limits) as `rate_limit_id`, not the `rlg_` `id` inside its `group`. The lower of the workspace override and the organization-level limit applies, and a change takes effect within about an hour. You can also set workspace rate limits on the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console: select the workspace from the **Workspace** dropdown menu, and click **Edit** next to a model.
+
+**For an organization:** No. To request higher limits, see [Requesting higher limits](https://platform.claude.com/docs/en/api/rate-limits#requesting-higher-limits).
 
 ## See also
 

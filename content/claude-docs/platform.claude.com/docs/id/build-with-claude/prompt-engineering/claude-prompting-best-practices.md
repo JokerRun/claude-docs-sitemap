@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 410f4555977836968b2e40e3511f8e2c9793c8e4462ac2cd6ae992054139c232
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d8b3362be951c88efec1f4631e6b6358a71a1ece609b4108d9374e0071efbd0c
 ---
 
 ---
@@ -172,10 +172,7 @@ Menetapkan peran dalam "system prompt" (prompt sistem) memfokuskan perilaku dan 
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       System = "You are a helpful coding assistant specializing in Python.",
-      Messages =
-      [
-          new() { Role = Role.User, Content = "How do I sort a list of dictionaries by key?" }
-      ]
+      Messages = [new UserMessageParam { Content = "How do I sort a list of dictionaries by key?" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -678,7 +675,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
       Model = Model.ClaudeSonnet4_5_20250929,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
-      Messages = [new() { Role = Role.User, Content = "..." }]
+      Messages = [new UserMessageParam { Content = "..." }]
   });
 
   // Sesudah: adaptive thinking dengan effort
@@ -688,7 +685,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
       MaxTokens = 16000,
       Thinking = new ThinkingConfigAdaptive(),
       OutputConfig = new OutputConfig { Effort = Effort.High },
-      Messages = [new() { Role = Role.User, Content = "..." }]
+      Messages = [new UserMessageParam { Content = "..." }]
   });
   ```
 

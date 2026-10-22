@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: d00368ad6af70a959fd91282a26bc87145f6e85d584ca0167811f3a86bcca503
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 081bb8a44757824038a6f213dca24f97b3f470743b6d613d82c39d82f5d4da7b
 ---
 
 ---
@@ -156,6 +156,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters (form-data)
 
@@ -502,6 +504,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaPluginVersion`
@@ -828,6 +832,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -1162,6 +1168,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Example
 

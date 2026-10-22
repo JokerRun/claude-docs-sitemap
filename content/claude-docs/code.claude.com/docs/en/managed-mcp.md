@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-mcp
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 96b82f54bc3e3dca6a9e64b719935784fa764e1ffc269bca984001eb0bd1b84c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 02baf70310d9028d77764e3e5d40f83473fdf72a4fec855e25312c8c52a51077
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ Claude Code supports a range of restriction levels. Each pattern uses one or mor
 | **Fixed deployment** | Every user gets the same servers and can't add others | `managed-mcp.json` with the servers you want |
 | **Provided servers** | Every user gets the remote servers you list and keeps their own | `managedMcpServers` in managed settings |
 | **Approved catalog** | Publish a list of approved servers; users add the ones they want, anything else is blocked | `allowedMcpServers` + `allowManagedMcpServersOnly: true` |
-| **Plugin servers only** | Users can't add servers through `~/.claude.json` or `.mcp.json`; plugin servers still load | [`strictPluginOnlyCustomization`](/docs/en/settings-reference#strictpluginonlycustomization) with `mcp` in the list |
+| **Plugin servers only** | Users can't add servers through `~/.claude.json` or `.mcp.json`; [skills-directory plugins](/docs/en/plugins/loading#skills-directory-plugins-blocked-by-managed-settings) stop loading as plugins, and servers from other plugins still load | [`strictPluginOnlyCustomization`](/docs/en/settings-reference#strictpluginonlycustomization) with `mcp` in the list |
 | **Soft allowlist** | Enforce an allowlist that users can broaden in their own settings | `allowedMcpServers` without `allowManagedMcpServersOnly` |
 | **Denylist only** | Block known-bad servers, allow everything else | `deniedMcpServers` |
 | **No restrictions** | Users add anything | Don't deploy any managed MCP configuration |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/list
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 1691c54e2c4ec79f2df6d6f95a9c68429777ac58062ec21748dc6a74fa88ddf0
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 756fef328f0b484258f5348ba9259dc2fea6f189a09cc71702ec7b452d746978
 ---
 
 ---
@@ -177,6 +177,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

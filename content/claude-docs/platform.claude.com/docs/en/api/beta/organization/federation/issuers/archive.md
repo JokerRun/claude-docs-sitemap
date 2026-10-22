@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 70d1f446f2d5e4a7b3d5699956c003101169e46b53eff1c2cfc257c2a4656646
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8937f079c03a7e5dd72e0789f2c7ad5339c22c5867ccf0843f77643abc89ddab
 ---
 
 ---
@@ -144,6 +144,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

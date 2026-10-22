@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 822541ecf74350ed3f170e973e060a420a2f5c74e4a3e1a4e793d34c42a59a41
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a86ae94ff6dc6f6c94f47a5f3030dd1bbef18d045b4339b2732ca64e76ba0f2d
 ---
 
 ---
@@ -23,7 +23,7 @@ In a [multiagent session](https://platform.claude.com/docs/en/managed-agents/mul
 
 The **session-level event stream** (`/v1/sessions/{session_id}/events/stream`) is considered the **primary thread**, containing a condensed view of all activity across all threads. You don't see the full activity from [subagents](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#delegate-to-subagents), but you do see the start and end of their work, and blocking events such as tool permission requests.
 
-**Session threads** are where you drill into a specific agent's activity.
+**Session threads** are where you examine a specific agent's activity.
 
 The session `status` (csharp, go: `Status`) is an aggregation of all agent activity; if at least one thread is `running`, then the overall session status is `running` as well. A [workflow run](https://platform.claude.com/docs/en/managed-agents/workflow-runs) that's running can keep the session `running` too, even while none of its threads is working. When no thread is working and a thread waits on your client, the session is `idle`; see [Know when the work is done](https://platform.claude.com/docs/en/managed-agents/workflow-runs#know-when-the-work-is-done).
 
@@ -124,7 +124,11 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
+    -d '{
+      "events": [
+        {"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -149,14 +153,7 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
   ```csharp C#
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
-      Events =
-      [
-          new BetaManagedAgentsUserInterruptEventParams
-          {
-              Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-              SessionThreadID = thread.ID,
-          },
-      ],
+      Events = [new BetaManagedAgentsUserInterruptEventParams { SessionThreadID = thread.ID }],
   });
   ```
 
@@ -178,7 +175,6 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-              .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
               .sessionThreadId(thread.id())
               .build())
           .build());
@@ -278,7 +274,11 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
+    -d '{
+      "events": [
+        {"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}
+      ]
+    }'
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -318,14 +318,7 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
   ```csharp C#
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
-      Events =
-      [
-          new BetaManagedAgentsUserInterruptEventParams
-          {
-              Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-              SessionThreadID = thread.ID,
-          },
-      ],
+      Events = [new BetaManagedAgentsUserInterruptEventParams { SessionThreadID = thread.ID }],
   });
   archived = await client.Beta.Sessions.Threads.Archive(thread.ID, new() { SessionID = session.ID });
   Console.WriteLine($"{archived.Status} {archived.ArchivedAt}");
@@ -357,7 +350,6 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-              .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
               .sessionThreadId(thread.id())
               .build())
           .build());
@@ -668,7 +660,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
 
 If a subagent needs something from your client, such as [permission](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#tool-confirmation) to run a tool call or the [result of a custom tool](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#handling-custom-tool-calls), the event is cross-posted to the **primary thread** with `session_thread_id` identifying the originating session thread. A tool call needs your permission under `always_ask`, or under [`auto`](https://platform.claude.com/docs/en/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) when the server reaches no determination.
 
-```json
+```text wrap
 {
   "type": "session.thread_status_idle",
   "id": "sevt_01ABC...",
@@ -735,7 +727,6 @@ The following example goes inside the event loop of the [tool confirmation handl
           [
               new BetaManagedAgentsUserToolConfirmationEventParams
               {
-                  Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
                   ToolUseID = eventId,
                   Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
               },
@@ -765,7 +756,6 @@ The following example goes inside the event loop of the [tool confirmation handl
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                   .toolUseId(eventId)
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                   .build())

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 3513f5d31181e190fc444a09500e88a486d109d81849a752bd1e9fc2786a0fc6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: af5d70cfa50becab6b3f551baf5ee778102bf26adc4fff013bd766e67311f0c4
 ---
 
 ---
@@ -116,13 +116,13 @@ Choosing between them:
 
 * **Deployment target**
 
-  * **Helm** when deploying to Kubernetes.
-  * **Docker Compose** for a single host or local testing.
+  * **Helm** when deploying to Kubernetes
+  * **Docker Compose** for a single host or local testing
 
 * **Authentication for setup**
 
-  * **Programmatic access** (through Workload Identity Federation) when you have an OIDC identity provider such as a Kubernetes cluster, cloud IAM, or SPIFFE.
-  * **Manual credentials** when you don't, or when you're testing.
+  * **Programmatic access** (through Workload Identity Federation) when you have an OIDC identity provider such as a Kubernetes cluster, cloud IAM, or SPIFFE
+  * **Manual credentials** when you don't, or when you're testing
 
 ## Use the tunneled MCP servers
 
@@ -136,15 +136,15 @@ In both cases, the tunnel carries encrypted traffic to your MCP server but does 
 
 ### Managed Agents (Console)
 
-1. On the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) in the Claude Console, create a session and choose **Create new agent** so you can edit the MCP server list.
-2. Click **+ MCP Server** and open the dropdown. Tunnels in the session's workspace that have at least one active certificate appear at the top of the list, above the public connector catalog.
+1. On the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) in the Claude Console, create a session and select **Create new agent** so you can edit the MCP server list.
+2. Click **+ MCP Server** and open the dropdown menu. Tunnels in the session's workspace that have at least one active certificate appear at the top of the list, above the public connector catalog.
 3. Select the tunnel and supply the **Subdomain** that your proxy routes to a specific MCP server, and the **Path** the upstream MCP server expects. The **Resolves to** line shows the exact URL.
 
 ### Messages API
 
-Pass the upstream MCP server's URL in the `mcp_servers` array, the same way as any other remote MCP server. The request body and `anthropic-beta` header follow the standard [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) format; only the `url` is tunnel-specific. The following example uses the MCP connector's `mcp-client` beta header, which is separate from the `mcp-tunnels` beta used by the [Tunnels API](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference). Make the request in the workspace the tunnel was created in by using an API key for that workspace or, if your key has access to multiple workspaces, by setting the [`anthropic-workspace-id` header](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) to that workspace.
+Pass the upstream MCP server's URL in the `mcp_servers` array, the same way as any other remote MCP server. The request body and `anthropic-beta` header follow the standard [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) format; only the `url` is tunnel-specific. The following example uses the MCP connector's `mcp-client` beta header, which is separate from the `mcp-tunnels` beta used by the [Tunnels API](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference). Make the request in the workspace the tunnel was created in by using an API key for that workspace or, if your key isn't scoped to a workspace, by setting the [`anthropic-workspace-id` header](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) to that workspace.
 
-The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your upstream MCP server, not the tunnel: FastMCP's `streamable-http` transport serves at `/mcp`, and other servers may use `/` or a custom path (check the server's documentation). The proxy forwards the path untouched.
+The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your upstream MCP server, not the tunnel: FastMCP's `streamable-http` transport serves at `/mcp`, and other servers might use `/` or a custom path (check the server's documentation). The proxy forwards the path untouched.
 
 <CodeGroup>
   ```bash cURL
@@ -246,7 +246,7 @@ The URL's host is `<subdomain>.<your-tunnel-domain>`. The path depends on your u
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
-          new() { Role = Role.User, Content = "Use the hello tool to greet tunnel." }
+          new BetaUserMessageParam { Content = "Use the hello tool to greet tunnel." }
       },
       McpServers = new List<BetaRequestMcpServerUrlDefinition>
       {

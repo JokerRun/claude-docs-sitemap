@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b6b59d30fb551462837efa1ab9957ce5ca2141b9a6febd4db80d18b392efab03
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6f75381876a5f1dcfadd6246c21d63d602a165988f40b142ac28a448aab52904
 ---
 
 ---
@@ -139,6 +139,8 @@ Retrieve detailed information about a specific work item.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

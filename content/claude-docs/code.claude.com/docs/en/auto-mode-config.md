@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 8e3538c437c2df7501ce2565fa8faaac1de47e5ba5f6af6c92459433ee8c2b72
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 67284cb8a9484c38ebed471a7ef9b18233ee625233cf160200d6dc883ff1aa3f
 ---
 
 > ## Documentation Index
@@ -368,9 +368,11 @@ When the classifier produces [no verdict on the action](/docs/en/errors#auto-mod
 
 ### Fix a denial with an allow rule, an environment entry, or a retry
 
-To see what the classifier blocked, find the tool call in the conversation. If the call appears shortened or folded into a summary line such as `Ran 3 shell commands`, press `Ctrl+O` to open the [transcript viewer](/docs/en/interactive-mode#transcript-viewer), which expands it.
+To read the command or URL behind a notice such as `bash denied by auto mode · [Data Exfiltration] · /permissions`, use the **Recently denied** tab, a hook, or the conversation:
 
-Two other places on screen that report denials leave out the command or URL: the notice near the input box, such as `bash denied by auto mode · [Data Exfiltration] · /permissions`, gives the tool and the reason, and the **Recently denied** tab lists a shell command by the description Claude wrote for it. To capture the exact input of these denials programmatically, add a [`PermissionDenied` hook](/docs/en/hooks#permissiondenied), which receives it as `tool_input`.
+* **Recently denied tab**: in the `/permissions` dialog, highlight a denied Bash or PowerShell action to read its command below the list. In [screen reader mode](/docs/en/accessibility), all the commands appear before the list instead.
+* **Hook**: to capture the exact input of denials programmatically, add a [`PermissionDenied` hook](/docs/en/hooks#permissiondenied), which receives it as `tool_input`.
+* **Conversation**: find the tool call. If the call appears shortened or folded into a summary line such as `Ran 3 shell commands`, press `Ctrl+O` to open the [transcript viewer](/docs/en/interactive-mode#transcript-viewer), which expands it.
 
 The text beneath the call tells you whether there is anything to fix. A dim `Not run · auto mode's check had no usable answer` row, or text that reports a problem with the classifier itself, such as `Auto mode could not evaluate this action`, means Claude Code blocked the call without a verdict from the classifier. For a `Not run` row, press `Ctrl+O` to read the full message, then see [Auto mode cannot determine the safety of an action](/docs/en/errors#auto-mode-cannot-determine-the-safety-of-an-action) or [The server returned no safety verdict](/docs/en/errors#the-server-returned-no-safety-verdict) for what to do.
 

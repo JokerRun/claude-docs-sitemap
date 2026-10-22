@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: da99363c1d7438c05428d51c051ead78b1bef2cb311f722447716772afc03bd1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 729d870ee420cd5e5fe67cfdba4551d4740ed427b0d2f8e04eeefa25886d73a3
 ---
 
 ---
@@ -210,7 +210,7 @@ The following program is the loop from [Compact in a loop](https://platform.clau
   foreach (var (index, question) in questions.Index())
   {
       var turn = index + 1;
-      history.Add(new() { Role = Role.User, Content = question });
+      history.Add(new BetaUserMessageParam { Content = question });
       var response = await client.Beta.Messages.Create(new MessageCreateParams
       {
           Model = Model.ClaudeOpus5_5,
@@ -219,9 +219,8 @@ The following program is the loop from [Compact in a loop](https://platform.clau
           Betas = [AnthropicBeta.Compact2026_09_04],
           Messages = history,
       });
-      history.Add(new()
+      history.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
 
@@ -245,9 +244,8 @@ The following program is the loop from [Compact in a loop](https://platform.clau
           {
               history =
               [
-                  new()
+                  new BetaAssistantMessageParam
                   {
-                      Role = Role.Assistant,
                       Content = summary.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
                   },
                   .. recent,
@@ -349,10 +347,7 @@ The following program is the loop from [Compact in a loop](https://platform.clau
 
       var history = new ArrayList<BetaMessageParam>();
       for (int turn = 1; turn <= questions.size(); turn++) {
-          history.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content(questions.get(turn - 1))
-              .build());
+          history.add(BetaMessageParam.ofUser(questions.get(turn - 1)));
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(8192)

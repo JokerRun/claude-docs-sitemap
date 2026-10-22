@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 203caccf87eef59386501db660686c7af51f2e006d7050c4ec1c6ef9437e1cd6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c54f189df481eaa61fa876107e681761353c9036dd5ccc53b4a60b8b6be80e35
 ---
 
 ---
@@ -230,9 +230,8 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
       },
       Messages =
       [
-          new MessageParam
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Create a presentation about renewable energy with 5 slides",
           },
       ],
@@ -402,7 +401,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
 
   if [[ -n "$file_id" ]]; then
     # Unduh file dan simpan
-    ant files download --file-id "$file_id" --output "${TMPDIR:-/tmp}/renewable_energy.pptx"
+    ant files download \
+      --file-id "$file_id" \
+      --output "${TMPDIR:-/tmp}/renewable_energy.pptx"
   fi
   ```
 
@@ -692,9 +693,8 @@ Coba variasi berikut:
           },
           Messages =
           [
-              new MessageParam
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "Create a quarterly sales tracking spreadsheet with sample data",
               },
           ],
@@ -885,9 +885,8 @@ Coba variasi berikut:
           },
           Messages =
           [
-              new MessageParam
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "Write a 2-page report on the benefits of renewable energy",
               },
           ],
@@ -1076,14 +1075,7 @@ Coba variasi berikut:
                   },
               ],
           },
-          Messages =
-          [
-              new MessageParam
-              {
-                  Role = Role.User,
-                  Content = "Generate a PDF invoice template",
-              },
-          ],
+          Messages = [new UserMessageParam { Content = "Generate a PDF invoice template" }],
           Tools = [new CodeExecutionTool20260521()],
       }
   );

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 0efbb6e2716cc448a3906233d4507d8ed9189760bb8b08969f47b341165222a3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b72a53fc34e0bdddc07d219fd2d6bca386ab6419cea53f114bab11f889432f2d
 ---
 
 ---
@@ -137,6 +137,8 @@ Archive Session Thread
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

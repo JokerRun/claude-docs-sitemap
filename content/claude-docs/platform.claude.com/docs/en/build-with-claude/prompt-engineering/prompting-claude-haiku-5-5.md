@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: e871a37701e88998c5bed2e15c586048c86d3d8ab5c333a67c60ad717e0131fd
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: feae12ab2bd28ae3c200ac438e2b3652d632898550b23545099154fa08596e36
 ---
 
 ---
@@ -57,7 +57,7 @@ The current date is {{current_date}}.
 
 Render the date once, when the conversation starts, and send the same `system` and `tools` on every later request in that conversation (see [Keep earlier turns unchanged](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)). When a conversation continues on a later day, [give the new date in the newest turn](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#changing-context) instead.
 
-The model also sometimes needs an extra nudge to search. This happens most at `low` effort and with long system prompts. To fix it, add this text directly after the date:
+The model also sometimes needs an extra nudge to search. This occurs most at `low` effort and with long system prompts. To fix it, add this text directly after the date:
 
 ```text wrap
 Your training data ends well before today's date. Records, office holders, prices, versions, rules and anything "latest" may have changed since then, so search for those before you answer, even when you feel sure. Facts that can't change need no search. When the answer depends on where the user is, put the user's country or region in the search query.
@@ -128,16 +128,16 @@ When instruction following matters most, also use `high` effort.
 
 ## Keep reasoning out of user-facing text
 
-Claude Haiku 5.5 sometimes writes reasoning-like text in the reply that users see. This happens more often with thinking off or at `low` effort. If you see this behavior, switch to adaptive thinking and `medium` effort.
+Claude Haiku 5.5 sometimes writes reasoning-like text in the reply that users see. This occurs more often with thinking off or at `low` effort. If you see this behavior, switch to adaptive thinking and `medium` effort.
 
 ## Safeguard refusals
 
 Claude Haiku 5.5 runs safety classifiers that can decline a request. A declined request returns a response with `stop_reason: "refusal"`, and `stop_details.category` names the [refusal category](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#refusal-response):
 
 * `cyber`: the request could enable cyber harm, such as malware or exploit development. Finding vulnerabilities in source code is allowed. High-risk dual-use cybersecurity work isn't allowed. Benign cybersecurity work can also trigger this category. If the `cyber` classifier blocks your organization's legitimate security work, you can apply to the [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
-* `frontier_llm`: the request could assist the development of competing AI models.
+* `frontier_llm`: the request could help with the development of competing AI models.
 * `bio`: the request could enable biological harm, such as dangerous lab methods. Everyday health and educational questions aren't affected. If the `bio` classifier blocks your organization's life sciences work, you can apply to the [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
-* `general_harms`: the request falls under a usage-policy area other than the three above. Benign work can also trigger this category.
+* `general_harms`: the request falls under a usage-policy area other than the previous three. Benign work can also trigger this category.
 
 If you're moving from Claude Haiku 4.5, these refusals are new.
 

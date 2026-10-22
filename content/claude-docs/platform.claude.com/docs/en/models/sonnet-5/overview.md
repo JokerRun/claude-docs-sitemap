@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5/overview
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 58a1ca5219a72a21bd4e4a63d9f1094fdfa082caee15eae9997b88b9bf7ed6df
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d2d7688384ef572601f2f047537dd461cabd75988a948ebf03cc8d752933e4c3
 ---
 
 ---
@@ -88,7 +88,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 ## Good to know
 
 * On the [Message Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5 supports up to 300k output tokens with the `output-300k-2026-03-24` beta header.
-* Setting `temperature`, `top_p`, or `top_k` to non-default values returns a 400 error.
+* Setting `temperature`, `top_p`, or `top_k` returns a 400 error.
 * Query limits and capabilities programmatically with the [Models API](https://platform.claude.com/docs/en/api/models/list).
 
 ## Resources
@@ -111,11 +111,11 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/en/build-with-claude/effort">
-    Effort defaults to `high` on the Claude API and Claude Code. Choose a level per workload.
+    Effort defaults to `high` on the Claude API and Claude Code. Choose a level for each workload.
   </Card>
 
   <Card title="Context windows" icon="stack" href="https://platform.claude.com/docs/en/build-with-claude/context-windows">
-    1M tokens by default. How the window is counted and managed.
+    Holds 1M tokens by default. How the window is counted and managed.
   </Card>
 </CardGroup>
 

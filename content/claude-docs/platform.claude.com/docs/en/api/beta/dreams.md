@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2c6e43569fbe960f025746288f9db7ff221149fecead1f52bed29ca445e3b6e9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 454e000e7474b5b1e5f19ec70e0d15482aa530905bb4b7520676f671e870d43c
 ---
 
 ---
@@ -137,6 +137,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -725,6 +727,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1145,6 +1149,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1559,6 +1565,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1975,6 +1983,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

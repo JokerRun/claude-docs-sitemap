@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/publish
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4fbb2bdf4e8b76eccfbe77a69ce02563c7dbbe4fbe11c57c3649a77534676cad
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 169204fa96a9f164bb19b8d01977be6f220cb87711af0b197f87f5e630ddfd53
 ---
 
 > ## Documentation Index
@@ -77,7 +77,7 @@ If you have an eval suite, run `claude plugin eval` in your shell. It runs the p
 If the plugin is in a git repository, people can clone it and load the checkout, or start Claude Code from their shell with `--plugin-url` pointed at a `.zip` you attach to a release. To get your next version they pull or download again. If it isn't in a repository, send them the directory or a `.zip` of it. They load it in one of two ways:
 
 * **For one session**: they start Claude Code from their shell with `claude --plugin-dir ./deploy-helper`, where the path is the clone, the unzipped folder, or the `.zip` itself. See [Flags that load a plugin for one session](/docs/en/plugins/cli-reference#flags-that-load-a-plugin-for-one-session).
-* **For every session**: they move the plugin directory, with its `.claude-plugin/plugin.json`, under `~/.claude/skills/` so Claude Code [loads it in every session](/docs/en/plugins/loading#find-where-a-plugin-came-from).
+* **For every session**: they move the plugin directory, with its `.claude-plugin/plugin.json`, under `~/.claude/skills/`. From then on Claude Code loads it at startup, unless their administrator has [blocked skills-directory plugins](/docs/en/plugins/loading#skills-directory-plugins-blocked-by-managed-settings).
 
 Adding a `.claude-plugin/marketplace.json` to that same repository is what lets people install by name and update with a command; see [Publish through your own marketplace](#publish-through-your-own-marketplace).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 22052d906f7833f1140efa68d52c1d046d40eaaeb613c59812e6c9875fb4d681
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9487890e114a0ff9e8f591b5d14f5c0d61f07894a6b3288ab8a7eb9c825c56e6
 ---
 
 ---
@@ -178,7 +178,6 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     using Anthropic.Models.Beta.Messages;
     using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
     using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
-    using Role = Anthropic.Models.Beta.Messages.Role;
     using Model = Anthropic.Models.Messages.Model;
 
     var client = new AnthropicClient();
@@ -242,9 +241,8 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
             MaxTokens = 1024,
             Messages =
             [
-                new()
+                new BetaUserMessageParam
                 {
-                    Role = Role.User,
                     Content = "What's the weather like in Paris? Also, what's 15 + 27?",
                 },
             ],
@@ -658,14 +656,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
-            Messages =
-            [
-                new()
-                {
-                    Role = Role.User,
-                    Content = "What's the weather like in Paris?",
-                },
-            ],
+            Messages = [new BetaUserMessageParam { Content = "What's the weather like in Paris?" }],
         },
         [getWeatherTool]
     );
@@ -916,7 +907,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = "What's the weather in San Francisco?" }],
+            Messages = [new BetaUserMessageParam { Content = "What's the weather in San Francisco?" }],
         },
         [getWeatherTool],
         maxIterations: 10
@@ -943,21 +934,16 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
         // PushMessages() menandai state sebagai dimodifikasi; runner melewati auto-append-nya.
         // Berikan sendiri giliran asisten dan hasil alat, lalu tambahkan tindak lanjut.
         runner.PushMessages(
-            new()
+            new BetaAssistantMessageParam
             {
-                Role = Role.Assistant,
-                Content = new BetaMessageParamContent(
+                Content = new BetaMessageContentParam(
                     JsonSerializer.SerializeToElement(
                         message.Content.Select(block => block.Json).ToArray()
                     )
                 ),
             },
-            new()
-            {
-                Role = Role.User,
-                Content = new List<BetaContentBlockParam> { toolResult },
-            },
-            new() { Role = Role.User, Content = "Please be concise in your response." }
+            new BetaUserMessageParam { Content = new List<BetaContentBlockParam> { toolResult } },
+            new BetaUserMessageParam { Content = "Please be concise in your response." }
         );
     }
     ```
@@ -1089,7 +1075,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
     ```ruby
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       max_iterations: 10,
       tools: [GetWeather.new],
@@ -1261,10 +1247,7 @@ Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat mer
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
-            Messages =
-            [
-                new() { Role = Role.User, Content = "What's the weather in San Francisco?" },
-            ],
+            Messages = [new BetaUserMessageParam { Content = "What's the weather in San Francisco?" }],
         },
         [getWeatherTool]
     );
@@ -1662,10 +1645,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
         {
             Model = Model.ClaudeOpus5_5,
             MaxTokens = 1024,
-            Messages =
-            [
-                new() { Role = Role.User, Content = "What is 15 + 27?" },
-            ],
+            Messages = [new BetaUserMessageParam { Content = "What is 15 + 27?" }],
         },
         [calculateSumTool]
     );

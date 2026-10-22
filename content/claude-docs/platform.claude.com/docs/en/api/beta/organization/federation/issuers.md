@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4270e09e54274c5ad286c8cf3423b887ed0f9650d47c379e10c6162531251b51
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8d68f29720ac9ab5e186d0c2b829836ab0788831e8479513816411248cb945f0
 ---
 
 ---
@@ -145,6 +145,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -546,6 +548,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -856,6 +860,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -1170,6 +1176,8 @@ session.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -1562,6 +1570,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 

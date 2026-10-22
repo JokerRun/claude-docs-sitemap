@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: cc71c175e491919c3c064f58bfbf894e77a3851bd1c794445c92352a2599ba45
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4902fe92cbeda1f37b661e06d07805ff747ebc1e6ec689669482c40c1e860e33
 ---
 
 ---
@@ -126,7 +126,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
       [
           new BetaManagedAgentsAgentToolset20260401Params
           {
-              Type = "agent_toolset_20260401",
               Configs =
               [
                   new BetaManagedAgentsWebFetchToolConfigParams { Enabled = false },
@@ -166,7 +165,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
       .name("Coding Assistant")
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-          .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
           .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
               .enabled(false)
               .build())
@@ -183,7 +181,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
       model: 'claude-opus-5-5',
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
               configs: [
                   BetaManagedAgentsWebFetchToolConfigParams::with(enabled: false),
               ],
@@ -370,13 +367,9 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
+          new BetaManagedAgentsAgentToolset20260401Params(),
           new BetaManagedAgentsCustomToolParams
           {
-              Type = "custom",
               Name = "get_weather",
               Description = "Get current weather for a location",
               InputSchema = new()
@@ -434,11 +427,8 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Weather Agent")
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-          .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-          .build())
+      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
       .addTool(BetaManagedAgentsCustomToolParams.builder()
-          .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
           .name("get_weather")
           .description("Get current weather for a location")
           .inputSchema(BetaManagedAgentsCustomToolInputSchema.builder()
@@ -462,11 +452,8 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
       name: 'Weather Agent',
       model: 'claude-opus-5-5',
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
           BetaManagedAgentsCustomToolParams::with(
-              type: 'custom',
               name: 'get_weather',
               description: 'Get current weather for a location',
               inputSchema: BetaManagedAgentsCustomToolInputSchema::with(

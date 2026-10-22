@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: a02f78761a305ace50722576c69e597ff46fe040cba548a6758f4ca15155eea9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6e8222b2f0241de3831781432bb62189ae09f704302ba8f5b6623a954101f294
 ---
 
 ---
@@ -349,12 +349,10 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "Which contracts in /contracts have a change-of-control clause?",
                   },
               ],
@@ -405,16 +403,8 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
                   [
                       new BetaManagedAgentsUserCustomToolResultEventParams
                       {
-                          Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
                           CustomToolUseID = toolUse.ID,
-                          Content =
-                          [
-                              new BetaManagedAgentsTextBlock
-                              {
-                                  Type = BetaManagedAgentsTextBlockType.Text,
-                                  Text = result,
-                              },
-                          ],
+                          Content = [new BetaManagedAgentsTextBlock { Text = result }],
                       },
                   ],
               });
@@ -555,7 +545,6 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
           sessionId,
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Which contracts in /contracts have a change-of-control clause?")
                   .build())
               .build()
@@ -599,7 +588,6 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
                           sessionId,
                           EventSendParams.builder()
                               .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                                  .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
                                   .customToolUseId(toolUse.id())
                                   .addTextContent(result)
                                   .build())

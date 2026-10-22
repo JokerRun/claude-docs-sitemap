@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7c4c55cc0753c448ba892fe0a2d92917531510285fa89e0d0e6fe4d2515dc6eb
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9a4745f65e1deec4edd8cf12ed1939710fc999a80235bbfe15e9e34b78f7bf8e
 ---
 
 ---
@@ -126,7 +126,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   {
       Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 128000,
-      Messages = [new() { Role = Role.User, Content = "Review the codebase and propose a refactor plan." }],
+      Messages = [new BetaUserMessageParam { Content = "Review the codebase and propose a refactor plan." }],
       OutputConfig = new BetaOutputConfig
       {
           Effort = Effort.High,
@@ -583,7 +583,7 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Review the codebase and propose a refactor plan." }],
+      Messages = [new UserMessageParam { Content = "Review the codebase and propose a refactor plan." }],
   });
 
   // Jumlahkan OutputTokens (teks + thinking + panggilan alat) di seluruh permintaan dalam loop Anda.

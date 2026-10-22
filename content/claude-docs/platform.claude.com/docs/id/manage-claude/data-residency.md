@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 66266f7ed5a16ed598584d7c187fc136c2fed8d631c1ace1a46e40e5f8908545
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4d1b1c95a68711252db8825354ee769751bf5cba4c0220a6ed828c6b16470eec
 ---
 
 ---
@@ -111,7 +111,7 @@ Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk perm
           InferenceGeo = "us",
           Messages =
           [
-              new() { Role = Role.User, Content = "Summarize the key points of this document." },
+              new UserMessageParam { Content = "Summarize the key points of this document." },
           ],
       }
   );

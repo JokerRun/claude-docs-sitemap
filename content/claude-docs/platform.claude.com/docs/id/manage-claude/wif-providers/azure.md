@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a0a1a8312e800cb9959dc9c1321614408bba4f099823a7314f8b6e92395a1c58
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 128fd0e10743e2d7ff496cbdf06b7d9779176d19afb67588779df72ccc4e68d0
 ---
 
 ---
@@ -462,7 +462,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello from Azure" }],
+      Messages = [new UserMessageParam { Content = "Hello from Azure" }],
   });
   foreach (var block in message.Content)
   {
@@ -1100,7 +1100,7 @@ Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app regis
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello from Azure" }],
+      Messages = [new UserMessageParam { Content = "Hello from Azure" }],
   });
   foreach (var block in message.Content)
   {

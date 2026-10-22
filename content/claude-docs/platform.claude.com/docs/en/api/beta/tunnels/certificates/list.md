@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 04f7beae6a4c06cfea9935fd0f1f681e0f2b01809beddea38c0bd7e64971222f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 1df337b2b3ba81fecddafa115153231bae54cd67a5fb54d58b410a76a177d545
 ---
 
 ---
@@ -155,6 +155,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

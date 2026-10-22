@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-settings
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: c72731131801e09b8b9fac316b74757e15d51b638b96b984cd470e6c87e1170c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7481ad8deb6f00aacd38e489e7ebf040fee96c451647718c9c023aa72d2b3bd5
 ---
 
 > ## Documentation Index
@@ -93,7 +93,7 @@ A deployed policy reaches the developer's sessions as follows:
   * **In a full VM sandbox**: when your Claude Desktop managed configuration sets [`requireCoworkFullVmSandbox`](https://claude.com/docs/third-party/claude-desktop/configuration#requirecoworkfullvmsandbox), Claude Code runs inside a virtual machine where the device's MDM policy and managed settings file aren't present.
   * **Remote Cowork sessions**: these run on Anthropic-managed VMs, where Claude Code has no device policy to read.
 
-  Wherever the session runs, claude.ai applies the admin console's [`strictKnownMarketplaces`](/docs/en/settings-reference#strictknownmarketplaces) and [`blockedMarketplaces`](/docs/en/settings-reference#blockedmarketplaces) lists itself when anyone adds a marketplace from a git repository on claude.ai or from **Customize** in the Cowork tab. [How restrictions work](/docs/en/plugins/org#restrict-what-users-can-install) describes that check. The [surface coverage](/docs/en/model-config#surface-coverage) table compares Cowork with the other surfaces.
+  Wherever the session runs, claude.ai applies the admin console's [`strictKnownMarketplaces`](/docs/en/settings-reference#strictknownmarketplaces) and [`blockedMarketplaces`](/docs/en/settings-reference#blockedmarketplaces) lists itself when anyone adds a marketplace from a git repository on claude.ai or from **Customize** in Cowork. [How restrictions work](/docs/en/plugins/org#restrict-what-users-can-install) describes that check. The [surface coverage](/docs/en/model-config#surface-coverage) table compares Cowork with the other surfaces.
 * **Running sessions**: most changes reach a running session on the schedule in the [delivery mechanism table](#choose-a-delivery-mechanism), without a restart.
   * Changes to [`forceRemoteSettingsRefresh`](/docs/en/settings-reference#forceremotesettingsrefresh), [`requiredMinimumVersion`](/docs/en/settings-reference#requiredminimumversion), and [some user-editable keys](/docs/en/settings#when-edits-take-effect) take effect at the next session start.
   * A new or changed [`policyHelper`](/docs/en/settings-reference#policyhelper) entry takes effect at the next launch. If server-managed settings shadow the helper at that launch, the helper runs as soon as a fetch reports those settings removed.

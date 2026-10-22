@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 2ee9317e4b91f9fd2b7b5ddbe69de6547e9e420cee23c0ac9e0368304ffe8680
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a5e1259653365bdd0528692d4d9a8be64f7cf63dcea61665d59a6a6506485b3f
 ---
 
 ---
@@ -160,7 +160,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
-          Messages = [new() { Role = Role.User, Content = "What's the weather in Paris?" }]
+          Messages = [new UserMessageParam { Content = "What's the weather in Paris?" }]
       };
 
       var message = await client.Messages.Create(parameters);
@@ -466,9 +466,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           MaxTokens = 16000,
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
-          Messages = [
-              new() { Role = Role.User, Content = "What's the weather in Paris?" }
-          ]
+          Messages = [new UserMessageParam { Content = "What's the weather in Paris?" }]
       };
 
       var response = await client.Messages.Create(parameters);
@@ -494,17 +492,17 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           Thinking = new ThinkingConfigAdaptive(),
           Tools = [weatherTool],
           Messages = [
-              new() { Role = Role.User, Content = "What's the weather in Paris?" },
+              new UserMessageParam { Content = "What's the weather in Paris?" },
               // response.Content mencakup blok thinking; mengirimkannya kembali wajib dilakukan
-              new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-              new() { Role = Role.User, Content = new MessageParamContent(new List<ContentBlockParam>
+              new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+              new UserMessageParam { Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ToolResultBlockParam()
                   {
                       ToolUseID = toolUseBlock?.ID ?? "",
                       Content = $"Current temperature: {weatherData.temperature}°F"
                   })
-              })}
+              }}
           ]
       };
 
@@ -624,7 +622,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
               .addTool(weatherTool)
               .addUserMessage("What's the weather in Paris?")
               .addMessage(response)
-              .addUserMessageOfBlockParams(List.of(
+              .addUserMessageOfContentBlockParams(List.of(
                   ContentBlockParam.ofToolResult(
                       ToolResultBlockParam.builder()
                           .toolUseId(toolUseBlock.id())

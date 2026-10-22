@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 520392f0734f630f0d2c6a0b472f5cf31e815f33b827da71e257bfd013efbbf8
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 515b8b8d2fe7dbe8d0e61da22f1705312fd1973c0c08d7bf8c03b0e5894ed140
 ---
 
 ---
@@ -35,7 +35,7 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5)
 
-## Perbandingan
+## Perbandingannya
 
 | Model                                                                             | Context | Max output | Price / MTok       | Latency  | Thinking             | Default effort | Knowledge cutoff |
 | :-------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------- | :------------------- | :------------- | :--------------- |
@@ -102,10 +102,10 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 ## Hal yang perlu diketahui
 
-* "Adaptive thinking" (pemikiran adaptif) aktif secara default. Pengaturan thinking terendah adalah `between_tools`, yang menonaktifkan thinking di awal. Pengaturan ini berfungsi pada effort `high` atau lebih rendah. Lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
-* Mengatur `temperature`, `top_p`, atau `top_k` ke nilai non-default akan menghasilkan error 400.
-* Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat ["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
-* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 mendukung hingga 300k token output dengan header beta `output-300k-2026-03-24`.
+* "Adaptive thinking" (pemikiran adaptif) aktif secara default. Pengaturan pemikiran terendah adalah `between_tools`, yang menonaktifkan pemikiran di awal. Pengaturan ini berfungsi pada tingkat effort `high` atau lebih rendah. Lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
+* Mengatur `temperature`, `top_p`, atau `top_k` akan menghasilkan error 400.
+* Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
+* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya
@@ -116,11 +116,11 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol untuk kedalaman thinking, "latency" (latensi), dan biaya. Pilih level untuk setiap beban kerja.
+    Kontrol untuk kedalaman pemikiran, latensi, dan biaya. Pilih tingkat per beban kerja.
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Cara kerja pemikiran adaptif, pengaturan thinking yang diterima setiap model, dan cara blok thinking dipertahankan.
+    Cara kerja pemikiran adaptif, pengaturan pemikiran mana yang diterima setiap model, dan bagaimana blok pemikiran dipertahankan.
   </Card>
 </CardGroup>
 
@@ -132,7 +132,7 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
   </Card>
 
   <Card title="System card" icon="file" href="https://www.anthropic.com/document/claude-sonnet-5-5-system-card">
-    Evaluasi keamanan dan keputusan deployment untuk Claude Sonnet 5.5.
+    Evaluasi keamanan dan keputusan penerapan untuk Claude Sonnet 5.5.
   </Card>
 
   <Card title="Harga" icon="coins" href="https://platform.claude.com/docs/id/about-claude/pricing">

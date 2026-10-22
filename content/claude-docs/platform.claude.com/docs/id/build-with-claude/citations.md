@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: a8d58fdeeed283b95c25dd2242bc8fb4708a03ecd92476b90782a8596f8ca552
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cecc8d96d8f25cbd64dec2b8be1ec863062edf7e0c973af537dde3ed142c8188
 ---
 
 ---
@@ -158,10 +158,9 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new DocumentBlockParam(
                           new DocumentBlockParamSource(new PlainTextSource()
@@ -175,7 +174,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
                           Citations = new CitationsConfigParam { Enabled = true },
                       }),
                       new ContentBlockParam(new TextBlockParam("What color is the grass and sky?")),
-                  }),
+                  },
               },
           ],
       }
@@ -235,7 +234,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
-      .addUserMessageOfBlockParams(
+      .addUserMessageOfContentBlockParams(
           List.of(
               ContentBlockParam.ofDocument(documentParam),
               ContentBlockParam.ofText(textBlockParam)
@@ -543,10 +542,9 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new DocumentBlockParam(
                           new DocumentBlockParamSource(new PlainTextSource() { Data = longDocument })
@@ -556,7 +554,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
                           CacheControl = new CacheControlEphemeral(), // Cache the document content
                       }),
                       new ContentBlockParam(new TextBlockParam("What does this document say about API features?")),
-                  }),
+                  },
               },
           ],
       }
@@ -617,7 +615,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
-      .addUserMessageOfBlockParams(
+      .addUserMessageOfContentBlockParams(
           List.of(
               ContentBlockParam.ofDocument(documentParam),
               ContentBlockParam.ofText(textBlockParam)
@@ -860,9 +858,8 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
               MaxTokens = 1024,
               Messages =
               [
-                  new MessageParam
+                  new UserMessageParam
                   {
-                      Role = Role.User,
                       Content = new List<ContentBlockParam>
                       {
                           new DocumentBlockParam
@@ -912,7 +909,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofDocument(DocumentBlockParam.builder()
                   .fileSource(fileId)
                   .title("Document Title")
@@ -955,7 +952,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
       ```ruby Ruby
       cited_response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           {
@@ -1138,10 +1135,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
               MaxTokens = 1024,
               Messages =
               [
-                  new()
+                  new UserMessageParam
                   {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
                           new ContentBlockParam(new DocumentBlockParam(
                               new DocumentBlockParamSource(new Base64PdfSource() { Data = pdfBase64 })
@@ -1152,7 +1148,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                               Citations = new CitationsConfigParam { Enabled = true },
                           }),
                           new ContentBlockParam(new TextBlockParam("Summarize this document.")),
-                      }),
+                      },
                   },
               ],
           }
@@ -1213,7 +1209,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          .addUserMessageOfBlockParams(
+          .addUserMessageOfContentBlockParams(
               List.of(
                   ContentBlockParam.ofDocument(documentParam),
                   ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())
@@ -1420,10 +1416,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
               MaxTokens = 1024,
               Messages =
               [
-                  new()
+                  new UserMessageParam
                   {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+                      Content = new List<ContentBlockParam>
                       {
                           new ContentBlockParam(new DocumentBlockParam(
                               new DocumentBlockParamSource(new UrlPdfSource()
@@ -1437,7 +1432,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                               Citations = new CitationsConfigParam { Enabled = true },
                           }),
                           new ContentBlockParam(new TextBlockParam("Summarize this document.")),
-                      }),
+                      },
                   },
               ],
           }
@@ -1491,7 +1486,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          .addUserMessageOfBlockParams(
+          .addUserMessageOfContentBlockParams(
               List.of(
                   ContentBlockParam.ofDocument(documentParam),
                   ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())
@@ -1679,9 +1674,8 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
               MaxTokens = 1024,
               Messages =
               [
-                  new MessageParam
+                  new UserMessageParam
                   {
-                      Role = Role.User,
                       Content = new List<ContentBlockParam>
                       {
                           new DocumentBlockParam
@@ -1731,7 +1725,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       MessageCreateParams citedParams = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofDocument(DocumentBlockParam.builder()
                   .fileSource(fileId)
                   .title("Document Title")
@@ -1774,7 +1768,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
 
       ```ruby Ruby
       cited_response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           {
@@ -1954,10 +1948,9 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new DocumentBlockParam(
                           new DocumentBlockParamSource(new ContentBlockSource()
@@ -1975,7 +1968,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
                           Citations = new CitationsConfigParam { Enabled = true },
                       }),
                       new ContentBlockParam(new TextBlockParam("Summarize this document.")),
-                  }),
+                  },
               },
           ],
       }
@@ -2039,7 +2032,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
-      .addUserMessageOfBlockParams(
+      .addUserMessageOfContentBlockParams(
           List.of(
               ContentBlockParam.ofDocument(documentParam),
               ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 40645740eeb87f67a50f109f1fb5c2004e3b23478ba9858faf9da05af230b4da
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ceebc9eb2d57a623ee8ad7c2d0bdd4b5cc6124886b8ba84f2a2a0a84903adc7f
 ---
 
 ---
@@ -322,10 +322,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       );
       var mcpTools = await mcpClient.ListToolsAsync();
 
-      List<Tool> tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params { Type = "agent_toolset_20260401" },
-      ];
+      List<Tool> tools = [new BetaManagedAgentsAgentToolset20260401Params()];
       foreach (var tool in mcpTools)
       {
           var description = tool.Description;
@@ -339,7 +336,6 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
           tools.Add(
               new BetaManagedAgentsCustomToolParams
               {
-                  Type = "custom",
                   Name = tool.Name,
                   Description = description,
                   InputSchema = new(
@@ -487,7 +483,6 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
           }
 
           return BetaManagedAgentsCustomToolParams.builder()
-              .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
               .name(tool.name())
               .description(description)
               .inputSchema(JsonValue.from(tool.inputSchema())
@@ -512,9 +507,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
               var params = AgentCreateParams.builder()
                   .name("Internal tools agent")
                   .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-                  .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-                      .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                      .build());
+                  .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build());
               for (var tool : mcpClient.listTools().tools()) {
                   params.addTool(toCustomTool(tool));
               }

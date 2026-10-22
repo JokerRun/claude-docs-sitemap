@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 431b963e51fb1a00029ca011f80aed960abec1557124527367475d062b4bca66
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4d49a554423c298663fad36d051acb5489eed5f903c8c695aaebea6bbc2cc5ea
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Anthropic's Claude models are available through [Google Cloud's Age
 The API for accessing Claude on Google Cloud's Agent Platform is nearly identical to the [Messages API](https://platform.claude.com/docs/en/api/messages/create), with two key differences in request format:
 
 * On Agent Platform, `model` is not passed in the request body. Instead, it is specified in the Google Cloud endpoint URL.
-* On Agent Platform, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.
+* On Agent Platform, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`, or to [API version `2026-10-21`](https://platform.claude.com/docs/en/api/migration-2026-10-21).
 
 Agent Platform is also supported by Anthropic's official [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview). This guide walks you through making a request to Claude on Agent Platform using one of Anthropic's client SDKs.
 
@@ -52,20 +52,20 @@ First, install Anthropic's [client SDK](https://platform.claude.com/docs/en/cli-
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.75.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.75.0")
+      implementation("com.anthropic:anthropic-java:3.1.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.1.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       ```
 
@@ -245,7 +245,7 @@ The following examples show how to generate text from Claude on Agent Platform:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -397,7 +397,7 @@ For the full feature list with Google Cloud availability, see [Features overview
 
 Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, and Claude Haiku 5.5 have a [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) on Agent Platform. Other Claude models, including Sonnet 4.5 (deprecated) and Sonnet 4 (deprecated), have a 200k-token context window.
 
-Agent Platform limits request payloads to 30 MB. When sending large documents or many images, you might reach this limit before the token limit.
+Agent Platform limits request payloads to 30 MB. When sending large documents or many images, you might reach this limit before the token limit.
 
 ## Global, multi-region, and regional endpoints
 
@@ -407,7 +407,7 @@ Agent Platform offers three endpoint types:
 * **Multi-region endpoints:** Dynamic routing within a geographic area (for example, the United States or the European Union) for data residency with high availability
 * **Regional endpoints:** Guaranteed data routing through specific geographic regions
 
-Regional and multi-region endpoints include a 10% pricing premium over global endpoints.
+Regional and multi-region endpoints include a 10 percent pricing premium over global endpoints.
 
 <Note>
   This applies to Claude Sonnet 4.5 (deprecated) and future models only. Older models (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), and earlier) maintain their existing pricing structures.
@@ -419,23 +419,23 @@ Regional and multi-region endpoints include a 10% pricing premium over global en
 
 * Provide maximum availability and uptime
 * Dynamically route requests to regions with available capacity
-* No pricing premium
-* Best for applications where data residency is flexible
-* Only supports pay-as-you-go traffic (provisioned throughput requires regional endpoints)
+* Carry no pricing premium
+* Work best for applications where data residency is flexible
+* Only support pay-as-you-go traffic (provisioned throughput requires regional endpoints)
 
 **Multi-region endpoints:**
 
 * Dynamically route requests across regions within a geographic area (currently `us` and `eu`)
-* Useful when you need data residency within a broad geography but want higher availability than a single region
-* 10% pricing premium over global endpoints
-* Only supports pay-as-you-go traffic (provisioned throughput requires regional endpoints)
+* Are useful when you need data residency within a broad geography but want higher availability than a single region
+* Carry a 10 percent pricing premium over global endpoints
+* Only support pay-as-you-go traffic (provisioned throughput requires regional endpoints)
 
 **Regional endpoints:**
 
 * Route traffic through specific geographic regions
-* Required for single-region data residency, strict compliance mandates, or provisioned throughput
+* Are required for single-region data residency, strict compliance mandates, or provisioned throughput
 * Support both pay-as-you-go and provisioned throughput
-* 10% pricing premium reflects infrastructure costs for dedicated regional capacity
+* Carry a 10 percent pricing premium that reflects infrastructure costs for dedicated regional capacity
 
 ### Implementation
 
@@ -517,7 +517,7 @@ Set the `region` parameter to `"global"` when initializing the client:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -630,7 +630,7 @@ Set the `region` parameter to a multi-region identifier: `"us"` for the United S
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  # The multi-region identifier, "us" or "eu", appears in the host name and in the path
+  # The multi-region identifier, "us" or "eu", appears in the hostname and in the path
   curl https://aiplatform.us.rep.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us/publishers/anthropic/models/claude-opus-5-5:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
@@ -703,7 +703,7 @@ Set the `region` parameter to a multi-region identifier: `"us"` for the United S
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -817,7 +817,7 @@ Specify a specific region such as `"us-east5"` or `"europe-west1"`:
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
   # Specific regional endpoints support Claude Sonnet 4.6 and earlier; newer models use the global or multi-region endpoints
-  # The region, here us-east5, appears in the host name and in the path
+  # The region, here us-east5, appears in the hostname and in the path
   curl https://us-east5-aiplatform.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us-east5/publishers/anthropic/models/claude-sonnet-4-6:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
@@ -893,7 +893,7 @@ Specify a specific region such as `"us-east5"` or `"europe-west1"`:
       // Specific regional endpoints support Claude Sonnet 4.6 and earlier; newer models use the global or multi-region endpoints
       Model = Model.ClaudeSonnet4_6,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);

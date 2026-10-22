@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: cefab422c56d7e99fc194468a2667969a24a545863447c4c8a0d122f51661c0b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 3fd928e38c96f5e9b3164145392f8affa030f7badc56983ffbf51dace2956392
 ---
 
 ---
@@ -160,9 +160,8 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
       },
       Messages =
       [
-          new BetaMessageParam
+          new BetaUserMessageParam
           {
-              Role = Role.User,
               Content = "Build a concurrent worker pool in Go with graceful shutdown."
           }
       ],
@@ -518,7 +517,7 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
 
   var messages = new List<BetaMessageParam>
   {
-      new() { Role = Role.User, Content = "Build a concurrent worker pool in Go with graceful shutdown." }
+      new BetaUserMessageParam { Content = "Build a concurrent worker pool in Go with graceful shutdown." }
   };
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
@@ -531,14 +530,13 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
   });
 
   // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
-  messages.Add(new BetaMessageParam
+  messages.Add(new BetaAssistantMessageParam
   {
-      Role = Role.Assistant,
       Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
   });
 
   // Lanjutkan percakapan
-  messages.Add(new BetaMessageParam { Role = Role.User, Content = "Now add a max-in-flight limit of 10." });
+  messages.Add(new BetaUserMessageParam { Content = "Now add a max-in-flight limit of 10." });
 
   var followUp = await client.Beta.Messages.Create(new MessageCreateParams
   {
@@ -598,7 +596,6 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
 
   ```java Java
   import com.anthropic.models.beta.messages.BetaAdvisorTool20260301;
-  import com.anthropic.models.beta.messages.BetaContentBlock;
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaMessageParam;
   import com.anthropic.models.beta.messages.BetaToolUnion;
@@ -613,10 +610,8 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
               BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5_5).build()));
 
       List<BetaMessageParam> messages = new ArrayList<>();
-      messages.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("Build a concurrent worker pool in Go with graceful shutdown.")
-          .build());
+      messages.add(BetaMessageParam.ofUser(
+          "Build a concurrent worker pool in Go with graceful shutdown."));
 
       BetaMessage response = client.beta().messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_SONNET_5)
@@ -627,17 +622,10 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
           .build());
 
       // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
-      messages.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.ASSISTANT)
-          .contentOfBetaContentBlockParams(
-              response.content().stream().map(BetaContentBlock::toParam).toList())
-          .build());
+      messages.add(response.toParam());
 
       // Lanjutkan percakapan
-      messages.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content("Now add a max-in-flight limit of 10.")
-          .build());
+      messages.add(BetaMessageParam.ofUser("Now add a max-in-flight limit of 10."));
 
       BetaMessage followUp = client.beta().messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_SONNET_5)
@@ -912,7 +900,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       // ... alat Anda yang lain
   };
   var task = "Build a concurrent worker pool in Go with graceful shutdown.";
-  var messages = new List<BetaMessageParam> { new() { Role = Role.User, Content = task } };
+  var messages = new List<BetaMessageParam> { new BetaUserMessageParam { Content = task } };
   var advisorCalled = false;
 
   for (var turn = 1; turn <= MaxTurns; turn++)
@@ -925,9 +913,8 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
           Messages = messages,
           Betas = ["advisor-tool-2026-03-01"]
       });
-      messages.Add(new BetaMessageParam
+      messages.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
       advisorCalled =
@@ -948,12 +935,12 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       var results = RunYourTools(response.Content); // list of tool_result blocks
       if (results.Count > 0)
       {
-          messages.Add(new BetaMessageParam { Role = Role.User, Content = results });
+          messages.Add(new BetaUserMessageParam { Content = results });
       }
       // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
       if (turn == NudgeTurn - 1 && !advisorCalled)
       {
-          messages.Add(new BetaMessageParam { Role = Role.User, Content = NudgeText });
+          messages.Add(new BetaUserMessageParam { Content = NudgeText });
       }
   }
   ```
@@ -1081,10 +1068,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       );
       String task = "Build a concurrent worker pool in Go with graceful shutdown.";
       List<BetaMessageParam> messages = new ArrayList<>();
-      messages.add(BetaMessageParam.builder()
-          .role(BetaMessageParam.Role.USER)
-          .content(task)
-          .build());
+      messages.add(BetaMessageParam.ofUser(task));
       boolean advisorCalled = false;
 
       for (int turn = 1; turn <= MAX_TURNS; turn++) {
@@ -1095,11 +1079,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
               .messages(messages)
               .addBeta("advisor-tool-2026-03-01")
               .build());
-          messages.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.ASSISTANT)
-              .contentOfBetaContentBlockParams(
-                  response.content().stream().map(BetaContentBlock::toParam).toList())
-              .build());
+          messages.add(response.toParam());
           advisorCalled = advisorCalled
               || response.content().stream().anyMatch(block ->
                   block.isServerToolUse()
@@ -1114,17 +1094,11 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
           List<BetaContentBlockParam> results = runYourTools(response.content()); // list of tool_result blocks
           if (!results.isEmpty()) {
-              messages.add(BetaMessageParam.builder()
-                  .role(BetaMessageParam.Role.USER)
-                  .contentOfBetaContentBlockParams(results)
-                  .build());
+              messages.add(BetaMessageParam.ofUserOfContentBlockParams(results));
           }
           // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
           if (turn == NUDGE_TURN - 1 && !advisorCalled) {
-              messages.add(BetaMessageParam.builder()
-                  .role(BetaMessageParam.Role.USER)
-                  .content(NUDGE_TEXT)
-                  .build());
+              messages.add(BetaMessageParam.ofUser(NUDGE_TEXT));
           }
       }
   }

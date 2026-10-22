@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 78f8043ec384504e2ddf2c723173964fc3f34c693b453e3db5c54ec3e55f0801
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7acdc563717ac1ddec03617a89c4a07dd4ed6dbcf4713c3efd3a70e02e86008c
 ---
 
 ---
@@ -625,7 +625,7 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
               Model = model,
               MaxTokens = maxTokens,
               System = "You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.",
-              Messages = [new() { Role = Role.User, Content = prompt }],
+              Messages = [new UserMessageParam { Content = prompt }],
           }
       );
 
@@ -1073,7 +1073,7 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
               Model = model,
               MaxTokens = maxTokens,
               System = "You are a legal expert that summarizes notes on one document.",
-              Messages = [new() { Role = Role.User, Content = finalSummaryPrompt }],
+              Messages = [new UserMessageParam { Content = finalSummaryPrompt }],
           }
       );
 

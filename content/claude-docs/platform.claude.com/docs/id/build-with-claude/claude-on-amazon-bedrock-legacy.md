@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 852def737ae3e746f2b90f3ccd52a172d32fd282572865cf740b0fa3f2da5965
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e28b57c108273fe194ed3826959c65925551910066ef170fd5edba6894de2122
 ---
 
 ---
@@ -12,17 +12,21 @@ description: Integrasi Amazon Bedrock lama untuk model Claude, menggunakan API I
 ---
 
 <Note>
-  Halaman ini membahas integrasi Amazon Bedrock lama: API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN dan encoding event-stream AWS. Untuk model yang tersedia di endpoint Bedrock Messages-API, lihat [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), yang menggunakan Messages API di `/anthropic/v1/messages` dengan streaming SSE. Untuk alternatif yang dioperasikan Anthropic dengan penagihan AWS Marketplace dan akses fitur yang biasanya tersedia di hari yang sama, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Pengguna Bedrock yang sudah ada dapat mengikuti [panduan migrasi](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#migrating-from-amazon-bedrock).
+  Halaman ini membahas integrasi Amazon Bedrock lama: API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN dan pengodean event-stream AWS. Untuk model yang tersedia di endpoint Bedrock Messages-API, lihat [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), yang menggunakan Messages API di `/anthropic/v1/messages` dengan streaming SSE. Untuk alternatif yang dioperasikan Anthropic dengan penagihan AWS Marketplace dan akses fitur yang biasanya tersedia di hari yang sama, lihat [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Pengguna Bedrock yang sudah ada dapat mengikuti [panduan migrasi](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#migrating-from-amazon-bedrock).
 </Note>
+
+<Warning>
+  Versi terbaru SDK mengirimkan versi API `2026-10-21` secara default, termasuk melalui Amazon Bedrock. Model berversi ARN dalam tabel model di halaman ini tidak mendukung `2026-10-21` di Bedrock, dan permintaan ke model tersebut yang mengirimkannya dapat mengembalikan error 400. Jika Anda memanggilnya melalui SDK, pertahankan SDK pada versi yang Anda gunakan saat ini, dan kunci (pin) versi tersebut di tempat Anda menginstalnya agar instalasi berikutnya tidak meningkatkannya. Contoh Boto3 menetapkan `anthropic_version` di badan permintaannya dan tidak terpengaruh.
+</Warning>
 
 Memanggil Claude melalui Bedrock sedikit berbeda dari cara Anda memanggil Claude di Claude API secara langsung. Panduan ini memandu Anda menyelesaikan panggilan API ke Claude di Bedrock menggunakan salah satu [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda telah mendaftar [akun AWS](https://portal.aws.amazon.com/billing/signup) dan mengonfigurasi akses programatik.
+Perhatikan bahwa panduan ini mengasumsikan Anda telah mendaftar [akun AWS](https://portal.aws.amazon.com/billing/signup) dan mengonfigurasi akses terprogram.
 
-## Instal dan konfigurasi AWS CLI
+## Instal dan konfigurasikan AWS CLI
 
-1. [Instal versi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) versi `2.13.23` atau yang lebih baru.
-2. Konfigurasikan kredensial AWS Anda menggunakan perintah AWS configure (lihat [Konfigurasi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) atau temukan kredensial Anda dengan menavigasi ke "Command line or programmatic access" di dasbor AWS Anda dan mengikuti petunjuk di jendela modal.
+1. [Instal versi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) pada versi `2.13.23` atau yang lebih baru.
+2. Konfigurasikan kredensial AWS Anda menggunakan perintah AWS configure (lihat [Mengonfigurasi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) atau temukan kredensial Anda dengan membuka "Command line or programmatic access" di dasbor AWS Anda dan mengikuti petunjuk di jendela modal.
 3. Verifikasi bahwa kredensial Anda berfungsi:
 
 ```bash AWS CLI
@@ -61,20 +65,20 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.75.0")
-      implementation("com.anthropic:anthropic-java-bedrock:2.75.0")
+      implementation("com.anthropic:anthropic-java:3.1.0")
+      implementation("com.anthropic:anthropic-java-bedrock:3.1.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       ```
 
@@ -143,13 +147,13 @@ Buka [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedro
 
 Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Tanggal siklus hidup di platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
 
-AWS menawarkan model Claude yang lebih baru melalui ["cross-region inference" (inferensi lintas region)](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) alih-alih throughput on-demand. Untuk model-model ini, permintaan yang meneruskan ID model dasar akan gagal dengan error HTTP 400 seperti berikut:
+AWS menawarkan model Claude yang lebih baru melalui [inferensi lintas region](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) alih-alih throughput sesuai permintaan. Untuk model-model ini, permintaan yang meneruskan ID model dasar akan gagal dengan error HTTP 400 seperti berikut:
 
 ```text wrap
 Invocation of model ID anthropic.claude-sonnet-4-5-20250929-v1:0 with on-demand throughput isn't supported. Retry your request with the ID or ARN of an inference profile that contains this model.
 ```
 
-Untuk memanggil model-model ini, teruskan "inference profile" (profil inferensi) alih-alih ID model dasar. ID profil inferensi adalah ID model dasar dengan awalan dari kolom bertanda "Yes" pada tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN profil inferensi lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS tentang profil inferensi yang tersedia, lihat [Region dan model yang didukung untuk profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana awalan memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
+Untuk memanggil model-model ini, teruskan profil inferensi alih-alih ID model dasar. ID profil inferensi adalah ID model dasar dengan awalan dari kolom yang bertanda "Yes" dalam tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN profil inferensi lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS tentang profil inferensi yang tersedia, lihat [Region dan model yang didukung untuk profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana awalan memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
 
 | Model                                                                                                 | Base Bedrock model ID                       | `global` | `us` | `eu` | `jp` | `apac` |
 | :---------------------------------------------------------------------------------------------------- | :------------------------------------------ | :------- | :--- | :--- | :--- | :----- |
@@ -329,14 +333,14 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
     from anthropic import AnthropicBedrock
 
     client = AnthropicBedrock(
-        # Autentikasi dengan menyediakan kunci di bawah ini atau gunakan penyedia kredensial AWS default, seperti
+        # Lakukan autentikasi dengan memberikan kunci di bawah ini atau gunakan penyedia kredensial AWS default, seperti
         # menggunakan ~/.aws/credentials atau variabel lingkungan "AWS_SECRET_ACCESS_KEY" dan "AWS_ACCESS_KEY_ID".
         aws_access_key="<access key>",
         aws_secret_key="<secret key>",
         # Kredensial sementara dapat digunakan dengan aws_session_token.
         # Baca selengkapnya di https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
         aws_session_token="<session_token>",
-        # aws_region mengubah region aws tujuan permintaan. Jika tidak disediakan, SDK membaca
+        # aws_region mengubah region AWS tujuan permintaan. Jika tidak diberikan, SDK membaca
         # AWS_REGION / AWS_DEFAULT_REGION, lalu region yang dikonfigurasi untuk sesi boto3 atau profil AWS Anda
         # (termasuk ~/.aws/config), dan memunculkan ValueError jika tidak ada region yang dapat ditentukan.
         aws_region="us-west-2",
@@ -356,7 +360,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
     import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
 
     const client = new AnthropicBedrock({
-      // Lakukan autentikasi dengan menyediakan kunci di bawah ini atau gunakan
+      // Lakukan autentikasi dengan memberikan kunci di bawah ini atau gunakan
       // penyedia kredensial AWS default, seperti
       // ~/.aws/credentials atau variabel lingkungan "AWS_SECRET_ACCESS_KEY" dan
       // "AWS_ACCESS_KEY_ID".
@@ -367,9 +371,9 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
       // Baca selengkapnya di https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
       awsSessionToken: "<session_token>",
 
-      // awsRegion mengubah region aws tujuan permintaan
+      // awsRegion mengubah region AWS tujuan permintaan
       // dikirim. Secara default, SDK membaca AWS_REGION, dan jika
-      // tidak ada, menggunakan default us-east-1. Perhatikan bahwa
+      // tidak ada, akan menggunakan us-east-1. Perhatikan bahwa
       // SDK tidak membaca ~/.aws/config untuk region.
       awsRegion: "us-west-2"
     });
@@ -537,9 +541,9 @@ Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overvie
 
 ### Autentikasi bearer token
 
-Anda dapat melakukan autentikasi dengan Bedrock menggunakan "bearer token" (token pembawa) alih-alih kredensial AWS. Ini berguna di lingkungan perusahaan tempat tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
+Anda dapat melakukan autentikasi dengan Bedrock menggunakan "bearer token" (token pembawa) alih-alih kredensial AWS. Ini berguna di lingkungan perusahaan di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
 
-Pendekatan paling sederhana adalah mengatur variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh SDK saat menyelesaikan kredensial dari lingkungan.
+Pendekatan paling sederhana adalah menetapkan variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh SDK saat menyelesaikan kredensial dari lingkungan.
 
 Untuk menyediakan token secara terprogram:
 
@@ -720,7 +724,7 @@ Untuk menyediakan token secara terprogram:
 
 Bedrock menyediakan [layanan pencatatan pemanggilan](https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html) yang memungkinkan Anda mencatat prompt dan completion yang terkait dengan penggunaan Anda.
 
-Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya dalam periode bergulir 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
+Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
 <Note>
   Mengaktifkan layanan ini tidak memberikan AWS atau Anthropic akses apa pun ke konten Anda.
@@ -728,43 +732,43 @@ Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya dalam pe
 
 ## Dukungan fitur
 
-Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung
 
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
-* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
-* [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
-* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+* [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Citations](https://platform.claude.com/docs/id/build-with-claude/citations)
+* [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
-* Alat sisi server (eksekusi kode, pencarian web, web fetch, advisor)
-* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat programatik)
+* Alat sisi server (eksekusi kode, pencarian web, pengambilan web, advisor)
+* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
 * Caching prompt otomatis ([field `cache_control` tingkat atas](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching); gunakan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) sebagai gantinya)
-* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Amazon Bedrock; versi beta alat computer use tetap tersedia)
+* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Amazon Bedrock; versi alat computer use beta tetap tersedia)
 
 ### Dukungan PDF di Bedrock
 
-Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk informasi detail tentang kemampuan dan batasan pemrosesan PDF, lihat [Dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk informasi terperinci tentang kemampuan dan batasan pemrosesan PDF, lihat [Dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 **Pertimbangan penting bagi pengguna Converse API:**
 
-* Analisis PDF visual (bagan, gambar, tata letak) memerlukan kutipan diaktifkan
-* Tanpa kutipan, hanya ekstraksi teks dasar yang tersedia
-* Untuk kontrol penuh tanpa kutipan yang dipaksakan, gunakan InvokeModel API
+* Analisis PDF visual (grafik, gambar, tata letak) memerlukan citations untuk diaktifkan
+* Tanpa citations, hanya ekstraksi teks dasar yang tersedia
+* Untuk kontrol penuh tanpa citations yang dipaksakan, gunakan InvokeModel API
 
 ### Pesan sistem di tengah percakapan di Bedrock
 
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Seperti dijelaskan dalam catatan di bagian [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Tidak diperlukan header beta untuk pesan sistem di tengah percakapan. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model berversi ARN dalam tabel model di halaman ini.
+[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Seperti dijelaskan dalam catatan di bawah [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Tidak diperlukan header beta untuk pesan sistem di tengah percakapan. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model berversi ARN dalam tabel model di halaman ini.
 
-Pesan `role: "system"` juga dapat mengatur `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) pada Claude Fable 5.1 dan Claude Opus 5.5. Fitur ini masih dalam beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di body permintaan. Tanpa nilai tersebut, atau pada Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan akan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di dalam `messages`.
+Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) di Claude Fable 5.1 dan Claude Opus 5.5. Fitur ini dalam tahap beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di badan permintaan. Tanpa nilai tersebut, atau di Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di `messages`.
 
 **Untuk pengguna Converse API:** Converse API menerima instruksi sistem melalui [parameter `system`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) tingkat atasnya. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan InvokeModel API.
 
@@ -781,10 +785,10 @@ Mulai dari **Claude Sonnet 4.5 dan semua model mendatang**, Bedrock menawarkan d
 * **Endpoint global:** Perutean dinamis untuk ketersediaan maksimum
 * **Endpoint regional:** Perutean data yang dijamin melalui region geografis tertentu
 
-Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global.
+Endpoint regional mencakup premi harga 10% dibandingkan endpoint global.
 
 <Note>
-  Ini hanya berlaku untuk Claude Sonnet 4.5 (deprecated) dan model mendatang. Model yang lebih lama (Claude Sonnet 4 (deprecated) dan sebelumnya) mempertahankan struktur harga yang ada.
+  Ini hanya berlaku untuk Claude Sonnet 4.5 (deprecated) dan model mendatang. Model yang lebih lama (Claude Sonnet 4 (deprecated) dan sebelumnya) mempertahankan struktur harga yang sudah ada.
 </Note>
 
 ### Kapan menggunakan setiap opsi
@@ -794,11 +798,11 @@ Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global.
 * Memberikan ketersediaan dan uptime maksimum
 * Merutekan permintaan secara dinamis ke region dengan kapasitas yang tersedia
 * Tanpa premi harga
-* Terbaik untuk aplikasi di mana residensi data fleksibel
+* Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
 
 **Endpoint regional (CRIS):**
 
-* Merutekan lalu lintas melalui wilayah geografis tertentu
+* Merutekan lalu lintas melalui region geografis tertentu
 * Diperlukan untuk persyaratan residensi data dan kepatuhan
 * Tersedia untuk AS, UE, Jepang, dan Asia-Pasifik
 * Premi harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
@@ -857,7 +861,7 @@ ID model untuk Claude Opus 4.6, Sonnet 4.6, dan Sonnet 4.5 (deprecated) sudah me
     using Anthropic.Bedrock;
     using Anthropic.Models.Messages;
 
-    // Klien Bedrock C# menggunakan ID model dengan prefiks region untuk perutean global
+    // Klien C# Bedrock menggunakan ID model dengan prefiks region untuk perutean global
     AnthropicBedrockClient client = new(
         await AnthropicBedrockCredentialsHelper.FromEnv()
         ?? throw new InvalidOperationException("AWS credentials not configured.")

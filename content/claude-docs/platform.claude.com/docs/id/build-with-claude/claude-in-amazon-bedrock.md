@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: e2ef00fd8ba28fe9c92e3b3c54cd68a212c7315a83f797c97142fcf0d1fbbbe9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ea38b911015c819ad77b25a486476c88c7bf010c943ff4f982f9572b5a3b4355
 ---
 
 ---
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:2.75.0")
-        implementation("com.anthropic:anthropic-java-bedrock:2.75.0")
+        implementation("com.anthropic:anthropic-java:3.1.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.1.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>2.75.0</version>
+            <version>3.1.0</version>
         </dependency>
         ```
       </Tab>
@@ -223,7 +223,7 @@ SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: a
     {
         Model = "anthropic.claude-opus-5-5",
         MaxTokens = 1024,
-        Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+        Messages = [new UserMessageParam { Content = "Hello, Claude" }],
     });
 
     foreach (var item in message.Content)

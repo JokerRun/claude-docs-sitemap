@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5f03a4c14bd56c54223907d0cb0308c1d7686d47179a48e421a62aa6a0e8244c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 179204ab5cda5ac5752a533f7fb85da99d34e2203e025d0c3f989450b364a2a3
 ---
 
 ---
@@ -487,6 +487,7 @@ Diagram berikut memetakan skor rubrik terhadap biaya per tugas untuk Claude Fabl
 
 * Lakukan sapuan pada dua atau tiga tingkat effort pada sampel lalu lintas Anda sendiri, masing-masing dalam sesi terpisah: mengubah effort tingkat atas di tengah sesi [membatalkan cache](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#cache-repeated-context) dan mendistorsi perbandingan. Kurva tersebut adalah baseline yang harus dikalahkan oleh strategi multi-model apa pun ([langkah 2 dari pengukuran pada beban kerja Anda sendiri](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#measure-on-your-own-workload)).
 * Pada coding jangka panjang, effort adalah tradeoff yang nyata, yang dapat diubah kembali menjadi penghematan dengan [menjalankan ulang kegagalan pada effort yang lebih tinggi](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#re-run-failures-at-higher-effort). Pada `medium`, Claude Sonnet 5.5 mendapat skor sekitar 7 poin lebih rendah daripada pada default-nya, `high`, pada subset SWE-bench Pro[3](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) dengan sekitar 59% biaya per tugas (masing-masing 2 run), dan mendapat skor 62,7% dibandingkan dengan 77,8% pada benchmark agentic-coding internal[11](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs) (1 percobaan per tugas).
+* Pada `xhigh` dan `max`, Claude Sonnet 5.5 dapat memulai putaran peninjauannya sendiri setelah menyelesaikan tugas, yang membutuhkan lebih banyak waktu dan token. Agar pekerjaan itu tetap fokus pada tugas, tambahkan prompt di bawah "Ketelitian pada effort `xhigh` dan `max`" di [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#steer-initiative-and-scope) ke prompt sistem Anda.
 * Pada tugas riset, ukur model yang Anda rilis. Claude Fable 5.1 mendapat skor yang hampir sama dari `low` hingga `high` pada DeepResearch Bench II; Claude Opus 5.5 mendapat skor 13,3 poin lebih rendah pada `low` dibandingkan pada `medium` di DRACO[21](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs). Kedua hasil tersebut berasal dari model yang berbeda pada benchmark yang berbeda, sehingga keduanya menunjukkan bahwa jawabannya bervariasi, bukan alasannya.
 * Pada `low`, tugas tipikal Claude Opus 5.5 memakan waktu 84% lebih singkat daripada pada `medium` di DRACO[21](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), 30% lebih singkat di HLE[22](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), dan 47% lebih singkat pada kumpulan soal fisika internal[23](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), dan skornya 13,3; 3,4; dan 14,0 poin lebih rendah (3, 3, dan 4 percobaan per tugas).
 * Pada benchmark pencarian cacat internal untuk pekerjaan yang lebih besar dari satu jendela konteks[8](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), Claude Fable 5.1 membutuhkan 15,2; 17,5; dan 19,9 jam per run pada `low`, `medium`, dan `high` (masing-masing 3 run). Untuk menghemat waktu, bandingkan juga effort yang lebih rendah dengan dua perubahan di [Tunjukkan waktu yang telah berlalu kepada model](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#show-the-model-elapsed-time): effort `low` menghemat lebih banyak waktu, dan perubahan tersebut mempertahankan lebih banyak skor.
@@ -734,7 +735,7 @@ Contoh berikut menghitung biaya satu permintaan dengan harga daftar Claude Opus 
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+          Messages = [new UserMessageParam { Content = "Hello, Claude" }],
       }
   );
   var usage = response.Usage;

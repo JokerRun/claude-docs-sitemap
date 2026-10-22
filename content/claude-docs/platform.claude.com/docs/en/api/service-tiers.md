@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 4ddd8b5de0e3b5cbdf58938f3e11396fcbee0b965033e353ffcbc7ab44df94d1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0b49b55cdc6d8617a75fafa7816a5a010fbe54b7c02cd2e9478b545bb903a1dd
 ---
 
 ---
@@ -43,8 +43,8 @@ Anthropic counts usage against Priority Tier capacity as follows:
 **Input tokens**
 
 * Cache reads as 0.1 tokens per token read from the cache
-* Cache writes as 1.25 tokens per token written to the cache with a 5 minute TTL
-* Cache writes as 2.00 tokens per token written to the cache with a 1 hour TTL
+* Cache writes as 1.25 tokens per token written to the cache with a 5-minute TTL
+* Cache writes as 2.00 tokens per token written to the cache with a 1-hour TTL
 * For [US-only inference](https://platform.claude.com/docs/en/manage-claude/data-residency) (`inference_geo: "us"`) requests on Claude 4.6 and later models, input tokens are 1.1 tokens per token
 * All other input tokens are 1 token per token
 
@@ -123,7 +123,7 @@ You can control which service tiers can be used for a request by setting the `se
   {
       Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude!" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude!" }],
       ServiceTier = ServiceTier.Auto, // Automatically use Priority Tier when available, fallback to standard
   });
   Console.WriteLine(message.Usage.ServiceTier);
@@ -178,7 +178,7 @@ You can control which service tiers can be used for a request by setting the `se
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: Anthropic::Model::CLAUDE_OPUS_4_8,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude!" }],
     service_tier: :auto # Automatically use Priority Tier when available, fallback to standard
@@ -190,11 +190,11 @@ You can control which service tiers can be used for a request by setting the `se
 The `service_tier` parameter accepts the following values:
 
 * `"auto"` (default) - Uses the Priority Tier capacity if available, falling back to your other capacity if not
-* `"standard_only"` - Only use standard tier capacity, useful if you don't want to use your Priority Tier capacity
+* `"standard_only"` - Uses only standard tier capacity, useful if you don't want to use your Priority Tier capacity
 
 The response `usage` object also includes the service tier assigned to the request:
 
-```json
+```text wrap
 {
   "usage": {
     "input_tokens": 410,
@@ -230,7 +230,7 @@ A Priority Tier commitment consists of:
 * A commitment duration (1, 3, 6, or 12 months)
 * A specific model version
 
-Priority Tier targets 99.5% uptime with prioritized computational resources. Requests beyond your committed capacity automatically fall back to standard tier.
+Priority Tier targets 99.5 percent uptime with prioritized computational resources. Requests beyond your committed capacity automatically fall back to standard tier.
 
 ### Supported models
 

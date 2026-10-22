@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5bbf084a05d69f38d28ebe6f2c5eee78556087d779b704229d90a29f4092db3a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8ed072f9cde22ad5258ebff6e67cd4cc66f725e2172562fb1ce8175b01a13c15
 ---
 
 ---
@@ -159,8 +159,7 @@ dengan Claude"
       .Create(new() {
         Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
-        Messages = [new() {
-          Role = Role.User,
+        Messages = [new UserMessageParam {
           Content = "Hello, Claude"
         }]
       });

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 24a4669287350d16a3c1ef709414a93bd8b6582bf6239204002bbec3000ec98e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 5ec477151db50219f034451d020f72eea27240c92157dc8103ffb8602ae1782f
 ---
 
 ---
@@ -199,11 +199,7 @@ Menggunakan memory tool memerlukan dua langkah:
           MaxTokens = 2048,
           Messages =
           [
-              new()
-              {
-                  Role = Role.User,
-                  Content = "Help me respond to this customer service ticket.",
-              },
+              new UserMessageParam { Content = "Help me respond to this customer service ticket." },
           ],
           Tools = [new MemoryTool20250818()],
       }
@@ -363,9 +359,8 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
           MaxTokens = 1024,
           Messages =
           [
-              new()
+              new BetaUserMessageParam
               {
-                  Role = Role.User,
                   Content = "Remember that customer Acme Corp prefers email follow-ups.",
               },
           ],

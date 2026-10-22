@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 6fdd81279f6f9457ff6e0148d3f606e6bf4039638334950a2f81a4ee848b5d3d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a6af7772cbac82455a1aa68641cab7b529f0157a6e6a3441386078af38abdc35
 ---
 
 ---
@@ -27,7 +27,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview. Menetapkannya ke nilai non-default akan menghasilkan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, atau pada model apa pun mulai dari [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters). Menetapkannya ke nilai non-default akan menghasilkan error 400, dan mulai dari `2026-10-21` nilai apa pun juga demikian. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
 </Note>
 
 <CodeGroup>
@@ -80,7 +80,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }]
   };
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
@@ -232,9 +232,9 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
       MaxTokens = 1024,
       Messages =
       [
-          new() { Role = Role.User, Content = "Hello, Claude" },
-          new() { Role = Role.Assistant, Content = "Hello!" },
-          new() { Role = Role.User, Content = "Can you describe LLMs to me?" }
+          new UserMessageParam { Content = "Hello, Claude" },
+          new AssistantMessageParam { Content = "Hello!" },
+          new UserMessageParam { Content = "Can you describe LLMs to me?" }
       ]
   };
 
@@ -413,8 +413,8 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu (prefill) pada posisi
       Model = Model.ClaudeSonnet4_5,
       MaxTokens = 1,
       Messages = [
-          new() { Role = Role.User, Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
-          new() { Role = Role.Assistant, Content = "The answer is (" }
+          new UserMessageParam { Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
+          new AssistantMessageParam { Content = "The answer is (" }
       ]
   };
 
@@ -728,10 +728,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new Base64ImageSource()
@@ -741,7 +740,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-              }),
+              },
           }
       ]
   };
@@ -756,10 +755,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new UrlImageSource()
@@ -768,7 +766,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-              }),
+              },
           }
       ]
   };
@@ -864,7 +862,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBlockParams(base64Content)
+          .addUserMessageOfContentBlockParams(base64Content)
           .build());
   System.out.println(message);
 
@@ -886,7 +884,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBlockParams(urlContent)
+          .addUserMessageOfContentBlockParams(urlContent)
           .build());
   System.out.println(messageFromUrl);
   ```

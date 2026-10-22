@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 0d59d2f6e9ae6ada2b12f2ba35c62da69342d02878c553deb4c1eca65c59ca64
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 49dfd3f53dfffb0063528efafc8ef17bdb86e59bda686952fe981976d173ef60
 ---
 
 ---
@@ -130,19 +130,12 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       System = "You are a code review assistant with access to GitHub.",
       McpServers =
       [
-          new() { Type = "url", Name = "github", Url = "https://api.githubcopilot.com/mcp/" },
+          new() { Name = "github", Url = "https://api.githubcopilot.com/mcp/" },
       ],
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
-          new BetaManagedAgentsMcpToolsetParams
-          {
-              Type = "mcp_toolset",
-              McpServerName = "github",
-          },
+          new BetaManagedAgentsAgentToolset20260401Params(),
+          new BetaManagedAgentsMcpToolsetParams { McpServerName = "github" },
       ],
   });
   ```
@@ -186,15 +179,11 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
       .system("You are a code review assistant with access to GitHub.")
       .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
-          .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
           .name("github")
           .url("https://api.githubcopilot.com/mcp/")
           .build())
-      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-          .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-          .build())
+      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
       .addTool(BetaManagedAgentsMcpToolsetParams.builder()
-          .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
           .mcpServerName("github")
           .build())
       .build());
@@ -321,7 +310,6 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
       [
           new BetaManagedAgentsGitHubRepositoryResourceParams
           {
-              Type = "github_repository",
               Url = "https://github.com/org/repo",
               MountPath = "/workspace/repo",
               AuthorizationToken = "ghp_your_github_token",
@@ -355,7 +343,6 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
       .agent(agent.id())
       .environmentId(environment.id())
       .addResource(BetaManagedAgentsGitHubRepositoryResourceParams.builder()
-          .type(BetaManagedAgentsGitHubRepositoryResourceParams.Type.GITHUB_REPOSITORY)
           .url("https://github.com/org/repo")
           .mountPath("/workspace/repo")
           .authorizationToken("ghp_your_github_token")
@@ -509,14 +496,12 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
   [
       new()
       {
-          Type = "github_repository",
           Url = "https://github.com/org/frontend",
           MountPath = "/workspace/frontend",
           AuthorizationToken = "ghp_your_github_token",
       },
       new()
       {
-          Type = "github_repository",
           Url = "https://github.com/org/backend",
           MountPath = "/workspace/backend",
           AuthorizationToken = "ghp_your_github_token",
@@ -548,13 +533,11 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
   ```java Java
   var resources = List.of(
       BetaManagedAgentsGitHubRepositoryResourceParams.builder()
-          .type(BetaManagedAgentsGitHubRepositoryResourceParams.Type.GITHUB_REPOSITORY)
           .url("https://github.com/org/frontend")
           .mountPath("/workspace/frontend")
           .authorizationToken("ghp_your_github_token")
           .build(),
       BetaManagedAgentsGitHubRepositoryResourceParams.builder()
-          .type(BetaManagedAgentsGitHubRepositoryResourceParams.Type.GITHUB_REPOSITORY)
           .url("https://github.com/org/backend")
           .mountPath("/workspace/backend")
           .authorizationToken("ghp_your_github_token")
@@ -813,12 +796,10 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = "user.message",
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = "text",
                       Text = "Fix the type error in src/utils.ts, commit it to a new branch, and push it.",
                   },
               ],
@@ -853,9 +834,7 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
   ```java Java
   client.beta().sessions().events().send(session.id(), EventSendParams.builder()
       .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-          .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
           .addContent(BetaManagedAgentsTextBlock.builder()
-              .type(BetaManagedAgentsTextBlock.Type.TEXT)
               .text("Fix the type error in src/utils.ts, commit it to a new branch, and push it.")
               .build())
           .build())

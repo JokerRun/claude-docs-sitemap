@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 67b07f4ad1cc54fdbfe76d2ebfcccbe9331521a2aee52b3b01e3b024aad31dd9
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 5c7169abdf968bda07e86ac8c2417fd4e02551e10cbb3638088f350fdf352c5b
 ---
 
 ---
@@ -79,7 +79,6 @@ Berikan field opsional `budget` (csharp, go: `Budget`) saat Anda membuat sesi:
       EnvironmentID = environment.ID,
       Budget = new()
       {
-          Type = BetaManagedAgentsBudgetLimitType.Limit,
           MaxListCost = new() { Amount = "125", Currency = BetaCurrency.Usd },
       },
   });
@@ -111,7 +110,6 @@ Berikan field opsional `budget` (csharp, go: `Budget`) saat Anda membuat sesi:
       .agent(agent.id())
       .environmentId(environment.id())
       .budget(BetaManagedAgentsBudgetLimit.builder()
-          .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
           .maxListCost(BetaMonetaryAmount.builder()
               .amount("125")
               .currency(BetaCurrency.USD)
@@ -251,7 +249,6 @@ Perbarui sesi dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `Max
   {
       Budget = new()
       {
-          Type = BetaManagedAgentsBudgetLimitType.Limit,
           MaxListCost = new() { Amount = "500", Currency = BetaCurrency.Usd },
       },
   });
@@ -277,7 +274,6 @@ Perbarui sesi dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `Max
   ```java Java
   var updatedSession = client.beta().sessions().update(session.id(), SessionUpdateParams.builder()
       .budget(BetaManagedAgentsBudgetLimit.builder()
-          .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
           .maxListCost(BetaMonetaryAmount.builder()
               .amount("500")
               .currency(BetaCurrency.USD)

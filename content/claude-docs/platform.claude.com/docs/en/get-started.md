@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 090703e794a85d428414f6361a3e0df919b8cf90fea6bc14a26c1c90c999e8ce
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9dbbde38a07f6c7ebf53b3d755f749e0c3c3e2e16fce9e1a6fde2dee101e70f8
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Make your first API call to Claude and build a simple web search as
 
 ## Prerequisites
 
-* A [Claude Console account](https://platform.claude.com)
+* A [Claude Console account](https://platform.claude.com/)
 * An [API key](https://platform.claude.com/docs/en/get-api-key)
 
 ## Call the API
@@ -22,7 +22,7 @@ description: Make your first API call to Claude and build a simple web search as
   <Tab title="cURL">
     <Steps>
       <Step title="Set your API key">
-        Export your API key as an environment variable. The cURL command below reads it from `$ANTHROPIC_API_KEY`.
+        Export your API key as an environment variable. The cURL command in the following step reads it from `$ANTHROPIC_API_KEY`.
 
         ```bash
         export ANTHROPIC_API_KEY="your-api-key-here"
@@ -51,7 +51,7 @@ description: Make your first API call to Claude and build a simple web search as
 
         Claude returns a JSON response containing the assistant's message:
 
-        ```json Output
+        ```text Output
         {
           "model": "claude-opus-5-5",
           "id": "msg_013mHbppMPd2PrVJzGMZPt2D",
@@ -119,7 +119,7 @@ description: Make your first API call to Claude and build a simple web search as
 
         The CLI prints the JSON response:
 
-        ```json Output
+        ```text Output
         {
           "model": "claude-opus-5-5",
           "id": "msg_01N1ycuCkM5Mzd7WhTU4fwST",
@@ -297,9 +297,8 @@ description: Make your first API call to Claude and build a simple web search as
             MaxTokens = 1000,
             Messages =
             [
-                new()
+                new UserMessageParam
                 {
-                    Role = Role.User,
                     Content = "What should I search for to find the latest developments in renewable energy?",
                 },
             ],
@@ -443,7 +442,7 @@ description: Make your first API call to Claude and build a simple web search as
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.75.0")
+                implementation("com.anthropic:anthropic-java:3.1.0")
             }
 
             application {
@@ -469,7 +468,7 @@ description: Make your first API call to Claude and build a simple web search as
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.75.0</version>
+                  <version>3.1.0</version>
                 </dependency>
               </dependencies>
             </project>

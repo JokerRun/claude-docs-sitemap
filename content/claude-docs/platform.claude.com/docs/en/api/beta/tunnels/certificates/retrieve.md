@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 31e367c81b5e23234bacfd3d96ad173ebb7588549eae0999b30563e58116cdaa
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4b0e42825cb0ba076e9d9d0c277ab4e9c638096b6892652da6d7f55a495b78b2
 ---
 
 ---
@@ -143,6 +143,8 @@ Fetches a tunnel certificate by ID.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

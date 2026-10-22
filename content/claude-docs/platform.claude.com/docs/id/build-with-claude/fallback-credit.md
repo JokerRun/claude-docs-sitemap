@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: bd9ff5961edd44e6a2583aab6c73280b9ab2329116802e339760cfdff982f30e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 13932131fc7cb85d2130c6c38419f4b8b9237a507deb9937b888eb2275788d27
 ---
 
 ---
@@ -196,10 +196,7 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
   var client = new AnthropicClient();
   const string beta = "fallback-credit-2026-07-01";
 
-  List<BetaMessageParam> requestMessages =
-  [
-      new() { Role = Role.User, Content = "Hello, Claude" },
-  ];
+  List<BetaMessageParam> requestMessages = [new BetaUserMessageParam { Content = "Hello, Claude" }];
   MessageCreateParams Request(Model model) => new()
   {
       Model = model,
@@ -233,10 +230,9 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
               Messages =
               [
                   .. requestMessages,
-                  new()
+                  new BetaAssistantMessageParam
                   {
-                      Role = Role.Assistant,
-                      Content = new BetaMessageParamContent(
+                      Content = new BetaMessageContentParam(
                           JsonSerializer.SerializeToElement(echoed)
                       ),
                   },
@@ -377,7 +373,7 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
                   echoed.addLast(BetaContentBlockParam.ofText(
                       lastText.toBuilder().text(lastText.text().stripTrailing()).build()));
               }
-              attempt.addAssistantMessageOfBetaContentBlockParams(echoed);
+              attempt.addAssistantMessageOfContentBlockParams(echoed);
           }
           try {
               response = send(Model.CLAUDE_OPUS_4_8, attempt);
@@ -559,7 +555,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
   | Aturan                             | Field                                                                                                                                                                                    |
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | Harus cocok persis                 | `system`, `messages`, `tools`, `tool_choice`, `thinking`, dan `cache_control`, ditambah `output_config`, `mcp_servers`, `context_management`, dan `container` ketika Anda menggunakannya |
-  | Boleh berubah pada percobaan ulang | `model`, `max_tokens`, `stop_sequences`, `temperature`, `top_p`, `top_k`, `stream`, `metadata`, dan `service_tier`                                                                       |
+  | Boleh berubah pada percobaan ulang | `model`, `max_tokens`, `stop_sequences`, `stream`, `metadata`, dan `service_tier`                                                                                                        |
 
   Bentuk kelanjutan (`fallback_has_prefill_claim: true`) adalah satu-satunya pengecualian terhadap kecocokan `messages`: bentuk ini menambahkan tepat satu pesan asisten di akhir `messages`.
 

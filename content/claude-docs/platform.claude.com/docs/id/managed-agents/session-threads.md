@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: bb32b083cc0cd5d7b06719a84999c1dac937b221441c916d440188d6c815af01
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: af72de815f26462c7478d879eceecc155128e31538a125be88efe2052960d73a
 ---
 
 ---
@@ -124,7 +124,11 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
+    -d '{
+      "events": [
+        {"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -149,14 +153,7 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
   ```csharp C#
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
-      Events =
-      [
-          new BetaManagedAgentsUserInterruptEventParams
-          {
-              Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-              SessionThreadID = thread.ID,
-          },
-      ],
+      Events = [new BetaManagedAgentsUserInterruptEventParams { SessionThreadID = thread.ID }],
   });
   ```
 
@@ -178,7 +175,6 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-              .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
               .sessionThreadId(thread.id())
               .build())
           .build());
@@ -278,7 +274,11 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -d '{"events": [{"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}]}'
+    -d '{
+      "events": [
+        {"type": "user.interrupt", "session_thread_id": "'"$THREAD_ID"'"}
+      ]
+    }'
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -318,14 +318,7 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
   ```csharp C#
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
-      Events =
-      [
-          new BetaManagedAgentsUserInterruptEventParams
-          {
-              Type = BetaManagedAgentsUserInterruptEventParamsType.UserInterrupt,
-              SessionThreadID = thread.ID,
-          },
-      ],
+      Events = [new BetaManagedAgentsUserInterruptEventParams { SessionThreadID = thread.ID }],
   });
   archived = await client.Beta.Sessions.Threads.Archive(thread.ID, new() { SessionID = session.ID });
   Console.WriteLine($"{archived.Status} {archived.ArchivedAt}");
@@ -357,7 +350,6 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserInterruptEventParams.builder()
-              .type(BetaManagedAgentsUserInterruptEventParams.Type.USER_INTERRUPT)
               .sessionThreadId(thread.id())
               .build())
           .build());
@@ -735,7 +727,6 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
           [
               new BetaManagedAgentsUserToolConfirmationEventParams
               {
-                  Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
                   ToolUseID = eventId,
                   Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
               },
@@ -765,7 +756,6 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
                   .toolUseId(eventId)
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                   .build())

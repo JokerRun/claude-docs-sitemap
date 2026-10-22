@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: a4235c91e59f5360575f4b9c30f170e33e6ff7030fee9b0f7ceaa47b32ad508e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2fd515fff674c27daa3435a521a0285ed538ee2e1ce9f2e2e309a8013ba0be71
 ---
 
 ---
@@ -36,7 +36,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "display_name": "Alice",
       "metadata": {"external_user_id": "usr_abc123"}
     }'
@@ -122,7 +122,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
 
 The response is the full vault record:
 
-```json
+```text wrap
 {
   "type": "vault",
   "id": "vlt_01ABC...",
@@ -166,7 +166,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "display_name": "Alice's Slack",
         "auth": {
@@ -257,7 +257,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           DisplayName = "Alice's Slack",
           Auth = new BetaManagedAgentsMcpOAuthCreateParams
           {
-              Type = BetaManagedAgentsMcpOAuthCreateParamsType.McpOAuth,
               McpServerUrl = "https://mcp.slack.com/mcp",
               AccessToken = "xoxp-...",
               ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
@@ -269,7 +268,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
                   RefreshToken = "xoxe-1-...",
                   TokenEndpointAuth = new BetaManagedAgentsTokenEndpointAuthPostParam
                   {
-                      Type = BetaManagedAgentsTokenEndpointAuthPostParamType.ClientSecretPost,
                       ClientSecret = "abc123...",
                   },
               },
@@ -311,7 +309,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           CredentialCreateParams.builder()
               .displayName("Alice's Slack")
               .auth(BetaManagedAgentsMcpOAuthCreateParams.builder()
-                  .type(BetaManagedAgentsMcpOAuthCreateParams.Type.MCP_OAUTH)
                   .mcpServerUrl("https://mcp.slack.com/mcp")
                   .accessToken("xoxp-...")
                   .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
@@ -331,7 +328,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           vaultID: $vault->id,
           displayName: "Alice's Slack",
           auth: ManagedAgentsMCPOAuthCreateParams::with(
-              type: 'mcp_oauth',
               mcpServerURL: 'https://mcp.slack.com/mcp',
               accessToken: 'xoxp-...',
               expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
@@ -341,7 +337,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
                   scope: 'channels:read chat:write',
                   refreshToken: 'xoxe-1-...',
                   tokenEndpointAuth: ManagedAgentsTokenEndpointAuthPostParam::with(
-                      type: 'client_secret_post',
                       clientSecret: 'abc123...',
                   ),
               ),
@@ -386,7 +381,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "display_name": "Linear API key",
         "auth": {
@@ -437,7 +432,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           DisplayName = "Linear API key",
           Auth = new BetaManagedAgentsStaticBearerCreateParams
           {
-              Type = BetaManagedAgentsStaticBearerCreateParamsType.StaticBearer,
               McpServerUrl = "https://mcp.linear.app/mcp",
               Token = "lin_api_your_linear_key",
           },
@@ -466,7 +460,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           CredentialCreateParams.builder()
               .displayName("Linear API key")
               .auth(BetaManagedAgentsStaticBearerCreateParams.builder()
-                  .type(BetaManagedAgentsStaticBearerCreateParams.Type.STATIC_BEARER)
                   .mcpServerUrl("https://mcp.linear.app/mcp")
                   .token("lin_api_your_linear_key")
                   .build())
@@ -478,7 +471,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           vaultID: $vault->id,
           displayName: 'Linear API key',
           auth: ManagedAgentsStaticBearerCreateParams::with(
-              type: 'static_bearer',
               mcpServerURL: 'https://mcp.linear.app/mcp',
               token: 'lin_api_your_linear_key',
           ),
@@ -519,7 +511,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "auth": {
           "type": "environment_variable",
@@ -598,12 +590,10 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           DisplayName = "Notion API key for sandbox",
           Auth = new BetaManagedAgentsEnvironmentVariableCreateParams
           {
-              Type = BetaManagedAgentsEnvironmentVariableCreateParamsType.EnvironmentVariable,
               SecretName = "NOTION_API_KEY",
               SecretValue = "ntn_your-secret-here",
               Networking = new BetaManagedAgentsLimitedCredentialNetworkingParams
               {
-                  Type = BetaManagedAgentsLimitedCredentialNetworkingParamsType.Limited,
                   AllowedHosts = ["api.notion.com"],
               },
               InjectionLocation = new() { Header = true },
@@ -650,7 +640,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           CredentialCreateParams.builder()
               .displayName("Notion API key for sandbox")
               .auth(BetaManagedAgentsEnvironmentVariableCreateParams.builder()
-                  .type(BetaManagedAgentsEnvironmentVariableCreateParams.Type.ENVIRONMENT_VARIABLE)
                   .secretName("NOTION_API_KEY")
                   .secretValue("ntn_your-secret-here")
                   .limitedNetworking(List.of("api.notion.com"))
@@ -670,11 +659,9 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
           vaultID: $vault->id,
           displayName: 'Notion API key for sandbox',
           auth: ManagedAgentsEnvironmentVariableCreateParams::with(
-              type: ManagedAgentsEnvironmentVariableCreateParams\Type::ENVIRONMENT_VARIABLE,
               secretName: 'NOTION_API_KEY',
               secretValue: 'ntn_your-secret-here',
               networking: ManagedAgentsLimitedCredentialNetworkingParams::with(
-                  type: ManagedAgentsLimitedCredentialNetworkingParams\Type::LIMITED,
                   allowedHosts: ['api.notion.com'],
               ),
               injectionLocation: ManagedAgentsInjectionLocationParams::with(header: true),
@@ -713,7 +700,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
 
     The credential's `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) controls which parts of an outbound request the secret is substituted into. It is an optional object, a sibling of `networking` (csharp, go: `Networking`), with two Boolean fields: `header` (csharp, go: `Header`) (request headers) and `body` (csharp, go: `Body`) (request body). `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) is independent of `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) in `networking` (csharp, go: `Networking`): `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) scopes which hosts the secret is substituted for, and `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) scopes which parts of the request it is substituted into.
 
-    `injection_location` behaves differently on create and on update:
+    `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) behaves differently on create and on update:
 
     | Operation         | `injection_location` behavior                                                                                                                                                              |
     | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -725,15 +712,15 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
     A placeholder in a disabled location is neither substituted nor stripped. The request is sent to the third party with the literal opaque placeholder string in that location. If a request arrives at the third party containing the literal placeholder string, either that location is disabled for the credential or the destination host is not covered by the `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) in the credential's `networking` (csharp, go: `Networking`).
 
     <Note>
-      Credentials created in the Console enable header injection only. If your client sends the secret in the request body, such as a form-encoded token request, the placeholder passes through literally and the service rejects it with its own authentication error. Enable body injection in the Console form when you create the credential, or update the credential with `{"injection_location": {"body": true}}`.
+      Credentials created in the Claude Console enable header injection only. If your client sends the secret in the request body, such as a form-encoded token request, the placeholder passes through literally and the service rejects it with its own authentication error. Enable body injection in the Console form when you create the credential, or update the credential with `{"injection_location": {"body": true}}`.
     </Note>
 
-    The substitution happens at egress, not inside the sandbox. Anything that processes the credential locally sees the opaque placeholder, not the real value: clients that validate the credential format at startup may reject it, and clients that compute a request signature from the secret (for example, AWS SigV4) produce an invalid signature. Environment variable credentials work for clients that send the secret value verbatim in an outbound request, in a location the credential's `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) enables.
+    The substitution occurs at egress, not inside the sandbox. Anything that processes the credential locally sees the opaque placeholder, not the real value: clients that validate the credential format at startup might reject it, and clients that compute a request signature from the secret (for example, AWS SigV4) produce an invalid signature. Environment variable credentials work for clients that send the secret value verbatim in an outbound request, in a location the credential's `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) enables.
 
     Substitution is outbound only. If a client uses the stored secret to fetch a session token (for example, an OAuth client-credentials grant), the returned token arrives in the sandbox unredacted. For exchange-based flows, perform the exchange yourself and store the resulting token in the vault instead.
 
     <Tip>
-      Scope the API key to only the permissions the agent needs. The agent can do anything the key allows, so a key with broader permissions than necessary increases the blast radius if the agent behaves unexpectedly.
+      Scope the API key to only the permissions the agent needs. The agent can do anything the key allows, so a key with broader permissions than necessary increases the potential damage if the agent behaves unexpectedly.
     </Tip>
   </Tab>
 </Tabs>
@@ -757,7 +744,7 @@ Pass `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `Va
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "agent": "'"$AGENT_ID"'",
       "environment_id": "'"$ENVIRONMENT_ID"'",
       "vault_ids": ["'"$VAULT_ID"'"],
@@ -851,7 +838,7 @@ Runtime behavior:
 
 ## Rotate a credential
 
-Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), and (on environment variable credentials) `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) can be updated. `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) updates merge per field, as described in the Environment variable tab of [Add a credential](https://platform.claude.com/docs/en/managed-agents/vaults#add-a-credential). For a running session, an `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) update propagates the same way as a secret rotation: the session's credentials are re-resolved without a restart, as described in [Credential lifecycle](https://platform.claude.com/docs/en/managed-agents/vaults#credential-lifecycle), and the updated locations apply to the session's subsequent outbound requests. Structural fields (`mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`), `secret_name` (java, php: `secretName`; csharp, go: `SecretName`), `token_endpoint` (java, php: `tokenEndpoint`; csharp, go: `TokenEndpoint`), `client_id` (java: `clientId`; php: `clientID`; csharp, go: `ClientID`)) are locked after creation. To change them, archive the credential and create a new one.
+Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), and (on environment variable credentials) `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) can be updated. `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) updates merge field by field, as described in the **Environment variable** tab of [Add a credential](https://platform.claude.com/docs/en/managed-agents/vaults#add-a-credential). For a running session, an `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) update takes effect the same way as a secret rotation: the session's credentials are re-resolved without a restart, as described in [Credential lifecycle](https://platform.claude.com/docs/en/managed-agents/vaults#credential-lifecycle), and the updated locations apply to the session's subsequent outbound requests. Structural fields (`mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`), `secret_name` (java, php: `secretName`; csharp, go: `SecretName`), `token_endpoint` (java, php: `tokenEndpoint`; csharp, go: `TokenEndpoint`), `client_id` (java: `clientId`; php: `clientID`; csharp, go: `ClientID`)) are locked after creation. To change them, archive the credential and create a new one.
 
 <CodeGroup>
   ```bash cURL
@@ -919,7 +906,6 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       VaultID = vault.ID,
       Auth = new BetaManagedAgentsMcpOAuthUpdateParams
       {
-          Type = BetaManagedAgentsMcpOAuthUpdateParamsType.McpOAuth,
           AccessToken = "xoxp-new-...",
           ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
           Refresh = new() { RefreshToken = "xoxe-1-new-..." },
@@ -951,7 +937,6 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       CredentialUpdateParams.builder()
           .vaultId(vault.id())
           .auth(BetaManagedAgentsMcpOAuthUpdateParams.builder()
-              .type(BetaManagedAgentsMcpOAuthUpdateParams.Type.MCP_OAUTH)
               .accessToken("xoxp-new-...")
               .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
               .refresh(BetaManagedAgentsMcpOAuthRefreshUpdateParams.builder()
@@ -966,7 +951,6 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       $credential->id,
       vaultID: $vault->id,
       auth: ManagedAgentsMCPOAuthUpdateParams::with(
-          type: 'mcp_oauth',
           accessToken: 'xoxp-new-...',
           expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
           refresh: ManagedAgentsMCPOAuthRefreshUpdateParams::with(refreshToken: 'xoxe-1-new-...'),
@@ -990,7 +974,7 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
 
 ## Credential lifecycle
 
-Credentials are re-resolved periodically, both during a session and during the vault lifecycle. This ensures that credential rotation, archival, or deletion propagates to running sessions without a restart.
+Credentials are re-resolved periodically, both during a session and during the vault lifecycle. This ensures that credential rotation, archival, or deletion takes effect in running sessions without a restart.
 
 To be notified if a credential is archived, deleted, or fails to refresh, you can subscribe to the vault and credential [webhooks](https://platform.claude.com/docs/en/managed-agents/webhooks) associated with those lifecycle changes.
 
@@ -1093,7 +1077,7 @@ The top-level `status` (csharp, go: `Status`) tells you what to do next:
 
 The response is a `vault_credential_validation` object. `mcp_probe` includes the failed MCP handshake step; `refresh` includes the outcome of the attempted refresh.
 
-```json
+```text wrap
 {
   "type": "vault_credential_validation",
   "credential_id": "vcrd_01ABC...",

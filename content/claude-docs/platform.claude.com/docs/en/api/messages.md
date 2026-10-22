@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 09ece6913df93a3e9b288db161c66ec59e3516f6325cfebce8b9817be574ad76
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 293bf66d47ce83ff0f14fdf87614d18485b9a23c79e00dfec506631d22c14519
 ---
 
 ---
@@ -3887,6 +3887,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `CacheMissModelChanged object`
 
+        A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "model_changed"`
 
           default: model_changed
@@ -3896,6 +3900,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
       - `CacheMissSystemChanged object`
+
+        A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "system_changed"`
 
@@ -3907,6 +3915,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `CacheMissToolsChanged object`
 
+        A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "tools_changed"`
 
           default: tools_changed
@@ -3916,6 +3928,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
       - `CacheMissMessagesChanged object`
+
+        A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "messages_changed"`
 
@@ -3927,11 +3943,23 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `CacheMissPreviousMessageNotFound object`
 
+        A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+        This doesn't mean that this request changed.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "previous_message_not_found"`
 
           default: previous_message_not_found
 
       - `CacheMissUnavailable object`
+
+        A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+        This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "unavailable"`
 
@@ -13541,6 +13569,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `CacheMissMessagesChanged object`
 
+  A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
   - `type: "messages_changed"`
 
     default: messages_changed
@@ -13552,6 +13584,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 ### Cache Miss Model Changed
 
 - `CacheMissModelChanged object`
+
+  A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
   - `type: "model_changed"`
 
@@ -13565,6 +13601,12 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `CacheMissPreviousMessageNotFound object`
 
+  A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+  This doesn't mean that this request changed.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
   - `type: "previous_message_not_found"`
 
     default: previous_message_not_found
@@ -13574,6 +13616,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 - `CacheMissReason = CacheMissModelChanged or CacheMissSystemChanged or CacheMissToolsChanged or 3 more`
 
   - `CacheMissModelChanged object`
+
+    A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
     - `type: "model_changed"`
 
@@ -13585,6 +13631,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `CacheMissSystemChanged object`
 
+    A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
     - `type: "system_changed"`
 
       default: system_changed
@@ -13594,6 +13644,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
       Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
   - `CacheMissToolsChanged object`
+
+    A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
     - `type: "tools_changed"`
 
@@ -13605,6 +13659,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `CacheMissMessagesChanged object`
 
+    A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
     - `type: "messages_changed"`
 
       default: messages_changed
@@ -13615,11 +13673,23 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
   - `CacheMissPreviousMessageNotFound object`
 
+    A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+    This doesn't mean that this request changed.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
     - `type: "previous_message_not_found"`
 
       default: previous_message_not_found
 
   - `CacheMissUnavailable object`
+
+    A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+    This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+    See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
     - `type: "unavailable"`
 
@@ -13628,6 +13698,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 ### Cache Miss System Changed
 
 - `CacheMissSystemChanged object`
+
+  A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
   - `type: "system_changed"`
 
@@ -13641,6 +13715,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
 - `CacheMissToolsChanged object`
 
+  A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
   - `type: "tools_changed"`
 
     default: tools_changed
@@ -13652,6 +13730,12 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 ### Cache Miss Unavailable
 
 - `CacheMissUnavailable object`
+
+  A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+  This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+  See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
   - `type: "unavailable"`
 
@@ -19361,6 +19445,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `CacheMissModelChanged object`
 
+      A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
       - `type: "model_changed"`
 
         default: model_changed
@@ -19370,6 +19458,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
     - `CacheMissSystemChanged object`
+
+      A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
       - `type: "system_changed"`
 
@@ -19381,6 +19473,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `CacheMissToolsChanged object`
 
+      A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
       - `type: "tools_changed"`
 
         default: tools_changed
@@ -19390,6 +19486,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
     - `CacheMissMessagesChanged object`
+
+      A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
       - `type: "messages_changed"`
 
@@ -19401,11 +19501,23 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     - `CacheMissPreviousMessageNotFound object`
 
+      A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+      This doesn't mean that this request changed.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
       - `type: "previous_message_not_found"`
 
         default: previous_message_not_found
 
     - `CacheMissUnavailable object`
+
+      A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+      This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+      See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
       - `type: "unavailable"`
 
@@ -20740,6 +20852,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `CacheMissModelChanged object`
 
+        A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "model_changed"`
 
           default: model_changed
@@ -20749,6 +20865,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
           Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
       - `CacheMissSystemChanged object`
+
+        A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "system_changed"`
 
@@ -20760,6 +20880,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `CacheMissToolsChanged object`
 
+        A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "tools_changed"`
 
           default: tools_changed
@@ -20769,6 +20893,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
           Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
       - `CacheMissMessagesChanged object`
+
+        A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "messages_changed"`
 
@@ -20780,11 +20908,23 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `CacheMissPreviousMessageNotFound object`
 
+        A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+        This doesn't mean that this request changed.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
         - `type: "previous_message_not_found"`
 
           default: previous_message_not_found
 
       - `CacheMissUnavailable object`
+
+        A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+        This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+        See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
         - `type: "unavailable"`
 
@@ -25972,6 +26112,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `CacheMissModelChanged object`
 
+          A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
           - `type: "model_changed"`
 
             default: model_changed
@@ -25981,6 +26125,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
             Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
         - `CacheMissSystemChanged object`
+
+          A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
           - `type: "system_changed"`
 
@@ -25992,6 +26140,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `CacheMissToolsChanged object`
 
+          A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
           - `type: "tools_changed"`
 
             default: tools_changed
@@ -26001,6 +26153,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
             Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
         - `CacheMissMessagesChanged object`
+
+          A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
           - `type: "messages_changed"`
 
@@ -26012,11 +26168,23 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         - `CacheMissPreviousMessageNotFound object`
 
+          A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+          This doesn't mean that this request changed.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
           - `type: "previous_message_not_found"`
 
             default: previous_message_not_found
 
         - `CacheMissUnavailable object`
+
+          A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+          This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+          See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
           - `type: "unavailable"`
 
@@ -27109,6 +27277,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `CacheMissModelChanged object`
 
+            A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
             - `type: "model_changed"`
 
               default: model_changed
@@ -27118,6 +27290,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
               Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
           - `CacheMissSystemChanged object`
+
+            A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
             - `type: "system_changed"`
 
@@ -27129,6 +27305,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `CacheMissToolsChanged object`
 
+            A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
             - `type: "tools_changed"`
 
               default: tools_changed
@@ -27138,6 +27318,10 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
               Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
           - `CacheMissMessagesChanged object`
+
+            A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
             - `type: "messages_changed"`
 
@@ -27149,11 +27333,23 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           - `CacheMissPreviousMessageNotFound object`
 
+            A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+            This doesn't mean that this request changed.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
             - `type: "previous_message_not_found"`
 
               default: previous_message_not_found
 
           - `CacheMissUnavailable object`
+
+            A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+            This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+            See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
             - `type: "unavailable"`
 
@@ -40958,6 +41154,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `CacheMissModelChanged object`
 
+              A `cache_miss_reason` for a request whose `model` or `speed` differs from the previous request's.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
               - `type: "model_changed"`
 
                 default: model_changed
@@ -40967,6 +41167,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
             - `CacheMissSystemChanged object`
+
+              A `cache_miss_reason` for a request whose `system` differs from the previous request's.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
               - `type: "system_changed"`
 
@@ -40978,6 +41182,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `CacheMissToolsChanged object`
 
+              A `cache_miss_reason` for a request whose `tools` differ from the previous request's, for example because tools were added, removed, or reordered.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
               - `type: "tools_changed"`
 
                 default: tools_changed
@@ -40987,6 +41195,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
 
             - `CacheMissMessagesChanged object`
+
+              A `cache_miss_reason` for a request whose `messages` differ from the previous request's in an earlier entry, instead of only having entries appended. The `model`, `system`, and `tools` match.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
               - `type: "messages_changed"`
 
@@ -40998,11 +41210,23 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `CacheMissPreviousMessageNotFound object`
 
+              A `cache_miss_reason` for when the API doesn't have a stored record of the request that `diagnostics.previous_message_id` references.
+
+              This doesn't mean that this request changed.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
+
               - `type: "previous_message_not_found"`
 
                 default: previous_message_not_found
 
             - `CacheMissUnavailable object`
+
+              A `cache_miss_reason` for when the API can't give a diagnosis. The request itself was processed normally.
+
+              This includes a request whose `model`, `system`, and `tools` match the previous request's but whose other prompt-affecting parameters, such as `thinking` or `tool_choice`, differ.
+
+              See the [cache diagnostics guide](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics?sdk_languages=http#cache-miss-reason-types) to learn what to change for each reason.
 
               - `type: "unavailable"`
 

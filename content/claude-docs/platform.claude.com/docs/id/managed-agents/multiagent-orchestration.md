@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4de10823f269d8d68bd34297ddf8db3892fad6946e297d87d59df6c9ab4c9cd1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 1f7342b13f97d522400e4bde870cefffbb571c26f142d9fe00d01cc2040fff61
 ---
 
 ---
@@ -241,13 +241,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
       Name = "Engineering Lead",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
-          },
-      ],
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
       Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
           Subagents = new BetaManagedAgentsMultiagentSubagentsEnabledParams
@@ -292,19 +286,13 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
           .name("Engineering Lead")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.")
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
               .subagents(BetaManagedAgentsMultiagentSubagentsEnabledParams.builder()
                   .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
-                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
                       .id(reviewerAgent.id())
                       .build())
                   .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
-                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
                       .id(testWriterAgent.id())
                       .build())
                   .build())
@@ -337,7 +325,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   ```ruby Ruby
   lead_agent = client.beta.agents.create(
     name: "Engineering Lead",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system: "You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent.",
     tools: [
       {type: "agent_toolset_20260401"}
@@ -476,7 +464,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
     }'
 
-  # Buat agen yang mendelegasikan kepadanya: research_agent_id adalah id dari respons pertama
+  # Buat agen yang mendelegasikan ke sana: research_agent_id adalah ID dari respons pertama
   curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -590,44 +578,23 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       [
           new()
           {
-              Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
               Name = "github",
               Url = "https://api.githubcopilot.com/mcp/",
           },
       ],
-      Tools =
-      [
-          new BetaManagedAgentsMcpToolsetParams
-          {
-              Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
-              McpServerName = "github",
-          },
-      ],
+      Tools = [new BetaManagedAgentsMcpToolsetParams { McpServerName = "github" }],
   });
 
   var leadAgent = await client.Beta.Agents.Create(new()
   {
       Name = "lead",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
-          },
-      ],
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
       Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
           Subagents = new BetaManagedAgentsMultiagentSubagentsEnabledParams
           {
-              PredefinedAgents =
-              [
-                  new BetaManagedAgentsAgentParams
-                  {
-                      Type = BetaManagedAgentsAgentParamsType.Agent,
-                      ID = researchAgent.ID,
-                  },
-              ],
+              PredefinedAgents = [new BetaManagedAgentsAgentParams { ID = researchAgent.ID }],
           },
       },
   });
@@ -688,11 +655,9 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
           .model(BetaManagedAgentsModel.CLAUDE_HAIKU_5_5)
           .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
               .name("github")
-              .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
               .url("https://api.githubcopilot.com/mcp/")
               .build())
           .addTool(BetaManagedAgentsMcpToolsetParams.builder()
-              .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
               .mcpServerName("github")
               .build())
           .build()
@@ -702,13 +667,10 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       AgentCreateParams.builder()
           .name("lead")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-              .build())
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
               .subagents(BetaManagedAgentsMultiagentSubagentsEnabledParams.builder()
                   .addPredefinedAgent(BetaManagedAgentsAgentParams.builder()
-                      .type(BetaManagedAgentsAgentParams.Type.AGENT)
                       .id(researcher.id())
                       .build())
                   .build())
@@ -961,14 +923,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
       Name = "Contract Reviewer",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
-          },
-      ],
-      // Kelas konfigurasi menetapkan tipe untuk Anda.
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
       Multiagent = new BetaManagedAgentsMultiagent20261001Params
       {
           Workflows = new BetaManagedAgentsMultiagentWorkflowsEnabledParams(),
@@ -1005,12 +960,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
           .name("Contract Reviewer")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.")
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
-          // Kelas konfigurasi menetapkan tipe untuk Anda.
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .multiagent(BetaManagedAgentsMultiagent20261001Params.builder()
               .workflows(BetaManagedAgentsMultiagentWorkflowsEnabledParams.builder().build())
               .build())
@@ -1033,7 +983,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Contract Reviewer",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
     tools: [
       {type: "agent_toolset_20260401"}
@@ -1254,7 +1204,7 @@ Pengaturan `advisor` yang aktif di blok `multiagent` (csharp, go: `Multiagent`) 
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Backend engineer",
-    model: "claude-sonnet-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_SONNET_5,
     system_: "You implement backend features end to end. Consult the advisor before major backend design decisions.",
     multiagent: {
       type: "multiagent_20261001",

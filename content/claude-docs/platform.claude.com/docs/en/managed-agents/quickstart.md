@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4589a8e538f5b089ad2403e5df726d417d82220d45723927b8c4bab9ac58d40a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: df0342f786b3f1252d387039f1efa9ab45d73b37d4a9fd577d03872f3c3c3460
 ---
 
 ---
@@ -40,7 +40,7 @@ This guide walks you through creating an agent, setting up an environment, start
 
 ## Prerequisites
 
-* A [Claude Console account](https://platform.claude.com)
+* A [Claude Console account](https://platform.claude.com/)
 * An [API key](https://platform.claude.com/settings/keys) from the Console
 
 ## Install the CLI
@@ -56,7 +56,7 @@ This guide walks you through creating an agent, setting up an environment, start
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.44.0
+    VERSION=2.1.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -73,7 +73,7 @@ This guide walks you through creating an agent, setting up an environment, start
     You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
 
     ```bash
-    go install github.com/anthropics/anthropic-cli/cmd/ant@latest
+    go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
     The binary is placed in `$(go env GOPATH)/bin`. Add it to your `PATH` if it isn't already:
@@ -107,7 +107,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.75.0")
+    implementation("com.anthropic:anthropic-java:3.1.0")
     ```
   </Tab>
 
@@ -245,13 +245,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             Name = "Coding Assistant",
             Model = BetaManagedAgentsModel.ClaudeOpus5_5,
             System = "You are a helpful coding assistant. Write clean, well-documented code.",
-            Tools =
-            [
-                new BetaManagedAgentsAgentToolset20260401Params
-                {
-                    Type = "agent_toolset_20260401",
-                },
-            ],
+            Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
         });
 
         Console.WriteLine($"Agent ID: {agent.ID}, version: {agent.Version}");
@@ -318,9 +312,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                 .name("Coding Assistant")
                 .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
                 .system("You are a helpful coding assistant. Write clean, well-documented code.")
-                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-                    .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                    .build())
+                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
                 .build());
 
             IO.println("Agent ID: " + agent.id() + ", version: " + agent.version());
@@ -358,7 +350,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
         agent = client.beta.agents.create(
           name: "Coding Assistant",
-          model: "claude-opus-5-5",
+          model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
           system_: "You are a helpful coding assistant. Write clean, well-documented code.",
           tools: [{type: "agent_toolset_20260401"}]
         )
@@ -741,12 +733,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           [
               new BetaManagedAgentsUserMessageEventParams
               {
-                  Type = "user.message",
                   Content =
                   [
                       new BetaManagedAgentsTextBlock
                       {
-                          Type = "text",
                           Text = "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
                       },
                   ],
@@ -828,7 +818,6 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           // Send the user message after the stream opens
           client.beta().sessions().events().send(session.id(), EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt")
                   .build())
               .build());
@@ -969,7 +958,7 @@ Each of these quickstarts pairs Claude Managed Agents with a popular chat framew
   </Card>
 
   <Card title="Session event stream" icon="lightning" href="https://platform.claude.com/docs/en/managed-agents/events-and-streaming">
-    Handle events and steer the agent mid-execution
+    Handle events and steer the agent while it runs
   </Card>
 
   <Card title="Scheduled deployments" icon="arrows-clockwise" href="https://platform.claude.com/docs/en/managed-agents/scheduled-deployments">

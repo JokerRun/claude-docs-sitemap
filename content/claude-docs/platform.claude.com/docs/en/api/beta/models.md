@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9958a257c37baf5dd5239bca061dfebfa3da23202035be28859e6141ce930dbd
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2ce1a08ea3c1f254e73f5f81b5f7d187487a380e734ba1f79583fab43d07a095
 ---
 
 ---
@@ -165,6 +165,8 @@ The Models API response can be used to determine which models are available for 
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -646,6 +648,8 @@ The Models API response can be used to determine information about a specific mo
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

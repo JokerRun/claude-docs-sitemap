@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 1b7bba785f00ddeb3c74a197f9840be873e2811e058013e9596f87add2a1c79c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 41d95ac7702566e769baed2f750c734eb8cecb90b8243ec8a022ba9d876884f0
 ---
 
 ---
@@ -219,9 +219,8 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
       ],
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Can you write a long poem and make a file called poem.txt?",
           },
       ],
@@ -629,7 +628,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
               },
           },
       ],
-      Messages = [new() { Role = Role.User, Content = "Weather in Paris?" }],
+      Messages = [new UserMessageParam { Content = "Weather in Paris?" }],
   };
 
   // Indeks blok -> fragmen JSON yang terakumulasi

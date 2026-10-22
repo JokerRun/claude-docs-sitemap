@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9380178f1990b12283478330f39a620e8b9ff817180ed80b2014d8e57d21da74
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 26c2c0f3981868e89e60db71852ba80f2ce67e8d6002091db5a82acf6416041d
 ---
 
 ---
@@ -28,7 +28,7 @@ Pemisahan ini menjaga rahasia agar tidak masuk ke dalam definisi agen yang dapat
 
 ## Mendeklarasikan server MCP pada agen
 
-Tentukan server MCP dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) saat membuat agen. Setiap server memerlukan `type` (csharp, go: `Type`), `name` (csharp, go: `Name`) yang unik, dan `url` (csharp: `Url`; go: `URL`). Tidak ada token autentikasi yang diberikan pada tahap ini.
+Tentukan server MCP dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) saat membuat agen. Setiap server memiliki `type` (csharp, go: `Type`) bernilai `url`, `name` (csharp, go: `Name`) yang unik, dan `url` (csharp: `Url`; go: `URL`). Tidak ada token autentikasi yang diberikan pada tahap ini.
 
 Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesuai dalam array `tools` (csharp, go: `Tools`). `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) milik toolset harus cocok dengan `name` (csharp, go: `Name`) milik server.
 
@@ -122,15 +122,12 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       McpServers =
       [
-          new() { Type = "url", Name = "github", Url = "https://api.githubcopilot.com/mcp/" },
+          new() { Name = "github", Url = "https://api.githubcopilot.com/mcp/" },
       ],
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
-          new BetaManagedAgentsMcpToolsetParams { Type = "mcp_toolset", McpServerName = "github" },
+          new BetaManagedAgentsAgentToolset20260401Params(),
+          new BetaManagedAgentsMcpToolsetParams { McpServerName = "github" },
       ],
   });
   ```
@@ -172,19 +169,13 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .addMcpServer(
               BetaManagedAgentsUrlMcpServerParams.builder()
-                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                   .name("github")
                   .url("https://api.githubcopilot.com/mcp/")
                   .build()
           )
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .addTool(
               BetaManagedAgentsMcpToolsetParams.builder()
-                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
                   .mcpServerName("github")
                   .build()
           )
@@ -198,17 +189,13 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
       model: 'claude-opus-5-5',
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
-              type: 'url',
               name: 'github',
               url: 'https://api.githubcopilot.com/mcp/',
           ),
       ],
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
           BetaManagedAgentsMCPToolsetParams::with(
-              type: 'mcp_toolset',
               mcpServerName: 'github',
           ),
       ],

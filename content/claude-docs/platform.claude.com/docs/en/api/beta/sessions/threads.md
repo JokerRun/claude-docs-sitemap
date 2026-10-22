@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: c3aeaa4f28791ec2f2791116312e9f6ea11d7bcdfcae1fc9fb3a9e4f2762bd60
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6cf0670d8417f05a6b9777221e6d9fd72d597968d201646bc0a77cf0695f5ab6
 ---
 
 ---
@@ -163,6 +163,8 @@ List Session Threads
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1247,6 +1249,8 @@ Get Session Thread
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -2320,6 +2324,8 @@ Archive Session Thread
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -7956,6 +7962,8 @@ List Session Thread Events
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -11070,6 +11078,8 @@ Stream Session Thread Events
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

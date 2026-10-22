@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-09T02:29:51.005508Z
-sha256: 1b0680cf3d4529f00c5917747cebc432c1f527fd9d942b01823f7a85fac3497c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f8c595958bf39257694a574ddbf7d4fd961cf096e928b5030f0cd4bb403fd68a
 ---
 
 ---
@@ -157,7 +157,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
+      Messages = [new UserMessageParam { Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
       Tools = [new ToolUnion(new WebSearchTool20260318())]
   };
 
@@ -324,7 +324,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
+      Messages = [new UserMessageParam { Content = "What's the weather in NYC?" }],
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
   };
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 071341c6948dc5c46861fe44c1deff48b50b83dc3294734e8d311937e60c113f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 07e95546e778a1d5edf9ba26b3c8531c9034e62c8b2a3e338f5a39b8affdab7a
 ---
 
 ---
@@ -137,6 +137,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -611,6 +613,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `data: array of BetaTelemetryDestination`
@@ -962,6 +966,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaTelemetryDestination object`
@@ -1307,6 +1313,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Body parameters
 
@@ -1788,6 +1796,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 ### Returns
 
 - `BetaDeletedTelemetryDestination object`
@@ -1946,6 +1956,8 @@ Send one test span, named `anthropic.test`, to the destination with its register
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ### Returns
 
@@ -2876,6 +2888,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaTelemetryDestinationWorkspace`
@@ -3065,6 +3079,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `BetaTelemetryDestinationWorkspace object`
@@ -3247,6 +3263,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 

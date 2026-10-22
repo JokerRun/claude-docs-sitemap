@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/mythos-5-1/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 02ac6af64537b3db27f6520c15e748d8af66f6b36bc1c3bef2a0d9f6a3161c8a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e8fb5c4634d56dad130d3fd50e5330bd3ebb2a12802989cc4030e6f98bb77bd3
 ---
 
 ---
 title: Claude Mythos 5.1
 url: https://platform.claude.com/docs/en/models/mythos-5-1/overview
-description: "Claude Mythos 5.1 at a glance: the same model as Claude Fable 5.1, available only to organizations verified through Anthropic's verification programs. Model IDs, specifications, pricing, and how to request access."
+description: Claude Mythos 5.1 is the same model as Claude Fable 5.1, available only to organizations verified through Anthropic's verification programs. Model IDs, specifications, pricing, and how to request access.
 ---
 
 **Verification required.** Released September 1, 2026.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 01c6126ca908a38c7e467ce09258e9c15467bafd7b92c331a4583a521f69631c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2aaf51b02f220c474f2984d31825ff89444366bb070d1f8b0702d2afaa6f54fa
 ---
 
 ---
@@ -305,7 +305,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" }],
+      Messages = [new UserMessageParam { Content = "What's the weather in SF and NYC, and what time is it there?" }],
       Tools = tools
   };
 
@@ -364,9 +364,9 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
-          new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" },
-          new() { Role = Role.Assistant, Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-          new() { Role = Role.User, Content = new MessageParamContent(toolResults) }
+          new UserMessageParam { Content = "What's the weather in SF and NYC, and what time is it there?" },
+          new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
+          new UserMessageParam { Content = toolResults }
       ],
       Tools = tools
   };
@@ -599,7 +599,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
       .addTool(timeTool)
       .addUserMessage("What's the weather in SF and NYC, and what time is it there?")
       .addMessage(response)
-      .addUserMessageOfBlockParams(toolResults)
+      .addUserMessageOfContentBlockParams(toolResults)
       .build();
 
   Message finalResponse = client.messages().create(finalParams);
@@ -993,7 +993,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
           }),
       ],
       ToolChoice = new ToolChoiceAuto { DisableParallelToolUse = true },
-      Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco and New York?" }]
+      Messages = [new UserMessageParam { Content = "What is the weather in San Francisco and New York?" }]
   };
 
   var response = await client.Messages.Create(parameters);
@@ -1274,7 +1274,7 @@ Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_t
           }),
       ],
       ToolChoice = new ToolChoiceAny { DisableParallelToolUse = true },
-      Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco and New York?" }]
+      Messages = [new UserMessageParam { Content = "What is the weather in San Francisco and New York?" }]
   };
 
   var response = await client.Messages.Create(parameters);

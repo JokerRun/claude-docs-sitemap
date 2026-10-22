@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 5c8ca70f71ecd7dc3eb5a36fc81cf3a8f48807a00977ad82205af3a4c4e07ba3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 114cc180aaad9b63af3a11af714ac66aac0dba3043e2a069e2c1f79106c9dc82
 ---
 
 ---
@@ -285,12 +285,7 @@ Contoh berikut menyertakan tool search tool dan dua alat deferred:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 2048,
-      Messages = [
-          new() {
-              Role = Role.User,
-              Content = "What is the weather in San Francisco?"
-          }
-      ],
+      Messages = [new UserMessageParam { Content = "What is the weather in San Francisco?" }],
       Tools = [
           new ToolUnion(new ToolSearchToolRegex20251119
           {

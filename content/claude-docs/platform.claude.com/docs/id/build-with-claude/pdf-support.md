@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 942c66c213db8755f944ea5cebb42943834699469593dc7fbfd20c8239ff5fc2
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 69b9b56123678f310becb2502d6be9dc21427ab0a4688eb22a9e9d97a109d0d8
 ---
 
 ---
@@ -228,9 +228,8 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new List<ContentBlockParam>
               {
                   documentParam,
@@ -283,7 +282,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofDocument(documentParam),
         ContentBlockParam.ofText(
@@ -540,9 +539,8 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new List<ContentBlockParam>
               {
                   documentParam,
@@ -622,7 +620,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofDocument(documentParam),
         ContentBlockParam.ofText(
@@ -861,9 +859,8 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new List<ContentBlockParam>
               {
                   new DocumentBlockParam
@@ -928,7 +925,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofDocument(
           DocumentBlockParam.builder().fileSource(file.id()).build()
@@ -1207,9 +1204,8 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new List<ContentBlockParam>
               {
                   new DocumentBlockParam
@@ -1286,7 +1282,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
   MessageCreateParams params = MessageCreateParams.builder()
     .model(Model.CLAUDE_OPUS_5_5)
     .maxTokens(1024)
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofDocument(
           DocumentBlockParam.builder()
@@ -1646,9 +1642,8 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
                   MaxTokens = 1024,
                   Messages =
                   [
-                      new()
+                      new UserMessageParam
                       {
-                          Role = Role.User,
                           Content = new List<ContentBlockParam>
                           {
                               new DocumentBlockParam
@@ -1670,9 +1665,8 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
                   MaxTokens = 1024,
                   Messages =
                   [
-                      new()
+                      new UserMessageParam
                       {
-                          Role = Role.User,
                           Content = new List<ContentBlockParam>
                           {
                               new DocumentBlockParam
@@ -1771,7 +1765,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
           BatchCreateParams.Request.Params.builder()
             .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024)
-            .addUserMessageOfBlockParams(
+            .addUserMessageOfContentBlockParams(
               List.of(
                 ContentBlockParam.ofDocument(
                   DocumentBlockParam.builder()
@@ -1798,7 +1792,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
           BatchCreateParams.Request.Params.builder()
             .model(Model.CLAUDE_OPUS_5_5)
             .maxTokens(1024)
-            .addUserMessageOfBlockParams(
+            .addUserMessageOfContentBlockParams(
               List.of(
                 ContentBlockParam.ofDocument(
                   DocumentBlockParam.builder()

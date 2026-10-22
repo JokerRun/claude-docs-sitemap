@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 46681f8615a45eb862992a60a0041ed31ddf2e0dcdadc066ac919556a7cffbb4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4bd6632170bc635365fac0dca2371877b6e7ef2b23ab827ec9f4afb82933c1f3
 ---
 
 ---
@@ -15,9 +15,9 @@ description: Programmatically access your organization's Claude Code usage analy
   **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
 </Tip>
 
-The Claude Code Analytics Admin API provides programmatic access to daily aggregated usage metrics for Claude Code users, enabling organizations to analyze developer productivity and build custom dashboards. This API provides more detail than the basic [Analytics dashboard](https://platform.claude.com/claude-code) in the Claude Console, without the complexity of the OpenTelemetry integration.
+The Claude Code Analytics Admin API provides programmatic access to daily aggregated usage metrics for Claude Code users, allowing organizations to analyze developer productivity and build custom dashboards. This API provides more detail than the basic [Analytics dashboard](https://platform.claude.com/claude-code) in the Claude Console, without the complexity of the OpenTelemetry integration.
 
-This API enables you to better monitor, analyze, and optimize your Claude Code adoption:
+This API allows you to better monitor, analyze, and optimize your Claude Code adoption:
 
 * **Developer productivity analysis:** Track sessions, lines of code added/removed, commits, and pull requests created using Claude Code
 * **Tool usage metrics:** Monitor acceptance and rejection rates for different Claude Code tools (Edit, MultiEdit, Write, NotebookEdit)
@@ -70,7 +70,7 @@ Track Claude Code usage, productivity metrics, and developer activity across you
 * **Productivity metrics:** Track sessions, lines of code, commits, pull requests, and tool usage
 * **Token and cost data:** Monitor usage and estimated costs broken down by Claude model
 * **Cursor-based pagination:** Handle large datasets with stable pagination using opaque cursors
-* **Data freshness:** Metrics are available with up to 1-hour delay for consistency
+* **Data freshness:** Metrics are available with up to a 1-hour delay for consistency
 
 For complete parameter details and response schemas, see the [Claude Code Analytics API reference](https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code).
 
@@ -154,7 +154,7 @@ For each Claude model used:
 
 The API returns data in the following format:
 
-```json
+```text wrap
 {
   "data": [
     {
@@ -219,7 +219,7 @@ The API returns data in the following format:
 
 The API supports cursor-based pagination for organizations with large numbers of users:
 
-1. Make your initial request with optional `limit` parameter.
+1. Make your initial request with the optional `limit` parameter.
 2. If `has_more` is `true` in the response, use the `next_page` value in your next request.
 3. Continue until `has_more` is `false`.
 
@@ -277,7 +277,7 @@ The Claude Code Analytics API is free to use for all organizations with access t
 
 ### How do I calculate tool acceptance rates?
 
-Tool acceptance rate = `accepted / (accepted + rejected)` for each tool type. For example, if the edit tool shows 45 accepted and 5 rejected, the acceptance rate is 90%.
+Tool acceptance rate = `accepted / (accepted + rejected)` for each tool type. For example, if the edit tool shows 45 accepted and 5 rejected, the acceptance rate is 90 percent.
 
 ### What time zone is used for the date parameter?
 

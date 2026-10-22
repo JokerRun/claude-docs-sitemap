@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 850bf791200abb26f777f7aedbac7a32c6bd9ed31d58707901d85d841f0dc3aa
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 41082f4454d5c4bfa6c9973a7929ecc24575ff1546dedabddff2418f20ef7ad1
 ---
 
 ---
@@ -153,17 +153,15 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
 
   List<BetaMessageParam> history =
   [
-      new()
+      new BetaUserMessageParam
       {
-          Role = Role.User,
           Content = "I am building a recipe app. Help me name the main entities in the data model.",
       },
-      new()
+      new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = "Start with Recipe, Ingredient, and Step. Add a RecipeIngredient entry that holds the quantity and unit for each ingredient in a recipe.",
       },
-      new() { Role = Role.User, Content = "Good. Now suggest field names for Recipe." },
+      new BetaUserMessageParam { Content = "Good. Now suggest field names for Recipe." },
   ];
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
@@ -498,7 +496,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
   foreach (var (index, question) in questions.Index())
   {
       var turn = index + 1;
-      history.Add(new() { Role = Role.User, Content = question });
+      history.Add(new BetaUserMessageParam { Content = question });
       var response = await client.Beta.Messages.Create(new MessageCreateParams
       {
           Model = Model.ClaudeOpus5_5,
@@ -507,9 +505,8 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
           Betas = [AnthropicBeta.Compact2026_09_04],
           Messages = history,
       });
-      history.Add(new()
+      history.Add(new BetaAssistantMessageParam
       {
-          Role = Role.Assistant,
           Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
       });
 
@@ -530,9 +527,8 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
           {
               history =
               [
-                  new()
+                  new BetaAssistantMessageParam
                   {
-                      Role = Role.Assistant,
                       Content = summary.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
                   },
               ];
@@ -628,10 +624,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
 
       var history = new ArrayList<BetaMessageParam>();
       for (int turn = 1; turn <= questions.size(); turn++) {
-          history.add(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.USER)
-              .content(questions.get(turn - 1))
-              .build());
+          history.add(BetaMessageParam.ofUser(questions.get(turn - 1)));
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(8192)

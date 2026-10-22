@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: b25fa2671463904bc5fc5bcd413e7a4d7ea4ad870d225b24d0faf60042e97af4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d40f99245ebcecea400d48ddf30a4ccf5c16fa76135073411d63943b61b2e779
 ---
 
 ---
@@ -75,7 +75,7 @@ Claude Managed Agents is built around four concepts:
   </Step>
 
   <Step title="Steer or interrupt">
-    Send additional user events to guide the agent mid-execution, or interrupt it to change direction.
+    Send additional user events to guide the agent while it runs, or interrupt it to change direction.
   </Step>
 </Steps>
 

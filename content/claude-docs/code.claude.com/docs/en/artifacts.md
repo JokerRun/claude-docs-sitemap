@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7a9cd3ab93053e864702e98f146988be33ea2fe757d45a6f9d2bd3bef4019000
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: eaf6ba5219a1b84c6e46bb4c5062ce39b6a86084522515e59c271948c741d904
 ---
 
 > ## Documentation Index
@@ -119,6 +119,16 @@ Who you can share with depends on your plan:
 
 * **Within your organization**: on Team and Enterprise plans, grant access to specific people in your organization, or to everyone in it. Viewers sign in to claude.ai as members of your organization to see the page.
 * **Publicly**: share a link that anyone on the internet can open, with no claude.ai sign-in required. On Team and Enterprise plans, public sharing is off until an Owner [enables it for the organization](#control-public-sharing).
+
+### Link to a specific view
+
+If a page has several views, such as tabs or sections, you can link to one of them directly. Ask Claude for the links:
+
+```text wrap theme={null}
+Give me a link to each tab of the deploy failures dashboard.
+```
+
+Each link is the artifact's link with an anchor on the end, such as `#overview`.
 
 ### Let someone edit with you
 

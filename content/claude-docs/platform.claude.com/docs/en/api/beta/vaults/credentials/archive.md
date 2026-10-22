@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: daad909b6d171fae1b630ebd811d595129d0e4f7cfad4579c9a94c0a4eea6767
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b08138a767752a7f6ad7e4a826d351bf6fbb4f7735647a48e4841b599fd25dfc
 ---
 
 ---
@@ -141,6 +141,8 @@ Archive a Credential
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

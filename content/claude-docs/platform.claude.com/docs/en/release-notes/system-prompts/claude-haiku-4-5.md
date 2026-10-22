@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-4-5
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 352d57a3cd899b691b304b36d09b3b450199971a0ec14eb74b15d84fe8a333cf
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: eb9cdb6b9db3552999c933b1467b335f5f25e15def4c776695cf70d08d25f532
 ---
 
 ---
 title: Claude Haiku 4.5 system prompts
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-4-5
-description: See updates to the core system prompt for Claude Haiku 4.5 on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
+description: See updates to the core system prompt for Claude Haiku 4.5 on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
 Changes between the following dated versions are marked with `**` around the changed text.

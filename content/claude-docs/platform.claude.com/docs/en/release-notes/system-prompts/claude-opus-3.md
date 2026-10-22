@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-3
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 534b366d23d673f86409089431e7aebf427b4e886b648d8a406586afd913dfba
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d9f0c66799e57cbba489deea54848e8b1ca4423fe60764575d7c5851b2e5c96b
 ---
 
 ---
 title: Claude Opus 3 system prompts
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-3
-description: See updates to the core system prompt for Claude Opus 3 on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
+description: See updates to the core system prompt for Claude Opus 3 on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
 ## July 12, 2024

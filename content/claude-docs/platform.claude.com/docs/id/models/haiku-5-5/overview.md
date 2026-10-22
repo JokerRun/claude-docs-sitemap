@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 7332cf86e0d9ed8b7a3669d520b45b982db397872b1e4d1ddc3c8dbabc5164cf
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 07b466e8006e719d837adb16048c77f4423259e6eeaaa220917beeea36ff8b71
 ---
 
 ---
@@ -94,11 +94,11 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
 | Retirement                                                                    | Not sooner than October 7, 2027                                                                                                                                                                                                                                                                                                                                                                                         |
 | Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
-## Hal yang perlu diketahui
+## Yang perlu diketahui
 
 * "Adaptive thinking" (pemikiran adaptif) aktif secara default. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
-* Hilangkan `temperature`, `top_p`, dan `top_k`. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters) untuk nilai-nilai yang menghasilkan error 400.
-* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Haiku 5.5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
+* Hilangkan `temperature`, `top_p`, dan `top_k`.
+* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Haiku 5.5 mendukung hingga 300k token output dengan header beta `output-300k-2026-03-24`.
 * Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
@@ -130,7 +130,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
   </Card>
 
   <Card title="System card" icon="file" href="https://www.anthropic.com/document/claude-haiku-5-5-system-card">
-    Evaluasi keamanan dan keputusan deployment untuk Claude Haiku 5.5.
+    Evaluasi keamanan dan keputusan penerapan untuk Claude Haiku 5.5.
   </Card>
 
   <Card title="Harga" icon="coins" href="https://platform.claude.com/docs/id/about-claude/pricing">

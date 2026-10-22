@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 656ab2b7fb29ca58cdd91e0544db92f530fa0f2b4e51a4f13dd51ad576aadf4a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 96cda3f6178cc7e09c4f3533fe27b22e3468e12ea17051b171c343323e0f7aef
 ---
 
 ---
@@ -191,7 +191,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Create a presentation about renewable energy" }],
+      Messages = [new UserMessageParam { Content = "Create a presentation about renewable energy" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -439,7 +439,7 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Create an Excel file with a simple budget spreadsheet" }],
+      Messages = [new UserMessageParam { Content = "Create an Excel file with a simple budget spreadsheet" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -984,7 +984,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Create a sample sales dataset and analyze it" }],
+      Messages = [new UserMessageParam { Content = "Create a sample sales dataset and analyze it" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -1016,9 +1016,9 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
       },
       Messages =
       [
-          new() { Role = Role.User, Content = "Create a sample sales dataset and analyze it" },
-          new() { Role = Role.Assistant, Content = assistantText },
-          new() { Role = Role.User, Content = "What was the total revenue?" },
+          new UserMessageParam { Content = "Create a sample sales dataset and analyze it" },
+          new AssistantMessageParam { Content = assistantText },
+          new UserMessageParam { Content = "What was the total revenue?" },
       ],
       Tools = [new CodeExecutionTool20250825()],
   };
@@ -1350,7 +1350,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
 
   List<MessageParam> messages =
   [
-      new() { Role = Role.User, Content = "Generate and process a large sample dataset" },
+      new UserMessageParam { Content = "Generate and process a large sample dataset" },
   ];
 
   var maxRetries = 10;
@@ -1405,7 +1405,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
       var assistantContent = JsonSerializer.SerializeToElement(
           response.Content.Select(block => block.Json).ToArray()
       );
-      messages.Add(new() { Role = Role.Assistant, Content = new MessageParamContent(assistantContent) });
+      messages.Add(new AssistantMessageParam { Content = new MessageContentParam(assistantContent) });
   }
   ```
 
@@ -1485,12 +1485,7 @@ Skills dapat melakukan operasi yang memerlukan beberapa giliran. Tangani stop re
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       List<MessageParam> messages = new ArrayList<>();
-      messages.add(
-          MessageParam.builder()
-              .role(MessageParam.Role.USER)
-              .content("Generate and process a large sample dataset")
-              .build()
-      );
+      messages.add(MessageParam.ofUser("Generate and process a large sample dataset"));
       int maxRetries = 10;
 
       Message response = client.messages().create(
@@ -1800,7 +1795,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Analyze sales data and create a presentation" }],
+      Messages = [new UserMessageParam { Content = "Analyze sales data and create a presentation" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -2829,7 +2824,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Use updated Skill" }],
+      Messages = [new UserMessageParam { Content = "Use updated Skill" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -2853,7 +2848,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Use latest Skill version" }],
+      Messages = [new UserMessageParam { Content = "Use latest Skill version" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -3413,7 +3408,7 @@ Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Sk
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Build a DCF valuation model for a SaaS company" }],
+      Messages = [new UserMessageParam { Content = "Build a DCF valuation model for a SaaS company" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -4041,7 +4036,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Analyze sales data" }],
+      Messages = [new UserMessageParam { Content = "Analyze sales data" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -4071,7 +4066,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
               },
           ],
       },
-      Messages = [new() { Role = Role.User, Content = "Create a presentation" }],
+      Messages = [new UserMessageParam { Content = "Create a presentation" }],
       Tools = [new CodeExecutionTool20250825()],
   };
 
@@ -4361,7 +4356,7 @@ Tangani error terkait Skill dengan baik:
                   },
               ],
           },
-          Messages = [new() { Role = Role.User, Content = "Process data" }],
+          Messages = [new UserMessageParam { Content = "Process data" }],
           Tools = [new CodeExecutionTool20250825()],
       };
 

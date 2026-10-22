@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 7fcacee1f76ae008ba6357b496cbd1fe1c7889150dd1a557f5a1e066929eaba4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cb1fe022a9f6a25a70dd6443d0256a52976ebc8b6ee6b7cb7e179492c90d26fe
 ---
 
 ---
@@ -246,7 +246,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
       MaxTokens = 1000,
       Messages = new List<BetaMessageParam>
       {
-          new() { Role = Role.User, Content = "Use the hello tool to greet tunnel." }
+          new BetaUserMessageParam { Content = "Use the hello tool to greet tunnel." }
       },
       McpServers = new List<BetaRequestMcpServerUrlDefinition>
       {

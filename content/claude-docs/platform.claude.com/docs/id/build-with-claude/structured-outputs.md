@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a79d375aa2ceebbbffbb8871bab1eb881210729e51012fdd039d0a24f1449a0a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f49159a854ba8ce531cb9e9da0e1e08b534f9635d13c6aad7022cb53e701dcdb
 ---
 
 ---
@@ -267,8 +267,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui "constrained decod
     {
         Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
-        Messages = [new() {
-            Role = Role.User,
+        Messages = [new UserMessageParam {
             Content = "Extract the key information from this email: "
                 + "John Smith (john@example.com) is interested in our Enterprise plan "
                 + "and wants to schedule a demo for next Tuesday at 2pm."
@@ -948,8 +947,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
     {
         Model = Model.ClaudeOpus5_5,
         MaxTokens = 1024,
-        Messages = [new() {
-            Role = Role.User,
+        Messages = [new UserMessageParam {
             Content = "Extract the key information from this email: "
                 + "John Smith (john@example.com) is interested in our Enterprise plan "
                 + "and wants to schedule a demo for next Tuesday at 2pm."
@@ -1358,7 +1356,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
                   },
               },
           },
-          Messages = [new() { Role = Role.User, Content = $"Extract invoice data from: {invoiceText}" }]
+          Messages = [new UserMessageParam { Content = $"Extract invoice data from: {invoiceText}" }]
       };
 
       var message = await client.Messages.Create(parameters);
@@ -1660,7 +1658,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = $"Classify this feedback: {feedbackText}" }],
+          Messages = [new UserMessageParam { Content = $"Classify this feedback: {feedbackText}" }],
           OutputConfig = new OutputConfig
           {
               Format = new JsonOutputFormat
@@ -1946,7 +1944,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Process this request: ..." }],
+          Messages = [new UserMessageParam { Content = "Process this request: ..." }],
           OutputConfig = new OutputConfig
           {
               Format = new JsonOutputFormat
@@ -2364,7 +2362,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Help me plan a trip to Paris departing May 15, 2026" }],
+      Messages = [new UserMessageParam { Content = "Help me plan a trip to Paris departing May 15, 2026" }],
       // Output JSON: format respons terstruktur
       OutputConfig = new OutputConfig
       {

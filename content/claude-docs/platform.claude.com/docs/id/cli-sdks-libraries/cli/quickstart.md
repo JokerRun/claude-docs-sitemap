@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a1524b4ac8147e2a6728b479971c2186b346027a889c06863069bd328467c6b1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c29b644ba8caefabe42cf0c0233ead868d41d43290ee4157046ed2d5bc5aaaa4
 ---
 
 ---
-title: Panduan cepat CLI
+title: Mulai cepat CLI
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
 description: Instal alat baris perintah ant, lakukan autentikasi, dan kirim permintaan pertama Anda ke Claude API.
 ---
@@ -20,7 +20,7 @@ CLI `ant` menyediakan akses ke Claude API dari terminal Anda. Setiap sumber daya
   </video>
 </Frame>
 
-Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis tangan, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. Alat ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan secara otomatis melakukan paginasi pada endpoint daftar.
+Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis tangan, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. Alat ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan melakukan "pagination" (paginasi) pada endpoint daftar secara otomatis.
 
 <Info>
   Untuk parameter khusus endpoint dan skema respons, lihat [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Halaman ini membantu Anda mendapatkan perintah yang berfungsi. Untuk semua hal lain yang dapat dilakukan CLI, lihat [Menggunakan CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using) dan [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
@@ -39,7 +39,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.44.0
+    VERSION=2.1.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -53,10 +53,10 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
   </Tab>
 
   <Tab title="Go">
-    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`. Memerlukan Go 1.25 atau lebih baru.
+    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
     ```bash
-    go install github.com/anthropics/anthropic-cli/cmd/ant@latest
+    go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
     Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
@@ -75,19 +75,19 @@ ant --version
 
 ## Autentikasi
 
-`ant auth login` membuka alur OAuth berbasis browser terhadap Claude Console dan menyimpan kredensial yang dihasilkan secara lokal, sehingga Anda dapat memanggil API tanpa membuat atau mengelola "API key" (kunci API).
+`ant auth login` membuka alur OAuth berbasis browser terhadap Claude Console dan menyimpan kredensial yang dihasilkan secara lokal, sehingga Anda dapat memanggil API tanpa membuat atau mengelola kunci API.
 
 ```bash CLI
 ant auth login
 ```
 
 <Note>
-  Untuk cara autentikasi lainnya (variabel lingkungan kunci API, host headless, beberapa workspace, profil bernama, dan Workload Identity Federation), lihat [opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
+  Untuk cara autentikasi lainnya (variabel lingkungan kunci API, host headless, beberapa workspace, profil bernama, dan Workload Identity Federation), lihat [Opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
 </Note>
 
 ## Kirim permintaan pertama Anda
 
-Setelah binary terinstal dan terautentikasi, panggil [Messages API](https://platform.claude.com/docs/id/api/cli/messages/create):
+Dengan binary yang sudah terinstal dan terautentikasi, panggil [Messages API](https://platform.claude.com/docs/id/api/cli/messages/create):
 
 ```bash
 ant messages create \
@@ -113,11 +113,11 @@ ant messages create \
 }
 ```
 
-Responsnya adalah objek API lengkap, ditampilkan dengan format rapi (pretty-printed) karena stdout adalah terminal.
+Responsnya adalah objek API lengkap, dicetak dengan format rapi karena stdout adalah terminal.
 
-## Pelengkapan shell
+## Penyelesaian shell
 
-CLI menyertakan skrip pelengkapan (completion) untuk bash, zsh, fish, dan PowerShell. Buat dan instal satu untuk shell Anda:
+CLI menyertakan skrip "shell completion" (penyelesaian shell) untuk bash, zsh, fish, dan PowerShell. Buat dan instal satu untuk shell Anda:
 
 <Tabs>
   <Tab title="zsh">

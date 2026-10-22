@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 8b0918a38f87c49348ad5c1ba75b09b4d498ab3b3b8193035ab762cc43ca17db
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 47c21c95b839661cd7d6a915bb5185d6dcc2f08e4346881b9121553686fe3077
 ---
 
 ---
@@ -133,6 +133,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

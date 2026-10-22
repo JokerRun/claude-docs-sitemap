@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: ae3acfab6dd40713b0c09e69c856f121e378dfc1cf690dfbf775d6c524d2ae05
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 22e04818da6519227b4f371814026dfc19a5e3fb5edc4fdc106c396ab3adfd2b
 ---
 
 ---
@@ -130,9 +130,8 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
           Tools = [new ToolTextEditor20250728 { MaxCharacters = 10000 }],
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "There's a syntax error in my primes.py file. Can you help me fix it?",
               },
           ],
@@ -478,9 +477,8 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
           Tools = [new ToolTextEditor20250728()],
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "There's a syntax error in my primes.py file. Can you help me fix it?",
               },
           ],
@@ -814,15 +812,13 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
           Tools = [new ToolTextEditor20250728()],
           Messages =
           [
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "There's a syntax error in my primes.py file. Can you help me fix it?",
               },
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new TextBlockParam()
                       {
@@ -838,19 +834,18 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
                               ["path"] = JsonSerializer.SerializeToElement("primes.py"),
                           },
                       }),
-                  }),
+                  },
               },
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new ToolResultBlockParam()
                       {
                           ToolUseID = "toolu_01AbCdEfGhIjKlMnOpQrStU",
                           Content = "1: def is_prime(n):\n2:     \"\"\"Check if a number is prime.\"\"\"\n3:     if n <= 1:\n4:         return False\n5:     if n <= 3:\n6:         return True\n7:     if n % 2 == 0 or n % 3 == 0:\n8:         return False\n9:     i = 5\n10:     while i * i <= n:\n11:         if n % i == 0 or n % (i + 2) == 0:\n12:             return False\n13:         i += 6\n14:     return True\n15: \n16: def get_primes(limit):\n17:     \"\"\"Generate a list of prime numbers up to the given limit.\"\"\"\n18:     primes = []\n19:     for num in range(2, limit + 1)\n20:         if is_prime(num):\n21:             primes.append(num)\n22:     return primes\n23: \n24: def main():\n25:     \"\"\"Main function to demonstrate prime number generation.\"\"\"\n26:     limit = 100\n27:     prime_list = get_primes(limit)\n28:     print(f\"Prime numbers up to {limit}:\")\n29:     print(prime_list)\n30:     print(f\"Found {len(prime_list)} prime numbers.\")\n31: \n32: if __name__ == \"__main__\":\n33:     main()",
                       }),
-                  }),
+                  },
               },
           ],
       }
@@ -901,7 +896,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
     .maxTokens(1024)
     .addTool(ToolTextEditor20250728.builder().build())
     .addUserMessage("There's a syntax error in my primes.py file. Can you help me fix it?")
-    .addAssistantMessageOfBlockParams(
+    .addAssistantMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofText(
           TextBlockParam.builder()
@@ -922,7 +917,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
         )
       )
     )
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofToolResult(
           ToolResultBlockParam.builder()
@@ -1246,10 +1241,9 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
           Messages =
           [
               // Pesan-pesan sebelumnya...
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new TextBlockParam()
                       {
@@ -1267,19 +1261,18 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
                               ["new_str"] = JsonSerializer.SerializeToElement("    for num in range(2, limit + 1):"),
                           },
                       }),
-                  }),
+                  },
               },
-              new()
+              new UserMessageParam
               {
-                  Role = Role.User,
-                  Content = new MessageParamContent(new List<ContentBlockParam>
+                  Content = new List<ContentBlockParam>
                   {
                       new ContentBlockParam(new ToolResultBlockParam()
                       {
                           ToolUseID = "toolu_01PqRsTuVwXyZAbCdEfGh",
                           Content = "Successfully replaced text at exactly one location.",
                       }),
-                  }),
+                  },
               },
           ],
       }
@@ -1335,7 +1328,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
     .maxTokens(1024)
     .addTool(ToolTextEditor20250728.builder().build())
     // Pesan-pesan sebelumnya akan ditempatkan di sini
-    .addAssistantMessageOfBlockParams(
+    .addAssistantMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofText(
           TextBlockParam.builder()
@@ -1366,7 +1359,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
         )
       )
     )
-    .addUserMessageOfBlockParams(
+    .addUserMessageOfContentBlockParams(
       List.of(
         ContentBlockParam.ofToolResult(
           ToolResultBlockParam.builder()

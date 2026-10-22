@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: cb5c94222a14dc696548c1eff97c3fef3a582a425504ae78c09ce032ab7baf52
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: eaf2a25cb6a07d71bc97993acb047487882101e8f03964324e1c4b299af948c0
 ---
 
 ---
@@ -137,6 +137,8 @@ Archive Agent
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

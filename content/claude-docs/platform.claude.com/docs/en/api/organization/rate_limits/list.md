@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rate_limits/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a64078fc4ce33fe20962ac4fabf9acf89436de049f6fcb4b9ee7819e316003cc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 510e3bb1ef858f573e10d09b2907bd7bc882ab61b00ddf3e87699108da947cf6
 ---
 
 ---
@@ -80,7 +80,7 @@ the remaining entries.
 
   - `id: string`
 
-    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`.
+    Identifier of this rate-limit entry. It is stable within the organization and differs between organizations; the group's own identifier is `group.id`. Pass it as `rate_limit_id` to set a workspace's overrides for this group.
 
   - `group: OrganizationRateLimitModelGroup or OrganizationRateLimitBatchGroup or OrganizationRateLimitTokenCountGroup or 3 more`
 

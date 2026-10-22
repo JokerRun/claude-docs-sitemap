@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 31838d471e1993bb14049d5b5f5c314b04b6eb323b87282d9c81d69e38371756
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6a1ebc3d85aeac4ed1b3d1d3e4770639c1d30f570371b2d71d07be9445dafaa1
 ---
 
 ---
@@ -115,7 +115,7 @@ Fast mode works only on supported models. See [Model availability](https://platf
       MaxTokens = 4096,
       Speed = Speed.Fast,
       Messages = [
-          new() { Role = Role.User, Content = "Refactor this module to use dependency injection" }
+          new UserMessageParam { Content = "Refactor this module to use dependency injection" }
       ],
   });
 
@@ -188,7 +188,7 @@ Fast mode works only on supported models. See [Model availability](https://platf
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     speed: "fast",
     messages: [{role: "user", content: "Refactor this module to use dependency injection"}]
@@ -229,8 +229,8 @@ Fast mode is priced at a multiplier on standard rates across the full context wi
 
 Fast mode pricing stacks with other pricing modifiers:
 
-* [Prompt caching multipliers](https://platform.claude.com/docs/en/about-claude/pricing#prompt-caching) apply on top of fast mode pricing
-* [Data residency](https://platform.claude.com/docs/en/manage-claude/data-residency) multipliers apply on top of fast mode pricing
+* [Prompt caching multipliers](https://platform.claude.com/docs/en/about-claude/pricing#prompt-caching) apply on top of fast mode pricing.
+* [Data residency](https://platform.claude.com/docs/en/manage-claude/data-residency) multipliers apply on top of fast mode pricing.
 
 For complete pricing details, see the [Pricing](https://platform.claude.com/docs/en/about-claude/pricing#fast-mode-pricing) page.
 
@@ -316,7 +316,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Speed = Speed.Fast,
-      Messages = [new() { Role = Role.User, Content = "Hello" }],
+      Messages = [new UserMessageParam { Content = "Hello" }],
   });
 
   Console.WriteLine(response.Usage.Speed);  // "fast" or "standard"
@@ -370,7 +370,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     speed: "fast",
     messages: [{ role: "user", content: "Hello" }]
@@ -380,7 +380,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
   ```
 </CodeGroup>
 
-```json Output
+```text Output wrap
 {
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
@@ -407,7 +407,7 @@ The SDK automatically retries fast mode `429` errors up to 2 times by default (c
 If you'd prefer to fall back to standard speed rather than wait for fast mode capacity, catch the rate limit error and retry without `speed: "fast"`. Set `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) to `0` on the initial fast request to skip automatic retries and fail immediately on rate limit errors.
 
 <Note>
-  Falling back from fast to standard speed will result in a [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) miss. Requests at different speeds do not share cached prefixes.
+  Falling back from fast to standard speed results in a [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) miss. Requests at different speeds do not share cached prefixes.
 </Note>
 
 Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) to `0` also disables retries for other transient errors (overloaded, internal server errors), the following examples reissue the original request with default retries for those cases.
@@ -525,7 +525,7 @@ Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Hello" }],
+          Messages = [new UserMessageParam { Content = "Hello" }],
           Speed = Speed.Fast,
       },
       maxRetries: 0);

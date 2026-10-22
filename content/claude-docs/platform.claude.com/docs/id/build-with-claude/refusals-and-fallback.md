@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 2e457385cccb99f29ebc70e78fe264f8fccef112e2c02877e498e1b03dd61d1f
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2552b1f5e843268e72050b44756bb6cd6e19033387d41ddb760674c43fc758ad
 ---
 
 ---
@@ -82,7 +82,7 @@ Penyiapan paling sederhana, dalam beta di Claude API: atur `fallbacks` ke `"defa
       {
           Model = Messages::Model.ClaudeFable5,
           MaxTokens = 1024,
-          Messages = [new() { Content = "Hello, Claude", Role = Role.User }],
+          Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
           Fallbacks = new Default(),
           Betas = [AnthropicBeta.ServerSideFallback2026_07_01],
       }
@@ -337,10 +337,7 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
       {
           Model = Messages::Model.ClaudeFable5,
           MaxTokens = 1024,
-          Messages =
-          [
-              new() { Content = "Hello, Claude", Role = Role.User },
-          ],
+          Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
           Fallbacks = new Default(),
           Betas = [AnthropicBeta.ServerSideFallback2026_07_01],
       }
@@ -556,7 +553,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
       {
           Model = Messages::Model.ClaudeFable5,
           MaxTokens = 1024,
-          Messages = [new() { Content = "Hello, Claude", Role = Role.User }],
+          Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
           Fallbacks = new([new(Messages::Model.ClaudeOpus4_8)]),
           Betas = [AnthropicBeta.ServerSideFallback2026_07_01],
       }
@@ -877,7 +874,7 @@ Teruskan `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddle
   {
       Model = Messages::Model.ClaudeFable5,
       MaxTokens = 1024,
-      Messages = [new() { Content = "Hello, Claude", Role = Role.User }],
+      Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
   };
 
   // Streaming: jika stream berakhir dengan penolakan, handler menyambungkan event

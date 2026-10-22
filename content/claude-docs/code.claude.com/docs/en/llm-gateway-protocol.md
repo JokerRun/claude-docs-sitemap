@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 8062000523b9984f737f0ff4c0fcd553a12eab0514d69c310701dac5d594950c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 171b414d0e3374a3d8bb219b3fb029feb9c662afae7a0ed2dbffa708dde0e7b9
 ---
 
 > ## Documentation Index
@@ -108,7 +108,7 @@ The table below compares the three connection methods, one behavior per row. It 
 | Model IDs in requests by default | The provider's form, such as `us.anthropic.claude-opus-4-8` on Amazon Bedrock | Anthropic IDs, such as `claude-opus-4-8` | Anthropic IDs |
 | `anthropic-beta` values sent | The subset Amazon Bedrock and Agent Platform accept | The full set described under [feature pass-through](#feature-pass-through), unless the developer sets [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](#disable-pre-release-capabilities) | The subset Amazon Bedrock and Agent Platform accept |
 | Request fields for a model ID Claude Code doesn't recognize, such as a gateway alias | Thinking with a fixed budget rather than adaptive reasoning, and no effort or context management fields. Claude Code still sends [mid-conversation system messages](#feature-pass-through) | Everything current Claude models accept on the Claude API, including adaptive reasoning, effort, and context management, which an Amazon Bedrock or Agent Platform upstream can reject | Same as the Amazon Bedrock or Agent Platform format |
-| One-hour [prompt cache TTL](/docs/en/prompt-caching#choose-the-ttl-yourself) when a developer opts in | Requested through the `ttl` field in `cache_control`, with no beta value | Requested through the `ttl` field plus an `extended-cache-ttl` value in `anthropic-beta`, which you must forward | See the Claude apps gateway [availability and limitations](/docs/en/claude-apps-gateway#availability-and-limitations) table |
+| One-hour [prompt cache TTL](/docs/en/prompt-caching#choose-the-ttl-yourself) when a developer opts in | Requested through the `ttl` field in `cache_control`, with no beta value | Requested through the `ttl` field plus an `extended-cache-ttl` value in `anthropic-beta`, which you must forward | Requested through the `ttl` field, with no beta value. See [One-hour prompt cache](/docs/en/claude-apps-gateway-config#one-hour-prompt-cache) |
 | Model for [background tasks](/docs/en/costs#background-token-usage) unless `ANTHROPIC_DEFAULT_HAIKU_MODEL` pins one | The default Sonnet model, or the main model once one is selected, as the [Amazon Bedrock](/docs/en/amazon-bedrock#4-pin-model-versions) and [Agent Platform](/docs/en/google-vertex-ai#5-pin-model-versions) pages describe | The main model, or the default Haiku model when `ANTHROPIC_API_KEY` or `apiKeyHelper` supplies an Anthropic Console key and `ANTHROPIC_AUTH_TOKEN` is unset | The main model |
 
 For the features each connection supports and the telemetry it sends to Anthropic by default, see [Feature availability](/docs/en/feature-availability#availability-by-model-provider) and [Default behaviors by API provider](/docs/en/data-usage#default-behaviors-by-api-provider).

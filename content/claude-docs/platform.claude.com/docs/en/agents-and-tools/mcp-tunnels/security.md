@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: 0df903933be8d645c8562624f365c40a77c9236ffc35d967a10f18c66f656eb6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8b259c89d8532ab0c94af32b2834feccb8dc6614f16bb1b417a5645dcf4e5620
 ---
 
 ---
@@ -19,7 +19,7 @@ The tunnel architecture provides strong defaults (outbound-only connectivity, en
 
 ## Best practices
 
-* **Require OAuth on every MCP server.** Configure each [upstream MCP server](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) to require OAuth as described in the [MCP authorization spec](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth provides defense in depth on top of the tunnel's transport authentication and enables user-level authorization at the data layer.
+* **Require OAuth on every MCP server.** Configure each [upstream MCP server](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) to require OAuth as described in the [MCP authorization spec](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth provides defense in depth on top of the tunnel's transport authentication and allows user-level authorization at the data layer.
 * **Enable SSO for your organization.** Tunnels, federation rules, and service accounts are managed in the Claude Console. SSO enforces your identity provider's session controls on the admins who can change them.
 * **Restrict `upstream.allowed_ips`.** Use the smallest CIDR ranges that cover your MCP servers. This is the [proxy](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components)'s primary SSRF defense.
 * **Monitor logs.** Alert on warnings, errors, and unusual traffic patterns from the tunnel stack.

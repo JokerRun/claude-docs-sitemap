@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 435b2b3d8b68ccf06c2fe56fc2a73a658363f7ab2a0f5416bdd4f3dc7e036176
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c615b37fe21b165a0c0df70877e130d65b89eb00ecd2e1ad63e82f6fe5ecbea9
 ---
 
 ---
@@ -20,7 +20,7 @@ Biarkan Claude Code menyiapkan fitur ini untuk Anda
 Panduan ini menunjukkan cara menggunakan kunci [AWS KMS](https://aws.amazon.com/kms/) sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 <Note>
@@ -127,6 +127,38 @@ Jangan hapus kondisi `kms:EncryptionContext:anthropic:org_uuid`, atau validasi a
   ```
 </Warning>
 
+<Note>
+  **Opsional:** Untuk membatasi kunci ke workspace tertentu, ganti pernyataan `AllowAnthropicCMEKCrypto` dalam kebijakan kunci dengan pernyataan ini. Cantumkan satu ID compartment untuk setiap workspace.
+
+  ```json
+  {
+    "Sid": "AllowAnthropicCMEKCrypto",
+    "Effect": "Allow",
+    "Principal": {
+      "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
+    },
+    "Action": ["kms:Encrypt", "kms:Decrypt"],
+    "Resource": "*",
+    "Condition": {
+      "StringEquals": {
+        "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
+      },
+      "StringEqualsIfExists": {
+        "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
+      }
+    }
+  }
+  ```
+
+  Tambahkan ID compartment setiap workspace sebelum Anda melampirkan kunci ke workspace tersebut. Untuk workspace baru:
+
+  1. Buat workspace tanpa kunci.
+  2. Tambahkan ID compartment-nya ke kebijakan.
+  3. Lampirkan kunci.
+
+  **Menemukan ID compartment Anda:** Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`). Pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
+</Note>
+
 ### Membuat kunci
 
 Buat kunci di [region AS](https://platform.claude.com/docs/id/manage-claude/cmek#availability-and-regions). Untuk latensi terendah, gunakan `us-east-2`.
@@ -209,38 +241,6 @@ Buat kunci di [region AS](https://platform.claude.com/docs/id/manage-claude/cmek
     Salin `KeyMetadata.Arn` dari output. Anda memerlukannya untuk mendaftarkan kunci.
   </Tab>
 </Tabs>
-
-<Note>
-  **Opsional:** Untuk membatasi kunci ke workspace tertentu, ganti pernyataan `AllowAnthropicCMEKCrypto` dalam kebijakan kunci dengan pernyataan ini. Cantumkan satu ID compartment untuk setiap workspace.
-
-  ```json
-  {
-    "Sid": "AllowAnthropicCMEKCrypto",
-    "Effect": "Allow",
-    "Principal": {
-      "AWS": "arn:aws:iam::915198916910:role/anthropic-cmek-client-us"
-    },
-    "Action": ["kms:Encrypt", "kms:Decrypt"],
-    "Resource": "*",
-    "Condition": {
-      "StringEquals": {
-        "kms:EncryptionContext:anthropic:org_uuid": ["<ORGANIZATION_UUID>"]
-      },
-      "StringEqualsIfExists": {
-        "kms:EncryptionContext:anthropic:compartment_uuid": ["<COMPARTMENT_UUID>"]
-      }
-    }
-  }
-  ```
-
-  Tambahkan ID compartment setiap workspace sebelum Anda melampirkan kunci ke workspace tersebut. Untuk workspace baru:
-
-  1. Buat workspace tanpa kunci.
-  2. Tambahkan ID compartment-nya ke kebijakan.
-  3. Lampirkan kunci.
-
-  **Menemukan ID compartment Anda:** Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`). Pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
-</Note>
 
 ## Daftarkan kunci dengan Anthropic
 
@@ -688,7 +688,7 @@ Memvalidasi kunci akan menambahkan kesalahan access-denied yang memang diharapka
 Jika validasi gagal, penyebab umum adalah:
 
 * **ID organisasi salah:** Pastikan kondisi `org_uuid` mencantumkan ID organisasi polos Anda, bukan ID yang berawalan `org_`.
-* **Ketidakcocokan konteks enkripsi:** Jika kebijakan memiliki kondisi `kms:EncryptionContext:anthropic:compartment_uuid`, pastikan kondisi tersebut mencantumkan [ID compartment](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#compartment-id) dari setiap workspace tempat kunci dilampirkan. Pada kunci lama, pernyataan compartment mungkin masih mengizinkan `kms:Encrypt`. Dalam hal ini, pertahankan juga nilai semua-nol (`00000000-0000-0000-0000-000000000000`) dalam daftar.
+* **Ketidakcocokan konteks enkripsi:** Jika kebijakan memiliki kondisi `kms:EncryptionContext:anthropic:compartment_uuid`, pastikan kondisi tersebut mencantumkan [ID compartment](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#compartment-id) dari setiap workspace tempat kunci dilampirkan.
 * **Resource control policies (RCP):** Beberapa RCP menolak operasi KMS ketika `aws:PrincipalOrgID` tidak cocok dengan organisasi AWS Anda. RCP seperti ini memblokir peran Anthropic. Tambahkan pengecualian di dalamnya untuk kunci ini atau untuk ARN peran Anthropic. Service control policies tidak berlaku di sini.
 * **Akses diberikan melalui IAM alih-alih kebijakan kunci:** Berikan akses kepada peran Anthropic di dalam kebijakan kunci itu sendiri, bukan melalui kebijakan IAM di akun Anda. Untuk memeriksa kebijakan kunci, jalankan `aws kms get-key-policy --region <REGION> --key-id <KEY_ARN> --policy-name default`.
 * **Ketidakcocokan region:** Konfirmasikan bahwa kunci berada di region AS.

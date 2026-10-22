@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 2bbf7e7b838397cb62f5cc4f9328f2d9838793c0eaad7bb0a59a92f8b6ad7d76
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c3f25c4f07d2e0b3f22a22510880eb5ac8cccd794d78c730d4d101f7fde0653c
 ---
 
 ---
@@ -137,6 +137,8 @@ Pause Deployment
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 132a55a39537cf0449be82f231d67068b4ef654a42f653d50c6ba13aa2c511cc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 905e9bab74aa8f7294bdcbc5324a48ecbf6f2e77f7473e91564cbf9c84ad8ef3
 ---
 
 ---
@@ -180,14 +180,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
           new ToolTextEditor20250728(),
           new ToolBash20250124(),
       ],
-      Messages =
-      [
-          new MessageParam
-          {
-              Role = Role.User,
-              Content = "Save a picture of a cat to my desktop.",
-          },
-      ],
+      Messages = [new UserMessageParam { Content = "Save a picture of a cat to my desktop." }],
   };
 
   var response = await client.Messages.Create(parameters);
@@ -569,9 +562,8 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
 
           // Tambahkan respons Claude ke riwayat percakapan
           messages.Add(
-              new()
+              new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = response
                       .Content.Select(block => new ContentBlockParam(block.Json))
                       .ToList(),
@@ -586,7 +578,7 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
           }
 
           // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
-          messages.Add(new() { Role = Role.User, Content = toolResults });
+          messages.Add(new UserMessageParam { Content = toolResults });
       }
 
       return messages;
@@ -639,10 +631,7 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
                   .build());
 
           // Tambahkan respons Claude ke riwayat percakapan
-          messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.ASSISTANT)
-                  .contentOfBlockParams(response.content().stream().map(ContentBlock::toParam).toList())
-                  .build());
+          messages.add(response.toParam());
 
           // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
           List<ContentBlockParam> toolResults = processToolCalls(response);
@@ -651,10 +640,7 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
           }
 
           // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
-          messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.USER)
-                  .contentOfBlockParams(toolResults)
-                  .build());
+          messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
       }
       return messages;
   }
@@ -1344,7 +1330,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             continue;
           }
           if (failed) {
-            // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya sebagai tidak dieksekusi
+            // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya tanpa menjalankannya
             toolResults.push(computerResult(block.id, HALT_TEXT, true));
             continue;
           }

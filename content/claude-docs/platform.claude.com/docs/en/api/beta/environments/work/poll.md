@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 63bdfbfa939cfc6968c361ffb1b0414b3ed711b7304bfe7defabe47fc5258d6a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 38ab9033dd61de5f7201e052a2c8a2f741c38c22b7e2a02ae42d1540cd498cdb
 ---
 
 ---
@@ -151,6 +151,8 @@ Long poll for work items in the queue.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"Anthropic-Worker-ID": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 791a1e7e1dda4a886447505dd18f49a1756a24f298eb6ef3858b1b03e94c90eb
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6ae7886d899627de51195ce540c480bd50d1a852cacd28b08fa2ebf657b4a6e4
 ---
 
 ---
@@ -60,8 +60,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
   ```
 
   ```bash CLI
-  ant messages create \
-    --format yaml <<'YAML'
+  ant messages create --format yaml <<'YAML'
   model: claude-sonnet-4-6
   max_tokens: 16000
   thinking:
@@ -138,9 +137,8 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?",
           },
       ],
@@ -244,7 +242,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: Anthropic::Model::CLAUDE_SONNET_4_6,
     max_tokens: 16_000,
     thinking: {
       type: :enabled,

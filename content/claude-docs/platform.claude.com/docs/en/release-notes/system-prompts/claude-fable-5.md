@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 15ff3cca481f9050b1f89c16cfc75c4933362214d975db5f01d79f3174382352
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9e495bdd62b9db3168b6b61eb8ffafcb2651af5b31a3708fb9928f3acde127cb
 ---
 
 ---
 title: Claude Fable 5 system prompts
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5
-description: See updates to the core system prompt for Claude Fable 5 on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
+description: See updates to the core system prompt for Claude Fable 5 on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
 ## June 9, 2026

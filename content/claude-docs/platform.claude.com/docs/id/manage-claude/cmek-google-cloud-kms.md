@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: d2e3fc685ee47e5c54e45f0ef5bbc85ea87ef45b8dbaaf3565b9532a28b578fc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: fd4af02b4e756d61323ddb54a8e1f93f8a0a8979d125a220773224412b3f192b
 ---
 
 ---
@@ -20,7 +20,7 @@ Biarkan Claude Code menyiapkan fitur ini untuk Anda
 Panduan ini menunjukkan cara menggunakan kunci Google Cloud KMS sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
@@ -58,7 +58,7 @@ Kunci harus memenuhi persyaratan berikut:
 * **Akses:** Berikan peran `roles/cloudkms.cryptoKeyEncrypterDecrypter` dan `roles/cloudkms.viewer` kepada akun layanan Anthropic pada kunci itu sendiri.
 
 <Note>
-  **Menemukan ID organisasi Anda:** Gunakan UUID polos, bukan ID yang diawali `org_`. Salin dari salah satu tempat berikut:
+  **Menemukan ID organisasi Anda:** Gunakan UUID polos, bukan ID yang berawalan `org_`. Salin dari salah satu tempat berikut:
 
   * **Claude Console:** kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`)
   * **claude.ai:** kolom **Organization ID** di bawah **Organization settings > Organization**
@@ -232,7 +232,7 @@ projects/<your-project-id>/locations/<region>/keyRings/<your-keyring-name>/crypt
           </Step>
 
           <Step title="Validasi kunci">
-            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul ketika pemeriksaan berhasil. Jika gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#troubleshoot-validation) untuk penyebab umum.
+            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#troubleshoot-validation) untuk penyebab umum.
           </Step>
 
           <Step title="Lampirkan kunci ke workspace">

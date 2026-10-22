@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 225df17c5f65e4306f83987f886c75c2f1f552e1de3342515d4df8a4fc63c19a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c953f3bf2605769657f28aacb90a081f04cf1f44d75016e54223f5912b76169c
 ---
 
 ---
@@ -447,7 +447,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
 <CodeGroup exclude="shell">
   ```python Python
-  # Di chatbot.py Anda, impor ini dari config.py yang Anda tulis di atas:
+  # Di chatbot.py Anda, impor ini dari config.py yang Anda tulis sebelumnya:
   # from config import IDENTITY, TOOLS, MODEL, get_quote
   from anthropic import Anthropic
   from dotenv import load_dotenv
@@ -667,7 +667,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
       public async Task<string> ProcessUserInput(string userInput)
       {
-          Messages.Add(new() { Role = Role.User, Content = userInput });
+          Messages.Add(new UserMessageParam { Content = userInput });
 
           var responseMessage = await GenerateMessage(Messages, maxTokens: 2048);
 
@@ -675,16 +675,14 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
           {
               var toolResult = HandleToolUse(toolUse.Name, toolUse.Input);
 
-              Messages.Add(new()
+              Messages.Add(new AssistantMessageParam
               {
-                  Role = Role.Assistant,
                   Content = responseMessage.Content
                       .Select(contentBlock => new ContentBlockParam(contentBlock.Json))
                       .ToList(),
               });
-              Messages.Add(new()
+              Messages.Add(new UserMessageParam
               {
-                  Role = Role.User,
                   Content = new List<ContentBlockParam>
                   {
                       new ToolResultBlockParam { ToolUseID = toolUse.ID, Content = toolResult },
@@ -697,7 +695,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
               {
                   if (block.TryPickText(out var followUpText))
                   {
-                      Messages.Add(new() { Role = Role.Assistant, Content = followUpText.Text });
+                      Messages.Add(new AssistantMessageParam { Content = followUpText.Text });
                       return followUpText.Text;
                   }
               }
@@ -709,7 +707,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
           {
               if (block.TryPickText(out var textBlock))
               {
-                  Messages.Add(new() { Role = Role.Assistant, Content = textBlock.Text });
+                  Messages.Add(new AssistantMessageParam { Content = textBlock.Text });
                   return textBlock.Text;
               }
           }
@@ -866,10 +864,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
       }
 
       String processUserInput(String userInput) {
-          messages.add(MessageParam.builder()
-                  .role(MessageParam.Role.USER)
-                  .content(userInput)
-                  .build());
+          messages.add(MessageParam.ofUser(userInput));
 
           Message responseMessage = generateMessage(messages, 2048);
 
@@ -881,18 +876,13 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                       (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
               String result = handleToolUse(toolUse.name(), toolInput);
 
-              messages.add(MessageParam.builder()
-                      .role(MessageParam.Role.ASSISTANT)
-                      .contentOfBlockParams(content.stream().map(ContentBlock::toParam).toList())
-                      .build());
-              messages.add(MessageParam.builder()
-                      .role(MessageParam.Role.USER)
-                      .contentOfBlockParams(List.of(ContentBlockParam.ofToolResult(
-                              ToolResultBlockParam.builder()
-                                      .toolUseId(toolUse.id())
-                                      .content(result)
-                                      .build())))
-                      .build());
+              messages.add(MessageParam.ofAssistantOfContentBlockParams(
+                      content.stream().map(ContentBlock::toParam).toList()));
+              messages.add(MessageParam.ofUserOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
+                      ToolResultBlockParam.builder()
+                              .toolUseId(toolUse.id())
+                              .content(result)
+                              .build()))));
 
               Message followUpResponse = generateMessage(messages, 2048);
 
@@ -901,10 +891,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                       .findFirst()
                       .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = followUpBlock.asText().text();
-              messages.add(MessageParam.builder()
-                      .role(MessageParam.Role.ASSISTANT)
-                      .content(responseText)
-                      .build());
+              messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
           } else {
               ContentBlock textBlock = content.stream()
@@ -912,10 +899,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                       .findFirst()
                       .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = textBlock.asText().text();
-              messages.add(MessageParam.builder()
-                      .role(MessageParam.Role.ASSISTANT)
-                      .content(responseText)
-                      .build());
+              messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
           }
       }
@@ -939,18 +923,19 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
   ```php PHP
   use Anthropic\Client;
+  use Anthropic\Messages\AssistantMessageParam;
   use Anthropic\Messages\Message;
-  use Anthropic\Messages\MessageParam;
   use Anthropic\Messages\TextBlock;
   use Anthropic\Messages\ToolResultBlockParam;
   use Anthropic\Messages\ToolUseBlock;
+  use Anthropic\Messages\UserMessageParam;
 
   class ChatBot
   {
       // MODEL, IDENTITY, TOOLS, dan get_quote() mencerminkan nilai config.py
       // yang didefinisikan sebelumnya dalam panduan ini (ditampilkan dalam Python).
 
-      /** @var list<MessageParam> */
+      /** @var list<UserMessageParam|AssistantMessageParam> */
       public private(set) array $messages = [];
 
       public function __construct(
@@ -958,7 +943,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
       ) {}
 
       /**
-       * @param list<MessageParam> $messages
+       * @param list<UserMessageParam|AssistantMessageParam> $messages
        */
       public function generateMessage(array $messages, int $maxTokens): Message
       {
@@ -973,7 +958,7 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
       public function processUserInput(string $userInput): string
       {
-          $this->messages[] = MessageParam::with(role: 'user', content: $userInput);
+          $this->messages[] = UserMessageParam::with(content: $userInput);
 
           $responseMessage = $this->generateMessage($this->messages, maxTokens: 2048);
 
@@ -983,9 +968,8 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
           if ($lastBlock instanceof ToolUseBlock) {
               $toolResult = $this->handleToolUse($lastBlock->name, $lastBlock->input);
 
-              $this->messages[] = MessageParam::with(role: 'assistant', content: $content);
-              $this->messages[] = MessageParam::with(
-                  role: 'user',
+              $this->messages[] = AssistantMessageParam::with(content: $content);
+              $this->messages[] = UserMessageParam::with(
                   content: [
                       ToolResultBlockParam::with(toolUseID: $lastBlock->id, content: $toolResult),
                   ],
@@ -1001,14 +985,14 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
                   throw new \RuntimeException('An error occurred: Unexpected response type');
               }
 
-              $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
+              $this->messages[] = AssistantMessageParam::with(content: $firstBlock->text);
 
               return $firstBlock->text;
           }
 
           $firstBlock = array_find($content, static fn ($block): bool => $block instanceof TextBlock);
           if ($firstBlock instanceof TextBlock) {
-              $this->messages[] = MessageParam::with(role: 'assistant', content: $firstBlock->text);
+              $this->messages[] = AssistantMessageParam::with(content: $firstBlock->text);
 
               return $firstBlock->text;
           }

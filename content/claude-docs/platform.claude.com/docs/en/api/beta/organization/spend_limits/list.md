@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 7ab180bb8a7d84f9360a3d517473b3a93b408b54d1dc45c30107a67eb57bdfad
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ee487765c28e899ca9d88f08e730f6f5567589ec00c58447fd5683f95d35f74b
 ---
 
 ---
@@ -166,6 +166,8 @@ organizations only, not for Claude Console organizations.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

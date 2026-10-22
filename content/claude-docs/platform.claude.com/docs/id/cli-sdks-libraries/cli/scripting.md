@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 6102d8c4a17b41a46a42db36597a2b65afa8cfc20dd86fbee2c49675d1458bae
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 80f6166122eac686eeb54ed82bd911cc8b8e77123c8fd547d35f037807865373
 ---
 
 ---
@@ -131,8 +131,4 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-<Note>
-  Biarkan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` tidak disetel saat bekerja dari login CLI. Kedua variabel tersebut lebih diutamakan daripada login untuk perintah `ant` (lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence)) dan dapat secara diam-diam mengarahkannya ke organisasi atau workspace yang berbeda.
-</Note>
-
-Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk memastikan organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel environment menimpa login Anda.
+Jalankan [`ant auth status`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#check-authentication-status) untuk memastikan organisasi dan workspace mana yang sedang Anda gunakan untuk login; perintah ini memberi peringatan ketika sebuah variabel environment menimpa login Anda. Untuk urutan lengkap sumber kredensial, lihat [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence).

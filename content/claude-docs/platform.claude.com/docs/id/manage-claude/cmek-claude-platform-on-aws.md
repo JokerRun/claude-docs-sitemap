@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ca40c5e961f856714a5aecc0c826c558777fb70516745061e785738157a3b1f8
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 8602d15e0f530fe286d819fb393fedd49db853080baf41a27e3b3d897e03033b
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Gunakan kunci AWS KMS sebagai kunci enkripsi yang dikelola pelangga
 Panduan ini menunjukkan cara menggunakan kunci [AWS KMS](https://aws.amazon.com/kms/) sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Untuk Claude Platform atau Claude Enterprise, ikuti [Konfigurasikan AWS KMS untuk CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms) sebagai gantinya.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
@@ -114,6 +114,13 @@ Ganti placeholder:
   **Menemukan ID compartment Anda:** Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`). Pilih workspace dari menu dropdown di bagian atas halaman. ID tersebut berada di bawah **Encryption key**, di kolom **Compartment ID**. Anda juga dapat membaca kolom `compartment_id` yang dikembalikan oleh endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve).
 </Note>
 
+<Note>
+  **Opsional:** Untuk membatasi kedua pernyataan service principal lebih lanjut, tambahkan kondisi `aws:SourceArn` ke masing-masing pernyataan. ARN sumber pada setiap panggilan adalah [ARN workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#service-details), dalam bentuk `arn:aws:aws-external-anthropic:<REGION>:<AWS_ACCOUNT_ID>:workspace/<WORKSPACE_ID>`.
+
+  * **Semua workspace di akun AWS Anda:** `"ArnLike": {"aws:SourceArn": "arn:aws:aws-external-anthropic:*:<AWS_ACCOUNT_ID>:workspace/*"}`
+  * **Workspace tertentu:** kondisi yang sama, dengan daftar ARN workspace lengkap sebagai pengganti wildcard
+</Note>
+
 ### Membuat kunci
 
 Buat kunci di akun AWS yang menghosting organisasi Claude Platform on AWS Anda, di region yang sama dengan workspace.
@@ -196,13 +203,6 @@ Buat kunci di akun AWS yang menghosting organisasi Claude Platform on AWS Anda, 
     Salin `KeyMetadata.Arn` dari output. Anda memerlukannya untuk mendaftarkan kunci.
   </Tab>
 </Tabs>
-
-<Note>
-  **Opsional:** Untuk membatasi kedua pernyataan service principal lebih lanjut, tambahkan kondisi `aws:SourceArn` ke masing-masing pernyataan. ARN sumber pada setiap panggilan adalah [ARN workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#service-details), dalam bentuk `arn:aws:aws-external-anthropic:<REGION>:<AWS_ACCOUNT_ID>:workspace/<WORKSPACE_ID>`.
-
-  * **Semua workspace di akun AWS Anda:** `"ArnLike": {"aws:SourceArn": "arn:aws:aws-external-anthropic:*:<AWS_ACCOUNT_ID>:workspace/*"}`
-  * **Workspace tertentu:** kondisi yang sama, dengan daftar ARN workspace lengkap sebagai pengganti wildcard
-</Note>
 
 ## Mendaftarkan kunci dengan Anthropic
 

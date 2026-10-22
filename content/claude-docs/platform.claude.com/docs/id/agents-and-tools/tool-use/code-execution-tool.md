@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5e496b2a7376fc1ad05b2c18383218f3135c825ba1dfb579405a621427cf7e3e
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 964f517f947ac8554337eefbe126221eba8f171b5b718f0e639436a8fc64fbcf
 ---
 
 ---
@@ -154,7 +154,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" }],
+      Messages = [new UserMessageParam { Content = "Use the code execution tool to calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" }],
       Tools = [new CodeExecutionTool20250825()]
   });
 
@@ -419,9 +419,8 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = new([
                   new TextBlockParam { Text = "Analyze this CSV data" },
                   new ContainerUploadBlockParam { FileID = fileObject.ID }
@@ -489,7 +488,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
-          .addUserMessageOfBlockParams(List.of(
+          .addUserMessageOfContentBlockParams(List.of(
               ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Analyze this CSV data")
                   .build()),
@@ -659,7 +658,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Create a matplotlib visualization and save it as output.png" }],
+      Messages = [new UserMessageParam { Content = "Create a matplotlib visualization and save it as output.png" }],
       Tools = [new CodeExecutionTool20250825()]
   };
 
@@ -1279,7 +1278,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Write a file with a random number and save it to '/tmp/number.txt'" }],
+      Messages = [new UserMessageParam { Content = "Write a file with a random number and save it to '/tmp/number.txt'" }],
       Tools = [new CodeExecutionTool20250825()]
   });
 
@@ -1289,7 +1288,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
       Container = response1.Container!.ID,
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
-      Messages = [new() { Role = Role.User, Content = "Read the number from '/tmp/number.txt' and calculate its square" }],
+      Messages = [new UserMessageParam { Content = "Read the number from '/tmp/number.txt' and calculate its square" }],
       Tools = [new CodeExecutionTool20250825()]
   });
 

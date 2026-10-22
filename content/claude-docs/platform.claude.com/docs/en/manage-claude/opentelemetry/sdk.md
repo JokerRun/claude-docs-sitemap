@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 42faae98024ba44db62b1eee11823c7e9ced0f4d205d52ca4fe53bbb10156574
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ae1607fa72359ecf1f5216c5e881e3656c420abcd933c148c5849c94991f915c
 ---
 
 ---
@@ -91,14 +91,14 @@ Install or upgrade to the latest version of the Claude SDK:
 
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:2.75.0")
+      implementation("com.anthropic:anthropic-java:3.1.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       ```
     </CodeGroup>
@@ -199,10 +199,8 @@ The following example registers a tracer provider that prints each span to the c
   using OpenTelemetry.Trace;
 
   // Register a tracer provider that prints each span to the console.
-  // The SDK emits its spans from the source com.anthropic.sdk.csharp. Add com.anthropic.sdk.csharp*
-  // instead to include the SDK's clients for cloud platforms.
   using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-      .AddSource("com.anthropic.sdk.csharp")
+      .AddSource("com.anthropic.sdk.csharp*")
       .AddConsoleExporter()
       .Build();
 
@@ -212,7 +210,7 @@ The following example registers a tracer provider that prints each span to the c
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   Console.WriteLine(message);
   ```
@@ -371,7 +369,7 @@ Use the following options to decide what goes into your spans and where they are
 | `traces.content_mode` (typescript, java, php: `traces.contentMode`; csharp: `Traces.ContentMode`; go: `option.WithOpenTelemetryTracesContentMode()`)<br />`ANTHROPIC_OPEN_TELEMETRY_TRACES_CONTENT_MODE=content`               | Include prompts and responses in spans. See [Content modes](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-a-content-mode).                                                                               | `metadata_only`                                                                                                                                                |
 | `traces.max_content_bytes` (typescript, java, php: `traces.maxContentBytes`; csharp: `Traces.MaxContentBytes`; go: `option.WithOpenTelemetryTracesMaxContentBytes()`)<br />`ANTHROPIC_OPEN_TELEMETRY_TRACES_MAX_CONTENT_BYTES` | Change the content limit of each span. See [Content limits](https://platform.claude.com/docs/en/manage-claude/opentelemetry#content-limits).                                                                                      | 0.75 MB                                                                                                                                                        |
 | `conversation_id` (typescript, java, php: `conversationId`; csharp: `ConversationId`; go: `option.WithOpenTelemetryConversationID()`)                                                                                          | Link several calls into one conversation. The SDK writes the ID to `gen_ai.conversation.id`. The ID is exported in both content modes, so don't put personal data or secrets in it.                                               | None                                                                                                                                                           |
-| `tracer_provider` (typescript, java, php: `tracerProvider`; csharp: `AddSource("com.anthropic.sdk.csharp")`; go: `option.WithTracerProvider()`)                                                                                | Choose the tracer provider that gets the SDK's spans.                                                                                                                                                                             | The tracer provider you set up in [Register a tracer provider](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#register-a-tracer-provider) |
+| `tracer_provider` (typescript, java, php: `tracerProvider`; csharp: `AddSource("com.anthropic.sdk.csharp*")`; go: `option.WithTracerProvider()`)                                                                               | Choose the tracer provider that gets the SDK's spans.                                                                                                                                                                             | The tracer provider you set up in [Register a tracer provider](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#register-a-tracer-provider) |
 | `propagation` (go: `option.WithOpenTelemetryPropagation()`)<br />`ANTHROPIC_OPEN_TELEMETRY_PROPAGATION=false`                                                                                                                  | Stop sending trace context and baggage headers with requests, for example when your HTTP client instrumentation already sends them. The SDK still emits spans. Available in the Python, TypeScript, Go, Java, Ruby, and PHP SDKs. | On                                                                                                                                                             |
 | `open_telemetry` (typescript, java, php: `openTelemetry`; csharp: `OpenTelemetry`; go: `option.WithoutOpenTelemetry()`)<br />`ANTHROPIC_OPEN_TELEMETRY=false`                                                                  | Turn spans off for one client, for example when another library already traces the SDK.                                                                                                                                           | On                                                                                                                                                             |
 
@@ -423,7 +421,7 @@ The following example shows how to use each option:
   ```csharp C#
   // Use a specific tracer provider: add the SDK's source to it.
   using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-      .AddSource("com.anthropic.sdk.csharp")
+      .AddSource("com.anthropic.sdk.csharp*")
       .AddConsoleExporter()
       .Build();
 
@@ -446,7 +444,7 @@ The following example shows how to use each option:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   ```
 
@@ -525,7 +523,12 @@ The following example shows how to use each option:
   ```ruby Ruby
   # Use a specific tracer provider and record content.
   # Setting open_telemetry overrides all ANTHROPIC_OPEN_TELEMETRY* environment variables.
-  client = Anthropic::Client.new(open_telemetry: {tracer_provider: provider, traces: {content_mode: :content}})
+  client = Anthropic::Client.new(
+    open_telemetry: {
+      tracer_provider: OpenTelemetry.tracer_provider,
+      traces: {content_mode: :content}
+    }
+  )
 
   # Turn spans off for one client.
   quiet_client = Anthropic::Client.new(open_telemetry: false)
@@ -598,9 +601,9 @@ To stop the SDK from sending these headers, for example when your HTTP client in
 
       `@opentelemetry/auto-instrumentations-node`
 
-       includes. Otherwise, a 
+       includes. Otherwise, an 
 
-      [bug in that package](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/3711)
+      [undici instrumentation bug](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/3711)
 
        adds a second 
 
@@ -611,6 +614,8 @@ To stop the SDK from sending these headers, for example when your HTTP client in
   </CodeGroupItem>
 
   ```csharp C#
+  using System.Diagnostics;
+
   // The SDK writes these headers with .NET's DistributedContextPropagator.
   // The no-output propagator stops these headers for every HttpClient in the process.
   // Set it before you create any client.
@@ -648,7 +653,7 @@ While the SDK calls an [MCP tool](https://platform.claude.com/docs/en/agents-and
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | No spans from the SDK                                                                                         | Register the tracer provider before the first call. Make sure that you installed the SDK as in [Install the SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#install-the-sdk) and that `ANTHROPIC_OPEN_TELEMETRY` isn't `false`.                                                                 |
 | The Java SDK doesn't send spans to the registered tracer provider, or doesn't send trace context to the API   | Another dependency sets `opentelemetry-api` below 1.57.0. Upgrade `opentelemetry-api` to 1.57.0 or later.                                                                                                                                                                                                                |
-| The SDK spans don't nest under your spans, or the spans that your tool creates don't nest under the tool span | Call the SDK from inside one of your own spans, as the [example in Connect API spans to your own traces](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) does. In Go, start the spans that your tool creates from the `ctx` that the tool runner passes to it. |
+| The SDK spans don't nest under your spans, or the spans that your tool creates don't nest under the tool span | Call the SDK from inside one of your own spans, as the example in [Connect API spans to your own traces](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) does. In Go, start the spans that your tool creates from the `ctx` that the tool runner passes to it. |
 | Requests from the SDK don't have a `traceparent` header                                                       | Register the W3C trace context propagator with OpenTelemetry. The SDK writes the headers with your application's propagator.                                                                                                                                                                                             |
 | A stream's SDK span doesn't end or doesn't have the response                                                  | See [Tracing a stream](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#trace-a-stream).                                                                                                                                                                                                              |
 | Each request appears twice                                                                                    | A request's SDK span and API span have the same name. Use the span kind or `service.name` to tell them apart. If another library also traces the SDK, turn off one of the two.                                                                                                                                           |

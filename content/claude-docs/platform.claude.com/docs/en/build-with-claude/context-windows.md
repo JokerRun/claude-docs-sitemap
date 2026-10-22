@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 7d790a0e38c0fce064361fb56418b16cf108bce2b64d294b098624b97739a036
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7c53cf27aaad2ed8a7f0b8076e058b312d725949f22fbadb5d7f423b0d5f1d51
 ---
 
 ---
@@ -61,7 +61,7 @@ Whether thinking blocks from previous assistant turns stay in the context window
 The following diagram shows how tokens are managed when thinking is enabled on a model that strips previous thinking blocks:
 
 <Frame>
-  ![Diagram of thinking on a model that strips previous thinking blocks: each turn's thinking block is generated in the output and not carried into later turns' input](https://platform.claude.com/docs/images/context-window-thinking.svg)
+  ![Thinking on a model that strips previous thinking: each turn's thinking is generated but not carried into later turns' input](https://platform.claude.com/docs/images/context-window-thinking.svg)
 </Frame>
 
 * **Stripping thinking blocks:** On models that strip previous thinking blocks, thinking blocks (shown in dark gray) are generated during each turn's output phase but are not carried forward as input tokens for subsequent turns. You do not need to strip the thinking blocks yourself: if you pass them back, the Claude API strips them automatically.
@@ -76,7 +76,7 @@ The following diagram shows how tokens are managed when thinking is enabled on a
 The following diagram illustrates how tokens are managed when you combine thinking with tool use on a model that strips previous thinking blocks:
 
 <Frame>
-  ![Diagram of thinking with tool use: thinking is kept with its tool result, then dropped on the next user turn on models that strip previous thinking blocks](https://platform.claude.com/docs/images/context-window-thinking-tools.svg)
+  ![Thinking with tools on a model that strips previous thinking: thinking stays with its tool result until the next user turn](https://platform.claude.com/docs/images/context-window-thinking-tools.svg)
 </Frame>
 
 <Steps>

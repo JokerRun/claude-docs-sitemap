@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: b4f1ca7b124b5f864f3ca742274b87af032f42776043584642085068bbec16f1
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c695c9cf6c8d226a7ac8a837687b54298ea453369fbe3454a331b367b4216fd5
 ---
 
 > ## Documentation Index
@@ -78,6 +78,12 @@ The meter picks each request's rates in this order:
 Whichever rate applies, the meter then multiplies the amount by [`pricing.multiplier`](/docs/en/claude-apps-gateway-config#pricing), default `1`.
 
 Client aborts are billed too. When a stream ends without the upstream's final usage frame, the meter bills a floor estimate of about four characters per output token for the text already sent to the client, so aborting requests early doesn't evade a cap.
+
+#### Long-prompt rates
+
+The list price for [Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview) has a [higher rate for prompts over a token threshold](/docs/en/model-config#haiku-5-5-context-window-and-pricing). When Haiku 5.5 serves a request whose prompt exceeds the threshold, a gateway server running Claude Code v2.1.293 or later prices the whole request at that rate. The meter counts input tokens, cache reads, and cache writes toward that threshold.
+
+If one of your `pricing.overrides` rows matches the request, that row's rates apply at any prompt length.
 
 ### Postgres availability
 

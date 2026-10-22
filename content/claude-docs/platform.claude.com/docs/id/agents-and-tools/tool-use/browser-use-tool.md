@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 03f1ba71d30d7695ea2843a7ab05c89b7117febd6ab39f8ad6e5e0f2eb69cc51
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0df69160771c41ffb1f99d8a3ea7fd6f852a73515acbd47a943dccafef57f059
 ---
 
 ---
@@ -126,11 +126,7 @@ Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platfo
       Tools = [new BrowserToolset20260801()],
       Messages =
       [
-          new MessageParam
-          {
-              Role = Role.User,
-              Content = "Open example.com/docs and tell me how to get started.",
-          },
+          new UserMessageParam { Content = "Open example.com/docs and tell me how to get started." },
       ],
   };
 
@@ -813,7 +809,7 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
         continue;
       }
       if (failed) {
-        // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya sebagai tidak dieksekusi
+        // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya tanpa menjalankannya
         toolResults.push(browserResult(block.id, HALT_TEXT, true));
         continue;
       }

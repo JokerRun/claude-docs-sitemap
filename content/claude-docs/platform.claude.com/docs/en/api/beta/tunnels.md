@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 58b3b07af63521dab0ccff3a138a2104edd9ddac6bcc11a59d0ef8330e76d878
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 2dd4bbf2f349bb63099ea3f5a25e2190ba4d2356d38a0e8dc6ff4d68ac25f4c5
 ---
 
 ---
@@ -135,6 +135,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -336,6 +338,8 @@ Fetches a tunnel by ID.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -536,6 +540,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -735,6 +741,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -926,6 +934,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1097,6 +1107,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1331,6 +1343,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1543,6 +1557,8 @@ Fetches a tunnel certificate by ID.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1757,6 +1773,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -1966,6 +1984,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

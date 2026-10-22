@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: fb66443d4d698176872aa167f0ea12e1a6daa286141efe5b6922ac4a796726fd
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 062c0e5c7b4415de8530cb5da6b5bb4c01622a53d22e53fd9213e6adf1bec9bc
 ---
 
 ---
@@ -137,6 +137,8 @@ Run Deployment Now
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

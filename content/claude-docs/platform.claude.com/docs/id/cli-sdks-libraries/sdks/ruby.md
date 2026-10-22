@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 77165d270be6e781dbd3635338171c472b1266729c1930fcb244ffbdc29be4fe
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b8d4b910096e1c67b21b14bfb1ec3efb0e8647a8a0094fe141d1883f2e57b6da
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
 description: Instal dan konfigurasikan Anthropic Ruby SDK dengan tipe Sorbet, helper streaming, dan connection pooling
 ---
 
-Library Ruby Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ mana pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam YARD, RBS, dan RBI. `net/http` dari library standar digunakan sebagai transport HTTP, dengan "connection pooling" (pengumpulan koneksi) melalui gem `connection_pool`.
+Library Ruby Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ mana pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam YARD, RBS, dan RBI. `net/http` dari library standar digunakan sebagai transport HTTP, dengan "connection pooling" (penggabungan koneksi) melalui gem `connection_pool`.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus Ruby.
+  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Ruby.
 </Info>
 
 ## Instalasi
@@ -51,7 +51,7 @@ Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi
 
 ## Streaming
 
-SDK menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events (SSE).
+SDK menyediakan dukungan untuk respons streaming menggunakan "Server-Sent Events" (peristiwa yang dikirim server), atau SSE.
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -83,11 +83,11 @@ stream.text.each do |text|
 end
 ```
 
-Streaming dengan `anthropic.messages.stream(...)` mengekspos berbagai helper termasuk akumulasi dan event khusus SDK.
+Streaming dengan `anthropic.messages.stream(...)` menyediakan berbagai helper termasuk akumulasi dan event khusus SDK.
 
 ## Skema input dan pemanggilan alat
 
-SDK menyediakan mekanisme helper untuk mendefinisikan kelas data terstruktur untuk alat dan membiarkan Claude mengeksekusinya secara otomatis. Untuk dokumentasi terperinci tentang pola "tool use" (penggunaan alat) termasuk tool runner, lihat [Tool Runner (SDK)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
+SDK menyediakan mekanisme helper untuk mendefinisikan kelas data terstruktur untuk alat dan memungkinkan Claude mengeksekusinya secara otomatis. Untuk dokumentasi terperinci tentang pola penggunaan alat termasuk tool runner, lihat [Tool Runner (SDK)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -116,11 +116,11 @@ anthropic.beta.messages.tool_runner(
 
 ## Output terstruktur
 
-Untuk dokumentasi output terstruktur yang lengkap termasuk contoh Ruby, lihat [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+Untuk dokumentasi lengkap tentang output terstruktur termasuk contoh Ruby, lihat [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status non-sukses (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic::Errors::APIError` akan dimunculkan:
+Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak berhasil (yaitu, respons 4xx atau 5xx), subkelas dari `Anthropic::Errors::APIError` akan dimunculkan:
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -143,23 +143,23 @@ end
 
 Kode error adalah sebagai berikut:
 
-| Penyebab        | Tipe Error                 |
-| --------------- | -------------------------- |
-| HTTP 400        | `BadRequestError`          |
-| HTTP 401        | `AuthenticationError`      |
-| HTTP 403        | `PermissionDeniedError`    |
-| HTTP 404        | `NotFoundError`            |
-| HTTP 409        | `ConflictError`            |
-| HTTP 422        | `UnprocessableEntityError` |
-| HTTP 429        | `RateLimitError`           |
-| HTTP >= 500     | `InternalServerError`      |
-| Error HTTP lain | `APIStatusError`           |
-| Timeout         | `APITimeoutError`          |
-| Error jaringan  | `APIConnectionError`       |
+| Penyebab           | Tipe Error                 |
+| ------------------ | -------------------------- |
+| HTTP 400           | `BadRequestError`          |
+| HTTP 401           | `AuthenticationError`      |
+| HTTP 403           | `PermissionDeniedError`    |
+| HTTP 404           | `NotFoundError`            |
+| HTTP 409           | `ConflictError`            |
+| HTTP 422           | `UnprocessableEntityError` |
+| HTTP 429           | `RateLimitError`           |
+| HTTP >= 500        | `InternalServerError`      |
+| Error HTTP lainnya | `APIStatusError`           |
+| Timeout            | `APITimeoutError`          |
+| Error jaringan     | `APIConnectionError`       |
 
 ## Percobaan ulang
 
-Error tertentu akan secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff singkat.
+Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan "exponential backoff" (penundaan eksponensial) yang singkat.
 
 Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
 
@@ -205,25 +205,25 @@ Perhatikan bahwa permintaan yang timeout akan dicoba ulang secara default.
 
 ## Paginasi
 
-Metode list di Claude API dipaginasi.
+Metode list di Claude API menggunakan paginasi.
 
-Library ini menyediakan iterator auto-paginasi pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
+Library ini menyediakan iterator dengan paginasi otomatis pada setiap respons list, sehingga Anda tidak perlu meminta halaman berikutnya secara manual:
 
 ```ruby
 anthropic = Anthropic::Client.new
 page = anthropic.messages.batches.list(limit: 20)
 
-# Ambil satu item dari halaman.
+# Mengambil satu item dari halaman.
 batch = page.data[0]
 puts(batch.id)
 
-# Secara otomatis mengambil halaman lainnya sesuai kebutuhan.
+# Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
 page.auto_paging_each do |batch|
   puts(batch.id)
 end
 ```
 
-Sebagai alternatif, Anda dapat menggunakan metode `#next_page?` dan `#next_page` untuk kontrol yang lebih granular saat bekerja dengan halaman.
+Sebagai alternatif, Anda dapat menggunakan metode `#next_page?` dan `#next_page` untuk kontrol yang lebih terperinci saat bekerja dengan halaman.
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -243,7 +243,7 @@ Parameter permintaan yang berkaitan dengan unggahan file dapat diteruskan sebaga
 anthropic = Anthropic::Client.new
 require "pathname"
 
-# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari pemuatan file besar ke memori:
+# Gunakan `Pathname` untuk mengirim nama file dan/atau menghindari memuat file besar ke memori:
 file_metadata = anthropic.files.upload(file: Pathname("/path/to/file"))
 
 # Sebagai alternatif, teruskan isi file atau `StringIO` secara langsung:
@@ -256,13 +256,13 @@ file_metadata = anthropic.files.upload(file: file)
 puts(file_metadata.id)
 ```
 
-Perhatikan bahwa Anda juga dapat meneruskan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena library tidak dapat memastikan apakah deskriptor tersebut adalah file atau pipe (yang tidak dapat di-rewind).
+Perhatikan bahwa Anda juga dapat meneruskan deskriptor `IO` mentah, tetapi ini menonaktifkan percobaan ulang, karena library tidak dapat memastikan apakah deskriptor tersebut adalah file atau pipe (yang tidak dapat diputar ulang).
 
 ## Sorbet
 
 Library ini menyediakan definisi [RBI](https://sorbet.org/docs/rbi) yang komprehensif, dan tidak memiliki dependensi pada sorbet-runtime.
 
-Anda dapat menyediakan parameter permintaan yang typesafe seperti berikut:
+Anda dapat memberikan parameter permintaan yang typesafe seperti ini:
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -273,11 +273,11 @@ anthropic.messages.create(
 )
 ```
 
-Atau, secara ekuivalen:
+Atau, secara setara:
 
 ```ruby
 anthropic = Anthropic::Client.new
-# Hash bisa digunakan, tetapi tidak typesafe:
+# Hash dapat digunakan, tetapi tidak typesafe:
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
@@ -295,7 +295,7 @@ anthropic.messages.create(**params)
 
 ### Enum
 
-Karena library ini tidak bergantung pada `sorbet-runtime`, library ini tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, SDK menyediakan "tagged symbols", yang selalu berupa primitif saat runtime:
+Karena library ini tidak bergantung pada `sorbet-runtime`, library ini tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, SDK menyediakan "tagged symbols" (simbol bertag), yang selalu berupa primitif saat runtime:
 
 ```ruby
 # :auto
@@ -330,9 +330,9 @@ anthropic.messages.create(
 
 Semua objek parameter dan respons mewarisi dari `Anthropic::Internal::Type::BaseModel`, yang menyediakan beberapa kemudahan, termasuk:
 
-1. Semua field, termasuk yang tidak dikenal, dapat diakses dengan sintaks `obj[:prop]`, dan dapat di-destructure dengan `obj => {prop: prop}` atau sintaks pattern-matching.
+1. Semua field, termasuk yang tidak dikenal, dapat diakses dengan sintaks `obj[:prop]`, dan dapat didestrukturisasi dengan `obj => {prop: prop}` atau sintaks pattern-matching.
 
-2. Kesetaraan struktural untuk perbandingan kesamaan. Jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
+2. Ekuivalensi struktural untuk kesetaraan. Jika dua panggilan API mengembalikan nilai yang sama, membandingkan respons dengan == akan mengembalikan true.
 
 3. Baik instance maupun kelasnya sendiri dapat di-pretty-print.
 
@@ -340,19 +340,19 @@ Semua objek parameter dan respons mewarisi dari `Anthropic::Internal::Type::Base
 
 ## Konkurensi dan connection pooling
 
-Instance `Anthropic::Client` bersifat threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berjalan.
+Instance `Anthropic::Client` bersifat threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berlangsung.
 
-Setiap instance `Anthropic::Client` memiliki pool koneksi HTTP sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat client sekali per aplikasi dalam sebagian besar pengaturan.
+Setiap instance `Anthropic::Client` memiliki connection pool HTTP sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat client sekali per aplikasi di sebagian besar pengaturan.
 
-Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu hingga koneksi baru tersedia, dengan waktu antrean dihitung ke dalam timeout permintaan.
+Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu koneksi baru tersedia, dengan waktu antrean dihitung terhadap timeout permintaan.
 
-Kecuali dinyatakan lain, kelas lain dalam SDK tidak memiliki lock yang melindungi struktur data dasarnya.
+Kecuali dinyatakan lain, kelas-kelas lain dalam SDK tidak memiliki lock yang melindungi struktur data dasarnya.
 
-## Membuat permintaan kustom atau tidak terdokumentasi
+## Membuat permintaan kustom atau yang tidak terdokumentasi
 
-### Properti tidak terdokumentasi
+### Properti yang tidak terdokumentasi
 
-Anda dapat mengirim parameter tidak terdokumentasi ke endpoint mana pun, dan membaca properti respons tidak terdokumentasi, seperti berikut:
+Anda dapat mengirim parameter yang tidak terdokumentasi ke endpoint mana pun, dan membaca properti respons yang tidak terdokumentasi, seperti ini:
 
 <Warning>
   Parameter `extra_` dengan nama yang sama akan menimpa parameter yang terdokumentasi. Demi alasan keamanan, pastikan metode ini hanya digunakan dengan data input yang tepercaya.
@@ -376,11 +376,11 @@ message =
 puts(message[:my_undocumented_property])
 ```
 
-### Parameter permintaan tidak terdokumentasi
+### Parameter permintaan yang tidak terdokumentasi
 
 Jika Anda ingin mengirim parameter tambahan secara eksplisit, Anda dapat melakukannya dengan `extra_query`, `extra_body`, dan `extra_headers` di bawah parameter `request_options:` saat membuat permintaan, seperti yang terlihat pada contoh sebelumnya.
 
-### Endpoint tidak terdokumentasi
+### Endpoint yang tidak terdokumentasi
 
 Untuk membuat permintaan ke endpoint yang tidak terdokumentasi sambil tetap mempertahankan manfaat autentikasi, percobaan ulang, dan sebagainya, Anda dapat membuat permintaan menggunakan `anthropic.request`, seperti ini:
 
@@ -401,7 +401,7 @@ response = anthropic.request(
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
 </Note>
 
@@ -409,16 +409,18 @@ Ruby SDK mendukung platform berikut:
 
 * **Agent Platform:** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
 * **Bedrock:** `Anthropic::BedrockMantleClient`, atau `Anthropic::BedrockClient` untuk jalur `bedrock-runtime`. `Anthropic::BedrockMantleClient` memerlukan gem `aws-sdk-core`; `Anthropic::BedrockClient` memerlukan gem `aws-sdk-bedrockruntime`.
-* **Claude Platform on AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Claude Platform di AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** Saat ini tidak didukung di Ruby SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
 
 Gunakan `Anthropic::BedrockMantleClient` untuk proyek baru; `Anthropic::BedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 ## Semantic versioning
 
+Setiap versi mayor SDK ini mengirimkan satu versi API di header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 2.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html).
 
-Paket ini menganggap peningkatan pada definisi tipe `*.rbi` dan `*.rbs` (non-runtime) sebagai perubahan yang tidak merusak (non-breaking).
+Paket ini menganggap peningkatan pada definisi tipe `*.rbi` dan `*.rbs` (non-runtime) sebagai perubahan yang tidak merusak kompatibilitas.
 
 ## Sumber daya tambahan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: f5a9d594410764097eb6d2de0866984389937f33b82ef4960638c4bf2629f349
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 27f907732940f1299415b305021a9c2767043c356d8f1fc4e20f39f8f9f9f9b3
 ---
 
 ---
@@ -34,7 +34,7 @@ Pre-built Agent Skills extend Claude's capabilities with specialized expertise f
 
 ## Step 1: List available Skills
 
-First, check what Skills are available. Use the Skills API to list all Anthropic-managed Skills. Each language tab is an excerpt from one continuous script, with any imports and client setup at the top:
+First, check what Skills are available. Use the Skills API to list all Anthropic-managed Skills. The example is an excerpt from one continuous script, with any imports and client setup at the top:
 
 <CodeGroup>
   ```bash cURL
@@ -230,9 +230,8 @@ Use the PowerPoint Skill to create a presentation about renewable energy. Specif
       },
       Messages =
       [
-          new MessageParam
+          new UserMessageParam
           {
-              Role = Role.User,
               Content = "Create a presentation about renewable energy with 5 slides",
           },
       ],
@@ -402,7 +401,9 @@ The presentation was created in the code execution container and saved as a file
 
   if [[ -n "$file_id" ]]; then
     # Download the file and save it
-    ant files download --file-id "$file_id" --output "${TMPDIR:-/tmp}/renewable_energy.pptx"
+    ant files download \
+      --file-id "$file_id" \
+      --output "${TMPDIR:-/tmp}/renewable_energy.pptx"
   fi
   ```
 
@@ -692,9 +693,8 @@ Try these variations:
           },
           Messages =
           [
-              new MessageParam
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "Create a quarterly sales tracking spreadsheet with sample data",
               },
           ],
@@ -885,9 +885,8 @@ Try these variations:
           },
           Messages =
           [
-              new MessageParam
+              new UserMessageParam
               {
-                  Role = Role.User,
                   Content = "Write a 2-page report on the benefits of renewable energy",
               },
           ],
@@ -1076,14 +1075,7 @@ Try these variations:
                   },
               ],
           },
-          Messages =
-          [
-              new MessageParam
-              {
-                  Role = Role.User,
-                  Content = "Generate a PDF invoice template",
-              },
-          ],
+          Messages = [new UserMessageParam { Content = "Generate a PDF invoice template" }],
           Tools = [new CodeExecutionTool20260521()],
       }
   );

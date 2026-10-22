@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9d7c407fc3d0f0f3bc631d49b230f6744be03d1e95666235eff4f7a89eb55a39
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 97f0c28ffddd0c90849c9c55b9d9e3e81bb45c8f5ae0495dbf339971ee318c4e
 ---
 
 ---
@@ -139,7 +139,7 @@ The pod spec in [Configure Kubernetes](https://platform.claude.com/docs/en/manag
 
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r .access_token
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -244,7 +244,7 @@ The pod spec in [Configure Kubernetes](https://platform.claude.com/docs/en/manag
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   foreach (var block in message.Content)
   {
@@ -310,7 +310,7 @@ Lock the rule's `match` block to the narrowest scope that fits your use case:
 
 * **Pin namespace and service-account name:** Use the full `system:serviceaccount:<namespace>:<name>` value with no trailing `*`.
 * **Always set an audience:** Require `audience` on the rule and set the same value on the pod's `serviceAccountToken` projection so default-audience tokens are rejected.
-* **Use a separate rule per namespace:** Create a distinct rule and Anthropic service account for each namespace rather than widening one rule.
+* **Use a separate rule for each namespace:** Create a distinct rule and Anthropic service account for each namespace rather than widening one rule.
 * **Scope inline-JWKS issuers to one cluster:** When several clusters share an issuer URL, register each cluster's JWKS as its own federation issuer and bind rules to that issuer only.
 
 ## Next steps

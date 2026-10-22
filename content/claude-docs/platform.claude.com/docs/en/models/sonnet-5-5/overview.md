@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: a8b46ef8e5942ca6e0acb324dc82f21795b6e80f3bba835e457523a22d5e6fc3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bdcdf0eb05643ce9f63694842ed99ed083e19c5b2b729fbf39a142c9d7204e5c
 ---
 
 ---
 title: Claude Sonnet 5.5
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/overview
-description: "Claude Sonnet 5.5 at a glance: what it's for, model IDs on every platform, context window, output limits, pricing, availability, and the guides and resources for building with it."
+description: "An overview of Claude Sonnet 5.5: what it's for, model IDs on every platform, context window, output limits, pricing, availability, and the guides and resources for building with it."
 ---
 
 **Latest.** Released September 28, 2026.
@@ -103,7 +103,7 @@ One more change alters the response shape without failing any request: [text bet
 ## Good to know
 
 * Adaptive thinking is on by default. The lowest thinking setting is `between_tools`, which turns off up-front thinking. It works at `high` effort or below. See [What's new in Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
-* Setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error.
+* Setting `temperature`, `top_p`, or `top_k` returns a 400 error.
 * The minimum cacheable prompt length is 512 tokens. See [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#cache-limitations).
 * On the [Message Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 supports up to 300k output tokens with the `output-300k-2026-03-24` beta header.
 * Query limits and capabilities programmatically with the [Models API](https://platform.claude.com/docs/en/api/models/list).
@@ -116,7 +116,7 @@ One more change alters the response shape without failing any request: [text bet
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/en/build-with-claude/effort">
-    The control for thinking depth, latency, and cost. Choose a level per workload.
+    The control for thinking depth, latency, and cost. Choose a level for each workload.
   </Card>
 
   <Card title="Adaptive thinking" icon="brain" href="https://platform.claude.com/docs/en/build-with-claude/thinking">

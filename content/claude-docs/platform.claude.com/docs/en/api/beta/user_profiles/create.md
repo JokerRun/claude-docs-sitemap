@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4d98ee608f25137dd4117ab7d5a530a2f97089e13fd124b79cd0943857857196
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d8264075473db320800e2d454f8340bf4cd63541fd0b89ac0b91ebe5639c2c52
 ---
 
 ---
@@ -131,6 +131,8 @@ Create User Profile
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

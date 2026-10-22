@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ece6f292cb2a6dc50875cea42aacd6a35e3be148b484449d57428d45c8034b4c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: ab97757fd19a03ae02bf5fdd6038cc9bf312627fbca9de549038439a99a8a7aa
 ---
 
 ---
@@ -43,7 +43,7 @@ Dream menghasilkan **memory store output** lain, terpisah dari input. ID store o
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "inputs": [
         { "type": "memory_store", "memory_store_id": "'"$store_id"'" },
         { "type": "sessions", "session_ids": ["'"$session_a"'", "'"$session_b"'"] }
@@ -94,16 +94,8 @@ Dream menghasilkan **memory store output** lain, terpisah dari input. ID store o
   {
       Inputs =
       [
-          new BetaDreamMemoryStoreInput
-          {
-              Type = BetaDreamMemoryStoreInputType.MemoryStore,
-              MemoryStoreID = storeID,
-          },
-          new BetaDreamSessionsInput
-          {
-              Type = BetaDreamSessionsInputType.Sessions,
-              SessionIds = [sessionA, sessionB],
-          },
+          new BetaDreamMemoryStoreInput { MemoryStoreID = storeID },
+          new BetaDreamSessionsInput { SessionIds = [sessionA, sessionB] },
       ],
       Model = "claude-opus-5-5",
       Instructions = "Focus on coding-style preferences; ignore one-off debugging notes.",
@@ -311,7 +303,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "agent": "'"$agent_id"'",
       "environment_id": "'"$environment_id"'",
       "resources": [
@@ -359,7 +351,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   ```
 
   ```csharp C#
-  var output = dream.Outputs.FirstOrDefault(entry => entry.Type == "memory_store");
+  var output = dream.Outputs.FirstOrDefault(entry => entry.Type.GetString() == "memory_store");
   if (output is { MemoryStoreID: var outputStoreID })
   {
       await client.Beta.Sessions.Create(new()
@@ -368,11 +360,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
           EnvironmentID = environmentID,
           Resources =
           [
-              new BetaManagedAgentsMemoryStoreResourceParam
-              {
-                  Type = BetaManagedAgentsMemoryStoreResourceParamType.MemoryStore,
-                  MemoryStoreID = outputStoreID,
-              },
+              new BetaManagedAgentsMemoryStoreResourceParam { MemoryStoreID = outputStoreID },
           ],
       });
   }
@@ -407,7 +395,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
 
   ```java Java
   var output = dream.outputs().stream()
-      .filter(entry -> entry.type().equals(BetaDreamOutput.Type.MEMORY_STORE))
+      .filter(entry -> entry._type().equals(JsonValue.from("memory_store")))
       .findFirst();
   if (output.isPresent()) {
       var outputStoreId = output.get().memoryStoreId();

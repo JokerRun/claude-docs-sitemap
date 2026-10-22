@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 95d8d6560e13ff40efcdd6605409e89bef6b87f7ef40825c6581a7fdc4b08935
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7cb67d87fdae5d3f50dc7f4833dc4c1620cdf1ce4547ee4155fb34885f2e559d
 ---
 
 ---
@@ -20,7 +20,7 @@ Biarkan Claude Code menyiapkan fitur ini untuk Anda
 Panduan ini menunjukkan cara menggunakan kunci Azure Key Vault sebagai [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek) untuk organisasi Anthropic Anda.
 
 <Warning>
-  Mengaktifkan CMEK bersifat permanen. Jika kunci Key Vault Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda mulai.
+  Mengaktifkan CMEK bersifat permanen. Jika kunci Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengannya. Tinjau [peringatan dan batasan](https://platform.claude.com/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
 ## Prasyarat
@@ -63,7 +63,7 @@ Kunci harus memenuhi persyaratan berikut:
 * **Akses:** peran `Key Vault Crypto User` untuk service principal Anthropic, yang ditetapkan pada kunci.
 
 <Note>
-  **Menemukan ID organisasi Anda:** Gunakan UUID polos, bukan ID dengan awalan `org_`. Salin dari salah satu tempat berikut:
+  **Menemukan ID organisasi Anda:** Gunakan UUID polos, bukan ID yang berawalan `org_`. Salin dari salah satu tempat berikut:
 
   * **Claude Console:** kolom **Organization ID** di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`)
   * **claude.ai:** kolom **Organization ID** di bawah **Organization settings > Organization**
@@ -275,11 +275,11 @@ Salin nilai-nilai berikut untuk mendaftarkan kunci:
             Klik **Add**.
           </Step>
 
-          <Step title="Memvalidasi kunci">
-            Di daftar **Encryption keys**, klik **Verify** di sebelah kunci. **Connected** muncul ketika pemeriksaan berhasil. Jika gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#troubleshoot-validation) untuk penyebab umum.
+          <Step title="Validasi kunci">
+            Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#troubleshoot-validation) untuk penyebab umum.
           </Step>
 
-          <Step title="Melampirkan kunci ke workspace">
+          <Step title="Lampirkan kunci ke workspace">
             Melampirkan kunci tidak dapat dibatalkan. Jika memungkinkan, lampirkan kunci ke workspace baru sebelum workspace tersebut menerima permintaan apa pun. Di workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
 
             Di halaman Data retention, pilih workspace dari menu dropdown di bagian atas halaman. Di bawah **Encryption key**, pilih kunci dan klik **Save**.
@@ -484,7 +484,7 @@ Salin nilai-nilai berikut untuk mendaftarkan kunci:
             ```
           </Step>
 
-          <Step title="Memvalidasi kunci">
+          <Step title="Validasi kunci">
             Ganti `ekey_<id>` dengan ID kunci eksternal.
 
             <CodeGroup>
@@ -560,7 +560,8 @@ Salin nilai-nilai berikut untuk mendaftarkan kunci:
               ```ruby Ruby
               client = Anthropic::Client.new
 
-              validation = client.organization.external_keys.validate("ekey_<id>")
+              external_key_id = "ekey_<id>"
+              validation = client.organization.external_keys.validate(external_key_id)
 
               puts "status: #{validation.status}"
               puts "error: #{validation.error}"
@@ -573,10 +574,10 @@ Salin nilai-nilai berikut untuk mendaftarkan kunci:
             { "type": "external_key_validation", "status": "success", "error": null }
             ```
 
-            Jika validasi gagal, field `error` menjelaskan masalahnya. Untuk penyebab umum, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#troubleshoot-validation).
+            Jika validasi gagal, lihat [Memecahkan masalah validasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#troubleshoot-validation).
           </Step>
 
-          <Step title="Melampirkan kunci ke workspace">
+          <Step title="Lampirkan kunci ke workspace">
             Melampirkan kunci tidak dapat dibatalkan. Jika memungkinkan, lampirkan kunci ke workspace baru sebelum workspace tersebut menerima permintaan apa pun. Di workspace yang sudah menerima permintaan, kunci dapat memerlukan [hingga satu hari untuk berlaku](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works).
 
             Ganti `<workspace-id>` dengan ID workspace dan `ekey_<id>` dengan ID kunci eksternal.
@@ -681,8 +682,9 @@ Salin nilai-nilai berikut untuk mendaftarkan kunci:
               ```ruby Ruby
               client = Anthropic::Client.new
 
+              workspace_id = "<workspace-id>"
               workspace = client.organization.workspaces.update(
-                "<workspace-id>",
+                workspace_id,
                 external_key_id: "ekey_<id>"
               )
 

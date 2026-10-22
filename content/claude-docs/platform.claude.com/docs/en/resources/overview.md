@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/resources/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1f036206f35dda6b17fb3afab156e8cf241c672fd5c21003bb079a4a2a938627
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 07cf3223a163f3820f05f86b3517455b1ba5920336305fc78321605022e8f7df
 ---
 
 ---
@@ -89,7 +89,7 @@ description: Model cards with detailed documentation for Claude models.
   </Card>
 
   <Card title="Claude 3 Model Card" icon="file" href="https://www.anthropic.com/claude-3-model-card">
-    Detailed documentation of Claude 3 models including latest 3.5 addendum.
+    Detailed documentation of Claude 3 models including the latest 3.5 addendum.
   </Card>
 
   <Card title="Claude 2 Model Card" icon="file" href="https://www.anthropic.com/claude-2-model-card">

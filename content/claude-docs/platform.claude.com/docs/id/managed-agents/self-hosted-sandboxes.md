@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: c6ddb60e99530d4c51a46409f7c80f8c9c501315cd89f1cf0721c46c91154b77
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bc116c7d5c030b86752fc64ad743793e7dd3851e7b6267d6936fefe68318e33e
 ---
 
 ---
@@ -191,7 +191,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=1.44.0
+        VERSION=2.1.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -413,12 +413,10 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
           [
               new BetaManagedAgentsUserMessageEventParams
               {
-                  Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
                   Content =
                   [
                       new BetaManagedAgentsTextBlock
                       {
-                          Type = BetaManagedAgentsTextBlockType.Text,
                           Text = "Write the output of \"uname -a\" to hello.txt in your working directory.",
                       },
                   ],
@@ -464,7 +462,6 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
           session.id(),
           EventSendParams.builder()
               .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Write the output of \"uname -a\" to hello.txt in your working directory.")
                   .build())
               .build());

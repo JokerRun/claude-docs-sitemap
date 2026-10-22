@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: c8bfd8cdb1522195c166867fe770627c95357b9c7d8937a2af774de17678f477
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 4825d63db3e27e108bb6ae6bc78d524b520de009e938b8c48075ea6edfce3ebb
 ---
 
 ---
@@ -105,13 +105,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       Name = "Coding Assistant",
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       System = "You are a helpful coding agent.",
-      Tools =
-      [
-          new BetaManagedAgentsAgentToolset20260401Params
-          {
-              Type = "agent_toolset_20260401",
-          },
-      ],
+      Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
   });
   ```
 
@@ -139,11 +133,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
           .name("Coding Assistant")
           .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
           .system("You are a helpful coding agent.")
-          .addTool(
-              BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build()
-          )
+          .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
           .build()
   );
   ```
@@ -154,9 +144,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
       model: 'claude-opus-5-5',
       system: 'You are a helpful coding agent.',
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(
-              type: 'agent_toolset_20260401',
-          ),
+          BetaManagedAgentsAgentToolset20260401Params::with(),
       ],
   );
   ```
@@ -164,7 +152,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a helpful coding agent.",
     tools: [{type: "agent_toolset_20260401"}]
   )

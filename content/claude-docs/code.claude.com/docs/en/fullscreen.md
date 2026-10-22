@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 75c11eebbab588ea9ae7198aa431ae43fb2579b11f647e291b1fb025730f6692
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: fa9083c8b131233d8019170c16e383081315c3e450112f2b904037dd6d0e0902
 ---
 
 > ## Documentation Index
@@ -39,6 +39,7 @@ Claude Code carries these into the relaunched session:
 * Your [permission mode](/docs/en/permission-modes) and [effort level](/docs/en/model-config#adjust-effort-level)
 * The model you last picked with [`/model`](/docs/en/model-config#setting-your-model)
 * Rules you passed with [`--allowed-tools` or `--disallowed-tools`](/docs/en/cli-reference#cli-flags), and your `--agent`, `--agents`, `--append-system-prompt`, and `--system-prompt-snapshot` flags
+* A `--chrome` or `--no-chrome` flag you launched with, so [Chrome integration](/docs/en/chrome) stays on or off as you chose for this session
 
 Claude Code declines to relaunch if the session has a restriction it can't pass to the restarted process. Restrictions it can't pass include:
 

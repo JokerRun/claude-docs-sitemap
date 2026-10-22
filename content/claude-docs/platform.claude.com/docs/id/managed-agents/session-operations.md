@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7cbad3f9e3fa524c81f214bf79f1295e5a26ecbfe3f3591ef9dbe29d68bf3c66
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: c01ecf97188ca70497bc11d6d3d83d2fb5453c78af83a4363884894ca4e35b53
 ---
 
 ---
@@ -108,21 +108,13 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
       {
           Tools =
           [
-              new BetaManagedAgentsAgentToolset20260401Params
-              {
-                  Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
-              },
-              new BetaManagedAgentsMcpToolsetParams
-              {
-                  Type = BetaManagedAgentsMcpToolsetParamsType.McpToolset,
-                  McpServerName = "linear",
-              },
+              new BetaManagedAgentsAgentToolset20260401Params(),
+              new BetaManagedAgentsMcpToolsetParams { McpServerName = "linear" },
           ],
           McpServers =
           [
               new()
               {
-                  Type = BetaManagedAgentsUrlMcpServerParamsType.Url,
                   Name = "linear",
                   Url = "https://mcp.linear.app/sse",
               },
@@ -166,15 +158,11 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
       session.id(),
       SessionUpdateParams.builder()
           .agent(BetaManagedAgentsSessionAgentUpdate.builder()
-              .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
-                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                  .build())
+              .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
               .addTool(BetaManagedAgentsMcpToolsetParams.builder()
-                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
                   .mcpServerName("linear")
                   .build())
               .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
-                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                   .name("linear")
                   .url("https://mcp.linear.app/sse")
                   .build())
@@ -188,13 +176,12 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
       $session->id,
       agent: BetaManagedAgentsSessionAgentUpdate::with(
           tools: [
-              BetaManagedAgentsAgentToolset20260401Params::with(type: 'agent_toolset_20260401'),
-              BetaManagedAgentsMCPToolsetParams::with(mcpServerName: 'linear', type: 'mcp_toolset'),
+              BetaManagedAgentsAgentToolset20260401Params::with(),
+              BetaManagedAgentsMCPToolsetParams::with(mcpServerName: 'linear'),
           ],
           mcpServers: [
               BetaManagedAgentsURLMCPServerParams::with(
                   name: 'linear',
-                  type: 'url',
                   url: 'https://mcp.linear.app/sse',
               ),
           ],
@@ -297,10 +284,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```bash CLI
   # --format raw mengembalikan satu amplop halaman dengan kursor prev_page dan
   # next_page-nya; output default melakukan paginasi otomatis dan hanya mengeluarkan sesi.
-  ant beta:sessions list \
-    --agent-id "$AGENT_ID" \
-    --limit 1 \
-    --format raw
+  ant beta:sessions list --agent-id "$AGENT_ID" --limit 1 --format raw
   # Teruskan next_page kembali sebagai --page untuk mengambil halaman berikutnya, atau prev_page untuk kembali.
   ```
 
@@ -524,8 +508,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
   ```
 
   ```bash CLI
-  ant beta:sessions archive \
-    --session-id "$SESSION_ID"
+  ant beta:sessions archive --session-id "$SESSION_ID"
   ```
 
   ```python Python
@@ -575,8 +558,7 @@ Memory store, vault, skill, environment, dan agen adalah sumber daya independen 
   ```
 
   ```bash CLI
-  ant beta:sessions delete \
-    --session-id "$SESSION_ID"
+  ant beta:sessions delete --session-id "$SESSION_ID"
   ```
 
   ```python Python

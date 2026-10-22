@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: c5af99ead8d67bef184926a2ce5e8bb9e1294c5127d42faf4d5a1deb65bcdc9d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7418527a6f0ab90a955f651ede171d108387ed7d7e5845e740b85c8acb15fc50
 ---
 
 ---
@@ -131,20 +131,11 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
-              Content =
-              [
-                  new BetaManagedAgentsTextBlock
-                  {
-                      Type = BetaManagedAgentsTextBlockType.Text,
-                      Text = "Run the weekly compliance scan.",
-                  },
-              ],
+              Content = [new BetaManagedAgentsTextBlock { Text = "Run the weekly compliance scan." }],
           },
       ],
       Schedule = new BetaManagedAgentsScheduleParams
       {
-          Type = BetaManagedAgentsScheduleParamsType.Cron,
           Expression = "0 20 * * 5",
           Timezone = "America/New_York",
       },
@@ -186,13 +177,11 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
           .environmentId(environment.id())
           .addInitialEvent(
               BetaManagedAgentsUserMessageEventParams.builder()
-                  .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
                   .addTextContent("Run the weekly compliance scan.")
                   .build()
           )
           .schedule(
               BetaManagedAgentsScheduleParams.builder()
-                  .type(BetaManagedAgentsScheduleParams.Type.CRON)
                   .expression("0 20 * * 5")
                   .timezone("America/New_York")
                   .build()
@@ -353,7 +342,6 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
   {
       Budget = new()
       {
-          Type = BetaManagedAgentsBudgetLimitType.Limit,
           MaxListCost = new() { Amount = "2000", Currency = BetaCurrency.Usd },
       },
   });
@@ -381,7 +369,6 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
       deployment.id(),
       DeploymentUpdateParams.builder()
           .budget(BetaManagedAgentsBudgetLimit.builder()
-              .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
               .maxListCost(BetaMonetaryAmount.builder()
                   .amount("2000")
                   .currency(BetaCurrency.USD)

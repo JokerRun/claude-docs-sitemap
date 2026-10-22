@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 554bfa0f1247757da4e9ece644b7043314cb99edf26b4166403baa24451f15e3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: e59c8754c9660d2864ff0dba8a1cf14509a10940b658da26826058b93d84f90d
 ---
 
 ---
@@ -14,11 +14,11 @@ description: Instal dan konfigurasikan Anthropic C# SDK untuk aplikasi .NET deng
 Anthropic C# SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang ditulis dalam C#.
 
 <Info>
-  Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK khusus C#.
+  Untuk dokumentasi fitur API beserta contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk C#.
 </Info>
 
 <Warning>
-  Mulai versi 10+, paket `Anthropic` kini menjadi Anthropic SDK resmi untuk C#. Versi paket 3.X dan di bawahnya sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien lama tersebut dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
+  Mulai versi 10+, paket `Anthropic` kini menjadi SDK Anthropic resmi untuk C#. Versi paket 3.X ke bawah sebelumnya digunakan untuk SDK buatan komunitas tryAGI, yang telah dipindahkan ke [`tryAGI.Anthropic`](https://www.nuget.org/packages/tryagi.Anthropic/). Jika Anda perlu terus menggunakan klien sebelumnya dalam proyek Anda, perbarui referensi paket Anda ke `tryAGI.Anthropic`.
 </Warning>
 
 ## Instalasi
@@ -45,14 +45,7 @@ AnthropicClient client = new();
 MessageCreateParams parameters = new()
 {
     MaxTokens = 1024,
-    Messages =
-    [
-        new()
-        {
-            Role = Role.User,
-            Content = "Hello, Claude",
-        },
-    ],
+    Messages = [new UserMessageParam { Content = "Hello, Claude" }],
     Model = Model.ClaudeOpus5_5,
 };
 
@@ -88,7 +81,7 @@ using Anthropic;
 AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
 ```
 
-Atau menggunakan kombinasi dari kedua pendekatan tersebut.
+Atau menggunakan kombinasi kedua pendekatan tersebut.
 
 Lihat tabel ini untuk opsi yang tersedia:
 
@@ -100,7 +93,7 @@ Lihat tabel ini untuk opsi yang tersedia:
 
 ### Memodifikasi konfigurasi
 
-Untuk menggunakan konfigurasi klien yang dimodifikasi secara sementara, sambil tetap menggunakan kembali koneksi dan thread pool yang sama, panggil `WithOptions` pada klien atau layanan mana pun:
+Untuk menggunakan konfigurasi klien yang dimodifikasi secara sementara, sambil tetap menggunakan kembali koneksi dan thread pool yang sama, panggil `WithOptions` pada klien atau layanan apa pun:
 
 ```csharp
 using System;
@@ -120,13 +113,13 @@ Console.WriteLine(message);
 
 Menggunakan [ekspresi `with`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) memudahkan pembuatan opsi yang dimodifikasi.
 
-Metode `WithOptions` tidak memengaruhi klien atau layanan asli.
+Metode `WithOptions` tidak memengaruhi klien atau layanan aslinya.
 
 ## Streaming
 
-SDK mendefinisikan metode yang mengembalikan stream "chunk" (potongan) respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
+SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
 
-Metode streaming selalu memiliki akhiran `Streaming` pada namanya, meskipun tidak memiliki varian non-streaming.
+Metode streaming selalu memiliki akhiran `Streaming` pada namanya, bahkan jika metode tersebut tidak memiliki varian non-streaming.
 
 Metode streaming ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
 
@@ -137,14 +130,7 @@ using Anthropic.Models.Messages;
 MessageCreateParams parameters = new()
 {
     MaxTokens = 1024,
-    Messages =
-    [
-        new()
-        {
-            Role = Role.User,
-            Content = "Hello, Claude",
-        },
-    ],
+    Messages = [new UserMessageParam { Content = "Hello, Claude" }],
     Model = Model.ClaudeOpus5_5,
 };
 
@@ -156,7 +142,7 @@ await foreach (var message in client.Messages.CreateStreaming(parameters))
 
 ## Penanganan error
 
-SDK melempar tipe exception unchecked kustom:
+SDK melempar tipe exception kustom yang tidak diperiksa (unchecked):
 
 * `AnthropicApiException`: Kelas dasar untuk error API. Lihat tabel ini untuk mengetahui subkelas exception mana yang dilempar untuk setiap kode status HTTP:
 
@@ -173,17 +159,17 @@ SDK melempar tipe exception unchecked kustom:
 
 Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
 
-* `AnthropicSseException`: dilempar untuk error yang ditemui selama streaming SSE setelah respons HTTP awal yang berhasil.
+* `AnthropicSseException`: dilempar untuk error yang terjadi selama streaming SSE setelah respons HTTP awal yang berhasil.
 
 * `AnthropicIOException`: Error jaringan I/O.
 
-* `AnthropicInvalidDataException`: Kegagalan menafsirkan data yang telah berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
+* `AnthropicInvalidDataException`: Kegagalan menginterpretasikan data yang berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
 
 * `AnthropicException`: Kelas dasar untuk semua exception.
 
 ## Percobaan ulang
 
-SDK secara otomatis mencoba ulang 2 kali secara default, dengan exponential backoff singkat di antara permintaan.
+SDK secara otomatis mencoba ulang sebanyak 2 kali secara default, dengan "exponential backoff" (jeda eksponensial) singkat di antara permintaan.
 
 Hanya tipe error berikut yang dicoba ulang:
 
@@ -195,7 +181,7 @@ Hanya tipe error berikut yang dicoba ulang:
 
 API juga dapat secara eksplisit menginstruksikan SDK untuk mencoba ulang atau tidak mencoba ulang suatu permintaan.
 
-Untuk menetapkan jumlah percobaan ulang kustom, konfigurasikan klien menggunakan properti `MaxRetries`:
+Untuk mengatur jumlah percobaan ulang kustom, konfigurasikan klien menggunakan properti `MaxRetries`:
 
 ```csharp
 using Anthropic;
@@ -219,9 +205,9 @@ Console.WriteLine(message);
 
 ## Timeout
 
-Permintaan mengalami timeout setelah 10 menit secara default.
+Permintaan akan timeout setelah 10 menit secara default.
 
-Untuk menetapkan timeout kustom, konfigurasikan klien menggunakan opsi `Timeout`:
+Untuk mengatur timeout kustom, konfigurasikan klien menggunakan opsi `Timeout`:
 
 ```csharp
 using System;
@@ -246,11 +232,11 @@ Console.WriteLine(message);
 
 ## Paginasi
 
-SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman sekaligus maupun item per item di seluruh halaman.
+SDK mendefinisikan metode yang mengembalikan daftar hasil yang dipaginasi. SDK menyediakan cara yang mudah untuk mengakses hasil baik satu halaman pada satu waktu maupun item demi item di seluruh halaman.
 
 ### Paginasi otomatis
 
-Untuk mengiterasi semua hasil di seluruh halaman, gunakan metode `Paginate`, yang secara otomatis mengambil halaman tambahan sesuai kebutuhan. Metode ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
+Untuk melakukan iterasi melalui semua hasil di seluruh halaman, gunakan metode `Paginate`, yang secara otomatis mengambil lebih banyak halaman sesuai kebutuhan. Metode ini mengembalikan [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
 
 ```csharp
 using System;
@@ -284,9 +270,9 @@ while (true)
 
 ## Validasi respons
 
-Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melempar exception dalam kasus ini. SDK hanya melempar `AnthropicInvalidDataException` jika Anda mengakses properti tersebut secara langsung.
+Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melempar exception dalam kasus ini. SDK melempar `AnthropicInvalidDataException` hanya jika Anda mengakses properti tersebut secara langsung.
 
-Jika Anda lebih suka memeriksa di awal bahwa respons sepenuhnya bertipe dengan benar, panggil `Validate`:
+Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar sejak awal, panggil `Validate`:
 
 ```csharp
 var message = await client.Messages.Create(parameters);
@@ -317,7 +303,7 @@ Console.WriteLine(message);
 
 ## Integrasi IChatClient
 
-SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan bersama library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
+SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Hal ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan dengan library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
 
 ```csharp
 using Anthropic;
@@ -343,7 +329,7 @@ Console.WriteLine(await chatClient.GetResponseAsync("Tell me about IChatClient",
 
 ## Permintaan dan respons
 
-Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Saat respons diterima, respons tersebut dideserialisasi menjadi instance dari kelas C#.
+Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut di-deserialisasi menjadi instance dari kelas C#.
 
 Misalnya, `client.Messages.Create` harus dipanggil dengan instance `MessageCreateParams`, dan akan mengembalikan instance `Task<Message>`.
 
@@ -366,7 +352,7 @@ var response = await client.Files.Download(parameters);
 Console.WriteLine(response);
 ```
 
-Untuk menyimpan konten respons ke file, atau [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream) apa pun, gunakan metode [`CopyToAsync`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync):
+Untuk menyimpan konten respons ke file, atau ke [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream) apa pun, gunakan metode [`CopyToAsync`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync):
 
 ```csharp
 using System.IO;
@@ -379,7 +365,7 @@ await contentStream.CopyToAsync(fileStream); // Or any other Stream
 
 ### Respons mentah
 
-SDK mendefinisikan metode yang mendeserialisasi respons menjadi instance kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali pemanggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
+SDK mendefinisikan metode yang men-deserialisasi respons menjadi instance kelas C#. Untuk mengakses header respons, kode status, atau body respons mentah, awali pemanggilan metode HTTP apa pun pada klien atau layanan dengan `WithRawResponse`:
 
 ```csharp
 var response = await client.WithRawResponse.Messages.Create(parameters);
@@ -389,7 +375,7 @@ var headers = response.Headers;
 
 `HttpResponseMessage` mentah juga dapat diakses melalui properti `RawMessage`.
 
-Untuk respons non-streaming, Anda dapat mendeserialisasi respons menjadi instance kelas C# jika diperlukan:
+Untuk respons non-streaming, Anda dapat men-deserialisasi respons menjadi instance kelas C# jika diperlukan:
 
 ```csharp
 using System;
@@ -400,7 +386,7 @@ Message deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
-Untuk respons streaming, Anda dapat mendeserialisasi respons menjadi `IAsyncEnumerable` jika diperlukan:
+Untuk respons streaming, Anda dapat men-deserialisasi respons menjadi `IAsyncEnumerable` jika diperlukan:
 
 ```csharp
 using System;
@@ -415,10 +401,10 @@ await foreach (var item in response.Enumerate())
 ### Logging
 
 <Warning>
-  Semua pesan log ditujukan hanya untuk debugging. Format dan konten pesan log dapat berubah antar rilis.
+  Semua pesan log hanya ditujukan untuk debugging. Format dan konten pesan log dapat berubah di antara rilis.
 </Warning>
 
-Aktifkan debug logging dengan menetapkan variabel lingkungan:
+Aktifkan logging debug dengan mengatur variabel lingkungan:
 
 ```bash
 export ANTHROPIC_LOG=debug
@@ -426,16 +412,16 @@ export ANTHROPIC_LOG=debug
 
 ### Fungsionalitas API yang tidak terdokumentasi
 
-SDK memiliki tipe untuk penggunaan API terdokumentasi yang mudah. Namun, SDK juga mendukung penggunaan bagian API yang tidak terdokumentasi atau belum didukung.
+SDK diberi tipe untuk kemudahan penggunaan API yang terdokumentasi. Namun, SDK juga mendukung penggunaan bagian API yang tidak terdokumentasi atau belum didukung.
 
 ## Integrasi platform
 
 <Note>
-  Untuk panduan penyiapan platform yang terperinci dengan contoh kode, lihat:
+  Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 </Note>
@@ -444,17 +430,19 @@ C# SDK mendukung platform berikut melalui paket NuGet terpisah:
 
 * **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
-* **Claude Platform on AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; tetapkan `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam versi beta.
+* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
-Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API Bedrock `InvokeModel`.
 
 ## Semantic versioning
 
-Paket ini secara umum mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
+Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 13.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+
+Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
-2. Perubahan yang dalam praktiknya tidak diperkirakan berdampak pada sebagian besar pengguna.
+2. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 02990a4d4850d10e1d29a765a0c1328a21132e9bdaf154567968c0b3ba06d398
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 03423070bf815d2e8d2adb92ad44abcdb21cacd3d41129e1c91698db25171ab8
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/user-profiles
 description: Atribusikan permintaan API ke pelanggan akhir yang dilayani platform Anda, sehingga tindakan penegakan keamanan dapat diterapkan pada satu profil alih-alih seluruh organisasi Anda.
 ---
 
-"User profiles" (profil pengguna, atau "profil") memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Dengan begitu, "safety enforcement action" (tindakan penegakan keamanan), seperti penahanan atau pemblokiran, dapat diterapkan pada satu pelanggan akhir alih-alih seluruh organisasi Anda. Ketika hal itu terjadi, lalu lintas Anda yang lain tidak terpengaruh.
+Profil pengguna ("profil") memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Tindakan penegakan keamanan, seperti pembatasan atau pemblokiran, kemudian dapat diterapkan pada satu pelanggan akhir alih-alih pada seluruh organisasi Anda. Ketika hal itu terjadi, lalu lintas Anda yang lain tidak terpengaruh.
 
 Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, permintaan yang Anda kirim untuk pelanggan akhir Anda tiba di bawah organisasi Anda. Anthropic menjalankan "safety classifier" (pengklasifikasi keamanan) otomatis pada lalu lintas API. Tanpa profil pada permintaan, satu pelanggan akhir dapat memicu tindakan penegakan yang berlaku untuk seluruh organisasi Anda.
 
@@ -32,7 +32,7 @@ Apa yang diwakili oleh sebuah profil bergantung pada cara Anda menjual Claude: s
 
 ## Apa isi profil dan bagaimana Anthropic menggunakannya
 
-Profil hanya berisi apa yang Anda kirim tentang pelanggan akhir, ditambah [status program](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal#after-the-end-customer-links-the-profile) apa pun yang ditetapkan Anthropic. Profil tidak berisi konten percakapan. Anthropic menggunakan detail yang Anda kirim untuk mengatribusikan permintaan, memantau penyalahgunaan, menegakkan [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup), serta memungkinkan pengajuan dan akses ke program akses tepercaya. Anthropic tidak memverifikasi detail tersebut.
+Profil hanya berisi apa yang Anda kirim tentang pelanggan akhir, ditambah [status program](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal#after-the-end-customer-links-the-profile) atau status penegakan apa pun yang ditetapkan Anthropic. Profil tidak berisi konten percakapan. Anthropic menggunakan detail yang Anda kirim untuk mengatribusikan permintaan, memantau penyalahgunaan, menegakkan [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup), serta memungkinkan pengajuan dan akses ke program akses tepercaya. Anthropic tidak memverifikasi detail tersebut.
 
 Anthropic memproses profil sesuai dengan [Kebijakan Privasi](https://www.anthropic.com/legal/privacy).
 
@@ -157,6 +157,7 @@ Contoh berikut mendaftarkan perusahaan yang membeli akses API melalui gateway, s
       var profile = client.userProfiles().create(params);
 
       IO.println(profile.id());
+  // ...
   }
   ```
 
@@ -212,13 +213,13 @@ Responsnya adalah profil baru:
 }
 ```
 
-Simpan `id` pada catatan pelanggan Anda, dan minta instance layanan Anda membacanya dari sana alih-alih membuat profil sendiri. Anda mengambil, memperbarui, dan menghapus profil berdasarkan `id` tersebut. Field `programs` bersifat read-only, dan atribusi tidak menggunakannya. Field ini menyimpan status pelanggan akhir di setiap program yang dijalankan Anthropic. Untuk arti nilai-nilainya, lihat [program mana yang berlaku untuk profil](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal#after-the-end-customer-links-the-profile).
+Simpan `id` pada catatan pelanggan Anda, dan minta instance layanan Anda membacanya dari sana alih-alih membuat profil sendiri. Anda mengambil, memperbarui, dan menghapus profil berdasarkan `id` tersebut. Field `programs` bersifat read-only, dan atribusi tidak menggunakannya. Field ini menyimpan status pelanggan akhir di setiap program yang dijalankan Anthropic. Untuk arti nilai-nilainya, lihat [program mana yang berlaku untuk profil](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal#after-the-end-customer-links-the-profile). [Periksa apakah Anthropic telah membatasi atau memblokir profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) menjelaskan field `enforcement_status` dan `enforcement_actions`.
 
 Tidak ada batas jumlah profil dalam sebuah organisasi, tetapi pembuatan profil dikenai "rate limit" (batas laju). Sebelum Anda mendaftarkan basis pelanggan yang sudah ada secara massal, hubungi tim akun Anthropic Anda.
 
 ### Apa yang perlu diberitahukan kepada Anthropic tentang pelanggan akhir
 
-Setiap field bersifat opsional. Anda dapat mengirim `name`, `metadata`, dan field-field berikut di `external_user_details`: `entity_type`, `country`, `reference_id`, `onboarded_at`, `account_status`, `name_hash`, dan `email_hash`. Referensi [Create a profile](https://platform.claude.com/docs/id/api/beta/user_profiles/create) menjelaskan setiap field, beserta tipe, format, dan batas panjangnya.
+Setiap field bersifat opsional. Anda dapat mengirim `name`, `metadata`, dan field-field berikut di `external_user_details`: `entity_type`, `country`, `reference_id`, `onboarded_at`, `account_status`, `name_hash`, dan `email_hash`. Referensi [Create a profile](https://platform.claude.com/docs/id/api/user_profiles/create) menjelaskan setiap field, beserta tipe, format, dan batas panjangnya.
 
 Ikuti aturan berikut saat Anda menetapkan field:
 
@@ -231,14 +232,14 @@ Ikuti aturan berikut saat Anda menetapkan field:
 
 ## Atribusikan setiap permintaan
 
-Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yang Anda buat atas nama pelanggan akhir. SDK dan CLI memiliki argumen yang mengirim header tersebut untuk Anda: `user_profile_id` (java: `userProfileId`; php: `userProfileID`; csharp, go: `UserProfileID`; cli: `--user-profile-id`).
+Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yang Anda buat atas nama pelanggan akhir. SDK dan CLI memiliki argumen yang mengirimkan header tersebut untuk Anda: `user_profile_id` (java: `userProfileId`; php: `userProfileID`; csharp, go: `UserProfileID`; cli: `--user-profile-id`).
 
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-user-profile-id: uprof_011CZkZCu8hGbp5mYRQgUmz9" \
+    -H "anthropic-user-profile-id: $PROFILE_ID" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -254,7 +255,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
     --model claude-opus-5-5 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}' \
-    --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9
+    --user-profile-id "$PROFILE_ID"
   ```
 
   ```python Python
@@ -264,7 +265,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
       model="claude-opus-5-5",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
-      user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      user_profile_id=profile_id,
   )
 
   print(message)
@@ -277,7 +278,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
     model: "claude-opus-5-5",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    user_profile_id: "uprof_011CZkZCu8hGbp5mYRQgUmz9"
+    user_profile_id: profileId
   });
 
   console.log(message);
@@ -290,8 +291,8 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
-      UserProfileID = "uprof_011CZkZCu8hGbp5mYRQgUmz9"
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+      UserProfileID = profileId
   };
   var message = await client.Messages.Create(parameters);
 
@@ -307,7 +308,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
   	},
-  	UserProfileID: anthropic.String("uprof_011CZkZCu8hGbp5mYRQgUmz9"),
+  	UserProfileID: anthropic.String(profileID),
   })
   if err != nil {
   	log.Fatal(err)
@@ -327,7 +328,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
           .addUserMessage("Hello, Claude")
-          .userProfileId("uprof_011CZkZCu8hGbp5mYRQgUmz9")
+          .userProfileId(profileId)
           .build();
       var message = client.messages().create(params);
 
@@ -342,7 +343,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
       model: Model::CLAUDE_OPUS_5_5,
-      userProfileID: 'uprof_011CZkZCu8hGbp5mYRQgUmz9',
+      userProfileID: $profileId,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -355,7 +356,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }],
-    user_profile_id: "uprof_011CZkZCu8hGbp5mYRQgUmz9"
+    user_profile_id: profile_id
   )
 
   puts message
@@ -397,7 +398,7 @@ Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, da
 2. Seseorang yang dapat mengelola IAM di akun AWS atau proyek Google Cloud menjalankan perintah yang disediakan portal.
 3. Admin atau pemilik menyelesaikan verifikasi di portal.
 
-Program yang berlaku untuk profil hanya berlaku untuk permintaan suatu akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal).
+Program yang berlaku untuk sebuah profil hanya berlaku untuk permintaan sebuah akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal) dan, untuk tingkat akses Cyber Verification Program, mengaktifkannya untuk profil tersebut di portal.
 
 Claude di Amazon Bedrock dan Google Cloud memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
 
@@ -405,13 +406,60 @@ Claude di Amazon Bedrock dan Google Cloud memeriksa format ID tetapi tidak menca
 
 Profil `passthrough` mengidentifikasi perusahaan, bukan orang yang membuat permintaan. Jika permintaan berasal dari satu orang yang dapat diidentifikasi, kirim juga pengidentifikasi untuk orang tersebut di field [`metadata.user_id`](https://platform.claude.com/docs/id/api/messages/create) pada permintaan Messages. Ini adalah objek `metadata` milik permintaan itu sendiri, bukan field `metadata` milik profil. Pengidentifikasi ini opsional, dan membantu Anthropic mendeteksi penyalahgunaan oleh satu orang.
 
+## Memeriksa apakah Anthropic telah membatasi atau memblokir sebuah profil
+
+Field `enforcement_status` dan `enforcement_actions` pada sebuah profil melaporkan tindakan penegakan yang sedang dibuka Anthropic terhadap pelanggan akhir. Tindakan penegakan adalah pembatasan atau pemblokiran. Setiap respons yang mengembalikan profil menyertakan kedua field tersebut: create, retrieve, update, dan setiap profil dalam daftar. Kirim permintaan ini tanpa nilai `user-profiles-` di header `anthropic-beta`, karena `user-profiles-2026-09-04` dan nilai-nilai sebelumnya tidak menyertakan field tersebut. Contoh berikut menunjukkan field tersebut pada profil yang diambil, dengan field lainnya dihilangkan:
+
+```json
+{
+  "type": "user_profile",
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "enforcement_status": "restricted",
+  "enforcement_actions": [
+    {
+      "type": "restriction",
+      "id": "enac_011CZkZEq4TnWb7xLfRgPm2v",
+      "reason": "fraud_or_abuse",
+      "action": null,
+      "opened_at": "2026-10-02T19:30:00Z",
+      "expires_at": null
+    }
+  ]
+}
+```
+
+`enforcement_status` merangkum tindakan yang terbuka dalam satu nilai:
+
+* `unrestricted`: Tidak ada tindakan yang terbuka.
+* `restricted`: Setidaknya satu tindakan terbuka dan tidak ada satu pun yang merupakan pemblokiran.
+* `banned`: Sebuah pemblokiran sedang terbuka.
+
+Selama sebuah tindakan terbuka, Anthropic menolak sebagian atau seluruh permintaan inferensi yang membawa ID profil tersebut.
+
+`enforcement_actions` mencantumkan tindakan yang terbuka dan kosong jika tidak ada. Tindakan yang berakhir akan keluar dari daftar. Setiap tindakan memiliki field berikut:
+
+* `type`: `restriction` atau `ban`.
+* `id`: ID tindakan, yang diawali dengan `enac_`.
+* `reason`: Alasan Anthropic membuka tindakan tersebut. Nilainya salah satu dari `unsupported_region`, `fraud_or_abuse`, `high_harm`, `usage_policy_violation`, `account_compromise`, atau `unspecified`.
+* `action`: Apa yang dapat dilakukan pelanggan akhir untuk mencabut tindakan tersebut, atau `null` jika tidak ada yang dapat mereka lakukan.
+* `opened_at`: Kapan Anthropic membuka tindakan tersebut.
+* `expires_at`: Kapan tindakan tersebut berakhir dengan sendirinya, atau `null` jika tidak memiliki tanggal berakhir.
+
+Untuk memeriksa sebuah profil, ambil profil tersebut dengan [`GET /v1/user_profiles/{id}`](https://platform.claude.com/docs/id/api/user_profiles/retrieve). Untuk menemukan profil yang memiliki tindakan terbuka, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan `enforcement_status[]=restricted` dan `enforcement_status[]=banned`. Untuk mendapatkan event saat sebuah tindakan dibuka atau berakhir, lihat [Webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks). Tanpa event, bandingkan kedua field tersebut dengan nilai yang terakhir Anda lihat. Sebuah perubahan tidak selalu memperbarui `updated_at`.
+
+Anthropic yang menetapkan kedua field tersebut. Jika permintaan create atau update menyertakan salah satunya, API mengembalikan `400`. `enforcement_status` terpisah dari `external_user_details.account_status`, yang mencatat keputusan Anda sendiri tentang akun tersebut.
+
+Anthropic dapat menambahkan nilai baru. Perlakukan `enforcement_status` yang tidak Anda kenali sebagai `restricted`, `type` yang tidak Anda kenali sebagai `restriction`, `reason` yang tidak Anda kenali sebagai `unspecified`, dan `action` yang tidak Anda kenali sebagai `null`.
+
+Di Claude Platform on AWS, kedua field tersebut tidak melaporkan tindakan penegakan: `enforcement_status` selalu `unrestricted`, dan `enforcement_actions` selalu kosong. Anthropic tidak menolak permintaan di sana karena adanya tindakan yang terbuka.
+
 ## Jaga profil tetap terkini
 
 Perbarui profil ketika detail atau status akun pelanggan akhir berubah, dan hapus profil ketika mereka menutup akun atau meminta Anda menghapus data mereka.
 
 ### Perbarui profil
 
-[`POST /v1/user_profiles/{id}`](https://platform.claude.com/docs/id/api/beta/user_profiles/update) hanya mengubah field yang Anda kirim. Misalnya, gunakan ini ketika perusahaan melakukan rebranding atau Anda menangguhkan akun.
+[`POST /v1/user_profiles/{id}`](https://platform.claude.com/docs/id/api/user_profiles/update) hanya mengubah field yang Anda kirim. Misalnya, gunakan ini ketika perusahaan melakukan rebranding atau Anda menangguhkan akun.
 
 * `name` dan `access_type` menggantikan nilai yang tersimpan.
 * Setiap field yang Anda kirim di `external_user_details` menggantikan nilai yang tersimpan. Anda tidak dapat mengosongkan nilai. API menolak `null` dengan `400`.
@@ -421,7 +469,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
 
 <CodeGroup>
   ```bash cURL
-  curl https://api.anthropic.com/v1/user_profiles/uprof_011CZkZCu8hGbp5mYRQgUmz9 \
+  curl "https://api.anthropic.com/v1/user_profiles/$PROFILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -433,7 +481,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
 
   ```bash CLI
   ant user-profiles update \
-    --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9 \
+    --user-profile-id "$PROFILE_ID" \
     --external-user-details '{account_status: suspended}' \
     --metadata '{trial_cohort: ""}'
   ```
@@ -442,7 +490,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   client = anthropic.Anthropic()
 
   profile = client.user_profiles.update(
-      "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      profile_id,
       external_user_details={"account_status": "suspended"},
       metadata={"trial_cohort": ""},
   )
@@ -453,7 +501,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const profile = await client.userProfiles.update("uprof_011CZkZCu8hGbp5mYRQgUmz9", {
+  const profile = await client.userProfiles.update(profileId, {
     external_user_details: { account_status: "suspended" },
     metadata: { trial_cohort: "" }
   });
@@ -464,7 +512,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   ```csharp C#
   AnthropicClient client = new();
 
-  var profile = await client.UserProfiles.Update("uprof_011CZkZCu8hGbp5mYRQgUmz9", new()
+  var profile = await client.UserProfiles.Update(profileId, new()
   {
       ExternalUserDetails = new()
       {
@@ -481,7 +529,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
 
   profile, err := client.UserProfiles.Update(
   	context.Background(),
-  	"uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  	profileID,
   	anthropic.UserProfileUpdateParams{
   		ExternalUserDetails: anthropic.UserProfileExternalUserDetailsParams{
   			AccountStatus: anthropic.UserProfileExternalUserAccountStatusSuspended,
@@ -506,7 +554,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = UserProfileUpdateParams.builder()
-          .userProfileId("uprof_011CZkZCu8hGbp5mYRQgUmz9")
+          .userProfileId(profileId)
           .externalUserDetails(UserProfileExternalUserDetailsParams.builder()
               .accountStatus(UserProfileExternalUserAccountStatus.SUSPENDED)
               .build())
@@ -524,7 +572,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   $client = new Client();
 
   $profile = $client->userProfiles->update(
-      'uprof_011CZkZCu8hGbp5mYRQgUmz9',
+      $profileId,
       externalUserDetails: ['accountStatus' => 'suspended'],
       metadata: ['trial_cohort' => ''],
   );
@@ -536,7 +584,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   client = Anthropic::Client.new
 
   profile = client.user_profiles.update(
-    "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+    profile_id,
     external_user_details: { account_status: :suspended },
     metadata: { trial_cohort: "" }
   )
@@ -547,25 +595,25 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
 
 ### Hapus profil
 
-`DELETE /v1/user_profiles/{id}` menghapus profil secara permanen beserta semua yang Anda berikan untuknya, termasuk `name`, `external_user_details`, dan `metadata`. Ini tidak menghapus catatan trust and safety yang disimpan Anthropic tentang ID profil tersebut.
+[`DELETE /v1/user_profiles/{id}`](https://platform.claude.com/docs/id/api/user_profiles/delete) menghapus profil secara permanen beserta semua yang Anda berikan untuknya, termasuk `name`, `external_user_details`, dan `metadata`. Tindakan ini tidak menghapus catatan kepercayaan dan keamanan yang disimpan Anthropic tentang ID profil tersebut.
 
 Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus datanya. Sebelum Anda menghapus profil, berhentilah mengirim ID-nya pada permintaan pelanggan akhir tersebut. Jika pelanggan akhir tetap bersama Anda setelah permintaan penghapusan data, buat profil baru dan beralihlah ke ID-nya. Kemudian hapus profil yang lama.
 
 <CodeGroup>
   ```bash cURL
-  curl -X DELETE https://api.anthropic.com/v1/user_profiles/uprof_011CZkZCu8hGbp5mYRQgUmz9 \
+  curl -X DELETE "https://api.anthropic.com/v1/user_profiles/$PROFILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  ant user-profiles delete --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9
+  ant user-profiles delete --user-profile-id "$PROFILE_ID"
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  deleted = client.user_profiles.delete("uprof_011CZkZCu8hGbp5mYRQgUmz9")
+  deleted = client.user_profiles.delete(profile_id)
 
   print(deleted.id)
   ```
@@ -573,7 +621,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const deleted = await client.userProfiles.delete("uprof_011CZkZCu8hGbp5mYRQgUmz9");
+  const deleted = await client.userProfiles.delete(profileId);
 
   console.log(deleted.id);
   ```
@@ -581,7 +629,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   ```csharp C#
   AnthropicClient client = new();
 
-  var deleted = await client.UserProfiles.Delete("uprof_011CZkZCu8hGbp5mYRQgUmz9");
+  var deleted = await client.UserProfiles.Delete(profileId);
 
   Console.WriteLine(deleted.ID);
   ```
@@ -591,7 +639,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
 
   deleted, err := client.UserProfiles.Delete(
   	context.Background(),
-  	"uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  	profileID,
   	anthropic.UserProfileDeleteParams{},
   )
   if err != nil {
@@ -605,7 +653,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      var deleted = client.userProfiles().delete("uprof_011CZkZCu8hGbp5mYRQgUmz9");
+      var deleted = client.userProfiles().delete(profileId);
 
       IO.println(deleted.id());
   }
@@ -614,7 +662,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   ```php PHP
   $client = new Client();
 
-  $deleted = $client->userProfiles->delete('uprof_011CZkZCu8hGbp5mYRQgUmz9');
+  $deleted = $client->userProfiles->delete($profileId);
 
   echo $deleted->id, PHP_EOL;
   ```
@@ -622,7 +670,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  deleted = client.user_profiles.delete("uprof_011CZkZCu8hGbp5mYRQgUmz9")
+  deleted = client.user_profiles.delete(profile_id)
 
   puts deleted.id
   ```
@@ -634,9 +682,11 @@ Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hing
 
 ## Langkah selanjutnya
 
-Referensi API berisi field, tipe, dan batas setiap endpoint: [Create a profile](https://platform.claude.com/docs/id/api/beta/user_profiles/create), [Retrieve a profile](https://platform.claude.com/docs/id/api/beta/user_profiles/retrieve), [Update a profile](https://platform.claude.com/docs/id/api/beta/user_profiles/update), dan [List profiles](https://platform.claude.com/docs/id/api/beta/user_profiles/list).
+Referensi API berisi field, tipe, dan batasan setiap endpoint: [Membuat profil](https://platform.claude.com/docs/id/api/user_profiles/create), [Mengambil profil](https://platform.claude.com/docs/id/api/user_profiles/retrieve), [Memperbarui profil](https://platform.claude.com/docs/id/api/user_profiles/update), [Menghapus profil](https://platform.claude.com/docs/id/api/user_profiles/delete), dan [Mencantumkan profil](https://platform.claude.com/docs/id/api/user_profiles/list).
 
 Jika persetujuan program pelanggan akhir harus berlaku ketika mereka menggunakan Claude melalui platform Anda, lihat [Kirim tautan ke Verification Portal kepada pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal).
+
+Untuk mendapatkan event saat Anthropic membatasi atau memblokir salah satu pelanggan akhir Anda, atau saat pembatasan atau pemblokiran tersebut berakhir, lihat [Webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks).
 
 <CardGroup cols={2}>
   <Card title="Autentikasi" href="https://platform.claude.com/docs/id/manage-claude/authentication">

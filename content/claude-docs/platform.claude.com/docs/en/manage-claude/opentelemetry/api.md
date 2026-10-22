@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: fd1e299abad3d4324050cf3b5d6cecb94d42ed0c2d58a6983dd6e8c8a2f2e577
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 40bb48a55d1258b1138923dc04fa72ef4d4b3dbdb134d5e137407bb9832461c8
 ---
 
 ---
@@ -49,14 +49,14 @@ The API emits spans for your Messages API requests and Managed Agents sessions. 
 
    | Field                          | What to enter                                                                                                                                                                                                                                                                                                                                                                                                       |
    | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | **Provider**                   | Your observability platform, or **Custom** if it isn't listed. If you choose a listed platform, the Console asks for its details, such as an API key, instead of the **OTLP endpoint URL**, **Request headers**, and **OTLP traces endpoint URL**.                                                                                                                                                                  |
+   | **Provider**                   | Your observability platform, or **Custom** if it isn't listed. If you select a listed platform, the Console asks for its details, such as an API key, instead of the **OTLP endpoint URL**, **Request headers**, and **OTLP traces endpoint URL**.                                                                                                                                                                  |
    | **Name**                       | Optional. For example, "Acme's observability platform."                                                                                                                                                                                                                                                                                                                                                             |
    | **OTLP endpoint URL**          | The base HTTPS URL of your observability platform's OTLP/HTTP endpoint, with a hostname, not an IP address. It can have a path prefix, for example `https://gateway.example.com/otlp`. Don't add `/v1/traces`, because the API adds it. If you set an **OTLP traces endpoint URL**, the API uses that URL instead.                                                                                                  |
    | **Request headers**            | The headers that the API sends with each request, for example your observability platform's API key header. Put credentials only in header values. After you save, the Console doesn't show the values again.                                                                                                                                                                                                       |
    | **Content mode**               | **Metadata only** or **Full content**. See [how the content modes differ](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                                                                                                                                                   |
    | **Workspaces**                 | The workspaces whose spans the destination receives: **All**, **Selected**, or **All except**. See [Choose workspaces for a destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination).                                                                                                                                                                  |
    | **OTLP traces endpoint URL**   | Optional, under **Advanced settings**. The full URL of your observability platform's traces endpoint, for example `https://gateway.example.com/custom/traces`. Set it when the platform receives traces at a URL other than the OTLP endpoint URL plus `/v1/traces`. It must have the same host as the OTLP endpoint URL.                                                                                           |
-   | **Maximum content size in MB** | Optional, under **Advanced settings** when the content mode is **Full content**. The most content that the API sends in each span. The Console fills it in based on the **Provider** you choose. Change it to fit what your observability platform accepts. Leave it empty to send as much as the API allows. See [Content limits](https://platform.claude.com/docs/en/manage-claude/opentelemetry#content-limits). |
+   | **Maximum content size in MB** | Optional, under **Advanced settings** when the content mode is **Full content**. The most content that the API sends in each span. The Console fills it in based on the **Provider** you select. Change it to fit what your observability platform accepts. Leave it empty to send as much as the API allows. See [Content limits](https://platform.claude.com/docs/en/manage-claude/opentelemetry#content-limits). |
 
 3. Click **Add destination** to save.
 
@@ -177,7 +177,7 @@ You can also add a destination with the [Admin API](https://platform.claude.com/
 
       var params = TelemetryDestinationCreateParams.builder()
           .endpointUrl("https://gateway.example.com/otlp")
-          .headers(TelemetryDestinationCreateParams.Headers.builder()
+          .headers(TelemetryDestinationCreateParams.DestinationHeaders.builder()
               .putAdditionalProperty("authorization", JsonValue.from("Bearer YOUR_OBSERVABILITY_API_KEY"))
               .build())
           .traces(BetaTelemetryDestinationTracesParams.builder()
@@ -295,8 +295,9 @@ The API reads each request's trace context from the W3C [`traceparent` header](h
 
       ```csharp C#
       using System.Diagnostics;
+      // ...
 
-      // Add this source to your tracer provider, next to com.anthropic.sdk.csharp.
+      // Add this source to your tracer provider, next to com.anthropic.sdk.csharp*.
       var source = new ActivitySource("MyService");
 
       using (source.StartActivity("summarize_issues"))
@@ -683,12 +684,12 @@ To change a destination, open its **More actions** menu while the **Workspace** 
 
 ## Troubleshooting
 
-| Problem                                                                            | What to check                                                                                                                                                                                                                                                                                                                |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| No API spans                                                                       | The workspace needs an enabled destination that covers it. See [Choose workspaces for a destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). After a destination starts covering a workspace, spans from that workspace can take up to a minute to arrive. |
-| The **Delivery** column shows **Failing**                                          | Hover over it to see the last error. To find the likely cause, see [Delivery errors](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-errors).                                                                                                                                                   |
-| The **Delivery** column shows **Disabled**                                         | Hover over it to see why. For the reasons, see [when the API disables a destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-and-health).                                                                                                                                               |
-| Spans have no prompts or responses, but the destination is set to **Full content** | Your organization might have a HIPAA, FERPA, or K-12 data-handling restriction with Anthropic. See [Content modes](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                   |
+| Problem                                                                            | What to check                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No API spans                                                                       | The workspace needs an enabled destination that covers it. See [Choose workspaces for a destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). After a destination starts covering a workspace, spans from that workspace can take up to a minute to arrive. The API emits no span for a request whose `traceparent` header has the sampled flag off, or for a request to the [OpenAI-compatible endpoint](https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk). |
+| The **Delivery** column shows **Failing**                                          | Hover over it to see the last error. To find the likely cause, see [Delivery errors](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-errors).                                                                                                                                                                                                                                                                                                                                                                               |
+| The **Delivery** column shows **Disabled**                                         | Hover over it to see why. For the reasons, see [when the API disables a destination](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-and-health).                                                                                                                                                                                                                                                                                                                                                                           |
+| Spans have no prompts or responses, but the destination is set to **Full content** | Your organization might have a HIPAA, FERPA, or K-12 data-handling restriction with Anthropic. See [Content modes](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                                                                                                                                                                                                                                               |
 
 ### Delivery errors
 

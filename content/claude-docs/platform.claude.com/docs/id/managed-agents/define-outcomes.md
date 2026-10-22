@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 466d03d52d6c8c8207f74c68cb0dd253bf4287acbc9bb75519141bf860e7138c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 022961e3f41fd882b7b8b41d7b183f262b821d51b1635f91df4e781f7a0ad9a1
 ---
 
 ---
@@ -307,8 +307,8 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       "title": "Financial analysis on Costco"
     }'
 
-  # Definisikan hasil: SESSION_ID adalah id dari respons pembuatan
-  # Agen mulai bekerja saat menerima event tersebut
+  # Definisikan hasil: SESSION_ID adalah ID dari respons pembuatan
+  # Agen mulai bekerja saat menerima event
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -334,8 +334,8 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     --environment-id "$ENVIRONMENT_ID" \
     --title "Financial analysis on Costco"
 
-  # Definisikan hasil: SESSION_ID adalah id dari respons pembuatan
-  # Agen mulai bekerja saat menerima event tersebut
+  # Definisikan hasil: SESSION_ID adalah ID dari respons pembuatan
+  # Agen mulai bekerja saat menerima event
   ant beta:sessions:events send --session-id "$SESSION_ID" <<YAML
   events:
     - type: user.define_outcome
@@ -354,7 +354,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       title="Financial analysis on Costco",
   )
 
-  # Definisikan hasil — agen mulai bekerja saat menerimanya
+  # Definisikan hasil. Agen mulai bekerja saat menerimanya.
   client.beta.sessions.events.send(
       session_id=session.id,
       events=[
@@ -377,7 +377,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     title: "Financial analysis on Costco"
   });
 
-  // Definisikan hasil — agen mulai bekerja saat menerimanya
+  // Definisikan hasil. Agen mulai bekerja saat menerimanya.
   await client.beta.sessions.events.send(session.id, {
     events: [
       {
@@ -400,22 +400,16 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       Title = "Financial analysis on Costco",
   });
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Definisikan hasil — agen mulai bekerja saat menerimanya
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
       [
           new BetaManagedAgentsUserDefineOutcomeEventParams
           {
-              Type = BetaManagedAgentsUserDefineOutcomeEventParamsType.UserDefineOutcome,
               Description = "Build a DCF model for Costco in .xlsx",
-              Rubric = new BetaManagedAgentsTextRubricParams
-              {
-                  Type = BetaManagedAgentsTextRubricParamsType.Text,
-                  Content = Rubric,
-              },
-              // atau: Rubric = new BetaManagedAgentsFileRubricParams
-              //     { Type = BetaManagedAgentsFileRubricParamsType.File, FileID = rubric.ID },
+              Rubric = new BetaManagedAgentsTextRubricParams { Content = Rubric },
+              // atau: Rubric = new BetaManagedAgentsFileRubricParams { FileID = rubric.ID },
               MaxIterations = 5, // optional; default 3, max 20
           },
       ],
@@ -472,14 +466,11 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserDefineOutcomeEventParams.builder()
-              .type(BetaManagedAgentsUserDefineOutcomeEventParams.Type.USER_DEFINE_OUTCOME)
               .description("Build a DCF model for Costco in .xlsx")
               .rubric(BetaManagedAgentsTextRubricParams.builder()
-                  .type(BetaManagedAgentsTextRubricParams.Type.TEXT)
                   .content(RUBRIC)
                   .build())
-              // atau: .rubric(BetaManagedAgentsFileRubricParams.builder()
-              //     .type(BetaManagedAgentsFileRubricParams.Type.FILE).fileId(rubric.id()).build())
+              // atau: .rubric(BetaManagedAgentsFileRubricParams.builder().fileId(rubric.id()).build())
               .maxIterations(5) // optional; default 3, max 20
               .build())
           .build());
@@ -516,7 +507,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
     title: "Financial analysis on Costco"
   )
 
-  # Definisikan hasil — agen mulai bekerja saat menerimanya
+  # Definisikan hasil. Agen mulai bekerja begitu menerimanya.
   client.beta.sessions.events.send_(
     session.id,
     events: [
@@ -768,7 +759,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
   ```csharp C#
   // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // (pemfilteran scope_id memerlukan beta managed-agents pada request files)
   var files = await client.Beta.Files.List(new()
   {
       ScopeID = session.ID,
@@ -822,7 +813,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
   ```java Java
   // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // (pemfilteran scope_id memerlukan beta managed-agents pada request files)
   var files = client.beta().files().list(
       FileListParams.builder()
           .scopeId(session.id())

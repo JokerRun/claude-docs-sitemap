@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 5401a5b43366e1d7a0ae24605e8598f9fb6b8bd0ba194f5955aa9a86b49e7bc4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: fcc441e61b27cc6f1b53dcb9325878dafd95068409c1f63369700b48e1ba2cef
 ---
 
 ---
@@ -179,7 +179,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }],
+      Messages = [new UserMessageParam { Content = "What's the weather like in San Francisco?" }],
       Tools = [
           new ToolUnion(new Tool()
           {
@@ -524,7 +524,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
+          Messages = [new UserMessageParam { Content = "Search for flights to Tokyo departing June 1, 2026" }],
           Tools = [
               new ToolUnion(new Tool()
               {
@@ -885,7 +885,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       {
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
-          Messages = [new() { Role = Role.User, Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
+          Messages = [new UserMessageParam { Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
           Tools = [
               new ToolUnion(new Tool()
               {

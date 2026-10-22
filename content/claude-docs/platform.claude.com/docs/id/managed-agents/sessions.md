@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: b2395bf7d0a7a06f7df1211dca7142ef0a95d9cd554a5d7af839dcec5928f198
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 28b069d510653080bdefdff7eb1c9ca6698b2c1b3239976e7eac9baae69cb095
 ---
 
 ---
@@ -37,9 +37,7 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
   ```
 
   ```bash CLI
-  ant beta:sessions create \
-    --agent "$AGENT_ID" \
-    --environment-id "$ENVIRONMENT_ID"
+  ant beta:sessions create --agent "$AGENT_ID" --environment-id "$ENVIRONMENT_ID"
   ```
 
   ```python Python
@@ -142,7 +140,6 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
   {
       Agent = new BetaManagedAgentsAgentParams
       {
-          Type = BetaManagedAgentsAgentParamsType.Agent,
           ID = agent.ID,
           Version = 1,
       },
@@ -169,7 +166,6 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
   ```java Java
   var pinnedSession = client.beta().sessions().create(SessionCreateParams.builder()
       .agent(BetaManagedAgentsAgentParams.builder()
-          .type(BetaManagedAgentsAgentParams.Type.AGENT)
           .id(agent.id())
           .version(1)
           .build())
@@ -285,12 +281,10 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "List the files in the working directory.",
                   },
               ],
@@ -359,7 +353,6 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
       .agent(agent.id())
       .environmentId(environment.id())
       .addInitialEvent(BetaManagedAgentsUserMessageEventParams.builder()
-          .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
           .addTextContent("List the files in the working directory.")
           .build())
       .build());
@@ -440,7 +433,7 @@ Event `user.define_outcome` di `initial_events` (java, php: `initialEvents`; csh
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat meneruskan `agent` (csharp, go: `Agent`) dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override. Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, atur `type` ke `agent_with_overrides` dan teruskan `id` (csharp, go: `ID`) agen serta secara opsional `version` (csharp, go: `Version`) (hilangkan `version` (csharp, go: `Version`) untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model` (csharp, go: `Model`), `system` (csharp, go: `System`; ruby: `system_`), `tools` (csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), atau `skills` (csharp, go: `Skills`) dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` (csharp, go: `Agent`) dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek override (`type: "agent_with_overrides"`). Bentuk override mengubah sebagian konfigurasi agen untuk satu sesi. Gunakan bentuk ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk override, teruskan `id` (csharp, go: `ID`) agen dan secara opsional `version` (csharp, go: `Version`) (hilangkan `version` (csharp, go: `Version`) untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model` (csharp, go: `Model`), `system` (csharp, go: `System`; ruby: `system_`), `tools` (csharp, go: `Tools`), `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`), atau `skills` (csharp, go: `Skills`) dengan nilai yang harus digunakan sesi.
 
 Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
@@ -479,8 +472,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```
 
   ```bash CLI
-  # `agent` pada respons adalah snapshot hasil resolusi: setiap override mengganti
-  # field tersebut hanya untuk sesi ini, dan resource agen tetap menyimpan id dan versinya.
+  # `agent` pada respons adalah snapshot yang di-resolve: tiap override mengganti field itu
+  # hanya untuk sesi ini, dan resource agent tetap mempertahankan ID dan versinya.
   ant beta:sessions create <<YAML
   agent:
     type: agent_with_overrides
@@ -527,7 +520,6 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   {
       Agent = new BetaManagedAgentsAgentWithOverridesParams
       {
-          Type = BetaManagedAgentsAgentWithOverridesParamsType.AgentWithOverrides,
           ID = agent.ID,
           Model = new BetaManagedAgentsModelConfigParams
           {
@@ -568,7 +560,6 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```java Java
   var overrideSession = client.beta().sessions().create(SessionCreateParams.builder()
       .agent(BetaManagedAgentsAgentWithOverridesParams.builder()
-          .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
           .id(agent.id())
           .model(BetaManagedAgentsModelConfigParams.builder()
               .id(BetaManagedAgentsModel.CLAUDE_SONNET_5_5)
@@ -585,7 +576,6 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```php PHP
   $overrides = BetaManagedAgentsAgentWithOverridesParams::with(
       id: $agent->id,
-      type: 'agent_with_overrides',
       model: ['id' => 'claude-sonnet-5-5'],
   );
   // Kosongkan prompt sistem untuk sesi ini. Akses array penting di sini:
@@ -687,7 +677,6 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   {
       Agent = new BetaManagedAgentsAgentWithOverridesParams
       {
-          Type = BetaManagedAgentsAgentWithOverridesParamsType.AgentWithOverrides,
           ID = agent.ID,
           // Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
           Model = new BetaManagedAgentsModelConfigParams
@@ -725,7 +714,6 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   ```java Java
   var session = client.beta().sessions().create(SessionCreateParams.builder()
       .agent(BetaManagedAgentsAgentWithOverridesParams.builder()
-          .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
           .id(agent.id())
           // Menggantikan `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
           .model(BetaManagedAgentsModelConfigParams.builder()
@@ -742,7 +730,6 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   $session = $client->beta->sessions->create(
       agent: BetaManagedAgentsAgentWithOverridesParams::with(
           id: $agent->id,
-          type: 'agent_with_overrides',
           // Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
           model: BetaManagedAgentsModelConfigParams::with(
               id: 'claude-opus-5-5',
@@ -774,7 +761,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
 
 ### Menetapkan anggaran sesi
 
-Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak pada biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengirim permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). Atur `type` (csharp, go: `Type`) ke `limit` dan berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (csharp, go: `Amount`) dan `currency` (csharp, go: `Currency`). `amount` (csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga tidak pernah ada pembulatan floating-point yang diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi akan dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
+Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak untuk biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengeluarkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). `type` (csharp, go: `Type`) anggaran selalu `limit`. Berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (csharp, go: `Amount`) dan sebuah `currency` (csharp, go: `Currency`). `amount` (csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga pembulatan floating-point tidak pernah diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
 
 Contoh berikut membuat sesi dengan anggaran $1,25:
 
@@ -834,7 +821,6 @@ Contoh berikut membuat sesi dengan anggaran $1,25:
       EnvironmentID = environment.ID,
       Budget = new()
       {
-          Type = BetaManagedAgentsBudgetLimitType.Limit,
           MaxListCost = new() { Amount = "125", Currency = BetaCurrency.Usd },
       },
   });
@@ -866,7 +852,6 @@ Contoh berikut membuat sesi dengan anggaran $1,25:
       .agent(agent.id())
       .environmentId(environment.id())
       .budget(BetaManagedAgentsBudgetLimit.builder()
-          .type(BetaManagedAgentsBudgetLimit.Type.LIMIT)
           .maxListCost(BetaMonetaryAmount.builder()
               .amount("125")
               .currency(BetaCurrency.USD)
@@ -1015,8 +1000,7 @@ Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `In
   ```
 
   ```bash CLI
-  ant beta:sessions:events send \
-    --session-id "$SESSION_ID" <<'YAML'
+  ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
   events:
     - type: user.message
       content:
@@ -1057,12 +1041,10 @@ Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `In
       [
           new BetaManagedAgentsUserMessageEventParams
           {
-              Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
               Content =
               [
                   new BetaManagedAgentsTextBlock
                   {
-                      Type = BetaManagedAgentsTextBlockType.Text,
                       Text = "List the files in the working directory.",
                   },
               ],
@@ -1094,7 +1076,6 @@ Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `In
       session.id(),
       EventSendParams.builder()
           .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
-              .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
               .addTextContent("List the files in the working directory.")
               .build())
           .build());

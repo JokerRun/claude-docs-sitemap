@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 4510b9961c0b98a737c555e98ecc9301e0be39edc762c34304ee7e8ab30909a4
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: cc674dddcbf8c8b8429708723834eb6abba6182ea49e278ca40f8fd296d9358e
 ---
 
 ---
@@ -147,6 +147,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Body parameters
 
@@ -548,6 +550,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -858,6 +862,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 
@@ -1172,6 +1178,8 @@ session.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Body parameters
 
@@ -1565,6 +1573,8 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `BetaFederationIssuer object`
@@ -1882,6 +1892,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Body parameters
 
@@ -2308,6 +2320,8 @@ unless `include_archived=true`.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaFederationRule`
@@ -2618,6 +2632,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 
@@ -2947,6 +2963,8 @@ Console session.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Body parameters
 
@@ -3349,6 +3367,8 @@ other scopes require a Console session.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `BetaFederationRule object`
@@ -3674,6 +3694,8 @@ other scopes require a Console session.
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -3883,6 +3905,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"telemetry-destinations-2026-08-11"`
 
+  - `"webhooks-2026-10-07"`
+
 #### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -4081,6 +4105,8 @@ Console session.
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 #### Returns
 

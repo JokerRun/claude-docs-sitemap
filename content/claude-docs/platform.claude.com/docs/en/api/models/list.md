@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 9a792ef4d94b92cf3d523fddcf6a62fffac2c4f91d827214aadb2f2b38d0e52b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 9f365d6bca3915823aaa0ddce012b80349dff4b15846c5981b37b5e4841ac8ad
 ---
 
 ---
@@ -171,6 +171,8 @@ The Models API response can be used to determine which models are available for 
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 ## Returns
 

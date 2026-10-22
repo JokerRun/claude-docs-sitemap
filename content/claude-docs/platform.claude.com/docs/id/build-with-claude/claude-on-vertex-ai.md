@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 68af7888710ecd3a134872e0876afd7cff8f8f089fb0397cf83cac08285ce17d
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: b980eeca0f909ca4f134702e6c2fe341852b5965a3a97b0665f9f4761bd9057a
 ---
 
 ---
@@ -14,13 +14,13 @@ description: Model Claude dari Anthropic tersedia melalui [Google Cloud's Agent 
 API untuk mengakses Claude di Google Cloud's Agent Platform hampir identik dengan [Messages API](https://platform.claude.com/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
 
 * Di Agent Platform, `model` tidak diteruskan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
-* Di Agent Platform, `anthropic_version` diteruskan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
+* Di Agent Platform, `anthropic_version` diteruskan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`, atau ke [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21).
 
 Agent Platform juga didukung oleh [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda dalam membuat permintaan ke Claude di Agent Platform menggunakan salah satu SDK klien Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
+Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
 
-## Instal SDK untuk mengakses Agent Platform
+## Menginstal SDK untuk mengakses Agent Platform
 
 Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
 
@@ -52,20 +52,20 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:2.75.0")
-      implementation("com.anthropic:anthropic-java-vertex:2.75.0")
+      implementation("com.anthropic:anthropic-java:3.1.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.1.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       ```
 
@@ -123,7 +123,7 @@ Pertama, instal [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
 
 ### Ketersediaan model
 
-Perhatikan bahwa ketersediaan model Anthropic bervariasi menurut region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
+Perhatikan bahwa ketersediaan model Anthropic bervariasi menurut region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau buka [Model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
 
 #### ID model API
 
@@ -245,7 +245,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -261,7 +261,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   	"github.com/anthropics/anthropic-sdk-go/vertex"
   )
   // ...
-  	// Menggunakan kredensial Google Cloud default
+  	// Menggunakan kredensial default Google Cloud
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
@@ -358,13 +358,13 @@ Claude juga tersedia melalui [Amazon Bedrock](https://platform.claude.com/docs/i
 
 ## Retensi data
 
-Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
+Penanganan data untuk layanan ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan retensi data nol](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
 ## Pencatatan aktivitas
 
 Agent Platform menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan Anda mencatat prompt dan completion yang terkait dengan penggunaan Anda.
 
-Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya dalam periode bergulir 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
+Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
 <Note>
   Mengaktifkan layanan ini tidak memberikan Google atau Anthropic akses apa pun ke konten Anda.
@@ -378,24 +378,24 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Google Cloud, lihat [Ikhti
 
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
-* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), [alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
-* [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
+* [Sitasi](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
 * Alat sisi server (eksekusi kode, web fetch, advisor)
-* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat secara programatik)
+* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 (deprecated) dan Sonnet 4 (deprecated), memiliki jendela konteks 200k token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki ["context window" (jendela konteks) 1 juta token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 (deprecated) dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
@@ -421,20 +421,20 @@ Endpoint regional dan multi-region dikenakan premi harga 10% di atas endpoint gl
 * Merutekan permintaan secara dinamis ke region dengan kapasitas yang tersedia
 * Tanpa premi harga
 * Terbaik untuk aplikasi dengan residensi data yang fleksibel
-* Hanya mendukung traffic pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint multi-region:**
 
 * Merutekan permintaan secara dinamis ke berbagai region dalam suatu wilayah geografis (saat ini `us` dan `eu`)
 * Berguna ketika Anda memerlukan residensi data dalam wilayah geografis yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
 * Premi harga 10% di atas endpoint global
-* Hanya mendukung traffic pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint regional:**
 
-* Merutekan traffic melalui region geografis tertentu
+* Merutekan lalu lintas melalui region geografis tertentu
 * Diperlukan untuk residensi data satu region, mandat kepatuhan yang ketat, atau provisioned throughput
-* Mendukung pay-as-you-go maupun provisioned throughput
+* Mendukung pay-as-you-go dan provisioned throughput
 * Premi harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
 
 ### Implementasi
@@ -517,7 +517,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -703,7 +703,7 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -816,7 +816,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
+  # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
   # Region, di sini us-east5, muncul di nama host dan di path
   curl https://us-east5-aiplatform.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us-east5/publishers/anthropic/models/claude-sonnet-4-6:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
@@ -841,7 +841,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
+      # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
       model="claude-sonnet-4-6",
       max_tokens=100,
       messages=[
@@ -866,7 +866,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
   });
 
   const result = await client.messages.create({
-    // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
+    // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
     model: "claude-sonnet-4-6",
     max_tokens: 100,
     messages: [
@@ -893,7 +893,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
       // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru menggunakan endpoint global atau multi-region
       Model = Model.ClaudeSonnet4_6,
       MaxTokens = 100,
-      Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
+      Messages = [new UserMessageParam { Content = "Hey Claude!" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -915,7 +915,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		// Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
+  		// Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru memakai endpoint global atau multi-region
   		Model:     anthropic.ModelClaudeSonnet4_6,
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
@@ -951,7 +951,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
           .messages()
           .create(
               MessageCreateParams.builder()
-                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model lebih baru memakai endpoint global atau multi-region
+                  // Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
                   .model(Model.CLAUDE_SONNET_4_6)
                   .maxTokens(100)
                   .addUserMessage("Hey Claude!")
@@ -992,7 +992,7 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
   )
 
   message = client.messages.create(
-    # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
+    # Endpoint regional tertentu mendukung Claude Sonnet 4.6 dan versi sebelumnya; model yang lebih baru memakai endpoint global atau multi-region
     model: "claude-sonnet-4-6",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]
@@ -1003,12 +1003,12 @@ Tentukan region tertentu seperti `"us-east5"` atau `"europe-west1"`:
 </CodeGroup>
 
 <Note>
-  Claude Mythos Preview adalah pratinjau riset yang tersedia bagi pelanggan yang diundang di Agent Platform. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
+  Claude Mythos Preview adalah pratinjau riset yang tersedia untuk pelanggan yang diundang di Agent Platform. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
 ## Sumber daya tambahan
 
-* **Harga Agent Platform:** [Harga Generative AI di cloud.google.com](https://cloud.google.com/vertex-ai/generative-ai/pricing)
+* **Harga Agent Platform:** [Harga AI Generatif di cloud.google.com](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 * **Dokumentasi model Claude:** [Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude)
 * **Postingan blog Google:** [Endpoint global untuk model Claude](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai)
 * **Detail harga Anthropic:** [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing)

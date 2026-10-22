@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: da0ba9b3e45cb5764c9777af7380792123a6b6ff004d524dead82e164c70e508
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0c0a1aa9ec97e08105dec9ee42c0b6286321b8d4af23aaefdadc02857a842426
 ---
 
 ---
@@ -32,7 +32,7 @@ Once an agent and environment exist, you can drive a session from the shell:
       --title "Summarization task"
     ```
 
-    ```json Output
+    ```text Output wrap
     {
       "id": "session_01JZCh78XvmxJjiXVy3oSi7K",
       "status": "running"
@@ -79,14 +79,12 @@ The CLI is designed to compose with standard shell tooling.
 
 ### Chain list output into a second command
 
-`--transform id --raw-output` on a list endpoint emits one bare ID per line, so standard tools such as `head` and `xargs` apply directly. Capture the first result, then pass it to a follow-up command:
+`--transform id --raw-output` on a list endpoint emits one bare ID on each line, so standard tools such as `head` and `xargs` apply directly. Capture the first result, then pass it to a follow-up command:
 
 ```bash
 FIRST_AGENT=$(ant beta:agents list --transform id --raw-output | head -1)
 
-ant beta:agents:versions list \
-  --agent-id "$FIRST_AGENT" \
-  --format jsonl
+ant beta:agents:versions list --agent-id "$FIRST_AGENT" --format jsonl
 ```
 
 ### Inspect errors
@@ -111,7 +109,7 @@ Agent not found.
 * "Upload every PDF in `./reports` to the Files API and print the resulting IDs."
 * "Pull the events for session `session_01...` and tell me where the agent got stuck."
 
-Claude Code shells out to `ant`, parses the structured output, and reasons over the results (no custom integration code required).
+Claude Code runs `ant` commands, parses the structured output, and reasons over the results (no custom integration code required).
 
 ## Authenticate curl requests with CLI credentials
 

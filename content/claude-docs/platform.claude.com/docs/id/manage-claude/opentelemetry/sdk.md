@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: dafb611ab7186cfe544ffcabcee5c90383e6da7989f807d5bd5fc99f1ae6c2d0
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: bf6fc551218ec4333d209d3c8d771c162a6cc8cc38affc872879ea090d313068
 ---
 
 ---
@@ -91,14 +91,14 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
 
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:2.75.0")
+      implementation("com.anthropic:anthropic-java:3.1.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>2.75.0</version>
+          <version>3.1.0</version>
       </dependency>
       ```
     </CodeGroup>
@@ -199,10 +199,8 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   using OpenTelemetry.Trace;
 
   // Daftarkan tracer provider yang mencetak setiap span ke konsol.
-  // SDK memancarkan span-nya dari sumber com.anthropic.sdk.csharp. Tambahkan com.anthropic.sdk.csharp*
-  // sebagai gantinya untuk menyertakan klien SDK untuk platform cloud.
   using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-      .AddSource("com.anthropic.sdk.csharp")
+      .AddSource("com.anthropic.sdk.csharp*")
       .AddConsoleExporter()
       .Build();
 
@@ -212,7 +210,7 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   Console.WriteLine(message);
   ```
@@ -371,7 +369,7 @@ Gunakan opsi berikut untuk menentukan apa yang masuk ke span Anda dan ke mana sp
 | `traces.content_mode` (typescript, java, php: `traces.contentMode`; csharp: `Traces.ContentMode`; go: `option.WithOpenTelemetryTracesContentMode()`)<br />`ANTHROPIC_OPEN_TELEMETRY_TRACES_CONTENT_MODE=content`               | Menyertakan prompt dan respons dalam span. Lihat [Mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode).                                                                              | `metadata_only`                                                                                                                                                  |
 | `traces.max_content_bytes` (typescript, java, php: `traces.maxContentBytes`; csharp: `Traces.MaxContentBytes`; go: `option.WithOpenTelemetryTracesMaxContentBytes()`)<br />`ANTHROPIC_OPEN_TELEMETRY_TRACES_MAX_CONTENT_BYTES` | Mengubah batas konten setiap span. Lihat [Batas konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#content-limits).                                                                                            | 0,75 MB                                                                                                                                                          |
 | `conversation_id` (typescript, java, php: `conversationId`; csharp: `ConversationId`; go: `option.WithOpenTelemetryConversationID()`)                                                                                          | Menautkan beberapa panggilan menjadi satu percakapan. SDK menulis ID tersebut ke `gen_ai.conversation.id`. ID diekspor di kedua mode konten, jadi jangan masukkan data pribadi atau rahasia ke dalamnya.                            | Tidak ada                                                                                                                                                        |
-| `tracer_provider` (typescript, java, php: `tracerProvider`; csharp: `AddSource("com.anthropic.sdk.csharp")`; go: `option.WithTracerProvider()`)                                                                                | Memilih tracer provider yang menerima span dari SDK.                                                                                                                                                                                | Tracer provider yang Anda siapkan di [Daftarkan tracer provider](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#register-a-tracer-provider) |
+| `tracer_provider` (typescript, java, php: `tracerProvider`; csharp: `AddSource("com.anthropic.sdk.csharp*")`; go: `option.WithTracerProvider()`)                                                                               | Memilih tracer provider yang menerima span dari SDK.                                                                                                                                                                                | Tracer provider yang Anda siapkan di [Daftarkan tracer provider](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#register-a-tracer-provider) |
 | `propagation` (go: `option.WithOpenTelemetryPropagation()`)<br />`ANTHROPIC_OPEN_TELEMETRY_PROPAGATION=false`                                                                                                                  | Berhenti mengirim header konteks trace dan baggage bersama permintaan, misalnya ketika instrumentasi klien HTTP Anda sudah mengirimkannya. SDK tetap memancarkan span. Tersedia di SDK Python, TypeScript, Go, Java, Ruby, dan PHP. | Aktif                                                                                                                                                            |
 | `open_telemetry` (typescript, java, php: `openTelemetry`; csharp: `OpenTelemetry`; go: `option.WithoutOpenTelemetry()`)<br />`ANTHROPIC_OPEN_TELEMETRY=false`                                                                  | Menonaktifkan span untuk satu klien, misalnya ketika pustaka lain sudah melacak SDK.                                                                                                                                                | Aktif                                                                                                                                                            |
 
@@ -423,7 +421,7 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
   ```csharp C#
   // Gunakan tracer provider tertentu: tambahkan source SDK ke dalamnya.
   using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-      .AddSource("com.anthropic.sdk.csharp")
+      .AddSource("com.anthropic.sdk.csharp*")
       .AddConsoleExporter()
       .Build();
 
@@ -446,7 +444,7 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   });
   ```
 
@@ -525,7 +523,12 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
   ```ruby Ruby
   # Gunakan tracer provider tertentu dan rekam konten.
   # Mengatur open_telemetry akan menimpa semua variabel lingkungan ANTHROPIC_OPEN_TELEMETRY*.
-  client = Anthropic::Client.new(open_telemetry: {tracer_provider: provider, traces: {content_mode: :content}})
+  client = Anthropic::Client.new(
+    open_telemetry: {
+      tracer_provider: OpenTelemetry.tracer_provider,
+      traces: {content_mode: :content}
+    }
+  )
 
   # Nonaktifkan span untuk satu klien.
   quiet_client = Anthropic::Client.new(open_telemetry: false)
@@ -611,6 +614,8 @@ Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP And
   </CodeGroupItem>
 
   ```csharp C#
+  using System.Diagnostics;
+
   // SDK menulis header ini dengan DistributedContextPropagator milik .NET.
   // Propagator tanpa output menghentikan header ini untuk setiap HttpClient dalam proses.
   // Atur sebelum Anda membuat klien apa pun.

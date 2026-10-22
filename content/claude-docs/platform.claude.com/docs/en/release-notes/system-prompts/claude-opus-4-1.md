@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-1
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: f848748a6964e84c1d4c4cd6f7042250d7646bd6e715090918ed9dc4fcb53f21
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f8fdace4d1dcf5b4a49d3a1f12e008f302b94a35330b19f1db61e9edfb7ce2aa
 ---
 
 ---
 title: Claude Opus 4.1 system prompts
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-4-1
-description: See updates to the core system prompt for Claude Opus 4.1 on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
+description: See updates to the core system prompt for Claude Opus 4.1 on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
 ## August 5, 2025

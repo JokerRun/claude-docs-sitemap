@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 9daf33a0e41a0af2a0a5ec91c0c2017b3cec87e836496dd00d3c53576b31ad54
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 0f5ff12e6e1cba1fc2dbd7360c38165ed6b172bf5e4ce8fb224fb6b3a7b9d4b1
 ---
 
 > ## Documentation Index
@@ -331,10 +331,11 @@ input=$(cat)
 cmd=$(echo "$input" | jq -r '.tool_input.command')
 
 # If running tests, filter to show only failures
-if [[ "$cmd" =~ ^(npm test|pytest|go test) ]]; then
+pattern='^(npm test|pytest|go test)( [^;&|<>`$#\\[:cntrl:]]*)?$'
+if [[ "$cmd" =~ $pattern ]]; then
   filtered_cmd="$cmd 2>&1 | grep -A 5 -E '(FAIL|ERROR|error:)' | head -100"
   echo "$input" | jq --arg filtered "$filtered_cmd" \
-    '{hookSpecificOutput: {hookEventName: "PreToolUse", permissionDecision: "allow", updatedInput: (.tool_input + {command: $filtered})}}'
+    '{hookSpecificOutput: {hookEventName: "PreToolUse", updatedInput: (.tool_input + {command: $filtered})}}'
 else
   echo "{}"
 fi

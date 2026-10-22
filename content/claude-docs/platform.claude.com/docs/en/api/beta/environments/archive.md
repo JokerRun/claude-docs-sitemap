@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 450a659275dd1803198448994a24dd4cf701a402534250f653ea97409e7957bc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 3f9d93418d024de8306ccf90d0b65ba788750dc5f8f756f32c471b554cb68344
 ---
 
 ---
@@ -135,6 +135,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

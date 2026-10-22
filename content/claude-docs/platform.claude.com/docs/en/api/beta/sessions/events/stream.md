@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 7effa046175255d7842d293cb62ba31595db46fa98619c6fccbc8a691e779e6a
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 367c282b9bb9f4838a0b915ab1decf44262ba1ef92f8b9e8104f952133e4ae8f
 ---
 
 ---
@@ -145,6 +145,8 @@ Stream Events
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: ac5c83ec1d998286a0fe8648425b7d471882f334104f5443451ee0fa29b8c6fc
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 958a42a56951ac9f35bb55bd20b381164f347a6b36c2ecd2343d064fb81d25f3
 ---
 
 ---
@@ -231,7 +231,7 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "agent": "'"$agent_id"'",
       "environment_id": "'"$environment_id"'",
       "resources": [
@@ -296,7 +296,6 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
       [
           new BetaManagedAgentsMemoryStoreResourceParam
           {
-              Type = "memory_store",
               MemoryStoreID = store.ID,
               Access = "read_write",
               Instructions = "User preferences and project context. Check before starting any task.",
@@ -332,7 +331,6 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
           .environmentId(environment.id())
           .addResource(
               BetaManagedAgentsMemoryStoreResourceParam.builder()
-                  .type(BetaManagedAgentsMemoryStoreResourceParam.Type.MEMORY_STORE)
                   .memoryStoreId(store.id())
                   .access(BetaManagedAgentsMemoryStoreResourceParam.Access.READ_WRITE)
                   .instructions("User preferences and project context. Check before starting any task.")
@@ -788,11 +786,7 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
   {
       MemoryStoreID = store.ID,
       Content = "CORRECTED: Always use 2-space indentation.",
-      Precondition = new BetaManagedAgentsPrecondition
-      {
-          Type = "content_sha256",
-          ContentSha256 = mem.ContentSha256,
-      },
+      Precondition = new BetaManagedAgentsPrecondition { ContentSha256 = mem.ContentSha256 },
   });
   ```
 
@@ -818,7 +812,6 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
           .content("CORRECTED: Always use 2-space indentation.")
           .precondition(
               BetaManagedAgentsPrecondition.builder()
-                  .type(BetaManagedAgentsPrecondition.Type.CONTENT_SHA256)
                   .contentSha256(mem.contentSha256())
                   .build()
           )
@@ -955,8 +948,8 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
   const versions = await client.beta.memoryStores.memoryVersions.list(store.id, {
     memory_id: mem.id
   });
-  for await (const v of versions) {
-    console.log(`${v.id}: ${v.operation}`);
+  for await (const memoryVersion of versions) {
+    console.log(`${memoryVersion.id}: ${memoryVersion.operation}`);
   }
 
   const versionId = versions.data[1].id;
@@ -1216,8 +1209,8 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
   ```
 
   ```typescript TypeScript
-  for await (const s of client.beta.memoryStores.list({ include_archived: true })) {
-    console.log(s.id, s.name, s.archived_at);
+  for await (const memoryStore of client.beta.memoryStores.list({ include_archived: true })) {
+    console.log(memoryStore.id, memoryStore.name, memoryStore.archived_at);
   }
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-09-22T02:21:41.260167Z
-sha256: 4222b196ba5cb553bc03af254a23d3145c2b21ab04a9d1d8134a99d6746ed8d3
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: fc5a8d922735b63a468f09525a2dbbd0517373ef05726ebc3fca8c959e2833fe
 ---
 
 ---
@@ -27,7 +27,7 @@ These specifications apply to `cloud` environments. Self-hosted sandboxes run on
 | -------- | --------------------------- | -------------------- |
 | Python   | 3.10, 3.11, 3.12, and 3.13  | pip, uv, poetry      |
 | Node.js  | 20, 21, and 22 (default)    | npm, yarn, pnpm, bun |
-| Go       | 1.24 (default) and 1.25     | go modules           |
+| Go       | 1.24 (default) and 1.25     | Go modules           |
 | Rust     | Stable toolchain (rustup)   | cargo                |
 | Java     | OpenJDK 21                  | maven, gradle        |
 | Ruby     | 3.1, 3.2, and 3.3 (default) | bundler, gem         |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 45bb0b22403e282f5dcfbade1c068a0650fe7494c9f5ed1e95daeb4f7229d480
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f36f6bc092277187fd1b39eda4416cad98c940405749839cb517bef16fed9622
 ---
 
 ---
@@ -41,6 +41,7 @@ Saat dipicu, skill ini membekali Claude dengan:
 **Untuk Managed Agents (beta):**
 
 * **Alur onboarding:** Panduan berbasis wawancara untuk menyiapkan Managed Agent baru dari awal, tersedia melalui subperintah `/claude-api managed-agents-onboard`
+* **Pemeriksaan panduan keamanan:** Pemeriksaan hanya-baca terhadap pengaturan agen berdasarkan [Amankan deployment Managed Agents Anda](https://platform.claude.com/docs/id/managed-agents/secure-deployment), tersedia melalui subperintah `/claude-api managed-agents-secure` dari skill yang disertakan bersama Claude Code
 * **Dokumentasi Managed Agents khusus bahasa:** Membuat agen persisten, memulai sesi, streaming event, dan menangani konfirmasi alat untuk Python, TypeScript, C#, Go, Java, PHP, Ruby, dan cURL
 * **Pola klien:** Reconnect stream tanpa kehilangan data, gate queued/processed `processed_at`, penanganan interupsi, jebakan file-mount, dan penanganan kredensial
 * **Batasan deployment:** Managed Agents hanya tersedia di Claude API dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) (tidak di Amazon Bedrock, Google Cloud, atau Microsoft Foundry). Skill ini mengarahkan deployment lain ke Messages API dan penggunaan alat sebagai gantinya.
@@ -192,6 +193,20 @@ Biarkan Claude Code menyiapkan agen Anda
 Skill ini menjalankan wawancara yang memandu Anda melalui model mental Managed Agents (konfigurasi Agent versus Session), membuat template konfigurasi agen, mengonfigurasi lingkungan dan alat, menyiapkan loop sesi, dan menghasilkan kode yang dapat dijalankan untuk bahasa Anda. Skill ini juga mencakup alur wajib **Agent (sekali) → Session (setiap kali dijalankan)**: `model`, `system`, dan `tools` berada di agen, tidak pernah di sesi, dan agen sebaiknya dibuat sekali lalu direferensikan berdasarkan ID.
 
 Managed Agents memerlukan header beta `managed-agents-2026-04-01`, yang diatur SDK secara otomatis untuk semua panggilan `client.beta.agents.*`, `client.beta.environments.*`, `client.beta.sessions.*`, dan `client.beta.vaults.*`.
+
+## Memeriksa deployment Managed Agents
+
+Untuk membandingkan pengaturan agen dengan panduan [Amankan deployment Managed Agents Anda](https://platform.claude.com/docs/id/managed-agents/secure-deployment), panggil subperintah `managed-agents-secure` dari skill yang disertakan bersama Claude Code:
+
+Biarkan Claude Code memeriksa agen Anda berdasarkan panduan keamanan
+
+```text
+/claude-api managed-agents-secure
+```
+
+Tambahkan ID agen setelah subperintah, atau skill ini akan menanyakannya. Skill ini mengambil panduan tersebut, lalu membaca agen, sesi-sesi terbarunya dan [deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments), serta lingkungan dan vault yang digunakannya. Kecuali Anda memintanya untuk tidak melakukannya, skill ini juga mencari teks yang tampak seperti kunci rahasia di file-file folder saat ini. Skill ini hanya mencantumkan nama file yang cocok. Skill ini tidak mengubah apa pun. Laporannya mencantumkan setiap pengaturan yang perlu diubah beserta nilai yang direkomendasikan, pertanyaan yang hanya dapat Anda jawab, dan apa saja yang tidak dibacanya.
+
+Skill ini membaca agen dengan CLI `ant`, jadi siapkan terlebih dahulu CLI untuk workspace agen tersebut, seperti yang ditunjukkan dalam [panduan memulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). Skill ini memerlukan versi Claude Code terkini; jalankan `claude update` untuk memperbarui.
 
 ## Contoh penggunaan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment-risks
-fetched_at: 2026-10-14T02:20:13.092948Z
-sha256: 6c6b826d3c2f7310711ad84eb0345b0268a965df8fd157e107a7c4dd8fa9d4d6
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a102df9e6514094928c78cd4dc8dd236fc3a96b4de97a682935cc8d0fc8ef437
 ---
 
 ---
@@ -23,7 +23,7 @@ This page explains why the settings in [Secure your Managed Agents deployment](h
 
 Hidden instructions in content that an agent reads can steer the agent. This is called [prompt injection](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks). Claude is inherently resilient to it, but model behavior is not a security control. The settings in [Secure your Managed Agents deployment](https://platform.claude.com/docs/en/managed-agents/secure-deployment) limit the effect if an attempt succeeds.
 
-Claude can also take a step you did not expect while it keeps working to finish the task you gave it. For example, it might use a tool or credential it can reach to get past an obstacle. The same settings limit what such a step can reach, and an [offline reviewer](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) can flag it afterward.
+Claude can also take a step you did not expect while it keeps working to complete the task you gave it. For example, it might use a tool or credential it can reach to get past an obstacle. The same settings limit what such a step can reach, and an [offline reviewer](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) can flag it afterward.
 
 | What can go wrong                        | Example                                                                                                                          | Controls                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

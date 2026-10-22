@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 40677fc8028a16901937d1702daed939a0100efe13dc7fa9a9db8c979cc2f4bb
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f5912615b2e14378e545433cb967574e8d447f6d6c08ebfcc6c3d4692495e885
 ---
 
 ---
@@ -311,8 +311,8 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
       System = "You are a financial analysis agent.",
       Skills =
       [
-          new BetaManagedAgentsAnthropicSkillParams { Type = BetaManagedAgentsAnthropicSkillParamsType.Anthropic, SkillID = "xlsx" },
-          new BetaManagedAgentsCustomSkillParams { Type = BetaManagedAgentsCustomSkillParamsType.Custom, SkillID = "skill_01AbCdEfGhIjKlMnOpQrStUv", Version = "latest" },
+          new BetaManagedAgentsAnthropicSkillParams { SkillID = "xlsx" },
+          new BetaManagedAgentsCustomSkillParams { SkillID = "skill_01AbCdEfGhIjKlMnOpQrStUv", Version = "latest" },
       ],
   });
   ```
@@ -352,13 +352,11 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
           .system("You are a financial analysis agent.")
           .addSkill(
               BetaManagedAgentsAnthropicSkillParams.builder()
-                  .type(BetaManagedAgentsAnthropicSkillParams.Type.ANTHROPIC)
                   .skillId("xlsx")
                   .build()
           )
           .addSkill(
               BetaManagedAgentsCustomSkillParams.builder()
-                  .type(BetaManagedAgentsCustomSkillParams.Type.CUSTOM)
                   .skillId("skill_01AbCdEfGhIjKlMnOpQrStUv")
                   .version("latest")
                   .build()
@@ -509,7 +507,6 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
       [
           new BetaManagedAgentsGitHubRepositoryResourceParams
           {
-              Type = "github_repository",
               Url = "https://github.com/org/repo",
               MountPath = "/workspace/repo",
               AuthorizationToken = "ghp_your_github_token",
@@ -543,7 +540,6 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
       .agent(agent.id())
       .environmentId(environment.id())
       .addResource(BetaManagedAgentsGitHubRepositoryResourceParams.builder()
-          .type(BetaManagedAgentsGitHubRepositoryResourceParams.Type.GITHUB_REPOSITORY)
           .url("https://github.com/org/repo")
           .mountPath("/workspace/repo")
           .authorizationToken("ghp_your_github_token")

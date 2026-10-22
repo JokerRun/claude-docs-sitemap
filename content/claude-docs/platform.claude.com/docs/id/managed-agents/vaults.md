@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 534127ce70780019a05ed7d34150a48688578eecbfb3d63c53fcdec3fa3efb95
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 6555e20438f2139b4be181b3938b71c9bf776e78770ab483980c13e6b6f96413
 ---
 
 ---
@@ -36,7 +36,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "display_name": "Alice",
       "metadata": {"external_user_id": "usr_abc123"}
     }'
@@ -166,7 +166,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "display_name": "Alice's Slack",
         "auth": {
@@ -257,7 +257,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           DisplayName = "Alice's Slack",
           Auth = new BetaManagedAgentsMcpOAuthCreateParams
           {
-              Type = BetaManagedAgentsMcpOAuthCreateParamsType.McpOAuth,
               McpServerUrl = "https://mcp.slack.com/mcp",
               AccessToken = "xoxp-...",
               ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
@@ -269,7 +268,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
                   RefreshToken = "xoxe-1-...",
                   TokenEndpointAuth = new BetaManagedAgentsTokenEndpointAuthPostParam
                   {
-                      Type = BetaManagedAgentsTokenEndpointAuthPostParamType.ClientSecretPost,
                       ClientSecret = "abc123...",
                   },
               },
@@ -311,7 +309,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           CredentialCreateParams.builder()
               .displayName("Alice's Slack")
               .auth(BetaManagedAgentsMcpOAuthCreateParams.builder()
-                  .type(BetaManagedAgentsMcpOAuthCreateParams.Type.MCP_OAUTH)
                   .mcpServerUrl("https://mcp.slack.com/mcp")
                   .accessToken("xoxp-...")
                   .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
@@ -331,7 +328,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           vaultID: $vault->id,
           displayName: "Alice's Slack",
           auth: ManagedAgentsMCPOAuthCreateParams::with(
-              type: 'mcp_oauth',
               mcpServerURL: 'https://mcp.slack.com/mcp',
               accessToken: 'xoxp-...',
               expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
@@ -341,7 +337,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
                   scope: 'channels:read chat:write',
                   refreshToken: 'xoxe-1-...',
                   tokenEndpointAuth: ManagedAgentsTokenEndpointAuthPostParam::with(
-                      type: 'client_secret_post',
                       clientSecret: 'abc123...',
                   ),
               ),
@@ -386,7 +381,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "display_name": "Linear API key",
         "auth": {
@@ -437,7 +432,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           DisplayName = "Linear API key",
           Auth = new BetaManagedAgentsStaticBearerCreateParams
           {
-              Type = BetaManagedAgentsStaticBearerCreateParamsType.StaticBearer,
               McpServerUrl = "https://mcp.linear.app/mcp",
               Token = "lin_api_your_linear_key",
           },
@@ -466,7 +460,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           CredentialCreateParams.builder()
               .displayName("Linear API key")
               .auth(BetaManagedAgentsStaticBearerCreateParams.builder()
-                  .type(BetaManagedAgentsStaticBearerCreateParams.Type.STATIC_BEARER)
                   .mcpServerUrl("https://mcp.linear.app/mcp")
                   .token("lin_api_your_linear_key")
                   .build())
@@ -478,7 +471,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           vaultID: $vault->id,
           displayName: 'Linear API key',
           auth: ManagedAgentsStaticBearerCreateParams::with(
-              type: 'static_bearer',
               mcpServerURL: 'https://mcp.linear.app/mcp',
               token: 'lin_api_your_linear_key',
           ),
@@ -519,7 +511,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        -d @- <<'EOF'
       {
         "auth": {
           "type": "environment_variable",
@@ -598,12 +590,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           DisplayName = "Notion API key for sandbox",
           Auth = new BetaManagedAgentsEnvironmentVariableCreateParams
           {
-              Type = BetaManagedAgentsEnvironmentVariableCreateParamsType.EnvironmentVariable,
               SecretName = "NOTION_API_KEY",
               SecretValue = "ntn_your-secret-here",
               Networking = new BetaManagedAgentsLimitedCredentialNetworkingParams
               {
-                  Type = BetaManagedAgentsLimitedCredentialNetworkingParamsType.Limited,
                   AllowedHosts = ["api.notion.com"],
               },
               InjectionLocation = new() { Header = true },
@@ -650,7 +640,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           CredentialCreateParams.builder()
               .displayName("Notion API key for sandbox")
               .auth(BetaManagedAgentsEnvironmentVariableCreateParams.builder()
-                  .type(BetaManagedAgentsEnvironmentVariableCreateParams.Type.ENVIRONMENT_VARIABLE)
                   .secretName("NOTION_API_KEY")
                   .secretValue("ntn_your-secret-here")
                   .limitedNetworking(List.of("api.notion.com"))
@@ -670,11 +659,9 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
           vaultID: $vault->id,
           displayName: 'Notion API key for sandbox',
           auth: ManagedAgentsEnvironmentVariableCreateParams::with(
-              type: ManagedAgentsEnvironmentVariableCreateParams\Type::ENVIRONMENT_VARIABLE,
               secretName: 'NOTION_API_KEY',
               secretValue: 'ntn_your-secret-here',
               networking: ManagedAgentsLimitedCredentialNetworkingParams::with(
-                  type: ManagedAgentsLimitedCredentialNetworkingParams\Type::LIMITED,
                   allowedHosts: ['api.notion.com'],
               ),
               injectionLocation: ManagedAgentsInjectionLocationParams::with(header: true),
@@ -757,7 +744,7 @@ Teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go:
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "agent": "'"$AGENT_ID"'",
       "environment_id": "'"$ENVIRONMENT_ID"'",
       "vault_ids": ["'"$VAULT_ID"'"],
@@ -919,7 +906,6 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       VaultID = vault.ID,
       Auth = new BetaManagedAgentsMcpOAuthUpdateParams
       {
-          Type = BetaManagedAgentsMcpOAuthUpdateParamsType.McpOAuth,
           AccessToken = "xoxp-new-...",
           ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
           Refresh = new() { RefreshToken = "xoxe-1-new-..." },
@@ -951,7 +937,6 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       CredentialUpdateParams.builder()
           .vaultId(vault.id())
           .auth(BetaManagedAgentsMcpOAuthUpdateParams.builder()
-              .type(BetaManagedAgentsMcpOAuthUpdateParams.Type.MCP_OAUTH)
               .accessToken("xoxp-new-...")
               .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
               .refresh(BetaManagedAgentsMcpOAuthRefreshUpdateParams.builder()
@@ -966,7 +951,6 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
       $credential->id,
       vaultID: $vault->id,
       auth: ManagedAgentsMCPOAuthUpdateParams::with(
-          type: 'mcp_oauth',
           accessToken: 'xoxp-new-...',
           expiresAt: new \DateTimeImmutable('2099-12-31T23:59:59Z'),
           refresh: ManagedAgentsMCPOAuthRefreshUpdateParams::with(refreshToken: 'xoxe-1-new-...'),

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 5967c72af243cb2391add4512ca326e3f388c63020be19ef1f48bfad7dea7f5c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7caf5d7aa1de75f3a8e485e8bc94c2ede69c3ca10bace57960c9d73b36feb7ae
 ---
 
 ---
@@ -27,7 +27,7 @@ This guide covers common patterns for working with the Messages API, including b
 ## Basic request and response
 
 <Note>
-  The `temperature`, `top_p`, and `top_k` sampling parameters are not supported on Claude 4.7 and later models and Claude Mythos Preview. Setting them to a non-default value returns a 400 error. Omit them from request payloads and use prompting to guide the model's behavior instead. See the [migration guide](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#opus-46-breaking-changes).
+  The `temperature`, `top_p`, and `top_k` sampling parameters are not supported on Claude 4.7 and later models and Claude Mythos Preview, or on any model starting with [API version `2026-10-21`](https://platform.claude.com/docs/en/api/migration-2026-10-21#sampling-parameters). Setting them to a non-default value returns a 400 error, and starting with `2026-10-21` any value does. Omit them from request payloads and use prompting to guide the model's behavior instead. See the [breaking changes in the migration guide](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#opus-46-breaking-changes).
 </Note>
 
 <CodeGroup>
@@ -80,7 +80,7 @@ This guide covers common patterns for working with the Messages API, including b
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }]
   };
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
@@ -130,7 +130,7 @@ This guide covers common patterns for working with the Messages API, including b
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -140,7 +140,7 @@ This guide covers common patterns for working with the Messages API, including b
   ```
 </CodeGroup>
 
-```json Output
+```text Output wrap
 {
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
@@ -232,9 +232,9 @@ The Messages API is stateless, which means that you always send the full convers
       MaxTokens = 1024,
       Messages =
       [
-          new() { Role = Role.User, Content = "Hello, Claude" },
-          new() { Role = Role.Assistant, Content = "Hello!" },
-          new() { Role = Role.User, Content = "Can you describe LLMs to me?" }
+          new UserMessageParam { Content = "Hello, Claude" },
+          new AssistantMessageParam { Content = "Hello!" },
+          new UserMessageParam { Content = "Can you describe LLMs to me?" }
       ]
   };
 
@@ -295,7 +295,7 @@ The Messages API is stateless, which means that you always send the full convers
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -307,7 +307,7 @@ The Messages API is stateless, which means that you always send the full convers
   ```
 </CodeGroup>
 
-```json Output
+```text Output wrap
 {
   "id": "msg_018gCsTGsXkYJVqYPxTgDHBU",
   "type": "message",
@@ -338,7 +338,7 @@ See [Mid-conversation system messages](https://platform.claude.com/docs/en/build
 
 ## Prefilling Claude's response
 
-You can pre-fill part of Claude's response in the last position of the input messages list. Use this technique to shape Claude's response. The following example uses `"max_tokens": 1` to get a single multiple choice answer from Claude.
+You can prefill part of Claude's response in the last position of the input messages list. Use this technique to shape Claude's response. The following example uses `"max_tokens": 1` to get a single multiple choice answer from Claude.
 
 <Warning>
   Prefilling is not supported on Claude 4.6 and later models and [Claude Mythos Preview](https://anthropic.com/glasswing). Requests using prefill with these models return a 400 error. Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) on models that support it, or system prompt instructions, instead. See the [migration guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide) for migration patterns.
@@ -413,8 +413,8 @@ You can pre-fill part of Claude's response in the last position of the input mes
       Model = Model.ClaudeSonnet4_5,
       MaxTokens = 1,
       Messages = [
-          new() { Role = Role.User, Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
-          new() { Role = Role.Assistant, Content = "The answer is (" }
+          new UserMessageParam { Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
+          new AssistantMessageParam { Content = "The answer is (" }
       ]
   };
 
@@ -471,7 +471,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-sonnet-4-5",
+    model: Anthropic::Model::CLAUDE_SONNET_4_5,
     max_tokens: 1,
     messages: [
       {
@@ -485,7 +485,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
   ```
 </CodeGroup>
 
-```json Output
+```text Output wrap
 {
   "id": "msg_01Q8Faay6S7QPTvEUUQARt7h",
   "type": "message",
@@ -508,7 +508,7 @@ You can pre-fill part of Claude's response in the last position of the input mes
 
 ## Vision
 
-Claude can read both text and images in requests. You can supply images using the `base64`, `url`, or `file` source types. The `file` source type references an image uploaded through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files). Supported media types are `image/jpeg`, `image/png`, `image/gif`, and `image/webp`. See the [vision guide](https://platform.claude.com/docs/en/build-with-claude/vision) for more details.
+Claude can read both text and images in requests. You can supply images using the `base64`, `url`, or `file` source types. The `file` source type references an image uploaded through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files). Supported media types are `image/jpeg`, `image/png`, `image/gif`, and `image/webp`. See the [Vision](https://platform.claude.com/docs/en/build-with-claude/vision) guide for more details.
 
 <CodeGroup>
   ```bash cURL
@@ -560,7 +560,8 @@ Claude can read both text and images in requests. You can supply images using th
 
   ```bash CLI
   # Option 1: Base64-encoded image (CLI auto-encodes binary @file refs)
-  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" -o ./vision-example.jpg
+  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" \
+    -o ./vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5-5
@@ -728,10 +729,9 @@ Claude can read both text and images in requests. You can supply images using th
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new Base64ImageSource()
@@ -741,7 +741,7 @@ Claude can read both text and images in requests. You can supply images using th
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-              }),
+              },
           }
       ]
   };
@@ -756,10 +756,9 @@ Claude can read both text and images in requests. You can supply images using th
       MaxTokens = 1024,
       Messages =
       [
-          new()
+          new UserMessageParam
           {
-              Role = Role.User,
-              Content = new MessageParamContent(new List<ContentBlockParam>
+              Content = new List<ContentBlockParam>
               {
                   new ContentBlockParam(new ImageBlockParam(
                       new ImageBlockParamSource(new UrlImageSource()
@@ -768,7 +767,7 @@ Claude can read both text and images in requests. You can supply images using th
                       })
                   )),
                   new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-              }),
+              },
           }
       ]
   };
@@ -864,7 +863,7 @@ Claude can read both text and images in requests. You can supply images using th
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBlockParams(base64Content)
+          .addUserMessageOfContentBlockParams(base64Content)
           .build());
   System.out.println(message);
 
@@ -886,7 +885,7 @@ Claude can read both text and images in requests. You can supply images using th
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addUserMessageOfBlockParams(urlContent)
+          .addUserMessageOfContentBlockParams(urlContent)
           .build());
   System.out.println(messageFromUrl);
   ```
@@ -1013,7 +1012,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```
 </CodeGroup>
 
-```json Output
+```text Output
 {
   "id": "msg_011CdKmWtV3oFx1C5yUbf5CY",
   "type": "message",

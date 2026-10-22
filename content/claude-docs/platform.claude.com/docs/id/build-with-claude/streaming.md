@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 1ba4002f8406145a003b92de7ac8dd590f750d7c75697daa4ce8e27158f1626b
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: d92e76ccdf0bc68b4adef626027a3a4f3905e24d8f7844ffd8488e44387f1e5e
 ---
 
 ---
@@ -58,7 +58,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      Messages = [new() { Role = Role.User, Content = "Hello" }]
+      Messages = [new UserMessageParam { Content = "Hello" }]
   };
 
   await foreach (var msg in client.Messages.CreateStreaming(parameters))
@@ -198,7 +198,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 128000,
-      Messages = [new() { Role = Role.User, Content = "Write a detailed analysis..." }]
+      Messages = [new UserMessageParam { Content = "Write a detailed analysis..." }]
   };
 
   // Untuk juga menangani event saat tiba, teruskan MessageContentAggregator ke CollectAsync() sebagai gantinya.
@@ -453,7 +453,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 256,
-      Messages = [new() { Role = Role.User, Content = "Hello" }]
+      Messages = [new UserMessageParam { Content = "Hello" }]
   };
 
   await foreach (var msg in client.Messages.CreateStreaming(parameters))
@@ -727,9 +727,7 @@ Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
           }),
       ],
       ToolChoice = new ToolChoiceAny(),
-      Messages = [
-          new() { Role = Role.User, Content = "What is the weather like in San Francisco?" }
-      ]
+      Messages = [new UserMessageParam { Content = "What is the weather like in San Francisco?" }]
   };
 
   await foreach (var msg in client.Messages.CreateStreaming(parameters))
@@ -1063,7 +1061,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 20000,
       Thinking = new ThinkingConfigAdaptive { Display = Display.Summarized },
-      Messages = [new() { Role = Role.User, Content = "What is the greatest common divisor of 1071 and 462?" }]
+      Messages = [new UserMessageParam { Content = "What is the greatest common divisor of 1071 and 462?" }]
   };
 
   await foreach (var msg in client.Messages.CreateStreaming(parameters))
@@ -1296,7 +1294,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })],
-      Messages = [new() { Role = Role.User, Content = "What is the weather like in New York City today?" }]
+      Messages = [new UserMessageParam { Content = "What is the weather like in New York City today?" }]
   };
 
   await foreach (var msg in client.Messages.CreateStreaming(parameters))

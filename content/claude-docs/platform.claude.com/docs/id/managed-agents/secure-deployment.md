@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 194a101f0ee13a260b43d5c84b1d02cddabfcb03d70e0a8daac30b91359b8b78
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 75b3921eed8823db8136730c99f253f347cead5f7aee17b006c3ea59ae7b982f
 ---
 
 ---
@@ -34,6 +34,16 @@ Panduan ini mencantumkan pengaturan yang membatasi apa yang dapat dijangkau dan 
 | [Pantau sesi dan tinjau retensi](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring#monitor-sessions-and-review-retention)                                                       | Webhook dan penghapusan sesi                                                     | Peringatan saat sesi menjadi idle, mencapai anggarannya, atau dihentikan, serta pemeriksaan mengapa sesi menjadi idle. Simpan event yang ingin Anda pertahankan di log Anda sendiri, dan hapus sesi yang tidak lagi Anda perlukan                                         |
 
 [Risiko keamanan dan batasan sandbox](https://platform.claude.com/docs/id/managed-agents/secure-deployment-risks) menjelaskan mengapa pengaturan ini penting dan apa yang tidak dilindunginya. Untuk meninjau dan memantau sesi, lihat [Tinjau dan pantau sesi agen](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring).
+
+[Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill) yang disertakan dengan Claude Code memiliki perintah `managed-agents-secure` yang memeriksa agen, environment-nya, dan vault-nya berdasarkan panduan ini:
+
+Biarkan Claude Code memeriksa agen Anda berdasarkan panduan ini
+
+```text
+/claude-api managed-agents-secure
+```
+
+Perintah ini tidak mengubah apa pun, dan laporannya mencantumkan setiap pengaturan yang perlu diubah beserta nilai yang direkomendasikan dan pertanyaan yang hanya dapat Anda jawab. Sebelum menjalankannya, perbarui Claude Code dan siapkan CLI `ant` untuk workspace agen, seperti yang ditunjukkan dalam [panduan memulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart).
 
 ## Pilih tempat agen berjalan
 
@@ -519,18 +529,17 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
   [
       new BetaManagedAgentsAgentToolset20260401Params
       {
-          Type = BetaManagedAgentsAgentToolset20260401ParamsType.AgentToolset20260401,
           DefaultConfig = new()
           {
               Enabled = false,
-              PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+              PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy(),
           },
           Configs =
           [
               new BetaManagedAgentsReadToolConfigParams
               {
                   Enabled = true,
-                  PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy(),
               },
               new BetaManagedAgentsWriteToolConfigParams
               {
@@ -547,7 +556,6 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
       },
       new BetaManagedAgentsCustomToolParams
       {
-          Type = "custom",
           Name = "lookup_order",
           Description = "Look up one order by its ID. Returns the status, the items, and the delivery date.",
           InputSchema = new()
@@ -628,25 +636,16 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
   var tools = List.of(
       AgentCreateParams.Tool.ofAgentToolset20260401(
           BetaManagedAgentsAgentToolset20260401Params.builder()
-              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
               .defaultConfig(
                   BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
                       .enabled(false)
-                      .permissionPolicy(
-                          BetaManagedAgentsAlwaysAskPolicy.builder()
-                              .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                              .build()
-                      )
+                      .permissionPolicy(BetaManagedAgentsAlwaysAskPolicy.builder().build())
                       .build()
               )
               .addConfig(
                   BetaManagedAgentsReadToolConfigParams.builder()
                       .enabled(true)
-                      .permissionPolicy(
-                          BetaManagedAgentsAlwaysAllowPolicy.builder()
-                              .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
-                              .build()
-                      )
+                      .permissionPolicy(BetaManagedAgentsAlwaysAllowPolicy.builder().build())
                       .build()
               )
               .addConfig(
@@ -666,7 +665,6 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
       ),
       AgentCreateParams.Tool.ofCustom(
           BetaManagedAgentsCustomToolParams.builder()
-              .type(BetaManagedAgentsCustomToolParams.Type.CUSTOM)
               .name("lookup_order")
               .description("Look up one order by its ID. Returns the status, the items, and the delivery date.")
               .inputSchema(
@@ -700,15 +698,14 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
 
   $tools = [
       BetaManagedAgentsAgentToolset20260401Params::with(
-          type: 'agent_toolset_20260401',
           defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
               enabled: false,
-              permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+              permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(),
           ),
           configs: [
               BetaManagedAgentsReadToolConfigParams::with(
                   enabled: true,
-                  permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
+                  permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(),
               ),
               BetaManagedAgentsWriteToolConfigParams::with(
                   enabled: true,
@@ -722,7 +719,6 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
           ],
       ),
       BetaManagedAgentsCustomToolParams::with(
-          type: 'custom',
           name: 'lookup_order',
           description: 'Look up one order by its ID. Returns the status, the items, and the delivery date.',
           inputSchema: BetaManagedAgentsCustomToolInputSchema::with(

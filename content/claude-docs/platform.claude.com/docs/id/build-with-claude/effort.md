@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: d1e1da3ee3bc4a2379a7b8806514994939b6b849571ec9f737f19a19dba10c9c
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 97089b1343080e13527c4b636d9b7ee42bc5f4c0fb0d98fd3fe23982265c3234
 ---
 
 ---
@@ -124,8 +124,7 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
-          new() {
-              Role = Role.User,
+          new UserMessageParam {
               Content = "Analyze the trade-offs between microservices and monolithic architectures"
           }
       ],
@@ -503,16 +502,15 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
       OutputConfig = new() { Effort = Effort.High },
       Messages =
       [
-          new() { Role = Role.User, Content = "Plan a migration from SQLite to PostgreSQL in three short steps." },
-          new() { Role = Role.Assistant, Content = "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts." },
+          new BetaUserMessageParam { Content = "Plan a migration from SQLite to PostgreSQL in three short steps." },
+          new BetaAssistantMessageParam { Content = "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts." },
           // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          new()
+          new BetaSystemMessageParam
           {
-              Role = Role.System,
               Content = new([]),
               OutputConfig = new() { Effort = BetaSystemMessageOutputConfigEffort.Low },
           },
-          new() { Role = Role.User, Content = "Summarize the plan in one sentence." },
+          new BetaUserMessageParam { Content = "Summarize the plan in one sentence." },
       ],
       Betas = [AnthropicBeta.MidConversationOutputConfig2026_07_01],
   });
@@ -563,9 +561,9 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
   ```java Java
   import com.anthropic.models.beta.AnthropicBeta;
   import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaMessageParam;
   import com.anthropic.models.beta.messages.BetaOutputConfig;
   import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
+  import com.anthropic.models.beta.messages.BetaSystemMessageParam;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   import com.anthropic.models.messages.Model;
 
@@ -582,9 +580,8 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
           .addUserMessage("Plan a migration from SQLite to PostgreSQL in three short steps.")
           .addAssistantMessage("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")
           // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          .addMessage(BetaMessageParam.builder()
-              .role(BetaMessageParam.Role.SYSTEM)
-              .contentOfBetaContentBlockParams(List.of())
+          .addMessage(BetaSystemMessageParam.builder()
+              .contentOfBlocks(List.of())
               .outputConfig(BetaSystemMessageOutputConfig.builder()
                   .effort(BetaSystemMessageOutputConfig.Effort.LOW)
                   .build())

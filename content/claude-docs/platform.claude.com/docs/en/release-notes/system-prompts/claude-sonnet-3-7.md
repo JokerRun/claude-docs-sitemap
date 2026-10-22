@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-7
-fetched_at: 2026-08-25T02:28:41.066498Z
-sha256: 92ad3a10008533416523441f2f42e995fd2eb77187f1cce2a9e420b5528e4c06
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: 7dae8c4e1bdaeaf54d3d5ba43682cc88c4670b7b9797fc69d55c414ec7c403b2
 ---
 
 ---
 title: Claude Sonnet 3.7 system prompts
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-3-7
-description: See updates to the core system prompt for Claude Sonnet 3.7 on [claude.ai](https://claude.ai) and the [Claude iOS app](https://anthropic.com/ios) and [Claude Android app](https://anthropic.com/android).
+description: See updates to the core system prompt for Claude Sonnet 3.7 on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
 ## February 24, 2025

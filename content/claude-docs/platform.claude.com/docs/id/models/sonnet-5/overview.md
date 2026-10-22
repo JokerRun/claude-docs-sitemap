@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/overview
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 2ed03f863ee6dfcf67eee83928c8a8872912194ff5c80a5833fcb34a90133f66
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: a42645e1c4d360ba9ce1572b5b6c231f8f864ba9ac772f8bfcb574bd366476b7
 ---
 
 ---
@@ -21,7 +21,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 [Announcement](https://www.anthropic.com/news/claude-sonnet-5)
 
-## Perbandingannya dengan jajaran model saat ini
+## Perbandingan dengan jajaran model saat ini
 
 | Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
 | :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
@@ -85,10 +85,10 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 | Retirement                                                                    | Not sooner than June 30, 2027                                                                                                                                                                                                                                                                                                                                                                                           |
 | Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
-## Perlu diketahui
+## Hal yang perlu diketahui
 
-* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5 mendukung hingga 300 ribu token output dengan header beta `output-300k-2026-03-24`.
-* Mengatur `temperature`, `top_p`, atau `top_k` ke nilai non-default akan mengembalikan error 400.
+* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
+* Mengatur `temperature`, `top_p`, atau `top_k` akan menghasilkan error 400.
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya
@@ -107,11 +107,11 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Aktif secara default di Claude Sonnet 5. Atur kedalamannya dengan `effort`.
+    Aktif secara default pada Claude Sonnet 5. Atur kedalaman dengan `effort`.
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Effort secara default bernilai `high` di Claude API dan Claude Code. Pilih level untuk setiap beban kerja.
+    Effort secara default bernilai `high` pada Claude API dan Claude Code. Pilih level untuk setiap beban kerja.
   </Card>
 
   <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
@@ -127,7 +127,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
   </Card>
 
   <Card title="System card" icon="file" href="https://www.anthropic.com/claude-sonnet-5-system-card">
-    Evaluasi keamanan dan keputusan deployment untuk Claude Sonnet 5.
+    Evaluasi keamanan dan keputusan penerapan untuk Claude Sonnet 5.
   </Card>
 
   <Card title="Harga" icon="coins" href="https://platform.claude.com/docs/id/about-claude/pricing">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 34ba662ff86bd5fd9b94f6a80878953699ac6d22a2114d9766fe591a9bdccc05
+fetched_at: 2026-10-22T02:21:21.745661Z
+sha256: f5a681f8f8752db786be2bffe0efbc15d3afd78b0be21438d8a7804972271231
 ---
 
 ---
@@ -137,6 +137,8 @@ Archive a Vault
   - `"spend-limit-reads-2026-09-26"`
 
   - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
 
 - `"anthropic-workspace-id": optional string`
 
